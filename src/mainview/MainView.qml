@@ -363,22 +363,6 @@ Window {
         visible: false
 
         objectName: "callStackViewObject"
-
-        onCallPageBackButtonIsClicked: {
-            mainViewWindowSidePanel.deselectConversationSmartList()
-            if (welcomeViewStack.visible)
-                welcomeViewStack.pop(welcomePage)
-            else if (sidePanelViewStack.visible)
-                sidePanelViewStack.pop(mainViewWindowSidePanel)
-        }
-
-        onOutgoingCallPageBackButtonIsClicked: {
-            mainViewWindowSidePanel.deselectConversationSmartList()
-            if (welcomeViewStack.visible)
-                welcomeViewStack.pop(welcomePage)
-            else if (sidePanelViewStack.visible)
-                sidePanelViewStack.pop(mainViewWindowSidePanel)
-        }
     }
 
     WelcomePage {
