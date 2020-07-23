@@ -323,7 +323,6 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info &convInfo)
     QObject::disconnect(oneSecondTimer_);
     QObject::connect(oneSecondTimer_, &QTimer::timeout, [this] { setTime(accountId_, convUid_); });
     oneSecondTimer_->start(20);
-
     auto &accInfo = LRCInstance::accountModel().getAccountInfo(accountId_);
 
     auto call = LRCInstance::getCallInfoForConversation(convInfo);
