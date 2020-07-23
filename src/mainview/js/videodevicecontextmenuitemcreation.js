@@ -72,7 +72,7 @@ function finishCreation(deviceName, setChecked, last) {
      * Push into the storage array, and insert it into context menu.
      */
     itemArray.push(videoDeviceContextMenuItemObject)
-    videoContextMenuObject.insertItem(1, videoDeviceContextMenuItemObject)
+    videoContextMenuObject.insertItem(3, videoDeviceContextMenuItemObject)
 
 
     /*
