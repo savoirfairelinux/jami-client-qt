@@ -33,7 +33,6 @@ Rectangle {
     property string bestName: "Best Name"
     property string timeText: "00:00"
 
-    signal backButtonIsClicked
     signal overlayChatButtonClicked
 
     function updateButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall) {
@@ -49,10 +48,6 @@ Rectangle {
 
     function closePotentialContactPicker() {
         ContactPickerCreation.closeContactPicker()
-    }
-
-    function setBackTintedButtonVisible(visible) {
-        backTintedButton.visible = visible
     }
 
     anchors.fill: parent
@@ -88,27 +83,6 @@ Rectangle {
 
             anchors.fill: parent
 
-            TintedButton {
-                id: backTintedButton
-
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                Layout.leftMargin: 5
-                Layout.preferredWidth: 30
-                Layout.preferredHeight: 30
-
-                tintColor: JamiTheme.buttonTintedBlue
-                normalPixmapSource: "qrc:/images/icons/ic_arrow_back_white_24dp.png"
-                selectedPixmapSource: "qrc:/images/icons/ic_arrow_back_white_24dp.png"
-
-                onClicked: {
-                    callOverlayRect.backButtonIsClicked()
-                }
-
-                onButtonEntered: {
-                    callOverlayRectMouseArea.entered()
-                }
-            }
-
             Text {
                 id: jamiBestNameText
 
@@ -135,25 +109,21 @@ Rectangle {
 
             Text {
                 id: callTimerText
-
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                 Layout.preferredWidth: overlayUpperPartRect.width / 3
-                Layout.preferredHeight: 50
-
+                Layout.preferredHeight: 48
                 font.pointSize: JamiTheme.textFontSize
-
-                horizontalAlignment: Text.AlignHCenter
+                horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
-
                 text: textMetricscallTimerText.elidedText
+                rightPadding: 8
                 color: "white"
-
                 TextMetrics {
                     id: textMetricscallTimerText
                     font: callTimerText.font
                     text: timeText
                     elideWidth: overlayUpperPartRect.width / 3
-                    elide: Qt.ElideMiddle
+                    elide: Qt.ElideRight
                 }
             }
         }
@@ -215,8 +185,8 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.horizontalCenter: callOverlayRect.horizontalCenter
 
-        width: callOverlayRect.width / 3 * 2
-        height: 60
+        height: 56
+        width: callOverlayRect.width
         opacity: 0
 
         onChatButtonClicked: {
@@ -377,5 +347,9 @@ Rectangle {
     onHeightChanged: {
         ContactPickerCreation.calculateCurrentGeo(callOverlayRect.width / 2,
                                                   callOverlayRect.height / 2)
+    }
+
+    CallViewContextMenu {
+        id: callViewContextMenu
     }
 }

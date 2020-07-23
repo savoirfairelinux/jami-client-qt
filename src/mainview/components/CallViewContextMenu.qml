@@ -18,35 +18,31 @@
  */
 import QtQuick 2.14
 import QtQuick.Controls 2.14
+import QtGraphicalEffects 1.12
 import net.jami.Models 1.0
 
 import "../../commoncomponents"
 
 import "../js/videodevicecontextmenuitemcreation.js" as VideoDeviceContextMenuItemCreation
 import "../js/selectscreenwindowcreation.js" as SelectScreenWindowCreation
-import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 
 Menu {
     id: contextMenu
-
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
 
     property int generalMenuSeparatorCount: 0
-    property int commonBorderWidth: 2
-
-    signal fullScreenNeeded
+    property int commonBorderWidth: 1
+    font.pointSize: JamiTheme.textFontSize+3
 
     function activate() {
         var deviceContextMenuInfoMap = AvAdapter.populateVideoDeviceContextMenuItem()
-
-
         /*
          * Somehow, the map size is undefined, so use this instead.
          */
         var mapSize = deviceContextMenuInfoMap["size"]
 
-        var count = 1
+        var count = 2
         for (var deviceName in deviceContextMenuInfoMap) {
             if (deviceName === "size")
                 continue
@@ -63,14 +59,18 @@ Menu {
             }
             count++
         }
+        contextMenu.open()
     }
 
-    function closePotentialWindows() {
-        SelectScreenWindowCreation.destorySelectScreenWindow()
-        ScreenRubberBandCreation.destoryScreenRubberBandWindow()
+    Component.onCompleted: {
+        VideoDeviceContextMenuItemCreation.setVideoContextMenuObject(contextMenu)
     }
 
-    implicitWidth: 200
+
+    onClosed: {
+        videoDeviceItem.itemName = "No video device"
+        VideoDeviceContextMenuItemCreation.removeCreatedItems()
+    }
 
     JamiFileDialog {
         id: jamiFileDialog
@@ -88,20 +88,58 @@ Menu {
         }
     }
 
-
     /*
      * All GeneralMenuItems should remain the same width / height.
-     * The first videoDeviceItem is to make sure the border is correct.
      */
+    GeneralMenuItem {
+        id: startRecordingItem
+
+        itemName: qsTr("Start recording")
+        iconSource: "qrc:/images/icons/ic_video_call_24px.svg"
+        leftBorderWidth: commonBorderWidth
+        rightBorderWidth: commonBorderWidth
+
+        onClicked: {
+            contextMenu.close()
+            CallAdapter.recordThisCallToggle()
+        }
+    }
+
+    GeneralMenuItem {
+        id: fullScreenItem
+
+        property bool isFullScreen: false
+
+        itemName: isFullScreen ? qsTr("Exit full screen") : qsTr(
+                                     "Full screen mode")
+        iconSource: isFullScreen ? "qrc:/images/icons/close_fullscreen-24px.svg" : "qrc:/images/icons/open_in_full-24px.svg"
+        leftBorderWidth: commonBorderWidth
+        rightBorderWidth: commonBorderWidth
+
+        onClicked: {
+            contextMenu.close()
+            videoCallPageRect.needToShowInFullScreen()
+            isFullScreen = !isFullScreen
+        }
+    }
+
+    GeneralMenuSeparator {
+        preferredWidth: advancedInfosItem.preferredWidth
+        preferredHeight: commonBorderWidth
+
+        Component.onCompleted: {
+            generalMenuSeparatorCount++
+        }
+    }
+
     VideoCallPageContextMenuDeviceItem {
         id: videoDeviceItem
 
-        topBorderWidth: commonBorderWidth
         contextMenuPreferredWidth: contextMenu.implicitWidth
     }
 
     GeneralMenuSeparator {
-        preferredWidth: videoDeviceItem.preferredWidth
+        preferredWidth: advancedInfosItem.preferredWidth
         preferredHeight: commonBorderWidth
 
         Component.onCompleted: {
@@ -113,6 +151,7 @@ Menu {
         id: shareEntireScreenItem
 
         itemName: qsTr("Share entire screen")
+        iconSource: "qrc:/images/icons/screen_share-24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
 
@@ -131,6 +170,7 @@ Menu {
         id: shareScreenAreaItem
 
         itemName: qsTr("Share screen area")
+        iconSource: "qrc:/images/icons/screen_share-24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
 
@@ -151,6 +191,7 @@ Menu {
         id: shareFileItem
 
         itemName: qsTr("Share file")
+        iconSource: "qrc:/images/icons/insert_photo-24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
 
@@ -161,7 +202,7 @@ Menu {
     }
 
     GeneralMenuSeparator {
-        preferredWidth: videoDeviceItem.preferredWidth
+        preferredWidth: advancedInfosItem.preferredWidth
         preferredHeight: commonBorderWidth
 
         Component.onCompleted: {
@@ -170,40 +211,60 @@ Menu {
     }
 
     GeneralMenuItem {
-        id: fullScreenItem
+        id: advancedInfosItem
 
-        property bool isFullScreen: false
-
-        itemName: isFullScreen ? qsTr("Exit full screen") : qsTr(
-                                     "Full screen mode")
-        iconSource: isFullScreen ? "qrc:/images/icons/ic_exit_full_screen_black.png" : "qrc:/images/icons/ic_full_screen_black.png"
+        itemName: qsTr("Advanced informations")
+        iconSource: "qrc:/images/icons/info-24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
-        bottomBorderWidth: commonBorderWidth
 
         onClicked: {
             contextMenu.close()
-            contextMenu.fullScreenNeeded()
-            isFullScreen = !isFullScreen
         }
     }
 
-    onClosed: {
-        videoDeviceItem.itemName = "No video device"
-        VideoDeviceContextMenuItemCreation.removeCreatedItems()
+    GeneralMenuItem {
+        id: qualityItem
+
+        itemName: qsTr("Manage video quality")
+        iconSource: "qrc:/images/icons/ic_high_quality_24px.svg"
+        leftBorderWidth: commonBorderWidth
+        rightBorderWidth: commonBorderWidth
+
+        onClicked: {
+            contextMenu.close()
+        }
     }
 
-    Component.onCompleted: {
-        VideoDeviceContextMenuItemCreation.setVideoContextMenuObject(
-                    contextMenu)
+    GeneralMenuSeparator {
+        preferredWidth: advancedInfosItem.preferredWidth
+        preferredHeight: commonBorderWidth
+
+        Component.onCompleted: {
+            generalMenuSeparatorCount++
+        }
+    }
+
+    GeneralMenuItem {
+        id: pluginItem
+
+        itemName: qsTr("Toggle plugin")
+        iconSource: "qrc:/images/icons/extension_24dp.svg"
+        leftBorderWidth: commonBorderWidth
+        rightBorderWidth: commonBorderWidth
+
+        onClicked: {
+            contextMenu.close()
+        }
     }
 
     background: Rectangle {
-        implicitWidth: contextMenu.implicitWidth
-        implicitHeight: videoDeviceItem.preferredHeight
+        implicitWidth: advancedInfosItem.preferredWidth
+        implicitHeight: advancedInfosItem.preferredHeight
                         * (contextMenu.count - generalMenuSeparatorCount)
 
         border.width: commonBorderWidth
         border.color: JamiTheme.tabbarBorderColor
     }
 }
+
