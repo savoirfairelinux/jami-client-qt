@@ -156,7 +156,7 @@ Window {
             communicationPageMessageWebView.headerUserUserNameLabelText = (name !== id) ? id : ""
 
             callStackView.needToCloseInCallConversationAndPotentialWindow()
-            callStackView.setCorrspondingMessageWebView(
+            callStackView.setLinkedWebview(
                         communicationPageMessageWebView)
 
             callStackView.responsibleAccountId = accountId
@@ -283,7 +283,7 @@ Window {
              * Set up chatview.
              */
             MessagesAdapter.setupChatView(currentUID)
-            callStackView.setCorrspondingMessageWebView(
+            callStackView.setLinkedWebview(
                         communicationPageMessageWebView)
 
             if (welcomeViewStack.find(function (item, index) {
@@ -363,22 +363,6 @@ Window {
         visible: false
 
         objectName: "callStackViewObject"
-
-        onCallPageBackButtonIsClicked: {
-            mainViewWindowSidePanel.deselectConversationSmartList()
-            if (welcomeViewStack.visible)
-                welcomeViewStack.pop(welcomePage)
-            else if (sidePanelViewStack.visible)
-                sidePanelViewStack.pop(mainViewWindowSidePanel)
-        }
-
-        onOutgoingCallPageBackButtonIsClicked: {
-            mainViewWindowSidePanel.deselectConversationSmartList()
-            if (welcomeViewStack.visible)
-                welcomeViewStack.pop(welcomePage)
-            else if (sidePanelViewStack.visible)
-                sidePanelViewStack.pop(mainViewWindowSidePanel)
-        }
     }
 
     WelcomePage {
