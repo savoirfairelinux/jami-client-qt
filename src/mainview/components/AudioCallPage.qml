@@ -96,10 +96,6 @@ Rectangle {
                 Connections {
                     target: CallAdapter
 
-                    function onUpdateTimeText(time) {
-                        audioCallOverlay.timeText = time
-                    }
-
                     function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall, bestName) {
                         audioCallOverlay.showOnHoldImage(isPaused)
                         audioCallPageRectCentralRect.visible = !isPaused

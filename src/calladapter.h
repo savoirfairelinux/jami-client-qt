@@ -71,7 +71,6 @@ signals:
     /*
      * For Call Overlay
      */
-    void updateTimeText(const QString &time);
     void showOnHoldLabel(bool isPaused);
     void updateOverlay(bool isPaused,
                        bool isAudioOnly,
@@ -105,8 +104,5 @@ private:
     /*
      * For Call Overlay
      */
-    void setTime(const QString &accountId, const QString &convUid);
     void updateCallOverlay(const lrc::api::conversation::Info &convInfo);
-
-    QTimer *oneSecondTimer_;
 };

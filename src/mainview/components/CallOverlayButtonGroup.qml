@@ -28,18 +28,18 @@ import "../../commoncomponents"
 Rectangle {
     id: callOverlayButtonGroupRect
 
-
     /*
      * ButtonCounts here is to make sure that flow layout margin is calculated correctly,
      * since no other methods can make buttons at the layout center.
      */
-    property int buttonCounts: 9
-    property int buttonPreferredSize: 30
+    property int buttonPreferredSize: 40
 
     signal buttonEntered
     signal chatButtonClicked
     signal addToConferenceButtonClicked
     signal transferCallButtonClicked
+
+    color: "transparent"
 
     function setButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall) {
         noVideoButton.visible = !isAudioOnly
@@ -55,104 +55,155 @@ Rectangle {
         holdButton.visible = !isConferenceCall
     }
 
-    function calculateFlowMargin() {
-        return (callOverlayButtonGroupRect.width - buttonCounts * buttonPreferredSize
-                - callOverlayButtonGroupRectFlow.spacing * (buttonCounts - 1)) / 2
-    }
+    Row {
+        id: callOverlayButtonGroup
 
-    Flow {
-        id: callOverlayButtonGroupRectFlow
-
-        anchors.fill: parent
-
-
-        /*
-         * Minus 1 is to make sure that button will not flick when doing flow layout.
-         */
-        anchors.leftMargin: calculateFlowMargin(
-                                ) < 0 ? 0 : calculateFlowMargin() - 1
-        anchors.rightMargin: calculateFlowMargin(
-                                 ) < 0 ? 0 : calculateFlowMargin() - 1
+        anchors.centerIn: parent
 
         spacing: 10
 
         TintedButton {
+            id: noMicButton
+
+            width: buttonPreferredSize
+            height: buttonPreferredSize
+
+            tintColor: JamiTheme.declineButtonHoverRed
+            normalPixmapSource: "qrc:/images/icons/ic_mic_white_24dp.png"
+            selectedPixmapSource: "qrc:/images/icons/ic_mic_off_white_24dp.png"
+
+            onClicked: {
+                CallAdapter.muteThisCallToggle()
+            }
+
+            onButtonEntered: {
+                callOverlayButtonGroupRect.buttonEntered()
+            }
+        }
+
+        HoverableButton {
             id: hangUpButton
 
             width: buttonPreferredSize
             height: buttonPreferredSize
 
-            tintColor: JamiTheme.hangUpButtonTintedRed
-            normalPixmapSource: "qrc:/images/icons/ic_close_white_24dp.png"
-            selectedPixmapSource: "qrc:/images/icons/ic_close_white_24dp.png"
+            backgroundColor: JamiTheme.declineButtonRed
+            onEnterColor: JamiTheme.declineButtonHoverRed
+            onPressColor: JamiTheme.declineButtonPressedRed
+            onReleaseColor: JamiTheme.declineButtonHoverRed
+            onExitColor: JamiTheme.declineButtonRed
 
-            onButtonEntered: {
-                callOverlayButtonGroupRect.buttonEntered()
-            }
+            buttonImageHeight: buttonPreferredSize / 2
+            buttonImageWidth: buttonPreferredSize / 2
+            source: "qrc:/images/icons/ic_call_end_white_24px.svg"
+            radius: 30
 
             onClicked: {
                 CallAdapter.hangUpThisCall()
             }
-
-            onVisibleChanged: {
-                if (this.visible)
-                    buttonCounts++
-                else
-                    buttonCounts--
-            }
         }
 
         TintedButton {
-            id: holdButton
+            id: noVideoButton
 
             width: buttonPreferredSize
             height: buttonPreferredSize
 
-            tintColor: JamiTheme.buttonTintedBlue
-            normalPixmapSource: "qrc:/images/icons/ic_pause_white_24dp.png"
-            selectedPixmapSource: "qrc:/images/icons/ic_play_white_24dp.png"
-
-            onClicked: {
-                CallAdapter.holdThisCallToggle()
-            }
+            tintColor: JamiTheme.declineButtonHoverRed
+            normalPixmapSource: "qrc:/images/icons/ic_videocam_white.png"
+            selectedPixmapSource: "qrc:/images/icons/ic_videocam_off_white_24dp.png"
 
             onButtonEntered: {
                 callOverlayButtonGroupRect.buttonEntered()
             }
 
-            onVisibleChanged: {
-                if (this.visible)
-                    buttonCounts++
-                else
-                    buttonCounts--
+            onClicked: {
+                CallAdapter.videoPauseThisCallToggle()
             }
         }
+    }
 
-        TintedButton {
+    Row {
+        id: callOverlayButtonGroup2
+
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+
+        spacing: 10
+
+        HoverableButton {
             id: addToConferenceButton
 
             width: buttonPreferredSize
             height: buttonPreferredSize
 
-            tintColor: JamiTheme.buttonTintedBlue
-            normalPixmapSource: "qrc:/images/icons/ic_group_add_white_24dp.png"
-            selectedPixmapSource: "qrc:/images/icons/ic_group_add_white_24dp.png"
+            backgroundColor: Qt.rgba(0, 0, 0, 0.8)
+            onEnterColor: Qt.rgba(10, 10, 10, 0.8)
+            onPressColor: Qt.rgba(20, 20, 20, 0.8)
+            onReleaseColor: Qt.rgba(0, 0, 0, 0.8)
+            onExitColor: Qt.rgba(0, 0, 0, 0.8)
 
-            onButtonEntered: {
-                callOverlayButtonGroupRect.buttonEntered()
-            }
+            buttonImageHeight: buttonPreferredSize / 2
+            buttonImageWidth: buttonPreferredSize / 2
+            source: "qrc:/images/icons/ic_group_add_white_24dp.png"
+            radius: 30
 
             onClicked: {
                 callOverlayButtonGroupRect.addToConferenceButtonClicked()
             }
+        }
 
-            onVisibleChanged: {
-                if (this.visible)
-                    buttonCounts++
-                else
-                    buttonCounts--
+        HoverableButton {
+            id: chatButton
+
+            width: buttonPreferredSize
+            height: buttonPreferredSize
+
+            backgroundColor: Qt.rgba(0, 0, 0, 0.8)
+            onEnterColor: Qt.rgba(10, 10, 10, 0.8)
+            onPressColor: Qt.rgba(20, 20, 20, 0.8)
+            onReleaseColor: Qt.rgba(0, 0, 0, 0.8)
+            onExitColor: Qt.rgba(0, 0, 0, 0.8)
+
+            buttonImageHeight: buttonPreferredSize / 2
+            buttonImageWidth: buttonPreferredSize / 2
+            source: "qrc:/images/icons/ic_chat_white_24dp.png"
+            radius: 30
+
+            onClicked: {
+                callOverlayButtonGroupRect.chatButtonClicked()
             }
         }
+
+        HoverableButton {
+            id: optionsButton
+
+            width: buttonPreferredSize
+            height: buttonPreferredSize
+
+            backgroundColor: Qt.rgba(0, 0, 0, 0.8)
+            onEnterColor: Qt.rgba(10, 10, 10, 0.8)
+            onPressColor: Qt.rgba(20, 20, 20, 0.8)
+            onReleaseColor: Qt.rgba(0, 0, 0, 0.8)
+            onExitColor: Qt.rgba(0, 0, 0, 0.8)
+
+            buttonImageHeight: buttonPreferredSize / 2
+            buttonImageWidth: buttonPreferredSize / 2
+            source: "qrc:/images/icons/more_vert-24px.svg"
+            radius: 30
+
+            onClicked: {
+                var rectPos = mapToItem(videoCallPageRect, optionsButton.x, optionsButton.y)
+                callViewContextMenu.activate()
+                callViewContextMenu.x = rectPos.x + optionsButton.width/2 - callViewContextMenu.width/2
+                callViewContextMenu.y = rectPos.y - 12 - callViewContextMenu.height
+            }
+        }
+    }
+
+
+
+/*
 
         TintedButton {
             id: transferCallButton
@@ -170,84 +221,6 @@ Rectangle {
 
             onClicked: {
                 callOverlayButtonGroupRect.transferCallButtonClicked()
-            }
-
-            onVisibleChanged: {
-                if (this.visible)
-                    buttonCounts++
-                else
-                    buttonCounts--
-            }
-        }
-
-        TintedButton {
-            id: chatButton
-
-            width: buttonPreferredSize
-            height: buttonPreferredSize
-
-            tintColor: JamiTheme.buttonTintedBlue
-            normalPixmapSource: "qrc:/images/icons/ic_chat_white_24dp.png"
-            selectedPixmapSource: "qrc:/images/icons/ic_chat_white_24dp.png"
-
-            onClicked: {
-                callOverlayButtonGroupRect.chatButtonClicked()
-            }
-
-            onButtonEntered: {
-                callOverlayButtonGroupRect.buttonEntered()
-            }
-
-            onVisibleChanged: {
-                if (this.visible)
-                    buttonCounts++
-                else
-                    buttonCounts--
-            }
-        }
-
-        TintedButton {
-            id: noMicButton
-
-            width: buttonPreferredSize
-            height: buttonPreferredSize
-
-            tintColor: JamiTheme.buttonTintedBlue
-            normalPixmapSource: "qrc:/images/icons/ic_mic_white_24dp.png"
-            selectedPixmapSource: "qrc:/images/icons/ic_mic_off_white_24dp.png"
-
-            onClicked: {
-                CallAdapter.muteThisCallToggle()
-            }
-
-            onButtonEntered: {
-                callOverlayButtonGroupRect.buttonEntered()
-            }
-
-            onVisibleChanged: {
-                if (this.visible)
-                    buttonCounts++
-                else
-                    buttonCounts--
-            }
-        }
-
-        TintedButton {
-            id: noVideoButton
-
-            width: buttonPreferredSize
-            height: buttonPreferredSize
-
-            tintColor: JamiTheme.buttonTintedBlue
-            normalPixmapSource: "qrc:/images/icons/ic_videocam_white.png"
-            selectedPixmapSource: "qrc:/images/icons/ic_videocam_off_white_24dp.png"
-
-            onButtonEntered: {
-                callOverlayButtonGroupRect.buttonEntered()
-            }
-
-            onClicked: {
-                CallAdapter.videoPauseThisCallToggle()
             }
 
             onVisibleChanged: {
@@ -305,7 +278,5 @@ Rectangle {
                     buttonCounts--
             }
         }
-    }
-
-    color: "transparent"
+        */
 }

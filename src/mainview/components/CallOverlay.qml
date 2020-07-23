@@ -31,7 +31,6 @@ Rectangle {
     id: callOverlayRect
 
     property string bestName: "Best Name"
-    property string timeText: "00:00"
 
     signal backButtonIsClicked
     signal overlayChatButtonClicked
@@ -132,30 +131,6 @@ Rectangle {
                     elide: Qt.ElideMiddle
                 }
             }
-
-            Text {
-                id: callTimerText
-
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                Layout.preferredWidth: overlayUpperPartRect.width / 3
-                Layout.preferredHeight: 50
-
-                font.pointSize: JamiTheme.textFontSize
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                text: textMetricscallTimerText.elidedText
-                color: "white"
-
-                TextMetrics {
-                    id: textMetricscallTimerText
-                    font: callTimerText.font
-                    text: timeText
-                    elideWidth: overlayUpperPartRect.width / 3
-                    elide: Qt.ElideMiddle
-                }
-            }
         }
 
         color: "transparent"
@@ -215,8 +190,8 @@ Rectangle {
         anchors.bottomMargin: 10
         anchors.horizontalCenter: callOverlayRect.horizontalCenter
 
-        width: callOverlayRect.width / 3 * 2
-        height: 60
+        height: 56
+        width: callOverlayRect.width
         opacity: 0
 
         onChatButtonClicked: {
@@ -377,5 +352,9 @@ Rectangle {
     onHeightChanged: {
         ContactPickerCreation.calculateCurrentGeo(callOverlayRect.width / 2,
                                                   callOverlayRect.height / 2)
+    }
+
+    CallViewContextMenu {
+        id: callViewContextMenu
     }
 }
