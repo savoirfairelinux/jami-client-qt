@@ -53,7 +53,7 @@ GeneralMenuItem {
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 
-        font.pointSize: JamiTheme.textFontSize - 3
+        font.pointSize: JamiTheme.textFontSize
         text: textMetrics.elidedText
     }
 

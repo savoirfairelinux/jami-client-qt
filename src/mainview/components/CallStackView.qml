@@ -44,9 +44,6 @@ Rectangle {
     property string responsibleConvUid: ""
     property string responsibleAccountId: ""
 
-    signal outgoingCallPageBackButtonIsClicked
-    signal callPageBackButtonIsClicked
-
     function needToCloseInCallConversationAndPotentialWindow() {
         audioCallPage.closeInCallConversation()
         videoCallPage.closeInCallConversation()
@@ -58,7 +55,6 @@ Rectangle {
         audioCallPage.closeContextMenuAndRelatedWindows()
 
         VideoCallFullScreenWindowContainerCreation.closeVideoCallFullScreenWindowContainer()
-        videoCallPage.setCallOverlayBackButtonVisible(true)
         videoCallPage.closeContextMenuAndRelatedWindows()
     }
 
@@ -172,10 +168,6 @@ Rectangle {
         id: audioCallPage
 
         property int stackNumber: 0
-
-        onAudioCallPageBackButtonIsClicked: {
-            callStackViewWindow.callPageBackButtonIsClicked()
-        }
     }
 
     OutgoingCallPage {
@@ -186,10 +178,6 @@ Rectangle {
         onCallCancelButtonIsClicked: {
             CallAdapter.hangUpACall(responsibleAccountId, responsibleConvUid)
         }
-
-        onBackButtonIsClicked: {
-            callStackViewWindow.outgoingCallPageBackButtonIsClicked()
-        }
     }
 
     VideoCallPage {
@@ -197,21 +185,15 @@ Rectangle {
 
         property int stackNumber: 2
 
-        onVideoCallPageBackButtonIsClicked: {
-            callStackViewWindow.callPageBackButtonIsClicked()
-        }
-
         onNeedToShowInFullScreen: {
             VideoCallFullScreenWindowContainerCreation.createvideoCallFullScreenWindowContainerObject()
 
             if (!VideoCallFullScreenWindowContainerCreation.checkIfVisible()) {
                 VideoCallFullScreenWindowContainerCreation.setAsContainerChild(
                             videoCallPage)
-                videoCallPage.setCallOverlayBackButtonVisible(false)
                 VideoCallFullScreenWindowContainerCreation.showVideoCallFullScreenWindowContainer()
             } else {
                 videoCallPage.parent = callStackMainView
-                videoCallPage.setCallOverlayBackButtonVisible(true)
                 VideoCallFullScreenWindowContainerCreation.closeVideoCallFullScreenWindowContainer()
             }
         }
