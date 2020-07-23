@@ -6,6 +6,7 @@
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  * Author: Isa Nanic <isa.nanic@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -322,7 +323,6 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info &convInfo)
     QObject::disconnect(oneSecondTimer_);
     QObject::connect(oneSecondTimer_, &QTimer::timeout, [this] { setTime(accountId_, convUid_); });
     oneSecondTimer_->start(20);
-
     auto &accInfo = LRCInstance::accountModel().getAccountInfo(accountId_);
 
     auto call = LRCInstance::getCallInfoForConversation(convInfo);
@@ -371,6 +371,15 @@ CallAdapter::hangUpThisCall()
             callModel->hangUp(convInfo.callId);
         }
     }
+}
+
+bool
+CallAdapter::isRecordingThisCall()
+{
+    auto &accInfo = LRCInstance::accountModel().getAccountInfo(accountId_);
+    auto convInfo = LRCInstance::getConversationFromConvUid(convUid_, accountId_);
+    return accInfo.callModel->isRecording(convInfo.confId)
+    || accInfo.callModel->isRecording(convInfo.callId);
 }
 
 void
