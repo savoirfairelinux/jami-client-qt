@@ -33,8 +33,6 @@ Rectangle {
 
     property var corrspondingMessageWebView: null
 
-    signal audioCallPageBackButtonIsClicked
-
     function updateUI(accountId, convUid) {
         contactImgSource = "data:image/png;base64," + ClientWrapper.utilsAdaptor.getContactImageString(
                     accountId, convUid)
@@ -116,18 +114,6 @@ Rectangle {
                         audioCallOverlay.showOnHoldImage(isPaused)
                         audioCallPageRectCentralRect.visible = !isPaused
                     }
-                }
-
-                onBackButtonIsClicked: {
-                    if (inAudioCallMessageWebViewStack.visible) {
-                        corrspondingMessageWebView.resetMessagingHeaderBackButtonSource(
-                                    true)
-                        corrspondingMessageWebView.setMessagingHeaderButtonsVisible(
-                                    true)
-                        inAudioCallMessageWebViewStack.visible = false
-                        inAudioCallMessageWebViewStack.clear()
-                    }
-                    audioCallPageRect.audioCallPageBackButtonIsClicked()
                 }
 
                 onOverlayChatButtonClicked: {
