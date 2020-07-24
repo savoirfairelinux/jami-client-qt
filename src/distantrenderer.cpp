@@ -57,9 +57,18 @@ DistantRenderer::paint(QPainter *painter)
     auto distantImage = LRCInstance::renderer()->getFrame(distantRenderId_);
     if (distantImage) {
         auto scaledDistant = distantImage->scaled(size().toSize(), Qt::KeepAspectRatio);
-        auto xDiff = (width() - scaledDistant.width()) / 2;
-        auto yDiff = (height() - scaledDistant.height()) / 2;
-        painter->drawImage(QRect(xDiff, yDiff, scaledDistant.width(), scaledDistant.height()),
+        auto tSW = static_cast<int>(scaledW_*1000);
+        auto tSH = static_cast<int>(scaledH_*1000);
+        auto tXD = xDiff_;
+        auto tYD = yDiff_;
+        scaledW_ = static_cast<double>(scaledDistant.width())/static_cast<double>(distantImage->width());
+        scaledH_ = static_cast<double>(scaledDistant.height())/static_cast<double>(distantImage->height());
+        xDiff_ = (width() - scaledDistant.width()) / 2;
+        yDiff_ = (height() - scaledDistant.height()) / 2;
+        if (tXD != xDiff_ or tYD != yDiff_ or static_cast<int>(scaledW_*1000) != tSW or static_cast<int>(scaledH_*1000) != tSH) {
+            emit offsetChanged();
+        }
+        painter->drawImage(QRect(xDiff_, yDiff_, scaledDistant.width(), scaledDistant.height()),
                            scaledDistant);
     }
 }
