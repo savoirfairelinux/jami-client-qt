@@ -36,6 +36,9 @@ Rectangle {
     property int previewToX: 0
     property int previewToY: 0
 
+    property var participantHovers: []
+    property var participantComponent: Qt.createComponent("ParticipantHover.qml")
+
     property var corrspondingMessageWebView: null
 
     signal needToShowInFullScreen
@@ -164,6 +167,11 @@ Rectangle {
 
     anchors.fill: parent
 
+
+    ParticipantContextMenu {
+        id: participantContextMenu
+    }
+
     SplitView {
         id: mainColumnLayout
 
@@ -240,6 +248,10 @@ Rectangle {
 
                 width: videoCallPageMainRect.width
                 height: videoCallPageMainRect.height
+
+                onOffsetChanged: {
+                    videoCallPage.handleParticipantsInfos(CallAdapter.getConferencesInfos())
+                }
             }
 
             VideoCallPreviewRenderer {

@@ -36,7 +36,7 @@ CallAdapter::~CallAdapter() {}
 void
 CallAdapter::initQmlObject()
 {
-    connectCallStatusChanged(LRCInstance::getCurrAccId());
+    connectCallModel(LRCInstance::getCurrAccId());
 
     connect(&LRCInstance::behaviorController(),
             &BehaviorController::showIncomingCallView,
@@ -221,12 +221,87 @@ CallAdapter::shouldShowPreview(bool force)
     return shouldShowPreview;
 }
 
+QVariantList
+CallAdapter::getConferencesInfos()
+{
+    QVariantList map;
+    auto convInfo = LRCInstance::getConversationFromConvUid(convUid_, accountId_);
+    if (convInfo.uid.isEmpty())
+        return map;
+    auto callId = convInfo.confId.isEmpty()? convInfo.callId : convInfo.confId;
+    if (!callId.isEmpty()) {
+        try {
+            auto call = LRCInstance::getCurrentCallModel()->getCall(callId);
+            for (const auto& participant: call.participantsInfos) {
+                QJsonObject data;
+                data["x"] = participant["x"].toInt();
+                data["y"] = participant["y"].toInt();
+                data["w"] = participant["w"].toInt();
+                data["h"] = participant["h"].toInt();
+                auto bestName = participant["uri"];
+                auto &accInfo = LRCInstance::accountModel().getAccountInfo(accountId_);
+                if (bestName == accInfo.profileInfo.uri) {
+                    bestName = tr("me");
+                } else {
+                    try {
+                        auto &contact = LRCInstance::getCurrentAccountInfo().contactModel->getContact(participant["uri"]);
+                        bestName = Utils::bestNameForContact(contact);
+                    } catch (...) {}
+                }
+                data["bestName"] = bestName;
+
+                map.push_back(QVariant(data));
+            }
+            return map;
+        } catch (...) {}
+    }
+    return map;
+}
+
 void
-CallAdapter::connectCallStatusChanged(const QString &accountId)
+CallAdapter::connectCallModel(const QString &accountId)
 {
     auto &accInfo = LRCInstance::accountModel().getAccountInfo(accountId);
 
     QObject::disconnect(callStatusChangedConnection_);
+    QObject::disconnect(onParticipantsChangedConnection_);
+
+    onParticipantsChangedConnection_ = QObject::connect(
+        accInfo.callModel.get(),
+        &lrc::api::NewCallModel::onParticipantsChanged,
+        [this, accountId](const QString &confId) {
+            auto &accInfo = LRCInstance::accountModel().getAccountInfo(accountId);
+            auto &callModel = accInfo.callModel;
+            auto call = callModel->getCall(confId);
+            auto convInfo = LRCInstance::getConversationFromCallId(confId);
+            if (!convInfo.uid.isEmpty()) {
+                // Convert to QML
+                QVariantList map;
+                for (const auto& participant: call.participantsInfos) {
+                    QJsonObject data;
+                    data["x"] = participant["x"].toInt();
+                    data["y"] = participant["y"].toInt();
+                    data["w"] = participant["w"].toInt();
+                    data["h"] = participant["h"].toInt();
+                    data["uri"] = participant["uri"];
+                    auto bestName = participant["uri"];
+                    auto &accInfo = LRCInstance::accountModel().getAccountInfo(accountId_);
+                    if (bestName == accInfo.profileInfo.uri) {
+                        bestName = tr("me");
+                    } else {
+                        try {
+                            auto &contact = LRCInstance::getCurrentAccountInfo().contactModel->getContact(participant["uri"]);
+                            bestName = Utils::bestNameForContact(contact);
+                        } catch (...) {}
+                    }
+                    data["bestName"] = bestName;
+                    map.push_back(QVariant(data));
+                }
+                emit updateParticipantsInfos(map,
+                                       accountId,
+                                       convInfo.uid);
+            }
+    });
 
     callStatusChangedConnection_ = QObject::connect(
         accInfo.callModel.get(),
