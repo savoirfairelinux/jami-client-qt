@@ -41,6 +41,8 @@ Rectangle {
     signal needToShowInFullScreen
 
     function updateUI(accountId, convUid) {
+        videoCallOverlay.handleParticipantsInfos(CallAdapter.getConferencesInfos())
+
         bestName = ClientWrapper.utilsAdaptor.getBestName(accountId, convUid)
 
         var id = ClientWrapper.utilsAdaptor.getBestId(accountId, convUid)
@@ -71,6 +73,15 @@ Rectangle {
 
     function closeContextMenuAndRelatedWindows() {
         videoCallOverlay.closePotentialContactPicker()
+    }
+
+    function handleParticipantsInfos(infos) {
+        if (infos.length === 0) {
+            bestName = ClientWrapper.utilsAdaptor.getBestName(accountId, convUid)
+        } else {
+            bestName = ""
+        }
+        videoCallOverlay.handleParticipantsInfos(infos)
     }
 
     function previewMagneticSnap() {
@@ -134,35 +145,11 @@ Rectangle {
         previewRenderer.state = "geoChanging"
     }
 
-    function handleParticipantsInfos(infos) {
-        console.log("Debug: Redraw layout")
-        for (var p in participantHovers) {
-            if (participantHovers[p])
-                participantHovers[p].destroy()
-        }
-        participantHovers = []
-        if (infos.length == 0) {
-            previewRenderer.visible = true
-        } else {
-            previewRenderer.visible = false
-            for (var infoVariant in infos) {
-                var hover = participantComponent.createObject(distantRenderer, {
-                    x: distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth(),
-                    y: distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight(),
-                    width: infos[infoVariant].w * distantRenderer.getScaledWidth(),
-                    height: infos[infoVariant].h * distantRenderer.getScaledHeight(),
-                    visible: true
-                })
-                if (hover) {
-                    hover.setParticipantName(infos[infoVariant].bestName)
-                    hover.uri = infos[infoVariant].uri
-                    participantHovers.push(hover)
-                }
-            }
-        }
-    }
-
     anchors.fill: parent
+
+    ParticipantContextMenu {
+        id: participantContextMenu
+    }
 
     SplitView {
         id: mainColumnLayout
@@ -240,6 +227,10 @@ Rectangle {
 
                 width: videoCallPageMainRect.width
                 height: videoCallPageMainRect.height
+
+                onOffsetChanged: {
+                    videoCallOverlay.handleParticipantsInfos(CallAdapter.getConferencesInfos())
+                }
             }
 
             VideoCallPreviewRenderer {
