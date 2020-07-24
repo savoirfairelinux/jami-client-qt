@@ -35,6 +35,9 @@ Rectangle {
     property int previewToX: 0
     property int previewToY: 0
 
+    property var participantHovers: []
+    property var participantComponent: Qt.createComponent("ParticipantHover.qml")
+
     property var corrspondingMessageWebView: null
 
     signal videoCallPageBackButtonIsClicked
@@ -136,9 +139,43 @@ Rectangle {
 
     function setCallOverlayBackButtonVisible(visible) {
         videoCallOverlay.setBackTintedButtonVisible(visible)
+        videoCallPage.handleParticipantsInfos(CallAdapter.getConferencesInfos())
+    }
+
+    function handleParticipantsInfos(infos) {
+        console.log("Debug: Redraw layout")
+        for (var p in participantHovers) {
+            if (participantHovers[p])
+                participantHovers[p].destroy()
+        }
+        participantHovers = []
+        if (infos.length == 0) {
+            previewRenderer.visible = true
+        } else {
+            previewRenderer.visible = false
+            for (var infoVariant in infos) {
+                var hover = participantComponent.createObject(distantRenderer, {
+                    x: distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth(),
+                    y: distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight(),
+                    width: infos[infoVariant].w * distantRenderer.getScaledWidth(),
+                    height: infos[infoVariant].h * distantRenderer.getScaledHeight(),
+                    visible: true
+                })
+                if (hover) {
+                    hover.setParticipantName(infos[infoVariant].bestName)
+                    hover.uri = infos[infoVariant].uri
+                    participantHovers.push(hover)
+                }
+            }
+        }
     }
 
     anchors.fill: parent
+
+
+    ParticipantContextMenu {
+        id: participantContextMenu
+    }
 
     SplitView {
         id: mainColumnLayout
@@ -224,6 +261,10 @@ Rectangle {
 
                 width: videoCallPageMainRect.width
                 height: videoCallPageMainRect.height
+
+                onOffsetChanged: {
+                    videoCallPage.handleParticipantsInfos(CallAdapter.getConferencesInfos())
+                }
             }
 
             VideoCallPreviewRenderer {
