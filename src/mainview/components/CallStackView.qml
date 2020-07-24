@@ -161,9 +161,14 @@ Rectangle {
         }
 
         function onCallStatusChanged(status, accountId, convUid) {
-            if (responsibleConvUid === convUid
-                    && responsibleAccountId === accountId) {
+            if (responsibleConvUid === convUid && responsibleAccountId === accountId) {
                 outgoingCallPage.callStatusPresentation = status
+            }
+        }
+
+        function onUpdateParticipantsInfos(infos, accountId, convUid) {
+            if (responsibleConvUid === convUid && responsibleAccountId === accountId) {
+                videoCallPage.handleParticipantsInfos(infos)
             }
         }
     }
@@ -214,6 +219,8 @@ Rectangle {
                 videoCallPage.setCallOverlayBackButtonVisible(true)
                 VideoCallFullScreenWindowContainerCreation.closeVideoCallFullScreenWindowContainer()
             }
+
+            videoCallPage.handleParticipantsInfos(CallAdapter.getConferencesInfos())
         }
     }
 
