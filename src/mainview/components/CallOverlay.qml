@@ -35,11 +35,18 @@ Rectangle {
 
     signal overlayChatButtonClicked
 
+    property var participantHovers: []
+    property var participantComponent: Qt.createComponent("ParticipantHover.qml")
+
     function updateButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall) {
         callOverlayButtonGroup.setButtonStatus(isPaused, isAudioOnly,
                                                isAudioMuted, isVideoMuted,
                                                isRecording, isSIP,
                                                isConferenceCall)
+    }
+
+    function updateMaster() {
+        callOverlayButtonGroup.updateMaster()
     }
 
     function showOnHoldImage(visible) {
@@ -48,6 +55,38 @@ Rectangle {
 
     function closePotentialContactPicker() {
         ContactPickerCreation.closeContactPicker()
+    }
+
+    function handleParticipantsInfos(infos) {
+        console.log("Debug: Redraw layout")
+        videoCallOverlay.updateMaster()
+        var isMaster = CallAdapter.isCurrentMaster()
+        for (var p in participantHovers) {
+            if (participantHovers[p])
+                participantHovers[p].destroy()
+        }
+        participantHovers = []
+        if (infos.length == 0) {
+            previewRenderer.visible = true
+        } else {
+            previewRenderer.visible = false
+            for (var infoVariant in infos) {
+                var hover = participantComponent.createObject(callOverlayRectMouseArea, {
+                    x: distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth(),
+                    y: distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight(),
+                    width: infos[infoVariant].w * distantRenderer.getScaledWidth(),
+                    height: infos[infoVariant].h * distantRenderer.getScaledHeight(),
+                    visible: infos[infoVariant].w != 0 && infos[infoVariant].h != 0
+                })
+                if (hover) {
+                    hover.setParticipantName(infos[infoVariant].bestName)
+                    hover.active = infos[infoVariant].active;
+                    hover.setMenuVisible(isMaster)
+                    hover.uri = infos[infoVariant].uri
+                    participantHovers.push(hover)
+                }
+            }
+        }
     }
 
     anchors.fill: parent
@@ -303,10 +342,9 @@ Rectangle {
         id: callOverlayRectMouseArea
 
         anchors.top: callOverlayRect.top
-        anchors.topMargin: 50
 
         width: callOverlayRect.width
-        height: callOverlayRect.height - callOverlayButtonGroup.height - 50
+        height: callOverlayRect.height
 
         hoverEnabled: true
         propagateComposedEvents: true
