@@ -33,6 +33,8 @@ Rectangle {
      * since no other methods can make buttons at the layout center.
      */
     property int buttonPreferredSize: 24
+    property var isMaster: true
+    property var isSip: false
 
     signal buttonEntered
     signal chatButtonClicked
@@ -41,9 +43,16 @@ Rectangle {
 
     color: "transparent"
 
+    function updateMaster() {
+        callOverlayButtonGroupRect.isMaster = CallAdapter.isCurrentMaster()
+        addToConferenceButton.visible = !callOverlayButtonGroupRect.isSip && callOverlayButtonGroupRect.isMaster
+    }
+
     function setButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall) {
+        callOverlayButtonGroupRect.isMaster = CallAdapter.isCurrentMaster()
+        callOverlayButtonGroupRect.isSip = isSIP
         noVideoButton.visible = !isAudioOnly
-        addToConferenceButton.visible = !isSIP
+        addToConferenceButton.visible = !isSIP && isMaster
         transferCallButton.visible = isSIP
         sipInputPanelButton.visible = isSIP
 
@@ -150,6 +159,7 @@ Rectangle {
 
             width: buttonPreferredSize * 2
             height: buttonPreferredSize * 2
+            visible: !isMaster
 
             backgroundColor: Qt.rgba(0, 0, 0, 0.75)
             onEnterColor: Qt.rgba(0, 0, 0, 0.6)
