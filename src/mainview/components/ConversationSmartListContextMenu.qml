@@ -18,19 +18,28 @@
  */
 import QtQuick 2.14
 import QtQuick.Controls 2.14
+import QtGraphicalEffects 1.12
 import net.jami.Models 1.0
 
 import "../../commoncomponents"
 
 Menu {
     id: contextMenu
-
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
 
     property int generalMenuSeparatorCount: 0
-    property int commonBorderWidth: 2
+    property int commonBorderWidth: 1
+    font.pointSize: JamiTheme.textFontSize+3
 
+    GeneralMenuSeparator {
+        preferredWidth: startVideoCallItem.preferredWidth
+        preferredHeight: 8
+        separatorColor: "transparent"
+        Component.onCompleted: {
+            generalMenuSeparatorCount++
+        }
+    }
 
     /*
      * All GeneralMenuItems should remain the same width / height.
@@ -39,7 +48,7 @@ Menu {
         id: startVideoCallItem
 
         itemName: qsTr("Start video call")
-        topBorderWidth: commonBorderWidth
+        iconSource: "qrc:/images/icons/ic_video_call_24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
 
@@ -55,6 +64,7 @@ Menu {
         id: startAudioCallItem
 
         itemName: qsTr("Start audio call")
+        iconSource: "qrc:/images/icons/ic_phone_24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
 
@@ -70,6 +80,7 @@ Menu {
         id: clearConversationItem
 
         itemName: qsTr("Clear conversation")
+        iconSource: "qrc:/images/icons/ic_clear_24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
 
@@ -84,9 +95,9 @@ Menu {
         id: removeContactItem
 
         itemName: qsTr("Remove contact")
+        iconSource: "qrc:/images/icons/round-remove_circle-24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
-
         onClicked: {
             contextMenu.close()
             ClientWrapper.utilsAdaptor.removeConversation(responsibleAccountId,
@@ -107,6 +118,7 @@ Menu {
         id: blockContactItem
 
         itemName: qsTr("Block contact")
+        iconSource: "qrc:/images/icons/ic_block_24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
 
@@ -130,13 +142,22 @@ Menu {
         id: profileItem
 
         itemName: qsTr("Profile")
-        bottomBorderWidth: commonBorderWidth
+        iconSource: "qrc:/images/icons/person-24px.svg"
         leftBorderWidth: commonBorderWidth
         rightBorderWidth: commonBorderWidth
 
         onClicked: {
             contextMenu.close()
             userProfile.open()
+        }
+    }
+
+    GeneralMenuSeparator {
+        preferredWidth: startVideoCallItem.preferredWidth
+        preferredHeight: 8
+        separatorColor: "transparent"
+        Component.onCompleted: {
+            generalMenuSeparatorCount++
         }
     }
 
@@ -149,3 +170,4 @@ Menu {
         border.color: JamiTheme.tabbarBorderColor
     }
 }
+
