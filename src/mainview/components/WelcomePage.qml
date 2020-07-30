@@ -29,8 +29,6 @@ Rectangle {
     property int currentAccountIndex: 0
     property int buttonPreferredSize: 30
 
-    anchors.fill: parent
-
     Rectangle {
         id: welcomeRectComponentsGroup
 
@@ -81,7 +79,7 @@ Rectangle {
                 Layout.preferredHeight: 50
 
                 wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize - 1
+                font.pointSize: JamiTheme.textFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -117,7 +115,7 @@ Rectangle {
                         Layout.preferredWidth: welcomeRectComponentsGroup.width
                         Layout.preferredHeight: 30
 
-                        font.pointSize: JamiTheme.textFontSize
+                        font.pointSize: JamiTheme.textFontSize + 1
 
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
@@ -136,13 +134,13 @@ Rectangle {
                         }
                     }
 
-                    RowLayout {
+                    /*RowLayout {
                         id: jamiRegisteredNameRowLayout
 
                         Layout.alignment: Qt.AlignCenter
                         Layout.preferredWidth: buttonPreferredSize * 2 + 20
                         Layout.preferredHeight: 30
-
+*/
                         HoverableButton {
                             id: copyRegisterednameButton
 
@@ -159,7 +157,7 @@ Rectangle {
                             }
                         }
 
-                        HoverableButton {
+                        /*HoverableButton {
                             id: qrCodeGenerateButton
 
                             Layout.alignment: Qt.AlignCenter
@@ -173,37 +171,38 @@ Rectangle {
                                 qrDialog.open()
                             }
                         }
-                    }
+                    }*/
                 }
             }
+        }
 
-            Image {
+            /*Image {
                 id: sipImage
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: 200
                 Layout.preferredHeight: 200
-
+            */
 
                 /*
                  * Check if account type is ring.
                  */
-                visible: accountListModel.data(accountListModel.index(
+            /*    visible: accountListModel.data(accountListModel.index(
                                                    currentAccountIndex, 0),
                                                260) === 1 ? false : true
                 fillMode: Image.PreserveAspectFit
-
+            */
 
                 /*
                  * Requested size.
                  */
-                sourceSize.width: 200
+/*                sourceSize.width: 200
                 sourceSize.height: 200
                 mipmap: true
             }
-        }
+        }*/
 
-        HoverableButton {
+        /*HoverableButton {
             id: aboutButton
 
             anchors.horizontalCenter: welcomeRectComponentsGroup.horizontalCenter
@@ -220,7 +219,7 @@ Rectangle {
             onClicked: {
                 aboutPopUpDialog.open()
             }
-        }
+        }*/
     }
 
     CustomBorder {
