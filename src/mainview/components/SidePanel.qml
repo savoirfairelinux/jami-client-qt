@@ -22,6 +22,8 @@ import QtQuick.Layouts 1.14
 import net.jami.Models 1.0
 
 import "../../commoncomponents"
+import "../../settingsview/components"
+
 
 Rectangle {
     id: sidePanelRect
@@ -175,6 +177,51 @@ Rectangle {
         Component.onCompleted: {
             ClientWrapper.accountAdaptor.setQmlObject(this)
             ClientWrapper.accountAdaptor.accountChanged(0)
+        }
+    }
+
+
+    Rectangle {
+        id: leftSettingsWidget
+
+        height: 300
+        width: parent.width
+        z: 300
+
+        SplitView.minimumWidth: 200
+        SplitView.preferredWidth: 200
+        SplitView.maximumWidth: parent.width / 2
+        SplitView.fillHeight: true
+        LeftPanelView {
+            id: leftPanelView
+
+            contentViewportWidth: leftSettingsWidget.width
+            contentViewPortHeight: leftSettingsWidget.height
+
+            onBtnExitClicked:{
+                leaveSettingsSlot()
+            }
+
+            Connections {
+                target: leftPanelView.btnAccountSettings
+                function onCheckedToggledForRightPanel(checked) {
+                }
+            }
+            Connections {
+                target: leftPanelView.btnGeneralSettings
+                function onCheckedToggledForRightPanel(checked) {
+                }
+            }
+            Connections {
+                target: leftPanelView.btnMediaSettings
+                function onCheckedToggledForRightPanel(checked) {
+                }
+            }
+            Connections {
+                target: leftPanelView.btnPluginSettings
+                function onCheckedToggledForRightPanel(checked) {
+                }
+            }
         }
     }
 

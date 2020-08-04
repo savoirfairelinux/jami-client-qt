@@ -30,6 +30,7 @@ import net.jami.Models 1.0
  */
 import "components"
 import "../settingsview"
+import "../settingsview/components"
 
 Window {
     id: mainViewWindow
@@ -212,7 +213,7 @@ Window {
             StackView {
                 id: welcomeViewStack
 
-                initialItem: welcomePage
+                initialItem: settingsWidget
 
                 SplitView.maximumWidth: hiddenView ? splitView.width : splitView.width - sidePanelViewStackPreferedWidth
                 SplitView.minimumWidth: sidePanelViewStackPreferedWidth
@@ -430,6 +431,79 @@ Window {
              * Set qml MessageWebView object pointer to c++.
              */
             MessagesAdapter.setQmlObject(this)
+        }
+    }
+
+    StackLayout {
+        id: settingsWidget
+
+        visible: true
+
+        property int pageIdCurrentAccountSettingsScrollPage: 0
+        property int pageIdCurrentSIPAccountSettingScrollPage: 1
+        property int pageIdGeneralSettingsPage: 2
+        property int pageIdAvSettingPage: 3
+        property int pageIdPluginSettingsPage: 4
+
+        currentIndex: {
+            switch(selectedMenu){
+                case SettingsView.Account:
+                    if(settingsViewRect.isSIP){
+                        return pageIdCurrentSIPAccountSettingScrollPage
+                    } else {
+                        return pageIdCurrentAccountSettingsScrollPage
+                    }
+                case SettingsView.General:
+                    return pageIdGeneralSettingsPage
+                case SettingsView.Media:
+                    return pageIdAvSettingPage
+                case SettingsView.Plugin:
+                    return pageIdPluginSettingsPage
+            }
+        }
+
+        SplitView.fillWidth: true
+        SplitView.fillHeight: true
+
+        // current account setting scroll page, index 0
+        CurrentAccountSettingsScrollPage {
+            id: currentAccountSettingsScrollWidget
+
+            onNavigateToMainView:{
+                leaveSettingsSlot(true)
+            }
+
+            onNavigateToNewWizardView: {
+                leaveSettingsSlot(true, false)
+            }
+        }
+
+        // current SIP account setting scroll page, index 1
+        CurrentSIPAccountSettingScrollPage {
+            id: currentSIPAccountSettingsScrollWidget
+
+            onNavigateToMainView: {
+                leaveSettingsSlot(true)
+            }
+
+            onNavigateToNewWizardView: {
+                leaveSettingsSlot(true, false)
+            }
+        }
+
+        // general setting page, index 2
+        GeneralSettingsPage {
+            id: generalSettings
+        }
+
+        // av setting page, index 3
+        AvSettingPage {
+            id: avSettings
+        }
+
+        // plugin setting page, index 4
+        PluginSettingsPage {
+            id: pluginSettings
         }
     }
 
