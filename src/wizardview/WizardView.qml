@@ -17,7 +17,6 @@
  */
 
 import QtQuick 2.14
-import QtQuick.Window 2.14
 import QtQuick.Controls 1.4 as CT
 import QtQuick.Controls 2.14
 import QtQuick.Controls.Universal 2.12
@@ -29,7 +28,7 @@ import "../commoncomponents"
 import "../constant"
 import "components"
 
-Window {
+Rectangle {
     id: wizardViewWindow
 
     enum Mode {
@@ -55,7 +54,7 @@ Window {
     property int addedAccountIndex: -1
     property bool registrationStateOk: false
     property string fileToImport: ""
-    property string registedName: ""
+    property string registeredName: ""
 
     property var inputParaObject: ({})
 
@@ -65,21 +64,13 @@ Window {
     signal needToShowMainViewWindow(int accountIndex)
     signal wizardViewIsClosed
 
-    title: "Jami"
     visible: true
     width: layoutWidth
     height: layoutHeight
 
-    onClosing: {
-        close.accepted = false
-        changePageQML(controlPanelStackView.welcomePageStackId)
-        wizardViewWindow.hide()
-        wizardViewWindow.wizardViewIsClosed()
-    }
 
     Component.onCompleted: {
-        changePageQML(
-                    controlPanelStackView.welcomePageStackId)
+        changePageQML(controlPanelStackView.welcomePageStackId)
     }
 
     Connections{
@@ -90,7 +81,6 @@ Window {
             if (showBackUp) {
                 changePageQML(controlPanelStackView.backupKeysPageId)
             } else {
-                wizardViewWindow.hide()
                 changePageQML(controlPanelStackView.welcomePageStackId)
                 needToShowMainViewWindow(addedAccountIndex)
                 ClientWrapper.lrcInstance.accountListChanged()
@@ -138,7 +128,7 @@ Window {
             break
         case WizardView.CREATE:
         case WizardView.IMPORT:
-            ClientWrapper.accountAdaptor.createJamiAccount(registedName,
+            ClientWrapper.accountAdaptor.createJamiAccount(registeredName,
                                                            inputParaObject,
                                                            createAccountPage.boothImgBase64,
                                                            (wizardMode === WizardView.CREATE))
@@ -155,7 +145,7 @@ Window {
         if (name.length < 3) {
             registrationStateOk = false
             createAccountPage.nameRegistrationUIState = WizardView.INVALID
-        } else if (registedName === name) {
+        } else if (registeredName === name) {
             switch (status) {
             case NameDirectory.LookupStatus.NOT_FOUND:
             case NameDirectory.LookupStatus.ERROR:
@@ -198,7 +188,7 @@ Window {
             createAccountPage.clearAllTextFields()
             break
         case WizardView.IMPORT:
-            registedName = ""
+            registeredName = ""
             spinnerPage.progressLabelEditText = qsTr(
                         "Importing account archive...")
             // should only work in import from backup page or import from device page
@@ -267,6 +257,7 @@ Window {
         controlPanelStackView.currentIndex = pageIndex
         if (pageIndex == controlPanelStackView.welcomePageStackId) {
             fileToImport = ""
+            registeredNameFoundConnection.enabled = true
             setNavBarVisibility(false, true)
             createAccountPage.nameRegistrationUIState = WizardView.BLANK
         } else if (pageIndex == controlPanelStackView.createAccountPageId) {
@@ -327,23 +318,23 @@ Window {
 
         var usernameOk = !createAccountPage.checkState_signUpCheckboxAlias
                 || (createAccountPage.checkState_signUpCheckboxAlias
-                    && !(registedName.length == 0)
-                    && (registedName == createAccountPage.text_usernameEditAlias)
+                    && !(registeredName.length == 0)
+                    && (registeredName == createAccountPage.text_usernameEditAlias)
                     && (registrationStateOk == true))
         var passwordOk = (createAccountPage.text_passwordEditAlias
                           == createAccountPage.text_confirmPasswordEditAlias)
 
         // set password status label
-        if (passwordOk
+/*        if (passwordOk
                 && !(createAccountPage.text_passwordEditAlias.length == 0)) {
             createAccountPage.displayState_passwordStatusLabelAlias = "Success"
         } else if (!passwordOk) {
             createAccountPage.displayState_passwordStatusLabelAlias = "Fail"
         } else {
             createAccountPage.displayState_passwordStatusLabelAlias = "Hide"
-        }
+        }*/
         //set enable state of next button
-        btnNext.enabled = (usernameOk && passwordOk)
+        //btnNext.enabled = (usernameOk && passwordOk)
     }
 
     PasswordDialog {
@@ -368,7 +359,6 @@ Window {
                                                          title, info)
                 if (success) {
                     console.log("Account Export Succeed")
-                    wizardViewWindow.hide()
                     needToShowMainViewWindow(addedAccountIndex)
                     ClientWrapper.lrcInstance.accountListChanged()
                 }
@@ -438,10 +428,13 @@ Window {
                             id: createAccountPage
 
                             onText_usernameEditAliasChanged: {
-                            registrationStateOk = false
-                            if (createAccountPage.checkState_signUpCheckboxAlias
+                                registrationStateOk = false
+                                lookupTimer.restart()
+
+
+                                /*if (createAccountPage.checkState_signUpCheckboxAlias
                                     && (createAccountPage.text_usernameEditAlias.length != 0)) {
-                                registedName = ClientWrapper.utilsAdaptor.stringSimplifier(
+                                registeredName = ClientWrapper.utilsAdaptor.stringSimplifier(
                                             createAccountPage.text_usernameEditAlias)
                                 lookupTimer.restart()
                                 } else {
@@ -451,11 +444,15 @@ Window {
                                     lookupTimer.restart()
                                     }
                                 }
-                                validateWizardProgressionQML()
+                                validateWizardProgressionQML()*/
                             }
 
                             onValidateWizardProgressionCreateAccountPage: {
                                 validateWizardProgressionQML()
+                            }
+
+                            onLeavePage: {
+                                changePageQML(controlPanelStackView.welcomePageStackId)
                             }
 
                             onText_passwordEditAliasChanged: {
@@ -474,10 +471,12 @@ Window {
                             interval: 200
 
                             onTriggered: {
-                                if (createAccountPage.checkState_signUpCheckboxAlias
-                                        && (createAccountPage.text_usernameEditAlias.length != 0)) {
+                                registeredName = createAccountPage.text_usernameEditAlias
+                                if (registeredName.length !== 0) {
                                     createAccountPage.nameRegistrationUIState = WizardView.SEARCHING
-                                    ClientWrapper.nameDirectory.lookupName("", registedName)
+                                    ClientWrapper.nameDirectory.lookupName("", registeredName)
+                                } else {
+                                    createAccountPage.nameRegistrationUIState = WizardView.BLANK
                                 }
                             }
                         }
@@ -535,7 +534,6 @@ Window {
                                     }
                                 }
 
-                                wizardViewWindow.hide()
                                 changePageQML(controlPanelStackView.welcomePageStackId)
                                 needToShowMainViewWindow(addedAccountIndex)
                                 ClientWrapper.lrcInstance.accountListChanged()
@@ -543,7 +541,6 @@ Window {
 
 
                             onSkip_Btn_Clicked: {
-                                wizardViewWindow.hide()
                                 changePageQML(controlPanelStackView.welcomePageStackId)
                                 needToShowMainViewWindow(addedAccountIndex)
                                 ClientWrapper.lrcInstance.accountListChanged()
@@ -587,7 +584,7 @@ Window {
                     }
                 }
 
-                RowLayout {
+                /*RowLayout {
                     id: navBarView
 
                     Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
@@ -661,15 +658,16 @@ Window {
                         Layout.preferredWidth: 85
                         Layout.preferredHeight: 30
                         text: qsTr("Back")
+                        tooltipText: qsTr("Return to main page")
                         font.pointSize: 10
                         font.kerning: true
 
                         toolTipText: qsTr("Cancel account create/link")
 
                         onClicked: {
-                            wizardViewWindow.hide()
                             needToShowMainViewWindow(addedAccountIndex)
                         }
+
                     }
 
                     Item {
@@ -736,7 +734,7 @@ Window {
                             }
                         }
                     }
-                }
+                }*/
             }
     }
 }
