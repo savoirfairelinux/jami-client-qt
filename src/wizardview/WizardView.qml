@@ -17,7 +17,6 @@
  */
 
 import QtQuick 2.14
-import QtQuick.Window 2.14
 import QtQuick.Controls 1.4 as CT
 import QtQuick.Controls 2.14
 import QtQuick.Controls.Universal 2.12
@@ -29,7 +28,7 @@ import "../commoncomponents"
 import "../constant"
 import "components"
 
-Window {
+Rectangle {
     id: wizardViewWindow
 
     enum Mode {
@@ -48,14 +47,12 @@ Window {
         SEARCHING
     }
 
-    property int layoutWidth: 768
-    property int layoutHeight: 768
     property int textFontSize: 9
     property int wizardMode: WizardView.CREATE
     property int addedAccountIndex: -1
     property bool registrationStateOk: false
     property string fileToImport: ""
-    property string registedName: ""
+    property string registeredName: ""
 
     property var inputParaObject: ({})
 
@@ -65,21 +62,12 @@ Window {
     signal needToShowMainViewWindow(int accountIndex)
     signal wizardViewIsClosed
 
-    title: "Jami"
     visible: true
-    width: layoutWidth
-    height: layoutHeight
+    anchors.fill: parent
 
-    onClosing: {
-        close.accepted = false
-        changePageQML(controlPanelStackView.welcomePageStackId)
-        wizardViewWindow.hide()
-        wizardViewWindow.wizardViewIsClosed()
-    }
 
     Component.onCompleted: {
-        changePageQML(
-                    controlPanelStackView.welcomePageStackId)
+        changePageQML(controlPanelStackView.welcomePageStackId)
     }
 
     Connections{
@@ -90,7 +78,6 @@ Window {
             if (showBackUp) {
                 changePageQML(controlPanelStackView.backupKeysPageId)
             } else {
-                wizardViewWindow.hide()
                 changePageQML(controlPanelStackView.welcomePageStackId)
                 needToShowMainViewWindow(addedAccountIndex)
                 ClientWrapper.lrcInstance.accountListChanged()
@@ -99,7 +86,9 @@ Window {
 
         // reportFailure
         function onReportFailure() {
-            reportFailureQML()
+            if (controlPanelStackView.currentIndex == controlPanelStackView.importFromDevicePageId) {
+                importFromDevicePage.errorText = qsTr("Error when creating your account. Check your credentials")
+            }
         }
     }
 
@@ -113,24 +102,6 @@ Window {
         }
     }
 
-    // failure redirect timer and qml object holder
-    Timer {
-        id: failureRedirectPageTimer
-
-        repeat: false
-        triggeredOnStart: false
-        interval: 1000
-
-        onTriggered: {
-            spinnerPage.successState = true
-        }
-    }
-
-    function reportFailureQML() {
-        spinnerPage.successState = false
-        failureRedirectPageTimer.restart()
-    }
-
     function createAccountQML() {
         switch (wizardMode) {
         case WizardView.CONNECTMANAGER:
@@ -138,7 +109,7 @@ Window {
             break
         case WizardView.CREATE:
         case WizardView.IMPORT:
-            ClientWrapper.accountAdaptor.createJamiAccount(registedName,
+            ClientWrapper.accountAdaptor.createJamiAccount(registeredName,
                                                            inputParaObject,
                                                            createAccountPage.boothImgBase64,
                                                            (wizardMode === WizardView.CREATE))
@@ -155,7 +126,7 @@ Window {
         if (name.length < 3) {
             registrationStateOk = false
             createAccountPage.nameRegistrationUIState = WizardView.INVALID
-        } else if (registedName === name) {
+        } else if (registeredName === name) {
             switch (status) {
             case NameDirectory.LookupStatus.NOT_FOUND:
             case NameDirectory.LookupStatus.ERROR:
@@ -176,15 +147,6 @@ Window {
         validateWizardProgressionQML()
     }
 
-    // function to set up nav bar visibility and the three buttons' visibiliy
-    function setNavBarVisibility(navVisible, back) {
-        navBarView.visible = (navVisible == true) || (back == true)
-        btnNext.visible = (navVisible == true)
-        btnPevious.visible = (navVisible == true)
-        btnBack.visible = (back == true)
-                && (ClientWrapper.utilsAdaptor.getAccountListSize() != 0)
-    }
-
     function processWizardInformationsQML() {
         inputParaObject = {}
         switch (wizardMode) {
@@ -198,7 +160,7 @@ Window {
             createAccountPage.clearAllTextFields()
             break
         case WizardView.IMPORT:
-            registedName = ""
+            registeredName = ""
             spinnerPage.progressLabelEditText = qsTr(
                         "Importing account archive...")
             // should only work in import from backup page or import from device page
@@ -261,17 +223,13 @@ Window {
     }
 
     function changePageQML(pageIndex) {
-        if (pageIndex == controlPanelStackView.spinnerPageId) {
-            setNavBarVisibility(false)
-        }
         controlPanelStackView.currentIndex = pageIndex
         if (pageIndex == controlPanelStackView.welcomePageStackId) {
             fileToImport = ""
-            setNavBarVisibility(false, true)
+            registeredNameFoundConnection.enabled = true
             createAccountPage.nameRegistrationUIState = WizardView.BLANK
         } else if (pageIndex == controlPanelStackView.createAccountPageId) {
             createAccountPage.initializeOnShowUp()
-            setNavBarVisibility(true)
             // connection between register name found and its slot
             registeredNameFoundConnection.enabled = true
             // validate wizard progression
@@ -280,27 +238,21 @@ Window {
             createAccountPage.startBooth()
         } else if (pageIndex == controlPanelStackView.createSIPAccountPageId) {
             createSIPAccountPage.initializeOnShowUp()
-            setNavBarVisibility(true)
             btnNext.enabled = true
             // start photo booth
             createSIPAccountPage.startBooth()
         } else if (pageIndex == controlPanelStackView.importFromDevicePageId) {
             importFromDevicePage.initializeOnShowUp()
-            setNavBarVisibility(true)
         } else if (pageIndex == controlPanelStackView.spinnerPageId) {
             createAccountPage.nameRegistrationUIState = WizardView.BLANK
             createAccountPage.isToSetPassword_checkState_choosePasswordCheckBox = false
         } else if (pageIndex == controlPanelStackView.connectToAccountManagerPageId) {
-            setNavBarVisibility(true)
             connectToAccountManagerPage.initializeOnShowUp()
             btnNext.enabled = false
         } else if (pageIndex == controlPanelStackView.importFromBackupPageId) {
-            setNavBarVisibility(true)
             importFromBackupPage.clearAllTextFields()
             fileToImport = ""
             btnNext.enabled = false
-        } else if (pageIndex == controlPanelStackView.backupKeysPageId) {
-            setNavBarVisibility(false)
         }
     }
 
@@ -327,23 +279,23 @@ Window {
 
         var usernameOk = !createAccountPage.checkState_signUpCheckboxAlias
                 || (createAccountPage.checkState_signUpCheckboxAlias
-                    && !(registedName.length == 0)
-                    && (registedName == createAccountPage.text_usernameEditAlias)
+                    && !(registeredName.length == 0)
+                    && (registeredName == createAccountPage.text_usernameEditAlias)
                     && (registrationStateOk == true))
         var passwordOk = (createAccountPage.text_passwordEditAlias
                           == createAccountPage.text_confirmPasswordEditAlias)
 
         // set password status label
-        if (passwordOk
+/*        if (passwordOk
                 && !(createAccountPage.text_passwordEditAlias.length == 0)) {
             createAccountPage.displayState_passwordStatusLabelAlias = "Success"
         } else if (!passwordOk) {
             createAccountPage.displayState_passwordStatusLabelAlias = "Fail"
         } else {
             createAccountPage.displayState_passwordStatusLabelAlias = "Hide"
-        }
+        }*/
         //set enable state of next button
-        btnNext.enabled = (usernameOk && passwordOk)
+        //btnNext.enabled = (usernameOk && passwordOk)
     }
 
     PasswordDialog {
@@ -368,7 +320,6 @@ Window {
                                                          title, info)
                 if (success) {
                     console.log("Account Export Succeed")
-                    wizardViewWindow.hide()
                     needToShowMainViewWindow(addedAccountIndex)
                     ClientWrapper.lrcInstance.accountListChanged()
                 }
@@ -377,360 +328,199 @@ Window {
     }
 
     MouseArea {
-            anchors.fill: parent
-            onClicked: forceActiveFocus()
-        }
+        anchors.fill: parent
+        onClicked: forceActiveFocus()
+    }
 
-    // main frame rectangle
-    ScrollView  {
-        id: wizardViewRect
+    // TODO scrollview
+
+    ColumnLayout {
         anchors.fill: parent
 
-        clip: true
+        StackLayout {
+            id: controlPanelStackView
+            currentIndex: welcomePageStackId
+            anchors.fill: parent
 
-        ColumnLayout {
-                id: content
-                width: wizardViewWindow.width      // ensure correct width
-                height: wizardViewWindow.height     // ensure correct height
+            property int welcomePageStackId: 0
+            property int createAccountPageId: 1
+            property int createSIPAccountPageId: 2
+            property int importFromBackupPageId: 3
+            property int backupKeysPageId: 4
+            property int importFromDevicePageId: 5
+            property int connectToAccountManagerPageId: 6
+            property int spinnerPageId: 7
 
-                Layout.alignment: Qt.AlignHCenter
-                RowLayout {
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
+            WelcomePageLayout {
+                // welcome page, index 0
+                id: welcomePage
 
-                    StackLayout {
-                        id: controlPanelStackView
-                        currentIndex: welcomePageStackId
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-
-                        property int welcomePageStackId: 0
-                        property int createAccountPageId: 1
-                        property int createSIPAccountPageId: 2
-                        property int importFromBackupPageId: 3
-                        property int backupKeysPageId: 4
-                        property int importFromDevicePageId: 5
-                        property int connectToAccountManagerPageId: 6
-                        property int spinnerPageId: 7
-
-                        WelcomePageLayout {
-                            // welcome page, index 0
-                            id: welcomePage
-
-                            onWelcomePageRedirectPage: {
-                                changePageQML(toPageIndex)
-                            }
-
-                            onVisibleChanged: {
-                                if (visible)
-                                    setNavBarVisibility(false,
-                                                                          true)
-                            }
-
-                            Component.onCompleted: {
-                                setNavBarVisibility(false, true)
-                            }
-                        }
-
-                        CreateAccountPage {
-                            // create account page, index 1
-                            id: createAccountPage
-
-                            onText_usernameEditAliasChanged: {
-                            registrationStateOk = false
-                            if (createAccountPage.checkState_signUpCheckboxAlias
-                                    && (createAccountPage.text_usernameEditAlias.length != 0)) {
-                                registedName = ClientWrapper.utilsAdaptor.stringSimplifier(
-                                            createAccountPage.text_usernameEditAlias)
-                                lookupTimer.restart()
-                                } else {
-                                createAccountPage.nameRegistrationUIState = WizardView.BLANK
-                                lookupTimer.stop()
-                                if (createAccountPage.text_usernameEditAlias.length == 0) {
-                                    lookupTimer.restart()
-                                    }
-                                }
-                                validateWizardProgressionQML()
-                            }
-
-                            onValidateWizardProgressionCreateAccountPage: {
-                                validateWizardProgressionQML()
-                            }
-
-                            onText_passwordEditAliasChanged: {
-                                validateWizardProgressionQML()
-                            }
-
-                            onText_confirmPasswordEditAliasChanged: {
-                                validateWizardProgressionQML()
-                            }
-
-                        Timer {
-                            id: lookupTimer
-
-                            repeat: false
-                            triggeredOnStart: false
-                            interval: 200
-
-                            onTriggered: {
-                                if (createAccountPage.checkState_signUpCheckboxAlias
-                                        && (createAccountPage.text_usernameEditAlias.length != 0)) {
-                                    createAccountPage.nameRegistrationUIState = WizardView.SEARCHING
-                                    ClientWrapper.nameDirectory.lookupName("", registedName)
-                                }
-                            }
-                        }
-                    }
-
-                        CreateSIPAccountPage {
-                            // create SIP account page, index 2
-                            id: createSIPAccountPage
-                        }
-
-                        ImportFromBackupPage {
-                            // import from backup page, index 3
-                            id: importFromBackupPage
-
-                            onText_passwordFromBackupEditAliasChanged: {
-                                validateWizardProgressionQML()
-                            }
-
-                        onImportFromFile_Dialog_Accepted: {
-                            fileToImport = ClientWrapper.utilsAdaptor.toNativeSeparators(fileDir)
-                            inputParaObject[""]
-
-                            if (fileToImport.length != 0) {
-                                importFromBackupPage.fileImportBtnText = ClientWrapper.utilsAdaptor.toFileInfoName(
-                                            fileToImport)
-                            } else {
-                                importFromBackupPage.fileImportBtnText = qsTr(
-                                            "Archive(none)")
-                            }
-                            validateWizardProgressionQML()
-                            }
-                        }
-
-                        BackupKeyPage {
-                            // backup keys page, index 4
-                            id: backupKeysPage
-
-                            onNeverShowAgainBoxClicked: {
-                                ClientWrapper.accountAdaptor.settingsNeverShowAgain(isChecked)
-                            }
-
-                            onExport_Btn_FileDialogAccepted: {
-                                if (accepted) {
-                                    // is there password? If so, go to password dialog, else, go to following directly
-                                    if (ClientWrapper.accountAdaptor.hasPassword()) {
-                                        passwordDialog.path = ClientWrapper.utilsAdaptor.getAbsPath(folderDir)
-                                        passwordDialog.open()
-                                        return
-                                    } else {
-                                        if (folderDir.length > 0) {
-                                            ClientWrapper.accountAdaptor.exportToFile(
-                                                        ClientWrapper.utilsAdaptor.getCurrAccId(),
-                                                        ClientWrapper.utilsAdaptor.getAbsPath(folderDir))
-                                        }
-                                    }
-                                }
-
-                                wizardViewWindow.hide()
-                                changePageQML(controlPanelStackView.welcomePageStackId)
-                                needToShowMainViewWindow(addedAccountIndex)
-                                ClientWrapper.lrcInstance.accountListChanged()
-                            }
-
-
-                            onSkip_Btn_Clicked: {
-                                wizardViewWindow.hide()
-                                changePageQML(controlPanelStackView.welcomePageStackId)
-                                needToShowMainViewWindow(addedAccountIndex)
-                                ClientWrapper.lrcInstance.accountListChanged()
-                            }
-                    }
-
-                        ImportFromDevicePage {
-                            // import from device page, index 5
-                            id: importFromDevicePage
-
-                            onText_pinFromDeviceAliasChanged: {
-                                validateWizardProgressionQML()
-                            }
-
-                            onText_passwordFromDeviceAliasChanged: {
-                                validateWizardProgressionQML()
-                            }
-                        }
-
-                        ConnectToAccountManagerPage {
-                            // connect to account manager Page, index 6
-                            id: connectToAccountManagerPage
-
-                            onText_usernameManagerEditAliasChanged: {
-                                validateWizardProgressionQML()
-                            }
-
-                            onText_passwordManagerEditAliasChanged: {
-                                validateWizardProgressionQML()
-                            }
-
-                            onText_accountManagerEditAliasChanged: {
-                                validateWizardProgressionQML()
-                            }
-                        }
-
-                        SpinnerPage {
-                            // spinner Page, index 7
-                            id: spinnerPage
-                        }
-                    }
+                onWelcomePageRedirectPage: {
+                    changePageQML(toPageIndex)
                 }
 
-                RowLayout {
-                    id: navBarView
+                onLeavePage: {
+                    wizardViewIsClosed()
+                }
+            }
 
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-                    Layout.fillWidth: true
+            CreateAccountPage {
+                // create account page, index 1
+                id: createAccountPage
 
-                    Layout.maximumHeight: 52
-                    Layout.preferredHeight: 52
+                onCreateAccount: {
+                    wizardMode = WizardView.CREATE
+                    ClientWrapper.accountAdaptor.createJamiAccount(
+                        text_usernameEditAlias.text,
+                        {/* TODO */},
+                        createAccountPage.boothImgBase64,
+                        true)
+                }
 
-                    HoverableGradientButton {
-                        id: btnPevious
-                        Layout.alignment: Qt.AlignLeft
-                        width: 85
-                        height: 30
-                        radius: height / 2
+                onText_usernameEditAliasChanged: {
+                    registrationStateOk = false
+                    lookupTimer.restart()
+                }
 
-                        Layout.leftMargin: 11
+                onValidateWizardProgressionCreateAccountPage: {
+                    validateWizardProgressionQML()
+                }
 
-                        Layout.preferredWidth: 85
-                        Layout.preferredHeight: 30
-                        text: qsTr("Previous")
-                        font.pointSize: 10
-                        font.kerning: true
+                onLeavePage: {
+                    changePageQML(controlPanelStackView.welcomePageStackId)
+                }
 
-                        onClicked: {
-                            // stop photobooth previewing
-                            if(controlPanelStackView.currentIndex == controlPanelStackView.createAccountPageId) {
-                                createAccountPage.stopBooth()
-                            }
-                            if(controlPanelStackView.currentIndex == controlPanelStackView.createSIPAccountPageId) {
-                                createSIPAccountPage.stopBooth()
-                            }
+                onText_passwordEditAliasChanged: {
+                    validateWizardProgressionQML()
+                }
 
-                            // Disconnect registered name found Connection
-                            registeredNameFoundConnection.enabled = false
-                            // deal with look up status label and collapsible password widget
+                onText_confirmPasswordEditAliasChanged: {
+                    validateWizardProgressionQML()
+                }
+
+                Timer {
+                    id: lookupTimer
+
+                    repeat: false
+                    triggeredOnStart: false
+                    interval: 200
+
+                    onTriggered: {
+                        registeredName = createAccountPage.text_usernameEditAlias
+                        if (registeredName.length !== 0) {
+                            createAccountPage.nameRegistrationUIState = WizardView.SEARCHING
+                            ClientWrapper.nameDirectory.lookupName("", registeredName)
+                        } else {
                             createAccountPage.nameRegistrationUIState = WizardView.BLANK
-                            createAccountPage.isToSetPassword_checkState_choosePasswordCheckBox = false
-                            // switch to welcome page
-                            if (controlPanelStackView.currentIndex
-                                    == controlPanelStackView.createAccountPageId
-                                    || controlPanelStackView.currentIndex
-                                    == controlPanelStackView.createSIPAccountPageId
-                                    || controlPanelStackView.currentIndex
-                                    == controlPanelStackView.importFromBackupPageId
-                                    || controlPanelStackView.currentIndex
-                                    == controlPanelStackView.importFromDevicePageId
-                                    || controlPanelStackView.currentIndex
-                                    == controlPanelStackView.connectToAccountManagerPageId) {
-                                changePageQML(
-                                            controlPanelStackView.welcomePageStackId)
-                            }
-                        }
-                    }
-
-                    Item {
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.fillHeight: true
-                        Layout.minimumWidth: 40
-                        Layout.fillWidth: true
-                    }
-
-                    HoverableGradientButton {
-                        id: btnBack
-                        Layout.alignment: Qt.AlignLeft
-                        width: 85
-                        height: 30
-                        radius: height / 2
-
-                        Layout.preferredWidth: 85
-                        Layout.preferredHeight: 30
-                        text: qsTr("Back")
-                        font.pointSize: 10
-                        font.kerning: true
-
-                        onClicked: {
-                            wizardViewWindow.hide()
-                            needToShowMainViewWindow(addedAccountIndex)
-                        }
-                    }
-
-                    Item {
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.fillHeight: true
-                        Layout.minimumWidth: 40
-                        Layout.fillWidth: true
-                    }
-
-                    HoverableGradientButton {
-                        id: btnNext
-                        Layout.alignment: Qt.AlignRight
-                        width: 85
-                        height: 30
-                        radius: height / 2
-
-                        Layout.rightMargin: 11
-
-                        Layout.minimumWidth: 85
-                        Layout.preferredWidth: 85
-                        Layout.maximumWidth: 85
-
-                        Layout.minimumHeight: 30
-                        Layout.preferredHeight: 30
-                        Layout.maximumHeight: 30
-
-                        text: qsTr("Next")
-                        font.pointSize: 10
-                        font.kerning: true
-
-                        onClicked: {
-                            // stop photobooth previewing
-                            if(controlPanelStackView.currentIndex == controlPanelStackView.createAccountPageId) {
-                                createAccountPage.stopBooth()
-                            }
-                            if(controlPanelStackView.currentIndex == controlPanelStackView.createSIPAccountPageId) {
-                                createSIPAccountPage.stopBooth()
-                            }
-
-                            registeredNameFoundConnection.enabled = false
-
-                            if (controlPanelStackView.currentIndex
-                                    == controlPanelStackView.createAccountPageId) {
-                                wizardMode = WizardView.CREATE
-                                processWizardInformationsQML()
-                            } else if (controlPanelStackView.currentIndex
-                                       == controlPanelStackView.importFromDevicePageId) {
-                                wizardMode = WizardView.IMPORT
-                                processWizardInformationsQML()
-                            } else if (controlPanelStackView.currentIndex
-                                       == controlPanelStackView.createSIPAccountPageId) {
-                                wizardMode = WizardView.CREATESIP
-                                processWizardInformationsQML()
-                            } else if (controlPanelStackView.currentIndex
-                                       == controlPanelStackView.connectToAccountManagerPageId) {
-                                wizardMode = WizardView.CONNECTMANAGER
-                                processWizardInformationsQML()
-                            } else if (controlPanelStackView.currentIndex
-                                       == controlPanelStackView.importFromBackupPageId) {
-                                wizardMode = WizardView.IMPORT
-                                processWizardInformationsQML()
-                            }
                         }
                     }
                 }
             }
+
+            CreateSIPAccountPage {
+                // create SIP account page, index 2
+                id: createSIPAccountPage
+            }
+
+            ImportFromBackupPage {
+                // import from backup page, index 3
+                id: importFromBackupPage
+
+                onLeavePage: {
+                    changePageQML(controlPanelStackView.welcomePageStackId)
+                }
+
+                onImportAccount: {
+                    inputParaObject["archivePath"] = importFromBackupPage.filePath
+                    console.log("@@@" + importFromBackupPage.filePath)
+                    inputParaObject["password"] = importFromBackupPage.text_passwordFromBackupEditAlias
+                    importFromBackupPage.clearAllTextFields()
+
+                    ClientWrapper.accountAdaptor.createJamiAccount(
+                        "", inputParaObject, "", false)
+                    changePageQML(controlPanelStackView.spinnerPageId)
+                }
+            }
+
+            BackupKeyPage {
+                    // backup keys page, index 4
+                    id: backupKeysPage
+
+                    onNeverShowAgainBoxClicked: {
+                        ClientWrapper.accountAdaptor.settingsNeverShowAgain(isChecked)
+                    }
+
+                    onExport_Btn_FileDialogAccepted: {
+                        if (accepted) {
+                            // is there password? If so, go to password dialog, else, go to following directly
+                            if (ClientWrapper.accountAdaptor.hasPassword()) {
+                                passwordDialog.path = ClientWrapper.utilsAdaptor.getAbsPath(folderDir)
+                                passwordDialog.open()
+                                return
+                            } else {
+                                if (folderDir.length > 0) {
+                                    ClientWrapper.accountAdaptor.exportToFile(
+                                                ClientWrapper.utilsAdaptor.getCurrAccId(),
+                                                ClientWrapper.utilsAdaptor.getAbsPath(folderDir))
+                                }
+                            }
+                        }
+
+                        changePageQML(controlPanelStackView.welcomePageStackId)
+                        needToShowMainViewWindow(addedAccountIndex)
+                        ClientWrapper.lrcInstance.accountListChanged()
+                    }
+
+                    onLeavePage: {
+                        changePageQML(controlPanelStackView.welcomePageStackId)
+                        needToShowMainViewWindow(addedAccountIndex)
+                        ClientWrapper.lrcInstance.accountListChanged()
+                    }
+            }
+
+            ImportFromDevicePage {
+                // import from device page, index 5
+                id: importFromDevicePage
+
+                onLeavePage: {
+                    changePageQML(controlPanelStackView.welcomePageStackId)
+                }
+
+                onImportAccount: {
+                    inputParaObject["archivePin"] = importFromDevicePage.text_pinFromDeviceAlias
+                    inputParaObject["password"] = importFromDevicePage.text_passwordFromDeviceAlias
+
+                    ClientWrapper.accountAdaptor.createJamiAccount(
+                        "", inputParaObject, "", false)
+
+                }
+            }
+
+            ConnectToAccountManagerPage {
+                // connect to account manager Page, index 6
+                id: connectToAccountManagerPage
+
+                onCreateAccount: {
+                    inputParaObject = {}
+                    inputParaObject["username"]
+                            = connectToAccountManagerPage.text_usernameManagerEditAlias
+                    inputParaObject["password"]
+                            = connectToAccountManagerPage.text_passwordManagerEditAlias
+                    inputParaObject["manager"]
+                            = connectToAccountManagerPage.text_accountManagerEditAlias
+                    ClientWrapper.accountAdaptor.createJAMSAccount(inputParaObject)
+                }
+
+                onLeavePage: {
+                    changePageQML(controlPanelStackView.welcomePageStackId)
+                }
+            }
+
+            SpinnerPage {
+                // spinner Page, index 7
+                id: spinnerPage
+            }
+        }
+
     }
 }
