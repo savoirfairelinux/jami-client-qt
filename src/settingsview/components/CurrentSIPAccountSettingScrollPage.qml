@@ -53,7 +53,7 @@ Rectangle {
     function setAvatar() {
         currentSIPAccountAvatar.setAvatarPixmap(
                     ClientWrapper.settingsAdaptor.getAvatarImage_Base64(
-                        currentSIPAccountAvatar.boothWidht),
+                        currentSIPAccountAvatar.boothWidth),
                     ClientWrapper.settingsAdaptor.getIsDefaultAvatar())
     }
 

@@ -13,7 +13,7 @@ ColumnLayout{
     property string imgBase64: ""
     property string fileName: ""
 
-    property int boothWidht: 224
+    property int boothWidth: 224
 
     signal imageAcquired
     signal imageCleared
@@ -65,7 +65,7 @@ ColumnLayout{
                 return
             }
             imgBase64 = ClientWrapper.utilsAdaptor.getCroppedImageBase64FromFile(
-                        ClientWrapper.utilsAdaptor.getAbsPath(fileName),boothWidht)
+                        ClientWrapper.utilsAdaptor.getAbsPath(fileName),boothWidth)
             imageAcquired()
             stopBooth()
         }
@@ -73,9 +73,9 @@ ColumnLayout{
 
     spacing: 0
 
-    Layout.maximumWidth: boothWidht
-    Layout.preferredWidth: boothWidht
-    Layout.minimumWidth: boothWidht
+    Layout.maximumWidth: boothWidth
+    Layout.preferredWidth: boothWidth
+    Layout.minimumWidth: boothWidth
 
     Layout.maximumHeight: 0
 
@@ -86,13 +86,13 @@ ColumnLayout{
 
         visible: !takePhotoState
 
-        Layout.maximumWidth: boothWidht
-        Layout.preferredWidth: boothWidht
-        Layout.minimumWidth: boothWidht
+        Layout.maximumWidth: boothWidth
+        Layout.preferredWidth: boothWidth
+        Layout.minimumWidth: boothWidth
 
-        Layout.maximumHeight: boothWidht
-        Layout.preferredHeight: boothWidht
-        Layout.minimumHeight: boothWidht
+        Layout.maximumHeight: boothWidth
+        Layout.preferredHeight: boothWidth
+        Layout.minimumHeight: boothWidth
 
         Layout.alignment: Qt.AlignHCenter
 
@@ -100,15 +100,16 @@ ColumnLayout{
             id: avatarLabelBackground
 
             anchors.fill: parent
-            color: "transparent"
+            color: "grey"
+            radius: height / 2
 
             Image{
                 id: avatarImg
 
                 anchors.fill: parent
-                source: {
+                source:  {
                     if(imgBase64.length === 0){
-                        return ""
+                        return "qrc:/images/default_avatar_overlay.svg"
                     } else {
                         return "data:image/png;base64," + imgBase64
                     }
@@ -139,13 +140,13 @@ ColumnLayout{
         focus: visible
 
         Layout.alignment: Qt.AlignHCenter
-        Layout.maximumWidth: boothWidht
-        Layout.preferredWidth: boothWidht
-        Layout.minimumWidth: boothWidht
+        Layout.maximumWidth: boothWidth
+        Layout.preferredWidth: boothWidth
+        Layout.minimumWidth: boothWidth
 
-        Layout.maximumHeight: boothWidht
-        Layout.preferredHeight: boothWidht
-        Layout.minimumHeight: boothWidht
+        Layout.maximumHeight: boothWidth
+        Layout.preferredHeight: boothWidth
+        Layout.minimumHeight: boothWidth
 
         layer.enabled: true
         layer.effect: OpacityMask {
@@ -233,7 +234,7 @@ ColumnLayout{
                     flashAnimation.restart()
 
                     // run concurrent function call to take photo
-                    imgBase64 = previewWidget.takeCroppedPhotoToBase64(boothWidht)
+                    imgBase64 = previewWidget.takeCroppedPhotoToBase64(boothWidth)
                     hasAvatar = true
                     imageAcquired()
                     stopBooth()

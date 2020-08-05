@@ -25,7 +25,7 @@ import QtGraphicalEffects 1.14
 import QtQuick.Controls.Styles 1.4
 
 RowLayout {
-    property string labelText: value
+    property string labelText: ""
     property int widthOfSwitch: 50
     property int heightOfSwitch: 10
     property int heightOfLayout: 30
@@ -37,12 +37,12 @@ RowLayout {
     signal switchToggled
 
     spacing: 18
-    Layout.fillWidth: true
+    Layout.fillWidth: false
     Layout.maximumHeight: 30
 
     Switch {
         id: switchOfLayout
-        Layout.alignment: Qt.AlignVCenter
+        Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
         Layout.maximumWidth: widthOfSwitch
         Layout.preferredWidth: widthOfSwitch

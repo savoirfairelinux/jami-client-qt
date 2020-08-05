@@ -123,7 +123,7 @@ Rectangle {
     function setAvatar() {
         currentAccountAvatar.setAvatarPixmap(
                     ClientWrapper.settingsAdaptor.getAvatarImage_Base64(
-                        currentAccountAvatar.boothWidht),
+                        currentAccountAvatar.boothWidth),
                     ClientWrapper.settingsAdaptor.getIsDefaultAvatar())
     }
 
