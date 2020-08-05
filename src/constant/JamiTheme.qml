@@ -54,6 +54,7 @@ Item {
 
     property string hangUpButtonTintedRed: "#ff0000"
     property string buttonTintedBlue: "#00aaff"
+    property string buttonTintedGrey: "#999"
 
     property string selectionBlue: "#109ede"
     property string selectionGreen: "#21be2b"
