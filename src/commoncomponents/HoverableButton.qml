@@ -47,15 +47,21 @@ Button {
 
     property alias radius: hoverableButtonBackground.radius
     property alias source: hoverableButtonImage.source
-    property var checkedImage: null
-    property var baseImage: null
+    property var checkedImage: ""
+    property var baseImage: ""
     property var checkedColor: null
     property var baseColor: null
     property alias color: hoverableButton.baseColor
+    property string toolTipText: ""
+    property bool isHovering: false
 
     font.pointSize: fontPointSize
 
     hoverEnabled: true
+
+    ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
+    ToolTip.visible: isHovering && (toolTipText.length > 0)
+    ToolTip.text: toolTipText
 
     background: Rectangle {
         id: hoverableButtonBackground
@@ -90,7 +96,7 @@ Button {
         MouseArea {
             anchors.fill: parent
 
-            hoverEnabled: false
+            hoverEnabled: hoverableButton.hoverEnabled
 
             onPressed: {
                 hoverableButtonBackground.color = onPressColor
@@ -102,9 +108,11 @@ Button {
             }
             onEntered: {
                 hoverableButtonBackground.color = onEnterColor
+                isHovering = true
             }
             onExited: {
                 hoverableButtonBackground.color = onExitColor
+                isHovering = false
             }
         }
     }
