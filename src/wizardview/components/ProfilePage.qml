@@ -23,135 +23,149 @@ import QtQuick.Controls 2.14
 import "../../constant"
 import "../../commoncomponents"
 
-
 Rectangle {
     id: root
 
-    property alias text_sipServernameEditAlias: sipServernameEdit.text
-    property alias text_sipProxyEditAlias: sipProxyEdit.text
-    property alias text_sipUsernameEditAlias: sipUsernameEdit.text
-    property alias text_sipPasswordEditAlias: sipPasswordEdit.text
-
-    property /*alias*/ var boothImgBase64: null//setSIPAvatarWidget.imgBase64
-
     function initializeOnShowUp() {
         clearAllTextFields()
+        boothImgBase64 = ""
+        readyToSaveDetails = false
     }
 
     function clearAllTextFields() {
-        sipUsernameEdit.clear()
-        sipPasswordEdit.clear()
-        sipServernameEdit.clear()
-        sipProxyEdit.clear()
-        sipUsernameEdit.clear()
+        aliasEdit.clear()
     }
-
-    signal createAccount
-    signal leavePage
 
     anchors.fill: parent
 
     color: JamiTheme.backgroundColor
+
+    signal leavePage
+    signal saveProfile
+
+    property var readyToSaveDetails: false
+    property var showBottom: false
+    property alias boothImgBase64: setAvatarWidget.imgBase64
+    property alias displayName: aliasEdit.text
 
     ColumnLayout {
         spacing: 12
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        Layout.preferredWidth: createAccountButton.width
+        Layout.preferredWidth: parent.width
         Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
 
         RowLayout {
             spacing: 12
             height: 48
 
-            anchors.left: createAccountButton.left
-            anchors.right: createAccountButton.right
+            Layout.preferredWidth: saveProfileBtn.width
 
             Label {
-                text: qsTr("Configure an existing SIP account")
+                text: qsTr("Profile is only shared with contacts")
+
+                font.pointSize: JamiTheme.textFontSize + 3
             }
 
             Label {
-                text: qsTr("Required")
-                color: "#ff1f62"
+                text: qsTr("Optional")
+                color: "white"
+                Layout.alignment: Qt.AlignRight
                 padding: 8
 
                 background: Rectangle {
-                    color: "#fee4e9"
+                    color: "#28b1ed"
                     radius: 24
                     anchors.fill: parent
                 }
             }
         }
 
-        MaterialLineEdit {
-            id: sipServernameEdit
-
-            fieldLayoutWidth: createAccountButton.width
+        PhotoboothView {
+            id: setAvatarWidget
 
             Layout.alignment: Qt.AlignHCenter
 
-            selectByMouse: true
-            placeholderText: qsTr("Server")
-            font.pointSize: 10
-            font.kerning: true
+            Layout.maximumWidth: 256
+            Layout.preferredWidth: 256
+            Layout.minimumWidth: 256
+            Layout.maximumHeight: 256
+            Layout.preferredHeight: 256
+            Layout.minimumHeight: 256
         }
 
         MaterialLineEdit {
-            id: sipProxyEdit
-
-            fieldLayoutWidth: createAccountButton.width
-
-            Layout.alignment: Qt.AlignHCenter
+            id: aliasEdit
 
             selectByMouse: true
-            placeholderText: qsTr("Proxy")
+            placeholderText: qsTr("Enter your name")
             font.pointSize: 10
             font.kerning: true
-        }
 
-        MaterialLineEdit {
-            id: sipUsernameEdit
+            borderColorMode: MaterialLineEdit.NORMAL
 
-            fieldLayoutWidth: createAccountButton.width
-
-            Layout.alignment: Qt.AlignHCenter
-
-            selectByMouse: true
-            placeholderText: qsTr("Username")
-            font.pointSize: 10
-            font.kerning: true
-        }
-
-        MaterialLineEdit {
-            id: sipPasswordEdit
-
-            fieldLayoutWidth: createAccountButton.width
-
-            Layout.alignment: Qt.AlignHCenter
-
-            selectByMouse: true
-            echoMode: TextInput.Password
-            placeholderText: qsTr("Password")
-            font.pointSize: 10
-            font.kerning: true
+            fieldLayoutWidth: saveProfileBtn.width
         }
 
         MaterialButton {
-            id: createAccountButton
-            text: qsTr("CREATE SIP ACCOUNT")
-            color: JamiTheme.wizardBlueButtons
+            id: saveProfileBtn
+            enabled: readyToSaveDetails
+            text: enabled? qsTr("Save Profile") : qsTr("Generating account…")
+            color: enabled? JamiTheme.wizardBlueButtons : JamiTheme.buttonTintedGreyInactive
 
             onClicked: {
-                createAccount()
+                saveProfile()
             }
         }
+
+        RowLayout {
+            id: bottomLayout
+            height: 48
+            spacing: 12
+            visible: showBottom
+
+            Layout.preferredWidth: saveProfileBtn.width
+            Layout.topMargin: 12
+            Layout.alignment: Qt.AlignHCenter
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            Rectangle {
+                color: "grey"
+                radius: height / 2
+                height: 12
+                width: 12
+            }
+
+            Rectangle {
+                color: "grey"
+                radius: height / 2
+                height: 12
+                width: 12
+            }
+
+            Rectangle {
+                color: JamiTheme.wizardBlueButtons
+                radius: height / 2
+                height: 12
+                width: 12
+            }
+
+            Item {
+                Layout.fillWidth: true
+            }
+        }
+
     }
 
     HoverableButton {
         id: cancelButton
         z: 2
+        visible: readyToSaveDetails
 
         anchors.right: parent.right
         anchors.top: parent.top
@@ -173,7 +187,7 @@ Rectangle {
         source: "qrc:/images/icons/ic_close_white_24dp.png"
         radius: 48
         baseColor: "#7c7c7c"
-        toolTipText: qsTr("Return to welcome page")
+        toolTipText: qsTr("Close")
 
         Action {
             enabled: parent.visible
