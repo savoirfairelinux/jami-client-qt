@@ -47,15 +47,14 @@ Button {
 
     property alias radius: hoverableButtonBackground.radius
     property alias source: hoverableButtonImage.source
-    property var checkedImage: null
-    property var baseImage: null
+    property var checkedImage: ""
+    property var baseImage: ""
     property var checkedColor: null
     property var baseColor: null
     property alias color: hoverableButton.baseColor
     property bool isHovering: false
 
     property string toolTipText: ""
-
     font.pointSize: fontPointSize
 
     hoverEnabled: true
