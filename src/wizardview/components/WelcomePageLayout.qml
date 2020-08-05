@@ -27,9 +27,11 @@ ColumnLayout {
     property alias connectAccountManagerButtonAlias: connectAccountManagerButton
     property alias newSIPAccountButtonAlias: newSIPAccountButton
 
-    Layout.fillWidth: true
-    Layout.fillHeight: true
-    spacing: 6
+    Layout.fillWidth: false
+    Layout.fillHeight: false
+    spacing: 48
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
 
     signal welcomePageRedirectPage(int toPageIndex)
 
@@ -89,44 +91,34 @@ ColumnLayout {
     RowLayout {
         spacing: 6
         Layout.fillWidth: true
-        Layout.maximumHeight: 30
+        Layout.maximumHeight: 48
         Layout.alignment: Qt.AlignHCenter
-        HoverableGradientButton {
+        Button {
             id: newAccountButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            text: qsTr("Create local account")
-            font.pointSize: 10
+            Layout.preferredWidth: 400
+            Layout.preferredHeight: 48
+            text: qsTr("CREATE A JAMI ACCOUNT")
+            display: AbstractButton.TextBesideIcon
+
+            font.pointSize: 12
             font.kerning: true
-            radius: height / 2
+
+            icon.source: "qrc:/images/default_avatar_overlay.svg"
+            icon.height: 24
+            icon.width: 24
+
+            palette.buttonText: "white"
 
             onClicked: {
                 welcomePageRedirectPage(1)
             }
-        }
-    }
-    RowLayout {
-        spacing: 6
-        Layout.fillWidth: true
 
-        Layout.maximumHeight: 30
-        Layout.alignment: Qt.AlignHCenter
-        HoverableGradientButton {
-            id: fromDeviceButton
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            text: qsTr("Import from device")
-            font.pointSize: 10
-            font.kerning: true
-
-            backgroundColor: JamiTheme.releaseColor
-            radius: height / 2
-
-            onClicked: {
-                welcomePageRedirectPage(5)
+            background: Rectangle {
+                anchors.fill: parent
+                color: JamiTheme.buttonTintedBlue
+                radius: parent.height / 2
             }
         }
     }
@@ -134,22 +126,69 @@ ColumnLayout {
         spacing: 6
         Layout.fillWidth: true
 
-        Layout.maximumHeight: 30
+        Layout.maximumHeight: 48
         Layout.alignment: Qt.AlignHCenter
-        HoverableGradientButton {
-            id: fromBackupButton
+        Button {
+            id: fromDeviceButton
+
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            text: qsTr("Import from backup")
-            font.pointSize: 10
+            Layout.preferredWidth: 400
+            Layout.preferredHeight: 48
+            text: qsTr("IMPORT FROM ANOTHER DEVICE")
+            display: AbstractButton.TextBesideIcon
+
+            font.pointSize: 12
             font.kerning: true
 
-            backgroundColor: JamiTheme.releaseColor
-            radius: height / 2
+            icon.source: "qrc:/images/icons/devices-24px.svg"
+            icon.height: 24
+            icon.width: 24
+
+            palette.buttonText: "white"
+
+            onClicked: {
+                welcomePageRedirectPage(5)
+            }
+
+            background: Rectangle {
+                anchors.fill: parent
+                color: JamiTheme.buttonTintedBlue
+                radius: parent.height / 2
+            }
+        }
+    }
+    RowLayout {
+        spacing: 6
+        Layout.fillWidth: true
+
+        Layout.maximumHeight: 48
+        Layout.alignment: Qt.AlignHCenter
+        Button {
+            id: fromBackupButton
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: 400
+            Layout.preferredHeight: 48
+            text: qsTr("CONNECT FROM BACKUP")
+            display: AbstractButton.TextBesideIcon
+
+            font.pointSize: 12
+            font.kerning: true
+
+            icon.source: "qrc:/images/icons/backup-24px.svg"
+            icon.height: 24
+            icon.width: 24
+
+            palette.buttonText: "white"
 
             onClicked: {
                 welcomePageRedirectPage(3)
+            }
+
+            background: Rectangle {
+                anchors.fill: parent
+                color: JamiTheme.buttonTintedBlue
+                radius: parent.height / 2
             }
         }
     }
@@ -161,7 +200,7 @@ ColumnLayout {
         Layout.alignment: Qt.AlignHCenter
         Button {
             id: showAdvancedButton
-            Layout.preferredWidth: 256
+            Layout.preferredWidth: 400
             Layout.preferredHeight: 30
             Layout.alignment: Qt.AlignCenter
             text: qsTr("Show Advanced")
@@ -189,7 +228,7 @@ ColumnLayout {
         Layout.maximumHeight: 30
         HoverableGradientButton {
             id: connectAccountManagerButton
-            Layout.preferredWidth: 256
+            Layout.preferredWidth: 400
             Layout.preferredHeight: 30
             Layout.alignment: Qt.AlignCenter
             text: qsTr("Connect to account manager")
@@ -213,7 +252,7 @@ ColumnLayout {
 
         HoverableGradientButton {
             id: newSIPAccountButton
-            Layout.preferredWidth: 256
+            Layout.preferredWidth: 400
             Layout.preferredHeight: 30
             Layout.alignment: Qt.AlignCenter
             text: qsTr("Add a new SIP account")

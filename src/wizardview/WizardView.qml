@@ -17,7 +17,6 @@
  */
 
 import QtQuick 2.14
-import QtQuick.Window 2.14
 import QtQuick.Controls 1.4 as CT
 import QtQuick.Controls 2.14
 import QtQuick.Controls.Universal 2.12
@@ -29,7 +28,7 @@ import "../commoncomponents"
 import "../constant"
 import "components"
 
-Window {
+Rectangle {
     id: wizardViewWindow
 
     enum Mode {
@@ -65,21 +64,13 @@ Window {
     signal needToShowMainViewWindow(int accountIndex)
     signal wizardViewIsClosed
 
-    title: "Jami"
     visible: true
     width: layoutWidth
     height: layoutHeight
 
-    onClosing: {
-        close.accepted = false
-        changePageQML(controlPanelStackView.welcomePageStackId)
-        wizardViewWindow.hide()
-        wizardViewWindow.wizardViewIsClosed()
-    }
 
     Component.onCompleted: {
-        changePageQML(
-                    controlPanelStackView.welcomePageStackId)
+        changePageQML(controlPanelStackView.welcomePageStackId)
     }
 
     Connections{
@@ -90,7 +81,6 @@ Window {
             if (showBackUp) {
                 changePageQML(controlPanelStackView.backupKeysPageId)
             } else {
-                wizardViewWindow.hide()
                 changePageQML(controlPanelStackView.welcomePageStackId)
                 needToShowMainViewWindow(addedAccountIndex)
                 ClientWrapper.lrcInstance.accountListChanged()
@@ -368,7 +358,6 @@ Window {
                                                          title, info)
                 if (success) {
                     console.log("Account Export Succeed")
-                    wizardViewWindow.hide()
                     needToShowMainViewWindow(addedAccountIndex)
                     ClientWrapper.lrcInstance.accountListChanged()
                 }
@@ -535,7 +524,6 @@ Window {
                                     }
                                 }
 
-                                wizardViewWindow.hide()
                                 changePageQML(controlPanelStackView.welcomePageStackId)
                                 needToShowMainViewWindow(addedAccountIndex)
                                 ClientWrapper.lrcInstance.accountListChanged()
@@ -543,7 +531,6 @@ Window {
 
 
                             onSkip_Btn_Clicked: {
-                                wizardViewWindow.hide()
                                 changePageQML(controlPanelStackView.welcomePageStackId)
                                 needToShowMainViewWindow(addedAccountIndex)
                                 ClientWrapper.lrcInstance.accountListChanged()
@@ -659,13 +646,14 @@ Window {
                         Layout.preferredWidth: 85
                         Layout.preferredHeight: 30
                         text: qsTr("Back")
+                        tooltipText: qsTr("Return to main page")
                         font.pointSize: 10
                         font.kerning: true
 
                         onClicked: {
-                            wizardViewWindow.hide()
                             needToShowMainViewWindow(addedAccountIndex)
                         }
+
                     }
 
                     Item {
