@@ -39,22 +39,9 @@ RowLayout {
 
     signal switchToggled
 
-    spacing: 8
-    Layout.fillWidth: true
-    Layout.maximumHeight: 32
-
-    ElidedTextLabel {
-        Layout.fillWidth: true
-
-        Layout.minimumHeight: heightOfLayout
-        Layout.preferredHeight: heightOfLayout
-        Layout.maximumHeight: heightOfLayout
-
-        eText: qsTr(labelText)
-        fontSize: fontPointSize
-        maxWidth: parent.width - widthOfSwitch
-
-    }
+    spacing: 18
+    Layout.fillWidth: false
+    Layout.maximumHeight: 30
 
     Switch {
         id: switchOfLayout
