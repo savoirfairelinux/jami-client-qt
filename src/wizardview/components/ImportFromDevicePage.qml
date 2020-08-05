@@ -23,7 +23,9 @@ import QtQuick.Controls 2.14
 import "../../constant"
 import "../../commoncomponents"
 
-ColumnLayout {
+Rectangle {
+    id: root
+
     property alias text_pinFromDeviceAlias: pinFromDevice.text
     property alias text_passwordFromDeviceAlias: passwordFromDevice.text
 
@@ -36,107 +38,114 @@ ColumnLayout {
         passwordFromDevice.clear()
     }
 
-    Layout.fillWidth: true
-    Layout.fillHeight: true
+    anchors.fill: parent
 
-    Item {
-        Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: 40
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-    }
+    color: JamiTheme.backgroundColor
 
-    ColumnLayout {
-        Layout.alignment: Qt.AlignCenter
-        Layout.fillWidth: true
+    signal leavePage
+    signal importAccount
 
-        spacing: 12
+    Rectangle {
+        radius: 24
+        color: "transparent"
 
-        RowLayout {
-            Layout.fillWidth: true
-            Layout.maximumHeight: 24
-            spacing: 0
+        width: parent.width / 2
+        height: parent.height / 2
+        anchors.verticalCenter: root.verticalCenter
+        anchors.horizontalCenter: root.horizontalCenter
 
-            Item {
-                Layout.alignment: Qt.AlignVCenter
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+
+        ColumnLayout {
+            spacing: 12
+
+            anchors.verticalCenter: parent.verticalCenter
+            Layout.preferredWidth: parent.width
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
+            Text {
+                anchors.left: connectBtn.left
+                anchors.right: connectBtn.right
+
+                text: qsTr("Enter your main Jami account password")
+                font.pointSize: JamiTheme.menuFontSize
             }
 
-            Label {
-                id: importFromDeviceLabel
-                Layout.minimumHeight: 24
-                Layout.minimumWidth: 234
-                text: qsTr("Import from device")
-                font.pointSize: 13
+            InfoLineEdit {
+                id: passwordFromDevice
+
+                selectByMouse: true
+                placeholderText: qsTr("Password")
+                font.pointSize: 10
                 font.kerning: true
+
+                echoMode: TextInput.Password
+
+                borderColorMode: InfoLineEdit.NORMAL
+
+                fieldLayoutWidth: connectBtn.width
             }
 
-            HoverableRadiusButton {
-                id: pinInfoBtn
+            Text {
+                anchors.left: connectBtn.left
+                anchors.right: connectBtn.right
 
-                buttonImageHeight: height
-                buttonImageWidth: width
+                text: qsTr("Enter the PIN from another configured Jami account. Use the \"export Jami account\" feature to obtain a PIN")
+                wrapMode: Text.Wrap
+            }
 
-                Layout.alignment: Qt.AlignVCenter
-                Layout.minimumWidth: 24
-                Layout.maximumWidth: 24
-                Layout.minimumHeight: 24
-                Layout.maximumHeight: 24
+            InfoLineEdit {
+                id: pinFromDevice
 
-                radius: height / 2
-                icon.source: "/images/icons/info-24px.svg"
-                backgroundColor: JamiTheme.releaseColor
+                selectByMouse: true
+                placeholderText: qsTr("PIN")
+                font.pointSize: 10
+                font.kerning: true
+
+                borderColorMode: InfoLineEdit.NORMAL
+
+                fieldLayoutWidth: connectBtn.width
+            }
+
+            MaterialButton {
+                id: connectBtn
+                text: qsTr("CONNECT FROM ANOTHER DEVICE")
+                color: pinFromDevice.text.length === 0?
+                    JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedGrey
 
                 onClicked: {
-                    pinInfoLabel.visible = !pinInfoLabel.visible
+                    importAccount()
                 }
             }
-            Item {
-                Layout.alignment: Qt.AlignVCenter
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-            }
-        }
-        InfoLineEdit {
-            id: pinFromDevice
-
-            Layout.alignment: Qt.AlignHCenter
-
-            selectByMouse: true
-            placeholderText: qsTr("PIN")
-        }
-
-        InfoLineEdit {
-            id: passwordFromDevice
-
-            Layout.alignment: Qt.AlignHCenter
-
-            selectByMouse: true
-            echoMode: TextInput.Password
-            placeholderText: qsTr("Password")
-        }
-
-        Label {
-            id: pinInfoLabel
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.minimumWidth: 256
-            Layout.maximumWidth: 256
-
-            text: qsTr("To obtain a PIN (valid for 10 minutes), you need to open the account settings on the other device and click on \"Link to another device\".")
-            wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
-            visible: false
         }
     }
 
-    Item {
-        Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: 40
-        Layout.fillWidth: true
-        Layout.fillHeight: true
+    HoverableButton {
+        id: cancelButton
+        z: 2
+
+        anchors.right: parent.right
+        anchors.top: parent.top
+
+        rightPadding: 48
+        topPadding: 48
+
+        Layout.preferredWidth: 96
+        Layout.preferredHeight: 96
+
+        backgroundColor: "transparent"
+        onEnterColor: "transparent"
+        onPressColor: "transparent"
+        onReleaseColor: "transparent"
+        onExitColor: "transparent"
+
+        buttonImageHeight: 48
+        buttonImageWidth: 48
+        source: "qrc:/images/icons/ic_close_white_24dp.png"
+        radius: 48
+        baseColor: "#7c7c7c"
+
+        onClicked: {
+            leavePage()
+        }
     }
 }

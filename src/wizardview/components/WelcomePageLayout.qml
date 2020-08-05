@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Sébastien blin <sebastien.blin@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,17 +20,17 @@
 import QtQuick 2.14
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
+import QtGraphicalEffects 1.15
 
 import "../../constant"
 import "../../commoncomponents"
 
 ColumnLayout {
-    property alias connectAccountManagerButtonAlias: connectAccountManagerButton
-    property alias newSIPAccountButtonAlias: newSIPAccountButton
-
-    Layout.fillWidth: true
-    Layout.fillHeight: true
-    spacing: 6
+    Layout.fillWidth: false
+    Layout.fillHeight: false
+    spacing: 8
+    anchors.verticalCenter: parent.verticalCenter
+    anchors.horizontalCenter: parent.horizontalCenter
 
     signal welcomePageRedirectPage(int toPageIndex)
 
@@ -87,20 +88,17 @@ ColumnLayout {
         Layout.fillHeight: true
     }
     RowLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
-        Layout.maximumHeight: 30
+        Layout.maximumHeight: 36
         Layout.alignment: Qt.AlignHCenter
-        HoverableGradientButton {
+        MaterialButton {
             id: newAccountButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            text: qsTr("Create local account")
-            font.pointSize: 10
-            font.kerning: true
-            radius: height / 2
+            text: qsTr("CREATE A JAMI ACCOUNT")
+            toolTipText: qsTr("Create new Jami account")
+            source: "qrc:/images/default_avatar_overlay.svg"
+            color: JamiTheme.buttonTintedBlue
 
             onClicked: {
                 welcomePageRedirectPage(1)
@@ -108,22 +106,18 @@ ColumnLayout {
         }
     }
     RowLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
 
-        Layout.maximumHeight: 30
+        Layout.maximumHeight: 36
         Layout.alignment: Qt.AlignHCenter
-        HoverableGradientButton {
+        MaterialButton {
             id: fromDeviceButton
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            text: qsTr("Import from device")
-            font.pointSize: 10
-            font.kerning: true
 
-            backgroundColor: JamiTheme.releaseColor
-            radius: height / 2
+            text: qsTr("IMPORT FROM ANOTHER DEVICE")
+            toolTipText: qsTr("Import account from other device")
+            source: "qrc:/images/icons/devices-24px.svg"
+            color: JamiTheme.buttonTintedBlue
 
             onClicked: {
                 welcomePageRedirectPage(5)
@@ -131,22 +125,18 @@ ColumnLayout {
         }
     }
     RowLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
 
-        Layout.maximumHeight: 30
+        Layout.maximumHeight: 36
         Layout.alignment: Qt.AlignHCenter
-        HoverableGradientButton {
+        MaterialButton {
             id: fromBackupButton
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            text: qsTr("Import from backup")
-            font.pointSize: 10
-            font.kerning: true
 
-            backgroundColor: JamiTheme.releaseColor
-            radius: height / 2
+            text: qsTr("CONNECT FROM BACKUP")
+            toolTipText: qsTr("Import account from backup file")
+            source: "qrc:/images/icons/backup-24px.svg"
+            color: JamiTheme.buttonTintedBlue
 
             onClicked: {
                 welcomePageRedirectPage(3)
@@ -154,26 +144,18 @@ ColumnLayout {
         }
     }
     RowLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
 
-        Layout.maximumHeight: 30
+        Layout.maximumHeight: 36
         Layout.alignment: Qt.AlignHCenter
-        Button {
+        MaterialButton {
             id: showAdvancedButton
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            Layout.alignment: Qt.AlignCenter
-            text: qsTr("Show Advanced")
-            font.pointSize: 8
-            font.kerning: true
 
-            background: Rectangle{
-                anchors.fill: parent
-
-                color: "transparent"
-                radius: height /2
-            }
+            text: qsTr("SHOW ADVANCED")
+            toolTipText: qsTr("Show advanced options")
+            color: JamiTheme.buttonTintedBlue
+            outlined: true
 
             onClicked: {
                 connectAccountManagerButton.visible = !connectAccountManagerButton.visible
@@ -182,23 +164,19 @@ ColumnLayout {
         }
     }
     RowLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignHCenter
 
-        Layout.maximumHeight: 30
-        HoverableGradientButton {
+        Layout.maximumHeight: 36
+        MaterialButton {
             id: connectAccountManagerButton
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            Layout.alignment: Qt.AlignCenter
-            text: qsTr("Connect to account manager")
             visible: false
-            font.pointSize: 10
-            font.kerning: true
 
-            backgroundColor: JamiTheme.releaseColor
-            radius: height / 2
+            text: qsTr("CONNECT TO MANAGEMENT SERVER")
+            toolTipText: qsTr("Login to account manager")
+            source: "qrc:/images/icons/router-24px.svg"
+            color: JamiTheme.buttonTintedBlue
 
             onClicked: {
                 welcomePageRedirectPage(6)
@@ -206,23 +184,18 @@ ColumnLayout {
         }
     }
     RowLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignHCenter
-        Layout.maximumHeight: 30
-
-        HoverableGradientButton {
+        Layout.maximumHeight: 36
+        MaterialButton {
             id: newSIPAccountButton
-            Layout.preferredWidth: 256
-            Layout.preferredHeight: 30
-            Layout.alignment: Qt.AlignCenter
-            text: qsTr("Add a new SIP account")
             visible: false
-            font.pointSize: 10
-            font.kerning: true
 
-            radius: height / 2
-            backgroundColor: JamiTheme.releaseColor
+            text: qsTr("CREATE A SIP ACCOUNT")
+            toolTipText: qsTr("Create new SIP account")
+            source: "qrc:/images/default_avatar_overlay.svg"
+            color: JamiTheme.buttonTintedBlue
 
             onClicked: {
                 welcomePageRedirectPage(2)
