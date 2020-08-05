@@ -23,10 +23,13 @@ import QtQuick.Controls 2.14
 import "../../constant"
 import "../../commoncomponents"
 
-ColumnLayout {
+Rectangle {
+    id: root
+
     property alias text_usernameManagerEditAlias: usernameManagerEdit.text
     property alias text_passwordManagerEditAlias: passwordManagerEdit.text
     property alias text_accountManagerEditAlias: accountManagerEdit.text
+    property string errorText: ""
 
     function initializeOnShowUp() {
         clearAllTextFields()
@@ -36,67 +39,161 @@ ColumnLayout {
         usernameManagerEdit.clear()
         passwordManagerEdit.clear()
         accountManagerEdit.clear()
+        errorText = ""
     }
 
-    Layout.fillWidth: true
-    Layout.fillHeight: true
+    anchors.fill: parent
 
-    Item {
-        Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: 40
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-    }
+    color: JamiTheme.backgroundColor
+
+    signal leavePage
+    signal createAccount
 
     ColumnLayout {
-        Layout.alignment: Qt.AlignCenter
-        Layout.fillWidth: true
-
         spacing: 12
 
-        Label {
-            id: signInLabel
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        Layout.preferredWidth: parent.width
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-            Layout.alignment: Qt.AlignHCenter
-            Layout.minimumWidth: 256
-            Layout.preferredHeight: 21
-            text: qsTr("Sign in")
-            font.pointSize: 13
-            font.kerning: true
+        RowLayout {
+            spacing: 12
+            height: 48
+
+            Layout.fillWidth: true
+            anchors.left: connectBtn.left
+            anchors.right: connectBtn.right
+
+            Label {
+                text: qsTr("Enter URL of management server")
+            }
+
+            Label {
+                text: qsTr("Required")
+                color: "#ff1f62"
+                padding: 8
+                anchors.right: parent.right
+
+                background: Rectangle {
+                    color: "#fee4e9"
+                    radius: 24
+                    anchors.fill: parent
+                }
+            }
         }
 
-        InfoLineEdit {
-            id: usernameManagerEdit
+        MaterialLineEdit {
+            id: accountManagerEdit
 
-            Layout.alignment: Qt.AlignHCenter
+            selectByMouse: true
+            placeholderText: qsTr("Jami management server URL")
+            font.pointSize: 10
+            font.kerning: true
+
+            borderColorMode: MaterialLineEdit.NORMAL
+
+            fieldLayoutWidth: connectBtn.width
+        }
+
+        Text {
+            anchors.left: connectBtn.left
+            anchors.right: connectBtn.right
+
+            text: qsTr("Enter your organization credentials")
+            wrapMode: Text.Wrap
+        }
+
+        MaterialLineEdit {
+            id: usernameManagerEdit
 
             selectByMouse: true
             placeholderText: qsTr("Username")
+            font.pointSize: 10
+            font.kerning: true
+
+            borderColorMode: MaterialLineEdit.NORMAL
+
+            fieldLayoutWidth: connectBtn.width
         }
 
-        InfoLineEdit {
+        MaterialLineEdit {
             id: passwordManagerEdit
 
-            Layout.alignment: Qt.AlignHCenter
             selectByMouse: true
-            echoMode: TextInput.Password
             placeholderText: qsTr("Password")
+            font.pointSize: 10
+            font.kerning: true
+
+            echoMode: TextInput.Password
+
+            borderColorMode: MaterialLineEdit.NORMAL
+
+            fieldLayoutWidth: connectBtn.width
         }
 
-        InfoLineEdit {
-            id: accountManagerEdit
+        MaterialButton {
+            id: connectBtn
+            text: qsTr("CONNECT")
+            enabled: accountManagerEdit.text.length !== 0
+                && usernameManagerEdit.text.length !== 0
+                && passwordManagerEdit.text.length !== 0
+            color: enabled? JamiTheme.wizardBlueButtons : JamiTheme.buttonTintedGreyInactive
 
+            onClicked: {
+                errorText = ""
+                createAccount()
+            }
+        }
+
+        Label {
+            text: errorText
+
+            anchors.left: connectBtn.left
+            anchors.right: connectBtn.right
             Layout.alignment: Qt.AlignHCenter
 
-            selectByMouse: true
-            placeholderText: qsTr("Account Manager")
+            font.pointSize: JamiTheme.textFontSize
+            color: "red"
+
+            height: 32
         }
     }
 
-    Item {
-        Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: 40
-        Layout.fillWidth: true
-        Layout.fillHeight: true
+    HoverableButton {
+        id: cancelButton
+        z: 2
+
+        anchors.right: parent.right
+        anchors.top: parent.top
+
+        rightPadding: 90
+        topPadding: 90
+
+        Layout.preferredWidth: 96
+        Layout.preferredHeight: 96
+
+        backgroundColor: "transparent"
+        onEnterColor: "transparent"
+        onPressColor: "transparent"
+        onReleaseColor: "transparent"
+        onExitColor: "transparent"
+
+        buttonImageHeight: 48
+        buttonImageWidth: 48
+        source: "qrc:/images/icons/ic_close_white_24dp.png"
+        radius: 48
+        baseColor: "#7c7c7c"
+        toolTipText: qsTr("Return to welcome page")
+
+        Action {
+            enabled: parent.visible
+            shortcut: StandardKey.Cancel
+            onTriggered: leavePage()
+        }
+
+        onClicked: {
+            leavePage()
+        }
     }
 }
