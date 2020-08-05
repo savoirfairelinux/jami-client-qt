@@ -29,6 +29,7 @@ import net.jami.Models 1.0
  * Import qml component files.
  */
 import "components"
+import "../wizardview"
 import "../settingsview"
 
 Window {
@@ -55,8 +56,6 @@ Window {
     property int tabBarLeftMargin: 8
     property int tabButtonShrinkSize: 8
 
-    signal noAccountIsAvailable
-    signal needToAddNewAccount
     signal closeApp
 
     function newAccountAdded(index) {
@@ -235,7 +234,31 @@ Window {
             }
 
             onSettingsViewWindowNeedToShowNewWizardWindow: {
-                mainViewWindow.noAccountIsAvailable()
+                mainViewStackLayout.currentIndex = 2
+            }
+        }
+
+
+        WizardView {
+            id: wizardView
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            onNeedToShowMainViewWindow: {
+                mainViewLoader.newAddedAccountIndex = accountIndex
+                if (mainViewLoader.source.toString() !== "qrc:/src/mainview/MainView.qml") {
+                    mainViewLoader.loaded.disconnect(slotNewAccountAdded)
+                    mainViewLoader.loaded.connect(slotNewAccountAdded)
+                    mainViewLoader.setSource("qrc:/src/mainview/MainView.qml")
+                } else {
+                    slotNewAccountAdded()
+                }
+                mainViewStackLayout.currentIndex = 0
+            }
+
+            onWizardViewIsClosed: {
+                mainViewStackLayout.currentIndex = 0
             }
         }
     }
@@ -353,7 +376,7 @@ Window {
         }
 
         onNeedToAddNewAccount: {
-            mainViewWindow.needToAddNewAccount()
+            mainViewStackLayout.currentIndex = 2
         }
     }
 
@@ -401,6 +424,7 @@ Window {
         }
 
         Component.onCompleted: {
+
             sidePanelViewStack.SplitView.maximumWidth = Qt.binding(function() {
                 return (hiddenView ? splitView.width : splitView.width - sidePanelViewStackPreferedWidth)
             })

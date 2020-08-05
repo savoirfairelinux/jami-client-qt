@@ -49,6 +49,7 @@ Button {
     property string onEnterColor: JamiTheme.hoverColor
     property string onExitColor: backgroundColor
     property string textColor: "white"
+    property string tooltipText: ""
 
     property alias radius: hoverableButtonBackground.radius
 
@@ -59,6 +60,12 @@ Button {
     font.pointSize: fontPointSize
     font.kerning:  true
     hoverEnabled: true
+
+
+    ToolTip.delay: 1000
+    ToolTip.timeout: 5000
+    ToolTip.visible: hovered && tooltipText.length !== 0
+    ToolTip.text: tooltipText
 
     contentItem: Text {
             text: hoverableButton.text
