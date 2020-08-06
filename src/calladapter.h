@@ -96,6 +96,7 @@ public slots:
     void slotShowIncomingCallView(const QString &accountId,
                                   const lrc::api::conversation::Info &convInfo);
     void slotShowCallView(const QString &accountId, const lrc::api::conversation::Info &convInfo);
+    void slotAccountChanged();
 
 private:
     void updateCall(const QString &convUid = {},
