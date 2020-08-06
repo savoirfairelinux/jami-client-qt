@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
- * Author: Anthony Léonard <anthony.leonard@savoirfairelinux.com>
+ * Author: Anthony LÃ©onard <anthony.leonard@savoirfairelinux.com>
  * Author: Olivier Soldano <olivier.soldano@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  * Author: Isa Nanic <isa.nanic@savoirfairelinux.com>
@@ -42,10 +42,20 @@ CallAdapter::initQmlObject()
             &BehaviorController::showIncomingCallView,
             this,
             &CallAdapter::slotShowIncomingCallView);
+    connect(&LRCInstance::instance(),
+            &LRCInstance::currentAccountChanged,
+            this,
+            &CallAdapter::slotAccountChanged);
     connect(&LRCInstance::behaviorController(),
             &BehaviorController::showCallView,
             this,
             &CallAdapter::slotShowCallView);
+}
+
+void
+CallAdapter::slotAccountChanged()
+{
+    connectCallModel(LRCInstance::getCurrAccId());
 }
 
 void
