@@ -256,6 +256,8 @@ Rectangle {
                             labelText: "Enable desktop notifications"
                             fontPointSize: 11
 
+                            tooltipText: qsTr("toggle enable notifications")
+
                             onSwitchToggled: {
                                 slotSetNotifications(checked)
                             }
@@ -269,6 +271,8 @@ Rectangle {
                             labelText: "Keep minimize on close"
                             fontPointSize: 11
 
+                            tooltipText: qsTr("toggle keep minimized on close")
+
                             onSwitchToggled: {
                                 slotSetClosedOrMin(checked)
                             }
@@ -281,6 +285,8 @@ Rectangle {
 
                             labelText: "Run on Startup"
                             fontPointSize: 11
+
+                            tooltipText: qsTr("toggle run application on system startup")
 
                             onSwitchToggled: {
                                 slotSetRunOnStartUp(checked)
@@ -387,6 +393,7 @@ Rectangle {
 
                             labelText: "Always record calls"
                             fontPointSize: 11
+                            tooltipText: qsTr("toggle always record calls")
 
                             onSwitchToggled: {
                                 slotAlwaysRecordingClicked(checked)
@@ -400,6 +407,8 @@ Rectangle {
 
                             labelText: "Record preview video for a call"
                             fontPointSize: 11
+
+                            tooltipText: qsTr("toggle record preview video for a call")
 
                             onSwitchToggled: {
                                 slotRecordPreviewClicked(checked)
@@ -587,6 +596,8 @@ Rectangle {
                             labelText: "Check for updates automatically"
                             fontPointSize: 11
 
+                            tooltipText: qsTr("toggle automatic updates")
+
                             onSwitchToggled: {
                                 slotSetUpdateAutomatic(checked)
                             }
@@ -614,6 +625,8 @@ Rectangle {
 
                                 text: "Check for updates now"
                                 fontPointSize: 10
+
+                                toolTipText: qsTr("Check for updates now")
 
                                 onClicked: {
                                     checkForUpdateSlot()
@@ -648,6 +661,8 @@ Rectangle {
 
                                 text: "Install the latest beta version"
                                 fontPointSize: 10
+
+                                toolTipText: qsTr("Install the newest beta version")
 
                                 onClicked: {
                                     installBetaSlot()
