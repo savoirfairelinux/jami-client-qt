@@ -198,7 +198,8 @@ Rectangle {
                 source: "qrc:/images/icons/ic_arrow_back_24px.svg"
                 backgroundColor: "white"
                 onExitColor: "white"
-
+                toolTipText: qsTr("Toggle to display side panel")
+                hoverEnabled: true
                 visible: mainViewWindow.sidePanelHidden
 
                 onClicked: {
@@ -277,6 +278,8 @@ Rectangle {
                             labelText: desktopNotificationsElidedText.elidedText
                             fontPointSize: JamiTheme.settingsFontSize
 
+                            tooltipText: qsTr("toggle enable notifications")
+
                             onSwitchToggled: {
                                 slotSetNotifications(checked)
                             }
@@ -296,6 +299,8 @@ Rectangle {
                             labelText: keepMinimizeElidedText.elidedText
                             fontPointSize: JamiTheme.settingsFontSize
 
+                            tooltipText: qsTr("toggle keep minimized on close")
+
                             onSwitchToggled: {
                                 slotSetClosedOrMin(checked)
                             }
@@ -314,6 +319,8 @@ Rectangle {
 
                             labelText: runOnStartupElidedText.elidedText
                             fontPointSize: JamiTheme.settingsFontSize
+
+                            tooltipText: qsTr("toggle run application on system startup")
 
                             onSwitchToggled: {
                                 slotSetRunOnStartUp(checked)
@@ -363,6 +370,7 @@ Rectangle {
                                 icon.height: 24
                                 icon.width: 24
 
+                                toolTipText: qsTr("Press to choose download folder path")
                                 text: downloadPath
                                 fontPointSize: JamiTheme.buttonFontSize
 
@@ -533,6 +541,7 @@ Rectangle {
                                 icon.height: 24
                                 icon.width: 24
 
+                                toolTipText: qsTr("Press to choose record folder path")
                                 text: recordPath
                                 fontPointSize: JamiTheme.buttonFontSize
 
@@ -575,6 +584,8 @@ Rectangle {
                             labelText: autoUpdateText.elidedText
                             fontPointSize: JamiTheme.settingsFontSize
 
+                            tooltipText: qsTr("toggle automatic updates")
+
                             onSwitchToggled: {
                                 slotSetUpdateAutomatic(checked)
                             }
@@ -600,7 +611,8 @@ Rectangle {
 
                             radius: height / 2
 
-                            text: qsTr("Check for updates now")
+                            toolTipText: qsTr("Check for updates now")
+                            text: qsTr("Updates")
                             fontPointSize: JamiTheme.buttonFontSize
 
                             onClicked: {
@@ -621,7 +633,8 @@ Rectangle {
 
                             radius: height / 2
 
-                            text: "Install the latest beta version"
+                            toolTipText: qsTr("Install the latest beta version")
+                            text: "Beta Install"
                             fontPointSize: JamiTheme.buttonFontSize
 
                             onClicked: {
