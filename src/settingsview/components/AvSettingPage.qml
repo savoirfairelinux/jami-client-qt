@@ -279,6 +279,8 @@ Rectangle {
                 source: "qrc:/images/icons/ic_arrow_back_24px.svg"
                 backgroundColor: "white"
                 onExitColor: "white"
+                toolTipText: qsTr("Toggle to display side panel")
+                hoverEnabled: true
 
                 visible: mainViewWindow.sidePanelHidden
 
@@ -379,9 +381,8 @@ Rectangle {
                                 font.kerning: true
 
                                 model: audioInputDeviceModel
-
                                 textRole: "ID_UTF8"
-
+                                tooltipText: qsTr("Audio input device selector")
                                 onActivated: {
                                     slotAudioInputIndexChanged(index)
                                 }
@@ -434,9 +435,8 @@ Rectangle {
                                 font.kerning: true
 
                                 model: audioOutputDeviceModel
-
                                 textRole: "ID_UTF8"
-
+                                tooltipText: qsTr("Choose the audio output device")
                                 onActivated: {
                                     slotAudioOutputIndexChanged(index)
                                 }
@@ -476,7 +476,7 @@ Rectangle {
                                 model: audioOutputDeviceModel
 
                                 textRole: "ID_UTF8"
-
+                                tooltipText: qsTr("Choose the ringtone output device")
                                 onActivated: {
                                     slotRingtoneDeviceIndexChanged(index)
                                 }
@@ -578,7 +578,7 @@ Rectangle {
                                 model: videoInputDeviceModel
 
                                 textRole: "DeviceName_UTF8"
-
+                                tooltipText: qsTr("Video device selector")
                                 onActivated: {
                                     slotDeviceBoxCurrentIndexChanged(index)
                                 }
@@ -618,6 +618,8 @@ Rectangle {
                                 model: videoFormatResolutionModel
                                 textRole: "Resolution_UTF8"
 
+                                tooltipText: qsTr("Video device resolution selector")
+
                                 onActivated: {
                                     slotFormatCurrentIndexChanged(index,true)
                                 }
@@ -656,6 +658,8 @@ Rectangle {
 
                                 model: videoFormatFpsModel
                                 textRole: "FPS_ToDisplay_UTF8"
+
+                                tooltipText: qsTr("Video device fps selector")
 
                                 onActivated: {
                                     slotFormatCurrentIndexChanged(index,false)
