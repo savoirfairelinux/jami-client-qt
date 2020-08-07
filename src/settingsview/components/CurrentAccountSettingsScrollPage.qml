@@ -857,6 +857,8 @@ Rectangle {
                             font.pointSize: JamiTheme.buttonFontSize
                             font.kerning: true
 
+                            toolTipText: qsTr("Register the name as typed")
+
                             radius: height / 2
                         }
 
@@ -893,6 +895,7 @@ Rectangle {
 
                         text: ClientWrapper.accountAdaptor.hasPassword() ? qsTr("Change Password") : qsTr("Set Password")
 
+                        toolTipText: ClientWrapper.accountAdaptor.hasPassword() ? qsTr("Change the current password") : qsTr("Currently no password, press this button to set a password")
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
 
@@ -915,6 +918,8 @@ Rectangle {
                         Layout.minimumHeight: preferredFieldHeight
                         Layout.preferredHeight: preferredFieldHeight
                         Layout.maximumHeight: preferredFieldHeight
+
+                        toolTipText: qsTr("Press this button to export account to a .gz file")
 
                         text: qsTr("Export Account")
                         font.pointSize: JamiTheme.textFontSize
@@ -945,6 +950,8 @@ Rectangle {
                         Layout.minimumHeight: preferredFieldHeight
                         Layout.preferredHeight: preferredFieldHeight
                         Layout.maximumHeight: preferredFieldHeight
+
+                        toolTipText: qsTr("Press this button to delete this account")
 
                         text: qsTr("Delete Account")
                         font.pointSize: JamiTheme.textFontSize
@@ -1027,6 +1034,8 @@ Rectangle {
 
                             radius: height / 2
 
+                            toolTipText: qsTr("Press to link one more device with this account")
+
                             text: qsTr("+ Link Another Device")
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
@@ -1081,6 +1090,8 @@ Rectangle {
                             Layout.maximumHeight: preferredFieldHeight
 
                             radius: height / 2
+
+                            toolTipText: qsTr("press to open or hide display of banned contact")
 
                             source: bannedContactsListWidget.visible? "qrc:/images/icons/round-arrow_drop_up-24px.svg" :
                                                                       "qrc:/images/icons/round-arrow_drop_down-24px.svg"
@@ -1169,6 +1180,8 @@ Rectangle {
                         Layout.alignment: Qt.AlignHCenter
 
                         radius: height / 2
+
+                        toolTipText: qsTr("Press to display or hide advance settings")
 
                         source: {
                             if (advanceSettingsView.visible) {

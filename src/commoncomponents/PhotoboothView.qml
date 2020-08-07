@@ -194,6 +194,8 @@ ColumnLayout{
             property string addPhotoIconUrl: "qrc:/images/icons/round-add_a_photo-24px.svg"
             property string refreshIconUrl: "qrc:/images/icons/baseline-refresh-24px.svg"
 
+            property int refreshInteger : 0
+
             Layout.maximumWidth: 30
             Layout.preferredWidth: 30
             Layout.minimumWidth: 30
@@ -206,19 +208,23 @@ ColumnLayout{
             font.pointSize: 10
             font.kerning: true
 
+            toolTipText: qsTr("Press this button to take photo")
+
             radius: height / 6
             source: {
-                if(isDefaultIcon){
-                    return addPhotoIconUrl
-                }
+                refreshInteger
+                isHovering
 
                 if(takePhotoState) {
+                    toolTipText = qsTr("Press this button to stop taking photo")
                     return cameraAltIconUrl
                 }
 
                 if(hasAvatar){
+                    toolTipText = qsTr("Press this button to retake photo")
                     return refreshIconUrl
                 } else {
+                    toolTipText = qsTr("Press this button to take photo")
                     return addPhotoIconUrl
                 }
             }
@@ -226,6 +232,8 @@ ColumnLayout{
                 if(!takePhotoState){
                     imageCleared()
                     startBooth()
+                    refreshInteger++
+                    refreshInteger--
                     return
                 } else {
                     // show flash overlay
@@ -237,6 +245,8 @@ ColumnLayout{
                     hasAvatar = true
                     imageAcquired()
                     stopBooth()
+                    refreshInteger++
+                    refreshInteger--
                 }
             }
         }
@@ -266,6 +276,8 @@ ColumnLayout{
 
             radius: height / 6
             source: "qrc:/images/icons/round-folder-24px.svg"
+
+            toolTipText: qsTr("Import avatar from image file")
 
             onClicked: {
                 importFromFileToAvatar_Dialog.open()
