@@ -50,6 +50,8 @@ Button {
     property string onExitColor: backgroundColor
     property string textColor: "white"
 
+    property string toolTipText: ""
+
     property alias radius: hoverableButtonBackground.radius
 
     property bool isHovering: false
@@ -59,6 +61,10 @@ Button {
     font.pointSize: fontPointSize
     font.kerning:  true
     hoverEnabled: true
+
+    ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
+    ToolTip.visible: isHovering && (toolTipText.length > 0)
+    ToolTip.text: toolTipText
 
     contentItem: Text {
             text: hoverableButton.text
