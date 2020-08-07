@@ -41,6 +41,7 @@ Button {
     property alias radius: hoverableButtonBackground.radius
     property alias source: hoverableButtonImage.source
     property bool isHovering: false
+    property string toolTipText: ""
     radius: height / 2
     function enterBtn(){
         btnMouseArea.entered()
@@ -54,6 +55,11 @@ Button {
     function releaseBtn(){
         btnMouseArea.released()
     }
+
+    ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
+    ToolTip.visible: isHovering && (toolTipText.length > 0)
+    ToolTip.text: toolTipText
+
     font.pointSize: fontPointSize
     font.kerning:  true
     hoverEnabled: true
