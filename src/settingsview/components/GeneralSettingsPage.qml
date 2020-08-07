@@ -272,6 +272,7 @@ Rectangle {
                         labelText: keepMinimizeElidedText.elidedText
                         fontPointSize: 11
 
+                        tooltipText: qsTr("toggle enable notifications")
                         onSwitchToggled: {
                             slotSetClosedOrMin(checked)
                         }
@@ -291,6 +292,7 @@ Rectangle {
                         labelText: runOnStartupElidedText.elidedText
                         fontPointSize: 11
 
+                        tooltipText: qsTr("toggle run application on system startup")
                         onSwitchToggled: {
                             slotSetRunOnStartUp(checked)
                         }
@@ -399,6 +401,7 @@ Rectangle {
 
                     ToggleSwitch {
                         id: recordPreviewCheckBox
+                        tooltipText: qsTr("toggle always record calls")
 
                         labelText: recordPreviewElidedText.elidedText
                         fontPointSize: 11
@@ -558,6 +561,7 @@ Rectangle {
                         labelText: qsTr("Check for updates automatically")
                         fontPointSize: 11
 
+                        tooltipText: qsTr("toggle automatic updates")
                         onSwitchToggled: {
                             slotSetUpdateAutomatic(checked)
                         }
@@ -577,6 +581,7 @@ Rectangle {
                         radius: height / 2
 
                         text: qsTr("Check for updates now")
+                        toolTipText: qsTr("Check for updates now")
                         fontPointSize: 10
 
                         onClicked: {
@@ -600,6 +605,7 @@ Rectangle {
                         text: "Install the latest beta version"
                         fontPointSize: 10
 
+                        toolTipText: qsTr("Install the newest beta version")
                         onClicked: {
                             installBetaSlot()
                         }
