@@ -206,19 +206,22 @@ ColumnLayout{
             font.pointSize: 10
             font.kerning: true
 
+            toolTipText: qsTr("Press this button to take photo")
+
             radius: height / 6
             source: {
-                if(isDefaultIcon){
-                    return addPhotoIconUrl
-                }
+                isHovering
 
                 if(takePhotoState) {
+                    toolTipText = qsTr("Press this button to finish taking photo")
                     return cameraAltIconUrl
                 }
 
                 if(hasAvatar){
+                    toolTipText = qsTr("Press this button to retake photo")
                     return refreshIconUrl
                 } else {
+                    toolTipText = qsTr("Press this button to take photo")
                     return addPhotoIconUrl
                 }
             }
@@ -266,6 +269,8 @@ ColumnLayout{
 
             radius: height / 6
             source: "qrc:/images/icons/round-folder-24px.svg"
+
+            toolTipText: qsTr("Import avatar from image file")
 
             onClicked: {
                 importFromFileToAvatar_Dialog.open()
