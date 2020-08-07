@@ -136,6 +136,8 @@ Rectangle {
                 backgroundColor: "white"
                 onExitColor: "white"
 
+                toolTipText: qsTr("Toggle to display side panel")
+                hoverEnabled: true
                 visible: mainViewWindow.sidePanelHidden
 
                 onClicked: {
@@ -536,6 +538,8 @@ Rectangle {
                                     text: qsTr("Delete Account")
                                     font.pointSize: 10
                                     font.kerning: true
+
+                                    toolTipText: qsTr("Delete this account")
 
                                     onClicked: {
                                         delAccountSlot()

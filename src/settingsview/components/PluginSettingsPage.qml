@@ -53,7 +53,7 @@ Rectangle {
 
         width: parent.width
         height: parent.height
-        
+
         RowLayout {
 
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
@@ -74,6 +74,8 @@ Rectangle {
                 backgroundColor: "white"
                 onExitColor: "white"
 
+                toolTipText: qsTr("Toggle to display side panel")
+                hoverEnabled: true
                 visible: mainViewWindow.sidePanelHidden
 
                 onClicked: {
@@ -124,7 +126,7 @@ Rectangle {
 
                     onSwitchToggled: {
                         slotSetPluginEnabled(checked)
-                
+
                         pluginListSettingsView.visible = checked
                         if (!checked) {
                             pluginListPreferencesView.visible = checked
@@ -139,7 +141,7 @@ Rectangle {
                     Layout.fillHeight: true
                     width:380
                     height:100
-                
+
                     // instantiate plugin list setting page
                     PluginListSettingsView {
                         id: pluginListSettingsView
