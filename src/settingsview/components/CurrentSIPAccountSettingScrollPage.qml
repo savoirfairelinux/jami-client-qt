@@ -537,6 +537,8 @@ Rectangle {
                                     font.pointSize: 10
                                     font.kerning: true
 
+                                    toolTipText: qsTr("Delete this account")
+
                                     onClicked: {
                                         delAccountSlot()
                                     }

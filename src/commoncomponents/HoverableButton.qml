@@ -52,10 +52,17 @@ Button {
     property var checkedColor: null
     property var baseColor: null
     property alias color: hoverableButton.baseColor
+    property bool isHovering: false
+
+    property string toolTipText: ""
 
     font.pointSize: fontPointSize
 
     hoverEnabled: true
+
+    ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
+    ToolTip.visible: isHovering && (toolTipText.length > 0)
+    ToolTip.text: toolTipText
 
     background: Rectangle {
         id: hoverableButtonBackground
@@ -100,9 +107,11 @@ Button {
             }
             onEntered: {
                 hoverableButtonBackground.color = onEnterColor
+                isHovering = true
             }
             onExited: {
                 hoverableButtonBackground.color = onExitColor
+                isHovering = false
             }
         }
     }
