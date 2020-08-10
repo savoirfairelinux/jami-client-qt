@@ -262,105 +262,117 @@ ColumnLayout {
         }
     }
 
-    spacing: 6
+    id: advancedSettingsViewLayout
+    Layout.fillWidth: true
 
-    Layout.preferredWidth: 532
-    Layout.maximumWidth: 532
-
-    Item {
-        Layout.fillWidth: true
-
-        Layout.minimumHeight: 24
-        Layout.preferredHeight: 24
-        Layout.maximumHeight: 24
-    }
+    property int preferredButtonWidth: 200
+    property int preferredFieldHeight: 32
+    property int preferredMarginSize: 16
+    property int preferredColumnWidth : accountViewRect.width / 2 - 50
 
     ColumnLayout {
-        spacing: 6
+
+        spacing: 8
         Layout.fillWidth: true
 
-        Label {
+        ElidedTextLabel {
             Layout.fillWidth: true
 
-            Layout.minimumHeight: 27
-            Layout.preferredHeight: 27
-            Layout.maximumHeight: 27
+            Layout.minimumHeight: preferredFieldHeight
+            Layout.preferredHeight: preferredFieldHeight
+            Layout.maximumHeight: preferredFieldHeight
 
-            text: qsTr("Call Settings")
-            font.pointSize: 13
-            font.kerning: true
-
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Item {
-            Layout.fillWidth: true
-
-            Layout.minimumHeight: 10
-            Layout.preferredHeight: 10
-            Layout.maximumHeight: 10
+            eText: qsTr("Call Settings")
+            fontSize: JamiTheme.headerFontSize
+            maxWidth: preferredColumnWidth
         }
 
         ColumnLayout {
-            spacing: 6
             Layout.fillWidth: true
+            Layout.leftMargin: preferredMarginSize
 
             ToggleSwitch {
                 id: checkBoxUntrusted
 
-                Layout.leftMargin: 20
-
-                labelText: qsTr("Allow incoming calls from unknown contacts")
-                fontPointSize: 10
+                labelText: allowIncomingCallsText.elidedText
+                fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
                     ClientWrapper.settingsAdaptor.setCallsUntrusted(checked)
                 }
             }
 
+            TextMetrics {
+                id: allowIncomingCallsText
+                elide: Text.ElideRight
+                elideWidth: preferredColumnWidth
+                text: qsTr("Allow incoming calls from unknown contacts")
+            }
+
             ToggleSwitch {
                 id: checkBoxAutoAnswer
 
                 Layout.fillWidth: true
-                Layout.leftMargin: 20
 
-                labelText: qsTr("Auto Answer Calls")
-                fontPointSize: 10
+                labelText: autoAnswerCallsElidedText.elidedText
+                fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
                     ClientWrapper.settingsAdaptor.setAutoAnswerCalls(checked)
                 }
             }
 
+            TextMetrics {
+                id: autoAnswerCallsElidedText
+                elide: Text.ElideRight
+                elideWidth: preferredColumnWidth
+                text:  qsTr("Auto Answer Calls")
+            }
+
+            ToggleSwitch {
+                id: checkBoxCustomRingtone
+
+                labelText: enableCustomRingtoneElidedText.elidedText
+                fontPointSize: JamiTheme.settingsFontSize
+
+                onSwitchToggled: {
+                    ClientWrapper.settingsAdaptor.setEnableRingtone(checked)
+                    btnRingtone.enabled = checked
+                }
+            }
+
+            TextMetrics {
+                id: enableCustomRingtoneElidedText
+                elide: Text.ElideRight
+                elideWidth: preferredColumnWidth
+                text: qsTr("Enable Custom Ringtone")
+            }
+
             RowLayout {
-                spacing: 6
                 Layout.fillWidth: true
-                Layout.leftMargin: 20
-                Layout.maximumHeight: 30
 
-                ToggleSwitch {
-                    id: checkBoxCustomRingtone
+                ElidedTextLabel {
+                    Layout.fillWidth: true
 
-                    labelText: qsTr("Enable Custom Ringtone")
-                    fontPointSize: 10
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
-                    onSwitchToggled: {
-                        ClientWrapper.settingsAdaptor.setEnableRingtone(checked)
-                        btnRingtone.enabled = checked
-                    }
+                    eText: qsTr("Select Custom Ringtone")
+                    maxWidth: preferredColumnWidth
+                    fontSize: JamiTheme.settingsFontSize
                 }
 
                 HoverableRadiusButton {
                     id: btnRingtone
 
-                    Layout.minimumWidth: 300
-                    Layout.preferredWidth: 300
-                    Layout.maximumWidth: 300
+                    Layout.minimumWidth: preferredColumnWidth
+                    Layout.preferredWidth: preferredColumnWidth
+                    Layout.maximumWidth: preferredColumnWidth
 
-                    Layout.minimumHeight: 30
-                    Layout.preferredHeight: 30
-                    Layout.maximumHeight: 30
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
                     radius: height / 2
 
@@ -376,60 +388,36 @@ ColumnLayout {
         }
     }
 
-    Item {
-        Layout.fillWidth: true
-
-        Layout.minimumHeight: 20
-        Layout.preferredHeight: 20
-        Layout.maximumHeight: 20
-    }
-
     ColumnLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
 
-        Label {
+        ElidedTextLabel {
             Layout.fillWidth: true
 
-            Layout.minimumHeight: 27
-            Layout.preferredHeight: 27
-            Layout.maximumHeight: 27
+            Layout.minimumHeight: preferredFieldHeight
+            Layout.preferredHeight: preferredFieldHeight
+            Layout.maximumHeight: preferredFieldHeight
 
-            text: qsTr("Name Server")
-            font.pointSize: 13
-            font.kerning: true
-
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Item {
-            Layout.fillWidth: true
-
-            Layout.minimumHeight: 10
-            Layout.preferredHeight: 10
-            Layout.maximumHeight: 10
+            eText: qsTr("Name Server")
+            maxWidth: preferredColumnWidth
+            fontSize: JamiTheme.headerFontSize
         }
 
         RowLayout {
             Layout.fillWidth: true
-            Layout.leftMargin: 20
-            Layout.maximumHeight: 29
+            Layout.maximumHeight: preferredFieldHeight
+            Layout.leftMargin: preferredMarginSize
 
-            Label {
-                Layout.minimumWidth: 60
+            ElidedTextLabel {
+                Layout.fillWidth: true
+                Layout.minimumHeight: preferredFieldHeight
+                Layout.preferredHeight: preferredFieldHeight
+                Layout.maximumHeight: preferredFieldHeight
 
-                Layout.minimumHeight: 29
-                Layout.preferredHeight: 29
-                Layout.maximumHeight: 29
-
-                text: qsTr("Address")
-
-                font.pointSize: 10
-                font.kerning: true
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
+                eText: qsTr("Address")
+                maxWidth: preferredColumnWidth
+                fontSize: JamiTheme.settingsFontSize
             }
 
             Item {
@@ -440,13 +428,12 @@ ColumnLayout {
             InfoLineEdit {
                 id: lineEditNameServer
 
-                fieldLayoutWidth: 300
-                fieldLayoutHeight: 29
+                fieldLayoutWidth: preferredColumnWidth
+                fieldLayoutHeight: preferredFieldHeight
 
-                font.pointSize: 10
+                font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
 
-                horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
 
                 onEditingFinished: {
@@ -456,74 +443,60 @@ ColumnLayout {
         }
     }
 
-    Item {
-        Layout.fillWidth: true
-
-        Layout.minimumHeight: 20
-        Layout.preferredHeight: 20
-        Layout.maximumHeight: 20
-    }
 
     ColumnLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
 
-        Label {
+        ElidedTextLabel {
             Layout.fillWidth: true
 
-            Layout.minimumHeight: 27
-            Layout.preferredHeight: 27
-            Layout.maximumHeight: 27
+            Layout.minimumHeight: preferredFieldHeight
+            Layout.preferredHeight: preferredFieldHeight
+            Layout.maximumHeight: preferredFieldHeight
 
-            text: qsTr("OpenDHT Configuration")
-            font.pointSize: 13
-            font.kerning: true
-
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Item {
-            Layout.fillWidth: true
-
-            Layout.minimumHeight: 10
-            Layout.preferredHeight: 10
-            Layout.maximumHeight: 10
+            eText: qsTr("OpenDHT Configuration")
+            fontSize: JamiTheme.headerFontSize
+            maxWidth: preferredColumnWidth
         }
 
         ColumnLayout {
-            spacing: 6
             Layout.fillWidth: true
+            Layout.leftMargin: preferredMarginSize
+
+            ToggleSwitch {
+                id: checkBoxEnableProxy
+
+                labelText: qsTr("Enable proxy")
+                fontPointSize: JamiTheme.settingsFontSize
+
+                onSwitchToggled: {
+                    ClientWrapper.settingsAdaptor.setEnableProxy(checked)
+                    lineEditProxy.enabled = checked
+                }
+            }
 
             RowLayout {
-                spacing: 6
                 Layout.fillWidth: true
-                Layout.leftMargin: 20
 
-                ToggleSwitch {
-                    id: checkBoxEnableProxy
-
-                    labelText: qsTr("Enable proxy")
-                    fontPointSize: 10
-
-                    onSwitchToggled: {
-                        ClientWrapper.settingsAdaptor.setEnableProxy(checked)
-                        lineEditProxy.enabled = checked
-                    }
-                }
-
-                Item {
-                    Layout.fillHeight: true
+                ElidedTextLabel {
                     Layout.fillWidth: true
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
+
+                    text: qsTr("Proxy Address")
+                    font.pointSize: JamiTheme.settingsFontSize
+                    maxWidth: preferredColumnWidth
                 }
 
                 InfoLineEdit {
                     id: lineEditProxy
 
-                    fieldLayoutWidth: 300
-                    fieldLayoutHeight: 29
+                    fieldLayoutWidth: preferredColumnWidth
+                    fieldLayoutHeight: preferredFieldHeight
 
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
                     horizontalAlignment: Text.AlignLeft
@@ -536,23 +509,17 @@ ColumnLayout {
             }
 
             RowLayout {
-                spacing: 6
                 Layout.fillWidth: true
-                Layout.leftMargin: 20
 
-                Label {
-                    id: labelBootstrap
-
-                    Layout.minimumWidth: 72
-                    Layout.preferredWidth: 72
-
-                    Layout.minimumHeight: 29
-                    Layout.preferredHeight: 29
-                    Layout.maximumHeight: 29
+                ElidedTextLabel {
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
                     text: qsTr("Bootstrap")
-                    font.pointSize: 10
-                    font.kerning: true
+                    font.pointSize: JamiTheme.settingsFontSize
+                    maxWidth: preferredColumnWidth
                 }
 
                 Item {
@@ -563,10 +530,10 @@ ColumnLayout {
                 InfoLineEdit {
                     id: lineEditBootstrap
 
-                    fieldLayoutWidth: 300
-                    fieldLayoutHeight: 29
+                    fieldLayoutWidth: preferredColumnWidth
+                    fieldLayoutHeight: preferredFieldHeight
 
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
                     horizontalAlignment: Text.AlignLeft
@@ -581,59 +548,43 @@ ColumnLayout {
     }
 
     ColumnLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
 
-        Label {
+        ElidedTextLabel {
             Layout.fillWidth: true
+            Layout.minimumHeight: preferredFieldHeight
+            Layout.preferredHeight: preferredFieldHeight
+            Layout.maximumHeight: preferredFieldHeight
 
-            Layout.minimumHeight: 27
-            Layout.preferredHeight: 27
-            Layout.maximumHeight: 27
-
-            text: qsTr("Security")
-            font.pointSize: 13
-            font.kerning: true
-
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Item {
-            Layout.fillWidth: true
-
-            Layout.minimumHeight: 10
-            Layout.preferredHeight: 10
-            Layout.maximumHeight: 10
+            eText: qsTr("Security")
+            fontSize: JamiTheme.headerFontSize
+            maxWidth: preferredColumnWidth
         }
 
         ColumnLayout {
-            spacing: 6
             Layout.fillWidth: true
+            Layout.leftMargin: preferredMarginSize
 
             GridLayout {
                 rows: 4
                 columns: 2
-                rowSpacing: 0
-                columnSpacing: 6
+                rowSpacing: 8
+                columnSpacing: 8
 
                 Layout.fillWidth: true
-                Layout.leftMargin: 20
 
                 // CA Certificate
-                Label {
+                ElidedTextLabel {
                     Layout.fillWidth: true
 
-                    Layout.minimumHeight: 32
-                    Layout.preferredHeight: 32
-                    Layout.maximumHeight: 32
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
-                    text: qsTr("CA Certificate")
-                    font.pointSize: 10
-                    font.kerning: true
-
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                    eText: qsTr("CA Certificate")
+                    fontSize: JamiTheme.settingsFontSize
+                    maxWidth: preferredColumnWidth
                 }
 
                 HoverableRadiusButton {
@@ -641,13 +592,13 @@ ColumnLayout {
 
                     radius: height / 2
 
-                    Layout.minimumWidth: 298
-                    Layout.preferredWidth: 298
-                    Layout.maximumWidth: 298
+                    Layout.minimumWidth: preferredColumnWidth
+                    Layout.preferredWidth: preferredColumnWidth
+                    Layout.maximumWidth: preferredColumnWidth
 
-                    Layout.minimumHeight: 30
-                    Layout.preferredHeight: 30
-                    Layout.maximumHeight: 30
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
                     icon.source: "qrc:/images/icons/round-folder-24px.svg"
                     icon.width: 16
@@ -659,19 +610,16 @@ ColumnLayout {
                 }
 
                 // User Certificate
-                Label {
+                ElidedTextLabel {
                     Layout.fillWidth: true
 
-                    Layout.minimumHeight: 32
-                    Layout.preferredHeight: 32
-                    Layout.maximumHeight: 32
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
-                    text: qsTr("User Certificate")
-                    font.pointSize: 10
-                    font.kerning: true
-
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                    eText: qsTr("User Certificate")
+                    fontSize: JamiTheme.settingsFontSize
+                    maxWidth: preferredColumnWidth
                 }
 
                 HoverableRadiusButton {
@@ -679,13 +627,13 @@ ColumnLayout {
 
                     radius: height / 2
 
-                    Layout.minimumWidth: 298
-                    Layout.preferredWidth: 298
-                    Layout.maximumWidth: 298
+                    Layout.minimumWidth: preferredColumnWidth
+                    Layout.preferredWidth: preferredColumnWidth
+                    Layout.maximumWidth: preferredColumnWidth
 
-                    Layout.minimumHeight: 30
-                    Layout.preferredHeight: 30
-                    Layout.maximumHeight: 30
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
                     icon.source: "qrc:/images/icons/round-folder-24px.svg"
                     icon.width: 16
@@ -697,33 +645,32 @@ ColumnLayout {
                 }
 
                 // Private Key
-                Label {
+                ElidedTextLabel {
                     Layout.fillWidth: true
 
-                    Layout.minimumHeight: 32
-                    Layout.preferredHeight: 32
-                    Layout.maximumHeight: 32
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
-                    text: qsTr("Private Key")
-                    font.pointSize: 10
-                    font.kerning: true
-
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                    eText: qsTr("Private Key")
+                    fontSize: JamiTheme.settingsFontSize
+                    maxWidth: preferredColumnWidth
                 }
+
+
 
                 HoverableRadiusButton {
                     id: btnPrivateKey
 
                     radius: height / 2
 
-                    Layout.minimumWidth: 298
-                    Layout.preferredWidth: 298
-                    Layout.maximumWidth: 298
+                    Layout.minimumWidth: preferredColumnWidth
+                    Layout.preferredWidth: preferredColumnWidth
+                    Layout.maximumWidth: preferredColumnWidth
 
-                    Layout.minimumHeight: 30
-                    Layout.preferredHeight: 30
-                    Layout.maximumHeight: 30
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
                     icon.source: "qrc:/images/icons/round-folder-24px.svg"
                     icon.width: 16
@@ -735,28 +682,26 @@ ColumnLayout {
                 }
 
                 // Private key password
-                Label {
+                ElidedTextLabel {
                     Layout.fillWidth: true
 
-                    Layout.minimumHeight: 29
-                    Layout.preferredHeight: 29
-                    Layout.maximumHeight: 29
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
-                    text: qsTr("Private Key Password")
-                    font.pointSize: 10
-                    font.kerning: true
-
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                    eText: qsTr("Private Key Password")
+                    fontSize: JamiTheme.settingsFontSize
+                    maxWidth: preferredColumnWidth
                 }
+
 
                 InfoLineEdit {
                     id: lineEditCertPassword
 
-                    fieldLayoutWidth: 300
-                    fieldLayoutHeight: 29
+                    fieldLayoutWidth: preferredColumnWidth
+                    fieldLayoutHeight: preferredFieldHeight
 
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
                     horizontalAlignment: Text.AlignLeft
@@ -767,236 +712,191 @@ ColumnLayout {
         }
     }
 
-    Item {
-        Layout.fillWidth: true
-
-        Layout.minimumHeight: 20
-        Layout.preferredHeight: 20
-        Layout.maximumHeight: 20
-    }
-
     ColumnLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
 
-        Label {
+        ElidedTextLabel {
             Layout.fillWidth: true
-            Layout.topMargin: 10
+            Layout.topMargin: preferredMarginSize
 
-            Layout.minimumHeight: 27
-            Layout.preferredHeight: 27
-            Layout.maximumHeight: 27
+            Layout.minimumHeight: preferredFieldHeight
+            Layout.preferredHeight: preferredFieldHeight
+            Layout.maximumHeight: preferredFieldHeight
 
-            text: qsTr("Connectivity")
-            font.pointSize: 13
-            font.kerning: true
-
-            horizontalAlignment: Text.AlignLeft
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Item {
-            Layout.fillWidth: true
-
-            Layout.minimumHeight: 10
-            Layout.preferredHeight: 10
-            Layout.maximumHeight: 10
+            eText: qsTr("Connectivity")
+            fontSize: JamiTheme.headerFontSize
+            maxWidth: preferredColumnWidth
         }
 
         ColumnLayout {
-            spacing: 6
             Layout.fillWidth: true
+            Layout.leftMargin: preferredMarginSize
 
-            GridLayout {
-                Layout.leftMargin: 20
+            ToggleSwitch {
+                id: checkAutoConnectOnLocalNetwork
+
                 Layout.fillWidth: true
 
-                rows: 6
-                columns: 3
-                rowSpacing: 6
-                columnSpacing: 6
+                labelText: autoConnectOnLocalNetworkElidedText.elidedText
+                fontPointSize: JamiTheme.settingsFontSize
 
-                // row 2
-                ToggleSwitch {
-                    id: checkAutoConnectOnLocalNetwork
+                onSwitchToggled: {
+                    ClientWrapper.settingsAdaptor.setAutoConnectOnLocalNetwork(checked)
+                }
+            }
 
-                    Layout.row: 0
-                    Layout.column: 0
+            TextMetrics {
+                id: autoConnectOnLocalNetworkElidedText
+                elide: Text.ElideRight
+                elideWidth: preferredColumnWidth
+                text: qsTr("Auto Connect On Local Network")
+            }
 
-                    labelText: qsTr("Auto Connect On Local Network")
-                    fontPointSize: 10
+            ToggleSwitch {
+                id: checkBoxUPnP
 
-                    onSwitchToggled: {
-                        ClientWrapper.settingsAdaptor.setAutoConnectOnLocalNetwork(checked)
-                    }
+                Layout.fillWidth: true
+
+                labelText: qsTr("Use UPnP")
+                fontPointSize: JamiTheme.settingsFontSize
+
+                onSwitchToggled: {
+                    ClientWrapper.settingsAdaptor.setUseUPnP(checked)
+                }
+            }
+
+            ToggleSwitch {
+                id: checkBoxTurnEnable
+
+                Layout.fillWidth: true
+
+                labelText: qsTr("Use TURN")
+                fontPointSize: JamiTheme.settingsFontSize
+
+                onSwitchToggled: {
+                    ClientWrapper.settingsAdaptor.setUseTURN(checked)
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.maximumHeight: preferredFieldHeight
+
+                ElidedTextLabel {
+
+                    Layout.minimumWidth: preferredColumnWidth
+
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
+
+                    eText: qsTr("TURN Address")
+                    maxWidth: preferredColumnWidth
                 }
 
                 Item {
-                    Layout.row: 0
-                    Layout.column: 1
-
+                    Layout.fillWidth: true
                     Layout.fillHeight: true
-
-                    Layout.minimumWidth: 40
-                    Layout.preferredWidth: 40
-                    Layout.maximumWidth: 40
-                }
-
-                // row 2
-                ToggleSwitch {
-                    id: checkBoxUPnP
-
-                    Layout.row: 1
-                    Layout.column: 0
-
-                    labelText: qsTr("Use UPnP")
-                    fontPointSize: 10
-
-                    onSwitchToggled: {
-                        ClientWrapper.settingsAdaptor.setUseUPnP(checked)
-                    }
-                }
-
-                Item {
-                    Layout.row: 1
-                    Layout.column: 1
-
-                    Layout.fillHeight: true
-
-                    Layout.minimumWidth: 40
-                    Layout.preferredWidth: 40
-                    Layout.maximumWidth: 40
-                }
-
-                // row 3
-                ToggleSwitch {
-                    id: checkBoxTurnEnable
-
-                    Layout.row: 2
-                    Layout.column: 0
-
-                    labelText: qsTr("Use TURN")
-                    fontPointSize: 10
-
-                    onSwitchToggled: {
-                        ClientWrapper.settingsAdaptor.setUseTURN(checked)
-                    }
-                }
-
-                // row 4
-                Label {
-                    Layout.row: 3
-                    Layout.column: 0
-
-                    Layout.minimumWidth: 124
-
-                    Layout.minimumHeight: 27
-                    Layout.preferredHeight: 27
-                    Layout.maximumHeight: 27
-
-                    text: qsTr("TURN Address")
-
-                    font.pointSize: 10
-                    font.kerning: true
-
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
                 }
 
                 InfoLineEdit {
                     id: lineEditTurnAddress
 
-                    Layout.row: 3
-                    Layout.column: 2
+                    Layout.alignment: Qt.AlignRight
+                    fieldLayoutWidth: preferredColumnWidth
+                    fieldLayoutHeight: preferredFieldHeight
 
-                    fieldLayoutWidth: 300
-                    fieldLayoutHeight: 29
-
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
-                    horizontalAlignment: Text.AlignLeft
+                    horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignVCenter
 
                     onEditingFinished: {
                         ClientWrapper.settingsAdaptor.setTURNAddress(text)
                     }
                 }
+            }
 
-                //row 5
-                Label {
-                    Layout.row: 4
-                    Layout.column: 0
 
-                    Layout.minimumWidth: 124
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.maximumHeight: preferredFieldHeight
 
-                    Layout.minimumHeight: 27
-                    Layout.preferredHeight: 27
-                    Layout.maximumHeight: 27
+                ElidedTextLabel {
 
-                    text: qsTr("TURN Username")
+                    Layout.minimumWidth: preferredColumnWidth
 
-                    font.pointSize: 10
-                    font.kerning: true
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                    eText: qsTr("TURN Username")
+                    fontSize: JamiTheme.settingsFontSize
+                    maxWidth: preferredColumnWidth
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
                 }
 
                 InfoLineEdit {
                     id: lineEditTurnUsername
 
-                    Layout.row: 4
-                    Layout.column: 2
+                    fieldLayoutWidth: preferredColumnWidth
+                    fieldLayoutHeight: preferredFieldHeight
 
-                    fieldLayoutWidth: 300
-                    fieldLayoutHeight: 29
-
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
-                    horizontalAlignment: Text.AlignLeft
+                    horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignVCenter
 
                     onEditingFinished: {
                         ClientWrapper.settingsAdaptor.setTURNUsername(text)
                     }
                 }
+            }
 
-                //row 6
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.maximumHeight: preferredFieldHeight
+
                 Label {
-                    Layout.row: 5
-                    Layout.column: 0
 
-                    Layout.minimumWidth: 124
+                    Layout.minimumWidth: preferredColumnWidth
 
-                    Layout.minimumHeight: 27
-                    Layout.preferredHeight: 27
-                    Layout.maximumHeight: 27
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
 
                     text: qsTr("TURN Password")
 
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                 }
 
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                }
+
                 InfoLineEdit {
                     id: lineEditTurnPassword
                     layer.mipmap: false
 
-                    Layout.row: 5
-                    Layout.column: 2
+                    fieldLayoutWidth: preferredColumnWidth
+                    fieldLayoutHeight: preferredFieldHeight
 
-                    fieldLayoutWidth: 300
-                    fieldLayoutHeight: 29
-
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
-                    horizontalAlignment: Text.AlignLeft
+                    horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignVCenter
                     echoMode: TextInput.Password
 
@@ -1004,38 +904,63 @@ ColumnLayout {
                         ClientWrapper.settingsAdaptor.setTURNPassword(text)
                     }
                 }
+            }
 
-                // row 7
-                ToggleSwitch {
-                    id: checkBoxSTUNEnable
 
-                    Layout.row: 6
-                    Layout.column: 0
+            ToggleSwitch {
+                id: checkBoxSTUNEnable
 
-                    labelText: qsTr("Use STUN")
-                    fontPointSize: 10
+                Layout.fillWidth: true
 
-                    onSwitchToggled: {
-                        ClientWrapper.settingsAdaptor.setUseSTUN(checked)
-                        lineEditSTUNAddress.enabled = checked
-                    }
+                labelText: qsTr("Use STUN")
+                fontPointSize: JamiTheme.settingsFontSize
+
+                onSwitchToggled: {
+                    ClientWrapper.settingsAdaptor.setUseSTUN(checked)
+                    lineEditSTUNAddress.enabled = checked
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.maximumHeight: preferredFieldHeight
+
+                Label {
+                    id: lblEditSTUNAddress
+
+                    Layout.minimumWidth: preferredColumnWidth
+
+                    Layout.minimumHeight: preferredFieldHeight
+                    Layout.preferredHeight: preferredFieldHeight
+                    Layout.maximumHeight: preferredFieldHeight
+
+                    text: qsTr("STUN Address")
+
+                    font.pointSize: JamiTheme.settingsFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
                 }
 
                 InfoLineEdit {
                     id: lineEditSTUNAddress
 
-                    Layout.row: 6
-                    Layout.column: 2
+                    fieldLayoutWidth: preferredColumnWidth
+                    fieldLayoutHeight: preferredFieldHeight
 
-                    fieldLayoutWidth: 300
-                    fieldLayoutHeight: 29
-
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
 
                     placeholderText: qsTr("STUN Address")
 
-                    horizontalAlignment: Text.AlignLeft
+                    horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignVCenter
 
                     onEditingFinished: {
@@ -1046,53 +971,34 @@ ColumnLayout {
         }
     }
 
-    Item {
-        Layout.fillWidth: true
-
-        Layout.minimumHeight: 20
-        Layout.preferredHeight: 20
-        Layout.maximumHeight: 20
-    }
-
     ColumnLayout {
-        spacing: 6
+        spacing: 8
         Layout.fillWidth: true
 
         Label {
             Layout.fillWidth: true
-            Layout.topMargin: 10
 
-            Layout.minimumHeight: 27
-            Layout.preferredHeight: 27
-            Layout.maximumHeight: 27
+            Layout.minimumHeight: preferredFieldHeight
+            Layout.preferredHeight: preferredFieldHeight
+            Layout.maximumHeight: preferredFieldHeight
 
             text: qsTr("Media")
-            font.pointSize: 13
+            font.pointSize: JamiTheme.headerFontSize
             font.kerning: true
 
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
         }
 
-        Item {
-            Layout.fillWidth: true
-
-            Layout.minimumHeight: 10
-            Layout.preferredHeight: 10
-            Layout.maximumHeight: 10
-        }
-
         ColumnLayout {
-            spacing: 6
             Layout.fillWidth: true
+            Layout.leftMargin: preferredMarginSize
 
             ToggleSwitch {
                 id: videoCheckBox
 
-                Layout.leftMargin: 20
-
                 labelText: qsTr("Enable Video")
-                fontPointSize: 10
+                fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
                     ClientWrapper.settingsAdaptor.setVideoState(checked)
@@ -1100,66 +1006,48 @@ ColumnLayout {
             }
 
             RowLayout {
-                spacing: 6
                 Layout.fillWidth: true
-                Layout.leftMargin: 20
+                Layout.fillHeight: true
 
                 ColumnLayout {
-                    spacing: 6
-                    //Layout.fillWidth: true
-                    Layout.maximumWidth: 348
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
 
                     RowLayout {
-                        spacing: 6
                         Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.maximumHeight: preferredFieldHeight
 
-                        Layout.maximumHeight: 30
-
-                        Label {
+                        ElidedTextLabel {
                             Layout.fillWidth: true
 
-                            Layout.minimumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.maximumHeight: 30
+                            Layout.minimumHeight: preferredFieldHeight
+                            Layout.preferredHeight: preferredFieldHeight
+                            Layout.maximumHeight: preferredFieldHeight
 
-                            text: qsTr("Video Codecs")
-                            font.pointSize: 10
-                            font.kerning: true
-
-                            horizontalAlignment: Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-                        }
-
-                        Item {
-                            Layout.fillHeight: true
-
-                            Layout.minimumWidth: 20
-                            Layout.preferredWidth: 20
-                            Layout.maximumWidth: 20
+                            maxWidth: preferredColumnWidth - 50
+                            eText:  qsTr("Video Codecs")
+                            fontSize: JamiTheme.settingsFontSize
                         }
 
                         HoverableRadiusButton {
                             id: videoDownPushButton
 
-                            Layout.minimumWidth: 30
-                            Layout.preferredWidth: 30
-                            Layout.maximumWidth: 30
+                            Layout.minimumWidth: 24
+                            Layout.preferredWidth: 24
+                            Layout.maximumWidth: 24
 
-                            Layout.minimumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.maximumHeight: 30
+                            Layout.minimumHeight: 24
+                            Layout.preferredHeight: 24
+                            Layout.maximumHeight: 24
 
                             buttonImageHeight: height
                             buttonImageWidth: height
                             radius: height / 2
-                            scale: 1
-
-                            font.pointSize: 9
-                            font.kerning: true
 
                             icon.source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
-                            icon.width: 32
-                            icon.height: 32
+                            icon.width: 24
+                            icon.height: 24
 
                             onClicked: {
                                 decreaseVideoCodecPriority()
@@ -1169,24 +1057,21 @@ ColumnLayout {
                         HoverableRadiusButton {
                             id: videoUpPushButton
 
-                            Layout.minimumWidth: 30
-                            Layout.preferredWidth: 30
-                            Layout.maximumWidth: 30
+                            Layout.minimumWidth: 24
+                            Layout.preferredWidth: 24
+                            Layout.maximumWidth: 24
 
-                            Layout.minimumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.maximumHeight: 30
+                            Layout.minimumHeight: 24
+                            Layout.preferredHeight: 24
+                            Layout.maximumHeight: 24
 
                             buttonImageHeight: height
                             buttonImageWidth: height
                             radius: height / 2
 
-                            font.pointSize: 9
-                            font.kerning: true
-
                             icon.source: "qrc:/images/icons/round-arrow_drop_up-24px.svg"
-                            icon.width: 32
-                            icon.height: 32
+                            icon.width: 24
+                            icon.height: 24
 
                             onClicked: {
                                 increaseVideoCodecPriority()
@@ -1197,9 +1082,9 @@ ColumnLayout {
                     ListViewJami {
                         id: videoListWidget
 
-                        Layout.minimumWidth: 348
-                        Layout.preferredWidth: 348
-                        Layout.maximumWidth: 348
+                        Layout.minimumWidth: preferredColumnWidth
+                        Layout.preferredWidth: preferredColumnWidth
+                        Layout.maximumWidth: preferredColumnWidth
 
                         Layout.minimumHeight: 192
                         Layout.preferredHeight: 192
@@ -1230,59 +1115,54 @@ ColumnLayout {
                 }
 
                 ColumnLayout {
-                    spacing: 6
-                    Layout.maximumWidth: 348
+                    Layout.fillWidth: true
 
                     RowLayout {
-                        spacing: 6
                         Layout.fillWidth: true
-
-                        Layout.maximumHeight: 30
+                        Layout.maximumHeight: preferredFieldHeight
 
                         Label {
                             Layout.fillWidth: true
 
-                            Layout.minimumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.maximumHeight: 30
+                            Layout.minimumHeight: 24
+                            Layout.preferredHeight: 24
+                            Layout.maximumHeight: 24
 
-                            text: qsTr("Audio Codecs")
-                            font.pointSize: 10
+                            text: audioCodecsElidedText.elidedText
+                            font.pointSize: JamiTheme.settingsFontSize
                             font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
                         }
 
-                        Item {
-                            Layout.fillHeight: true
 
-                            Layout.minimumWidth: 20
-                            Layout.preferredWidth: 20
-                            Layout.maximumWidth: 20
+                        TextMetrics {
+                            id: audioCodecsElidedText
+                            elide: Text.ElideRight
+                            elideWidth: preferredColumnWidth - 50
+                            text: qsTr("Audio Codecs")
                         }
+
 
                         HoverableRadiusButton {
                             id: audioDownPushButton
 
-                            Layout.minimumWidth: 30
-                            Layout.preferredWidth: 30
-                            Layout.maximumWidth: 30
+                            Layout.minimumWidth: 24
+                            Layout.preferredWidth: 24
+                            Layout.maximumWidth: 24
 
-                            Layout.minimumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.maximumHeight: 30
+                            Layout.minimumHeight: 24
+                            Layout.preferredHeight: 24
+                            Layout.maximumHeight: 24
 
                             radius: height / 2
                             buttonImageHeight: height
                             buttonImageWidth: height
 
-                            font.pointSize: 9
-                            font.kerning: true
-
                             icon.source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
-                            icon.width: 32
-                            icon.height: 32
+                            icon.width: 24
+                            icon.height: 24
 
                             onClicked: {
                                 decreaseAudioCodecPriority()
@@ -1292,25 +1172,21 @@ ColumnLayout {
                         HoverableRadiusButton {
                             id: audioUpPushButton
 
-                            Layout.minimumWidth: 30
-                            Layout.preferredWidth: 30
-                            Layout.maximumWidth: 30
+                            Layout.minimumWidth: 24
+                            Layout.preferredWidth: 24
+                            Layout.maximumWidth: 24
 
-                            Layout.minimumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.maximumHeight: 30
+                            Layout.minimumHeight: 24
+                            Layout.preferredHeight: 24
+                            Layout.maximumHeight: 24
 
+                            radius: height / 2
                             buttonImageHeight: height
                             buttonImageWidth: height
 
-                            radius: height / 2
-
-                            font.pointSize: 9
-                            font.kerning: true
-
                             icon.source: "qrc:/images/icons/round-arrow_drop_up-24px.svg"
-                            icon.width: 32
-                            icon.height: 32
+                            icon.width: 24
+                            icon.height: 24
 
                             onClicked: {
                                 increaseAudioCodecPriority()
@@ -1321,9 +1197,9 @@ ColumnLayout {
                     ListViewJami {
                         id: audioListWidget
 
-                        Layout.minimumWidth: 348
-                        Layout.preferredWidth: 348
-                        Layout.maximumWidth: 348
+                        Layout.minimumWidth: preferredColumnWidth
+                        Layout.preferredWidth: preferredColumnWidth
+                        Layout.maximumWidth: preferredColumnWidth
 
                         Layout.minimumHeight: 192
                         Layout.preferredHeight: 192
@@ -1358,13 +1234,5 @@ ColumnLayout {
                 }
             }
         }
-    }
-
-    Item {
-        Layout.fillWidth: true
-
-        Layout.minimumHeight: 48
-        Layout.preferredHeight: 48
-        Layout.maximumHeight: 48
     }
 }
