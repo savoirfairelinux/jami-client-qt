@@ -9,7 +9,7 @@ param (
 write-host "Copying runtime files..." -ForegroundColor Green
 
 # default values
-$qtver = If ($qtver) {$qtver} Else {"5.9.4"}
+$qtver = If ($qtver) {$qtver} Else {"5.15.0"}
 $mode  = If ($mode)  {$mode} Else {"Release"}
 
 $qtverSplit1, $qtverSplit2 ,$qtverSplit3 = $qtver.Split('.')
