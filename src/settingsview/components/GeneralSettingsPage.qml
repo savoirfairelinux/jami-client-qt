@@ -147,6 +147,8 @@ Rectangle {
     // recording
     property string recordPath: ClientWrapper.settingsAdaptor.getDir_Document()
 
+    signal navigateToSidePanelMenu
+
     onDownloadPathChanged: {
         if(downloadPath === "") return
         ClientWrapper.settingsAdaptor.setDownloadPath(downloadPath)
@@ -167,54 +169,83 @@ Rectangle {
         anchors.fill: parent
         clip: true
 
-        RowLayout {
+        /*RowLayout {
             width: generalSettingsRect.width
             height: generalSettingsRect.height
 
             spacing: 0
-
-            Item {
+*/
+            /*Item {
                 Layout.fillHeight: true
                 Layout.maximumWidth: 48
                 Layout.preferredWidth: 48
                 Layout.minimumWidth: 48
-            }
+            }*/
 
             ColumnLayout {
-                spacing: 6
+                spacing: 8
 
                 Layout.fillHeight: true
                 Layout.maximumWidth: 580
                 Layout.preferredWidth: 580
                 Layout.minimumWidth: 580
 
-                Item {
+                /*Item {
                     Layout.fillWidth: true
                     Layout.minimumHeight: 10
                     Layout.preferredHeight: 10
                     Layout.maximumHeight: 10
-                }
+                }*/
+
+                RowLayout {
+
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    Layout.leftMargin: 16
+                    Layout.fillWidth: true
+                    Layout.maximumHeight: 64
+                    Layout.minimumHeight: 64
+                    Layout.preferredHeight: 64
+
+                    HoverableButton {
+                        id: backToSettingsMenuButton
+
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                        Layout.preferredWidth: 30
+                        Layout.preferredHeight: 30
+
+                        radius: 30
+                        source: "qrc:/images/icons/ic_arrow_back_24px.svg"
+                        backgroundColor: "white"
+                        onExitColor: "white"
+
+                        visible: mainViewWindow.sidePanelHidden
+
+                        onClicked: {
+                            navigateToSidePanelMenu()
+                        }
+                    }
 
                 Label {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: 25
-                    Layout.preferredHeight: 25
-                    Layout.maximumHeight: 25
+                    Layout.minimumHeight: 64
+                    Layout.preferredHeight: 64
+                    Layout.maximumHeight: 64
 
                     text: qsTr("General")
-                    font.pointSize: 15
+                    font.pointSize: JamiTheme.titleFontSize
                     font.kerning: true
 
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                 }
+                }
 
-                Item {
+                /*Item {
                     Layout.fillWidth: true
                     Layout.minimumHeight: 24
                     Layout.preferredHeight: 24
                     Layout.maximumHeight: 24
-                }
+                }*/
 
                 // system setting panel
                 ColumnLayout {
@@ -668,10 +699,10 @@ Rectangle {
                 }
             }
 
-            Item {
+            /*Item {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
             }
-        }
+        }*/
     }
 }
