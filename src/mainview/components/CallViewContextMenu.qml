@@ -34,6 +34,9 @@ Menu {
 
     property int generalMenuSeparatorCount: 0
     property int commonBorderWidth: 1
+
+    signal pluginItemClicked
+
     font.pointSize: JamiTheme.textFontSize+3
 
     property bool isSIP: false
