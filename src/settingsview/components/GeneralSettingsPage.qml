@@ -148,6 +148,10 @@ Rectangle {
     //property AVModel avmodel: ClientWrapper.accountAdaptor.avModel()
     property string recordPath: ClientWrapper.settingsAdaptor.getDir_Document()
 
+    property int preferredColumnWidth : settingsViewWindow.width / 2 - 50
+    property int preferredWidthOneCol : settingsViewWindow.width - 100
+
+
     signal navigateToSidePanelMenu
 
     onDownloadPathChanged: {
@@ -170,61 +174,39 @@ Rectangle {
         anchors.fill: parent
         clip: true
 
-        /*RowLayout {
-            width: generalSettingsRect.width
-            height: generalSettingsRect.height
+        ColumnLayout {
+            spacing: 8
 
-            spacing: 0
-*/
-            /*Item {
-                Layout.fillHeight: true
-                Layout.maximumWidth: 48
-                Layout.preferredWidth: 48
-                Layout.minimumWidth: 48
-            }*/
+            Layout.fillHeight: true
+            Layout.fillWidth: true
 
-            ColumnLayout {
-                spacing: 8
+            RowLayout {
 
-                Layout.fillHeight: true
-                Layout.maximumWidth: 580
-                Layout.preferredWidth: 580
-                Layout.minimumWidth: 580
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                Layout.leftMargin: 16
+                Layout.fillWidth: true
+                Layout.maximumHeight: 64
+                Layout.minimumHeight: 64
+                Layout.preferredHeight: 64
 
-                /*Item {
-                    Layout.fillWidth: true
-                    Layout.minimumHeight: 10
-                    Layout.preferredHeight: 10
-                    Layout.maximumHeight: 10
-                }*/
+                HoverableButton {
+                    id: backToSettingsMenuButton
 
-                RowLayout {
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                    Layout.preferredWidth: 32
+                    Layout.preferredHeight: 32
 
-                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.leftMargin: 16
-                    Layout.fillWidth: true
-                    Layout.maximumHeight: 64
-                    Layout.minimumHeight: 64
-                    Layout.preferredHeight: 64
+                    radius: 32
+                    source: "qrc:/images/icons/ic_arrow_back_24px.svg"
+                    backgroundColor: "white"
+                    onExitColor: "white"
 
-                    HoverableButton {
-                        id: backToSettingsMenuButton
+                    visible: mainViewWindow.sidePanelHidden
 
-                        Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                        Layout.preferredWidth: 30
-                        Layout.preferredHeight: 30
-
-                        radius: 30
-                        source: "qrc:/images/icons/ic_arrow_back_24px.svg"
-                        backgroundColor: "white"
-                        onExitColor: "white"
-
-                        visible: mainViewWindow.sidePanelHidden
-
-                        onClicked: {
-                            navigateToSidePanelMenu()
-                        }
+                    onClicked: {
+                        navigateToSidePanelMenu()
                     }
+                }
 
                 Label {
                     Layout.fillWidth: true
@@ -239,471 +221,396 @@ Rectangle {
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                 }
-                }
-
-                /*Item {
-                    Layout.fillWidth: true
-                    Layout.minimumHeight: 24
-                    Layout.preferredHeight: 24
-                    Layout.maximumHeight: 24
-                }*/
-
-                // system setting panel
-                ColumnLayout {
-                    spacing: 6
-                    Layout.fillWidth: true
-
-                    Label {
-                        Layout.fillWidth: true
-                        Layout.minimumHeight: 21
-                        Layout.preferredHeight: 21
-                        Layout.maximumHeight: 21
-
-                        text: qsTr("System")
-                        font.pointSize: 13
-                        font.kerning: true
-
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-
-                        Layout.minimumHeight: 10
-                        Layout.preferredHeight: 10
-                        Layout.maximumHeight: 10
-                    }
-
-                    ColumnLayout {
-                        spacing: 6
-                        Layout.fillWidth: true
-
-                        ToggleSwitch {
-                            id: notificationCheckBox
-
-                            Layout.leftMargin: 20
-
-                            labelText: "Enable desktop notifications"
-                            fontPointSize: 11
-
-                            onSwitchToggled: {
-                                slotSetNotifications(checked)
-                            }
-                        }
-
-                        ToggleSwitch {
-                            id: closeOrMinCheckBox
-
-                            Layout.leftMargin: 20
-
-                            labelText: "Keep minimize on close"
-                            fontPointSize: 11
-
-                            onSwitchToggled: {
-                                slotSetClosedOrMin(checked)
-                            }
-                        }
-
-                        ToggleSwitch {
-                            id: applicationOnStartUpCheckBox
-
-                            Layout.leftMargin: 20
-
-                            labelText: "Run on Startup"
-                            fontPointSize: 11
-
-                            onSwitchToggled: {
-                                slotSetRunOnStartUp(checked)
-                            }
-                        }
-
-                        RowLayout {
-                            spacing: 6
-
-                            Layout.leftMargin: 20
-                            Layout.fillWidth: true
-                            Layout.maximumHeight: 30
-
-                            Label {
-                                Layout.fillHeight: true
-
-                                Layout.maximumWidth: 94
-                                Layout.preferredWidth: 94
-                                Layout.minimumWidth: 94
-
-                                text: qsTr("Download folder")
-                                font.pointSize: 10
-                                font.kerning: true
-
-                                horizontalAlignment: Text.AlignLeft
-                                verticalAlignment: Text.AlignVCenter
-                            }
-
-                            Item {
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                            }
-
-                            HoverableRadiusButton {
-                                id: downloadButton
-
-                                Layout.maximumWidth: 320
-                                Layout.preferredWidth: 320
-                                Layout.minimumWidth: 320
-
-                                Layout.minimumHeight: 30
-                                Layout.preferredHeight: 30
-                                Layout.maximumHeight: 30
-
-                                radius: height / 2
-
-                                icon.source: "qrc:/images/icons/round-folder-24px.svg"
-                                icon.height: 24
-                                icon.width: 24
-
-                                text: downloadPath
-                                fontPointSize: 10
-
-                                onClicked: {
-                                    openDownloadFolderSlot()
-                                }
-                            }
-                        }
-                    }
-                }
-
-                Item {
-                    Layout.fillWidth: true
-                    Layout.minimumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.maximumHeight: 20
-                }
-
-                // call recording setting panel
-                ColumnLayout {
-                    spacing: 6
-                    Layout.fillWidth: true
-
-                    Label {
-                        Layout.fillWidth: true
-                        Layout.minimumHeight: 21
-                        Layout.preferredHeight: 21
-                        Layout.maximumHeight: 21
-
-                        text: qsTr("Call Recording")
-                        font.pointSize: 13
-                        font.kerning: true
-
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-
-                        Layout.minimumHeight: 10
-                        Layout.preferredHeight: 10
-                        Layout.maximumHeight: 10
-                    }
-
-                    ColumnLayout {
-                        spacing: 6
-                        Layout.fillWidth: true
-
-                        ToggleSwitch {
-                            id: alwaysRecordingCheckBox
-
-                            Layout.leftMargin: 20
-
-                            labelText: "Always record calls"
-                            fontPointSize: 11
-
-                            onSwitchToggled: {
-                                slotAlwaysRecordingClicked(checked)
-                            }
-                        }
-
-                        ToggleSwitch {
-                            id: recordPreviewCheckBox
-
-                            Layout.leftMargin: 20
-
-                            labelText: "Record preview video for a call"
-                            fontPointSize: 11
-
-                            onSwitchToggled: {
-                                slotRecordPreviewClicked(checked)
-                            }
-                        }
-
-                        RowLayout {
-                            spacing: 6
-                            Layout.leftMargin: 20
-                            Layout.fillWidth: true
-                            Layout.maximumHeight: 30
-
-                            Label {
-                                Layout.fillHeight: true
-
-                                Layout.maximumWidth: 42
-                                Layout.preferredWidth: 42
-                                Layout.minimumWidth: 42
-
-                                text: qsTr("Quality")
-                                font.pointSize: 10
-                                font.kerning: true
-
-                                horizontalAlignment: Text.AlignLeft
-                                verticalAlignment: Text.AlignVCenter
-                            }
-
-                            Item {
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                            }
-
-                            ColumnLayout {
-                                spacing: 0
-                                Layout.fillHeight: true
-
-                                Layout.maximumWidth: recordQualityValueLabel.width
-                                Item {
-                                    Layout.fillHeight: true
-                                    Layout.fillWidth: true
-                                }
-
-                                Label {
-                                    id: recordQualityValueLabel
-
-                                    Layout.minimumWidth: 40
-
-                                    Layout.minimumHeight: 16
-                                    Layout.preferredHeight: 16
-                                    Layout.maximumHeight: 16
-
-                                    text: qsTr("VALUE ")
-
-                                    font.pointSize: 10
-                                    font.kerning: true
-
-                                    horizontalAlignment: Text.AlignLeft
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-
-                                Item {
-                                    Layout.fillHeight: true
-                                    Layout.fillWidth: true
-                                }
-                            }
-
-                            Slider{
-                                id: recordQualitySlider
-
-                                Layout.fillHeight: true
-
-                                Layout.maximumWidth: 320
-                                Layout.preferredWidth: 320
-                                Layout.minimumWidth: 320
-
-                                from: 0
-                                to: 500
-                                stepSize: 1
-
-                                onMoved: {
-                                    slotRecordQualitySliderValueChanged(value)
-                                }
-                            }
-                        }
-
-                        RowLayout {
-                            spacing: 6
-
-                            Layout.leftMargin: 20
-                            Layout.fillWidth: true
-                            Layout.maximumHeight: 30
-
-                            Label {
-                                Layout.fillHeight: true
-
-                                Layout.maximumWidth: 42
-                                Layout.preferredWidth: 42
-                                Layout.minimumWidth: 42
-
-                                text: qsTr("Save in")
-                                font.pointSize: 10
-                                font.kerning: true
-
-                                horizontalAlignment: Text.AlignLeft
-                                verticalAlignment: Text.AlignVCenter
-                            }
-
-                            Item {
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                            }
-
-                            HoverableRadiusButton {
-                                id: recordPathButton
-
-                                Layout.maximumWidth: 320
-                                Layout.preferredWidth: 320
-                                Layout.minimumWidth: 320
-
-                                Layout.minimumHeight: 30
-                                Layout.preferredHeight: 30
-                                Layout.maximumHeight: 30
-
-                                radius: height / 2
-
-                                icon.source: "qrc:/images/icons/round-folder-24px.svg"
-                                icon.height: 24
-                                icon.width: 24
-
-                                text: recordPath
-                                fontPointSize: 10
-
-                                onClicked: {
-                                    openRecordFolderSlot()
-                                }
-                            }
-                        }
-                    }
-                }
-
-                Item {
-                    Layout.fillWidth: true
-                    Layout.minimumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.maximumHeight: 20
-                }
-
-                // update setting panel
-                ColumnLayout {
-                    spacing: 6
-                    Layout.fillWidth: true
-                    visible: Qt.platform.os == "windows"? true : false
-
-                    Label {
-                        Layout.fillWidth: true
-                        Layout.minimumHeight: 21
-                        Layout.preferredHeight: 21
-                        Layout.maximumHeight: 21
-
-                        text: qsTr("Updates")
-                        font.pointSize: 13
-                        font.kerning: true
-
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-
-                        Layout.minimumHeight: 10
-                        Layout.preferredHeight: 10
-                        Layout.maximumHeight: 10
-                    }
-
-                    ColumnLayout {
-                        spacing: 6
-                        Layout.fillWidth: true
-
-                        ToggleSwitch {
-                            id: autoUpdateCheckBox
-
-                            Layout.leftMargin: 20
-
-                            labelText: "Check for updates automatically"
-                            fontPointSize: 11
-
-                            onSwitchToggled: {
-                                slotSetUpdateAutomatic(checked)
-                            }
-                        }
-
-                        RowLayout {
-                            spacing: 6
-
-                            Layout.leftMargin: 20
-                            Layout.fillWidth: true
-                            Layout.maximumHeight: 30
-
-                            HoverableRadiusButton {
-                                id: checkUpdateButton
-
-                                Layout.maximumWidth: 275
-                                Layout.preferredWidth: 275
-                                Layout.minimumWidth: 275
-
-                                Layout.minimumHeight: 30
-                                Layout.preferredHeight: 30
-                                Layout.maximumHeight: 30
-
-                                radius: height / 2
-
-                                text: "Check for updates now"
-                                fontPointSize: 10
-
-                                onClicked: {
-                                    checkForUpdateSlot()
-                                }
-                            }
-
-                            Item {
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                            }
-                        }
-
-                        RowLayout {
-                            spacing: 6
-
-                            Layout.leftMargin: 20
-                            Layout.fillWidth: true
-                            Layout.maximumHeight: 30
-
-                            HoverableRadiusButton {
-                                id: installBetaButton
-
-                                Layout.maximumWidth: 275
-                                Layout.preferredWidth: 275
-                                Layout.minimumWidth: 275
-
-                                Layout.minimumHeight: 30
-                                Layout.preferredHeight: 30
-                                Layout.maximumHeight: 30
-
-                                radius: height / 2
-
-                                text: "Install the latest beta version"
-                                fontPointSize: 10
-
-                                onClicked: {
-                                    installBetaSlot()
-                                }
-                            }
-
-                            Item {
-                                Layout.fillHeight: true
-                                Layout.fillWidth: true
-                            }
-                        }
-                    }
-                }
-
-                // spacer on the bottom
-                Item {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
-                }
             }
 
-            /*Item {
-                Layout.fillHeight: true
+            // system setting panel
+            ColumnLayout {
+                spacing: 8
                 Layout.fillWidth: true
+                Layout.leftMargin: 16
+
+                Label {
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: 21
+                    Layout.preferredHeight: 21
+                    Layout.maximumHeight: 21
+
+                    text: qsTr("System")
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                ColumnLayout {
+                    spacing: 8
+                    Layout.fillWidth: true
+
+                    ToggleSwitch {
+                        id: notificationCheckBox
+
+                        labelText: desktopNotificationsElidedText.elidedText
+                        fontPointSize: 11
+
+                        onSwitchToggled: {
+                            slotSetNotifications(checked)
+                        }
+                    }
+
+                    TextMetrics {
+                        id: desktopNotificationsElidedText
+                        elide: Text.ElideRight
+                        elideWidth: preferredWidthOneCol
+                        text:  qsTr("Enable desktop notifications")
+                    }
+
+
+                    ToggleSwitch {
+                        id: closeOrMinCheckBox
+
+                        labelText: keepMinimizeElidedText.elidedText
+                        fontPointSize: 11
+
+                        onSwitchToggled: {
+                            slotSetClosedOrMin(checked)
+                        }
+                    }
+
+                    TextMetrics {
+                        id: keepMinimizeElidedText
+                        elide: Text.ElideRight
+                        elideWidth: preferredWidthOneCol
+                        text:  qsTr("Keep minimize on close")
+                    }
+
+
+                    ToggleSwitch {
+                        id: applicationOnStartUpCheckBox
+
+                        labelText: runOnStartupElidedText.elidedText
+                        fontPointSize: 11
+
+                        onSwitchToggled: {
+                            slotSetRunOnStartUp(checked)
+                        }
+                    }
+
+                    TextMetrics {
+                        id: runOnStartupElidedText
+                        elide: Text.ElideRight
+                        elideWidth: preferredWidthOneCol
+                        text:  qsTr("Run On Startup")
+                    }
+
+                    RowLayout {
+                        spacing: 8
+
+                        Layout.leftMargin: 16
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: 30
+
+                        Label {
+                            Layout.fillHeight: true
+
+                            Layout.maximumWidth: 120
+                            Layout.preferredWidth: 120
+                            Layout.minimumWidth: 120
+
+                            text: qsTr("Download folder")
+                            font.pointSize: 10
+                            font.kerning: true
+
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        HoverableRadiusButton {
+                            id: downloadButton
+                            Layout.leftMargin: 16
+                            Layout.maximumWidth: preferredColumnWidth
+                            Layout.preferredWidth: preferredColumnWidth
+                            Layout.minimumWidth: preferredColumnWidth
+
+                            Layout.minimumHeight: 32
+                            Layout.preferredHeight: 32
+                            Layout.maximumHeight: 32
+
+                            radius: height / 2
+
+                            icon.source: "qrc:/images/icons/round-folder-24px.svg"
+                            icon.height: 24
+                            icon.width: 24
+
+                            text: downloadPath
+                            fontPointSize: 10
+
+                            onClicked: {
+                                openDownloadFolderSlot()
+                            }
+                        }
+                    }
+                }
             }
-        }*/
+
+            // call recording setting panel
+            ColumnLayout {
+                spacing: 8
+                Layout.fillWidth: true
+                Layout.topMargin: 16
+                Layout.leftMargin: 16
+
+                Label {
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: 32
+                    Layout.preferredHeight: 32
+                    Layout.maximumHeight: 32
+
+                    text: qsTr("Call Recording")
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                ColumnLayout {
+                    spacing: 8
+                    Layout.fillWidth: true
+
+                    ToggleSwitch {
+                        id: alwaysRecordingCheckBox
+
+                        labelText: alwaysRecordElidedText.elidedText
+                        fontPointSize: 11
+
+                        onSwitchToggled: {
+                            slotAlwaysRecordingClicked(checked)
+                        }
+                    }
+
+                    TextMetrics {
+                        id: alwaysRecordElidedText
+                        elide: Text.ElideRight
+                        elideWidth: preferredWidthOneCol
+                        text:  qsTr("Always record calls")
+                    }
+
+
+                    ToggleSwitch {
+                        id: recordPreviewCheckBox
+
+                        labelText: recordPreviewElidedText.elidedText
+                        fontPointSize: 11
+
+                        onSwitchToggled: {
+                            slotRecordPreviewClicked(checked)
+                        }
+                    }
+
+                    TextMetrics {
+                        id: recordPreviewElidedText
+                        elide: Text.ElideRight
+                        elideWidth: preferredWidthOneCol
+                        text:  qsTr("Record preview video for a call")
+                    }
+
+                    RowLayout {
+                        spacing: 8
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: 32
+
+                        Label {
+                            Layout.fillHeight: true
+
+                            //Layout.fillWidth: true
+                            Layout.maximumWidth: 50
+                            Layout.preferredWidth: 50
+                            Layout.minimumWidth: 50
+
+                            text: qsTr("Quality")
+                            font.pointSize: 10
+                            font.kerning: true
+
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        Label {
+                            id: recordQualityValueLabel
+
+                            Layout.minimumWidth: 50
+                            Layout.preferredWidth: 50
+                            Layout.maximumWidth: 50
+
+                            Layout.minimumHeight: 32
+                            Layout.preferredHeight: 32
+                            Layout.maximumHeight: 32
+
+                            text: qsTr("VALUE ")
+
+                            font.pointSize: 10
+                            font.kerning: true
+
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        Slider{
+                            id: recordQualitySlider
+
+                            Layout.fillHeight: true
+
+                            Layout.maximumWidth: preferredColumnWidth+80
+                            Layout.preferredWidth: preferredColumnWidth+80
+                            Layout.minimumWidth: preferredColumnWidth+80
+
+                            from: 0
+                            to: 500
+                            stepSize: 1
+
+                            onMoved: {
+                                slotRecordQualitySliderValueChanged(value)
+                            }
+                        }
+                    }
+
+                    RowLayout {
+                        spacing: 8
+
+                        Layout.leftMargin: 20
+                        Layout.fillWidth: true
+                        Layout.maximumHeight: 30
+
+                        Label {
+                            Layout.fillHeight: true
+
+                            Layout.maximumWidth: 120
+                            Layout.preferredWidth: 120
+                            Layout.minimumWidth: 120
+
+                            text: qsTr("Save in")
+                            font.pointSize: 10
+                            font.kerning: true
+
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        HoverableRadiusButton {
+                            id: recordPathButton
+
+                            Layout.leftMargin: 16
+                            Layout.maximumWidth: preferredColumnWidth
+                            Layout.preferredWidth: preferredColumnWidth
+                            Layout.minimumWidth: preferredColumnWidth
+
+                            Layout.minimumHeight: 32
+                            Layout.preferredHeight: 32
+                            Layout.maximumHeight: 32
+
+                            radius: height / 2
+
+                            icon.source: "qrc:/images/icons/round-folder-24px.svg"
+                            icon.height: 24
+                            icon.width: 24
+
+                            text: recordPath
+                            fontPointSize: 10
+
+                            onClicked: {
+                                openRecordFolderSlot()
+                            }
+                        }
+                    }
+                }
+            }
+
+            // update setting panel
+            ColumnLayout {
+                spacing: 8
+                Layout.fillWidth: true
+                Layout.topMargin: 16
+                Layout.leftMargin: 16
+                visible: true // Qt.platform.os == "windows"? true : false
+
+                Label {
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: 32
+                    Layout.preferredHeight: 32
+                    Layout.maximumHeight: 32
+
+                    text: qsTr("Updates")
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                ColumnLayout {
+                    spacing: 8
+                    Layout.fillWidth: true
+
+                    ToggleSwitch {
+                        id: autoUpdateCheckBox
+
+                        labelText: qsTr("Check for updates automatically")
+                        fontPointSize: 11
+
+                        onSwitchToggled: {
+                            slotSetUpdateAutomatic(checked)
+                        }
+                    }
+
+                    HoverableRadiusButton {
+                        id: checkUpdateButton
+
+                        Layout.maximumWidth: preferredWidthOneCol
+                        Layout.preferredWidth: preferredWidthOneCol
+                        Layout.minimumWidth: preferredWidthOneCol
+
+                        Layout.minimumHeight: 32
+                        Layout.preferredHeight: 32
+                        Layout.maximumHeight: 32
+
+                        radius: height / 2
+
+                        text: qsTr("Check for updates now")
+                        fontPointSize: 10
+
+                        onClicked: {
+                            checkForUpdateSlot()
+                        }
+                    }
+
+                    HoverableRadiusButton {
+                        id: installBetaButton
+
+                        Layout.maximumWidth: preferredWidthOneCol
+                        Layout.preferredWidth: preferredWidthOneCol
+                        Layout.minimumWidth: preferredWidthOneCol
+
+                        Layout.minimumHeight: 32
+                        Layout.preferredHeight: 32
+                        Layout.maximumHeight: 32
+
+                        radius: height / 2
+
+                        text: "Install the latest beta version"
+                        fontPointSize: 10
+
+                        onClicked: {
+                            installBetaSlot()
+                        }
+                    }
+                }
+            }
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+        }
     }
 }

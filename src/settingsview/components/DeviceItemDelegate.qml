@@ -31,152 +31,164 @@ ItemDelegate {
     id: deviceItemDelegate
 
     property string deviceName : ""
-    property string deviceId: ""
+    property string deviceId : ""
     property bool isCurrent : false
 
     property bool editable : false
 
     signal btnRemoveDeviceClicked
 
-    function btnEditDeviceEnter(){
+    function btnEditDeviceEnter() {
         btnEditDevice.enterBtn()
     }
 
-    function btnEditDeviceExit(){
+    function btnEditDeviceExit() {
         btnEditDevice.exitBtn()
     }
 
-    function btnEditPress(){
+    function btnEditPress() {
         btnEditDevice.pressBtn()
     }
 
-    function btnEditRelease(){
+    function btnEditRelease() {
         btnEditDevice.releaseBtn()
     }
 
-    function toggleEditable(){
+    function toggleEditable() {
         editable = !editable
         if(editable){
-            ClientWrapper.settingsAdaptor.setDeviceName(editDeviceName.text)
+            ClientWrapper.settingsAdaptor.setDeviceName(elidedTextDeviceName.text)
         }
     }
 
     highlighted: ListView.isCurrentItem
 
-    RowLayout{
+    RowLayout {
         anchors.fill: parent
 
-        spacing: 7
+        spacing: 8
 
-        Label{
-            Layout.leftMargin: 7
-            Layout.topMargin: 7
-            Layout.bottomMargin: 7
+        Image {
+            Layout.leftMargin: 16
+            Layout.alignment: Qt.AlignVCenter
 
-            Layout.minimumWidth: 30
-            Layout.preferredWidth: 30
-            Layout.maximumWidth: 30
+            Layout.minimumWidth: 24
+            Layout.preferredWidth: 24
+            Layout.maximumWidth: 24
 
-            Layout.minimumHeight: 30
-            Layout.preferredHeight: 30
-            Layout.maximumHeight: 30
-
-            background: Rectangle{
-                anchors.fill: parent
-                Image {
-                    anchors.fill: parent
-                    source: "qrc:/images/icons/baseline-desktop_windows-24px.svg"
-                }
-            }
+            Layout.minimumHeight: 24
+            Layout.preferredHeight: 24
+            Layout.maximumHeight: 24
+            source: "qrc:/images/icons/baseline-desktop_windows-24px.svg"
         }
 
-        ColumnLayout{
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+        ColumnLayout {
+            //Layout.fillWidth: true
+            //Layout.fillHeight: true
+            Layout.alignment: Qt.AlignLeft
 
-            Layout.topMargin: 7
-            Layout.bottomMargin: 7
-
-            InfoLineEdit{
-                id: editDeviceName
-
+            RowLayout {
+                Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+                Layout.topMargin: 16
+                Layout.leftMargin: 16
                 Layout.fillWidth: true
-                Layout.minimumWidth: 0
-                Layout.maximumWidth: 16777215
 
-                Layout.minimumHeight: 30
-                Layout.preferredHeight: 30
-                Layout.maximumHeight: 30
+                InfoLineEdit {
+                    id: editDeviceName
 
-                font.pointSize: 8
-                font.kerning: true
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-
-                readOnly: !editable
-
-                text: deviceName
-            }
-
-            RowLayout{
-                Layout.maximumWidth: editDeviceName.fieldLayoutWidth
-
-                Layout.minimumHeight: 30
-
-                Label{
-                    id: labelDeviceId
-
-                    //Layout.minimumWidth: 71
-                    Layout.minimumHeight: 30
-
-                    font.pointSize: 8
-                    font.kerning: true
-                    text: deviceId === "" ? qsTr("Device Id") : deviceId
-                }
-
-                Item{
                     Layout.fillWidth: true
-
                     Layout.minimumWidth: 0
-                    Layout.minimumHeight: 20
+                    Layout.maximumWidth: 120
+
+                    Layout.minimumHeight: 24
+                    Layout.preferredHeight: 24
+                    Layout.maximumHeight: 24
+
+                    //Layout.leftMargin: 16
+                    Layout.alignment: Qt.AlignLeft
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+
+                    readOnly: !editable
+
+                    text: elidedTextDeviceName.elidedText
                 }
 
-                Label{
-                    id: labelThisDevice
+                TextMetrics {
+                    id: elidedTextDeviceName
 
+                    elide: Text.ElideRight
+                    elideWidth: deviceItemDelegate.width - 40
+
+                    text: "fhsfk jghdsgdfkjas hdfkjhgkjdash gkjshgkl" //deviceName
+                }
+
+
+
+                Label {
+                    id: labelThisDevice
+                    Layout.minimumHeight: 24
+                    Layout.preferredHeight: 24
+                    Layout.maximumHeight: 24
                     //Layout.minimumWidth: 80
-                    Layout.minimumHeight: 30
+                    //Layout.minimumHeight: 30
+                    Layout.alignment: Qt.AlignRight
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
 
                     visible: isCurrent
 
-                    font.pointSize: 8
+                    font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
                     font.italic: true
                     color: "green"
                     text:  qsTr("this device")
                 }
             }
+
+            Label {
+                id: labelDeviceId
+
+                Layout.minimumWidth: 72
+                Layout.minimumHeight: 32
+
+                font.pointSize: 8
+                font.kerning: true
+                text: elidedTextDeviceId.elidedText //deviceId === "" ? qsTr("Device Id") : deviceId
+            }
+
+            TextMetrics {
+                id: elidedTextDeviceId
+
+                elide: Text.ElideRight
+                elideWidth: deviceItemDelegate.width - 40
+
+                text: deviceId === "" ? qsTr("Device Id") : deviceId
+            }
+
         }
 
-        HoverableRadiusButton{
+        HoverableRadiusButton {
             id: btnEditDevice
 
-            Layout.topMargin: 7
-            Layout.bottomMargin: 7
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.rightMargin: 16
 
-            Layout.minimumWidth: 30
-            Layout.preferredWidth: 30
-            Layout.maximumWidth: 30
+            Layout.minimumWidth: 24
+            Layout.preferredWidth: 24
+            Layout.maximumWidth: 24
 
-            Layout.minimumHeight: 30
-            Layout.preferredHeight: 30
-            Layout.maximumHeight: 30
+            Layout.minimumHeight: 24
+            Layout.preferredHeight: 24
+            Layout.maximumHeight: 24
 
             buttonImageHeight: height
             buttonImageWidth: height
 
-            source:{
+            source: {
                 if(isCurrent) {
                     var path = editable ? "qrc:/images/icons/round-edit-24px.svg" : "qrc:/images/icons/round-save_alt-24px.svg"
                     return path
@@ -205,16 +217,6 @@ ItemDelegate {
                     btnRemoveDeviceClicked()
                 }
             }
-        }
-
-        Item{
-            Layout.rightMargin: 7
-
-            Layout.minimumWidth: 8
-            Layout.preferredWidth: 8
-            Layout.maximumWidth: 8
-
-            Layout.minimumHeight: 20
         }
     }
 }
