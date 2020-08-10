@@ -67,8 +67,8 @@ ComboBox {
         anchors.leftMargin: 16
         anchors.verticalCenter: accountComboBox.verticalCenter
 
-        width: 30//accountComboBox.height - 10
-        height: 30//accountComboBox.height - 10
+        width: 30
+        height: 30
 
         fillMode: Image.PreserveAspectFit
 
@@ -241,7 +241,8 @@ ComboBox {
         width: 25
         height: 25
 
-        source: "qrc:/images/icons/round-settings-24px.svg"
+        source: !mainViewWindow.inSettingsView ? "qrc:/images/icons/round-settings-24px.svg" :
+                                                 "qrc:/images/icons/round-close-24px.svg"
         backgroundColor: "white"
         onClicked: {
             settingBtnClicked()
