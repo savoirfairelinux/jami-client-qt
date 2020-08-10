@@ -222,7 +222,7 @@ Window {
             handle: Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
                 implicitHeight: splitView.height
-                color:"transparent"
+                color:"white"
                 Rectangle {
                     implicitWidth: 1
                     implicitHeight: splitView.height
