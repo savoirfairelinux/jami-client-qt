@@ -45,6 +45,8 @@ Rectangle {
     Layout.fillHeight: true
     Layout.fillWidth: true
 
+    signal navigateToSidePanelMenu
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 6
@@ -52,21 +54,47 @@ Rectangle {
         width: parent.width
         height: parent.height
         
-        Label {
-            width: parent.width
-            height: parent.height
+        RowLayout {
 
-            Layout.leftMargin: 35
-            Layout.topMargin: 15
-            Layout.alignment: Qt.AlignTop
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+            Layout.leftMargin: 16
+            Layout.fillWidth: true
+            Layout.maximumHeight: 64
+            Layout.minimumHeight: 64
+            Layout.preferredHeight: 64
 
-            text: qsTr("Plugin")
+            HoverableButton {
 
-            font.pointSize: 15
-            font.kerning: true
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                Layout.preferredWidth: 30
+                Layout.preferredHeight: 30
 
-            horizontalAlignment: Text.AlignBottom
-            verticalAlignment: Text.AlignVCenter
+                radius: 30
+                source: "qrc:/images/icons/ic_arrow_back_24px.svg"
+                backgroundColor: "white"
+                onExitColor: "white"
+
+                visible: mainViewWindow.sidePanelHidden
+
+                onClicked: {
+                    navigateToSidePanelMenu()
+                }
+            }
+
+            Label {
+                Layout.fillWidth: true
+                Layout.minimumHeight: 25
+                Layout.preferredHeight: 25
+                Layout.maximumHeight: 25
+
+                text: qsTr("Plugin")
+
+                font.pointSize: 15
+                font.kerning: true
+
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+            }
         }
 
         ScrollView {
