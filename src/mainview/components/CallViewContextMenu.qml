@@ -33,6 +33,9 @@ Menu {
 
     property int generalMenuSeparatorCount: 0
     property int commonBorderWidth: 1
+
+    signal pluginItemClicked
+
     font.pointSize: JamiTheme.textFontSize+3
 
     function activate() {
@@ -233,7 +236,7 @@ Menu {
             contextMenu.close()
         }
     }
-
+    */
     GeneralMenuSeparator {
         preferredWidth: startRecordingItem.preferredWidth
         preferredHeight: commonBorderWidth
@@ -252,9 +255,9 @@ Menu {
         rightBorderWidth: commonBorderWidth
 
         onClicked: {
-            contextMenu.close()
+            contextMenu.pluginItemClicked()
         }
-    }*/
+    }
 
     background: Rectangle {
         implicitWidth: startRecordingItem.preferredWidth
