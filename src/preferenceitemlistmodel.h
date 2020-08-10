@@ -29,6 +29,7 @@ class PreferenceItemListModel : public QAbstractListModel
     Q_OBJECT
 
     Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId)
+    Q_PROPERTY(int numPreferences READ numPreferences)
 public:
     enum Role { PreferenceKey = Qt::UserRole + 1, PreferenceName, PreferenceSummary, PreferenceType, PreferenceDefaultValue, PreferenceEntries, PreferenceEntryValues};
 
@@ -63,8 +64,8 @@ public:
 
     QString pluginId() const;
     void setPluginId(const QString &pluginId);
-// signals:
-//     void pluginIdChanged();
+    int numPreferences();
+
 private:
     QString pluginId_;
 };
