@@ -2,6 +2,7 @@
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +32,9 @@ Menu {
 
     property int generalMenuSeparatorCount: 0
     property int commonBorderWidth: 1
+
+    signal pluginItemClicked
+
     font.pointSize: JamiTheme.textFontSize+3
 
     property bool isSIP: false
@@ -267,7 +271,7 @@ Menu {
         onClicked: {
             root.close()
         }
-    }
+    }*/
 
     GeneralMenuItem {
         id: pluginItem
@@ -278,9 +282,9 @@ Menu {
         rightBorderWidth: commonBorderWidth
 
         onClicked: {
-            root.close()
+            root.pluginItemClicked()
         }
-    }*/
+    }
 
     background: Rectangle {
         implicitWidth: startRecordingItem.preferredWidth
