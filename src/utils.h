@@ -554,6 +554,8 @@ public:
         return QString::fromLatin1(Utils::QImageToByteArray(croppedImage).toBase64().data());
     }
 
+    Q_INVOKABLE bool checkShowPluginsButton();
+
 private:
     QClipboard *clipboard_;
 };
