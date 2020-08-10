@@ -130,6 +130,7 @@ Rectangle {
                         pluginListSettingsView.visible = checked
                         if (!checked) {
                             pluginListPreferencesView.visible = checked
+                            ClientWrapper.pluginModel.toggleCallMediaHandler("",true);
                         }
                         if (pluginListSettingsView.visible) {
                             pluginListSettingsView.updatePluginListDisplayed()
