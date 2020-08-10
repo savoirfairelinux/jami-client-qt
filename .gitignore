@@ -17,5 +17,8 @@ nuget.exe
 *.autosave
 changelog.html
 obj/
-build/
 build-local/
+/jami-qt.vcxproj
+/jami-qt.vcxproj.filters
+/qml_qmlcache.qrc
+/ressources_qmlcache.qrc
