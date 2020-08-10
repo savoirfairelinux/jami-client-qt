@@ -151,3 +151,9 @@ PreferenceItemListModel::setPluginId(const QString &pluginId)
 {
     pluginId_ = pluginId;
 }
+
+int
+PreferenceItemListModel::numPreferences()
+{
+    return LRCInstance::pluginModel().getPluginPreferences(pluginId_).size();
+}
