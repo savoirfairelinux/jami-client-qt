@@ -40,12 +40,14 @@ Rectangle {
     signal chatButtonClicked
     signal addToConferenceButtonClicked
     signal transferCallButtonClicked
+    signal addMediaHandlerButtonClicked
 
     color: "transparent"
 
     function updateMaster() {
         callOverlayButtonGroupRect.isMaster = CallAdapter.isCurrentMaster()
         addToConferenceButton.visible = !callOverlayButtonGroupRect.isSip && callOverlayButtonGroupRect.isMaster
+        addMediaHandlerButton.visible = ClientWrapper.utilsAdaptor.checkShowPluginsButton()
     }
 
     function setButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall) {
@@ -55,6 +57,7 @@ Rectangle {
         addToConferenceButton.visible = !isSIP && isMaster
         transferCallButton.visible = isSIP
         sipInputPanelButton.visible = isSIP
+        addMediaHandlerButton.visible = ClientWrapper.utilsAdaptor.checkShowPluginsButton()
 
         noMicButton.setChecked(isAudioMuted)
         noVideoButton.setChecked(isVideoMuted)
@@ -175,6 +178,30 @@ Rectangle {
 
             onClicked: {
                 callOverlayButtonGroupRect.addToConferenceButtonClicked()
+            }
+        }
+
+        HoverableButton {
+            id: addMediaHandlerButton
+
+            width: buttonPreferredSize * 2
+            height: buttonPreferredSize * 2
+            visible: !isMaster
+
+            backgroundColor: Qt.rgba(0, 0, 0, 0.75)
+            onEnterColor: Qt.rgba(0, 0, 0, 0.6)
+            onPressColor: Qt.rgba(0, 0, 0, 0.5)
+            onReleaseColor: Qt.rgba(0, 0, 0, 0.6)
+            onExitColor: Qt.rgba(0, 0, 0, 0.75)
+
+            buttonImageHeight: buttonPreferredSize
+            buttonImageWidth: buttonPreferredSize
+            color: "white"
+            source: "qrc:/images/icons/extension_24dp.svg"
+            radius: 30
+
+            onClicked: {
+                callOverlayButtonGroupRect.addMediaHandlerButtonClicked()
             }
         }
 

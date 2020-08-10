@@ -24,6 +24,7 @@ import QtQml 2.14
 import net.jami.Models 1.0
 
 import "../js/contactpickercreation.js" as ContactPickerCreation
+import "../js/mediahandlerpickercreation.js" as MediaHandlerPickerCreation
 
 import "../../commoncomponents"
 
@@ -54,6 +55,10 @@ Rectangle {
 
     function closePotentialContactPicker() {
         ContactPickerCreation.closeContactPicker()
+    }
+
+    function closePotentialMediaHandlerPicker() {
+        MediaHandlerPickerCreation.closeMediaHandlerPicker()
     }
 
     function handleParticipantsInfos(infos) {
@@ -233,6 +238,16 @@ Rectangle {
             callOverlayRect.overlayChatButtonClicked()
         }
 
+        onAddMediaHandlerButtonClicked: {
+            /*
+             * Create media handler picker - PLUGINS
+             */
+            MediaHandlerPickerCreation.createMediaHandlerPickerObjects(callOverlayRect)
+            MediaHandlerPickerCreation.calculateCurrentGeo(
+                        callOverlayRect.width / 2, callOverlayRect.height / 2)
+            MediaHandlerPickerCreation.openMediaHandlerPicker()
+        }
+
         onAddToConferenceButtonClicked: {
 
 
@@ -377,10 +392,14 @@ Rectangle {
     onWidthChanged: {
         ContactPickerCreation.calculateCurrentGeo(callOverlayRect.width / 2,
                                                   callOverlayRect.height / 2)
+        MediaHandlerPickerCreation.calculateCurrentGeo(callOverlayRect.width / 2,
+                                                  callOverlayRect.height / 2)
     }
 
     onHeightChanged: {
         ContactPickerCreation.calculateCurrentGeo(callOverlayRect.width / 2,
+                                                  callOverlayRect.height / 2)
+        MediaHandlerPickerCreation.calculateCurrentGeo(callOverlayRect.width / 2,
                                                   callOverlayRect.height / 2)
     }
 

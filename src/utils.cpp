@@ -1080,3 +1080,10 @@ UtilsAdapter::getCurrentPath()
 {
     return QDir::currentPath();
 }
+
+bool
+UtilsAdapter::checkShowPluginsButton()
+{
+    return LRCInstance::pluginModel().getPluginsEnabled()
+           && (LRCInstance::pluginModel().listLoadedPlugins().size() > 0);
+}
