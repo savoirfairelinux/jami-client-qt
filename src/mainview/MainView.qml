@@ -40,9 +40,9 @@ Window {
 
     property int mainViewWindowPreferredWidth: 650
     property int mainViewWindowPreferredHeight: 600
-    property int sidePanelViewStackPreferredWidth: 250
-    property int mainViewStackPreferredWidth: 250
-    property int aboutPopUpPreferredWidth: 250
+    property int sidePanelViewStackPreferredWidth: 300
+    property int mainViewStackPreferredWidth: 300
+    property int aboutPopUpPreferredWidth: 300
 
     property int savedSidePanelViewMinWidth: 0
     property int savedSidePanelViewMaxWidth: 0
