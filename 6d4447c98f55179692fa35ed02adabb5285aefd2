@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9add9dff_b5310754",
+        "filename": "src/mainview/components/AccountComboBox.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-11T17:46:40Z",
+      "side": 1,
+      "message": "remove comment",
+      "revId": "6d4447c98f55179692fa35ed02adabb5285aefd2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16dc4364_72bccc0b",
+        "filename": "src/mainview/components/AccountComboBox.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-11T17:46:40Z",
+      "side": 1,
+      "message": "prefers multiples of 8",
+      "range": {
+        "startLine": 221,
+        "startChar": 10,
+        "endLine": 222,
+        "endChar": 18
+      },
+      "revId": "6d4447c98f55179692fa35ed02adabb5285aefd2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "502ab2ed_4b91dd69",
+        "filename": "src/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-11T17:46:40Z",
+      "side": 1,
+      "message": "we really need to add a var for this",
+      "range": {
+        "startLine": 33,
+        "startChar": 20,
+        "endLine": 33,
+        "endChar": 44
+      },
+      "revId": "6d4447c98f55179692fa35ed02adabb5285aefd2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30509c16_175d3000",
+        "filename": "src/mainview/components/MessageWebViewHeader.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-11T17:46:40Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 98,
+        "startChar": 21,
+        "endLine": 98,
+        "endChar": 118
+      },
+      "revId": "6d4447c98f55179692fa35ed02adabb5285aefd2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9eca4ba1_74ac276f",
+        "filename": "src/mainview/components/WelcomePage.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-11T17:46:40Z",
+      "side": 1,
+      "message": "clean this file",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 19
+      },
+      "revId": "6d4447c98f55179692fa35ed02adabb5285aefd2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
