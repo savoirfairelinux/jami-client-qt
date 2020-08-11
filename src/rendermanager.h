@@ -22,9 +22,15 @@
 #include "api/avmodel.h"
 #include "api/lrc.h"
 
+#include <libavutil/pixfmt.h>
 #include <QImage>
 #include <QMutex>
 #include <QObject>
+
+extern "C" {
+struct AVFrame;
+struct SwsContext;
+}
 
 using namespace lrc::api;
 
@@ -68,6 +74,12 @@ public:
     QImage *getFrame();
 
     /*
+     * Get the most recently rendered AVFrame.
+     * @return the rendered image of this object's id
+     */
+    AVFrame *getAVFrame();
+
+    /*
      * Check if the object is updating actively.
      */
     bool isRendering();
@@ -83,6 +95,11 @@ signals:
      * @param id of the renderer
      */
     void frameUpdated(const QString &id);
+    /*
+     * Emitted each time a d3d frame is ready to be displayed.
+     * @param id of the renderer
+     */
+    void d3dFrameUpdated(const QString &id);
     /*
      * Emitted once in slotRenderingStopped.
      * @param id of the renderer
@@ -107,6 +124,9 @@ private slots:
     void slotRenderingStopped(const QString &id = video::PREVIEW_RENDERER_ID);
 
 private:
+    bool isHardwareAccelFormat(AVPixelFormat format);
+
+private:
     /*
      * The id of the renderer.
      */
@@ -121,6 +141,11 @@ private:
      * A local copy of the renderer's current frame.
      */
     video::Frame frame_;
+
+    /*
+     * A local copy of the renderer's current avframe.
+     */
+    std::unique_ptr<AVFrame, void (*)(AVFrame *)> avFrame_;
 
     /*
      * A the frame's storage data used to set the image.
@@ -151,6 +176,13 @@ private:
      * Connections to the underlying renderer signals in avmodel
      */
     RenderConnections renderConnections_;
+
+    /*
+     * Temporary variables for converting frame by using SWS
+     */
+    std::unique_ptr<AVFrame, void (*)(AVFrame *)> pFrameCorrectFormat;
+    std::unique_ptr<SwsContext, void (*)(SwsContext *)> img_convert_ctx;
+    std::unique_ptr<uint8_t, void (*)(uint8_t *)> convertedFrameBuffer;
 };
 
 /**
@@ -178,6 +210,11 @@ public:
      */
     QImage *getPreviewFrame();
     /*
+     * Get the most recently rendered preview AVFrame.
+     * @return the rendered preview image
+     */
+    AVFrame *getPreviewAVFrame();
+    /*
      * Start capturing and rendering preview frames.
      * @param force if the capture device should be started
      * @param async
@@ -195,6 +232,14 @@ public:
      * @return the rendered preview image
      */
     QImage *getFrame(const QString &id);
+
+    /*
+     * Get the most recently rendered distant frame for a given id
+     * as an AVFrame pointer.
+     * @return the rendered preview image
+     */
+    AVFrame *getAVFrame(const QString &id);
+
     /*
      * Add and connect a distant renderer for a given id
      * to a FrameWrapper object
@@ -225,6 +270,11 @@ signals:
     void previewFrameUpdated();
 
     /*
+     * Emitted when the preview has a new frame object for OpenGL Widget ready.
+     */
+    void previewD3DFrameUpdated();
+
+    /*
      * Emitted when the preview is stopped.
      */
     void previewRenderingStopped();
@@ -238,6 +288,11 @@ signals:
      * Emitted when a distant renderer has a new frame ready for a given id.
      */
     void distantFrameUpdated(const QString &id);
+
+    /*
+     * Emitted when a distant renderer has a new avframe frame ready for a given id.
+     */
+    void d3dDistantFrameUpdated(const QString &id);
 
     /*
      * Emitted when a distant renderer is stopped for a given id.
