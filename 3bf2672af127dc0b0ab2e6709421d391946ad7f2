@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4944dc65_8ae214d4",
+        "filename": "src/mainview/components/CallOverlayButtonGroup.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-11T12:40:15Z",
+      "side": 1,
+      "message": "There is already a button ready for this in CallViewContextMenu.qml",
+      "range": {
+        "startLine": 185,
+        "startChar": 7,
+        "endLine": 207,
+        "endChar": 9
+      },
+      "revId": "3bf2672af127dc0b0ab2e6709421d391946ad7f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
