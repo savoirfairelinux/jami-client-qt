@@ -238,16 +238,16 @@ AccountAdapter::stopAudioMeter(bool async)
 }
 
 void
-AccountAdapter::startPreviewing(bool force)
+AccountAdapter::startPreviewing(bool force, bool async)
 {
-    LRCInstance::renderer()->startPreviewing(force);
+    LRCInstance::renderer()->startPreviewing(force, async);
 }
 
 void
-AccountAdapter::stopPreviewing()
+AccountAdapter::stopPreviewing(bool async)
 {
     if (!LRCInstance::hasVideoCall() && LRCInstance::renderer()->isPreviewing()) {
-        LRCInstance::renderer()->stopPreviewing();
+        LRCInstance::renderer()->stopPreviewing(async);
     }
 }
 
