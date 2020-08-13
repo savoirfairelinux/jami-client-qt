@@ -101,4 +101,40 @@ ListView {
     }
 
     ScrollIndicator.vertical: ScrollIndicator {}
+
+    Shortcut {
+        sequence: "Enter"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            CallAdapter.placeCall()
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+Shift+C"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            CallAdapter.placeAudioOnlyCall()
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+Shift+L"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            ClientWrapper.utilsAdaptor.clearConversationHistory(ClientWrapper.utilsAdaptor.getCurrAccId(),
+                                                  responsibleConvUid)
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+Shift+B"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            ClientWrapper.utilsAdaptor.removeConversation(ClientWrapper.utilsAdaptor.getCurrAccId(),
+                                            responsibleConvUid, true)
+        }
+    }
+
+
 }

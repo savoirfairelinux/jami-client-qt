@@ -432,6 +432,15 @@ Window {
                 }
             }
         }
+        Connections {
+            target: leftPanelSettingsView.btnShortcutsSettings
+            function onCheckedToggledForRightPanel(checked) {
+                settingsView.setSelected(SettingsView.Shortcuts)
+                if (sidePanelHidden) {
+                    recursionStackViewItemMove(mainViewStack, sidePanelViewStack, 1)
+                }
+            }
+        }
     }
 
 
@@ -580,6 +589,61 @@ Window {
         onNavigateToSidePanelSettingsMenu: {
             mainViewStack.pop(StackView.Immediate)
             recursionStackViewItemMove(sidePanelViewStack, mainViewStack, 2)
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+M"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            if (!inSettingsView) {
+                toggleSettingsView()
+            }
+            leftPanelSettingsView.btnMediaSettings.clicked()
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+G"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            if (!inSettingsView) {
+                toggleSettingsView()
+            }
+            leftPanelSettingsView.btnGeneralSettings.clicked()
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+I"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            if (!inSettingsView) {
+                toggleSettingsView()
+            }
+            leftPanelSettingsView.btnAccountSettings.clicked()
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+P"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            if (!inSettingsView) {
+                toggleSettingsView()
+            }
+            leftPanelSettingsView.btnPluginSettings.clicked()
+        }
+    }
+
+    Shortcut {
+        sequence: "F10"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            if (!inSettingsView) {
+                toggleSettingsView()
+            }
+            leftPanelSettingsView.btnShortcutsSettings.clicked()
         }
     }
 
