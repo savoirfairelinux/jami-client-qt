@@ -33,7 +33,8 @@ Rectangle {
         Account,
         General,
         Media,
-        Plugin
+        Plugin,
+        Shortcuts
     }
 
     onVisibleChanged: {
@@ -93,6 +94,9 @@ Rectangle {
 
             selectedMenu = sel
             pluginSettings.populatePluginSettings()
+            break
+        case SettingsView.Shortcuts:
+            selectedMenu = sel
             break
         }
     }
@@ -212,6 +216,12 @@ Rectangle {
                             setSelected(SettingsView.Plugin)
                         }
                     }
+                    Connections {
+                        target: leftPanelView.btnShortcutsSettings
+                        function onCheckedToggledForRightPanel(checked) {
+                            setSelected(SettingsView.Shortcuts)
+                        }
+                    }
                 }
             }
 
@@ -223,6 +233,7 @@ Rectangle {
                 property int pageIdGeneralSettingsPage: 2
                 property int pageIdAvSettingPage: 3
                 property int pageIdPluginSettingsPage: 4
+                property int pageIdShortcutsSettingsPage: 5
 
                 currentIndex: {
                     switch(selectedMenu){
@@ -238,6 +249,8 @@ Rectangle {
                             return pageIdAvSettingPage
                         case SettingsView.Plugin:
                             return pageIdPluginSettingsPage
+                        case SettingsView.Shortcuts:
+                            return pageIdShortcutsSettingsPage
                     }
                 }
 
@@ -283,6 +296,11 @@ Rectangle {
                 // plugin setting page, index 4
                 PluginSettingsPage {
                     id: pluginSettings
+                }
+
+                // shortcuts setting page, index 5
+                KeyBoardShortcutTable {
+                    id: shortcutsSettings
                 }
             }
         }

@@ -36,6 +36,7 @@ ScrollView{
     property alias btnGeneralSettings: generalSettingsButton
     property alias btnMediaSettings: mediaSettingsButton
     property alias btnPluginSettings: pluginSettingsButton
+    property alias btnShortcutsSettings: shortcutsSettingsButton
 
     signal btnExitClicked
 
@@ -139,6 +140,7 @@ ScrollView{
                 generalSettingsButton.setCheckedState(!checked, false)
                 mediaSettingsButton.setCheckedState(!checked, false)
                 pluginSettingsButton.setCheckedState(!checked, false)
+                shortcutsSettingsButton.setCheckedState(!checked, false)
             }
         }
 
@@ -152,6 +154,7 @@ ScrollView{
                 accountSettingsButton.setCheckedState(!checked, false)
                 mediaSettingsButton.setCheckedState(!checked, false)
                 pluginSettingsButton.setCheckedState(!checked, false)
+                shortcutsSettingsButton.setCheckedState(!checked, false)
             }
         }
 
@@ -165,6 +168,7 @@ ScrollView{
                 generalSettingsButton.setCheckedState(!checked, false)
                 accountSettingsButton.setCheckedState(!checked, false)
                 pluginSettingsButton.setCheckedState(!checked, false)
+                shortcutsSettingsButton.setCheckedState(!checked, false)
             }
         }
 
@@ -178,6 +182,21 @@ ScrollView{
                 generalSettingsButton.setCheckedState(!checked, false)
                 accountSettingsButton.setCheckedState(!checked, false)
                 mediaSettingsButton.setCheckedState(!checked, false)
+                shortcutsSettingsButton.setCheckedState(!checked, false)
+            }
+        }
+
+        IconButton {
+            id: shortcutsSettingsButton
+
+            buttonText: qsTr("Shortcuts")
+            imageSource: "qrc:/images/icons/baseline-people-24px.svg"
+
+            onCheckedToggledForLeftPanel: {
+                accountSettingsButton.setCheckedState(!checked, false)
+                generalSettingsButton.setCheckedState(!checked, false)
+                mediaSettingsButton.setCheckedState(!checked, false)
+                pluginSettingsButton.setCheckedState(!checked, false)
             }
         }
 
