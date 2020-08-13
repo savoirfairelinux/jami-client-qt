@@ -337,6 +337,14 @@ ComboBox {
     popup: AccountComboBoxPopup {
         id: comboBoxPopup
 
+        Shortcut {
+            sequence: "Ctrl+J"
+            context: Qt.ApplicationShortcut
+            onActivated: comboBoxPopup.visible ?
+                comboBoxPopup.close() :
+                comboBoxPopup.open()
+        }
+
         onAccountNeedToChange: {
             accountComboBox.accountChanged(index)
         }
@@ -344,5 +352,11 @@ ComboBox {
         onNewAccountButtonClicked: {
             accountComboBox.newAccountButtonClicked()
         }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+,"
+        context: Qt.ApplicationShortcut
+        onActivated: settingBtnClicked()
     }
 }
