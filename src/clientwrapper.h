@@ -91,6 +91,4 @@ signals:
     void contactModelChanged();
     void deviceModelChanged();
 };
-#if QT_VERSION >= QT_VERSION_CHECK(5, 8, 0)
 Q_DECLARE_METATYPE(ClientWrapper *)
-#endif
