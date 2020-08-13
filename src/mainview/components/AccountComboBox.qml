@@ -255,6 +255,12 @@ ComboBox {
         }
     }
 
+    Shortcut {
+        sequence: "Ctrl+,"
+        context: Qt.ApplicationShortcut
+        onActivated: settingBtnClicked()
+    }
+
     background: Rectangle {
         id: rootItemBackground
 
@@ -336,6 +342,14 @@ ComboBox {
      */
     popup: AccountComboBoxPopup {
         id: comboBoxPopup
+
+        Shortcut {
+            sequence: "Ctrl+J"
+            context: Qt.ApplicationShortcut
+            onActivated: comboBoxPopup.visible ?
+                comboBoxPopup.close() :
+                comboBoxPopup.open()
+        }
 
         onAccountNeedToChange: {
             accountComboBox.accountChanged(index)
