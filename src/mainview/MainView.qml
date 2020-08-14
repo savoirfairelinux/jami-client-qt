@@ -545,6 +545,10 @@ Window {
         width: Math.max(mainViewStackPreferredWidth, mainViewStack.width - 100)
         height: mainViewWindow.minimumHeight
 
+        onCloseMainWindowFromSettings: {
+            mainViewWindow.close()
+        }
+
         onSettingsViewWindowNeedToShowMainViewWindow: {
             mainViewWindowSidePanel.refreshAccountComboBox(
                         accountDeleted ? 0 : -1)
