@@ -25,15 +25,16 @@
 
 #include <string>
 
+#include <QApplication>
 #include <QClipboard>
 #include <QCryptographicHash>
 #include <QDir>
-#include <QApplication>
 #include <QImage>
 #include <QItemDelegate>
 #include <QLabel>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QPainterPath>
 #include <QQmlEngine>
 #include <QSettings>
 #include <QStackedWidget>
@@ -41,7 +42,6 @@
 #include <QString>
 #include <QTextDocument>
 #include <QtGlobal>
-#include <QPainterPath>
 
 #ifdef Q_OS_WIN
 #include <ciso646>
@@ -150,8 +150,6 @@ void setCurrentScalingRatio(float ratio);
  * Updates.
  */
 void cleanUpdateFiles();
-void checkForUpdates(bool withUI, QWidget *parent = nullptr);
-void applyUpdates(bool updateToBeta, QWidget *parent = nullptr);
 
 /*
  * Names.
@@ -485,6 +483,8 @@ public:
         return Utils::getContactImageString(accountId, uid);
     }
 
+    Q_INVOKABLE void checkForUpdates(bool withUI);
+    Q_INVOKABLE void applyUpdates(bool updateToBeta);
     Q_INVOKABLE void removeConversation(const QString &accountId,
                                         const QString &uid,
                                         bool banContact = false);
@@ -553,6 +553,8 @@ public:
                                          Qt::SmoothTransformation);
         return QString::fromLatin1(Utils::QImageToByteArray(croppedImage).toBase64().data());
     }
+
+signals:
 
 private:
     QClipboard *clipboard_;
