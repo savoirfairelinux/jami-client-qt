@@ -29,6 +29,7 @@ import "components"
 Rectangle {
     id: settingsViewWindow
 
+    signal closeMainWindowFromSettings
 
     enum SettingsMenu{
         Account,
@@ -220,6 +221,10 @@ Rectangle {
             // general setting page, index 2
             GeneralSettingsPage {
                 id: generalSettings
+
+                onCloseMainwindow: {
+                    closeMainWindowFromSettings()
+                }
             }
 
             // av setting page, index 3
