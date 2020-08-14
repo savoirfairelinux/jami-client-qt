@@ -27,6 +27,7 @@ ClientWrapper::ClientWrapper(QObject *parent)
         emit dataTransferModelChanged();
         emit contactModelChanged();
         emit deviceModelChanged();
+        emit networkManagerChanged();
     });
 }
 
@@ -40,6 +41,12 @@ UtilsAdapter *
 ClientWrapper::getUtilsAdapter()
 {
     return &(UtilsAdapter::instance());
+}
+
+NetWorkManager *
+ClientWrapper::getNetWorkManager()
+{
+    return LRCInstance::getNetworkManager();
 }
 
 SettingsAdaptor *
