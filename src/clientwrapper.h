@@ -26,18 +26,18 @@
 #include "bannedlistmodel.h"
 #include "calladapter.h"
 #include "contactadapter.h"
-#include "mediahandleradapter.h"
 #include "conversationsadapter.h"
 #include "deviceitemlistmodel.h"
-#include "pluginitemlistmodel.h"
-#include "mediahandleritemlistmodel.h"
-#include "preferenceitemlistmodel.h"
 #include "distantrenderer.h"
 #include "globalinstances.h"
 #include "globalsystemtray.h"
+#include "mediahandleradapter.h"
+#include "mediahandleritemlistmodel.h"
 #include "messagesadapter.h"
 #include "namedirectory.h"
 #include "pixbufmanipulator.h"
+#include "pluginitemlistmodel.h"
+#include "preferenceitemlistmodel.h"
 #include "previewrenderer.h"
 #include "qrimageprovider.h"
 #include "settingsadaptor.h"
@@ -52,14 +52,17 @@ class ClientWrapper : public QObject
     Q_OBJECT
 
     Q_PROPERTY(UtilsAdapter *utilsAdaptor READ getUtilsAdapter NOTIFY utilsAdaptorChanged)
+    Q_PROPERTY(NetWorkManager *networkManager READ getNetWorkManager NOTIFY networkManagerChanged)
     Q_PROPERTY(SettingsAdaptor *settingsAdaptor READ getSettingsAdaptor NOTIFY settingsAdaptorChanged)
     Q_PROPERTY(NameDirectory *nameDirectory READ getNameDirectory NOTIFY nameDirectoryChanged)
     Q_PROPERTY(LRCInstance *lrcInstance READ getLRCInstance NOTIFY lrcInstanceChanged)
     Q_PROPERTY(AccountAdapter *accountAdaptor READ getAccountAdapter NOTIFY accountAdaptorChanged)
     Q_PROPERTY(RenderManager *renderManager READ getRenderManager NOTIFY renderManagerChanged)
-    Q_PROPERTY(lrc::api::NewAccountModel *accountModel READ getAccountModel NOTIFY accountModelChanged)
+    Q_PROPERTY(
+        lrc::api::NewAccountModel *accountModel READ getAccountModel NOTIFY accountModelChanged)
     Q_PROPERTY(lrc::api::AVModel *avmodel READ getAvModel NOTIFY avmodelChanged)
-    Q_PROPERTY(lrc::api::DataTransferModel *dataTransferModel READ getDataTransferModel NOTIFY dataTransferModelChanged)
+    Q_PROPERTY(lrc::api::DataTransferModel *dataTransferModel READ getDataTransferModel NOTIFY
+                   dataTransferModelChanged)
     Q_PROPERTY(lrc::api::ContactModel *contactModel READ getContactModel NOTIFY contactModelChanged)
     Q_PROPERTY(lrc::api::NewDeviceModel *deviceModel READ getDeviceModel NOTIFY deviceModelChanged)
     Q_PROPERTY(lrc::api::PluginModel *pluginModel READ getPluginModel)
@@ -68,6 +71,7 @@ public:
 
     NameDirectory *getNameDirectory();
     UtilsAdapter *getUtilsAdapter();
+    NetWorkManager *getNetWorkManager();
     SettingsAdaptor *getSettingsAdaptor();
     LRCInstance *getLRCInstance();
     AccountAdapter *getAccountAdapter();
@@ -83,6 +87,7 @@ public:
 
 signals:
     void utilsAdaptorChanged();
+    void networkManagerChanged();
     void settingsAdaptorChanged();
     void nameDirectoryChanged();
     void lrcInstanceChanged();

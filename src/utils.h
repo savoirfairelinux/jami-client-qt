@@ -26,15 +26,16 @@
 
 #include <string>
 
+#include <QApplication>
 #include <QClipboard>
 #include <QCryptographicHash>
 #include <QDir>
-#include <QApplication>
 #include <QImage>
 #include <QItemDelegate>
 #include <QLabel>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QPainterPath>
 #include <QQmlEngine>
 #include <QSettings>
 #include <QStackedWidget>
@@ -42,7 +43,6 @@
 #include <QString>
 #include <QTextDocument>
 #include <QtGlobal>
-#include <QPainterPath>
 
 #ifdef Q_OS_WIN
 #include <ciso646>
@@ -151,8 +151,6 @@ void setCurrentScalingRatio(float ratio);
  * Updates.
  */
 void cleanUpdateFiles();
-void checkForUpdates(bool withUI, QWidget *parent = nullptr);
-void applyUpdates(bool updateToBeta, QWidget *parent = nullptr);
 
 /*
  * Names.
@@ -486,6 +484,8 @@ public:
         return Utils::getContactImageString(accountId, uid);
     }
 
+    Q_INVOKABLE void checkForUpdates(bool withUI);
+    Q_INVOKABLE void applyUpdates(bool updateToBeta);
     Q_INVOKABLE void removeConversation(const QString &accountId,
                                         const QString &uid,
                                         bool banContact = false);
@@ -508,6 +508,12 @@ public:
     Q_INVOKABLE bool validateRegNameForm(const QString &regName);
     Q_INVOKABLE QString getRecordQualityString(int value);
     Q_INVOKABLE QString getCurrentPath();
+    Q_INVOKABLE QString
+    humanFileSize(qint64 fileSize)
+    {
+        return Utils::humanFileSize(fileSize);
+    }
+
     Q_INVOKABLE QString
     stringSimplifier(QString input)
     {

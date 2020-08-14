@@ -26,7 +26,7 @@ MessageDialog {
     id: messageBox
 
     visible: false
-    modality:  Qt.NonModal
+    modality:  Qt.ApplicationModal
     width: 300
     height: 200
 
