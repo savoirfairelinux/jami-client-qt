@@ -34,14 +34,14 @@
 #include "contactadapter.h"
 #include "conversationsadapter.h"
 #include "deviceitemlistmodel.h"
-#include "pluginitemlistmodel.h"
-#include "preferenceitemlistmodel.h"
 #include "distantrenderer.h"
 #include "globalinstances.h"
 #include "globalsystemtray.h"
 #include "messagesadapter.h"
 #include "namedirectory.h"
 #include "pixbufmanipulator.h"
+#include "pluginitemlistmodel.h"
+#include "preferenceitemlistmodel.h"
 #include "previewrenderer.h"
 #include "qrimageprovider.h"
 #include "settingsadaptor.h"
@@ -429,6 +429,8 @@ MainApplication::applicationSetup()
      * Init lrc and its possible migration ui.
      */
     initLrc();
+
+    Utils::checkForUpdates(false);
 
     /*
      * Process input argument.
