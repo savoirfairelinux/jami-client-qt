@@ -33,18 +33,18 @@
 #include "calladapter.h"
 #include "clientwrapper.h"
 #include "contactadapter.h"
-#include "mediahandleradapter.h"
 #include "conversationsadapter.h"
 #include "deviceitemlistmodel.h"
-#include "pluginitemlistmodel.h"
-#include "mediahandleritemlistmodel.h"
-#include "preferenceitemlistmodel.h"
 #include "distantrenderer.h"
 #include "globalinstances.h"
 #include "globalsystemtray.h"
+#include "mediahandleradapter.h"
+#include "mediahandleritemlistmodel.h"
 #include "messagesadapter.h"
 #include "namedirectory.h"
 #include "pixbufmanipulator.h"
+#include "pluginitemlistmodel.h"
+#include "preferenceitemlistmodel.h"
 #include "previewrenderer.h"
 #include "qrimageprovider.h"
 #include "settingsadaptor.h"
@@ -366,6 +366,7 @@ MainApplication::qmlInitialization()
      * This to make client models recognizable in qml.
      */
     QML_REGISTERUNCREATABLE(RenderManager, 1, 0);
+    QML_REGISTERUNCREATABLE(NetWorkManager, 1, 0);
 
     /*
      * Namespaces - qmlRegisterUncreatableMetaObject.
