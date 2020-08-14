@@ -29,6 +29,8 @@ import "../../commoncomponents"
 Rectangle {
     id: generalSettingsRect
 
+    signal closeMainwindow
+
     function populateGeneralSettings(){
         // settings
         closeOrMinCheckBox.checked = ClientWrapper.settingsAdaptor.getSettingsValue_CloseOrMinimized()
@@ -137,9 +139,66 @@ Rectangle {
         }
     }
 
-    //TODO: complete check for update and check for Beta slot functions
-    function checkForUpdateSlot(){}
-    function installBetaSlot(){}
+    //complete check for update and check for Beta slot functions
+    function checkForUpdateSlot(){
+        ClientWrapper.utilsAdaptor.checkForUpdates(true)
+    }
+    function installBetaSlot(){
+        updateConfirmDialog.openWithPara(true)
+    }
+
+    Connections{
+        id: networkManagerSignalConnections
+        target: ClientWrapper.networkManager
+
+        function onDownloadProgressForwardQML(bytesRead, totalBytes){
+            updateDownloadDialog.slotDownloadProgress(bytesRead, totalBytes)
+        }
+
+        function onOpenAndInitiateProgressBarQML(){
+            updateDownloadDialog.open()
+        }
+
+        function onResetProgressBarQMLOnFinished(){
+            updateDownloadDialog.valueIn = 0.0
+            updateDownloadDialog.maximum= 0.0
+            updateDownloadDialog.textOfLabel= qsTr("0")
+            updateDownloadDialog.close()
+        }
+
+        function onOpenMessageBox(title, info, modeIcon){
+            newVersionCheckMessageBox.openWithParameters(title, info, modeIcon)
+        }
+
+        function onCloseAppMainWindow(){
+            closeMainwindow()
+        }
+
+        function onOpenUpdateConfirmDialog(updateToBeta){
+            updateConfirmDialog.openWithPara(updateToBeta)
+        }
+    }
+
+    MessageBox{
+        id: newVersionCheckMessageBox
+    }
+
+    UpdateConfirmDialog{
+        id: updateConfirmDialog
+
+        onAccepted: {
+            var installBeta = installType === UpdateConfirmDialog.Beta
+            ClientWrapper.utilsAdaptor.applyUpdates(installBeta)
+        }
+    }
+
+    UpdateDownloadDialog{
+        id: updateDownloadDialog
+
+        onRejected: {
+            ClientWrapper.networkManager.cancelRequest()
+        }
+    }
 
     // settings
     property string downloadPath: ClientWrapper.settingsAdaptor.getDir_Download()
