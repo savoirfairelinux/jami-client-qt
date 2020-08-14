@@ -141,6 +141,51 @@ Rectangle {
     function checkForUpdateSlot(){}
     function installBetaSlot(){}
 
+    Connections{
+        id: networkManagerSignalConnections
+        target: ClientWrapper.networkManager
+
+        function downloadProgressForwardQML(bytesRead, totalBytes){
+            updateDownloadDialog.slotDownloadProgress(bytesRead, totalBytes)
+        }
+
+        function openAndInitiateProgressBarQML(){
+        }
+
+        function resetProgressBarQML(){
+        }
+
+        function openMessageBox(title, info, modeIcon){
+        }
+
+        function closeAppMainWindow(){
+        }
+
+        function openUpdateConfirmDialog(updateToBeta){
+        }
+    }
+
+    MessageBox{
+        id: newVersionCheckMessageBox
+    }
+
+    UpdateConfirmDialog{
+        id: updateConfirmDialog
+
+        onAccepted: {
+            var installBeta = installType === UpdateConfirmDialog.Beta
+            ClientWrapper.utilsAdaptor.applyUpdates(installBeta)
+        }
+    }
+
+    UpdateDownloadDialog{
+        id: updateDownloadDialog
+
+        onCancelButtonClicked: {
+            ClientWrapper.networkManager.cancelRequest()
+        }
+    }
+
     // settings
     property string downloadPath: ClientWrapper.settingsAdaptor.getDir_Download()
 
