@@ -242,6 +242,7 @@ Rectangle {
 
     Connections{
         target: ClientWrapper.avmodel
+        enabled: visible
 
         function onAudioMeter(id, level){
             slotAudioMeter(id,level)
@@ -250,6 +251,7 @@ Rectangle {
 
     Connections{
         target: ClientWrapper.renderManager
+        enabled: visible
 
         function onVideoDeviceListChanged(){
             slotVideoDeviceListChanged()
