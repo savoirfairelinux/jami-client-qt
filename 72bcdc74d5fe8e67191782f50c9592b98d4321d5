@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26ce8657_c7bfb07d",
+        "filename": "src/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-14T17:43:10Z",
+      "side": 1,
+      "message": "what\u0027s this?",
+      "range": {
+        "startLine": 234,
+        "startChar": 32,
+        "endLine": 236,
+        "endChar": 36
+      },
+      "revId": "72bcdc74d5fe8e67191782f50c9592b98d4321d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
