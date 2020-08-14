@@ -25,13 +25,13 @@
 #endif
 
 #include "accountlistmodel.h"
+#include "networkmanager.h"
 #include "rendermanager.h"
 #include "settingskey.h"
 #include "utils.h"
 
 #include "api/account.h"
 #include "api/avmodel.h"
-#include "api/pluginmodel.h"
 #include "api/behaviorcontroller.h"
 #include "api/contact.h"
 #include "api/contactmodel.h"
@@ -44,6 +44,7 @@
 #include "api/newcodecmodel.h"
 #include "api/newdevicemodel.h"
 #include "api/peerdiscoverymodel.h"
+#include "api/pluginmodel.h"
 
 #include <QBuffer>
 #include <QMutex>
@@ -388,6 +389,12 @@ public:
         instance().lrc_->subscribeToDebugReceived();
     }
 
+    static NetWorkManager *
+    getNetworkManager()
+    {
+        return instance().netWorkManager_.get();
+    }
+
     static void
     startAudioMeter(bool async)
     {
@@ -460,10 +467,12 @@ private:
     {
         lrc_ = std::make_unique<Lrc>(willMigrateCb, didMigrateCb);
         renderer_ = std::make_unique<RenderManager>(lrc_->getAVModel());
+        netWorkManager_ = std::make_unique<NetWorkManager>();
     };
 
     std::unique_ptr<Lrc> lrc_;
     std::unique_ptr<RenderManager> renderer_;
+    std::unique_ptr<NetWorkManager> netWorkManager_;
     AccountListModel accountListModel_;
     QString selectedAccountId_;
     QString selectedConvUid_;
