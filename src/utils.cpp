@@ -450,23 +450,77 @@ Utils::cleanUpdateFiles()
 }
 
 void
-Utils::checkForUpdates(bool withUI, QWidget *parent)
+UtilsAdapter::checkForUpdates(bool withUI)
 {
-    Q_UNUSED(withUI)
-    Q_UNUSED(parent)
-    /*
-     * TODO: check update logic.
-     */
+    Utils::cleanUpdateFiles();
+    QUrl downloadPath{isBeta ? QUrl::fromEncoded("https://dl.jami.net/windows/beta/version")
+                             : QUrl::fromEncoded("https://dl.jami.net/windows/version")};
+
+    LRCInstance::instance()
+        .getNetworkManager()
+        ->getRequestReply(downloadPath, [this, withUI](int status, const QString &onlineVersion) {
+            if (status != 200) {
+                if (withUI) {
+                    emit LRCInstance::instance()
+                        .getNetworkManager()
+                        ->openMessageBox(QObject::tr("Update"),
+                                         QObject::tr(
+                                             "Installer download failed, please contact support"),
+                                         QMessageBox::Critical);
+                }
+                return;
+            }
+            auto currentVersion = QString(VERSION_STRING).toULongLong();
+            if (onlineVersion.isEmpty()) {
+                qWarning() << "No version file found";
+            } else if (onlineVersion.toULongLong() > currentVersion) {
+                qDebug() << "New version found";
+                applyUpdates(false);
+            } else {
+                qDebug() << "No new version found";
+                if (withUI) {
+                    emit LRCInstance::instance()
+                        .getNetworkManager()
+                        ->openMessageBox(QObject::tr("Update"),
+                                         QObject::tr("No new version found"),
+                                         QMessageBox::Information);
+                }
+            }
+        });
 }
 
 void
-Utils::applyUpdates(bool updateToBeta, QWidget *parent)
+UtilsAdapter::applyUpdates(bool updateToBeta)
 {
-    Q_UNUSED(updateToBeta)
-    Q_UNUSED(parent)
-    /*
-     * TODO: update logic.
-     */
+    QUrl downloadPath;
+    if (updateToBeta || isBeta) {
+        downloadPath = QUrl::fromEncoded("https://dl.jami.net/windows/beta/jami.beta.x64.msi");
+    } else {
+        downloadPath = QUrl::fromEncoded("https://dl.jami.net/windows/jami.release.x64.msi");
+    }
+
+    LRCInstance::instance()
+        .getNetworkManager()
+        ->getRequestFile(downloadPath, Utils::WinGetEnv("TEMP"), true, [downloadPath](int status) {
+            if (status != 200) {
+                emit LRCInstance::instance()
+                    .getNetworkManager()
+                    ->openMessageBox(QObject::tr("Update"),
+                                     QObject::tr(
+                                         "Installer download failed, please contact support"),
+                                     QMessageBox::Critical);
+                return;
+            }
+            auto args = QString(" /passive /norestart WIXNONUILAUNCH=1");
+            auto dir = Utils::WinGetEnv("TEMP");
+            auto cmdStartInstaller = "powershell " + QString(dir) + "\\" + downloadPath.fileName()
+                                     + " /L*V " + QString(dir) + "\\jami_x64_install.log" + args;
+
+            LRCInstance::instance().getNetworkManager()->closeAppMainWindow();
+            LRCInstance::instance().reset();
+
+            QProcess::startDetached(cmdStartInstaller);
+        });
 }
 
 inline QString
