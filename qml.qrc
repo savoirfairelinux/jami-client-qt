@@ -99,5 +99,7 @@
         <file>src/commoncomponents/AccountMigrationDialog.qml</file>
         <file>src/mainview/components/RecordBox.qml</file>
         <file>src/commoncomponents/ElidedTextLabel.qml</file>
+        <file>src/commoncomponents/UpdateConfirmDialog.qml</file>
+        <file>src/commoncomponents/UpdateDownloadDialog.qml</file>
     </qresource>
 </RCC>
