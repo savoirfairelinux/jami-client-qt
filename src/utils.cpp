@@ -450,20 +450,23 @@ Utils::cleanUpdateFiles()
 }
 
 void
-Utils::checkForUpdates(bool withUI, QWidget *parent)
+Utils::checkForUpdates(bool withUI)
 {
-    Q_UNUSED(withUI)
-    Q_UNUSED(parent)
-    /*
-     * TODO: check update logic.
-     */
+    Utils::cleanUpdateFiles();
+    QUrl downloadPath{isBeta ? QUrl::fromEncoded("https://dl.jami.net/windows/beta/version")
+                             : QUrl::fromEncoded("https://dl.jami.net/windows/version")};
+
+    LRCInstance::instance()
+        .getNetworkManager()
+        ->getRequestReply(downloadPath, [withUI](int status, const QString &onlineVersion) {
+            qDebug() << onlineVersion;
+        });
 }
 
 void
-Utils::applyUpdates(bool updateToBeta, QWidget *parent)
+Utils::applyUpdates(bool updateToBeta)
 {
     Q_UNUSED(updateToBeta)
-    Q_UNUSED(parent)
     /*
      * TODO: update logic.
      */
