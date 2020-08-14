@@ -25,15 +25,16 @@
 
 #include <string>
 
+#include <QApplication>
 #include <QClipboard>
 #include <QCryptographicHash>
 #include <QDir>
-#include <QApplication>
 #include <QImage>
 #include <QItemDelegate>
 #include <QLabel>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QPainterPath>
 #include <QQmlEngine>
 #include <QSettings>
 #include <QStackedWidget>
@@ -41,7 +42,6 @@
 #include <QString>
 #include <QTextDocument>
 #include <QtGlobal>
-#include <QPainterPath>
 
 #ifdef Q_OS_WIN
 #include <ciso646>
@@ -150,8 +150,8 @@ void setCurrentScalingRatio(float ratio);
  * Updates.
  */
 void cleanUpdateFiles();
-void checkForUpdates(bool withUI, QWidget *parent = nullptr);
-void applyUpdates(bool updateToBeta, QWidget *parent = nullptr);
+void checkForUpdates(bool withUI);
+void applyUpdates(bool updateToBeta);
 
 /*
  * Names.
