@@ -91,67 +91,24 @@ Rectangle {
                 text: qsTr("This is your ID.\nCopy and share it with your friends")
                 color: JamiTheme.faddedFontColor
             }
+        }
+    }
 
-            Rectangle {
-                id: jamiRegisteredNameRect
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomeRectComponentsGroup.width
-                Layout.preferredHeight: 65
-                Layout.bottomMargin: 5
+    Button {
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        background: Rectangle {
+            color: "transparent"
+        }
+        anchors.bottomMargin: 12
+        contentItem: Text {
+            text: qsTr("About Jami")
+            color: "grey"
+        }
 
-                visible: accountListModel.data(accountListModel.index(
-                                                   currentAccountIndex, 0),
-                                               260) === 1
-
-                ColumnLayout {
-                    id: jamiRegisteredNameRectColumnLayout
-
-                    spacing: 0
-
-                    Text {
-                        id: jamiRegisteredNameText
-
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: welcomeRectComponentsGroup.width
-                        Layout.preferredHeight: 30
-
-                        font.pointSize: JamiTheme.textFontSize + 1
-
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-
-                        text: textMetricsjamiRegisteredNameText.elidedText
-
-                        TextMetrics {
-                            id: textMetricsjamiRegisteredNameText
-
-                            font: jamiRegisteredNameText.font
-                            text: accountListModel.data(
-                                      accountListModel.index(
-                                          currentAccountIndex, 0), 258)
-                            elideWidth: welcomeRectComponentsGroup.width
-                            elide: Qt.ElideMiddle
-                        }
-                    }
-
-                    HoverableButton {
-                        id: copyRegisterednameButton
-
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: buttonPreferredSize
-                        Layout.preferredHeight: buttonPreferredSize
-
-                        radius: 30
-                        source: "qrc:/images/icons/ic_content_copy.svg"
-
-                        onClicked: {
-                            ClientWrapper.utilsAdaptor.setText(
-                                        textMetricsjamiRegisteredNameText.text)
-                        }
-                    }
-                }
-            }
+        onClicked: {
+            aboutPopUpDialog.open()
         }
     }
 
