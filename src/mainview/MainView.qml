@@ -43,7 +43,7 @@ Window {
     property int mainViewWindowPreferredHeight: 600
     property int sidePanelViewStackPreferredWidth: 250
     property int mainViewStackPreferredWidth: 250
-    property int aboutPopUpPreferredWidth: 250
+    property int aboutPopUpPreferredWidth: 400
 
     property int savedSidePanelViewMinWidth: 0
     property int savedSidePanelViewMaxWidth: 0
@@ -680,7 +680,7 @@ Window {
 
         x: Math.round((mainViewWindow.width - width) / 2)
         y: Math.round((mainViewWindow.height - height) / 2)
-        width: Math.max(mainViewWindow.width / 2, aboutPopUpPreferredWidth)
+        width: aboutPopUpPreferredWidth
         height: aboutPopUpDialog.contentHeight
     }
 
