@@ -22,6 +22,30 @@
       "revId": "3bf2672af127dc0b0ab2e6709421d391946ad7f2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8736afe3_3274a7d0",
+        "filename": "src/mainview/components/CallOverlayButtonGroup.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-17T14:49:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4944dc65_8ae214d4",
+      "range": {
+        "startLine": 185,
+        "startChar": 7,
+        "endLine": 207,
+        "endChar": 9
+      },
+      "revId": "3bf2672af127dc0b0ab2e6709421d391946ad7f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
