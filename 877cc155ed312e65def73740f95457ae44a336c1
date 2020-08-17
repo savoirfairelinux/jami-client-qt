@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "281a208e_70be6faf",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "No. But we should add a commit for clangFormat soon",
+      "parentUuid": "0016138b_c6490a0f",
+      "range": {
+        "startLine": 382,
+        "startChar": 4,
+        "endLine": 383,
+        "endChar": 55
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5053019f_b01e02dd",
         "filename": "src/commoncomponents/HoverableButton.qml",
         "patchSetId": 19
@@ -36,6 +60,30 @@
       "writtenOn": "2020-08-17T16:39:00Z",
       "side": 1,
       "message": "I think we should follow the guidelines for multiline ternaries from: https://eslint.org/docs/rules/multiline-ternary",
+      "range": {
+        "startLine": 83,
+        "startChar": 20,
+        "endLine": 83,
+        "endChar": 121
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a1192bf_ecc12620",
+        "filename": "src/commoncomponents/HoverableButton.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "don\u0027t care should be linted, but done",
+      "parentUuid": "5053019f_b01e02dd",
       "range": {
         "startLine": 83,
         "startChar": 20,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "f8342c05_becf8ff3",
+        "filename": "src/mainview/components/AudioCallPage.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "A lot of names are ugly. anyway just renamed this",
+      "parentUuid": "74eeba9e_b41389df",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 42
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "87ce8adf_4e443d4c",
         "filename": "src/mainview/components/CallAdvancedOptions.qml",
         "patchSetId": 19
@@ -82,6 +154,30 @@
       "writtenOn": "2020-08-17T16:39:00Z",
       "side": 1,
       "message": "It seems enums are almost always better defined in a cpp header as enum classes. Having to reference GUI components to access their defined enums is strange to follow and susceptible to\nhard to see(without QML testing) runtime exceptions when refactoring.",
+      "range": {
+        "startLine": 30,
+        "startChar": 23,
+        "endLine": 30,
+        "endChar": 69
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc338583_e4ea9c72",
+        "filename": "src/mainview/components/CallAdvancedOptions.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "It\u0027s from the old code. Didn\u0027t change this a lot. For now, I let this as it is",
+      "parentUuid": "87ce8adf_4e443d4c",
       "range": {
         "startLine": 30,
         "startChar": 23,
@@ -111,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "6e7b6f69_f76797ca",
+        "filename": "src/mainview/components/CallAdvancedOptions.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50d5da45_881d0c46",
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba2b068f_be32cf2a",
         "filename": "src/mainview/components/CallOverlay.qml",
         "patchSetId": 19
@@ -122,6 +236,30 @@
       "writtenOn": "2020-08-17T16:39:00Z",
       "side": 1,
       "message": "whitespace",
+      "range": {
+        "startLine": 360,
+        "startChar": 0,
+        "endLine": 360,
+        "endChar": 8
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a818b31_e78983d8",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "mmh my auto trim seems bugguy",
+      "parentUuid": "ba2b068f_be32cf2a",
       "range": {
         "startLine": 360,
         "startChar": 0,
@@ -157,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "f1fa81c7_b378f08e",
+        "filename": "src/mainview/components/CallOverlayButtonGroup.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b27717b8_527135e0",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 8
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8af1ac6_d4d4a4b7",
         "filename": "src/mainview/components/CallViewContextMenu.qml",
         "patchSetId": 19
@@ -174,6 +336,24 @@
     },
     {
       "key": {
+        "uuid": "db413f71_9c3c59df",
+        "filename": "src/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8af1ac6_d4d4a4b7",
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "662b8cdc_1d6ee4bb",
         "filename": "src/mainview/components/CallViewContextMenu.qml",
         "patchSetId": 19
@@ -185,6 +365,30 @@
       "writtenOn": "2020-08-17T16:39:00Z",
       "side": 1,
       "message": "what is meant by responsible here?",
+      "range": {
+        "startLine": 32,
+        "startChar": 20,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11870129_bd182f26",
+        "filename": "src/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Already discuted with you. I think this should be changed",
+      "parentUuid": "662b8cdc_1d6ee4bb",
       "range": {
         "startLine": 32,
         "startChar": 20,
@@ -214,6 +418,24 @@
     },
     {
       "key": {
+        "uuid": "183084c5_74ac2d8f",
+        "filename": "src/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b933430_0fec9de6",
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e195dc7_15c24982",
         "filename": "src/mainview/components/CallViewContextMenu.qml",
         "patchSetId": 19
@@ -225,6 +447,30 @@
       "writtenOn": "2020-08-17T16:39:00Z",
       "side": 1,
       "message": "is this ready? can it be disabled?",
+      "range": {
+        "startLine": 265,
+        "startChar": 4,
+        "endLine": 304,
+        "endChar": 7
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06b41afd_1779d985",
+        "filename": "src/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "It\u0027s for the future. It\u0027s for Aline\u0027s patch and we want advanced informations (at least on linux). So I let this as it is",
+      "parentUuid": "7e195dc7_15c24982",
       "range": {
         "startLine": 265,
         "startChar": 4,
@@ -260,6 +506,30 @@
     },
     {
       "key": {
+        "uuid": "90835902_bb8adee4",
+        "filename": "src/mainview/components/VideoCallPage.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "should be in next patch",
+      "parentUuid": "b42d99f9_dec92260",
+      "range": {
+        "startLine": 138,
+        "startChar": 13,
+        "endLine": 138,
+        "endChar": 36
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "946981e6_3dc8c5bf",
         "filename": "src/mainview/components/VideoCallPage.qml",
         "patchSetId": 19
@@ -280,6 +550,30 @@
       "revId": "877cc155ed312e65def73740f95457ae44a336c1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63da5ca9_769aa00e",
+        "filename": "src/mainview/components/VideoCallPage.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "946981e6_3dc8c5bf",
+      "range": {
+        "startLine": 273,
+        "startChar": 24,
+        "endLine": 275,
+        "endChar": 25
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -306,6 +600,30 @@
     },
     {
       "key": {
+        "uuid": "300d3373_f496453d",
+        "filename": "src/mainview/components/VideoCallPageContextMenuDeviceItem.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bd1efa9_0d89a1d2",
+      "range": {
+        "startLine": 45,
+        "startChar": 14,
+        "endLine": 45,
+        "endChar": 99
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7e7ca83_be9eb35e",
         "filename": "src/mainview/components/VideoCallPageContextMenuDeviceItem.qml",
         "patchSetId": 19
@@ -329,6 +647,30 @@
     },
     {
       "key": {
+        "uuid": "61d51d57_18216ecc",
+        "filename": "src/mainview/components/VideoCallPageContextMenuDeviceItem.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7e7ca83_be9eb35e",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 153
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad1664ea_4053c05c",
         "filename": "src/mainview/js/videodevicecontextmenuitemcreation.js",
         "patchSetId": 19
@@ -349,6 +691,30 @@
       "revId": "877cc155ed312e65def73740f95457ae44a336c1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91f39e3e_8f9a43b5",
+        "filename": "src/mainview/js/videodevicecontextmenuitemcreation.js",
+        "patchSetId": 19
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-17T20:19:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ad1664ea_4053c05c",
+      "range": {
+        "startLine": 75,
+        "startChar": 38,
+        "endLine": 75,
+        "endChar": 39
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
