@@ -1,0 +1,360 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6241137e_16068cf8",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "unused",
+      "range": {
+        "startLine": 490,
+        "startChar": 33,
+        "endLine": 490,
+        "endChar": 51
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c343f881_15d151be",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "return Utils::toUnderlyingValue(call.layout);",
+      "range": {
+        "startLine": 558,
+        "startChar": 12,
+        "endLine": 565,
+        "endChar": 14
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c98f0a9a_355cb759",
+        "filename": "src/distantrenderer.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "these variables should have either sensible names or decent descriptive comments above them",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 16
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b61c7e4c_bb404b37",
+        "filename": "src/distantrenderer.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "should be all defined in the cpp or here but not a mix",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 5
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3235056e_9d7f99e6",
+        "filename": "src/distantrenderer.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "I think this should be called xOffset_ like the getter above.",
+      "range": {
+        "startLine": 60,
+        "startChar": 8,
+        "endLine": 60,
+        "endChar": 14
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b6a0e75_ff5153ee",
+        "filename": "src/distantrenderer.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "scaledHeight_",
+      "range": {
+        "startLine": 62,
+        "startChar": 11,
+        "endLine": 62,
+        "endChar": 19
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d463f801_5a4f462d",
+        "filename": "src/lrcinstance.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "this can wait for clang-format :)",
+      "range": {
+        "startLine": 232,
+        "startChar": 12,
+        "endLine": 232,
+        "endChar": 115
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fae60637_10e3b93c",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "would be preferable to have early return/error handling as a habit for post-createObject imo",
+      "range": {
+        "startLine": 91,
+        "startChar": 20,
+        "endLine": 91,
+        "endChar": 25
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eebf8490_216dc67c",
+        "filename": "src/mainview/components/ParticipantContextMenu.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "operator spacing",
+      "range": {
+        "startLine": 34,
+        "startChar": 20,
+        "endLine": 34,
+        "endChar": 44
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcc0be77_5b31adad",
+        "filename": "src/mainview/components/ParticipantHover.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "Is this the per-participant overlay? If so, can it be called ParticipantOverlay, as the term is already prevalent thoughout the client with the same meaning.",
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5fb5b6c_d3a132cc",
+        "filename": "src/mainview/components/ParticipantHover.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "endlines at first line everywhere ??",
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0647b0f7_b61be38e",
+        "filename": "src/mainview/components/ParticipantHover.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "separate below",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 8
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ac0300d_1d65cbdf",
+        "filename": "src/mainview/components/ParticipantHover.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "!\u003d\u003d",
+      "range": {
+        "startLine": 108,
+        "startChar": 51,
+        "endLine": 108,
+        "endChar": 53
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39d30de0_c5895618",
+        "filename": "src/mainview/components/ParticipantHover.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "\u003d\u003d -\u003e \u003d\u003d\u003d",
+      "range": {
+        "startLine": 109,
+        "startChar": 53,
+        "endLine": 109,
+        "endChar": 72
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec3b418c_4d756a7d",
+        "filename": "src/mainview/components/ParticipantHover.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "This is defined in VideoCallPage.qml and shouldn\u0027t be referenced by exploiting QML\u0027s flexible component scope. I think it should be explicitly injected somehow, either an alias or an Item property.",
+      "range": {
+        "startLine": 110,
+        "startChar": 24,
+        "endLine": 110,
+        "endChar": 46
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "131310ce_5aed1406",
+        "filename": "src/mainview/components/ParticipantHover.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 1,
+      "message": "break line pls",
+      "range": {
+        "startLine": 113,
+        "startChar": 24,
+        "endLine": 113,
+        "endChar": 132
+      },
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}

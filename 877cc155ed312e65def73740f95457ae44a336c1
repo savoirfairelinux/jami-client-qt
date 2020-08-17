@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cee744be_ce956b3a",
+        "filename": "src/distantrenderer.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-17T19:36:35Z",
+      "side": 0,
+      "message": "yeah this was not a good variable name; it\u0027s old baggage from the minGW client era that should be removed",
+      "range": {
+        "startLine": 60,
+        "startChar": 13,
+        "endLine": 60,
+        "endChar": 18
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
