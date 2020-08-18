@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0aa67420_a56a0355",
+        "filename": "src/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T15:05:37Z",
+      "side": 1,
+      "message": "is this part of the crash fix? this seems like a fix for something else",
+      "range": {
+        "startLine": 170,
+        "startChar": 74,
+        "endLine": 170,
+        "endChar": 118
+      },
+      "revId": "1a7ca96a7aad064c7bc9d0a9ba252d28c4e5c020",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
