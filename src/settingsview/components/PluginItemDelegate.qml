@@ -38,8 +38,6 @@ ItemDelegate {
     signal btnLoadPluginToggled
     signal btnPreferencesPluginClicked
 
-    highlighted: ListView.isCurrentItem
-
     RowLayout{
         anchors.fill: parent
 
@@ -100,17 +98,17 @@ ItemDelegate {
             property bool isHovering: false
 
             Layout.bottomMargin: 7
-            Layout.rightMargin: 15
+            Layout.rightMargin: 25
 
-            Layout.maximumWidth: 30
-            Layout.preferredWidth: 30
-            Layout.minimumWidth: 30
+            Layout.maximumWidth: 20
+            Layout.preferredWidth: 20
+            Layout.minimumWidth: 20
 
-            Layout.minimumHeight: 30
-            Layout.preferredHeight: 30
-            Layout.maximumHeight: 30
+            Layout.minimumHeight: 20
+            Layout.preferredHeight: 20
+            Layout.maximumHeight: 20
 
-            ToolTip.visible: isHovering
+            ToolTip.visible: hovered
             ToolTip.text: {
                 return qsTr("Load/Unload")
             }
@@ -144,17 +142,19 @@ ItemDelegate {
         HoverableRadiusButton{
             id: btnPreferencesPlugin
 
+            backgroundColor: "white"
+
             Layout.bottomMargin: 7
             Layout.rightMargin: 7
             Layout.alignment: Qt.AlignRight
 
-            Layout.minimumWidth: 30
-            Layout.preferredWidth: 30
-            Layout.maximumWidth: 30
+            Layout.minimumWidth: 25
+            Layout.preferredWidth: 25
+            Layout.maximumWidth: 25
 
-            Layout.minimumHeight: 30
-            Layout.preferredHeight: 30
-            Layout.maximumHeight: 30
+            Layout.minimumHeight: 25
+            Layout.preferredHeight: 25
+            Layout.maximumHeight: 25
 
             buttonImageHeight: height
             buttonImageWidth: height
@@ -163,9 +163,9 @@ ItemDelegate {
                 return "qrc:/images/icons/round-settings-24px.svg"
             }
 
-            ToolTip.visible: isHovering
+            ToolTip.visible: hovered
             ToolTip.text: {
-                return qsTr("Edit preferences")
+                return qsTr("Show preferences")
             }
 
             onClicked: {

@@ -31,11 +31,12 @@ class PreferenceItemListModel : public QAbstractListModel
     Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId)
     Q_PROPERTY(int numPreferences READ numPreferences)
 public:
-    enum Role { PreferenceKey = Qt::UserRole + 1, PreferenceName, PreferenceSummary, PreferenceType, PreferenceDefaultValue, PreferenceEntries, PreferenceEntryValues};
+    enum Role { PreferenceKey = Qt::UserRole + 1, PreferenceName, PreferenceSummary, PreferenceType, PluginId, PreferenceCurrentValue};
 
     typedef enum {
-    LIST,
-    DEFAULT,
+        LIST,
+        USERLIST,
+        DEFAULT,
     } Type;
 
     Q_ENUM(Role)

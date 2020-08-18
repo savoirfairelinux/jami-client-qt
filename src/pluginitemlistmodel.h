@@ -27,6 +27,7 @@
 class PluginItemListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int numPlugins READ numPlugins)
 
 public:
     enum Role { PluginName = Qt::UserRole + 1, PluginId, PluginIcon, IsLoaded };
@@ -49,6 +50,7 @@ public:
     QModelIndex parent(const QModelIndex &child) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
+    int numPlugins();
     /*
      * This function is to reset the model when there's new account added.
      */
