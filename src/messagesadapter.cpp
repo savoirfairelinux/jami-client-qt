@@ -57,7 +57,13 @@ MessagesAdapter::slotAccountChanged()
 void
 MessagesAdapter::setupChatView(const QString &uid)
 {
-    auto &convInfo = LRCInstance::getConversationFromConvUid(uid);
+
+    auto convModel = LRCInstance::getCurrentConversationModel();
+    if (convModel == nullptr) {
+        return;
+    }
+    const auto &convInfo = convModel->getConversationForUID(uid);
+    //auto &convInfo = LRCInstance::getConversationFromConvUid(uid);
     if (convInfo.uid.isEmpty()) {
         return;
     }
@@ -211,8 +217,10 @@ MessagesAdapter::slotUpdateDraft(const QString &content)
 void
 MessagesAdapter::slotMessagesCleared()
 {
-    auto &convInfo = LRCInstance::getConversationFromConvUid(LRCInstance::getCurrentConvUid());
     auto convModel = LRCInstance::getCurrentConversationModel();
+    auto convInfo = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    //auto &convInfo = LRCInstance::getConversationFromConvUid(LRCInstance::getCurrentConvUid());
+    //auto convModel = LRCInstance::getCurrentConversationModel();
 
     printHistory(*convModel, convInfo.interactions);
 
@@ -438,7 +446,8 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info &
 {
     auto convModel = LRCInstance::getCurrentConversationModel();
     auto accInfo = &LRCInstance::getCurrentAccountInfo();
-    auto contactUri = convInfo.participants.front();
+    auto contactUri = convModel->getConversationForUID(convInfo.uid).uid;
+    //auto contactUri = convInfo.participants.front();
 
     if (contactUri.isEmpty()) {
         return;
@@ -473,7 +482,8 @@ MessagesAdapter::newInteraction(const QString &accountId,
     try {
         auto &accountInfo = LRCInstance::getAccountInfo(accountId);
         auto &convModel = accountInfo.conversationModel;
-        auto &conversation = LRCInstance::getConversationFromConvUid(convUid, accountId);
+        //auto &conversation = LRCInstance::getConversationFromConvUid(convUid, accountId);
+        auto conversation = convModel->getConversationForUID(convUid);
 
         if (conversation.uid.isEmpty()) {
             return;

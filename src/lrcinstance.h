@@ -156,7 +156,9 @@ public:
     static QString
     getCallIdForConversationUid(const QString &convUid, const QString &accountId)
     {
-        auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+        auto convModel = LRCInstance::getCurrentConversationModel();
+        auto convInfo = convModel->getConversationForUID(convUid);
+        //auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
         if (convInfo.uid.isEmpty()) {
             return {};
         }
