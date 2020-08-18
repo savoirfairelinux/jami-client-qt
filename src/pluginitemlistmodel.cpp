@@ -1,6 +1,6 @@
-/*
+/**
  * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Aline Gondim Santos   <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +18,14 @@
 
 #include "pluginitemlistmodel.h"
 
-PluginItemListModel::PluginItemListModel(QObject *parent)
+PluginItemListModel::PluginItemListModel(QObject* parent)
     : QAbstractListModel(parent)
 {}
 
 PluginItemListModel::~PluginItemListModel() {}
 
 int
-PluginItemListModel::rowCount(const QModelIndex &parent) const
+PluginItemListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid()) {
         /*
@@ -40,7 +40,7 @@ PluginItemListModel::rowCount(const QModelIndex &parent) const
 }
 
 int
-PluginItemListModel::columnCount(const QModelIndex &parent) const
+PluginItemListModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     /*
@@ -50,7 +50,7 @@ PluginItemListModel::columnCount(const QModelIndex &parent) const
 }
 
 QVariant
-PluginItemListModel::data(const QModelIndex &index, int role) const
+PluginItemListModel::data(const QModelIndex& index, int role) const
 {
     auto pluginList = LRCInstance::pluginModel().listAvailablePlugins();
     if (!index.isValid() || pluginList.size() <= index.row()) {
@@ -60,14 +60,14 @@ PluginItemListModel::data(const QModelIndex &index, int role) const
     auto details = LRCInstance::pluginModel().getPluginDetails(pluginList.at(index.row()));
 
     switch (role) {
-        case Role::PluginName:
-            return QVariant(details.name);
-        case Role::PluginId:
-            return QVariant(pluginList.at(index.row()));
-        case Role::PluginIcon:
-            return QVariant(details.iconPath);
-        case Role::IsLoaded:
-            return QVariant(details.loaded);
+    case Role::PluginName:
+        return QVariant(details.name);
+    case Role::PluginId:
+        return QVariant(pluginList.at(index.row()));
+    case Role::PluginIcon:
+        return QVariant(details.iconPath);
+    case Role::IsLoaded:
+        return QVariant(details.loaded);
     }
     return QVariant();
 }
@@ -80,12 +80,12 @@ PluginItemListModel::roleNames() const
     roles[PluginId] = "PluginId";
     roles[PluginIcon] = "PluginIcon";
     roles[IsLoaded] = "IsLoaded";
-    
+
     return roles;
 }
 
 QModelIndex
-PluginItemListModel::index(int row, int column, const QModelIndex &parent) const
+PluginItemListModel::index(int row, int column, const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     if (column != 0) {
@@ -99,14 +99,14 @@ PluginItemListModel::index(int row, int column, const QModelIndex &parent) const
 }
 
 QModelIndex
-PluginItemListModel::parent(const QModelIndex &child) const
+PluginItemListModel::parent(const QModelIndex& child) const
 {
     Q_UNUSED(child);
     return QModelIndex();
 }
 
 Qt::ItemFlags
-PluginItemListModel::flags(const QModelIndex &index) const
+PluginItemListModel::flags(const QModelIndex& index) const
 {
     auto flags = QAbstractItemModel::flags(index) | Qt::ItemNeverHasChildren | Qt::ItemIsSelectable;
     if (!index.isValid()) {
@@ -120,4 +120,10 @@ PluginItemListModel::reset()
 {
     beginResetModel();
     endResetModel();
+}
+
+int
+PluginItemListModel::numPlugins()
+{
+    return LRCInstance::pluginModel().listAvailablePlugins().size();
 }
