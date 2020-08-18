@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "dd6a5d0f_5712d8aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T17:19:45Z",
+      "side": 1,
+      "message": "fix a crash when toggling hardware accel",
+      "range": {
+        "startLine": 7,
+        "startChar": 41,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "1a7ca96a7aad064c7bc9d0a9ba252d28c4e5c020",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0aa67420_a56a0355",
         "filename": "src/commoncomponents/PasswordDialog.qml",
         "patchSetId": 7
