@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3ab9293_6ea46625",
+        "filename": "src/mainview/components/AccountComboBox.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T15:38:48Z",
+      "side": 1,
+      "message": "haha nice, a rare case where a negated predicate is well placed",
+      "range": {
+        "startLine": 244,
+        "startChar": 16,
+        "endLine": 245,
+        "endChar": 89
+      },
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6751100_7a04ccb0",
+        "filename": "src/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T15:38:48Z",
+      "side": 1,
+      "message": "not a big deal but something is strange about the multiline indentation here",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
