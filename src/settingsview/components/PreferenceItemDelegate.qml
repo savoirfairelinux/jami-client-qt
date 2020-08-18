@@ -30,23 +30,34 @@ import "../../commoncomponents"
 ItemDelegate {
     id: preferenceItemDelegate
 
-    property string preferenceKey: ""
+    enum Type {
+        LIST,
+        USERLIST,
+        DEFAULT
+    }
+
     property string preferenceName: ""
     property string preferenceSummary: ""
     property int preferenceType: -1
-    property string preferenceDefaultValue: ""
-    property var preferenceEntries: []
-    property var preferenceEntryValues: []
+    property string preferenceCurrentValue: ""
     property string preferenceNewValue: ""
+    property string pluginId: ""
+    property PluginListPreferenceModel pluginListPreferenceModel
 
     signal btnPreferenceClicked
 
-    highlighted: ListView.isCurrentItem
+    function getNewPreferenceValueSlot(index)
+    {
+        pluginListPreferenceModel.idx = index
+        preferenceNewValue = pluginListPreferenceModel.preferenceNewValue
+        btnPreferenceClicked()
+    }
 
     RowLayout{
         anchors.fill: parent
 
         ColumnLayout{
+            visible: preferenceType === PreferenceItemDelegate.DEFAULT
             Layout.fillWidth: true
             Layout.fillHeight: true
 
@@ -69,9 +80,10 @@ ItemDelegate {
 
         HoverableRadiusButton{
             id: btnPreference
+            visible: preferenceType === PreferenceItemDelegate.DEFAULT
+            backgroundColor: "white"
 
             Layout.alignment: Qt.AlignRight
-            Layout.bottomMargin: 7
             Layout.rightMargin: 7
 
             Layout.minimumWidth: 30
@@ -82,20 +94,44 @@ ItemDelegate {
             Layout.preferredHeight: 30
             Layout.maximumHeight: 30
 
-            buttonImageHeight: height
-            buttonImageWidth: height
+            buttonImageHeight: 20
+            buttonImageWidth: 20
 
             source:{
                 return "qrc:/images/icons/round-settings-24px.svg"
             }
 
-            ToolTip.visible: isHovering
+            ToolTip.visible: hovered
             ToolTip.text: {
-                return qsTr("Modify preference")
+                return qsTr("Edit preference")
             }
 
             onClicked: {
                 btnPreferenceClicked()
+            }
+        }
+
+        ElidedTextLabel {
+            visible: preferenceType === PreferenceItemDelegate.LIST
+            Layout.fillWidth: true
+
+            eText: preferenceName
+            fontSize: JamiTheme.settingsFontSize
+        }
+
+
+        SettingParaCombobox {
+            id: preferenceComboBox
+            visible: preferenceType === PreferenceItemDelegate.LIST
+
+            font.pointSize: JamiTheme.settingsFontSize
+            font.kerning: true
+
+            model: pluginListPreferenceModel
+            textRole: qsTr("PreferenceValue")
+            tooltipText: qsTr("Choose the preference")
+            onActivated: {
+                getNewPreferenceValueSlot(index)
             }
         }
     }
