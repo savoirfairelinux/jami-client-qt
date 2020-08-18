@@ -417,22 +417,18 @@ ColumnLayout {
                     fontSize: JamiTheme.settingsFontSize
                 }
 
-                HoverableRadiusButton {
+                MaterialButton {
                     id: btnRingtoneSIP
 
                     Layout.minimumWidth: preferredColumnWidth
                     Layout.preferredWidth: preferredColumnWidth
                     Layout.maximumWidth: preferredColumnWidth
-
                     Layout.minimumHeight: preferredFieldHeight
                     Layout.preferredHeight: preferredFieldHeight
                     Layout.maximumHeight: preferredFieldHeight
 
-                    radius: height / 2
-
-                    icon.source: "qrc:/images/icons/round-folder-24px.svg"
-                    icon.width: 16
-                    icon.height: 16
+                    source: "qrc:/images/icons/round-folder-24px.svg"
+                    color: JamiTheme.buttonTintedGrey
 
                     onClicked: {
                         ringtonePath_Dialog_SIP.open()
@@ -480,11 +476,12 @@ ColumnLayout {
                 Layout.fillWidth: true
             }
 
-            InfoLineEdit {
+            MaterialLineEdit {
                 id: lineEditVoiceMailDialCode
 
                 fieldLayoutWidth: preferredColumnWidth
                 fieldLayoutHeight: preferredFieldHeight
+                padding: 8
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
@@ -618,7 +615,7 @@ ColumnLayout {
                     maxWidth: preferredColumnWidth
                 }
 
-                HoverableRadiusButton {
+                MaterialButton {
                     id: btnSIPCACert
 
                     Layout.minimumWidth: preferredColumnWidth
@@ -628,11 +625,8 @@ ColumnLayout {
                     Layout.preferredHeight: preferredFieldHeight
                     Layout.maximumHeight: preferredFieldHeight
 
-                    radius: height / 2
-
-                    icon.source: "qrc:/images/icons/round-folder-24px.svg"
-                    icon.width: 16
-                    icon.height: 16
+                    source: "qrc:/images/icons/round-folder-24px.svg"
+                    color: JamiTheme.buttonTintedGrey
 
                     onClicked: {
                         caCert_Dialog_SIP.open()
@@ -651,22 +645,18 @@ ColumnLayout {
                     maxWidth: preferredColumnWidth
                 }
 
-                HoverableRadiusButton {
+                MaterialButton {
                     id: btnSIPUserCert
 
                     Layout.minimumWidth: preferredColumnWidth
                     Layout.preferredWidth: preferredColumnWidth
                     Layout.maximumWidth: preferredColumnWidth
-
                     Layout.minimumHeight: preferredFieldHeight
                     Layout.preferredHeight: preferredFieldHeight
                     Layout.maximumHeight: preferredFieldHeight
 
-                    radius: height / 2
-
-                    icon.source: "qrc:/images/icons/round-folder-24px.svg"
-                    icon.width: 16
-                    icon.height: 16
+                    source: "qrc:/images/icons/round-folder-24px.svg"
+                    color: JamiTheme.buttonTintedGrey
 
                     onClicked: {
                         userCert_Dialog_SIP.open()
@@ -685,22 +675,18 @@ ColumnLayout {
                     maxWidth: preferredColumnWidth
                 }
 
-                HoverableRadiusButton {
+                MaterialButton {
                     id: btnSIPPrivateKey
 
                     Layout.minimumWidth: preferredColumnWidth
                     Layout.preferredWidth: preferredColumnWidth
                     Layout.maximumWidth: preferredColumnWidth
-
                     Layout.minimumHeight: preferredFieldHeight
                     Layout.preferredHeight: preferredFieldHeight
                     Layout.maximumHeight: preferredFieldHeight
 
-                    radius: height / 2
-
-                    icon.source: "qrc:/images/icons/round-folder-24px.svg"
-                    icon.width: 16
-                    icon.height: 16
+                    source: "qrc:/images/icons/round-folder-24px.svg"
+                    color: JamiTheme.buttonTintedGrey
 
                     onClicked: {
                         privateKey_Dialog_SIP.open()
@@ -721,11 +707,12 @@ ColumnLayout {
                 }
 
 
-                InfoLineEdit {
+                MaterialLineEdit {
                     id: lineEditSIPCertPassword
 
                     fieldLayoutWidth: preferredColumnWidth
                     fieldLayoutHeight: preferredFieldHeight
+                    padding: 8
 
                     font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
@@ -854,11 +841,12 @@ ColumnLayout {
                     maxWidth: preferredColumnWidth
                 }
 
-                InfoLineEdit {
+                MaterialLineEdit {
                     id: outgoingTLSServerNameLineEdit
 
                     fieldLayoutWidth: preferredColumnWidth
                     fieldLayoutHeight: preferredFieldHeight
+                    padding: 8
 
                     font.pointSize: JamiTheme.settingsFontSize
                     font.kerning: true
@@ -1059,11 +1047,12 @@ ColumnLayout {
                 maxWidth: preferredColumnWidth
             }
 
-            InfoLineEdit {
+            MaterialLineEdit {
                 id: lineEditTurnAddressSIP
 
                 fieldLayoutWidth: preferredColumnWidth
                 fieldLayoutHeight: preferredFieldHeight
+                padding: 8
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
@@ -1088,11 +1077,12 @@ ColumnLayout {
                 maxWidth: preferredColumnWidth
             }
 
-            InfoLineEdit {
+            MaterialLineEdit {
                 id: lineEditTurnUsernameSIP
 
                 fieldLayoutWidth: preferredColumnWidth
                 fieldLayoutHeight: preferredFieldHeight
+                padding: 8
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
@@ -1116,11 +1106,12 @@ ColumnLayout {
                 maxWidth: preferredColumnWidth
             }
 
-            InfoLineEdit {
+            MaterialLineEdit {
                 id: lineEditTurnPsswdSIP
 
                 fieldLayoutWidth: preferredColumnWidth
                 fieldLayoutHeight: preferredFieldHeight
+                padding: 8
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
@@ -1147,11 +1138,12 @@ ColumnLayout {
                 maxWidth: preferredColumnWidth
             }
 
-            InfoLineEdit {
+            MaterialLineEdit {
                 id: lineEditTurnRealmSIP
 
                 fieldLayoutWidth: preferredColumnWidth
                 fieldLayoutHeight: preferredFieldHeight
+                padding: 8
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
@@ -1191,11 +1183,12 @@ ColumnLayout {
                 maxWidth: preferredColumnWidth
             }
 
-            InfoLineEdit {
+            MaterialLineEdit {
                 id: lineEditSTUNAddressSIP
 
                 fieldLayoutWidth: preferredColumnWidth
                 fieldLayoutHeight: preferredFieldHeight
+                padding: 8
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
@@ -1274,11 +1267,12 @@ ColumnLayout {
                 maxWidth: preferredColumnWidth
             }
 
-            InfoLineEdit {
+            MaterialLineEdit {
                 id: lineEditSIPCustomAddress
 
                 fieldLayoutWidth: preferredColumnWidth
                 fieldLayoutHeight: preferredFieldHeight
+                padding: 8
 
                 font.pointSize: JamiTheme.settingsFontSize
                 font.kerning: true
