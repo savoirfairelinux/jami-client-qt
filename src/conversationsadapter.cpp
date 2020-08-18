@@ -76,7 +76,8 @@ ConversationsAdapter::selectConversation(const QString &accountId,
 }
 
 void
-ConversationsAdapter::selectConversation(int index)
+ConversationsAdapter::selectConversation(const QString &convUid)
+//ConversationsAdapter::selectConversation(int index)
 {
     auto convModel = LRCInstance::getCurrentConversationModel();
 
@@ -84,13 +85,9 @@ ConversationsAdapter::selectConversation(int index)
         return;
     }
 
-    const auto item = convModel->filteredConversation(index);
+    const auto item = convModel->getConversationForUID(convUid);
 
     if (selectConversation(item, false)) {
-        auto convUid = conversationSmartListModel_
-                           ->data(conversationSmartListModel_->index(index, 0),
-                                  static_cast<int>(SmartListModel::Role::UID))
-                           .toString();
         auto &conversation = LRCInstance::getConversationFromConvUid(convUid);
         /*
          * If it is calling, show callview (can use showChatView signal, since it will be determined on qml).
@@ -211,6 +208,9 @@ ConversationsAdapter::connectConversationModel()
     QObject::disconnect(conversationClearedConnection);
     QObject::disconnect(newInteractionConnection_);
     QObject::disconnect(interactionRemovedConnection_);
+    QObject::disconnect(searchStatusChangedConnection_);
+    QObject::disconnect(searchResultUpdatedConnection_);
+
 
     modelSortedConnection_ = QObject::connect(
         currentConversationModel, &lrc::api::ConversationModel::modelSorted, [this]() {
@@ -286,6 +286,26 @@ ConversationsAdapter::connectConversationModel()
                                updateConversationsFilterWidget();
                                QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
                            });
+
+
+    searchStatusChangedConnection_
+        = QObject::connect(currentConversationModel,
+                           &lrc::api::ConversationModel::searchStatusChanged,
+                           [this](const QString &status) {
+                                emit showSearchStatus(status);
+                           });
+
+    searchResultUpdatedConnection_
+        = QObject::connect(currentConversationModel,
+                           &lrc::api::ConversationModel::searchResultUpdated,
+                           [this]() {
+                                conversationSmartListModel_->fillConversationsList();
+                                QMetaObject::invokeMethod(qmlObj_, "updateSmartList",
+                                                          Q_ARG(QVariant, LRCInstance::getCurrAccId()));
+                                QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
+                           });
+
+
 
     currentConversationModel->setFilter("");
     return true;
