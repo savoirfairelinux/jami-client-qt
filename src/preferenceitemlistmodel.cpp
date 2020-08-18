@@ -53,12 +53,12 @@ PreferenceItemListModel::columnCount(const QModelIndex &parent) const
 }
 
 QVariant
-PreferenceItemListModel::data(const QModelIndex &index, int role) const
+PreferenceItemListModel::data(const QModelIndex& index, int role) const
 {
     auto preferenceList = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
     if (!index.isValid() || preferenceList.size() <= index.row()) {
         return QVariant();
-    }    
+    }
 
     auto details = preferenceList.at(index.row());
     int type = Type::DEFAULT;
@@ -77,12 +77,8 @@ PreferenceItemListModel::data(const QModelIndex &index, int role) const
             return QVariant(details["summary"]);
         case Role::PreferenceType:
             return QVariant(type);
-        case Role::PreferenceDefaultValue:
-            return QVariant(details["defaultValue"]);
-        case Role::PreferenceEntries:
-            return QVariant(details["entries"]);
-        case Role::PreferenceEntryValues:
-            return QVariant(details["entryValues"]);
+        case Role::PluginId:
+            return QVariant(pluginId_);
     }
     return QVariant();
 }
@@ -95,9 +91,7 @@ PreferenceItemListModel::roleNames() const
     roles[PreferenceName] = "PreferenceName";
     roles[PreferenceSummary] = "PreferenceSummary";
     roles[PreferenceType] = "PreferenceType";
-    roles[PreferenceDefaultValue] = "PreferenceDefaultValue";
-    roles[PreferenceEntries] = "PreferenceEntries";
-    roles[PreferenceEntryValues] = "PreferenceEntryValues";
+    roles[PluginId] = "PluginId";
     
     return roles;
 }

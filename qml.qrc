@@ -8,6 +8,7 @@
         <file>src/settingsview/components/PluginSettingsPage.qml</file>
         <file>src/settingsview/components/PluginListSettingsView.qml</file>
         <file>src/settingsview/components/PluginListPreferencesView.qml</file>
+        <file>src/settingsview/components/EditPreferenceView.qml</file>
         <file>src/settingsview/components/CurrentAccountSettingsScrollPage.qml</file>
         <file>src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml</file>
         <file>src/settingsview/components/ToggleSwitch.qml</file>

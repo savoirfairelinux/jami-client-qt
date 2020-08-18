@@ -24,24 +24,20 @@
 
 #include "lrcinstance.h"
 
-class PreferenceItemListModel : public QAbstractListModel
+class PluginListPreferenceModel : public QAbstractListModel
 {
     Q_OBJECT
-
     Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId)
-    Q_PROPERTY(int numPreferences READ numPreferences)
+    Q_PROPERTY(QString preferenceKey READ preferenceKey WRITE setPreferenceKey)
+    Q_PROPERTY(QString preferenceNewValue READ preferenceNewValue WRITE setPreferenceNewValue)
+    Q_PROPERTY(int idx WRITE setIdx)
 public:
-    enum Role { PreferenceKey = Qt::UserRole + 1, PreferenceName, PreferenceSummary, PreferenceType, PluginId};
-
-    typedef enum {
-    LIST,
-    DEFAULT,
-    } Type;
-
+public:
+    enum Role { PreferenceValue = Qt::UserRole + 1, PreferenceEntryValue };
     Q_ENUM(Role)
 
-    explicit PreferenceItemListModel(QObject *parent = 0);
-    ~PreferenceItemListModel();
+    explicit PluginListPreferenceModel(QObject *parent = 0);
+    ~PluginListPreferenceModel();
 
     /*
      * QAbstractListModel override.
@@ -58,14 +54,39 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     /*
-     * This function is to reset the model when there's new plugin added or modified.
+     * This function is to reset the model when there's new account added.
      */
     Q_INVOKABLE void reset();
+    /*
+     * This function is to get the current preference value
+     */
+    Q_INVOKABLE int getCurrentSettingIndex();
 
-    QString pluginId() const;
-    void setPluginId(const QString &pluginId);
-    int numPreferences();
+    Q_INVOKABLE void populateLists();
+
+    void setPreferenceNewValue(const QString preferenceNewValue) { preferenceNewValue_ = preferenceNewValue; }
+    void setPreferenceKey(const QString preferenceKey) { preferenceKey_ = preferenceKey; }
+    void setPluginId(const QString pluginId)
+    {
+        pluginId_ = pluginId;
+        populateLists();
+    }
+    void setIdx(const int index) { idx_ = index; }
+
+    QString preferenceNewValue()
+    {
+        preferenceNewValue_ = QString::fromStdString(preferenceValuesList_[idx_]);
+        return preferenceNewValue_;
+    }
+    QString preferenceKey() { return preferenceKey_; }
+    QString pluginId() { return pluginId_; }
 
 private:
-    QString pluginId_;
+
+    QString pluginId_ = "";
+    QString preferenceKey_ = "";
+    QString preferenceNewValue_ = "";
+    std::vector<std::string> preferenceValuesList_;
+    std::vector<std::string> preferenceList_;
+    int idx_ = 0;
 };
