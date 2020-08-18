@@ -47,6 +47,18 @@ ComboBox {
         accountListModel.dataChanged(accountListModel.index(0, 0),
                                      accountListModel.index(
                                          accountListModel.rowCount() - 1, 0))
+        if (currentIndex === -1) {
+            return
+        }
+        var status = accountListModel.data(accountListModel.index(
+                        accountComboBox.currentIndex, 0), 261)
+        if (status === 5) { // REGISTERED
+            presenceCycle.color = JamiTheme.presenceGreen
+        } else if (status === 4) { // TRYING
+            presenceCycle.color = "orange"
+        } else {
+            presenceCycle.color = "red"
+        }
     }
 
     // Reset accountListModel.
@@ -78,7 +90,7 @@ ComboBox {
         mipmap: true
 
         Rectangle {
-            id: presenseRect
+            id: presenceRect
 
             anchors.right: userImageRoot.right
             anchors.rightMargin: -2
@@ -88,26 +100,32 @@ ComboBox {
             width: 12
             height: 12
 
+
             // Visible when account is registered, enum REGISTERED == 5.
-            visible: {
-                if (currentIndex !== -1)
-                    return accountListModel.data(
-                                accountListModel.index(
-                                    accountComboBox.currentIndex, 0), 261) === 5
-                else
-                    return visible
-            }
+            visible: (currentIndex !== -1)
 
             Rectangle {
-                id: presenseCycle
+                id: presenceCycle
 
-                anchors.centerIn: presenseRect
+                anchors.centerIn: presenceRect
 
                 width: 10
                 height: 10
 
                 radius: 30
-                color: JamiTheme.presenceGreen
+                color: {
+                    if (currentIndex === -1) {
+                        return "transparent"
+                    }
+                    var status = accountListModel.data(accountListModel.index(
+                                    accountComboBox.currentIndex, 0), 261)
+                    if (status === 5) { // REGISTERED
+                        return JamiTheme.presenceGreen
+                    } else if (status === 4) { // TRYING
+                        return "orange"
+                    }
+                    return "red"
+                }
             }
 
             radius: 30
@@ -320,6 +338,7 @@ ComboBox {
 
         onAccountNeedToChange: {
             accountComboBox.accountChanged(index)
+            updateAccountListModel()
         }
 
         onNewAccountButtonClicked: {

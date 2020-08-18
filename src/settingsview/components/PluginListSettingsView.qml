@@ -131,29 +131,26 @@ Rectangle {
             Layout.fillWidth: true
             Layout.topMargin: 6
 
-            HoverableRadiusButton {
+            MaterialButton {
                 id: installButton
 
-                Layout.leftMargin: 20
+                Layout.fillWidth: false
+                color: JamiTheme.buttonTintedBlack
+                hoveredColor: JamiTheme.buttonTintedBlackHovered
+                pressedColor: JamiTheme.buttonTintedBlackPressed
+                outlined: true
+                toolTipText: qsTr("Press to add new plugins")
 
-                Layout.maximumWidth: 320
-                Layout.preferredWidth: 320
-                Layout.minimumWidth: 320
+                source: "qrc:/images/icons/round-add-24px.svg"
 
-                Layout.minimumHeight: 30
-                Layout.preferredHeight: 30
-                Layout.maximumHeight: 30
-
-                radius: height / 2
-
-                text: qsTr("+ Install plugin")
-                fontPointSize: 10
+                text: qsTr("Install Plugin")
+                font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
 
                 onClicked: {
                     openPluginFileSlot()
                 }
-            }   
+            }
 
             ListViewJami {
                 id: pluginListView
