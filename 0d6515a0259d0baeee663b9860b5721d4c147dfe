@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddf12c66_d9371a87",
+        "filename": "src/commoncomponents/MaterialButton.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-18T16:15:13Z",
+      "side": 1,
+      "message": "Use of TextMetrics and maximum width configurable for better resizing?",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d52c9c1c_f7658e9a",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-18T16:15:13Z",
+      "side": 1,
+      "message": "White bar at bottom when scrolling down",
+      "range": {
+        "startLine": 205,
+        "startChar": 4,
+        "endLine": 205,
+        "endChar": 14
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2ae3803_aac11853",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-18T16:15:13Z",
+      "side": 1,
+      "message": "Creates account even if no file selected?",
+      "range": {
+        "startLine": 315,
+        "startChar": 16,
+        "endLine": 315,
+        "endChar": 31
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e54118a8_d5d079a0",
+        "filename": "src/wizardview/components/BackupKeyPage.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-18T16:15:13Z",
+      "side": 1,
+      "message": "Add button to skip backup?",
+      "range": {
+        "startLine": 135,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f13bd52_185d6bb3",
+        "filename": "src/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-18T16:15:13Z",
+      "side": 1,
+      "message": "Text hides under the button, use of ElidedTextLabel to set maxWidth?",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 21
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5c5e7674_8442be6b",
+        "filename": "src/wizardview/components/WelcomePageLayout.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-18T16:15:13Z",
+      "side": 1,
+      "message": "resize: components larger than minimum width",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 24
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
