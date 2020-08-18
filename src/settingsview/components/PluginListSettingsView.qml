@@ -1,6 +1,6 @@
-/*
+/**
  * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Aline Gondim Sanots  <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,11 +30,13 @@ Rectangle {
     id: pluginListSettingsViewRect
 
     property PluginListPreferencesView pluginListPreferencesView
+    property int size: 0
     visible: false
     signal scrollView
 
     function updatePluginListDisplayed() {
         // settings
+        getSize()
     }
 
     function openPluginFileSlot(){
@@ -43,6 +45,7 @@ Rectangle {
 
     function updateAndShowPluginsSlot()
     {
+        getSize()
         pluginItemListModel.reset()
     }
 
@@ -69,6 +72,12 @@ Rectangle {
         pluginListPreferencesView.updatePreferenceListDisplayed(!pluginListPreferencesView.visible)
         pluginListPreferencesView.visible = !pluginListPreferencesView.visible
         scrollView()
+    }
+
+    function getSize()
+    {
+        size = 50 * pluginItemListModel.numPlugins
+        pluginListView.height = 100
     }
 
     JamiFileDialog {
@@ -107,9 +116,7 @@ Rectangle {
         id: pluginListViewLayout
 
         Layout.fillHeight: true
-        Layout.maximumWidth: 580
-        Layout.preferredWidth: 580
-        Layout.minimumWidth: 580
+        width: parent.width
 
         Label {
             Layout.fillWidth: true
@@ -157,6 +164,9 @@ Rectangle {
 
             ListViewJami {
                 id: pluginListView
+                
+                border.color: "white"
+                color: "white"
 
                 Layout.leftMargin: 20
 
@@ -164,9 +174,9 @@ Rectangle {
                 Layout.preferredWidth: 320
                 Layout.maximumWidth: 320
 
-                Layout.minimumHeight: 175
-                Layout.preferredHeight: 175
-                Layout.maximumHeight: 175
+                Layout.minimumHeight: 0
+                Layout.preferredHeight: height
+                Layout.maximumHeight: 1000
 
                 model: pluginItemListModel
 

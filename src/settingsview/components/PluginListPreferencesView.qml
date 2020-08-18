@@ -34,6 +34,8 @@ Rectangle {
         DEFAULT
     }
 
+    property EditPreferenceView editPreferenceView
+
     signal updatePluginList
 
     property string pluginName: ""
@@ -56,7 +58,14 @@ Rectangle {
     }
 
     function resetPlugin(){
-        ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId, isLoaded)
+        if (isLoaded){
+            ClientWrapper.pluginModel.unloadPlugin(pluginId)
+            ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId)
+            ClientWrapper.pluginModel.loadPlugin(pluginId)
+        }
+        else {
+            ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId)
+        }
         updatePluginList()
     }
 
@@ -80,27 +89,24 @@ Rectangle {
         }
     }
 
-    function editPreferenceSlot(preferenceType, preferenceName, preferenceEntryValues){
-        switch (preferenceType){
+    function updateAndShowEditPreferenceSlot(preferenceType, preferenceName, preferenceEntryValues){
+        switch (preferenceType) {
             case PluginListPreferencesView.LIST:
-                console.log("LIST")
-                editListMessageBox.preferenceName = preferenceName
-                editListMessageBox.preferenceEntryValues =  preferenceEntryValues
-                editListMessageBox.open()
-                break
-            case PluginListPreferencesView.DEFAULT:
-                console.log("Unrecognizable Type")
-                break
-            default:
-                console.log("Unrecognizable Type")
-                break
+                editPreferenceView.visible = !editPreferenceView.visible
+                break;                
         }
     }
 
     function setPreference(pluginId, preferenceKey, preferenceNewValue)
     {
-        ClientWrapper.pluginModel.setPluginPreferences(pluginId, preferenceKey, preferenceNewValue, isLoaded)
-        preferenceItemListModel.reset()
+        if (isLoaded){
+            ClientWrapper.pluginModel.unloadPlugin(pluginId)
+            ClientWrapper.pluginModel.setPluginPreferences(pluginId, preferenceKey, preferenceNewValue)
+            ClientWrapper.pluginModel.loadPlugin(pluginId)
+        }
+        else {
+            ClientWrapper.pluginModel.setPluginPreferences(pluginId, preferenceKey, preferenceNewValue)
+        }
     }
 
     MessageBox{
@@ -152,36 +158,6 @@ Rectangle {
 
         onAccepted: {
             resetPlugin()
-        }
-
-        onRejected: {}
-    }
-
-    MessageBox{
-        id: editListMessageBox
-
-        property string preferenceName: ""
-        property var preferenceEntryValues: []
-        
-        title:qsTr("Edit " + preferenceName)
-        text :qsTr(preferenceName + " options: " + preferenceEntryValues)
-
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        onYes: {
-            accepted()
-        }
-
-        onNo:{
-            rejected()
-        }
-
-        onDiscard: {
-            rejected()
-        }
-
-        onAccepted: {
-            // setPreference(pluginId, preferenceItemDelegate.preferenceKey, preferenceItemDelegate.preferenceNewValue)
         }
 
         onRejected: {}
@@ -295,6 +271,9 @@ Rectangle {
 
         ListViewJami {
             id: pluginPreferenceView
+            
+            border.color: "white"
+            color: "white"
 
             Layout.minimumWidth: 320
             Layout.preferredWidth: 320
@@ -327,7 +306,7 @@ Rectangle {
                     console.log("edit preference ", preferenceName)
                     console.log("preference type ", preferenceType)
                     console.log("preference entry values ", preferenceEntryValues.length)
-                    editPreferenceSlot(preferenceType, preferenceName, preferenceEntryValues)
+                    updateAndShowEditPreferenceSlot(preferenceType, preferenceName, preferenceEntryValues)
                 }
             }
         }

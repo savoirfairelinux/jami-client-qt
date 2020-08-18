@@ -41,8 +41,6 @@ ItemDelegate {
 
     signal btnPreferenceClicked
 
-    highlighted: ListView.isCurrentItem
-
     RowLayout{
         anchors.fill: parent
 
@@ -69,6 +67,8 @@ ItemDelegate {
 
         HoverableRadiusButton{
             id: btnPreference
+
+            backgroundColor: "white"
 
             Layout.alignment: Qt.AlignRight
             Layout.bottomMargin: 7

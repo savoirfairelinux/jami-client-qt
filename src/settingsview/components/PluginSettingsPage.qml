@@ -1,6 +1,6 @@
-/*
- * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+/**
+ * Copyright (C) 2020 by Savoir-faire Linux
+ * Author: Aline Gondim Santos  <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -113,11 +113,12 @@ Rectangle {
             ColumnLayout {
                 id: pluginViewLayout
                 Layout.fillHeight: true
-                Layout.fillWidth: true
+                width:380
 
                 ToggleSwitch {
                     id: enabledplugin
 
+                    width:380
                     Layout.topMargin: 15
                     Layout.leftMargin: 36
 
@@ -148,9 +149,11 @@ Rectangle {
                         id: pluginListSettingsView
 
                         width:380
-                        height:265
                         Layout.leftMargin: 35
                         Layout.topMargin: 15
+                        Layout.minimumHeight: 165
+                        Layout.preferredHeight: height
+                        Layout.maximumHeight: 1000
                         Layout.alignment: Qt.AlignHCenter
 
                         pluginListPreferencesView: pluginListPreferencesView
@@ -162,14 +165,31 @@ Rectangle {
                         id: pluginListPreferencesView
 
                         width:380
-                        Layout.minimumHeight: 175
+                        Layout.minimumHeight: 0
                         Layout.preferredHeight: height
                         Layout.maximumHeight: 1000
                         Layout.alignment: Qt.AlignHCenter
                         Layout.leftMargin: 55
 
+                        editPreferenceView: editPreferenceView
+
                         onUpdatePluginList:{
                             pluginListSettingsView.updateAndShowPluginsSlot()
+                        }
+                    }
+
+                    EditPreferenceView {
+                        id: editPreferenceView
+
+                        width:380
+                        Layout.minimumHeight: 0
+                        Layout.preferredHeight: height
+                        Layout.maximumHeight: 1000
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.leftMargin: 55
+
+                        onSetPreference:{
+                            pluginListPreferencesView.setPreference(pluginId, preferenceKey, preferenceNewValue)
                         }
                     }
                 }
