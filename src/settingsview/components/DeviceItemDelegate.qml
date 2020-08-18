@@ -90,7 +90,8 @@ ItemDelegate {
 
             RowLayout {
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignVCenter
+                spacing: 0
+                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
                 InfoLineEdit {
                     id: editDeviceName
@@ -128,33 +129,13 @@ ItemDelegate {
 
                     text: deviceName
                 }
-
-                Label {
-                    id: labelThisDevice
-                    Layout.fillWidth: true
-                    Layout.rightMargin: 16
-                    Layout.minimumHeight: 24
-                    Layout.preferredHeight: 24
-                    Layout.maximumHeight: 24
-
-                    Layout.alignment: Qt.AlignRight
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment: Text.AlignVCenter
-
-                    visible: isCurrent
-
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
-                    font.italic: true
-                    color: "green"
-                    text:  qsTr("this device")
-                }
             }
 
             ElidedTextLabel {
                 id: labelDeviceId
 
                 Layout.fillWidth: true
+                Layout.leftMargin: 12
 
                 Layout.minimumHeight: 24
                 Layout.preferredHeight: 24
@@ -191,7 +172,9 @@ ItemDelegate {
 
             source: {
                 if(isCurrent) {
-                    var path = editable ? "qrc:/images/icons/round-edit-24px.svg" : "qrc:/images/icons/round-save_alt-24px.svg"
+                    var path = editable ?
+                        "qrc:/images/icons/round-save_alt-24px.svg" :
+                        "qrc:/images/icons/round-edit-24px.svg"
                     return path
                 } else {
                     return "qrc:/images/icons/round-remove_circle-24px.svg"
