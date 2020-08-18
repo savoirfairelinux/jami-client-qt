@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cb89e468_5025e083",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T17:34:30Z",
+      "side": 1,
+      "message": "commit descriptions shouldn\u0027t start with \"fix error where/of/when...\"\n\nthis doesn\u0027t really describe the commit, as a reviewer, I\na) think this is an error\nb) don\u0027t know which text field is necessary to hide and why",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 57
+      },
+      "revId": "028f73b4858d19d594c294329380c7e3452bab64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
