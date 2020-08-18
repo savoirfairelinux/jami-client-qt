@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "90e21de7_2ec689eb",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "281a208e_70be6faf",
+      "range": {
+        "startLine": 382,
+        "startChar": 4,
+        "endLine": 383,
+        "endChar": 55
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5053019f_b01e02dd",
         "filename": "src/commoncomponents/HoverableButton.qml",
         "patchSetId": 19
@@ -671,6 +695,30 @@
       "revId": "877cc155ed312e65def73740f95457ae44a336c1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb6369e_57715b26",
+        "filename": "src/mainview/components/VideoCallPage.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:24:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90835902_bb8adee4",
+      "range": {
+        "startLine": 138,
+        "startChar": 13,
+        "endLine": 138,
+        "endChar": 36
+      },
+      "revId": "877cc155ed312e65def73740f95457ae44a336c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
