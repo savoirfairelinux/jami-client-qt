@@ -35,6 +35,7 @@
         <file>src/commoncomponents/ListViewJami.qml</file>
         <file>src/commoncomponents/DeleteAccountDialog.qml</file>
         <file>src/commoncomponents/MessageBox.qml</file>
+        <file>src/commoncomponents/PreferenceDialog.qml</file>
         <file>src/wizardview/WizardView.qml</file>
         <file>src/wizardview/components/WelcomePageLayout.qml</file>
         <file>src/wizardview/components/CreateAccountPage.qml</file>

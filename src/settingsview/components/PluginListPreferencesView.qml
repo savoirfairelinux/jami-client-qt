@@ -84,9 +84,10 @@ Rectangle {
         switch (preferenceType){
             case PluginListPreferencesView.LIST:
                 console.log("LIST")
-                editListMessageBox.preferenceName = preferenceName
-                editListMessageBox.preferenceEntryValues =  preferenceEntryValues
-                editListMessageBox.open()
+                preferenceDialog.currentType = PluginListPreferencesView.LIST
+                preferenceDialog.preferenceName = preferenceName
+                preferenceDialog.preferenceEntryValues =  preferenceEntryValues
+                preferenceDialog.openDialog()
                 break
             case PluginListPreferencesView.DEFAULT:
                 console.log("Unrecognizable Type")
@@ -157,34 +158,17 @@ Rectangle {
         onRejected: {}
     }
 
-    MessageBox{
-        id: editListMessageBox
+    PreferenceDialog{
+        id: preferenceDialog
 
         property string preferenceName: ""
         property var preferenceEntryValues: []
-        
-        title:qsTr("Edit " + preferenceName)
-        text :qsTr(preferenceName + " options: " + preferenceEntryValues)
 
+        title: preferenceName
         standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        onYes: {
-            accepted()
-        }
-
-        onNo:{
-            rejected()
-        }
-
-        onDiscard: {
-            rejected()
-        }
-
-        onAccepted: {
-            // setPreference(pluginId, preferenceItemDelegate.preferenceKey, preferenceItemDelegate.preferenceNewValue)
-        }
-
-        onRejected: {}
+        
+        //title:qsTr("Edit " + preferenceName)
+        //text :qsTr(preferenceName + " options: " + preferenceEntryValues)
     }
 
     PreferenceItemListModel {
