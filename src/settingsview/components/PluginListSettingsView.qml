@@ -1,6 +1,6 @@
-/*
+/**
  * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Aline Gondim Sanots  <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,11 +30,13 @@ Rectangle {
     id: pluginListSettingsViewRect
 
     property PluginListPreferencesView pluginListPreferencesView
+    property int size: 0
     visible: false
     signal scrollView
 
     function updatePluginListDisplayed() {
         // settings
+        updateAndShowPluginsSlot()
     }
 
     function openPluginFileSlot(){
@@ -43,6 +45,7 @@ Rectangle {
 
     function updateAndShowPluginsSlot()
     {
+        getSize()
         pluginItemListModel.reset()
     }
 
@@ -64,11 +67,24 @@ Rectangle {
     function updateAndShowPluginPreferenceSlot(pluginName, pluginIcon, pluginId, isLoaded){
         pluginListPreferencesView.pluginName = pluginName
         pluginListPreferencesView.pluginIcon = pluginIcon
+        if (pluginListPreferencesView.pluginId == pluginId || pluginListPreferencesView.pluginId == "")
+            pluginListPreferencesView.visible = !pluginListPreferencesView.visible
         pluginListPreferencesView.pluginId = pluginId
         pluginListPreferencesView.isLoaded = isLoaded
-        pluginListPreferencesView.updatePreferenceListDisplayed(!pluginListPreferencesView.visible)
-        pluginListPreferencesView.visible = !pluginListPreferencesView.visible
-        scrollView()
+        pluginListPreferencesView.updatePreferenceListDisplayed()
+    }
+
+    function getSize()
+    {
+        size = 50 * pluginItemListModel.numPlugins
+        pluginListPreferencesView.Layout.topMargin =  100 + 50 * pluginItemListModel.numPlugins 
+        if (visible) {
+            pluginListView.height = size + 15
+            pluginListPreferencesView.Layout.minimunHeight = 150 + size
+        } else {
+            height = 15
+            pluginListView.height = 0
+        }
     }
 
     JamiFileDialog {
@@ -107,9 +123,7 @@ Rectangle {
         id: pluginListViewLayout
 
         Layout.fillHeight: true
-        Layout.maximumWidth: 580
-        Layout.preferredWidth: 580
-        Layout.minimumWidth: 580
+        width: parent.width
 
         Label {
             Layout.fillWidth: true
@@ -136,9 +150,9 @@ Rectangle {
 
                 Layout.leftMargin: 20
 
-                Layout.maximumWidth: 320
-                Layout.preferredWidth: 320
-                Layout.minimumWidth: 320
+                Layout.maximumWidth: 400
+                Layout.preferredWidth: 400
+                Layout.minimumWidth: 400
 
                 Layout.minimumHeight: 30
                 Layout.preferredHeight: 30
@@ -157,16 +171,19 @@ Rectangle {
 
             ListViewJami {
                 id: pluginListView
+                
+                border.color: "white"
+                color: "white"
 
                 Layout.leftMargin: 20
 
-                Layout.minimumWidth: 320
-                Layout.preferredWidth: 320
-                Layout.maximumWidth: 320
+                Layout.minimumWidth: 400
+                Layout.preferredWidth: 400
+                Layout.maximumWidth: 400
 
-                Layout.minimumHeight: 175
-                Layout.preferredHeight: 175
-                Layout.maximumHeight: 175
+                Layout.minimumHeight: 0
+                Layout.preferredHeight: height
+                Layout.maximumHeight: 1000
 
                 model: pluginItemListModel
 

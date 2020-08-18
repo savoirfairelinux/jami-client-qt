@@ -19,7 +19,8 @@
 #include "preferenceitemlistmodel.h"
 #include <map>
 
-std::map<QString, int> mapType {{QString("List"), PreferenceItemListModel::Type::LIST}};
+std::map<QString, int> mapType {{QString("List"), PreferenceItemListModel::Type::LIST},
+                                {QString("UserList"), PreferenceItemListModel::Type::USERLIST}};
 
 PreferenceItemListModel::PreferenceItemListModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -53,12 +54,12 @@ PreferenceItemListModel::columnCount(const QModelIndex &parent) const
 }
 
 QVariant
-PreferenceItemListModel::data(const QModelIndex &index, int role) const
+PreferenceItemListModel::data(const QModelIndex& index, int role) const
 {
     auto preferenceList = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
     if (!index.isValid() || preferenceList.size() <= index.row()) {
         return QVariant();
-    }    
+    }
 
     auto details = preferenceList.at(index.row());
     int type = Type::DEFAULT;
@@ -67,6 +68,7 @@ PreferenceItemListModel::data(const QModelIndex &index, int role) const
     {
         type = mapType[details["type"]];
     }
+    QString preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(pluginId_)[details["key"]];
 
     switch (role) {
         case Role::PreferenceKey:
@@ -77,12 +79,10 @@ PreferenceItemListModel::data(const QModelIndex &index, int role) const
             return QVariant(details["summary"]);
         case Role::PreferenceType:
             return QVariant(type);
-        case Role::PreferenceDefaultValue:
-            return QVariant(details["defaultValue"]);
-        case Role::PreferenceEntries:
-            return QVariant(details["entries"]);
-        case Role::PreferenceEntryValues:
-            return QVariant(details["entryValues"]);
+        case Role::PluginId:
+            return QVariant(pluginId_);
+        case Role::PreferenceCurrentValue:
+            return QVariant(preferenceCurrent);
     }
     return QVariant();
 }
@@ -95,9 +95,8 @@ PreferenceItemListModel::roleNames() const
     roles[PreferenceName] = "PreferenceName";
     roles[PreferenceSummary] = "PreferenceSummary";
     roles[PreferenceType] = "PreferenceType";
-    roles[PreferenceDefaultValue] = "PreferenceDefaultValue";
-    roles[PreferenceEntries] = "PreferenceEntries";
-    roles[PreferenceEntryValues] = "PreferenceEntryValues";
+    roles[PluginId] = "PluginId";
+    roles[PreferenceCurrentValue] = "PreferenceCurrentValue";
     
     return roles;
 }

@@ -30,23 +30,84 @@ import "../../commoncomponents"
 ItemDelegate {
     id: preferenceItemDelegate
 
-    property string preferenceKey: ""
+    enum Type {
+        LIST,
+        USERLIST,
+        DEFAULT
+    }
+
     property string preferenceName: ""
     property string preferenceSummary: ""
     property int preferenceType: -1
-    property string preferenceDefaultValue: ""
-    property var preferenceEntries: []
-    property var preferenceEntryValues: []
+    property string preferenceCurrentValue: ""
     property string preferenceNewValue: ""
+    property string pluginId: ""
+    property PluginListPreferenceModel pluginListPreferenceModel
 
     signal btnPreferenceClicked
 
-    highlighted: ListView.isCurrentItem
+    function getNewPreferenceValueSlot(index){
+        pluginListPreferenceModel.idx = index
+        preferenceNewValue = pluginListPreferenceModel.preferenceNewValue
+        switch (preferenceType){
+            case PreferenceItemDelegate.LIST:
+                btnPreferenceClicked()
+                break
+            case PreferenceItemDelegate.USERLIST:
+                if(index == 0){
+                    pluginListPreferenceModel.idx = pluginListPreferenceModel.optSize
+                    console.log(pluginListPreferenceModel.optSize)
+                    console.log(pluginListPreferenceModel.idx)
+                    preferenceFilePathDialog.pluginListPreferenceModel = pluginListPreferenceModel
+                    preferenceFilePathDialog.title = qsTr("Select An Image to " + preferenceName)
+                    preferenceFilePathDialog.nameFilters = [qsTr("PNG Files") + " (*.png)", qsTr(
+                "All files") + " (*)"]
+                    preferenceFilePathDialog.preferenceKey = pluginListPreferenceModel.preferenceKey
+                    preferenceFilePathDialog.open()
+                }
+                else{
+                    btnPreferenceClicked()
+                }
+                break
+            default:
+                break
+        }
+    }
+
+    JamiFileDialog {
+        id: preferenceFilePathDialog
+
+        property string preferenceKey: ""
+        property PluginListPreferenceModel pluginListPreferenceModel
+
+        mode: JamiFileDialog.OpenFile
+        folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation)
+
+        onRejected: {}
+
+        onVisibleChanged: {
+            if (!visible) {
+                rejected()
+            }
+        }
+
+        onAccepted: {
+            console.log("edit preferences list")
+            var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
+            console.log(pluginListPreferenceModel.idx)
+            ClientWrapper.pluginModel.addValueToPreference(pluginId, preferenceKey, url)
+            pluginListPreferenceModel.populateLists()
+            preferenceNewValue = pluginListPreferenceModel.preferenceNewValue
+            console.log(preferenceNewValue)
+            btnPreferenceClicked()
+        }
+    }
 
     RowLayout{
         anchors.fill: parent
 
         ColumnLayout{
+            visible: preferenceType === PreferenceItemDelegate.DEFAULT
             Layout.fillWidth: true
             Layout.fillHeight: true
 
@@ -69,9 +130,10 @@ ItemDelegate {
 
         HoverableRadiusButton{
             id: btnPreference
+            visible: preferenceType === PreferenceItemDelegate.DEFAULT
+            backgroundColor: "white"
 
             Layout.alignment: Qt.AlignRight
-            Layout.bottomMargin: 7
             Layout.rightMargin: 7
 
             Layout.minimumWidth: 30
@@ -82,20 +144,70 @@ ItemDelegate {
             Layout.preferredHeight: 30
             Layout.maximumHeight: 30
 
-            buttonImageHeight: height
-            buttonImageWidth: height
+            buttonImageHeight: 20
+            buttonImageWidth: 20
 
             source:{
                 return "qrc:/images/icons/round-settings-24px.svg"
             }
 
-            ToolTip.visible: isHovering
+            ToolTip.visible: hovered
             ToolTip.text: {
-                return qsTr("Modify preference")
+                return qsTr("Edit preference")
             }
 
             onClicked: {
                 btnPreferenceClicked()
+            }
+        }
+
+        ElidedTextLabel {
+            visible: preferenceType === PreferenceItemDelegate.LIST
+            Layout.fillWidth: true
+
+            eText: preferenceName
+            fontSize: JamiTheme.settingsFontSize
+        }
+
+
+        SettingParaCombobox {
+            id: preferenceComboBox
+            visible: preferenceType === PreferenceItemDelegate.LIST
+
+            font.pointSize: JamiTheme.settingsFontSize
+            font.kerning: true
+
+            model: pluginListPreferenceModel
+            currentIndex: pluginListPreferenceModel.getCurrentSettingIndex()
+            textRole: qsTr("PreferenceValue")
+            tooltipText: qsTr("Choose the preference")
+            onActivated: {
+                getNewPreferenceValueSlot(index)
+            }
+        }
+
+        ElidedTextLabel {
+            visible: preferenceType === PreferenceItemDelegate.USERLIST
+            Layout.fillWidth: true
+
+            eText: preferenceName
+            fontSize: JamiTheme.settingsFontSize
+        }
+
+
+        SettingParaCombobox {
+            id: userPreferenceComboBox
+            visible: preferenceType === PreferenceItemDelegate.USERLIST
+
+            font.pointSize: JamiTheme.settingsFontSize
+            font.kerning: true
+
+            model: pluginListPreferenceModel
+            currentIndex: pluginListPreferenceModel.getCurrentSettingIndex()
+            textRole: qsTr("PreferenceValue")
+            tooltipText: qsTr("Choose the preference")
+            onActivated: {
+                getNewPreferenceValueSlot(index)
             }
         }
     }
