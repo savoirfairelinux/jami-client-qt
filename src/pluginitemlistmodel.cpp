@@ -121,3 +121,9 @@ PluginItemListModel::reset()
     beginResetModel();
     endResetModel();
 }
+
+int
+PluginItemListModel::numPlugins()
+{
+    return LRCInstance::pluginModel().listAvailablePlugins().size();
+}

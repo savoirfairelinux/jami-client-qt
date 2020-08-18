@@ -81,20 +81,20 @@ Rectangle {
     }
 
     function editPreferenceSlot(preferenceType, preferenceName, preferenceEntryValues){
-        switch (preferenceType){
-            case PluginListPreferencesView.LIST:
-                console.log("LIST")
-                editListMessageBox.preferenceName = preferenceName
-                editListMessageBox.preferenceEntryValues =  preferenceEntryValues
-                editListMessageBox.open()
-                break
-            case PluginListPreferencesView.DEFAULT:
-                console.log("Unrecognizable Type")
-                break
-            default:
-                console.log("Unrecognizable Type")
-                break
-        }
+        // switch (preferenceType){
+        //     case PluginListPreferencesView.LIST:
+        //         console.log("LIST")
+        //         // preferenceEdit.preferenceType = PluginListPreferencesView.LIST
+        //         // preferenceEdit.preferenceName = preferenceName
+        //         //preferenceEdit.preferenceEntryValues =  preferenceEntryValues
+        //         break
+        //     case PluginListPreferencesView.DEFAULT:
+        //         console.log("Unrecognizable Type")
+        //         break
+        //     default:
+        //         console.log("Unrecognizable Type")
+        //         break
+        // }
     }
 
     function setPreference(pluginId, preferenceKey, preferenceNewValue)
@@ -157,35 +157,15 @@ Rectangle {
         onRejected: {}
     }
 
-    MessageBox{
-        id: editListMessageBox
+    // PreferenceDialog{
+    //     id: preferenceDialog
 
-        property string preferenceName: ""
-        property var preferenceEntryValues: []
-        
-        title:qsTr("Edit " + preferenceName)
-        text :qsTr(preferenceName + " options: " + preferenceEntryValues)
+    //     // property string preferenceName: ""
+    //     // //property var preferenceEntryValues: []
 
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        onYes: {
-            accepted()
-        }
-
-        onNo:{
-            rejected()
-        }
-
-        onDiscard: {
-            rejected()
-        }
-
-        onAccepted: {
-            // setPreference(pluginId, preferenceItemDelegate.preferenceKey, preferenceItemDelegate.preferenceNewValue)
-        }
-
-        onRejected: {}
-    }
+    //     // title: preferenceName
+    //     // standardButtons: StandardButton.Ok | StandardButton.Cancel
+    // }
 
     PreferenceItemListModel {
         id: preferenceItemListModel
@@ -295,6 +275,9 @@ Rectangle {
 
         ListViewJami {
             id: pluginPreferenceView
+            
+            border.color: "white"
+            color: "white"
 
             Layout.minimumWidth: 320
             Layout.preferredWidth: 320

@@ -38,8 +38,6 @@ ItemDelegate {
     signal btnLoadPluginToggled
     signal btnPreferencesPluginClicked
 
-    highlighted: ListView.isCurrentItem
-
     RowLayout{
         anchors.fill: parent
 
@@ -143,6 +141,8 @@ ItemDelegate {
 
         HoverableRadiusButton{
             id: btnPreferencesPlugin
+
+            backgroundColor: "white"
 
             Layout.bottomMargin: 7
             Layout.rightMargin: 7
