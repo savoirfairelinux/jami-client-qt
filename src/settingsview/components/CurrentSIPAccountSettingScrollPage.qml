@@ -229,7 +229,7 @@ Rectangle {
                         }
                     }
 
-                    InfoLineEdit {
+                    MaterialLineEdit {
                         id: displaySIPNameLineEdit
 
                         Layout.maximumWidth: JamiTheme.preferredButtonWidth
@@ -244,6 +244,7 @@ Rectangle {
 
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
+                        padding: 8
 
                         onEditingFinished: {
                             ClientWrapper.accountAdaptor.setCurrAccDisplayName(
@@ -294,7 +295,7 @@ Rectangle {
                             maxWidth: preferredColumnWidth
                         }
 
-                        InfoLineEdit {
+                        MaterialLineEdit {
                             id: usernameSIP
 
                             fieldLayoutWidth: preferredColumnWidth
@@ -304,6 +305,12 @@ Rectangle {
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
+
+                            Layout.maximumWidth: preferredColumnWidth
+                            Layout.minimumHeight: preferredFieldHeight
+                            Layout.preferredHeight: preferredFieldHeight
+                            Layout.maximumHeight: preferredFieldHeight
+                            padding: 8
 
                             onEditingFinished: {
                                 ClientWrapper.settingsAdaptor.setAccountConfig_Username(
@@ -323,7 +330,7 @@ Rectangle {
                             maxWidth: preferredColumnWidth
                         }
 
-                        InfoLineEdit {
+                        MaterialLineEdit {
                             id: hostnameSIP
 
                             fieldLayoutWidth: preferredColumnWidth
@@ -333,6 +340,12 @@ Rectangle {
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
+
+                            Layout.maximumWidth: preferredColumnWidth
+                            Layout.minimumHeight: preferredFieldHeight
+                            Layout.preferredHeight: preferredFieldHeight
+                            Layout.maximumHeight: preferredFieldHeight
+                            padding: 8
 
                             onEditingFinished: {
                                 ClientWrapper.settingsAdaptor.setAccountConfig_Hostname(
@@ -352,7 +365,7 @@ Rectangle {
                             maxWidth: preferredColumnWidth
                         }
 
-                        InfoLineEdit {
+                        MaterialLineEdit {
                             id: proxySIP
 
                             fieldLayoutWidth: preferredColumnWidth
@@ -362,6 +375,12 @@ Rectangle {
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
+
+                            Layout.maximumWidth: preferredColumnWidth
+                            Layout.minimumHeight: preferredFieldHeight
+                            Layout.preferredHeight: preferredFieldHeight
+                            Layout.maximumHeight: preferredFieldHeight
+                            padding: 8
 
                             onEditingFinished: {
                                 ClientWrapper.settingsAdaptor.setAccountConfig_ProxyServer(
@@ -381,7 +400,7 @@ Rectangle {
                             maxWidth: preferredColumnWidth
                         }
 
-                        InfoLineEdit {
+                        MaterialLineEdit {
                             id: passSIPlineEdit
 
                             fieldLayoutWidth: preferredColumnWidth
@@ -393,6 +412,12 @@ Rectangle {
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
 
+                            Layout.maximumWidth: preferredColumnWidth
+                            Layout.minimumHeight: preferredFieldHeight
+                            Layout.preferredHeight: preferredFieldHeight
+                            Layout.maximumHeight: preferredFieldHeight
+                            padding: 8
+
                             onEditingFinished: {
                                 ClientWrapper.settingsAdaptor.setAccountConfig_Password(
                                             passSIPlineEdit.text)
@@ -401,30 +426,23 @@ Rectangle {
                     }
 
 
-                    HoverableButtonTextItem {
-                        id: btnDeletAccount
+                    MaterialButton {
+                        color: JamiTheme.buttonTintedRed
+                        hoveredColor: JamiTheme.buttonTintedRedHovered
+                        pressedColor: JamiTheme.buttonTintedRedPressed
 
-                        backgroundColor: "red"
-                        onEnterColor: Qt.rgba(150 / 256, 0, 0, 0.7)
-                        onDisabledBackgroundColor: Qt.rgba(
-                                                        255 / 256,
-                                                        0, 0, 0.8)
-                        onPressColor: backgroundColor
-                        textColor: "white"
+                        Layout.alignment: Qt.AlignRight
 
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.minimumWidth: JamiTheme.preferredButtonWidth
-                        Layout.preferredWidth: JamiTheme.preferredButtonWidth
-                        Layout.maximumWidth: JamiTheme.preferredButtonWidth
+                        Layout.minimumWidth: preferredColumnWidth
+                        Layout.preferredWidth: preferredColumnWidth
                         Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
                         Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
+                        toolTipText: qsTr("Press this button to delete this account")
                         text: qsTr("Delete Account")
-                        toolTipText: qsTr("Delete this account")
-                        font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
-                        radius: height / 2
+
+                        source: "qrc:/images/icons/delete_forever-24px.svg"
 
                         onClicked: {
                             delAccountSlot()

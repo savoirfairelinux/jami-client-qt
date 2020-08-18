@@ -60,6 +60,12 @@ Item {
     property string buttonTintedGreyHovered: "#777"
     property string buttonTintedGreyPressed: "#777"
     property string buttonTintedGreyInactive: "#bbb"
+    property string buttonTintedBlack: "#333"
+    property string buttonTintedBlackHovered: "#111"
+    property string buttonTintedBlackPressed: "#000"
+    property string buttonTintedRed: "red"
+    property string buttonTintedRedHovered: "#c00"
+    property string buttonTintedRedPressed: "#b00"
 
     property string selectionBlue: "#109ede"
     property string selectionGreen: "#21be2b"
