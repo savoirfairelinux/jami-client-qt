@@ -109,6 +109,7 @@ Menu {
             contextMenu.close()
             ClientWrapper.utilsAdaptor.removeConversation(responsibleAccountId,
                                             responsibleConvUid)
+            //forceUpdateConversationSmartListView()
         }
     }
 
