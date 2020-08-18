@@ -65,7 +65,12 @@ SmartListModel::rowCount(const QModelIndex &parent) const
             }
             return rowCount;
         }
-        return accInfo.conversationModel->allFilteredConversations().size();
+        bool isJamsAccount = !LRCInstance::getCurrAccConfig().managerUri.isEmpty();
+        if (isJamsAccount) {
+            return accInfo.conversationModel->getAllSearchResults().size();
+        } else {
+            return accInfo.conversationModel->allFilteredConversations().size();
+        }
     }
     return 0;
 }
@@ -134,7 +139,13 @@ SmartListModel::data(const QModelIndex &index, int role) const
             auto &itemAccountInfo = LRCInstance::accountModel().getAccountInfo(itemAccId);
             return getConversationItemData(item, itemAccountInfo, role);
         } else if (listModelType_ == Type::CONVERSATION) {
-            item = convModel->filteredConversation(index.row());
+            bool isJamsAccount = !LRCInstance::getCurrAccConfig().managerUri.isEmpty();
+            if (isJamsAccount) {
+                auto list = convModel->getAllSearchResults();
+                item  = list.at(index.row());
+            } else {
+                item = convModel->filteredConversation(index.row());
+            }
             return getConversationItemData(item, accountInfo, role);
         }
     } catch (const std::exception &e) {

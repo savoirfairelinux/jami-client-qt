@@ -211,6 +211,9 @@ ConversationsAdapter::connectConversationModel()
     QObject::disconnect(conversationClearedConnection);
     QObject::disconnect(newInteractionConnection_);
     QObject::disconnect(interactionRemovedConnection_);
+    QObject::disconnect(searchStatusChangedConnection_);
+    QObject::disconnect(searchResultUpdatedConnection_);
+
 
     modelSortedConnection_ = QObject::connect(
         currentConversationModel, &lrc::api::ConversationModel::modelSorted, [this]() {
@@ -286,6 +289,25 @@ ConversationsAdapter::connectConversationModel()
                                updateConversationsFilterWidget();
                                QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
                            });
+
+
+    searchStatusChangedConnection_
+        = QObject::connect(currentConversationModel,
+                           &lrc::api::ConversationModel::searchStatusChanged,
+                           [this](const QString &status) {
+                                QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
+                           });
+
+    searchResultUpdatedConnection_
+        = QObject::connect(currentConversationModel,
+                           &lrc::api::ConversationModel::searchResultUpdated,
+                           [this]() {
+                                QMetaObject::invokeMethod(qmlObj_, "updateSmartList",
+                                                          Q_ARG(QVariant, LRCInstance::getCurrAccId()));
+                                QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
+                           });
+
+
 
     currentConversationModel->setFilter("");
     return true;

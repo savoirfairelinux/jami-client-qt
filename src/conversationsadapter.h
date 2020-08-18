@@ -75,4 +75,6 @@ private:
     QMetaObject::Connection selectedCallChanged_;
     QMetaObject::Connection smartlistSelectionConnection_;
     QMetaObject::Connection interactionRemovedConnection_;
+    QMetaObject::Connection searchStatusChangedConnection_;
+    QMetaObject::Connection searchResultUpdatedConnection_;
 };
