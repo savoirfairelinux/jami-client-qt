@@ -82,6 +82,7 @@ public:
     Q_INVOKABLE void setConferenceableFilter(const QString &filter = {});
     Q_INVOKABLE void toggleSection(const QString &section);
     Q_INVOKABLE int currentUidSmartListModelIndex();
+    Q_INVOKABLE void fillConversationsList();
 
 private:
     QString accountId_;
@@ -96,4 +97,5 @@ private:
     Type listModelType_;
     QMap<QString, bool> sectionState_;
     QMap<ConferenceableItem, ConferenceableValue> conferenceables_;
+    ConversationModel::ConversationQueue conversations_;
 };

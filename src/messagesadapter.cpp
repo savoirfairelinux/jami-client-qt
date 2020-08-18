@@ -57,7 +57,12 @@ MessagesAdapter::slotAccountChanged()
 void
 MessagesAdapter::setupChatView(const QString &uid)
 {
-    auto &convInfo = LRCInstance::getConversationFromConvUid(uid);
+
+    auto convModel = LRCInstance::getCurrentConversationModel();
+    if (convModel == nullptr) {
+        return;
+    }
+    const auto &convInfo = convModel->getConversationForUID(uid);
     if (convInfo.uid.isEmpty()) {
         return;
     }
@@ -111,36 +116,28 @@ MessagesAdapter::setupChatView(const QString &uid)
 void
 MessagesAdapter::connectConversationModel()
 {
-    auto currentConversationModel = LRCInstance::getCurrentAccountInfo().conversationModel.get();
+    auto currentConversationModel = LRCInstance::getCurrentConversationModel();
 
     QObject::disconnect(newInteractionConnection_);
     QObject::disconnect(interactionRemovedConnection_);
     QObject::disconnect(interactionStatusUpdatedConnection_);
 
-    newInteractionConnection_
-        = QObject::connect(currentConversationModel,
-                           &lrc::api::ConversationModel::newInteraction,
-                           [this](const QString &convUid,
-                                  uint64_t interactionId,
-                                  const lrc::api::interaction::Info &interaction) {
-                               auto accountId = LRCInstance::getCurrAccId();
-                               newInteraction(accountId, convUid, interactionId, interaction);
-                           });
+    newInteractionConnection_ = QObject::connect(currentConversationModel,
+                                                 &lrc::api::ConversationModel::newInteraction,
+                                                 [this](const QString &convUid, uint64_t interactionId,
+                                                        const lrc::api::interaction::Info &interaction) {
+        auto accountId = LRCInstance::getCurrAccId();
+        newInteraction(accountId, convUid, interactionId, interaction);
+    });
 
-    interactionStatusUpdatedConnection_ = QObject::connect(
-        currentConversationModel,
-        &lrc::api::ConversationModel::interactionStatusUpdated,
-        [this](const QString &convUid,
-               uint64_t interactionId,
-               const lrc::api::interaction::Info &interaction) {
-            if (convUid != LRCInstance::getCurrentConvUid()) {
-                return;
-            }
-            auto &currentAccountInfo = LRCInstance::getCurrentAccountInfo();
-            auto currentConversationModel = currentAccountInfo.conversationModel.get();
-            currentConversationModel->clearUnreadInteractions(convUid);
-            updateInteraction(*currentConversationModel, interactionId, interaction);
-        });
+    interactionStatusUpdatedConnection_ = QObject::connect(currentConversationModel,
+                                                           &lrc::api::ConversationModel::interactionStatusUpdated,
+                                                           [this](const QString &convUid, uint64_t interactionId,
+                                                                  const lrc::api::interaction::Info &interaction) {
+        auto currentConversationModel = LRCInstance::getCurrentConversationModel();
+        currentConversationModel->clearUnreadInteractions(convUid);
+        updateInteraction(*currentConversationModel, interactionId, interaction);
+    });
 
     interactionRemovedConnection_
         = QObject::connect(currentConversationModel,
@@ -211,8 +208,8 @@ MessagesAdapter::slotUpdateDraft(const QString &content)
 void
 MessagesAdapter::slotMessagesCleared()
 {
-    auto &convInfo = LRCInstance::getConversationFromConvUid(LRCInstance::getCurrentConvUid());
     auto convModel = LRCInstance::getCurrentConversationModel();
+    auto convInfo = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
 
     printHistory(*convModel, convInfo.interactions);
 
@@ -438,8 +435,13 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info &
 {
     auto convModel = LRCInstance::getCurrentConversationModel();
     auto accInfo = &LRCInstance::getCurrentAccountInfo();
-    auto contactUri = convInfo.participants.front();
+    auto conv = convModel->getConversationForUID(convInfo.uid);
 
+    if (conv.participants.isEmpty()) {
+        return;
+    }
+
+    auto contactUri = conv.participants.front();
     if (contactUri.isEmpty()) {
         return;
     }
@@ -473,7 +475,7 @@ MessagesAdapter::newInteraction(const QString &accountId,
     try {
         auto &accountInfo = LRCInstance::getAccountInfo(accountId);
         auto &convModel = accountInfo.conversationModel;
-        auto &conversation = LRCInstance::getConversationFromConvUid(convUid, accountId);
+        auto conversation = convModel->getConversationForUID(convUid);
 
         if (conversation.uid.isEmpty()) {
             return;
