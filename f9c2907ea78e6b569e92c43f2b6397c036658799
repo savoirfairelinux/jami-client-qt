@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc6416cc_c1a6c197",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T17:30:03Z",
+      "side": 1,
+      "message": "spacing here",
+      "range": {
+        "startLine": 105,
+        "startChar": 42,
+        "endLine": 105,
+        "endChar": 44
+      },
+      "revId": "f9c2907ea78e6b569e92c43f2b6397c036658799",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
