@@ -65,7 +65,8 @@ SmartListModel::rowCount(const QModelIndex &parent) const
             }
             return rowCount;
         }
-        return accInfo.conversationModel->allFilteredConversations().size();
+        return accInfo.conversationModel->allFilteredConversations().size()
+                + accInfo.conversationModel->getAllSearchResults().size();
     }
     return 0;
 }
@@ -130,11 +131,11 @@ SmartListModel::data(const QModelIndex &index, int role) const
             if (role == Role::AccountId) {
                 return QVariant(itemAccId);
             }
-            item = LRCInstance::getConversationFromConvUid(itemConvUid, itemAccId);
             auto &itemAccountInfo = LRCInstance::accountModel().getAccountInfo(itemAccId);
+            item = itemAccountInfo.conversationModel->getConversationForUID(itemConvUid);
             return getConversationItemData(item, itemAccountInfo, role);
         } else if (listModelType_ == Type::CONVERSATION) {
-            item = convModel->filteredConversation(index.row());
+            item = conversations_.at(index.row());
             return getConversationItemData(item, accountInfo, role);
         }
     } catch (const std::exception &e) {
@@ -176,6 +177,25 @@ SmartListModel::setConferenceableFilter(const QString &filter)
     conferenceables_ = convModel->getConferenceableConversations(convUid_, filter);
     sectionState_[tr("Calls")] = true;
     sectionState_[tr("Contacts")] = true;
+    endResetModel();
+}
+
+void
+SmartListModel::fillConversationsList()
+{
+    beginResetModel();
+    auto convModel = LRCInstance::getCurrentConversationModel();
+    conversations_.clear();
+
+    for (auto convSearch : convModel->getAllSearchResults()) {
+        qDebug()<<convSearch.uid;
+        conversations_.push_back(convSearch);
+    }
+
+    for (auto convFilt : convModel->allFilteredConversations()) {
+        qDebug()<<convFilt.uid;
+        conversations_.push_back(convFilt);
+    }
     endResetModel();
 }
 
@@ -278,7 +298,8 @@ SmartListModel::getConversationItemData(const conversation::Info &item,
     case Role::UID:
         return QVariant(item.uid);
     case Role::InCall: {
-        auto &convInfo = LRCInstance::getConversationFromConvUid(item.uid);
+        auto convModel = LRCInstance::getCurrentConversationModel();
+        auto convInfo = convModel->getConversationForUID(item.uid);
         if (!convInfo.uid.isEmpty()) {
             auto callModel = LRCInstance::getCurrentCallModel();
             return QVariant(callModel->hasCall(convInfo.callId));
@@ -286,7 +307,8 @@ SmartListModel::getConversationItemData(const conversation::Info &item,
         return QVariant(false);
     }
     case Role::IsAudioOnly: {
-        auto &convInfo = LRCInstance::getConversationFromConvUid(item.uid);
+        auto convModel = LRCInstance::getCurrentConversationModel();
+        auto convInfo = convModel->getConversationForUID(item.uid);
         if (!convInfo.uid.isEmpty()) {
             auto call = LRCInstance::getCallInfoForConversation(convInfo);
             if (call) {
@@ -296,7 +318,8 @@ SmartListModel::getConversationItemData(const conversation::Info &item,
         return QVariant();
     }
     case Role::CallStackViewShouldShow: {
-        auto &convInfo = LRCInstance::getConversationFromConvUid(item.uid);
+        auto convModel = LRCInstance::getCurrentConversationModel();
+        auto convInfo = convModel->getConversationForUID(item.uid);
         if (!convInfo.uid.isEmpty()) {
             auto callModel = LRCInstance::getCurrentCallModel();
             auto call = callModel->getCall(convInfo.callId);
@@ -309,7 +332,8 @@ SmartListModel::getConversationItemData(const conversation::Info &item,
         return QVariant(false);
     }
     case Role::CallStateStr: {
-        auto &convInfo = LRCInstance::getConversationFromConvUid(item.uid);
+        auto convModel = LRCInstance::getCurrentConversationModel();
+        auto convInfo = convModel->getConversationForUID(item.uid);
         if (!convInfo.uid.isEmpty()) {
             auto call = LRCInstance::getCallInfoForConversation(convInfo);
             if (call) {
