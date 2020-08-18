@@ -56,26 +56,6 @@ Rectangle {
         refreshVariable--
     }
 
-
-    Connections {
-        id: btnRegisterNameClickConnection
-        target: btnRegisterName
-
-        enabled: {
-            refreshVariable
-            switch (regNameUi) {
-            case CurrentAccountSettingsScrollPage.FREE:
-                return true
-            default:
-                return false
-            }
-        }
-
-        function onClicked() {
-            slotRegisterName()
-        }
-    }
-
     function updateAccountInfoDisplayed() {
         setAvatar()
 
@@ -587,7 +567,7 @@ Rectangle {
                         }
                     }
 
-                    InfoLineEdit {
+                    MaterialLineEdit {
                         id: displayNameLineEdit
 
                         Layout.maximumWidth: JamiTheme.preferredButtonWidth
@@ -602,6 +582,7 @@ Rectangle {
 
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
+                        padding: 8
 
                         onEditingFinished: {
                             ClientWrapper.accountAdaptor.setCurrAccDisplayName(
@@ -716,11 +697,11 @@ Rectangle {
                             maxWidth: 160
                         }
 
-                        TextField {
+                        MaterialLineEdit {
                             id: currentRegisteredID
-                            Layout.minimumWidth: preferredColumnWidth
-                            Layout.preferredWidth: preferredColumnWidth
-                            Layout.maximumWidth: preferredColumnWidth
+                            Layout.minimumWidth: btnExportAccount.width
+                            Layout.preferredWidth: btnExportAccount.width
+                            Layout.maximumWidth: btnExportAccount.width
                             Layout.minimumHeight: JamiTheme.preferredFieldHeight
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
                             Layout.maximumHeight: JamiTheme.preferredFieldHeight
@@ -746,24 +727,28 @@ Rectangle {
                             font.bold: { refreshVariable
                                 return !registeredIdNeedsSet}
 
-                            horizontalAlignment: Text.AlignLeft
+                            horizontalAlignment: registeredIdNeedsSet ?
+                                                Text.AlignLeft :
+                                                Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
+                            padding: 8
 
-                            background: Rectangle {
-                                anchors.fill: parent
-                                radius: {refreshVariable
-                                         var result = registeredIdNeedsSet ? height / 2 : 0
-                                         return result}
-                                border.color: "transparent"
-                                border.width: {refreshVariable
-                                               var result = registeredIdNeedsSet ? 2 : 0
-                                               return result}
-                                color: {refreshVariable
-                                        var result = registeredIdNeedsSet ? Qt.rgba(
-                                                                  240 / 256, 240 / 256,
-                                                                  240 / 256,
-                                                                  1.0) : "transparent"
-                                        return result}
+                            borderColorMode: {
+                                switch (regNameUi) {
+                                case CurrentAccountSettingsScrollPage.INVALIDFORM:
+                                case CurrentAccountSettingsScrollPage.TAKEN:
+                                    return InfoLineEdit.ERROR
+                                case CurrentAccountSettingsScrollPage.FREE:
+                                    return InfoLineEdit.RIGHT
+                                case CurrentAccountSettingsScrollPage.BLANK:
+                                case CurrentAccountSettingsScrollPage.SEARCHING:
+                                default:
+                                    return InfoLineEdit.NORMAL
+                                }
+                            }
+
+                            onImageClicked: {
+                                slotRegisterName()
                             }
 
                             onTextEdited: {
@@ -775,176 +760,79 @@ Rectangle {
                             }
                         }
                     }
-
-                    RowLayout {
-                        Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignRight
-                        visible:{refreshVariable
-                                 var result = registeredIdNeedsSet
-                                 && (regNameUi
-                                     !== CurrentAccountSettingsScrollPage.BLANK)
-                                    return result}
-
-                        LookupStatusLabel {
-                            id: lookupStatusLabel
-                            Layout.fillWidth: true
-
-
-
-                            MouseArea {
-                                id: lookupStatusLabelArea
-                                anchors.fill: parent
-                                property bool isHovering: false
-
-                                onEntered: isHovering = true
-                                onExited: isHovering = false
-
-                                hoverEnabled: true
-                            }
-
-                            ToolTip.visible: lookupStatusLabelArea.isHovering
-                            ToolTip.text: {
-                                switch (regNameUi) {
-                                case CurrentAccountSettingsScrollPage.BLANK:
-                                    return qsTr("")
-                                case CurrentAccountSettingsScrollPage.INVALIDFORM:
-                                    return qsTr("A registered name should not have any spaces and must be at least three letters long")
-                                case CurrentAccountSettingsScrollPage.TAKEN:
-                                    return qsTr("This name is already taken")
-                                case CurrentAccountSettingsScrollPage.FREE:
-                                    return qsTr("Register this name")
-                                case CurrentAccountSettingsScrollPage.SEARCHING:
-                                    return qsTr("")
-                                default:
-                                    return qsTr("")
-                                }
-                            }
-
-                            lookupStatusState: {
-                                switch (regNameUi) {
-                                case CurrentAccountSettingsScrollPage.BLANK:
-                                    return "Blank"
-                                case CurrentAccountSettingsScrollPage.INVALIDFORM:
-                                    return "Invalid"
-                                case CurrentAccountSettingsScrollPage.TAKEN:
-                                    return "Taken"
-                                case CurrentAccountSettingsScrollPage.FREE:
-                                    return "Free"
-                                case CurrentAccountSettingsScrollPage.SEARCHING:
-                                    return "Searching"
-                                default:
-                                    return "Blank"
-                                }
-                            }
-                        }
-
-                        HoverableButtonTextItem {
-                            id: btnRegisterName
-
-                            visible: {refreshVariable
-                                        var result = registeredIdNeedsSet
-                                     && (regNameUi
-                                         === CurrentAccountSettingsScrollPage.FREE)
-                                        return result}
-
-                            Layout.minimumWidth: preferredColumnWidth
-                            Layout.preferredWidth: preferredColumnWidth
-                            Layout.maximumWidth: preferredColumnWidth
-                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
-                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
-
-                            text: qsTr("Register")
-                            font.pointSize: JamiTheme.buttonFontSize
-                            font.kerning: true
-
-                            radius: height / 2
-                        }
-                    }
                 }
 
                 /*
                  * Buttons Pwd, Export, Delete
                  */
-                ColumnLayout {
+                RowLayout {
                     Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.alignment: Qt.AlignRight
                     spacing: 8
 
-                    HoverableButtonTextItem {
+                    MaterialButton {
                         id: passwdPushButton
-
                         visible: ClientWrapper.settingsAdaptor.getAccountConfig_Manageruri() === ""
 
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.minimumWidth: JamiTheme.preferredButtonWidth
-                        Layout.preferredWidth: JamiTheme.preferredButtonWidth
-                        Layout.maximumWidth: JamiTheme.preferredButtonWidth
+                        color: "#333"
+                        outlined: true
+
+                        Layout.minimumWidth: accountViewRect.width / 3 - parent.spacing
+                        Layout.preferredWidth: accountViewRect.width / 3 - parent.spacing
                         Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
                         Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
+                        toolTipText: ClientWrapper.accountAdaptor.hasPassword() ?
+                                    qsTr("Change the current password") :
+                                    qsTr("Currently no password, press this button to set a password")
                         text: ClientWrapper.accountAdaptor.hasPassword() ? qsTr("Change Password") : qsTr("Set Password")
 
-                        font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
-
-                        radius: height / 2
+                        source: "qrc:/images/icons/round-edit-24px.svg"
 
                         onClicked: {
                             passwordClicked()
                         }
                     }
 
-                    HoverableButtonTextItem {
+                    MaterialButton {
                         id: btnExportAccount
-
                         visible: ClientWrapper.settingsAdaptor.getAccountConfig_Manageruri() === ""
 
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.minimumWidth: JamiTheme.preferredButtonWidth
-                        Layout.preferredWidth: JamiTheme.preferredButtonWidth
-                        Layout.maximumWidth: JamiTheme.preferredButtonWidth
+                        color: "#333"
+                        outlined: true
+
+                        Layout.minimumWidth: accountViewRect.width / 3 - parent.spacing
+                        Layout.preferredWidth: accountViewRect.width / 3 - parent.spacing
                         Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
                         Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
+                        toolTipText: qsTr("Press this button to export account to a .gz file")
                         text: qsTr("Export Account")
-                        font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
 
-                        radius: height / 2
+                        source: "qrc:/images/icons/round-save_alt-24px.svg"
 
                         onClicked: {
                             exportAccountSlot()
                         }
                     }
 
-                   HoverableButtonTextItem {
+                    MaterialButton {
                         id: btnDeletAccount
 
-                        backgroundColor: "red"
-                        onEnterColor: Qt.rgba(150 / 256, 0, 0, 0.7)
-                        onDisabledBackgroundColor: Qt.rgba(
-                                                       255 / 256,
-                                                       0, 0, 0.8)
-                        onPressColor: backgroundColor
-                        textColor: "white"
+                        color: "red"
 
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.minimumWidth: JamiTheme.preferredButtonWidth
-                        Layout.preferredWidth: JamiTheme.preferredButtonWidth
-                        Layout.maximumWidth: JamiTheme.preferredButtonWidth
+                        Layout.minimumWidth: accountViewRect.width / 3 - parent.spacing
+                        Layout.preferredWidth: accountViewRect.width / 3 - parent.spacing
                         Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
                         Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
+                        toolTipText: qsTr("Press this button to delete this account")
                         text: qsTr("Delete Account")
-                        font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
 
-                        radius: height / 2
+                        source: "qrc:/images/icons/delete_forever-24px.svg"
 
                         onClicked: {
                             delAccountSlot()
@@ -959,15 +847,51 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.leftMargin: JamiTheme.preferredMarginSize
 
-                    Label {
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
-                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+                    RowLayout {
+                        Layout.fillWidth: true
 
-                        text: qsTr("Linked Devices")
+                        Label {
+                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
-                        font.pointSize: JamiTheme.headerFontSize
-                        font.kerning: true
+                            text: qsTr("Linked Devices")
+
+                            font.pointSize: JamiTheme.headerFontSize
+                            font.kerning: true
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        MaterialButton {
+                            id: linkDevPushButton
+
+                            visible: ClientWrapper.settingsAdaptor.getAccountConfig_Manageruri() === ""
+
+                            Layout.maximumWidth: btnExportAccount.width
+                            Layout.preferredWidth: btnExportAccount.width
+                            Layout.minimumWidth: btnExportAccount.width
+
+                            Layout.maximumHeight: preferredFieldHeight
+                            Layout.preferredHeight: preferredFieldHeight
+                            Layout.minimumHeight: preferredFieldHeight
+
+                            color: "#333"
+                            outlined: true
+                            toolTipText: qsTr("Press to link one more device with this account")
+
+                            source: "qrc:/images/icons/round-add-24px.svg"
+
+                            text: qsTr("Link Another Device")
+                            font.pointSize: JamiTheme.textFontSize
+                            font.kerning: true
+
+                            onClicked: {
+                                showLinkDevSlot()
+                            }
+                        }
                     }
 
                     ColumnLayout {
@@ -1002,31 +926,6 @@ Rectangle {
                                 onBtnRemoveDeviceClicked:{
                                     removeDeviceSlot(index)
                                 }
-                            }
-                        }
-
-                        HoverableButtonTextItem {
-                            id: linkDevPushButton
-
-                            visible: ClientWrapper.settingsAdaptor.getAccountConfig_Manageruri() === ""
-
-                            Layout.maximumWidth: JamiTheme.preferredButtonWidth
-                            Layout.preferredWidth: JamiTheme.preferredButtonWidth
-                            Layout.minimumWidth: JamiTheme.preferredButtonWidth
-
-                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
-                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
-                            Layout.alignment: Qt.AlignHCenter
-
-                            radius: height / 2
-
-                            text: qsTr("+ Link Another Device")
-                            font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
-
-                            onClicked: {
-                                showLinkDevSlot()
                             }
                         }
                     }
