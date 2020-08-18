@@ -19,7 +19,8 @@
 #include "preferenceitemlistmodel.h"
 #include <map>
 
-std::map<QString, int> mapType {{QString("List"), PreferenceItemListModel::Type::LIST}};
+std::map<QString, int> mapType {{QString("List"), PreferenceItemListModel::Type::LIST},
+                                {QString("UserList"), PreferenceItemListModel::Type::USERLIST}};
 
 PreferenceItemListModel::PreferenceItemListModel(QObject* parent)
     : QAbstractListModel(parent)
@@ -66,22 +67,21 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     if (it != mapType.end()) {
         type = mapType[details["type"]];
     }
+    QString preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(pluginId_)[details["key"]];
 
     switch (role) {
-    case Role::PreferenceKey:
-        return QVariant(details["key"]);
-    case Role::PreferenceName:
-        return QVariant(details["title"]);
-    case Role::PreferenceSummary:
-        return QVariant(details["summary"]);
-    case Role::PreferenceType:
-        return QVariant(type);
-    case Role::PreferenceDefaultValue:
-        return QVariant(details["defaultValue"]);
-    case Role::PreferenceEntries:
-        return QVariant(details["entries"]);
-    case Role::PreferenceEntryValues:
-        return QVariant(details["entryValues"]);
+        case Role::PreferenceKey:
+            return QVariant(details["key"]);
+        case Role::PreferenceName:
+            return QVariant(details["title"]);
+        case Role::PreferenceSummary:
+            return QVariant(details["summary"]);
+        case Role::PreferenceType:
+            return QVariant(type);
+        case Role::PluginId:
+            return QVariant(pluginId_);
+        case Role::PreferenceCurrentValue:
+            return QVariant(preferenceCurrent);
     }
     return QVariant();
 }
@@ -94,10 +94,9 @@ PreferenceItemListModel::roleNames() const
     roles[PreferenceName] = "PreferenceName";
     roles[PreferenceSummary] = "PreferenceSummary";
     roles[PreferenceType] = "PreferenceType";
-    roles[PreferenceDefaultValue] = "PreferenceDefaultValue";
-    roles[PreferenceEntries] = "PreferenceEntries";
-    roles[PreferenceEntryValues] = "PreferenceEntryValues";
-
+    roles[PluginId] = "PluginId";
+    roles[PreferenceCurrentValue] = "PreferenceCurrentValue";
+    
     return roles;
 }
 

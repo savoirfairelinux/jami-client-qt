@@ -31,6 +31,7 @@ Rectangle {
 
     enum Type {
         LIST,
+        USERLIST,
         DEFAULT
     }
 
@@ -44,11 +45,12 @@ Rectangle {
 
     visible: false
 
-    function updatePreferenceListDisplayed(show){
+    function updatePreferenceListDisplayed(){
         // settings
-        getSize(pluginId, show)
+        getSize(pluginId)
         preferenceItemListModel.pluginId = pluginId
         preferenceItemListModel.reset()
+        
     }
 
     function resetPluginSlot(){
@@ -56,8 +58,16 @@ Rectangle {
     }
 
     function resetPlugin(){
-        ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId, isLoaded)
+        if (isLoaded){
+            ClientWrapper.pluginModel.unloadPlugin(pluginId)
+            ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId)
+            ClientWrapper.pluginModel.loadPlugin(pluginId)
+        }
+        else {
+            ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId)
+        }
         updatePluginList()
+        updatePreferenceListDisplayed()
     }
 
     function uninstallPluginSlot(){
@@ -69,7 +79,7 @@ Rectangle {
         updatePluginList()
     }
 
-    function getSize(pluginId, show){
+    function getSize(pluginId){
         preferenceItemListModel.pluginId = pluginId
         size = 50 * preferenceItemListModel.preferencesCount
         if (show) {
@@ -80,27 +90,25 @@ Rectangle {
         }
     }
 
-    function editPreferenceSlot(preferenceType, preferenceName, preferenceEntryValues){
-        switch (preferenceType){
+    function updateAndShowEditPreferenceSlot(preferenceType, preferenceName, preferenceEntryValues){
+        switch (preferenceType) {
             case PluginListPreferencesView.LIST:
                 console.log("LIST")
-                editListMessageBox.preferenceName = preferenceName
-                editListMessageBox.preferenceEntryValues =  preferenceEntryValues
-                editListMessageBox.open()
-                break
-            case PluginListPreferencesView.DEFAULT:
-                console.log("Unrecognizable Type")
-                break
-            default:
-                console.log("Unrecognizable Type")
-                break
+                break;                
         }
     }
 
     function setPreference(pluginId, preferenceKey, preferenceNewValue)
     {
-        ClientWrapper.pluginModel.setPluginPreferences(pluginId, preferenceKey, preferenceNewValue, isLoaded)
-        preferenceItemListModel.reset()
+        if (isLoaded){
+            ClientWrapper.pluginModel.unloadPlugin(pluginId)
+            ClientWrapper.pluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
+            ClientWrapper.pluginModel.loadPlugin(pluginId)
+        }
+        else {
+            ClientWrapper.pluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
+        }
+        updatePreferenceListDisplayed()
     }
 
     MessageBox{
@@ -157,36 +165,6 @@ Rectangle {
         onRejected: {}
     }
 
-    MessageBox{
-        id: editListMessageBox
-
-        property string preferenceName: ""
-        property var preferenceEntryValues: []
-        
-        title:qsTr("Edit " + preferenceName)
-        text :qsTr(preferenceName + " options: " + preferenceEntryValues)
-
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        onYes: {
-            accepted()
-        }
-
-        onNo:{
-            rejected()
-        }
-
-        onDiscard: {
-            rejected()
-        }
-
-        onAccepted: {
-            // setPreference(pluginId, preferenceItemDelegate.preferenceKey, preferenceItemDelegate.preferenceNewValue)
-        }
-
-        onRejected: {}
-    }
-
     PreferenceItemListModel {
         id: preferenceItemListModel
     }
@@ -197,9 +175,7 @@ Rectangle {
     ColumnLayout {
         spacing: 6
         Layout.fillHeight: true
-        Layout.maximumWidth: 580
-        Layout.preferredWidth: 580
-        Layout.minimumWidth: 580
+        width: parent.width
 
         Label{
             Layout.alignment: Qt.AlignHCenter
@@ -246,11 +222,7 @@ Rectangle {
 
             HoverableRadiusButton {
                 id: resetButton
-
-                Layout.maximumWidth: 157
-                Layout.preferredWidth: 157
-                Layout.minimumWidth: 157
-
+                Layout.fillWidth: true
                 Layout.fillHeight: true
 
                 radius: height / 2
@@ -259,7 +231,7 @@ Rectangle {
                 icon.height: 24
                 icon.width: 24
 
-                text: qsTr("Reset")
+                text: qsTr("  Reset  ")
                 fontPointSize: 10
                 font.kerning: true
 
@@ -270,11 +242,7 @@ Rectangle {
 
             HoverableRadiusButton {
                 id: uninstallButton
-
-                Layout.maximumWidth: 157
-                Layout.preferredWidth: 157
-                Layout.minimumWidth: 157
-
+                Layout.fillWidth: true
                 Layout.fillHeight: true
 
                 radius: height / 2
@@ -295,10 +263,11 @@ Rectangle {
 
         ListViewJami {
             id: pluginPreferenceView
+            
+            border.color: "white"
+            color: "white"
 
-            Layout.minimumWidth: 320
-            Layout.preferredWidth: 320
-            Layout.maximumWidth: 320
+            Layout.fillWidth: true
 
             Layout.minimumHeight: 0
             Layout.preferredHeight: height
@@ -312,22 +281,27 @@ Rectangle {
                 width: pluginPreferenceView.width
                 height: 50
 
-                preferenceKey : PreferenceKey
                 preferenceName: PreferenceName
                 preferenceSummary: PreferenceSummary
                 preferenceType: PreferenceType
-                preferenceDefaultValue: PreferenceDefaultValue
-                preferenceEntries: PreferenceEntries
-                preferenceEntryValues: PreferenceEntryValues
+                preferenceCurrentValue: PreferenceCurrentValue
+                pluginId: PluginId
+                pluginListPreferenceModel: PluginListPreferenceModel{
+                                               id: pluginListPreferenceModel
+                                               preferenceKey : PreferenceKey
+                                               pluginId: PluginId
+                                           }
 
                 onClicked: {
                     pluginPreferenceView.currentIndex = index
                 }
                 onBtnPreferenceClicked: {
-                    console.log("edit preference ", preferenceName)
-                    console.log("preference type ", preferenceType)
-                    console.log("preference entry values ", preferenceEntryValues.length)
-                    editPreferenceSlot(preferenceType, preferenceName, preferenceEntryValues)
+                    setPreference(pluginListPreferenceModel.pluginId,
+                                  pluginListPreferenceModel.preferenceKey,
+                                  pluginListPreferenceModel.preferenceNewValue)
+                }
+                onPreferenceAdded: {
+                    updatePreferenceListDisplayed()
                 }
             }
         }

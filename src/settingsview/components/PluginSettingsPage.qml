@@ -1,6 +1,6 @@
-/*
- * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+/**
+ * Copyright (C) 2020 by Savoir-faire Linux
+ * Author: Aline Gondim Santos  <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,18 +43,16 @@ Rectangle {
     }
 
     Layout.fillHeight: true
-    Layout.fillWidth: true
+    Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+    anchors.centerIn: parent
 
     signal backArrowClicked
 
     ColumnLayout {
-        anchors.fill: parent
-        spacing: 6
-
-        width: parent.width
-        height: parent.height
+        anchors.fill: pluginSettingsRect
 
         RowLayout {
+            id:pageTitle
 
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             Layout.leftMargin: 16
@@ -104,8 +102,8 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-            width: parent.width
-            height: parent.height
+            width: pluginSettingsRect.width
+            height: pluginSettingsRect.height - pageTitle.height
             focus: true
 
             clip: true
@@ -113,13 +111,15 @@ Rectangle {
             ColumnLayout {
                 id: pluginViewLayout
                 Layout.fillHeight: true
-                Layout.fillWidth: true
+                width: 380
+                Layout.alignment: Qt.AlignHCenter
 
                 ToggleSwitch {
                     id: enabledplugin
 
+                    width: parent.width
                     Layout.topMargin: 15
-                    Layout.leftMargin: 36
+                    Layout.leftMargin: 16
 
                     labelText: "Enable"
                     fontPointSize: 13
@@ -140,17 +140,18 @@ Rectangle {
                 ColumnLayout {
                     spacing: 6
                     Layout.fillHeight: true
-                    width:380
-                    height:100
+                    Layout.fillWidth: true
 
                     // instantiate plugin list setting page
                     PluginListSettingsView {
                         id: pluginListSettingsView
 
-                        width:380
-                        height:265
-                        Layout.leftMargin: 35
+                        width: pluginViewLayout.width
+                        Layout.leftMargin: 16
                         Layout.topMargin: 15
+                        Layout.minimumHeight: 0
+                        Layout.preferredHeight: height
+                        Layout.maximumHeight: 1000
                         Layout.alignment: Qt.AlignHCenter
 
                         pluginListPreferencesView: pluginListPreferencesView
@@ -161,12 +162,12 @@ Rectangle {
                     PluginListPreferencesView {
                         id: pluginListPreferencesView
 
-                        width:380
-                        Layout.minimumHeight: 175
+                        width: pluginViewLayout.width
+                        Layout.minimumHeight: 0
                         Layout.preferredHeight: height
                         Layout.maximumHeight: 1000
                         Layout.alignment: Qt.AlignHCenter
-                        Layout.leftMargin: 55
+                        Layout.leftMargin: 16
 
                         onUpdatePluginList:{
                             pluginListSettingsView.updateAndShowPluginsSlot()
