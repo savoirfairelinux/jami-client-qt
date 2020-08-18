@@ -442,6 +442,24 @@
     },
     {
       "key": {
+        "uuid": "32e8d52f_9797acfe",
+        "filename": "src/mainview/components/ParticipantHover.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T19:26:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcc0be77_5b31adad",
+      "revId": "eb3bcf2896feb05db3cd9bb587bfd69986bcc5b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f5fb5b6c_d3a132cc",
         "filename": "src/mainview/components/ParticipantHover.qml",
         "patchSetId": 23
