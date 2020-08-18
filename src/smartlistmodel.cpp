@@ -65,7 +65,8 @@ SmartListModel::rowCount(const QModelIndex &parent) const
             }
             return rowCount;
         }
-        return accInfo.conversationModel->allFilteredConversations().size();
+        return accInfo.conversationModel->allFilteredConversations().size()
+                + accInfo.conversationModel->getAllSearchResults().size();
     }
     return 0;
 }
@@ -134,7 +135,7 @@ SmartListModel::data(const QModelIndex &index, int role) const
             auto &itemAccountInfo = LRCInstance::accountModel().getAccountInfo(itemAccId);
             return getConversationItemData(item, itemAccountInfo, role);
         } else if (listModelType_ == Type::CONVERSATION) {
-            item = convModel->filteredConversation(index.row());
+            item = conversations_.at(index.row());
             return getConversationItemData(item, accountInfo, role);
         }
     } catch (const std::exception &e) {
@@ -176,6 +177,23 @@ SmartListModel::setConferenceableFilter(const QString &filter)
     conferenceables_ = convModel->getConferenceableConversations(convUid_, filter);
     sectionState_[tr("Calls")] = true;
     sectionState_[tr("Contacts")] = true;
+    endResetModel();
+}
+
+void
+SmartListModel::fillConversationsList()
+{
+    beginResetModel();
+    auto convModel = LRCInstance::getCurrentConversationModel();
+    conversations_.clear();
+
+    for (auto convSearch : convModel->getAllSearchResults()) {
+        conversations_.push_back(convSearch);
+    }
+
+    for (auto convFilt : convModel->allFilteredConversations()) {
+        conversations_.push_back(convFilt);
+    }
     endResetModel();
 }
 

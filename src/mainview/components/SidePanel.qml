@@ -152,11 +152,48 @@ Rectangle {
         height: tabBarVisible ? 64 : 0
     }
 
+    Rectangle {
+        id: searchStatusRect
+
+        visible: lblSearchStatus.text != ""
+
+        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom
+        anchors.topMargin: tabBarVisible ? 0 : 10
+        width: parent.width
+        height: 64
+
+        color: "transparent"
+
+        Image {
+            id: searchIcon
+            anchors.left: searchStatusRect.left
+            anchors.leftMargin: 16
+            anchors.verticalCenter: searchStatusRect.verticalCenter
+            width: 20
+            height: 20
+
+            fillMode: Image.PreserveAspectFit
+            mipmap: true
+            source: "qrc:/images/icons/ic_baseline-search-24px.svg"
+        }
+
+        Label {
+            id: lblSearchStatus
+
+            anchors.verticalCenter: searchStatusRect.verticalCenter
+            anchors.left: searchIcon.right
+            anchors.leftMargin: 16
+            width: searchStatusRect.width - searchIcon.width - 40
+            text: ""
+            wrapMode: Text.WordWrap
+            font.pointSize: JamiTheme.headerFontSize
+        }
+    }
 
     ConversationSmartListView {
         id: conversationSmartListView
 
-        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom
+        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom)
         anchors.topMargin: tabBarVisible ? 0 : 10
         width: parent.width
         height: tabBarVisible ? sidePanelRect.height - sidePanelTabBar.height - contactSearchBar.height - 20 :
@@ -174,6 +211,10 @@ Rectangle {
                 tabBarVisible = visible
                 updatePendingRequestCount()
                 updateTotalUnreadMessagesCount()
+            }
+
+            function onShowSearchStatus(status) {
+                lblSearchStatus.text = status
             }
         }
 
