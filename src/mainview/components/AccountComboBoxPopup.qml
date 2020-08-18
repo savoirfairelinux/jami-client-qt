@@ -89,12 +89,8 @@ Popup {
                     anchors.bottom: userImage.bottom
                     anchors.bottomMargin: -2
 
-                    // Visible when account is registered.
-                    visible: {
-                        return accountListModel.data(
-                                    accountListModel.index(index, 0), 261)
-                                === Account.Status.REGISTERED
-                    }
+                    accountStatus: accountListModel.data(
+                                       accountListModel.index(index, 0), 261)
                 }
             }
 
