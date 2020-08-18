@@ -49,139 +49,89 @@ Dialog {
     }
 
     visible: false
-    title: qsTr("Account deletion")
 
-    contentItem: Rectangle{
-        implicitWidth: 400
-        implicitHeight: 300
+    header : Rectangle {
+        width: parent.width
+        height: 64
+        color: "transparent"
+        Text {
+            anchors.left: parent.left
+            anchors.leftMargin: 24
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 24
+
+            text: qsTr("Account deletion")
+            font.pointSize: JamiTheme.headerFontSize
+        }
+    }
+
+    height: contentLayout.implicitHeight + 64 + 16
+    width: contentLayout.implicitWidth + 24
+
+    contentItem: Rectangle {
 
         ColumnLayout{
+            id: contentLayout
+            implicitWidth: 280
             anchors.fill: parent
-            spacing: 7
+            spacing: 8
 
             Layout.alignment: Qt.AlignCenter
 
-            Label{
+            Label {
                 id: labelDeletion
 
-                Layout.topMargin: 11
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
+                Layout.leftMargin: 12
+                Layout.rightMargin: 12
 
-                Layout.alignment: Qt.AlignHCenter
-                font.pointSize: 8
-                font.kerning: true
-                horizontalAlignment: Text.AlignHCenter
+                Layout.alignment: Qt.AlignLeft
+                horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
-                text:qsTr("Do you really want to delete the following account?")
+                text: qsTr("Are you sure you want to delete this account?")
             }
 
-            Label{
-                id: labelBestId
-
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-
-                Layout.alignment: Qt.AlignHCenter
-                font.pointSize: 8
-                font.kerning: true
-                font.bold: true
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.Wrap
-
-                text: ClientWrapper.settingsAdaptor.getAccountBestName()
-            }
-
-            Label{
-                id: labelAccountHash
-
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-
-                Layout.alignment: Qt.AlignHCenter
-                font.pointSize: 8
-                font.kerning: true
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.Wrap
-                text: ClientWrapper.settingsAdaptor.getCurrentAccount_Profile_Info_Uri()
-            }
-
-            Item{
-                Layout.fillWidth: true
-
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-
-                Layout.maximumHeight: 5
-                Layout.preferredHeight: 5
-                Layout.minimumHeight: 5
-            }
-
-            Label{
+            Label {
                 id: labelWarning
 
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
+                Layout.leftMargin: 12
+                Layout.rightMargin: 12
 
-                Layout.preferredWidth: 300
-
-                visible: ! isSIP
-
-                Layout.alignment: Qt.AlignHCenter
+                visible: !isSIP
+                Layout.alignment: Qt.AlignLeft
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
                 text: qsTr("If this account hasn't been exported, or added to another device, it will be irrevocably lost.")
-                font.pointSize: 8
-                font.kerning: true
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
                 color: "red"
             }
 
-            Item{
+            Item {
                 Layout.fillWidth: true
 
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-
-                Layout.maximumHeight: 10
-                Layout.preferredHeight: 10
-                Layout.minimumHeight: 10
+                Layout.minimumHeight: 8
+                Layout.preferredHeight: 8
+                Layout.maximumHeight: 8
             }
 
-            RowLayout{
-                spacing: 7
+            RowLayout {
+                spacing: 8
 
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
+                Layout.fillWidth: true
 
-                Item{
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 40
+                Layout.alignment: Qt.AlignRight
 
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
-
-                HoverableRadiusButton{
+                Button {
                     id: btnDeleteAccept
 
-                    Layout.maximumWidth: 130
-                    Layout.preferredWidth: 130
-                    Layout.minimumWidth: 130
+                    contentItem: Text {
+                        text: qsTr("DELETE")
+                        color: "red"
+                    }
 
-                    Layout.maximumHeight: 30
-                    Layout.preferredHeight: 30
-                    Layout.minimumHeight: 30
-
-                    radius: height /2
-
-                    text: qsTr("Delete")
-                    font.pointSize: 10
-                    font.kerning: true
+                    background: Rectangle {
+                        color: "transparent"
+                    }
 
                     onClicked: {
                         ClientWrapper.accountAdaptor.deleteCurrentAccount()
@@ -189,65 +139,23 @@ Dialog {
                     }
                 }
 
-                Item{
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 40
 
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
-
-                HoverableButtonTextItem{
+                Button {
                     id: btnDeleteCancel
 
-                    Layout.maximumWidth: 130
-                    Layout.preferredWidth: 130
-                    Layout.minimumWidth: 130
+                    contentItem: Text {
+                        text: qsTr("CANCEL")
+                        color: JamiTheme.buttonTintedGrey
+                    }
 
-                    Layout.maximumHeight: 30
-                    Layout.preferredHeight: 30
-                    Layout.minimumHeight: 30
-
-                    backgroundColor: "red"
-                    onEnterColor: Qt.rgba(150 / 256, 0, 0, 0.7)
-                    onDisabledBackgroundColor: Qt.rgba(
-                                                   255 / 256,
-                                                   0, 0, 0.8)
-                    onPressColor: backgroundColor
-                    textColor: "white"
-
-                    radius: height /2
-
-                    text: qsTr("Cancel")
-                    font.pointSize: 10
-                    font.kerning: true
+                    background: Rectangle {
+                        color: "transparent"
+                    }
 
                     onClicked: {
                         reject()
                     }
                 }
-
-                Item{
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 40
-
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
-            }
-
-            Item{
-                Layout.fillWidth: true
-
-                Layout.maximumHeight: 5
-                Layout.preferredHeight: 5
-                Layout.minimumHeight: 5
-
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-                Layout.bottomMargin: 11
             }
         }
     }
