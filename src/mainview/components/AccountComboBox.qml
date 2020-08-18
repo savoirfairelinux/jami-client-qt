@@ -73,14 +73,12 @@ ComboBox {
             anchors.bottom: userImageRoot.bottom
             anchors.bottomMargin: -2
 
-            // Visible when account is registered, enum REGISTERED == 5.
-            visible: {
+            accountStatus: {
                 if (currentIndex !== -1)
                     return accountListModel.data(
-                                accountListModel.index(
-                                    accountComboBox.currentIndex, 0), 261) === 5
-                else
-                    return visible
+                                   accountListModel.index(
+                                       accountComboBox.currentIndex, 0), 261)
+                return 0
             }
         }
     }

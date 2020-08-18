@@ -23,6 +23,8 @@ import net.jami.Models 1.0
 Rectangle {
     id: root
 
+    property int accountStatus: 5
+
     width: 12
     height: 12
 
@@ -35,7 +37,16 @@ Rectangle {
         height: 10
 
         radius: 30
-        color: JamiTheme.presenceGreen
+        color: {
+            if (accountStatus === 5) {
+                // REGISTERED
+                return JamiTheme.presenceGreen
+            } else if (accountStatus === 4) {
+                // TRYING
+                return JamiTheme.unPresenceOrange
+            }
+            return JamiTheme.notificationRed
+        }
     }
 
     radius: 30

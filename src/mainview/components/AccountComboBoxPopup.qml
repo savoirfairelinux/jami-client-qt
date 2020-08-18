@@ -89,10 +89,11 @@ Popup {
                     anchors.bottom: userImage.bottom
                     anchors.bottomMargin: -2
 
-                    // Visible when account is registered, enum REGISTERED == 5.
-                    visible: {
-                        return accountListModel.data(
-                                    accountListModel.index(index, 0), 261) === 5
+                    accountStatus: {
+                        if (index !== -1)
+                            return accountListModel.data(
+                                        accountListModel.index(index, 0), 261)
+                        return 0
                     }
                 }
             }
