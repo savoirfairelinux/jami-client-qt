@@ -45,6 +45,161 @@
       "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35ab78d3_11a9377c",
+        "filename": "src/settingsview/SettingsView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:04:55Z",
+      "side": 1,
+      "message": "nice, keep doing this",
+      "range": {
+        "startLine": 194,
+        "startChar": 52,
+        "endLine": 194,
+        "endChar": 59
+      },
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c0fb083_75ecd5ea",
+        "filename": "src/settingsview/SettingsView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:04:55Z",
+      "side": 1,
+      "message": "Preferably, all signal names should be in the past tense, e.g. \u0027somethingHappened\u0027 and thus have a corresponding slot called \u0027onSomethingHappened\u0027.\n\nIn c++, we should establish similar coding guidelines and replace all \u0027slot\u0027 prefixes with \u0027on\u0027, with an exception for functions that are not explicitly slots, and maybe called in other ways than just signal invokation, e.g. \u0027somethingHappened\u0027 --\u003e \u0027doSomething\u0027.",
+      "range": {
+        "startLine": 242,
+        "startChar": 75,
+        "endLine": 242,
+        "endChar": 106
+      },
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8e29fcf3_d59188ac",
+        "filename": "src/settingsview/components/GeneralSettingsPage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:04:55Z",
+      "side": 1,
+      "message": "can\u0027t merge commented code so this should be dealt with somehow",
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9791ad7_57303935",
+        "filename": "src/settingsview/components/LeftPanelView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:04:55Z",
+      "side": 1,
+      "message": "we\u0027re going to need to find a good auto formatter for the qml/js",
+      "range": {
+        "startLine": 31,
+        "startChar": 9,
+        "endLine": 31,
+        "endChar": 10
+      },
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c0065c9_5e483e8a",
+        "filename": "src/settingsview/components/PluginSettingsPage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:04:55Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 8
+      },
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "794836ce_a3339d36",
+        "filename": "src/settingsview/components/PluginSettingsPage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:04:55Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 16
+      },
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16ec72ad_35fe4ed7",
+        "filename": "src/settingsview/components/PluginSettingsPage.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-18T16:04:55Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 16
+      },
+      "revId": "39d1d969d106e31178f534392b2dcf397e4122a0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
