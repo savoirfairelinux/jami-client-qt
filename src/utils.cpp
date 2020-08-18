@@ -637,7 +637,8 @@ Utils::conversationPhoto(const QString &convUid,
                          const lrc::api::account::Info &accountInfo,
                          bool filtered)
 {
-    auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountInfo.id, filtered);
+    auto convModel = LRCInstance::getCurrentConversationModel();
+    auto convInfo = convModel->getConversationForUID(convUid);
     if (!convInfo.uid.isEmpty()) {
         return GlobalInstances::pixmapManipulator()
             .decorationRole(convInfo, accountInfo)
@@ -934,16 +935,14 @@ const QString
 UtilsAdapter::getBestName(const QString &accountId, const QString &uid)
 {
     auto convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    return Utils::bestNameForConversation(LRCInstance::getConversationFromConvUid(uid, accountId),
-                                          *convModel);
+    return Utils::bestNameForConversation(convModel->getConversationForUID(uid), *convModel);
 }
 
 const QString
 UtilsAdapter::getBestId(const QString &accountId, const QString &uid)
 {
     auto convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    return Utils::bestIdForConversation(LRCInstance::getConversationFromConvUid(uid, accountId),
-                                        *convModel);
+    return Utils::bestIdForConversation(convModel->getConversationForUID(uid), *convModel);
 }
 
 int
@@ -1008,8 +1007,8 @@ UtilsAdapter::getAccountListSize()
 void
 UtilsAdapter::setCurrentCall(const QString &accountId, const QString &convUid)
 {
-    auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     auto &accInfo = LRCInstance::getAccountInfo(accountId);
+    auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
     accInfo.callModel->setCurrentCall(convInfo.callId);
 }
 
@@ -1036,7 +1035,9 @@ UtilsAdapter::hasVideoCall()
 const QString
 UtilsAdapter::getCallId(const QString &accountId, const QString &convUid)
 {
-    auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+    auto &accInfo = LRCInstance::getAccountInfo(accountId);
+    auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
+
     if (convInfo.uid.isEmpty()) {
         return "";
     }
