@@ -81,6 +81,47 @@ Popup {
                     }
                     return "data:image/png;base64," + data
                 }
+
+                Rectangle {
+                    id: presenceRect
+
+                    anchors.right: userImage.right
+                    anchors.rightMargin: -2
+                    anchors.bottom: userImage.bottom
+                    anchors.bottomMargin: 12
+
+                    width: 12
+                    height: 12
+
+                    /*
+                    * Visible when account is registered, enum REGISTERED == 5.
+                    */
+                    visible: (currentIndex !== -1)
+
+                    Rectangle {
+                        id: presenceCycle
+
+                        anchors.centerIn: presenceRect
+
+                        width: 10
+                        height: 10
+
+                        radius: 30
+                        color: {
+                            var status = accountListModel.data(accountListModel.index(index, 0), 261)
+                            if (status === 5) { // REGISTERED
+                                return JamiTheme.presenceGreen
+                            } else if (status === 4) { // TRYING
+                                return "orange"
+                            } else {
+                                return "red"
+                            }
+                        }
+                    }
+
+                    radius: 30
+                    color: JamiTheme.backgroundColor
+                }
             }
 
             Text {
