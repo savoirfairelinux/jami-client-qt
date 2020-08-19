@@ -1,6 +1,6 @@
 win32-msvc {
     TARGET = Jami
-    TEMPLATE = vcapp
+    TEMPLATE = app
 
     QT += core winextras qml quickcontrols2 quick xml multimedia network webengine svg sql
 
@@ -22,7 +22,8 @@ win32-msvc {
     # dependencies
     LRC= ../lrc
     DRING= ../daemon
-    QRENCODE= qrencode-win32/qrencode-win32
+    CLIENT= ../client-qt
+    QRENCODE= $${CLIENT}/qrencode-win32/qrencode-win32
 
     # client deps
     INCLUDEPATH += $${QRENCODE}
@@ -75,6 +76,9 @@ win32-msvc {
 
     # exe icons
     Release: RC_FILE = ico.rc
+
+    # run the deployment script(run windeployqt)
+    QMAKE_POST_LINK += $$quote(powershell -ExecutionPolicy Unrestricted -File $${CLIENT}/copy-runtime-files.ps1 -outDir $${DESTDIR})
 }
 
 unix {
