@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80bd78dd_369507db",
+        "filename": "src/mainview/components/WelcomePage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-19T07:22:39Z",
+      "side": 0,
+      "message": "There is the text \"This is your ID. Copy and share it with your friends.\" but the Id and copy button are not there anymore.",
+      "range": {
+        "startLine": 107,
+        "startChar": 16,
+        "endLine": 107,
+        "endChar": 28
+      },
+      "revId": "789f2d69587a94a201b7de681e68c494b1f99b3c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
