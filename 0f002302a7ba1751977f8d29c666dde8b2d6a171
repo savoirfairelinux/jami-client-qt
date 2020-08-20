@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "10225dde_10501f8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:24:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3944dc5b_25763286",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "0f002302a7ba1751977f8d29c666dde8b2d6a171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8d7ee5c_35e5b99b",
         "filename": "src/settingsview/components/AvSettingPage.qml",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "0f002302a7ba1751977f8d29c666dde8b2d6a171",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68fd08da_5be49c1b",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:24:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8d7ee5c_35e5b99b",
+      "range": {
+        "startLine": 245,
+        "startChar": 17,
+        "endLine": 245,
+        "endChar": 24
+      },
+      "revId": "0f002302a7ba1751977f8d29c666dde8b2d6a171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
