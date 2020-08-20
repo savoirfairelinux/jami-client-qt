@@ -305,6 +305,30 @@
       "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "402e5f3c_1f5a62b2",
+        "filename": "src/wizardview/components/WelcomePageLayout.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T21:05:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c4fde20_81f1e9d0",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 24
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }

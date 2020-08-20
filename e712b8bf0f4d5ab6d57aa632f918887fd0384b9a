@@ -190,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "68034320_7275186b",
+        "filename": "src/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T21:05:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22302411_4d3346e9",
+      "range": {
+        "startLine": 103,
+        "startChar": 19,
+        "endLine": 103,
+        "endChar": 25
+      },
+      "revId": "e712b8bf0f4d5ab6d57aa632f918887fd0384b9a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2c539c6a_16616616",
         "filename": "src/wizardview/components/CollapsiblePasswordWidget.qml",
         "patchSetId": 14
@@ -234,6 +258,30 @@
       "revId": "e712b8bf0f4d5ab6d57aa632f918887fd0384b9a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd81b145_2bef9340",
+        "filename": "src/wizardview/components/CollapsiblePasswordWidget.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T21:05:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afedfcd0_091f448c",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 154,
+        "endChar": 9
+      },
+      "revId": "e712b8bf0f4d5ab6d57aa632f918887fd0384b9a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
