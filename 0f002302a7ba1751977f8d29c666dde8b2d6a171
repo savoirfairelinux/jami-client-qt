@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3944dc5b_25763286",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T16:41:45Z",
+      "side": 1,
+      "message": "What do you mean exactly? Don\u0027t start previewing when a camera is plugged in and the media settings are not visible?",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 44
+      },
+      "revId": "0f002302a7ba1751977f8d29c666dde8b2d6a171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c8d7ee5c_35e5b99b",
         "filename": "src/settingsview/components/AvSettingPage.qml",
         "patchSetId": 4
