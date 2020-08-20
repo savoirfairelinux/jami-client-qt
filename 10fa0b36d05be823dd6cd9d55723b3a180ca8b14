@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75649e69_ea915253",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T13:48:16Z",
+      "side": 0,
+      "message": "still need this?",
+      "range": {
+        "startLine": 169,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 15
+      },
+      "revId": "10fa0b36d05be823dd6cd9d55723b3a180ca8b14",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
