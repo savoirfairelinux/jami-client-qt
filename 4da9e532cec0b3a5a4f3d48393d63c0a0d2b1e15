@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e8f6484_ba0e514f",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T15:51:23Z",
+      "side": 1,
+      "message": "root",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 22
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ef11a54_950b6a42",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T15:51:23Z",
+      "side": 1,
+      "message": "operator spacing",
+      "range": {
+        "startLine": 222,
+        "startChar": 20,
+        "endLine": 222,
+        "endChar": 33
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d798b8d0_51a015b7",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T15:51:23Z",
+      "side": 1,
+      "message": "Where does this come from? Is this a dimension from a parenting component?",
+      "range": {
+        "startLine": 230,
+        "startChar": 17,
+        "endLine": 230,
+        "endChar": 41
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19c75cbc_e8668115",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T15:51:23Z",
+      "side": 1,
+      "message": "The meaning of this property name is not clear to me, preferredColumnWidth should be the width of one column right?",
+      "range": {
+        "startLine": 233,
+        "startChar": 17,
+        "endLine": 233,
+        "endChar": 37
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16c1fe76_942768b1",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T15:51:23Z",
+      "side": 1,
+      "message": "Not part of this patch, but what the heck is this!? :(",
+      "range": {
+        "startLine": 47,
+        "startChar": 17,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7ba178d_8e8cdee6",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T15:51:23Z",
+      "side": 1,
+      "message": "This value repeats, maybe it can be injected somehow?",
+      "range": {
+        "startLine": 49,
+        "startChar": 3,
+        "endLine": 49,
+        "endChar": 46
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "896e2bea_218d5508",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T15:51:23Z",
+      "side": 1,
+      "message": "I think with should stick with the current naming convention which seems to place the component type at the end.",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 12
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1024cb2_57a9d76b",
+        "filename": "src/settingsview/components/GeneralSettingsPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-20T15:51:23Z",
+      "side": 1,
+      "message": "same as from AvSettingPage.qml",
+      "range": {
+        "startLine": 154,
+        "startChar": 17,
+        "endLine": 154,
+        "endChar": 38
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
