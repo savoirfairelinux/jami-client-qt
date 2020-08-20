@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "de50f6a0_35c11f21",
+        "filename": "src/commoncomponents/MaterialButton.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:56:39Z",
+      "side": 1,
+      "message": "No. It\u0027s a button. a button must not be ellided. The infos is important",
+      "parentUuid": "ddf12c66_d9371a87",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d52c9c1c_f7658e9a",
         "filename": "src/wizardview/WizardView.qml",
         "patchSetId": 15
@@ -45,6 +69,30 @@
       "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70ba3d84_5fc56bec",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d52c9c1c_f7658e9a",
+      "range": {
+        "startLine": 205,
+        "startChar": 4,
+        "endLine": 205,
+        "endChar": 14
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,54 @@
     },
     {
       "key": {
+        "uuid": "11f8d542_91191d60",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:56:39Z",
+      "side": 1,
+      "message": "You can\u0027t now. you need to select at least a file to click on connect",
+      "parentUuid": "d2ae3803_aac11853",
+      "range": {
+        "startLine": 315,
+        "startChar": 16,
+        "endLine": 315,
+        "endChar": 31
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1d9267c_6321bfe7",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2ae3803_aac11853",
+      "range": {
+        "startLine": 315,
+        "startChar": 16,
+        "endLine": 315,
+        "endChar": 31
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e54118a8_d5d079a0",
         "filename": "src/wizardview/components/BackupKeyPage.qml",
         "patchSetId": 15
@@ -82,6 +178,30 @@
       "writtenOn": "2020-08-18T16:15:13Z",
       "side": 1,
       "message": "Add button to skip backup?",
+      "range": {
+        "startLine": 135,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 22
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79c1527e_b75f861f",
+        "filename": "src/wizardview/components/BackupKeyPage.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:56:39Z",
+      "side": 1,
+      "message": "The close button already does that",
+      "parentUuid": "e54118a8_d5d079a0",
       "range": {
         "startLine": 135,
         "startChar": 8,
@@ -117,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "f68c74d8_d5560f72",
+        "filename": "src/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:56:39Z",
+      "side": 1,
+      "message": "No. We should see the whole text. too important. I\u0027ve just removed the anchors.right",
+      "parentUuid": "2f13bd52_185d6bb3",
+      "range": {
+        "startLine": 104,
+        "startChar": 16,
+        "endLine": 104,
+        "endChar": 21
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5c5e7674_8442be6b",
         "filename": "src/wizardview/components/WelcomePageLayout.qml",
         "patchSetId": 15
@@ -128,6 +272,30 @@
       "writtenOn": "2020-08-18T16:15:13Z",
       "side": 1,
       "message": "resize: components larger than minimum width",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 24
+      },
+      "revId": "0d6515a0259d0baeee663b9860b5721d4c147dfe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c4fde20_81f1e9d0",
+        "filename": "src/wizardview/components/WelcomePageLayout.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-20T20:56:39Z",
+      "side": 1,
+      "message": "I talked with andreas. For now 400px is better. should not break the wizard (changed in this commit)",
+      "parentUuid": "5c5e7674_8442be6b",
       "range": {
         "startLine": 81,
         "startChar": 8,
