@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efa4447c_5d1f78a7",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "auto* convModel",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 18
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ceda3f25_a4944fb9",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "can be const (same for others)",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 18
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bfb380e_44cb678c",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "to remove",
+      "range": {
+        "startLine": 210,
+        "startChar": 14,
+        "endLine": 210,
+        "endChar": 49
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb5538fc_408a228d",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "check participants is not empty to avoid any possible segfault",
+      "range": {
+        "startLine": 215,
+        "startChar": 36,
+        "endLine": 215,
+        "endChar": 55
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a43d2c9_9093b2ea",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "Only updating the updated conversation instead filling the whole model",
+      "range": {
+        "startLine": 228,
+        "startChar": 30,
+        "endLine": 228,
+        "endChar": 61
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "18646466_16a5bb9a",
+        "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "!\u003d\u003d",
+      "range": {
+        "startLine": 87,
+        "startChar": 76,
+        "endLine": 87,
+        "endChar": 85
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd6facc5_f1674532",
+        "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 94,
+        "startChar": 79,
+        "endLine": 94,
+        "endChar": 90
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0fe18284_3a022ed4",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 158,
+        "startChar": 32,
+        "endLine": 158,
+        "endChar": 43
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31849cc9_432f5a90",
+        "filename": "src/smartlistmodel.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "emplace_back",
+      "range": {
+        "startLine": 192,
+        "startChar": 23,
+        "endLine": 192,
+        "endChar": 32
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "936570df_064b6f9c",
+        "filename": "src/smartlistmodel.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-21T18:17:26Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 197,
+        "startChar": 23,
+        "endLine": 197,
+        "endChar": 32
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
