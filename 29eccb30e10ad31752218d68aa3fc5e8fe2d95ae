@@ -22,6 +22,30 @@
       "revId": "29eccb30e10ad31752218d68aa3fc5e8fe2d95ae",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0109142f_2f545998",
+        "filename": "src/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2020-08-21T18:56:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "003679c0_b2b2b7aa",
+      "range": {
+        "startLine": 197,
+        "startChar": 25,
+        "endLine": 197,
+        "endChar": 43
+      },
+      "revId": "29eccb30e10ad31752218d68aa3fc5e8fe2d95ae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
