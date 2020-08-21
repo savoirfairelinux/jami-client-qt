@@ -22,6 +22,30 @@
       "revId": "a8f267a375104daeac2bd5651708529b55d5ab23",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "689fe5c1_0ed490b6",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2020-08-21T14:31:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1341393_c10f22ab",
+      "range": {
+        "startLine": 106,
+        "startChar": 3,
+        "endLine": 107,
+        "endChar": 65
+      },
+      "revId": "a8f267a375104daeac2bd5651708529b55d5ab23",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
