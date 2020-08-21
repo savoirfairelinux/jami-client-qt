@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3da73682_94de4f56",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-21T13:51:02Z",
+      "side": 1,
+      "message": "I think we could change this in all the modules on a different patch.",
+      "parentUuid": "9e8f6484_ba0e514f",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 22
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ef11a54_950b6a42",
         "filename": "src/settingsview/components/AvSettingPage.qml",
         "patchSetId": 14
@@ -45,6 +69,30 @@
       "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e35d919d_4c209cde",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-21T13:51:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ef11a54_950b6a42",
+      "range": {
+        "startLine": 222,
+        "startChar": 20,
+        "endLine": 222,
+        "endChar": 33
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "701d4ed5_c9cc4b50",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-21T13:51:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d798b8d0_51a015b7",
+      "range": {
+        "startLine": 230,
+        "startChar": 17,
+        "endLine": 230,
+        "endChar": 41
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "19c75cbc_e8668115",
         "filename": "src/settingsview/components/AvSettingPage.qml",
         "patchSetId": 14
@@ -91,6 +163,30 @@
       "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ac7b305_41f89601",
+        "filename": "src/settingsview/components/AvSettingPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-21T13:51:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c75cbc_e8668115",
+      "range": {
+        "startLine": 233,
+        "startChar": 17,
+        "endLine": 233,
+        "endChar": 37
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3f63c738_5a5a1a8b",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-21T13:51:02Z",
+      "side": 1,
+      "message": "I cannot answer that... :s",
+      "parentUuid": "16c1fe76_942768b1",
+      "range": {
+        "startLine": 47,
+        "startChar": 17,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7ba178d_8e8cdee6",
         "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
         "patchSetId": 14
@@ -137,6 +257,30 @@
       "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee6c2834_51666721",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-21T13:51:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7ba178d_8e8cdee6",
+      "range": {
+        "startLine": 49,
+        "startChar": 3,
+        "endLine": 49,
+        "endChar": 46
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "2e8ee7bc_762e66cd",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-21T13:51:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "896e2bea_218d5508",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 12
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a1024cb2_57a9d76b",
         "filename": "src/settingsview/components/GeneralSettingsPage.qml",
         "patchSetId": 14
@@ -183,6 +351,30 @@
       "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7d70c8a_dbf5298e",
+        "filename": "src/settingsview/components/GeneralSettingsPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-21T13:51:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1024cb2_57a9d76b",
+      "range": {
+        "startLine": 154,
+        "startChar": 17,
+        "endLine": 154,
+        "endChar": 38
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
