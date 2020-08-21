@@ -1,748 +1,2045 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sq_AL" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="sq_AL">
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../aboutdialog.ui" line="435"/>
-        <location filename="../aboutdialog.ui" line="465"/>
         <source>About</source>
-        <translation>Mbi</translation>
+        <translation type="vanished">Mbi</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="462"/>
         <source>about button</source>
-        <translation>buton Mbi</translation>
+        <translation type="vanished">buton Mbi</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="478"/>
         <source>credits button</source>
-        <translation>buton Kreditesh</translation>
+        <translation type="vanished">buton Kreditesh</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="481"/>
         <source>Credits</source>
-        <translation>Kredite</translation>
+        <translation type="vanished">Kredite</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="547"/>
         <source>Free as in Freedom</source>
-        <translation>I lirë si në Liri </translation>
+        <translation type="vanished">I lirë si në Liri </translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="563"/>
         <source>The Microsoft Windows client for Jami.
 Jami is a secured and distributed communication software.</source>
-        <translation>Klienti Jami për Microsoft Windows.
+        <translation type="vanished">Klienti Jami për Microsoft Windows.
 Jami është një software komunikimi të siguruar dhe të shpërndarë.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="32"/>
         <source>version</source>
-        <translation>version</translation>
+        <translation type="vanished">version</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="39"/>
         <source>Created by:</source>
-        <translation>Krijuar nga:</translation>
+        <translation type="vanished">Krijuar nga:</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="73"/>
         <source>Artwork by:</source>
-        <translation>Përkujdesja grafike:</translation>
+        <translation type="vanished">Përkujdesja grafike:</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="77"/>
         <source>Based on the SFLPhone project</source>
-        <translation>Bazuar në projektin SFLPhone</translation>
+        <translation type="vanished">Bazuar në projektin SFLPhone</translation>
+    </message>
+</context>
+<context>
+    <name>AboutPopUp</name>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="90"/>
+        <source>version</source>
+        <translation type="unfinished">version</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="113"/>
+        <source>Free as in Freedom</source>
+        <translation type="unfinished">I lirë si në Liri </translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="135"/>
+        <source>The Microsoft Windows client for Jami.
+Jami is a secured and distributed communciation software.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="258"/>
+        <source>Change Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="277"/>
+        <source>Credits</source>
+        <translation type="unfinished">Kredite</translation>
+    </message>
+</context>
+<context>
+    <name>AccountComboBoxPopup</name>
+    <message>
+        <location filename="../src/mainview/components/AccountComboBoxPopup.qml" line="154"/>
+        <source>Add Account</source>
+        <translation type="unfinished">Shtoni Llogari</translation>
     </message>
 </context>
 <context>
     <name>AccountItemDelegate</name>
     <message>
-        <location filename="../accountitemdelegate.cpp" line="91"/>
         <source>Add Account</source>
-        <translation>Shtoni Llogari</translation>
+        <translation type="vanished">Shtoni Llogari</translation>
+    </message>
+</context>
+<context>
+    <name>AccountMigrationDialog</name>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="272"/>
+        <source>Account Migration Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="308"/>
+        <source>This account is malformed. Please enter your password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="446"/>
+        <source>Alias</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="519"/>
+        <source>Username</source>
+        <translation type="unfinished">Emër përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="592"/>
+        <source>Manager Uri</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="665"/>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="705"/>
+        <source>Password</source>
+        <translation type="unfinished">Fjalëkalim</translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="769"/>
+        <source>Migrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="808"/>
+        <source>Delete</source>
+        <translation type="unfinished">Fshije</translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="948"/>
+        <source>Migrating your Jami account...</source>
+        <translation type="unfinished">Po migrohet llogaria juaj Jami…</translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="948"/>
+        <source>Migration Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AdvancedSIPSettingsView</name>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="205"/>
+        <source>Add a custom ringtone</source>
+        <translation type="unfinished">Shtoni një zile vetjake</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="237"/>
+        <source>Select a new ringtone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="240"/>
+        <source>Audio Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="240"/>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="266"/>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="292"/>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="318"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="264"/>
+        <source>Select a CA certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="266"/>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="292"/>
+        <source>Certificate File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="290"/>
+        <source>Select a user certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="316"/>
+        <source>Select a private key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="318"/>
+        <source>Key File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="359"/>
+        <source>Call Settings</source>
+        <translation type="unfinished">Rregullime për Thirrjet</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="375"/>
+        <source>Auto Answer Call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="568"/>
+        <source>Encrypt Media Streams(SRTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="648"/>
+        <source>Encrypt Negotiation(TLS)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="961"/>
+        <source>Verify Certificates(Server Side)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="987"/>
+        <source>Verify Certificates(Client Side)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1159"/>
+        <source>Negotiation Timeout(seconds)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1267"/>
+        <source>Registration Expire Timeout(seconds)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="2274"/>
+        <source>SDP Session Negotiation(ICE Fallback)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Answer Calls</source>
+        <translation type="obsolete">Vetëpërgjigjiu Thirrjeve</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="392"/>
+        <source>Enable Custom Ringtone</source>
+        <translation type="unfinished">Aktivizo Zile Vetjake</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="455"/>
+        <source>Voicemail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="486"/>
+        <source>Voicemail Dial Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="537"/>
+        <source>Security</source>
+        <translation type="unfinished">Siguri</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="596"/>
+        <source>Enable SDES(Key Exchange)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="622"/>
+        <source>Can Fallback on RTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="699"/>
+        <source>CA Certificate</source>
+        <translation type="unfinished">Dëshmi AD</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="770"/>
+        <source>User Certificate</source>
+        <translation type="unfinished">Dëshmi Përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="841"/>
+        <source>Private Key</source>
+        <translation type="unfinished">Kyç Privat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="912"/>
+        <source>Private Key Password</source>
+        <translation type="unfinished">Fjalëkalim Kyçi Privat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1013"/>
+        <source>TLS Connections Require Certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1043"/>
+        <source>TLS Protocol Method</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1107"/>
+        <source>Outgoing TLS Server Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1231"/>
+        <source>Connectivity</source>
+        <translation type="unfinished">Aftësi lidhjeje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1326"/>
+        <source>Newtwork interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1380"/>
+        <source>Use UPnP</source>
+        <translation type="unfinished">Përdor UPnP</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1406"/>
+        <source>Use TURN</source>
+        <translation type="unfinished">Përdor TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1457"/>
+        <source>TURN Address</source>
+        <translation type="unfinished">Adresë TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1526"/>
+        <source>TURN Username</source>
+        <translation type="unfinished">Emër përdoruesi TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1594"/>
+        <source>TURN Password</source>
+        <translation type="unfinished">Fjalëkalim TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1664"/>
+        <source>TURN Realm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1711"/>
+        <source>Use STUN</source>
+        <translation type="unfinished">Përdor STUN</translation>
+    </message>
+    <message>
+        <source>STUN Address</source>
+        <translation type="obsolete">Adresë STUN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1778"/>
+        <source>Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1810"/>
+        <source>Use Custom Address/Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1843"/>
+        <source>Address</source>
+        <translation type="unfinished">Adresë</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1896"/>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1957"/>
+        <source>Media</source>
+        <translation type="unfinished">Media</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1983"/>
+        <source>Enable Video</source>
+        <translation type="unfinished">Aktivizo Video</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="2013"/>
+        <source>Video Codecs</source>
+        <translation type="unfinished">Kodekë Video</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="2139"/>
+        <source>Audio Codecs</source>
+        <translation type="unfinished">Kodekë Audio</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="2290"/>
+        <source>Only used during negotiation in case ICE is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="2327"/>
+        <source>Audio RTP Min Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="2382"/>
+        <source>Audio RTP Max Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="2437"/>
+        <source>Video RTP Min Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="2492"/>
+        <source>Video RTP Max Port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AdvancedSIPSettingsWidget</name>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="vanished">Formular</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="55"/>
         <source>Call Settings</source>
-        <translation>Rregullime për Thirrjet</translation>
+        <translation type="vanished">Rregullime për Thirrjet</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="102"/>
         <source>Auto Answer Calls</source>
-        <translation>Vetëpërgjigjiu Thirrjeve</translation>
+        <translation type="vanished">Vetëpërgjigjiu Thirrjeve</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="130"/>
         <source>Enable Custom Ringtone</source>
-        <translation>Aktivizo Zile Vetjake</translation>
+        <translation type="vanished">Aktivizo Zile Vetjake</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="191"/>
         <source>Connectivity</source>
-        <translation>Aftësi lidhjeje</translation>
+        <translation type="vanished">Aftësi lidhjeje</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="281"/>
         <source>STUN Address</source>
-        <translation>Adresë STUN</translation>
+        <translation type="vanished">Adresë STUN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="293"/>
         <source>Use STUN</source>
-        <translation>Përdor STUN</translation>
+        <translation type="vanished">Përdor STUN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="317"/>
         <source>Use UPnP</source>
-        <translation>Përdor UPnP</translation>
+        <translation type="vanished">Përdor UPnP</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="329"/>
         <source>Use TURN</source>
-        <translation>Përdor TURN</translation>
+        <translation type="vanished">Përdor TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="359"/>
         <source>TURN Password</source>
-        <translation>Fjalëkalim TURN</translation>
+        <translation type="vanished">Fjalëkalim TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="391"/>
         <source>TURN Username</source>
-        <translation>Emër përdoruesi TURN</translation>
+        <translation type="vanished">Emër përdoruesi TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="423"/>
         <source>TURN Address</source>
-        <translation>Adresë TURN</translation>
+        <translation type="vanished">Adresë TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="464"/>
         <source>Media</source>
-        <translation>Media</translation>
+        <translation type="vanished">Media</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="515"/>
         <source>Enable Video</source>
-        <translation>Aktivizo Video</translation>
+        <translation type="vanished">Aktivizo Video</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="539"/>
         <source>Video Codecs</source>
-        <translation>Kodekë Video</translation>
+        <translation type="vanished">Kodekë Video</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="692"/>
         <source>Audio Codecs</source>
-        <translation>Kodekë Audio</translation>
+        <translation type="vanished">Kodekë Audio</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.cpp" line="142"/>
         <source>Audio Files (*.wav *.ogg *.opus *.mp3 *aiff *wma)</source>
-        <translation>Kartela Audio (*.wav *.ogg *.opus *.mp3 *aiff *wma)</translation>
+        <translation type="vanished">Kartela Audio (*.wav *.ogg *.opus *.mp3 *aiff *wma)</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.cpp" line="151"/>
         <source>Add a custom ringtone</source>
-        <translation>Shtoni një zile vetjake</translation>
+        <translation type="vanished">Shtoni një zile vetjake</translation>
+    </message>
+</context>
+<context>
+    <name>AdvancedSettingsView</name>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="135"/>
+        <source>Add a custom ringtone</source>
+        <translation type="unfinished">Shtoni një zile vetjake</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="167"/>
+        <source>Select a new ringtone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="170"/>
+        <source>Audio Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="170"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="196"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="222"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="248"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="194"/>
+        <source>Select a CA certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="196"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="222"/>
+        <source>Certificate File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="220"/>
+        <source>Select a user certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="246"/>
+        <source>Select a private key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="248"/>
+        <source>Key File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="289"/>
+        <source>Call Settings</source>
+        <translation type="unfinished">Rregullime për Thirrjet</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="314"/>
+        <source>Allow incoming calls from unknown contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="328"/>
+        <source>Auto Answer Calls</source>
+        <translation type="unfinished">Vetëpërgjigjiu Thirrjeve</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="345"/>
+        <source>Enable Custom Ringtone</source>
+        <translation type="unfinished">Aktivizo Zile Vetjake</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="398"/>
+        <source>Name Server</source>
+        <translation type="unfinished">Shërbyes Emrash</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="426"/>
+        <source>Address</source>
+        <translation type="unfinished">Adresë</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="478"/>
+        <source>OpenDHT Configuration</source>
+        <translation type="unfinished">Formësim OpenDHT-je</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="506"/>
+        <source>Enable proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="553"/>
+        <source>Bootstrap</source>
+        <translation type="unfinished">Bootstrap</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="594"/>
+        <source>Security</source>
+        <translation type="unfinished">Siguri</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="631"/>
+        <source>CA Certificate</source>
+        <translation type="unfinished">Dëshmi AD</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="669"/>
+        <source>User Certificate</source>
+        <translation type="unfinished">Dëshmi Përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="707"/>
+        <source>Private Key</source>
+        <translation type="unfinished">Kyç Privat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="745"/>
+        <source>Private Key Password</source>
+        <translation type="unfinished">Fjalëkalim Kyçi Privat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="790"/>
+        <source>Connectivity</source>
+        <translation type="unfinished">Aftësi lidhjeje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="826"/>
+        <source>Auto Connect On Local Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="852"/>
+        <source>Use UPnP</source>
+        <translation type="unfinished">Përdor UPnP</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="878"/>
+        <source>Use TURN</source>
+        <translation type="unfinished">Përdor TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="897"/>
+        <source>TURN Address</source>
+        <translation type="unfinished">Adresë TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="937"/>
+        <source>TURN Username</source>
+        <translation type="unfinished">Emër përdoruesi TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="977"/>
+        <source>TURN Password</source>
+        <translation type="unfinished">Fjalëkalim TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="1015"/>
+        <source>Use STUN</source>
+        <translation type="unfinished">Përdor STUN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="1036"/>
+        <source>STUN Address</source>
+        <translation type="unfinished">Adresë STUN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="1069"/>
+        <source>Media</source>
+        <translation type="unfinished">Media</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="1094"/>
+        <source>Enable Video</source>
+        <translation type="unfinished">Aktivizo Video</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="1125"/>
+        <source>Video Codecs</source>
+        <translation type="unfinished">Kodekë Video</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="1249"/>
+        <source>Audio Codecs</source>
+        <translation type="unfinished">Kodekë Audio</translation>
     </message>
 </context>
 <context>
     <name>AdvancedSettingsWidget</name>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="vanished">Formular</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="61"/>
         <source>Call Settings</source>
-        <translation>Rregullime për Thirrjet</translation>
+        <translation type="vanished">Rregullime për Thirrjet</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="108"/>
         <source>Allow Calls From Untrusted Peers</source>
-        <translation>Lejo Thirrje Prej Ortakësh Jo të Besuar</translation>
+        <translation type="vanished">Lejo Thirrje Prej Ortakësh Jo të Besuar</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="133"/>
         <source>Auto Answer Calls</source>
-        <translation>Vetëpërgjigjiu Thirrjeve</translation>
+        <translation type="vanished">Vetëpërgjigjiu Thirrjeve</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="161"/>
         <source>Enable Custom Ringtone</source>
-        <translation>Aktivizo Zile Vetjake</translation>
+        <translation type="vanished">Aktivizo Zile Vetjake</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.cpp" line="188"/>
         <source>Add a custom ringtone</source>
-        <translation>Shtoni një zile vetjake</translation>
+        <translation type="vanished">Shtoni një zile vetjake</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="225"/>
         <source>Name Server</source>
-        <translation>Shërbyes Emrash</translation>
+        <translation type="vanished">Shërbyes Emrash</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="275"/>
         <source>Address</source>
-        <translation>Adresë</translation>
+        <translation type="vanished">Adresë</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="351"/>
         <source>OpenDHT Configuration</source>
-        <translation>Formësim OpenDHT-je</translation>
+        <translation type="vanished">Formësim OpenDHT-je</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="398"/>
         <source>Enable Proxy</source>
-        <translation>Aktivizo Ndërmjetës</translation>
+        <translation type="vanished">Aktivizo Ndërmjetës</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="454"/>
         <source>Bootstrap</source>
-        <translation>Bootstrap</translation>
+        <translation type="vanished">Bootstrap</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="530"/>
         <source>Security</source>
-        <translation>Siguri</translation>
+        <translation type="vanished">Siguri</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="571"/>
         <source>Private Key Password</source>
-        <translation>Fjalëkalim Kyçi Privat</translation>
+        <translation type="vanished">Fjalëkalim Kyçi Privat</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="583"/>
         <source>User Certificate</source>
-        <translation>Dëshmi Përdoruesi</translation>
+        <translation type="vanished">Dëshmi Përdoruesi</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="622"/>
         <source>Private Key</source>
-        <translation>Kyç Privat</translation>
+        <translation type="vanished">Kyç Privat</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="634"/>
         <source>CA Certificate</source>
-        <translation>Dëshmi AD</translation>
+        <translation type="vanished">Dëshmi AD</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="766"/>
         <source>Connectivity</source>
-        <translation>Aftësi lidhjeje</translation>
+        <translation type="vanished">Aftësi lidhjeje</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="868"/>
         <source>Use STUN</source>
-        <translation>Përdor STUN</translation>
+        <translation type="vanished">Përdor STUN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="856"/>
         <source>STUN Address</source>
-        <translation>Adresë STUN</translation>
+        <translation type="vanished">Adresë STUN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="892"/>
         <source>Use UPnP</source>
-        <translation>Përdor UPnP</translation>
+        <translation type="vanished">Përdor UPnP</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="904"/>
         <source>Use TURN</source>
-        <translation>Përdor TURN</translation>
+        <translation type="vanished">Përdor TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="934"/>
         <source>TURN Password</source>
-        <translation>Fjalëkalim TURN</translation>
+        <translation type="vanished">Fjalëkalim TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="966"/>
         <source>TURN Username</source>
-        <translation>Emër përdoruesi TURN</translation>
+        <translation type="vanished">Emër përdoruesi TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="998"/>
         <source>TURN Address</source>
-        <translation>Adresë TURN</translation>
+        <translation type="vanished">Adresë TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="1039"/>
         <source>Media</source>
-        <translation>Media</translation>
+        <translation type="vanished">Media</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="1090"/>
         <source>Enable Video</source>
-        <translation>Aktivizo Video</translation>
+        <translation type="vanished">Aktivizo Video</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="1267"/>
         <source>Audio Codecs</source>
-        <translation>Kodekë Audio</translation>
+        <translation type="vanished">Kodekë Audio</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="1114"/>
         <source>Video Codecs</source>
-        <translation>Kodekë Video</translation>
+        <translation type="vanished">Kodekë Video</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.cpp" line="181"/>
         <source>Audio Files (*.wav *.ogg *.opus *.mp3 *aiff *wma)</source>
-        <translation>Kartela Audio (*.wav *.ogg *.opus *.mp3 *aiff *wma)</translation>
+        <translation type="vanished">Kartela Audio (*.wav *.ogg *.opus *.mp3 *aiff *wma)</translation>
     </message>
 </context>
 <context>
     <name>AnimatedOverlay</name>
     <message>
-        <location filename="../animatedoverlay.ui" line="14"/>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="vanished">Formular</translation>
+    </message>
+</context>
+<context>
+    <name>AvSettingPage</name>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="306"/>
+        <source>Audio / Video</source>
+        <translation type="unfinished">Audio / Video</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="332"/>
+        <source>Audio</source>
+        <translation type="unfinished">Audio</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="366"/>
+        <source>Microphone</source>
+        <translation type="unfinished">Mikrofon</translation>
+    </message>
+    <message>
+        <source>Audio input device selector</source>
+        <translation type="obsolete">Përzgjedhës pajisje audio në hyrje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="443"/>
+        <source>Output Device</source>
+        <translation type="unfinished">Pajisje Në Dalje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="495"/>
+        <source>Ringtone Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="549"/>
+        <source>Audio Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="606"/>
+        <source>Video</source>
+        <translation type="unfinished">Video</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="641"/>
+        <source>Device</source>
+        <translation type="unfinished">Pajisje</translation>
+    </message>
+    <message>
+        <source>Video device selector</source>
+        <translation type="obsolete">Përzgjedhës pajisje video</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="695"/>
+        <source>Resolution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="748"/>
+        <source>Fps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="831"/>
+        <source>Preview unavailable</source>
+        <translation type="unfinished">S’ka paraparje</translation>
+    </message>
+</context>
+<context>
+    <name>BackupKeyPage</name>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="40"/>
+        <source>Export Account Here</source>
+        <translation type="unfinished">Eksportoje Llogarinë Këtu</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="43"/>
+        <source>Jami archive files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="43"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="88"/>
+        <source>Backup your account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="99"/>
+        <source>This account only exists on this device. If you lost your device or uninstall the application,your account will be deleted. You can backup your account now or later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="146"/>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="175"/>
+        <source>Skip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="116"/>
+        <source>Never show me this again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="obsolete">Mbylle</translation>
+    </message>
+</context>
+<context>
+    <name>BannedItemDelegate</name>
+    <message>
+        <location filename="../src/settingsview/components/BannedItemDelegate.qml" line="141"/>
+        <source>name</source>
+        <translation type="unfinished">emër</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/BannedItemDelegate.qml" line="161"/>
+        <source>id</source>
+        <translation type="unfinished">id</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/BannedItemDelegate.qml" line="188"/>
+        <source>Add as contact</source>
+        <translation type="unfinished">Shtojeni si kontakt</translation>
     </message>
 </context>
 <context>
     <name>BannedItemWidget</name>
     <message>
-        <location filename="../banneditemwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="vanished">Formular</translation>
     </message>
     <message>
-        <location filename="../banneditemwidget.ui" line="80"/>
         <source>name</source>
-        <translation>emër</translation>
+        <translation type="vanished">emër</translation>
     </message>
     <message>
-        <location filename="../banneditemwidget.ui" line="104"/>
         <source>id</source>
-        <translation>id</translation>
+        <translation type="vanished">id</translation>
+    </message>
+</context>
+<context>
+    <name>CallAdapter</name>
+    <message>
+        <location filename="../src/calladapter.cpp" line="258"/>
+        <location filename="../src/calladapter.cpp" line="307"/>
+        <source>me</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CallAdvancedOptions</name>
+    <message>
+        <location filename="../src/mainview/components/CallAdvancedOptions.qml" line="92"/>
+        <source>Add to conference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallAdvancedOptions.qml" line="92"/>
+        <source>Transfer this call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallAdvancedOptions.qml" line="110"/>
+        <source>Search contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CallViewContextMenu</name>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="100"/>
+        <source>Resume call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="100"/>
+        <source>Hold call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="117"/>
+        <source>Transfer call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="143"/>
+        <source>Stop recording</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="143"/>
+        <source>Start recording</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="157"/>
+        <source>Exit full screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="157"/>
+        <source>Full screen mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="200"/>
+        <source>Share entire screen</source>
+        <translation type="unfinished">Nda krejt ekranin</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="221"/>
+        <source>Share screen area</source>
+        <translation type="unfinished">Ndani me të tjerët zonën e ekranit</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="244"/>
+        <source>Share file</source>
+        <translation type="unfinished">Ndani kartelë me të tjerë</translation>
     </message>
 </context>
 <context>
     <name>CallWidget</name>
     <message>
-        <location filename="../callwidget.ui" line="184"/>
         <source>Show conversations</source>
-        <translation>Shfaq biseda</translation>
+        <translation type="vanished">Shfaq biseda</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="187"/>
         <source>Conversations</source>
-        <translation>Biseda</translation>
+        <translation type="vanished">Biseda</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="368"/>
         <source>Search contact text input</source>
-        <translation>Dhënie teksti kërkimi kontakti</translation>
+        <translation type="vanished">Dhënie teksti kërkimi kontakti</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="653"/>
         <source>Jami is free software for universal communication which respects the freedoms and privacy of its users.</source>
-        <translation>Jami është software i lirë për komunikim universal që respekton privatësinë e përdoruesve të tij.</translation>
+        <translation type="vanished">Jami është software i lirë për komunikim universal që respekton privatësinë e përdoruesve të tij.</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="693"/>
         <source>
  This is your ID.
 Copy and share it with your friends!
                                       </source>
-        <translation>
+        <translation type="vanished">
 Kjo është ID-ja juaj.
 Kopjojeni dhe jepuani shokëve!</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="806"/>
         <source>Show ring ID QR code</source>
-        <translation>Shfaq kod QR ID-je Ring-u</translation>
+        <translation type="vanished">Shfaq kod QR ID-je Ring-u</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="857"/>
         <source>Share ring ID button</source>
-        <translation>Buton Ndani ID Ringu Me të Tjerët</translation>
+        <translation type="vanished">Buton Ndani ID Ringu Me të Tjerët</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="915"/>
         <source>Double-click to copy</source>
-        <translation>Dyklikojeni që të kopjohet</translation>
+        <translation type="vanished">Dyklikojeni që të kopjohet</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="956"/>
         <source>Error while generating QR Code</source>
-        <translation>Gabim teksa prodhohej kodi QR</translation>
+        <translation type="vanished">Gabim teksa prodhohej kodi QR</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1184"/>
-        <location filename="../callwidget.ui" line="1434"/>
         <source>best name</source>
-        <translation>Përzgjedhës shpejtësie kuadrosh për pajisje video</translation>
+        <translation type="vanished">Përzgjedhës shpejtësie kuadrosh për pajisje video</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1208"/>
-        <source>best Id</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../callwidget.ui" line="1734"/>
         <source>Back to homepage button</source>
-        <translation>Buton Mbrapsht te faqja hyrëse</translation>
+        <translation type="vanished">Buton Mbrapsht te faqja hyrëse</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1943"/>
         <source>Add to contacts</source>
-        <translation>Shtoje te kontaktet</translation>
+        <translation type="vanished">Shtoje te kontaktet</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="202"/>
         <source>Show invites</source>
-        <translation>Shfaq ftesa</translation>
+        <translation type="vanished">Shfaq ftesa</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="205"/>
         <source>Invites</source>
-        <translation>Ftesa</translation>
+        <translation type="vanished">Ftesa</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="377"/>
-        <location filename="../callwidget.cpp" line="552"/>
         <source>Find a new or existing contact</source>
-        <translation>Gjeni një kontakt të ri ose ekzistues</translation>
+        <translation type="vanished">Gjeni një kontakt të ri ose ekzistues</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1444"/>
         <source>Wants to talk to you!</source>
-        <translation>Dëshiron të bisedojë me ju!</translation>
+        <translation type="vanished">Dëshiron të bisedojë me ju!</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1517"/>
         <source>Answer incoming call button</source>
-        <translation>Buton Përgjigjuni thirrjes ardhëse</translation>
+        <translation type="vanished">Buton Përgjigjuni thirrjes ardhëse</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1589"/>
         <source>Ignore incoming call button</source>
-        <translation>Buton Shpërfille thirrjen ardhëse</translation>
+        <translation type="vanished">Buton Shpërfille thirrjen ardhëse</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1539"/>
         <source>Answer</source>
-        <translation>Përgjigjuni</translation>
+        <translation type="vanished">Përgjigjuni</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1617"/>
         <source>Ignore</source>
-        <translation>Shpërfille</translation>
+        <translation type="vanished">Shpërfille</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1280"/>
         <source>Cancel outgoing call</source>
-        <translation>Anuloje dërgimin e thirrjes</translation>
+        <translation type="vanished">Anuloje dërgimin e thirrjes</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1305"/>
         <source>Cancel</source>
-        <translation>Anuloje</translation>
+        <translation type="vanished">Anuloje</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="332"/>
         <source>Start video call</source>
-        <translation>Filloni thirrje video</translation>
+        <translation type="vanished">Filloni thirrje video</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="343"/>
         <source>Start audio call</source>
-        <translation>Filloni thirrje audio</translation>
+        <translation type="vanished">Filloni thirrje audio</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="354"/>
         <source>Clear conversation</source>
-        <translation>Spastroje bisedën</translation>
+        <translation type="vanished">Spastroje bisedën</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="361"/>
         <source>Remove contact</source>
-        <translation>Hiqe kontaktin</translation>
+        <translation type="vanished">Hiqe kontaktin</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="373"/>
         <source>Block contact</source>
-        <translation>Bllokojeni kontaktin</translation>
+        <translation type="vanished">Bllokojeni kontaktin</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="384"/>
         <source>Copy number</source>
-        <translation>Kopjoje numrin</translation>
+        <translation type="vanished">Kopjoje numrin</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="561"/>
         <source>Search your received invitations</source>
-        <translation>Kërkoni te ftesat tuaja të marra</translation>
+        <translation type="vanished">Kërkoni te ftesat tuaja të marra</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="943"/>
         <source>Contact me on Jami</source>
-        <translation>Lidhuni me mua në Jami</translation>
+        <translation type="vanished">Lidhuni me mua në Jami</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="943"/>
         <source>My Id is : </source>
-        <translation>ID-ja ime është:</translation>
+        <translation type="vanished">ID-ja ime është:</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="847"/>
         <source>%1</source>
         <comment>%1 is the contact username</comment>
-        <translation>%1</translation>
+        <translation type="vanished">%1</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="852"/>
         <source>%1</source>
         <comment>%1 is the contact unique identifier</comment>
-        <translation>%1</translation>
+        <translation type="vanished">%1</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="675"/>
         <source>Call incoming from %1</source>
-        <translation>Thirrje ardhur nga %1</translation>
+        <translation type="vanished">Thirrje ardhur nga %1</translation>
+    </message>
+</context>
+<context>
+    <name>CollapsiblePasswordWidget</name>
+    <message>
+        <location filename="../src/wizardview/components/CollapsiblePasswordWidget.qml" line="68"/>
+        <source>Password</source>
+        <translation type="unfinished">Fjalëkalim</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CollapsiblePasswordWidget.qml" line="100"/>
+        <source>Confirm Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConnectToAccountManagerPage</name>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="63"/>
+        <source>Sign in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="74"/>
+        <source>Username</source>
+        <translation type="unfinished">Emër përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="83"/>
+        <source>Password</source>
+        <translation type="unfinished">Fjalëkalim</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="92"/>
+        <source>Account Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactPicker</name>
+    <message>
+        <location filename="../src/mainview/components/ContactPicker.qml" line="91"/>
+        <source>Add to conference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ContactPicker.qml" line="91"/>
+        <source>Transfer this call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ContactPicker.qml" line="109"/>
+        <source>Search contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactSearchBar</name>
+    <message>
+        <location filename="../src/mainview/components/ContactSearchBar.qml" line="96"/>
+        <source>Find or start a conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConversationSmartListContextMenu</name>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="56"/>
+        <source>Start video call</source>
+        <translation type="unfinished">Filloni thirrje video</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="72"/>
+        <source>Start audio call</source>
+        <translation type="unfinished">Filloni thirrje audio</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="88"/>
+        <source>Clear conversation</source>
+        <translation type="unfinished">Spastroje bisedën</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="103"/>
+        <source>Remove contact</source>
+        <translation type="unfinished">Hiqe kontaktin</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="127"/>
+        <source>Block contact</source>
+        <translation type="unfinished">Bllokojeni kontaktin</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="151"/>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+</context>
+<context>
+    <name>CreateAccountPage</name>
+    <message>
+        <source>Export Account Here</source>
+        <translation type="obsolete">Eksportoje Llogarinë Këtu</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="104"/>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="143"/>
+        <source>Profile name</source>
+        <translation type="unfinished">Emër profili</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="176"/>
+        <source>Account</source>
+        <translation type="unfinished">Llogari</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="205"/>
+        <source>Register public username</source>
+        <translation type="unfinished">Regjistroni emër publik përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="236"/>
+        <source>Choose your username</source>
+        <translation type="unfinished">Zgjidhni mrin tuaj të përdoruesit</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="290"/>
+        <source>Choose a password for enhanced security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="obsolete">Fjalëkalim</translation>
+    </message>
+    <message>
+        <source>Confirm password</source>
+        <translation type="obsolete">Ripohoni fjalëkalimin</translation>
+    </message>
+</context>
+<context>
+    <name>CreateSIPAccountPage</name>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="76"/>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="113"/>
+        <source>Profile name</source>
+        <translation type="unfinished">Emër profili</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="137"/>
+        <source>SIP Account</source>
+        <translation type="unfinished">Llogari SIP</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="163"/>
+        <source>Server</source>
+        <translation type="unfinished">Shërbyes</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="174"/>
+        <source>Proxy</source>
+        <translation type="unfinished">Ndërmjetës</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="185"/>
+        <source>Username</source>
+        <translation type="unfinished">Emër përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="197"/>
+        <source>Password</source>
+        <translation type="unfinished">Fjalëkalim</translation>
+    </message>
+</context>
+<context>
+    <name>CurrentAccountSettingsScrollPage</name>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="249"/>
+        <source>Export Account Here</source>
+        <translation type="unfinished">Eksportoje Llogarinë Këtu</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="252"/>
+        <source>Jami archive files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="252"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="264"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="290"/>
+        <source>Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="264"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="290"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="266"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="296"/>
+        <source>Export Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="266"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="296"/>
+        <source>Export Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="299"/>
+        <source>Password Changed Successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="299"/>
+        <source>Password Change Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="302"/>
+        <source>Password Set Successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="302"/>
+        <source>Password Set Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="303"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="970"/>
+        <source>Change Password</source>
+        <translation type="unfinished">Ndryshoni Fjalëkalimin</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="303"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="970"/>
+        <source>Set Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="384"/>
+        <source>Remove Device</source>
+        <translation type="unfinished">Hiqe Pajisjen</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="385"/>
+        <source>Are you sure you wish to remove this device?</source>
+        <translation type="unfinished">Jeni i sigurt se doni të hiqet kjo pajisje?</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="512"/>
+        <source>Jami Account</source>
+        <translation type="unfinished">Llogari Jami</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1088"/>
+        <source>Linked Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1160"/>
+        <source>+Link Another Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1202"/>
+        <source>Banned Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="575"/>
+        <source>Enable</source>
+        <translation type="unfinished">Aktivizoje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="601"/>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="686"/>
+        <source>Identity</source>
+        <translation type="unfinished">Identitet</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="725"/>
+        <source>Id</source>
+        <translation type="unfinished">ID</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="788"/>
+        <source>Registered name</source>
+        <translation type="unfinished">Emër i regjistruar</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="815"/>
+        <source>Type here to register a username</source>
+        <translation type="unfinished">Shtypni këtu që të regjistroni një emër përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="816"/>
+        <source></source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="890"/>
+        <source>A registered name should not have any spaces and must be at least three letters long</source>
+        <translation type="unfinished">Emri i regjistruar s’duhet të përmbajë hapësira dhe duhet të jetë të paktën tre shkronja i gjatë</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="892"/>
+        <source>This name is already taken</source>
+        <translation type="unfinished">Ky emër është zënë tashmë</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="894"/>
+        <source>Register this name</source>
+        <translation type="unfinished">Regjistro këtë emër</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="937"/>
+        <source>Register</source>
+        <translation type="unfinished">Regjistrohuni</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1008"/>
+        <source>Export Account</source>
+        <translation type="unfinished">Eksportoje Llogarinë</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1051"/>
+        <source>Delete Account</source>
+        <translation type="unfinished">Fshije Llogarinë</translation>
+    </message>
+    <message>
+        <source>Linked Devices</source>
+        <translation type="obsolete">Pajisje të Lidhura</translation>
+    </message>
+    <message>
+        <source>Banned Contacts</source>
+        <translation type="obsolete">Kontakte të Dëbuar</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1332"/>
+        <source>Advanced Account Settings</source>
+        <translation type="unfinished">Rregullime të Mëtejshme Llogarie</translation>
+    </message>
+</context>
+<context>
+    <name>CurrentSIPAccountSettingScrollPage</name>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="154"/>
+        <source>SIP Account</source>
+        <translation type="unfinished">Llogari SIP</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="217"/>
+        <source>Enable</source>
+        <translation type="unfinished">Aktivizoje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="243"/>
+        <source>Profile</source>
+        <translation type="unfinished">Profil</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="329"/>
+        <source>Identity</source>
+        <translation type="unfinished">Identitet</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="370"/>
+        <source>Username</source>
+        <translation type="unfinished">Emër përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="405"/>
+        <source>Hostname</source>
+        <translation type="unfinished">Strehëemër</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="440"/>
+        <source>Proxy</source>
+        <translation type="unfinished">Ndërmjetës</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="475"/>
+        <source>Password</source>
+        <translation type="unfinished">Fjalëkalim</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="536"/>
+        <source>Delete Account</source>
+        <translation type="unfinished">Fshije Llogarinë</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="587"/>
+        <source>Advanced Account Settings</source>
+        <translation type="unfinished">Rregullime të Mëtejshme Llogarie</translation>
     </message>
 </context>
 <context>
     <name>DeleteAccountDialog</name>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="35"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="52"/>
         <source>Account deletion</source>
         <translation>Fshirje llogarie</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="58"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="77"/>
         <source>Do you really want to delete the following account?</source>
         <translation>Doni vërtet të fshihet llogaria vijuese?</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="153"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="135"/>
         <source>If this account hasn&apos;t been exported, or added to another device, it will be irrevocably lost.</source>
         <translation>Nëse kjo llogari s’është eksportuar, ose shtuar te një tjetër pajisje, do të humbë në mënyrë të pakthyeshme.</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="235"/>
         <source>Permanently delete account</source>
-        <translation>Fshije llogarinë përgjithmonë</translation>
+        <translation type="vanished">Fshije llogarinë përgjithmonë</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="241"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="182"/>
         <source>Delete</source>
         <translation>Fshije</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="278"/>
         <source>Cancel account deletion</source>
-        <translation>Anulo fshirje llogarie</translation>
+        <translation type="vanished">Anulo fshirje llogarie</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="284"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="222"/>
         <source>Cancel</source>
         <translation>Anuloje</translation>
+    </message>
+</context>
+<context>
+    <name>DeviceItemDelegate</name>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="157"/>
+        <source>this device</source>
+        <translation type="unfinished">këtë pajisje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="135"/>
+        <source>Device Id</source>
+        <translation type="unfinished">ID pajisjeje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="192"/>
+        <source>Edit Device Name</source>
+        <translation type="unfinished">Përpunoni Emër Pajisjeje</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="194"/>
+        <source>Save new device name</source>
+        <translation type="unfinished">Ruani emrin e pajisjes së re</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="197"/>
+        <source>Unlink Device From Account</source>
+        <translation type="unfinished">Hiqini Lidhjen Prej Llogarie Kësaj Pajisjeje</translation>
     </message>
 </context>
 <context>
     <name>DeviceItemWidget</name>
     <message>
-        <location filename="../deviceitemwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="vanished">Formular</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.ui" line="105"/>
         <source>Device Id</source>
-        <translation>ID pajisjeje</translation>
+        <translation type="vanished">ID pajisjeje</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.ui" line="143"/>
         <source>this device</source>
-        <translation>këtë pajisje</translation>
+        <translation type="vanished">këtë pajisje</translation>
+    </message>
+</context>
+<context>
+    <name>GeneralSettingsPage</name>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="99"/>
+        <source>Select A Folder For Your Downloads</source>
+        <translation type="unfinished">Përzgjidhni Një Dosje Për Shkarkimet Tuaja</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="123"/>
+        <source>Select A Folder For Your Recordings</source>
+        <translation type="unfinished">Përzgjidhni Një Dosje Për Regjistrimet Tuaja</translation>
+    </message>
+    <message>
+        <source>0</source>
+        <translation type="obsolete">0</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="215"/>
+        <source>General</source>
+        <translation type="unfinished">Të përgjithshme</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="235"/>
+        <source>System</source>
+        <translation type="unfinished">Sistem</translation>
+    </message>
+    <message>
+        <source>toggle enable notifications</source>
+        <translation type="obsolete">aktivizo/çaktivizo njoftime</translation>
+    </message>
+    <message>
+        <source>Enable desktop notifications</source>
+        <translation type="obsolete">Aktivizoni njoftime nga desktopi</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="367"/>
+        <source>Call Recording</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="308"/>
+        <source>Download folder</source>
+        <translation type="unfinished">Dosje Shkarkimi</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="426"/>
+        <source>Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="458"/>
+        <source>VALUE </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="506"/>
+        <source>Save in</source>
+        <translation type="unfinished">Ruaje te</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="566"/>
+        <source>Updates</source>
+        <translation type="unfinished">Përditësime</translation>
+    </message>
+    <message>
+        <source>Check for updates now</source>
+        <translation type="obsolete">Kontrollo tani për përditësime</translation>
+    </message>
+</context>
+<context>
+    <name>ImportFromBackupPage</name>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="29"/>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="35"/>
+        <source>Archive(none)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="42"/>
+        <source>Open File</source>
+        <translation type="unfinished">Hapni Kartelë</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="45"/>
+        <source>Jami archive files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="45"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="83"/>
+        <source>Import from backup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="162"/>
+        <source>You can obtain an archive by clicking on &quot;Export account&quot; in the account settings. This will create a .gz file on your device.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="152"/>
+        <source>Password</source>
+        <translation type="unfinished">Fjalëkalim</translation>
+    </message>
+</context>
+<context>
+    <name>ImportFromDevicePage</name>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="70"/>
+        <source>Import from device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="117"/>
+        <source>Password</source>
+        <translation type="unfinished">Fjalëkalim</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="127"/>
+        <source>To obtain a PIN (valid for 10 minutes), you need to open the account settings on the other device and click on &quot;Link to another device&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="107"/>
+        <source>PIN</source>
+        <translation type="unfinished">PIN</translation>
+    </message>
+</context>
+<context>
+    <name>IncomingCallPage</name>
+    <message>
+        <location filename="../src/mainview/components/IncomingCallPage.qml" line="293"/>
+        <source>Answer</source>
+        <translation type="unfinished">Përgjigjuni</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/IncomingCallPage.qml" line="334"/>
+        <source>Ignore</source>
+        <translation type="unfinished">Shpërfille</translation>
     </message>
 </context>
 <context>
     <name>InviteButtonsWidget</name>
     <message>
-        <location filename="../invitebuttonswidget.ui" line="83"/>
         <source>Accept</source>
-        <translation>Pranoje</translation>
+        <translation type="vanished">Pranoje</translation>
     </message>
     <message>
-        <location filename="../invitebuttonswidget.ui" line="131"/>
         <source>Refuse</source>
-        <translation>Hidhe tej</translation>
+        <translation type="vanished">Hidhe tej</translation>
     </message>
     <message>
-        <location filename="../invitebuttonswidget.ui" line="179"/>
         <source>Block</source>
-        <translation>Bllokoje</translation>
+        <translation type="vanished">Bllokoje</translation>
+    </message>
+</context>
+<context>
+    <name>JamiTheme</name>
+    <message>
+        <location filename="../src/constant/JamiTheme.qml" line="85"/>
+        <source>Find or start a conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiTheme.qml" line="86"/>
+        <source>Search your invitations</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LeftPanelView</name>
+    <message>
+        <location filename="../src/settingsview/components/LeftPanelView.qml" line="61"/>
+        <source>Account</source>
+        <translation type="unfinished">Llogari</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LeftPanelView.qml" line="74"/>
+        <source>General</source>
+        <translation type="unfinished">Të përgjithshme</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LeftPanelView.qml" line="87"/>
+        <source>Audio/Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LeftPanelView.qml" line="100"/>
+        <source>Plugins</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LinkDeviceDialog</name>
     <message>
-        <location filename="../linkdevicedialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Dialog</translation>
+        <translation type="vanished">Dialog</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="62"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="178"/>
         <source>Enter your account password</source>
         <translation>Jepni fjalëkalimin e llogarisë tuaj</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="117"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="208"/>
         <source>Password</source>
         <translation>Fjalëkalim</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="184"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation type="vanished">OK</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="218"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="287"/>
         <source>Cancel</source>
         <translation>Anuloje</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="279"/>
         <source>Exporting account</source>
-        <translation>Po eksportohet llogari</translation>
+        <translation type="vanished">Po eksportohet llogari</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="402"/>
         <source>Your PIN is</source>
-        <translation>PIN-i juaj është</translation>
+        <translation type="vanished">PIN-i juaj është</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="432"/>
         <source>PIN</source>
-        <translation>PIN</translation>
+        <translation type="vanished">PIN</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="477"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="31"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="87"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="581"/>
         <source>This pin and the account password should be entered in your device within 10 minutes.</source>
         <translation>Ky PIN dhe fjalëkalimi i llogarisë duhen dhënë te pajisja juaj brenda 10 minutash</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="553"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="100"/>
+        <source>Error connecting to the network.
+Please try again later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="104"/>
+        <source>Something went wrong.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="128"/>
+        <source>Link another device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="248"/>
+        <source>Register</source>
+        <translation type="unfinished">Regjistrohuni</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="371"/>
+        <source>Exporting Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="645"/>
         <source>Close</source>
         <translation>Mbylle</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.cpp" line="34"/>
         <source>Link Another Device</source>
-        <translation>Lidhni Një Pajisje Tjetër</translation>
+        <translation type="vanished">Lidhni Një Pajisje Tjetër</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.cpp" line="96"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="96"/>
         <source>Incorrect password</source>
         <translation>Fjalëkalim i pasaktë</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.cpp" line="110"/>
         <source>Something went wrong.
 Please try again later.</source>
-        <translation>Diç shkoi ters.
+        <translation type="vanished">Diç shkoi ters.
 Ju lutemi, riprovoni më vonë.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="83"/>
         <source>Settings</source>
-        <translation>Rregullime</translation>
+        <translation type="vanished">Rregullime</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="94"/>
         <source>Exit</source>
-        <translation>Dalje</translation>
+        <translation type="vanished">Dalje</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="111"/>
         <source>About</source>
-        <translation>Mbi</translation>
+        <translation type="vanished">Mbi</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="435"/>
         <source>Jami</source>
-        <translation>Jami</translation>
+        <translation type="vanished">Jami</translation>
     </message>
 </context>
 <context>
     <name>NameRegistrationDialog</name>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="35"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="101"/>
         <source>Set Registered Name</source>
         <translation>Caktoni Emër të Regjistruar</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="163"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="147"/>
         <source>Enter your account password</source>
         <translation>Jepni fjalëkalimin e llogarisë tuaj</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="244"/>
         <source>Password text input</source>
-        <translation>Dhënie teksti fjalëkalimi</translation>
+        <translation type="vanished">Dhënie teksti fjalëkalimi</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="250"/>
         <source>Password text entry</source>
-        <translation>Dhënie teksti fjalëkalimi</translation>
+        <translation type="vanished">Dhënie teksti fjalëkalimi</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="256"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="177"/>
         <source>Password</source>
         <translation>Fjalëkalim</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="323"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="218"/>
         <source>Register</source>
         <translation>Regjistrohuni</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="357"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="257"/>
         <source>Cancel</source>
         <translation>Anuloje</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="424"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="341"/>
         <source>Registering Name</source>
         <translation>Po Regjistrohet Emër</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="548"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="34"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="474"/>
         <source>Something went wrong</source>
         <translation>Diç shkoi ters</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="618"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="525"/>
         <source>Close</source>
         <translation>Mbylle</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.cpp" line="82"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="81"/>
         <source>Incorrect password</source>
         <translation>Fjalëkalim i pasaktë</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.cpp" line="85"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="85"/>
         <source>Network error</source>
         <translation>Gabim rrjeti</translation>
     </message>
@@ -750,88 +2047,73 @@ Ju lutemi, riprovoni më vonë.</translation>
 <context>
     <name>NewWizardWidget</name>
     <message>
-        <location filename="../newwizardwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="vanished">Formular</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="141"/>
         <source>Welcome Label</source>
-        <translation>Etiketë Mirëseardhjeje</translation>
+        <translation type="vanished">Etiketë Mirëseardhjeje</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="147"/>
         <source> Welcome to</source>
-        <translation>Mirë se vini te</translation>
+        <translation type="vanished">Mirë se vini te</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="185"/>
         <source>Welcome Logo</source>
-        <translation>Logo Mirëseardhjeje</translation>
+        <translation type="vanished">Logo Mirëseardhjeje</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="239"/>
         <source>Create Jami account button</source>
-        <translation>Buton Krijoni llogari Jami</translation>
+        <translation type="vanished">Buton Krijoni llogari Jami</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="245"/>
         <source>Push button for Jami account creation start trigger</source>
-        <translation>Buton për të shkaktuar fillimin e krijimit të llogarisë Jami</translation>
+        <translation type="vanished">Buton për të shkaktuar fillimin e krijimit të llogarisë Jami</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="251"/>
         <source>Create a Jami account</source>
-        <translation>Krijoni një llogari Jami</translation>
+        <translation type="vanished">Krijoni një llogari Jami</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="282"/>
         <source>Link device button</source>
-        <translation>Buton Lidhni pajisje</translation>
+        <translation type="vanished">Buton Lidhni pajisje</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="288"/>
         <source>Push button for device linkage start trigger</source>
-        <translation>Buton për të shkaktuar fillimin e lidhjes së një llogarie</translation>
+        <translation type="vanished">Buton për të shkaktuar fillimin e lidhjes së një llogarie</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="291"/>
         <source>Link this device to an account</source>
-        <translation>Lidheni këtë pajisje me një llogari</translation>
+        <translation type="vanished">Lidheni këtë pajisje me një llogari</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="328"/>
         <source>Create Jami SIP account button</source>
-        <translation>Krijoni buton llogarie SIP Jami</translation>
+        <translation type="vanished">Krijoni buton llogarie SIP Jami</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="334"/>
         <source>Push button for Jami SIP account creation start trigger</source>
-        <translation>Buton për të shkaktuar fillimin e krijimit të llogarisë SIP Jami</translation>
+        <translation type="vanished">Buton për të shkaktuar fillimin e krijimit të llogarisë SIP Jami</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="340"/>
         <source>Create a SIP account</source>
-        <translation>Krijoni llogari SIP</translation>
+        <translation type="vanished">Krijoni llogari SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="405"/>
         <source>Link this device to an existing account</source>
-        <translation>Lidheni këtë pajisje me një llogari ekzistuese</translation>
+        <translation type="vanished">Lidheni këtë pajisje me një llogari ekzistuese</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="469"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot;&gt;To link this device to another account, you first &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14px; font-weight:600; color:#555555;&quot;&gt;need to obtain a PIN&lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot;&gt; code. To generate the PIN code:&lt;/span&gt;&lt;/p&gt;
-&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Go to the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Account management setting&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; of a previous device&lt;/span&gt;&lt;/li&gt;
-&lt;li style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Choose the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Jami account&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; you want to use&lt;/span&gt;&lt;/li&gt;
-&lt;li style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Go to the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Devices&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; tab&lt;/span&gt;&lt;/li&gt;
-&lt;li style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Select &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Add a device&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot;&gt;To link this device to another account, you first &lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; font-weight:600; color:#555555;&quot;&gt;need to obtain a PIN&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot;&gt; code. To generate the PIN code:&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Go to the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Account management setting&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; of a previous device&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Choose the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Jami account&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; you want to use&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Go to the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Devices&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; tab&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Select &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Add a device&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot;&gt;You will get the necessary PIN to complete this form. The PIN is only valid for &lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; font-weight:600; color:#555555;&quot;&gt;10 minutes&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10px; color:#555555;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -843,288 +2125,274 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot;&gt;Do të merrni PIN-in e nevojshëm për plotësimin e këtij formulari. PIN-i është i vlefshëm vetëm për &lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; font-weight:600; color:#555555;&quot;&gt;10 minuta&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10px; color:#555555;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="531"/>
         <source>Enter your pin:</source>
-        <translation>Jepni PIN-in tuaj:</translation>
+        <translation type="vanished">Jepni PIN-in tuaj:</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="599"/>
         <source>Or import a file:</source>
-        <translation>Ose importoni një kartelë:</translation>
+        <translation type="vanished">Ose importoni një kartelë:</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="626"/>
         <source>Link from exported account archive file</source>
-        <translation>Lidheni prej kartele arkivi të eksportuar llogarie</translation>
+        <translation type="vanished">Lidheni prej kartele arkivi të eksportuar llogarie</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="629"/>
-        <location filename="../newwizardwidget.cpp" line="83"/>
-        <location filename="../newwizardwidget.cpp" line="218"/>
         <source>(None)</source>
-        <translation>(Asnjë)</translation>
+        <translation type="vanished">(Asnjë)</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="705"/>
         <source>Password:</source>
-        <translation>Fjalëkalim:</translation>
+        <translation type="vanished">Fjalëkalim:</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="799"/>
-        <location filename="../newwizardwidget.ui" line="1586"/>
         <source>Profile</source>
-        <translation>Profil</translation>
+        <translation type="vanished">Profil</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="953"/>
-        <location filename="../newwizardwidget.ui" line="1767"/>
         <source>Profile name</source>
-        <translation>Emër profili</translation>
+        <translation type="vanished">Emër profili</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1027"/>
         <source>Account</source>
-        <translation>Llogari</translation>
+        <translation type="vanished">Llogari</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1136"/>
         <source>Register your username.
 This will reserve the username so that only you can use it.
 Your friends will be able to call you with your usename
 instead of using your ID.</source>
-        <translation>Regjistroni emrin tuaj të përdoruesit.
+        <translation type="vanished">Regjistroni emrin tuaj të përdoruesit.
 Kjo do të bëjë rezervimin e emrit të përdoruesit, që kështu vetëm ju mund ta përdorni.
 Shokët tuaj do të jenë në gjendje t’ju bëjnë thirrje me emrin tuaj të përdoruesit
 në vend se të përdorin ID-në tuaj.</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1142"/>
         <source>Public username checkbox</source>
-        <translation>Kutizë emri publik përdoruesi</translation>
+        <translation type="vanished">Kutizë emri publik përdoruesi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1145"/>
         <source>Checkbox selecting if the user wants a public username</source>
-        <translation>Kutizë përzgjedhjeje nëse përdoruesi dëshiron një emër publik përdoruesi</translation>
+        <translation type="vanished">Kutizë përzgjedhjeje nëse përdoruesi dëshiron një emër publik përdoruesi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1148"/>
         <source>Register public username</source>
-        <translation>Regjistroni emër publik përdoruesi</translation>
+        <translation type="vanished">Regjistroni emër publik përdoruesi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1367"/>
         <source>Public username edit</source>
-        <translation>Përpunim emri publik përdoruesi</translation>
+        <translation type="vanished">Përpunim emri publik përdoruesi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1373"/>
         <source>Choose your username</source>
-        <translation>Zgjidhni mrin tuaj të përdoruesit</translation>
+        <translation type="vanished">Zgjidhni mrin tuaj të përdoruesit</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1289"/>
         <source>Password text input</source>
-        <translation>Dhënie teksti fjalëkalimi</translation>
+        <translation type="vanished">Dhënie teksti fjalëkalimi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1295"/>
         <source>Password text entry</source>
-        <translation>Dhënie teksti fjalëkalimi</translation>
+        <translation type="vanished">Dhënie teksti fjalëkalimi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1301"/>
-        <location filename="../newwizardwidget.ui" line="2213"/>
         <source>Password</source>
-        <translation>Fjalëkalim</translation>
+        <translation type="vanished">Fjalëkalim</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1211"/>
-        <location filename="../newwizardwidget.ui" line="1217"/>
         <source>Password confirmation text input</source>
-        <translation>Dhënie teksti ripohimi fjalëkalimi</translation>
+        <translation type="vanished">Dhënie teksti ripohimi fjalëkalimi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1223"/>
         <source>Confirm password</source>
-        <translation>Ripohoni fjalëkalimin</translation>
+        <translation type="vanished">Ripohoni fjalëkalimin</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1814"/>
         <source>SIP Account</source>
-        <translation>Llogari SIP</translation>
+        <translation type="vanished">Llogari SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1973"/>
         <source>SIP Server edit</source>
-        <translation>Përpunim Shërbyesi SIP</translation>
+        <translation type="vanished">Përpunim Shërbyesi SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1979"/>
         <source>Server</source>
-        <translation>Shërbyes</translation>
+        <translation type="vanished">Shërbyes</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2045"/>
         <source>SIP proxy input</source>
-        <translation>Dhënie ndërmjetësi SIP</translation>
+        <translation type="vanished">Dhënie ndërmjetësi SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2051"/>
         <source>SIP proxy text entry</source>
-        <translation>Zë teksti ndërmjetësi SIP</translation>
+        <translation type="vanished">Zë teksti ndërmjetësi SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2057"/>
         <source>Proxy</source>
-        <translation>Ndërmjetës</translation>
+        <translation type="vanished">Ndërmjetës</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2123"/>
         <source>SIP username input</source>
-        <translation>Dhënie emri përdoruesi SIP</translation>
+        <translation type="vanished">Dhënie emri përdoruesi SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2129"/>
         <source>SIP Password text entry</source>
-        <translation>Zë teksti Fjalëkalimi SIP</translation>
+        <translation type="vanished">Zë teksti Fjalëkalimi SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2135"/>
         <source>Username</source>
-        <translation>Emër përdoruesi</translation>
+        <translation type="vanished">Emër përdoruesi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2201"/>
-        <location filename="../newwizardwidget.ui" line="2207"/>
         <source>SIP Password text input</source>
-        <translation>Dhënie teksti fjalëkalimi SIP</translation>
+        <translation type="vanished">Dhënie teksti fjalëkalimi SIP</translation>
     </message>
-    <message utf8="true">
-        <location filename="../newwizardwidget.ui" line="2282"/>
+    <message>
         <source>Generating your Jami account…</source>
-        <translation>Po prodhohet llogaria juaj Jami…</translation>
+        <translation type="vanished">Po prodhohet llogaria juaj Jami…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2356"/>
         <source>Previous page button</source>
-        <translation>Buton Faqja e mëparshme</translation>
+        <translation type="vanished">Buton Faqja e mëparshme</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2362"/>
         <source>push button to access previous page of wizard</source>
-        <translation>buton për të kaluar te faqja e mëparshme e ndihmësit</translation>
+        <translation type="vanished">buton për të kaluar te faqja e mëparshme e ndihmësit</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2365"/>
         <source>Previous</source>
-        <translation>I mëparshmi</translation>
+        <translation type="vanished">I mëparshmi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2396"/>
         <source>Cancel account create/link</source>
-        <translation>Anuloni krijim/lidhje llogarie</translation>
+        <translation type="vanished">Anuloni krijim/lidhje llogarie</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2402"/>
         <source>push button to cancel account creation or linking</source>
-        <translation>shtypni butoni që të anulohet krijimi ose lidhja e llogarisë</translation>
+        <translation type="vanished">shtypni butoni që të anulohet krijimi ose lidhja e llogarisë</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2405"/>
         <source>Back</source>
-        <translation>Mbrapsht</translation>
+        <translation type="vanished">Mbrapsht</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2442"/>
         <source>Next page Button</source>
-        <translation>Buton Faqja pasuese</translation>
+        <translation type="vanished">Buton Faqja pasuese</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2448"/>
         <source>Push button to access next page of wizard</source>
-        <translation>buton për të kaluar te faqja pasuese e ndihmësit</translation>
+        <translation type="vanished">buton për të kaluar te faqja pasuese e ndihmësit</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2451"/>
         <source>Next</source>
-        <translation>Pasuesi</translation>
+        <translation type="vanished">Pasuesi</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="75"/>
         <source>Open File</source>
-        <translation>Hapni Kartelë</translation>
+        <translation type="vanished">Hapni Kartelë</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="77"/>
         <source>Jami archive files (*.gz); All files (*)</source>
-        <translation>Kartela arkivi Jami (*.gz); Krejt kartelat (*)</translation>
+        <translation type="vanished">Kartela arkivi Jami (*.gz); Krejt kartelat (*)</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="123"/>
         <source>Your account needs to be migrated. Enter your password.</source>
-        <translation>Lypset të migrohet llogaria juaj. Jepni fjalëkalimin tuaj.</translation>
+        <translation type="vanished">Lypset të migrohet llogaria juaj. Jepni fjalëkalimin tuaj.</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="419"/>
         <source>Migrating your Jami account...</source>
-        <translation>Po migrohet llogaria juaj Jami…</translation>
+        <translation type="vanished">Po migrohet llogaria juaj Jami…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="412"/>
         <source>Importing account archive...</source>
-        <translation>Po importohet arkiv llogarie…</translation>
+        <translation type="vanished">Po importohet arkiv llogarie…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="404"/>
         <source>Generating your Jami account...</source>
-        <translation>Po prodhohet llogaria juaj Jami…</translation>
+        <translation type="vanished">Po prodhohet llogaria juaj Jami…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="422"/>
         <source>Generating your SIP account...</source>
-        <translation>Po prodhohet llogaria juaj SIP…</translation>
+        <translation type="vanished">Po prodhohet llogaria juaj SIP…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="533"/>
         <source>Error creating account</source>
-        <translation>Gabim në krijimin e llogarisë</translation>
+        <translation type="vanished">Gabim në krijimin e llogarisë</translation>
+    </message>
+</context>
+<context>
+    <name>OutgoingCallPage</name>
+    <message>
+        <location filename="../src/mainview/components/OutgoingCallPage.qml" line="204"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Anuloje</translation>
+    </message>
+</context>
+<context>
+    <name>ParticipantContextMenu</name>
+    <message>
+        <location filename="../src/mainview/components/ParticipantContextMenu.qml" line="79"/>
+        <source>Hangup</source>
+        <translation type="unfinished">Mbylle</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ParticipantContextMenu.qml" line="93"/>
+        <source>Maximize participant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ParticipantContextMenu.qml" line="107"/>
+        <source>Minimize participant</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
-        <location filename="../passworddialog.ui" line="32"/>
         <source>Change Account Password</source>
-        <translation>Ndryshoni Fjalëkalim Llogarie</translation>
+        <translation type="vanished">Ndryshoni Fjalëkalim Llogarie</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="97"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="46"/>
+        <source>Enter the password of this account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="48"/>
+        <source>Changing password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="50"/>
+        <source>Set password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="177"/>
         <source>Enter Current Password</source>
         <translation>Jepni Fjalëkalimin e Tanishëm</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="169"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="236"/>
         <source>Enter New Password</source>
         <translation>Jepni Fjalëkalimin e Ri</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="190"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="264"/>
         <source>Confirm New Password</source>
         <translation>Ripohoni Fjalëkalim të Ri</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="247"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="320"/>
         <source>Confirm</source>
         <translation>Ripohoje</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="290"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="359"/>
         <source>Cancel</source>
         <translation>Anuloje</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="143"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="208"/>
         <source>Current Password Incorrect</source>
         <translation>Fjalëkalim i Tanishëm i Pasaktë</translation>
     </message>
@@ -1132,474 +2400,762 @@ në vend se të përdorin ID-në tuaj.</translation>
 <context>
     <name>PhotoBoothDialog</name>
     <message>
-        <location filename="../photoboothdialog.ui" line="14"/>
         <source>Photobooth</source>
-        <translation>Kioskë fotosh</translation>
+        <translation type="vanished">Kioskë fotosh</translation>
+    </message>
+</context>
+<context>
+    <name>PhotoboothView</name>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="55"/>
+        <source>Choose an image to be the avatar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="58"/>
+        <source>Image Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="58"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PhotoboothWidget</name>
     <message>
-        <location filename="../photoboothwidget.ui" line="20"/>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="vanished">Formular</translation>
     </message>
     <message>
-        <location filename="../photoboothwidget.ui" line="120"/>
         <source>Photobooth display</source>
-        <translation>Shfaqje kioske fotosh</translation>
+        <translation type="vanished">Shfaqje kioske fotosh</translation>
     </message>
     <message>
-        <location filename="../photoboothwidget.cpp" line="92"/>
         <source>Choose File</source>
-        <translation>Zgjidhni Kartelë</translation>
+        <translation type="vanished">Zgjidhni Kartelë</translation>
     </message>
     <message>
-        <location filename="../photoboothwidget.cpp" line="94"/>
         <source>Image Files (*.jpg *.jpeg *.png)</source>
-        <translation>Kartela Figurash (*.jpg *.jpeg *.png)</translation>
+        <translation type="vanished">Kartela Figurash (*.jpg *.jpeg *.png)</translation>
+    </message>
+</context>
+<context>
+    <name>PluginItemDelegate</name>
+    <message>
+        <location filename="../src/settingsview/components/PluginItemDelegate.qml" line="115"/>
+        <source>Load/Unload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginItemDelegate.qml" line="168"/>
+        <source>Edit preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginListPreferencesView</name>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="108"/>
+        <source>Uninstall plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="135"/>
+        <source>Reset preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="261"/>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="285"/>
+        <source>Uninstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginListSettingsView</name>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="78"/>
+        <source>Select A Plugin to Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="81"/>
+        <source>Plugin Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="81"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="120"/>
+        <source>Installed plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="149"/>
+        <source>+ Install plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginSettingsPage</name>
+    <message>
+        <location filename="../src/settingsview/components/PluginSettingsPage.qml" line="90"/>
+        <source>Plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferenceItemDelegate</name>
+    <message>
+        <location filename="../src/settingsview/components/PreferenceItemDelegate.qml" line="94"/>
+        <source>Modify preference</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PrivateBridging</name>
     <message>
-        <location filename="../messagewebview.cpp" line="374"/>
         <source>Choose File</source>
-        <translation>Zgjidhni Kartelë</translation>
+        <translation type="vanished">Zgjidhni Kartelë</translation>
     </message>
     <message>
-        <location filename="../messagewebview.cpp" line="374"/>
         <source>Files (*)</source>
-        <translation>Kartela (*)</translation>
+        <translation type="vanished">Kartela (*)</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilePage</name>
+    <message>
+        <source>Close</source>
+        <translation type="obsolete">Mbylle</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../utils.cpp" line="183"/>
+        <location filename="../src/utils.cpp" line="259"/>
         <source>No default mail client found</source>
         <translation>S’u gjet klient parazgjedhje poste</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.cpp" line="43"/>
-        <location filename="../deviceitemwidget.cpp" line="85"/>
         <source>Edit Device Name</source>
-        <translation>Përpunoni Emër Pajisjeje</translation>
+        <translation type="vanished">Përpunoni Emër Pajisjeje</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.cpp" line="44"/>
         <source>Unlink Device From Account</source>
-        <translation>Hiqini Lidhjen Prej Llogarie Kësaj Pajisjeje</translation>
+        <translation type="vanished">Hiqini Lidhjen Prej Llogarie Kësaj Pajisjeje</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.cpp" line="80"/>
         <source>Save new device name</source>
-        <translation>Ruani emrin e pajisjes së re</translation>
+        <translation type="vanished">Ruani emrin e pajisjes së re</translation>
     </message>
     <message>
-        <location filename="../banneditemwidget.cpp" line="39"/>
         <source>Add as contact</source>
-        <translation>Shtojeni si kontakt</translation>
+        <translation type="vanished">Shtojeni si kontakt</translation>
+    </message>
+    <message>
+        <location filename="../src/videoinputdevicemodel.cpp" line="68"/>
+        <location filename="../src/videoinputdevicemodel.cpp" line="70"/>
+        <source>No Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RecordBox</name>
+    <message>
+        <location filename="../src/mainview/components/RecordBox.qml" line="244"/>
+        <source>Preview unavailable</source>
+        <translation type="unfinished">S’ka paraparje</translation>
+    </message>
+</context>
+<context>
+    <name>RevokeDevicePasswordDialog</name>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="45"/>
+        <source>Enter this account&apos;s password to confirm the removal of this device</source>
+        <translation type="unfinished">Që të ripohoni heqjen e kësaj pajisje, jepni fjalëkalimin e kësaj llogarie</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="86"/>
+        <source>Password</source>
+        <translation type="unfinished">Fjalëkalim</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="125"/>
+        <source>Okay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="164"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Anuloje</translation>
     </message>
 </context>
 <context>
     <name>RingButton</name>
     <message>
-        <location filename="../ringbutton.ui" line="140"/>
         <source>Select folder</source>
-        <translation>Përzgjidhni dosje</translation>
+        <translation type="vanished">Përzgjidhni dosje</translation>
+    </message>
+</context>
+<context>
+    <name>SelectScreen</name>
+    <message>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="97"/>
+        <source>Choose A Screen to Share</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="190"/>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="254"/>
+        <source>Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="297"/>
+        <source>Share Screen</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SettingsWidget</name>
     <message>
-        <location filename="../settingswidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formular</translation>
+        <translation type="vanished">Formular</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="141"/>
         <source>Settings</source>
-        <translation>Rregullime</translation>
+        <translation type="vanished">Rregullime</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="229"/>
         <source>Account</source>
-        <translation>Llogari</translation>
+        <translation type="vanished">Llogari</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="267"/>
-        <location filename="../settingswidget.ui" line="503"/>
         <source>General</source>
-        <translation>Të përgjithshme</translation>
+        <translation type="vanished">Të përgjithshme</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="305"/>
-        <location filename="../settingswidget.ui" line="3416"/>
         <source>Audio / Video</source>
-        <translation>Audio / Video</translation>
+        <translation type="vanished">Audio / Video</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="542"/>
         <source>System</source>
-        <translation>Sistem</translation>
+        <translation type="vanished">Sistem</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="610"/>
         <source>Enable desktop notifications</source>
-        <translation>Aktivizoni njoftime nga desktopi</translation>
+        <translation type="vanished">Aktivizoni njoftime nga desktopi</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="653"/>
         <source>Keep minimized on close</source>
-        <translation>Mbaje të minimizuar kur dilet</translation>
+        <translation type="vanished">Mbaje të minimizuar kur dilet</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="678"/>
         <source>Download folder</source>
-        <translation>Dosje Shkarkimi</translation>
+        <translation type="vanished">Dosje Shkarkimi</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="811"/>
         <source>Save in</source>
-        <translation>Ruaje te</translation>
+        <translation type="vanished">Ruaje te</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="904"/>
         <source>Always Recording</source>
-        <translation>Përherë Në Regjistrim</translation>
+        <translation type="vanished">Përherë Në Regjistrim</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="943"/>
         <source>Updates</source>
-        <translation>Përditësime</translation>
+        <translation type="vanished">Përditësime</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1008"/>
         <source>Check for updates automatically every</source>
-        <translation>Kontrollo vetvetiu për përditësime çdo</translation>
+        <translation type="vanished">Kontrollo vetvetiu për përditësime çdo</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1032"/>
         <source>Interval between update checks in days selector</source>
-        <translation>Përzgjedhës intervali mes kontrollesh për përditësime, në ditë</translation>
+        <translation type="vanished">Përzgjedhës intervali mes kontrollesh për përditësime, në ditë</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1038"/>
         <source> days</source>
-        <translation>ditë</translation>
+        <translation type="vanished">ditë</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1081"/>
         <source>Check for updates now button</source>
-        <translation>Buton Kontrollo tani për përditësime</translation>
+        <translation type="vanished">Buton Kontrollo tani për përditësime</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1084"/>
         <source>Check for updates now</source>
-        <translation>Kontrollo tani për përditësime</translation>
+        <translation type="vanished">Kontrollo tani për përditësime</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3027"/>
         <source>Password</source>
-        <translation>Fjalëkalim</translation>
+        <translation type="vanished">Fjalëkalim</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1418"/>
-        <location filename="../settingswidget.ui" line="2729"/>
         <source>Enable</source>
-        <translation>Aktivizoje</translation>
+        <translation type="vanished">Aktivizoje</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="607"/>
         <source>toggle enable notifications</source>
-        <translation>aktivizo/çaktivizo njoftime</translation>
+        <translation type="vanished">aktivizo/çaktivizo njoftime</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="650"/>
         <source>Toggle keep minimized on close</source>
-        <translation>Këmbe zgjedhjen për “Mbaje të minimizuar kur dilet”</translation>
+        <translation type="vanished">Këmbe zgjedhjen për “Mbaje të minimizuar kur dilet”</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="764"/>
         <source>Call Recordings</source>
-        <translation>Incizim Thirrjesh</translation>
+        <translation type="vanished">Incizim Thirrjesh</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1005"/>
         <source>Toggle automatic updates</source>
-        <translation>Aktivizo/çaktivizo përditësime të automatizuara</translation>
+        <translation type="vanished">Aktivizo/çaktivizo përditësime të automatizuara</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1231"/>
         <source>Jami Account</source>
-        <translation>Llogari Jami</translation>
+        <translation type="vanished">Llogari Jami</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1453"/>
-        <location filename="../settingswidget.ui" line="2761"/>
         <source>Profile</source>
-        <translation>Profil</translation>
+        <translation type="vanished">Profil</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1567"/>
-        <location filename="../settingswidget.ui" line="2875"/>
         <source>Identity</source>
-        <translation>Identitet</translation>
+        <translation type="vanished">Identitet</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1614"/>
         <source>Id</source>
-        <translation>ID</translation>
+        <translation type="vanished">ID</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1673"/>
         <source>Registered name</source>
-        <translation>Emër i regjistruar</translation>
+        <translation type="vanished">Emër i regjistruar</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1721"/>
         <source>Type here to register a username</source>
-        <translation>Shtypni këtu që të regjistroni një emër përdoruesi</translation>
+        <translation type="vanished">Shtypni këtu që të regjistroni një emër përdoruesi</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1755"/>
         <source>Register</source>
-        <translation>Regjistrohuni</translation>
+        <translation type="vanished">Regjistrohuni</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1827"/>
         <source>Change Password</source>
-        <translation>Ndryshoni Fjalëkalimin</translation>
+        <translation type="vanished">Ndryshoni Fjalëkalimin</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1868"/>
         <source>Export Account</source>
-        <translation>Eksportoje Llogarinë</translation>
+        <translation type="vanished">Eksportoje Llogarinë</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1909"/>
-        <location filename="../settingswidget.ui" line="3089"/>
         <source>Delete Account</source>
-        <translation>Fshije Llogarinë</translation>
+        <translation type="vanished">Fshije Llogarinë</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1973"/>
         <source>Linked Devices</source>
-        <translation>Pajisje të Lidhura</translation>
+        <translation type="vanished">Pajisje të Lidhura</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2078"/>
         <source>Link Another Device</source>
-        <translation>Lidhni Një Pajisje Tjetër</translation>
+        <translation type="vanished">Lidhni Një Pajisje Tjetër</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2142"/>
         <source>Banned Contacts</source>
-        <translation>Kontakte të Dëbuar</translation>
+        <translation type="vanished">Kontakte të Dëbuar</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3788"/>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation type="vanished">Format</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3831"/>
         <source>Video device framerate selector</source>
-        <translation>Përzgjedhës shpejtësie kuadrosh pajisjeje video</translation>
+        <translation type="vanished">Përzgjedhës shpejtësie kuadrosh pajisjeje video</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3967"/>
         <source>Preview unavailable</source>
-        <translation>S’ka paraparje</translation>
+        <translation type="vanished">S’ka paraparje</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2359"/>
-        <location filename="../settingswidget.ui" line="3187"/>
         <source>Advanced Account Settings</source>
-        <translation>Rregullime të Mëtejshme Llogarie</translation>
+        <translation type="vanished">Rregullime të Mëtejshme Llogarie</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2554"/>
         <source>SIP Account</source>
-        <translation>Llogari SIP</translation>
+        <translation type="vanished">Llogari SIP</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2925"/>
         <source>Username</source>
-        <translation>Emër përdoruesi</translation>
+        <translation type="vanished">Emër përdoruesi</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2958"/>
         <source>Hostname</source>
-        <translation>Strehëemër</translation>
+        <translation type="vanished">Strehëemër</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2991"/>
         <source>Proxy</source>
-        <translation>Ndërmjetës</translation>
+        <translation type="vanished">Ndërmjetës</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3461"/>
         <source>Audio</source>
-        <translation>Audio</translation>
+        <translation type="vanished">Audio</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3511"/>
         <source>Microphone</source>
-        <translation>Mikrofon</translation>
+        <translation type="vanished">Mikrofon</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3551"/>
         <source>Audio input device selector</source>
-        <translation>Përzgjedhës pajisje audio në hyrje</translation>
+        <translation type="vanished">Përzgjedhës pajisje audio në hyrje</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3585"/>
         <source>Output Device</source>
-        <translation>Pajisje Në Dalje</translation>
+        <translation type="vanished">Pajisje Në Dalje</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3625"/>
         <source>Choose the output device</source>
-        <translation>Zgjidhni pajisje output-i</translation>
+        <translation type="vanished">Zgjidhni pajisje output-i</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3682"/>
         <source>Video</source>
-        <translation>Video</translation>
+        <translation type="vanished">Video</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3720"/>
         <source>Device</source>
-        <translation>Pajisje</translation>
+        <translation type="vanished">Pajisje</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3766"/>
         <source>Video device selector</source>
-        <translation>Përzgjedhës pajisje video</translation>
+        <translation type="vanished">Përzgjedhës pajisje video</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="459"/>
         <source>A registered name should not have any spaces and must be at least three letters long</source>
-        <translation>Emri i regjistruar s’duhet të përmbajë hapësira dhe duhet të jetë të paktën tre shkronja i gjatë</translation>
+        <translation type="vanished">Emri i regjistruar s’duhet të përmbajë hapësira dhe duhet të jetë të paktën tre shkronja i gjatë</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="466"/>
         <source>This name is already taken</source>
-        <translation>Ky emër është zënë tashmë</translation>
+        <translation type="vanished">Ky emër është zënë tashmë</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="92"/>
-        <location filename="../settingswidget.cpp" line="110"/>
         <source>Enter an alias</source>
-        <translation>Jepni një alias</translation>
+        <translation type="vanished">Jepni një alias</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="473"/>
         <source>Register this name</source>
-        <translation>Regjistro këtë emër</translation>
+        <translation type="vanished">Regjistro këtë emër</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="550"/>
         <source>Remove Device</source>
-        <translation>Hiqe Pajisjen</translation>
+        <translation type="vanished">Hiqe Pajisjen</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="551"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation>Që të ripohoni heqjen e kësaj pajisje, jepni fjalëkalimin e kësaj llogarie</translation>
+        <translation type="vanished">Që të ripohoni heqjen e kësaj pajisje, jepni fjalëkalimin e kësaj llogarie</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="558"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation>Jeni i sigurt se doni të hiqet kjo pajisje?</translation>
+        <translation type="vanished">Jeni i sigurt se doni të hiqet kjo pajisje?</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="589"/>
         <source>Export Account Here</source>
-        <translation>Eksportoje Llogarinë Këtu</translation>
+        <translation type="vanished">Eksportoje Llogarinë Këtu</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="887"/>
         <source>Select A Folder For Your Downloads</source>
-        <translation>Përzgjidhni Një Dosje Për Shkarkimet Tuaja</translation>
+        <translation type="vanished">Përzgjidhni Një Dosje Për Shkarkimet Tuaja</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="904"/>
         <source>Select A Folder For Your Recordings</source>
-        <translation>Përzgjidhni Një Dosje Për Regjistrimet Tuaja</translation>
+        <translation type="vanished">Përzgjidhni Një Dosje Për Regjistrimet Tuaja</translation>
+    </message>
+</context>
+<context>
+    <name>SidePanelTabBar</name>
+    <message>
+        <location filename="../src/mainview/components/SidePanelTabBar.qml" line="112"/>
+        <source>CONVERSATIONS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/SidePanelTabBar.qml" line="222"/>
+        <source>INVITATIONS</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SmartListModel</name>
+    <message>
+        <location filename="../src/smartlistmodel.cpp" line="63"/>
+        <location filename="../src/smartlistmodel.cpp" line="103"/>
+        <location filename="../src/smartlistmodel.cpp" line="111"/>
+        <location filename="../src/smartlistmodel.cpp" line="177"/>
+        <location filename="../src/smartlistmodel.cpp" line="186"/>
+        <location filename="../src/smartlistmodel.cpp" line="187"/>
+        <source>Calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/smartlistmodel.cpp" line="64"/>
+        <location filename="../src/smartlistmodel.cpp" line="104"/>
+        <location filename="../src/smartlistmodel.cpp" line="121"/>
+        <location filename="../src/smartlistmodel.cpp" line="178"/>
+        <location filename="../src/smartlistmodel.cpp" line="188"/>
+        <location filename="../src/smartlistmodel.cpp" line="189"/>
+        <source>Contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpdateConfirmDialog</name>
+    <message>
+        <source>Cancel</source>
+        <translation type="obsolete">Anuloje</translation>
+    </message>
+</context>
+<context>
+    <name>UpdateDownloadDialog</name>
+    <message>
+        <source>Cancel</source>
+        <translation type="obsolete">Anuloje</translation>
+    </message>
+</context>
+<context>
+    <name>UserProfile</name>
+    <message>
+        <location filename="../src/mainview/components/UserProfile.qml" line="100"/>
+        <source>Informations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/UserProfile.qml" line="108"/>
+        <source>Username</source>
+        <translation type="unfinished">Emër përdoruesi</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/UserProfile.qml" line="137"/>
+        <source>ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/UserProfile.qml" line="163"/>
+        <source>QR Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UtilsAdapter</name>
+    <message>
+        <location filename="../src/utils.cpp" line="412"/>
+        <source>Created by:</source>
+        <translation type="unfinished">Krijuar nga:</translation>
+    </message>
+    <message>
+        <location filename="../src/utils.cpp" line="418"/>
+        <source>Artwork by:</source>
+        <translation type="unfinished">Përkujdesja grafike:</translation>
+    </message>
+    <message>
+        <location filename="../src/utils.cpp" line="426"/>
+        <source>Based on the SFLPhone project</source>
+        <translation type="unfinished">Bazuar në projektin SFLPhone</translation>
+    </message>
+</context>
+<context>
+    <name>VideoCallPageContextMenuDeviceItem</name>
+    <message>
+        <location filename="../src/mainview/components/VideoCallPageContextMenuDeviceItem.qml" line="47"/>
+        <source>No video device</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>VideoOverlay</name>
     <message>
-        <location filename="../videooverlay.ui" line="419"/>
         <source>Call on Hold</source>
-        <translation>Thirrje Pezull</translation>
+        <translation type="vanished">Thirrje Pezull</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="89"/>
         <source>Hold / Unhold</source>
-        <translation>Mbaje Pezull/Rimerre</translation>
+        <translation type="vanished">Mbaje Pezull/Rimerre</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="124"/>
         <source>Chat</source>
-        <translation>Fjalosje</translation>
+        <translation type="vanished">Fjalosje</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="162"/>
         <source>Mute Mic</source>
-        <translation>Heshtoje Mikrofonin</translation>
+        <translation type="vanished">Heshtoje Mikrofonin</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="244"/>
         <source>Record call</source>
-        <translation>Incizo thirrjen</translation>
+        <translation type="vanished">Incizo thirrjen</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="325"/>
         <source>Name label</source>
-        <translation>Etiketë emri</translation>
+        <translation type="vanished">Etiketë emri</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="390"/>
         <source>Time elapsed</source>
-        <translation>Kohë e rrjedhur</translation>
+        <translation type="vanished">Kohë e rrjedhur</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="393"/>
         <source>00:00</source>
-        <translation>00:00</translation>
+        <translation type="vanished">00:00</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="57"/>
         <source>Hangup</source>
-        <translation>Mbylle</translation>
+        <translation type="vanished">Mbylle</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="203"/>
         <source>Mute Video</source>
-        <translation>Hiqi Zërin Videos</translation>
+        <translation type="vanished">Hiqi Zërin Videos</translation>
     </message>
 </context>
 <context>
     <name>VideoView</name>
     <message>
-        <location filename="../videoview.cpp" line="271"/>
         <source>Share entire screen</source>
-        <translation>Nda krejt ekranin</translation>
+        <translation type="vanished">Nda krejt ekranin</translation>
     </message>
     <message>
-        <location filename="../videoview.cpp" line="274"/>
         <source>Share screen area</source>
-        <translation>Ndani me të tjerët zonën e ekranit</translation>
+        <translation type="vanished">Ndani me të tjerët zonën e ekranit</translation>
     </message>
     <message>
-        <location filename="../videoview.cpp" line="281"/>
         <source>Share file</source>
-        <translation>Ndani kartelë me të tjerë</translation>
+        <translation type="vanished">Ndani kartelë me të tjerë</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomePage</name>
+    <message>
+        <location filename="../src/mainview/components/WelcomePage.qml" line="72"/>
+        <source>Jami is a free software for universal communication which repects the freedoms and privacy of its user.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/WelcomePage.qml" line="91"/>
+        <source>This is your ID.
+Copy and share it with your friends</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WelcomePageLayout</name>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="50"/>
+        <source>Welcome to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="100"/>
+        <source>Create local account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="121"/>
+        <source>Import from device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="144"/>
+        <source>Import from backup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="167"/>
+        <source>Show Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="195"/>
+        <source>Connect to account manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="219"/>
+        <source>Add a new SIP account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="obsolete">Mbylle</translation>
+    </message>
+</context>
+<context>
+    <name>WizardView</name>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="192"/>
+        <source>Generating your Jami account...</source>
+        <translation type="unfinished">Po prodhohet llogaria juaj Jami…</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="202"/>
+        <source>Importing account archive...</source>
+        <translation type="unfinished">Po importohet arkiv llogarie…</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="219"/>
+        <source>Migrating your Jami account...</source>
+        <translation type="unfinished">Po migrohet llogaria juaj Jami…</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="223"/>
+        <source>Generating your SIP account...</source>
+        <translation type="unfinished">Po prodhohet llogaria juaj SIP…</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="238"/>
+        <source>Connecting to account manager...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="363"/>
+        <source>Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="363"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="364"/>
+        <source>Export Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="364"/>
+        <source>Export Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="507"/>
+        <source>Archive(none)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="610"/>
+        <source>Previous</source>
+        <translation type="unfinished">I mëparshmi</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="661"/>
+        <source>Back</source>
+        <translation type="unfinished">Mbrapsht</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="695"/>
+        <source>Next</source>
+        <translation type="unfinished">Pasuesi</translation>
     </message>
 </context>
 </TS>
