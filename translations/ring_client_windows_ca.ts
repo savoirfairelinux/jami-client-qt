@@ -1,837 +1,2491 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca" version="2.0">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ca">
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../aboutdialog.ui" line="435"/>
-        <location filename="../aboutdialog.ui" line="465"/>
         <source>About</source>
-        <translation>Quant a</translation>
+        <translation type="vanished">Quant a</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="462"/>
         <source>about button</source>
-        <translation>botó quant a</translation>
+        <translation type="vanished">botó quant a</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="478"/>
         <source>credits button</source>
-        <translation>botó de crèdits</translation>
+        <translation type="vanished">botó de crèdits</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="481"/>
         <source>Credits</source>
-        <translation>Crèdits</translation>
+        <translation type="vanished">Crèdits</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="547"/>
         <source>Free as in Freedom</source>
-        <translation>Free as in Freedom</translation>
+        <translation type="vanished">Free as in Freedom</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.ui" line="563"/>
         <source>The Microsoft Windows client for Jami.
 Jami is a secured and distributed communication software.</source>
-        <translation>El client de Microsoft Windows per a Jami.
+        <translation type="vanished">El client de Microsoft Windows per a Jami.
 Ring és un programari de comunicació segur i distribuït.</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="32"/>
         <source>version</source>
-        <translation>versió</translation>
+        <translation type="vanished">versió</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="39"/>
         <source>Created by:</source>
-        <translation>Programat per:</translation>
+        <translation type="vanished">Programat per:</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="73"/>
         <source>Artwork by:</source>
-        <translation>Art fet per:</translation>
+        <translation type="vanished">Art fet per:</translation>
     </message>
     <message>
-        <location filename="../aboutdialog.cpp" line="77"/>
         <source>Based on the SFLPhone project</source>
-        <translation>Basat en el projecte SFLPhone</translation>
+        <translation type="vanished">Basat en el projecte SFLPhone</translation>
+    </message>
+</context>
+<context>
+    <name>AboutPopUp</name>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="90"/>
+        <source>version</source>
+        <translation type="unfinished">versió</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="113"/>
+        <source>Free as in Freedom</source>
+        <translation type="unfinished">Free as in Freedom</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="135"/>
+        <source>The Microsoft Windows client for Jami.
+Jami is a secured and distributed communciation software.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="246"/>
+        <source>Changelog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="259"/>
+        <source>Credit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AccountComboBox</name>
+    <message>
+        <location filename="../src/mainview/components/AccountComboBox.qml" line="224"/>
+        <source>Press to display QR code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AccountComboBox.qml" line="249"/>
+        <source>Press to toggle to settings page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AccountComboBox.qml" line="249"/>
+        <source>Press to toggle to call page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AccountComboBoxPopup</name>
+    <message>
+        <location filename="../src/mainview/components/AccountComboBoxPopup.qml" line="162"/>
+        <source>Add Account</source>
+        <translation type="unfinished">Afegeix compte</translation>
     </message>
 </context>
 <context>
     <name>AccountItemDelegate</name>
     <message>
-        <location filename="../accountitemdelegate.cpp" line="91"/>
         <source>Add Account</source>
-        <translation>Afegeix compte</translation>
+        <translation type="vanished">Afegeix compte</translation>
+    </message>
+</context>
+<context>
+    <name>AccountMigrationDialog</name>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="272"/>
+        <source>Account Migration Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="308"/>
+        <source>This account is malformed. Please enter your password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="446"/>
+        <source>Alias</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="519"/>
+        <source>Username</source>
+        <translation type="unfinished">Nom d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="592"/>
+        <source>Manager Uri</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="665"/>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="705"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="769"/>
+        <source>Migrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="808"/>
+        <source>Delete</source>
+        <translation type="unfinished">Suprimeix</translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="948"/>
+        <source>Migrating your Jami account...</source>
+        <translation type="unfinished">Migrant el teu compte Jami…</translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/AccountMigrationDialog.qml" line="948"/>
+        <source>Migration Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AdvancedSIPSettingsView</name>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="205"/>
+        <source>Add a custom ringtone</source>
+        <translation type="unfinished">Afegeix un to de trucada personalitzat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="237"/>
+        <source>Select a new ringtone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="240"/>
+        <source>Audio Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="240"/>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="266"/>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="292"/>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="318"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="264"/>
+        <source>Select a CA certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="266"/>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="292"/>
+        <source>Certificate File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="290"/>
+        <source>Select a user certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="316"/>
+        <source>Select a private key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="318"/>
+        <source>Key File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="358"/>
+        <source>Call Settings</source>
+        <translation type="unfinished">Preferències de trucada</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="382"/>
+        <source>Auto Answer Calls</source>
+        <translation type="unfinished">Respon trucades automàticament</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="401"/>
+        <source>Enable Custom Ringtone</source>
+        <translation type="unfinished">Habilita to de trucada personalitzat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="415"/>
+        <source>Select Custom Ringtone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="457"/>
+        <source>Voicemail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="473"/>
+        <source>Voicemail Dial Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="513"/>
+        <source>Security</source>
+        <translation type="unfinished">Seguretat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="539"/>
+        <source>Encrypt Media Streams (SRTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="557"/>
+        <source>Enable SDES(Key Exchange)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="575"/>
+        <source>Can Fallback on RTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="597"/>
+        <source>Encrypt Negotiation (TLS)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="616"/>
+        <source>CA Certificate</source>
+        <translation type="unfinished">Certificat CA</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="649"/>
+        <source>User Certificate</source>
+        <translation type="unfinished">Certificat d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="683"/>
+        <source>Private Key</source>
+        <translation type="unfinished">Clau privada</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="718"/>
+        <source>Private Key Password</source>
+        <translation type="unfinished">Contrasenya de la clau privada</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="758"/>
+        <source>Verify Certificates (Server Side)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="776"/>
+        <source>Verify Certificates (Client Side)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="794"/>
+        <source>TLS Connections Require Certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="813"/>
+        <source>TLS Protocol Method</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="852"/>
+        <source>Outgoing TLS Server Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="880"/>
+        <source>Negotiation Timeout (seconds)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="925"/>
+        <source>Connectivity</source>
+        <translation type="unfinished">Connectivitat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="946"/>
+        <source>Registration Expire Timeout (seconds)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="986"/>
+        <source>Newtwork interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1022"/>
+        <source>Use UPnP</source>
+        <translation type="unfinished">Utilitza UPnP</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1036"/>
+        <source>Use TURN</source>
+        <translation type="unfinished">Utilitza TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1057"/>
+        <source>TURN Address</source>
+        <translation type="unfinished">Adreça TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1086"/>
+        <source>TURN Username</source>
+        <translation type="unfinished">Usuari de TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1114"/>
+        <source>TURN Password</source>
+        <translation type="unfinished">Contrasenya de TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1145"/>
+        <source>TURN Realm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1171"/>
+        <source>Use STUN</source>
+        <translation type="unfinished">Utilitza STUN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1189"/>
+        <source>STUN Address</source>
+        <translation type="unfinished">Adreça STUN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1225"/>
+        <source>Public Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1260"/>
+        <source>Use Custom Address/Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1272"/>
+        <source>Address</source>
+        <translation type="unfinished">Adreça</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1303"/>
+        <source>Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1348"/>
+        <source>Media</source>
+        <translation type="unfinished">Mitjans</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1377"/>
+        <source>Enable Video</source>
+        <translation type="unfinished">Habilita el vídeo</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1402"/>
+        <source>Video Codecs</source>
+        <translation type="unfinished">Còdecs de vídeo</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1506"/>
+        <source>Audio Codecs</source>
+        <translation type="unfinished">Còdecs d&apos;àudio</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1613"/>
+        <source>SDP Session Negotiation (ICE Fallback)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1625"/>
+        <source>Only used during negotiation in case ICE is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1647"/>
+        <source>Audio RTP Min Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1684"/>
+        <source>Audio RTP Max Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1721"/>
+        <source>Video RTP Min Port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSIPSettingsView.qml" line="1758"/>
+        <source>Video RTP Max Port</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AdvancedSIPSettingsWidget</name>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulari</translation>
+        <translation type="vanished">Formulari</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="55"/>
         <source>Call Settings</source>
-        <translation>Preferències de trucada</translation>
+        <translation type="vanished">Preferències de trucada</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="102"/>
         <source>Auto Answer Calls</source>
-        <translation>Respon trucades automàticament</translation>
+        <translation type="vanished">Respon trucades automàticament</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="130"/>
         <source>Enable Custom Ringtone</source>
-        <translation>Habilita to de trucada personalitzat</translation>
+        <translation type="vanished">Habilita to de trucada personalitzat</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="191"/>
         <source>Connectivity</source>
-        <translation>Connectivitat</translation>
+        <translation type="vanished">Connectivitat</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="281"/>
         <source>STUN Address</source>
-        <translation>Adreça STUN</translation>
+        <translation type="vanished">Adreça STUN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="293"/>
         <source>Use STUN</source>
-        <translation>Utilitza STUN</translation>
+        <translation type="vanished">Utilitza STUN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="317"/>
         <source>Use UPnP</source>
-        <translation>Utilitza UPnP</translation>
+        <translation type="vanished">Utilitza UPnP</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="329"/>
         <source>Use TURN</source>
-        <translation>Utilitza TURN</translation>
+        <translation type="vanished">Utilitza TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="359"/>
         <source>TURN Password</source>
-        <translation>Contrasenya de TURN</translation>
+        <translation type="vanished">Contrasenya de TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="391"/>
         <source>TURN Username</source>
-        <translation>Usuari de TURN</translation>
+        <translation type="vanished">Usuari de TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="423"/>
         <source>TURN Address</source>
-        <translation>Adreça TURN</translation>
+        <translation type="vanished">Adreça TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="464"/>
         <source>Media</source>
-        <translation>Mitjans</translation>
+        <translation type="vanished">Mitjans</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="515"/>
         <source>Enable Video</source>
-        <translation>Habilita el vídeo</translation>
+        <translation type="vanished">Habilita el vídeo</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="539"/>
         <source>Video Codecs</source>
-        <translation>Còdecs de vídeo</translation>
+        <translation type="vanished">Còdecs de vídeo</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.ui" line="692"/>
         <source>Audio Codecs</source>
-        <translation>Còdecs d&apos;àudio</translation>
+        <translation type="vanished">Còdecs d&apos;àudio</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.cpp" line="142"/>
         <source>Audio Files (*.wav *.ogg *.opus *.mp3 *aiff *wma)</source>
-        <translation>Fitxers d&apos;àudio (*.wav *.ogg *.opus *.mp3 *aiff *wma)</translation>
+        <translation type="vanished">Fitxers d&apos;àudio (*.wav *.ogg *.opus *.mp3 *aiff *wma)</translation>
     </message>
     <message>
-        <location filename="../advancedsipsettingwidget.cpp" line="151"/>
         <source>Add a custom ringtone</source>
-        <translation>Afegeix un to de trucada personalitzat</translation>
+        <translation type="vanished">Afegeix un to de trucada personalitzat</translation>
+    </message>
+</context>
+<context>
+    <name>AdvancedSettingsView</name>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="136"/>
+        <source>Add a custom ringtone</source>
+        <translation type="unfinished">Afegeix un to de trucada personalitzat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="168"/>
+        <source>Select a new ringtone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="171"/>
+        <source>Audio Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="171"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="197"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="223"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="251"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="195"/>
+        <source>Select a CA certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="197"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="223"/>
+        <source>Certificate File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="221"/>
+        <source>Select a user certificate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="249"/>
+        <source>Select a private key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="251"/>
+        <source>Key File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="288"/>
+        <source>Call Settings</source>
+        <translation type="unfinished">Preferències de trucada</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="312"/>
+        <source>Allow incoming calls from unknown contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="332"/>
+        <source>Auto Answer Calls</source>
+        <translation type="unfinished">Respon trucades automàticament</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="351"/>
+        <source>Enable Custom Ringtone</source>
+        <translation type="unfinished">Habilita to de trucada personalitzat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="363"/>
+        <source>Select Custom Ringtone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="395"/>
+        <source>(Experimental) Rendez-vous: turn your account into a conference room</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="415"/>
+        <source>Name Server</source>
+        <translation type="unfinished">Servidor de noms</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="431"/>
+        <source>Address</source>
+        <translation type="unfinished">Adreça</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="470"/>
+        <source>OpenDHT Configuration</source>
+        <translation type="unfinished">Configuració de OpenDHT</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="482"/>
+        <source>Enable proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="500"/>
+        <source>Proxy Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="532"/>
+        <source>Bootstrap</source>
+        <translation type="unfinished">Bootstrap</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="572"/>
+        <source>Security</source>
+        <translation type="unfinished">Seguretat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="596"/>
+        <source>CA Certificate</source>
+        <translation type="unfinished">Certificat CA</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="630"/>
+        <source>User Certificate</source>
+        <translation type="unfinished">Certificat d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="664"/>
+        <source>Private Key</source>
+        <translation type="unfinished">Clau privada</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="700"/>
+        <source>Private Key Password</source>
+        <translation type="unfinished">Contrasenya de la clau privada</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="735"/>
+        <source>Connectivity</source>
+        <translation type="unfinished">Connectivitat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="761"/>
+        <source>Auto Connect On Local Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="769"/>
+        <source>Use UPnP</source>
+        <translation type="unfinished">Utilitza UPnP</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="782"/>
+        <source>Use TURN</source>
+        <translation type="unfinished">Utilitza TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="800"/>
+        <source>TURN Address</source>
+        <translation type="unfinished">Adreça TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="832"/>
+        <source>TURN Username</source>
+        <translation type="unfinished">Usuari de TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="864"/>
+        <source>TURN Password</source>
+        <translation type="unfinished">Contrasenya de TURN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="895"/>
+        <source>Use STUN</source>
+        <translation type="unfinished">Utilitza STUN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="916"/>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="930"/>
+        <source>STUN Address</source>
+        <translation type="unfinished">Adreça STUN</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="953"/>
+        <source>Media</source>
+        <translation type="unfinished">Mitjans</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="968"/>
+        <source>Enable Video</source>
+        <translation type="unfinished">Habilita el vídeo</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="996"/>
+        <source>Video Codecs</source>
+        <translation type="unfinished">Còdecs de vídeo</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AdvancedSettingsView.qml" line="1095"/>
+        <source>Audio Codecs</source>
+        <translation type="unfinished">Còdecs d&apos;àudio</translation>
     </message>
 </context>
 <context>
     <name>AdvancedSettingsWidget</name>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulari</translation>
+        <translation type="vanished">Formulari</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="61"/>
         <source>Call Settings</source>
-        <translation>Preferències de trucada</translation>
+        <translation type="vanished">Preferències de trucada</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="108"/>
         <source>Allow Calls From Untrusted Peers</source>
-        <translation>Permet trucades de contactes desconeguts</translation>
+        <translation type="vanished">Permet trucades de contactes desconeguts</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="133"/>
         <source>Auto Answer Calls</source>
-        <translation>Respon trucades automàticament</translation>
+        <translation type="vanished">Respon trucades automàticament</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="161"/>
         <source>Enable Custom Ringtone</source>
-        <translation>Habilita to de trucada personalitzat</translation>
+        <translation type="vanished">Habilita to de trucada personalitzat</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.cpp" line="188"/>
         <source>Add a custom ringtone</source>
-        <translation>Afegeix un to de trucada personalitzat</translation>
+        <translation type="vanished">Afegeix un to de trucada personalitzat</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="225"/>
         <source>Name Server</source>
-        <translation>Servidor de noms</translation>
+        <translation type="vanished">Servidor de noms</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="275"/>
         <source>Address</source>
-        <translation>Adreça</translation>
+        <translation type="vanished">Adreça</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="351"/>
         <source>OpenDHT Configuration</source>
-        <translation>Configuració de OpenDHT</translation>
+        <translation type="vanished">Configuració de OpenDHT</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="398"/>
         <source>Enable Proxy</source>
-        <translation>Habilita servidor intermediari</translation>
+        <translation type="vanished">Habilita servidor intermediari</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="454"/>
         <source>Bootstrap</source>
-        <translation>Bootstrap</translation>
+        <translation type="vanished">Bootstrap</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="530"/>
         <source>Security</source>
-        <translation>Seguretat</translation>
+        <translation type="vanished">Seguretat</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="571"/>
         <source>Private Key Password</source>
-        <translation>Contrasenya de la clau privada</translation>
+        <translation type="vanished">Contrasenya de la clau privada</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="583"/>
         <source>User Certificate</source>
-        <translation>Certificat d&apos;usuari</translation>
+        <translation type="vanished">Certificat d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="622"/>
         <source>Private Key</source>
-        <translation>Clau privada</translation>
+        <translation type="vanished">Clau privada</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="634"/>
         <source>CA Certificate</source>
-        <translation>Certificat CA</translation>
+        <translation type="vanished">Certificat CA</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="766"/>
         <source>Connectivity</source>
-        <translation>Connectivitat</translation>
+        <translation type="vanished">Connectivitat</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="868"/>
         <source>Use STUN</source>
-        <translation>Utilitza STUN</translation>
+        <translation type="vanished">Utilitza STUN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="856"/>
         <source>STUN Address</source>
-        <translation>Adreça STUN</translation>
+        <translation type="vanished">Adreça STUN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="892"/>
         <source>Use UPnP</source>
-        <translation>Utilitza UPnP</translation>
+        <translation type="vanished">Utilitza UPnP</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="904"/>
         <source>Use TURN</source>
-        <translation>Utilitza TURN</translation>
+        <translation type="vanished">Utilitza TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="934"/>
         <source>TURN Password</source>
-        <translation>Contrasenya de TURN</translation>
+        <translation type="vanished">Contrasenya de TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="966"/>
         <source>TURN Username</source>
-        <translation>Usuari de TURN</translation>
+        <translation type="vanished">Usuari de TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="998"/>
         <source>TURN Address</source>
-        <translation>Adreça TURN</translation>
+        <translation type="vanished">Adreça TURN</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="1039"/>
         <source>Media</source>
-        <translation>Mitjans</translation>
+        <translation type="vanished">Mitjans</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="1090"/>
         <source>Enable Video</source>
-        <translation>Habilita el vídeo</translation>
+        <translation type="vanished">Habilita el vídeo</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="1267"/>
         <source>Audio Codecs</source>
-        <translation>Còdecs d&apos;àudio</translation>
+        <translation type="vanished">Còdecs d&apos;àudio</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.ui" line="1114"/>
         <source>Video Codecs</source>
-        <translation>Còdecs de vídeo</translation>
+        <translation type="vanished">Còdecs de vídeo</translation>
     </message>
     <message>
-        <location filename="../advancedsettingswidget.cpp" line="181"/>
         <source>Audio Files (*.wav *.ogg *.opus *.mp3 *aiff *wma)</source>
-        <translation>Fitxers d&apos;àudio (*.wav *.ogg *.opus *.mp3 *aiff *wma)</translation>
+        <translation type="vanished">Fitxers d&apos;àudio (*.wav *.ogg *.opus *.mp3 *aiff *wma)</translation>
     </message>
 </context>
 <context>
     <name>AnimatedOverlay</name>
     <message>
-        <location filename="../animatedoverlay.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulari</translation>
+        <translation type="vanished">Formulari</translation>
+    </message>
+</context>
+<context>
+    <name>AvSettingPage</name>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="289"/>
+        <source>Toggle to display side panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="305"/>
+        <source>Audio / Video</source>
+        <translation type="unfinished">Àudio / Vídeo</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="352"/>
+        <source>Audio</source>
+        <translation type="unfinished">Àudio</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="371"/>
+        <source>Microphone</source>
+        <translation type="unfinished">Micròfon</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="392"/>
+        <source>Audio input device selector</source>
+        <translation type="unfinished">Selector de dispositiu d&apos;entrada d&apos;àudio</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="425"/>
+        <source>Output Device</source>
+        <translation type="unfinished">Dispositiu de sortida</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="446"/>
+        <source>Choose the audio output device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="464"/>
+        <source>Ringtone Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="486"/>
+        <source>Choose the ringtone output device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="505"/>
+        <source>Audio Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="546"/>
+        <source>Video</source>
+        <translation type="unfinished">Vídeo</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="566"/>
+        <source>Device</source>
+        <translation type="unfinished">Dispositiu</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="588"/>
+        <source>Video device selector</source>
+        <translation type="unfinished">Selector de dispositiu de vídeo</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="607"/>
+        <source>Resolution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="628"/>
+        <source>Video device resolution selector</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="648"/>
+        <source>Fps</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="669"/>
+        <source>Video device fps selector</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="714"/>
+        <source>Preview unavailable</source>
+        <translation type="unfinished">Previsualització no disponible</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/AvSettingPage.qml" line="741"/>
+        <source>Enable hardware acceleration</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BackupKeyPage</name>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="43"/>
+        <source>Export Account Here</source>
+        <translation type="unfinished">Exporta el compte aquí</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="46"/>
+        <source>Jami archive files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="46"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="84"/>
+        <source>Backup your account!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="90"/>
+        <source>Recommended</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="104"/>
+        <source>This account only exists on this device. If you lost your device or uninstall the application, your account will be deleted. You can backup your account now or later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="120"/>
+        <source>Never show me this again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="137"/>
+        <source>BACKUP ACCOUNT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/BackupKeyPage.qml" line="171"/>
+        <source>Close</source>
+        <translation type="unfinished">Tanca</translation>
+    </message>
+</context>
+<context>
+    <name>BannedItemDelegate</name>
+    <message>
+        <location filename="../src/settingsview/components/BannedItemDelegate.qml" line="130"/>
+        <source>name</source>
+        <translation type="unfinished">nom</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/BannedItemDelegate.qml" line="155"/>
+        <source>id</source>
+        <translation type="unfinished">id</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/BannedItemDelegate.qml" line="185"/>
+        <source>Add as contact</source>
+        <translation type="unfinished">Afegir com a contacte</translation>
     </message>
 </context>
 <context>
     <name>BannedItemWidget</name>
     <message>
-        <location filename="../banneditemwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulari</translation>
+        <translation type="vanished">Formulari</translation>
     </message>
     <message>
-        <location filename="../banneditemwidget.ui" line="80"/>
         <source>name</source>
-        <translation>nom</translation>
+        <translation type="vanished">nom</translation>
     </message>
     <message>
-        <location filename="../banneditemwidget.ui" line="104"/>
         <source>id</source>
-        <translation>id</translation>
+        <translation type="vanished">id</translation>
+    </message>
+</context>
+<context>
+    <name>CallAdapter</name>
+    <message>
+        <location filename="../src/calladapter.cpp" line="257"/>
+        <location filename="../src/calladapter.cpp" line="306"/>
+        <source>me</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CallAdvancedOptions</name>
+    <message>
+        <location filename="../src/mainview/components/CallAdvancedOptions.qml" line="92"/>
+        <source>Add to conference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallAdvancedOptions.qml" line="92"/>
+        <source>Transfer this call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallAdvancedOptions.qml" line="110"/>
+        <source>Search contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CallOverlayButtonGroup</name>
+    <message>
+        <location filename="../src/mainview/components/CallOverlayButtonGroup.qml" line="101"/>
+        <source>Press to mute the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallOverlayButtonGroup.qml" line="101"/>
+        <source>Press to unmute the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallOverlayButtonGroup.qml" line="126"/>
+        <source>Press to hang up the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallOverlayButtonGroup.qml" line="153"/>
+        <source>Press to pause the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallOverlayButtonGroup.qml" line="153"/>
+        <source>Press to resume the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallOverlayButtonGroup.qml" line="183"/>
+        <source>Press to add more contact into conference call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallOverlayButtonGroup.qml" line="208"/>
+        <source>Press to toggle open the chatview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallOverlayButtonGroup.qml" line="232"/>
+        <source>Press to open chat options</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CallViewContextMenu</name>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="104"/>
+        <source>Resume call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="104"/>
+        <source>Hold call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="121"/>
+        <source>Transfer call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="147"/>
+        <source>Stop recording</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="147"/>
+        <source>Start recording</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="161"/>
+        <source>Exit full screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="161"/>
+        <source>Full screen mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="204"/>
+        <source>Share entire screen</source>
+        <translation type="unfinished">Comparteix tota la pantalla</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="225"/>
+        <source>Share screen area</source>
+        <translation type="unfinished">Compartir pantalla</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="248"/>
+        <source>Share file</source>
+        <translation type="unfinished">Compartir arxiu</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/CallViewContextMenu.qml" line="279"/>
+        <source>Toggle plugin</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CallWidget</name>
     <message>
-        <location filename="../callwidget.ui" line="184"/>
         <source>Show conversations</source>
-        <translation>Mostra converses</translation>
+        <translation type="vanished">Mostra converses</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="187"/>
         <source>Conversations</source>
-        <translation>Converses</translation>
+        <translation type="vanished">Converses</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="368"/>
         <source>Search contact text input</source>
-        <translation>Cerca text del contacte</translation>
+        <translation type="vanished">Cerca text del contacte</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="653"/>
         <source>Jami is free software for universal communication which respects the freedoms and privacy of its users.</source>
-        <translation>Jami és un programari lliure de comunicació universal, que respecta les llibertats i la privacitat dels seus usuaris.</translation>
+        <translation type="vanished">Jami és un programari lliure de comunicació universal, que respecta les llibertats i la privacitat dels seus usuaris.</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="693"/>
         <source>
  This is your ID.
 Copy and share it with your friends!
                                       </source>
-        <translation>
+        <translation type="vanished">
 Aquest és el seu ID.
 Copiï&apos;l i comparteixi&apos;l amb els seus amics!</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="806"/>
         <source>Show ring ID QR code</source>
-        <translation>Mostra codi QR de ring</translation>
+        <translation type="vanished">Mostra codi QR de ring</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="857"/>
         <source>Share ring ID button</source>
-        <translation>Botó de compartició de ID de ring</translation>
+        <translation type="vanished">Botó de compartició de ID de ring</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="915"/>
         <source>Double-click to copy</source>
-        <translation>Doble clic per copiar</translation>
+        <translation type="vanished">Doble clic per copiar</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="956"/>
         <source>Error while generating QR Code</source>
-        <translation>Error al generar el codi QR</translation>
+        <translation type="vanished">Error al generar el codi QR</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1184"/>
-        <location filename="../callwidget.ui" line="1434"/>
         <source>best name</source>
-        <translation>millor nom</translation>
+        <translation type="vanished">millor nom</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1208"/>
         <source>best Id</source>
-        <translation>millor Id</translation>
+        <translation type="vanished">millor Id</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1734"/>
         <source>Back to homepage button</source>
-        <translation>Botó per tornar a la pàgina principal</translation>
+        <translation type="vanished">Botó per tornar a la pàgina principal</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1943"/>
         <source>Add to contacts</source>
-        <translation>Afegir als contactes</translation>
+        <translation type="vanished">Afegir als contactes</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="202"/>
         <source>Show invites</source>
-        <translation>Mostra invitacions</translation>
+        <translation type="vanished">Mostra invitacions</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="205"/>
         <source>Invites</source>
-        <translation>Invitacions</translation>
+        <translation type="vanished">Invitacions</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="377"/>
-        <location filename="../callwidget.cpp" line="552"/>
         <source>Find a new or existing contact</source>
-        <translation>Troba un contacte nou o existent</translation>
+        <translation type="vanished">Troba un contacte nou o existent</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1444"/>
         <source>Wants to talk to you!</source>
-        <translation>Vol parlar amb tu!</translation>
+        <translation type="vanished">Vol parlar amb tu!</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1517"/>
         <source>Answer incoming call button</source>
-        <translation>Botó per respondre trucada entrant</translation>
+        <translation type="vanished">Botó per respondre trucada entrant</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1589"/>
         <source>Ignore incoming call button</source>
-        <translation>Botó per ignorar trucada entrant</translation>
+        <translation type="vanished">Botó per ignorar trucada entrant</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1539"/>
         <source>Answer</source>
-        <translation>Respon</translation>
+        <translation type="vanished">Respon</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1617"/>
         <source>Ignore</source>
-        <translation>Ignora</translation>
+        <translation type="vanished">Ignora</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1280"/>
         <source>Cancel outgoing call</source>
-        <translation>Canceŀla trucada sortint</translation>
+        <translation type="vanished">Canceŀla trucada sortint</translation>
     </message>
     <message>
-        <location filename="../callwidget.ui" line="1305"/>
         <source>Cancel</source>
-        <translation>Canceŀla</translation>
+        <translation type="vanished">Canceŀla</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="332"/>
         <source>Start video call</source>
-        <translation>Comença una videotrucada</translation>
+        <translation type="vanished">Comença una videotrucada</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="343"/>
         <source>Start audio call</source>
-        <translation>Comença una trucada de veu.</translation>
+        <translation type="vanished">Comença una trucada de veu.</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="354"/>
         <source>Clear conversation</source>
-        <translation>Neteja la conversa</translation>
+        <translation type="vanished">Neteja la conversa</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="361"/>
         <source>Remove contact</source>
-        <translation>Elimina el contacte</translation>
+        <translation type="vanished">Elimina el contacte</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="373"/>
         <source>Block contact</source>
-        <translation>Bloqueja el contacte</translation>
+        <translation type="vanished">Bloqueja el contacte</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="384"/>
         <source>Copy number</source>
-        <translation>Copia el número</translation>
+        <translation type="vanished">Copia el número</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="561"/>
         <source>Search your received invitations</source>
-        <translation>Cerca les invitacions rebudes</translation>
+        <translation type="vanished">Cerca les invitacions rebudes</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="943"/>
         <source>Contact me on Jami</source>
-        <translation>Contacta amb mi a Jami</translation>
+        <translation type="vanished">Contacta amb mi a Jami</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="943"/>
         <source>My Id is : </source>
-        <translation>El meu Id és:</translation>
+        <translation type="vanished">El meu Id és:</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="847"/>
         <source>%1</source>
         <comment>%1 is the contact username</comment>
-        <translation>%1</translation>
+        <translation type="vanished">%1</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="852"/>
         <source>%1</source>
         <comment>%1 is the contact unique identifier</comment>
-        <translation>%1</translation>
+        <translation type="vanished">%1</translation>
     </message>
     <message>
-        <location filename="../callwidget.cpp" line="675"/>
         <source>Call incoming from %1</source>
-        <translation>Trucada entrant de %1</translation>
+        <translation type="vanished">Trucada entrant de %1</translation>
+    </message>
+</context>
+<context>
+    <name>CollapsiblePasswordWidget</name>
+    <message>
+        <location filename="../src/wizardview/components/CollapsiblePasswordWidget.qml" line="68"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CollapsiblePasswordWidget.qml" line="100"/>
+        <source>Confirm Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConnectToAccountManagerPage</name>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="69"/>
+        <source>Enter URL of management server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="73"/>
+        <source>Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="90"/>
+        <source>Jami management server URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="103"/>
+        <source>Enter your organization credentials</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="111"/>
+        <source>Username</source>
+        <translation type="unfinished">Nom d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="124"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="137"/>
+        <source>CONNECT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ConnectToAccountManagerPage.qml" line="187"/>
+        <source>Return to welcome page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactPicker</name>
+    <message>
+        <location filename="../src/mainview/components/ContactPicker.qml" line="91"/>
+        <source>Add to conference</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ContactPicker.qml" line="91"/>
+        <source>Transfer this call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ContactPicker.qml" line="109"/>
+        <source>Search contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactSearchBar</name>
+    <message>
+        <location filename="../src/mainview/components/ContactSearchBar.qml" line="96"/>
+        <source>Find or start a conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConversationSmartListContextMenu</name>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="56"/>
+        <source>Start video call</source>
+        <translation type="unfinished">Comença una videotrucada</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="72"/>
+        <source>Start audio call</source>
+        <translation type="unfinished">Comença una trucada de veu.</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="88"/>
+        <source>Clear conversation</source>
+        <translation type="unfinished">Neteja la conversa</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="103"/>
+        <source>Remove contact</source>
+        <translation type="unfinished">Elimina el contacte</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="127"/>
+        <source>Block contact</source>
+        <translation type="unfinished">Bloqueja el contacte</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="151"/>
+        <source>Profile</source>
+        <translation type="unfinished">Perfil</translation>
+    </message>
+</context>
+<context>
+    <name>CreateAccountPage</name>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="63"/>
+        <source>Export Account Here</source>
+        <translation type="unfinished">Exporta el compte aquí</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="66"/>
+        <source>Jami archive files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="66"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="105"/>
+        <source>Choose a username for your account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="109"/>
+        <source>Recommended</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="126"/>
+        <source>Choose your username</source>
+        <translation type="unfinished">Esculli el vostre nom d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="145"/>
+        <source>Invalid username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="147"/>
+        <source>Username already taken</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="163"/>
+        <source>CHOOSE USERNAME</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="176"/>
+        <source>SKIP CHOOSING USERNAME</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="201"/>
+        <source>Encrypt account with password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="207"/>
+        <source>Optional</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="228"/>
+        <source>Choose a password to encrypt the account key on this device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="250"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="266"/>
+        <source>Confirm password</source>
+        <translation type="unfinished">Confirmi contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="275"/>
+        <source>Note that the password cannot be recovered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="282"/>
+        <source>CREATE ACCOUNT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateAccountPage.qml" line="349"/>
+        <source>Return to welcome page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CreateSIPAccountPage</name>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="72"/>
+        <source>Configure an existing SIP account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="76"/>
+        <source>Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="96"/>
+        <source>Server</source>
+        <translation type="unfinished">Servidor</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="109"/>
+        <source>Proxy</source>
+        <translation type="unfinished">Intermediari</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="122"/>
+        <source>Username</source>
+        <translation type="unfinished">Nom d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="136"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="143"/>
+        <source>CREATE SIP ACCOUNT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/CreateSIPAccountPage.qml" line="176"/>
+        <source>Return to welcome page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CurrentAccountSettingsScrollPage</name>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="255"/>
+        <source>Export Account Here</source>
+        <translation type="unfinished">Exporta el compte aquí</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="258"/>
+        <source>Jami archive files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="258"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="270"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="296"/>
+        <source>Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="270"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="296"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="272"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="302"/>
+        <source>Export Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="272"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="302"/>
+        <source>Export Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="305"/>
+        <source>Password Changed Successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="305"/>
+        <source>Password Change Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="308"/>
+        <source>Password Set Successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="308"/>
+        <source>Password Set Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="309"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="897"/>
+        <source>Change Password</source>
+        <translation type="unfinished">Canvia la contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="309"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="897"/>
+        <source>Set Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="390"/>
+        <source>Remove Device</source>
+        <translation type="unfinished">Elimini el dispositiu</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="391"/>
+        <source>Are you sure you wish to remove this device?</source>
+        <translation type="unfinished">Esteu segur que voleu eliminar aquest dispositiu?</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="482"/>
+        <source>Toggle to display side panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="498"/>
+        <source>Account Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="541"/>
+        <source>Enable</source>
+        <translation type="unfinished">Habilita</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="565"/>
+        <source>Profile</source>
+        <translation type="unfinished">Perfil</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="636"/>
+        <source>Identity</source>
+        <translation type="unfinished">Identitat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="656"/>
+        <source>Id</source>
+        <translation type="unfinished">Id</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="721"/>
+        <source>Registered name</source>
+        <translation type="unfinished">Nom registrat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="736"/>
+        <source>Type here to register a username</source>
+        <translation type="unfinished">Escrigui aquí per registrar un nom d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="816"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="818"/>
+        <source>A registered name should not have any spaces and must be at least three letters long</source>
+        <translation type="unfinished">Un nom registrat no pot tenir espais i ha de tenir una longitud mínima de tres caràcters</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="820"/>
+        <source>This name is already taken</source>
+        <translation type="unfinished">Aquest nom ja està registrat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="822"/>
+        <source>Register this name</source>
+        <translation type="unfinished">Registri aquest nom</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="824"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="826"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="864"/>
+        <source>Register</source>
+        <translation type="unfinished">Registra</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="868"/>
+        <source>Register the name as typed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="899"/>
+        <source>Change the current password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="899"/>
+        <source>Currently no password, press this button to set a password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="923"/>
+        <source>Press this button to export account to a .gz file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="925"/>
+        <source>Export Account</source>
+        <translation type="unfinished">Exporta el compte</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="955"/>
+        <source>Press this button to delete this account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="957"/>
+        <source>Delete Account</source>
+        <translation type="unfinished">Esborrar compte</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="981"/>
+        <source>Linked Devices</source>
+        <translation type="unfinished">Dispositius vinculats</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1038"/>
+        <source>Press to link one more device with this account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1040"/>
+        <source>+ Link Another Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1075"/>
+        <source>Banned Contacts</source>
+        <translation type="unfinished">Contactes blocats</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1095"/>
+        <source>press to open or hide display of banned contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1163"/>
+        <source>Advanced Account Settings</source>
+        <translation type="unfinished">Preferències avançades del compte</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="1185"/>
+        <source>Press to display or hide advance settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CurrentSIPAccountSettingScrollPage</name>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="129"/>
+        <source>Toggle to display side panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="144"/>
+        <source>Account Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="184"/>
+        <source>Enable</source>
+        <translation type="unfinished">Habilita</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="205"/>
+        <source>Profile</source>
+        <translation type="unfinished">Perfil</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="274"/>
+        <source>Identity</source>
+        <translation type="unfinished">Identitat</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="297"/>
+        <source>Username</source>
+        <translation type="unfinished">Nom d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="326"/>
+        <source>Hostname</source>
+        <translation type="unfinished">Nom d&apos;amfitrió</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="355"/>
+        <source>Proxy</source>
+        <translation type="unfinished">Intermediari</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="384"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="428"/>
+        <source>Delete Account</source>
+        <translation type="unfinished">Esborrar compte</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="429"/>
+        <source>Delete this account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml" line="454"/>
+        <source>Advanced Account Settings</source>
+        <translation type="unfinished">Preferències avançades del compte</translation>
     </message>
 </context>
 <context>
     <name>DeleteAccountDialog</name>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="35"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="52"/>
         <source>Account deletion</source>
         <translation>Eliminació de compte</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="58"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="77"/>
         <source>Do you really want to delete the following account?</source>
         <translation>Esteu segur que voleu esborrar el compte?</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="153"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="135"/>
         <source>If this account hasn&apos;t been exported, or added to another device, it will be irrevocably lost.</source>
         <translation>Si aquest compte no s&apos;ha exportat o afegit a un altre dispositiu, es perdrà irremeiablement.</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="235"/>
         <source>Permanently delete account</source>
-        <translation>Elimina el compte de forma permanent</translation>
+        <translation type="vanished">Elimina el compte de forma permanent</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="241"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="182"/>
         <source>Delete</source>
         <translation>Suprimeix</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="278"/>
         <source>Cancel account deletion</source>
-        <translation>Canceŀla l&apos;eliminació del compte</translation>
+        <translation type="vanished">Canceŀla l&apos;eliminació del compte</translation>
     </message>
     <message>
-        <location filename="../deleteaccountdialog.ui" line="284"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="222"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
+    </message>
+</context>
+<context>
+    <name>DeviceItemDelegate</name>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="150"/>
+        <source>this device</source>
+        <translation type="unfinished">aquest dispositiu</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="164"/>
+        <source>Device Id</source>
+        <translation type="unfinished">Id del dispositiu</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="205"/>
+        <source>Edit Device Name</source>
+        <translation type="unfinished">Editar nom de dispositiu</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="207"/>
+        <source>Save new device name</source>
+        <translation type="unfinished">Desa el nou nom de dispositiu</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="210"/>
+        <source>Unlink Device From Account</source>
+        <translation type="unfinished">Desvincula dispositiu del compte</translation>
     </message>
 </context>
 <context>
     <name>DeviceItemWidget</name>
     <message>
-        <location filename="../deviceitemwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulari</translation>
+        <translation type="vanished">Formulari</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.ui" line="105"/>
         <source>Device Id</source>
-        <translation>Id del dispositiu</translation>
+        <translation type="vanished">Id del dispositiu</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.ui" line="143"/>
         <source>this device</source>
-        <translation>aquest dispositiu</translation>
+        <translation type="vanished">aquest dispositiu</translation>
+    </message>
+</context>
+<context>
+    <name>GeneralSettingsPage</name>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="101"/>
+        <source>Select A Folder For Your Downloads</source>
+        <translation type="unfinished">Seleccioni una carpeta per les seves descàrregues</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="125"/>
+        <source>Select A Folder For Your Recordings</source>
+        <translation type="unfinished">Seleccioni una carpeta per als seus enregistraments</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="165"/>
+        <source>0</source>
+        <translation type="unfinished">0</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="260"/>
+        <source>Toggle to display side panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="275"/>
+        <source>General</source>
+        <translation type="unfinished">General</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="321"/>
+        <source>System</source>
+        <translation type="unfinished">Sistema</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="340"/>
+        <source>toggle enable notifications</source>
+        <translation type="unfinished">Commuta habilitar notificacions</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="351"/>
+        <source>Enable desktop notifications</source>
+        <translation type="unfinished">Habilitar notificacions d&apos;escriptori</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="361"/>
+        <source>toggle keep minimized on close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="372"/>
+        <source>Keep minimize on close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="382"/>
+        <source>toggle run application on system startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="393"/>
+        <source>Run On Startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="408"/>
+        <source>Downloads folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="432"/>
+        <source>Press to choose download folder path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="456"/>
+        <source>Call Recording</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="481"/>
+        <source>Always record calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="500"/>
+        <source>Record preview video for a call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="515"/>
+        <source>Quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="534"/>
+        <source>VALUE </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="575"/>
+        <source>Save in</source>
+        <translation type="unfinished">Desa a</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="603"/>
+        <source>Press to choose record folder path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="628"/>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="674"/>
+        <source>Updates</source>
+        <translation type="unfinished">Actualitzacions</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="646"/>
+        <source>toggle automatic updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="657"/>
+        <source>Check for updates automatically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="673"/>
+        <source>Check for updates now</source>
+        <translation type="unfinished">Comprova actualitzacions immediatament</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="695"/>
+        <source>Install the latest beta version</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ImportFromBackupPage</name>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="32"/>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="40"/>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="57"/>
+        <source>Archive(none)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="47"/>
+        <source>Open File</source>
+        <translation type="unfinished">Obre fitxer</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="50"/>
+        <source>Jami archive files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="50"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="81"/>
+        <source>Import from backup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="89"/>
+        <source>Import your account&apos;s archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="102"/>
+        <source>You can obtain an archive by clicking on &quot;Export account&quot; in the account settings. This will create a .gz file on your device.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="110"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="123"/>
+        <source>CONNECT FROM BACKUP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="171"/>
+        <source>Return to welcome page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ImportFromDevicePage</name>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="61"/>
+        <source>Enter your main Jami account password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="69"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="84"/>
+        <source>Enter the PIN from another configured Jami account. Use the &quot;export Jami account&quot; feature to obtain a PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="92"/>
+        <source>PIN</source>
+        <translation type="unfinished">PIN</translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="103"/>
+        <source>CONNECT FROM ANOTHER DEVICE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="151"/>
+        <source>Return to welcome page</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>IncomingCallPage</name>
+    <message>
+        <location filename="../src/mainview/components/IncomingCallPage.qml" line="293"/>
+        <source>Answer</source>
+        <translation type="unfinished">Respon</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/IncomingCallPage.qml" line="334"/>
+        <source>Ignore</source>
+        <translation type="unfinished">Ignora</translation>
     </message>
 </context>
 <context>
     <name>InviteButtonsWidget</name>
     <message>
-        <location filename="../invitebuttonswidget.ui" line="83"/>
         <source>Accept</source>
-        <translation>Accepta</translation>
+        <translation type="vanished">Accepta</translation>
     </message>
     <message>
-        <location filename="../invitebuttonswidget.ui" line="131"/>
         <source>Refuse</source>
-        <translation>Rebutja</translation>
+        <translation type="vanished">Rebutja</translation>
     </message>
     <message>
-        <location filename="../invitebuttonswidget.ui" line="179"/>
         <source>Block</source>
-        <translation>Bloca</translation>
+        <translation type="vanished">Bloca</translation>
+    </message>
+</context>
+<context>
+    <name>JamiTheme</name>
+    <message>
+        <location filename="../src/constant/JamiTheme.qml" line="90"/>
+        <source>Find or start a conversation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiTheme.qml" line="91"/>
+        <source>Search your invitations</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LeftPanelView</name>
+    <message>
+        <location filename="../src/settingsview/components/LeftPanelView.qml" line="61"/>
+        <source>Account</source>
+        <translation type="unfinished">Compte</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LeftPanelView.qml" line="74"/>
+        <source>General</source>
+        <translation type="unfinished">General</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LeftPanelView.qml" line="87"/>
+        <source>Audio/Video</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LeftPanelView.qml" line="100"/>
+        <source>Plugins</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LinkDeviceDialog</name>
     <message>
-        <location filename="../linkdevicedialog.ui" line="14"/>
         <source>Dialog</source>
-        <translation>Diàleg</translation>
+        <translation type="vanished">Diàleg</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="62"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="178"/>
         <source>Enter your account password</source>
         <translation>Inseriu la contrasenya del vostre compte</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="117"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="208"/>
         <source>Password</source>
         <translation>Contrasenya</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="184"/>
         <source>Ok</source>
-        <translation>D&apos;acord</translation>
+        <translation type="vanished">D&apos;acord</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="218"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="287"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="279"/>
         <source>Exporting account</source>
-        <translation>Exportant compte</translation>
+        <translation type="vanished">Exportant compte</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="402"/>
         <source>Your PIN is</source>
-        <translation>El vostre PIN és</translation>
+        <translation type="vanished">El vostre PIN és</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="432"/>
         <source>PIN</source>
-        <translation>PIN</translation>
+        <translation type="vanished">PIN</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="477"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="31"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="87"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="581"/>
         <source>This pin and the account password should be entered in your device within 10 minutes.</source>
         <translation>Aquest PIN i la contrasenya del compte tindrien que introduir-se en el vostre dispositiu en un màxim de 10 minuts.</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.ui" line="553"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="100"/>
+        <source>Error connecting to the network.
+Please try again later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="104"/>
+        <source>Something went wrong.
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="128"/>
+        <source>Link another device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="248"/>
+        <source>Register</source>
+        <translation type="unfinished">Registra</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="371"/>
+        <source>Exporting Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="645"/>
         <source>Close</source>
         <translation>Tanca</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.cpp" line="34"/>
         <source>Link Another Device</source>
-        <translation>Vincula un altre dispositiu</translation>
+        <translation type="vanished">Vincula un altre dispositiu</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.cpp" line="96"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="96"/>
         <source>Incorrect password</source>
         <translation>Contrasenya incorrecta</translation>
     </message>
     <message>
-        <location filename="../linkdevicedialog.cpp" line="110"/>
         <source>Something went wrong.
 Please try again later.</source>
-        <translation>Alguna cosa ha anat malament.
+        <translation type="vanished">Alguna cosa ha anat malament.
 Si us plau, torni ha intentar-ho més tard.</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="83"/>
         <source>Settings</source>
-        <translation>Opcions</translation>
+        <translation type="vanished">Opcions</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="94"/>
         <source>Exit</source>
-        <translation>Sortir</translation>
+        <translation type="vanished">Sortir</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="111"/>
         <source>About</source>
-        <translation>Quant a</translation>
+        <translation type="vanished">Quant a</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="435"/>
         <source>Jami</source>
-        <translation>Jami</translation>
+        <translation type="vanished">Jami</translation>
+    </message>
+</context>
+<context>
+    <name>MediaHandlerItemDelegate</name>
+    <message>
+        <location filename="../src/mainview/components/MediaHandlerItemDelegate.qml" line="117"/>
+        <source>On/Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MediaHandlerPicker</name>
+    <message>
+        <location filename="../src/mainview/components/MediaHandlerPicker.qml" line="84"/>
+        <source>Select functionality</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>NameRegistrationDialog</name>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="35"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="101"/>
         <source>Set Registered Name</source>
         <translation>Estableix nom registrat</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="163"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="147"/>
         <source>Enter your account password</source>
         <translation>Inseriu la contrasenya del vostre compte</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="244"/>
         <source>Password text input</source>
-        <translation>Entrada de text de la contrasenya</translation>
+        <translation type="vanished">Entrada de text de la contrasenya</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="250"/>
         <source>Password text entry</source>
-        <translation>Entrada de text de la contrasenya</translation>
+        <translation type="vanished">Entrada de text de la contrasenya</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="256"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="177"/>
         <source>Password</source>
         <translation>Contrasenya</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="323"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="218"/>
         <source>Register</source>
         <translation>Registra</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="357"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="257"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="424"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="341"/>
         <source>Registering Name</source>
         <translation>Registrant nom d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="548"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="34"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="474"/>
         <source>Something went wrong</source>
         <translation>Alguna cosa ha anat malament</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.ui" line="618"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="525"/>
         <source>Close</source>
         <translation>Tanca</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.cpp" line="82"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="81"/>
         <source>Incorrect password</source>
         <translation>Contrasenya incorrecta</translation>
     </message>
     <message>
-        <location filename="../nameregistrationdialog.cpp" line="85"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="85"/>
         <source>Network error</source>
         <translation>Error de xarxa</translation>
     </message>
 </context>
 <context>
+    <name>NetWorkManager</name>
+    <message>
+        <location filename="../src/networkmanager.cpp" line="48"/>
+        <location filename="../src/networkmanager.cpp" line="111"/>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/networkmanager.cpp" line="49"/>
+        <source>Unable to open file for writing</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NewWizardWidget</name>
     <message>
-        <location filename="../newwizardwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulari</translation>
+        <translation type="vanished">Formulari</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="141"/>
         <source>Welcome Label</source>
-        <translation>Etiqueta de Benvinguda</translation>
+        <translation type="vanished">Etiqueta de Benvinguda</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="147"/>
         <source> Welcome to</source>
-        <translation>Benvingut a</translation>
+        <translation type="vanished">Benvingut a</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="185"/>
         <source>Welcome Logo</source>
-        <translation>Logo de Benvinguda</translation>
+        <translation type="vanished">Logo de Benvinguda</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="239"/>
         <source>Create Jami account button</source>
-        <translation>Botó de creació de compte Jami</translation>
+        <translation type="vanished">Botó de creació de compte Jami</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="245"/>
         <source>Push button for Jami account creation start trigger</source>
-        <translation>Botó per al disparador d&apos;inici de la creació de compte Jami</translation>
+        <translation type="vanished">Botó per al disparador d&apos;inici de la creació de compte Jami</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="251"/>
         <source>Create a Jami account</source>
-        <translation>Crear un compte Jami</translation>
+        <translation type="vanished">Crear un compte Jami</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="282"/>
         <source>Link device button</source>
-        <translation>Botó de vinculació de dispositiu</translation>
+        <translation type="vanished">Botó de vinculació de dispositiu</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="288"/>
         <source>Push button for device linkage start trigger</source>
-        <translation>Botó per al disparador d&apos;inici de vinculació de dispositiu</translation>
+        <translation type="vanished">Botó per al disparador d&apos;inici de vinculació de dispositiu</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="291"/>
         <source>Link this device to an account</source>
-        <translation>Enllaça aquest dispositiu a un compte</translation>
+        <translation type="vanished">Enllaça aquest dispositiu a un compte</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="328"/>
         <source>Create Jami SIP account button</source>
-        <translation>Botó de creació de compte Jami SIP</translation>
+        <translation type="vanished">Botó de creació de compte Jami SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="334"/>
         <source>Push button for Jami SIP account creation start trigger</source>
-        <translation>Botó per al disparador d&apos;inici de creació de compte Jami SIP</translation>
+        <translation type="vanished">Botó per al disparador d&apos;inici de creació de compte Jami SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="340"/>
         <source>Create a SIP account</source>
-        <translation>Crea un compte SIP</translation>
+        <translation type="vanished">Crea un compte SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="405"/>
         <source>Link this device to an existing account</source>
-        <translation>Enllaça aquest dispositiu a un compte ja existent</translation>
+        <translation type="vanished">Enllaça aquest dispositiu a un compte ja existent</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="469"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot;&gt;To link this device to another account, you first &lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14px; font-weight:600; color:#555555;&quot;&gt;need to obtain a PIN&lt;/span&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot;&gt; code. To generate the PIN code:&lt;/span&gt;&lt;/p&gt;
-&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Go to the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Account management setting&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; of a previous device&lt;/span&gt;&lt;/li&gt;
-&lt;li style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Choose the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Jami account&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; you want to use&lt;/span&gt;&lt;/li&gt;
-&lt;li style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Go to the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Devices&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; tab&lt;/span&gt;&lt;/li&gt;
-&lt;li style=&quot; font-family:'Ubuntu'; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Select &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Add a device&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot;&gt;To link this device to another account, you first &lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; font-weight:600; color:#555555;&quot;&gt;need to obtain a PIN&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot;&gt; code. To generate the PIN code:&lt;/span&gt;&lt;/p&gt;
+&lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Go to the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Account management setting&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; of a previous device&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Choose the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Jami account&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; you want to use&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Go to the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Devices&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; tab&lt;/span&gt;&lt;/li&gt;
+&lt;li style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Select &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Add a device&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot;&gt;You will get the necessary PIN to complete this form. The PIN is only valid for &lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; font-weight:600; color:#555555;&quot;&gt;10 minutes&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10px; color:#555555;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -843,288 +2497,279 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; color:#555555;&quot;&gt;Obtindràs el PIN necessari per completar aquest formulari. El PIN només és vàlid durant &lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:14px; font-weight:600; color:#555555;&quot;&gt;10 minuts&lt;/span&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10px; color:#555555;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="531"/>
         <source>Enter your pin:</source>
-        <translation>Entra el pin:</translation>
+        <translation type="vanished">Entra el pin:</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="599"/>
         <source>Or import a file:</source>
-        <translation>O importa un fitxer:</translation>
+        <translation type="vanished">O importa un fitxer:</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="626"/>
         <source>Link from exported account archive file</source>
-        <translation>Vincula des d&apos;un compte exportat a un fitxer d&apos;arxiu</translation>
+        <translation type="vanished">Vincula des d&apos;un compte exportat a un fitxer d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="629"/>
-        <location filename="../newwizardwidget.cpp" line="83"/>
-        <location filename="../newwizardwidget.cpp" line="218"/>
         <source>(None)</source>
-        <translation>(Cap)</translation>
+        <translation type="vanished">(Cap)</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="705"/>
         <source>Password:</source>
-        <translation>Contrasenya:</translation>
+        <translation type="vanished">Contrasenya:</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="799"/>
-        <location filename="../newwizardwidget.ui" line="1586"/>
         <source>Profile</source>
-        <translation>Perfil</translation>
+        <translation type="vanished">Perfil</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="953"/>
-        <location filename="../newwizardwidget.ui" line="1767"/>
         <source>Profile name</source>
-        <translation>Nom de perfil</translation>
+        <translation type="vanished">Nom de perfil</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1027"/>
         <source>Account</source>
-        <translation>Compte</translation>
+        <translation type="vanished">Compte</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1136"/>
         <source>Register your username.
 This will reserve the username so that only you can use it.
 Your friends will be able to call you with your usename
 instead of using your ID.</source>
-        <translation>Registra el teu nom d&apos;usuari.
+        <translation type="vanished">Registra el teu nom d&apos;usuari.
 Es reservarà el nom d&apos;usuari de forma que només vostè pugui utilitzar-lo.
 Els seus amics podran trucar-lo amb el vostre nom d&apos;usuari
 en comptes d&apos;utilitzar el vostre ID.</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1142"/>
         <source>Public username checkbox</source>
-        <translation>Capsa de verificació de nom d&apos;usuari públic</translation>
+        <translation type="vanished">Capsa de verificació de nom d&apos;usuari públic</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1145"/>
         <source>Checkbox selecting if the user wants a public username</source>
-        <translation>Capsa de verificació seleccionant si l&apos;usuari vol un nom d&apos;usuari públic</translation>
+        <translation type="vanished">Capsa de verificació seleccionant si l&apos;usuari vol un nom d&apos;usuari públic</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1148"/>
         <source>Register public username</source>
-        <translation>Registra nom d&apos;usuari públic</translation>
+        <translation type="vanished">Registra nom d&apos;usuari públic</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1367"/>
         <source>Public username edit</source>
-        <translation>Edició de nom d&apos;usuari públic</translation>
+        <translation type="vanished">Edició de nom d&apos;usuari públic</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1373"/>
         <source>Choose your username</source>
-        <translation>Esculli el vostre nom d&apos;usuari</translation>
+        <translation type="vanished">Esculli el vostre nom d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1289"/>
         <source>Password text input</source>
-        <translation>Entrada de text de la contrasenya</translation>
+        <translation type="vanished">Entrada de text de la contrasenya</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1295"/>
         <source>Password text entry</source>
-        <translation>Entrada de text de la contrasenya</translation>
+        <translation type="vanished">Entrada de text de la contrasenya</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1301"/>
-        <location filename="../newwizardwidget.ui" line="2213"/>
         <source>Password</source>
-        <translation>Contrasenya</translation>
+        <translation type="vanished">Contrasenya</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1211"/>
-        <location filename="../newwizardwidget.ui" line="1217"/>
         <source>Password confirmation text input</source>
-        <translation>Entrada de text de confirmació de contrasenya</translation>
+        <translation type="vanished">Entrada de text de confirmació de contrasenya</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1223"/>
         <source>Confirm password</source>
-        <translation>Confirmi contrasenya</translation>
+        <translation type="vanished">Confirmi contrasenya</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1814"/>
         <source>SIP Account</source>
-        <translation>Compte SIP</translation>
+        <translation type="vanished">Compte SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1973"/>
         <source>SIP Server edit</source>
-        <translation>Edició de servidor SIP</translation>
+        <translation type="vanished">Edició de servidor SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="1979"/>
         <source>Server</source>
-        <translation>Servidor</translation>
+        <translation type="vanished">Servidor</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2045"/>
         <source>SIP proxy input</source>
-        <translation>Entrada de servidor intermediari SIP</translation>
+        <translation type="vanished">Entrada de servidor intermediari SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2051"/>
         <source>SIP proxy text entry</source>
-        <translation>Entrada de text de servidor intermediari SIP</translation>
+        <translation type="vanished">Entrada de text de servidor intermediari SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2057"/>
         <source>Proxy</source>
-        <translation>Intermediari</translation>
+        <translation type="vanished">Intermediari</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2123"/>
         <source>SIP username input</source>
-        <translation>Entrada de nom d&apos;usuari SIP</translation>
+        <translation type="vanished">Entrada de nom d&apos;usuari SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2129"/>
         <source>SIP Password text entry</source>
-        <translation>Entrada de text de contraseña SIP</translation>
+        <translation type="vanished">Entrada de text de contraseña SIP</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2135"/>
         <source>Username</source>
-        <translation>Nom d&apos;usuari</translation>
+        <translation type="vanished">Nom d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2201"/>
-        <location filename="../newwizardwidget.ui" line="2207"/>
         <source>SIP Password text input</source>
-        <translation>Entrada de text de contraseña SIP</translation>
+        <translation type="vanished">Entrada de text de contraseña SIP</translation>
     </message>
-    <message utf8="true">
-        <location filename="../newwizardwidget.ui" line="2282"/>
+    <message>
         <source>Generating your Jami account…</source>
-        <translation>Generant el seu compte Jami…</translation>
+        <translation type="vanished">Generant el seu compte Jami…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2356"/>
         <source>Previous page button</source>
-        <translation>Botó de pàgina anterior</translation>
+        <translation type="vanished">Botó de pàgina anterior</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2362"/>
         <source>push button to access previous page of wizard</source>
-        <translation>Botó per accedir a la pàgina anterior de l&apos;assistent</translation>
+        <translation type="vanished">Botó per accedir a la pàgina anterior de l&apos;assistent</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2365"/>
         <source>Previous</source>
-        <translation>Previ</translation>
+        <translation type="vanished">Previ</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2396"/>
         <source>Cancel account create/link</source>
-        <translation>Canceŀla creació/vinculació de compte</translation>
+        <translation type="vanished">Canceŀla creació/vinculació de compte</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2402"/>
         <source>push button to cancel account creation or linking</source>
-        <translation>Botó per a canceŀlar la creació o vinculació del compte</translation>
+        <translation type="vanished">Botó per a canceŀlar la creació o vinculació del compte</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2405"/>
         <source>Back</source>
-        <translation>Enrere</translation>
+        <translation type="vanished">Enrere</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2442"/>
         <source>Next page Button</source>
-        <translation>Botó següent pàgina</translation>
+        <translation type="vanished">Botó següent pàgina</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2448"/>
         <source>Push button to access next page of wizard</source>
-        <translation>Botó per accedir a la pàgina següent de l&apos;assistent</translation>
+        <translation type="vanished">Botó per accedir a la pàgina següent de l&apos;assistent</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.ui" line="2451"/>
         <source>Next</source>
-        <translation>Endavant</translation>
+        <translation type="vanished">Endavant</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="75"/>
         <source>Open File</source>
-        <translation>Obre fitxer</translation>
+        <translation type="vanished">Obre fitxer</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="77"/>
         <source>Jami archive files (*.gz); All files (*)</source>
-        <translation>Arxius Jami (*.gz); Tots els fitxers (*)</translation>
+        <translation type="vanished">Arxius Jami (*.gz); Tots els fitxers (*)</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="123"/>
         <source>Your account needs to be migrated. Enter your password.</source>
-        <translation>El vostre compte s&apos;ha de migrar. Inseriu la vostra contrasenya</translation>
+        <translation type="vanished">El vostre compte s&apos;ha de migrar. Inseriu la vostra contrasenya</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="419"/>
         <source>Migrating your Jami account...</source>
-        <translation>Migrant el teu compte Jami…</translation>
+        <translation type="vanished">Migrant el teu compte Jami…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="412"/>
         <source>Importing account archive...</source>
-        <translation>Important l&apos;arxiu del compte…</translation>
+        <translation type="vanished">Important l&apos;arxiu del compte…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="404"/>
         <source>Generating your Jami account...</source>
-        <translation>Generant el seu compte Jami…</translation>
+        <translation type="vanished">Generant el seu compte Jami…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="422"/>
         <source>Generating your SIP account...</source>
-        <translation>Generant el seu compte SIP…</translation>
+        <translation type="vanished">Generant el seu compte SIP…</translation>
     </message>
     <message>
-        <location filename="../newwizardwidget.cpp" line="533"/>
         <source>Error creating account</source>
-        <translation>Error al crear el compte</translation>
+        <translation type="vanished">Error al crear el compte</translation>
+    </message>
+</context>
+<context>
+    <name>OutgoingCallPage</name>
+    <message>
+        <location filename="../src/mainview/components/OutgoingCallPage.qml" line="193"/>
+        <source>Cancel the call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/OutgoingCallPage.qml" line="206"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ParticipantContextMenu</name>
+    <message>
+        <location filename="../src/mainview/components/ParticipantContextMenu.qml" line="79"/>
+        <source>Hangup</source>
+        <translation type="unfinished">Penjar</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ParticipantContextMenu.qml" line="93"/>
+        <source>Maximize participant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/ParticipantContextMenu.qml" line="107"/>
+        <source>Minimize participant</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
-        <location filename="../passworddialog.ui" line="32"/>
         <source>Change Account Password</source>
-        <translation>Canvia la contrasenya del compte</translation>
+        <translation type="vanished">Canvia la contrasenya del compte</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="97"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="46"/>
+        <source>Enter the password of this account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="48"/>
+        <source>Changing password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="50"/>
+        <source>Set password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="177"/>
         <source>Enter Current Password</source>
         <translation>Inseriu la contrasenya actual</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="169"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="236"/>
         <source>Enter New Password</source>
         <translation>Inseriu la nova contrasenya</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="190"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="264"/>
         <source>Confirm New Password</source>
         <translation>Confirmi la nova contrasenya</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="247"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="320"/>
         <source>Confirm</source>
         <translation>Confirma</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="290"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="359"/>
         <source>Cancel</source>
         <translation>Cancel·la</translation>
     </message>
     <message>
-        <location filename="../passworddialog.ui" line="143"/>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="208"/>
         <source>Current Password Incorrect</source>
         <translation>Contrasenya actual incorrecta</translation>
     </message>
@@ -1132,474 +2777,878 @@ en comptes d&apos;utilitzar el vostre ID.</translation>
 <context>
     <name>PhotoBoothDialog</name>
     <message>
-        <location filename="../photoboothdialog.ui" line="14"/>
         <source>Photobooth</source>
-        <translation>Galeria de fotos</translation>
+        <translation type="vanished">Galeria de fotos</translation>
+    </message>
+</context>
+<context>
+    <name>PhotoboothView</name>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="55"/>
+        <source>Choose an image to be the avatar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="58"/>
+        <source>Image Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="58"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="212"/>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="228"/>
+        <source>Press this button to take photo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="220"/>
+        <source>Press this button to finish taking photo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="225"/>
+        <source>Press this button to retake photo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="281"/>
+        <source>Import avatar from image file</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PhotoboothWidget</name>
     <message>
-        <location filename="../photoboothwidget.ui" line="20"/>
         <source>Form</source>
-        <translation>Formulari</translation>
+        <translation type="vanished">Formulari</translation>
     </message>
     <message>
-        <location filename="../photoboothwidget.ui" line="120"/>
         <source>Photobooth display</source>
-        <translation>Vista de la galeria de fotos</translation>
+        <translation type="vanished">Vista de la galeria de fotos</translation>
     </message>
     <message>
-        <location filename="../photoboothwidget.cpp" line="92"/>
         <source>Choose File</source>
-        <translation>Esculli un fitxer</translation>
+        <translation type="vanished">Esculli un fitxer</translation>
     </message>
     <message>
-        <location filename="../photoboothwidget.cpp" line="94"/>
         <source>Image Files (*.jpg *.jpeg *.png)</source>
-        <translation>Fitxers d&apos;imatge (*.jpg *.jpeg *.png)</translation>
+        <translation type="vanished">Fitxers d&apos;imatge (*.jpg *.jpeg *.png)</translation>
+    </message>
+</context>
+<context>
+    <name>PluginItemDelegate</name>
+    <message>
+        <location filename="../src/settingsview/components/PluginItemDelegate.qml" line="115"/>
+        <source>Load/Unload</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginItemDelegate.qml" line="168"/>
+        <source>Edit preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginListPreferencesView</name>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="109"/>
+        <source>Uninstall plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="136"/>
+        <source>Reset preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="262"/>
+        <source>Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="286"/>
+        <source>Uninstall</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginListSettingsView</name>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="78"/>
+        <source>Select A Plugin to Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="81"/>
+        <source>Plugin Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="81"/>
+        <source>All files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="120"/>
+        <source>Installed plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="149"/>
+        <source>+ Install plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginSettingsPage</name>
+    <message>
+        <location filename="../src/settingsview/components/PluginSettingsPage.qml" line="77"/>
+        <source>Toggle to display side panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginSettingsPage.qml" line="92"/>
+        <source>Plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferenceItemDelegate</name>
+    <message>
+        <location filename="../src/settingsview/components/PreferenceItemDelegate.qml" line="94"/>
+        <source>Modify preference</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PrivateBridging</name>
     <message>
-        <location filename="../messagewebview.cpp" line="374"/>
         <source>Choose File</source>
-        <translation>Esculli un fitxer</translation>
+        <translation type="vanished">Esculli un fitxer</translation>
     </message>
     <message>
-        <location filename="../messagewebview.cpp" line="374"/>
         <source>Files (*)</source>
-        <translation>Fitxers (*)</translation>
+        <translation type="vanished">Fitxers (*)</translation>
+    </message>
+</context>
+<context>
+    <name>ProfilePage</name>
+    <message>
+        <location filename="../src/wizardview/components/ProfilePage.qml" line="67"/>
+        <source>Profile is only shared with contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ProfilePage.qml" line="73"/>
+        <source>Optional</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ProfilePage.qml" line="103"/>
+        <source>Enter your name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ProfilePage.qml" line="115"/>
+        <source>Save Profile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ProfilePage.qml" line="115"/>
+        <source>Generating account…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/ProfilePage.qml" line="190"/>
+        <source>Close</source>
+        <translation type="unfinished">Tanca</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../utils.cpp" line="183"/>
+        <location filename="../src/utils.cpp" line="260"/>
         <source>No default mail client found</source>
         <translation>No s&apos;ha detectat cap client de correu electrònic</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.cpp" line="43"/>
-        <location filename="../deviceitemwidget.cpp" line="85"/>
+        <location filename="../src/utils.cpp" line="467"/>
+        <location filename="../src/utils.cpp" line="484"/>
+        <location filename="../src/utils.cpp" line="508"/>
+        <source>Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/utils.cpp" line="468"/>
+        <source>Version cannot be verified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/utils.cpp" line="485"/>
+        <source>No new version found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/utils.cpp" line="509"/>
+        <source>Installer download failed, please contact support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Edit Device Name</source>
-        <translation>Editar nom de dispositiu</translation>
+        <translation type="vanished">Editar nom de dispositiu</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.cpp" line="44"/>
         <source>Unlink Device From Account</source>
-        <translation>Desvincula dispositiu del compte</translation>
+        <translation type="vanished">Desvincula dispositiu del compte</translation>
     </message>
     <message>
-        <location filename="../deviceitemwidget.cpp" line="80"/>
         <source>Save new device name</source>
-        <translation>Desa el nou nom de dispositiu</translation>
+        <translation type="vanished">Desa el nou nom de dispositiu</translation>
     </message>
     <message>
-        <location filename="../banneditemwidget.cpp" line="39"/>
         <source>Add as contact</source>
-        <translation>Afegir com a contacte</translation>
+        <translation type="vanished">Afegir com a contacte</translation>
+    </message>
+    <message>
+        <location filename="../src/videoinputdevicemodel.cpp" line="68"/>
+        <location filename="../src/videoinputdevicemodel.cpp" line="70"/>
+        <source>No Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RecordBox</name>
+    <message>
+        <location filename="../src/mainview/components/RecordBox.qml" line="244"/>
+        <source>Preview unavailable</source>
+        <translation type="unfinished">Previsualització no disponible</translation>
+    </message>
+</context>
+<context>
+    <name>RevokeDevicePasswordDialog</name>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="45"/>
+        <source>Enter this account&apos;s password to confirm the removal of this device</source>
+        <translation type="unfinished">Insereix la contrasenya d&apos;aquest compte per confirmar l&apos;eliminació d&apos;aquest dispositiu</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="86"/>
+        <source>Password</source>
+        <translation type="unfinished">Contrasenya</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="125"/>
+        <source>Okay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="164"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>RingButton</name>
     <message>
-        <location filename="../ringbutton.ui" line="140"/>
         <source>Select folder</source>
-        <translation>Esculli carpeta</translation>
+        <translation type="vanished">Esculli carpeta</translation>
+    </message>
+</context>
+<context>
+    <name>SelectScreen</name>
+    <message>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="97"/>
+        <source>Choose A Screen to Share</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="190"/>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="254"/>
+        <source>Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="297"/>
+        <source>Share Screen</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SettingsWidget</name>
     <message>
-        <location filename="../settingswidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulari</translation>
+        <translation type="vanished">Formulari</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="141"/>
         <source>Settings</source>
-        <translation>Opcions</translation>
+        <translation type="vanished">Opcions</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="229"/>
         <source>Account</source>
-        <translation>Compte</translation>
+        <translation type="vanished">Compte</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="267"/>
-        <location filename="../settingswidget.ui" line="503"/>
         <source>General</source>
-        <translation>General</translation>
+        <translation type="vanished">General</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="305"/>
-        <location filename="../settingswidget.ui" line="3416"/>
         <source>Audio / Video</source>
-        <translation>Àudio / Vídeo</translation>
+        <translation type="vanished">Àudio / Vídeo</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="542"/>
         <source>System</source>
-        <translation>Sistema</translation>
+        <translation type="vanished">Sistema</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="610"/>
         <source>Enable desktop notifications</source>
-        <translation>Habilitar notificacions d&apos;escriptori</translation>
+        <translation type="vanished">Habilitar notificacions d&apos;escriptori</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="653"/>
         <source>Keep minimized on close</source>
-        <translation>Manté minimitzat al tancar</translation>
+        <translation type="vanished">Manté minimitzat al tancar</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="678"/>
         <source>Download folder</source>
-        <translation>Descarrega carpeta</translation>
+        <translation type="vanished">Descarrega carpeta</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="811"/>
         <source>Save in</source>
-        <translation>Desa a</translation>
+        <translation type="vanished">Desa a</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="904"/>
         <source>Always Recording</source>
-        <translation>Sempre enregistrant</translation>
+        <translation type="vanished">Sempre enregistrant</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="943"/>
         <source>Updates</source>
-        <translation>Actualitzacions</translation>
+        <translation type="vanished">Actualitzacions</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1008"/>
         <source>Check for updates automatically every</source>
-        <translation>Comprova actualitzacions cada</translation>
+        <translation type="vanished">Comprova actualitzacions cada</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1032"/>
         <source>Interval between update checks in days selector</source>
-        <translation>Selector d&apos;interval entre comprovacions d&apos;actualitzacions</translation>
+        <translation type="vanished">Selector d&apos;interval entre comprovacions d&apos;actualitzacions</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1038"/>
         <source> days</source>
-        <translation>dies</translation>
+        <translation type="vanished">dies</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1081"/>
         <source>Check for updates now button</source>
-        <translation>Botó de comprovació immediata d&apos;actualitzacions</translation>
+        <translation type="vanished">Botó de comprovació immediata d&apos;actualitzacions</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1084"/>
         <source>Check for updates now</source>
-        <translation>Comprova actualitzacions immediatament</translation>
+        <translation type="vanished">Comprova actualitzacions immediatament</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3027"/>
         <source>Password</source>
-        <translation>Contrasenya</translation>
+        <translation type="vanished">Contrasenya</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1418"/>
-        <location filename="../settingswidget.ui" line="2729"/>
         <source>Enable</source>
-        <translation>Habilita</translation>
+        <translation type="vanished">Habilita</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="607"/>
         <source>toggle enable notifications</source>
-        <translation>Commuta habilitar notificacions</translation>
+        <translation type="vanished">Commuta habilitar notificacions</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="650"/>
         <source>Toggle keep minimized on close</source>
-        <translation>Commuta mantenir minimitzat al tancar</translation>
+        <translation type="vanished">Commuta mantenir minimitzat al tancar</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="764"/>
         <source>Call Recordings</source>
-        <translation>Enregistraments de trucades</translation>
+        <translation type="vanished">Enregistraments de trucades</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1005"/>
         <source>Toggle automatic updates</source>
-        <translation>Commuta actualitzacions automàtiques</translation>
+        <translation type="vanished">Commuta actualitzacions automàtiques</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1231"/>
         <source>Jami Account</source>
-        <translation>Compte Jami</translation>
+        <translation type="vanished">Compte Jami</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1453"/>
-        <location filename="../settingswidget.ui" line="2761"/>
         <source>Profile</source>
-        <translation>Perfil</translation>
+        <translation type="vanished">Perfil</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1567"/>
-        <location filename="../settingswidget.ui" line="2875"/>
         <source>Identity</source>
-        <translation>Identitat</translation>
+        <translation type="vanished">Identitat</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1614"/>
         <source>Id</source>
-        <translation>Id</translation>
+        <translation type="vanished">Id</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1673"/>
         <source>Registered name</source>
-        <translation>Nom registrat</translation>
+        <translation type="vanished">Nom registrat</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1721"/>
         <source>Type here to register a username</source>
-        <translation>Escrigui aquí per registrar un nom d&apos;usuari</translation>
+        <translation type="vanished">Escrigui aquí per registrar un nom d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1755"/>
         <source>Register</source>
-        <translation>Registra</translation>
+        <translation type="vanished">Registra</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1827"/>
         <source>Change Password</source>
-        <translation>Canvia la contrasenya</translation>
+        <translation type="vanished">Canvia la contrasenya</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1868"/>
         <source>Export Account</source>
-        <translation>Exporta el compte</translation>
+        <translation type="vanished">Exporta el compte</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1909"/>
-        <location filename="../settingswidget.ui" line="3089"/>
         <source>Delete Account</source>
-        <translation>Esborrar compte</translation>
+        <translation type="vanished">Esborrar compte</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="1973"/>
         <source>Linked Devices</source>
-        <translation>Dispositius vinculats</translation>
+        <translation type="vanished">Dispositius vinculats</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2078"/>
         <source>Link Another Device</source>
-        <translation>Vincula un altre dispositiu</translation>
+        <translation type="vanished">Vincula un altre dispositiu</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2142"/>
         <source>Banned Contacts</source>
-        <translation>Contactes blocats</translation>
+        <translation type="vanished">Contactes blocats</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3788"/>
         <source>Format</source>
-        <translation>Formata</translation>
+        <translation type="vanished">Formata</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3831"/>
         <source>Video device framerate selector</source>
-        <translation>Selector de taxa de fotogrames del dispositiu de vídeo</translation>
+        <translation type="vanished">Selector de taxa de fotogrames del dispositiu de vídeo</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3967"/>
         <source>Preview unavailable</source>
-        <translation>Previsualització no disponible</translation>
+        <translation type="vanished">Previsualització no disponible</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2359"/>
-        <location filename="../settingswidget.ui" line="3187"/>
         <source>Advanced Account Settings</source>
-        <translation>Preferències avançades del compte</translation>
+        <translation type="vanished">Preferències avançades del compte</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2554"/>
         <source>SIP Account</source>
-        <translation>Compte SIP</translation>
+        <translation type="vanished">Compte SIP</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2925"/>
         <source>Username</source>
-        <translation>Nom d&apos;usuari</translation>
+        <translation type="vanished">Nom d&apos;usuari</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2958"/>
         <source>Hostname</source>
-        <translation>Nom d&apos;amfitrió</translation>
+        <translation type="vanished">Nom d&apos;amfitrió</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="2991"/>
         <source>Proxy</source>
-        <translation>Intermediari</translation>
+        <translation type="vanished">Intermediari</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3461"/>
         <source>Audio</source>
-        <translation>Àudio</translation>
+        <translation type="vanished">Àudio</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3511"/>
         <source>Microphone</source>
-        <translation>Micròfon</translation>
+        <translation type="vanished">Micròfon</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3551"/>
         <source>Audio input device selector</source>
-        <translation>Selector de dispositiu d&apos;entrada d&apos;àudio</translation>
+        <translation type="vanished">Selector de dispositiu d&apos;entrada d&apos;àudio</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3585"/>
         <source>Output Device</source>
-        <translation>Dispositiu de sortida</translation>
+        <translation type="vanished">Dispositiu de sortida</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3625"/>
         <source>Choose the output device</source>
-        <translation>Esculli dispositiu de sortida</translation>
+        <translation type="vanished">Esculli dispositiu de sortida</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3682"/>
         <source>Video</source>
-        <translation>Vídeo</translation>
+        <translation type="vanished">Vídeo</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3720"/>
         <source>Device</source>
-        <translation>Dispositiu</translation>
+        <translation type="vanished">Dispositiu</translation>
     </message>
     <message>
-        <location filename="../settingswidget.ui" line="3766"/>
         <source>Video device selector</source>
-        <translation>Selector de dispositiu de vídeo</translation>
+        <translation type="vanished">Selector de dispositiu de vídeo</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="459"/>
         <source>A registered name should not have any spaces and must be at least three letters long</source>
-        <translation>Un nom registrat no pot tenir espais i ha de tenir una longitud mínima de tres caràcters</translation>
+        <translation type="vanished">Un nom registrat no pot tenir espais i ha de tenir una longitud mínima de tres caràcters</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="466"/>
         <source>This name is already taken</source>
-        <translation>Aquest nom ja està registrat</translation>
+        <translation type="vanished">Aquest nom ja està registrat</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="92"/>
-        <location filename="../settingswidget.cpp" line="110"/>
         <source>Enter an alias</source>
-        <translation>Inseriu un alias</translation>
+        <translation type="vanished">Inseriu un alias</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="473"/>
         <source>Register this name</source>
-        <translation>Registri aquest nom</translation>
+        <translation type="vanished">Registri aquest nom</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="550"/>
         <source>Remove Device</source>
-        <translation>Elimini el dispositiu</translation>
+        <translation type="vanished">Elimini el dispositiu</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="551"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation>Insereix la contrasenya d&apos;aquest compte per confirmar l&apos;eliminació d&apos;aquest dispositiu</translation>
+        <translation type="vanished">Insereix la contrasenya d&apos;aquest compte per confirmar l&apos;eliminació d&apos;aquest dispositiu</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="558"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation>Esteu segur que voleu eliminar aquest dispositiu?</translation>
+        <translation type="vanished">Esteu segur que voleu eliminar aquest dispositiu?</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="589"/>
         <source>Export Account Here</source>
-        <translation>Exporta el compte aquí</translation>
+        <translation type="vanished">Exporta el compte aquí</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="887"/>
         <source>Select A Folder For Your Downloads</source>
-        <translation>Seleccioni una carpeta per les seves descàrregues</translation>
+        <translation type="vanished">Seleccioni una carpeta per les seves descàrregues</translation>
     </message>
     <message>
-        <location filename="../settingswidget.cpp" line="904"/>
         <source>Select A Folder For Your Recordings</source>
-        <translation>Seleccioni una carpeta per als seus enregistraments</translation>
+        <translation type="vanished">Seleccioni una carpeta per als seus enregistraments</translation>
+    </message>
+</context>
+<context>
+    <name>SidePanelTabBar</name>
+    <message>
+        <location filename="../src/mainview/components/SidePanelTabBar.qml" line="112"/>
+        <source>CONVERSATIONS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/SidePanelTabBar.qml" line="222"/>
+        <source>INVITATIONS</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SmartListModel</name>
+    <message>
+        <location filename="../src/smartlistmodel.cpp" line="63"/>
+        <location filename="../src/smartlistmodel.cpp" line="103"/>
+        <location filename="../src/smartlistmodel.cpp" line="111"/>
+        <location filename="../src/smartlistmodel.cpp" line="177"/>
+        <location filename="../src/smartlistmodel.cpp" line="186"/>
+        <location filename="../src/smartlistmodel.cpp" line="187"/>
+        <source>Calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/smartlistmodel.cpp" line="64"/>
+        <location filename="../src/smartlistmodel.cpp" line="104"/>
+        <location filename="../src/smartlistmodel.cpp" line="121"/>
+        <location filename="../src/smartlistmodel.cpp" line="178"/>
+        <location filename="../src/smartlistmodel.cpp" line="188"/>
+        <location filename="../src/smartlistmodel.cpp" line="189"/>
+        <source>Contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpdateConfirmDialog</name>
+    <message>
+        <location filename="../src/commoncomponents/UpdateConfirmDialog.qml" line="52"/>
+        <source>Jami Beta Installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/UpdateConfirmDialog.qml" line="54"/>
+        <source>Update to lastest version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/UpdateConfirmDialog.qml" line="108"/>
+        <source>Install the latest Beta version?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/UpdateConfirmDialog.qml" line="110"/>
+        <location filename="../src/commoncomponents/UpdateConfirmDialog.qml" line="156"/>
+        <source>New version detected, do you want to update now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/UpdateConfirmDialog.qml" line="153"/>
+        <source>Please be aware that this will uninstall your current Release version.&lt;br&gt;You can always download the latest Release version on our website.&lt;br&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/UpdateConfirmDialog.qml" line="216"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/UpdateConfirmDialog.qml" line="247"/>
+        <source>Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpdateDownloadDialog</name>
+    <message>
+        <location filename="../src/commoncomponents/UpdateDownloadDialog.qml" line="30"/>
+        <location filename="../src/commoncomponents/UpdateDownloadDialog.qml" line="58"/>
+        <source>Download Process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/UpdateDownloadDialog.qml" line="37"/>
+        <source>0, File Size is Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/commoncomponents/UpdateDownloadDialog.qml" line="196"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UserProfile</name>
+    <message>
+        <location filename="../src/mainview/components/UserProfile.qml" line="100"/>
+        <source>Informations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/UserProfile.qml" line="108"/>
+        <source>Username</source>
+        <translation type="unfinished">Nom d&apos;usuari</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/UserProfile.qml" line="137"/>
+        <source>ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/UserProfile.qml" line="163"/>
+        <source>QR Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UtilsAdapter</name>
+    <message>
+        <location filename="../src/utils.cpp" line="413"/>
+        <source>Created by:</source>
+        <translation type="unfinished">Programat per:</translation>
+    </message>
+    <message>
+        <location filename="../src/utils.cpp" line="419"/>
+        <source>Artwork by:</source>
+        <translation type="unfinished">Art fet per:</translation>
+    </message>
+    <message>
+        <location filename="../src/utils.cpp" line="427"/>
+        <source>Based on the SFLPhone project</source>
+        <translation type="unfinished">Basat en el projecte SFLPhone</translation>
+    </message>
+</context>
+<context>
+    <name>VideoCallPageContextMenuDeviceItem</name>
+    <message>
+        <location filename="../src/mainview/components/VideoCallPageContextMenuDeviceItem.qml" line="47"/>
+        <source>No video device</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>VideoOverlay</name>
     <message>
-        <location filename="../videooverlay.ui" line="419"/>
         <source>Call on Hold</source>
-        <translation>Trucada en espera</translation>
+        <translation type="vanished">Trucada en espera</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="89"/>
         <source>Hold / Unhold</source>
-        <translation>Reté / Allibera</translation>
+        <translation type="vanished">Reté / Allibera</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="124"/>
         <source>Chat</source>
-        <translation>Xat</translation>
+        <translation type="vanished">Xat</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="162"/>
         <source>Mute Mic</source>
-        <translation>Silencia el micròfon</translation>
+        <translation type="vanished">Silencia el micròfon</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="244"/>
         <source>Record call</source>
-        <translation>Enregistra trucada</translation>
+        <translation type="vanished">Enregistra trucada</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="325"/>
         <source>Name label</source>
-        <translation>Etiqueta de nom</translation>
+        <translation type="vanished">Etiqueta de nom</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="390"/>
         <source>Time elapsed</source>
-        <translation>Temps transcorregut</translation>
+        <translation type="vanished">Temps transcorregut</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="393"/>
         <source>00:00</source>
-        <translation>00:00</translation>
+        <translation type="vanished">00:00</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="57"/>
         <source>Hangup</source>
-        <translation>Penjar</translation>
+        <translation type="vanished">Penjar</translation>
     </message>
     <message>
-        <location filename="../videooverlay.ui" line="203"/>
         <source>Mute Video</source>
-        <translation>Silencia el vídeo</translation>
+        <translation type="vanished">Silencia el vídeo</translation>
     </message>
 </context>
 <context>
     <name>VideoView</name>
     <message>
-        <location filename="../videoview.cpp" line="271"/>
         <source>Share entire screen</source>
-        <translation>Comparteix tota la pantalla</translation>
+        <translation type="vanished">Comparteix tota la pantalla</translation>
     </message>
     <message>
-        <location filename="../videoview.cpp" line="274"/>
         <source>Share screen area</source>
-        <translation>Compartir pantalla</translation>
+        <translation type="vanished">Compartir pantalla</translation>
     </message>
     <message>
-        <location filename="../videoview.cpp" line="281"/>
         <source>Share file</source>
-        <translation>Compartir arxiu</translation>
+        <translation type="vanished">Compartir arxiu</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomePage</name>
+    <message>
+        <location filename="../src/mainview/components/WelcomePage.qml" line="72"/>
+        <source>Jami is a free software for universal communication which repects the freedoms and privacy of its user.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/WelcomePage.qml" line="91"/>
+        <source>This is your ID.
+Copy and share it with your friends</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/WelcomePage.qml" line="106"/>
+        <source>About Jami</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WelcomePageLayout</name>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="50"/>
+        <source>Welcome to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="84"/>
+        <source>CREATE A JAMI ACCOUNT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="85"/>
+        <source>Create new Jami account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="103"/>
+        <source>IMPORT FROM ANOTHER DEVICE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="104"/>
+        <source>Import account from other device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="122"/>
+        <source>CONNECT FROM BACKUP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="123"/>
+        <source>Import account from backup file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="141"/>
+        <source>SHOW ADVANCED</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="142"/>
+        <source>Show advanced options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="164"/>
+        <source>CONNECT TO MANAGEMENT SERVER</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="165"/>
+        <source>Login to account manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="183"/>
+        <source>CREATE A SIP ACCOUNT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="184"/>
+        <source>Create new SIP account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/components/WelcomePageLayout.qml" line="228"/>
+        <source>Close</source>
+        <translation type="unfinished">Tanca</translation>
+    </message>
+</context>
+<context>
+    <name>WizardView</name>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="99"/>
+        <location filename="../src/wizardview/WizardView.qml" line="101"/>
+        <location filename="../src/wizardview/WizardView.qml" line="103"/>
+        <source>Error when creating your account. Check your credentials</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="185"/>
+        <source>Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="185"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="186"/>
+        <source>Export Successful</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/wizardview/WizardView.qml" line="186"/>
+        <source>Export Failed</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
