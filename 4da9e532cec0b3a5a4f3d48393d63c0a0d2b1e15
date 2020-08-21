@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "e409f376_5661a5d4",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-21T16:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16c1fe76_942768b1",
+      "range": {
+        "startLine": 47,
+        "startChar": 17,
+        "endLine": 47,
+        "endChar": 33
+      },
+      "revId": "4da9e532cec0b3a5a4f3d48393d63c0a0d2b1e15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7ba178d_8e8cdee6",
         "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
         "patchSetId": 14
