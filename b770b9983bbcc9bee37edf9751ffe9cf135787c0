@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "53dbe37d_391a55a7",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8bb4e3c_9f09967f",
+      "range": {
+        "startLine": 72,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 4
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4bc384b_11f4deb1",
         "filename": "src/mainview/components/CallOverlay.qml",
         "patchSetId": 13
@@ -45,6 +69,30 @@
       "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adfb502a_8ed6b8ab",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4bc384b_11f4deb1",
+      "range": {
+        "startLine": 425,
+        "startChar": 12,
+        "endLine": 427,
+        "endChar": 15
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8c1a6028_09748d44",
+        "filename": "src/mainview/components/CallOverlayButtonGroup.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d03b8686_f03405c2",
+      "range": {
+        "startLine": 5,
+        "startChar": 61,
+        "endLine": 6,
+        "endChar": 74
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce16736c_0ec6954b",
         "filename": "src/mainview/components/CallViewContextMenu.qml",
         "patchSetId": 13
@@ -91,6 +163,30 @@
       "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9f08301_1163b7be",
+        "filename": "src/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce16736c_0ec6954b",
+      "range": {
+        "startLine": 285,
+        "startChar": 17,
+        "endLine": 285,
+        "endChar": 36
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "a516062a_d93b359b",
+        "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30dd7884_85073637",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 32
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b870b3a_938d6ba0",
         "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
         "patchSetId": 13
@@ -137,6 +257,30 @@
       "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa291bc5_1cbebee4",
+        "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b870b3a_938d6ba0",
+      "range": {
+        "startLine": 39,
+        "startChar": 13,
+        "endLine": 39,
+        "endChar": 46
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "378c45ee_a6a54b4c",
+        "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e023fbe2_e497d236",
+      "range": {
+        "startLine": 47,
+        "startChar": 31,
+        "endLine": 47,
+        "endChar": 32
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9b9df37_6cca7345",
         "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
         "patchSetId": 13
@@ -183,6 +351,30 @@
       "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f50869b2_42842fb6",
+        "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9b9df37_6cca7345",
+      "range": {
+        "startLine": 62,
+        "startChar": 29,
+        "endLine": 62,
+        "endChar": 52
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "e5149a6d_478ccb49",
+        "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93b7a8a7_6fd2cf0a",
+      "range": {
+        "startLine": 102,
+        "startChar": 34,
+        "endLine": 103,
+        "endChar": 37
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0c2cfd3_2e901ed3",
         "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
         "patchSetId": 13
@@ -229,6 +445,30 @@
       "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4dcdc5d7_9825b71e",
+        "filename": "src/mainview/components/MediaHandlerItemDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0c2cfd3_2e901ed3",
+      "range": {
+        "startLine": 146,
+        "startChar": 16,
+        "endLine": 176,
+        "endChar": 12
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "2be2c5b5_a9fedb3a",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7686abb7_443f5ad9",
+      "range": {
+        "startLine": 58,
+        "startChar": 25,
+        "endLine": 58,
+        "endChar": 60
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4788f5a4_ac3c3675",
         "filename": "src/mainview/components/MediaHandlerPicker.qml",
         "patchSetId": 13
@@ -278,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "f4cc0866_411393c4",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4788f5a4_ac3c3675",
+      "range": {
+        "startLine": 84,
+        "startChar": 28,
+        "endLine": 84,
+        "endChar": 48
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da311673_ab6d59fc",
         "filename": "src/mainview/components/MediaHandlerPicker.qml",
         "patchSetId": 13
@@ -298,6 +586,30 @@
       "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7d3ae3ff_c8e00cd8",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-21T15:55:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da311673_ab6d59fc",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 11
+      },
+      "revId": "b770b9983bbcc9bee37edf9751ffe9cf135787c0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
