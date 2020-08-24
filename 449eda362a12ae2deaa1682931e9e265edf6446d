@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38f81549_06a6f3a0",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-24T21:50:57Z",
+      "side": 0,
+      "message": "If this method is unused, maybe factor it and its unused callees out entirely.",
+      "range": {
+        "startLine": 74,
+        "startChar": 36,
+        "endLine": 74,
+        "endChar": 62
+      },
+      "revId": "449eda362a12ae2deaa1682931e9e265edf6446d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
