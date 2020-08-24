@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "07385c32_2eec70b8",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "efa4447c_5d1f78a7",
+      "range": {
+        "startLine": 93,
+        "startChar": 4,
+        "endLine": 93,
+        "endChar": 18
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ceda3f25_a4944fb9",
         "filename": "src/calladapter.cpp",
         "patchSetId": 9
@@ -45,6 +69,30 @@
       "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cab796a0_f1952181",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ceda3f25_a4944fb9",
+      "range": {
+        "startLine": 94,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 18
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "416e8a83_ba7c4412",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bfb380e_44cb678c",
+      "range": {
+        "startLine": 210,
+        "startChar": 14,
+        "endLine": 210,
+        "endChar": 49
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb5538fc_408a228d",
         "filename": "src/conversationsadapter.cpp",
         "patchSetId": 9
@@ -91,6 +163,30 @@
       "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad63c3f3_d356213e",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb5538fc_408a228d",
+      "range": {
+        "startLine": 215,
+        "startChar": 36,
+        "endLine": 215,
+        "endChar": 55
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "74e6a53f_ed77f425",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a43d2c9_9093b2ea",
+      "range": {
+        "startLine": 228,
+        "startChar": 30,
+        "endLine": 228,
+        "endChar": 61
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "18646466_16a5bb9a",
         "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
         "patchSetId": 9
@@ -137,6 +257,30 @@
       "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "61636ac7_ad7dc7eb",
+        "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18646466_16a5bb9a",
+      "range": {
+        "startLine": 87,
+        "startChar": 76,
+        "endLine": 87,
+        "endChar": 85
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "9f37885b_357c03bd",
+        "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd6facc5_f1674532",
+      "range": {
+        "startLine": 94,
+        "startChar": 79,
+        "endLine": 94,
+        "endChar": 90
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fe18284_3a022ed4",
         "filename": "src/mainview/components/SidePanel.qml",
         "patchSetId": 9
@@ -183,6 +351,30 @@
       "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bf51255_47e27915",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fe18284_3a022ed4",
+      "range": {
+        "startLine": 158,
+        "startChar": 32,
+        "endLine": 158,
+        "endChar": 43
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "5f85e2c8_93b9ed6d",
+        "filename": "src/smartlistmodel.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31849cc9_432f5a90",
+      "range": {
+        "startLine": 192,
+        "startChar": 23,
+        "endLine": 192,
+        "endChar": 32
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "936570df_064b6f9c",
         "filename": "src/smartlistmodel.cpp",
         "patchSetId": 9
@@ -229,6 +445,30 @@
       "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71496e83_be36e322",
+        "filename": "src/smartlistmodel.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-24T12:17:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "936570df_064b6f9c",
+      "range": {
+        "startLine": 197,
+        "startChar": 23,
+        "endLine": 197,
+        "endChar": 32
+      },
+      "revId": "b4a8fc4e65089edd4f7de72ebb81498f6214d5e7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
