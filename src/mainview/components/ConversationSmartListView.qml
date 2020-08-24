@@ -24,8 +24,8 @@ import net.jami.Models 1.0
 ListView {
     id: conversationSmartListView
 
-    signal needToAccessMessageWebView(string currentUserDisplayName, string currentUserAlias, string currentUID, bool callStackViewShouldShow, bool isAudioOnly, string callStateStr)
-    signal needToSelectItems(int index)
+    signal needToAccessMessageWebView(string currentUserDisplayName, string currentUserAlias, string currentUID, bool callStackViewShouldShow, bool isAudioOnly, int callState)
+    signal needToSelectItems(string conversationUid)
     signal needToDeselectItems
     signal needToBackToWelcomePage
     signal needToGrabFocus
