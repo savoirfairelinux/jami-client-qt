@@ -445,7 +445,7 @@ Window {
             callStackView.updateCorrspondingUI()
 
             if (callStackViewShouldShow) {
-                if (callStateStr == "Talking" || callStateStr == "Hold") {
+                if (callState === Call.Status.IN_PROGRESS || callState === Call.Status.PAUSED) {
                     ClientWrapper.utilsAdaptor.setCurrentCall(
                                 ClientWrapper.utilsAdaptor.getCurrAccId(),
                                 currentUID)
