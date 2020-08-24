@@ -71,7 +71,7 @@ signals:
     void showCallStack(const QString &accountId, const QString &convUid, bool forceReset = false);
     void closeCallStack(const QString &accountId, const QString &convUid);
     void closePotentialIncomingCallPageWindow(const QString &accountId, const QString &convUid);
-    void callStatusChanged(const QString &status, const QString &accountId, const QString &convUid);
+    void callStatusChanged(int status, const QString &accountId, const QString &convUid);
     void updateConversationSmartList();
     void updateParticipantsInfos(const QVariantList& infos, const QString &accountId, const QString &callId);
 

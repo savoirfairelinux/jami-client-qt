@@ -160,7 +160,7 @@ SmartListModel::roleNames() const
     roles[InCall] = "InCall";
     roles[IsAudioOnly] = "IsAudioOnly";
     roles[CallStackViewShouldShow] = "CallStackViewShouldShow";
-    roles[CallStateStr] = "CallStateStr";
+    roles[CallState] = "CallState";
     roles[SectionName] = "SectionName";
     roles[AccountId] = "AccountId";
     roles[Draft] = "Draft";
@@ -308,13 +308,13 @@ SmartListModel::getConversationItemData(const conversation::Info &item,
         }
         return QVariant(false);
     }
-    case Role::CallStateStr: {
-        auto &convInfo = LRCInstance::getConversationFromConvUid(item.uid);
+    case Role::CallState: {
+        auto* convModel = LRCInstance::getCurrentConversationModel();
+        const auto convInfo = convModel->getConversationForUID(item.uid);
         if (!convInfo.uid.isEmpty()) {
             auto call = LRCInstance::getCallInfoForConversation(convInfo);
             if (call) {
-                auto statusString = call::to_string(call->status);
-                return QVariant(statusString);
+                return QVariant(static_cast<int>(call->status));
             }
         }
         return QVariant();

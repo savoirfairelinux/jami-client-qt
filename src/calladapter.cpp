@@ -173,7 +173,7 @@ CallAdapter::slotShowIncomingCallView(const QString &accountId, const conversati
         }
     }
 
-    emit callStatusChanged(lrc::api::call::to_string(call.status), accountId, convInfo.uid);
+    emit callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
 
     emit updateConversationSmartList();
 }
@@ -331,9 +331,7 @@ CallAdapter::connectCallModel(const QString &accountId)
              */
             auto convInfo = LRCInstance::getConversationFromCallId(callId);
             if (!convInfo.uid.isEmpty()) {
-                emit callStatusChanged(lrc::api::call::to_string(call.status),
-                                       accountId,
-                                       convInfo.uid);
+                emit callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
             }
 
             switch (call.status) {
