@@ -172,8 +172,6 @@ Window {
 
             var responsibleCallId = ClientWrapper.utilsAdaptor.getCallId(
                     callStackView.responsibleAccountId, callStackView.responsibleConvUid)
-            var callId = ClientWrapper.utilsAdaptor.getCallId(
-                    callStackView.responsibleAccountId, convUid)
             /*
              * Check if call stack view is on any of the stackview.
              */
@@ -458,7 +456,7 @@ Window {
             callStackView.updateCorrspondingUI()
 
             if (callStackViewShouldShow) {
-                if (callStateStr == "Talking" || callStateStr == "Hold") {
+                if (callState === 5 || callState === 6) { // "Talking" || "Hold"
                     ClientWrapper.utilsAdaptor.setCurrentCall(
                                 ClientWrapper.utilsAdaptor.getCurrAccId(),
                                 currentUID)
