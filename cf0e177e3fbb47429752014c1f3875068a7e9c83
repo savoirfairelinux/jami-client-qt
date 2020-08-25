@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a83a93c0_4291cb8c",
+        "filename": "src/accountadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-25T17:10:19Z",
+      "side": 1,
+      "message": "Definitely better than an index but this function should not take a parameter.",
+      "range": {
+        "startLine": 102,
+        "startChar": 27,
+        "endLine": 102,
+        "endChar": 51
+      },
+      "revId": "cf0e177e3fbb47429752014c1f3875068a7e9c83",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
