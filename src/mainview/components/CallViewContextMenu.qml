@@ -113,6 +113,23 @@ Menu {
     }
 
     GeneralMenuItem {
+        id: showSipInputPanelButton
+
+        visible: isSIP
+        height: isSIP? undefined : 0
+
+        itemName: qsTr("Sip Input Panel")
+        iconSource: "qrc:/images/icons/icon-keypad-24.png"
+        leftBorderWidth: commonBorderWidth
+        rightBorderWidth: commonBorderWidth
+
+        onClicked: {
+            root.close()
+            sipInputPanel.open()
+        }
+    }
+
+    GeneralMenuItem {
         id: transferCallButton
 
         visible: isSIP
