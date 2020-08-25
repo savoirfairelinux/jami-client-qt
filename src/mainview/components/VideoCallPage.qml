@@ -184,6 +184,7 @@ Rectangle {
 
                     anchors.fill: parent
 
+                    bestNameCallOverlay : bestName
                     Connections {
                         target: CallAdapter
 
@@ -231,7 +232,7 @@ Rectangle {
                 DistantRenderer {
                     id: distantRenderer
 
-                    anchors.centerIn: videoCallPageMainRect
+                    anchors.centerIn: parent.Center
                     z: -1
 
                     width: videoCallPageMainRect.width
@@ -257,7 +258,7 @@ Rectangle {
                     Connections {
                         target: CallAdapter
 
-                        onPreviewVisibilityNeedToChange: previewRenderer.visible = visible
+                        function onPreviewVisibilityNeedToChange(visible){ previewRenderer.visible = visible}
                     }
 
                     width: videoCallPageMainRect.width / 4

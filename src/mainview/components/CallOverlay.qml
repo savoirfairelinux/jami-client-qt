@@ -34,6 +34,7 @@ Rectangle {
     id: callOverlayRect
 
     property string timeText: "00:00"
+    property string bestNameCallOverlay: "Best Name"
 
     signal overlayChatButtonClicked
 
@@ -72,7 +73,7 @@ Rectangle {
     function closePotentialMediaHandlerPicker() {
         MediaHandlerPickerCreation.closeMediaHandlerPicker()
     }
-    
+
     function handleParticipantsInfo(infos) {
         videoCallOverlay.updateMaster()
         var isMaster = CallAdapter.isCurrentMaster()
@@ -166,7 +167,7 @@ Rectangle {
                 TextMetrics {
                     id: textMetricsjamiBestNameText
                     font: jamiBestNameText.font
-                    text: videoCallPageRect.bestName
+                    text: bestNameCallOverlay
                     elideWidth: overlayUpperPartRect.width / 3
                     elide: Qt.ElideRight
                 }
