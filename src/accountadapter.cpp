@@ -50,7 +50,7 @@ AccountAdapter::accountChanged(int index)
 {
     auto accountList = LRCInstance::accountModel().getAccountList();
     if (accountList.size() > index)
-        setSelectedAccount(accountList.at(index), index);
+        setSelectedAccount(accountList.at(index));
 }
 
 void
@@ -331,11 +331,11 @@ AccountAdapter::passwordSetStatusMessageBox(bool success, QString title, QString
 }
 
 void
-AccountAdapter::setSelectedAccount(const QString &accountId, int index)
+AccountAdapter::setSelectedAccount(const QString &accountId)
 {
     LRCInstance::setSelectedAccountId(accountId);
 
-    backToWelcomePage(index);
+    backToWelcomePage(accountId);
 
     QMetaObject::invokeMethod(qmlObj_, "updateSmartList", Q_ARG(QVariant, accountId));
     connectAccount(accountId);
@@ -343,10 +343,10 @@ AccountAdapter::setSelectedAccount(const QString &accountId, int index)
 }
 
 void
-AccountAdapter::backToWelcomePage(int index)
+AccountAdapter::backToWelcomePage(const QString &accountId)
 {
     deselectConversation();
-    QMetaObject::invokeMethod(qmlObj_, "backToWelcomePage", Q_ARG(QVariant, index));
+    QMetaObject::invokeMethod(qmlObj_, "backToWelcomePage", Q_ARG(QVariant, accountId));
 }
 
 void

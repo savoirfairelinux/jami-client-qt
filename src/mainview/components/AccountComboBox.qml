@@ -27,35 +27,29 @@ ComboBox {
     id: accountComboBox
 
     signal accountChanged(int index)
-    signal needToBackToWelcomePage(int index)
+    signal needToBackToWelcomePage(string accountId)
     signal needToUpdateSmartList(string accountId)
     signal newAccountButtonClicked
     signal settingBtnClicked
 
     currentIndex: 0
 
-    function backToWelcomePage(index) {
-        accountComboBox.needToBackToWelcomePage(index)
+    function backToWelcomePage(accountId) {
+        needToBackToWelcomePage(accountId)
     }
 
     function updateSmartList(accountId) {
-        accountComboBox.needToUpdateSmartList(accountId)
+        needToUpdateSmartList(accountId)
     }
 
-
-    /*
-     * Refresh every item in accountListModel.
-     */
+    // Refresh every item in accountListModel.
     function updateAccountListModel() {
         accountListModel.dataChanged(accountListModel.index(0, 0),
                                      accountListModel.index(
                                          accountListModel.rowCount() - 1, 0))
     }
 
-
-    /*
-     * Reset accountListModel.
-     */
+    // Reset accountListModel.
     function resetAccountListModel() {
         accountListModel.reset()
     }
@@ -72,10 +66,7 @@ ComboBox {
 
         fillMode: Image.PreserveAspectFit
 
-
-        /*
-         * Base 64 format
-         */
+        // Base 64 format
         source: {
             if (currentIndex !== -1)
                 return "data:image/png;base64," + accountListModel.data(
@@ -97,10 +88,7 @@ ComboBox {
             width: 12
             height: 12
 
-
-            /*
-             * Visible when account is registered, enum REGISTERED == 5.
-             */
+            // Visible when account is registered, enum REGISTERED == 5.
             visible: {
                 if (currentIndex !== -1)
                     return accountListModel.data(
@@ -151,7 +139,6 @@ ComboBox {
         source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
     }
 
-
     Text {
         id: textUsernameRoot
 
@@ -171,10 +158,7 @@ ComboBox {
         elide: Text.ElideRight
         elideWidth: accountComboBox.width - userImageRoot.width - settingsButton.width - qrCodeGenerateButton.width - 55
 
-
-        /*
-         * Role::Alias
-         */
+        // Role::Alias
         text: {
             if (currentIndex !== -1)
                 return accountListModel.data(accountListModel.index(
@@ -193,9 +177,8 @@ ComboBox {
         elideWidth: accountComboBox.width - userImageRoot.width - settingsButton.width - qrCodeGenerateButton.width - 55
 
 
-        /*
-         * Role::Username
-         */
+
+        // Role::Username
         text: {
             if (currentIndex !== -1)
                 return accountListModel.data(accountListModel.index(
@@ -205,8 +188,6 @@ ComboBox {
                 return text
         }
     }
-
-
 
     HoverableButton {
         id: qrCodeGenerateButton
@@ -304,9 +285,8 @@ ComboBox {
             rootItemBackground.color = JamiTheme.backgroundColor
         }
         onMouseXChanged: {
-            /*
-             * Manually making button hover.
-             */
+
+            // Manually making button hover.
             qrCodeGenerateButton.backgroundColor = (isMouseOnButton(mouse, qrCodeGenerateButton)) ?
                         JamiTheme.hoverColor : "white"
 
@@ -330,10 +310,7 @@ ComboBox {
 
     indicator: null
 
-
-    /*
-     * Overwrite the combo box pop up to add footer (for add accounts).
-     */
+    // Overwrite the combo box pop up to add footer (for add accounts).
     popup: AccountComboBoxPopup {
         id: comboBoxPopup
 

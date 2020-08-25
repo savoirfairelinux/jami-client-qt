@@ -98,8 +98,8 @@ signals:
 
 private:
     void initQmlObject() override final;
-    void setSelectedAccount(const QString &accountId, int index);
-    void backToWelcomePage(int index);
+    void setSelectedAccount(const QString &accountId);
+    void backToWelcomePage(const QString &accountId);
     void deselectConversation();
 
     /*

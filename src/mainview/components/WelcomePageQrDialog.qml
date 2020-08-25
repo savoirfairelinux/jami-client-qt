@@ -21,22 +21,22 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import net.jami.Models 1.0
 
+
 Dialog {
     id: userQrImageDialog
 
-    property int currentAccountIndex: 0
+    property string accountIdStr: ClientWrapper.utilsAdaptor.getCurrAccId()
 
+    function updateQrDialog(accountId=""){
+        if (accountId !== "")
+            accountIdStr = accountId
+    }
 
-    /*
-     * When dialog is opened, trigger mainViewWindow overlay which is defined in overlay.model.
-     * (model : true is necessary)
-     */
+    // When dialog is opened, trigger mainViewWindow overlay which is defined in overlay.model.
+    // (model : true is necessary)
     modal: true
 
-
-    /*
-     * Content height + margin.
-     */
+    //Content height + margin.
     contentHeight: userQrImage.height + 30
 
     Image {
@@ -48,7 +48,7 @@ Dialog {
         height: 250
 
         fillMode: Image.PreserveAspectFit
-        source: "image://qrImage/account_" + currentAccountIndex
+        source: "image://qrImage/account_" + accountIdStr
         sourceSize.width: 260
         sourceSize.height: 260
         mipmap: true
