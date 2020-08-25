@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c95a9099_016cfcb5",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 24
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-25T14:07:28Z",
+      "side": 1,
+      "message": "Not part of this patch, but I see no reason here to the language name in a function name. Makes me think there is a changePageCPP/changePageJavascript somewhere :/.",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 21
+      },
+      "revId": "3641c69b3d1416aa2befa18d24493d2b828b9730",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}

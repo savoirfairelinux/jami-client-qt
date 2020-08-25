@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "571c345e_9bde6a13",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 24
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-25T14:07:28Z",
+      "side": 0,
+      "message": "the source of https://git.jami.net/savoirfairelinux/jami-client-qt/issues/15 as the application\nis named \"Ring\" for backwards compat\n\nMaybe a base component if this is repeated too often?",
+      "revId": "449eda362a12ae2deaa1682931e9e265edf6446d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
