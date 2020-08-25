@@ -50,7 +50,7 @@ RowLayout {
         Layout.preferredHeight: heightOfLayout
         Layout.maximumHeight: heightOfLayout
 
-        eText: qsTr(labelText)
+        eText: labelText
         fontSize: fontPointSize
         maxWidth: parent.width - widthOfSwitch
 
