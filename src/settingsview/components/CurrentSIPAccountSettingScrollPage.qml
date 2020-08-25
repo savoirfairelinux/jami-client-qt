@@ -20,6 +20,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Controls.Universal 2.12
+import QtQuick.Dialogs 1.3
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.14
 import net.jami.Models 1.0
@@ -74,14 +75,16 @@ Rectangle {
         deleteAccountDialog_SIP.open()
     }
 
-    DeleteAccountDialog{
+    MessageBox {
         id: deleteAccountDialog_SIP
 
-        anchors.centerIn: parent.Center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
+        title: qsTr("Account deletion")
+        text : qsTr("Warning! This action will remove this account on this device!")
+        icon : StandardIcon.Warning
+        standardButtons: StandardButton.Yes | StandardButton.Cancel
 
-        onAccepted: {
+        onYes: {
+            ClientWrapper.accountAdaptor.deleteCurrentAccount()
             ClientWrapper.accountAdaptor.setSelectedAccountId()
             ClientWrapper.accountAdaptor.setSelectedConvId()
 

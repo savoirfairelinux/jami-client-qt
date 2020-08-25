@@ -33,7 +33,6 @@
         <file>src/commoncomponents/PhotoboothView.qml</file>
         <file>src/commoncomponents/LookupStatusLabel.qml</file>
         <file>src/commoncomponents/ListViewJami.qml</file>
-        <file>src/commoncomponents/DeleteAccountDialog.qml</file>
         <file>src/commoncomponents/MessageBox.qml</file>
         <file>src/wizardview/WizardView.qml</file>
         <file>src/wizardview/components/WelcomePageLayout.qml</file>
