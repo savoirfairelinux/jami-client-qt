@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09c0a014_85e34400",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-25T16:26:42Z",
+      "side": 1,
+      "message": "call::Status::IN_PROGRESS can be referenced as Call.Status.IN_PROGRESS in QML as the enum class is registered, same for Call.Status.PAUSED",
+      "range": {
+        "startLine": 428,
+        "startChar": 34,
+        "endLine": 428,
+        "endChar": 35
+      },
+      "revId": "1d22f5b4648a41d9151dfe071f74eedae9d540f1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
