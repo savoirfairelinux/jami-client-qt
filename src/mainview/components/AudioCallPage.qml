@@ -91,6 +91,7 @@ Rectangle {
 
                 anchors.fill: parent
 
+                bestNameCallOverlay : bestName
                 Connections {
                     target: CallAdapter
 

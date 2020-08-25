@@ -161,7 +161,7 @@ Rectangle {
 
         property string preferenceName: ""
         property var preferenceEntryValues: []
-        
+
         title:qsTr("Edit " + preferenceName)
         text :qsTr(preferenceName + " options: " + preferenceEntryValues)
 
@@ -214,7 +214,13 @@ Rectangle {
                 anchors.fill: parent
                 Image {
                     anchors.fill: parent
-                    source: "file:"+pluginIcon
+                    source: {
+                        if(pluginIcon.length > 0){
+                            return "file:"+pluginIcon
+                        } else {
+                            return ""
+                        }
+                    }
                 }
             }
         }
