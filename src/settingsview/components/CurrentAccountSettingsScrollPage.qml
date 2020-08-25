@@ -325,14 +325,16 @@ Rectangle {
         deleteAccountDialog.open()
     }
 
-    DeleteAccountDialog{
+    MessageBox {
         id: deleteAccountDialog
 
-        anchors.centerIn: parent.Center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
+        title: qsTr("Account deletion")
+        text : qsTr("Warning! This action will remove this account on this device!\nNote: this action action cannot be undone. Also, your registered name can be lost!")
+        icon : StandardIcon.Warning
+        standardButtons: StandardButton.Yes | StandardButton.Cancel
 
-        onAccepted: {
+        onYes: {
+            ClientWrapper.accountAdaptor.deleteCurrentAccount()
             ClientWrapper.accountAdaptor.setSelectedAccountId()
             ClientWrapper.accountAdaptor.setSelectedConvId()
 
