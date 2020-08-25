@@ -40,6 +40,7 @@ Button {
     property string onExitColor: backgroundColor
     property alias radius: hoverableButtonBackground.radius
     property alias source: hoverableButtonImage.source
+    property bool isHovering: false
     property string toolTipText: ""
     radius: height / 2
     function enterBtn(){
@@ -87,9 +88,11 @@ Button {
             }
             onEntered: {
                 hoverableButtonBackground.color = onEnterColor
+                isHovering = true
             }
             onExited: {
                 hoverableButtonBackground.color = onExitColor
+                isHovering = false
             }
         }
     }

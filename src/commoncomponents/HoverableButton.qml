@@ -80,7 +80,15 @@ Button {
             mipmap: true
             asynchronous: true
 
-            source: hoverableButton.checked && checkedImage? checkedImage : baseImage
+            source: {
+                if(hoverableButton.checked && checkedImage){
+                    return checkedImage
+                } else if(baseImage) {
+                    return baseImage
+                } else {
+                    return ""
+                }
+            }
 
             layer {
                 enabled: true
