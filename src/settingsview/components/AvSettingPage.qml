@@ -139,7 +139,7 @@ Rectangle {
         var selectedAudioManager = audioManagerListModel.data(audioManagerListModel.index(
                                                         index, 0), AudioManagerListModel.AudioManagerID)
         ClientWrapper.avmodel.setAudioManager(selectedAudioManager)
-        startAudioMeter(false)
+        startAudioMeter(true)
     }
 
     function slotRingtoneDeviceIndexChanged(index){
@@ -147,7 +147,7 @@ Rectangle {
         var selectedRingtoneDeviceName = audioOutputDeviceModel.data(audioOutputDeviceModel.index(
                                                         index, 0), AudioOutputDeviceModel.Device_ID)
         ClientWrapper.avmodel.setRingtoneDevice(selectedRingtoneDeviceName)
-        startAudioMeter(false)
+        startAudioMeter(true)
     }
 
     function slotAudioOutputIndexChanged(index){
@@ -155,7 +155,7 @@ Rectangle {
         var selectedOutputDeviceName = audioOutputDeviceModel.data(audioOutputDeviceModel.index(
                                                         index, 0), AudioOutputDeviceModel.Device_ID)
         ClientWrapper.avmodel.setOutputDevice(selectedOutputDeviceName)
-        startAudioMeter(false)
+        startAudioMeter(true)
     }
 
     function slotAudioInputIndexChanged(index){
@@ -164,7 +164,7 @@ Rectangle {
                                                         index, 0), AudioInputDeviceModel.Device_ID)
 
         ClientWrapper.avmodel.setInputDevice(selectedInputDeviceName)
-        startAudioMeter(false)
+        startAudioMeter(true)
     }
 
     function slotDeviceBoxCurrentIndexChanged(index){
