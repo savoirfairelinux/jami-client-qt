@@ -616,12 +616,12 @@ Window {
             })
 
             recordBox.x = Qt.binding(function() {
-                var i = (welcomeViewStack.width > 1000 ? Math.round((welcomeViewStack.width-1000)*0.5) : 0)
+                var i = (mainViewStack.width > 1000 ? Math.round((mainViewStack.width-1000)*0.5) : 0)
                 return sidePanelViewStack.width + recordBox.x_offset + i
             })
 
             recordBox.y = Qt.binding(function() {
-                return sidePanelViewStack.height + recordBox.y_offset
+                return mainViewStack.height + recordBox.y_offset
             })
 
 
