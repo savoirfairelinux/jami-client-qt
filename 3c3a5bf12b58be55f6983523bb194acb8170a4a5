@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5b591e0f_eb4b7110",
+        "filename": "src/commoncomponents/HoverableRadiusButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-26T15:28:50Z",
+      "side": 1,
+      "message": "FOR THE THIRD TIME YANG, WTF.\n\nWe already said that isHovering is useless and Button has already a hovered property. Stop doing complicated code for this. Come on.\n\nAlso, it\u0027s not even related to the warnings triggered",
+      "range": {
+        "startLine": 91,
+        "startChar": 6,
+        "endLine": 95,
+        "endChar": 35
+      },
+      "revId": "3c3a5bf12b58be55f6983523bb194acb8170a4a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8e0953f_243d098e",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-26T15:28:50Z",
+      "side": 1,
+      "message": "This variable is already stored at other palces\n\nAlso such a complicated name for nothing",
+      "range": {
+        "startLine": 36,
+        "startChar": 37,
+        "endLine": 37,
+        "endChar": 52
+      },
+      "revId": "3c3a5bf12b58be55f6983523bb194acb8170a4a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b33ed0de_76eda234",
+        "filename": "src/mainview/components/VideoCallPage.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-26T15:28:50Z",
+      "side": 1,
+      "message": "NO\n\nanchors.centerIn: parent",
+      "range": {
+        "startLine": 235,
+        "startChar": 38,
+        "endLine": 235,
+        "endChar": 51
+      },
+      "revId": "3c3a5bf12b58be55f6983523bb194acb8170a4a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6927ddb4_4a871567",
+        "filename": "src/mainview/components/VideoCallPage.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-26T15:28:50Z",
+      "side": 1,
+      "message": "NO",
+      "range": {
+        "startLine": 261,
+        "startChar": 24,
+        "endLine": 261,
+        "endChar": 75
+      },
+      "revId": "3c3a5bf12b58be55f6983523bb194acb8170a4a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
