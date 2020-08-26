@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "032bdc1c_98b2e3e0",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-26T15:28:42Z",
+      "side": 1,
+      "message": "1) why is this have the word \"CallOverlay\" in it? is it an overlay?\n2) the default value of \"Best Name\" might as well be \"Bon Jovi\" because it should never be seen live\n3) does this fix warnings?",
+      "range": {
+        "startLine": 37,
+        "startChar": 20,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "1866d5a1ae57ff3eb96f9f98043ab36a9c3be683",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
