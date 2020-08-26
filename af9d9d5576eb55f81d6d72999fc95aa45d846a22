@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0398cb0_ef253c98",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-26T16:05:42Z",
+      "side": 1,
+      "message": "preferencesCount?",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 22
+      },
+      "revId": "af9d9d5576eb55f81d6d72999fc95aa45d846a22",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
