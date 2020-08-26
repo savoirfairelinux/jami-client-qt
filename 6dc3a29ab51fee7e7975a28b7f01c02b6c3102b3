@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1555aba4_0ddbaacd",
+        "filename": "src/pluginitemlistmodel.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-26T19:18:03Z",
+      "side": 1,
+      "message": "count :)",
+      "range": {
+        "startLine": 126,
+        "startChar": 21,
+        "endLine": 126,
+        "endChar": 31
+      },
+      "revId": "6dc3a29ab51fee7e7975a28b7f01c02b6c3102b3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fcef8e1b_a98c18d4",
+        "filename": "src/pluginlistpreferencemodel.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-26T19:18:03Z",
+      "side": 1,
+      "message": "avoid comments like this, use single like comments //",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 67,
+        "endChar": 11
+      },
+      "revId": "6dc3a29ab51fee7e7975a28b7f01c02b6c3102b3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
