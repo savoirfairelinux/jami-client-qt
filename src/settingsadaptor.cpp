@@ -20,6 +20,8 @@
 
 #include "api/newdevicemodel.h"
 
+#include <QtConcurrent/QtConcurrent>
+
 SettingsAdaptor::SettingsAdaptor(QObject *parent)
     : QObject(parent)
 {}
@@ -82,44 +84,54 @@ SettingsAdaptor::getSettingsValue_AutoUpdate()
 void
 SettingsAdaptor::setClosedOrMin(bool state)
 {
-    QSettings settings("jami.net", "Jami");
-    settings.setValue(SettingsKey::closeOrMinimized, state);
+    QtConcurrent::run([state]() {
+        QSettings settings("jami.net", "Jami");
+        settings.setValue(SettingsKey::closeOrMinimized, state);
+    });
 }
 
 void
 SettingsAdaptor::setNotifications(bool state)
 {
-    QSettings settings("jami.net", "Jami");
-    settings.setValue(SettingsKey::enableNotifications, state);
+    QtConcurrent::run([state]() {
+        QSettings settings("jami.net", "Jami");
+        settings.setValue(SettingsKey::enableNotifications, state);
+    });
 }
 
 void
 SettingsAdaptor::setUpdateAutomatic(bool state)
 {
 #ifdef Q_OS_WIN
-    QSettings settings("jami.net", "Jami");
-    settings.setValue(SettingsKey::autoUpdate, state);
+    QtConcurrent::run([state]() {
+        QSettings settings("jami.net", "Jami");
+        settings.setValue(SettingsKey::autoUpdate, state);
+    });
 #endif
 }
 
 void
 SettingsAdaptor::setRunOnStartUp(bool state)
 {
-    if (Utils::CheckStartupLink(L"Jami")) {
-        if (!state) {
-            Utils::DeleteStartupLink(L"Jami");
+    QtConcurrent::run([state]() {
+        if (Utils::CheckStartupLink(L"Jami")) {
+            if (!state) {
+                Utils::DeleteStartupLink(L"Jami");
+            }
+        } else if (state) {
+            Utils::CreateStartupLink(L"Jami");
         }
-    } else if (state) {
-        Utils::CreateStartupLink(L"Jami");
-    }
+    });
 }
 
 void
 SettingsAdaptor::setDownloadPath(QString dir)
 {
-    QSettings settings("jami.net", "Jami");
-    settings.setValue(SettingsKey::downloadPath, dir);
-    LRCInstance::dataTransferModel().downloadDirectory = dir + "/";
+    QtConcurrent::run([dir]() {
+        QSettings settings("jami.net", "Jami");
+        settings.setValue(SettingsKey::downloadPath, dir);
+        LRCInstance::dataTransferModel().downloadDirectory = dir + "/";
+    });
 }
 
 lrc::api::video::ResRateList
@@ -223,10 +235,12 @@ SettingsAdaptor::set_Video_Settings_Rate_And_Resolution(const QString &deviceId,
                                                         qreal rate,
                                                         const QString &resolution)
 {
-    auto settings = LRCInstance::avModel().getDeviceSettings(deviceId);
-    settings.rate = rate;
-    settings.size = resolution;
-    LRCInstance::avModel().setDeviceSettings(settings);
+    QtConcurrent::run([deviceId, rate, resolution]() {
+        auto settings = LRCInstance::avModel().getDeviceSettings(deviceId);
+        settings.rate = rate;
+        settings.size = resolution;
+        LRCInstance::avModel().setDeviceSettings(settings);
+    });
 }
 
 const lrc::api::account::Info &
@@ -235,7 +249,7 @@ SettingsAdaptor::getCurrentAccountInfo()
     return LRCInstance::getCurrentAccountInfo();
 }
 
-const Q_INVOKABLE lrc::api::profile::Info &
+const lrc::api::profile::Info &
 SettingsAdaptor::getCurrentAccount_Profile_Info()
 {
     return LRCInstance::getCurrentAccountInfo().profileInfo;
@@ -621,446 +635,557 @@ SettingsAdaptor::getAccountConfig_Mailbox()
 void
 SettingsAdaptor::setAccountConfig_Username(QString input)
 {
-    auto confProps = getAccountConfig();
-    confProps.username = input;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([this,input]() {
+        auto confProps = getAccountConfig();
+        confProps.username = input;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setAccountConfig_Hostname(QString input)
 {
-    auto confProps = getAccountConfig();
-    confProps.hostname = input;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([this,input]() {
+        auto confProps = getAccountConfig();
+        confProps.hostname = input;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setAccountConfig_Password(QString input)
 {
-    auto confProps = getAccountConfig();
-    confProps.password = input;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([this,input]() {
+        auto confProps = getAccountConfig();
+        confProps.password = input;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setAccountConfig_ProxyServer(QString input)
 {
-    auto confProps = getAccountConfig();
-    confProps.proxyServer = input;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([this,input]() {
+        auto confProps = getAccountConfig();
+        confProps.proxyServer = input;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setAutoConnectOnLocalNetwork(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.peerDiscovery = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.peerDiscovery = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setCallsUntrusted(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.DHT.PublicInCalls = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.DHT.PublicInCalls = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setIsRendezVous(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.isRendezVous = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.isRendezVous = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 
 void
 SettingsAdaptor::setAutoAnswerCalls(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.autoAnswer = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.autoAnswer = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setEnableRingtone(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.Ringtone.ringtoneEnabled = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.Ringtone.ringtoneEnabled = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setEnableProxy(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.proxyEnabled = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.proxyEnabled = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setUseUPnP(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.upnpEnabled = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.upnpEnabled = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setUseTURN(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TURN.enable = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TURN.enable = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setUseSTUN(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.STUN.enable = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.STUN.enable = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setVideoState(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.Video.videoEnabled = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.Video.videoEnabled = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setUseSRTP(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.SRTP.enable = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.SRTP.enable = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setUseSDES(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.SRTP.keyExchange = state ? lrc::api::account::KeyExchangeProtocol::SDES
-                                       : lrc::api::account::KeyExchangeProtocol::NONE;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.SRTP.keyExchange = state ? lrc::api::account::KeyExchangeProtocol::SDES
+                                           : lrc::api::account::KeyExchangeProtocol::NONE;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setUseRTPFallback(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.SRTP.rtpFallback = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.SRTP.rtpFallback = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setUseTLS(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.enable = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.enable = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setVerifyCertificatesServer(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.verifyServer = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.verifyServer = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setVerifyCertificatesClient(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.verifyClient = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.verifyClient = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setRequireCertificatesIncomingTLS(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.requireClientCertificate = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.requireClientCertificate = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setUseCustomAddressAndPort(bool state)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.publishedSameAsLocal = state;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([state]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.publishedSameAsLocal = state;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setNameServer(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.RingNS.uri = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.RingNS.uri = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setProxyAddress(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.proxyServer = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.proxyServer = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setBootstrapAddress(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.hostname = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.hostname = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setTURNAddress(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TURN.server = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TURN.server = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setTURNUsername(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TURN.username = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TURN.username = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setTURNPassword(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TURN.password = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TURN.password = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setTURNRealm(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TURN.realm = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TURN.realm = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::setSTUNAddress(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.STUN.server = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.STUN.server = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::lineEditVoiceMailDialCodeEditFinished(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.mailbox = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.mailbox = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::outgoingTLSServerNameLineEditTextChanged(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.serverName = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.serverName = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::lineEditSIPCertPasswordLineEditTextChanged(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.password = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.password = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::lineEditSIPCustomAddressLineEditTextChanged(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.publishedAddress = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.publishedAddress = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::customPortSIPSpinBoxValueChanged(int value)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.publishedPort = value;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([value]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.publishedPort = value;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::negotiationTimeoutSpinBoxValueChanged(int value)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.negotiationTimeoutSec = value;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([value]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.negotiationTimeoutSec = value;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::registrationTimeoutSpinBoxValueChanged(int value)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.Registration.expire = value;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([value]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.Registration.expire = value;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::networkInterfaceSpinBoxValueChanged(int value)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.localPort = value;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([value]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.localPort = value;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::audioRTPMinPortSpinBoxEditFinished(int value)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.Audio.audioPortMin = value;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([value]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.Audio.audioPortMin = value;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::audioRTPMaxPortSpinBoxEditFinished(int value)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.Audio.audioPortMax = value;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([value]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.Audio.audioPortMax = value;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::videoRTPMinPortSpinBoxEditFinished(int value)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.Video.videoPortMin = value;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([value]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.Video.videoPortMin = value;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::videoRTPMaxPortSpinBoxEditFinished(int value)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.Video.videoPortMax = value;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([value]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.Video.videoPortMax = value;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::tlsProtocolComboBoxIndexChanged(const int &index)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+    QtConcurrent::run([index]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
 
-    if (static_cast<int>(confProps.TLS.method) != index) {
-        if (index == 0) {
-            confProps.TLS.method = lrc::api::account::TlsMethod::DEFAULT;
-        } else if (index == 1) {
-            confProps.TLS.method = lrc::api::account::TlsMethod::TLSv1;
-        } else if (index == 2) {
-            confProps.TLS.method = lrc::api::account::TlsMethod::TLSv1_1;
-        } else {
-            confProps.TLS.method = lrc::api::account::TlsMethod::TLSv1_2;
+        if (static_cast<int>(confProps.TLS.method) != index) {
+            if (index == 0) {
+                confProps.TLS.method = lrc::api::account::TlsMethod::DEFAULT;
+            } else if (index == 1) {
+                confProps.TLS.method = lrc::api::account::TlsMethod::TLSv1;
+            } else if (index == 2) {
+                confProps.TLS.method = lrc::api::account::TlsMethod::TLSv1_1;
+            } else {
+                confProps.TLS.method = lrc::api::account::TlsMethod::TLSv1_2;
+            }
+            LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
         }
-        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
-    }
+    });
 }
 
 void
 SettingsAdaptor::setDeviceName(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.deviceName = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.deviceName = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::unbanContact(int index)
 {
-    auto bannedContactList = LRCInstance::getCurrentAccountInfo().contactModel->getBannedContacts();
-    auto it = bannedContactList.begin();
-    std::advance(it, index);
+    QtConcurrent::run([index]() {
+        auto bannedContactList = LRCInstance::getCurrentAccountInfo()
+                                     .contactModel->getBannedContacts();
+        auto it = bannedContactList.begin();
+        std::advance(it, index);
 
-    auto contactInfo = LRCInstance::getCurrentAccountInfo().contactModel->getContact(*it);
+        auto contactInfo = LRCInstance::getCurrentAccountInfo().contactModel->getContact(*it);
 
-    LRCInstance::getCurrentAccountInfo().contactModel->addContact(contactInfo);
+        LRCInstance::getCurrentAccountInfo().contactModel->addContact(contactInfo);
+    });
 }
 
 void
 SettingsAdaptor::audioCodecsStateChange(unsigned int id, bool isToEnable)
 {
-    auto audioCodecList = LRCInstance::getCurrentAccountInfo().codecModel->getAudioCodecs();
-    LRCInstance::getCurrentAccountInfo().codecModel->enable(id, isToEnable);
+    QtConcurrent::run([id, isToEnable]() {
+        auto audioCodecList = LRCInstance::getCurrentAccountInfo().codecModel->getAudioCodecs();
+        LRCInstance::getCurrentAccountInfo().codecModel->enable(id, isToEnable);
+    });
 }
 
 void
 SettingsAdaptor::videoCodecsStateChange(unsigned int id, bool isToEnable)
 {
-    auto videoCodecList = LRCInstance::getCurrentAccountInfo().codecModel->getVideoCodecs();
-    LRCInstance::getCurrentAccountInfo().codecModel->enable(id, isToEnable);
+    QtConcurrent::run([id, isToEnable]() {
+        auto videoCodecList = LRCInstance::getCurrentAccountInfo().codecModel->getVideoCodecs();
+        LRCInstance::getCurrentAccountInfo().codecModel->enable(id, isToEnable);
+    });
 }
 
 void
 SettingsAdaptor::decreaseAudioCodecPriority(unsigned int id)
 {
-    LRCInstance::getCurrentAccountInfo().codecModel->decreasePriority(id, false);
+    QtConcurrent::run([id]() {
+        LRCInstance::getCurrentAccountInfo().codecModel->decreasePriority(id, false);
+    });
 }
 
 void
 SettingsAdaptor::increaseAudioCodecPriority(unsigned int id)
 {
-    LRCInstance::getCurrentAccountInfo().codecModel->increasePriority(id, false);
+    QtConcurrent::run([id]() {
+        LRCInstance::getCurrentAccountInfo().codecModel->increasePriority(id, false);
+    });
 }
 
 void
 SettingsAdaptor::decreaseVideoCodecPriority(unsigned int id)
 {
-    LRCInstance::getCurrentAccountInfo().codecModel->decreasePriority(id, true);
+    QtConcurrent::run([id]() {
+        LRCInstance::getCurrentAccountInfo().codecModel->decreasePriority(id, true);
+    });
 }
 
 void
 SettingsAdaptor::increaseVideoCodecPriority(unsigned int id)
 {
-    LRCInstance::getCurrentAccountInfo().codecModel->increasePriority(id, true);
+    QtConcurrent::run([id]() {
+        LRCInstance::getCurrentAccountInfo().codecModel->increasePriority(id, true);
+    });
 }
 
 void
 SettingsAdaptor::set_RingtonePath(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.Ringtone.ringtonePath = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.Ringtone.ringtonePath = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::set_FileCACert(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.certificateListFile = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.certificateListFile = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::set_FileUserCert(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.certificateFile = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.certificateFile = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 
 void
 SettingsAdaptor::set_FilePrivateKey(QString text)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.TLS.privateKeyFile = text;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([text]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.TLS.privateKeyFile = text;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
