@@ -22,6 +22,30 @@
       "revId": "1866d5a1ae57ff3eb96f9f98043ab36a9c3be683",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c50d60c9_52a7ba33",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2020-08-26T17:03:35Z",
+      "side": 1,
+      "message": "It does not only solve the warning, it also solves a potential bug: this file could only work with video and in audio, it cannot work.\n\nThe value there is just a default value. This property is bounded to its parent\u0027s corresponding value and will be set on start anyway.",
+      "parentUuid": "032bdc1c_98b2e3e0",
+      "range": {
+        "startLine": 37,
+        "startChar": 20,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "1866d5a1ae57ff3eb96f9f98043ab36a9c3be683",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
