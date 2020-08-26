@@ -214,7 +214,9 @@ AccountAdapter::createJAMSAccount(const QVariantMap &settings)
 void
 AccountAdapter::deleteCurrentAccount()
 {
-    LRCInstance::accountModel().removeAccount(LRCInstance::getCurrAccId());
+    QtConcurrent::run([]() {
+        LRCInstance::accountModel().removeAccount(LRCInstance::getCurrAccId());
+    });
 }
 
 bool
@@ -291,9 +293,11 @@ AccountAdapter::hasPassword()
 void
 AccountAdapter::setArchiveHasPassword(bool isHavePassword)
 {
-    auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
-    confProps.archiveHasPassword = isHavePassword;
-    LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    QtConcurrent::run([isHavePassword]() {
+        auto confProps = LRCInstance::accountModel().getAccountConfig(LRCInstance::getCurrAccId());
+        confProps.archiveHasPassword = isHavePassword;
+        LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
+    });
 }
 bool
 AccountAdapter::exportToFile(const QString &accountId,
