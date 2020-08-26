@@ -22,6 +22,30 @@
       "revId": "cf0e177e3fbb47429752014c1f3875068a7e9c83",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e612715e_d8ec4df5",
+        "filename": "src/accountadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-26T11:56:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a83a93c0_4291cb8c",
+      "range": {
+        "startLine": 102,
+        "startChar": 27,
+        "endLine": 102,
+        "endChar": 51
+      },
+      "revId": "cf0e177e3fbb47429752014c1f3875068a7e9c83",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
