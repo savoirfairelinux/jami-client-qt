@@ -28,7 +28,11 @@
 
 AccountAdapter::AccountAdapter(QObject *parent)
     : QmlAdapterBase(parent)
-{}
+{
+    connect(&LRCInstance::instance(), &LRCInstance::currentAccountChanged, [this]() {
+        connectAccount(LRCInstance::getCurrAccId());
+    });
+}
 
 AccountAdapter::~AccountAdapter() {}
 
@@ -335,10 +339,9 @@ AccountAdapter::setSelectedAccount(const QString &accountId)
 {
     LRCInstance::setSelectedAccountId(accountId);
 
-    backToWelcomePage();
-
-    connectAccount(accountId);
     emit accountSignalsReconnect(accountId);
+
+    backToWelcomePage();
 }
 
 void
