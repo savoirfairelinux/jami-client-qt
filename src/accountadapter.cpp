@@ -28,7 +28,11 @@
 
 AccountAdapter::AccountAdapter(QObject *parent)
     : QmlAdapterBase(parent)
-{}
+{
+    connect(&LRCInstance::instance(), &LRCInstance::currentAccountChanged, [this]() {
+        connectAccount(LRCInstance::getCurrAccId());
+    });
+}
 
 AccountAdapter::~AccountAdapter() {}
 
@@ -335,11 +339,9 @@ AccountAdapter::setSelectedAccount(const QString &accountId, int index)
 {
     LRCInstance::setSelectedAccountId(accountId);
 
-    backToWelcomePage(index);
-
-    QMetaObject::invokeMethod(qmlObj_, "updateSmartList", Q_ARG(QVariant, accountId));
-    connectAccount(accountId);
     emit accountSignalsReconnect(accountId);
+
+    backToWelcomePage(index);
 }
 
 void
