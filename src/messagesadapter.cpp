@@ -32,7 +32,7 @@
 #include <QList>
 #include <QUrl>
 
-MessagesAdapter::MessagesAdapter(QObject *parent)
+MessagesAdapter::MessagesAdapter(QObject* parent)
     : QmlAdapterBase(parent)
 {}
 
@@ -55,14 +55,13 @@ MessagesAdapter::slotAccountChanged()
 }
 
 void
-MessagesAdapter::setupChatView(const QString &uid)
+MessagesAdapter::setupChatView(const QString& uid)
 {
-
     auto* convModel = LRCInstance::getCurrentConversationModel();
     if (convModel == nullptr) {
         return;
     }
-    const auto &convInfo = convModel->getConversationForUID(uid);
+    const auto& convInfo = convModel->getConversationForUID(uid);
     if (convInfo.uid.isEmpty() || convInfo.participants.isEmpty()) {
         return;
     }
@@ -71,7 +70,7 @@ MessagesAdapter::setupChatView(const QString &uid)
 
     bool isContact = false;
     auto selectedAccountId = LRCInstance::getCurrAccId();
-    auto &accountInfo = LRCInstance::accountModel().getAccountInfo(selectedAccountId);
+    auto& accountInfo = LRCInstance::accountModel().getAccountInfo(selectedAccountId);
 
     lrc::api::profile::Type contactType;
     try {
@@ -98,7 +97,7 @@ MessagesAdapter::setupChatView(const QString &uid)
     contactIsComposing(convInfo.uid, "", false);
     connect(LRCInstance::getCurrentConversationModel(),
             &ConversationModel::composingStatusChanged,
-            [this](const QString &uid, const QString &contactUri, bool isComposing) {
+            [this](const QString& uid, const QString& contactUri, bool isComposing) {
                 contactIsComposing(uid, contactUri, isComposing);
             });
 
@@ -106,9 +105,9 @@ MessagesAdapter::setupChatView(const QString &uid)
      * Draft and message content set up.
      */
     Utils::oneShotConnect(qmlObj_,
-                          SIGNAL(sendMessageContentSaved(const QString &)),
+                          SIGNAL(sendMessageContentSaved(const QString&)),
                           this,
-                          SLOT(slotSendMessageContentSaved(const QString &)));
+                          SLOT(slotSendMessageContentSaved(const QString&)));
 
     requestSendMessageContent();
 }
@@ -122,27 +121,31 @@ MessagesAdapter::connectConversationModel()
     QObject::disconnect(interactionRemovedConnection_);
     QObject::disconnect(interactionStatusUpdatedConnection_);
 
-    newInteractionConnection_ = QObject::connect(currentConversationModel,
-                                                 &lrc::api::ConversationModel::newInteraction,
-                                                 [this](const QString &convUid, uint64_t interactionId,
-                                                        const lrc::api::interaction::Info &interaction) {
-        auto accountId = LRCInstance::getCurrAccId();
-        newInteraction(accountId, convUid, interactionId, interaction);
-    });
+    newInteractionConnection_
+        = QObject::connect(currentConversationModel,
+                           &lrc::api::ConversationModel::newInteraction,
+                           [this](const QString& convUid,
+                                  uint64_t interactionId,
+                                  const lrc::api::interaction::Info& interaction) {
+                               auto accountId = LRCInstance::getCurrAccId();
+                               newInteraction(accountId, convUid, interactionId, interaction);
+                           });
 
-    interactionStatusUpdatedConnection_ = QObject::connect(currentConversationModel,
-                                                           &lrc::api::ConversationModel::interactionStatusUpdated,
-                                                           [this](const QString &convUid, uint64_t interactionId,
-                                                                  const lrc::api::interaction::Info &interaction) {
-        auto currentConversationModel = LRCInstance::getCurrentConversationModel();
-        currentConversationModel->clearUnreadInteractions(convUid);
-        updateInteraction(*currentConversationModel, interactionId, interaction);
-    });
+    interactionStatusUpdatedConnection_ = QObject::connect(
+        currentConversationModel,
+        &lrc::api::ConversationModel::interactionStatusUpdated,
+        [this](const QString& convUid,
+               uint64_t interactionId,
+               const lrc::api::interaction::Info& interaction) {
+            auto currentConversationModel = LRCInstance::getCurrentConversationModel();
+            currentConversationModel->clearUnreadInteractions(convUid);
+            updateInteraction(*currentConversationModel, interactionId, interaction);
+        });
 
     interactionRemovedConnection_
         = QObject::connect(currentConversationModel,
                            &lrc::api::ConversationModel::interactionRemoved,
-                           [this](const QString &convUid, uint64_t interactionId) {
+                           [this](const QString& convUid, uint64_t interactionId) {
                                Q_UNUSED(convUid);
                                removeInteraction(interactionId);
                            });
@@ -160,7 +163,7 @@ MessagesAdapter::sendContactRequest()
 }
 
 void
-MessagesAdapter::accountChangedSetUp(const QString &accountId)
+MessagesAdapter::accountChangedSetUp(const QString& accountId)
 {
     Q_UNUSED(accountId)
 
@@ -179,7 +182,7 @@ MessagesAdapter::updateConversationForAddedContact()
 }
 
 void
-MessagesAdapter::slotSendMessageContentSaved(const QString &content)
+MessagesAdapter::slotSendMessageContentSaved(const QString& content)
 {
     if (!LastConvUid_.isEmpty()) {
         LRCInstance::setContentDraft(LastConvUid_, LRCInstance::getCurrAccId(), content);
@@ -197,7 +200,7 @@ MessagesAdapter::slotSendMessageContentSaved(const QString &content)
 }
 
 void
-MessagesAdapter::slotUpdateDraft(const QString &content)
+MessagesAdapter::slotUpdateDraft(const QString& content)
 {
     if (!LastConvUid_.isEmpty()) {
         LRCInstance::setContentDraft(LastConvUid_, LRCInstance::getCurrAccId(), content);
@@ -225,7 +228,7 @@ MessagesAdapter::slotMessagesLoaded()
 }
 
 void
-MessagesAdapter::sendMessage(const QString &message)
+MessagesAdapter::sendMessage(const QString& message)
 {
     try {
         const auto convUid = LRCInstance::getCurrentConvUid();
@@ -236,7 +239,7 @@ MessagesAdapter::sendMessage(const QString &message)
 }
 
 void
-MessagesAdapter::sendImage(const QString &message)
+MessagesAdapter::sendImage(const QString& message)
 {
     if (message.startsWith("data:image/png;base64,")) {
         /*
@@ -292,7 +295,7 @@ MessagesAdapter::sendImage(const QString &message)
 }
 
 void
-MessagesAdapter::sendFile(const QString &message)
+MessagesAdapter::sendFile(const QString& message)
 {
     QFileInfo fi(message);
     QString fileName = fi.fileName();
@@ -305,7 +308,7 @@ MessagesAdapter::sendFile(const QString &message)
 }
 
 void
-MessagesAdapter::retryInteraction(const QString &arg)
+MessagesAdapter::retryInteraction(const QString& arg)
 {
     bool ok;
     uint64_t interactionUid = arg.toULongLong(&ok);
@@ -318,7 +321,7 @@ MessagesAdapter::retryInteraction(const QString &arg)
 }
 
 void
-MessagesAdapter::setNewMessagesContent(const QString &path)
+MessagesAdapter::setNewMessagesContent(const QString& path)
 {
     if (path.length() == 0)
         return;
@@ -332,7 +335,7 @@ MessagesAdapter::setNewMessagesContent(const QString &path)
 }
 
 void
-MessagesAdapter::deleteInteraction(const QString &arg)
+MessagesAdapter::deleteInteraction(const QString& arg)
 {
     bool ok;
     uint64_t interactionUid = arg.toULongLong(&ok);
@@ -345,7 +348,7 @@ MessagesAdapter::deleteInteraction(const QString &arg)
 }
 
 void
-MessagesAdapter::openFile(const QString &arg)
+MessagesAdapter::openFile(const QString& arg)
 {
     QUrl fileUrl("file:///" + arg);
     if (!QDesktopServices::openUrl(fileUrl)) {
@@ -354,7 +357,7 @@ MessagesAdapter::openFile(const QString &arg)
 }
 
 void
-MessagesAdapter::acceptFile(const QString &arg)
+MessagesAdapter::acceptFile(const QString& arg)
 {
     try {
         auto interactionUid = arg.toLongLong();
@@ -366,7 +369,7 @@ MessagesAdapter::acceptFile(const QString &arg)
 }
 
 void
-MessagesAdapter::refuseFile(const QString &arg)
+MessagesAdapter::refuseFile(const QString& arg)
 {
     try {
         auto interactionUid = arg.toLongLong();
@@ -380,7 +383,7 @@ MessagesAdapter::refuseFile(const QString &arg)
 void
 MessagesAdapter::pasteKeyDetected()
 {
-    const QMimeData *mimeData = QApplication::clipboard()->mimeData();
+    const QMimeData* mimeData = QApplication::clipboard()->mimeData();
 
     if (mimeData->hasImage()) {
         /*
@@ -397,8 +400,8 @@ MessagesAdapter::pasteKeyDetected()
     } else if (mimeData->hasUrls()) {
         QList<QUrl> urlList = mimeData->urls();
         /*
-        * Extract the local paths of the files.
-        */
+         * Extract the local paths of the files.
+         */
         for (int i = 0; i < urlList.size(); ++i) {
             /*
              * Trim file:/// from url.
@@ -431,7 +434,7 @@ MessagesAdapter::onComposing(bool isComposing)
 }
 
 void
-MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info &convInfo)
+MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& convInfo)
 {
     auto* convModel = LRCInstance::getCurrentConversationModel();
     auto accInfo = &LRCInstance::getCurrentAccountInfo();
@@ -446,7 +449,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info &
         return;
     }
     try {
-        auto &contact = accInfo->contactModel->getContact(contactUri);
+        auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = Utils::bestNameForConversation(convInfo, *convModel);
         setInvitation(contact.profileInfo.type == lrc::api::profile::Type::PENDING,
                       bestName,
@@ -466,15 +469,15 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info &
 }
 
 void
-MessagesAdapter::newInteraction(const QString &accountId,
-                                const QString &convUid,
+MessagesAdapter::newInteraction(const QString& accountId,
+                                const QString& convUid,
                                 uint64_t interactionId,
-                                const interaction::Info &interaction)
+                                const interaction::Info& interaction)
 {
     Q_UNUSED(interactionId);
     try {
-        auto &accountInfo = LRCInstance::getAccountInfo(accountId);
-        auto &convModel = accountInfo.conversationModel;
+        auto& accountInfo = LRCInstance::getAccountInfo(accountId);
+        auto& convModel = accountInfo.conversationModel;
         const auto conversation = convModel->getConversationForUID(convUid);
 
         if (conversation.uid.isEmpty()) {
@@ -499,9 +502,9 @@ void
 MessagesAdapter::updateDraft()
 {
     Utils::oneShotConnect(qmlObj_,
-                          SIGNAL(sendMessageContentSaved(const QString &)),
+                          SIGNAL(sendMessageContentSaved(const QString&)),
                           this,
-                          SLOT(slotUpdateDraft(const QString &)));
+                          SLOT(slotUpdateDraft(const QString&)));
 
     requestSendMessageContent();
 }
@@ -524,7 +527,7 @@ MessagesAdapter::requestSendMessageContent()
 }
 
 void
-MessagesAdapter::setInvitation(bool show, const QString &contactUri, const QString &contactId)
+MessagesAdapter::setInvitation(bool show, const QString& contactUri, const QString& contactId)
 {
     QString s
         = show
@@ -542,7 +545,7 @@ MessagesAdapter::clear()
 }
 
 void
-MessagesAdapter::printHistory(lrc::api::ConversationModel &conversationModel,
+MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
                               const std::map<uint64_t, lrc::api::interaction::Info> interactions)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel, interactions).toUtf8();
@@ -551,7 +554,7 @@ MessagesAdapter::printHistory(lrc::api::ConversationModel &conversationModel,
 }
 
 void
-MessagesAdapter::setSenderImage(const QString &sender, const QString &senderImage)
+MessagesAdapter::setSenderImage(const QString& sender, const QString& senderImage)
 {
     QJsonObject setSenderImageObject = QJsonObject();
     setSenderImageObject.insert("sender_contact_method", QJsonValue(sender));
@@ -565,9 +568,9 @@ MessagesAdapter::setSenderImage(const QString &sender, const QString &senderImag
 }
 
 void
-MessagesAdapter::printNewInteraction(lrc::api::ConversationModel &conversationModel,
+MessagesAdapter::printNewInteraction(lrc::api::ConversationModel& conversationModel,
                                      uint64_t msgId,
-                                     const lrc::api::interaction::Info &interaction)
+                                     const lrc::api::interaction::Info& interaction)
 {
     auto interactionObject
         = interactionToJsonInteractionObject(conversationModel, msgId, interaction).toUtf8();
@@ -579,9 +582,9 @@ MessagesAdapter::printNewInteraction(lrc::api::ConversationModel &conversationMo
 }
 
 void
-MessagesAdapter::updateInteraction(lrc::api::ConversationModel &conversationModel,
+MessagesAdapter::updateInteraction(lrc::api::ConversationModel& conversationModel,
                                    uint64_t msgId,
-                                   const lrc::api::interaction::Info &interaction)
+                                   const lrc::api::interaction::Info& interaction)
 {
     auto interactionObject
         = interactionToJsonInteractionObject(conversationModel, msgId, interaction).toUtf8();
@@ -593,7 +596,7 @@ MessagesAdapter::updateInteraction(lrc::api::ConversationModel &conversationMode
 }
 
 void
-MessagesAdapter::setMessagesImageContent(const QString &path, bool isBased64)
+MessagesAdapter::setMessagesImageContent(const QString& path, bool isBased64)
 {
     if (isBased64) {
         QString param = QString("addImage_base64('file://%1')").arg(path);
@@ -605,7 +608,7 @@ MessagesAdapter::setMessagesImageContent(const QString &path, bool isBased64)
 }
 
 void
-MessagesAdapter::setMessagesFileContent(const QString &path)
+MessagesAdapter::setMessagesFileContent(const QString& path)
 {
     qint64 fileSize = QFileInfo(path).size();
     QString fileName = QFileInfo(path).fileName();
@@ -629,14 +632,14 @@ MessagesAdapter::removeInteraction(uint64_t interactionId)
 }
 
 void
-MessagesAdapter::setSendMessageContent(const QString &content)
+MessagesAdapter::setSendMessageContent(const QString& content)
 {
     QString s = QString::fromLatin1("setSendMessageContent(`%1`);").arg(content);
     QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
 }
 
 void
-MessagesAdapter::contactIsComposing(const QString &uid, const QString &contactUri, bool isComposing)
+MessagesAdapter::contactIsComposing(const QString& uid, const QString& contactUri, bool isComposing)
 {
     if (LRCInstance::getCurrentConvUid() == uid) {
         QString s
@@ -646,24 +649,24 @@ MessagesAdapter::contactIsComposing(const QString &uid, const QString &contactUr
 }
 
 void
-MessagesAdapter::acceptInvitation()
+MessagesAdapter::acceptInvitation(const QString& convUid)
 {
-    const auto convUid = LRCInstance::getCurrentConvUid();
-    LRCInstance::getCurrentConversationModel()->makePermanent(convUid);
+    const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
+    LRCInstance::getCurrentConversationModel()->makePermanent(currentConvUid);
 }
 
 void
-MessagesAdapter::refuseInvitation()
+MessagesAdapter::refuseInvitation(const QString& convUid)
 {
-    auto convUid = LRCInstance::getCurrentConvUid();
-    LRCInstance::getCurrentConversationModel()->removeConversation(convUid, false);
+    const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
+    LRCInstance::getCurrentConversationModel()->removeConversation(currentConvUid, false);
     setInvitation(false);
 }
 
 void
-MessagesAdapter::blockConversation()
+MessagesAdapter::blockConversation(const QString& convUid)
 {
-    auto convUid = LRCInstance::getCurrentConvUid();
-    LRCInstance::getCurrentConversationModel()->removeConversation(convUid, true);
+    const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
+    LRCInstance::getCurrentConversationModel()->removeConversation(currentConvUid, true);
     setInvitation(false);
 }
