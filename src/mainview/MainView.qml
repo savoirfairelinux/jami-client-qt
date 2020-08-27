@@ -145,6 +145,8 @@ Window {
     height: mainViewWindowPreferredHeight
     minimumWidth: minWidth
     minimumHeight: minHeight
+    flags:  Qt.WA_TranslucentBackground
+    color: JamiTheme.transparentColor
 
     Connections {
         target: CallAdapter
@@ -281,6 +283,7 @@ Window {
                 SplitView.maximumWidth: (sidePanelHidden ? splitView.width :
                                                       splitView.width - sidePanelViewStackPreferredWidth)
                 SplitView.fillHeight: true
+                color: JamiTheme.transparentColor
 
                 /*
                  * AccountComboBox is always visible

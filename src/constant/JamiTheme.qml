@@ -39,7 +39,7 @@ Item {
     property string transparentColor: "transparent"
     property string presenceGreen: "#4cd964"
     property string notificationRed: "#ff3b30"
-    property string backgroundColor: lightGrey_
+    property string backgroundColor: "transparent"
     property string backgroundDarkColor: lightGreyTab_
 
     property string screenSelectionBorderGreen: "green"
