@@ -103,5 +103,6 @@
         <file>src/mainview/components/RecordBox.qml</file>
         <file>src/commoncomponents/ElidedTextLabel.qml</file>
         <file>src/mainview/components/SipInputPanel.qml</file>
+        <file>src/commoncomponents/Scaffold.qml</file>
     </qresource>
 </RCC>
