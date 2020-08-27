@@ -28,7 +28,6 @@ ComboBox {
 
     signal accountChanged(int index)
     signal needToBackToWelcomePage(int index)
-    signal needToUpdateSmartList(string accountId)
     signal newAccountButtonClicked
     signal settingBtnClicked
 
@@ -37,11 +36,6 @@ ComboBox {
     function backToWelcomePage(index) {
         accountComboBox.needToBackToWelcomePage(index)
     }
-
-    function updateSmartList(accountId) {
-        accountComboBox.needToUpdateSmartList(accountId)
-    }
-
 
     /*
      * Refresh every item in accountListModel.
