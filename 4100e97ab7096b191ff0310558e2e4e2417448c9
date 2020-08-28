@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ecfc7b6c_a0db7e10",
+        "filename": "src/pluginitemlistmodel.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-28T16:25:09Z",
+      "side": 1,
+      "message": "typo in your name",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 16
+      },
+      "revId": "4100e97ab7096b191ff0310558e2e4e2417448c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f9b6abd_798962ca",
+        "filename": "src/pluginlistpreferencemodel.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-28T16:25:09Z",
+      "side": 1,
+      "message": "QString as a split value: https://doc.qt.io/qt-5/qstring.html#split",
+      "range": {
+        "startLine": 38,
+        "startChar": 25,
+        "endLine": 38,
+        "endChar": 46
+      },
+      "revId": "4100e97ab7096b191ff0310558e2e4e2417448c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7e4aefa_bdf0314b",
+        "filename": "src/pluginlistpreferencemodel.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-08-28T16:25:09Z",
+      "side": 1,
+      "message": "trialing",
+      "range": {
+        "startLine": 78,
+        "startChar": 37,
+        "endLine": 78,
+        "endChar": 39
+      },
+      "revId": "4100e97ab7096b191ff0310558e2e4e2417448c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
