@@ -29,9 +29,10 @@ win32-msvc {
     LIBS += $${QRENCODE}/vc8/qrcodelib/x64/Release-Lib/qrcodelib.lib
 
     # lrc
-    INCLUDEPATH += $${LRC}/src/
-    LIBS += $${LRC}/msvc/release/ringclient_static.lib
-    LIBS += $${LRC}/msvc/src/qtwrapper/Release/qtwrapper.lib
+    LIBS += -L$$PWD/../lrc/build-local/ -lringclient
+    INCLUDEPATH += $$PWD/../lrc/build-local
+    INCLUDEPATH += $$PWD/../lrc/src
+
 
     # daemon
     INCLUDEPATH += ../daemon/contrib/msvc/include/
@@ -150,6 +151,7 @@ HEADERS += ./src/smartlistmodel.h \
         ./src/videoinputdevicemodel.h \
         ./src/audiooutputdevicemodel.h \
         ./src/pluginlistpreferencemodel.h \
+        ./src/mediahandlerlistpreferencemodel.h \
         ./src/videoformatfpsmodel.h \
         ./src/videoformatresolutionmodel.h \
         ./src/audiomanagerlistmodel.h
@@ -189,6 +191,7 @@ SOURCES += ./src/bannedlistmodel.cpp \
         ./src/videoinputdevicemodel.cpp \
         ./src/audiooutputdevicemodel.cpp \
         ./src/pluginlistpreferencemodel.cpp \
+        ./src/mediahandlerlistpreferencemodel.cpp \
         ./src/videoformatfpsmodel.cpp \
         ./src/videoformatresolutionmodel.cpp \
         ./src/audiomanagerlistmodel.cpp
