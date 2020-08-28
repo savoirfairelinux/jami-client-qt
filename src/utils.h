@@ -557,6 +557,16 @@ public:
 
     Q_INVOKABLE bool checkShowPluginsButton();
 
+    Q_INVOKABLE QString
+    getBase64QRCodeImage(QString infoHash)
+    {
+        return Utils::QImageToByteArray(Utils::setupQRCode(infoHash, 0))
+                .toBase64()
+                .data();
+    }
+
+    Q_INVOKABLE QString getCurrentAccountInfoHash();
+
 private:
     QClipboard *clipboard_;
 };

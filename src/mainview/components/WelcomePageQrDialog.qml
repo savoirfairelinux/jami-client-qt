@@ -1,7 +1,7 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,45 +16,48 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.14
 import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
 import net.jami.Models 1.0
 
-
+//
+// A dialog that presents a QR code corresponding to the current account's
+// info hash.
+//
 Dialog {
-    id: userQrImageDialog
+    id: root
 
-    property string accountIdStr: ClientWrapper.utilsAdaptor.getCurrAccId()
+    // TODO(atraczyk): this should be based on a Q_PROPERTY and notified when
+    // the current account changes.
+    property string accountInfoHash: ClientWrapper.utilsAdaptor.getCurrentAccountInfoHash()
 
     function updateQrDialog() {
-        accountIdStr = ClientWrapper.utilsAdaptor.getCurrAccId()
+        accountInfoHash = ClientWrapper.utilsAdaptor.getCurrentAccountInfoHash()
     }
 
-    // When dialog is opened, trigger mainViewWindow overlay which is defined in overlay.model.
-    // (model : true is necessary)
+    // When dialog the is opened, trigger mainViewWindow overlay which is defined
+    // in overlay.model. (model : true is necessary)
     modal: true
 
-    //Content height + margin.
-    contentHeight: userQrImage.height + 30
+    // TODO(atraczyk): this margin and the dimensions of 'image' are good examples
+    // of values that should respond to screen scaling updates.
+    contentHeight: image.height + 30
 
     Image {
-        id: userQrImage
+        id: image
 
         anchors.centerIn: parent
 
-        width: 250
-        height: 250
-
+        width: 256
+        height: 256
+        smooth: false
         fillMode: Image.PreserveAspectFit
-        source: "image://qrImage/account_" + accountIdStr
-        sourceSize.width: 260
-        sourceSize.height: 260
-        mipmap: true
+        source: "data:image/png;base64," +
+                ClientWrapper.utilsAdaptor.getBase64QRCodeImage(accountInfoHash)
     }
 
     background: Rectangle {
-        border.width: 0
         radius: 10
     }
 }

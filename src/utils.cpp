@@ -1089,3 +1089,14 @@ UtilsAdapter::checkShowPluginsButton()
     return LRCInstance::pluginModel().getPluginsEnabled()
            && (LRCInstance::pluginModel().listLoadedPlugins().size() > 0);
 }
+
+QString
+UtilsAdapter::getCurrentAccountInfoHash()
+{
+    auto accountId = LRCInstance::getCurrAccId();
+    auto& accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
+    if (accountInfo.profileInfo.type == lrc::api::profile::Type::RING) {
+        return accountInfo.profileInfo.uri;
+    }
+    return {};
+}
