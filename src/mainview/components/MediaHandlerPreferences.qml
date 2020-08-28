@@ -26,29 +26,27 @@ import "../../commoncomponents"
 Popup {
     id: root
 
-    function toggleMediaHandlerSlot(mediaHandlerId, isLoaded) {
-        ClientWrapper.pluginModel.toggleCallMediaHandler(mediaHandlerId, !isLoaded)
-        mediahandlerPickerListView.model = MediaHandlerAdapter.getMediaHandlerSelectableModel()
-    }
+    property string pluginId: ""
+    property string mediaHandlerId: ""
 
     contentWidth: 350
-    contentHeight: mediahandlerPickerPopupRectColumnLayout.height + 50
+    contentHeight: mediahandlerPreferencePopupRectColumnLayout.height + 50
 
     padding: 0
 
     modal: true
 
     contentItem: Rectangle {
-        id: mediahandlerPickerPopupRect
+        id: mediahandlerPreferencePopupRect
 
-        width: 250
+        width: 300
 
         HoverableButton {
             id: closeButton
 
-            anchors.top: mediahandlerPickerPopupRect.top
+            anchors.top: mediahandlerPreferencePopupRect.top
             anchors.topMargin: 5
-            anchors.right: mediahandlerPickerPopupRect.right
+            anchors.right: mediahandlerPreferencePopupRect.right
             anchors.rightMargin: 5
 
             width: 30
@@ -63,16 +61,16 @@ Popup {
         }
 
         ColumnLayout {
-            id: mediahandlerPickerPopupRectColumnLayout
+            id: mediahandlerPreferencePopupRectColumnLayout
 
-            anchors.top: mediahandlerPickerPopupRect.top
+            anchors.top: mediahandlerPreferencePopupRect.top
             anchors.topMargin: 15
 
             Text {
                 id: mediahandlerPickerTitle
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: mediahandlerPickerPopupRect.width
+                Layout.preferredWidth: mediahandlerPreferencePopupRect.width
                 Layout.preferredHeight: 30
 
                 font.pointSize: JamiTheme.textFontSize
@@ -81,37 +79,31 @@ Popup {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 
-                text: qsTr("Choose plugin")
+                text: qsTr("Preferences")
             }
 
             ListView {
-                id: mediahandlerPickerListView
+                id: mediahandlerPreferencePickerListView
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: mediahandlerPickerPopupRect.width
+                Layout.preferredWidth: mediahandlerPreferencePopupRect.width
                 Layout.preferredHeight: 200
 
-                model: MediaHandlerAdapter.getMediaHandlerSelectableModel()
+                model: MediaHandlerAdapter.getMediaHandlerPreferencesModel(pluginId, mediaHandlerId)
 
                 clip: true
 
-                delegate: MediaHandlerItemDelegate {
-                    id: mediaHandlerItemDelegate
-                    visible: ClientWrapper.pluginModel.getPluginsEnabled()
-                    width: mediahandlerPickerListView.width
-                    height: 50
+                // delegate: MediaHandlerPreferenceDelegate {
+                //     id: mediaHandlerPreferenceDelegate
+                //     width: mediahandlerPreferencePickerListView.width
+                //     height: 50
 
-                    mediaHandlerName : MediaHandlerName
-                    mediaHandlerId: MediaHandlerId
-                    mediaHandlerIcon: MediaHandlerIcon
-                    isLoaded: IsLoaded
-                    pluginId: PluginId
-
-                    onBtnLoadMediaHandlerToggled: {
-                        toggleMediaHandlerSlot(mediaHandlerId, isLoaded)
-                    }
-
-                }
+                //     preferenceName: PreferenceName
+                //     preferenceSummary: PreferenceSummary
+                //     preferenceType: PreferenceType
+                //     preferenceCurrentValue: PreferenceCurrentValue
+                //     pluginId: PluginId
+                // }
 
                 ScrollIndicator.vertical: ScrollIndicator {}
             }
@@ -123,7 +115,9 @@ Popup {
 
     onAboutToShow: {
         // Reset the model on each show.
-        mediahandlerPickerListView.model = MediaHandlerAdapter.getMediaHandlerSelectableModel()
+        console.log(mediahandlerPreferencePickerListView.model.preferencesCount)
+        mediahandlerPreferencePickerListView.model = MediaHandlerAdapter.getMediaHandlerPreferencesModel(pluginId, mediaHandlerId)
+        console.log(mediahandlerPreferencePickerListView.model.preferencesCount)
     }
 
     background: Rectangle {
