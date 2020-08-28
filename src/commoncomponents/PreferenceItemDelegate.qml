@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
  *
@@ -25,7 +25,7 @@ import QtGraphicalEffects 1.14
 import QtQuick.Controls.Styles 1.4
 import net.jami.Models 1.0
 
-import "../../commoncomponents"
+import "../commoncomponents"
 
 ItemDelegate {
     id: root
@@ -103,7 +103,7 @@ ItemDelegate {
             font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
             font.bold: true
-            text: pluginName === "" ? pluginId : pluginName
+            text: preferenceName
         }
 
         HoverableRadiusButton{

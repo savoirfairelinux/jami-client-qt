@@ -29,6 +29,7 @@
 #include "audiomanagerlistmodel.h"
 #include "audiooutputdevicemodel.h"
 #include "pluginlistpreferencemodel.h"
+#include "mediahandlerlistpreferencemodel.h"
 #include "avadapter.h"
 #include "bannedlistmodel.h"
 #include "calladapter.h"
@@ -313,6 +314,7 @@ MainApplication::qmlInitialization()
     QML_REGISTERTYPE(VideoFormatResolutionModel, 1, 0);
     QML_REGISTERTYPE(VideoFormatFpsModel, 1, 0);
     QML_REGISTERTYPE(PluginListPreferenceModel, 1, 0);
+    QML_REGISTERTYPE(MediaHandlerListPreferenceModel, 1, 0);
     /*
      * Register QQuickItem type.
      */

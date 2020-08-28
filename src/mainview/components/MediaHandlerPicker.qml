@@ -24,7 +24,7 @@ import net.jami.Models 1.0
 import "../../commoncomponents"
 
 Popup {
-    id: mediahandlerPickerPopup
+    id: root
 
     function toggleMediaHandlerSlot(mediaHandlerId, isLoaded) {
         ClientWrapper.pluginModel.toggleCallMediaHandler(mediaHandlerId, !isLoaded)
@@ -58,7 +58,7 @@ Popup {
             source: "qrc:/images/icons/round-close-24px.svg"
 
             onClicked: {
-                mediahandlerPickerPopup.close()
+                root.close()
             }
         }
 
@@ -105,6 +105,7 @@ Popup {
                     mediaHandlerId: MediaHandlerId
                     mediaHandlerIcon: MediaHandlerIcon
                     isLoaded: IsLoaded
+                    pluginId: PluginId
 
                     onBtnLoadMediaHandlerToggled: {
                         toggleMediaHandlerSlot(mediaHandlerId, isLoaded)
