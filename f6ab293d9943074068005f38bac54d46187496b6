@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5602616a_bf036404",
+        "filename": "src/commoncomponents/MaterialButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-08-28T15:44:12Z",
+      "side": 1,
+      "message": "could be a lovely ternary...",
+      "range": {
+        "startLine": 98,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 29
+      },
+      "revId": "f6ab293d9943074068005f38bac54d46187496b6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
