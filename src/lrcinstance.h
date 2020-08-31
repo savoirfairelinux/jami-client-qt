@@ -443,6 +443,7 @@ public:
 signals:
     void accountListChanged();
     void currentAccountChanged();
+    void restoreAppRequested();
 
 private:
     LRCInstance(migrateCallback willMigrateCb = {}, migrateCallback didMigrateCb = {})

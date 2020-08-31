@@ -56,7 +56,9 @@
 #include "videoformatresolutionmodel.h"
 #include "videoinputdevicemodel.h"
 
+#include <QAction>
 #include <QFontDatabase>
+#include <QMenu>
 #include <QQmlContext>
 #include <QtWebEngine>
 
@@ -450,6 +452,29 @@ MainApplication::applicationSetup()
      * Initialize qml components.
      */
     qmlInitialization();
+
+    /*
+     * Systray menu.
+     */
+    GlobalSystemTray& sysIcon = GlobalSystemTray::instance();
+    sysIcon.setIcon(QIcon(":images/jami.png"));
+
+    QMenu* systrayMenu = new QMenu();
+
+    QAction* exitAction = new QAction(tr("Exit"), this);
+    connect(exitAction, &QAction::triggered,
+            [this] {
+                QCoreApplication::exit();
+            });
+
+     connect(&sysIcon, &QSystemTrayIcon::activated,
+             [this](QSystemTrayIcon::ActivationReason reason) {
+                 emit LRCInstance::instance().restoreAppRequested();
+             });
+
+    systrayMenu->addAction(exitAction);
+    sysIcon.setContextMenu(systrayMenu);
+    sysIcon.show();
 
     return true;
 }
