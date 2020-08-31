@@ -77,14 +77,6 @@ Rectangle {
         sidePanelTabBar.invitationTabDown = false
     }
 
-    function needToChangeToAccount(accountId, index) {
-        if (index !== -1) {
-            accountComboBox.currentIndex = index
-            ClientWrapper.accountAdaptor.accountChanged(index)
-            accountChangedUIReset()
-        }
-    }
-
     function refreshAccountComboBox(index = -1) {
 
 
@@ -216,8 +208,7 @@ Rectangle {
             target: ConversationsAdapter
 
             function onShowChatView(accountId, convUid) {
-                conversationSmartListView.needToShowChatView(accountId,
-                                                             convUid)
+                conversationSmartListView.needToShowChatView(accountId, convUid)
             }
 
             function onShowConversationTabs(visible) {

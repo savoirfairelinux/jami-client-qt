@@ -36,21 +36,14 @@ Rectangle {
     signal callCancelButtonIsClicked
 
     function updateUI(accountId, convUid) {
-        contactImgSource = "data:image/png;base64," + ClientWrapper.utilsAdaptor.getContactImageString(
-                    accountId, convUid)
-        bestName = ClientWrapper.utilsAdaptor.getBestName(accountId, convUid)
-        var id = ClientWrapper.utilsAdaptor.getBestId(accountId, convUid)
-        bestId = (bestName !== id) ? id : ""
+        userInfoCallPage.updateUI(accountId, convUid)
     }
 
     anchors.fill: parent
 
     color: "black"
 
-
-    /*
-     * Prevent right click propagate to VideoCallPage.
-     */
+    // Prevent right click propagate to VideoCallPage.
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: false
@@ -62,114 +55,43 @@ Rectangle {
 
         anchors.fill: parent
 
-        Image {
-            id: contactImg
-
-            Layout.alignment: Qt.AlignCenter
-
-            Layout.preferredWidth: 100
-            Layout.preferredHeight: 100
-
-            fillMode: Image.PreserveAspectFit
-            source: contactImgSource
-            asynchronous: true
+        UserInfoCallPage {
+            id: userInfoCallPage
+            Layout.fillHeight: true
+            Layout.fillWidth: true
         }
 
-        Rectangle {
-            id: outgoingCallPageTextRect
+        AnimatedImage {
+            id: spinnerImage
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 5
+            Layout.preferredWidth: 24
+            Layout.preferredHeight: 8
 
-            Layout.preferredWidth: outgoingCallPageRect.width
-            Layout.preferredHeight: jamiBestNameText.height + jamiBestIdText.height
-                                    + callStatusText.height + spinnerImage.height + 20
+            source: "qrc:/images/waiting.gif"
+        }
 
-            color: "transparent"
+        Text {
+            id: callStatusText
 
-            ColumnLayout {
-                id: outgoingCallPageTextRectColumnLayout
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: outgoingCallPageTextRect.width
+            Layout.preferredHeight: 30
 
-                Text {
-                    id: jamiBestNameText
+            font.pointSize: JamiTheme.textFontSize
 
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: outgoingCallPageTextRect.width
-                    Layout.preferredHeight: 50
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 
-                    font.pointSize: JamiTheme.textFontSize + 3
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    text: textMetricsjamiBestNameText.elidedText
-                    color: "white"
-
-                    TextMetrics {
-                        id: textMetricsjamiBestNameText
-                        font: jamiBestNameText.font
-                        text: bestName
-                        elideWidth: outgoingCallPageTextRect.width - 50
-                        elide: Qt.ElideMiddle
-                    }
-                }
-
-                Text {
-                    id: jamiBestIdText
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: outgoingCallPageTextRect.width
-                    Layout.preferredHeight: 30
-
-                    font.pointSize: JamiTheme.textFontSize
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    text: textMetricsjamiBestIdText.elidedText
-                    color: Qt.lighter("white", 1.5)
-
-                    TextMetrics {
-                        id: textMetricsjamiBestIdText
-                        font: jamiBestIdText.font
-                        text: bestId
-                        elideWidth: outgoingCallPageTextRect.width - 50
-                        elide: Qt.ElideMiddle
-                    }
-                }
-
-                AnimatedImage {
-                    id: spinnerImage
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: 20
-                    Layout.preferredHeight: 5
-
-                    source: "qrc:/images/waiting.gif"
-                }
-
-                Text {
-                    id: callStatusText
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: outgoingCallPageTextRect.width
-                    Layout.preferredHeight: 30
-
-                    font.pointSize: JamiTheme.textFontSize
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    text: ClientWrapper.utilsAdaptor.getCallStatusStr(callStatus) + "..."
-                    color: Qt.lighter("white", 1.5)
-                }
-            }
+            text: ClientWrapper.utilsAdaptor.getCallStatusStr(callStatus) + "..."
+            color: Qt.lighter("white", 1.5)
         }
 
         ColumnLayout {
             id: callCancelButtonColumnLayout
 
             Layout.alignment: Qt.AlignCenter
+            Layout.bottomMargin: 48
 
             HoverableButton {
                 id: callCancelButton
@@ -193,17 +115,8 @@ Rectangle {
                 toolTipText: qsTr("Cancel the call")
 
                 onClicked: {
-                    outgoingCallPageRect.callCancelButtonIsClicked()
+                    callCancelButtonIsClicked()
                 }
-            }
-
-            Text {
-                id: cancelText
-
-                Layout.alignment: Qt.AlignCenter
-
-                font.pointSize: JamiTheme.textFontSize - 2
-                text: qsTr("Cancel")
             }
         }
     }
