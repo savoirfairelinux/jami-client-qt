@@ -176,7 +176,6 @@ Utils::removeOldVersions()
      */
     QSettings(hkcuSoftwareKey + "jami.net\\Ring", QSettings::NativeFormat).remove("");
     QSettings(hkcuSoftwareKey + "ring.cx", QSettings::NativeFormat).remove("");
-
     /*
      * 2. Unset Ring as a startup application.
      */
@@ -1050,6 +1049,32 @@ UtilsAdapter::hasVideoCall()
     return LRCInstance::hasVideoCall();
 }
 
+bool
+UtilsAdapter::hasCall(const QString &accountId)
+{
+    auto activeCalls = LRCInstance::getActiveCalls();
+    for (const auto &callId : activeCalls) {
+        auto &accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
+        if (accountInfo.callModel->hasCall(callId)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const QString
+UtilsAdapter::getCallConvForAccount(const QString &accountId)
+{
+    // TODO: Currently returning first call, stablish priority according to state?
+    for (const auto &callId : LRCInstance::getActiveCalls()) {
+        auto &accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
+        if (accountInfo.callModel->hasCall(callId)) {
+            return LRCInstance::getConversationFromCallId(callId, accountId).uid;
+        }
+    }
+    return "";
+}
+
 const QString
 UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
 {
@@ -1066,6 +1091,14 @@ UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
     }
 
     return call->id;
+}
+
+int
+UtilsAdapter::getCallStatus(const QString &callId)
+{
+    const auto callStatus = LRCInstance::getCallInfo(
+                callId, LRCInstance::getCurrAccId());
+    return static_cast<int>(callStatus->status);
 }
 
 const QString
