@@ -175,7 +175,6 @@ Utils::removeOldVersions()
      */
     QSettings(hkcuSoftwareKey + "jami.net\\Ring", QSettings::NativeFormat).remove("");
     QSettings(hkcuSoftwareKey + "ring.cx", QSettings::NativeFormat).remove("");
-
     /*
      * 2. Unset Ring as a startup application.
      */
@@ -889,7 +888,8 @@ Utils::humanFileSize(qint64 fileSize)
     return QString::number(fileSizeF) + " " + units[unit_position];
 }
 
-bool Utils::isImage(const QString &fileExt)
+bool
+Utils::isImage(const QString &fileExt)
 {
     if (fileExt == "png" || fileExt == "jpg" || fileExt == "jpeg")
         return true;
