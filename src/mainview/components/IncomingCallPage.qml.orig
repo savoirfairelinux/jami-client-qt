@@ -146,6 +146,7 @@ Rectangle {
             }
         }
     }
+<<<<<<< HEAD
 
     color: "transparent"
 
@@ -168,4 +169,8 @@ Rectangle {
                                     responsibleConvUid)
         }
     }
+=======
+>>>>>>> 5042b72... mainview: call flow review
 }
+
+

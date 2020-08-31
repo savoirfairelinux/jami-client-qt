@@ -133,6 +133,9 @@ Window {
                 sidePanelViewStack.pop(StackView.Immediate)
                 mainViewStack.pop(StackView.Immediate)
                 recursionStackViewItemMove(mainViewStack, sidePanelViewStack, 1)
+            } else {
+                sidePanelViewStack.pop(mainViewWindowSidePanel, StackView.Immediate)
+                mainViewStack.pop(StackView.Immediate)
             }
 
             if (currentAccountIsCalling()) {
@@ -219,9 +222,13 @@ Window {
             callStackView.responsibleConvUid = convUid
             callStackView.updateCorrspondingUI()
 
+<<<<<<< HEAD
+            mainViewWindowSidePanel.refreshAccountComboBox(index)
+=======
             if (accountId !== ClientWrapper.utilsAdaptor.getCurrAccId()) {
                 mainViewWindowSidePanel.refreshAccountComboBox(index)
             }
+>>>>>>> 5042b72... mainview: call flow review
             ConversationsAdapter.selectConversation(accountId, convUid)
 
             MessagesAdapter.setupChatView(convUid)
@@ -423,7 +430,6 @@ Window {
         id: mainViewWindowSidePanel
 
         onConversationSmartListNeedToAccessMessageWebView: {
-
             communicationPageMessageWebView.headerUserAliasLabelText = currentUserAlias
             communicationPageMessageWebView.headerUserUserNameLabelText = currentUserDisplayName
 
@@ -581,22 +587,15 @@ Window {
         }
 
         onNeedToGoBackToWelcomeView: {
-            mainViewWindowSidePanel.deselectConversationSmartList()
-            if (communicationPageMessageWebView.visible
-                    && !mainViewStack.visible) {
-                sidePanelViewStack.pop()
-            } else if (communicationPageMessageWebView.visible
-                       && mainViewStack.visible) {
-                mainViewStack.pop()
-            }
-            recordBox.visible = false
+            showWelcomeView()
+
         }
 
         Component.onCompleted: {
 
             sidePanelViewStack.SplitView.maximumWidth = Qt.binding(function() {
-                return (hiddenView ? splitView.width :
-                                     splitView.width - sidePanelViewStackPreferedWidth)
+                return (mainViewStack.visible ? splitView.width :
+                                                splitView.width - sidePanelViewStackPreferedWidth)
             })
 
             recordBox.x = Qt.binding(function() {
