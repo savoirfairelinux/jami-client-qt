@@ -503,6 +503,8 @@ public:
     Q_INVOKABLE void startPreviewing(bool force);
     Q_INVOKABLE void stopPreviewing();
     Q_INVOKABLE bool hasVideoCall();
+    Q_INVOKABLE bool hasCall(const QString &accountId);
+    Q_INVOKABLE const QString getCallConvForAccount(const QString &accountId);
     Q_INVOKABLE const QString getCallId(const QString &accountId, const QString &convUid);
     Q_INVOKABLE QString getStringUTF8(QString string);
     Q_INVOKABLE bool validateRegNameForm(const QString &regName);

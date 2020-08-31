@@ -53,6 +53,7 @@
 #include <QSvgRenderer>
 #include <QTranslator>
 #include <QtConcurrent/QtConcurrent>
+#include <QSystemTrayIcon>
 
 bool
 Utils::CreateStartupLink(const std::wstring &wstrAppName)
@@ -310,6 +311,7 @@ Utils::showSystemNotification(QWidget *widget,
     if (settings.value(SettingsKey::enableNotifications).toBool()) {
         GlobalSystemTray::instance().setTriggeredAccountId(triggeredAccountId);
         GlobalSystemTray::instance().showMessage(message, "", QIcon(":images/jami.png"));
+        GlobalSystemTray::instance().show(); // Necessary to use the hide?
         QApplication::alert(widget, delay);
     }
 }
@@ -325,6 +327,7 @@ Utils::showSystemNotification(QWidget *widget,
     if (settings.value(SettingsKey::enableNotifications).toBool()) {
         GlobalSystemTray::instance().setTriggeredAccountId(triggeredAccountId);
         GlobalSystemTray::instance().showMessage(sender, message, QIcon(":images/jami.png"));
+        GlobalSystemTray::instance().show(); // Necessary to use the hide?
         QApplication::alert(widget, delay);
     }
 }
@@ -1026,6 +1029,32 @@ bool
 UtilsAdapter::hasVideoCall()
 {
     return LRCInstance::hasVideoCall();
+}
+
+bool
+UtilsAdapter::hasCall(const QString &accountId)
+{
+    auto activeCalls = LRCInstance::getActiveCalls();
+    for (const auto &callId : activeCalls) {
+        auto &accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
+        if (accountInfo.callModel->hasCall(callId)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const QString
+UtilsAdapter::getCallConvForAccount(const QString &accountId)
+{
+    // TODO: Currently returning first call, stablish priority according to state?
+    for (const auto &callId : LRCInstance::getActiveCalls()) {
+        auto &accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
+        if (accountInfo.callModel->hasCall(callId)) {
+            return LRCInstance::getConversationFromCallId(callId, accountId).uid;
+        }
+    }
+    return "";
 }
 
 const QString
