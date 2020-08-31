@@ -195,8 +195,7 @@ Rectangle {
             target: ConversationsAdapter
 
             function onShowChatView(accountId, convUid) {
-                conversationSmartListView.needToShowChatView(accountId,
-                                                             convUid)
+                conversationSmartListView.needToShowChatView(accountId, convUid)
             }
 
             function onShowConversationTabs(visible) {
