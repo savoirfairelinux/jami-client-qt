@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "21392da3_18fb5c03",
+        "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-31T20:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6f52e9c_6a76d07f",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 37
+      },
+      "revId": "9c061c06067ba8b7aaad66a54d43a53f39c3cb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9fbdbd3f_f6c8bbd3",
         "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "9c061c06067ba8b7aaad66a54d43a53f39c3cb2d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ae521d0_0c07d125",
+        "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-08-31T20:32:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fbdbd3f_f6c8bbd3",
+      "range": {
+        "startLine": 83,
+        "startChar": 7,
+        "endLine": 83,
+        "endChar": 40
+      },
+      "revId": "9c061c06067ba8b7aaad66a54d43a53f39c3cb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
