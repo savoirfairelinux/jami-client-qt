@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25abafc8_1594cbaa",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-08-31T18:03:10Z",
+      "side": 1,
+      "message": "Need to consider the small resize:\nreturn mainViewStack.visible ? sidePanelViewStack.width + recordBox.x_offset + i :\n                               recordBox.x_offset + i",
+      "range": {
+        "startLine": 605,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 1
+      },
+      "revId": "c0bc930b105a22911837e20bd22e76dc8c215649",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
