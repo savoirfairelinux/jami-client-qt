@@ -71,7 +71,6 @@ signals:
     void showVideoCallPage(const QString& accountId, const QString& convUid, const QString& callId);
     void showCallStack(const QString& accountId, const QString& convUid, bool forceReset = false);
     void closeCallStack(const QString& accountId, const QString& convUid);
-    void closePotentialIncomingCallPageWindow(const QString& accountId, const QString& convUid);
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
     void updateConversationSmartList();
     void updateParticipantsInfos(const QVariantList& infos,
@@ -84,7 +83,7 @@ signals:
     /*
      * For Call Overlay
      */
-    void updateTimeText(const QString &time);
+    void updateTimeText(const QString& time);
     void showOnHoldLabel(bool isPaused);
     void updateOverlay(bool isPaused,
                        bool isAudioOnly,
@@ -106,6 +105,7 @@ private:
                     const QString& accountId = {},
                     bool forceCallOnly = false);
     bool shouldShowPreview(bool force);
+    void showNotification(const QString& accountId, const lrc::api::conversation::Info& convInfo);
 
     /*
      * Current conf/call info.
@@ -116,6 +116,7 @@ private:
     QMetaObject::Connection callStatusChangedConnection_;
     QMetaObject::Connection onParticipantsChangedConnection_;
     QMetaObject::Connection closeIncomingCallPageConnection_;
+    QMetaObject::Connection appStateChangedConnection_;
 
     /*
      * For Call Overlay
