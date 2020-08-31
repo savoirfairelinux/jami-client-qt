@@ -23,8 +23,6 @@
  */
 
 #include "calladapter.h"
-
-#include "globalsystemtray.h"
 #include "utils.h"
 
 CallAdapter::CallAdapter(QObject* parent)
@@ -94,7 +92,6 @@ CallAdapter::refuseACall(const QString& accountId, const QString& convUid)
 void
 CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
 {
-    emit incomingCallNeedToSetupMainView(accountId, convUid);
     auto* convModel = LRCInstance::getCurrentConversationModel();
     const auto convInfo = convModel->getConversationForUID(convUid);
     if (!convInfo.uid.isEmpty()) {
@@ -110,9 +107,8 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
     auto* callModel = LRCInstance::getCurrentCallModel();
 
     if (!callModel->hasCall(convInfo.callId)) {
-        /*
-         * Connection to close potential incoming call page when it is not current account.
-         */
+
+        // Connection to close potential incoming call page when it is not current account.
         auto& accInfo = LRCInstance::accountModel().getAccountInfo(accountId);
 
         QObject::disconnect(closeIncomingCallPageConnection_);
@@ -133,8 +129,9 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
                                    case lrc::api::call::Status::PEER_BUSY:
                                    case lrc::api::call::Status::TIMEOUT:
                                    case lrc::api::call::Status::TERMINATING: {
-                                       if (!uid.isEmpty())
-                                           emit closePotentialIncomingCallPageWindow(accountId, uid);
+                                       if (!uid.isEmpty()) {
+                                           closeNotification();
+                                       }
                                        break;
                                    }
                                    default:
@@ -144,13 +141,26 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
                                    emit updateConversationSmartList();
                                    QObject::disconnect(closeIncomingCallPageConnection_);
                                });
-        /*
-         * Show incoming call page only.
-         */
-        auto accountProperties = LRCInstance::accountModel().getAccountConfig(accountId);
-        if (!accountProperties.autoAnswer && !accountProperties.isRendezVous) {
-            emit showIncomingCallPage(accountId, convInfo.uid);
+
+        auto* convModel = LRCInstance::getCurrentConversationModel();
+        const auto currentConvUid = LRCInstance::getCurrentConvUid();
+        const auto currentConvInfo = convModel->getConversationForUID(currentConvUid);
+
+        // Call in current conversation
+        auto currentConvHasCall = callModel->hasCall(currentConvInfo.callId);
+
+        // Check INCOMING / OUTGOING call in current conversation
+        if (currentConvHasCall) {
+            auto currentCall = callModel->getCall(currentConvInfo.callId);
+            if (currentCall.status == lrc::api::call::Status::INCOMING_RINGING ||
+                    currentCall.status == lrc::api::call::Status::OUTGOING_RINGING) {
+                showNotification(accountId, convInfo);
+                return;
+            }
         }
+        emit incomingCallNeedToSetupMainView(accountId, convInfo.uid);
+        emit showIncomingCallPage(accountId, convInfo.uid);
+        emit showCallStack(accountId, convInfo.uid, true);
         return;
     }
 
@@ -163,15 +173,60 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
             emit showCallStack(accountId, convInfo.uid);
         }
     } else {
+        auto showIncomingCall = false;
         auto selectedAccountId = LRCInstance::getCurrentAccountInfo().id;
         auto accountProperties = LRCInstance::accountModel().getAccountConfig(selectedAccountId);
         if (!accountProperties.autoAnswer && !accountProperties.isRendezVous) {
+
+            // App not focused
+            if (QApplication::focusObject() == nullptr) {
+                showNotification(accountId, convInfo);
+                emit callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
+                emit updateConversationSmartList();
+                return;
+            }
+
+            auto* convModel = LRCInstance::getCurrentConversationModel();
+            const auto currentConvUid = LRCInstance::getCurrentConvUid();
+            const auto currentConvInfo = convModel->getConversationForUID(currentConvUid);
+
+            // Call in current conversation
+            auto currentConvHasCall = callModel->hasCall(currentConvInfo.callId);
+
+            // Check INCOMING / OUTGOING call in current conversation
+            if (isCallSelected) {
+                if (currentConvHasCall) {
+                auto currentCall = callModel->getCall(currentConvInfo.callId);
+                    if (currentCall.status == lrc::api::call::Status::OUTGOING_RINGING) {
+                        showNotification(accountId, convInfo);
+                    } else {
+                        showIncomingCall = true;
+                    }
+                } else {
+                    showIncomingCall = true;
+                }
+            } else { // Not current conversation
+                if (currentConvHasCall) {
+                    auto currentCall = callModel->getCall(currentConvInfo.callId);
+                    if (currentCall.status == lrc::api::call::Status::INCOMING_RINGING ||
+                          currentCall.status == lrc::api::call::Status::OUTGOING_RINGING) {
+                        showNotification(accountId, convInfo);
+                        emit callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
+                        emit updateConversationSmartList();
+                        return;
+                    }
+                }
+                showIncomingCall = true;
+            }
+        }
+
+        if (showIncomingCall) {
+            emit incomingCallNeedToSetupMainView(accountId, convInfo.uid);
             emit showIncomingCallPage(accountId, convInfo.uid);
+            emit showCallStack(accountId, convInfo.uid, true);
         }
     }
-
     emit callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
-
     emit updateConversationSmartList();
 }
 
@@ -274,6 +329,72 @@ CallAdapter::getConferencesInfos()
     }
     return map;
 }
+
+void
+CallAdapter::showNotification(const QString& accountId, const lrc::api::conversation::Info& convInfo)
+{
+    // Do not set notification if it is already active for the account and conversation
+    // TODO: process different incoming calls that need notification
+    if (accountId == GlobalSystemTray::instance().getTriggeredAccountId() &&
+            convInfo.uid == GlobalSystemTray::instance().getPossibleOnGoingConversationUid()) {
+        return;
+    }
+
+    QString sender = convInfo.uid;
+    if (accountId != "") {
+        auto& accInfo = LRCInstance::getAccountInfo(accountId);
+        if (!convInfo.participants.isEmpty()) {
+            auto &contact = accInfo.contactModel->getContact(convInfo.participants[0]);
+            sender = Utils::bestNameForContact(contact);
+        }
+    }
+    GlobalSystemTray::instance().show();
+    GlobalSystemTray::instance().setPossibleOnGoingConversationUid(convInfo.uid);
+    Utils::showSystemNotification(QApplication::focusWidget(), sender, tr("is calling you"), 0, accountId);
+
+    QObject::disconnect(notificationActivatedConnection_);
+    QObject::disconnect(notificationClickedConnection_);
+
+    notificationActivatedConnection_ = QObject::connect(&GlobalSystemTray::instance(),
+                                              &GlobalSystemTray::activated,
+                                              [=](GlobalSystemTray::ActivationReason reason) {
+        CallAdapter::notificationClicked(reason);
+    });
+
+    notificationClickedConnection_ = QObject::connect(&GlobalSystemTray::instance(),
+                                            &GlobalSystemTray::messageClicked, [=]() {
+        CallAdapter::notificationClicked();
+    });
+}
+
+void
+CallAdapter::notificationClicked(QSystemTrayIcon::ActivationReason reason)
+{
+    // TODO: Send application to focus
+    // TODO: Process reason
+    const auto triggeredAccount = GlobalSystemTray::instance().getTriggeredAccountId();
+    const auto triggeredConvUid = GlobalSystemTray::instance().getPossibleOnGoingConversationUid();
+
+    if (triggeredAccount != "" && triggeredConvUid != "") {
+        emit incomingCallNeedToSetupMainView(triggeredAccount, triggeredConvUid);
+        emit showIncomingCallPage(triggeredAccount, triggeredConvUid);
+        emit showCallStack(triggeredAccount, triggeredConvUid, true);
+    }
+
+    closeNotification();
+
+}
+
+void
+CallAdapter::closeNotification()
+{
+    GlobalSystemTray::instance().setTriggeredAccountId("");
+    GlobalSystemTray::instance().setPossibleOnGoingConversationUid("");
+    GlobalSystemTray::instance().hide();
+    QObject::disconnect(notificationActivatedConnection_);
+    QObject::disconnect(notificationClickedConnection_);
+}
+
 
 void
 CallAdapter::connectCallModel(const QString& accountId)
@@ -384,7 +505,7 @@ CallAdapter::connectCallModel(const QString& accountId)
                     }
                 } else {
                     emit closeCallStack(accountId, convInfo.uid);
-                    emit closePotentialIncomingCallPageWindow(accountId, convInfo.uid);
+                    closeNotification();
                 }
 
                 break;
