@@ -34,6 +34,7 @@ public:
     ~ConversationsAdapter();
 
     Q_INVOKABLE bool connectConversationModel();
+    Q_INVOKABLE void disconnectConversationModel();
     Q_INVOKABLE void selectConversation(const QString &accountId,
                                         const QString &convUid,
                                         bool preventSendingSignal = true);
@@ -68,7 +69,6 @@ private:
     QMetaObject::Connection filterChangedConnection_;
     QMetaObject::Connection newConversationConnection_;
     QMetaObject::Connection conversationRemovedConnection_;
-    QMetaObject::Connection newInteractionConnection_;
     QMetaObject::Connection conversationClearedConnection;
     QMetaObject::Connection selectedCallChanged_;
     QMetaObject::Connection smartlistSelectionConnection_;

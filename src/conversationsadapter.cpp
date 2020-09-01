@@ -184,17 +184,6 @@ ConversationsAdapter::connectConversationModel()
     // Signal connections
     auto currentConversationModel = LRCInstance::getCurrentConversationModel();
 
-    QObject::disconnect(modelSortedConnection_);
-    QObject::disconnect(modelUpdatedConnection_);
-    QObject::disconnect(filterChangedConnection_);
-    QObject::disconnect(newConversationConnection_);
-    QObject::disconnect(conversationRemovedConnection_);
-    QObject::disconnect(conversationClearedConnection);
-    QObject::disconnect(newInteractionConnection_);
-    QObject::disconnect(interactionRemovedConnection_);
-    QObject::disconnect(searchStatusChangedConnection_);
-    QObject::disconnect(searchResultUpdatedConnection_);
-
     modelSortedConnection_ = QObject::connect(currentConversationModel,
                                               &lrc::api::ConversationModel::modelSorted,
                                               [this]() {
@@ -258,14 +247,6 @@ ConversationsAdapter::connectConversationModel()
         backToWelcomePage();
     });
 
-    newInteractionConnection_ = QObject::connect(currentConversationModel,
-                                                 &lrc::api::ConversationModel::newInteraction,
-                                                 [this] {
-        conversationSmartListModel_->fillConversationsList();
-        updateConversationsFilterWidget();
-        QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
-    });
-
     searchStatusChangedConnection_ = QObject::connect(currentConversationModel,
                                                       &lrc::api::ConversationModel::searchStatusChanged,
                                                       [this](const QString &status) {
@@ -282,6 +263,20 @@ ConversationsAdapter::connectConversationModel()
 
     currentConversationModel->setFilter("");
     return true;
+}
+
+void
+ConversationsAdapter::disconnectConversationModel()
+{
+    QObject::disconnect(modelSortedConnection_);
+    QObject::disconnect(modelUpdatedConnection_);
+    QObject::disconnect(filterChangedConnection_);
+    QObject::disconnect(newConversationConnection_);
+    QObject::disconnect(conversationRemovedConnection_);
+    QObject::disconnect(conversationClearedConnection);
+    QObject::disconnect(interactionRemovedConnection_);
+    QObject::disconnect(searchStatusChangedConnection_);
+    QObject::disconnect(searchResultUpdatedConnection_);
 }
 
 void
