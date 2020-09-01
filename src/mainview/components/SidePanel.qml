@@ -19,6 +19,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
+import QtQuick.Dialogs 1.3
 import net.jami.Models 1.0
 
 import "../../commoncomponents"
@@ -146,13 +147,94 @@ Rectangle {
         height: tabBarVisible ? 64 : 0
     }
 
+
+    MessageBox {
+        id: hostMeetingPopup
+        title: qsTr("Host a meeting")
+        text : qsTr("Each time your account will receive a call, it will be automatically added to a conference.\nThis option can be disabled at any time.")
+        icon : StandardIcon.Question
+        standardButtons: StandardButton.Yes | StandardButton.Cancel
+	
+        onYes: {
+            ClientWrapper.settingsAdaptor.setIsRendezVous(true)
+            meetingModeButton.outlined = false
+            meetingModeButton.color = JamiTheme.buttonTintedBlue
+            meetingModeButton.hoveredColor = JamiTheme.buttonTintedBlueHovered
+            meetingModeButton.pressedColor = JamiTheme.buttonTintedBluePressed
+        }
+    }
+
+
+    MaterialButton {
+        id: meetingModeButton
+        text: qsTr("Host a meeting")
+        visible: {
+            if (ClientWrapper.settingsAdaptor.getCurrentAccount_Profile_Info_Type() === Profile.Type.SIP)
+                return false
+            if (sidePanelTabBar.currentIndex !== 0)
+                return false
+            return true
+        }
+        color: {
+            if (ClientWrapper.settingsAdaptor.getAccountConfig_isRendezVous())
+                return JamiTheme.buttonTintedBlue
+            return JamiTheme.buttonTintedGrey
+        }
+        hoveredColor: {
+            if (ClientWrapper.settingsAdaptor.getAccountConfig_isRendezVous())
+                return JamiTheme.buttonTintedBlueHovered
+            return JamiTheme.buttonTintedGreyHovered
+        }
+        pressedColor: {
+            if (ClientWrapper.settingsAdaptor.getAccountConfig_isRendezVous())
+                return JamiTheme.buttonTintedBluePressed
+            return JamiTheme.buttonTintedGreyPressed
+        }
+        anchors.top: sidePanelTabBar.visible ? sidePanelTabBar.bottom : contactSearchBar.bottom
+        anchors.topMargin: 8
+        anchors.bottomMargin: 8
+        anchors.horizontalCenter: parent.horizontalCenter
+        outlined: {
+            if (ClientWrapper.settingsAdaptor.getAccountConfig_isRendezVous())
+                return false
+            return true
+        }
+        height: childrenRect.height + 16
+        width: 100
+
+        onClicked: {
+            var isRendezVous = ClientWrapper.settingsAdaptor.getAccountConfig_isRendezVous()
+            if (isRendezVous) {
+                ClientWrapper.settingsAdaptor.setIsRendezVous(false)
+                meetingModeButton.outlined = true
+                meetingModeButton.color = JamiTheme.buttonTintedGrey
+                meetingModeButton.hoveredColor = JamiTheme.buttonTintedGreyHovered
+                meetingModeButton.pressedColor = JamiTheme.buttonTintedGreyPressed
+            } else {
+                hostMeetingPopup.open()
+            }
+        }
+    }
+
     Rectangle {
         id: searchStatusRect
 
         visible: lblSearchStatus.text !== ""
 
-        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom
-        anchors.topMargin: tabBarVisible ? 0 : 10
+        anchors.top: {
+            if (meetingModeButton.visible)
+                return meetingModeButton.bottom
+            if (tabBarVisible)
+                return sidePanelTabBar.bottom
+            return contactSearchBar.bottom
+        }
+        anchors.topMargin: {
+            if (meetingModeButton.visible)
+                return meetingModeButton.bottom
+            if (tabBarVisible)
+                return 0
+            return 10
+        }
         width: parent.width
         height: 72
 
@@ -206,7 +288,15 @@ Rectangle {
     ConversationSmartListView {
         id: conversationSmartListView
 
-        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom)
+        anchors.top: {
+            if (searchStatusRect.visible)
+                return searchStatusRect.bottom
+            if (meetingModeButton.visible)
+                return meetingModeButton.bottom
+            if (tabBarVisible)
+                return sidePanelTabBar.bottom
+            return contactSearchBar.bottom
+        }
         anchors.topMargin: (tabBarVisible || searchStatusRect.visible) ? 0 : 10
         width: parent.width
         height: tabBarVisible ? sidePanelRect.height - sidePanelTabBar.height - contactSearchBar.height - 20 :
