@@ -31,12 +31,14 @@ Rectangle {
 
     property alias text_usernameEditAlias: usernameEdit.text
     property int nameRegistrationUIState: WizardView.BLANK
+    property bool isRendezVous: false
     property alias text_passwordEditAlias: passwordEdit.text
 
     signal createAccount
     signal leavePage
 
-    function initializeOnShowUp() {
+    function initializeOnShowUp(isRdv) {
+        isRendezVous = isRdv
         createAccountStack.currentIndex = 0
         clearAllTextFields()
         passwordSwitch.checked = false
@@ -51,35 +53,6 @@ Rectangle {
     anchors.fill: parent
 
     color: JamiTheme.backgroundColor
-
-    /*
-    * JamiFileDialog for exporting account
-    */
-    JamiFileDialog {
-        id: exportBtn_Dialog
-
-        mode: JamiFileDialog.SaveFile
-
-        title: qsTr("Export Account Here")
-        folder: StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop"
-
-        nameFilters: [qsTr("Jami archive files") + " (*.gz)", qsTr(
-                "All files") + " (*)"]
-
-        onAccepted: {
-            export_Btn_FileDialogAccepted(true, file)
-        }
-
-        onRejected: {
-            export_Btn_FileDialogAccepted(false, folder)
-        }
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-    }
 
     StackLayout {
         id: createAccountStack
@@ -101,7 +74,7 @@ Rectangle {
                 anchors.left: usernameEdit.left
 
                 Label {
-                    text: qsTr("Choose a username for your account")
+                    text: isRendezVous ? qsTr("Choose a name for your meeting") : qsTr("Choose a username for your account")
                 }
 
                 Label {
@@ -122,7 +95,7 @@ Rectangle {
                 id: usernameEdit
 
                 selectByMouse: true
-                placeholderText: qsTr("Choose your username")
+                placeholderText: isRendezVous ? qsTr("Choose a name") : qsTr("Choose your username")
                 font.pointSize: 10
                 font.kerning: true
 
@@ -141,9 +114,9 @@ Rectangle {
                     case WizardView.FREE:
                         return ""
                     case WizardView.INVALID:
-                        return qsTr("Invalid username")
+                        return isRendezVous ? qsTr("Invalid name") : qsTr("Invalid username")
                     case WizardView.TAKEN:
-                        return qsTr("Username already taken")
+                        return isRendezVous ? qsTr("Name already taken") : qsTr("Username already taken")
                     }
                 }
 
@@ -159,7 +132,7 @@ Rectangle {
 
             MaterialButton {
                 id: chooseUsernameButton
-                text: qsTr("CHOOSE USERNAME")
+                text: isRendezVous ? qsTr("CHOOSE NAME") : qsTr("CHOOSE USERNAME")
                 color: nameRegistrationUIState === WizardView.FREE?
                         JamiTheme.buttonTintedGrey
                         : JamiTheme.buttonTintedGreyInactive
@@ -173,7 +146,7 @@ Rectangle {
             }
 
             MaterialButton {
-                text: qsTr("SKIP CHOOSING USERNAME")
+                text: isRendezVous ? qsTr("SKIP CHOOSE NAME") : qsTr("SKIP CHOOSE USERNAME")
                 color: JamiTheme.buttonTintedGrey
                 hoveredColor: JamiTheme.buttonTintedGreyHovered
                 pressedColor: JamiTheme.buttonTintedGreyPressed
@@ -200,7 +173,7 @@ Rectangle {
                 anchors.left: createAccountButton.left
 
                 Label {
-                    text: qsTr("Encrypt account with password")
+                    text: isRendezVous ? qsTr("Encrypt archive with password") : qsTr("Encrypt account with password")
 
                     font.pointSize: JamiTheme.textFontSize + 3
                 }
@@ -227,7 +200,7 @@ Rectangle {
                 anchors.left: createAccountButton.left
 
                 Label {
-                    text: qsTr("Choose a password to encrypt the account key on this device")
+                    text:  isRendezVous ? qsTr("Choose a password to encrypt the archive on this device") : qsTr("Choose a password to encrypt the account key on this device")
 
                     font.pointSize: JamiTheme.textFontSize
                 }
@@ -281,7 +254,7 @@ Rectangle {
 
             MaterialButton {
                 id: createAccountButton
-                text: qsTr("CREATE ACCOUNT")
+                text: isRendezVous ? qsTr("CREATE MEETING") : qsTr("CREATE ACCOUNT")
                 color: !passwordSwitch.checked ||
                     (passwordEdit.text === passwordConfirmEdit.text && passwordEdit.text.length !== 0)?
                     JamiTheme.wizardBlueButtons : JamiTheme.buttonTintedGreyInactive

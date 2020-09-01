@@ -50,6 +50,7 @@ Rectangle {
     property int textFontSize: 9
     property int wizardMode: WizardView.CREATE
     property int addedAccountIndex: -1
+    property bool isRdv: false
     property bool showBackUp: false
     property bool showProfile: false
     property bool showBottom: false
@@ -81,11 +82,14 @@ Rectangle {
             if (showProfile) {
                 changePageQML(controlPanelStackView.profilePageId)
                 profilePage.readyToSaveDetails = true
+                profilePage.isRdv = isRdv
             } else if (controlPanelStackView.currentIndex == controlPanelStackView.profilePageId) {
                 ClientWrapper.lrcInstance.accountListChanged()
                 profilePage.readyToSaveDetails = true
+                profilePage.isRdv = isRdv
             } else if (showBackUp) {
                 changePageQML(controlPanelStackView.backupKeysPageId)
+                backupKeysPage.isRdv = isRdv
             } else {
                 changePageQML(controlPanelStackView.welcomePageStackId)
                 needToShowMainViewWindow(addedAccountIndex)
@@ -139,10 +143,11 @@ Rectangle {
         controlPanelStackView.currentIndex = pageIndex
         if (pageIndex == controlPanelStackView.welcomePageStackId) {
             fileToImport = ""
+            isRdv = false
             registeredNameFoundConnection.enabled = true
             createAccountPage.nameRegistrationUIState = WizardView.BLANK
         } else if (pageIndex == controlPanelStackView.createAccountPageId) {
-            createAccountPage.initializeOnShowUp()
+            createAccountPage.initializeOnShowUp(false)
             // connection between register name found and its slot
             registeredNameFoundConnection.enabled = true
         } else if (pageIndex == controlPanelStackView.createSIPAccountPageId) {
@@ -165,6 +170,12 @@ Rectangle {
         } else if (pageIndex == controlPanelStackView.profilePageId) {
             profilePage.initializeOnShowUp()
             profilePage.showBottom = showBottom
+        } else if (pageIndex === controlPanelStackView.createRdvId) {
+            isRdv = true
+            controlPanelStackView.currentIndex = controlPanelStackView.createAccountPageId
+            createAccountPage.initializeOnShowUp(true)
+            // connection between register name found and its slot
+            registeredNameFoundConnection.enabled = true
         }
     }
 
@@ -222,6 +233,7 @@ Rectangle {
             property int connectToAccountManagerPageId: 6
             property int spinnerPageId: 7
             property int profilePageId: 8
+            property int createRdvId: 9
 
             WelcomePageLayout {
                 // welcome page, index 0
@@ -242,13 +254,14 @@ Rectangle {
 
                 onCreateAccount: {
                     inputParaObject = {}
+                    inputParaObject["isRendezVous"] = isRdv
                     inputParaObject["password"] = text_passwordEditAlias
                     ClientWrapper.accountAdaptor.createJamiAccount(
                         createAccountPage.text_usernameEditAlias,
                         inputParaObject,
                         createAccountPage.boothImgBase64,
                         true)
-                    showBackUp = true
+                    showBackUp = !isRdv
                     showBottom = true
                     changePageQML(controlPanelStackView.profilePageId)
                 }
