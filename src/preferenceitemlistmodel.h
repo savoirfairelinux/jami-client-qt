@@ -38,12 +38,15 @@ public:
         PreferenceSummary,
         PreferenceType,
         PluginId,
-        PreferenceCurrentValue
+        PreferenceCurrentValue,
+        CurrentPath,
+        FileFilters,
+        IsImage
     };
 
     typedef enum {
         LIST,
-        USERLIST,
+        PATH,
         DEFAULT,
     } Type;
 
@@ -76,6 +79,10 @@ public:
     QString mediaHandlerName() const;
     void setMediaHandlerName(const QString mediaHandlerName);
     int preferencesCount();
+    Q_INVOKABLE QString fileName(const QString& preferenceCurrentValue)
+    {
+        return preferenceCurrentValue.mid(preferenceCurrentValue.lastIndexOf("/") + 1);
+    }
 
 private:
     QString pluginId_;
