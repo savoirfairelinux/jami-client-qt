@@ -218,6 +218,9 @@ Popup {
                         preferenceType: PreferenceType
                         preferenceCurrentValue: PreferenceCurrentValue
                         pluginId: PluginId
+                        currentPath: CurrentPath
+                        preferenceKey : PreferenceKey
+                        fileFilters: FileFilters
                         pluginListPreferenceModel: PluginListPreferenceModel{
                             id: pluginListPreferenceModel
                             preferenceKey : PreferenceKey
@@ -227,13 +230,9 @@ Popup {
                         onClicked:  mediahandlerPreferencePickerListView.currentIndex = index
 
                         onBtnPreferenceClicked: {
-                            ClientWrapper.pluginModel.setPluginPreference(pluginListPreferenceModel.pluginId,
-                                                                            pluginListPreferenceModel.preferenceKey,
-                                                                            pluginListPreferenceModel.preferenceNewValue)
+                            ClientWrapper.pluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
                             mediahandlerPreferencePickerListView.model = MediaHandlerAdapter.getMediaHandlerPreferencesModel(pluginId, mediahandlerPreferencePickerListView.mediaHandlerName)
                         }
-
-                        onPreferenceAdded: mediahandlerPreferencePickerListView.model = MediaHandlerAdapter.getMediaHandlerPreferencesModel(pluginId, mediahandlerPreferencePickerListView.mediaHandlerName)
                     }
 
                     ScrollIndicator.vertical: ScrollIndicator {}

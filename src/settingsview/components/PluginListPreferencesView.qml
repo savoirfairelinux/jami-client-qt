@@ -32,7 +32,7 @@ Rectangle {
 
     enum Type {
         LIST,
-        USERLIST,
+        PATH,
         DEFAULT
     }
 
@@ -208,6 +208,9 @@ Rectangle {
                 preferenceType: PreferenceType
                 preferenceCurrentValue: PreferenceCurrentValue
                 pluginId: PluginId
+                currentPath: CurrentPath
+                preferenceKey: PreferenceKey
+                fileFilters: FileFilters
                 pluginListPreferenceModel: PluginListPreferenceModel{
                     id: pluginListPreferenceModel
                     preferenceKey : PreferenceKey
@@ -218,12 +221,9 @@ Rectangle {
                     pluginPreferenceView.currentIndex = index
                 }
                 onBtnPreferenceClicked: {
-                    setPreference(pluginListPreferenceModel.pluginId,
-                                  pluginListPreferenceModel.preferenceKey,
-                                  pluginListPreferenceModel.preferenceNewValue)
+                    setPreference(pluginId, preferenceKey, preferenceNewValue)
                     updatePreferenceListDisplayed()
                 }
-                onPreferenceAdded: preferenceItemListModel.reset()
             }
         }
     }

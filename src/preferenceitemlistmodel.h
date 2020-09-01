@@ -38,12 +38,14 @@ public:
         PreferenceSummary,
         PreferenceType,
         PluginId,
-        PreferenceCurrentValue
+        PreferenceCurrentValue,
+        CurrentPath,
+        FileFilters
     };
 
     typedef enum {
         LIST,
-        USERLIST,
+        PATH,
         DEFAULT,
     } Type;
 

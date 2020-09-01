@@ -21,7 +21,7 @@
 #include "qmladapterbase.h"
 //#include "smartlistmodel.h"
 #include "mediahandleritemlistmodel.h"
-#include "mediahandlerlistpreferencemodel.h"
+#include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 
 #include <QObject>
@@ -38,12 +38,10 @@ public:
 
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel();
     Q_INVOKABLE QVariant getMediaHandlerPreferencesModel(QString pluginId, QString mediaHandlerName);
-    Q_INVOKABLE QVariant getMediaHandlerPreferencesSelectableModel(QString pluginId);
 
 private:
     void initQmlObject();
 
     std::unique_ptr<MediaHandlerItemListModel> mediaHandlerListModel_;
     std::unique_ptr<PreferenceItemListModel> mediaHandlerPreferenceItemListModel_;
-    std::unique_ptr<MediaHandlerListPreferenceModel> mediaHandlerListPreferenceModel_;
 };
