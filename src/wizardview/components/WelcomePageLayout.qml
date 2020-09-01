@@ -160,6 +160,10 @@ ColumnLayout {
             onClicked: {
                 connectAccountManagerButton.visible = !connectAccountManagerButton.visible
                 newSIPAccountButton.visible = !newSIPAccountButton.visible
+                if (newSIPAccountButton.visible)
+                    text = qsTr("SHOW ADVANCED")
+                else
+                    text = qsTr("HIDE ADVANCED")
             }
         }
     }
