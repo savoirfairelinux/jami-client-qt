@@ -117,9 +117,11 @@ Window {
                 mainViewStack.push(settingsView, StackView.Immediate)
                 sidePanelViewStack.push(leftPanelSettingsView, StackView.Immediate)
             }
+            ConversationsAdapter.disconnectConversationModel()
 
         } else {
 
+            ConversationsAdapter.connectConversationModel()
             if (!sidePanelHidden) {
                 sidePanelViewStack.pop(mainViewWindowSidePanel, StackView.Immediate)
                 mainViewStack.pop(StackView.Immediate)
