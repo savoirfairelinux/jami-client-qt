@@ -252,14 +252,6 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
         backToWelcomePage();
     });
 
-    newInteractionConnection_ = QObject::connect(currentConversationModel,
-                                                 &lrc::api::ConversationModel::newInteraction,
-                                                 [this] {
-        conversationSmartListModel_->fillConversationsList();
-        updateConversationsFilterWidget();
-        QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
-    });
-
     searchStatusChangedConnection_ = QObject::connect(currentConversationModel,
                                                       &lrc::api::ConversationModel::searchStatusChanged,
                                                       [this](const QString &status) {
@@ -287,7 +279,6 @@ ConversationsAdapter::disconnectConversationModel()
     QObject::disconnect(newConversationConnection_);
     QObject::disconnect(conversationRemovedConnection_);
     QObject::disconnect(conversationClearedConnection);
-    QObject::disconnect(newInteractionConnection_);
     QObject::disconnect(interactionRemovedConnection_);
     QObject::disconnect(searchStatusChangedConnection_);
     QObject::disconnect(searchResultUpdatedConnection_);
