@@ -33,27 +33,23 @@ class MainApplication : public QApplication
 
 public:
     explicit MainApplication(int &argc, char **argv);
-    ~MainApplication();
+    ~MainApplication() = default;
 
-    bool applicationSetup();
-    void exitApp();
-
-    static void applicationInitialization();
-    static QString getDebugFilePath();
+    void applicationSetup();
     static char **parseInputArgument(int &argc, char *argv[], char *argToParse);
-
-protected:
-    void consoleDebug();
-    void vsConsoleDebug();
-    void fileDebug(QFile *debugFile);
 
 private:
     void loadTranslations();
     void initLrc();
-    void processInputArgument(bool &startMinimized);
+    void parseArguments(bool &startMinimized);
     void setApplicationFont();
-    void qmlInitialization();
+    void initQmlEngine();
+    void initSettings();
+    void initSystray();
+    void cleanup();
 
+private:
     std::unique_ptr<QFile> debugFile_;
     QQmlApplicationEngine *engine_;
+
 };
