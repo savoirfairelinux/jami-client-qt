@@ -33,7 +33,8 @@ public:
     explicit ConversationsAdapter(QObject *parent = nullptr);
     ~ConversationsAdapter();
 
-    Q_INVOKABLE bool connectConversationModel();
+    Q_INVOKABLE bool connectConversationModel(bool updateFilter = true);
+    Q_INVOKABLE void disconnectConversationModel();
     Q_INVOKABLE void selectConversation(const QString &accountId,
                                         const QString &convUid,
                                         bool preventSendingSignal = true);
@@ -49,6 +50,7 @@ signals:
     void showSearchStatus(const QString &status);
 
 private:
+    QString currentAccountId = {};
     void initQmlObject() override;
     void setConversationFilter(lrc::api::profile::Type filter);
     void backToWelcomePage();
