@@ -29,7 +29,6 @@
 #include "audiomanagerlistmodel.h"
 #include "audiooutputdevicemodel.h"
 #include "pluginlistpreferencemodel.h"
-#include "mediahandlerlistpreferencemodel.h"
 #include "avadapter.h"
 #include "bannedlistmodel.h"
 #include "calladapter.h"
@@ -316,7 +315,6 @@ MainApplication::qmlInitialization()
     QML_REGISTERTYPE(VideoFormatResolutionModel, 1, 0);
     QML_REGISTERTYPE(VideoFormatFpsModel, 1, 0);
     QML_REGISTERTYPE(PluginListPreferenceModel, 1, 0);
-    QML_REGISTERTYPE(MediaHandlerListPreferenceModel, 1, 0);
     /*
      * Register QQuickItem type.
      */
@@ -466,15 +464,11 @@ MainApplication::applicationSetup()
     QMenu* systrayMenu = new QMenu();
 
     QAction* exitAction = new QAction(tr("Exit"), this);
-    connect(exitAction, &QAction::triggered,
-            [this] {
-                QCoreApplication::exit();
-            });
+    connect(exitAction, &QAction::triggered, [this] { QCoreApplication::exit(); });
 
-     connect(&sysIcon, &QSystemTrayIcon::activated,
-             [this](QSystemTrayIcon::ActivationReason reason) {
-                 emit LRCInstance::instance().restoreAppRequested();
-             });
+    connect(&sysIcon, &QSystemTrayIcon::activated, [this](QSystemTrayIcon::ActivationReason reason) {
+        emit LRCInstance::instance().restoreAppRequested();
+    });
 
     systrayMenu->addAction(exitAction);
     sysIcon.setContextMenu(systrayMenu);

@@ -50,18 +50,6 @@ MediaHandlerAdapter::getMediaHandlerPreferencesModel(QString pluginId, QString m
     return QVariant::fromValue(mediaHandlerPreferenceItemListModel_.get());
 }
 
-QVariant
-MediaHandlerAdapter::getMediaHandlerPreferencesSelectableModel(QString pluginId)
-{
-    /*
-     * Called from qml every time contact picker refreshes.
-     */
-    mediaHandlerListPreferenceModel_.reset(new MediaHandlerListPreferenceModel(this));
-    mediaHandlerListPreferenceModel_->setPluginId(pluginId);
-
-    return QVariant::fromValue(mediaHandlerListPreferenceModel_.get());
-}
-
 void
 MediaHandlerAdapter::initQmlObject()
 {}
