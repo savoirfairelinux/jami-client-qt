@@ -34,7 +34,8 @@ ConversationsAdapter::~ConversationsAdapter() {}
 void
 ConversationsAdapter::initQmlObject()
 {
-    conversationSmartListModel_ = new SmartListModel(LRCInstance::getCurrAccId(), this);
+    currentAccountId = LRCInstance::getCurrAccId();
+    conversationSmartListModel_ = new SmartListModel(currentAccountId, this);
 
     QMetaObject::invokeMethod(qmlObj_, "setModel",
                               Q_ARG(QVariant, QVariant::fromValue(conversationSmartListModel_)));
@@ -47,7 +48,9 @@ ConversationsAdapter::initQmlObject()
 
     connect(&LRCInstance::instance(), &LRCInstance::currentAccountChanged,
             [this]() {
-                accountChangedSetUp(LRCInstance::getCurrAccId());
+                auto accountId = LRCInstance::getCurrAccId();
+                if (currentAccountId != accountId)
+                    accountChangedSetUp(accountId);
             });
 
     connectConversationModel();
@@ -130,6 +133,7 @@ ConversationsAdapter::deselectConversation()
 void
 ConversationsAdapter::accountChangedSetUp(const QString &accountId)
 {
+    currentAccountId = accountId;
     // Should be called when current account is changed.
     conversationSmartListModel_->setAccount(accountId);
 
@@ -138,6 +142,7 @@ ConversationsAdapter::accountChangedSetUp(const QString &accountId)
     LRCInstance::getCurrentConversationModel()->setFilter(accountInfo.profileInfo.type);
     updateConversationsFilterWidget();
 
+    disconnectConversationModel();
     connectConversationModel();
 }
 
@@ -179,21 +184,10 @@ ConversationsAdapter::setConversationFilter(lrc::api::profile::Type filter)
 }
 
 bool
-ConversationsAdapter::connectConversationModel()
+ConversationsAdapter::connectConversationModel(bool updateFilter)
 {
     // Signal connections
     auto currentConversationModel = LRCInstance::getCurrentConversationModel();
-
-    QObject::disconnect(modelSortedConnection_);
-    QObject::disconnect(modelUpdatedConnection_);
-    QObject::disconnect(filterChangedConnection_);
-    QObject::disconnect(newConversationConnection_);
-    QObject::disconnect(conversationRemovedConnection_);
-    QObject::disconnect(conversationClearedConnection);
-    QObject::disconnect(newInteractionConnection_);
-    QObject::disconnect(interactionRemovedConnection_);
-    QObject::disconnect(searchStatusChangedConnection_);
-    QObject::disconnect(searchResultUpdatedConnection_);
 
     modelSortedConnection_ = QObject::connect(currentConversationModel,
                                               &lrc::api::ConversationModel::modelSorted,
@@ -285,8 +279,23 @@ ConversationsAdapter::connectConversationModel()
         QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
     });
 
-    currentConversationModel->setFilter("");
+    if (updateFilter) currentConversationModel->setFilter("");
     return true;
+}
+
+void
+ConversationsAdapter::disconnectConversationModel()
+{
+    QObject::disconnect(modelSortedConnection_);
+    QObject::disconnect(modelUpdatedConnection_);
+    QObject::disconnect(filterChangedConnection_);
+    QObject::disconnect(newConversationConnection_);
+    QObject::disconnect(conversationRemovedConnection_);
+    QObject::disconnect(conversationClearedConnection);
+    QObject::disconnect(newInteractionConnection_);
+    QObject::disconnect(interactionRemovedConnection_);
+    QObject::disconnect(searchStatusChangedConnection_);
+    QObject::disconnect(searchResultUpdatedConnection_);
 }
 
 void
