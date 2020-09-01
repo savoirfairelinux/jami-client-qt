@@ -22,6 +22,30 @@
       "revId": "46385c6c776a1c553b9759c8aa53536f50335740",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f1673c5_ccd69124",
+        "filename": "src/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-01T13:43:36Z",
+      "side": 1,
+      "message": "Right, will change it",
+      "parentUuid": "4c06c4fb_989aee2d",
+      "range": {
+        "startLine": 95,
+        "startChar": 79,
+        "endLine": 95,
+        "endChar": 80
+      },
+      "revId": "46385c6c776a1c553b9759c8aa53536f50335740",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
