@@ -32,7 +32,7 @@ Rectangle {
 
     enum Type {
         LIST,
-        USERLIST,
+        PATH,
         DEFAULT
     }
 
@@ -47,9 +47,8 @@ Rectangle {
 
     function updatePreferenceListDisplayed(){
         // settings
-        preferenceItemListModel.pluginId = pluginId
-        preferenceItemListModel.reset()
-        var size = 50 * preferenceItemListModel.preferencesCount
+        pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId)
+        var size = 50 * pluginPreferenceView.model.preferencesCount
         pluginPreferenceView.height = size
     }
 
@@ -66,7 +65,7 @@ Rectangle {
             ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId)
         }
         updatePluginList()
-        updatePreferenceListDisplayed()
+        pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId)
     }
 
     function uninstallPluginSlot(){
@@ -113,10 +112,6 @@ Rectangle {
         standardButtons: StandardButton.Ok | StandardButton.Cancel
 
         onAccepted: resetPlugin()
-    }
-
-    PreferenceItemListModel {
-        id: preferenceItemListModel
     }
 
     ColumnLayout {
@@ -195,19 +190,23 @@ Rectangle {
             Layout.minimumHeight: 0
             Layout.preferredHeight: childrenRect.height + 30
 
-            model: preferenceItemListModel
+            model: PluginAdapter.getPluginPreferencesModel(pluginId)
 
             delegate: PreferenceItemDelegate{
                 id: preferenceItemDelegate
 
                 width: pluginPreferenceView.width
-                height: 50
+                height: childrenRect.height
 
                 preferenceName: PreferenceName
                 preferenceSummary: PreferenceSummary
                 preferenceType: PreferenceType
                 preferenceCurrentValue: PreferenceCurrentValue
                 pluginId: PluginId
+                currentPath: CurrentPath
+                preferenceKey: PreferenceKey
+                fileFilters: FileFilters
+                isImage: IsImage
                 pluginListPreferenceModel: PluginListPreferenceModel{
                     id: pluginListPreferenceModel
                     preferenceKey : PreferenceKey
@@ -218,12 +217,10 @@ Rectangle {
                     pluginPreferenceView.currentIndex = index
                 }
                 onBtnPreferenceClicked: {
-                    setPreference(pluginListPreferenceModel.pluginId,
-                                  pluginListPreferenceModel.preferenceKey,
-                                  pluginListPreferenceModel.preferenceNewValue)
+                    setPreference(pluginId, preferenceKey, preferenceNewValue)
+                    pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId)
                     updatePreferenceListDisplayed()
                 }
-                onPreferenceAdded: preferenceItemListModel.reset()
             }
         }
     }

@@ -16,18 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "mediahandleradapter.h"
+#include "pluginadapter.h"
 
 #include "lrcinstance.h"
 
-MediaHandlerAdapter::MediaHandlerAdapter(QObject* parent)
+PluginAdapter::PluginAdapter(QObject* parent)
     : QmlAdapterBase(parent)
 {}
 
-MediaHandlerAdapter::~MediaHandlerAdapter() {}
+PluginAdapter::~PluginAdapter() {}
 
 QVariant
-MediaHandlerAdapter::getMediaHandlerSelectableModel()
+PluginAdapter::getMediaHandlerSelectableModel()
 {
     /*
      * Called from qml every time contact picker refreshes.
@@ -38,30 +38,27 @@ MediaHandlerAdapter::getMediaHandlerSelectableModel()
 }
 
 QVariant
-MediaHandlerAdapter::getMediaHandlerPreferencesModel(QString pluginId, QString mediaHandlerName)
+PluginAdapter::getPluginPreferencesModel(const QString& pluginId, const QString& mediaHandlerName)
 {
     /*
      * Called from qml every time contact picker refreshes.
      */
-    mediaHandlerPreferenceItemListModel_.reset(new PreferenceItemListModel(this));
-    mediaHandlerPreferenceItemListModel_->setMediaHandlerName(mediaHandlerName);
-    mediaHandlerPreferenceItemListModel_->setPluginId(pluginId);
+    preferenceItemListModel_.reset(new PreferenceItemListModel(this));
+    preferenceItemListModel_->setMediaHandlerName(mediaHandlerName);
+    preferenceItemListModel_->setPluginId(pluginId);
 
-    return QVariant::fromValue(mediaHandlerPreferenceItemListModel_.get());
+    return QVariant::fromValue(preferenceItemListModel_.get());
 }
 
-QVariant
-MediaHandlerAdapter::getMediaHandlerPreferencesSelectableModel(QString pluginId)
+QString
+PluginAdapter::getPluginPreferencesFileName(const QString& preferenceCurrentValue)
 {
     /*
      * Called from qml every time contact picker refreshes.
      */
-    mediaHandlerListPreferenceModel_.reset(new MediaHandlerListPreferenceModel(this));
-    mediaHandlerListPreferenceModel_->setPluginId(pluginId);
-
-    return QVariant::fromValue(mediaHandlerListPreferenceModel_.get());
+    return preferenceItemListModel_->fileName(preferenceCurrentValue);
 }
 
 void
-MediaHandlerAdapter::initQmlObject()
+PluginAdapter::initQmlObject()
 {}

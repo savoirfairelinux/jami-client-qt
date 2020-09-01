@@ -29,13 +29,12 @@
 #include "audiomanagerlistmodel.h"
 #include "audiooutputdevicemodel.h"
 #include "pluginlistpreferencemodel.h"
-#include "mediahandlerlistpreferencemodel.h"
 #include "avadapter.h"
 #include "bannedlistmodel.h"
 #include "calladapter.h"
 #include "clientwrapper.h"
 #include "contactadapter.h"
-#include "mediahandleradapter.h"
+#include "pluginadapter.h"
 #include "conversationsadapter.h"
 #include "deviceitemlistmodel.h"
 #include "pluginitemlistmodel.h"
@@ -316,7 +315,6 @@ MainApplication::qmlInitialization()
     QML_REGISTERTYPE(VideoFormatResolutionModel, 1, 0);
     QML_REGISTERTYPE(VideoFormatFpsModel, 1, 0);
     QML_REGISTERTYPE(PluginListPreferenceModel, 1, 0);
-    QML_REGISTERTYPE(MediaHandlerListPreferenceModel, 1, 0);
     /*
      * Register QQuickItem type.
      */
@@ -340,7 +338,7 @@ MainApplication::qmlInitialization()
     QML_REGISTERSINGLETONTYPE(ConversationsAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE(AvAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE(ContactAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE(MediaHandlerAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE(PluginAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE(ClientWrapper, 1, 0);
 
     // QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(AccountAdapter, 1, 0);
@@ -466,15 +464,11 @@ MainApplication::applicationSetup()
     QMenu* systrayMenu = new QMenu();
 
     QAction* exitAction = new QAction(tr("Exit"), this);
-    connect(exitAction, &QAction::triggered,
-            [this] {
-                QCoreApplication::exit();
-            });
+    connect(exitAction, &QAction::triggered, [this] { QCoreApplication::exit(); });
 
-     connect(&sysIcon, &QSystemTrayIcon::activated,
-             [this](QSystemTrayIcon::ActivationReason reason) {
-                 emit LRCInstance::instance().restoreAppRequested();
-             });
+    connect(&sysIcon, &QSystemTrayIcon::activated, [this](QSystemTrayIcon::ActivationReason reason) {
+        emit LRCInstance::instance().restoreAppRequested();
+    });
 
     systrayMenu->addAction(exitAction);
     sysIcon.setContextMenu(systrayMenu);
