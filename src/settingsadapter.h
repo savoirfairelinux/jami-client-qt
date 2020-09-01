@@ -27,30 +27,23 @@
 #include "typedefs.h"
 #include "utils.h"
 
-class SettingsAdaptor : public QObject
+class SettingsAdapter : public QObject
 {
     Q_OBJECT
 public:
-    explicit SettingsAdaptor(QObject *parent = nullptr);
+    explicit SettingsAdapter(QObject *parent = nullptr);
 
     //Singleton
-    static SettingsAdaptor &instance();
+    static SettingsAdapter &instance();
     /*
      * getters of directories
      */
     Q_INVOKABLE QString getDir_Document();
     Q_INVOKABLE QString getDir_Download();
 
-    /*
-     * getters and setters of app settings options
-     */
-    Q_INVOKABLE bool getSettingsValue_CloseOrMinimized();
-    Q_INVOKABLE bool getSettingsValue_EnableNotifications();
-    Q_INVOKABLE bool getSettingsValue_AutoUpdate();
+    Q_INVOKABLE QVariant getAppValue(const Settings::Key key);
+    Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
 
-    Q_INVOKABLE void setClosedOrMin(bool state);
-    Q_INVOKABLE void setNotifications(bool state);
-    Q_INVOKABLE void setUpdateAutomatic(bool state);
     Q_INVOKABLE void setRunOnStartUp(bool state);
     Q_INVOKABLE void setDownloadPath(QString dir);
 
@@ -80,12 +73,6 @@ public:
     Q_INVOKABLE void set_Video_Settings_Rate_And_Resolution(const QString &deviceId,
                                                             qreal rate,
                                                             const QString &resolution);
-
-    /*
-     * getters and setters of current account Info
-     */
-    const Q_INVOKABLE lrc::api::account::Info &getCurrentAccountInfo();
-    const Q_INVOKABLE lrc::api::profile::Info &getCurrentAccount_Profile_Info();
 
     Q_INVOKABLE lrc::api::ContactModel *getContactModel();
     Q_INVOKABLE lrc::api::NewDeviceModel *getDeviceModel();
@@ -237,5 +224,10 @@ public:
     Q_INVOKABLE void set_FileCACert(QString text);
     Q_INVOKABLE void set_FileUserCert(QString text);
     Q_INVOKABLE void set_FilePrivateKey(QString text);
+
+    // TODO: remove these
+    const Q_INVOKABLE lrc::api::account::Info &getCurrentAccountInfo();
+    const Q_INVOKABLE lrc::api::profile::Info &getCurrentAccount_Profile_Info();
+
 };
-Q_DECLARE_METATYPE(SettingsAdaptor *)
+Q_DECLARE_METATYPE(SettingsAdapter *)
