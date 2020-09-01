@@ -88,6 +88,26 @@ Rectangle {
         }
 
         MaterialButton {
+            id: newRdvButton
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 8
+            Layout.preferredWidth: preferredWidth
+            Layout.preferredHeight: preferredHeight
+
+            text: qsTr("CREATE A RENDEZ-VOUS")
+            toolTipText: qsTr("Create new rendez-vous")
+            source: "qrc:/images/default_avatar_overlay.svg"
+            color: JamiTheme.buttonTintedBlue
+            hoveredColor: JamiTheme.buttonTintedBlueHovered
+            pressedColor: JamiTheme.buttonTintedBluePressed
+
+            onClicked: {
+                welcomePageRedirectPage(9)
+            }
+        }
+
+        MaterialButton {
             id: fromDeviceButton
 
             Layout.alignment: Qt.AlignCenter

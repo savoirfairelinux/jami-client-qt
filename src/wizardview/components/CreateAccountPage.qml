@@ -31,12 +31,14 @@ Rectangle {
 
     property alias text_usernameEditAlias: usernameEdit.text
     property int nameRegistrationUIState: WizardView.BLANK
+    property bool isRendezVous: false
     property alias text_passwordEditAlias: passwordEdit.text
 
     signal createAccount
     signal leavePage
 
-    function initializeOnShowUp() {
+    function initializeOnShowUp(isRdv) {
+        isRendezVous = isRdv
         createAccountStack.currentIndex = 0
         clearAllTextFields()
         passwordSwitch.checked = false
@@ -105,7 +107,7 @@ Rectangle {
                 Layout.preferredWidth: usernameEdit.width
 
                 Label {
-                    text: qsTr("Choose a username")
+                    text: isRendezVous ? qsTr("Choose a name for your rendez-vous") : qsTr("Choose a username for your account")
                     font.pointSize: JamiTheme.textFontSize + 3
                 }
 
@@ -133,7 +135,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignHCenter
 
                 selectByMouse: true
-                placeholderText: qsTr("Choose your username")
+                placeholderText: isRendezVous ? qsTr("Choose a name") : qsTr("Choose your username")
                 font.pointSize: 9
                 font.kerning: true
 
@@ -160,9 +162,9 @@ Rectangle {
                     case WizardView.FREE:
                         return ""
                     case WizardView.INVALID:
-                        return qsTr("Invalid username")
+                        return isRendezVous ? qsTr("Invalid name") : qsTr("Invalid username")
                     case WizardView.TAKEN:
-                        return qsTr("Username already taken")
+                        return isRendezVous ? qsTr("Name already taken") : qsTr("Username already taken")
                     }
                 }
                 font.pointSize: JamiTheme.textFontSize
@@ -176,7 +178,7 @@ Rectangle {
                 Layout.preferredWidth: preferredWidth
                 Layout.preferredHeight: preferredHeight
 
-                text: qsTr("CHOOSE USERNAME")
+                text: isRendezVous ? qsTr("CHOOSE NAME") : qsTr("CHOOSE USERNAME")
                 color: nameRegistrationUIState === WizardView.FREE?
                         JamiTheme.buttonTintedGrey
                         : JamiTheme.buttonTintedGreyInactive
@@ -318,7 +320,7 @@ Rectangle {
                              && passwordEdit.text.length !== 0)
                 }
 
-                text: qsTr("CREATE ACCOUNT")
+                text: isRendezVous ? qsTr("CREATE RENDEZ-VOUS") : qsTr("CREATE ACCOUNT")
                 enabled: checkEnable()
                 color: checkEnable() ? JamiTheme.wizardBlueButtons :
                                        JamiTheme.buttonTintedGreyInactive

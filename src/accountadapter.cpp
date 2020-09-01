@@ -107,6 +107,8 @@ AccountAdapter::createJamiAccount(QString registeredName,
             } else {
                 LRCInstance::setAvatarForAccount(QPixmap::fromImage(avatarImg), accountId);
             }
+
+
         });
 
     connectFailure();
@@ -115,6 +117,8 @@ AccountAdapter::createJamiAccount(QString registeredName,
         QMap<QString, QString> additionalAccountConfig;
         additionalAccountConfig.insert(DRing::Account::ConfProperties::Ringtone::PATH,
                                        Utils::GetRingtonePath());
+        additionalAccountConfig.insert(DRing::Account::ConfProperties::ISRENDEZVOUS,
+                                       settings["isRendezVous"].toString());
 
         LRCInstance::accountModel().createNewAccount(lrc::api::profile::Type::RING,
                                                      settings["alias"].toString(),

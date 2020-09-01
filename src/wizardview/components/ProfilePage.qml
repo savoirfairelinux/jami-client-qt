@@ -45,6 +45,7 @@ Rectangle {
     property var showBottom: false
     property alias boothImgBase64: setAvatarWidget.imgBase64
     property alias displayName: aliasEdit.text
+    property bool isRdv: false
 
     ColumnLayout {
         spacing: layoutSpacing
@@ -97,7 +98,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             selectByMouse: true
-            placeholderText: qsTr("Enter your name")
+            placeholderText: isRdv ? qsTr("Enter the rendez-vous's name") : qsTr("Enter your name")
             font.pointSize: 9
             font.kerning: true
 
@@ -114,7 +115,13 @@ Rectangle {
             Layout.preferredHeight: preferredHeight
 
             enabled: readyToSaveDetails
-            text: enabled? qsTr("Save Profile") : qsTr("Generating account…")
+            text: {
+                if (enabled) {
+                    return qsTr("Save Profile")
+                } else {
+                    return root.isRdv ? qsTr("Generating rendez-vous…") : qsTr("Generating account…")
+                }
+            }
             color: enabled? JamiTheme.wizardBlueButtons : JamiTheme.buttonTintedGreyInactive
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
