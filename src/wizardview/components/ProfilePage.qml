@@ -47,6 +47,7 @@ Rectangle {
     property var showBottom: false
     property alias boothImgBase64: setAvatarWidget.imgBase64
     property alias displayName: aliasEdit.text
+    property bool isRdv: false
 
     ColumnLayout {
         spacing: 12
@@ -100,7 +101,7 @@ Rectangle {
             id: aliasEdit
 
             selectByMouse: true
-            placeholderText: qsTr("Enter your name")
+            placeholderText: isRdv ? qsTr("Enter the meeting's name") : qsTr("Enter your name")
             font.pointSize: 10
             font.kerning: true
 
@@ -112,7 +113,13 @@ Rectangle {
         MaterialButton {
             id: saveProfileBtn
             enabled: readyToSaveDetails
-            text: enabled? qsTr("Save Profile") : qsTr("Generating account…")
+            text: {
+                if (enabled) {
+                    return qsTr("Save Profile")
+                } else {
+                    return root.isRdv ? qsTr("Generating meeting…") : qsTr("Generating account…")
+                }
+            }
             color: enabled? JamiTheme.wizardBlueButtons : JamiTheme.buttonTintedGreyInactive
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed

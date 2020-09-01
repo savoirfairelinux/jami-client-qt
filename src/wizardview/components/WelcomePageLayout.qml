@@ -96,6 +96,26 @@ ColumnLayout {
     RowLayout {
         spacing: 8
         Layout.fillWidth: true
+        Layout.maximumHeight: 36
+        Layout.alignment: Qt.AlignHCenter
+        MaterialButton {
+            id: newMeetingButton
+
+            text: qsTr("CREATE A MEETING")
+            toolTipText: qsTr("Create new Meeting")
+            source: "qrc:/images/icons/groups-24px.svg"
+            color: JamiTheme.buttonTintedBlue
+            hoveredColor: JamiTheme.buttonTintedBlueHovered
+            pressedColor: JamiTheme.buttonTintedBluePressed
+
+            onClicked: {
+                welcomePageRedirectPage(9)
+            }
+        }
+    }
+    RowLayout {
+        spacing: 8
+        Layout.fillWidth: true
 
         Layout.maximumHeight: 36
         Layout.alignment: Qt.AlignHCenter

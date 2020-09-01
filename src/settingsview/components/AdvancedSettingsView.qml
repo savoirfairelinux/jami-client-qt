@@ -387,7 +387,7 @@ ColumnLayout {
             ToggleSwitch {
                 id: checkBoxRdv
 
-                labelText: qsTr("(Experimental) Rendez-vous: turn your account into a conference room")
+                labelText: qsTr("Meeting mode: automatically merge incoming calls")
                 fontPointSize: 10
 
                 onSwitchToggled: {

@@ -160,6 +160,7 @@ public:
     Q_INVOKABLE bool getAccountConfig_PublishedSameAsLocal();
     Q_INVOKABLE QString getAccountConfig_PublishedAddress();
     Q_INVOKABLE int getAccountConfig_PublishedPort();
+    Q_INVOKABLE bool getAccountConfig_isRendezVous();
 
     Q_INVOKABLE QString getAccountConfig_Mailbox();
 
