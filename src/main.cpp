@@ -56,11 +56,7 @@ main(int argc, char *argv[])
         return 0;
     }
 
-    if (!a.applicationSetup()) {
-        guard.release();
-        a.exitApp();
-        return 0;
-    }
+    a.applicationSetup();
 
     /*
      * Exec the application.
