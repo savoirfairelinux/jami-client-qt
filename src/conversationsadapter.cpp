@@ -258,14 +258,6 @@ ConversationsAdapter::connectConversationModel()
         backToWelcomePage();
     });
 
-    newInteractionConnection_ = QObject::connect(currentConversationModel,
-                                                 &lrc::api::ConversationModel::newInteraction,
-                                                 [this] {
-        conversationSmartListModel_->fillConversationsList();
-        updateConversationsFilterWidget();
-        QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
-    });
-
     searchStatusChangedConnection_ = QObject::connect(currentConversationModel,
                                                       &lrc::api::ConversationModel::searchStatusChanged,
                                                       [this](const QString &status) {
