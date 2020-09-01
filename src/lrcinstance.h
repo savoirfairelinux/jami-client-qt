@@ -270,6 +270,8 @@ public:
     static void
     setSelectedAccountId(const QString &accountId = {})
     {
+        if (accountId == instance().selectedAccountId_)
+            return; // No need to select current selected account
         instance().selectedAccountId_ = accountId;
         QSettings settings("jami.net", "Jami");
         settings.setValue(SettingsKey::selectedAccount, accountId);
