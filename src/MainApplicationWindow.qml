@@ -59,9 +59,7 @@ ApplicationWindow {
         Connections {
             target: mainViewLoader.item
 
-            function onCloseApp() {
-                Qt.quit()
-            }
+            onCloseApp: ClientWrapper.lrcInstance.quitAppRequested()
 
             function onNoAccountIsAvailable() {
                 mainViewLoader.setSource("")
@@ -100,11 +98,10 @@ ApplicationWindow {
 
         onClosing: {
             if (mainViewLoader.source.toString() !== "qrc:/src/mainview/MainView.qml") {
-                Qt.quit()
+                ClientWrapper.lrcInstance.quitAppRequested()
             }
         }
     }
-
 
     Component.onCompleted: {
         if(!startAccountMigration()){
@@ -115,7 +112,6 @@ ApplicationWindow {
     overlay.modal: ColorOverlay {
         source: mainApplicationWindow.contentItem
         color: "transparent"
-
 
         /*
          * Color animation for overlay when pop up is shown.
@@ -128,11 +124,18 @@ ApplicationWindow {
 
     Connections {
         target: ClientWrapper.lrcInstance
+
         onRestoreAppRequested: {
             if (mainViewLoader.item)
                 mainViewLoader.item.show()
             else
                 wizardView.show()
+        }
+        onHideAppRequested: {
+            if (mainViewLoader.item)
+                mainViewLoader.item.hide()
+            else
+                wizardView.hide()
         }
     }
 }

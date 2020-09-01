@@ -77,7 +77,48 @@ MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
     , engine_(new QQmlApplicationEngine())
 {
-    QObject::connect(this, &QApplication::aboutToQuit, [this] { exitApp(); });
+    QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
+    QObject::connect(&LRCInstance::instance(),
+                     &LRCInstance::quitAppRequested,
+                     this,
+                     &MainApplication::onQuitAppRequested);
+}
+
+bool
+MainApplication::applicationSetup()
+{
+#ifdef Q_OS_LINUX
+    if (!getenv("QT_QPA_PLATFORMTHEME"))
+        setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
+#endif
+
+    /*
+     * Start debug console.
+     */
+    for (auto string : QCoreApplication::arguments()) {
+        if (string == "-d" || string == "--debug") {
+            consoleDebug();
+        }
+    }
+
+    Utils::removeOldVersions();
+    loadTranslations();
+    setApplicationFont();
+
+#if defined _MSC_VER && !COMPILE_ONLY
+    gnutls_global_init();
+#endif
+
+    // LRC init
+    GlobalInstances::setPixmapManipulator(std::make_unique<PixbufManipulator>());
+    initLrc();
+    bool startMinimized {false};
+    parseArguments(startMinimized);
+    readSettingsFromRegistry();
+    registerObjects();
+    initSystray();
+
+    return true;
 }
 
 void
@@ -102,6 +143,34 @@ MainApplication::applicationInitialization()
 #endif
 }
 
+QString
+MainApplication::getDebugFilePath()
+{
+    QDir logPath(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+    /*
+     * Since logPath will be .../Ring, we use cdUp to remove it.
+     */
+    logPath.cdUp();
+    return QString(logPath.absolutePath() + "/jami/jami.log");
+}
+
+char**
+MainApplication::parseInputArgument(int& argc, char* argv[], char* argToParse)
+{
+    /*
+     * Forcefully append argToParse.
+     */
+    int oldArgc = argc;
+    argc = argc + 1 + 1;
+    char** newArgv = new char*[argc];
+    for (int i = 0; i < oldArgc; i++) {
+        newArgv[i] = argv[i];
+    }
+    newArgv[oldArgc] = argToParse;
+    newArgv[oldArgc + 1] = nullptr;
+    return newArgv;
+}
+
 void
 MainApplication::consoleDebug()
 {
@@ -109,8 +178,10 @@ MainApplication::consoleDebug()
     AllocConsole();
     SetConsoleCP(CP_UTF8);
 
-    freopen("CONOUT$", "w", stdout);
-    freopen("CONOUT$", "w", stderr);
+    FILE* fpstdout = stdout;
+    freopen_s(&fpstdout, "CONOUT$", "w", stdout);
+    FILE* fpstderr = stderr;
+    freopen_s(&fpstderr, "CONOUT$", "w", stderr);
 
     COORD coordInfo;
     coordInfo.X = 130;
@@ -148,43 +219,6 @@ MainApplication::fileDebug(QFile* debugFile)
                              debugFile->close();
                          }
                      });
-}
-
-void
-MainApplication::exitApp()
-{
-    GlobalSystemTray::instance().hide();
-#ifdef Q_OS_WIN
-    FreeConsole();
-#endif
-}
-
-char**
-MainApplication::parseInputArgument(int& argc, char* argv[], char* argToParse)
-{
-    /*
-     * Forcefully append argToParse.
-     */
-    int oldArgc = argc;
-    argc = argc + 1 + 1;
-    char** newArgv = new char*[argc];
-    for (int i = 0; i < oldArgc; i++) {
-        newArgv[i] = argv[i];
-    }
-    newArgv[oldArgc] = argToParse;
-    newArgv[oldArgc + 1] = nullptr;
-    return newArgv;
-}
-
-QString
-MainApplication::getDebugFilePath()
-{
-    QDir logPath(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
-    /*
-     * Since logPath will be .../Ring, we use cdUp to remove it.
-     */
-    logPath.cdUp();
-    return QString(logPath.absolutePath() + "/jami/jami.log");
 }
 
 void
@@ -243,7 +277,7 @@ MainApplication::initLrc()
                 this->processEvents();
             }
         },
-        [this, &isMigrating] {
+        [&isMigrating] {
             while (!isMigrating) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
@@ -254,7 +288,7 @@ MainApplication::initLrc()
 }
 
 void
-MainApplication::processInputArgument(bool& startMinimized)
+MainApplication::parseArguments(bool& startMinimized)
 {
     debugFile_ = std::make_unique<QFile>(getDebugFilePath());
     QString uri = "";
@@ -294,7 +328,7 @@ MainApplication::setApplicationFont()
 }
 
 void
-MainApplication::qmlInitialization()
+MainApplication::registerObjects()
 {
     /*
      * Register accountListModel type.
@@ -341,8 +375,6 @@ MainApplication::qmlInitialization()
     QML_REGISTERSINGLETONTYPE(MediaHandlerAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE(ClientWrapper, 1, 0);
 
-    // QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(AccountAdapter, 1, 0);
-    // QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(UtilsAdapter, 1, 0);
     QML_REGISTERUNCREATABLE(AccountAdapter, 1, 0);
     QML_REGISTERUNCREATABLE(UtilsAdapter, 1, 0);
     QML_REGISTERUNCREATABLE(SettingsAdaptor, 1, 0);
@@ -391,92 +423,61 @@ MainApplication::qmlInitialization()
     engine_->load(QUrl(QStringLiteral("qrc:/src/MainApplicationWindow.qml")));
 }
 
-MainApplication::~MainApplication() {}
-
-bool
-MainApplication::applicationSetup()
+void
+MainApplication::readSettingsFromRegistry()
 {
-#ifdef Q_OS_LINUX
-    if (!getenv("QT_QPA_PLATFORMTHEME"))
-        setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
-#endif
-
-    /*
-     * Start debug console.
-     */
-    for (auto string : QCoreApplication::arguments()) {
-        if (string == "-d" || string == "--debug") {
-            consoleDebug();
-        }
-    }
-
-    /*
-     * Remove old version files.
-     */
-    Utils::removeOldVersions();
-
-    /*
-     * Load translations.
-     */
-    loadTranslations();
-
-    /*
-     * Set font.
-     */
-    setApplicationFont();
-
-#if defined _MSC_VER && !COMPILE_ONLY
-    gnutls_global_init();
-#endif
-
-    /*
-     * Init pixmap manipulator.
-     */
-    GlobalInstances::setPixmapManipulator(std::make_unique<PixbufManipulator>());
-
-    /*
-     * Init lrc and its possible migration ui.
-     */
-    initLrc();
-
-    /*
-     * Process input argument.
-     */
-    bool startMinimized {false};
-    processInputArgument(startMinimized);
-
-    /*
-     * Create jami.net settings in Registry if it is not presented.
-     */
     QSettings settings("jami.net", "Jami");
 
-    /*
-     * Initialize qml components.
-     */
-    qmlInitialization();
+    LRCInstance::dataTransferModel().downloadDirectory = settings.value(SettingsKey::downloadPath,
+                                                                              QStandardPaths::writableLocation(QStandardPaths::DownloadLocation))
+                                                                      .toString()
+        + "/";
 
-    /*
-     * Systray menu.
-     */
+    if (not settings.contains(SettingsKey::enableNotifications)) {
+        settings.setValue(SettingsKey::enableNotifications, true);
+    }
+
+    if (not settings.contains(SettingsKey::closeOrMinimized)) {
+        settings.setValue(SettingsKey::closeOrMinimized, true);
+    }
+}
+
+void
+MainApplication::initSystray()
+{
     GlobalSystemTray& sysIcon = GlobalSystemTray::instance();
     sysIcon.setIcon(QIcon(":images/jami.png"));
 
     QMenu* systrayMenu = new QMenu();
 
     QAction* exitAction = new QAction(tr("Exit"), this);
-    connect(exitAction, &QAction::triggered,
-            [this] {
-                QCoreApplication::exit();
+    connect(exitAction, &QAction::triggered, &QApplication::exit);
+    connect(&sysIcon, &QSystemTrayIcon::activated,
+            [](QSystemTrayIcon::ActivationReason reason) {
+                if (reason != QSystemTrayIcon::ActivationReason::Context)
+                    emit LRCInstance::instance().restoreAppRequested();
             });
-
-     connect(&sysIcon, &QSystemTrayIcon::activated,
-             [this](QSystemTrayIcon::ActivationReason reason) {
-                 emit LRCInstance::instance().restoreAppRequested();
-             });
 
     systrayMenu->addAction(exitAction);
     sysIcon.setContextMenu(systrayMenu);
     sysIcon.show();
+}
 
-    return true;
+void
+MainApplication::cleanup()
+{
+    GlobalSystemTray::instance().hide();
+#ifdef Q_OS_WIN
+    FreeConsole();
+#endif
+}
+
+void MainApplication::onQuitAppRequested()
+{
+    if (QSettings("jami.net", "Jami")
+            .value(SettingsKey::closeOrMinimized).toBool()) {
+        emit LRCInstance::instance().hideAppRequested();
+        return;
+    }
+    quit();
 }

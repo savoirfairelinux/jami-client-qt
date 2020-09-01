@@ -444,6 +444,8 @@ signals:
     void accountListChanged();
     void currentAccountChanged();
     void restoreAppRequested();
+    void hideAppRequested();
+    void quitAppRequested();
 
 private:
     LRCInstance(migrateCallback willMigrateCb = {}, migrateCallback didMigrateCb = {})
