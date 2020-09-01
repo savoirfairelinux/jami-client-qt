@@ -142,7 +142,8 @@ Rectangle {
             registeredNameFoundConnection.enabled = true
             createAccountPage.nameRegistrationUIState = WizardView.BLANK
         } else if (pageIndex == controlPanelStackView.createAccountPageId) {
-            createAccountPage.initializeOnShowUp()
+            createAccountPage.initializeOnShowUp(false)
+            createAccountPage.isRdv = false
             // connection between register name found and its slot
             registeredNameFoundConnection.enabled = true
         } else if (pageIndex == controlPanelStackView.createSIPAccountPageId) {
@@ -165,6 +166,12 @@ Rectangle {
         } else if (pageIndex == controlPanelStackView.profilePageId) {
             profilePage.initializeOnShowUp()
             profilePage.showBottom = showBottom
+        } else if (pageIndex === controlPanelStackView.createRdvId) {
+            controlPanelStackView.currentIndex = controlPanelStackView.createAccountPageId
+            createAccountPage.initializeOnShowUp(true)
+            createAccountPage.isRdv = true
+            // connection between register name found and its slot
+            registeredNameFoundConnection.enabled = true
         }
     }
 
@@ -222,6 +229,7 @@ Rectangle {
             property int connectToAccountManagerPageId: 6
             property int spinnerPageId: 7
             property int profilePageId: 8
+            property int createRdvId: 9
 
             WelcomePageLayout {
                 // welcome page, index 0
@@ -239,9 +247,11 @@ Rectangle {
             CreateAccountPage {
                 // create account page, index 1
                 id: createAccountPage
+                property var isRdv: false
 
                 onCreateAccount: {
                     inputParaObject = {}
+                    inputParaObject["isRendezVous"] = isRdv
                     inputParaObject["password"] = text_passwordEditAlias
                     ClientWrapper.accountAdaptor.createJamiAccount(
                         createAccountPage.text_usernameEditAlias,

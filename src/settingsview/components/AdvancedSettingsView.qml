@@ -34,7 +34,6 @@ ColumnLayout {
         //Call Settings
         checkAutoConnectOnLocalNetwork.checked = ClientWrapper.settingsAdaptor.getAccountConfig_PeerDiscovery()
         checkBoxUntrusted.checked = ClientWrapper.settingsAdaptor.getAccountConfig_DHT_PublicInCalls()
-        checkBoxRdv.checked = ClientWrapper.settingsAdaptor.getAccountConfig_RendezVous()
         checkBoxAutoAnswer.checked = ClientWrapper.settingsAdaptor.getAccountConfig_AutoAnswer()
         checkBoxCustomRingtone.checked = ClientWrapper.settingsAdaptor.getAccountConfig_Ringtone_RingtoneEnabled()
 
@@ -381,17 +380,6 @@ ColumnLayout {
                     onClicked: {
                         ringtonePath_Dialog.open()
                     }
-                }
-            }
-
-            ToggleSwitch {
-                id: checkBoxRdv
-
-                labelText: qsTr("(Experimental) Rendez-vous: turn your account into a conference room")
-                fontPointSize: 10
-
-                onSwitchToggled: {
-                    ClientWrapper.settingsAdaptor.setIsRendezVous(checked)
                 }
             }
         }
