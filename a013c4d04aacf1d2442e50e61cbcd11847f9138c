@@ -22,6 +22,30 @@
       "revId": "a013c4d04aacf1d2442e50e61cbcd11847f9138c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfe0cdbf_b1cc504f",
+        "filename": "src/settingsview/components/GeneralSettingsPage.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-02T21:29:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc0c7f01_4dcefc53",
+      "range": {
+        "startLine": 633,
+        "startChar": 34,
+        "endLine": 633,
+        "endChar": 48
+      },
+      "revId": "a013c4d04aacf1d2442e50e61cbcd11847f9138c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
