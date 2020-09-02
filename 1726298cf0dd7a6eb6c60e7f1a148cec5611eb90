@@ -45,6 +45,30 @@
       "revId": "1726298cf0dd7a6eb6c60e7f1a148cec5611eb90",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "869e6a76_2110331c",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-02T14:01:26Z",
+      "side": 1,
+      "message": "Indeed, we need to refill the modell",
+      "parentUuid": "318c6ef4_f5feb51b",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 62
+      },
+      "revId": "1726298cf0dd7a6eb6c60e7f1a148cec5611eb90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
