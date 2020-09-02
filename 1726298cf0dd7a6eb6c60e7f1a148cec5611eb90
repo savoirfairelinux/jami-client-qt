@@ -69,6 +69,30 @@
       "revId": "1726298cf0dd7a6eb6c60e7f1a148cec5611eb90",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6be68f1f_6cf8edff",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T15:56:54Z",
+      "side": 1,
+      "message": "It think it is also necessary to update the view just after the refill            mainViewWindowSidePanel.forceUpdateConversationSmartListView()",
+      "parentUuid": "869e6a76_2110331c",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 62
+      },
+      "revId": "1726298cf0dd7a6eb6c60e7f1a148cec5611eb90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
