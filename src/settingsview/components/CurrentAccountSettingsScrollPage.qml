@@ -46,6 +46,7 @@ Rectangle {
 
     property int refreshVariable : 0
     property int preferredColumnWidth : accountViewRect.width / 2 - 50
+    property bool isRendezVous: false
 
     signal navigateToMainView
     signal navigateToNewWizardView
@@ -59,12 +60,14 @@ Rectangle {
     function updateAccountInfoDisplayed() {
         setAvatar()
 
+        isRendezVous = ClientWrapper.settingsAdaptor.getAccountConfig_isRendezVous()
+
         accountEnableCheckBox.checked = ClientWrapper.settingsAdaptor.get_CurrentAccountInfo_Enabled()
         displayNameLineEdit.text = ClientWrapper.settingsAdaptor.getCurrentAccount_Profile_Info_Alias()
 
         var showLocalAccountConfig = (ClientWrapper.settingsAdaptor.getAccountConfig_Manageruri() === "")
         passwdPushButton.visible = showLocalAccountConfig
-        btnExportAccount.visible = showLocalAccountConfig
+        btnExportAccount.visible = showLocalAccountConfig && !isRendezVous
         linkDevPushButton.visible = showLocalAccountConfig
 
         registeredIdNeedsSet = (ClientWrapper.settingsAdaptor.get_CurrentAccountInfo_RegisteredName() === "")
@@ -274,14 +277,14 @@ Rectangle {
             var info
             switch(currentPurpose){
             case PasswordDialog.ExportAccount:
-                info = success ? qsTr("Export Successful") : qsTr("Export Failed")
+                info = success ? qsTr("Export successful") : qsTr("Export failed")
                 break
             case PasswordDialog.ChangePassword:
-                info = success ? qsTr("Password Changed Successfully") : qsTr("Password Change Failed")
+                info = success ? qsTr("Password changed successfully") : qsTr("Password change failed")
                 break
             case PasswordDialog.SetPassword:
-                info = success ? qsTr("Password Set Successfully") : qsTr("Password Set Failed")
-                passwdPushButton.text = success ? qsTr("Change Password") : qsTr("Set Password")
+                info = success ? qsTr("Password set successfully") : qsTr("Password set failed")
+                passwdPushButton.text = success ? qsTr("Change password") : qsTr("Set password")
                 break
             }
 
@@ -469,7 +472,7 @@ Rectangle {
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
                 Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-                eText: qsTr("Account Settings")
+                eText: isRendezVous ? qsTr("Meeting Settings") : qsTr("Account Settings")
                 fontSize: JamiTheme.titleFontSize
                 maxWidth: !backToSettingsMenuButton.visible ? accountViewRect.width - 100 :
                                                               accountViewRect.width - backToSettingsMenuButton.width - 100
@@ -821,7 +824,7 @@ Rectangle {
                         Layout.alignment: Qt.AlignHCenter
 
                         toolTipText: qsTr("Press this button to export account to a .gz file")
-                        text: qsTr("Export Account")
+                        text: isRendezVous ? qsTr("Export XXX") : qsTr("Export account")
 
                         source: "qrc:/images/icons/round-save_alt-24px.svg"
 
@@ -846,7 +849,7 @@ Rectangle {
                         Layout.alignment: Qt.AlignHCenter
 
                         toolTipText: qsTr("Press this button to delete this account")
-                        text: qsTr("Delete Account")
+                        text: isRendezVous ? qsTr("Delete meeting") : qsTr("Delete account")
 
                         source: "qrc:/images/icons/delete_forever-24px.svg"
 
@@ -862,6 +865,7 @@ Rectangle {
                 ColumnLayout {
                     Layout.fillWidth: true
                     Layout.leftMargin: JamiTheme.preferredMarginSize
+                    visible: !isRendezVous
 
                     Label {
                         Layout.minimumHeight: JamiTheme.preferredFieldHeight
@@ -1056,7 +1060,7 @@ Rectangle {
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
                         Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-                        eText: qsTr("Advanced Account Settings")
+                        eText: accountViewRect.isRendezVous ?  qsTr("Advanced meeting settings") : qsTr("Advanced account settings")
 
                         fontSize: JamiTheme.headerFontSize
                         maxWidth: accountViewRect.width - advancedAccountSettingsPButton.width

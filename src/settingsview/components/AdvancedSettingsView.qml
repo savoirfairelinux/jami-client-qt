@@ -31,6 +31,8 @@ import "../../commoncomponents"
 
 ColumnLayout {
     function updateAccountInfoDisplayedAdvance() {
+        isRendezVous = ClientWrapper.settingsAdaptor.getAccountConfig_isRendezVous()
+
         //Call Settings
         checkAutoConnectOnLocalNetwork.checked = ClientWrapper.settingsAdaptor.getAccountConfig_PeerDiscovery()
         checkBoxUntrusted.checked = ClientWrapper.settingsAdaptor.getAccountConfig_DHT_PublicInCalls()
@@ -268,6 +270,7 @@ ColumnLayout {
     Layout.fillWidth: true
 
     property int preferredColumnWidth : accountViewRect.width / 2 - 50
+    property bool isRendezVous: false
 
     ColumnLayout {
 
@@ -311,6 +314,7 @@ ColumnLayout {
             ToggleSwitch {
                 id: checkBoxAutoAnswer
 
+                visible: !isRendezVous
                 Layout.fillWidth: true
 
                 labelText: autoAnswerCallsElidedText.elidedText
@@ -330,6 +334,7 @@ ColumnLayout {
 
             ToggleSwitch {
                 id: checkBoxCustomRingtone
+                visible: !isRendezVous
 
                 labelText: enableCustomRingtoneElidedText.elidedText
                 fontPointSize: JamiTheme.settingsFontSize
@@ -349,6 +354,7 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
+                visible: !isRendezVous
 
                 ElidedTextLabel {
                     Layout.fillWidth: true
