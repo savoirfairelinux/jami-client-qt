@@ -107,6 +107,11 @@ QString bestNameForConversation(const lrc::api::conversation::Info &conv,
 QString secondBestNameForAccount(const lrc::api::account::Info &account);
 lrc::api::profile::Type profileType(const lrc::api::conversation::Info &conv,
                                     const lrc::api::ConversationModel &model);
+
+// RendezVous
+bool isRendezVous(const lrc::api::account::Info &account);
+
+// Interactions.
 std::string formatTimeString(const std::time_t &timestamp);
 bool isInteractionGenerated(const lrc::api::interaction::Type &interaction);
 bool isContactValid(const QString &contactUid, const lrc::api::ConversationModel &model);

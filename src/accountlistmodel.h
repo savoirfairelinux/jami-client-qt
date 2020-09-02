@@ -30,7 +30,7 @@ class AccountListModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    enum Role { Alias = Qt::UserRole + 1, Username, Picture, Type, Status, ID };
+    enum Role { Alias = Qt::UserRole + 1, Username, Picture, Type, Status, IsRendezVous, ID };
 
     explicit AccountListModel(QObject *parent = 0);
     ~AccountListModel();

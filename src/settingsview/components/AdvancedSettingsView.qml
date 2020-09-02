@@ -34,8 +34,11 @@ ColumnLayout {
     id: root
 
     property int itemWidth
+    property bool isRendezVous: false
 
     function updateAccountInfoDisplayedAdvance() {
+        isRendezVous = SettingsAdapter.getAccountConfig_RendezVous()
+
         //Call Settings
         checkAutoConnectOnLocalNetwork.checked = SettingsAdapter.getAccountConfig_PeerDiscovery()
         checkBoxUntrusted.checked = SettingsAdapter.getAccountConfig_DHT_PublicInCalls()
@@ -260,6 +263,7 @@ ColumnLayout {
             ToggleSwitch {
                 id: checkBoxAutoAnswer
 
+                visible: !isRendezVous
                 labelText: qsTr("Auto Answer Calls")
                 fontPointSize: JamiTheme.settingsFontSize
 
@@ -270,6 +274,7 @@ ColumnLayout {
 
             ToggleSwitch {
                 id: checkBoxCustomRingtone
+                visible: !isRendezVous
 
                 labelText: qsTr("Enable Custom Ringtone")
                 fontPointSize: JamiTheme.settingsFontSize
@@ -282,6 +287,7 @@ ColumnLayout {
 
             RowLayout {
                 Layout.fillWidth: true
+                visible: !isRendezVous
 
                 ElidedTextLabel {
                     Layout.fillWidth: true

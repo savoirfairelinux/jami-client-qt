@@ -19,6 +19,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
+import QtGraphicalEffects 1.15
 import net.jami.Models 1.0
 
 import "../../commoncomponents"
@@ -114,15 +115,44 @@ Popup {
             TextMetrics {
                 id: textMetricsUserAliasPopup
                 elide: Text.ElideRight
-                elideWidth: accountComboBox.width - userImage.width - settingsButton.width - 30
+                elideWidth: accountComboBox.width - userImage.width - settingsButton.width - 30 - rdvImage.width
                 text: Alias
             }
 
             TextMetrics {
                 id: textMetricsUsernamePopup
                 elide: Text.ElideRight
-                elideWidth: accountComboBox.width - userImage.width - settingsButton.width - 30
+                elideWidth: accountComboBox.width - userImage.width - settingsButton.width - 30 - rdvImage.width
                 text: Username
+            }
+
+
+            Image {
+                id: rdvImage
+
+                visible: IsRendezVous
+
+                anchors.right: parent.right
+                anchors.rightMargin: 12
+                anchors.verticalCenter: parent.verticalCenter
+
+                width: 24
+                height: 24
+
+                fillMode: Image.PreserveAspectFit
+                mipmap: true
+
+                source: "qrc:/images/icons/groups-24px.svg"
+                layer {
+                    enabled: true
+                    effect: ColorOverlay {
+                        color: "grey"
+                    }
+                }
+
+                ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
+                ToolTip.visible: hovered
+                ToolTip.text: qsTr("Rendez-vous mode enabled")
             }
 
             background: Rectangle {

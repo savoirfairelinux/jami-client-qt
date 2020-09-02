@@ -549,8 +549,14 @@ Utils::profileType(const lrc::api::conversation::Info& conv,
         return lrc::api::profile::Type::INVALID;
     }
 }
-
 // TODO: use Qt for this
+
+bool
+Utils::isRendezVous(const lrc::api::account::Info &account)
+{
+    return account.confProperties.isRendezVous;
+}
+
 std::string
 Utils::formatTimeString(const std::time_t& timestamp)
 {
