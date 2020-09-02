@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9ef2821_36a6de79",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T09:52:58Z",
+      "side": 1,
+      "message": "Add communicationPageMessageWebView.setSendContactRequestButtonVisible(false) in order to hide the request contact button (I don\u0027t know why if we try with MessagesAdapter.setupChatView(ClientWrapper.utilsAdaptor.getCurrConvId()) does not work in this case...)",
+      "range": {
+        "startLine": 782,
+        "startChar": 4,
+        "endLine": 786,
+        "endChar": 5
+      },
+      "revId": "77f11defeb760e737f6fd19ab4dd88b49cbb8816",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "561b2a6c_65629bde",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T09:52:58Z",
+      "side": 1,
+      "message": "Not in the table?",
+      "range": {
+        "startLine": 789,
+        "startChar": 19,
+        "endLine": 789,
+        "endChar": 31
+      },
+      "revId": "77f11defeb760e737f6fd19ab4dd88b49cbb8816",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87f51d47_c38f5111",
+        "filename": "src/mainview/components/ConversationSmartListView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T09:52:58Z",
+      "side": 1,
+      "message": "Contact is blocked but the conversation remains there, can add:\n\nconversationSmartListView.needToBackToWelcomePage()",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 9
+      },
+      "revId": "77f11defeb760e737f6fd19ab4dd88b49cbb8816",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02ad3744_64b58f2f",
+        "filename": "src/mainview/components/ConversationSmartListView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T09:52:58Z",
+      "side": 1,
+      "message": "Not in the resume table?",
+      "range": {
+        "startLine": 140,
+        "startChar": 19,
+        "endLine": 140,
+        "endChar": 37
+      },
+      "revId": "77f11defeb760e737f6fd19ab4dd88b49cbb8816",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9487e3e5_562b0baf",
+        "filename": "src/mainview/components/ConversationSmartListView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T09:52:58Z",
+      "side": 1,
+      "message": "It works with the convUid, but not the index, we can add    \n\nconversationSmartListView.needToSelectItems(UID)\nconversationSmartListView.needToGrabFocus()\n\ninside of ConversationSmartListViewItemDelegate of onCurrentIndexIsChanged()",
+      "range": {
+        "startLine": 156,
+        "startChar": 56,
+        "endLine": 156,
+        "endChar": 94
+      },
+      "revId": "77f11defeb760e737f6fd19ab4dd88b49cbb8816",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "294ab126_d8ef4cb5",
+        "filename": "src/mainview/components/ConversationSmartListView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T09:52:58Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 168,
+        "startChar": 56,
+        "endLine": 168,
+        "endChar": 94
+      },
+      "revId": "77f11defeb760e737f6fd19ab4dd88b49cbb8816",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
