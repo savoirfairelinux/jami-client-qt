@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8bb78d46_93aa04af",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-02T20:52:24Z",
+      "side": 1,
+      "message": "this check should occur in LRCInstance and prevent the currentAccountChanged signal from being emitted",
+      "range": {
+        "startLine": 52,
+        "startChar": 20,
+        "endLine": 52,
+        "endChar": 49
+      },
+      "revId": "85cb048c590212dad824b685dbb359fa57196839",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
