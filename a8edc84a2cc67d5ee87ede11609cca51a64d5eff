@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fae8584a_299ff2c6",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T10:33:10Z",
+      "side": 1,
+      "message": "I agree, shouldn\u0027t have been removed.. :s",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 31
+      },
+      "revId": "a8edc84a2cc67d5ee87ede11609cca51a64d5eff",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
