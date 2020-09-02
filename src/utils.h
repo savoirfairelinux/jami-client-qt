@@ -125,6 +125,9 @@ QString secondBestNameForAccount(const lrc::api::account::Info &account);
 lrc::api::profile::Type profileType(const lrc::api::conversation::Info &conv,
                                     const lrc::api::ConversationModel &model);
 
+// RendezVous
+bool isRendezVous(const lrc::api::account::Info &account);
+
 /*
  * Interactions.
  */
