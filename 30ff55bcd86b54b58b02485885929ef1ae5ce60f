@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e5cf4121_973efc83",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-02T21:11:31Z",
+      "side": 1,
+      "message": "I think we can get away with not calling this method and not at all tracking these connections by using \u0027Qt::UniqueConnection\u0027 plus the extra context parameter with a lambda like:\nQObject::connect(sender, signal, this, [this]() {...}, Qt::UniqueConnection);",
+      "range": {
+        "startLine": 271,
+        "startChar": 4,
+        "endLine": 279,
+        "endChar": 56
+      },
+      "revId": "30ff55bcd86b54b58b02485885929ef1ae5ce60f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bebf5e52_af220005",
+        "filename": "src/conversationsadapter.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-02T21:11:31Z",
+      "side": 1,
+      "message": "I don\u0027t see this method invoked anywhere",
+      "range": {
+        "startLine": 37,
+        "startChar": 21,
+        "endLine": 37,
+        "endChar": 48
+      },
+      "revId": "30ff55bcd86b54b58b02485885929ef1ae5ce60f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
