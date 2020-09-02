@@ -591,6 +591,12 @@ Utils::profileType(const lrc::api::conversation::Info &conv,
     }
 }
 
+bool
+Utils::isRendezVous(const lrc::api::account::Info &account)
+{
+    return account.confProperties.isRendezVous;
+}
+
 std::string
 Utils::formatTimeString(const std::time_t &timestamp)
 {

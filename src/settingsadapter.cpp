@@ -579,12 +579,6 @@ SettingsAdapter::getAccountConfig_PublishedPort()
     return getAccountConfig().publishedPort;
 }
 
-bool
-SettingsAdaptor::getAccountConfig_isRendezVous()
-{
-    return getAccountConfig().isRendezVous;
-}
-
 QString
 SettingsAdapter::getAccountConfig_Mailbox()
 {

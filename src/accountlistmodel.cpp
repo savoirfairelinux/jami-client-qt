@@ -81,6 +81,8 @@ AccountListModel::data(const QModelIndex &index, int role) const
     case Role::Picture:
         return QString::fromLatin1(
             Utils::QImageToByteArray(Utils::accountPhoto(accountInfo)).toBase64().data());
+    case Role::IsRendezVous:
+        return QVariant(Utils::isRendezVous(accountInfo));
     case Role::ID:
         return QVariant(accountInfo.id);
     }
@@ -96,6 +98,7 @@ AccountListModel::roleNames() const
     roles[Picture] = "Picture";
     roles[Type] = "Type";
     roles[Status] = "Status";
+    roles[IsRendezVous] = "IsRendezVous";
     roles[ID] = "ID";
     return roles;
 }
