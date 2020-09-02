@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f74ec4f0_b90ad408",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T10:59:02Z",
+      "side": 1,
+      "message": "agree, it is true that we can receive this signal even if we select same account",
+      "range": {
+        "startLine": 49,
+        "startChar": 52,
+        "endLine": 49,
+        "endChar": 73
+      },
+      "revId": "1726298cf0dd7a6eb6c60e7f1a148cec5611eb90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "318c6ef4_f5feb51b",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T10:59:02Z",
+      "side": 1,
+      "message": "Without the connections, during the time we are in the settings we can loose \"Invitations\" or \"Last interaction message\"",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 62
+      },
+      "revId": "1726298cf0dd7a6eb6c60e7f1a148cec5611eb90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
