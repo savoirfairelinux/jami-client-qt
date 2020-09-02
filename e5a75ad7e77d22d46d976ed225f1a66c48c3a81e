@@ -22,6 +22,30 @@
       "revId": "e5a75ad7e77d22d46d976ed225f1a66c48c3a81e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "612ed3c5_c9e16927",
+        "filename": "src/mainview/components/ConversationSmartListUserImage.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-02T14:53:23Z",
+      "side": 1,
+      "message": "Seems like it\u0027s merged before I got the chance to reply your comment,\n\nbut I will remove it afterward",
+      "parentUuid": "bd3b015a_8bf9d1ec",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "e5a75ad7e77d22d46d976ed225f1a66c48c3a81e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
