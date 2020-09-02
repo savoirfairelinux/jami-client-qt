@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bd3b015a_8bf9d1ec",
+        "filename": "src/mainview/components/ConversationSmartListUserImage.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-02T07:32:24Z",
+      "side": 1,
+      "message": "Without the rightMargin it\u0027s slightly \"uncentered\", but I\u0027m not sure if it\u0027s already what we want... In my opinion we can remove both margins.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "e5a75ad7e77d22d46d976ed225f1a66c48c3a81e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
