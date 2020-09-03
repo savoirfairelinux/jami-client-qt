@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "446a63cc_513238c8",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eeba4c8_d692f700",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "396fc46a_a6403d71",
         "filename": "src/commoncomponents/DeleteAccountDialog.qml",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c030397_5d8b46ff",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "396fc46a_a6403d71",
+      "range": {
+        "startLine": 95,
+        "startChar": 15,
+        "endLine": 95,
+        "endChar": 23
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5d1014f3_808ab6fb",
+        "filename": "src/lrcinstance.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "it\u0027s not an object, so the return type qualifier is meaningless and thrown out and will provoke a warning\nauto i \u003d (const int)42; i++; // fine",
+      "parentUuid": "1ba030f9_060ceaf2",
+      "range": {
+        "startLine": 306,
+        "startChar": 9,
+        "endLine": 306,
+        "endChar": 28
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0077e3b6_022b9103",
         "filename": "src/main.cpp",
         "patchSetId": 7
@@ -91,6 +163,30 @@
       "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10e4fde8_2a697420",
+        "filename": "src/main.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "doxygen habit, but unnecessary and removed.\nhowever, /*! */ and //! is the doxygen recommended qt style commenting",
+      "parentUuid": "0077e3b6_022b9103",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "56e0b161_8714e7e5",
+        "filename": "src/main.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "73f99f95_c4167132",
+      "range": {
+        "startLine": 56,
+        "startChar": 34,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "43142354_18f0ab0c",
         "filename": "src/mainapplication.cpp",
         "patchSetId": 7
@@ -137,6 +257,30 @@
       "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a8a6ca2_d2ebc162",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43142354_18f0ab0c",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "2b51857a_edfa3f0f",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "will remove it. fixed with https://review.jami.net/c/ring-daemon/+/15479",
+      "parentUuid": "898b7142_8e2eedbc",
+      "range": {
+        "startLine": 307,
+        "startChar": 26,
+        "endLine": 310,
+        "endChar": 42
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c45d287_d609c18b",
         "filename": "src/qml_register.cpp",
         "patchSetId": 7
@@ -183,6 +351,30 @@
       "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82d085fc_c4fcdc63",
+        "filename": "src/qml_register.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c45d287_d609c18b",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 13
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "c3dca263_4774ab4a",
+        "filename": "src/qml_register.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58049798_87164665",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27c56b05_27a9632e",
         "filename": "src/settingsadapter.h",
         "patchSetId": 7
@@ -220,6 +436,30 @@
       "writtenOn": "2020-09-03T14:01:01Z",
       "side": 1,
       "message": "ticket",
+      "range": {
+        "startLine": 228,
+        "startChar": 22,
+        "endLine": 230,
+        "endChar": 24
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ed49912_91c48c99",
+        "filename": "src/settingsadapter.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "removed changed",
+      "parentUuid": "27c56b05_27a9632e",
       "range": {
         "startLine": 228,
         "startChar": 22,
@@ -249,6 +489,24 @@
     },
     {
       "key": {
+        "uuid": "a162c1c8_b86f5253",
+        "filename": "src/settingsview/components/AdvancedSettingsView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd0843df_a717c324",
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b193892f_326a34fd",
         "filename": "src/utils.h",
         "patchSetId": 7
@@ -269,6 +527,30 @@
       "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d3f5668_10b31ea5",
+        "filename": "src/utils.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:25:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b193892f_326a34fd",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
