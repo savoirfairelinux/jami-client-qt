@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eeba4c8_d692f700",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "spacing",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 41,
+        "endChar": 30
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "396fc46a_a6403d71",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 95,
+        "startChar": 15,
+        "endLine": 95,
+        "endChar": 23
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ba030f9_060ceaf2",
+        "filename": "src/lrcinstance.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "however the method can be cosnt",
+      "range": {
+        "startLine": 306,
+        "startChar": 9,
+        "endLine": 306,
+        "endChar": 28
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0077e3b6_022b9103",
+        "filename": "src/main.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "what is this?",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 20,
+        "endChar": 17
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73f99f95_c4167132",
+        "filename": "src/main.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "Jami?\n\nIf this give problems on Windows, at least do it for Linux",
+      "range": {
+        "startLine": 56,
+        "startChar": 34,
+        "endLine": 56,
+        "endChar": 45
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "43142354_18f0ab0c",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 20,
+        "startChar": 2,
+        "endLine": 21,
+        "endChar": 28
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "898b7142_8e2eedbc",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "please do a ticket if it\u0027s still the case",
+      "range": {
+        "startLine": 307,
+        "startChar": 26,
+        "endLine": 310,
+        "endChar": 42
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c45d287_d609c18b",
+        "filename": "src/qml_register.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "pragma once in cpp?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 13
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58049798_87164665",
+        "filename": "src/qml_register.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "same for other files",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27c56b05_27a9632e",
+        "filename": "src/settingsadapter.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "ticket",
+      "range": {
+        "startLine": 228,
+        "startChar": 22,
+        "endLine": 230,
+        "endChar": 24
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd0843df_a717c324",
+        "filename": "src/settingsview/components/AdvancedSettingsView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "lot of spacing issues there (and clang don\u0027t take qml file0",
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b193892f_326a34fd",
+        "filename": "src/utils.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T14:01:01Z",
+      "side": 1,
+      "message": "remove comment",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
