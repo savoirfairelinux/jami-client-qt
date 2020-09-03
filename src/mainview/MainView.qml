@@ -338,7 +338,7 @@ Window {
                     }
 
                     Component.onCompleted: {
-                        ClientWrapper.accountAdaptor.setQmlObject(this)
+                        AccountAdapter.setQmlObject(this)
                     }
                 }
 
@@ -701,7 +701,7 @@ Window {
     }
 
     Component.onCompleted: {
-        CallAdapter.initQmlObject()
+        CallAdapter.safeInit()
     }
 
     onClosing: {

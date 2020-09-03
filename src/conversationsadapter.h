@@ -33,6 +33,9 @@ public:
     explicit ConversationsAdapter(QObject *parent = nullptr);
     ~ConversationsAdapter();
 
+protected:
+    void safeInit() override;
+
     Q_INVOKABLE bool connectConversationModel();
     Q_INVOKABLE void selectConversation(const QString &accountId,
                                         const QString &convUid,
@@ -49,7 +52,6 @@ signals:
     void showSearchStatus(const QString &status);
 
 private:
-    void initQmlObject() override;
     void setConversationFilter(lrc::api::profile::Type filter);
     void backToWelcomePage();
     bool selectConversation(const lrc::api::conversation::Info &item,
