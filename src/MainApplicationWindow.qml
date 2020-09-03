@@ -76,13 +76,14 @@ ApplicationWindow {
 
         title: "Jami"
 
-        minimumWidth: 400
+        minimumWidth: 500
         minimumHeight: 600
 
         WizardView {
             id: wizardViewForApplicationStart
 
             anchors.fill: parent
+
             onNeedToShowMainViewWindow: {
                 mainViewLoader.newAddedAccountIndex = accountIndex
                 if (mainViewLoader.source.toString() !== "qrc:/src/mainview/MainView.qml") {
@@ -126,7 +127,8 @@ ApplicationWindow {
 
     Connections {
         target: ClientWrapper.lrcInstance
-        onRestoreAppRequested: {
+
+        function onRestoreAppRequested() {
             if (mainViewLoader.item)
                 mainViewLoader.item.show()
             else
