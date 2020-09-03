@@ -32,7 +32,7 @@ ConversationsAdapter::ConversationsAdapter(QObject *parent)
 ConversationsAdapter::~ConversationsAdapter() {}
 
 void
-ConversationsAdapter::initQmlObject()
+ConversationsAdapter::safeInit()
 {
     conversationSmartListModel_ = new SmartListModel(LRCInstance::getCurrAccId(), this);
 
@@ -228,9 +228,6 @@ ConversationsAdapter::connectConversationModel()
                                                 &lrc::api::ConversationModel::filterChanged,
                                                 [this]() {
         conversationSmartListModel_->fillConversationsList();
-        QMetaObject::invokeMethod(qmlObj_,
-                                  "updateSmartList",
-                                  Q_ARG(QVariant, LRCInstance::getCurrAccId()));
         updateConversationsFilterWidget();
         QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
     });
@@ -239,9 +236,7 @@ ConversationsAdapter::connectConversationModel()
                                                   &lrc::api::ConversationModel::newConversation,
                                                   [this](const QString &convUid) {
         conversationSmartListModel_->fillConversationsList();
-        QMetaObject::invokeMethod(qmlObj_,
-                                  "updateSmartList",
-                                    Q_ARG(QVariant, LRCInstance::getCurrAccId()));
+        QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
         updateConversationForNewContact(convUid);
     });
 
@@ -280,8 +275,6 @@ ConversationsAdapter::connectConversationModel()
                                                       &lrc::api::ConversationModel::searchResultUpdated,
                                                       [this]() {
         conversationSmartListModel_->fillConversationsList();
-        QMetaObject::invokeMethod(qmlObj_, "updateSmartList",
-                                  Q_ARG(QVariant, LRCInstance::getCurrAccId()));
         QMetaObject::invokeMethod(qmlObj_, "updateConversationSmartListView");
     });
 
