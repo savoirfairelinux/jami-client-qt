@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f92aead1_1227a2bc",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-09-03T13:32:12Z",
+      "side": 1,
+      "message": "This disconnect is necessary in the other patch to stop listening signals",
+      "parentUuid": "e5cf4121_973efc83",
+      "range": {
+        "startLine": 271,
+        "startChar": 4,
+        "endLine": 279,
+        "endChar": 56
+      },
+      "revId": "30ff55bcd86b54b58b02485885929ef1ae5ce60f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bebf5e52_af220005",
         "filename": "src/conversationsadapter.h",
         "patchSetId": 3
