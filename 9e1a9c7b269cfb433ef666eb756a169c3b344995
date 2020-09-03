@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e20e91a5_43c23373",
+        "filename": "src/wizardview/components/AccountCreationStepIndicator.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T19:25:18Z",
+      "side": 1,
+      "message": "\u0027Step\u0027 to be coherent with the compononent name",
+      "range": {
+        "startLine": 30,
+        "startChar": 24,
+        "endLine": 30,
+        "endChar": 29
+      },
+      "revId": "9e1a9c7b269cfb433ef666eb756a169c3b344995",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6ec529b_4701e24f",
+        "filename": "src/wizardview/components/AccountCreationStepIndicator.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T19:25:18Z",
+      "side": 1,
+      "message": "\u0027Other\u0027 ??",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 54
+      },
+      "revId": "9e1a9c7b269cfb433ef666eb756a169c3b344995",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
