@@ -343,7 +343,7 @@ Window {
                     }
 
                     Component.onCompleted: {
-                        ClientWrapper.accountAdaptor.setQmlObject(this)
+                        AccountAdapter.setQmlObject(this)
                     }
                 }
 
@@ -702,10 +702,6 @@ Window {
         y: Math.round((mainViewWindow.height - height) / 2)
         width: Math.max(mainViewWindow.width / 2, aboutPopUpPreferredWidth)
         height: userProfile.contentHeight
-    }
-
-    Component.onCompleted: {
-        CallAdapter.initQmlObject()
     }
 
     onClosing: {

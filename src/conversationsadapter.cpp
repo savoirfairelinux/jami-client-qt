@@ -32,7 +32,7 @@ ConversationsAdapter::ConversationsAdapter(QObject *parent)
 ConversationsAdapter::~ConversationsAdapter() {}
 
 void
-ConversationsAdapter::initQmlObject()
+ConversationsAdapter::safeInit()
 {
     conversationSmartListModel_ = new SmartListModel(LRCInstance::getCurrAccId(), this);
 
