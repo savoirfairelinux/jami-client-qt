@@ -472,6 +472,30 @@
     },
     {
       "key": {
+        "uuid": "0deea9b5_f5e03518",
+        "filename": "src/settingsadapter.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T15:26:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ed49912_91c48c99",
+      "range": {
+        "startLine": 228,
+        "startChar": 22,
+        "endLine": 230,
+        "endChar": 24
+      },
+      "revId": "a680eb18a316d24dbcae959e5d8ba08ddfba7be8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd0843df_a717c324",
         "filename": "src/settingsview/components/AdvancedSettingsView.qml",
         "patchSetId": 7
