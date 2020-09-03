@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8215ca9c_56156b91",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-03T17:44:15Z",
+      "side": 1,
+      "message": "doesn\u0027t exist",
+      "range": {
+        "startLine": 50,
+        "startChar": 36,
+        "endLine": 50,
+        "endChar": 45
+      },
+      "revId": "31293d4994304338238a69b1153f6b6cbecddc97",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
