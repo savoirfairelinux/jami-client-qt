@@ -94,120 +94,19 @@ public:
     Q_INVOKABLE void clearCurrentAvatar();
 
     /*
-     * getters and setters of ConfProperties_t
+     * getters and setters of Configuration properties
      */
     // getters
     Q_INVOKABLE lrc::api::account::ConfProperties_t getAccountConfig();
-    Q_INVOKABLE QString getAccountConfig_Manageruri();
-    Q_INVOKABLE QString getAccountConfig_Username();
-    Q_INVOKABLE QString getAccountConfig_Hostname();
-    Q_INVOKABLE QString getAccountConfig_Password();
+    Q_INVOKABLE QVariantMap getAccountConfigMap();
+    Q_INVOKABLE QVariant getAccountConfig(const QString& key);
 
-    Q_INVOKABLE QString getAccountConfig_ProxyServer();
-    Q_INVOKABLE bool getAccountConfig_ProxyEnabled();
-
-    Q_INVOKABLE bool getAccountConfig_PeerDiscovery();
-    Q_INVOKABLE bool getAccountConfig_DHT_PublicInCalls();
-    Q_INVOKABLE bool getAccountConfig_RendezVous();
-    Q_INVOKABLE bool getAccountConfig_AutoAnswer();
-
-    Q_INVOKABLE QString getAccountConfig_RingNS_Uri();
-
-    Q_INVOKABLE QString getAccountConfig_TLS_CertificateListFile();
-    Q_INVOKABLE QString getAccountConfig_TLS_CertificateFile();
-    Q_INVOKABLE QString getAccountConfig_TLS_PrivateKeyFile();
-    Q_INVOKABLE bool getAccountConfig_TLS_Enable();
-    Q_INVOKABLE QString getAccountConfig_TLS_Password();
-    Q_INVOKABLE bool getAccountConfig_TLS_VerifyServer();
-    Q_INVOKABLE bool getAccountConfig_TLS_VerifyClient();
-    Q_INVOKABLE bool getAccountConfig_TLS_RequireClientCertificate();
-    Q_INVOKABLE int getAccountConfig_TLS_Method_inInt();
-    Q_INVOKABLE QString getAccountConfig_TLS_Servername();
-    Q_INVOKABLE int getAccountConfig_TLS_NegotiationTimeoutSec();
-
-    Q_INVOKABLE bool getAccountConfig_SRTP_Enabled();
-    Q_INVOKABLE int getAccountConfig_SRTP_KeyExchange();
-    Q_INVOKABLE bool getAccountConfig_SRTP_RtpFallback();
-
-    Q_INVOKABLE bool getAccountConfig_UpnpEnabled();
-    Q_INVOKABLE bool getAccountConfig_TURN_Enabled();
-    Q_INVOKABLE QString getAccountConfig_TURN_Server();
-    Q_INVOKABLE QString getAccountConfig_TURN_Username();
-    Q_INVOKABLE QString getAccountConfig_TURN_Password();
-    Q_INVOKABLE QString getAccountConfig_TURN_Realm();
-
-    Q_INVOKABLE bool getAccountConfig_STUN_Enabled();
-    Q_INVOKABLE QString getAccountConfig_STUN_Server();
-
-    Q_INVOKABLE bool getAccountConfig_Video_Enabled();
-    Q_INVOKABLE int getAccountConfig_Video_VideoPortMin();
-    Q_INVOKABLE int getAccountConfig_Video_VideoPortMax();
-
-    Q_INVOKABLE int getAccountConfig_Audio_AudioPortMin();
-    Q_INVOKABLE int getAccountConfig_Audio_AudioPortMax();
-
-    Q_INVOKABLE bool getAccountConfig_Ringtone_RingtoneEnabled();
-    Q_INVOKABLE QString getAccountConfig_Ringtone_RingtonePath();
-
-    Q_INVOKABLE int getAccountConfig_Registration_Expire();
-    Q_INVOKABLE int getAccountConfig_Localport();
-    Q_INVOKABLE bool getAccountConfig_PublishedSameAsLocal();
-    Q_INVOKABLE QString getAccountConfig_PublishedAddress();
-    Q_INVOKABLE int getAccountConfig_PublishedPort();
-
-    Q_INVOKABLE QString getAccountConfig_Mailbox();
 
     // setters
-    Q_INVOKABLE void setAccountConfig_Username(QString input);
-    Q_INVOKABLE void setAccountConfig_Hostname(QString input);
-    Q_INVOKABLE void setAccountConfig_Password(QString input);
-    Q_INVOKABLE void setAccountConfig_ProxyServer(QString input);
-
-    Q_INVOKABLE void setAutoConnectOnLocalNetwork(bool state);
-    Q_INVOKABLE void setCallsUntrusted(bool state);
-    Q_INVOKABLE void setIsRendezVous(bool state);
-    Q_INVOKABLE void setAutoAnswerCalls(bool state);
-    Q_INVOKABLE void setEnableRingtone(bool state);
-    Q_INVOKABLE void setEnableProxy(bool state);
-    Q_INVOKABLE void setUseUPnP(bool state);
-    Q_INVOKABLE void setUseTURN(bool state);
-    Q_INVOKABLE void setUseSTUN(bool state);
-    Q_INVOKABLE void setVideoState(bool state);
-    Q_INVOKABLE void setUseSRTP(bool state);
-    Q_INVOKABLE void setUseSDES(bool state);
-    Q_INVOKABLE void setUseRTPFallback(bool state);
-    Q_INVOKABLE void setUseTLS(bool state);
-    Q_INVOKABLE void setVerifyCertificatesServer(bool state);
-    Q_INVOKABLE void setVerifyCertificatesClient(bool state);
-    Q_INVOKABLE void setRequireCertificatesIncomingTLS(bool state);
-    Q_INVOKABLE void setUseCustomAddressAndPort(bool state);
-
-    Q_INVOKABLE void setNameServer(QString text);
-    Q_INVOKABLE void setProxyAddress(QString text);
-    Q_INVOKABLE void setBootstrapAddress(QString text);
-    Q_INVOKABLE void setTURNAddress(QString text);
-    Q_INVOKABLE void setTURNUsername(QString text);
-    Q_INVOKABLE void setTURNPassword(QString text);
-    Q_INVOKABLE void setTURNRealm(QString text);
-    Q_INVOKABLE void setSTUNAddress(QString text);
-
-    Q_INVOKABLE void lineEditVoiceMailDialCodeEditFinished(QString text);
-    Q_INVOKABLE void outgoingTLSServerNameLineEditTextChanged(QString text);
-    Q_INVOKABLE void lineEditSIPCertPasswordLineEditTextChanged(QString text);
-    Q_INVOKABLE void lineEditSIPCustomAddressLineEditTextChanged(QString text);
-
-    Q_INVOKABLE void customPortSIPSpinBoxValueChanged(int value);
-    Q_INVOKABLE void negotiationTimeoutSpinBoxValueChanged(int value);
-    Q_INVOKABLE void registrationTimeoutSpinBoxValueChanged(int value);
-    Q_INVOKABLE void networkInterfaceSpinBoxValueChanged(int value);
-    Q_INVOKABLE void audioRTPMinPortSpinBoxEditFinished(int value);
-    Q_INVOKABLE void audioRTPMaxPortSpinBoxEditFinished(int value);
-    Q_INVOKABLE void videoRTPMinPortSpinBoxEditFinished(int value);
-    Q_INVOKABLE void videoRTPMaxPortSpinBoxEditFinished(int value);
+    Q_INVOKABLE void setAccountConfigMap(const QVariantMap& configMap);
+    Q_INVOKABLE void setAccountConfig(const QString& key, const QVariant& value);
 
     Q_INVOKABLE void tlsProtocolComboBoxIndexChanged(const int &index);
-
-    Q_INVOKABLE void setDeviceName(QString text);
 
     Q_INVOKABLE void unbanContact(int index);
 
@@ -219,11 +118,6 @@ public:
 
     Q_INVOKABLE void decreaseVideoCodecPriority(unsigned int id);
     Q_INVOKABLE void increaseVideoCodecPriority(unsigned int id);
-
-    Q_INVOKABLE void set_RingtonePath(QString text);
-    Q_INVOKABLE void set_FileCACert(QString text);
-    Q_INVOKABLE void set_FileUserCert(QString text);
-    Q_INVOKABLE void set_FilePrivateKey(QString text);
 
     // TODO: remove these
     const Q_INVOKABLE lrc::api::account::Info &getCurrentAccountInfo();
