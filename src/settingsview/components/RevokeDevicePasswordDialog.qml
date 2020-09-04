@@ -38,15 +38,7 @@ Dialog {
 
     visible: false
 
-    anchors.centerIn: parent.Center
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
-
     title: qsTr("Enter this account's password to confirm the removal of this device")
-
-    onClosed: {
-        reject()
-    }
 
     onAccepted:{
         revokeDeviceWithPassword(deviceId,passwordEdit.text)
@@ -58,25 +50,17 @@ Dialog {
 
         ColumnLayout{
             anchors.fill: parent
-            spacing: 7
-
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-            Item{
-                Layout.fillHeight: true
-
-                Layout.maximumWidth: 20
-                Layout.preferredWidth: 20
-                Layout.minimumWidth: 20
-            }
 
             InfoLineEdit{
                 id: passwordEdit
 
+                Layout.topMargin: 20
+                Layout.bottomMargin: 20
                 Layout.alignment: Qt.AlignHCenter
 
-                Layout.minimumWidth: 294
-                Layout.preferredWidth: 294
+                Layout.fillWidth: true
+                Layout.maximumWidth: 300
 
                 Layout.preferredHeight: 30
                 Layout.minimumHeight: 30
@@ -86,39 +70,18 @@ Dialog {
                 placeholderText: qsTr("Password")
             }
 
-            Item{
-                Layout.fillHeight: true
-
-                Layout.maximumWidth: 20
-                Layout.preferredWidth: 20
-                Layout.minimumWidth: 20
-            }
-
             RowLayout{
-                spacing: 7
 
+                Layout.topMargin: 20
                 Layout.alignment: Qt.AlignHCenter
-
                 Layout.fillWidth: true
-
-                Item{
-                    Layout.fillWidth: true
-
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
 
                 HoverableRadiusButton{
                     id: btnOkay
 
                     Layout.maximumWidth: 130
-                    Layout.preferredWidth: 130
-                    Layout.minimumWidth: 130
-
-                    Layout.maximumHeight: 30
+                    Layout.fillWidth: true
                     Layout.preferredHeight: 30
-                    Layout.minimumHeight: 30
 
                     radius: height /2
 
@@ -131,25 +94,13 @@ Dialog {
                     }
                 }
 
-                Item{
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 40
-
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
-
                 HoverableButtonTextItem {
                     id: btnCancel
 
+                    Layout.leftMargin: 20
                     Layout.maximumWidth: 130
-                    Layout.preferredWidth: 130
-                    Layout.minimumWidth: 130
-
-                    Layout.maximumHeight: 30
+                    Layout.fillWidth: true
                     Layout.preferredHeight: 30
-                    Layout.minimumHeight: 30
 
                     backgroundColor: "red"
                     onEnterColor: Qt.rgba(150 / 256, 0, 0, 0.7)
@@ -169,24 +120,6 @@ Dialog {
                         reject()
                     }
                 }
-
-                Item{
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 40
-
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
-
-            }
-
-            Item{
-                Layout.fillHeight: true
-
-                Layout.maximumWidth: 20
-                Layout.preferredWidth: 20
-                Layout.minimumWidth: 20
             }
         }
     }

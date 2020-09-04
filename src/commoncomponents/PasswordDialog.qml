@@ -27,7 +27,7 @@ import "../constant"
  * PasswordDialog for changing password and exporting account
  */
 Dialog {
-    id: passwordDialog
+    id: root
 
     enum PasswordEnteringPurpose {
         ChangePassword,
@@ -72,7 +72,7 @@ Dialog {
         confirmPasswordEdit.borderColorMode = InfoLineEdit.NORMAL
         passwordEdit.clear()
         confirmPasswordEdit.clear()
-        passwordDialog.open()
+        root.open()
     }
 
     function haveDone(code, currentPurpose) {
@@ -116,19 +116,20 @@ Dialog {
         }
 
         if (success) {
-            haveDone(successCode, passwordDialog.purpose)
+            haveDone(successCode, root.purpose)
         } else {
             btnChangePasswordConfirm.enabled = false
             currentPasswordEdit.borderColorMode = InfoLineEdit.ERROR
         }
     }
+
     function savePasswordQML() {
         var success = false
         success = ClientWrapper.accountAdaptor.savePassword(ClientWrapper.utilsAdaptor.getCurrAccId(),currentPasswordEdit.text, passwordEdit.text)
 
         if (success) {
             ClientWrapper.accountAdaptor.setArchiveHasPassword(passwordEdit.text.length !== 0)
-            haveDone(successCode, passwordDialog.purpose)
+            haveDone(successCode, root.purpose)
         } else {
             currentPasswordEdit.borderColorMode = InfoLineEdit.ERROR
             btnChangePasswordConfirm.enabled = false
@@ -137,72 +138,51 @@ Dialog {
 
     visible: false
 
-    anchors.centerIn: parent.Center
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
-    height: contentLayout.implicitHeight + 64 + 16
-
     contentItem: Rectangle {
-        implicitWidth: 280
+        implicitHeight: contentLayout.implicitHeight + 64 + 16
+        implicitWidth: 350
 
         ColumnLayout {
             id: contentLayout
             anchors.fill: parent
-            spacing: 8
 
             ColumnLayout {
                 Layout.alignment: Qt.AlignHCenter
-                Layout.fillWidth: true
 
-                spacing: 7
+                MaterialLineEdit {
+                    id: currentPasswordEdit
 
-                ColumnLayout {
-                    spacing: 0
-
-                    Layout.alignment: Qt.AlignHCenter
-
-                    MaterialLineEdit {
-                        id: currentPasswordEdit
-
-                        Layout.maximumHeight: visible ?
-                                                48 :
-                                                0
-                        Layout.fillWidth: true
-
-                        visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount
-                        echoMode: TextInput.Password
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-
-                        placeholderText: qsTr("Enter Current Password")
-
-                        onTextChanged: {
-                            if (purpose === PasswordDialog.ChangePassword) {
-                                validatePassword()
-                            }
-
-                            if (currentPasswordEdit.text.length == 0) {
-                                btnChangePasswordConfirm.enabled = false
-                            } else {
-                                btnChangePasswordConfirm.enabled = true
-                            }
-                        }
-                    }
-                }
-
-                Item {
+                    Layout.maximumHeight: visible ?
+                                            48 :
+                                            0
                     Layout.fillWidth: true
 
-                    Layout.minimumHeight: 8
-                    Layout.preferredHeight: 8
-                    Layout.maximumHeight: 8
+                    visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount
+                    echoMode: TextInput.Password
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+
+                    placeholderText: qsTr("Enter Current Password")
+
+                    onTextChanged: {
+                        if (purpose === PasswordDialog.ChangePassword) {
+                            validatePassword()
+                        }
+
+                        if (currentPasswordEdit.text.length == 0) {
+                            btnChangePasswordConfirm.enabled = false
+                        } else {
+                            btnChangePasswordConfirm.enabled = true
+                        }
+                    }
                 }
 
                 MaterialLineEdit {
                     id: passwordEdit
 
+                    Layout.fillWidth: true
+                    Layout.topMargin: 8
                     fieldLayoutHeight: 48
-                    layoutFillwidth: true
 
                     visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
                     echoMode: TextInput.Password
@@ -216,17 +196,11 @@ Dialog {
                     }
                 }
 
-                Item {
-                    Layout.fillWidth: true
-
-                    Layout.minimumHeight: 8
-                    Layout.preferredHeight: 8
-                    Layout.maximumHeight: 8
-                }
-
                 MaterialLineEdit {
                     id: confirmPasswordEdit
 
+                    Layout.fillWidth: true
+                    Layout.topMargin: 8
                     fieldLayoutHeight: 48
                     layoutFillwidth: true
 
@@ -244,10 +218,7 @@ Dialog {
             }
 
             RowLayout {
-                spacing: 8
-
-                Layout.fillWidth: true
-
+                Layout.topMargin: 8
                 Layout.alignment: Qt.AlignRight
 
                 Button {
@@ -270,6 +241,7 @@ Dialog {
 
                 Button {
                     id: btnChangePasswordCancel
+                    Layout.leftMargin: 8
 
                     contentItem: Text {
                         text: qsTr("CANCEL")
@@ -281,7 +253,7 @@ Dialog {
                     }
 
                     onClicked: {
-                        passwordDialog.reject()
+                        root.reject()
                     }
                 }
             }

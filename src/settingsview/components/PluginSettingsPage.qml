@@ -39,10 +39,6 @@ Rectangle {
         ClientWrapper.pluginModel.setPluginsEnabled(state)
     }
 
-    Layout.fillHeight: true
-    Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
-    anchors.centerIn: parent
-
     signal backArrowClicked
 
     ColumnLayout {
@@ -51,13 +47,13 @@ Rectangle {
         RowLayout {
             id:pageTitle
             Layout.preferredHeight: 64
-            Layout.leftMargin: 16
+            Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
             HoverableButton {
-                Layout.preferredWidth: 30
+                Layout.preferredWidth: JamiTheme.preferredFieldHeight
 
-                radius: 30
+                radius: JamiTheme.preferredFieldHeight
                 source: "qrc:/images/icons/ic_arrow_back_24px.svg"
                 backgroundColor: "white"
                 onExitColor: "white"
@@ -100,9 +96,9 @@ Rectangle {
                 ToggleSwitch {
                     id: enabledplugin
                     Layout.fillWidth: true
-                    Layout.topMargin: 15
-                    Layout.leftMargin: 16
-                    Layout.rightMargin: 16
+                    Layout.topMargin: JamiTheme.preferredMarginSize
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     labelText: "Enable"
                     fontPointSize: JamiTheme.headerFontSize
@@ -121,13 +117,13 @@ Rectangle {
                 PluginListSettingsView {
                     id: pluginListSettingsView
                     Layout.fillWidth: true
-                    Layout.leftMargin: 16
-                    Layout.rightMargin: 16
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
                     Layout.alignment: Qt.AlignHCenter
 
                     pluginListPreferencesView: pluginListPreferencesView
 
-                    Layout.topMargin: 15
+                    Layout.topMargin: JamiTheme.preferredMarginSize
                     Layout.minimumHeight: 0
                     Layout.preferredHeight: childrenRect.height
                 }
@@ -135,8 +131,8 @@ Rectangle {
                 PluginListPreferencesView {
                     id: pluginListPreferencesView
                     Layout.fillWidth: true
-                    Layout.leftMargin: 16
-                    Layout.rightMargin: 16
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
                     Layout.minimumHeight: 0
                     Layout.preferredHeight: childrenRect.height
                 }

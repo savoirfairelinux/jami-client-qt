@@ -241,14 +241,6 @@ ColumnLayout {
         nameFilters: [qsTr("Audio Files") + " (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)", qsTr(
                 "All files") + " (*)"]
 
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
             changeRingtonePath(url)
@@ -266,14 +258,6 @@ ColumnLayout {
         folder: openPath
         nameFilters: [qsTr("Certificate File") + " (*.crt)", qsTr(
                 "All files") + " (*)"]
-
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
 
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
@@ -293,14 +277,6 @@ ColumnLayout {
         nameFilters: [qsTr("Certificate File") + " (*.crt)", qsTr(
                 "All files") + " (*)"]
 
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
             changeFileUserCert(url)
@@ -319,14 +295,6 @@ ColumnLayout {
         nameFilters: [qsTr("Key File") + " (*.key)", qsTr(
                 "All files") + " (*)"]
 
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
             changeFilePrivateKey(url)
@@ -337,8 +305,8 @@ ColumnLayout {
     Layout.fillWidth: true
     spacing: 24
 
-    property int preferredColumnWidth : sipAccountViewRect.width / 2 - 50
-    property int preferredSettingsWidth: sipAccountViewRect.width - 80
+    property int preferredColumnWidth : parent.width / 2 - 50
+    property int preferredSettingsWidth: parent.width - 80
 
     // call setting section
     ColumnLayout {

@@ -31,6 +31,10 @@ import net.jami.Adapters 1.0
 import "../../commoncomponents"
 
 ColumnLayout {
+    id: root
+
+    property int preferredColumnWidth : root.width / 2 - 50
+
     function updateAccountInfoDisplayedAdvance() {
         //Call Settings
         checkAutoConnectOnLocalNetwork.checked = SettingsAdapter.getAccountConfig_PeerDiscovery()
@@ -72,22 +76,22 @@ ColumnLayout {
     }
 
     function updateAudioCodecs(){
-        audioCodecListModel.layoutAboutToBeChanged()
-        audioCodecListModel.dataChanged(audioCodecListModel.index(0, 0),
-                                     audioCodecListModel.index(audioCodecListModel.rowCount() - 1, 0))
-        audioCodecListModel.layoutChanged()
+        audioListWidget.model.layoutAboutToBeChanged()
+        audioListWidget.model.dataChanged(audioListWidget.model.index(0, 0),
+                                     audioListWidget.model.index(audioListWidget.model.rowCount() - 1, 0))
+        audioListWidget.model.layoutChanged()
     }
 
     function updateVideoCodecs(){
-        videoCodecListModel.layoutAboutToBeChanged()
-        videoCodecListModel.dataChanged(videoCodecListModel.index(0, 0),
-                                     videoCodecListModel.index(videoCodecListModel.rowCount() - 1, 0))
-        videoCodecListModel.layoutChanged()
+        videoListWidget.model.layoutAboutToBeChanged()
+        videoListWidget.model.dataChanged(videoListWidget.model.index(0, 0),
+                                     videoListWidget.model.index(videoListWidget.model.rowCount() - 1, 0))
+        videoListWidget.model.layoutChanged()
     }
 
     function decreaseAudioCodecPriority(){
         var index = audioListWidget.currentIndex
-        var codecId = audioCodecListModel.data(audioCodecListModel.index(index,0), AudioCodecListModel.AudioCodecID)
+        var codecId = audioListWidget.model.data(audioListWidget.model.index(index,0), audioListWidget.model.AudioCodecID)
 
        SettingsAdapter.decreaseAudioCodecPriority(codecId)
         audioListWidget.currentIndex = index + 1
@@ -96,7 +100,7 @@ ColumnLayout {
 
     function increaseAudioCodecPriority(){
         var index = audioListWidget.currentIndex
-        var codecId = audioCodecListModel.data(audioCodecListModel.index(index,0), AudioCodecListModel.AudioCodecID)
+        var codecId = audioListWidget.model.data(audioListWidget.model.index(index,0), audioListWidget.model.AudioCodecID)
 
        SettingsAdapter.increaseAudioCodecPriority(codecId)
         audioListWidget.currentIndex = index - 1
@@ -105,7 +109,7 @@ ColumnLayout {
 
     function decreaseVideoCodecPriority(){
         var index = videoListWidget.currentIndex
-        var codecId = videoCodecListModel.data(videoCodecListModel.index(index,0), VideoCodecListModel.VideoCodecID)
+        var codecId = videoListWidget.model.data(videoListWidget.model.index(index,0), videoListWidget.model.VideoCodecID)
 
        SettingsAdapter.decreaseVideoCodecPriority(codecId)
         videoListWidget.currentIndex = index + 1
@@ -114,19 +118,11 @@ ColumnLayout {
 
     function increaseVideoCodecPriority(){
         var index = videoListWidget.currentIndex
-        var codecId = videoCodecListModel.data(videoCodecListModel.index(index,0), VideoCodecListModel.VideoCodecID)
+        var codecId = videoListWidget.model.data(videoListWidget.model.index(index,0), videoListWidget.model.VideoCodecID)
 
        SettingsAdapter.increaseVideoCodecPriority(codecId)
         videoListWidget.currentIndex = index - 1
         updateVideoCodecs()
-    }
-
-    VideoCodecListModel{
-        id: videoCodecListModel
-    }
-
-    AudioCodecListModel{
-        id: audioCodecListModel
     }
 
     function changeRingtonePath(url){
@@ -172,14 +168,6 @@ ColumnLayout {
         nameFilters: [qsTr("Audio Files") + " (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)", qsTr(
                 "All files") + " (*)"]
 
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
             changeRingtonePath(url)
@@ -198,14 +186,6 @@ ColumnLayout {
         nameFilters: [qsTr("Certificate File") + " (*.crt)", qsTr(
                 "All files") + " (*)"]
 
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
             changeFileCACert(url)
@@ -223,14 +203,6 @@ ColumnLayout {
         folder: openPath
         nameFilters: [qsTr("Certificate File") + " (*.crt)", qsTr(
                 "All files") + " (*)"]
-
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
 
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
@@ -252,36 +224,18 @@ ColumnLayout {
         nameFilters: [qsTr("Key File") + " (*.key)", qsTr(
                 "All files") + " (*)"]
 
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
             changeFilePrivateKey(url)
         }
     }
 
-    id: advancedSettingsViewLayout
-    Layout.fillWidth: true
-
-    property int preferredColumnWidth : accountViewRect.width / 2 - 50
-
     ColumnLayout {
-
-        spacing: 8
         Layout.fillWidth: true
+        Layout.fillHeight: true
 
         ElidedTextLabel {
             Layout.fillWidth: true
-
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
             eText: qsTr("Call Settings")
             fontSize: JamiTheme.headerFontSize
@@ -295,7 +249,7 @@ ColumnLayout {
             ToggleSwitch {
                 id: checkBoxUntrusted
 
-                labelText: allowIncomingCallsText.elidedText
+                labelText: qsTr("Allow incoming calls from unknown contacts")
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
@@ -303,19 +257,12 @@ ColumnLayout {
                 }
             }
 
-            TextMetrics {
-                id: allowIncomingCallsText
-                elide: Text.ElideRight
-                elideWidth: preferredColumnWidth
-                text: qsTr("Allow incoming calls from unknown contacts")
-            }
-
             ToggleSwitch {
                 id: checkBoxAutoAnswer
 
                 Layout.fillWidth: true
 
-                labelText: autoAnswerCallsElidedText.elidedText
+                labelText: qsTr("Auto Answer Calls")
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
@@ -323,17 +270,10 @@ ColumnLayout {
                 }
             }
 
-            TextMetrics {
-                id: autoAnswerCallsElidedText
-                elide: Text.ElideRight
-                elideWidth: preferredColumnWidth
-                text: qsTr("Auto Answer Calls")
-            }
-
             ToggleSwitch {
                 id: checkBoxCustomRingtone
 
-                labelText: enableCustomRingtoneElidedText.elidedText
+                labelText: qsTr("Enable Custom Ringtone")
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
@@ -342,21 +282,12 @@ ColumnLayout {
                 }
             }
 
-            TextMetrics {
-                id: enableCustomRingtoneElidedText
-                elide: Text.ElideRight
-                elideWidth: preferredColumnWidth
-                text: qsTr("Enable Custom Ringtone")
-            }
-
             RowLayout {
                 Layout.fillWidth: true
 
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     eText: qsTr("Select Custom Ringtone")
                     maxWidth: preferredColumnWidth
@@ -385,7 +316,7 @@ ColumnLayout {
                 id: checkBoxRdv
 
                 labelText: qsTr("(Experimental) Rendez-vous: turn your account into a conference room")
-                fontPointSize: 10
+                fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
                    SettingsAdapter.setIsRendezVous(checked)
@@ -395,14 +326,11 @@ ColumnLayout {
     }
 
     ColumnLayout {
-        spacing: 8
         Layout.fillWidth: true
 
         ElidedTextLabel {
             Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
             eText: qsTr("Name Server")
             maxWidth: preferredColumnWidth
@@ -416,18 +344,11 @@ ColumnLayout {
 
             ElidedTextLabel {
                 Layout.fillWidth: true
-                Layout.minimumHeight: JamiTheme.preferredFieldHeight
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                 eText: qsTr("Address")
                 fontSize: JamiTheme.settingsFontSize
                 maxWidth: preferredColumnWidth
-            }
-
-            Item {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
             }
 
             MaterialLineEdit {
@@ -453,14 +374,11 @@ ColumnLayout {
 
 
     ColumnLayout {
-        spacing: 8
         Layout.fillWidth: true
 
         ElidedTextLabel {
             Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
             eText: qsTr("OpenDHT Configuration")
             fontSize: JamiTheme.headerFontSize
@@ -488,9 +406,7 @@ ColumnLayout {
 
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     text: qsTr("Proxy Address")
                     font.pointSize: JamiTheme.settingsFontSize
@@ -511,7 +427,7 @@ ColumnLayout {
 
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
-
+                    wrapMode: Text.NoWrap
                     onEditingFinished: {
                        SettingsAdapter.setProxyAddress(text)
                     }
@@ -523,18 +439,11 @@ ColumnLayout {
 
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     text: qsTr("Bootstrap")
                     font.pointSize: JamiTheme.settingsFontSize
                     maxWidth: preferredColumnWidth
-                }
-
-                Item {
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
                 }
 
                 MaterialLineEdit {
@@ -551,7 +460,7 @@ ColumnLayout {
 
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
-
+                    wrapMode: Text.NoWrap
                     onEditingFinished: {
                        SettingsAdapter.setBootstrapAddress(text)
                     }
@@ -561,14 +470,11 @@ ColumnLayout {
     }
 
     ColumnLayout {
-        spacing: 8
         Layout.fillWidth: true
 
         ElidedTextLabel {
             Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
             eText: qsTr("Security")
             fontSize: JamiTheme.headerFontSize
@@ -590,9 +496,7 @@ ColumnLayout {
                 // CA Certificate
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     eText: qsTr("CA Certificate")
                     fontSize: JamiTheme.settingsFontSize
@@ -619,9 +523,7 @@ ColumnLayout {
                 // User Certificate
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     eText: qsTr("User Certificate")
                     fontSize: JamiTheme.settingsFontSize
@@ -648,9 +550,7 @@ ColumnLayout {
                 // Private Key
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     eText: qsTr("Private Key")
                     fontSize: JamiTheme.settingsFontSize
@@ -677,9 +577,7 @@ ColumnLayout {
                 // Private key password
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     eText: qsTr("Private Key Password")
                     fontSize: JamiTheme.settingsFontSize
@@ -702,22 +600,19 @@ ColumnLayout {
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                     echoMode: TextInput.Password
+                    wrapMode: Text.NoWrap
                 }
             }
         }
     }
 
     ColumnLayout {
-        spacing: 8
         Layout.fillWidth: true
 
         ElidedTextLabel {
             Layout.fillWidth: true
             Layout.topMargin: JamiTheme.preferredMarginSize
-
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
             eText: qsTr("Connectivity")
             fontSize: JamiTheme.headerFontSize
@@ -733,19 +628,12 @@ ColumnLayout {
 
                 Layout.fillWidth: true
 
-                labelText: autoConnectOnLocalNetworkElidedText.elidedText
+                labelText: qsTr("Auto Connect On Local Network")
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
                    SettingsAdapter.setAutoConnectOnLocalNetwork(checked)
                 }
-            }
-
-            TextMetrics {
-                id: autoConnectOnLocalNetworkElidedText
-                elide: Text.ElideRight
-                elideWidth: preferredColumnWidth
-                text: qsTr("Auto Connect On Local Network")
             }
 
             ToggleSwitch {
@@ -780,9 +668,7 @@ ColumnLayout {
 
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     eText: qsTr("TURN Address")
                     fontSize: JamiTheme.settingsFontSize
@@ -803,7 +689,7 @@ ColumnLayout {
 
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
-
+                    wrapMode: Text.NoWrap
                     onEditingFinished: {
                        SettingsAdapter.setTURNAddress(text)
                     }
@@ -816,9 +702,7 @@ ColumnLayout {
 
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     eText: qsTr("TURN Username")
                     fontSize: JamiTheme.settingsFontSize
@@ -839,7 +723,7 @@ ColumnLayout {
 
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
-
+                    wrapMode: Text.NoWrap
                     onEditingFinished: {
                        SettingsAdapter.setTURNUsername(text)
                     }
@@ -852,9 +736,7 @@ ColumnLayout {
 
                 ElidedTextLabel {
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
                     eText: qsTr("TURN Password")
                     fontSize: JamiTheme.settingsFontSize
                     maxWidth: preferredColumnWidth
@@ -876,7 +758,7 @@ ColumnLayout {
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
                     echoMode: TextInput.Password
-
+                    wrapMode: Text.NoWrap
                     onEditingFinished: {
                        SettingsAdapter.setTURNPassword(text)
                     }
@@ -906,9 +788,7 @@ ColumnLayout {
                     id: lblEditSTUNAddress
 
                     Layout.fillWidth: true
-                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                     eText: qsTr("STUN Address")
                     fontSize: JamiTheme.settingsFontSize
@@ -931,7 +811,7 @@ ColumnLayout {
 
                     horizontalAlignment: Text.AlignRight
                     verticalAlignment: Text.AlignVCenter
-
+                    wrapMode: Text.NoWrap
                     onEditingFinished: {
                        SettingsAdapter.setSTUNAddress(text)
                     }
@@ -941,14 +821,11 @@ ColumnLayout {
     }
 
     ColumnLayout {
-        spacing: 8
         Layout.fillWidth: true
 
         Label {
             Layout.fillWidth: true
-            Layout.minimumHeight: JamiTheme.preferredFieldHeight
             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
             text: qsTr("Media")
             font.pointSize: JamiTheme.headerFontSize
@@ -988,55 +865,37 @@ ColumnLayout {
 
                         ElidedTextLabel {
                             Layout.fillWidth: true
-                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
-                            maxWidth: preferredColumnWidth - 50
+                            maxWidth: width
                             eText:  qsTr("Video Codecs")
                             fontSize: JamiTheme.settingsFontSize
                         }
 
-                        HoverableRadiusButton {
+                        HoverableButtonTextItem {
                             id: videoDownPushButton
 
-                            Layout.minimumWidth: 24
                             Layout.preferredWidth: 24
-                            Layout.maximumWidth: 24
-                            Layout.minimumHeight: 24
                             Layout.preferredHeight: 24
-                            Layout.maximumHeight: 24
 
-                            buttonImageHeight: height
-                            buttonImageWidth: height
                             radius: height / 2
 
-                            icon.source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
-                            icon.width: 24
-                            icon.height: 24
+                            source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
 
                             onClicked: {
                                 decreaseVideoCodecPriority()
                             }
                         }
 
-                        HoverableRadiusButton {
+                        HoverableButtonTextItem {
                             id: videoUpPushButton
 
-                            Layout.minimumWidth: 24
                             Layout.preferredWidth: 24
-                            Layout.maximumWidth: 24
-                            Layout.minimumHeight: 24
                             Layout.preferredHeight: 24
-                            Layout.maximumHeight: 24
 
-                            buttonImageHeight: height
-                            buttonImageWidth: height
                             radius: height / 2
 
-                            icon.source: "qrc:/images/icons/round-arrow_drop_up-24px.svg"
-                            icon.width: 24
-                            icon.height: 24
+                            source: "qrc:/images/icons/round-arrow_drop_up-24px.svg"
 
                             onClicked: {
                                 increaseVideoCodecPriority()
@@ -1047,14 +906,10 @@ ColumnLayout {
                     ListViewJami {
                         id: videoListWidget
 
-                        Layout.minimumWidth: preferredColumnWidth
-                        Layout.preferredWidth: preferredColumnWidth
-                        Layout.maximumWidth: preferredColumnWidth
-                        Layout.minimumHeight: 192
-                        Layout.preferredHeight: 192
-                        Layout.maximumHeight: 192
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 190
 
-                        model: videoCodecListModel
+                        model: VideoCodecListModel{}
 
                         delegate: VideoCodecDelegate {
                             id: videoCodecDelegate
@@ -1080,62 +935,47 @@ ColumnLayout {
 
                 ColumnLayout {
                     Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.leftMargin: JamiTheme.preferredMarginSize / 2
 
                     RowLayout {
                         Layout.fillWidth: true
+                        Layout.fillHeight: true
                         Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                         ElidedTextLabel {
                             Layout.fillWidth: true
-                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
-                            maxWidth: preferredColumnWidth - 50
+                            maxWidth: width
                             eText:  qsTr("Audio Codecs")
                             fontSize: JamiTheme.settingsFontSize
                         }
 
-                        HoverableRadiusButton {
+                        HoverableButtonTextItem {
                             id: audioDownPushButton
 
-                            Layout.minimumWidth: 24
                             Layout.preferredWidth: 24
-                            Layout.maximumWidth: 24
-                            Layout.minimumHeight: 24
                             Layout.preferredHeight: 24
-                            Layout.maximumHeight: 24
 
                             radius: height / 2
-                            buttonImageHeight: height
-                            buttonImageWidth: height
 
-                            icon.source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
-                            icon.width: 24
-                            icon.height: 24
+                            source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
 
                             onClicked: {
                                 decreaseAudioCodecPriority()
                             }
                         }
 
-                        HoverableRadiusButton {
+                        HoverableButtonTextItem {
                             id: audioUpPushButton
 
-                            Layout.minimumWidth: 24
                             Layout.preferredWidth: 24
-                            Layout.maximumWidth: 24
-                            Layout.minimumHeight: 24
                             Layout.preferredHeight: 24
-                            Layout.maximumHeight: 24
 
                             radius: height / 2
-                            buttonImageHeight: height
-                            buttonImageWidth: height
 
-                            icon.source: "qrc:/images/icons/round-arrow_drop_up-24px.svg"
-                            icon.width: 24
-                            icon.height: 24
+                            source: "qrc:/images/icons/round-arrow_drop_up-24px.svg"
 
                             onClicked: {
                                 increaseAudioCodecPriority()
@@ -1146,14 +986,10 @@ ColumnLayout {
                     ListViewJami {
                         id: audioListWidget
 
-                        Layout.minimumWidth: preferredColumnWidth
-                        Layout.preferredWidth: preferredColumnWidth
-                        Layout.maximumWidth: preferredColumnWidth
-                        Layout.minimumHeight: 192
-                        Layout.preferredHeight: 192
-                        Layout.maximumHeight: 192
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 190
 
-                        model: audioCodecListModel
+                        model: AudioCodecListModel{}
 
                         delegate: AudioCodecDelegate {
                             id: audioCodecDelegate
