@@ -105,14 +105,6 @@ Rectangle {
             var dir = ClientWrapper.utilsAdaptor.getAbsPath(folder.toString())
             downloadPath = dir
         }
-
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
     }
 
     function openRecordFolderSlot(){
@@ -128,14 +120,6 @@ Rectangle {
         onAccepted: {
             var dir = ClientWrapper.utilsAdaptor.getAbsPath(folder.toString())
             recordPath = dir
-        }
-
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
         }
     }
 

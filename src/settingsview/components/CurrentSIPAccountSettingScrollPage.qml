@@ -27,12 +27,12 @@ import net.jami.Models 1.0
 import "../../commoncomponents"
 
 Rectangle {
-    id: sipAccountViewRect
+    id: root
     signal navigateToMainView
     signal navigateToNewWizardView
     signal backArrowClicked
 
-    property int preferredColumnWidth : sipAccountViewRect.width / 2 - 50
+    property int preferredColumnWidth : root.width / 2 - 50
 
     function updateAccountInfoDisplayed() {
         displaySIPNameLineEdit.text = SettingsAdapter.getCurrentAccount_Profile_Info_Alias()
@@ -74,12 +74,10 @@ Rectangle {
         deleteAccountDialog_SIP.open()
     }
 
-    DeleteAccountDialog{
+    DeleteAccountDialog {
         id: deleteAccountDialog_SIP
 
         anchors.centerIn: parent.Center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
 
         onAccepted: {
             ClientWrapper.accountAdaptor.setSelectedConvId()
@@ -97,7 +95,7 @@ Rectangle {
     anchors.centerIn: parent
 
     ColumnLayout {
-        anchors.fill: sipAccountViewRect
+        anchors.fill: root
 
         RowLayout {
             id: sipAccountPageTitle
@@ -138,8 +136,8 @@ Rectangle {
 
                 eText: qsTr("Account Settings")
                 fontSize: JamiTheme.titleFontSize
-                maxWidth: !backToSettingsMenuButton.visible ? sipAccountViewRect.width - 100 :
-                                                              sipAccountViewRect.width - backToSettingsMenuButton.width - 100
+                maxWidth: !backToSettingsMenuButton.visible ? root.width - 100 :
+                                                              root.width - backToSettingsMenuButton.width - 100
 
             }
         }
@@ -153,8 +151,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-            width: sipAccountViewRect.width
-            height: sipAccountViewRect.height - sipAccountPageTitle.height
+            width: root.width
+            height: root.height - sipAccountPageTitle.height
 
             ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
             ScrollBar.vertical.policy: ScrollBar.AsNeeded
@@ -165,7 +163,7 @@ Rectangle {
                 id: accountSIPLayout
 
                 Layout.fillHeight: true
-                Layout.preferredWidth: sipAccountViewRect.width
+                Layout.preferredWidth: root.width
                 Layout.alignment: Qt.AlignHCenter
 
                 spacing: 24
@@ -210,7 +208,7 @@ Rectangle {
 
                         Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                        boothWidth: Math.min(224, sipAccountViewRect.width - 100)
+                        boothWidth: Math.min(224, root.width - 100)
 
                         Layout.maximumWidth: boothWidth+50
                         Layout.preferredWidth: boothWidth+50
@@ -265,7 +263,7 @@ Rectangle {
                         Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
                         eText: qsTr("Identity")
-                        maxWidth: sipAccountViewRect.width - 72
+                        maxWidth: root.width - 72
                         fontSize: JamiTheme.headerFontSize
                     }
 
@@ -451,7 +449,7 @@ Rectangle {
 
                         eText: qsTr("Advanced Account Settings")
                         fontSize: JamiTheme.headerFontSize
-                        maxWidth: sipAccountViewRect.width - advancedAccountSettingsSIPButton.width - 80
+                        maxWidth: root.width - advancedAccountSettingsSIPButton.width - 80
                     }
 
                     HoverableRadiusButton {
@@ -498,8 +496,8 @@ Rectangle {
                 }
 
                 Item {
-                    Layout.preferredWidth: sipAccountViewRect.width - 32
-                    Layout.minimumWidth: sipAccountViewRect.width - 32
+                    Layout.preferredWidth: root.width - 32
+                    Layout.minimumWidth: root.width - 32
                     Layout.maximumWidth: JamiTheme.maximumWidthSettingsView - 32
                     Layout.fillHeight: true
                 }

@@ -24,7 +24,7 @@ import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
 Dialog {
-    id: deleteAccountDialog
+    id: root
 
     property int profileType: SettingsAdapter.getCurrentAccount_Profile_Info_Type()
 
@@ -50,6 +50,8 @@ Dialog {
     }
 
     visible: false
+    x: (parent.width - width) / 2
+    y: (parent.height - height) / 2
     title: qsTr("Account deletion")
 
     contentItem: Rectangle{
@@ -58,8 +60,6 @@ Dialog {
 
         ColumnLayout{
             anchors.fill: parent
-            spacing: 7
-
             Layout.alignment: Qt.AlignCenter
 
             Label{
@@ -68,12 +68,11 @@ Dialog {
                 Layout.topMargin: 11
                 Layout.leftMargin: 11
                 Layout.rightMargin: 11
-
                 Layout.alignment: Qt.AlignHCenter
+
                 font.pointSize: 8
                 font.kerning: true
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
                 text:qsTr("Do you really want to delete the following account?")
             }
@@ -83,13 +82,12 @@ Dialog {
 
                 Layout.leftMargin: 11
                 Layout.rightMargin: 11
-
                 Layout.alignment: Qt.AlignHCenter
+
                 font.pointSize: 8
                 font.kerning: true
                 font.bold: true
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
 
                 text: SettingsAdapter.getAccountBestName()
@@ -100,83 +98,48 @@ Dialog {
 
                 Layout.leftMargin: 11
                 Layout.rightMargin: 11
-
                 Layout.alignment: Qt.AlignHCenter
+
                 font.pointSize: 8
                 font.kerning: true
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
                 text: SettingsAdapter.getCurrentAccount_Profile_Info_Uri()
-            }
-
-            Item{
-                Layout.fillWidth: true
-
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-
-                Layout.maximumHeight: 5
-                Layout.preferredHeight: 5
-                Layout.minimumHeight: 5
             }
 
             Label{
                 id: labelWarning
 
+                Layout.topMargin: 5
                 Layout.leftMargin: 11
                 Layout.rightMargin: 11
-
                 Layout.preferredWidth: 300
+                Layout.alignment: Qt.AlignHCenter
 
                 visible: ! isSIP
 
-                Layout.alignment: Qt.AlignHCenter
                 wrapMode: Text.Wrap
                 text: qsTr("If this account hasn't been exported, or added to another device, it will be irrevocably lost.")
                 font.pointSize: 8
                 font.kerning: true
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
                 color: "red"
             }
 
-            Item{
-                Layout.fillWidth: true
-
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-
-                Layout.maximumHeight: 10
-                Layout.preferredHeight: 10
-                Layout.minimumHeight: 10
-            }
-
             RowLayout{
-                spacing: 7
-
+                Layout.topMargin: 10
+                Layout.bottomMargin: 5
                 Layout.leftMargin: 11
                 Layout.rightMargin: 11
-
-                Item{
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 40
-
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignHCenter
 
                 HoverableRadiusButton{
                     id: btnDeleteAccept
 
                     Layout.maximumWidth: 130
                     Layout.preferredWidth: 130
-                    Layout.minimumWidth: 130
-
-                    Layout.maximumHeight: 30
                     Layout.preferredHeight: 30
-                    Layout.minimumHeight: 30
 
                     radius: height /2
 
@@ -190,25 +153,13 @@ Dialog {
                     }
                 }
 
-                Item{
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 40
-
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
-
                 HoverableButtonTextItem{
                     id: btnDeleteCancel
 
+                    Layout.leftMargin: 20
                     Layout.maximumWidth: 130
                     Layout.preferredWidth: 130
-                    Layout.minimumWidth: 130
-
-                    Layout.maximumHeight: 30
                     Layout.preferredHeight: 30
-                    Layout.minimumHeight: 30
 
                     backgroundColor: "red"
                     onEnterColor: Qt.rgba(150 / 256, 0, 0, 0.7)
@@ -228,27 +179,6 @@ Dialog {
                         reject()
                     }
                 }
-
-                Item{
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: 40
-
-                    Layout.maximumHeight: 20
-                    Layout.preferredHeight: 20
-                    Layout.minimumHeight: 20
-                }
-            }
-
-            Item{
-                Layout.fillWidth: true
-
-                Layout.maximumHeight: 5
-                Layout.preferredHeight: 5
-                Layout.minimumHeight: 5
-
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-                Layout.bottomMargin: 11
             }
         }
     }
