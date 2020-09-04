@@ -150,21 +150,26 @@ Rectangle {
                 createAccount()
             }
         }
+    }
 
-        MaterialButton {
-            id: backButton
+    HoverableButton {
+        id: backButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: createAccountButton.width / 2
-            Layout.preferredHeight: preferredHeight
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 20
 
-            text: qsTr("BACK")
-            color: JamiTheme.buttonTintedGrey
-            hoveredColor: JamiTheme.buttonTintedGreyHovered
-            pressedColor: JamiTheme.buttonTintedGreyPressed
-            outlined: true
+        width: 35
+        height: 35
 
-            onClicked: leavePage()
-        }
+        radius: 30
+
+        backgroundColor: root.color
+        onExitColor: root.color
+
+        source: "qrc:/images/icons/ic_arrow_back_24px.svg"
+        toolTipText: qsTr("Back to welcome page")
+
+        onClicked: leavePage()
     }
 }

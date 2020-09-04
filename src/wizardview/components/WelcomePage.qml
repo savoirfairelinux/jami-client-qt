@@ -37,6 +37,8 @@ Rectangle {
     ColumnLayout {
         anchors.centerIn: parent
 
+        spacing: layoutSpacing
+
         Text {
             id: welcomeLabel
 
@@ -71,7 +73,6 @@ Rectangle {
             id: newAccountButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 8
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -91,7 +92,6 @@ Rectangle {
             id: fromDeviceButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 8
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -111,7 +111,6 @@ Rectangle {
             id: fromBackupButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 8
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -131,7 +130,6 @@ Rectangle {
             id: showAdvancedButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 8
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -158,7 +156,6 @@ Rectangle {
             id: connectAccountManagerButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 8
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -180,7 +177,6 @@ Rectangle {
             id: newSIPAccountButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 8
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -197,5 +193,35 @@ Rectangle {
                 welcomePageRedirectPage(2)
             }
         }
+    }
+
+    HoverableButton {
+        id: backButton
+
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 20
+
+        Connections {
+            target: ClientWrapper.lrcInstance
+
+            function onAccountListChanged() {
+                backButton.visible = ClientWrapper.utilsAdaptor.getAccountListSize()
+            }
+        }
+
+        width: 35
+        height: 35
+
+        visible: ClientWrapper.utilsAdaptor.getAccountListSize()
+        radius: 30
+
+        backgroundColor: root.color
+        onExitColor: root.color
+
+        source: "qrc:/images/icons/ic_arrow_back_24px.svg"
+        toolTipText: qsTr("Back")
+
+        onClicked: leavePage()
     }
 }

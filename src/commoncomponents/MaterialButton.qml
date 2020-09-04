@@ -29,6 +29,7 @@ Button {
     property var hoveredColor: undefined
     property var pressedColor: undefined
     property var outlined: false
+    property string animatedImageSource: ""
 
     property var preferredWidth: 400
     property var preferredHeight: 36
@@ -38,19 +39,39 @@ Button {
     icon.source: ""
     icon.height: 18
     icon.width: 18
+
     hoverEnabled: hoveredColor !== undefined
 
     contentItem: Item {
         Rectangle {
             anchors.fill: parent
             color: "transparent"
-            Image {
-                source: root.icon.source
-                width: root.icon.width
-                height: root.icon.height
+
+            AnimatedImage {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.left: parent.left
                 anchors.leftMargin: 16
+
+                width: root.icon.width
+                height: root.icon.height
+
+                source: animatedImageSource
+                playing: true
+                paused: false
+                fillMode: Image.PreserveAspectFit
+                mipmap: true
+                visible: animatedImageSource !== ""
+            }
+
+            Image {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 16
+
+                width: root.icon.width
+                height: root.icon.height
+
+                source: root.icon.source
                 layer {
                     enabled: true
                     effect: ColorOverlay {
@@ -66,7 +87,10 @@ Button {
                         }
                     }
                 }
+
+                visible: root.icon.source !== ""
             }
+
             Text {
                 text: root.text
                 color: {
