@@ -23,6 +23,7 @@ import QtQuick.Controls.Universal 2.12
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.14
 import net.jami.Models 1.0
+import net.jami.Adapters 1.0
 
 import "../constant"
 import "../wizardview/components"
@@ -124,7 +125,7 @@ Window{
     }
 
     function refuseMigrationAndDeleteAccount(){
-        ClientWrapper.accountModel.removeAccount(accountID)
+        AccountAdapter.model.removeAccount(accountID)
         acceptMigration()
     }
 
@@ -148,7 +149,7 @@ Window{
     Connections{
         id: connectionMigrationEnded
         enabled: false
-        target: ClientWrapper.accountModel
+        target: AccountAdapter.model
 
         function onMigrationEnded(accountIdIn, ok){
             nonOperationClosing = true
@@ -170,7 +171,7 @@ Window{
         stackedWidget.currentIndex = 1
 
         connectionMigrationEnded.enabled = true
-        ClientWrapper.accountAdaptor.setArchivePasswordAsync(accountID,password)
+        AccountAdapter.setArchivePasswordAsync(accountID,password)
     }
 
     function slotDeleteButtonClicked(){

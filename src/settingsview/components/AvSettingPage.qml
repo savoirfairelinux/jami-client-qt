@@ -24,6 +24,8 @@ import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.14
 import QtQuick.Controls.Styles 1.4
 import net.jami.Models 1.0
+import net.jami.Adapters 1.0
+
 import "../../commoncomponents"
 
 Rectangle {
@@ -100,7 +102,7 @@ Rectangle {
 
     function setFormatListForCurrentDevice(){
         var device = ClientWrapper.avmodel.getCurrentVideoCaptureDevice()
-        if(ClientWrapper.SettingsAdapter.get_DeviceCapabilitiesSize(device) === 0){
+        if(SettingsAdapter.get_DeviceCapabilitiesSize(device) === 0){
             return
         }
 
@@ -112,22 +114,22 @@ Rectangle {
     }
 
     function startPreviewing(force = false, async = true){
-        ClientWrapper.accountAdaptor.startPreviewing(force, async)
+        AccountAdapter.startPreviewing(force, async)
         previewAvailable = true
     }
 
     function stopPreviewing(async = true){
-        ClientWrapper.accountAdaptor.stopPreviewing(async)
+        AccountAdapter.stopPreviewing(async)
     }
 
     function startAudioMeter(async = true){
         audioInputMeter.start()
-        ClientWrapper.accountAdaptor.startAudioMeter(async)
+        AccountAdapter.startAudioMeter(async)
     }
 
     function stopAudioMeter(async = true){
         audioInputMeter.stop()
-        ClientWrapper.accountAdaptor.stopAudioMeter(async)
+        AccountAdapter.stopAudioMeter(async)
     }
 
     // slots for av page

@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
  * Author: Aline Gondim Santos   <aline.gondimsantos@savoirfairelinux.com>
@@ -46,48 +46,25 @@
 
 #include <QObject>
 
-class ClientWrapper : public QObject
+class ClientWrapper final : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(SettingsAdapter *SettingsAdapter READ getSettingsAdapter NOTIFY SettingsAdapterChanged)
-    Q_PROPERTY(NameDirectory *nameDirectory READ getNameDirectory NOTIFY nameDirectoryChanged)
-    Q_PROPERTY(LRCInstance *lrcInstance READ getLRCInstance NOTIFY lrcInstanceChanged)
-    Q_PROPERTY(AccountAdapter *accountAdaptor READ getAccountAdapter NOTIFY accountAdaptorChanged)
-    Q_PROPERTY(RenderManager *renderManager READ getRenderManager NOTIFY renderManagerChanged)
     Q_PROPERTY(lrc::api::NewAccountModel *accountModel READ getAccountModel NOTIFY accountModelChanged)
-    Q_PROPERTY(lrc::api::AVModel *avmodel READ getAvModel NOTIFY avmodelChanged)
-    Q_PROPERTY(lrc::api::DataTransferModel *dataTransferModel READ getDataTransferModel NOTIFY dataTransferModelChanged)
-    Q_PROPERTY(lrc::api::ContactModel *contactModel READ getContactModel NOTIFY contactModelChanged)
-    Q_PROPERTY(lrc::api::NewDeviceModel *deviceModel READ getDeviceModel NOTIFY deviceModelChanged)
-    Q_PROPERTY(lrc::api::PluginModel *pluginModel READ getPluginModel)
+    Q_PROPERTY(lrc::api::DataTransferModel *dataTransferModel READ getDataTransferModel)
+    Q_PROPERTY(lrc::api::AVModel *avmodel READ getAvModel NOTIFY avModelChanged)
+
 public:
     explicit ClientWrapper(QObject *parent = nullptr);
+    ~ClientWrapper() = default;
 
-    NameDirectory *getNameDirectory();
-    SettingsAdapter *getSettingsAdapter();
-    LRCInstance *getLRCInstance();
-    AccountAdapter *getAccountAdapter();
-
-    RenderManager *getRenderManager();
     lrc::api::NewAccountModel *getAccountModel();
-    lrc::api::AVModel *getAvModel();
     lrc::api::DataTransferModel *getDataTransferModel();
-
-    lrc::api::ContactModel *getContactModel();
-    lrc::api::NewDeviceModel *getDeviceModel();
-    lrc::api::PluginModel *getPluginModel();
+    lrc::api::AVModel *getAvModel();
 
 signals:
-    void SettingsAdapterChanged();
-    void nameDirectoryChanged();
-    void lrcInstanceChanged();
-    void accountAdaptorChanged();
-    void renderManagerChanged();
     void accountModelChanged();
-    void avmodelChanged();
-    void dataTransferModelChanged();
-    void contactModelChanged();
-    void deviceModelChanged();
+    void avModelChanged();
+
 };
 Q_DECLARE_METATYPE(ClientWrapper *)
