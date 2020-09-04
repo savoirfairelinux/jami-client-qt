@@ -29,11 +29,11 @@ import net.jami.Models 1.0
  * 4. Can use OnClicked slot to implement some click logic
  */
 Button {
-    id: hoverableButton
+    id: root
 
     property int fontPointSize: 9
-    property int buttonImageHeight: hoverableButtonBackground.height - 10
-    property int buttonImageWidth: hoverableButtonBackground.width - 10
+    property int buttonImageHeight: hoverableButtonBackground.height
+    property int buttonImageWidth: hoverableButtonBackground.width
 
     property string backgroundColor: JamiTheme.releaseColor
     property string onPressColor: JamiTheme.pressColor
@@ -58,8 +58,8 @@ Button {
     ToolTip.text: toolTipText
 
     contentItem: Text {
-            text: hoverableButton.text
-            font: hoverableButton.font
+            text: root.text
+            font: root.font
             opacity: enabled ? 1.0 : 0.3
             color: textColor
             horizontalAlignment: Text.AlignHCenter
@@ -70,7 +70,7 @@ Button {
     background: Rectangle {
         id: hoverableButtonBackground
 
-        color: hoverableButton.enabled ? backgroundColor:onDisabledBackgroundColor
+        color: root.enabled ? backgroundColor:onDisabledBackgroundColor
 
         Image {
             id: hoverableButtonImage
@@ -86,7 +86,7 @@ Button {
         }
 
         MouseArea {
-            enabled: hoverableButton.enabled
+            enabled: root.enabled
             anchors.fill: parent
 
             hoverEnabled: true
@@ -96,7 +96,7 @@ Button {
             }
             onReleased: {
                 hoverableButtonBackground.color = onReleaseColor
-                hoverableButton.clicked()
+                root.clicked()
             }
             onEntered: {
                 hoverableButtonBackground.color = onEnterColor
