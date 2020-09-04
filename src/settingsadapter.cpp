@@ -323,6 +323,7 @@ SettingsAdapter::getAccountConfigMap()
 QVariant
 SettingsAdapter::getAccountConfig(const QString& key)
 {
+    qInfo() << "Request: " << key;
     return getAccountConfigMap()[key];
 }
 

@@ -134,6 +134,8 @@ void registerTypes()
     /*
      * Adaptors - qmlRegisterSingletonType.
      */
+    QML_REGISTERSINGLETONTYPE_URL(QStringLiteral("qrc:/src/constant/ConfProps.qml"),
+                                  ConfProps, 1, 0);
     QML_REGISTERSINGLETONTYPE_URL(QStringLiteral("qrc:/src/constant/JamiTheme.qml"),
                                   JamiTheme, 1, 0);
 

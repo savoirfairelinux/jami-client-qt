@@ -29,6 +29,7 @@ import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
 import "../../commoncomponents"
+import "../../constant"
 
 Rectangle {
     id: accountViewRect
@@ -63,7 +64,7 @@ Rectangle {
         accountEnableCheckBox.checked =SettingsAdapter.get_CurrentAccountInfo_Enabled()
         displayNameLineEdit.text =SettingsAdapter.getCurrentAccount_Profile_Info_Alias()
 
-        var showLocalAccountConfig = (ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === "")
+        var showLocalAccountConfig = (ClientWrapper.SettingsAdapter.getAccountConfig(ConfProps.MANAGER_URI) === "")
         passwdPushButton.visible = showLocalAccountConfig
         btnExportAccount.visible = showLocalAccountConfig
         linkDevPushButton.visible = showLocalAccountConfig
@@ -411,7 +412,7 @@ Rectangle {
     }
 
     function updateAndShowDevicesSlot() {
-        if(ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === ""){
+        if(ClientWrapper.SettingsAdapter.getAccountConfig(ConfProps.MANAGER_URI) === ""){
             linkDevPushButton.visible = true
         }
 
@@ -777,7 +778,7 @@ Rectangle {
                     MaterialButton {
                         id: passwdPushButton
 
-                        visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
+                        visible: SettingsAdapter.getAccountConfig(ConfProps.MANAGER_URI) === ""
 
                         color: JamiTheme.buttonTintedBlack
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -808,7 +809,7 @@ Rectangle {
                     MaterialButton {
                         id: btnExportAccount
 
-                        visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
+                        visible: SettingsAdapter.getAccountConfig(ConfProps.MANAGER_URI) === ""
 
                         color: JamiTheme.buttonTintedBlack
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -916,7 +917,7 @@ Rectangle {
                         MaterialButton {
                             id: linkDevPushButton
 
-                            visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
+                            visible: SettingsAdapter.getAccountConfig(ConfProps.MANAGER_URI) === ""
 
                             Layout.minimumHeight:  JamiTheme.preferredFieldHeight
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
