@@ -42,10 +42,10 @@ ConversationsAdapter::safeInit()
                 emit showChatView(accountId, convInfo.uid);
             });
 
-    connect(&LRCInstance::instance(), &LRCInstance::currentAccountChanged,
-            [this]() {
-                accountChangedSetUp(LRCInstance::getCurrAccId());
-            });
+    connect(&LRCInstance::instance(),
+            &LRCInstance::currentAccountChanged,
+            this,
+            &ConversationsAdapter::onCurrentAccountIdChanged);
 
     connectConversationModel();
 }
@@ -125,8 +125,9 @@ ConversationsAdapter::deselectConversation()
 }
 
 void
-ConversationsAdapter::accountChangedSetUp(const QString &accountId)
+ConversationsAdapter::onCurrentAccountIdChanged()
 {
+    auto accountId = LRCInstance::getCurrAccId();
     // Should be called when current account is changed.
     conversationSmartListModel_->setAccount(accountId);
 

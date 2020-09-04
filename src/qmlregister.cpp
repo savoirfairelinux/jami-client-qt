@@ -99,7 +99,7 @@
 void registerTypes()
 {
     /*
-     * Register QAbstractListModel type.
+     * QAbstractListModel types
      */
     QML_REGISTERTYPE(AccountListModel, 1, 0);
     QML_REGISTERTYPE(DeviceItemListModel, 1, 0);
@@ -120,7 +120,7 @@ void registerTypes()
     QML_REGISTERTYPE(MediaHandlerListPreferenceModel, 1, 0);
 
     /*
-     * Register QQuickItem type.
+     * QQuickItem types
      */
     QML_REGISTERTYPE(PreviewRenderer, 1, 0);
     QML_REGISTERTYPE(VideoCallPreviewRenderer, 1, 0);
@@ -128,14 +128,16 @@ void registerTypes()
     QML_REGISTERTYPE(PhotoboothPreviewRender, 1, 0)
 
     /*
-     * Adaptors and qml singleton components - qmlRegisterSingletonType.
+     * Qml singleton components
      */
     QML_REGISTERSINGLETONTYPE_URL(QStringLiteral("qrc:/src/constant/JamiTheme.qml"),
                                   JamiTheme, 1, 0);
     QML_REGISTERSINGLETONTYPE_URL(QStringLiteral("qrc:/src/constant/JamiQmlUtils.qml"),
                                   JamiQmlUtils, 1, 0);
 
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", AccountAdapter, 1, 0);
+    /*
+     * Adaptors
+     */
     QML_REGISTERSINGLETONTYPE("net.jami.Models", CallAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Models", MessagesAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Models", ConversationsAdapter, 1, 0);
@@ -144,36 +146,29 @@ void registerTypes()
     QML_REGISTERSINGLETONTYPE("net.jami.Models", MediaHandlerAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Models", ClientWrapper, 1, 0);
 
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", AccountAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Adapters", UtilsAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Adapters", SettingsAdapter, 1, 0);
 
+    //QML_REGISTERSINGLETONTYPE("net.jami.Models", PluginModel, 1, 0);
+
+    /*
+     * Enums
+     */
     QML_REGISTERUNCREATABLE("net.jami.Enums", Settings, 1, 0);
 
     /*
-     * Lrc models - qmlRegisterUncreatableType & Q_DECLARE_METATYPE.
-     * This to make lrc models recognizable in qml.
+     * LRCInstance
      */
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewAccountModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(BehaviorController, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(DataTransferModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(AVModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(ContactModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(ConversationModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewCallModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(PluginModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewDeviceModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewCodecModel, lrc::api, 1, 0);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(PeerDiscoveryModel, lrc::api, 1, 0);
+    QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(LRCInstance, 1, 0);
+    qmlRegisterSingletonType<RenderManager>("net.jami.Models", 1, 0, "RenderManager",
+                                [](QQmlEngine *e, QJSEngine *se) -> QObject * {
+                                    Q_UNUSED(e); Q_UNUSED(se);
+                                    return LRCInstance::renderer();
+                                });
 
     /*
-     * qmlRegisterUncreatableType & Q_DECLARE_METATYPE to expose models in qml.
-     */
-    QML_REGISTERUNCREATABLE("net.jami.Models", RenderManager, 1, 0);
-    QML_REGISTERUNCREATABLE("net.jami.Models", NameDirectory, 1, 0);
-    QML_REGISTERUNCREATABLE("net.jami.Models", LRCInstance, 1, 0);
-
-    /*
-     * qmlRegisterUncreatableMetaObject to expose namespaces in qml
+     * lrc namespaces, models, and singletons
      */
     QML_REGISTERNAMESPACE(lrc::api::staticMetaObject, "Lrc", 1, 0);
     QML_REGISTERNAMESPACE(lrc::api::account::staticMetaObject, "Account", 1, 0);
@@ -182,4 +177,19 @@ void registerTypes()
     QML_REGISTERNAMESPACE(lrc::api::interaction::staticMetaObject, "Interaction", 1, 0);
     QML_REGISTERNAMESPACE(lrc::api::video::staticMetaObject, "Video", 1, 0);
     QML_REGISTERNAMESPACE(lrc::api::profile::staticMetaObject, "Profile", 1, 0);
+
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewAccountModel, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(BehaviorController, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(DataTransferModel, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(AVModel, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(ContactModel, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(ConversationModel, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewCallModel, lrc::api, 1, 0);
+    //QML_REGISTERUNCREATABLE_IN_NAMESPACE(PluginModel, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewDeviceModel, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewCodecModel, lrc::api, 1, 0);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(PeerDiscoveryModel, lrc::api, 1, 0);
+
+    QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(NameDirectory, 1, 0);
+
 }

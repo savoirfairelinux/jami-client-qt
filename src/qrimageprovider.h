@@ -89,6 +89,7 @@ public:
             uri = accountInfo.profileInfo.uri;
         }
 
+        qDebug() << "requestImage" << uri;
         if (!requestedSize.isEmpty())
             return Utils::setupQRCode(uri, 0).scaled(requestedSize, Qt::KeepAspectRatio);
         else

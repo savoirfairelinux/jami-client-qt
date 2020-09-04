@@ -86,7 +86,7 @@ ItemDelegate {
 
         onAccepted: {
             var url = UtilsAdapter.getAbsPath(fileUrl.toString())
-            ClientWrapper.pluginModel.addValueToPreference(pluginId, preferenceKey, url)
+            PluginModel.addValueToPreference(pluginId, preferenceKey, url)
             pluginListPreferenceModel.populateLists()
             pluginListPreferenceModel.getCurrentSettingIndex()
             preferenceAdded()

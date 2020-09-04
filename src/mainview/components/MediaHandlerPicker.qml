@@ -26,7 +26,7 @@ import "../../commoncomponents"
 Popup {
     id: root
     function toggleMediaHandlerSlot(mediaHandlerId, isLoaded) {
-        ClientWrapper.pluginModel.toggleCallMediaHandler(mediaHandlerId, !isLoaded)
+        PluginModel.toggleCallMediaHandler(mediaHandlerId, !isLoaded)
         mediahandlerPickerListView.model = MediaHandlerAdapter.getMediaHandlerSelectableModel()
     }
 
@@ -102,7 +102,7 @@ Popup {
 
                     delegate: MediaHandlerItemDelegate {
                         id: mediaHandlerItemDelegate
-                        visible: ClientWrapper.pluginModel.getPluginsEnabled()
+                        visible: PluginModel.getPluginsEnabled()
                         width: mediahandlerPickerListView.width
                         height: 50
 
@@ -227,7 +227,7 @@ Popup {
                         onClicked:  mediahandlerPreferencePickerListView.currentIndex = index
 
                         onBtnPreferenceClicked: {
-                            ClientWrapper.pluginModel.setPluginPreference(pluginListPreferenceModel.pluginId,
+                            PluginModel.setPluginPreference(pluginListPreferenceModel.pluginId,
                                                                             pluginListPreferenceModel.preferenceKey,
                                                                             pluginListPreferenceModel.preferenceNewValue)
                             mediahandlerPreferencePickerListView.model = MediaHandlerAdapter.getMediaHandlerPreferencesModel(pluginId, mediahandlerPreferencePickerListView.mediaHandlerName)

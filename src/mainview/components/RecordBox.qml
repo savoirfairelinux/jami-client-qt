@@ -21,9 +21,10 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.3
-import net.jami.Models 1.0
 import QtGraphicalEffects 1.15
 import QtQuick.Shapes 1.15
+import net.jami.Models 1.0
+import net.jami.Adapters 1.0
 
 import "../../commoncomponents"
 
@@ -71,7 +72,7 @@ Rectangle {
         updateState(RecordBox.States.INIT)
 
         if (isVideo){
-            ClientWrapper.accountAdaptor.startPreviewing(false)
+            AccountAdapter.startPreviewing(false)
             previewAvailable = true
         }
     }
@@ -104,8 +105,8 @@ Rectangle {
     }
 
     function closeRecorder() {
-        if (isVideo && ClientWrapper.accountAdaptor.isPreviewing()) {
-            ClientWrapper.accountAdaptor.stopPreviewing()
+        if (isVideo && AccountAdapter.isPreviewing()) {
+            AccountAdapter.stopPreviewing()
         }
         stopRecording()
         visible = false
@@ -158,11 +159,6 @@ Rectangle {
         var sec = (s < 10) ? "0" + String(s) : String(s)
 
         time.text = min + ":" + sec;
-    }
-
-
-    Connections{
-        target: ClientWrapper.renderManager
     }
 
     Shape {

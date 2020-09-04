@@ -32,17 +32,28 @@ AccountAdapter::AccountAdapter(QObject *parent)
     : QmlAdapterBase(parent)
 {}
 
-AccountAdapter &
-AccountAdapter::instance()
-{
-    static auto instance = new AccountAdapter;
-    return *instance;
-}
-
 void
 AccountAdapter::safeInit()
 {
-    setSelectedAccount(LRCInstance::getCurrAccId());
+    setSelectedAccountId(LRCInstance::getCurrAccId());
+}
+
+lrc::api::NewAccountModel *
+AccountAdapter::getModel()
+{
+    return &(LRCInstance::accountModel());
+}
+
+lrc::api::ContactModel *
+AccountAdapter::getContactModel()
+{
+    return LRCInstance::getCurrentAccountInfo().contactModel.get();
+}
+
+lrc::api::NewDeviceModel *
+AccountAdapter::getDeviceModel()
+{
+    return LRCInstance::getCurrentAccountInfo().deviceModel.get();
 }
 
 void
@@ -50,7 +61,7 @@ AccountAdapter::accountChanged(int index)
 {
     auto accountList = LRCInstance::accountModel().getAccountList();
     if (accountList.size() > index)
-        setSelectedAccount(accountList.at(index));
+        setSelectedAccountId(accountList.at(index));
 }
 
 void
@@ -212,9 +223,9 @@ AccountAdapter::deleteCurrentAccount()
 }
 
 bool
-AccountAdapter::savePassword(const QString accountId,
-                             const QString oldPassword,
-                             const QString newPassword)
+AccountAdapter::savePassword(const QString &accountId,
+                             const QString &oldPassword,
+                             const QString &newPassword)
 {
     return LRCInstance::accountModel().changeAccountPassword(accountId, oldPassword, newPassword);
 }
@@ -258,21 +269,15 @@ AccountAdapter::isPreviewing()
 }
 
 void
-AccountAdapter::setCurrAccDisplayName(QString text)
+AccountAdapter::setCurrAccDisplayName(const QString& text)
 {
     LRCInstance::setCurrAccDisplayName(text);
 }
 
 void
-AccountAdapter::setSelectedAccountId(QString accountId)
+AccountAdapter::setSelectedConvId(const QString &convId)
 {
-    LRCInstance::setSelectedAccountId(accountId);
-}
-
-void
-AccountAdapter::setSelectedConvId(QString accountId)
-{
-    LRCInstance::setSelectedConvId(accountId);
+    LRCInstance::setSelectedConvId(convId);
 }
 
 bool
@@ -318,12 +323,18 @@ AccountAdapter::passwordSetStatusMessageBox(bool success, QString title, QString
 }
 
 void
-AccountAdapter::setSelectedAccount(const QString &accountId)
+AccountAdapter::setSelectedAccountId(const QString &accountId)
 {
     LRCInstance::setSelectedAccountId(accountId);
 
+    setProperty("currentAccountId", accountId);
+    auto accountType = LRCInstance::getAccountInfo(accountId).profileInfo.type;
+    setProperty("currentAccountType", lrc::api::profile::to_string(accountType));
+
     connectAccount(accountId);
-    emit accountSignalsReconnect(accountId);
+
+    emit contactModelChanged();
+    emit deviceModelChanged();
 
     backToWelcomePage();
 }

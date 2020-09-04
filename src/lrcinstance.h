@@ -272,6 +272,7 @@ public:
     {
         if (accountId == instance().selectedAccountId_)
             return; // No need to select current selected account
+
         instance().selectedAccountId_ = accountId;
 
         // Last selected account should be set as preferred.

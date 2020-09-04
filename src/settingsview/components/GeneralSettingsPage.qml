@@ -42,7 +42,7 @@ Rectangle {
         recordQualityValueLabel.text = UtilsAdapter.getRecordQualityString(ClientWrapper.avmodel.getRecordQuality() / 100)
         recordQualitySlider.value = ClientWrapper.avmodel.getRecordQuality() / 100
 
-        ClientWrapper.avmodel.setRecordPath(ClientWrapper.SettingsAdapter.getDir_Document())
+        ClientWrapper.avmodel.setRecordPath(SettingsAdapter.getDir_Document())
 
         autoUpdateCheckBox.checked = SettingsAdapter.getAppValue(Settings.Key.AutoUpdate)
     }

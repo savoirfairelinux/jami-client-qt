@@ -56,6 +56,7 @@ public:
     Q_INVOKABLE int getTotalPendingRequest();
     Q_INVOKABLE const QString getBestName(const QString &accountId,
                                           const QString &uid);
+    Q_INVOKABLE QString getBestId(const QString &accountId);
     Q_INVOKABLE const QString getBestId(const QString &accountId,
                                         const QString &uid);
     Q_INVOKABLE const QString getCurrAccId();

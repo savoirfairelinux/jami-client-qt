@@ -44,7 +44,6 @@ public:
     Q_INVOKABLE void selectConversation(const QString &uid);
     Q_INVOKABLE void deselectConversation();
     Q_INVOKABLE void refill();
-    Q_INVOKABLE void accountChangedSetUp(const QString &accountId);
     Q_INVOKABLE void updateConversationsFilterWidget();
     Q_INVOKABLE void setConversationFilter(const QString &type);
 
@@ -57,6 +56,9 @@ signals:
     void modelSorted(const QVariant& uri);
     void updateListViewRequested();
     void navigateToWelcomePageRequested();
+
+private slots:
+    void onCurrentAccountIdChanged();
 
 private:
     void setConversationFilter(lrc::api::profile::Type filter);
