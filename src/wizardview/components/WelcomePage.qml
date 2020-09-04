@@ -204,7 +204,7 @@ Rectangle {
         anchors.margins: 20
 
         Connections {
-            target: ClientWrapper.lrcInstance
+            target: LRCInstance
 
             function onAccountListChanged() {
                 backButton.visible = UtilsAdapter.getAccountListSize()
