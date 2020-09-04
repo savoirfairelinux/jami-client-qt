@@ -76,14 +76,6 @@ Rectangle {
         nameFilters: [qsTr("Plugin Files") + " (*.jpl)", qsTr(
                 "All files") + " (*)"]
 
-        onRejected: {}
-
-        onVisibleChanged: {
-            if (!visible) {
-                rejected()
-            }
-        }
-
         onAccepted: {
             var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
             ClientWrapper.pluginModel.installPlugin(url, true)
@@ -123,8 +115,6 @@ Rectangle {
             source: "qrc:/images/icons/round-add-24px.svg"
 
             text: qsTr("Install Plugin")
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
 
             onClicked: {
               openPluginFileSlot()
