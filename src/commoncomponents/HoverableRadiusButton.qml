@@ -1,5 +1,5 @@
 
-/*
+/*!
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -29,7 +29,7 @@ import net.jami.Models 1.0
  * 4. Can use OnClicked slot to implement some click logic
  */
 Button {
-    id: hoverableButton
+    id: root
     property int fontPointSize: 9
     property int buttonImageHeight: hoverableButtonBackground.height - 10
     property int buttonImageWidth: hoverableButtonBackground.width - 10
@@ -63,6 +63,7 @@ Button {
     font.kerning:  true
     hoverEnabled: true
     background: Rectangle {
+        anchors.fill: root
         id: hoverableButtonBackground
         color: backgroundColor
         Image {
@@ -83,7 +84,7 @@ Button {
             }
             onReleased: {
                 hoverableButtonBackground.color = onReleaseColor
-                hoverableButton.clicked()
+                root.clicked()
             }
             onEntered: {
                 hoverableButtonBackground.color = onEnterColor
