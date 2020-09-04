@@ -30,6 +30,7 @@ Button {
     property var hoveredColor: undefined
     property var pressedColor: undefined
     property var outlined: false
+    property string animatedImageSource: ""
 
     property var preferredWidth: 400
     property var preferredHeight: 36
@@ -41,6 +42,7 @@ Button {
     icon.source: ""
     icon.height: 18
     icon.width: 18
+
     hoverEnabled: hoveredColor !== undefined
 
     contentItem: Item {
@@ -50,6 +52,21 @@ Button {
             RowLayout {
                 anchors.fill: parent
                 anchors.centerIn: parent
+
+                AnimatedImage {
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                    Layout.leftMargin: 8
+                    Layout.preferredHeight: root.icon.height
+                    Layout.preferredWidth: root.icon.width
+
+                    source: animatedImageSource
+                    playing: true
+                    paused: false
+                    fillMode: Image.PreserveAspectFit
+                    mipmap: true
+                    visible: animatedImageSource !== ""
+                }
+
                 Image {
                     source: root.icon.source
                     width: root.icon.width
