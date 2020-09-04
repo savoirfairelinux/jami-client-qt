@@ -31,6 +31,10 @@ import net.jami.Adapters 1.0
 import "../../commoncomponents"
 
 ColumnLayout {
+    id: advancedSettingsViewLayout
+
+    property int preferredColumnWidth : accountViewRect.width / 2 - 50
+
     function updateAccountInfoDisplayedAdvance() {
         //Call Settings
         checkAutoConnectOnLocalNetwork.checked = SettingsAdapter.getAccountConfig_PeerDiscovery()
@@ -266,15 +270,8 @@ ColumnLayout {
         }
     }
 
-    id: advancedSettingsViewLayout
-    Layout.fillWidth: true
-
-    property int preferredColumnWidth : accountViewRect.width / 2 - 50
-
     ColumnLayout {
-
-        spacing: 8
-        Layout.fillWidth: true
+        anchors.fill: root
 
         ElidedTextLabel {
             Layout.fillWidth: true

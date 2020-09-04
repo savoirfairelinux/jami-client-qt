@@ -31,7 +31,7 @@ import net.jami.Adapters 1.0
 import "../../commoncomponents"
 
 Rectangle {
-    id: accountViewRect
+    id: root
 
     enum RegName {
         BLANK,
@@ -46,7 +46,7 @@ Rectangle {
     property bool registeredIdNeedsSet: false
 
     property int refreshVariable : 0
-    property int preferredColumnWidth : accountViewRect.width / 2 - 50
+    property int preferredColumnWidth : root.width / 2 - 50
 
     signal navigateToMainView
     signal navigateToNewWizardView
@@ -128,7 +128,7 @@ Rectangle {
     Connections {
         id: accountConnections_ContactModel
         target: ClientWrapper.contactModel
-        enabled: accountViewRect.visible
+        enabled: root.visible
 
         function onModelUpdated(uri, needsSorted) {
             updateAndShowBannedContactsSlot()
@@ -146,7 +146,7 @@ Rectangle {
     Connections {
         id: accountConnections_DeviceModel
         target: ClientWrapper.deviceModel
-        enabled: accountViewRect.visible
+        enabled: root.visible
 
         function onDeviceAdded(id) {
             updateAndShowDevicesSlot()
@@ -248,7 +248,7 @@ Rectangle {
                     var title = isSuccessful ? qsTr("Success") : qsTr("Error")
                     var iconMode = isSuccessful ? StandardIcon.Information : StandardIcon.Critical
                     var info = isSuccessful ? qsTr("Export Successful") : qsTr("Export Failed")
-                    msgDialog.openWithParameters(title,info, iconMode, StandardButton.Ok)
+                    MessageBox.openWithParameters(title,info, iconMode, StandardButton.Ok)
                 }
             }
         }
@@ -269,6 +269,10 @@ Rectangle {
     PasswordDialog {
         id: passwordDialog
 
+        anchors.centerIn: parent.Center
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+
         onDoneSignal: {
             var success = (code === successCode)
             var title = success ? qsTr("Success") : qsTr("Error")
@@ -288,12 +292,8 @@ Rectangle {
                 break
             }
 
-            msgDialog.openWithParameters(title,info, iconMode, StandardButton.Ok)
+            MessageBox.openWithParameters(title,info, iconMode, StandardButton.Ok)
         }
-    }
-
-    MessageBox {
-        id: msgDialog
     }
 
     function passwordClicked() {
@@ -353,6 +353,10 @@ Rectangle {
 
     RevokeDevicePasswordDialog{
         id: revokeDevicePasswordDialog
+        
+        anchors.centerIn: parent.Center
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
 
         onRevokeDeviceWithPassword:{
             revokeDeviceWithIDAndPassword(idOfDevice, password)
@@ -369,23 +373,9 @@ Rectangle {
         icon :StandardIcon.Information
         standardButtons: StandardButton.Ok | StandardButton.Cancel
 
-        onYes: {
-            accepted()
-        }
-
-        onNo:{
-            rejected()
-        }
-
-        onDiscard: {
-            rejected()
-        }
-
         onAccepted: {
             revokeDeviceWithIDAndPassword(idOfDev,"")
         }
-
-        onRejected: {}
     }
 
     function removeDeviceSlot(index){
@@ -428,31 +418,21 @@ Rectangle {
         id: bannedListModel
     }
 
-    Layout.fillHeight: true
-    Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
-    anchors.centerIn: parent
-
     ColumnLayout {
-        anchors.fill: accountViewRect
+        anchors.fill: root
 
         RowLayout {
             id: accountPageTitle
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.fillWidth: true
-            Layout.maximumHeight: 64
-            Layout.minimumHeight: 64
             Layout.preferredHeight: 64
 
             HoverableButton {
                 id: backToSettingsMenuButton
 
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
                 Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                radius: 32
+                radius: JamiTheme.preferredFieldHeight
                 source: "qrc:/images/icons/ic_arrow_back_24px.svg"
                 backgroundColor: "white"
                 onExitColor: "white"
@@ -466,34 +446,24 @@ Rectangle {
                 }
             }
 
-            ElidedTextLabel {
+            Label {
                 Layout.fillWidth: true
-                Layout.maximumHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
-                eText: qsTr("Account Settings")
-                fontSize: JamiTheme.titleFontSize
-                maxWidth: !backToSettingsMenuButton.visible ? accountViewRect.width - 100 :
-                                                              accountViewRect.width - backToSettingsMenuButton.width - 100
+                text: qsTr("Account Settings")
+                
+                font.pointSize: JamiTheme.titleFontSize
+                font.kerning: true
 
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
             }
         }
 
         ScrollView {
             id: accountScrollView
 
-            property ScrollBar vScrollBar: ScrollBar.vertical
-
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-            width: accountViewRect.width
-            height: accountViewRect.height - accountPageTitle.height
-
-            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
             clip: true
 
@@ -503,11 +473,7 @@ Rectangle {
             ColumnLayout {
                 id: accountViewLayout
 
-                Layout.fillHeight: true
-                Layout.preferredWidth: accountViewRect.width
-                Layout.alignment: Qt.AlignHCenter
-
-                spacing: 24
+                width: root.width
 
                 ToggleSwitch {
                     id: accountEnableCheckBox
@@ -515,6 +481,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.topMargin: JamiTheme.preferredMarginSize
                     Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     labelText: qsTr("Enable")
                     fontPointSize: JamiTheme.headerFontSize
@@ -529,16 +496,13 @@ Rectangle {
                  */
                 ColumnLayout {
                     Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    spacing: 8
+                    Layout.topMargin: JamiTheme.preferredMarginSize
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     Label {
                         Layout.fillWidth: true
-
-                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
-                        Layout.leftMargin: JamiTheme.preferredMarginSize
 
                         text: qsTr("Profile")
                         font.pointSize: JamiTheme.headerFontSize
@@ -553,14 +517,10 @@ Rectangle {
 
                         Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
 
-                        boothWidth: Math.min(224, accountViewRect.width - 100)
+                        boothWidth: Math.min(224, root.width - 100) + 50
 
-                        Layout.maximumWidth: boothWidth+50
-                        Layout.preferredWidth: boothWidth+50
-                        Layout.minimumWidth: boothWidth+50
-                        Layout.maximumHeight: boothWidth+50
-                        Layout.preferredHeight: boothWidth+50
-                        Layout.minimumHeight: boothWidth+50
+                        Layout.preferredWidth: boothWidth
+                        Layout.preferredHeight: boothWidth
 
                         onImageAcquired: {
                            SettingsAdapter.setCurrAccAvatar(imgBase64)
@@ -600,34 +560,27 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignHCenter
                     Layout.leftMargin: JamiTheme.preferredMarginSize
-                    spacing: 8
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     ElidedTextLabel {
                         Layout.fillWidth: true
-
-                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
                         eText: qsTr("Identity")
-                        maxWidth: accountViewRect.width - 72
+                        maxWidth: root.width - 72
                         fontSize: JamiTheme.headerFontSize
                     }
 
                     RowLayout {
-                        spacing: 8
                         Layout.fillWidth: true
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
                         Layout.leftMargin: JamiTheme.preferredMarginSize
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
 
                         Label {
                             id: idLabel
                             Layout.fillWidth: true
-                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                             text: qsTr("Id")
                             font.pointSize: JamiTheme.settingsFontSize
@@ -670,7 +623,7 @@ Rectangle {
                                 id: currentRingIDText
 
                                 elide: Text.ElideRight
-                                elideWidth: accountViewRect.width - idLabel.width -JamiTheme.preferredMarginSize*4
+                                elideWidth: root.width - idLabel.width -JamiTheme.preferredMarginSize*4
 
                                 text: { refreshVariable
                                     return ClientWrapper.SettingsAdapter.getCurrentAccount_Profile_Info_Uri()
@@ -680,12 +633,10 @@ Rectangle {
                     }
 
                     RowLayout {
-                        spacing: 8
                         Layout.fillWidth: true
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
                         Layout.leftMargin: JamiTheme.preferredMarginSize
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
 
                         ElidedTextLabel {
                             id: lblRegisteredName
@@ -769,7 +720,8 @@ Rectangle {
                 ColumnLayout {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignHCenter
-                    spacing: 8
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     MaterialButton {
                         id: passwdPushButton
@@ -850,11 +802,10 @@ Rectangle {
                 ColumnLayout {
                     Layout.fillWidth: true
                     Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     Label {
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                         text: qsTr("Linked Devices")
 
@@ -870,10 +821,7 @@ Rectangle {
                             id: settingsListView
 
                             Layout.fillWidth: true
-
-                            Layout.minimumHeight: 160
                             Layout.preferredHeight: 160
-                            Layout.maximumHeight: 160
 
                             model: deviceItemListModel
 
@@ -934,9 +882,8 @@ Rectangle {
 
                     Layout.fillWidth: true
                     Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
                     Layout.alignment: Qt.AlignHCenter
-
-                    spacing: 8
 
                     RowLayout {
                         Layout.fillWidth: true
@@ -946,13 +893,11 @@ Rectangle {
                             id: lblBannedContacts
 
                             Layout.fillWidth: true
-                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
-                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                            Layout.preferredHeight: JamiTheme.preferredFieldHeigh
 
                             eText: qsTr("Banned Contacts")
                             fontSize: JamiTheme.headerFontSize
-                            maxWidth: accountViewRect.width - bannedContactsBtn.width
+                            maxWidth: root.width - bannedContactsBtn.width
                                       - JamiTheme.preferredMarginSize*4
                         }
 
@@ -961,13 +906,8 @@ Rectangle {
 
                             Layout.alignment: Qt.AlignRight
 
-                            Layout.maximumWidth: JamiTheme.preferredFieldHeight
                             Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                            Layout.minimumWidth: JamiTheme.preferredFieldHeight
-
-                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                             radius: height / 2
 
@@ -986,17 +926,13 @@ Rectangle {
                     ColumnLayout {
                         id: bannedContactsListWidget
 
-                        spacing: 8
                         visible: false
 
                         ListViewJami {
                             id: bannedListWidget
 
                             Layout.fillWidth: true
-
-                            Layout.minimumHeight: 160
                             Layout.preferredHeight: 160
-                            Layout.maximumHeight: 160
 
                             model: bannedListModel
 
@@ -1030,34 +966,26 @@ Rectangle {
                     id: rowAdvancedSettingsBtn
                     Layout.fillWidth: true
                     Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
 
                     ElidedTextLabel {
-
                         id: lblAdvancedAccountSettings
 
                         Layout.fillWidth: true
-                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
 
                         eText: qsTr("Advanced Account Settings")
 
                         fontSize: JamiTheme.headerFontSize
-                        maxWidth: accountViewRect.width - advancedAccountSettingsPButton.width
-                                  - JamiTheme.preferredMarginSize*6
+                        maxWidth: root.width - advancedAccountSettingsPButton.width
+                                  - JamiTheme.preferredMarginSize * 6
                     }
 
                     HoverableButtonTextItem {
                         id: advancedAccountSettingsPButton
 
-                        Layout.leftMargin: JamiTheme.preferredMarginSize
-
-                        Layout.minimumWidth: JamiTheme.preferredFieldHeight
                         Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                        Layout.maximumWidth: JamiTheme.preferredFieldHeight
-                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                         Layout.alignment: Qt.AlignHCenter
 
@@ -1091,18 +1019,10 @@ Rectangle {
                  */
                 AdvancedSettingsView {
                     id: advanceSettingsView
+                    Layout.fillWidth: true
                     Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
                     visible: false
-                }
-
-                /*
-                 * To keep max width
-                 */
-                Item {
-                    Layout.preferredWidth: accountViewRect.width - 32
-                    Layout.minimumWidth: accountViewRect.width - 32
-                    Layout.maximumWidth: JamiTheme.maximumWidthSettingsView - 32
-                    Layout.fillHeight: true
                 }
             }
         }
