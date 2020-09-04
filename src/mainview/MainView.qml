@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.14
 import QtQuick.Controls.Universal 2.12
 import QtGraphicalEffects 1.14
 import net.jami.Models 1.0
-
+import net.jami.Adapters 1.0
 
 /*
  * Import qml component files.
@@ -209,9 +209,9 @@ Window {
                 toggleSettingsView()
             }
 
-            var index = ClientWrapper.utilsAdaptor.getCurrAccList().indexOf(accountId)
-            var name = ClientWrapper.utilsAdaptor.getBestName(accountId, convUid)
-            var id = ClientWrapper.utilsAdaptor.getBestId(accountId, convUid)
+            var index = UtilsAdapter.getCurrAccList().indexOf(accountId)
+            var name = UtilsAdapter.getBestName(accountId, convUid)
+            var id = UtilsAdapter.getBestId(accountId, convUid)
 
             communicationPageMessageWebView.headerUserAliasLabelText = name
             communicationPageMessageWebView.headerUserUserNameLabelText = (name !== id) ? id : ""
@@ -323,7 +323,7 @@ Window {
                         settingsView.setSelected(settingsView.selectedMenu, true)
 
                         if (needToShowCallStack
-                                && callStackView.responsibleAccountId === ClientWrapper.utilsAdaptor.getCurrAccId()){
+                                && callStackView.responsibleAccountId === UtilsAdapter.getCurrAccId()){
                             if (!ClientWrapper.accountAdaptor.hasVideoCall()) {
                                 pushCommunicationMessageWebView()
                                 needToShowCallStack = false
@@ -434,20 +434,18 @@ Window {
             communicationPageMessageWebView.headerUserUserNameLabelText = currentUserDisplayName
 
             callStackView.needToCloseInCallConversationAndPotentialWindow()
-            callStackView.responsibleAccountId = ClientWrapper.utilsAdaptor.getCurrAccId()
+            callStackView.responsibleAccountId = UtilsAdapter.getCurrAccId()
             callStackView.responsibleConvUid = currentUID
             callStackView.updateCorrspondingUI()
 
             if (callStackViewShouldShow) {
                 if (callState === Call.Status.IN_PROGRESS || callState === Call.Status.PAUSED) {
-                    ClientWrapper.utilsAdaptor.setCurrentCall(
-                                ClientWrapper.utilsAdaptor.getCurrAccId(),
-                                currentUID)
+                    UtilsAdapter.setCurrentCall(UtilsAdapter.getCurrAccId(), currentUID)
                     if (isAudioOnly)
                         callStackView.showAudioCallPage()
                     else
                         callStackView.showVideoCallPage(
-                                    ClientWrapper.utilsAdaptor.getCallId(
+                                    UtilsAdapter.getCallId(
                                         callStackView.responsibleAccountId,
                                         callStackView.responsibleConvUid))
                 } else {
@@ -784,7 +782,7 @@ Window {
         sequence: "Ctrl+Shift+A"
         context: Qt.ApplicationShortcut
         onActivated: {
-            ClientWrapper.utilsAdaptor.makePermanentCurrentConv()
+            UtilsAdapter.makePermanentCurrentConv()
             communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
         }
     }

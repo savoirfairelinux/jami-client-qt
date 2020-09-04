@@ -166,10 +166,10 @@ Rectangle {
         if (ClientWrapper.SettingsAdapter.get_CurrentAccountInfo_RegisteredName() !== "") {
             regNameUi = CurrentAccountSettingsScrollPage.BLANK
         } else {
-            registeredName = ClientWrapper.utilsAdaptor.stringSimplifier(
+            registeredName = UtilsAdapter.stringSimplifier(
                         currentRegisteredID.text)
             if (registeredName !== "") {
-                if (ClientWrapper.utilsAdaptor.validateRegNameForm(registeredName)) {
+                if (UtilsAdapter.validateRegNameForm(registeredName)) {
                     regNameUi = CurrentAccountSettingsScrollPage.SEARCHING
                     lookUpLabelTimer.restart()
                 } else {
@@ -219,7 +219,7 @@ Rectangle {
     }
 
     function setAccEnableSlot(state) {
-        ClientWrapper.accountModel.setAccountEnabled(ClientWrapper.utilsAdaptor.getCurrAccId(), state)
+        ClientWrapper.accountModel.setAccountEnabled(UtilsAdapter.getCurrAccId(), state)
     }
 
     /*
@@ -238,13 +238,13 @@ Rectangle {
 
         onAccepted: {
             // is there password? If so, go to password dialog, else, go to following directly
-            var exportPath = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
+            var exportPath = UtilsAdapter.getAbsPath(file.toString())
             if (ClientWrapper.accountAdaptor.hasPassword()) {
                 passwordDialog.openDialog(PasswordDialog.ExportAccount,exportPath)
                 return
             } else {
                 if (exportPath.length > 0) {
-                    var isSuccessful = ClientWrapper.accountModel.exportToFile(ClientWrapper.utilsAdaptor.getCurrAccId(), exportPath,"")
+                    var isSuccessful = ClientWrapper.accountModel.exportToFile(UtilsAdapter.getCurrAccId(), exportPath,"")
                     var title = isSuccessful ? qsTr("Success") : qsTr("Error")
                     var iconMode = isSuccessful ? StandardIcon.Information : StandardIcon.Critical
                     var info = isSuccessful ? qsTr("Export Successful") : qsTr("Export Failed")
@@ -306,7 +306,7 @@ Rectangle {
         onAccepted: {
             ClientWrapper.accountAdaptor.setSelectedConvId()
 
-            if(ClientWrapper.utilsAdaptor.getAccountListSize() > 0){
+            if(UtilsAdapter.getAccountListSize() > 0){
                 navigateToMainView()
             } else {
                 navigateToNewWizardView()
