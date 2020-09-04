@@ -80,7 +80,7 @@ Rectangle {
         anchors.centerIn: parent.Center
 
         onAccepted: {
-            ClientWrapper.accountAdaptor.setSelectedConvId()
+            AccountAdapter.setSelectedConvId()
 
             if(UtilsAdapter.getAccountListSize() > 0){
                 navigateToMainView()
@@ -213,7 +213,7 @@ Rectangle {
                         padding: 8
 
                         onEditingFinished: {
-                            ClientWrapper.accountAdaptor.setCurrAccDisplayName(
+                            AccountAdapter.setCurrAccDisplayName(
                                         displaySIPNameLineEdit.text)
                         }
                     }

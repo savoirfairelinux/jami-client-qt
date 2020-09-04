@@ -48,7 +48,7 @@ Rectangle {
         profileType = SettingsAdapter.getCurrentAccount_Profile_Info_Type()
 
         if(selectedMenu === sel && (!recovery)){return}
-        switch(sel){
+        switch(sel) {
             case SettingsView.Account:
                 currentAccountSettingsScrollWidget.connectCurrentAccount()
 
@@ -57,7 +57,7 @@ Rectangle {
 
                 selectedMenu = sel
 
-                if(!settingsViewRect.isSIP){
+                if(!settingsViewRect.isSIP) {
                     if(currentAccountSettingsScrollWidget.isPhotoBoothOpened())
                     {
                         currentAccountSettingsScrollWidget.setAvatar()
@@ -75,7 +75,7 @@ Rectangle {
                 try{
                     avSettings.stopAudioMeter()
                     avSettings.stopPreviewing()
-                } catch(erro){}
+                } catch(erro) {}
 
                 selectedMenu = sel
                 generalSettings.populateGeneralSettings()
@@ -91,7 +91,7 @@ Rectangle {
                 try{
                     avSettings.stopAudioMeter()
                     avSettings.stopPreviewing()
-                } catch(erro){}
+                } catch(erro) {}
 
                 selectedMenu = sel
                 pluginSettings.populatePluginSettings()
@@ -99,9 +99,9 @@ Rectangle {
         }
     }
 
-    Connections{
+    Connections {
         id: accountListChangedConnection
-        target: ClientWrapper.lrcInstance
+        target: LRCInstance
 
         function onAccountListChanged(){
             slotAccountListChanged()

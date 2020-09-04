@@ -71,7 +71,7 @@ Rectangle {
         updateState(RecordBox.States.INIT)
 
         if (isVideo){
-            ClientWrapper.accountAdaptor.startPreviewing(false)
+            AccountAdapter.startPreviewing(false)
             previewAvailable = true
         }
     }
@@ -104,8 +104,8 @@ Rectangle {
     }
 
     function closeRecorder() {
-        if (isVideo && ClientWrapper.accountAdaptor.isPreviewing()) {
-            ClientWrapper.accountAdaptor.stopPreviewing()
+        if (isVideo && AccountAdapter.isPreviewing()) {
+            AccountAdapter.stopPreviewing()
         }
         stopRecording()
         visible = false
@@ -158,11 +158,6 @@ Rectangle {
         var sec = (s < 10) ? "0" + String(s) : String(s)
 
         time.text = min + ":" + sec;
-    }
-
-
-    Connections{
-        target: ClientWrapper.renderManager
     }
 
     Shape {

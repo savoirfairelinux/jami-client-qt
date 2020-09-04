@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
  *
@@ -20,62 +20,12 @@
 
 ClientWrapper::ClientWrapper(QObject *parent)
     : QObject(parent)
-{
-    connect(getAccountAdapter(), &AccountAdapter::accountSignalsReconnect, [this]() {
-        emit accountModelChanged();
-        emit avmodelChanged();
-        emit dataTransferModelChanged();
-        emit contactModelChanged();
-        emit deviceModelChanged();
-    });
-}
-
-NameDirectory *
-ClientWrapper::getNameDirectory()
-{
-    return &(NameDirectory::instance());
-}
-
-SettingsAdapter *
-ClientWrapper::getSettingsAdapter()
-{
-    return &(SettingsAdapter::instance());
-}
-
-LRCInstance *
-ClientWrapper::getLRCInstance()
-{
-    return &(LRCInstance::instance());
-}
-
-AccountAdapter *
-ClientWrapper::getAccountAdapter()
-{
-    return &(AccountAdapter::instance());
-}
-
-RenderManager *
-ClientWrapper::getRenderManager()
-{
-    return LRCInstance::renderer();
-}
+{}
 
 lrc::api::NewAccountModel *
 ClientWrapper::getAccountModel()
 {
     return &(LRCInstance::accountModel());
-}
-
-lrc::api::AVModel *
-ClientWrapper::getAvModel()
-{
-    return &(LRCInstance::avModel());
-}
-
-lrc::api::PluginModel *
-ClientWrapper::getPluginModel()
-{
-    return &(LRCInstance::pluginModel());
 }
 
 lrc::api::DataTransferModel *
@@ -84,14 +34,8 @@ ClientWrapper::getDataTransferModel()
     return &(LRCInstance::dataTransferModel());
 }
 
-lrc::api::ContactModel *
-ClientWrapper::getContactModel()
+lrc::api::AVModel *
+ClientWrapper::getAvModel()
 {
-    return getSettingsAdapter()->getCurrentAccountInfo().contactModel.get();
-}
-
-lrc::api::NewDeviceModel *
-ClientWrapper::getDeviceModel()
-{
-    return getSettingsAdapter()->getCurrentAccountInfo().deviceModel.get();
+    return &(LRCInstance::avModel());
 }

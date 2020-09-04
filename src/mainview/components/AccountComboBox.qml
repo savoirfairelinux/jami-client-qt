@@ -50,7 +50,7 @@ ComboBox {
     }
 
     Connections {
-        target: ClientWrapper.accountAdaptor
+        target: AccountAdapter
 
         function onNavigateToWelcomePageRequested() {
             needToBackToWelcomePage()
