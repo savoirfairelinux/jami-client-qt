@@ -302,7 +302,7 @@ Window {
                     currentIndex: 0
 
                     Connections {
-                        target: ClientWrapper.accountAdaptor
+                        target: AccountAdapter
 
                         function onUpdateConversationForAddedContact() {
                             mainViewWindowSidePanel.needToUpdateConversationForAddedContact()
@@ -324,7 +324,7 @@ Window {
 
                         if (needToShowCallStack
                                 && callStackView.responsibleAccountId === UtilsAdapter.getCurrAccId()){
-                            if (!ClientWrapper.accountAdaptor.hasVideoCall()) {
+                            if (!AccountAdapter.hasVideoCall()) {
                                 pushCommunicationMessageWebView()
                                 needToShowCallStack = false
                             } else if (needToShowCallStack) {
@@ -343,7 +343,7 @@ Window {
                     }
 
                     Component.onCompleted: {
-                        ClientWrapper.accountAdaptor.setQmlObject(this)
+                        AccountAdapter.setQmlObject(this)
                     }
                 }
 

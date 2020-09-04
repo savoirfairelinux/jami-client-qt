@@ -74,11 +74,11 @@ Rectangle {
     }
 
     Connections{
-        target: ClientWrapper.accountAdaptor
+        target: AccountAdapter
 
         function onAccountAdded(showBackUp, index) {
             addedAccountIndex = index
-            ClientWrapper.accountAdaptor.accountChanged(index)
+            AccountAdapter.accountChanged(index)
             if (showProfile) {
                 changePageQML(controlPanelStackView.profilePageId)
                 profilePage.readyToSaveDetails = true
@@ -108,7 +108,7 @@ Rectangle {
 
     Connections {
         id: registeredNameFoundConnection
-        target: ClientWrapper.nameDirectory
+        target: NameDirectory
         enabled: false
 
         function onRegisteredNameFound(status, address, name) {
@@ -182,7 +182,7 @@ Rectangle {
                 var info = success ? qsTr("Export Successful") : qsTr(
                                          "Export Failed")
 
-                ClientWrapper.accountAdaptor.passwordSetStatusMessageBox(success,
+                AccountAdapter.passwordSetStatusMessageBox(success,
                                                          title, info)
                 if (success) {
                     console.log("Account Export Succeed")
@@ -235,7 +235,7 @@ Rectangle {
             onCreateAccount: {
                 inputParaObject = {}
                 inputParaObject["password"] = text_passwordEditAlias
-                ClientWrapper.accountAdaptor.createJamiAccount(
+                AccountAdapter.createJamiAccount(
                     createAccountPage.text_usernameEditAlias,
                     inputParaObject,
                     createAccountPage.boothImgBase64,
@@ -264,7 +264,7 @@ Rectangle {
                     registeredName = createAccountPage.text_usernameEditAlias
                     if (registeredName.length !== 0) {
                         createAccountPage.nameRegistrationUIState = WizardView.SEARCHING
-                        ClientWrapper.nameDirectory.lookupName("", registeredName)
+                        NameDirectory.lookupName("", registeredName)
                     } else {
                         createAccountPage.nameRegistrationUIState = WizardView.BLANK
                     }
@@ -288,7 +288,7 @@ Rectangle {
                 inputParaObject["proxy"] = createSIPAccountPage.text_sipProxyEditAlias
                 createSIPAccountPage.clearAllTextFields()
 
-                ClientWrapper.accountAdaptor.createSIPAccount(inputParaObject, "")
+                AccountAdapter.createSIPAccount(inputParaObject, "")
                 showBackUp = false
                 showBottom = false
                 changePageQML(controlPanelStackView.profilePageId)
@@ -312,7 +312,7 @@ Rectangle {
                 showBackUp = false
                 showBottom = false
                 showProfile = true
-                ClientWrapper.accountAdaptor.createJamiAccount(
+                AccountAdapter.createJamiAccount(
                     "", inputParaObject, "", false)
             }
         }
@@ -328,13 +328,13 @@ Rectangle {
             onExport_Btn_FileDialogAccepted: {
                 if (accepted) {
                     // is there password? If so, go to password dialog, else, go to following directly
-                    if (ClientWrapper.accountAdaptor.hasPassword()) {
+                    if (AccountAdapter.hasPassword()) {
                         passwordDialog.path = UtilsAdapter.getAbsPath(folderDir)
                         passwordDialog.open()
                         return
                     } else {
                         if (folderDir.length > 0) {
-                            ClientWrapper.accountAdaptor.exportToFile(
+                            AccountAdapter.exportToFile(
                                         UtilsAdapter.getCurrAccId(),
                                         UtilsAdapter.getAbsPath(folderDir))
                         }
@@ -369,7 +369,7 @@ Rectangle {
                 showProfile = true
                 showBackUp = false
                 showBottom = false
-                ClientWrapper.accountAdaptor.createJamiAccount(
+                AccountAdapter.createJamiAccount(
                     "", inputParaObject, "", false)
             }
         }
@@ -386,7 +386,7 @@ Rectangle {
                         = connectToAccountManagerPage.text_passwordManagerEditAlias
                 inputParaObject["manager"]
                         = connectToAccountManagerPage.text_accountManagerEditAlias
-                ClientWrapper.accountAdaptor.createJAMSAccount(inputParaObject)
+                AccountAdapter.createJAMSAccount(inputParaObject)
             }
 
             onLeavePage: {
@@ -415,7 +415,7 @@ Rectangle {
 
             onSaveProfile: {
                 SettingsAdapter.setCurrAccAvatar(profilePage.boothImgBase64)
-                ClientWrapper.accountAdaptor.setCurrAccDisplayName(profilePage.displayName)
+                AccountAdapter.setCurrAccDisplayName(profilePage.displayName)
                 leave()
             }
 

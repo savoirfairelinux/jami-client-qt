@@ -31,7 +31,7 @@ Rectangle {
 
     function populatePluginSettings(){
         // settings
-        enabledplugin.checked = ClientWrapper.pluginModel.getPluginsEnabled()
+        enabledplugin.checked = PluginModel.getPluginsEnabled()
         pluginListSettingsView.visible = enabledplugin.checked
         if (pluginListSettingsView.visible) {
             pluginListSettingsView.updatePluginListDisplayed()
@@ -39,7 +39,7 @@ Rectangle {
     }
 
     function slotSetPluginEnabled(state){
-        ClientWrapper.pluginModel.setPluginsEnabled(state)
+        PluginModel.setPluginsEnabled(state)
     }
 
     Layout.fillHeight: true
@@ -117,7 +117,7 @@ Rectangle {
                         if (pluginListSettingsView.visible) {
                             pluginListSettingsView.updatePluginListDisplayed()
                         } else {
-                            ClientWrapper.pluginModel.toggleCallMediaHandler("", true)
+                            PluginModel.toggleCallMediaHandler("", true)
                             pluginListSettingsView.hidePreferences()
                         }
                     }

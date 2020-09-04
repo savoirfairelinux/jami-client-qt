@@ -185,7 +185,7 @@ Dialog {
                     font.kerning: true
 
                     onClicked: {
-                        ClientWrapper.accountAdaptor.deleteCurrentAccount()
+                        AccountAdapter.deleteCurrentAccount()
                         accept()
                     }
                 }

@@ -47,9 +47,9 @@ Rectangle {
     function loadPluginSlot(pluginId, isLoaded){
         var loaded = false
         if (isLoaded)
-            ClientWrapper.pluginModel.unloadPlugin(pluginId)
+            PluginModel.unloadPlugin(pluginId)
         else
-            loaded = ClientWrapper.pluginModel.loadPlugin(pluginId)
+            loaded = PluginModel.loadPlugin(pluginId)
         if(pluginListPreferencesView.pluginId === pluginId)
             pluginListPreferencesView.isLoaded = loaded
         updatePluginListDisplayed()
@@ -96,7 +96,7 @@ Rectangle {
 
         onAccepted: {
             var url = UtilsAdapter.getAbsPath(file.toString())
-            ClientWrapper.pluginModel.installPlugin(url, true)
+            PluginModel.installPlugin(url, true)
             updatePluginListDisplayed()
         }
     }

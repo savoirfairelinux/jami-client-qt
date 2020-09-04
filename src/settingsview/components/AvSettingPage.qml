@@ -92,7 +92,7 @@ Rectangle {
 
     function setFormatListForCurrentDevice(){
         var device = ClientWrapper.avmodel.getCurrentVideoCaptureDevice()
-        if(ClientWrapper.SettingsAdapter.get_DeviceCapabilitiesSize(device) === 0){
+        if(SettingsAdapter.get_DeviceCapabilitiesSize(device) === 0){
             return
         }
 
@@ -104,22 +104,22 @@ Rectangle {
     }
 
     function startPreviewing(force = false, async = true){
-        ClientWrapper.accountAdaptor.startPreviewing(force, async)
+        AccountAdapter.startPreviewing(force, async)
         previewAvailable = true
     }
 
     function stopPreviewing(async = true){
-        ClientWrapper.accountAdaptor.stopPreviewing(async)
+        AccountAdapter.stopPreviewing(async)
     }
 
     function startAudioMeter(async = true){
         audioInputMeter.start()
-        ClientWrapper.accountAdaptor.startAudioMeter(async)
+        AccountAdapter.startAudioMeter(async)
     }
 
     function stopAudioMeter(async = true){
         audioInputMeter.stop()
-        ClientWrapper.accountAdaptor.stopAudioMeter(async)
+        AccountAdapter.stopAudioMeter(async)
     }
 
     // slots for av page
@@ -244,8 +244,8 @@ Rectangle {
         }
     }
 
-    Connections{
-        target: ClientWrapper.renderManager
+    Connections {
+        target: RenderManager
         enabled: root.visible
 
         function onVideoDeviceListChanged(){

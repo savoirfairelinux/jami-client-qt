@@ -30,19 +30,29 @@
 
 AccountAdapter::AccountAdapter(QObject *parent)
     : QmlAdapterBase(parent)
-{}
-
-AccountAdapter &
-AccountAdapter::instance()
 {
-    static auto instance = new AccountAdapter;
-    return *instance;
+    connect(this, &AccountAdapter::accountSignalsReconnect, [this]() {
+        emit contactModelChanged();
+        emit deviceModelChanged();
+    });
 }
 
 void
 AccountAdapter::safeInit()
 {
     setSelectedAccount(LRCInstance::getCurrAccId());
+}
+
+lrc::api::ContactModel *
+AccountAdapter::getContactModel()
+{
+    return LRCInstance::getCurrentAccountInfo().contactModel.get();
+}
+
+lrc::api::NewDeviceModel *
+AccountAdapter::getDeviceModel()
+{
+    return LRCInstance::getCurrentAccountInfo().deviceModel.get();
 }
 
 void

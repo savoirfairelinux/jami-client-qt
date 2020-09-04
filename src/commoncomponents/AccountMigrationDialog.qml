@@ -170,7 +170,7 @@ Window{
         stackedWidget.currentIndex = 1
 
         connectionMigrationEnded.enabled = true
-        ClientWrapper.accountAdaptor.setArchivePasswordAsync(accountID,password)
+        AccountAdapter.setArchivePasswordAsync(accountID,password)
     }
 
     function slotDeleteButtonClicked(){

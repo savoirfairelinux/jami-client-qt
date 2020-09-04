@@ -59,11 +59,11 @@ Rectangle {
 
     function resetPlugin(){
         if (isLoaded){
-            ClientWrapper.pluginModel.unloadPlugin(pluginId)
-            ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId)
-            ClientWrapper.pluginModel.loadPlugin(pluginId)
+            PluginModel.unloadPlugin(pluginId)
+            PluginModel.resetPluginPreferencesValues(pluginId)
+            PluginModel.loadPlugin(pluginId)
         } else {
-            ClientWrapper.pluginModel.resetPluginPreferencesValues(pluginId)
+            PluginModel.resetPluginPreferencesValues(pluginId)
         }
         updatePluginList()
         updatePreferenceListDisplayed()
@@ -74,19 +74,19 @@ Rectangle {
     }
 
     function uninstallPlugin(){
-        ClientWrapper.pluginModel.uninstallPlugin(pluginId)
+        PluginModel.uninstallPlugin(pluginId)
         updatePluginList()
     }
 
     function setPreference(pluginId, preferenceKey, preferenceNewValue)
     {
         if (isLoaded){
-            ClientWrapper.pluginModel.unloadPlugin(pluginId)
-            ClientWrapper.pluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
-            ClientWrapper.pluginModel.loadPlugin(pluginId)
+            PluginModel.unloadPlugin(pluginId)
+            PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
+            PluginModel.loadPlugin(pluginId)
         }
         else {
-            ClientWrapper.pluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
+            PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
         }
     }
 

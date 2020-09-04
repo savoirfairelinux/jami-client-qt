@@ -33,7 +33,7 @@ Dialog {
         registerdName = registerNameIn
         lblRegistrationError.text = qsTr("Something went wrong")
         passwordEdit.clear()
-        if(ClientWrapper.accountAdaptor.hasPassword()){
+        if(AccountAdapter.hasPassword()){
             stackedWidget.currentIndex = 0
         } else {
             startRegistration()
@@ -70,7 +70,7 @@ Dialog {
     }
 
     Connections{
-        target: ClientWrapper.nameDirectory
+        target: NameDirectory
 
         function onNameRegistrationEnded(status, name){
             if(status === NameDirectory.RegisterNameStatus.SUCCESS){

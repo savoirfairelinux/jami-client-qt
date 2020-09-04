@@ -31,7 +31,7 @@ Dialog {
         infoLabel.text = qsTr("This pin and the account password should be entered in your device within 10 minutes.")
         passwordEdit.clear()
         linkDeviceDialog.open()
-        if(ClientWrapper.accountAdaptor.hasPassword()){
+        if(AccountAdapter.hasPassword()){
             stackedWidget.currentIndex = 0
         } else {
             setGeneratingPage()
@@ -39,7 +39,7 @@ Dialog {
     }
 
     function setGeneratingPage(){
-        if(passwordEdit.length === 0 && ClientWrapper.accountAdaptor.hasPassword()){
+        if(passwordEdit.length === 0 && AccountAdapter.hasPassword()){
             setExportPage(NameDirectory.ExportOnRingStatus.WRONG_PASSWORD, "")
             return
         }
@@ -111,8 +111,8 @@ Dialog {
 
     property int exportTimeout : 20000
 
-    Connections{
-        target: ClientWrapper.nameDirectory
+    Connections {
+        target: NameDirectory
 
         function onExportOnRingEnded(status, pin){
             setExportPage(status, pin)

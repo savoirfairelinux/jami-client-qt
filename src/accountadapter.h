@@ -31,16 +31,29 @@ class AccountAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
 
+    Q_PROPERTY(lrc::api::ContactModel *contactModel READ getContactModel NOTIFY contactModelChanged)
+    Q_PROPERTY(lrc::api::NewDeviceModel *deviceModel READ getDeviceModel NOTIFY deviceModelChanged)
+
+    Q_PROPERTY(QString currentAccountId MEMBER currentAccountId_ NOTIFY currentAccountIdChanged)
+    Q_PROPERTY(int accountListSize MEMBER accountListSize_ NOTIFY accountListSizeChanged)
+
+public:
+    lrc::api::ContactModel *getContactModel();
+    lrc::api::NewDeviceModel *getDeviceModel();
+
+signals:
+    void contactModelChanged();
+    void deviceModelChanged();
+
+    void currentAccountIdChanged();
+    void accountListSizeChanged();
+
 public:
     explicit AccountAdapter(QObject *parent = 0);
     ~AccountAdapter() = default;
 
 protected:
     void safeInit() override;
-
-public:
-    //Singleton
-    static AccountAdapter &instance();
 
     /*
      * Change to account corresponding to combox box index.
@@ -87,7 +100,6 @@ public:
     Q_INVOKABLE void setSelectedConvId(QString accountId = {});
 
 signals:
-
     /*
      * Trigger other components to reconnect account related signals.
      */
@@ -102,6 +114,9 @@ signals:
     void navigateToWelcomePageRequested();
 
 private:
+    QString currentAccountId_;
+    int accountListSize_;
+
     void setSelectedAccount(const QString &accountId);
     void backToWelcomePage();
     void deselectConversation();
