@@ -547,6 +547,7 @@ Window {
 
     SettingsView {
         id: settingsView
+        anchors.fill: parent
 
         visible: false
 
