@@ -85,7 +85,7 @@ ItemDelegate {
         onRejected: preferenceAdded()
 
         onAccepted: {
-            var url = ClientWrapper.utilsAdaptor.getAbsPath(fileUrl.toString())
+            var url = UtilsAdapter.getAbsPath(fileUrl.toString())
             ClientWrapper.pluginModel.addValueToPreference(pluginId, preferenceKey, url)
             pluginListPreferenceModel.populateLists()
             pluginListPreferenceModel.getCurrentSettingIndex()

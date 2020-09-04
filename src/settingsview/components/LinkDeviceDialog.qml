@@ -51,7 +51,7 @@ Dialog {
     }
 
     function slotExportOnRing(){
-        ClientWrapper.accountModel.exportOnRing(ClientWrapper.utilsAdaptor.getCurrAccId(),passwordEdit.text)
+        ClientWrapper.accountModel.exportOnRing(UtilsAdapter.getCurrAccId(),passwordEdit.text)
     }
 
     Timer{

@@ -95,7 +95,7 @@ Rectangle {
         }
 
         onAccepted: {
-            var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
+            var url = UtilsAdapter.getAbsPath(file.toString())
             ClientWrapper.pluginModel.installPlugin(url, true)
             updatePluginListDisplayed()
         }

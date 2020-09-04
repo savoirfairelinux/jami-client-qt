@@ -44,9 +44,9 @@ ColumnLayout {
         enableSDESToggle.enabled = SettingsAdapter.getAccountConfig_SRTP_Enabled()
         fallbackRTPToggle.enabled = SettingsAdapter.getAccountConfig_SRTP_Enabled()
 
-        btnSIPCACert.text = ClientWrapper.utilsAdaptor.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_CertificateListFile())
-        btnSIPUserCert.text = ClientWrapper.utilsAdaptor.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_CertificateFile())
-        btnSIPPrivateKey.text = ClientWrapper.utilsAdaptor.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_PrivateKeyFile())
+        btnSIPCACert.text = UtilsAdapter.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_CertificateListFile())
+        btnSIPUserCert.text = UtilsAdapter.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_CertificateFile())
+        btnSIPPrivateKey.text = UtilsAdapter.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_PrivateKeyFile())
         lineEditSIPCertPassword.text = SettingsAdapter.getAccountConfig_TLS_Password()
 
         encryptMediaStreamsToggle.checked = SettingsAdapter.getAccountConfig_SRTP_Enabled()
@@ -92,7 +92,7 @@ ColumnLayout {
         updateAudioCodecs()
         updateVideoCodecs()
         btnRingtoneSIP.enabled = SettingsAdapter.getAccountConfig_Ringtone_RingtoneEnabled()
-        btnRingtoneSIP.text = ClientWrapper.utilsAdaptor.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_Ringtone_RingtonePath())
+        btnRingtoneSIP.text = UtilsAdapter.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_Ringtone_RingtonePath())
         lineEditSTUNAddressSIP.enabled = SettingsAdapter.getAccountConfig_STUN_Enabled()
 
         // SDP session negotiation ports
@@ -201,7 +201,7 @@ ColumnLayout {
     function changeRingtonePath(url){
         if(url.length !== 0) {
            SettingsAdapter.set_RingtonePath(url)
-            btnRingtoneSIP.text = ClientWrapper.utilsAdaptor.toFileInfoName(url)
+            btnRingtoneSIP.text = UtilsAdapter.toFileInfoName(url)
         } else if (ClientWrapper.SettingsAdapter.getAccountConfig_Ringtone_RingtonePath().length === 0){
             btnRingtoneSIP.text = qsTr("Add a custom ringtone")
         }
@@ -210,21 +210,21 @@ ColumnLayout {
     function changeFileCACert(url){
         if(url.length !== 0) {
            SettingsAdapter.set_FileCACert(url)
-            btnSIPCACert.text = ClientWrapper.utilsAdaptor.toFileInfoName(url)
+            btnSIPCACert.text = UtilsAdapter.toFileInfoName(url)
         }
     }
 
     function changeFileUserCert(url){
         if(url.length !== 0) {
            SettingsAdapter.set_FileUserCert(url)
-            btnSIPUserCert.text = ClientWrapper.utilsAdaptor.toFileInfoName(url)
+            btnSIPUserCert.text = UtilsAdapter.toFileInfoName(url)
         }
     }
 
     function changeFilePrivateKey(url){
         if(url.length !== 0) {
            SettingsAdapter.set_FilePrivateKey(url)
-            btnSIPPrivateKey.text = ClientWrapper.utilsAdaptor.toFileInfoName(url)
+            btnSIPPrivateKey.text = UtilsAdapter.toFileInfoName(url)
         }
     }
 
@@ -232,7 +232,7 @@ ColumnLayout {
         id: ringtonePath_Dialog_SIP
 
         property string oldPath : SettingsAdapter.getAccountConfig_Ringtone_RingtonePath()
-        property string openPath : oldPath === "" ? (ClientWrapper.utilsAdaptor.getCurrentPath() + "/ringtones/") : (ClientWrapper.utilsAdaptor.toFileAbsolutepath(oldPath))
+        property string openPath : oldPath === "" ? (UtilsAdapter.getCurrentPath() + "/ringtones/") : (UtilsAdapter.toFileAbsolutepath(oldPath))
 
         mode: JamiFileDialog.OpenFile
         title: qsTr("Select a new ringtone")
@@ -250,7 +250,7 @@ ColumnLayout {
         }
 
         onAccepted: {
-            var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
+            var url = UtilsAdapter.getAbsPath(file.toString())
             changeRingtonePath(url)
         }
     }
@@ -259,7 +259,7 @@ ColumnLayout {
         id: caCert_Dialog_SIP
 
         property string oldPath : SettingsAdapter.getAccountConfig_TLS_CertificateListFile()
-        property string openPath : oldPath === "" ? (ClientWrapper.utilsAdaptor.getCurrentPath() + "/ringtones/") : (ClientWrapper.utilsAdaptor.toFileAbsolutepath(oldPath))
+        property string openPath : oldPath === "" ? (UtilsAdapter.getCurrentPath() + "/ringtones/") : (UtilsAdapter.toFileAbsolutepath(oldPath))
 
         mode: JamiFileDialog.OpenFile
         title: qsTr("Select a CA certificate")
@@ -276,7 +276,7 @@ ColumnLayout {
         }
 
         onAccepted: {
-            var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
+            var url = UtilsAdapter.getAbsPath(file.toString())
             changeFileCACert(url)
         }
     }
@@ -285,7 +285,7 @@ ColumnLayout {
         id: userCert_Dialog_SIP
 
         property string oldPath : SettingsAdapter.getAccountConfig_TLS_CertificateFile()
-        property string openPath : oldPath === "" ? (ClientWrapper.utilsAdaptor.getCurrentPath() + "/ringtones/") : (ClientWrapper.utilsAdaptor.toFileAbsolutepath(oldPath))
+        property string openPath : oldPath === "" ? (UtilsAdapter.getCurrentPath() + "/ringtones/") : (UtilsAdapter.toFileAbsolutepath(oldPath))
 
         mode: JamiFileDialog.OpenFile
         title: qsTr("Select a user certificate")
@@ -302,7 +302,7 @@ ColumnLayout {
         }
 
         onAccepted: {
-            var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
+            var url = UtilsAdapter.getAbsPath(file.toString())
             changeFileUserCert(url)
         }
     }
@@ -311,7 +311,7 @@ ColumnLayout {
         id: privateKey_Dialog_SIP
 
         property string oldPath : SettingsAdapter.getAccountConfig_TLS_PrivateKeyFile()
-        property string openPath : oldPath === "" ? (ClientWrapper.utilsAdaptor.getCurrentPath() + "/ringtones/") : (ClientWrapper.utilsAdaptor.toFileAbsolutepath(oldPath))
+        property string openPath : oldPath === "" ? (UtilsAdapter.getCurrentPath() + "/ringtones/") : (UtilsAdapter.toFileAbsolutepath(oldPath))
 
         mode: JamiFileDialog.OpenFile
         title: qsTr("Select a private key")
@@ -328,7 +328,7 @@ ColumnLayout {
         }
 
         onAccepted: {
-            var url = ClientWrapper.utilsAdaptor.getAbsPath(file.toString())
+            var url = UtilsAdapter.getAbsPath(file.toString())
             changeFilePrivateKey(url)
         }
     }
