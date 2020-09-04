@@ -28,7 +28,7 @@ import net.jami.Adapters 1.0
 import "components"
 
 Rectangle {
-    id: settingsViewWindow
+    id: root
 
 
     enum SettingsMenu{
@@ -49,53 +49,53 @@ Rectangle {
 
         if(selectedMenu === sel && (!recovery)){return}
         switch(sel){
-        case SettingsView.Account:
-            currentAccountSettingsScrollWidget.connectCurrentAccount()
+            case SettingsView.Account:
+                currentAccountSettingsScrollWidget.connectCurrentAccount()
 
-            avSettings.stopAudioMeter()
-            avSettings.stopPreviewing()
-
-            selectedMenu = sel
-
-            if(!settingsViewRect.isSIP){
-                if(currentAccountSettingsScrollWidget.isPhotoBoothOpened())
-                {
-                    currentAccountSettingsScrollWidget.setAvatar()
-                }
-
-                currentAccountSettingsScrollWidget.updateAccountInfoDisplayed()
-            } else {
-                if(currentSIPAccountSettingsScrollWidget.isPhotoBoothOpened()) {
-                    currentSIPAccountSettingsScrollWidget.setAvatar()
-                }
-                currentSIPAccountSettingsScrollWidget.updateAccountInfoDisplayed()
-            }
-            break
-        case SettingsView.General:
-            try{
                 avSettings.stopAudioMeter()
                 avSettings.stopPreviewing()
-            } catch(erro){}
 
-            selectedMenu = sel
-            generalSettings.populateGeneralSettings()
-            break
-        case SettingsView.Media:
-            selectedMenu = sel
+                selectedMenu = sel
 
-            avSettings.stopPreviewing()
-            avSettings.populateAVSettings()
-            avSettings.startAudioMeter()
-            break
-        case SettingsView.Plugin:
-            try{
-                avSettings.stopAudioMeter()
+                if(!settingsViewRect.isSIP){
+                    if(currentAccountSettingsScrollWidget.isPhotoBoothOpened())
+                    {
+                        currentAccountSettingsScrollWidget.setAvatar()
+                    }
+
+                    currentAccountSettingsScrollWidget.updateAccountInfoDisplayed()
+                } else {
+                    if(currentSIPAccountSettingsScrollWidget.isPhotoBoothOpened()) {
+                        currentSIPAccountSettingsScrollWidget.setAvatar()
+                    }
+                    currentSIPAccountSettingsScrollWidget.updateAccountInfoDisplayed()
+                }
+                break
+            case SettingsView.General:
+                try{
+                    avSettings.stopAudioMeter()
+                    avSettings.stopPreviewing()
+                } catch(erro){}
+
+                selectedMenu = sel
+                generalSettings.populateGeneralSettings()
+                break
+            case SettingsView.Media:
+                selectedMenu = sel
+
                 avSettings.stopPreviewing()
-            } catch(erro){}
+                avSettings.populateAVSettings()
+                avSettings.startAudioMeter()
+                break
+            case SettingsView.Plugin:
+                try{
+                    avSettings.stopAudioMeter()
+                    avSettings.stopPreviewing()
+                } catch(erro){}
 
-            selectedMenu = sel
-            pluginSettings.populatePluginSettings()
-            break
+                selectedMenu = sel
+                pluginSettings.populatePluginSettings()
+                break
         }
     }
 
@@ -118,6 +118,7 @@ Rectangle {
         } else {
             currentSIPAccountSettingsScrollWidget.stopBooth()
         }
+        console.log("show main view: ", showMainView)
         if (showMainView)
             settingsViewWindowNeedToShowMainViewWindow()
         else
@@ -140,20 +141,17 @@ Rectangle {
 
 
     property int selectedMenu: SettingsView.Account
-    /*
-     * signal to redirect the page to main view
-     */
+    // signal to redirect the page to main view
     signal settingsViewWindowNeedToShowMainViewWindow()
     signal settingsViewWindowNeedToShowNewWizardWindow
 
     signal settingsBackArrowClicked
 
     visible: true
-    anchors.fill: parent
 
     Rectangle {
         id: settingsViewRect
-        anchors.fill: parent
+        anchors.fill: root
 
         property bool isSIP: {
             switch (profileType) {
@@ -198,6 +196,10 @@ Rectangle {
             CurrentAccountSettingsScrollPage {
                 id: currentAccountSettingsScrollWidget
 
+                Layout.fillHeight: true
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+                anchors.centerIn: parent
+
                 onNavigateToMainView: {
                     leaveSettingsSlot(true)
                 }
@@ -211,6 +213,10 @@ Rectangle {
             CurrentSIPAccountSettingScrollPage {
                 id: currentSIPAccountSettingsScrollWidget
 
+                Layout.fillHeight: true
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+                anchors.centerIn: parent
+
                 onNavigateToMainView: {
                     leaveSettingsSlot(true)
                 }
@@ -223,24 +229,33 @@ Rectangle {
             // general setting page, index 2
             GeneralSettingsPage {
                 id: generalSettings
+
+                Layout.fillHeight: true
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+                anchors.centerIn: parent
             }
 
             // av setting page, index 3
             AvSettingPage {
                 id: avSettings
+
+                Layout.fillHeight: true
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+                anchors.centerIn: parent
             }
 
             // plugin setting page, index 4
             PluginSettingsPage {
                 id: pluginSettings
+                Layout.fillHeight: true
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+                anchors.centerIn: parent
             }
         }
     }
 
 
-    /*
-     * Back button signal redirection
-     */
+    // Back button signal redirection
     Component.onCompleted: {
         currentAccountSettingsScrollWidget.backArrowClicked.connect(settingsBackArrowClicked)
         currentSIPAccountSettingsScrollWidget.backArrowClicked.connect(settingsBackArrowClicked)
