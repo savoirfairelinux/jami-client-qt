@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Albert Babí <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +21,8 @@ import QtQuick 2.15
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls.Styles 1.4
+import QtQuick.Dialogs 1.2
+
 import "../../constant"
 import "../../commoncomponents"
 
@@ -30,99 +33,123 @@ Dialog {
 
     signal revokeDeviceWithPassword(string idOfDevice, string password)
 
-    function openRevokeDeviceDialog(deviceIdIn){
+    function openRevokeDeviceDialog(deviceIdIn) {
         deviceId = deviceIdIn
         passwordEdit.clear()
-        root.open()
+        open()
     }
 
-    header : Rectangle {
-        width: parent.width
-        height: 64
-        color: "transparent"
-        Text {
-            anchors.fill: parent
-            anchors.leftMargin: JamiTheme.preferredMarginSize
-            anchors.topMargin: JamiTheme.preferredMarginSize
-
-            text: JamiStrings.confirmRemovalRequest
-            wrapMode: Text.Wrap
-            font.pointSize: JamiTheme.headerFontSize
-        }
-    }
-
+    title: qsTr("Remove device")
     visible: false
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
+    modality: Qt.WindowModal
 
-    onAccepted: {
-        revokeDeviceWithPassword(deviceId,passwordEdit.text)
-    }
+    width: revokeDeviceContentRect.width
+    height: revokeDeviceContentRect.height
 
     contentItem: Rectangle {
-        implicitWidth: 350
-        implicitHeight: contentLayout.implicitHeight + 64 + JamiTheme.preferredMarginSize
+        id: revokeDeviceContentRect
+
+        implicitWidth: JamiTheme.preferredDialogWidth
+        implicitHeight: JamiTheme.preferredDialogHeight
 
         ColumnLayout {
-            id: contentLayout
-            anchors.fill: parent
             anchors.centerIn: parent
+            anchors.fill: parent
+            anchors.margins: JamiTheme.preferredMarginSize
+            spacing: 16
+
+            Label {
+                id: labelDeletion
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.minimumWidth: revokeDeviceContentRect.width - JamiTheme.preferredMarginSize * 2
+                Layout.preferredWidth: revokeDeviceContentRect.width - JamiTheme.preferredMarginSize * 2
+                Layout.maximumWidth: revokeDeviceContentRect.width - JamiTheme.preferredMarginSize * 2
+
+                text: qsTr("Enter this account's password to confirm the removal of this device")
+                font.pointSize: JamiTheme.textFontSize
+                font.kerning: true
+                wrapMode: Text.Wrap
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
 
             MaterialLineEdit {
                 id: passwordEdit
 
-                Layout.preferredHeight: 48
-                Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
-                Layout.maximumWidth: 300
+                Layout.minimumWidth: JamiTheme.preferredFieldWidth
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.maximumWidth: JamiTheme.preferredFieldWidth
+                Layout.minimumHeight: visible ? 48 : 0
+                Layout.preferredHeight: visible ? 48 : 0
+                Layout.maximumHeight: visible ? 48 : 0
 
                 echoMode: TextInput.Password
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
+                placeholderText: qsTr("Enter Current Password")
+                borderColorMode: InfoLineEdit.NORMAL
 
-                placeholderText: qsTr("Password")
+                onTextChanged: {
+                    btnRemove.enabled = text.length > 0
+                }
             }
 
             RowLayout {
-                Layout.topMargin: JamiTheme.preferredMarginSize / 2
-                Layout.alignment: Qt.AlignRight
+                spacing: 16
+                Layout.alignment: Qt.AlignHCenter
 
-                Button {
-                    id: btnChangePasswordConfirm
+                Layout.fillWidth: true
 
-                    contentItem: Text {
-                        text: qsTr("CONFIRM")
-                        color: JamiTheme.buttonTintedBlue
-                    }
+                MaterialButton {
+                    id: btnRemove
 
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
+
+                    color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+                    pressedColor: JamiTheme.buttonTintedBlackPressed
+                    outlined: true
+                    enabled: false
+
+                    text: qsTr("Remove")
 
                     onClicked: {
-                        timerToOperate.restart()
+                        revokeDeviceWithPassword(deviceId, passwordEdit.text)
+                        close()
                     }
                 }
 
+                MaterialButton {
+                    id: btnCancel
 
-                Button {
-                    id: btnChangePasswordCancel
-                    Layout.leftMargin: JamiTheme.preferredMarginSize / 2
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
-                    contentItem: Text {
-                        text: qsTr("CANCEL")
-                        color: JamiTheme.buttonTintedBlue
-                    }
+                    color: JamiTheme.buttonTintedBlack
+                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+                    pressedColor: JamiTheme.buttonTintedBlackPressed
+                    outlined: true
+                    enabled: true
 
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    text: qsTr("Cancel")
 
                     onClicked: {
-                        root.reject()
+                        close()
                     }
                 }
-            }
+	    }
         }
     }
 }
