@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Albert Babí <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,12 +51,13 @@ Rectangle {
 
         var showLocalAccountConfig = (SettingsAdapter.getAccountConfig_Manageruri() === "")
         passwdPushButton.visible = showLocalAccountConfig
+        setPasswordButtonText()
         btnExportAccount.visible = showLocalAccountConfig
         linkDevPushButton.visible = showLocalAccountConfig
 
         registeredIdNeedsSet = (SettingsAdapter.get_CurrentAccountInfo_RegisteredName() === "")
 
-        if(!registeredIdNeedsSet){
+        if (!registeredIdNeedsSet) {
             currentRegisteredID.text = SettingsAdapter.get_CurrentAccountInfo_RegisteredName()
         } else {
             currentRegisteredID.text = ""
@@ -105,14 +107,25 @@ Rectangle {
     }
 
     function unban(index) {
-       SettingsAdapter.unbanContact(index)
+        SettingsAdapter.unbanContact(index)
         updateAndShowBannedContactsSlot()
+    }
+
+    function setPasswordButtonText() {
+        var hasPassword = AccountAdapter.hasPassword()
+        passwdPushButton.toolTipText = hasPassword ?
+                    qsTr("Change the current password") :
+                    qsTr("Currently no password, press this button to set a password")
+
+        passwdPushButton.text = hasPassword ?
+                    qsTr("Change Password") :
+                    qsTr("Set Password")
     }
 
     Connections {
         id: accountConnections_ContactModel
         target: AccountAdapter.contactModel
-        enabled: accountViewRect.visible
+        enabled: root.visible
 
         function onModelUpdated(uri, needsSorted) {
             updateAndShowBannedContactsSlot()
@@ -130,7 +143,7 @@ Rectangle {
     Connections {
         id: accountConnections_DeviceModel
         target: AccountAdapter.deviceModel
-        enabled: accountViewRect.visible
+        enabled: root.visible
 
         function onDeviceAdded(id) {
             updateAndShowDevicesSlot()
@@ -151,11 +164,11 @@ Rectangle {
 
     // JamiFileDialog for exporting account
     JamiFileDialog {
-        id: exportBtn_Dialog
+        id: exportDialog
 
         mode: JamiFileDialog.SaveFile
 
-        title: qsTr("Export Account Here")
+        title: qsTr("Backup account here")
         folder: StandardPaths.writableLocation(StandardPaths.DesktopLocation)
 
         nameFilters: [qsTr("Jami archive files") + " (*.gz)", qsTr(
@@ -173,28 +186,21 @@ Rectangle {
                     var title = isSuccessful ? qsTr("Success") : qsTr("Error")
                     var iconMode = isSuccessful ? StandardIcon.Information : StandardIcon.Critical
                     var info = isSuccessful ? qsTr("Export Successful") : qsTr("Export Failed")
-                    MessageBox.openWithParameters(title,info, iconMode, StandardButton.Ok)
+                    msgDialog.openWithParameters(title,info, iconMode, StandardButton.Ok)
                 }
             }
         }
     }
 
-    function exportAccountSlot() {
-        exportBtn_Dialog.open()
-    }
-
     PasswordDialog {
         id: passwordDialog
 
-        anchors.centerIn: parent.Center
-
         onDoneSignal: {
-            var success = (code === successCode)
             var title = success ? qsTr("Success") : qsTr("Error")
             var iconMode = success ? StandardIcon.Information : StandardIcon.Critical
 
             var info
-            switch(currentPurpose){
+            switch(currentPurpose) {
             case PasswordDialog.ExportAccount:
                 info = success ? qsTr("Export Successful") : qsTr("Export Failed")
                 break
@@ -206,27 +212,26 @@ Rectangle {
                 passwdPushButton.text = success ? qsTr("Change Password") : qsTr("Set Password")
                 break
             }
-
-            MessageBox.openWithParameters(title,info, iconMode, StandardButton.Ok)
+            msgDialog.openWithParameters(title,info, iconMode, StandardButton.Ok)
         }
     }
 
     function passwordClicked() {
-        if (AccountAdapter.hasPassword()){
+        if (AccountAdapter.hasPassword()) {
             passwordDialog.openDialog(PasswordDialog.ChangePassword)
         } else {
             passwordDialog.openDialog(PasswordDialog.SetPassword)
         }
     }
 
-    function delAccountSlot() {
-        deleteAccountDialog.open()
+    MessageBox {
+        id: msgDialog
+
+        onAccepted: setPasswordButtonText()
     }
 
     DeleteAccountDialog {
         id: deleteAccountDialog
-
-        anchors.centerIn: parent.Center
 
         onAccepted: {
             AccountAdapter.setSelectedConvId()
@@ -239,7 +244,7 @@ Rectangle {
         }
     }
 
-    NameRegistrationDialog{
+    NameRegistrationDialog {
         id : nameRegistrationDialog
 
         onAccepted: {
@@ -252,8 +257,6 @@ Rectangle {
     LinkDeviceDialog{
         id: linkDeviceDialog
 
-        anchors.centerIn: parent.Center
-
         onAccepted: {
             updateAndShowDevicesSlot()
         }
@@ -263,17 +266,15 @@ Rectangle {
         linkDeviceDialog.openLinkDeviceDialog()
     }
 
-    RevokeDevicePasswordDialog{
+    RevokeDevicePasswordDialog {
         id: revokeDevicePasswordDialog
 
-        anchors.centerIn: parent.Center
-
-        onRevokeDeviceWithPassword:{
+        onRevokeDeviceWithPassword: {
             revokeDeviceWithIDAndPassword(idOfDevice, password)
         }
     }
 
-    MessageBox{
+    MessageBox {
         id: revokeDeviceMessageBox
 
         property string idOfDev: ""
@@ -289,22 +290,22 @@ Rectangle {
     }
 
     function removeDeviceSlot(index){
-        var idOfDevice = deviceItemListModel.data(deviceItemListModel.index(index,0), DeviceItemListModel.DeviceID)
-        if(AccountAdapter.hasPassword()){
+        var idOfDevice = settingsListView.model.data(settingsListView.model.index(index,0), DeviceItemListModel.DeviceID)
+        if (AccountAdapter.hasPassword()) {
             revokeDevicePasswordDialog.openRevokeDeviceDialog(idOfDevice)
         } else {
             revokeDeviceMessageBox.idOfDev = idOfDevice
-            revokeDeviceMessageBox.open()
+            revokeDeviceMessageBox.show()
         }
     }
 
-    function revokeDeviceWithIDAndPassword(idDevice, password){
+    function revokeDeviceWithIDAndPassword(idDevice, password) {
         AccountAdapter.deviceModel.revokeDevice(idDevice, password)
         updateAndShowDevicesSlot()
     }
 
     function updateAndShowBannedContactsSlot() {
-        if(bannedListWidget.model.rowCount() <= 0){
+        if (bannedListWidget.model.rowCount() <= 0) {
             bannedContactsLayoutWidget.visible = false
             return
         }
@@ -615,11 +616,8 @@ Rectangle {
                         pressedColor: JamiTheme.buttonTintedBlackPressed
                         outlined: true
 
-                        toolTipText: AccountAdapter.hasPassword() ?
-                                    qsTr("Change the current password") :
-                                    qsTr("Currently no password, press this button to set a password")
-                        text: AccountAdapter.hasPassword() ? qsTr("Change Password") :
-                                                                           qsTr("Set Password")
+                        toolTipText: qsTr("Change the current password")
+                        text: qsTr("Change Password")
 
                         source: "qrc:/images/icons/round-edit-24px.svg"
 
@@ -648,7 +646,7 @@ Rectangle {
                         source: "qrc:/images/icons/round-save_alt-24px.svg"
 
                         onClicked: {
-                            exportAccountSlot()
+                            exportDialog.open()
                         }
                     }
 
@@ -669,7 +667,7 @@ Rectangle {
                         source: "qrc:/images/icons/delete_forever-24px.svg"
 
                         onClicked: {
-                            delAccountSlot()
+                            deleteAccountDialog.openDialog()
                         }
                     }
                 }

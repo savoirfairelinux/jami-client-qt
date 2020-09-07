@@ -20,525 +20,514 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
+import QtQuick.Dialogs 1.2
+import net.jami.Models 1.0
+
+import "../../constant"
+import "../../commoncomponents"
 
 Dialog {
     id: root
-    modal: true
 
-    width: rectangle.width + 24
-    height: rectangle.height + 24
+    visible: false
+    title: qsTr("Shortcuts")
 
-    Rectangle {
-        id: rectangle
+    width: shortcutsTableContentRect.width
+    height: shortcutsTableContentRect.height
 
-        property int minWidth: 1200
-        property int minHeight: 500
+    contentItem: Rectangle {
+        id: shortcutsTableContentRect
 
-        implicitWidth: minWidth
-        implicitHeight: minHeight
-        color: "white"
-        radius: 30
+        implicitWidth: 800
+        implicitHeight: 600
 
-        Rectangle {
-            width: 500
-            height: t_metrics_title.tightBoundingRect.height + 15
-            color: "#e0e0e0"
-            radius: 8
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
-            Text {
-                id : titleText
-                anchors.centerIn: parent
-                anchors.leftMargin: 10
-                font.family: "Arial"
-                font.pointSize: 12
-                font.bold: true
-                text: "Shortcuts"
-                color: "black"
-            }
-            TextMetrics {
-                id:     t_metrics_title
-                font:   titleText.font
-                text:   titleText.text
-            }
-        }
+        ColumnLayout {
+            anchors.centerIn: parent
+            anchors.fill: parent
+            anchors.margins: JamiTheme.preferredMarginSize
 
-        ListModel {
-            id: keyboardGeneralShortcutsModel
-            ListElement {
-                Shortcut: "Ctrl+J"
-                Description: qsTr("Open account list")
-                KeyLength: 2
+            ListModel {
+                id: keyboardGeneralShortcutsModel
+                ListElement {
+                    Shortcut: "Ctrl+J"
+                    Description: qsTr("Open account list")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+L"
+                    Description: qsTr("Focus conversations list")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+R"
+                    Description: qsTr("Focus requests list")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+↑"
+                    Description: qsTr("Focus the previous conversation")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+↓"
+                    Description: qsTr("Focus the next conversation")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+F"
+                    Description: qsTr("Focus search bar")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "F11"
+                    Description: qsTr("Toggle fullscreen")
+                    KeyLength: 1
+                }
             }
-            ListElement {
-                Shortcut: "Ctrl+L"
-                Description: qsTr("Focus conversations list")
-                KeyLength: 2
+            ListModel {
+                id: keyboardConversationShortcutsModel
+                ListElement {
+                    Shortcut: "Shift+Ctrl+C"
+                    Description: qsTr("Start an audio call")
+                    KeyLength: 3
+                }
+                ListElement {
+                    Shortcut: "Shift+Ctrl+X"
+                    Description: qsTr("Start an video call")
+                    KeyLength: 3
+                }
+                ListElement {
+                    Shortcut: "Shift+Ctrl+L"
+                    Description: qsTr("Clear history")
+                    KeyLength: 3
+                }
+                ListElement {
+                    Shortcut: "Shift+Ctrl+B"
+                    Description: qsTr("Block contact")
+                    KeyLength: 3
+                }
+                ListElement {
+                    Shortcut: "Shift+Ctrl+A"
+                    Description: qsTr("Accept contact request")
+                    KeyLength: 3
+                }
             }
-            ListElement {
-                Shortcut: "Ctrl+R"
-                Description: qsTr("Focus requests list")
-                KeyLength: 2
+            ListModel {
+                id: keyboardSettingsShortcutsModel
+                ListElement {
+                    Shortcut: "Ctrl+M"
+                    Description: qsTr("Toggle media settings")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+G"
+                    Description: qsTr("Toggle general settings")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+I"
+                    Description: qsTr("Toggle account settings")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+Shift+N"
+                    Description: qsTr("Open account creation's wizard")
+                    KeyLength: 3
+                }
+                ListElement {
+                    Shortcut: "F10"
+                    Description: qsTr("Open this window")
+                    KeyLength: 1
+                }
             }
-            ListElement {
-                Shortcut: "Ctrl+↑"
-                Description: qsTr("Focus the previous conversation")
-                KeyLength: 2
+            ListModel {
+                id: keyboardCallsShortcutsModel
+                ListElement {
+                    Shortcut: "Ctrl+Y"
+                    Description: qsTr("Answer an incoming call")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+D"
+                    Description: qsTr("Hangup current call")
+                    KeyLength: 2
+                }
+                ListElement {
+                    Shortcut: "Ctrl+Shift+D"
+                    Description: qsTr("Decline the call request")
+                    KeyLength: 2
+                }
             }
-            ListElement {
-                Shortcut: "Ctrl+↓"
-                Description: qsTr("Focus the next conversation")
-                KeyLength: 2
-            }
-            ListElement {
-                Shortcut: "Ctrl+F"
-                Description: qsTr("Focus search bar")
-                KeyLength: 2
-            }
-            ListElement {
-                Shortcut: "F11"
-                Description: qsTr("Toggle fullscreen")
-                KeyLength: 1
-            }
-        }
-        ListModel {
-            id: keyboardConversationShortcutsModel
-            ListElement {
-                Shortcut: "Shift+Ctrl+C"
-                Description: qsTr("Start an audio call")
-                KeyLength: 3
-            }
-            ListElement {
-                Shortcut: "Shift+Ctrl+X"
-                Description: qsTr("Start an video call")
-                KeyLength: 3
-            }
-            ListElement {
-                Shortcut: "Shift+Ctrl+L"
-                Description: qsTr("Clear history")
-                KeyLength: 3
-            }
-            ListElement {
-                Shortcut: "Shift+Ctrl+B"
-                Description: qsTr("Block contact")
-                KeyLength: 3
-            }
-            ListElement {
-                Shortcut: "Shift+Ctrl+A"
-                Description: qsTr("Accept contact request")
-                KeyLength: 3
-            }
-        }
-        ListModel {
-            id: keyboardSettingsShortcutsModel
-            ListElement {
-                Shortcut: "Ctrl+M"
-                Description: qsTr("Toggle media settings")
-                KeyLength: 2
-            }
-            ListElement {
-                Shortcut: "Ctrl+G"
-                Description: qsTr("Toggle general settings")
-                KeyLength: 2
-            }
-            ListElement {
-                Shortcut: "Ctrl+I"
-                Description: qsTr("Toggle account settings")
-                KeyLength: 2
-            }
-            ListElement {
-                Shortcut: "Ctrl+Shift+N"
-                Description: qsTr("Open account creation's wizard")
-                KeyLength: 3
-            }
-            ListElement {
-                Shortcut: "F10"
-                Description: qsTr("Open this window")
-                KeyLength: 1
-            }
-        }
-        ListModel {
-            id: keyboardCallsShortcutsModel
-            ListElement {
-                Shortcut: "Ctrl+Y"
-                Description: qsTr("Answer an incoming call")
-                KeyLength: 2
-            }
-            ListElement {
-                Shortcut: "Ctrl+D"
-                Description: qsTr("Hangup current call")
-                KeyLength: 2
-            }
-            ListElement {
-                Shortcut: "Ctrl+Shift+D"
-                Description: qsTr("Decline the call request")
-                KeyLength: 2
-            }
-        }
-        Component {
-            id: shortcutDelegateWithThreeKeys
+            Component {
+                id: shortcutDelegateWithThreeKeys
 
-            Rectangle {
-                id: cellRectWithThreeKeys
-
-                implicitWidth: minWidth /2
-                implicitHeight: 50
-                anchors.left: parent.left
-                anchors.leftMargin: 50
-                color: "white"
-                border.color: "white"
                 Rectangle {
-                    id: containerRectWithThreeKeys
+                    id: cellRectWithThreeKeys
 
-                    implicitWidth: parent.width - 10
+                    implicitWidth: minWidth / 2
                     implicitHeight: 50
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 20
+                    color: "white"
+                    border.color: "white"
 
-                    Component.onCompleted: {
-                        var componentKeyOne = Qt.createComponent("KeyBoardShortcutKey.qml")
-                        if (componentKeyOne.status === Component.Ready) {
-                            var objectKeyOne = componentKeyOne.createObject(containerRectWithThreeKeys)
-                            objectKeyOne.anchors.verticalCenter = containerRectWithThreeKeys.verticalCenter
-                            objectKeyOne.anchors.left = containerRectWithThreeKeys.left
-                            objectKeyOne.text = Qt.binding(function() { return modelData.Shortcut.split("+")[0] })
-                        }
-                        if (modelData.Shortcut.split("+").length === 1)
-                            return
-                        var componentPlusSign = Qt.createQmlObject('import QtQuick 2.0;' +
-                                                                'Text {anchors.verticalCenter: containerRectWithThreeKeys.verticalCenter;' +
-                                                                'anchors.verticalCenterOffset: -2;' +
-                                                                'anchors.left: containerRectWithThreeKeys.left;' +
-                                                                'anchors.leftMargin: 30;' +
-                                                                'color: "#525252";' +
-                                                                'font.bold: true;' +
-                                                                'font.pointSize : 12;' +
-                                                                'text: "+"}',
-                                                                containerRectWithThreeKeys)
+                    Rectangle {
+                        id: containerRectWithThreeKeys
 
-                        var componentKeyTwo = Qt.createComponent("KeyBoardShortcutKey.qml")
-                        if (componentKeyTwo.status === Component.Ready) {
-                            var objectKeyTwo = componentKeyTwo.createObject(containerRectWithThreeKeys)
-                            objectKeyTwo.anchors.verticalCenter = containerRectWithThreeKeys.verticalCenter
-                            objectKeyTwo.anchors.left = containerRectWithThreeKeys.left
-                            objectKeyTwo.anchors.leftMargin = componentPlusSign.anchors.leftMargin + 42
-                            objectKeyTwo.text = Qt.binding(function() { return modelData.Shortcut.split("+")[1] })
-                        }
+                        implicitWidth: parent.width - 10
+                        implicitHeight: 50
 
-                        if (modelData.Shortcut.split("+").length === 2)
-                            return
-                        var componentPlusSignTwo = Qt.createQmlObject('import QtQuick 2.0;' +
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        Component.onCompleted: {
+                            var componentKeyOne = Qt.createComponent("KeyBoardShortcutKey.qml")
+                            if (componentKeyOne.status === Component.Ready) {
+                                var objectKeyOne = componentKeyOne.createObject(containerRectWithThreeKeys)
+                                objectKeyOne.anchors.verticalCenter = containerRectWithThreeKeys.verticalCenter
+                                objectKeyOne.anchors.left = containerRectWithThreeKeys.left
+                                objectKeyOne.text = Qt.binding(function() { return modelData.Shortcut.split("+")[0] })
+                            }
+                            if (modelData.Shortcut.split("+").length === 1)
+                                return
+                            var componentPlusSign = Qt.createQmlObject('import QtQuick 2.0;' +
                                                                     'Text {anchors.verticalCenter: containerRectWithThreeKeys.verticalCenter;' +
                                                                     'anchors.verticalCenterOffset: -2;' +
                                                                     'anchors.left: containerRectWithThreeKeys.left;' +
-                                                                    'anchors.leftMargin: 97;' +
+                                                                    'anchors.leftMargin: 30;' +
                                                                     'color: "#525252";' +
                                                                     'font.bold: true;' +
                                                                     'font.pointSize : 12;' +
                                                                     'text: "+"}',
                                                                     containerRectWithThreeKeys)
 
-                        var componentKeyThree = Qt.createComponent("KeyBoardShortcutKey.qml")
-                        if (componentKeyThree.status === Component.Ready) {
-                            var objectKeyThree = componentKeyThree.createObject(containerRectWithThreeKeys)
-                            objectKeyThree.anchors.verticalCenter = containerRectWithThreeKeys.verticalCenter
-                            objectKeyThree.anchors.left = containerRectWithThreeKeys.left
-                            objectKeyThree.anchors.leftMargin = componentPlusSignTwo.anchors.leftMargin + 35
-                            objectKeyThree.text = Qt.binding(function() { return modelData.Shortcut.split("+")[2] })
+                            var componentKeyTwo = Qt.createComponent("KeyBoardShortcutKey.qml")
+                            if (componentKeyTwo.status === Component.Ready) {
+                                var objectKeyTwo = componentKeyTwo.createObject(containerRectWithThreeKeys)
+                                objectKeyTwo.anchors.verticalCenter = containerRectWithThreeKeys.verticalCenter
+                                objectKeyTwo.anchors.left = containerRectWithThreeKeys.left
+                                objectKeyTwo.anchors.leftMargin = componentPlusSign.anchors.leftMargin + 42
+                                objectKeyTwo.text = Qt.binding(function() { return modelData.Shortcut.split("+")[1] })
+                            }
+
+                            if (modelData.Shortcut.split("+").length === 2)
+                                return
+                            var componentPlusSignTwo = Qt.createQmlObject('import QtQuick 2.0;' +
+                                                                        'Text {anchors.verticalCenter: containerRectWithThreeKeys.verticalCenter;' +
+                                                                        'anchors.verticalCenterOffset: -2;' +
+                                                                        'anchors.left: containerRectWithThreeKeys.left;' +
+                                                                        'anchors.leftMargin: 97;' +
+                                                                        'color: "#525252";' +
+                                                                        'font.bold: true;' +
+                                                                        'font.pointSize : 12;' +
+                                                                        'text: "+"}',
+                                                                        containerRectWithThreeKeys)
+
+                            var componentKeyThree = Qt.createComponent("KeyBoardShortcutKey.qml")
+                            if (componentKeyThree.status === Component.Ready) {
+                                var objectKeyThree = componentKeyThree.createObject(containerRectWithThreeKeys)
+                                objectKeyThree.anchors.verticalCenter = containerRectWithThreeKeys.verticalCenter
+                                objectKeyThree.anchors.left = containerRectWithThreeKeys.left
+                                objectKeyThree.anchors.leftMargin = componentPlusSignTwo.anchors.leftMargin + 35
+                                objectKeyThree.text = Qt.binding(function() { return modelData.Shortcut.split("+")[2] })
+                            }
                         }
                     }
                 }
             }
-        }
-        Component {
-            id: descriptionDelegate
+            Component {
+                id: descriptionDelegate
 
-            Rectangle {
-                implicitWidth: minWidth /2
-                implicitHeight: 50
+                Rectangle {
+                    implicitWidth: root.width / 2
+                    implicitHeight: 50
 
-                color: "white"
-                border.color: "white"
-                Text {
-                    id : descriptionText
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 10
-                    font.family: "Arial"
-                    font.pointSize: 10
-                    text: styleData.value
-                }
-            }
-        }
-
-        Column {
-            spacing: 2
-            id: columnAll
-            anchors.rightMargin: 20
-            anchors.leftMargin: 20
-            anchors.bottomMargin: 20
-            anchors.topMargin: 50
-
-            width: minWidth
-            height: minHeight - 100
-            anchors.fill: parent
-
-            StackLayout {
-                // pages
-                implicitWidth: parent.width
-                implicitHeight: parent.height - tabBar.height
-                currentIndex: tabBar.currentIndex
-                Item {
-                    id: tabOne
-                    Rectangle {
-                        implicitWidth: parent.width / 2
-                        implicitHeight: parent.height
+                    color: "white"
+                    border.color: "white"
+                    Text {
+                        id : descriptionText
+                        anchors.verticalCenter: parent.verticalCenter
                         anchors.left: parent.left
-                        TableView {
-                            id: generalTableView
-                            anchors.fill: parent
-                            horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
-                            TableViewColumn {
-                                role: "Description"
-                                width: generalTableView.width / 2
-                                delegate: descriptionDelegate
-                            }
-                            TableViewColumn {
-                                role: "Shortcut"
-                                width: generalTableView.width / 2
-                                delegate: Component{
-                                    Loader {
-                                        property variant modelData: model
-                                        sourceComponent: shortcutDelegateWithThreeKeys
-                                    }
-                                }
-                            }
-                            model: keyboardGeneralShortcutsModel
-                            rowDelegate: Rectangle {
-                                height: 50
-                                color: "white"
-                            }
-                            style: TableViewStyle {
-                                alternateBackgroundColor: "white"
-                                frame: Rectangle {
-                                    border{
-                                        color: "transparent" // color of the border
-                                    }
-                                }
-                                headerDelegate: Rectangle {
-                                    // Only first column's header is shown
-                                    height: [t_metrics_general.tightBoundingRect.height + 10, 0][styleData.column % 2]
-                                    width: [parent.width, 0][styleData.column % 2]
-                                    color: "white"
-                                    radius: 10
-                                    anchors.top: parent.top
-                                    anchors.topMargin: 5
-                                    Text {
-                                        id : generalShortcutText
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        font.family: "Arial"
-                                        font.pointSize: 12
-                                        text: styleData.column % 2 ? "" : "General"
-                                        color: "black"
-                                    }
-                                    TextMetrics {
-                                        id:     t_metrics_general
-                                        font:   generalShortcutText.font
-                                        text:   generalShortcutText.text
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    Rectangle {
-                        implicitWidth: parent.width / 2
-                        implicitHeight: parent.height
-                        anchors.right: parent.right
-
-                        TableView {
-                            id: conversationsTableView
-                            anchors.fill: parent
-                            horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
-                            TableViewColumn {
-                                role: "Description"
-                                width: conversationsTableView.width / 2
-                                delegate: descriptionDelegate
-                            }
-                            TableViewColumn {
-                                role: "Shortcut"
-                                width: conversationsTableView.width / 2
-                                delegate: Component{
-                                    Loader {
-                                        property variant modelData: model
-                                        sourceComponent: shortcutDelegateWithThreeKeys
-                                    }
-                                }
-                            }
-                            model: keyboardConversationShortcutsModel
-                            rowDelegate: Rectangle {
-                                height: 50
-                                color: "white"
-                            }
-                            style: TableViewStyle {
-                                alternateBackgroundColor: "white"
-                                frame: Rectangle {
-                                    border{
-                                        color: "transparent" // color of the border
-                                    }
-                                }
-                                headerDelegate: Rectangle {
-                                    // Only first column's header is shown
-                                    height: [t_metrics_conversations.tightBoundingRect.height + 10, 0][styleData.column % 2]
-                                    width: [parent.width, 0][styleData.column % 2]
-                                    color: "white"
-                                    radius: 10
-                                    anchors.top: parent.top
-                                    anchors.topMargin: 5
-                                    Text {
-                                        id : conversationsShortcutText
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        font.family: "Arial"
-                                        font.pointSize: 12
-                                        text: styleData.column % 2 ? "" : "Conversations"
-                                        color: "black"
-                                    }
-                                    TextMetrics {
-                                        id:     t_metrics_conversations
-                                        font:   conversationsShortcutText.font
-                                        text:   conversationsShortcutText.text
-                                    }
-                                }
-                            }
-                        }
+                        anchors.leftMargin: 10
+                        font.family: "Arial"
+                        font.pointSize: JamiTheme.textFontSize
+                        text: styleData.value
                     }
                 }
-                Item {
-                    id: tabTwo
-                    Rectangle {
-                        implicitWidth: parent.width / 2
-                        implicitHeight: parent.height
-                        anchors.left: parent.left
-                        TableView {
-                            id: callsTableView
-                            anchors.fill: parent
-                            horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
-                            TableViewColumn {
-                                role: "Description"
-                                width: callsTableView.width / 2
-                                delegate: descriptionDelegate
-                            }
-                            TableViewColumn {
-                                role: "Shortcut"
-                                width: callsTableView.width / 2
-                                delegate: Component{
-                                    Loader {
-                                        property variant modelData: model
-                                        sourceComponent: shortcutDelegateWithThreeKeys
+            }
+
+            Column {
+                spacing: 2
+                id: columnAll
+                anchors.rightMargin: 20
+                anchors.leftMargin: 20
+                anchors.bottomMargin: 20
+                anchors.topMargin: 50
+
+                width: minWidth
+                height: minHeight - 100
+                anchors.fill: parent
+
+                StackLayout {
+                    // pages
+                    implicitWidth: parent.width
+                    implicitHeight: parent.height - tabBar.height
+                    currentIndex: tabBar.currentIndex
+                    Item {
+                        id: tabOne
+                        Rectangle {
+                            implicitWidth: parent.width / 2
+                            implicitHeight: parent.height
+                            anchors.left: parent.left
+                            TableView {
+                                id: generalTableView
+                                anchors.fill: parent
+                                horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+                                TableViewColumn {
+                                    role: "Description"
+                                    width: generalTableView.width / 2
+                                    delegate: descriptionDelegate
+                                }
+                                TableViewColumn {
+                                    role: "Shortcut"
+                                    width: generalTableView.width / 2
+                                    delegate: Component{
+                                        Loader {
+                                            property variant modelData: model
+                                            sourceComponent: shortcutDelegateWithThreeKeys
+                                            asynchronous: true
+                                        }
                                     }
                                 }
-                            }
-                            model: keyboardCallsShortcutsModel
-                            rowDelegate: Rectangle {
-                                height: 50
-                                color: "white"
-                            }
-                            style: TableViewStyle {
-                                alternateBackgroundColor: "white"
-                                frame: Rectangle {
-                                    border{
-                                        color: "transparent" // color of the border
-                                    }
-                                }
-                                headerDelegate: Rectangle {
-                                    // Only first column's header is shown
-                                    height: [t_metrics_calls.tightBoundingRect.height + 10, 0][styleData.column % 2]
-                                    width: [parent.width, 0][styleData.column % 2]
+                                model: keyboardGeneralShortcutsModel
+                                rowDelegate: Rectangle {
+                                    height: 50
                                     color: "white"
-                                    radius: 10
-                                    anchors.top: parent.top
-                                    anchors.topMargin: 5
-                                    Text {
-                                        id : callsShortcutText
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        font.family: "Arial"
-                                        font.pointSize: 12
-                                        text: styleData.column % 2 ? "" : "Calls"
-                                        color: "black"
+                                }
+                                style: TableViewStyle {
+                                    alternateBackgroundColor: "white"
+                                    frame: Rectangle {
+                                        border{
+                                            color: "transparent" // color of the border
+                                        }
                                     }
-                                    // make sure that calls and settings header are parallel
-                                    TextMetrics {
-                                        id:     t_metrics_calls
-                                        font:   callsShortcutText.font
-                                        text:   "Settings"
+                                    headerDelegate: Rectangle {
+                                        // Only first column's header is shown
+                                        height: [t_metrics_general.tightBoundingRect.height + 10, 0][styleData.column % 2]
+                                        width: [parent.width, 0][styleData.column % 2]
+                                        color: "white"
+                                        radius: 4
+                                        anchors.top: parent.top
+                                        anchors.topMargin: 5
+                                        Text {
+                                            id : generalShortcutText
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            anchors.left: parent.left
+                                            anchors.leftMargin: 10
+                                            font.family: "Arial"
+                                            font.pointSize: JamiTheme.headerFontSize
+                                            text: styleData.column % 2 ? "" : "General"
+                                            color: "black"
+                                        }
+                                        TextMetrics {
+                                            id:     t_metrics_general
+                                            font:   generalShortcutText.font
+                                            text:   generalShortcutText.text
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        Rectangle {
+                            implicitWidth: parent.width / 2
+                            implicitHeight: parent.height
+                            anchors.right: parent.right
+
+                            TableView {
+                                id: conversationsTableView
+                                anchors.fill: parent
+                                horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+                                TableViewColumn {
+                                    role: "Description"
+                                    width: conversationsTableView.width / 2
+                                    delegate: descriptionDelegate
+                                }
+                                TableViewColumn {
+                                    role: "Shortcut"
+                                    width: conversationsTableView.width / 2
+                                    delegate: Component{
+                                        Loader {
+                                            property variant modelData: model
+                                            sourceComponent: shortcutDelegateWithThreeKeys
+                                            asynchronous: true
+                                        }
+                                    }
+                                }
+                                model: keyboardConversationShortcutsModel
+                                rowDelegate: Rectangle {
+                                    height: 50
+                                    color: "white"
+                                }
+                                style: TableViewStyle {
+                                    alternateBackgroundColor: "white"
+                                    frame: Rectangle {
+                                        border{
+                                            color: "transparent" // color of the border
+                                        }
+                                    }
+                                    headerDelegate: Rectangle {
+                                        // Only first column's header is shown
+                                        height: [t_metrics_conversations.tightBoundingRect.height + 10, 0][styleData.column % 2]
+                                        width: [parent.width, 0][styleData.column % 2]
+                                        color: "white"
+                                        radius: 4
+                                        anchors.top: parent.top
+                                        anchors.topMargin: 5
+                                        Text {
+                                            id : conversationsShortcutText
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            anchors.left: parent.left
+                                            anchors.leftMargin: 10
+                                            font.family: "Arial"
+                                            font.pointSize: JamiTheme.headerFontSize
+                                            text: styleData.column % 2 ? "" : "Conversations"
+                                            color: "black"
+                                        }
+                                        TextMetrics {
+                                            id:     t_metrics_conversations
+                                            font:   conversationsShortcutText.font
+                                            text:   conversationsShortcutText.text
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                    Rectangle {
-                        implicitWidth: parent.width / 2
-                        implicitHeight: parent.height
-                        anchors.right: parent.right
-                        TableView {
-                            id: settingsTableView
-                            anchors.fill: parent
-                            horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
-                            TableViewColumn {
-                                role: "Description"
-                                width: settingsTableView.width / 2
-                                delegate: descriptionDelegate
-                            }
-                            TableViewColumn {
-                                role: "Shortcut"
-                                width: settingsTableView.width / 2
-                                delegate: Component{
-                                    Loader {
-                                        property variant modelData: model
-                                        sourceComponent: shortcutDelegateWithThreeKeys
+                    Item {
+                        id: tabTwo
+                        Rectangle {
+                            implicitWidth: parent.width / 2
+                            implicitHeight: parent.height
+                            anchors.left: parent.left
+                            TableView {
+                                id: callsTableView
+                                anchors.fill: parent
+                                horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+                                TableViewColumn {
+                                    role: "Description"
+                                    width: callsTableView.width / 2
+                                    delegate: descriptionDelegate
+                                }
+                                TableViewColumn {
+                                    role: "Shortcut"
+                                    width: callsTableView.width / 2
+                                    delegate: Component{
+                                        Loader {
+                                            property variant modelData: model
+                                            sourceComponent: shortcutDelegateWithThreeKeys
+                                            asynchronous: true
+                                        }
                                     }
                                 }
-                            }
-                            model: keyboardSettingsShortcutsModel
-                            rowDelegate: Rectangle {
-                                height: 50
-                                color: "white"
-                            }
-                            style: TableViewStyle {
-                                alternateBackgroundColor: "white"
-                                frame: Rectangle {
-                                    border{
-                                        color: "transparent" // color of the border
-                                    }
-                                }
-                                headerDelegate: Rectangle {
-                                    // Only first column's header is shown
-                                    height: [t_metrics_settings.tightBoundingRect.height + 10, 0][styleData.column % 2]
-                                    width: [parent.width, 0][styleData.column % 2]
+                                model: keyboardCallsShortcutsModel
+                                rowDelegate: Rectangle {
+                                    height: 50
                                     color: "white"
-                                    radius: 10
-                                    anchors.top: parent.top
-                                    anchors.topMargin: 5
-                                    Text {
-                                        id : settingsShortcutText
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        font.family: "Arial"
-                                        font.pointSize: 12
-                                        text: styleData.column % 2 ? "" : "Settings"
-                                        color: "black"
+                                }
+                                style: TableViewStyle {
+                                    alternateBackgroundColor: "white"
+                                    frame: Rectangle {
+                                        border{
+                                            color: "transparent" // color of the border
+                                        }
                                     }
-                                    TextMetrics {
-                                        id:     t_metrics_settings
-                                        font:   settingsShortcutText.font
-                                        text:   settingsShortcutText.text
+                                    headerDelegate: Rectangle {
+                                        // Only first column's header is shown
+                                        height: [t_metrics_calls.tightBoundingRect.height + 10, 0][styleData.column % 2]
+                                        width: [parent.width, 0][styleData.column % 2]
+                                        color: "white"
+                                        radius: 4
+                                        anchors.top: parent.top
+                                        anchors.topMargin: 5
+                                        Text {
+                                            id : callsShortcutText
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            anchors.left: parent.left
+                                            anchors.leftMargin: 10
+                                            font.family: "Arial"
+                                            font.pointSize: 12
+                                            text: styleData.column % 2 ? "" : "Calls"
+                                            color: "black"
+                                        }
+                                        // make sure that calls and settings header are parallel
+                                        TextMetrics {
+                                            id:     t_metrics_calls
+                                            font:   callsShortcutText.font
+                                            text:   "Settings"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        Rectangle {
+                            implicitWidth: parent.width / 2
+                            implicitHeight: parent.height
+                            anchors.right: parent.right
+                            TableView {
+                                id: settingsTableView
+                                anchors.fill: parent
+                                horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+                                TableViewColumn {
+                                    role: "Description"
+                                    width: settingsTableView.width / 2
+                                    delegate: descriptionDelegate
+                                }
+                                TableViewColumn {
+                                    role: "Shortcut"
+                                    width: settingsTableView.width / 2
+                                    delegate: Component{
+                                        Loader {
+                                            property variant modelData: model
+                                            sourceComponent: shortcutDelegateWithThreeKeys
+                                            asynchronous: true
+                                        }
+                                    }
+                                }
+                                model: keyboardSettingsShortcutsModel
+                                rowDelegate: Rectangle {
+                                    height: 50
+                                    color: "white"
+                                }
+                                style: TableViewStyle {
+                                    alternateBackgroundColor: "white"
+                                    frame: Rectangle {
+                                        border{
+                                            color: "transparent" // color of the border
+                                        }
+                                    }
+                                    headerDelegate: Rectangle {
+                                        // Only first column's header is shown
+                                        height: [t_metrics_settings.tightBoundingRect.height + 10, 0][styleData.column % 2]
+                                        width: [parent.width, 0][styleData.column % 2]
+                                        color: "white"
+                                        radius: 4
+                                        anchors.top: parent.top
+                                        anchors.topMargin: 5
+                                        Text {
+                                            id : settingsShortcutText
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            anchors.left: parent.left
+                                            anchors.leftMargin: 10
+                                            font.family: "Arial"
+                                            font.pointSize: 12
+                                            text: styleData.column % 2 ? "" : "Settings"
+                                            color: "black"
+                                        }
+                                        TextMetrics {
+                                            id:     t_metrics_settings
+                                            font:   settingsShortcutText.font
+                                            text:   settingsShortcutText.text
+                                        }
                                     }
                                 }
                             }
@@ -546,72 +535,97 @@ Dialog {
                     }
                 }
             }
-        }
-        TabBar {
-            id: tabBar
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 15
-            width: 240
-            currentIndex: 0
-            TabButton {
-                id: pageOne
-                width: tabBar.width / 2
-                text: qsTr("1")
-                down: true
-                // customize tab button
-                contentItem: Text {
-                    text: pageOne.text
-                    font: pageOne.font
-                    opacity: enabled ? 1.0 : 0.3
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    elide: Text.ElideRight
+
+            TabBar {
+                id: tabBar
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: parent.height - 500  // Forced postion below table
+
+                width: JamiTheme.preferredFieldWidth
+                height: JamiTheme.preferredFieldHeight
+
+                currentIndex: 0
+                TabButton {
+                    id: pageOne
+                    width: JamiTheme.preferredFieldWidth
+                    text: qsTr("1")
+                    down: true
+                    // customize tab button
+                    contentItem: Text {
+                        text: pageOne.text
+                        font: pageOne.font
+                        opacity: enabled ? 1.0 : 0.3
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    // customize tab button
+                    background: Rectangle {
+                        id: buttonRectOne
+                        implicitWidth: JamiTheme.preferredFieldWidth
+                        implicitHeight: JamiTheme.preferredFieldHeight
+                        radius: 4
+                        color: pageOne.down ? "#e0e0e0" :"#fdfdfd"
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onPressed: { buttonRectOne.color = "#c0c0c0"; tabBar.currentIndex = 0; pageOne.down = true; pageTwo.down = false;}
+                            onReleased: { buttonRectOne.color = "#e0e0e0"; }
+                            onEntered: { buttonRectOne.color = "#c7c7c7"; }
+                            onExited: { buttonRectOne.color = Qt.binding(function() { return pageOne.down ? "#e0e0e0" :"#fdfdfd" }); }
+                        }
+                    }
                 }
-                // customize tab button
-                background: Rectangle {
-                    id: buttonRectOne
-                    implicitWidth: tabBar.width / 2
-                    implicitHeight: tabBar.height
-                    radius: 10
-                    color: pageOne.down ? "#e0e0e0" :"#fdfdfd"
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onPressed: { buttonRectOne.color = "#c0c0c0"; tabBar.currentIndex = 0; pageOne.down = true; pageTwo.down = false;}
-                        onReleased: { buttonRectOne.color = "#e0e0e0"; }
-                        onEntered: { buttonRectOne.color = "#c7c7c7"; }
-                        onExited: { buttonRectOne.color = Qt.binding(function() { return pageOne.down ? "#e0e0e0" :"#fdfdfd" }); }
+                TabButton {
+                    id: pageTwo
+                    text: qsTr("2")
+                    width: JamiTheme.preferredFieldWidth
+                    contentItem: Text {
+                        text: pageTwo.text
+                        font: pageTwo.font
+                        opacity: enabled ? 1.0 : 0.3
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+
+                    background: Rectangle {
+                        id: buttonRectTwo
+                        implicitWidth: JamiTheme.preferredFieldWidth
+                        implicitHeight: JamiTheme.preferredFieldHeight
+
+                        radius: 4
+                        color: pageTwo.down ? "#e0e0e0" :"#fdfdfd"
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onPressed: { buttonRectTwo.color = "#c0c0c0"; tabBar.currentIndex = 1; pageTwo.down = true; pageOne.down = false;}
+                            onReleased: { buttonRectTwo.color = "#e0e0e0"; }
+                            onEntered: { buttonRectTwo.color = "#c7c7c7"; }
+                            onExited: { buttonRectTwo.color = Qt.binding(function() { return pageTwo.down ? "#e0e0e0" :"#fdfdfd" }); }
+                        }
                     }
                 }
             }
-            TabButton {
-                id: pageTwo
-                text: qsTr("2")
-                width: tabBar.width / 2
-                contentItem: Text {
-                    text: pageTwo.text
-                    font: pageTwo.font
-                    opacity: enabled ? 1.0 : 0.3
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    elide: Text.ElideRight
-                }
 
-                background: Rectangle {
-                    id: buttonRectTwo
-                    implicitWidth: tabBar.width / 2
-                    implicitHeight: tabBar.height
-                    radius: 10
-                    color: pageTwo.down ? "#e0e0e0" :"#fdfdfd"
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onPressed: { buttonRectTwo.color = "#c0c0c0"; tabBar.currentIndex = 1; pageTwo.down = true; pageOne.down = false;}
-                        onReleased: { buttonRectTwo.color = "#e0e0e0"; }
-                        onEntered: { buttonRectTwo.color = "#c7c7c7"; }
-                        onExited: { buttonRectTwo.color = Qt.binding(function() { return pageTwo.down ? "#e0e0e0" :"#fdfdfd" }); }
-                    }
+            MaterialButton {
+                id: btnClose
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+                color: JamiTheme.buttonTintedBlack
+                hoveredColor: JamiTheme.buttonTintedBlackHovered
+                pressedColor: JamiTheme.buttonTintedBlackPressed
+                outlined: true
+
+                text: qsTr("Close")
+
+                onClicked: {
+                    close()
                 }
             }
         }
