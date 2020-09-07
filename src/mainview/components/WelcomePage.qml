@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -26,10 +27,8 @@ import "../../commoncomponents"
 
 Rectangle {
     id: welcomeRect
-
-    anchors.fill: parent
-
     property int buttonPreferredSize: 30
+    anchors.fill: parent
 
     Rectangle {
         id: welcomeRectComponentsGroup
@@ -153,7 +152,7 @@ Rectangle {
         }
 
         onClicked: {
-            aboutPopUpDialog.open()
+            aboutPopUpDialog.show()
         }
     }
 
