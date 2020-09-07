@@ -305,15 +305,11 @@ Rectangle {
     }
 
     function delAccountSlot() {
-        deleteAccountDialog.open()
+        deleteAccountDialog.show()
     }
 
-    DeleteAccountDialog{
+    DeleteAccountDialog {
         id: deleteAccountDialog
-
-        anchors.centerIn: parent.Center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
 
         onAccepted: {
             ClientWrapper.accountAdaptor.setSelectedConvId()
@@ -326,7 +322,7 @@ Rectangle {
         }
     }
 
-    NameRegistrationDialog{
+    NameRegistrationDialog {
         id : nameRegistrationDialog
 
         onAccepted: {
@@ -339,7 +335,7 @@ Rectangle {
         nameRegistrationDialog.openNameRegistrationDialog(registeredName)
     }
 
-    LinkDeviceDialog{
+    LinkDeviceDialog {
         id: linkDeviceDialog
 
         onAccepted: {

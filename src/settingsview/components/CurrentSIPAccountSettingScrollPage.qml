@@ -77,7 +77,6 @@ Rectangle {
     DeleteAccountDialog{
         id: deleteAccountDialog_SIP
 
-        anchors.centerIn: parent.Center
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
 

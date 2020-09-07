@@ -54,7 +54,7 @@ TextField {
     font.pointSize: 10
     padding: 16
     font.kerning: true
-    horizontalAlignment: Text.AlignLeft
+    horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
 
     Image {

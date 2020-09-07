@@ -48,8 +48,8 @@ Dialog {
     }
 
     function slotStartNameRegistration(){
-        var password = passwordEdit.text
-        ClientWrapper.accountModel.registerName(ClientWrapper.utilsAdaptor.getCurrAccId(), password, registerdName)
+        //var password = passwordEdit.text
+        //ClientWrapper.accountModel.registerName(ClientWrapper.utilsAdaptor.getCurrAccId(), password, registerdName)
     }
 
     function startSpinner(){
@@ -58,7 +58,7 @@ Dialog {
         spinnerMovie.playing = true
     }
 
-    Timer{
+    Timer {
         id: timerForStartRegistration
 
         interval: 100
@@ -69,7 +69,7 @@ Dialog {
         }
     }
 
-    Connections{
+    Connections {
         target: ClientWrapper.nameDirectory
 
         function onNameRegistrationEnded(status, name){
@@ -367,7 +367,7 @@ Dialog {
                     RowLayout{
                         spacing: 7
 
-                        Item{
+                        Item {
                             Layout.fillWidth: true
 
                             Layout.maximumHeight: 20
@@ -375,7 +375,7 @@ Dialog {
                             Layout.minimumHeight: 20
                         }
 
-                        Label{
+                        Label {
                             id: spinnerLabel
 
                             Layout.alignment: Qt.AlignHCenter

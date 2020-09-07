@@ -20,13 +20,13 @@ import QtQuick 2.15
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls.Styles 1.4
+import QtQuick.Window 2.15
 import net.jami.Models 1.0
 
 import "../constant"
-/*
- * PasswordDialog for changing password and exporting account
- */
-Dialog {
+
+// PasswordDialog for changing password and exporting account
+Window {
     id: passwordDialog
 
     enum PasswordEnteringPurpose {
@@ -40,30 +40,6 @@ Dialog {
     property string path: ""
     property int purpose: PasswordDialog.ChangePassword
 
-    header : Rectangle {
-        width: parent.width
-        height: 64
-        color: "transparent"
-        Text {
-            anchors.left: parent.left
-            anchors.leftMargin: 24
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 24
-
-            text: {
-                switch(purpose){
-                case PasswordDialog.ExportAccount:
-                    return qsTr("Enter the password of this account")
-                case PasswordDialog.ChangePassword:
-                    return qsTr("Changing password")
-                case PasswordDialog.SetPassword:
-                    return qsTr("Set password")
-                }
-            }
-            font.pointSize: JamiTheme.headerFontSize
-        }
-    }
-
     function openDialog(purposeIn, exportPathIn = ""){
         purpose = purposeIn
         path = exportPathIn
@@ -72,7 +48,7 @@ Dialog {
         confirmPasswordEdit.borderColorMode = InfoLineEdit.NORMAL
         passwordEdit.clear()
         confirmPasswordEdit.clear()
-        passwordDialog.open()
+        passwordDialog.show()
     }
 
     function haveDone(code, currentPurpose) {
@@ -94,7 +70,56 @@ Dialog {
         confirmPasswordEdit.borderColorMode = InfoLineEdit.ERROR
     }
 
-    Timer{
+    function exportAccountQML() {
+        var success = false
+        if(path.length > 0){
+            success = ClientWrapper.accountAdaptor.exportToFile(ClientWrapper.utilsAdaptor.getCurrAccId(),path,currentPasswordEdit.text)
+        }
+
+        if (success) {
+            haveDone(successCode, passwordDialog.purpose)
+        } else {
+            btnChangePasswordConfirm.enabled = false
+            currentPasswordEdit.borderColorMode = InfoLineEdit.ERROR
+        }
+    }
+
+    function savePasswordQML() {
+        var success = false
+        success = ClientWrapper.accountAdaptor.savePassword(ClientWrapper.utilsAdaptor.getCurrAccId(),currentPasswordEdit.text, passwordEdit.text)
+
+        if (success) {
+            ClientWrapper.accountAdaptor.setArchiveHasPassword(passwordEdit.text.length !== 0)
+            haveDone(successCode, passwordDialog.purpose)
+        } else {
+            currentPasswordEdit.borderColorMode = InfoLineEdit.ERROR
+            btnChangePasswordConfirm.enabled = false
+        }
+    }
+
+    title: {
+        switch(purpose){
+        case PasswordDialog.ExportAccount:
+            return qsTr("Export account")
+        case PasswordDialog.ChangePassword:
+            return qsTr("Changing password")
+        case PasswordDialog.SetPassword:
+            return qsTr("Set password")
+        }
+    }
+
+    visible: false
+
+    modality: Qt.WindowModal
+    flags: Qt.WindowStaysOnTopHint
+
+    width: JamiTheme.preferredDialogWidth
+    height: JamiTheme.preferredDialogHeight
+
+    minimumWidth: JamiTheme.preferredDialogWidth
+    minimumHeight: JamiTheme.preferredDialogHeight
+
+    Timer {
         id: timerToOperate
 
         interval: 200
@@ -109,146 +134,98 @@ Dialog {
         }
     }
 
-    function exportAccountQML() {
-        var success = false
-        if(path.length > 0){
-            success = ClientWrapper.accountAdaptor.exportToFile(ClientWrapper.utilsAdaptor.getCurrAccId(),path,currentPasswordEdit.text)
-        }
+    ColumnLayout {
 
-        if (success) {
-            haveDone(successCode, passwordDialog.purpose)
-        } else {
-            btnChangePasswordConfirm.enabled = false
-            currentPasswordEdit.borderColorMode = InfoLineEdit.ERROR
-        }
-    }
-    function savePasswordQML() {
-        var success = false
-        success = ClientWrapper.accountAdaptor.savePassword(ClientWrapper.utilsAdaptor.getCurrAccId(),currentPasswordEdit.text, passwordEdit.text)
-
-        if (success) {
-            ClientWrapper.accountAdaptor.setArchiveHasPassword(passwordEdit.text.length !== 0)
-            haveDone(successCode, passwordDialog.purpose)
-        } else {
-            currentPasswordEdit.borderColorMode = InfoLineEdit.ERROR
-            btnChangePasswordConfirm.enabled = false
-        }
-    }
-
-    visible: false
-
-    anchors.centerIn: parent.Center
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
-    height: contentLayout.implicitHeight + 64 + 16
-
-    contentItem: Rectangle {
-        implicitWidth: 280
+        anchors.fill: parent
+        anchors.centerIn: parent
 
         ColumnLayout {
             id: contentLayout
-            anchors.fill: parent
-            spacing: 8
+            Layout.margins: JamiTheme.preferredMarginSize
+            spacing: 16
+            Layout.alignment: Qt.AlignHCenter
 
-            ColumnLayout {
+            MaterialLineEdit {
+                id: currentPasswordEdit
+
                 Layout.alignment: Qt.AlignHCenter
-                Layout.fillWidth: true
+                Layout.minimumWidth: JamiTheme.preferredFieldWidth
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.maximumWidth: JamiTheme.preferredFieldWidth
+                Layout.minimumHeight: visible ? 48 : 0
+                Layout.preferredHeight: visible ? 48 : 0
+                Layout.maximumHeight: visible ? 48 : 0
 
-                spacing: 7
+                visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount
+                echoMode: TextInput.Password
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
 
-                ColumnLayout {
-                    spacing: 0
+                placeholderText: qsTr("Enter Current Password")
 
-                    Layout.alignment: Qt.AlignHCenter
-
-                    MaterialLineEdit {
-                        id: currentPasswordEdit
-
-                        Layout.maximumHeight: visible ?
-                                                48 :
-                                                0
-                        Layout.fillWidth: true
-
-                        visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.ExportAccount
-                        echoMode: TextInput.Password
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-
-                        placeholderText: qsTr("Enter Current Password")
-
-                        onTextChanged: {
-                            if (purpose === PasswordDialog.ChangePassword) {
-                                validatePassword()
-                            }
-
-                            if (currentPasswordEdit.text.length == 0) {
-                                btnChangePasswordConfirm.enabled = false
-                            } else {
-                                btnChangePasswordConfirm.enabled = true
-                            }
-                        }
-                    }
-                }
-
-                Item {
-                    Layout.fillWidth: true
-
-                    Layout.minimumHeight: 8
-                    Layout.preferredHeight: 8
-                    Layout.maximumHeight: 8
-                }
-
-                MaterialLineEdit {
-                    id: passwordEdit
-
-                    fieldLayoutHeight: 48
-                    layoutFillwidth: true
-
-                    visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
-                    echoMode: TextInput.Password
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-
-                    placeholderText: qsTr("Enter New Password")
-
-                    onTextChanged: {
+                onTextChanged: {
+                    if (purpose === PasswordDialog.ChangePassword) {
                         validatePassword()
                     }
-                }
 
-                Item {
-                    Layout.fillWidth: true
-
-                    Layout.minimumHeight: 8
-                    Layout.preferredHeight: 8
-                    Layout.maximumHeight: 8
-                }
-
-                MaterialLineEdit {
-                    id: confirmPasswordEdit
-
-                    fieldLayoutHeight: 48
-                    layoutFillwidth: true
-
-                    visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
-                    echoMode: TextInput.Password
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-
-                    placeholderText: qsTr("Confirm New Password")
-
-                    onTextChanged: {
-                        validatePassword()
+                    if (currentPasswordEdit.text.length == 0) {
+                        btnChangePasswordConfirm.enabled = false
+                    } else {
+                        btnChangePasswordConfirm.enabled = true
                     }
                 }
             }
 
+            MaterialLineEdit {
+                id: passwordEdit
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.minimumWidth: JamiTheme.preferredFieldWidth
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.maximumWidth: JamiTheme.preferredFieldWidth
+                Layout.minimumHeight: visible ? 48 : 0
+                Layout.preferredHeight: visible ? 48 : 0
+                Layout.maximumHeight: visible ? 48 : 0
+
+                visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
+                echoMode: TextInput.Password
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+
+                placeholderText: qsTr("Enter New Password")
+
+                onTextChanged: {
+                    validatePassword()
+                }
+            }
+
+            MaterialLineEdit {
+                id: confirmPasswordEdit
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.minimumWidth: JamiTheme.preferredFieldWidth
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                Layout.maximumWidth: JamiTheme.preferredFieldWidth
+                Layout.minimumHeight: visible ? 48 : 0
+                Layout.preferredHeight: visible ? 48 : 0
+                Layout.maximumHeight: visible ? 48 : 0
+
+                visible: purpose === PasswordDialog.ChangePassword || purpose === PasswordDialog.SetPassword
+                echoMode: TextInput.Password
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+
+                placeholderText: qsTr("Confirm New Password")
+
+                onTextChanged: {
+                    validatePassword()
+                }
+            }
+
             RowLayout {
-                spacing: 8
-
+                spacing: 16
                 Layout.fillWidth: true
-
-                Layout.alignment: Qt.AlignRight
+                Layout.alignment: Qt.AlignCenter
 
                 Button {
                     id: btnChangePasswordConfirm
@@ -267,7 +244,6 @@ Dialog {
                     }
                 }
 
-
                 Button {
                     id: btnChangePasswordCancel
 
@@ -281,7 +257,7 @@ Dialog {
                     }
 
                     onClicked: {
-                        passwordDialog.reject()
+                        passwordDialog.close()
                     }
                 }
             }
