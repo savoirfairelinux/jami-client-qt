@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Albert Babí <yang.wang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,16 +21,19 @@ import QtQuick 2.15
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls.Styles 1.4
+import QtQuick.Window 2.15
 import net.jami.Models 1.0
 
 import "../../commoncomponents"
 
-Dialog {
-    id: nameRegistrationDialog
+Window {
+    id: root
 
     property string registerdName : ""
 
-    function openNameRegistrationDialog(registerNameIn){
+    signal accepted
+
+    function openNameRegistrationDialog(registerNameIn) {
         registerdName = registerNameIn
         lblRegistrationError.text = qsTr("Something went wrong")
         passwordEdit.clear()
@@ -38,27 +42,26 @@ Dialog {
         } else {
             startRegistration()
         }
-
-        nameRegistrationDialog.open()
+        show()
     }
 
-    function startRegistration(){
+    function startRegistration() {
         startSpinner()
         timerForStartRegistration.restart()
     }
 
-    function slotStartNameRegistration(){
+    function slotStartNameRegistration() {
         var password = passwordEdit.text
         ClientWrapper.accountModel.registerName(ClientWrapper.utilsAdaptor.getCurrAccId(), password, registerdName)
     }
 
-    function startSpinner(){
+    function startSpinner() {
         stackedWidget.currentIndex = 1
         spinnerLabel.visible = true
         spinnerMovie.playing = true
     }
 
-    Timer{
+    Timer {
         id: timerForStartRegistration
 
         interval: 100
@@ -69,12 +72,13 @@ Dialog {
         }
     }
 
-    Connections{
+    Connections {
         target: ClientWrapper.nameDirectory
 
-        function onNameRegistrationEnded(status, name){
+        function onNameRegistrationEnded(status, name) {
             if(status === NameDirectory.RegisterNameStatus.SUCCESS){
-                accept()
+                accepted()
+                close()
             } else {
                 switch(status){
                 case NameDirectory.RegisterNameStatus.WRONG_PASSWORD:
@@ -93,460 +97,170 @@ Dialog {
     }
 
     visible: false
-
-    anchors.centerIn: parent.Center
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
-
     title: qsTr("Set Registered Name")
+    modality: Qt.WindowModal
+    flags: Qt.WindowStaysOnTopHint
 
-    onClosed: {
-        reject()
-    }
+    width: JamiTheme.preferredDialogWidth
+    height: JamiTheme.preferredDialogWidth
+    minimumWidth: JamiTheme.preferredDialogWidth
+    minimumHeight: JamiTheme.preferredDialogHeight
 
-    contentItem: Rectangle{
-        implicitWidth: 365
-        implicitHeight: 208
+    Rectangle {
+        implicitWidth: root.width
+        implicitHeight: root.height
+        color: "transparent"
 
-        StackLayout{
+        StackLayout {
             id: stackedWidget
             anchors.fill: parent
 
-            currentIndex: 0
+            // Index = 0
+            ColumnLayout {
+                anchors.centerIn: parent
+                spacing: 16
 
-            Rectangle{
-                id: passwordConfirmPage
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Enter your account password")
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
 
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                MaterialLineEdit {
+                    id: passwordEdit
 
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-                Layout.topMargin: 11
-                Layout.bottomMargin: 11
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.minimumWidth: JamiTheme.preferredFieldWidth
+                    Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                    Layout.maximumWidth: JamiTheme.preferredFieldWidth
+                    Layout.minimumHeight: 48
+                    Layout.preferredHeight: 48
+                    Layout.maximumHeight: 48
 
-                ColumnLayout{
-                    anchors.fill: parent
-                    spacing: 7
+                    echoMode: TextInput.Password
 
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    placeholderText: qsTr("Password")
+                }
 
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
+                RowLayout {
+                    spacing: 16
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.fillWidth: true
 
-                        Layout.fillHeight: true
-                        Layout.maximumHeight: 20
-                        Layout.preferredHeight: 20
-                        Layout.minimumHeight: 20
+                    Button {
+                        id: btnRegister
+
+                        contentItem: Text {
+                            text: qsTr("REGISTER")
+                            color: JamiTheme.buttonTintedBlue
+                        }
+
+                        background: Rectangle {
+                            color: "transparent"
+                        }
+
+                        onClicked: {
+                            startRegistration()
+                        }
                     }
 
-                    Label{
-                        Layout.preferredWidth: 219
-                        Layout.alignment: Qt.AlignHCenter
-                        wrapMode: Text.Wrap
-                        text: qsTr("Enter your account password")
-                        font.pointSize: 8
-                        font.kerning: true
+                    Button {
+                        id: btnCancel
+
+                        contentItem: Text {
+                            text: qsTr("CANCEL")
+                            color: JamiTheme.buttonTintedBlue
+                        }
+
+                        background: Rectangle {
+                            color: "transparent"
+                        }
+
+                        onClicked: {
+                            close()
+                        }
+                    }
+                }
+            }
+
+            // Index = 1
+            ColumnLayout {
+                anchors.centerIn: parent
+                spacing: 16
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Registering Name")
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Label {
+                    id: spinnerLabel
+
+                    Layout.alignment: Qt.AlignHCenter
+
+                    Layout.maximumWidth: 96
+                    Layout.preferredWidth: 96
+                    Layout.minimumWidth: 96
+
+                    Layout.maximumHeight: 96
+                    Layout.preferredHeight: 96
+                    Layout.minimumHeight: 96
+
+                    background: Rectangle {
+                        AnimatedImage {
+                            id: spinnerMovie
+                            anchors.fill: parent
+                            source: "qrc:/images/jami_eclipse_spinner.gif"
+                            playing: spinnerLabel.visible
+                            paused: false
+                            fillMode: Image.PreserveAspectFit
+                            mipmap: true
+                        }
+                    }
+                }
+            }
+
+            // Index = 2
+            ColumnLayout {
+                anchors.centerIn: parent
+                spacing: 16
+
+                Label {
+                    id: lblRegistrationError
+
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Something went wrong")
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+                    color: "red"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Button {
+                    id: btnClose
+                    Layout.alignment: Qt.AlignCenter
+
+                    contentItem: Text {
+                        text: qsTr("CLOSE")
+                        color: JamiTheme.buttonTintedBlue
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
 
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-
-                        Layout.maximumHeight: 20
-                        Layout.preferredHeight: 20
-                        Layout.minimumHeight: 20
+                    background: Rectangle {
+                        color: "transparent"
                     }
 
-                    InfoLineEdit{
-                        id: passwordEdit
-
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.minimumWidth: 294
-                        Layout.preferredWidth: 294
-
-                        Layout.preferredHeight: 30
-                        Layout.minimumHeight: 30
-
-                        echoMode: TextInput.Password
-
-                        placeholderText: qsTr("Password")
-                    }
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-
-                        Layout.maximumHeight: 20
-                        Layout.preferredHeight: 20
-                        Layout.minimumHeight: 20
-                    }
-
-                    RowLayout{
-                        spacing: 7
-
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillWidth: true
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        HoverableRadiusButton{
-                            id: btnRegister
-
-                            Layout.maximumWidth: 130
-                            Layout.preferredWidth: 130
-                            Layout.minimumWidth: 130
-
-                            Layout.maximumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.minimumHeight: 30
-
-                            radius: height /2
-
-                            text: qsTr("Register")
-                            font.pointSize: 10
-                            font.kerning: true
-
-                            onClicked: {
-                                startRegistration()
-                            }
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-                            Layout.minimumWidth: 40
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        HoverableButtonTextItem {
-                            id: btnCancel
-
-                            Layout.maximumWidth: 130
-                            Layout.preferredWidth: 130
-                            Layout.minimumWidth: 130
-
-                            Layout.maximumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.minimumHeight: 30
-
-                            backgroundColor: "red"
-                            onEnterColor: Qt.rgba(150 / 256, 0, 0, 0.7)
-                            onDisabledBackgroundColor: Qt.rgba(
-                                                           255 / 256,
-                                                           0, 0, 0.8)
-                            onPressColor: backgroundColor
-                            textColor: "white"
-
-                            radius: height /2
-
-                            text: qsTr("Cancel")
-                            font.pointSize: 10
-                            font.kerning: true
-
-                            onClicked: {
-                                reject()
-                            }
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-                            Layout.minimumWidth: 40
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-                    }
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-
-                        Layout.maximumHeight: 20
-                        Layout.preferredHeight: 20
-                        Layout.minimumHeight: 20
-                    }
-                }
-            }
-
-            Rectangle{
-                id: registeringPage
-
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-                Layout.topMargin: 11
-                Layout.bottomMargin: 11
-
-                ColumnLayout{
-                    anchors.fill: parent
-                    spacing: 7
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-                        Layout.minimumHeight: 40
-
-                        Layout.maximumWidth: 20
-                        Layout.preferredWidth: 20
-                        Layout.minimumWidth: 20
-                    }
-
-                    RowLayout{
-                        Layout.fillWidth: true
-                        spacing: 0
-
-                        Layout.maximumHeight: 30
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        Label{
-                            Layout.alignment: Qt.AlignHCenter
-
-                            Layout.maximumWidth: 0
-                            Layout.preferredWidth: 341
-
-                            Layout.minimumHeight: 0
-                            Layout.preferredHeight: 30
-                            Layout.maximumHeight: 30
-
-                            wrapMode: Text.Wrap
-                            text: qsTr("Registering Name")
-                            font.pointSize: 8
-                            font.kerning: true
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-                    }
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-
-                        Layout.maximumWidth: 20
-                        Layout.preferredWidth: 20
-                        Layout.minimumWidth: 20
-                    }
-
-                    RowLayout{
-                        spacing: 7
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        Label{
-                            id: spinnerLabel
-
-                            Layout.alignment: Qt.AlignHCenter
-
-                            Layout.maximumWidth: 96
-                            Layout.preferredWidth: 96
-                            Layout.minimumWidth: 96
-
-                            Layout.maximumHeight: 96
-                            Layout.preferredHeight: 96
-                            Layout.minimumHeight: 96
-
-                            background: Rectangle {
-                                anchors.fill: parent
-                                AnimatedImage {
-                                    id: spinnerMovie
-
-                                    anchors.fill: parent
-
-                                    source: "qrc:/images/jami_eclipse_spinner.gif"
-
-                                    playing: spinnerLabel.visible
-                                    paused: false
-                                    fillMode: Image.PreserveAspectFit
-                                    mipmap: true
-                                }
-                            }
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                    }
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-                        Layout.minimumHeight: 40
-
-                        Layout.maximumWidth: 20
-                        Layout.preferredWidth: 20
-                        Layout.minimumWidth: 20
-                    }
-                }
-            }
-
-            Rectangle{
-                id: nameNotRegisteredPage
-
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                ColumnLayout{
-                    anchors.fill: parent
-
-                    Item{
-                        Layout.fillHeight: true
-                        Layout.minimumHeight: 40
-
-                        Layout.maximumWidth: 20
-                        Layout.preferredWidth: 20
-                        Layout.minimumWidth: 20
-                    }
-
-                    RowLayout{
-                        spacing:  7
-                        Layout.fillWidth: true
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        Label{
-                            id: lblRegistrationError
-
-                            Layout.alignment: Qt.AlignHCenter
-
-                            Layout.maximumWidth: 0
-                            Layout.preferredWidth: 341
-
-                            Layout.minimumHeight: 0
-                            Layout.preferredHeight: 30
-                            Layout.maximumHeight: 30
-
-                            wrapMode: Text.Wrap
-                            text: qsTr("Something went wrong")
-                            font.pointSize: 8
-                            font.kerning: true
-                            color: "red"
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-                    }
-
-                    Item{
-                        Layout.fillHeight: true
-                        Layout.minimumHeight: 40
-
-                        Layout.maximumWidth: 20
-                        Layout.preferredWidth: 20
-                        Layout.minimumWidth: 20
-                    }
-
-                    RowLayout{
-                        spacing:  7
-                        Layout.fillWidth: true
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        HoverableRadiusButton{
-                            id: btnCloseRegisterDialog
-
-                            Layout.maximumWidth: 130
-                            Layout.preferredWidth: 130
-                            Layout.minimumWidth: 130
-
-                            Layout.maximumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.minimumHeight: 30
-
-                            radius: height /2
-
-                            text: qsTr("Close")
-                            font.pointSize: 10
-                            font.kerning: true
-
-                            onClicked: {
-                                reject()
-                            }
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-                    }
-
-                    Item{
-                        Layout.fillHeight: true
-                        Layout.minimumHeight: 40
-
-                        Layout.maximumWidth: 20
-                        Layout.preferredWidth: 20
-                        Layout.minimumWidth: 20
+                    onClicked: {
+                        close()
                     }
                 }
             }

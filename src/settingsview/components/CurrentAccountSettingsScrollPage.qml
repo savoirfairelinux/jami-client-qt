@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Albert Babí <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,6 +66,8 @@ Rectangle {
 
         var showLocalAccountConfig = (ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === "")
         passwdPushButton.visible = showLocalAccountConfig
+        passwdPushButton.text = ClientWrapper.accountAdaptor.hasPassword() ? qsTr("Change Password") :
+                                                                             qsTr("Set Password")
         btnExportAccount.visible = showLocalAccountConfig
         linkDevPushButton.visible = showLocalAccountConfig
 
@@ -305,15 +308,11 @@ Rectangle {
     }
 
     function delAccountSlot() {
-        deleteAccountDialog.open()
+        deleteAccountDialog.show()
     }
 
-    DeleteAccountDialog{
+    DeleteAccountDialog {
         id: deleteAccountDialog
-
-        anchors.centerIn: parent.Center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
 
         onAccepted: {
             ClientWrapper.accountAdaptor.setSelectedConvId()
@@ -326,7 +325,7 @@ Rectangle {
         }
     }
 
-    NameRegistrationDialog{
+    NameRegistrationDialog {
         id : nameRegistrationDialog
 
         onAccepted: {
@@ -339,7 +338,7 @@ Rectangle {
         nameRegistrationDialog.openNameRegistrationDialog(registeredName)
     }
 
-    LinkDeviceDialog{
+    LinkDeviceDialog {
         id: linkDeviceDialog
 
         onAccepted: {

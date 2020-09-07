@@ -93,6 +93,8 @@ Item {
     property int preferredFieldWidth: 216
     property int preferredFieldHeight: 32
     property int preferredMarginSize: 16
+    property int preferredDialogWidth: 400
+    property int preferredDialogHeight: 300
 
     // Place holder text.
     property string contactSearchBarPlaceHolderConversationText: qsTr("Find or start a conversation")

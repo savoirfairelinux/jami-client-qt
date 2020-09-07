@@ -167,10 +167,6 @@ Rectangle {
     PasswordDialog {
         id: passwordDialog
 
-        anchors.centerIn: parent.Center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
-
         visible: false
         purpose: PasswordDialog.ExportAccount
 
@@ -330,7 +326,7 @@ Rectangle {
                     // is there password? If so, go to password dialog, else, go to following directly
                     if (ClientWrapper.accountAdaptor.hasPassword()) {
                         passwordDialog.path = ClientWrapper.utilsAdaptor.getAbsPath(folderDir)
-                        passwordDialog.open()
+                        passwordDialog.show()
                         return
                     } else {
                         if (folderDir.length > 0) {

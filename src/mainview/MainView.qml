@@ -451,7 +451,7 @@ Window {
                                         callStackView.responsibleAccountId,
                                         callStackView.responsibleConvUid))
                 } else {
-                    callStackView.showOutgoingCallPage(callStateStr)
+                    callStackView.showOutgoingCallPage(callState)
                 }
             }
 
