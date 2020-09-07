@@ -26,18 +26,11 @@ import "../../commoncomponents"
 
 Rectangle {
     id: sidePanelRect
-
     color: JamiTheme.backgroundColor
 
     property bool tabBarVisible: true
     property int pendingRequestCount: 0
     property int totalUnreadMessagesCount: 0
-
-    property string currentAccountId: AccountAdapter.currentAccountId
-    onCurrentAccountIdChanged: {
-        var index = UtilsAdapter.getCurrAccList().indexOf(currentAccountId)
-        refreshAccountComboBox(index)
-    }
 
     signal conversationSmartListNeedToAccessMessageWebView(string currentUserDisplayName, string currentUserAlias, string currentUID, bool callStackViewShouldShow, bool isAudioOnly, int callState)
     signal accountComboBoxNeedToShowWelcomePage()
@@ -75,13 +68,13 @@ Rectangle {
 
     function accountChangedUIReset() {
         contactSearchBar.clearText()
-        contactSearchBar.setPlaceholderString(
-                    JamiStrings.contactSearchConversation)
         sidePanelTabBar.converstationTabDown = true
         sidePanelTabBar.invitationTabDown = false
     }
 
     function refreshAccountComboBox(index) {
+        AccountAdapter.accountChanged(index)
+
         accountComboBox.update()
         accountChangedUIReset()
         accountComboBox.resetAccountListModel()
