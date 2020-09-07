@@ -71,7 +71,7 @@ Window{
             managerUriInputLabel.text = "N/A"
         }
 
-        if(username.length !== 0){
+        if (username.length !== 0){
             usernameInputLabel.text = username
         } else if(managerUsername.length !== 0){
             usernameInputLabel.text = managerUsername
@@ -196,8 +196,14 @@ Window{
 
     visible: false
 
-    width: 455
-    height: 594
+    title: qsTr("Account Migration")
+    modality: Qt.WindowModal
+    flags: Qt.WindowStaysOnTopHint
+
+    width: 450
+    height: 600
+    minimumWidth: 450
+    minimumHeight: 600
 
     Component.onCompleted: {
         setX(Screen.width / 2 - width / 2)
@@ -755,27 +761,27 @@ Window{
                             Layout.maximumHeight: 40
                         }
 
-                        HoverableGradientButton {
+                        MaterialButton {
                             id: migrationPushButton
 
                             Layout.alignment: Qt.AlignLeft
-                            Layout.maximumWidth: 100
-                            Layout.preferredWidth: 100
+                            Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                            Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
-                            Layout.maximumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.minimumHeight: 30
+                            color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                            hoveredColor: JamiTheme.buttonTintedBlackHovered
+                            pressedColor: JamiTheme.buttonTintedBlackPressed
+                            outlined: true
 
                             text: qsTr("Migrate")
-                            font.pointSize: 10
-                            font.kerning: true
-
-                            radius: height / 2
-                            backgroundColor: JamiTheme.releaseColor
 
                             onClicked: {
                                 slotMigrationButtonClicked()
-                            }
+                             }
                         }
 
                         Item {
@@ -786,34 +792,27 @@ Window{
                             Layout.maximumHeight: 40
                         }
 
-                        HoverableButtonTextItem {
+                        MaterialButton {
                             id: deleteAccountPushButton
 
-                            backgroundColor: "red"
-                            onEnterColor: Qt.rgba(150 / 256, 0, 0, 0.7)
-                            onDisabledBackgroundColor: Qt.rgba(
-                                                           255 / 256,
-                                                           0, 0, 0.8)
-                            onPressColor: backgroundColor
-                            textColor: "white"
-
                             Layout.alignment: Qt.AlignRight
-                            Layout.maximumWidth: 100
-                            Layout.preferredWidth: 100
+                            Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                            Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                            Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
-                            Layout.maximumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.minimumHeight: 30
+                            color: JamiTheme.buttonTintedRed
+                            hoveredColor: JamiTheme.buttonTintedRedHovered
+                            pressedColor: JamiTheme.buttonTintedRedPressed
+                            outlined: true
 
                             text: qsTr("Delete")
-                            font.pointSize: 10
-                            font.kerning: true
-
-                            radius: height / 2
 
                             onClicked: {
                                 slotDeleteButtonClicked()
-                            }
+                             }
                         }
 
                         Item {

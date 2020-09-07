@@ -37,13 +37,12 @@ Window {
     id: mainViewWindow
 
     property int minWidth: 400
-    property int minHeight: aboutPopUpDialog.contentHeight
+    property int minHeight: 400
 
     property int mainViewWindowPreferredWidth: 650
     property int mainViewWindowPreferredHeight: 600
     property int sidePanelViewStackPreferredWidth: 250
     property int mainViewStackPreferredWidth: 250
-    property int aboutPopUpPreferredWidth: 400
 
     property int savedSidePanelViewMinWidth: 0
     property int savedSidePanelViewMaxWidth: 0
@@ -451,7 +450,7 @@ Window {
                                         callStackView.responsibleAccountId,
                                         callStackView.responsibleConvUid))
                 } else {
-                    callStackView.showOutgoingCallPage(callStateStr)
+                    callStackView.showOutgoingCallPage(callState)
                 }
             }
 
@@ -674,20 +673,10 @@ Window {
 
     AboutPopUp {
         id: aboutPopUpDialog
-
-        x: Math.round((mainViewWindow.width - width) / 2)
-        y: Math.round((mainViewWindow.height - height) / 2)
-        width: aboutPopUpPreferredWidth
-        height: aboutPopUpDialog.contentHeight
     }
 
     WelcomePageQrDialog {
         id: qrDialog
-
-        x: Math.round((mainViewWindow.width - width) / 2)
-        y: Math.round((mainViewWindow.height - height) / 2)
-        width: qrDialog.contentHeight
-        height: qrDialog.contentHeight
     }
 
     RecordBox{
@@ -697,11 +686,6 @@ Window {
 
     UserProfile {
         id: userProfile
-
-        x: Math.round((mainViewWindow.width - width) / 2)
-        y: Math.round((mainViewWindow.height - height) / 2)
-        width: Math.max(mainViewWindow.width / 2, aboutPopUpPreferredWidth)
-        height: userProfile.contentHeight
     }
 
     onClosing: {
@@ -758,7 +742,7 @@ Window {
         sequence: "F10"
         context: Qt.ApplicationShortcut
         onActivated: {
-            shortcutsTable.open()
+            shortcutsTable.show()
         }
     }
 
@@ -796,8 +780,5 @@ Window {
 
     KeyBoardShortcutTable {
         id: shortcutsTable
-
-        x: Math.round((mainViewWindow.width - width) / 2)
-        y: Math.round((mainViewWindow.height - height) / 2)
     }
 }
