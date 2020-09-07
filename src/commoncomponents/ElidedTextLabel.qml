@@ -18,8 +18,8 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 1.4
-import net.jami.Models 1.0
 
+import "../constant"
 
 Label {
     property string eText : ""

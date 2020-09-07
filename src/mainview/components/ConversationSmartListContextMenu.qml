@@ -95,7 +95,7 @@ Item {
             ContextMenuGenerator.addMenuItem(qsTr("Profile"),
                                              "qrc:/images/icons/person-24px.svg",
                                              function (){
-                                                 userProfile.open()
+                                                 userProfile.show()
                                              })
         }
 

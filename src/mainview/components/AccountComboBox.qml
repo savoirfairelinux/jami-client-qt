@@ -170,7 +170,7 @@ ComboBox {
         source: "qrc:/images/qrcode.png"
         backgroundColor: "white"
         onClicked: {
-            qrDialog.open()
+            qrDialog.show()
         }
     }
 

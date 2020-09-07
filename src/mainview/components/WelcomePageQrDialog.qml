@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -15,22 +16,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
+import QtQuick.Window 2.15
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
-Dialog {
+import "../../constant"
+
+Window {
     id: userQrImageDialog
 
-    // When dialog is opened, trigger mainViewWindow overlay which is defined in overlay.model.
-    // (model : true is necessary)
-    modal: true
+    visible: false
+    modality: Qt.WindowModal
+    flags: Qt.WindowStaysOnTopHint
+    title: qsTr("Account Qr")
 
-    //Content height + margin.
-    contentHeight: userQrImage.height + 30
+    width: userQrImage.height + JamiTheme.preferredMarginSize*2
+    height: userQrImage.height + JamiTheme.preferredMarginSize*2
+    minimumWidth: userQrImage.height + JamiTheme.preferredMarginSize*2
+    maximumWidth: userQrImage.height + JamiTheme.preferredMarginSize*2
+    minimumHeight: userQrImage.height + JamiTheme.preferredMarginSize*2
+    maximumHeight: userQrImage.height + JamiTheme.preferredMarginSize*2
+
 
     Image {
         id: userQrImage
@@ -43,10 +52,5 @@ Dialog {
 
         fillMode: Image.PreserveAspectFit
         source: "image://qrImage/account_" + AccountAdapter.currentAccountId
-    }
-
-    background: Rectangle {
-        border.width: 0
-        radius: 10
     }
 }
