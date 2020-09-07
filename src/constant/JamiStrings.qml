@@ -300,7 +300,9 @@ Item {
     property string enterCurrentPassword: qsTr("Enter current password")
     property string enterNewPassword: qsTr("Enter new password")
     property string confirmNewPassword: qsTr("Confirm new password")
+    property string change: qsTr("Change")
     property string confirm: qsTr("Confirm")
+    property string exportAccount: qsTr("Export")
 
     // PhotoBoothView
     property string chooseAvatarImage: qsTr("Choose a picture as avatar")
