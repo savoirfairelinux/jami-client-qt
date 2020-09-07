@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Albert Babí <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,17 +21,22 @@ import QtQuick 2.15
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls.Styles 1.4
+import QtQuick.Window 2.15
 import net.jami.Models 1.0
 
 import "../../commoncomponents"
 
-Dialog {
-    id: linkDeviceDialog
+Window {
+    id: root
+
+    property int exportTimeout : 20000
+
+    signal accepted
 
     function openLinkDeviceDialog(){
         infoLabel.text = qsTr("This pin and the account password should be entered in your device within 10 minutes.")
         passwordEdit.clear()
-        linkDeviceDialog.open()
+        root.show()
         if(ClientWrapper.accountAdaptor.hasPassword()){
             stackedWidget.currentIndex = 0
         } else {
@@ -54,40 +60,17 @@ Dialog {
         ClientWrapper.accountModel.exportOnRing(ClientWrapper.utilsAdaptor.getCurrAccId(),passwordEdit.text)
     }
 
-    Timer{
-        id: timerForExport
-
-        repeat: false
-        interval: 200
-
-        onTriggered: {
-            timeOut.restart()
-            slotExportOnRing()
-        }
-    }
-
-    Timer{
-        id: timeOut
-
-        repeat: false
-        interval: exportTimeout
-
-        onTriggered: {
-            setExportPage(NameDirectory.ExportOnRingStatus.NETWORK_ERROR, "")
-        }
-    }
-
     function setExportPage(status, pin){
         timeOut.stop()
 
         if(status === NameDirectory.ExportOnRingStatus.SUCCESS){
-            infoLabel.isSucessState = true
+            infoLabel.success = true
             yourPinLabel.visible = true
             exportedPIN.visible = true
             infoLabel.text = qsTr("This pin and the account password should be entered in your device within 10 minutes.")
             exportedPIN.text = pin
         } else {
-            infoLabel.isSucessState = false
+            infoLabel.success = false
             yourPinLabel.visible = false
             exportedPIN.visible = false
 
@@ -109,9 +92,40 @@ Dialog {
         stackedWidget.currentIndex = 2
     }
 
-    property int exportTimeout : 20000
+    title: qsTr("Link another device")
+    visible: false
+    modality: Qt.WindowModal
+    flags: Qt.WindowStaysOnTopHint
 
-    Connections{
+    width: JamiTheme.preferredDialogWidth
+    height: JamiTheme.preferredDialogWidth
+    minimumWidth: JamiTheme.preferredDialogWidth
+    minimumHeight: JamiTheme.preferredDialogHeight
+
+    Timer {
+        id: timerForExport
+
+        repeat: false
+        interval: 200
+
+        onTriggered: {
+            timeOut.restart()
+            slotExportOnRing()
+        }
+    }
+
+    Timer {
+        id: timeOut
+
+        repeat: false
+        interval: exportTimeout
+
+        onTriggered: {
+            setExportPage(NameDirectory.ExportOnRingStatus.NETWORK_ERROR, "")
+        }
+    }
+
+    Connections {
         target: ClientWrapper.nameDirectory
 
         function onExportOnRingEnded(status, pin){
@@ -119,423 +133,242 @@ Dialog {
         }
     }
 
-    visible: false
-
-    anchors.centerIn: parent.Center
-    x: (parent.width - width) / 2
-    y: (parent.height - height) / 2
-
-    header : Rectangle {
-        width: parent.width
-        height: 64
+    Rectangle {
+        anchors.fill: parent
         color: "transparent"
-        Text {
-            anchors.left: parent.left
-            anchors.leftMargin: 24
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 24
 
-            text: qsTr("Link another device")
-            font.pointSize: JamiTheme.headerFontSize
-        }
-    }
-
-    height: contentItem.implicitHeight + 64 + 8
-    width: contentItem.implicitWidth + 24
-
-    onClosed: {
-        if(infoLabel.isSucessState){
-            accept()
-        } else {
-            reject()
-        }
-    }
-
-    contentItem: Rectangle{
-        implicitWidth: 280
-        implicitHeight: 208
-
-        StackLayout{
+        StackLayout {
             id: stackedWidget
             anchors.fill: parent
 
-            currentIndex: 2
+            // Index = 0
+            ColumnLayout {
+                anchors.centerIn: parent
+                spacing: 16
 
-            Rectangle{
-                id: passwordConfirmPage
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Enter your account password")
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                }
 
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                MaterialLineEdit {
+                    id: passwordEdit
 
-                Layout.leftMargin: 11
-                Layout.rightMargin: 11
-                Layout.topMargin: 11
-                Layout.bottomMargin: 11
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.minimumWidth: JamiTheme.preferredFieldWidth
+                    Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                    Layout.maximumWidth: JamiTheme.preferredFieldWidth
+                    Layout.minimumHeight: 48
+                    Layout.preferredHeight: 48
+                    Layout.maximumHeight: 48
 
-                ColumnLayout{
-                    anchors.fill: parent
-                    spacing: 7
+                    echoMode: TextInput.Password
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
 
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    placeholderText: qsTr("Enter Current Password")
 
-                    Item{
+                    borderColorMode: InfoLineEdit.NORMAL
+
+                    onTextChanged: {
+                        btnConfirm.enabled = text.length > 0
+                    }
+                }
+
+                RowLayout {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.fillWidth: true
+                    spacing: 16
+
+
+                    MaterialButton {
+                        id: btnConfirm
+
                         Layout.alignment: Qt.AlignHCenter
+                        Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
-                        Layout.fillHeight: true
-                        Layout.maximumHeight: 20
-                        Layout.preferredHeight: 20
-                        Layout.minimumHeight: 20
+                        color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                        hoveredColor: JamiTheme.buttonTintedBlackHovered
+                        pressedColor: JamiTheme.buttonTintedBlackPressed
+                        outlined: true
+                        enabled: false
+
+                        text: qsTr("Register")
+
+                        onClicked: {
+                            setGeneratingPage()
+                        }
                     }
 
-                    Label{
-                        Layout.preferredWidth: 219
+                    MaterialButton {
+                        id: btnCancel
+
                         Layout.alignment: Qt.AlignHCenter
-                        wrapMode: Text.Wrap
-                        text: qsTr("Enter your account password")
-                        font.pointSize: 8
+                        Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+
+                        color: JamiTheme.buttonTintedBlack
+                        hoveredColor: JamiTheme.buttonTintedBlackHovered
+                        pressedColor: JamiTheme.buttonTintedBlackPressed
+                        outlined: true
+                        enabled: true
+
+                        text: qsTr("Cancel")
+
+                        onClicked: {
+                            close()
+                        }
+                    }
+                }
+            }
+
+            // Index = 1
+            ColumnLayout {
+                anchors.centerIn: parent
+                spacing: 16
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Exporting Account")
+                    font.pointSize: JamiTheme.headerFontSize
+                    font.kerning: true
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                Label {
+                    id: exportingSpinner
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    Layout.maximumWidth: 96
+                    Layout.preferredWidth: 96
+                    Layout.minimumWidth: 96
+                    Layout.maximumHeight: 96
+                    Layout.preferredHeight: 96
+                    Layout.minimumHeight: 96
+
+                    background: Rectangle {
+                        AnimatedImage {
+                            id: spinnerMovie
+                            anchors.fill: parent
+                            source: "qrc:/images/jami_eclipse_spinner.gif"
+                            playing: exportingSpinner.visible
+                            paused: false
+                            fillMode: Image.PreserveAspectFit
+                            mipmap: true
+                        }
+                    }
+                }
+            }
+
+            // Index = 2
+            ColumnLayout {
+                anchors.centerIn: parent
+                spacing: 16
+
+                RowLayout {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.fillWidth: true
+                    Layout.margins: JamiTheme.preferredMarginSize
+                    spacing: 16
+
+                    Label {
+                        id: yourPinLabel
+
+                        Layout.alignment: Qt.AlignHCenter
+                        text: qsTr("Your PIN is:")
+                        font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
-                    }
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-
-                        Layout.maximumHeight: 20
-                        Layout.preferredHeight: 20
-                        Layout.minimumHeight: 20
-                    }
-
-                    InfoLineEdit{
-                        id: passwordEdit
-
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.minimumWidth: 294
-                        Layout.preferredWidth: 294
-
-                        Layout.preferredHeight: 30
-                        Layout.minimumHeight: 30
-
-                        echoMode: TextInput.Password
-
-                        placeholderText: qsTr("Password")
-                    }
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-
-                        Layout.maximumHeight: 20
-                        Layout.preferredHeight: 20
-                        Layout.minimumHeight: 20
-                    }
-
-                    RowLayout{
-                        spacing: 7
-
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.fillWidth: true
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        HoverableRadiusButton{
-                            id: btnPasswordOk
-
-                            Layout.maximumWidth: 130
-                            Layout.preferredWidth: 130
-                            Layout.minimumWidth: 130
-
-                            Layout.maximumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.minimumHeight: 30
-
-                            radius: height /2
-
-                            text: qsTr("Register")
-                            font.pointSize: 10
-                            font.kerning: true
-
-                            onClicked: {
-                                setGeneratingPage()
-                            }
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-                            Layout.minimumWidth: 40
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        HoverableButtonTextItem {
-                            id: btnCancel
-
-                            Layout.maximumWidth: 130
-                            Layout.preferredWidth: 130
-                            Layout.minimumWidth: 130
-
-                            Layout.maximumHeight: 30
-                            Layout.preferredHeight: 30
-                            Layout.minimumHeight: 30
-
-                            backgroundColor: "red"
-                            onEnterColor: Qt.rgba(150 / 256, 0, 0, 0.7)
-                            onDisabledBackgroundColor: Qt.rgba(
-                                                           255 / 256,
-                                                           0, 0, 0.8)
-                            onPressColor: backgroundColor
-                            textColor: "white"
-
-                            radius: height /2
-
-                            text: qsTr("Cancel")
-                            font.pointSize: 10
-                            font.kerning: true
-
-                            onClicked: {
-                                reject()
-                            }
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-                            Layout.minimumWidth: 40
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-                    }
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-
-                        Layout.maximumHeight: 20
-                        Layout.preferredHeight: 20
-                        Layout.minimumHeight: 20
-                    }
-                }
-            }
-
-            Rectangle{
-                id: exportingPage
-
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                ColumnLayout{
-                    anchors.fill: parent
-                    spacing: 8
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-
-                    Label{
-                        Layout.alignment: Qt.AlignLeft
-
-                        Layout.minimumHeight: 0
-                        Layout.preferredHeight: 30
-                        Layout.maximumHeight: 30
-                        Layout.leftMargin: 16
-
-                        wrapMode: Text.Wrap
-                        text: qsTr("Exporting Account")
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-                    }
-
-                    RowLayout{
-                        spacing: 7
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                        Label{
-                            id: exportingSpinner
-
-                            Layout.alignment: Qt.AlignHCenter
-
-                            Layout.maximumWidth: 96
-                            Layout.preferredWidth: 96
-                            Layout.minimumWidth: 96
-
-                            Layout.maximumHeight: 96
-                            Layout.preferredHeight: 96
-                            Layout.minimumHeight: 96
-
-                            background: Rectangle {
-                                anchors.fill: parent
-                                AnimatedImage {
-                                    id: spinnerMovie
-
-                                    anchors.fill: parent
-
-                                    source: "qrc:/images/jami_eclipse_spinner.gif"
-
-                                    playing: exportingSpinner.visible
-                                    paused: false
-                                    fillMode: Image.PreserveAspectFit
-                                    mipmap: true
-                                }
-                            }
-                        }
-
-                        Item{
-                            Layout.fillWidth: true
-
-                            Layout.maximumHeight: 20
-                            Layout.preferredHeight: 20
-                            Layout.minimumHeight: 20
-                        }
-
-                    }
-
-                    Item{
-                        Layout.alignment: Qt.AlignHCenter
-
-                        Layout.fillHeight: true
-                        Layout.minimumHeight: 40
-
-                        Layout.maximumWidth: 20
-                        Layout.preferredWidth: 20
-                        Layout.minimumWidth: 20
-                    }
-                }
-            }
-
-            Rectangle{
-                id: exportedPage
-
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                ColumnLayout{
-                    anchors.fill: parent
-                    spacing: 8
-
-                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-                    RowLayout{
-                        spacing: 8
-
-                        Layout.alignment: Qt.AlignLeft
-                        Layout.fillWidth: true
-                        Layout.leftMargin: 16
-
-                        Label{
-                            id: yourPinLabel
-
-                            Layout.alignment: Qt.AlignLeft
-
-                            Layout.preferredHeight: 25
-
-                            wrapMode: Text.Wrap
-                            text: "Your PIN is:"
-                            font.kerning: true
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-
-                        Label{
-                            id: exportedPIN
-
-                            Layout.alignment: Qt.AlignHCenter
-
-                            Layout.preferredHeight: 25
-
-                            wrapMode: Text.Wrap
-                            text: "PIN"
-                            font.pointSize: 12
-                            font.kerning: true
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                        }
-
                     }
 
                     Label {
-                        id: infoLabel
-
-                        property bool isSucessState: false
-                        property int borderWidth : isSucessState? 1 : 0
-                        property int borderRadius : isSucessState? 15 : 0
-                        property string backgroundColor : isSucessState? "whitesmoke" : "transparent"
-                        property string borderColor : isSucessState? "lightgray" : "transparent"
-                        color: isSucessState ? "#2b5084" : "black"
-                        padding: isSucessState ? 8 : 0
-
-                        Layout.alignment: Qt.AlignLeft
-                        Layout.leftMargin: 12
-                        Layout.preferredWidth: 280 - 32
-                        Layout.preferredHeight: 50
-
-                        wrapMode: Text.Wrap
-                        text: qsTr("This pin and the account password should be entered in your device within 10 minutes.")
-                        font.pointSize: 8
+                        id: exportedPIN
+                        Layout.alignment: Qt.AlignHCenter
+                        text: "PIN"
+                        font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
-
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
-
-                        background: Rectangle{
-                            id: infoLabelBackground
-
-                            anchors.fill: parent
-                            border.width: infoLabel.borderWidth
-                            border.color: infoLabel.borderColor
-                            radius: infoLabel.borderRadius
-                            color: infoLabel.backgroundColor
-                        }
                     }
 
-                    RowLayout {
-                        spacing: 8
+                }
 
-                        width: 280
-                        Layout.alignment: Qt.AlignRight
+                Label {
+                    id: infoLabel
 
-                        Button {
-                            id: btnCloseExportDialog
+                    property bool success: false
+                    property int borderWidth : success? 1 : 0
+                    property int borderRadius : success? 15 : 0
+                    property string backgroundColor : success? "whitesmoke" : "transparent"
+                    property string borderColor : success? "lightgray" : "transparent"
+                    color: success ? "#2b5084" : "black"
+                    padding: success ? 8 : 0
 
-                            contentItem: Text {
-                                text: qsTr("CLOSE")
-                                color: JamiTheme.buttonTintedBlue
-                            }
+                    wrapMode: Text.Wrap
+                    text: qsTr("This pin and the account password should be entered in your device within 10 minutes.")
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
 
-                            background: Rectangle {
-                                color: "transparent"
-                            }
+                    Layout.maximumWidth: root.width - JamiTheme.preferredMarginSize * 2
 
-                            onClicked: {
-                                if(infoLabel.isSucessState){
-                                    accept()
-                                } else {
-                                    reject()
-                                }
-                            }
+                    Layout.alignment: Qt.AlignCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                    background: Rectangle{
+                        id: infoLabelBackground
+                        anchors.fill: parent
+                        border.width: infoLabel.borderWidth
+                        border.color: infoLabel.borderColor
+                        radius: infoLabel.borderRadius
+                        color: infoLabel.backgroundColor
+                    }
+                }
+
+                MaterialButton {
+                    id: btnCloseExportDialog
+
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                    Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                    Layout.maximumHeight: JamiTheme.preferredFieldHeight
+
+                    color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+                    pressedColor: JamiTheme.buttonTintedBlackPressed
+                    outlined: true
+                    enabled: true
+
+                    text: qsTr("Close")
+
+                    onClicked: {
+                        if (infoLabel.success) {
+                            accepted()
                         }
+                        close()
                     }
                 }
             }
         }
     }
 }
+

@@ -159,7 +159,7 @@ Rectangle {
         }
 
         onClicked: {
-            aboutPopUpDialog.open()
+            aboutPopUpDialog.show()
         }
     }
 

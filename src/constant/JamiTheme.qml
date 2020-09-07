@@ -83,6 +83,7 @@ Item {
 
     property int splitViewHandlePreferredWidth: 4
     property int textFontSize: 9
+    property int tinyFontSize: 7
     property int settingsFontSize: 10
     property int buttonFontSize: 9
     property int headerFontSize: 13
@@ -93,6 +94,8 @@ Item {
     property int preferredFieldWidth: 216
     property int preferredFieldHeight: 32
     property int preferredMarginSize: 16
+    property int preferredDialogWidth: 400
+    property int preferredDialogHeight: 300
 
     // Place holder text.
     property string contactSearchBarPlaceHolderConversationText: qsTr("Find or start a conversation")

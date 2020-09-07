@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Albert Babí <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +53,7 @@ Rectangle {
     signal navigateToNewWizardView
     signal backArrowClicked
 
-    function refreshRelevantUI(){
+    function refreshRelevantUI() {
         refreshVariable++
         refreshVariable--
     }
@@ -65,6 +66,8 @@ Rectangle {
 
         var showLocalAccountConfig = (ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === "")
         passwdPushButton.visible = showLocalAccountConfig
+        passwdPushButton.text = ClientWrapper.accountAdaptor.hasPassword() ? qsTr("Change Password") :
+                                                                             qsTr("Set Password")
         btnExportAccount.visible = showLocalAccountConfig
         linkDevPushButton.visible = showLocalAccountConfig
 
@@ -134,11 +137,11 @@ Rectangle {
             updateAndShowBannedContactsSlot()
         }
 
-        function onContactAdded(contactUri){
+        function onContactAdded(contactUri) {
             updateAndShowBannedContactsSlot()
         }
 
-        function onContactRemoved(contactUri){
+        function onContactRemoved(contactUri) {
             updateAndShowBannedContactsSlot()
         }
     }
@@ -226,7 +229,7 @@ Rectangle {
      * JamiFileDialog for exporting account
      */
     JamiFileDialog {
-        id: exportBtn_Dialog
+        id: exportDialog
 
         mode: JamiFileDialog.SaveFile
 
@@ -262,15 +265,10 @@ Rectangle {
         }
     }
 
-    function exportAccountSlot() {
-        exportBtn_Dialog.open()
-    }
-
     PasswordDialog {
         id: passwordDialog
 
         onDoneSignal: {
-            var success = (code === successCode)
             var title = success ? qsTr("Success") : qsTr("Error")
             var iconMode = success ? StandardIcon.Information : StandardIcon.Critical
 
@@ -284,41 +282,35 @@ Rectangle {
                 break
             case PasswordDialog.SetPassword:
                 info = success ? qsTr("Password Set Successfully") : qsTr("Password Set Failed")
-                passwdPushButton.text = success ? qsTr("Change Password") : qsTr("Set Password")
                 break
             }
-
-            msgDialog.openWithParameters(title,info, iconMode, StandardButton.Ok)
+            msgDialog.openWithParameters(title, info, iconMode, StandardButton.Ok)
         }
     }
 
     MessageBox {
         id: msgDialog
+        onAccepted: {
+            passwdPushButton.text = ClientWrapper.accountAdaptor.hasPassword() ? qsTr("Change Password") :
+                                                                                 qsTr("Set Password")
+        }
     }
 
     function passwordClicked() {
-        if (ClientWrapper.accountAdaptor.hasPassword()){
+        if (ClientWrapper.accountAdaptor.hasPassword()) {
             passwordDialog.openDialog(PasswordDialog.ChangePassword)
         } else {
             passwordDialog.openDialog(PasswordDialog.SetPassword)
         }
     }
 
-    function delAccountSlot() {
-        deleteAccountDialog.open()
-    }
-
-    DeleteAccountDialog{
+    DeleteAccountDialog {
         id: deleteAccountDialog
-
-        anchors.centerIn: parent.Center
-        x: (parent.width - width) / 2
-        y: (parent.height - height) / 2
 
         onAccepted: {
             ClientWrapper.accountAdaptor.setSelectedConvId()
 
-            if(ClientWrapper.utilsAdaptor.getAccountListSize() > 0){
+            if (ClientWrapper.utilsAdaptor.getAccountListSize() > 0) {
                 navigateToMainView()
             } else {
                 navigateToNewWizardView()
@@ -326,7 +318,7 @@ Rectangle {
         }
     }
 
-    NameRegistrationDialog{
+    NameRegistrationDialog {
         id : nameRegistrationDialog
 
         onAccepted: {
@@ -339,7 +331,7 @@ Rectangle {
         nameRegistrationDialog.openNameRegistrationDialog(registeredName)
     }
 
-    LinkDeviceDialog{
+    LinkDeviceDialog {
         id: linkDeviceDialog
 
         onAccepted: {
@@ -351,15 +343,15 @@ Rectangle {
         linkDeviceDialog.openLinkDeviceDialog()
     }
 
-    RevokeDevicePasswordDialog{
+    RevokeDevicePasswordDialog {
         id: revokeDevicePasswordDialog
 
-        onRevokeDeviceWithPassword:{
+        onRevokeDeviceWithPassword: {
             revokeDeviceWithIDAndPassword(idOfDevice, password)
         }
     }
 
-    MessageBox{
+    MessageBox {
         id: revokeDeviceMessageBox
 
         property string idOfDev: ""
@@ -373,7 +365,7 @@ Rectangle {
             accepted()
         }
 
-        onNo:{
+        onNo: {
             rejected()
         }
 
@@ -388,7 +380,7 @@ Rectangle {
         onRejected: {}
     }
 
-    function removeDeviceSlot(index){
+    function removeDeviceSlot(index) {
         var idOfDevice = deviceItemListModel.data(deviceItemListModel.index(index,0), DeviceItemListModel.DeviceID)
         if(ClientWrapper.accountAdaptor.hasPassword()){
             revokeDevicePasswordDialog.openRevokeDeviceDialog(idOfDevice)
@@ -398,7 +390,7 @@ Rectangle {
         }
     }
 
-    function revokeDeviceWithIDAndPassword(idDevice, password){
+    function revokeDeviceWithIDAndPassword(idDevice, password) {
         ClientWrapper.deviceModel.revokeDevice(idDevice, password)
         updateAndShowDevicesSlot()
     }
@@ -413,7 +405,7 @@ Rectangle {
     }
 
     function updateAndShowDevicesSlot() {
-        if(ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === ""){
+        if (ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === "") {
             linkDevPushButton.visible = true
         }
 
@@ -424,7 +416,7 @@ Rectangle {
         id: deviceItemListModel
     }
 
-    BannedListModel{
+    BannedListModel {
         id: bannedListModel
     }
 
@@ -818,7 +810,7 @@ Rectangle {
                         source: "qrc:/images/icons/round-save_alt-24px.svg"
 
                         onClicked: {
-                            exportAccountSlot()
+                            exportDialog.open()
                         }
                     }
 
@@ -839,7 +831,7 @@ Rectangle {
                         source: "qrc:/images/icons/delete_forever-24px.svg"
 
                         onClicked: {
-                            delAccountSlot()
+                            deleteAccountDialog.show()
                         }
                     }
                 }
@@ -1025,7 +1017,6 @@ Rectangle {
                 /*
                  * Advanced Settigs Button
                  */
-
                 RowLayout {
                     id: rowAdvancedSettingsBtn
                     Layout.fillWidth: true
