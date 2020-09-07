@@ -70,7 +70,7 @@ Rectangle {
 
         mode: JamiFileDialog.SaveFile
 
-        title: qsTr("Export Account Here")
+        title: qsTr("Save File")
         folder: StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop"
 
         nameFilters: [qsTr("Jami archive files") + " (*.gz)", qsTr(

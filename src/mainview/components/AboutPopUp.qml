@@ -1,3 +1,4 @@
+
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -15,24 +16,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.14
+import QtQuick.Window 2.15
+import QtQuick.Dialogs 1.2
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../constant"
 import "../../commoncomponents"
 
 Dialog {
-    id: aboutPopUp
+    id: root
 
-
-    // When dialog is opened, trigger mainViewWindow overlay which is defined in overlay.model (model : true is necessary).
-    modal: true
-
+    //modal: true
     // Content height + margin.
-    contentHeight: aboutPopUpContentRectColumnLayout.height + 5 * 7
+
+    //contentHeight: aboutPopUpContentRectColumnLayout.height + 5 * 8
+    //contentWidth: aboutPopUpContentRectColumnLayout.height + 5 * 8
+
+    visible: false
+    title: qsTr("About")
+
+    width: aboutPopUpContentRect.width
+    height: aboutPopUpContentRect.height
+
+    x: 670
+    y: 700
+
 
     ProjectCreditsScrollView {
         id: projectCreditsScrollView
@@ -46,7 +58,7 @@ Dialog {
         visible: false
     }
 
-    Rectangle {
+    contentItem: Rectangle {
         id: aboutPopUpContentRect
 
         anchors.fill: parent
@@ -58,6 +70,7 @@ Dialog {
                 id: aboutPopUPJamiLogoImage
 
                 Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: aboutPopUpContentRect.width
                 Layout.preferredHeight: 100
 
@@ -73,7 +86,7 @@ Dialog {
                 Layout.preferredWidth: aboutPopUpContentRect.width
                 Layout.preferredHeight: textMetricsjamiVersionText.boundingRect.height
 
-                font.pointSize: JamiTheme.textFontSize - 2
+                font.pointSize: JamiTheme.textFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -96,7 +109,7 @@ Dialog {
                 Layout.topMargin: 5
 
                 wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize - 2
+                font.pointSize: JamiTheme.textFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -119,7 +132,7 @@ Dialog {
                 Layout.topMargin: 5
 
                 wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize - 2
+                font.pointSize: JamiTheme.textFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -135,14 +148,15 @@ Dialog {
                 Layout.alignment: Qt.AlignCenter
 
 
-                // Strangely, hoveredLink works badly when width grows too large
+                /*
+                 * Strangely, hoveredLink works badly when width grows too large
+                 */
                 Layout.preferredWidth: 50
                 Layout.preferredHeight: textMetricsjamiDeclarationHyperText.boundingRect.height
                 Layout.topMargin: 5
                 Layout.bottomMargin: 5
 
-                font.pointSize: JamiTheme.textFontSize - 2
-
+                font.pointSize: JamiTheme.textFontSize
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 
@@ -173,7 +187,7 @@ Dialog {
                 Layout.preferredHeight: textMetricsjamiDeclarationYearText.boundingRect.height
                 Layout.bottomMargin: 5
 
-                font.pointSize: JamiTheme.textFontSize - 2
+                font.pointSize: JamiTheme.textFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -191,13 +205,12 @@ Dialog {
                 id: jamiNoneWarrantyHyperText
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(300,
-                                                aboutPopUpContentRect.width)
+                Layout.preferredWidth: Math.min(300, aboutPopUpContentRect.width)
                 Layout.preferredHeight: textMetricsjamiNoneWarrantyHyperText.boundingRect.height * 2
                 Layout.bottomMargin: 10
 
                 wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize - 3
+                font.pointSize: JamiTheme.tinyFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -223,8 +236,7 @@ Dialog {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPopUpContentRect.width
-                Layout.preferredHeight: 30
-                Layout.bottomMargin: 10
+                Layout.preferredHeight: 32
 
                 RowLayout {
                     id: buttonGroupChangeLogAndCreditsRowLayout
@@ -234,10 +246,18 @@ Dialog {
                     MaterialButton {
                         id: changeLogButton
                         text: qsTr("Changelog")
-                        color: projectCreditsScrollView.visible? JamiTheme.buttonTintedGreyInactive : JamiTheme.buttonTintedGrey
+                        color: projectCreditsScrollView.visible? JamiTheme.buttonTintedGreyInactive :
+                                                                 JamiTheme.buttonTintedGrey
                         hoveredColor: JamiTheme.buttonTintedGreyHovered
                         pressedColor: JamiTheme.buttonTintedGreyPressed
-                        Layout.preferredWidth: 100
+
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                         onClicked: {
                             if (changeLogOrCreditsStack.depth > 1) {
@@ -248,11 +268,18 @@ Dialog {
 
                     MaterialButton {
                         id: creditsButton
-                        text: qsTr("Credit")
-                        color: projectCreditsScrollView.visible? JamiTheme.buttonTintedGrey : JamiTheme.buttonTintedGreyInactive
+                        text: qsTr("Credits")
+                        color: projectCreditsScrollView.visible? JamiTheme.buttonTintedGrey :
+                                                                 JamiTheme.buttonTintedGreyInactive
                         hoveredColor: JamiTheme.buttonTintedGreyHovered
                         pressedColor: JamiTheme.buttonTintedGreyPressed
-                        Layout.preferredWidth: 100
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                        Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Layout.maximumHeight: JamiTheme.preferredFieldHeight
 
                         onClicked: {
                             if (changeLogOrCreditsStack.depth == 1) {
@@ -268,19 +295,36 @@ Dialog {
                 id: changeLogOrCreditsStack
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: aboutPopUpContentRect.width
-                Layout.preferredHeight: 150
-                Layout.bottomMargin: 5
+                Layout.preferredWidth: aboutPopUpContentRect.width - JamiTheme.preferredMarginSize*2
+                Layout.preferredHeight: 200
+                Layout.margins: JamiTheme.preferredMarginSize
 
                 initialItem: changeLogScrollView
 
                 clip: true
             }
-        }
-    }
 
-    background: Rectangle {
-        border.width: 0
-        radius: 10
+            MaterialButton {
+                id: btnClose
+
+                Layout.alignment: Qt.AlignHCenter
+                Layout.minimumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                Layout.maximumWidth: JamiTheme.preferredFieldWidth / 2 - 8
+                Layout.minimumHeight: JamiTheme.preferredFieldHeight
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                Layout.maximumHeight: JamiTheme.preferredFieldHeight
+
+                text: qsTr("Close")
+                color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+                hoveredColor: JamiTheme.buttonTintedBlackHovered
+                pressedColor: JamiTheme.buttonTintedBlackPressed
+                outlined: true
+
+                onClicked: {
+                    close()
+                }
+            }
+        }
     }
 }
