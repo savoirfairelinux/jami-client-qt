@@ -294,13 +294,16 @@ Item {
     // LinkDevicesDialog
     property string pinTimerInfos: qsTr("The PIN and the account password should be entered in your device within 10 minutes.")
     property string close: qsTr("Close")
+    property string enterAccountPassword: qsTr("Enter your account password")
 
     // PasswordDialog
     property string enterPassword: qsTr("Enter the password")
     property string enterCurrentPassword: qsTr("Enter current password")
     property string enterNewPassword: qsTr("Enter new password")
     property string confirmNewPassword: qsTr("Confirm new password")
+    property string change: qsTr("Change")
     property string confirm: qsTr("Confirm")
+    property string exportAccount: qsTr("Export")
 
     // PhotoBoothView
     property string chooseAvatarImage: qsTr("Choose a picture as avatar")
@@ -327,6 +330,9 @@ Item {
 
     // UserProfile
     property string qrCode: qsTr("QR code")
+
+    // Account QR
+    property string accountQr: qsTr("Account QR")
 
     // WelcomePage
     property string shareInvite: qsTr("This is your Jami username.\nCopy and share it with your friends!")
