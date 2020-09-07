@@ -21,6 +21,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.14
 import Qt.labs.platform 1.1
 import net.jami.Models 1.0
+import net.jami.Adapters 1.0
 
 import "../../constant"
 import "../../commoncomponents"
@@ -41,7 +42,7 @@ Rectangle {
         connectBtn.spinnerTriggered = false
         passwordFromBackupEdit.clear()
         errorText = ""
-        fileImportBtnText = JamiString.archive
+        fileImportBtnText = JamiStrings.archive
     }
 
     function errorOccured(errorMessage) {
@@ -62,10 +63,10 @@ Rectangle {
 
         onAccepted: {
             filePath = file
-            if (file.length != 0) {
+            if (file.length !== "") {
                 fileImportBtnText = UtilsAdapter.toFileInfoName(file)
             } else {
-                fileImportBtnText = JamiString.archive
+                fileImportBtnText = JamiStrings.archive
             }
         }
     }
