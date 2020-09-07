@@ -28,7 +28,7 @@ Rectangle {
     property int buttonPreferredSize: 30
     anchors.fill: parent
 
-    function updateWelcomePage(){
+    function updateWelcomePage() {
         jamiShareWithFriendText.visible = accountListModel.data(accountListModel.index(0, 0), 260) === 1
         jamiRegisteredNameRect.visible = accountListModel.data(accountListModel.index(0, 0), 260) === 1
         textMetricsjamiRegisteredNameText.text = accountListModel.data(accountListModel.index(0, 0), 258)
@@ -159,7 +159,7 @@ Rectangle {
         }
 
         onClicked: {
-            aboutPopUpDialog.open()
+            aboutPopUpDialog.show()
         }
     }
 

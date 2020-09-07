@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Albert Babí <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,19 +71,13 @@ Rectangle {
         ClientWrapper.accountModel.setAccountEnabled(ClientWrapper.utilsAdaptor.getCurrAccId(), state)
     }
 
-    function delAccountSlot() {
-        deleteAccountDialog_SIP.open()
-    }
-
     DeleteAccountDialog {
         id: deleteAccountDialog_SIP
-
-        anchors.centerIn: parent.Center
 
         onAccepted: {
             ClientWrapper.accountAdaptor.setSelectedConvId()
 
-            if(ClientWrapper.utilsAdaptor.getAccountListSize() > 0){
+            if (ClientWrapper.utilsAdaptor.getAccountListSize() > 0) {
                 navigateToMainView()
             } else {
                 navigateToNewWizardView()
@@ -384,7 +379,7 @@ Rectangle {
                         source: "qrc:/images/icons/delete_forever-24px.svg"
 
                         onClicked: {
-                            delAccountSlot()
+                            deleteAccountDialog_SIP.openDialog()
                         }
                     }
                 }
@@ -429,7 +424,7 @@ Rectangle {
 
                         onClicked: {
                             advanceSIPSettingsView.visible = !advanceSIPSettingsView.visible
-                            if(advanceSIPSettingsView.visible){
+                            if (advanceSIPSettingsView.visible) {
                                 advanceSIPSettingsView.updateAccountInfoDisplayedAdvanceSIP()
                                 sipAccountScrollView.vScrollBar.position  = rowAdvancedSettingsBtn.y / accountSIPLayout.height
                             } else {

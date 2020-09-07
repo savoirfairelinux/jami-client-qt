@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Albert Babí <albert.babi@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,12 +51,13 @@ Rectangle {
 
         var showLocalAccountConfig = (ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === "")
         passwdPushButton.visible = showLocalAccountConfig
+        setPasswordButtonText()
         btnExportAccount.visible = showLocalAccountConfig
         linkDevPushButton.visible = showLocalAccountConfig
 
         registeredIdNeedsSet = (ClientWrapper.SettingsAdapter.get_CurrentAccountInfo_RegisteredName() === "")
 
-        if(!registeredIdNeedsSet){
+        if (!registeredIdNeedsSet) {
             currentRegisteredID.text = SettingsAdapter.get_CurrentAccountInfo_RegisteredName()
         } else {
             currentRegisteredID.text = ""
@@ -105,8 +107,19 @@ Rectangle {
     }
 
     function unban(index) {
-       SettingsAdapter.unbanContact(index)
+        SettingsAdapter.unbanContact(index)
         updateAndShowBannedContactsSlot()
+    }
+
+    function setPasswordButtonText() {
+        var hasPassword = ClientWrapper.accountAdaptor.hasPassword()
+        passwdPushButton.toolTipText = hasPassword ?
+                    qsTr("Change the current password") :
+                    qsTr("Currently no password, press this button to set a password")
+
+        passwdPushButton.text = hasPassword ?
+                    qsTr("Change Password") :
+                    qsTr("Set Password")
     }
 
     Connections {
@@ -118,11 +131,11 @@ Rectangle {
             updateAndShowBannedContactsSlot()
         }
 
-        function onContactAdded(contactUri){
+        function onContactAdded(contactUri) {
             updateAndShowBannedContactsSlot()
         }
 
-        function onContactRemoved(contactUri){
+        function onContactRemoved(contactUri) {
             updateAndShowBannedContactsSlot()
         }
     }
@@ -151,7 +164,7 @@ Rectangle {
 
     // JamiFileDialog for exporting account
     JamiFileDialog {
-        id: exportBtn_Dialog
+        id: exportDialog
 
         mode: JamiFileDialog.SaveFile
 
@@ -173,28 +186,21 @@ Rectangle {
                     var title = isSuccessful ? qsTr("Success") : qsTr("Error")
                     var iconMode = isSuccessful ? StandardIcon.Information : StandardIcon.Critical
                     var info = isSuccessful ? qsTr("Export Successful") : qsTr("Export Failed")
-                    MessageBox.openWithParameters(title,info, iconMode, StandardButton.Ok)
+                    msgDialog.openWithParameters(title,info, iconMode, StandardButton.Ok)
                 }
             }
         }
     }
 
-    function exportAccountSlot() {
-        exportBtn_Dialog.open()
-    }
-
     PasswordDialog {
         id: passwordDialog
 
-        anchors.centerIn: parent.Center
-
         onDoneSignal: {
-            var success = (code === successCode)
             var title = success ? qsTr("Success") : qsTr("Error")
             var iconMode = success ? StandardIcon.Information : StandardIcon.Critical
 
             var info
-            switch(currentPurpose){
+            switch(currentPurpose) {
             case PasswordDialog.ExportAccount:
                 info = success ? qsTr("Export Successful") : qsTr("Export Failed")
                 break
@@ -206,32 +212,31 @@ Rectangle {
                 passwdPushButton.text = success ? qsTr("Change Password") : qsTr("Set Password")
                 break
             }
-
-            MessageBox.openWithParameters(title,info, iconMode, StandardButton.Ok)
+            msgDialog.openWithParameters(title,info, iconMode, StandardButton.Ok)
         }
     }
 
     function passwordClicked() {
-        if (ClientWrapper.accountAdaptor.hasPassword()){
+        if (ClientWrapper.accountAdaptor.hasPassword()) {
             passwordDialog.openDialog(PasswordDialog.ChangePassword)
         } else {
             passwordDialog.openDialog(PasswordDialog.SetPassword)
         }
     }
 
-    function delAccountSlot() {
-        deleteAccountDialog.open()
+    MessageBox {
+        id: msgDialog
+
+        onAccepted: setPasswordButtonText()
     }
 
     DeleteAccountDialog {
         id: deleteAccountDialog
 
-        anchors.centerIn: parent.Center
-
         onAccepted: {
             ClientWrapper.accountAdaptor.setSelectedConvId()
 
-            if(ClientWrapper.utilsAdaptor.getAccountListSize() > 0){
+            if (ClientWrapper.utilsAdaptor.getAccountListSize() > 0) {
                 navigateToMainView()
             } else {
                 navigateToNewWizardView()
@@ -239,7 +244,7 @@ Rectangle {
         }
     }
 
-    NameRegistrationDialog{
+    NameRegistrationDialog {
         id : nameRegistrationDialog
 
         onAccepted: {
@@ -252,8 +257,6 @@ Rectangle {
     LinkDeviceDialog{
         id: linkDeviceDialog
 
-        anchors.centerIn: parent.Center
-
         onAccepted: {
             updateAndShowDevicesSlot()
         }
@@ -263,17 +266,15 @@ Rectangle {
         linkDeviceDialog.openLinkDeviceDialog()
     }
 
-    RevokeDevicePasswordDialog{
+    RevokeDevicePasswordDialog {
         id: revokeDevicePasswordDialog
 
-        anchors.centerIn: parent.Center
-
-        onRevokeDeviceWithPassword:{
+        onRevokeDeviceWithPassword: {
             revokeDeviceWithIDAndPassword(idOfDevice, password)
         }
     }
 
-    MessageBox{
+    MessageBox {
         id: revokeDeviceMessageBox
 
         property string idOfDev: ""
@@ -294,17 +295,17 @@ Rectangle {
             revokeDevicePasswordDialog.openRevokeDeviceDialog(idOfDevice)
         } else {
             revokeDeviceMessageBox.idOfDev = idOfDevice
-            revokeDeviceMessageBox.open()
+            revokeDeviceMessageBox.show()
         }
     }
 
-    function revokeDeviceWithIDAndPassword(idDevice, password){
+    function revokeDeviceWithIDAndPassword(idDevice, password) {
         ClientWrapper.deviceModel.revokeDevice(idDevice, password)
         updateAndShowDevicesSlot()
     }
 
     function updateAndShowBannedContactsSlot() {
-        if(bannedListWidget.model.rowCount() <= 0){
+        if (bannedListWidget.model.rowCount() <= 0) {
             bannedContactsLayoutWidget.visible = false
             return
         }
@@ -313,7 +314,7 @@ Rectangle {
     }
 
     function updateAndShowDevicesSlot() {
-        if(ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === ""){
+        if (ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === "") {
             linkDevPushButton.visible = true
         }
 
@@ -328,6 +329,7 @@ Rectangle {
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.fillWidth: true
+
             Layout.preferredHeight: 64
 
             HoverableButton {
@@ -615,11 +617,8 @@ Rectangle {
                         pressedColor: JamiTheme.buttonTintedBlackPressed
                         outlined: true
 
-                        toolTipText: ClientWrapper.accountAdaptor.hasPassword() ?
-                                    qsTr("Change the current password") :
-                                    qsTr("Currently no password, press this button to set a password")
-                        text: ClientWrapper.accountAdaptor.hasPassword() ? qsTr("Change Password") :
-                                                                           qsTr("Set Password")
+                        toolTipText: qsTr("Change the current password")
+                        text: qsTr("Change Password")
 
                         source: "qrc:/images/icons/round-edit-24px.svg"
 
@@ -648,7 +647,7 @@ Rectangle {
                         source: "qrc:/images/icons/round-save_alt-24px.svg"
 
                         onClicked: {
-                            exportAccountSlot()
+                            exportDialog.open()
                         }
                     }
 
@@ -669,7 +668,7 @@ Rectangle {
                         source: "qrc:/images/icons/delete_forever-24px.svg"
 
                         onClicked: {
-                            delAccountSlot()
+                            deleteAccountDialog.openDialog()
                         }
                     }
                 }
@@ -701,7 +700,7 @@ Rectangle {
 
                             model: DeviceItemListModel{}
 
-                            delegate: DeviceItemDelegate {
+                            delegate: DeviceItemDelegate{
                                 id: settingsListDelegate
 
                                 implicitWidth: settingsListView.width
@@ -793,7 +792,6 @@ Rectangle {
                             }
                         }
                     }
-
 
                     ColumnLayout {
                         id: bannedContactsListWidget

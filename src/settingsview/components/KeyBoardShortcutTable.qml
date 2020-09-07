@@ -20,49 +20,33 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
+import QtQuick.Window 2.15
+import net.jami.Models 1.0
 
-Dialog {
+Window {
     id: root
-    modal: true
 
-    width: rectangle.width + 24
-    height: rectangle.height + 24
+    visible: false
+    title: qsTr("Shortcuts")
+    modality: Qt.WindowModal
+    flags: Qt.WindowStaysOnTopHint
+
+    width: 800
+    height: 600
+    minimumWidth: 800
+    minimumHeight: 600
 
     Rectangle {
         id: rectangle
 
-        property int minWidth: 1200
-        property int minHeight: 500
+        property int minWidth: root.width
+        property int minHeight: root.height
 
         implicitWidth: minWidth
         implicitHeight: minHeight
-        color: "white"
-        radius: 30
+        anchors.fill: parent
 
-        Rectangle {
-            width: 500
-            height: t_metrics_title.tightBoundingRect.height + 15
-            color: "#e0e0e0"
-            radius: 8
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
-            Text {
-                id : titleText
-                anchors.centerIn: parent
-                anchors.leftMargin: 10
-                font.family: "Arial"
-                font.pointSize: 12
-                font.bold: true
-                text: "Shortcuts"
-                color: "black"
-            }
-            TextMetrics {
-                id:     t_metrics_title
-                font:   titleText.font
-                text:   titleText.text
-            }
-        }
+        color: "white"
 
         ListModel {
             id: keyboardGeneralShortcutsModel
@@ -182,17 +166,19 @@ Dialog {
             Rectangle {
                 id: cellRectWithThreeKeys
 
-                implicitWidth: minWidth /2
+                implicitWidth: minWidth / 2
                 implicitHeight: 50
                 anchors.left: parent.left
-                anchors.leftMargin: 50
+                anchors.leftMargin: 20
                 color: "white"
                 border.color: "white"
+
                 Rectangle {
                     id: containerRectWithThreeKeys
 
                     implicitWidth: parent.width - 10
                     implicitHeight: 50
+
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: parent.verticalCenter
 
@@ -255,7 +241,7 @@ Dialog {
             id: descriptionDelegate
 
             Rectangle {
-                implicitWidth: minWidth /2
+                implicitWidth: root.width / 2
                 implicitHeight: 50
 
                 color: "white"
@@ -266,7 +252,7 @@ Dialog {
                     anchors.left: parent.left
                     anchors.leftMargin: 10
                     font.family: "Arial"
-                    font.pointSize: 10
+                    font.pointSize: JamiTheme.textFontSize
                     text: styleData.value
                 }
             }
@@ -311,6 +297,7 @@ Dialog {
                                     Loader {
                                         property variant modelData: model
                                         sourceComponent: shortcutDelegateWithThreeKeys
+                                        asynchronous: true
                                     }
                                 }
                             }
@@ -331,7 +318,7 @@ Dialog {
                                     height: [t_metrics_general.tightBoundingRect.height + 10, 0][styleData.column % 2]
                                     width: [parent.width, 0][styleData.column % 2]
                                     color: "white"
-                                    radius: 10
+                                    radius: 4
                                     anchors.top: parent.top
                                     anchors.topMargin: 5
                                     Text {
@@ -340,7 +327,7 @@ Dialog {
                                         anchors.left: parent.left
                                         anchors.leftMargin: 10
                                         font.family: "Arial"
-                                        font.pointSize: 12
+                                        font.pointSize: JamiTheme.headerFontSize
                                         text: styleData.column % 2 ? "" : "General"
                                         color: "black"
                                     }
@@ -374,6 +361,7 @@ Dialog {
                                     Loader {
                                         property variant modelData: model
                                         sourceComponent: shortcutDelegateWithThreeKeys
+                                        asynchronous: true
                                     }
                                 }
                             }
@@ -394,7 +382,7 @@ Dialog {
                                     height: [t_metrics_conversations.tightBoundingRect.height + 10, 0][styleData.column % 2]
                                     width: [parent.width, 0][styleData.column % 2]
                                     color: "white"
-                                    radius: 10
+                                    radius: 4
                                     anchors.top: parent.top
                                     anchors.topMargin: 5
                                     Text {
@@ -403,7 +391,7 @@ Dialog {
                                         anchors.left: parent.left
                                         anchors.leftMargin: 10
                                         font.family: "Arial"
-                                        font.pointSize: 12
+                                        font.pointSize: JamiTheme.headerFontSize
                                         text: styleData.column % 2 ? "" : "Conversations"
                                         color: "black"
                                     }
@@ -439,6 +427,7 @@ Dialog {
                                     Loader {
                                         property variant modelData: model
                                         sourceComponent: shortcutDelegateWithThreeKeys
+                                        asynchronous: true
                                     }
                                 }
                             }
@@ -459,7 +448,7 @@ Dialog {
                                     height: [t_metrics_calls.tightBoundingRect.height + 10, 0][styleData.column % 2]
                                     width: [parent.width, 0][styleData.column % 2]
                                     color: "white"
-                                    radius: 10
+                                    radius: 4
                                     anchors.top: parent.top
                                     anchors.topMargin: 5
                                     Text {
@@ -502,6 +491,7 @@ Dialog {
                                     Loader {
                                         property variant modelData: model
                                         sourceComponent: shortcutDelegateWithThreeKeys
+                                        asynchronous: true
                                     }
                                 }
                             }
@@ -522,7 +512,7 @@ Dialog {
                                     height: [t_metrics_settings.tightBoundingRect.height + 10, 0][styleData.column % 2]
                                     width: [parent.width, 0][styleData.column % 2]
                                     color: "white"
-                                    radius: 10
+                                    radius: 4
                                     anchors.top: parent.top
                                     anchors.topMargin: 5
                                     Text {
@@ -573,7 +563,7 @@ Dialog {
                     id: buttonRectOne
                     implicitWidth: tabBar.width / 2
                     implicitHeight: tabBar.height
-                    radius: 10
+                    radius: 4
                     color: pageOne.down ? "#e0e0e0" :"#fdfdfd"
                     MouseArea {
                         anchors.fill: parent
@@ -602,7 +592,7 @@ Dialog {
                     id: buttonRectTwo
                     implicitWidth: tabBar.width / 2
                     implicitHeight: tabBar.height
-                    radius: 10
+                    radius: 4
                     color: pageTwo.down ? "#e0e0e0" :"#fdfdfd"
                     MouseArea {
                         anchors.fill: parent

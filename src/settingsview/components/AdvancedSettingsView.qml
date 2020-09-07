@@ -1012,7 +1012,7 @@ ColumnLayout {
                             }
 
                             onAudioCodecStateChange:{
-                               SettingsAdapter.audioCodecsStateChange(idToSet , isToBeEnabled)
+                                SettingsAdapter.audioCodecsStateChange(idToSet , isToBeEnabled)
                                 updateAudioCodecs()
                             }
                         }
