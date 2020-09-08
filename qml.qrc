@@ -111,5 +111,6 @@
         <file>src/commoncomponents/Scaffold.qml</file>
         <file>src/constant/JamiQmlUtils.qml</file>
         <file>src/wizardview/components/AccountCreationStepIndicator.qml</file>
+        <file>src/constant/ConfProps.qml</file>
     </qresource>
 </RCC>

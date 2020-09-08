@@ -29,6 +29,7 @@ import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
 import "../../commoncomponents"
+import "../../constant"
 
 Rectangle {
     id: accountViewRect
@@ -63,7 +64,7 @@ Rectangle {
         accountEnableCheckBox.checked = SettingsAdapter.get_CurrentAccountInfo_Enabled()
         displayNameLineEdit.text = SettingsAdapter.getCurrentAccount_Profile_Info_Alias()
 
-        var showLocalAccountConfig = (ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === "")
+        var showLocalAccountConfig = (ClientWrapper.SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === "")
         passwdPushButton.visible = showLocalAccountConfig
         btnExportAccount.visible = showLocalAccountConfig
         linkDevPushButton.visible = showLocalAccountConfig
@@ -121,7 +122,7 @@ Rectangle {
     }
 
     function unban(index) {
-       SettingsAdapter.unbanContact(index)
+        SettingsAdapter.unbanContact(index)
         updateAndShowBannedContactsSlot()
     }
 
@@ -163,7 +164,7 @@ Rectangle {
 
     // slots
     function verifyRegisteredNameSlot() {
-        if (ClientWrapper.SettingsAdapter.get_CurrentAccountInfo_RegisteredName() !== "") {
+        if (SettingsAdapter.get_CurrentAccountInfo_RegisteredName() !== "") {
             regNameUi = CurrentAccountSettingsScrollPage.BLANK
         } else {
             registeredName = ClientWrapper.utilsAdaptor.stringSimplifier(
@@ -413,7 +414,7 @@ Rectangle {
     }
 
     function updateAndShowDevicesSlot() {
-        if(ClientWrapper.SettingsAdapter.getAccountConfig_Manageruri() === ""){
+        if(SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === ""){
             linkDevPushButton.visible = true
         }
 
@@ -778,7 +779,7 @@ Rectangle {
                         Layout.preferredWidth: JamiTheme.preferredFieldWidth
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
+                        visible: SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === ""
 
                         color: JamiTheme.buttonTintedBlack
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -805,7 +806,7 @@ Rectangle {
                         Layout.preferredWidth: JamiTheme.preferredFieldWidth
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
+                        visible: SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === ""
 
                         color: JamiTheme.buttonTintedBlack
                         hoveredColor: JamiTheme.buttonTintedBlackHovered

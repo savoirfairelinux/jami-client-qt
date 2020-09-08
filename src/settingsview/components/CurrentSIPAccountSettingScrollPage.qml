@@ -36,10 +36,10 @@ Rectangle {
 
     function updateAccountInfoDisplayed() {
         displaySIPNameLineEdit.text = SettingsAdapter.getCurrentAccount_Profile_Info_Alias()
-        usernameSIP.text = SettingsAdapter.getAccountConfig_Username()
-        hostnameSIP.text = SettingsAdapter.getAccountConfig_Hostname()
-        passSIPlineEdit.text = SettingsAdapter.getAccountConfig_Password()
-        proxySIP.text = SettingsAdapter.getAccountConfig_ProxyServer()
+        usernameSIP.text = SettingsAdapter.getAccountConfig(ConfProps.username)
+        hostnameSIP.text = SettingsAdapter.getAccountConfig(ConfProps.hostname)
+        passSIPlineEdit.text = SettingsAdapter.getAccountConfig(ConfProps.password)
+        proxySIP.text = SettingsAdapter.getAccountConfig(ConfProps.proxy_server)
 
         accountSIPEnableCheckBox.checked = SettingsAdapter.get_CurrentAccountInfo_Enabled()
 
@@ -308,8 +308,7 @@ Rectangle {
                             padding: 8
 
                             onEditingFinished: {
-                               SettingsAdapter.setAccountConfig_Username(
-                                            usernameSIP.text)
+                               SettingsAdapter.setAccountConfig(ConfProps.username, usernameSIP.text)
                             }
                         }
 
@@ -341,8 +340,7 @@ Rectangle {
                             padding: 8
 
                             onEditingFinished: {
-                               SettingsAdapter.setAccountConfig_Hostname(
-                                            hostnameSIP.text)
+                               SettingsAdapter.setAccountConfig(ConfProps.hostname, hostnameSIP.text)
                             }
                         }
 
@@ -374,8 +372,7 @@ Rectangle {
                             padding: 8
 
                             onEditingFinished: {
-                               SettingsAdapter.setAccountConfig_ProxyServer(
-                                            proxySIP.text)
+                               SettingsAdapter.setAccountConfig(ConfProps.proxy_server, proxySIP.text)
                             }
                         }
 
@@ -408,8 +405,7 @@ Rectangle {
                             padding: 8
 
                             onEditingFinished: {
-                               SettingsAdapter.setAccountConfig_Password(
-                                            passSIPlineEdit.text)
+                               SettingsAdapter.setAccountConfig(ConfProps.password, passSIPlineEdit.text)
                             }
                         }
                     }
