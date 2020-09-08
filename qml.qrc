@@ -3,6 +3,10 @@
         <file>src/settingsview/SettingsView.qml</file>
         <file>src/settingsview/components/IconButton.qml</file>
         <file>src/settingsview/components/LeftPanelView.qml</file>
+        <file>src/settingsview/components/SettingsHeader.qml</file>
+        <file>src/settingsview/components/SystemSetting.qml</file>
+        <file>src/settingsview/components/RecordingSetting.qml</file>
+        <file>src/settingsview/components/UpdateSetting.qml</file>
         <file>src/settingsview/components/AvSettingPage.qml</file>
         <file>src/settingsview/components/GeneralSettingsPage.qml</file>
         <file>src/settingsview/components/KeyBoardShortcutTable.qml</file>

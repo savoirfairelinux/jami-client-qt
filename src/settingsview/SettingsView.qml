@@ -78,7 +78,6 @@ Rectangle {
                 } catch(erro){}
 
                 selectedMenu = sel
-                generalSettings.populateGeneralSettings()
                 break
             case SettingsView.Media:
                 selectedMenu = sel
@@ -261,7 +260,6 @@ Rectangle {
      * Back button signal redirection
      */
     Component.onCompleted: {
-        //console.log("***width: ", width, " heigh: ", height)
         currentAccountSettingsScrollWidget.backArrowClicked.connect(settingsBackArrowClicked)
         currentSIPAccountSettingsScrollWidget.backArrowClicked.connect(settingsBackArrowClicked)
         generalSettings.backArrowClicked.connect(settingsBackArrowClicked)
