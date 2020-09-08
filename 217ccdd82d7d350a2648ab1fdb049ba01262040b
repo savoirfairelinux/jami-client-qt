@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29feb6c9_6fc19812",
+        "filename": "src/accountadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-08T12:47:37Z",
+      "side": 1,
+      "message": "if this are emits to the QML layers, is it necessary to use LRCInstance\u0027s signals?",
+      "range": {
+        "startLine": 89,
+        "startChar": 42,
+        "endLine": 89,
+        "endChar": 92
+      },
+      "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abcca4e3_b70870ba",
+        "filename": "src/settingsview/SettingsView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-08T12:47:37Z",
+      "side": 1,
+      "message": "As previously said, maybe this could be a direct connection to the accountadapter in client?",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45b5f5bf_abb3693f",
+        "filename": "src/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-08T12:47:37Z",
+      "side": 1,
+      "message": "Is it on purpose that the button is hidden once the account is created?",
+      "range": {
+        "startLine": 328,
+        "startChar": 4,
+        "endLine": 328,
+        "endChar": 21
+      },
+      "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1931cea4_44b7a0ee",
+        "filename": "src/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-08T12:47:37Z",
+      "side": 1,
+      "message": "Small detail, the arrow does not always send you directly back to welcome page..",
+      "range": {
+        "startLine": 344,
+        "startChar": 8,
+        "endLine": 344,
+        "endChar": 49
+      },
+      "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
