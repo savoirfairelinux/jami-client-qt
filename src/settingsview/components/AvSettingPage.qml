@@ -218,7 +218,7 @@ Rectangle {
         }
 
         try{
-           SettingsAdapter.set_Video_Settings_Rate_And_Resolution(AVModel.getCurrentVideoCaptureDevice(),rate,resolution)
+            SettingsAdapter.set_Video_Settings_Rate_And_Resolution(AVModel.getCurrentVideoCaptureDevice(),rate,resolution)
             updatePreviewRatio(resolution)
         } catch(error){console.warn(error.message)}
     }
