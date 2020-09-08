@@ -33,76 +33,79 @@ import "../../commoncomponents"
 ColumnLayout {
     function updateAccountInfoDisplayedAdvanceSIP(){
         // Call Settings
-        checkBoxAutoAnswerSIP.checked = SettingsAdapter.getAccountConfig_AutoAnswer()
-        checkBoxCustomRingtoneSIP.checked = SettingsAdapter.getAccountConfig_Ringtone_RingtoneEnabled()
+        checkBoxAutoAnswerSIP.checked = SettingsAdapter.getAccountConfig(ConfProps.autoanswer)
+        checkBoxCustomRingtoneSIP.checked = SettingsAdapter.getAccountConfig(ConfProps.ringtone.enabled)
 
         // security
-        btnSIPCACert.enabled = SettingsAdapter.getAccountConfig_TLS_Enable()
-        btnSIPUserCert.enabled = SettingsAdapter.getAccountConfig_TLS_Enable()
-        btnSIPPrivateKey.enabled = SettingsAdapter.getAccountConfig_TLS_Enable()
-        lineEditSIPCertPassword.enabled = SettingsAdapter.getAccountConfig_TLS_Enable()
-        enableSDESToggle.enabled = SettingsAdapter.getAccountConfig_SRTP_Enabled()
-        fallbackRTPToggle.enabled = SettingsAdapter.getAccountConfig_SRTP_Enabled()
+        btnSIPCACert.enabled = SettingsAdapter.getAccountConfig(ConfProps.tls.enabled)
+        btnSIPUserCert.enabled = SettingsAdapter.getAccountConfig(ConfProps.tls.enabled)
+        btnSIPPrivateKey.enabled = SettingsAdapter.getAccountConfig(ConfProps.tls.enabled)
+        lineEditSIPCertPassword.enabled = SettingsAdapter.getAccountConfig(ConfProps.tls.enabled)
+        enableSDESToggle.enabled = SettingsAdapter.getAccountConfig(ConfProps.srtp.enabled)
+        fallbackRTPToggle.enabled = SettingsAdapter.getAccountConfig(ConfProps.srtp.enabled)
 
-        btnSIPCACert.text = ClientWrapper.utilsAdaptor.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_CertificateListFile())
-        btnSIPUserCert.text = ClientWrapper.utilsAdaptor.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_CertificateFile())
-        btnSIPPrivateKey.text = ClientWrapper.utilsAdaptor.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_TLS_PrivateKeyFile())
-        lineEditSIPCertPassword.text = SettingsAdapter.getAccountConfig_TLS_Password()
+        btnSIPCACert.text = ClientWrapper.utilsAdaptor.toFileInfoName(
+            SettingsAdapter.getAccountConfig(ConfProps.tls.ca_list_file))
+        btnSIPUserCert.text = ClientWrapper.utilsAdaptor.toFileInfoName(
+            SettingsAdapter.getAccountConfig(ConfProps.tls.certificate_file))
+        btnSIPPrivateKey.text = ClientWrapper.utilsAdaptor.toFileInfoName(
+            SettingsAdapter.getAccountConfig(ConfProps.tls.private_key_file))
+        lineEditSIPCertPassword.text = SettingsAdapter.getAccountConfig(ConfProps.tls.password)
 
-        encryptMediaStreamsToggle.checked = SettingsAdapter.getAccountConfig_SRTP_Enabled()
-        enableSDESToggle.checked = (ClientWrapper.SettingsAdapter.getAccountConfig_SRTP_KeyExchange()  === Account.KeyExchangeProtocol.SDES)
-        fallbackRTPToggle.checked = SettingsAdapter.getAccountConfig_SRTP_RtpFallback()
-        encryptNegotitationToggle.checked = SettingsAdapter.getAccountConfig_TLS_Enable()
-        verifyIncomingCertificatesServerToogle.checked = SettingsAdapter.getAccountConfig_TLS_VerifyServer()
-        verifyIncomingCertificatesClientToogle.checked = SettingsAdapter.getAccountConfig_TLS_VerifyClient()
-        requireCeritificateForTLSIncomingToggle.checked = SettingsAdapter.getAccountConfig_TLS_RequireClientCertificate()
+        encryptMediaStreamsToggle.checked = SettingsAdapter.getAccountConfig(ConfProps.srtp.enabled)
+        enableSDESToggle.checked = (SettingsAdapter.getAccountConfig(ConfProps.srtp.key_exchange)  === Account.KeyExchangeProtocol.SDES)
+        fallbackRTPToggle.checked = SettingsAdapter.getAccountConfig(ConfProps.srtp.rtp_fallback)
+        encryptNegotitationToggle.checked = SettingsAdapter.getAccountConfig(ConfProps.tls.enabled)
+        verifyIncomingCertificatesServerToogle.checked = SettingsAdapter.getAccountConfig(ConfProps.tls.verify_server)
+        verifyIncomingCertificatesClientToogle.checked = SettingsAdapter.getAccountConfig(ConfProps.tls.verify_client)
+        requireCeritificateForTLSIncomingToggle.checked = SettingsAdapter.getAccountConfig(ConfProps.tls.require_client_certificate)
 
-        var method = SettingsAdapter.getAccountConfig_TLS_Method_inInt()
+        var method = SettingsAdapter.getAccountConfig(ConfProps.tls.method)
         tlsProtocolComboBox.currentIndex = method
 
-        outgoingTLSServerNameLineEdit.text = SettingsAdapter.getAccountConfig_TLS_Servername()
-        negotiationTimeoutSpinBox.value = SettingsAdapter.getAccountConfig_TLS_NegotiationTimeoutSec()
+        outgoingTLSServerNameLineEdit.text = SettingsAdapter.getAccountConfig(ConfProps.tls.server_name)
+        negotiationTimeoutSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.tls.negotiation_timeout_sec)
 
         // Connectivity
-        checkBoxUPnPSIP.checked = SettingsAdapter.getAccountConfig_UpnpEnabled()
-        checkBoxTurnEnableSIP.checked = SettingsAdapter.getAccountConfig_TURN_Enabled()
-        lineEditTurnAddressSIP.text = SettingsAdapter.getAccountConfig_TURN_Server()
-        lineEditTurnUsernameSIP.text = SettingsAdapter.getAccountConfig_TURN_Username()
-        lineEditTurnPsswdSIP.text = SettingsAdapter.getAccountConfig_TURN_Password()
-        lineEditTurnRealmSIP.text = SettingsAdapter.getAccountConfig_TURN_Realm()
-        lineEditTurnAddressSIP.enabled = SettingsAdapter.getAccountConfig_TURN_Enabled()
-        lineEditTurnUsernameSIP.enabled = SettingsAdapter.getAccountConfig_TURN_Enabled()
-        lineEditTurnPsswdSIP.enabled = SettingsAdapter.getAccountConfig_TURN_Enabled()
-        lineEditTurnRealmSIP.enabled = SettingsAdapter.getAccountConfig_TURN_Enabled()
+        checkBoxUPnPSIP.checked = SettingsAdapter.getAccountConfig(ConfProps.upnp_enabled)
+        checkBoxTurnEnableSIP.checked = SettingsAdapter.getAccountConfig(ConfProps.turn.enabled)
+        lineEditTurnAddressSIP.text = SettingsAdapter.getAccountConfig(ConfProps.turn.server)
+        lineEditTurnUsernameSIP.text = SettingsAdapter.getAccountConfig(ConfProps.turn.server_uname)
+        lineEditTurnPsswdSIP.text = SettingsAdapter.getAccountConfig(ConfProps.turn.server_pwd)
+        lineEditTurnRealmSIP.text = SettingsAdapter.getAccountConfig(ConfProps.turn.server_realm)
+        lineEditTurnAddressSIP.enabled = SettingsAdapter.getAccountConfig(ConfProps.turn.enabled)
+        lineEditTurnUsernameSIP.enabled = SettingsAdapter.getAccountConfig(ConfProps.turn.enabled)
+        lineEditTurnPsswdSIP.enabled = SettingsAdapter.getAccountConfig(ConfProps.turn.enabled)
+        lineEditTurnRealmSIP.enabled = SettingsAdapter.getAccountConfig(ConfProps.turn.enabled)
 
-        checkBoxSTUNEnableSIP.checked = SettingsAdapter.getAccountConfig_STUN_Enabled()
-        lineEditSTUNAddressSIP.text = SettingsAdapter.getAccountConfig_STUN_Server()
-        lineEditSTUNAddressSIP.enabled = SettingsAdapter.getAccountConfig_STUN_Enabled()
+        checkBoxSTUNEnableSIP.checked = SettingsAdapter.getAccountConfig(ConfProps.stun.enabled)
+        lineEditSTUNAddressSIP.text = SettingsAdapter.getAccountConfig(ConfProps.stun.server)
+        lineEditSTUNAddressSIP.enabled = SettingsAdapter.getAccountConfig(ConfProps.turn.enabled)
 
-        registrationExpireTimeoutSpinBox.value = SettingsAdapter.getAccountConfig_Registration_Expire()
-        networkInterfaceSpinBox.value = SettingsAdapter.getAccountConfig_Localport()
+        registrationExpireTimeoutSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.registration.expire)
+        networkInterfaceSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.local_port)
 
         // published address
-        checkBoxCustomAddressPort.checked = SettingsAdapter.getAccountConfig_PublishedSameAsLocal()
-        lineEditSIPCustomAddress.text = SettingsAdapter.getAccountConfig_PublishedAddress()
-        customPortSIPSpinBox.value = SettingsAdapter.getAccountConfig_PublishedPort()
+        checkBoxCustomAddressPort.checked = SettingsAdapter.getAccountConfig(ConfProps.published_sameas_local)
+        lineEditSIPCustomAddress.text = SettingsAdapter.getAccountConfig(ConfProps.published_address)
+        customPortSIPSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.published_port)
 
         // codecs
-        videoCheckBoxSIP.checked = SettingsAdapter.getAccountConfig_Video_Enabled()
+        videoCheckBoxSIP.checked = SettingsAdapter.getAccountConfig(ConfProps.video.enabled)
         updateAudioCodecs()
         updateVideoCodecs()
-        btnRingtoneSIP.enabled = SettingsAdapter.getAccountConfig_Ringtone_RingtoneEnabled()
-        btnRingtoneSIP.text = ClientWrapper.utilsAdaptor.toFileInfoName(ClientWrapper.SettingsAdapter.getAccountConfig_Ringtone_RingtonePath())
-        lineEditSTUNAddressSIP.enabled = SettingsAdapter.getAccountConfig_STUN_Enabled()
+        btnRingtoneSIP.enabled = SettingsAdapter.getAccountConfig(ConfProps.ringtone.enabled)
+        btnRingtoneSIP.text = ClientWrapper.utilsAdaptor.toFileInfoName(SettingsAdapter.getAccountConfig(ConfProps.ringtone.path))
+        lineEditSTUNAddressSIP.enabled = SettingsAdapter.getAccountConfig(ConfProps.stun.enabled)
 
         // SDP session negotiation ports
-        audioRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig_Audio_AudioPortMin()
-        audioRTPMaxPortSpinBox.value = SettingsAdapter.getAccountConfig_Audio_AudioPortMax()
-        videoRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig_Video_VideoPortMin()
-        videoRTPMaxPortSpinBox.value = SettingsAdapter.getAccountConfig_Video_VideoPortMax()
+        audioRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.audio.port_min)
+        audioRTPMaxPortSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.audio.port_max)
+        videoRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.audio.port_min)
+        videoRTPMaxPortSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.audio.port_max)
 
         // voicemail
-        lineEditVoiceMailDialCode.text = SettingsAdapter.getAccountConfig_Mailbox()
+        lineEditVoiceMailDialCode.text = SettingsAdapter.getAccountConfig(ConfProps.mailbox)
     }
 
     function updateAudioCodecs(){
@@ -166,27 +169,27 @@ ColumnLayout {
 
     // slots
     function audioRTPMinPortSpinBoxEditFinished(value){
-        if (ClientWrapper.SettingsAdapter.getAccountConfig_Audio_AudioPortMax() < value) {
-            audioRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig_Audio_AudioPortMin()
+        if (SettingsAdapter.getAccountConfig(ConfProps.audio.port_max) < value) {
+            audioRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.audio.port_min)
             return
         }
-       SettingsAdapter.audioRTPMinPortSpinBoxEditFinished(value)
+        SettingsAdapter.setAccountConfig(ConfProps.audio.port_min, value)
     }
 
     function audioRTPMaxPortSpinBoxEditFinished(value){
-        if (value <SettingsAdapter.getAccountConfig_Audio_AudioPortMin()) {
-            audioRTPMaxPortSpinBox.value = SettingsAdapter.getAccountConfig_Audio_AudioPortMax()
+        if (value <SettingsAdapter.getAccountConfig(ConfProps.audio.port_min)) {
+            audioRTPMaxPortSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.audio.port_max)
             return
         }
-       SettingsAdapter.audioRTPMaxPortSpinBoxEditFinished(value)
+        SettingsAdapter.setAccountConfig(ConfProps.audio.port_max, value)
     }
 
     function videoRTPMinPortSpinBoxEditFinished(value){
-        if (ClientWrapper.SettingsAdapter.getAccountConfig_Video_VideoPortMax() < value) {
-            videoRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig_Video_VideoPortMin()
+        if (SettingsAdapter.getAccountConfig(ConfProps.video.port_max) < value) {
+            videoRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig(ConfProps.video.port_min)
             return
         }
-       SettingsAdapter.videoRTPMinPortSpinBoxEditFinished(value)
+        SettingsAdapter.setAccountConfig(ConfProps.video.port_min, value)
     }
 
     function videoRTPMaxPortSpinBoxEditFinished(value){
@@ -194,36 +197,36 @@ ColumnLayout {
             videoRTPMinPortSpinBox.value = SettingsAdapter.getAccountConfig_Video_VideoPortMin()
             return
         }
-       SettingsAdapter.videoRTPMaxPortSpinBoxEditFinished(value)
+        SettingsAdapter.setAccountConfig(ConfProps.video.port_max)
     }
 
 
     function changeRingtonePath(url){
         if(url.length !== 0) {
-           SettingsAdapter.set_RingtonePath(url)
+            SettingsAdapter.setAccountConfig(ConfProps.ringtone.path, url)
             btnRingtoneSIP.text = ClientWrapper.utilsAdaptor.toFileInfoName(url)
-        } else if (ClientWrapper.SettingsAdapter.getAccountConfig_Ringtone_RingtonePath().length === 0){
+        } else if (SettingsAdapter.getAccountConfig(ConfProps.ringtone.path).length === 0){
             btnRingtoneSIP.text = qsTr("Add a custom ringtone")
         }
     }
 
     function changeFileCACert(url){
         if(url.length !== 0) {
-           SettingsAdapter.set_FileCACert(url)
+            SettingsAdapter.setAccountConfig(ConfProps.tls.ca_list_file, url)
             btnSIPCACert.text = ClientWrapper.utilsAdaptor.toFileInfoName(url)
         }
     }
 
     function changeFileUserCert(url){
         if(url.length !== 0) {
-           SettingsAdapter.set_FileUserCert(url)
+            SettingsAdapter.setAccountConfig(ConfProps.tls.certificate_file, url)
             btnSIPUserCert.text = ClientWrapper.utilsAdaptor.toFileInfoName(url)
         }
     }
 
     function changeFilePrivateKey(url){
         if(url.length !== 0) {
-           SettingsAdapter.set_FilePrivateKey(url)
+            SettingsAdapter.setAccountConfig(ConfProps.tls.private_key_file, url)
             btnSIPPrivateKey.text = ClientWrapper.utilsAdaptor.toFileInfoName(url)
         }
     }
@@ -231,7 +234,7 @@ ColumnLayout {
     JamiFileDialog {
         id: ringtonePath_Dialog_SIP
 
-        property string oldPath : SettingsAdapter.getAccountConfig_Ringtone_RingtonePath()
+        property string oldPath : SettingsAdapter.getAccountConfig(ConfProps.ringtone.path)
         property string openPath : oldPath === "" ? (ClientWrapper.utilsAdaptor.getCurrentPath() + "/ringtones/") : (ClientWrapper.utilsAdaptor.toFileAbsolutepath(oldPath))
 
         mode: JamiFileDialog.OpenFile
@@ -258,7 +261,7 @@ ColumnLayout {
     JamiFileDialog {
         id: caCert_Dialog_SIP
 
-        property string oldPath : SettingsAdapter.getAccountConfig_TLS_CertificateListFile()
+        property string oldPath : SettingsAdapter.getAccountConfig(ConfProps.tls.ca_list_file)
         property string openPath : oldPath === "" ? (ClientWrapper.utilsAdaptor.getCurrentPath() + "/ringtones/") : (ClientWrapper.utilsAdaptor.toFileAbsolutepath(oldPath))
 
         mode: JamiFileDialog.OpenFile
@@ -284,7 +287,7 @@ ColumnLayout {
     JamiFileDialog {
         id: userCert_Dialog_SIP
 
-        property string oldPath : SettingsAdapter.getAccountConfig_TLS_CertificateFile()
+        property string oldPath : SettingsAdapter.getAccountConfig(ConfProps.tls.certificate_file)
         property string openPath : oldPath === "" ? (ClientWrapper.utilsAdaptor.getCurrentPath() + "/ringtones/") : (ClientWrapper.utilsAdaptor.toFileAbsolutepath(oldPath))
 
         mode: JamiFileDialog.OpenFile
@@ -310,7 +313,7 @@ ColumnLayout {
     JamiFileDialog {
         id: privateKey_Dialog_SIP
 
-        property string oldPath : SettingsAdapter.getAccountConfig_TLS_PrivateKeyFile()
+        property string oldPath : SettingsAdapter.getAccountConfig(ConfProps.tls.private_key_file)
         property string openPath : oldPath === "" ? (ClientWrapper.utilsAdaptor.getCurrentPath() + "/ringtones/") : (ClientWrapper.utilsAdaptor.toFileAbsolutepath(oldPath))
 
         mode: JamiFileDialog.OpenFile
@@ -369,7 +372,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setAutoAnswerCalls(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.autoanswer, checked)
                 }
             }
 
@@ -387,7 +390,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setEnableRingtone(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.ringtone.enabled, checked)
                     btnRingtoneSIP.enabled = checked
                 }
             }
@@ -488,7 +491,7 @@ ColumnLayout {
                 verticalAlignment: Text.AlignVCenter
 
                 onEditingFinished: {
-                   SettingsAdapter.lineEditVoiceMailDialCodeEditFinished(text)
+                    SettingsAdapter.setAccountConfig(ConfProps.mailbox, text)
                 }
             }
         }
@@ -522,7 +525,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setUseSRTP(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.srtp.enabled)
                     enableSDESToggle.enabled = checked
                     fallbackRTPToggle.enabled = checked
                 }
@@ -560,7 +563,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setUseRTPFallback(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.srtp.rtp_fallback, checked)
                 }
             }
 
@@ -578,7 +581,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setUseTLS(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.tls.enabled, checked)
                     btnSIPCACert.enabled = checked
                     btnSIPUserCert.enabled = checked
                     btnSIPPrivateKey.enabled = checked
@@ -720,7 +723,7 @@ ColumnLayout {
                     echoMode: TextInput.Password
 
                     onEditingFinished: {
-                       SettingsAdapter.lineEditSIPCertPasswordLineEditTextChanged(text)
+                        SettingsAdapter.setAccountConfig(ConfProps.published_address, text)
                     }
                 }
             }
@@ -732,7 +735,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setVerifyCertificatesServer(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.tls.verify_server, checked)
                 }
             }
 
@@ -750,7 +753,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setVerifyCertificatesClient(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.tls.verify_client, checked)
                 }
             }
 
@@ -768,7 +771,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setRequireCertificatesIncomingTLS(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.tls.require_client_certificate, checked)
                 }
             }
 
@@ -824,7 +827,7 @@ ColumnLayout {
 
                     onActivated: {
                         var indexOfOption = tlsProtocolComboBox.model.get(index).secondArg
-                       SettingsAdapter.tlsProtocolComboBoxIndexChanged(parseInt(indexOfOption))
+                        SettingsAdapter.tlsProtocolComboBoxIndexChanged(parseInt(indexOfOption))
                     }
                 }
 
@@ -855,7 +858,7 @@ ColumnLayout {
                     verticalAlignment: Text.AlignVCenter
 
                     onEditingFinished: {
-                       SettingsAdapter.outgoingTLSServerNameLineEditTextChanged(text)
+                        SettingsAdapter.setAccountConfig(ConfProps.tls.server_name, text)
                     }
                 }
 
@@ -891,7 +894,7 @@ ColumnLayout {
                     down.indicator.width: (width < 200) ? (width / 5) : 40
 
                     onValueModified: {
-                       SettingsAdapter.negotiationTimeoutSpinBoxValueChanged(value)
+                        SettingsAdapter.setAccountConfig(ConfProps.tls.negotiation_timeout_sec, value)
                     }
                 }
             }
@@ -960,7 +963,7 @@ ColumnLayout {
                 down.indicator.width: (width < 200) ? (width / 5) : 40
 
                 onValueModified: {
-                   SettingsAdapter.registrationTimeoutSpinBoxValueChanged(value)
+                    SettingsAdapter.setAccountConfig(ConfProps.tls.negotiation_timeout_sec, value)
                 }
             }
 
@@ -999,7 +1002,7 @@ ColumnLayout {
                 down.indicator.width: (width < 200) ? (width / 5) : 40
 
                 onValueModified: {
-                   SettingsAdapter.networkInterfaceSpinBoxValueChanged(value)
+                    SettingsAdapter.setAccountConfig(ConfProps.local_port, value)
                 }
             }
 
@@ -1013,7 +1016,7 @@ ColumnLayout {
                 Layout.columnSpan: 2
 
                 onSwitchToggled: {
-                   SettingsAdapter.setUseUPnP(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.upnp_enabled, checked)
                 }
             }
 
@@ -1027,7 +1030,7 @@ ColumnLayout {
                 Layout.columnSpan: 2
 
                 onSwitchToggled: {
-                   SettingsAdapter.setUseTURN(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.turn.enabled, checked)
                     lineEditTurnAddressSIP.enabled = checked
                     lineEditTurnUsernameSIP.enabled = checked
                     lineEditTurnPsswdSIP.enabled = checked
@@ -1063,7 +1066,7 @@ ColumnLayout {
                 verticalAlignment: Text.AlignVCenter
 
                 onEditingFinished: {
-                   SettingsAdapter.setTURNAddress(text)
+                    SettingsAdapter.setAccountConfig(ConfProps.turn.server, text)
                 }
             }
 
@@ -1095,7 +1098,7 @@ ColumnLayout {
                 verticalAlignment: Text.AlignVCenter
 
                 onEditingFinished: {
-                   SettingsAdapter.setTURNUsername(text)
+                    SettingsAdapter.setAccountConfig(ConfProps.turn.server_uname, text)
                 }
             }
 
@@ -1128,7 +1131,7 @@ ColumnLayout {
                 echoMode: TextInput.Password
 
                 onEditingFinished: {
-                   SettingsAdapter.setTURNPassword(text)
+                    SettingsAdapter.setAccountConfig(ConfProps.turn.server_pwd, text)
                 }
             }
 
@@ -1160,7 +1163,7 @@ ColumnLayout {
                 verticalAlignment: Text.AlignVCenter
 
                 onEditingFinished: {
-                   SettingsAdapter.setTURNRealm(text)
+                    SettingsAdapter.setAccountConfig(ConfProps.turn.server_realm, text)
                 }
             }
 
@@ -1174,7 +1177,7 @@ ColumnLayout {
                 Layout.columnSpan: 2
 
                 onSwitchToggled: {
-                   SettingsAdapter.setUseSTUN(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.stun.enabled, checked)
                     lineEditSTUNAddressSIP.enabled = checked
                 }
             }
@@ -1207,7 +1210,7 @@ ColumnLayout {
                 verticalAlignment: Text.AlignVCenter
 
                 onEditingFinished: {
-                   SettingsAdapter.setSTUNAddress(text)
+                    SettingsAdapter.setAccountConfig(ConfProps.stun.server, text)
                 }
             }
         }
@@ -1250,7 +1253,7 @@ ColumnLayout {
                 Layout.columnSpan: 2
 
                 onSwitchToggled: {
-                   SettingsAdapter.setUseCustomAddressAndPort(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.published_sameas_local, checked)
                     lineEditSIPCustomAddress.enabled = checked
                     customPortSIPSpinBox.enabled = checked
                 }
@@ -1293,7 +1296,7 @@ ColumnLayout {
                 verticalAlignment: Text.AlignVCenter
 
                 onEditingFinished: {
-                   SettingsAdapter.lineEditSIPCustomAddressLineEditTextChanged(text)
+                    SettingsAdapter.setAccountConfig(ConfProps.published_address, text)
                 }
             }
 
@@ -1334,7 +1337,7 @@ ColumnLayout {
                 down.indicator.width: (width < 200) ? (width / 5) : 40
 
                 onValueModified: {
-                   SettingsAdapter.customPortSIPSpinBoxValueChanged(value)
+                    SettingsAdapter.setAccountConfig(ConfProps.published_port, value)
                 }
             }
         }
@@ -1372,7 +1375,7 @@ ColumnLayout {
                 fontPointSize: JamiTheme.settingsFontSize
 
                 onSwitchToggled: {
-                   SettingsAdapter.setVideoState(checked)
+                    SettingsAdapter.setAccountConfig(ConfProps.video.enabled, checked)
                 }
             }
 
@@ -1487,7 +1490,7 @@ ColumnLayout {
                             }
 
                             onVideoCodecStateChange:{
-                               SettingsAdapter.videoCodecsStateChange(idToSet , isToBeEnabled)
+                                SettingsAdapter.videoCodecsStateChange(idToSet , isToBeEnabled)
                                 updateVideoCodecs()
                             }
                         }
@@ -1595,7 +1598,7 @@ ColumnLayout {
                             }
 
                             onAudioCodecStateChange:{
-                               SettingsAdapter.audioCodecsStateChange(idToSet , isToBeEnabled)
+                                SettingsAdapter.audioCodecsStateChange(idToSet , isToBeEnabled)
                                 updateAudioCodecs()
                             }
                         }
