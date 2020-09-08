@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2efe7baa_2ca503d3",
+        "filename": "src/wizardview/components/ConnectToAccountManagerPage.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-08T21:05:13Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "e951c130b369351f18c01aac2e30e572720085d6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c07a613c_4cfbdb12",
+        "filename": "src/wizardview/components/ImportFromDevicePage.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-08T21:05:13Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 33,
+        "startChar": 11,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "e951c130b369351f18c01aac2e30e572720085d6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
