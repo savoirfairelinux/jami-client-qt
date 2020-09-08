@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "variant": "cpp",
+        "regex": "cpp"
+    }
+}
