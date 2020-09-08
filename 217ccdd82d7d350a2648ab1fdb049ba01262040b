@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c2275fd6_282441de",
+        "filename": "src/accountadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-08T14:02:52Z",
+      "side": 1,
+      "message": "I think we can keep it for now,\n\nAndreas\u0027s doing a patch for putting all essentials in Account adapter,\n\nmaybe we can delete this lrc signals then",
+      "parentUuid": "29feb6c9_6fc19812",
+      "range": {
+        "startLine": 89,
+        "startChar": 42,
+        "endLine": 89,
+        "endChar": 92
+      },
+      "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "abcca4e3_b70870ba",
         "filename": "src/settingsview/SettingsView.qml",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-08T12:47:37Z",
       "side": 1,
       "message": "As previously said, maybe this could be a direct connection to the accountadapter in client?",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 5
+      },
+      "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f76bee16_780e871c",
+        "filename": "src/settingsview/SettingsView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-08T14:02:52Z",
+      "side": 1,
+      "message": "Yeah, I think in andreas patch, maybe we will decide to remove this signal from lrc",
+      "parentUuid": "abcca4e3_b70870ba",
       "range": {
         "startLine": 102,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "29e1286d_4786cfaf",
+        "filename": "src/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-08T14:02:52Z",
+      "side": 1,
+      "message": "The current behavior is that the back button will be hidden when there is not account,\n\nand if there are more than one account, this button will be shown,\n\nis it the case for you?\n\nif it is, then it is on purpose",
+      "parentUuid": "45b5f5bf_abb3693f",
+      "range": {
+        "startLine": 328,
+        "startChar": 4,
+        "endLine": 328,
+        "endChar": 21
+      },
+      "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1931cea4_44b7a0ee",
         "filename": "src/wizardview/components/CreateAccountPage.qml",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "613bd484_de30d8e6",
+        "filename": "src/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-08T14:02:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1931cea4_44b7a0ee",
+      "range": {
+        "startLine": 344,
+        "startChar": 8,
+        "endLine": 344,
+        "endChar": 49
+      },
+      "revId": "217ccdd82d7d350a2648ab1fdb049ba01262040b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
