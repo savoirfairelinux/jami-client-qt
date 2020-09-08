@@ -58,7 +58,7 @@ ItemDelegate {
     function toggleEditable() {
         editable = !editable
         if (editable) {
-           SettingsAdapter.setDeviceName(elidedTextDeviceName.text)
+           SettingsAdapter.setAccoutConfig(ConfProps.ring_device_name, elidedTextDeviceName.text)
         }
     }
 
