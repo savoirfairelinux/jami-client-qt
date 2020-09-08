@@ -33,7 +33,7 @@ import "../../commoncomponents"
 ColumnLayout {
     id: root
 
-    property int itensWidth
+    property int itemWidth
 
     function updateAccountInfoDisplayedAdvance() {
         //Call Settings
@@ -296,7 +296,7 @@ ColumnLayout {
                     id: btnRingtone
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     source: "qrc:/images/icons/round-folder-24px.svg"
@@ -356,7 +356,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
 
                 padding: 8
 
@@ -419,7 +419,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
 
@@ -452,7 +452,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
 
@@ -509,7 +509,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     source: "qrc:/images/icons/round-folder-24px.svg"
                     color: JamiTheme.buttonTintedGrey
@@ -536,7 +536,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     source: "qrc:/images/icons/round-folder-24px.svg"
                     color: JamiTheme.buttonTintedGrey
@@ -563,7 +563,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     source: "qrc:/images/icons/round-folder-24px.svg"
                     color: JamiTheme.buttonTintedGrey
@@ -592,7 +592,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
 
@@ -683,7 +683,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
 
@@ -719,7 +719,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
 
@@ -755,7 +755,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
                     layer.mipmap: false
@@ -806,7 +806,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
 

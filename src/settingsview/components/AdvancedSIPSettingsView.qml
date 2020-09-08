@@ -33,7 +33,7 @@ import "../../commoncomponents"
 ColumnLayout {
     id: root
 
-    property int itensWidth
+    property int itemWidth
 
     function updateAccountInfoDisplayedAdvanceSIP(){
         // Call Settings
@@ -354,7 +354,7 @@ ColumnLayout {
                     id: btnRingtoneSIP
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     source: "qrc:/images/icons/round-folder-24px.svg"
@@ -404,7 +404,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
 
                 padding: 8
 
@@ -506,7 +506,7 @@ ColumnLayout {
                     id: btnSIPCACert
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     source: "qrc:/images/icons/round-folder-24px.svg"
@@ -532,7 +532,7 @@ ColumnLayout {
                     id: btnSIPUserCert
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     source: "qrc:/images/icons/round-folder-24px.svg"
@@ -558,7 +558,7 @@ ColumnLayout {
                     id: btnSIPPrivateKey
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     source: "qrc:/images/icons/round-folder-24px.svg"
@@ -586,7 +586,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
 
@@ -656,7 +656,7 @@ ColumnLayout {
                 SettingParaCombobox {
                     id: tlsProtocolComboBox
 
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     font.pointSize: JamiTheme.settingsFontSize
@@ -693,7 +693,7 @@ ColumnLayout {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
 
                     padding: 8
 
@@ -722,7 +722,7 @@ ColumnLayout {
                 SpinBox {
                     id: negotiationTimeoutSpinBox
 
-                    Layout.preferredWidth: itensWidth
+                    Layout.preferredWidth: itemWidth
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     font.pointSize: JamiTheme.settingsFontSize
@@ -777,7 +777,7 @@ ColumnLayout {
             SpinBox {
                 id: registrationExpireTimeoutSpinBox
 
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
                 Layout.alignment: Qt.AlignCenter
 
@@ -811,7 +811,7 @@ ColumnLayout {
             SpinBox {
                 id: networkInterfaceSpinBox
 
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
                 Layout.alignment: Qt.AlignCenter
 
@@ -879,7 +879,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
 
                 padding: 8
 
@@ -911,7 +911,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
 
                 padding: 8
 
@@ -942,7 +942,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
 
                 padding: 8
 
@@ -976,7 +976,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
 
                 padding: 8
 
@@ -1023,7 +1023,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
 
                 padding: 8
 
@@ -1092,7 +1092,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
 
                 padding: 8
 
@@ -1121,7 +1121,7 @@ ColumnLayout {
             SpinBox {
                 id: customPortSIPSpinBox
 
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
                 Layout.alignment: Qt.AlignCenter
 
@@ -1389,7 +1389,7 @@ ColumnLayout {
             SpinBox {
                 id:audioRTPMinPortSpinBox
 
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                 font.pointSize: JamiTheme.settingsFontSize
@@ -1422,7 +1422,7 @@ ColumnLayout {
             SpinBox {
                 id:audioRTPMaxPortSpinBox
 
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                 font.pointSize: JamiTheme.settingsFontSize
@@ -1455,7 +1455,7 @@ ColumnLayout {
             SpinBox {
                 id:videoRTPMinPortSpinBox
 
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                 font.pointSize: JamiTheme.settingsFontSize
@@ -1488,7 +1488,7 @@ ColumnLayout {
             SpinBox {
                 id:videoRTPMaxPortSpinBox
 
-                Layout.preferredWidth: itensWidth
+                Layout.preferredWidth: itemWidth
                 Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                 font.pointSize: JamiTheme.settingsFontSize

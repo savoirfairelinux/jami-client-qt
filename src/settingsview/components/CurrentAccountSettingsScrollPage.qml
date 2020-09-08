@@ -112,7 +112,7 @@ Rectangle {
     Connections {
         id: accountConnections_ContactModel
         target: AccountAdapter.contactModel
-        enabled: accountViewRect.visible
+        enabled: root.visible
 
         function onModelUpdated(uri, needsSorted) {
             updateAndShowBannedContactsSlot()
@@ -130,7 +130,7 @@ Rectangle {
     Connections {
         id: accountConnections_DeviceModel
         target: AccountAdapter.deviceModel
-        enabled: accountViewRect.visible
+        enabled: root.visible
 
         function onDeviceAdded(id) {
             updateAndShowDevicesSlot()
@@ -320,46 +320,27 @@ Rectangle {
         settingsListView.model.reset()
     }
 
+    Connections {
+        target: MessagesAdapter
+
+        function onContactBanned() {
+            bannedContactsLayoutWidget.visible = true
+            bannedContactsListWidget.visible = false
+        }
+    }
+
     ColumnLayout {
         anchors.fill: root
 
-        RowLayout {
-            id: accountPageTitle
+        SettingsHeader {
             Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.fillWidth: true
             Layout.preferredHeight: 64
 
-            HoverableButton {
-                id: backToSettingsMenuButton
+            title: qsTr("Account Settings")
 
-                Layout.preferredWidth: JamiTheme.preferredFieldHeight
-                Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                radius: JamiTheme.preferredFieldHeight
-                source: "qrc:/images/icons/ic_arrow_back_24px.svg"
-                backgroundColor: "white"
-                onExitColor: "white"
-                toolTipText: qsTr("Toggle to display side panel")
-                hoverEnabled: true
-                visible: mainViewWindow.sidePanelHidden
-
-                onClicked: {
-                    backArrowClicked()
-                }
-            }
-
-            Label {
-                Layout.fillWidth: true
-
-                text: qsTr("Account Settings")
-
-                font.pointSize: JamiTheme.titleFontSize
-                font.kerning: true
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-            }
+            onBackArrowClicked: backArrowClicked()
         }
 
         ScrollView {
@@ -430,7 +411,7 @@ Rectangle {
                         }
 
                         onImageCleared: {
-                           SettingsAdapter.clearCurrentAvatar()
+                            SettingsAdapter.clearCurrentAvatar()
                             setAvatar()
                         }
                     }
@@ -757,6 +738,12 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.preferredMarginSize
                     Layout.alignment: Qt.AlignHCenter
 
+                    visible: {
+                        if (bannedListWidget.model.rowCount() <= 0)
+                            return false
+                        return true
+                    }
+
                     RowLayout {
                         Layout.fillWidth: true
 
@@ -805,9 +792,9 @@ Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 160
 
-                            model: BannedListModel{}
+                            model: BannedListModel {}
 
-                            delegate: BannedItemDelegate{
+                            delegate: BannedItemDelegate {
                                 id: bannedListDelegate
 
                                 width: bannedListWidget.width
@@ -890,7 +877,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.preferredMarginSize
                     Layout.bottomMargin: JamiTheme.preferredMarginSize
                     visible: false
-                    itensWidth: preferredColumnWidth
+                    itemWidth: preferredColumnWidth
                 }
             }
         }

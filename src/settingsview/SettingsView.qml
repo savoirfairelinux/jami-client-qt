@@ -30,7 +30,6 @@ import "components"
 Rectangle {
     id: root
 
-
     enum SettingsMenu{
         Account,
         General,
@@ -52,8 +51,8 @@ Rectangle {
             case SettingsView.Account:
                 currentAccountSettingsScrollWidget.connectCurrentAccount()
 
-                avSettings.stopAudioMeter()
-                avSettings.stopPreviewing()
+                settingsViewRect.stopAudioMeter()
+                settingsViewRect.stopPreviewing()
 
                 selectedMenu = sel
 
@@ -73,24 +72,23 @@ Rectangle {
                 break
             case SettingsView.General:
                 try{
-                    avSettings.stopAudioMeter()
-                    avSettings.stopPreviewing()
+                    settingsViewRect.stopAudioMeter()
+                    settingsViewRect.stopPreviewing()
                 } catch(erro) {}
 
                 selectedMenu = sel
-                generalSettings.populateGeneralSettings()
                 break
             case SettingsView.Media:
                 selectedMenu = sel
 
-                avSettings.stopPreviewing()
+                settingsViewRect.stopPreviewing()
                 avSettings.populateAVSettings()
-                avSettings.startAudioMeter()
+                settingsViewRect.startAudioMeter()
                 break
             case SettingsView.Plugin:
                 try{
-                    avSettings.stopAudioMeter()
-                    avSettings.stopPreviewing()
+                    settingsViewRect.stopAudioMeter()
+                    settingsViewRect.stopPreviewing()
                 } catch(erro) {}
 
                 selectedMenu = sel
@@ -110,8 +108,8 @@ Rectangle {
 
     // slots
     function leaveSettingsSlot(showMainView){
-        avSettings.stopAudioMeter()
-        avSettings.stopPreviewing()
+        settingsViewRect.stopAudioMeter()
+        settingsViewRect.stopPreviewing()
         if(!settingsViewRect.isSIP){
             currentAccountSettingsScrollWidget.stopBooth()
         } else {
@@ -150,6 +148,10 @@ Rectangle {
     Rectangle {
         id: settingsViewRect
         anchors.fill: root
+
+        signal stopAudioMeter
+        signal startAudioMeter
+        signal stopPreviewing
 
         property bool isSIP: {
             switch (profileType) {
