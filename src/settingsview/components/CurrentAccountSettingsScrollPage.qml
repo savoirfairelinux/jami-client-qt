@@ -29,6 +29,7 @@ import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
 import "../../commoncomponents"
+import "../../constant"
 
 Rectangle {
     id: root
@@ -48,7 +49,7 @@ Rectangle {
         accountEnableCheckBox.checked = SettingsAdapter.get_CurrentAccountInfo_Enabled()
         displayNameLineEdit.text = SettingsAdapter.getCurrentAccount_Profile_Info_Alias()
 
-        var showLocalAccountConfig = (SettingsAdapter.getAccountConfig_Manageruri() === "")
+        var showLocalAccountConfig = (SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === "")
         passwdPushButton.visible = showLocalAccountConfig
         btnExportAccount.visible = showLocalAccountConfig
         linkDevPushButton.visible = showLocalAccountConfig
@@ -105,7 +106,7 @@ Rectangle {
     }
 
     function unban(index) {
-       SettingsAdapter.unbanContact(index)
+        SettingsAdapter.unbanContact(index)
         updateAndShowBannedContactsSlot()
     }
 
@@ -313,7 +314,7 @@ Rectangle {
     }
 
     function updateAndShowDevicesSlot() {
-        if(SettingsAdapter.getAccountConfig_Manageruri() === ""){
+        if(SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === ""){
             linkDevPushButton.visible = true
         }
 
@@ -608,7 +609,7 @@ Rectangle {
                         Layout.preferredWidth: JamiTheme.preferredFieldWidth
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
+                        visible: SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === ""
 
                         color: JamiTheme.buttonTintedBlack
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -635,7 +636,7 @@ Rectangle {
                         Layout.preferredWidth: JamiTheme.preferredFieldWidth
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
+                        visible: SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === ""
 
                         color: JamiTheme.buttonTintedBlack
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -730,7 +731,7 @@ Rectangle {
                             Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                            visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
+                            visible: SettingsAdapter.getAccountConfig(ConfProps.manager_uri) === ""
 
                             color: JamiTheme.buttonTintedBlack
                             hoveredColor: JamiTheme.buttonTintedBlackHovered
