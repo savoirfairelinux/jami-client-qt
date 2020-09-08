@@ -49,47 +49,39 @@ Rectangle {
         if(selectedMenu === sel && (!recovery)){return}
         switch(sel) {
             case SettingsView.Account:
-                currentAccountSettingsScrollWidget.connectCurrentAccount()
+                pageIdCurrentAccountSettings.connectCurrentAccount()
 
-                avSettings.stopAudioMeter()
-                avSettings.stopPreviewing()
+                settingsViewRect.stopAudioMeter()
+                settingsViewRect.stopPreviewing()
 
                 selectedMenu = sel
 
-                if(!settingsViewRect.isSIP) {
-                    if(currentAccountSettingsScrollWidget.isPhotoBoothOpened())
-                    {
-                        currentAccountSettingsScrollWidget.setAvatar()
-                    }
-
-                    currentAccountSettingsScrollWidget.updateAccountInfoDisplayed()
-                } else {
-                    if(currentSIPAccountSettingsScrollWidget.isPhotoBoothOpened()) {
-                        currentSIPAccountSettingsScrollWidget.setAvatar()
-                    }
-                    currentSIPAccountSettingsScrollWidget.updateAccountInfoDisplayed()
+                if(pageIdCurrentAccountSettings.isPhotoBoothOpened())
+                {
+                    pageIdCurrentAccountSettings.setAvatar()
                 }
+
+                pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
                 break
             case SettingsView.General:
                 try{
-                    avSettings.stopAudioMeter()
-                    avSettings.stopPreviewing()
+                    settingsViewRect.stopAudioMeter()
+                    settingsViewRect.stopPreviewing()
                 } catch(erro) {}
 
                 selectedMenu = sel
-                generalSettings.populateGeneralSettings()
                 break
             case SettingsView.Media:
                 selectedMenu = sel
 
-                avSettings.stopPreviewing()
+                settingsViewRect.stopPreviewing()
                 avSettings.populateAVSettings()
-                avSettings.startAudioMeter()
+                settingsViewRect.startAudioMeter()
                 break
             case SettingsView.Plugin:
                 try{
-                    avSettings.stopAudioMeter()
-                    avSettings.stopPreviewing()
+                    settingsViewRect.stopAudioMeter()
+                    settingsViewRect.stopPreviewing()
                 } catch(erro) {}
 
                 selectedMenu = sel
@@ -109,13 +101,9 @@ Rectangle {
 
     // slots
     function leaveSettingsSlot(showMainView){
-        avSettings.stopAudioMeter()
-        avSettings.stopPreviewing()
-        if(!settingsViewRect.isSIP){
-            currentAccountSettingsScrollWidget.stopBooth()
-        } else {
-            currentSIPAccountSettingsScrollWidget.stopBooth()
-        }
+        settingsViewRect.stopAudioMeter()
+        settingsViewRect.stopPreviewing()
+        pageIdCurrentAccountSettings.stopBooth()
         if (showMainView)
             settingsViewWindowNeedToShowMainViewWindow()
         else
@@ -125,16 +113,15 @@ Rectangle {
     function slotAccountListChanged(){
         var accountList = AccountAdapter.model.getAccountList()
         if(accountList.length === 0)
-                    return
-        currentAccountSettingsScrollWidget.disconnectAccountConnections()
+            return
+        pageIdCurrentAccountSettings.disconnectAccountConnections()
         var device = AVModel.getDefaultDevice()
         if(device.length === 0){
             AVModel.setCurrentVideoCaptureDevice(device)
         }
     }
+
     property int profileType: SettingsAdapter.getCurrentAccount_Profile_Info_Type()
-
-
     property int selectedMenu: SettingsView.Account
     // signal to redirect the page to main view
     signal settingsViewWindowNeedToShowMainViewWindow()
@@ -148,12 +135,16 @@ Rectangle {
         id: settingsViewRect
         anchors.fill: root
 
+        signal stopAudioMeter
+        signal startAudioMeter
+        signal stopPreviewing
+
         property bool isSIP: {
             switch (profileType) {
-            case Profile.Type.SIP:
-                return true;
-            default:
-                return false;
+                case Profile.Type.SIP:
+                    return true;
+                default:
+                    return false;
             }
         }
 
@@ -162,20 +153,15 @@ Rectangle {
 
             anchors.fill: parent
 
-            property int pageIdCurrentAccountSettingsScrollPage: 0
-            property int pageIdCurrentSIPAccountSettingScrollPage: 1
-            property int pageIdGeneralSettingsPage: 2
-            property int pageIdAvSettingPage: 3
-            property int pageIdPluginSettingsPage: 4
+            property int pageIdCurrentAccountSettingsPage: 0
+            property int pageIdGeneralSettingsPage: 1
+            property int pageIdAvSettingPage: 2
+            property int pageIdPluginSettingsPage: 3
 
             currentIndex: {
                 switch(selectedMenu){
                     case SettingsView.Account:
-                        if(settingsViewRect.isSIP){
-                            return pageIdCurrentSIPAccountSettingScrollPage
-                        } else {
-                            return pageIdCurrentAccountSettingsScrollPage
-                        }
+                        return pageIdCurrentAccountSettingsPage
                     case SettingsView.General:
                         return pageIdGeneralSettingsPage
                     case SettingsView.Media:
@@ -186,12 +172,14 @@ Rectangle {
             }
 
             // current account setting scroll page, index 0
-            CurrentAccountSettingsScrollPage {
-                id: currentAccountSettingsScrollWidget
+            CurrentAccountSettings {
+                id: pageIdCurrentAccountSettings
 
                 Layout.fillHeight: true
                 Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
                 anchors.centerIn: parent
+
+                isSIP: settingsViewRect.isSIP
 
                 onNavigateToMainView: {
                     leaveSettingsSlot(true)
@@ -202,24 +190,7 @@ Rectangle {
                 }
             }
 
-            // current SIP account setting scroll page, index 1
-            CurrentSIPAccountSettingScrollPage {
-                id: currentSIPAccountSettingsScrollWidget
-
-                Layout.fillHeight: true
-                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
-                anchors.centerIn: parent
-
-                onNavigateToMainView: {
-                    leaveSettingsSlot(true)
-                }
-
-                onNavigateToNewWizardView: {
-                    leaveSettingsSlot(false)
-                }
-            }
-
-            // general setting page, index 2
+            // general setting page, index 1
             GeneralSettingsPage {
                 id: generalSettings
 
@@ -228,7 +199,7 @@ Rectangle {
                 anchors.centerIn: parent
             }
 
-            // av setting page, index 3
+            // av setting page, index 2
             AvSettingPage {
                 id: avSettings
 
@@ -237,7 +208,7 @@ Rectangle {
                 anchors.centerIn: parent
             }
 
-            // plugin setting page, index 4
+            // plugin setting page, index 3
             PluginSettingsPage {
                 id: pluginSettings
                 Layout.fillHeight: true
@@ -250,8 +221,7 @@ Rectangle {
 
     // Back button signal redirection
     Component.onCompleted: {
-        currentAccountSettingsScrollWidget.backArrowClicked.connect(settingsBackArrowClicked)
-        currentSIPAccountSettingsScrollWidget.backArrowClicked.connect(settingsBackArrowClicked)
+        pageIdCurrentAccountSettings.backArrowClicked.connect(settingsBackArrowClicked)
         generalSettings.backArrowClicked.connect(settingsBackArrowClicked)
         avSettings.backArrowClicked.connect(settingsBackArrowClicked)
         pluginSettings.backArrowClicked.connect(settingsBackArrowClicked)

@@ -660,4 +660,5 @@ MessagesAdapter::blockConversation(const QString &convUid)
     const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
     LRCInstance::getCurrentConversationModel()->removeConversation(currentConvUid, true);
     setInvitation(false);
+    emit contactBanned();
 }
