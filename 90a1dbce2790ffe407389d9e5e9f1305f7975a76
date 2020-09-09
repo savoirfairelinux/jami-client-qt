@@ -46,6 +46,30 @@
       "revId": "90a1dbce2790ffe407389d9e5e9f1305f7975a76",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bd4a449_262afe4d",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T17:57:43Z",
+      "side": 1,
+      "message": "doh haha this is not qml",
+      "parentUuid": "93a41bd5_502a95b6",
+      "range": {
+        "startLine": 76,
+        "startChar": 41,
+        "endLine": 76,
+        "endChar": 43
+      },
+      "revId": "90a1dbce2790ffe407389d9e5e9f1305f7975a76",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
