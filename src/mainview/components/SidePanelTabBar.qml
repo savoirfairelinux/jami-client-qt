@@ -38,6 +38,10 @@ TabBar {
 
     currentIndex: 0
 
+    background: Rectangle {
+        color: JamiTheme.transparentColor
+    }
+
     TabButton {
 
         id: pageOne
@@ -66,15 +70,15 @@ TabBar {
             }
             radius: 30
             color: JamiTheme.notificationRed
-
         }
+
 
         background: Rectangle {
 
             id: buttonRectOne
             width: tabBar.width / 2 + 1
             height: tabBar.height
-            color: JamiTheme.backgroundColor
+            color: JamiTheme.transparentColor
 
             function showConversations() {
                 ConversationsAdapter.setConversationFilter("")
@@ -138,13 +142,13 @@ TabBar {
                     buttonRectOne.showConversations()
                 }
                 onReleased: {
-                    buttonRectOne.color = JamiTheme.backgroundColor
+                    buttonRectOne.color = JamiTheme.transparentColor
                 }
                 onEntered: {
                     buttonRectOne.color = JamiTheme.hoverColor
                 }
                 onExited: {
-                    buttonRectOne.color = JamiTheme.backgroundColor
+                    buttonRectOne.color = JamiTheme.transparentColor
                 }
             }
 
@@ -181,7 +185,7 @@ TabBar {
                 anchors.centerIn: pendingRequestCountRect
 
                 text: pendingRequestCount > 9 ? "···" : pendingRequestCount
-                color: JamiTheme.backgroundColor
+                color: "white"
                 font.pointSize: JamiTheme.textFontSize
             }
             radius: 30
@@ -193,7 +197,7 @@ TabBar {
 
             width: tabBar.width / 2
             height: tabBar.height
-            color: JamiTheme.backgroundColor
+            color: JamiTheme.transparentColor
 
             function showRequests() {
                 ConversationsAdapter.setConversationFilter("PENDING")
@@ -257,13 +261,13 @@ TabBar {
                     buttonRectTwo.showRequests()
                 }
                 onReleased: {
-                    buttonRectTwo.color = JamiTheme.backgroundColor
+                    buttonRectTwo.color = JamiTheme.transparentColor
                 }
                 onEntered: {
                     buttonRectTwo.color = JamiTheme.hoverColor
                 }
                 onExited: {
-                    buttonRectTwo.color = JamiTheme.backgroundColor
+                    buttonRectTwo.color = JamiTheme.transparentColor
                 }
             }
 
