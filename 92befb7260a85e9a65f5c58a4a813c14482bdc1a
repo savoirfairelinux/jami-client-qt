@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ca08838f_c27f172d",
+        "filename": "src/commoncomponents/HoverableRadiusButton.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T17:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2247aae_d79dcac8",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 2,
+        "endChar": 3
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76ac8fb1_d4a5bd9e",
         "filename": "src/commoncomponents/JamiFileDialog.qml",
         "patchSetId": 10
@@ -45,6 +69,30 @@
       "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecdcfcf0_a3aa4f31",
+        "filename": "src/commoncomponents/JamiFileDialog.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T17:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76ac8fb1_d4a5bd9e",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "591f6c64_94c89be9",
+        "filename": "src/settingsview/components/AdvancedSettingsView.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T17:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a66527f_e504a6ff",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2effbc4f_4a42d84f",
         "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
         "patchSetId": 10
@@ -91,6 +163,30 @@
       "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d2acd1bc_91d185f8",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T17:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2effbc4f_4a42d84f",
+      "range": {
+        "startLine": 434,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 16
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "c6ffbdff_9c1850de",
+        "filename": "src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T17:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfc710b8_cc38185a",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b0e731f_d51db123",
         "filename": "src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml",
         "patchSetId": 10
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "ee81abfd_864b5fea",
+        "filename": "src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T17:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b0e731f_d51db123",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 16
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0807e5e6_a34a479f",
         "filename": "src/settingsview/components/LinkDeviceDialog.qml",
         "patchSetId": 10
@@ -160,6 +304,30 @@
       "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6ad86ed_2c1f8c9c",
+        "filename": "src/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T17:26:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0807e5e6_a34a479f",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
