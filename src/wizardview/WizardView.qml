@@ -165,10 +165,18 @@ Rectangle {
         onClicked: forceActiveFocus()
     }
 
+    IntegratedFrame {
+        id: frameHeader
+        anchors.top: root.top
+        width: root.width
+    }
+
     StackLayout {
         id: controlPanelStackView
 
-        anchors.fill: parent
+        anchors.top: frameHeader.bottom
+        width: root.width
+        height: root.height - frameHeader.height
 
         currentIndex: WizardView.WizardViewPageIndex.WELCOMEPAGE
 

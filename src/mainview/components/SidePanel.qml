@@ -26,7 +26,7 @@ import "../../commoncomponents"
 
 Rectangle {
     id: sidePanelRect
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.glassColor
 
     property bool tabBarVisible: true
     property int pendingRequestCount: 0
@@ -128,7 +128,7 @@ Rectangle {
         width: parent.width
         height: 72
 
-        color: "transparent"
+        color: JamiTheme.transparentColor
 
         Image {
             id: searchIcon
@@ -170,7 +170,7 @@ Rectangle {
             }
 
             onExited: {
-                searchStatusRect.color = JamiTheme.backgroundColor
+                searchStatusRect.color = JamiTheme.transparentColor
             }
         }
     }

@@ -112,5 +112,7 @@
         <file>src/wizardview/components/AccountCreationStepIndicator.qml</file>
         <file>src/commoncomponents/SpinnerButton.qml</file>
         <file>src/commoncomponents/UsernameLineEdit.qml</file>
+        <file>src/commoncomponents/IntegratedFrame.qml</file>
+        <file>src/commoncomponents/FrameResizeHandle.qml</file>
     </qresource>
 </RCC>
