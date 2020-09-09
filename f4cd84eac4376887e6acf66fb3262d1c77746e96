@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cb3199dc_5d7b365c",
+        "filename": "src/commoncomponents/HoverableRadiusButton.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T21:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "262835ca_2d72b65e",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 26
+      },
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b17661ce_3a4d3ce9",
         "filename": "src/commoncomponents/PasswordDialog.qml",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd2acaa3_b5ce055b",
+        "filename": "src/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T21:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b17661ce_3a4d3ce9",
+      "range": {
+        "startLine": 144,
+        "startChar": 55,
+        "endLine": 144,
+        "endChar": 58
+      },
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "984292f6_b5da8546",
+        "filename": "src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T21:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3c641da_81d5203e",
+      "range": {
+        "startLine": 181,
+        "startChar": 20,
+        "endLine": 181,
+        "endChar": 35
+      },
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "feae272a_bc505395",
         "filename": "src/settingsview/components/PluginListSettingsView.qml",
         "patchSetId": 11
@@ -85,6 +157,24 @@
       "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07ed15cd_b977c92b",
+        "filename": "src/settingsview/components/PluginListSettingsView.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T21:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feae272a_bc505395",
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -108,6 +198,30 @@
       "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "03b46d94_adad8e28",
+        "filename": "src/wizardview/components/CollapsiblePasswordWidget.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T21:03:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4090da30_9b11fbd5",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 5
+      },
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
