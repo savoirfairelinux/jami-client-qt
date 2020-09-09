@@ -29,6 +29,7 @@ import "components"
 import "../wizardview"
 import "../settingsview"
 import "../settingsview/components"
+import "../commoncomponents"
 
 Window {
     id: mainViewWindow
@@ -174,6 +175,8 @@ Window {
     height: mainViewWindowPreferredHeight
     minimumWidth: minWidth
     minimumHeight: minHeight
+    flags: Qt.Window | Qt.FramelessWindowHint | Qt.WA_TranslucentBackground
+    color: JamiTheme.transparentColor
 
     Connections {
         target: CallAdapter
@@ -276,6 +279,7 @@ Window {
                 SplitView.maximumWidth: (sidePanelOnly ? splitView.width :
                                                       splitView.width - sidePanelViewStackPreferredWidth)
                 SplitView.fillHeight: true
+                color: JamiTheme.transparentColor
 
                 // AccountComboBox is always visible
                 AccountComboBox {
@@ -352,10 +356,9 @@ Window {
                 }
             }
 
-            StackView {
-                id: mainViewStack
 
-                initialItem: welcomePage
+            Rectangle {
+                id: mainViewContent
 
                 SplitView.maximumWidth: sidePanelOnly ?
                                             splitView.width :
@@ -363,7 +366,28 @@ Window {
                 SplitView.minimumWidth: sidePanelViewStackPreferredWidth
                 SplitView.fillHeight: true
 
-                clip: true
+                anchors.top: splitView.top
+
+                IntegratedFrame {
+                    id: integratedFrame
+                    anchors.top: mainViewContent.top
+                    anchors.left: mainViewContent.left
+                    width: mainViewContent.width
+                }
+
+                StackView {
+                    id: mainViewStack
+
+                    anchors.top: integratedFrame.bottom
+                    anchors.topMargin: 1
+                    anchors.left: mainViewContent.left
+
+                    width: mainViewContent.width
+                    height: mainViewContent.height - integratedFrame.height
+
+                    initialItem: welcomePage
+                    clip: true
+                }
             }
         }
 
@@ -607,6 +631,10 @@ Window {
             // Set qml MessageWebView object pointer to c++.
             MessagesAdapter.setQmlObject(this)
         }
+    }
+
+    ResizeBorder {
+        anchors.fill: parent
     }
 
     onWidthChanged: {

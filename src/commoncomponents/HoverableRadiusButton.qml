@@ -29,8 +29,8 @@ import net.jami.Models 1.0
 Button {
     id: root
     property int fontPointSize: 9
-    property int buttonImageHeight: hoverableButtonBackground.height - 10
-    property int buttonImageWidth: hoverableButtonBackground.width - 10
+    property int buttonImageHeight: hoverableButtonBackground.height * 0.7
+    property int buttonImageWidth: hoverableButtonBackground.width * 0.7
     property string backgroundColor: JamiTheme.releaseColor
     property string onPressColor: JamiTheme.pressColor
     property string onReleaseColor: backgroundColor
