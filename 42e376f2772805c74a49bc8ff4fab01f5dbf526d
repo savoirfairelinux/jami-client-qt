@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee3c1007_d4f31ad6",
+        "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T15:35:01Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 50,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 33
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cdd16df5_cf8a5cd5",
+        "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T15:35:01Z",
+      "side": 1,
+      "message": "whitespace + extraline",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 8
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "479e81af_aef9809c",
+        "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T15:35:01Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 20
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5971184a_5974fb51",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T15:35:01Z",
+      "side": 1,
+      "message": "1. this looks like a generic function that could go into the utils namespace using a more generic parameter name like \"path\", however, please make sure this can\u0027t be done with the QFileInfo class first(https://doc.qt.io/qt-5/qfileinfo.html).\n2. if not, it should be defined in the .cpp file",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 5
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55e786b2_e7791cfc",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T15:35:01Z",
+      "side": 1,
+      "message": "put this in utils and take a full path as a parameter, then use QFileInfo::completeSuffix",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
