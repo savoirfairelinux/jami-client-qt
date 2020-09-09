@@ -29,6 +29,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QFileInfo>
+#include <QCursor>
 
 UtilsAdapter::UtilsAdapter(QObject* parent)
     : QObject(parent)
@@ -396,4 +397,16 @@ bool
 UtilsAdapter::isImage(const QString& fileExt)
 {
     return Utils::isImage(fileExt);
+}
+
+int
+UtilsAdapter::getCursorX()
+{
+    return QCursor::pos().x();
+}
+
+int
+UtilsAdapter::getCursorY()
+{
+    return QCursor::pos().y();
 }

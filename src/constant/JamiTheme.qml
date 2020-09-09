@@ -34,6 +34,13 @@ Item {
     property string backgroundColor: lightGrey_
     property string backgroundDarkColor: lightGreyTab_
 
+    // Semi-Transparent color palette
+    property string glassColor: "#bbffffff"
+    property string glassHoverColor: "#aac7c7c7"
+    property string glassPressColor: "#aac0c0c0"
+    property string glassReleaseColor: "#aae0e0e0"
+
+
     property string screenSelectionBorderGreen: "green"
 
     property string acceptButtonGreen: "#4caf50"
@@ -96,6 +103,8 @@ Item {
     property int preferredMarginSize: 16
     property int preferredDialogWidth: 400
     property int preferredDialogHeight: 300
+
+    property int frameHandlesThickness: 6
 
     // Jami theme colors
     function rgb256(r, g, b) {

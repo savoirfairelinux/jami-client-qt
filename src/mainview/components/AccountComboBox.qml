@@ -209,7 +209,7 @@ ComboBox {
 
         implicitWidth: root.width
         implicitHeight: root.height
-        color: JamiTheme.backgroundColor
+        color: JamiTheme.glassColor
     }
 
     MouseArea {
@@ -250,7 +250,7 @@ ComboBox {
             rootItemBackground.color = JamiTheme.hoverColor
         }
         onExited: {
-            rootItemBackground.color = JamiTheme.backgroundColor
+            rootItemBackground.color = JamiTheme.glassColor
         }
         onMouseXChanged: {
 

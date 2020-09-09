@@ -83,6 +83,8 @@ public:
     Q_INVOKABLE QString fileName(const QString& path);
     Q_INVOKABLE QString getExt(const QString& path);
     Q_INVOKABLE bool isImage(const QString& fileExt);
+    Q_INVOKABLE int getCursorX();
+    Q_INVOKABLE int getCursorY();
 
 private:
     QClipboard* clipboard_;
