@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e99d283f_284a7983",
+        "filename": "src/commoncomponents/MaterialButton.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-09T13:44:05Z",
+      "side": 1,
+      "message": "Forgot to mention one thing -\u003e to make text in middle,\n\nwe also need Layout.alignment now since we are in layout",
+      "range": {
+        "startLine": 105,
+        "startChar": 20,
+        "endLine": 105,
+        "endChar": 42
+      },
+      "revId": "46dae45e9fb1cde54ce26854a29109d8496264ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
