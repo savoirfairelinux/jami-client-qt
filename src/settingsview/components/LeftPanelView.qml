@@ -47,7 +47,7 @@ Rectangle {
 
     anchors.fill: parent
     clip: true
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.glassColor
 
     ColumnLayout {
         spacing: 0

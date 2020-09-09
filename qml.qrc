@@ -140,5 +140,7 @@
         <file>src/commoncomponents/BaseDialog.qml</file>
         <file>src/commoncomponents/ModalPopup.qml</file>
         <file>src/commoncomponents/SimpleMessageDialog.qml</file>
+        <file>src/commoncomponents/IntegratedFrame.qml</file>
+        <file>src/commoncomponents/ResizeBorder.qml</file>
     </qresource>
 </RCC>

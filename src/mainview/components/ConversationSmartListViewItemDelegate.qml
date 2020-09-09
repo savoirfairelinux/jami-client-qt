@@ -47,7 +47,7 @@ ItemDelegate {
                     || conversationSmartListView.currentIndex !== index) {
                 itemSmartListBackground.color = Qt.binding(function () {
                     return InCall ? Qt.lighter(JamiTheme.selectionBlue,
-                                               1.8) : JamiTheme.backgroundColor
+                                               1.8) : JamiTheme.transparentColor
                 })
             } else {
                 itemSmartListBackground.color = Qt.binding(function () {
@@ -150,7 +150,7 @@ ItemDelegate {
 
     background: Rectangle {
         id: itemSmartListBackground
-        color: InCall ? Qt.lighter(JamiTheme.selectionBlue, 1.8) : JamiTheme.backgroundColor
+        color: InCall ? Qt.lighter(JamiTheme.selectionBlue, 1.8) : JamiTheme.transparentColor
         implicitWidth: conversationSmartListView.width
         implicitHeight: parent.height
         border.width: 0
@@ -213,7 +213,7 @@ ItemDelegate {
                         || conversationSmartListView.currentIndex === -1) {
                     itemSmartListBackground.color = Qt.binding(function () {
                         return InCall ? Qt.lighter(JamiTheme.selectionBlue,
-                                                   1.8) : JamiTheme.backgroundColor
+                                                   1.8) : JamiTheme.transparentColor
                     })
                 } else {
                     itemSmartListBackground.color = Qt.binding(function () {
