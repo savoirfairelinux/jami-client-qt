@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "262835ca_2d72b65e",
+        "filename": "src/commoncomponents/HoverableRadiusButton.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-09T19:41:33Z",
+      "side": 1,
+      "message": "Do we need to do this?",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 26
+      },
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b17661ce_3a4d3ce9",
+        "filename": "src/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-09T19:41:33Z",
+      "side": 1,
+      "message": "I think we can use header : Rectangle\u0027s height by giving it an id in Line 45",
+      "range": {
+        "startLine": 144,
+        "startChar": 55,
+        "endLine": 144,
+        "endChar": 58
+      },
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3c641da_81d5203e",
+        "filename": "src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-09T19:41:33Z",
+      "side": 1,
+      "message": "Seems like the two buttons in PhotoboothView for sip account are still under the line edit",
+      "range": {
+        "startLine": 181,
+        "startChar": 20,
+        "endLine": 181,
+        "endChar": 35
+      },
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "feae272a_bc505395",
+        "filename": "src/settingsview/components/PluginListSettingsView.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-09T19:41:33Z",
+      "side": 1,
+      "message": "Maybe we can put a spacing in here,\n\nthe Install Plugin button is to close to the Installed plugins title",
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4090da30_9b11fbd5",
+        "filename": "src/wizardview/components/CollapsiblePasswordWidget.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-09T19:41:33Z",
+      "side": 1,
+      "message": "An",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 5
+      },
+      "revId": "f4cd84eac4376887e6acf66fb3262d1c77746e96",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
