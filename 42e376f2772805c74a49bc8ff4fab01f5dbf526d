@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ca9038bd_9b18029d",
+        "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T16:27:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee3c1007_d4f31ad6",
+      "range": {
+        "startLine": 50,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 33
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cdd16df5_cf8a5cd5",
         "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "287b931d_f3f0c218",
+        "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T16:27:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdd16df5_cf8a5cd5",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 8
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e58e734c_e16c77e2",
+        "filename": "src/commoncomponents/PreferenceItemDelegate.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T16:27:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "479e81af_aef9809c",
+      "range": {
+        "startLine": 166,
+        "startChar": 19,
+        "endLine": 166,
+        "endChar": 20
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5971184a_5974fb51",
         "filename": "src/preferenceitemlistmodel.h",
         "patchSetId": 7
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "340c8984_8092b182",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T16:27:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5971184a_5974fb51",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 5
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55e786b2_e7791cfc",
         "filename": "src/preferenceitemlistmodel.h",
         "patchSetId": 7
@@ -114,6 +210,30 @@
       "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "609321e4_96ca6f2e",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-09T16:27:19Z",
+      "side": 1,
+      "message": "Cannot use path as parameter since i get fileExt from mimeTypes. I kept function as is in utils",
+      "parentUuid": "55e786b2_e7791cfc",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
