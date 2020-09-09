@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90cadc6c_7ad90088",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T17:14:19Z",
+      "side": 1,
+      "message": "is this required?",
+      "range": {
+        "startLine": 76,
+        "startChar": 41,
+        "endLine": 76,
+        "endChar": 43
+      },
+      "revId": "90a1dbce2790ffe407389d9e5e9f1305f7975a76",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}

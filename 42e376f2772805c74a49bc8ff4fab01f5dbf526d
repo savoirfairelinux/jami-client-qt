@@ -234,6 +234,30 @@
       "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47a88454_1babcd2c",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T17:14:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "609321e4_96ca6f2e",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 5
+      },
+      "revId": "42e376f2772805c74a49bc8ff4fab01f5dbf526d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
