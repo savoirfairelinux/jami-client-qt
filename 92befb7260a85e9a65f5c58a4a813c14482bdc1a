@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2247aae_d79dcac8",
+        "filename": "src/commoncomponents/HoverableRadiusButton.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T16:44:38Z",
+      "side": 1,
+      "message": "doxygen won\u0027t parse the QML files, so this isn\u0027t required here",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 2,
+        "endChar": 3
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76ac8fb1_d4a5bd9e",
+        "filename": "src/commoncomponents/JamiFileDialog.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T16:44:38Z",
+      "side": 1,
+      "message": "if you pass over QML files and you see these multiline comments, changing it to single line comment style would be beneficial, as we will end up using qmlformat",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a66527f_e504a6ff",
+        "filename": "src/settingsview/components/AdvancedSettingsView.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T16:44:38Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2effbc4f_4a42d84f",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T16:44:38Z",
+      "side": 1,
+      "message": "oops",
+      "range": {
+        "startLine": 434,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 16
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfc710b8_cc38185a",
+        "filename": "src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T16:44:38Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b0e731f_d51db123",
+        "filename": "src/settingsview/components/CurrentSIPAccountSettingScrollPage.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T16:44:38Z",
+      "side": 1,
+      "message": "oops",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 16
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0807e5e6_a34a479f",
+        "filename": "src/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T16:44:38Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "92befb7260a85e9a65f5c58a4a813c14482bdc1a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
