@@ -22,6 +22,30 @@
       "revId": "46dae45e9fb1cde54ce26854a29109d8496264ba",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a56279c2_c35a24e1",
+        "filename": "src/commoncomponents/MaterialButton.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-09T21:20:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e99d283f_284a7983",
+      "range": {
+        "startLine": 105,
+        "startChar": 20,
+        "endLine": 105,
+        "endChar": 42
+      },
+      "revId": "46dae45e9fb1cde54ce26854a29109d8496264ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
