@@ -22,6 +22,30 @@
       "revId": "0ea01e2bcb9d2d0e180aa09f364c3e98caca77ba",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34279f0b_dd38514a",
+        "filename": "src/settingsview/components/AdvancedSIPSettingsView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-10T14:32:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82675865_1329ea46",
+      "range": {
+        "startLine": 36,
+        "startChar": 17,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "0ea01e2bcb9d2d0e180aa09f364c3e98caca77ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
