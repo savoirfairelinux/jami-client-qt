@@ -14,7 +14,9 @@ ColumnLayout {
     property string imgBase64: ""
     property string fileName: ""
 
-    readonly property int preferredWidth: boothWidth + buttonsRowLayout.height
+    readonly property int preferredWidth: boothWidth +
+                                          buttonsRowLayout.height +
+                                          JamiTheme.preferredMarginSize / 2
     property int boothWidth: 224
 
     signal imageAcquired
@@ -49,6 +51,8 @@ ColumnLayout {
             stopBooth()
         }
     }
+
+    spacing: 0
 
     JamiFileDialog{
         id: importFromFileToAvatar_Dialog
