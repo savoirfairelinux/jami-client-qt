@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5dbe7ef3_e8225cbe",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2020-09-10T16:55:21Z",
+      "side": 1,
+      "message": "Should not be in capital letters in the source. Capitalization should be a text styling effect.",
+      "range": {
+        "startLine": 79,
+        "startChar": 24,
+        "endLine": 79,
+        "endChar": 45
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27ed394f_3cd3a32c",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2020-09-10T16:55:21Z",
+      "side": 1,
+      "message": "Should not be in capital letters in the source. Capitalization should be a text styling effect.",
+      "range": {
+        "startLine": 98,
+        "startChar": 24,
+        "endLine": 98,
+        "endChar": 50
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed09dc63_096f4c98",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2020-09-10T16:55:21Z",
+      "side": 1,
+      "message": "Should not be in capital letters in the source. Capitalization should be a text styling effect.",
+      "range": {
+        "startLine": 117,
+        "startChar": 24,
+        "endLine": 117,
+        "endChar": 43
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d39f6dac_29d75683",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2020-09-10T16:55:21Z",
+      "side": 1,
+      "message": "Should not be in capital letters in the source. Capitalization should be a text styling effect.",
+      "range": {
+        "startLine": 136,
+        "startChar": 24,
+        "endLine": 136,
+        "endChar": 37
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd955bfc_b20bbb41",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2020-09-10T16:55:21Z",
+      "side": 1,
+      "message": "Should not be in capital letters in the source. Capitalization should be a text styling effect.",
+      "range": {
+        "startLine": 164,
+        "startChar": 24,
+        "endLine": 164,
+        "endChar": 52
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
