@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6b908eb_1652e86f",
+        "filename": "src/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T20:46:29Z",
+      "side": 1,
+      "message": "This width alone is not enough, since in the image, right margin is 12\n\nrightMargin is needed to be added,\n\nalso to make them have some spacing, can add some extra space",
+      "range": {
+        "startLine": 118,
+        "startChar": 101,
+        "endLine": 118,
+        "endChar": 112
+      },
+      "revId": "95a5250dd2dca9e1c1e24d5ef187803d013113c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "505996a7_74cb21cb",
+        "filename": "src/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T20:46:29Z",
+      "side": 1,
+      "message": "Same in here",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 112
+      },
+      "revId": "95a5250dd2dca9e1c1e24d5ef187803d013113c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c9822198_df9ae0a4",
+        "filename": "src/settingsview/components/AdvancedSettingsView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T20:46:29Z",
+      "side": 1,
+      "message": "I think we need to update the ui here,\n\nlike when clicking toogle switch, Settings\u0027s title, advanvaced options\n\n-\u003e for example,isRendezVous can be an alias of toggle switch\u0027s checked status",
+      "range": {
+        "startLine": 319,
+        "startChar": 12,
+        "endLine": 328,
+        "endChar": 13
+      },
+      "revId": "95a5250dd2dca9e1c1e24d5ef187803d013113c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4eb2a50d_1d6fcc2e",
+        "filename": "src/settingsview/components/CurrentAccountSettingsScrollPage.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T20:46:29Z",
+      "side": 1,
+      "message": "Same as previous file\u0027s comment",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "95a5250dd2dca9e1c1e24d5ef187803d013113c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
