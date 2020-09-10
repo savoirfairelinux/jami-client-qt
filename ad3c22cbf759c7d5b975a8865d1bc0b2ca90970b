@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55b23589_3852cf09",
+        "filename": "src/settingsview/SettingsView.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T19:59:26Z",
+      "side": 1,
+      "message": "Why is this needed?",
+      "range": {
+        "startLine": 129,
+        "startChar": 12,
+        "endLine": 129,
+        "endChar": 45
+      },
+      "revId": "ad3c22cbf759c7d5b975a8865d1bc0b2ca90970b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
