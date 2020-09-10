@@ -27,8 +27,8 @@
 #include <QString>
 #include <QStandardPaths>
 
-const QString defaultDownloadPath =
-        QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+const QString defaultDownloadPath = QStandardPaths::writableLocation(
+    QStandardPaths::DownloadLocation);
 
 #define KEYS \
     X(MinimizeOnClose, true) \
@@ -54,28 +54,29 @@ class Settings : public QObject
 public:
     enum class Key {
 #define X(key, defaultValue) key,
-    KEYS
+        KEYS
 #undef X
-        COUNT__
+            COUNT__
     };
     Q_ENUM(Key)
     static QString toString(Key key)
     {
-        return QMetaEnum::fromType<Key>().valueToKey(
-                    static_cast<int>(key));
+        return QMetaEnum::fromType<Key>().valueToKey(static_cast<int>(key));
     }
     static QVariant defaultValue(const Key key)
     {
         switch (key) {
 #define X(key, defaultValue) \
-        case Key::key: return defaultValue;
-    KEYS
+    case Key::key: \
+        return defaultValue;
+            KEYS
 #undef X
-        default: return {};
+                default : return {};
         }
     }
+
 private:
-     Settings() = delete;
+    Settings() = delete;
 };
 Q_DECLARE_METATYPE(Settings::Key)
 
@@ -88,39 +89,32 @@ class AppSettingsManager : public QObject
 public:
     virtual ~AppSettingsManager() = default;
 
-    static AppSettingsManager &instance()
+    static AppSettingsManager& instance()
     {
-        static AppSettingsManager *instance_ =
-                new AppSettingsManager(nullptr);
+        static AppSettingsManager* instance_ = new AppSettingsManager(nullptr);
         return *instance_;
     }
 
-    static QVariant
-    getValue(const Settings::Key key)
+    static QVariant getValue(const Settings::Key key)
     {
         auto settings = instance().settings_;
-        auto value = settings->value(Settings::toString(key),
-                                     Settings::defaultValue(key));
+        auto value = settings->value(Settings::toString(key), Settings::defaultValue(key));
 
-        if (QString(value.typeName()) == "QString" &&
-            (value.toString() == "false" || value.toString() == "true"))
+        if (QString(value.typeName()) == "QString"
+            && (value.toString() == "false" || value.toString() == "true"))
             return value.toBool();
 
         return value;
     }
 
-    static void
-    setValue(const Settings::Key key, const QVariant& value)
+    static void setValue(const Settings::Key key, const QVariant& value)
     {
         instance().settings_->setValue(Settings::toString(key), value);
     }
 
-    static void
-    initValues()
+    static void initValues()
     {
-        for (int i = 0;
-             i < static_cast<int>(Settings::Key::COUNT__);
-             ++i) {
+        for (int i = 0; i < static_cast<int>(Settings::Key::COUNT__); ++i) {
             auto key = static_cast<Settings::Key>(i);
             if (!instance().settings_->contains(Settings::toString(key)))
                 setValue(key, Settings::defaultValue(key));
@@ -128,8 +122,9 @@ public:
     }
 
 private:
-    explicit AppSettingsManager(QObject *)
-        : settings_(new QSettings("jami.net", "Jami", this)) {}
+    explicit AppSettingsManager(QObject*)
+        : settings_(new QSettings("jami.net", "Jami", this))
+    {}
 
-    QSettings *settings_;
+    QSettings* settings_;
 };
