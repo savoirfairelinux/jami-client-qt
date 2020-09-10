@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "67f918a6_42b542d6",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T18:12:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5dbe7ef3_e8225cbe",
+      "range": {
+        "startLine": 79,
+        "startChar": 24,
+        "endLine": 79,
+        "endChar": 45
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "27ed394f_3cd3a32c",
         "filename": "src/wizardview/components/WelcomePage.qml",
         "patchSetId": 14
@@ -45,6 +69,30 @@
       "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a48d9bf0_0a8ca3f5",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T18:12:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "27ed394f_3cd3a32c",
+      "range": {
+        "startLine": 98,
+        "startChar": 24,
+        "endLine": 98,
+        "endChar": 50
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "83f1408f_99dd866a",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T18:12:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ed09dc63_096f4c98",
+      "range": {
+        "startLine": 117,
+        "startChar": 24,
+        "endLine": 117,
+        "endChar": 43
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d39f6dac_29d75683",
         "filename": "src/wizardview/components/WelcomePage.qml",
         "patchSetId": 14
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "44304cee_297564cc",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T18:12:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d39f6dac_29d75683",
+      "range": {
+        "startLine": 136,
+        "startChar": 24,
+        "endLine": 136,
+        "endChar": 37
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fd955bfc_b20bbb41",
         "filename": "src/wizardview/components/WelcomePage.qml",
         "patchSetId": 14
@@ -114,6 +210,30 @@
       "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc3cc431_e43b6345",
+        "filename": "src/wizardview/components/WelcomePage.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-10T18:12:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fd955bfc_b20bbb41",
+      "range": {
+        "startLine": 164,
+        "startChar": 24,
+        "endLine": 164,
+        "endChar": 52
+      },
+      "revId": "898c291eff8234c7b3982b8779ccd9ed3e9ed161",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
