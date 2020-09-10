@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5e89b48d_cc2a3fb8",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-10T10:59:52Z",
+      "side": 1,
+      "message": "As we have talked recently, it would be nice to re-implement and simplify the logic, for example, showCallStack is called always together with showIncoming/Outgoing. The unification of all signal\u0027s processing in one single module would be nice to avoid all these emits, but for now I think only one can be removed:\n\n- incomingCallNeedToSetupMainView: Needed\n- showIncomingCallPage: to CallStack\n- showCallStack: to MainView\n- callStatusChanged: Definitely not needed, since it was previously used to setup outgoingCallPage\n- updateConversationSmartList: Needed",
+      "parentUuid": "5342afb9_67f59869",
+      "range": {
+        "startLine": 168,
+        "startChar": 14,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "b1afd59246b7b16aaf1bbadd23ec8def4143b2dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "59dc429d_950bd375",
         "filename": "src/calladapter.cpp",
         "patchSetId": 16
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5be5d8c4_62f26121",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-10T10:59:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59dc429d_950bd375",
+      "range": {
+        "startLine": 206,
+        "startChar": 19,
+        "endLine": 206,
+        "endChar": 39
+      },
+      "revId": "b1afd59246b7b16aaf1bbadd23ec8def4143b2dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc722e46_04de6ae1",
         "filename": "src/calladapter.cpp",
         "patchSetId": 16
@@ -68,6 +116,30 @@
       "revId": "b1afd59246b7b16aaf1bbadd23ec8def4143b2dd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f098d75_23c91936",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 16
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-10T10:59:52Z",
+      "side": 1,
+      "message": "From the docs \"Note: Qt::UniqueConnections do not work for lambdas, non-member functions and functors; they only apply to connecting to member functions.\" https://doc.qt.io/qt-5/qobject.html#connect-5",
+      "parentUuid": "cc722e46_04de6ae1",
+      "range": {
+        "startLine": 359,
+        "startChar": 0,
+        "endLine": 361,
+        "endChar": 56
+      },
+      "revId": "b1afd59246b7b16aaf1bbadd23ec8def4143b2dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
