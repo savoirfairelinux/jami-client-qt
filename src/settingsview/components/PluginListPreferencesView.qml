@@ -145,7 +145,7 @@ Rectangle {
                 icon.height: 24
                 icon.width: 24
 
-                text: qsTr("  Reset  ")
+                text: JamiStrings.reset
                 fontPointSize: JamiTheme.settingsFontSize
                 font.kerning: true
 
