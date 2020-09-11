@@ -303,6 +303,7 @@ Window {
 
             Rectangle {
                 id: mainViewSidePanelRect
+
                 SplitView.minimumWidth: sidePanelViewStackPreferredWidth
                 SplitView.maximumWidth: (sidePanelHidden ? splitView.width :
                                                            splitView.width - sidePanelViewStackPreferredWidth)
@@ -403,6 +404,7 @@ Window {
 
     LeftPanelView {
         id: leftPanelSettingsView
+
         visible: false
         contentViewportWidth: mainViewSidePanelRect.width
         contentViewPortHeight: mainViewSidePanelRect.height
@@ -519,16 +521,12 @@ Window {
         onAccountComboBoxNeedToShowWelcomePage: {
             // If the item argument is specified, all items down to (but not including) item will be popped.
             if (!inSettingsView && !currentAccountIsCalling()) {
-                welcomePage.updateWelcomePage()
-                qrDialog.updateQrDialog()
                 showWelcomeView()
             }
         }
 
         onConversationSmartListViewNeedToShowWelcomePage: {
             showWelcomeView()
-            welcomePage.updateWelcomePage()
-            qrDialog.updateQrDialog()
         }
 
         onNeedToUpdateConversationForAddedContact: {
@@ -604,7 +602,7 @@ Window {
 
         Component.onCompleted: {
 
-            sidePanelViewStack.SplitView.maximumWidth = Qt.binding(function() {
+            mainViewSidePanelRect.SplitView.maximumWidth = Qt.binding(function() {
                 return (sidePanelHidden ? splitView.width :
                                           splitView.width - sidePanelViewStackPreferredWidth)
             })
