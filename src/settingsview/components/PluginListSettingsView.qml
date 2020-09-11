@@ -70,7 +70,7 @@ Rectangle {
         id: pluginPathDialog
 
         mode: JamiFileDialog.OpenFile
-        title: qsTr("Select A Plugin to Install")
+        title: JamiStrings.selectPluginInstall
         folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation)
 
         nameFilters: [qsTr("Plugin Files") + " (*.jpl)", qsTr(
@@ -115,7 +115,7 @@ Rectangle {
 
             source: "qrc:/images/icons/round-add-24px.svg"
 
-            text: qsTr("Install Plugin")
+            text: JamiStrings.installPlugin
 
             onClicked: {
               openPluginFileSlot()
