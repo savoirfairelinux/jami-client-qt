@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8cb55693_95151f26",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-11T19:34:56Z",
+      "side": 1,
+      "message": "Yeah, make sense I think best name, best id are better to be in adapater property",
+      "parentUuid": "e0ca4550_dc159918",
+      "range": {
+        "startLine": 200,
+        "startChar": 35,
+        "endLine": 200,
+        "endChar": 61
+      },
+      "revId": "f6e93cb8bce9b274ada04439f98499e051b5517f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "caadcad0_6bb5a7ed",
         "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "f6e93cb8bce9b274ada04439f98499e051b5517f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60c69120_796ffc69",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-11T19:34:56Z",
+      "side": 1,
+      "message": "Right, I think this table is also needed to be redesigned",
+      "parentUuid": "caadcad0_6bb5a7ed",
+      "range": {
+        "startLine": 596,
+        "startChar": 22,
+        "endLine": 596,
+        "endChar": 31
+      },
+      "revId": "f6e93cb8bce9b274ada04439f98499e051b5517f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
