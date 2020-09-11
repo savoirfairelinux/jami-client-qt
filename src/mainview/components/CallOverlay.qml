@@ -170,7 +170,11 @@ Rectangle {
                 TextMetrics {
                     id: textMetricsjamiBestNameText
                     font: jamiBestNameText.font
-                    text: videoCallPageRect.bestName
+                    text: {
+                        if (videoCallPageRect)
+                            return videoCallPageRect.bestName
+                        return ""
+                    }
                     elideWidth: overlayUpperPartRect.width / 3
                     elide: Qt.ElideRight
                 }
