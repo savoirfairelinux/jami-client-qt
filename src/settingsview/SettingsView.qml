@@ -191,7 +191,7 @@ Rectangle {
 
                 Layout.fillHeight: true
                 Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
-                anchors.centerIn: parent
+                Layout.alignment: Qt.AlignCenter
 
                 onNavigateToMainView: {
                     leaveSettingsSlot(true)
@@ -208,7 +208,7 @@ Rectangle {
 
                 Layout.fillHeight: true
                 Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
-                anchors.centerIn: parent
+                Layout.alignment: Qt.AlignCenter
 
                 onNavigateToMainView: {
                     leaveSettingsSlot(true)
@@ -225,7 +225,7 @@ Rectangle {
 
                 Layout.fillHeight: true
                 Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
-                anchors.centerIn: parent
+                Layout.alignment: Qt.AlignCenter
             }
 
             // av setting page, index 3
@@ -234,7 +234,7 @@ Rectangle {
 
                 Layout.fillHeight: true
                 Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
-                anchors.centerIn: parent
+                Layout.alignment: Qt.AlignCenter
             }
 
             // plugin setting page, index 4
@@ -242,7 +242,7 @@ Rectangle {
                 id: pluginSettings
                 Layout.fillHeight: true
                 Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
-                anchors.centerIn: parent
+                Layout.alignment: Qt.AlignCenter
             }
         }
     }

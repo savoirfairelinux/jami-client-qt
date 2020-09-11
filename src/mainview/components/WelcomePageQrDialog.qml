@@ -32,6 +32,14 @@ Dialog {
     //Content height + margin.
     contentHeight: userQrImage.height + 30
 
+    Connections {
+        target: AccountAdapter
+
+        function onCurrentAccountIdChanged() {
+            userQrImage.source = "image://qrImage/account_" + AccountAdapter.currentAccountId
+        }
+    }
+
     Image {
         id: userQrImage
 
@@ -42,7 +50,11 @@ Dialog {
         smooth: false
 
         fillMode: Image.PreserveAspectFit
-        source: "image://qrImage/account_" + AccountAdapter.currentAccountId
+        source: {
+            if (AccountAdapter.currentAccountId)
+                return "image://qrImage/account_" + AccountAdapter.currentAccountId
+            return ""
+        }
     }
 
     background: Rectangle {
