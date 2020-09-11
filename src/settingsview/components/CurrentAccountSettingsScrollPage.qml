@@ -22,7 +22,6 @@ import QtQuick.Controls 2.14
 import QtQuick.Controls.Universal 2.12
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.14
-import QtQuick.Controls.Styles 1.4
 import QtQuick.Dialogs 1.3
 import Qt.labs.platform 1.1
 import net.jami.Models 1.0
@@ -114,7 +113,7 @@ Rectangle {
     Connections {
         id: accountConnections_ContactModel
         target: AccountAdapter.contactModel
-        enabled: accountViewRect.visible
+        enabled: visible
 
         function onModelUpdated(uri, needsSorted) {
             updateAndShowBannedContactsSlot()
@@ -132,7 +131,7 @@ Rectangle {
     Connections {
         id: accountConnections_DeviceModel
         target: AccountAdapter.deviceModel
-        enabled: accountViewRect.visible
+        enabled: visible
 
         function onDeviceAdded(id) {
             updateAndShowDevicesSlot()
@@ -474,15 +473,17 @@ Rectangle {
                         fontSize: JamiTheme.headerFontSize
                     }
 
-                    RowLayout {
+                    Row {
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
                         Layout.leftMargin: JamiTheme.preferredMarginSize
 
+                        spacing: width - idLabel.width - currentRingID.width
+
                         Label {
                             id: idLabel
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
+
+                            anchors.verticalCenter: parent.verticalCenter
 
                             text: qsTr("Id")
                             font.pointSize: JamiTheme.settingsFontSize
@@ -498,13 +499,15 @@ Rectangle {
                             property var backgroundColor: "transparent"
                             property var borderColor: "transparent"
 
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            height: JamiTheme.preferredFieldHeight
 
                             font.pointSize: JamiTheme.textFontSize
                             font.kerning: true
                             font.bold: true
 
+                            padding: 0
                             readOnly: true
                             selectByMouse: true
 
@@ -524,35 +527,46 @@ Rectangle {
                             TextMetrics {
                                 id: currentRingIDText
 
+                                font: currentRingID.font
                                 elide: Text.ElideRight
-                                elideWidth: root.width - idLabel.width -JamiTheme.preferredMarginSize*4
+                                elideWidth: root.width - idLabel.width - JamiTheme.preferredMarginSize * 4
 
                                 text: SettingsAdapter.getCurrentAccount_Profile_Info_Uri()
                             }
                         }
                     }
 
-                    RowLayout {
+                    Row {
                         Layout.fillWidth: true
                         Layout.leftMargin: JamiTheme.preferredMarginSize
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        ElidedTextLabel {
-                            id: lblRegisteredName
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: preferredColumnWidth
+                        spacing: width - lblRegisteredName.width - currentRegisteredID.width
 
-                            eText: qsTr("Registered name")
-                            fontSize: JamiTheme.settingsFontSize
-                            maxWidth: width
+                        Label {
+                            id: lblRegisteredName
+
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            text: qsTr("Registered name")
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
                         }
 
                         UsernameLineEdit {
                             id: currentRegisteredID
 
-                            Layout.alignment: Qt.AlignRight
-                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                            Layout.fillWidth: true
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            height: JamiTheme.preferredFieldHeight
+                            width: {
+                                var maximumWidth = parent.width - lblRegisteredName.width
+                                        - JamiTheme.preferredMarginSize
+                                return fieldLayoutWidth < maximumWidth ? fieldLayoutWidth : maximumWidth
+                            }
 
                             placeholderText: registeredIdNeedsSet ?
                                                  qsTr("Type here to register a username") : ""
@@ -847,7 +861,7 @@ Rectangle {
                         Layout.fillWidth: true
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                        eText: accountViewRect.isRendezVous ?  qsTr("Advanced rendez-vous settings") : qsTr("Advanced account settings")
+                        eText: isRendezVous ?  qsTr("Advanced rendez-vous settings") : qsTr("Advanced account settings")
 
                         fontSize: JamiTheme.headerFontSize
                         maxWidth: root.width - advancedAccountSettingsPButton.width
