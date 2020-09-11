@@ -29,6 +29,7 @@ import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
 import "../../commoncomponents"
+import "../../constant"
 
 Rectangle {
     id: root
@@ -133,7 +134,7 @@ Rectangle {
 
         mode: JamiFileDialog.SaveFile
 
-        title: qsTr("Export Account Here")
+        title: JamiStrings.backupAccountHere
         folder: StandardPaths.writableLocation(StandardPaths.DesktopLocation)
 
         nameFilters: [qsTr("Jami archive files") + " (*.gz)", qsTr(
@@ -168,7 +169,7 @@ Rectangle {
 
             title: qsTr("Account Settings")
 
-            onBackArrowClicked: backArrowClicked()
+            onBackArrowClicked: root.backArrowClicked()
         }
 
         ScrollView {

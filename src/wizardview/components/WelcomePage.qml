@@ -247,7 +247,7 @@ Rectangle {
         onExitColor: root.color
 
         source: "qrc:/images/icons/ic_arrow_back_24px.svg"
-        toolTipText: qsTr("Back")
+        toolTipText: JamiStrings.back
 
         onClicked: leavePage()
     }

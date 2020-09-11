@@ -46,7 +46,7 @@ Rectangle {
 
             title: qsTr("General")
 
-            onBackArrowClicked: backArrowClicked()
+            onBackArrowClicked: root.backArrowClicked()
         }
 
         ScrollView {

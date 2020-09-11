@@ -51,7 +51,7 @@ Rectangle {
 
             title: qsTr("Plugin")
 
-            onBackArrowClicked: backArrowClicked()
+            onBackArrowClicked: root.backArrowClicked()
         }
 
         ScrollView {

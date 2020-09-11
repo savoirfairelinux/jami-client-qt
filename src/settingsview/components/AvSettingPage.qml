@@ -56,9 +56,9 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 64
 
-            title: qsTr("Audio / Video")
+            title: JamiStrings.avSettingsTitle
 
-            onBackArrowClicked: backArrowClicked()
+            onBackArrowClicked: root.backArrowClicked()
         }
 
         ScrollView {
