@@ -270,6 +270,7 @@ Window {
 
             Rectangle {
                 id: mainViewSidePanelRect
+
                 SplitView.minimumWidth: sidePanelViewStackPreferredWidth
                 SplitView.maximumWidth: (sidePanelHidden ? splitView.width :
                                                       splitView.width - sidePanelViewStackPreferredWidth)
@@ -368,6 +369,7 @@ Window {
 
     LeftPanelView {
         id: leftPanelSettingsView
+
         visible: false
         contentViewportWidth: mainViewSidePanelRect.width
         contentViewPortHeight: mainViewSidePanelRect.height
@@ -571,12 +573,6 @@ Window {
         }
 
         Component.onCompleted: {
-
-            sidePanelViewStack.SplitView.maximumWidth = Qt.binding(function() {
-                return (hiddenView ? splitView.width :
-                                     splitView.width - sidePanelViewStackPreferedWidth)
-            })
-
             recordBox.x = Qt.binding(function() {
                 var i = ((mainViewStack.visible && mainViewStack.width > 1000) ?
                              Math.round((mainViewStack.width-1000)*0.5) :

@@ -556,8 +556,11 @@ Dialog {
             currentIndex: 0
             TabButton {
                 id: pageOne
+
                 width: tabBar.width / 2
-                text: qsTr("1")
+                height: 30
+
+                text: "1"
                 down: true
                 // customize tab button
                 contentItem: Text {
@@ -571,8 +574,7 @@ Dialog {
                 // customize tab button
                 background: Rectangle {
                     id: buttonRectOne
-                    implicitWidth: tabBar.width / 2
-                    implicitHeight: tabBar.height
+
                     radius: 10
                     color: pageOne.down ? "#e0e0e0" :"#fdfdfd"
                     MouseArea {
@@ -587,8 +589,11 @@ Dialog {
             }
             TabButton {
                 id: pageTwo
-                text: qsTr("2")
+
                 width: tabBar.width / 2
+                height: 30
+
+                text: "2"
                 contentItem: Text {
                     text: pageTwo.text
                     font: pageTwo.font
@@ -600,8 +605,7 @@ Dialog {
 
                 background: Rectangle {
                     id: buttonRectTwo
-                    implicitWidth: tabBar.width / 2
-                    implicitHeight: tabBar.height
+
                     radius: 10
                     color: pageTwo.down ? "#e0e0e0" :"#fdfdfd"
                     MouseArea {
