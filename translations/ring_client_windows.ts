@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1">
+
 <context>
-    <name>AboutPopUp</name>
+    <name>JamiStrings</name>
     <message>
-        <location filename="../src/mainview/components/AboutPopUp.qml" line="90"/>
-        <source>version</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/constant/JamiStrings.qml" line="26"/>
+        <source>Version</source>
+        <translation type = "unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainview/components/AboutPopUp.qml" line="113"/>
+    <location filename="../src/constant/JamiStrings.qml" line="27"/>
         <source>Together</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainview/components/AboutPopUp.qml" line="135"/>
-        <source>The Qt client for Jami.
-Jami is a secured and distributed communication software.</source>
+    <location filename="../src/constant/JamiStrings.qml" line="28"/>
+        <source>Jami is a free software for universal communication which respects the freedom and privacy of its users.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainview/components/AboutPopUp.qml" line="246"/>
+    <location filename="../src/constant/JamiStrings.qml" line="29"/>
         <source>Changelog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mainview/components/AboutPopUp.qml" line="261"/>
-        <source>Credit</source>
+    <location filename="../src/constant/JamiStrings.qml" line="30"/>
+        <source>Credits</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
