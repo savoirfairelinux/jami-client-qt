@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "62eb8d53_769e3161",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-11T19:57:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8cb55693_95151f26",
+      "range": {
+        "startLine": 200,
+        "startChar": 35,
+        "endLine": 200,
+        "endChar": 61
+      },
+      "revId": "f6e93cb8bce9b274ada04439f98499e051b5517f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "caadcad0_6bb5a7ed",
         "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
         "patchSetId": 4
