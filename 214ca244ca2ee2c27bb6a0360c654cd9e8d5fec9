@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c7266637_364a1ca6",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-11T14:42:11Z",
+      "side": 1,
+      "message": "this should not be necessary",
+      "range": {
+        "startLine": 356,
+        "startChar": 4,
+        "endLine": 356,
+        "endChar": 40
+      },
+      "revId": "214ca244ca2ee2c27bb6a0360c654cd9e8d5fec9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbda8be1_833df83c",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-11T14:42:11Z",
+      "side": 1,
+      "message": "It won\u0027t make a functional difference in this case, but callbacks should be bound prior to calling methods that may invoke them. In this case Utils::showSystemNotification should be called afterwards.",
+      "range": {
+        "startLine": 360,
+        "startChar": 4,
+        "endLine": 372,
+        "endChar": 7
+      },
+      "revId": "214ca244ca2ee2c27bb6a0360c654cd9e8d5fec9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33d9182f_59036f4d",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-11T14:42:11Z",
+      "side": 1,
+      "message": "I don\u0027t think this should happen at all. One terminated incoming call will invalidate the onClicked for another newer call.",
+      "range": {
+        "startLine": 393,
+        "startChar": 13,
+        "endLine": 393,
+        "endChar": 30
+      },
+      "revId": "214ca244ca2ee2c27bb6a0360c654cd9e8d5fec9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b4bf44e_7ec569a1",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-11T14:42:11Z",
+      "side": 1,
+      "message": "This must be removed as it will hide the systray icon and not the notification. The notification will be closed once clicked. Incoming call termination should ideally close the notifaction as the state change callback does below, but using a different mechanic that won\u0027t hide the systray icon.",
+      "range": {
+        "startLine": 397,
+        "startChar": 4,
+        "endLine": 397,
+        "endChar": 40
+      },
+      "revId": "214ca244ca2ee2c27bb6a0360c654cd9e8d5fec9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "603d40d6_1bc8c2ae",
+        "filename": "src/globalsystemtray.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-11T14:42:11Z",
+      "side": 1,
+      "message": "As there is only ever one valid notification using this qt api, I don\u0027t see why this data can\u0027t be captured in the onClicked lambda.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 55
+      },
+      "revId": "214ca244ca2ee2c27bb6a0360c654cd9e8d5fec9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
