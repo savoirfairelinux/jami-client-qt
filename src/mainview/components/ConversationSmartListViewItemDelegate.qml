@@ -43,6 +43,7 @@ ItemDelegate {
 
         // When currentIndex is -1, deselect items, if not, change select item
         function onCurrentIndexIsChanged() {
+
             if (conversationSmartListView.currentIndex === -1
                     || conversationSmartListView.currentIndex !== index) {
                 itemSmartListBackground.color = Qt.binding(function () {
