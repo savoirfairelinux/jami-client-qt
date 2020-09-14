@@ -80,13 +80,18 @@ Item {
                                              })
         }
 
-        if ((contactType === Profile.Type.RING || contactType === Profile.Type.PENDING
-             || contactType === Profile.Type.TEMPORARY)) {
+<<<<<<< HEAD
+        if ((contactType === Profile.Type.RING || contactType === Profile.Type.PENDING)) {
             if (contactType === Profile.Type.PENDING || !hasCall) {
                 ContextMenuGenerator.addMenuSeparator()
             }
+=======
+        if (contactType === Profile.Type.RING || contactType === Profile.Type.PENDING
+                || contactType === Profile.Type.TEMPORARY) {
+            ContextMenuGenerator.addMenuSeparator()
+>>>>>>> b975c95... misc: fix contact request UI issues
 
-            if (contactType === Profile.Type.PENDING) {
+            if (contactType === Profile.Type.PENDING || contactType === Profile.Type.TEMPORARY) {
                 ContextMenuGenerator.addMenuItem(JamiStrings.acceptContactRequest,
                                                  "qrc:/images/icons/person_add-24px.svg",
                                                  function (){
