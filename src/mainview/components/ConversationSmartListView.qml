@@ -79,11 +79,8 @@ ListView {
     }
 
     Connections {
-        target: CallAdapter
-
-        function onUpdateConversationSmartList() {
-            updateListView()
-        }
+        target: LRCInstance
+        function onUpdateSmartList() { updateListView() }
     }
 
     onCurrentIndexChanged: {

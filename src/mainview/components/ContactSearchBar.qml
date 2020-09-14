@@ -22,6 +22,8 @@ import QtQuick.Layouts 1.14
 import QtGraphicalEffects 1.12
 import net.jami.Models 1.0
 
+import "../../commoncomponents"
+
 Rectangle {
     id: contactSearchBarRect
 
@@ -90,6 +92,10 @@ Rectangle {
             anchors.verticalCenter: contactSearchBar.verticalCenter
             anchors.left: contactSearchBar.left
             anchors.leftMargin: 10
+            anchors.right: contactSearchBar.right
+            anchors.rightMargin: 4
+
+            elide: Text.ElideRight
 
             text: qsTr("Find or start a conversation")
             font.pointSize: JamiTheme.textFontSize
