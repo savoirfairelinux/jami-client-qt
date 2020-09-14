@@ -388,8 +388,9 @@ Window {
 
                 initialItem: welcomePage
 
-                SplitView.maximumWidth: sidePanelHidden ? splitView.width :
-                                                          splitView.width - sidePanelViewStackPreferredWidth
+                SplitView.maximumWidth: sidePanelHidden ?
+                                            splitView.width :
+                                            splitView.width - sidePanelViewStackPreferredWidth
                 SplitView.minimumWidth: sidePanelViewStackPreferredWidth
                 SplitView.fillHeight: true
 
@@ -555,7 +556,6 @@ Window {
 
     SettingsView {
         id: settingsView
-        anchors.fill: parent
 
         visible: false
 
