@@ -77,6 +77,9 @@ Item {
                                                  function (){
                                                      MessagesAdapter.acceptInvitation(
                                                                  responsibleConvUid)
+                                                     communicationPageMessageWebView.
+                                                     setSendContactRequestButtonVisible(false)
+
                                                  })
                 ContextMenuGenerator.addMenuItem(JamiStrings.declineContactRequest,
                                                  "qrc:/images/icons/round-close-24px.svg",
