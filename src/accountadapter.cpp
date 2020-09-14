@@ -36,6 +36,13 @@ void
 AccountAdapter::safeInit()
 {
     setSelectedAccountId(LRCInstance::getCurrAccId());
+    backToWelcomePage();
+
+    QObject::connect(&LRCInstance::instance(),
+                     &LRCInstance::conversationSelected,
+                     [this](const lrc::api::conversation::Info& convInfo) {
+                         setSelectedAccountId(convInfo.accountId);
+                     });
 }
 
 lrc::api::NewAccountModel*
@@ -60,8 +67,10 @@ void
 AccountAdapter::accountChanged(int index)
 {
     auto accountList = LRCInstance::accountModel().getAccountList();
-    if (accountList.size() > index)
+    if (accountList.size() > index) {
         setSelectedAccountId(accountList.at(index));
+        backToWelcomePage();
+    }
 }
 
 void
@@ -121,8 +130,6 @@ AccountAdapter::createJamiAccount(QString registeredName,
             } else {
                 LRCInstance::setAvatarForAccount(QPixmap::fromImage(avatarImg), accountId);
             }
-
-
         });
 
     connectFailure();
@@ -342,8 +349,6 @@ AccountAdapter::setSelectedAccountId(const QString& accountId)
 
     emit contactModelChanged();
     emit deviceModelChanged();
-
-    backToWelcomePage();
 }
 
 void
@@ -366,7 +371,6 @@ AccountAdapter::deselectConversation()
         return;
     }
 
-    currentConversationModel->selectConversation("");
     LRCInstance::setSelectedConvId();
 }
 
