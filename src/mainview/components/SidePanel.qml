@@ -29,6 +29,7 @@ Rectangle {
     color: JamiTheme.backgroundColor
 
     property bool tabBarVisible: true
+    property int tabIndex: sidePanelTabBar.currentIndex
     property int pendingRequestCount: 0
     property int totalUnreadMessagesCount: 0
 
@@ -41,6 +42,7 @@ Rectangle {
 
     // Hack -> force redraw.
     function forceReselectConversationSmartListCurrentIndex() {
+        console.error("force")
         var index = conversationSmartListView.currentIndex
         conversationSmartListView.currentIndex = -1
         conversationSmartListView.currentIndex = index
@@ -67,6 +69,7 @@ Rectangle {
     }
 
     function accountChangedUIReset() {
+        console.error("accountChangedUIReset")
         contactSearchBar.clearText()
         contactSearchBar.setPlaceholderString(
                     JamiStrings.contactSearchConversation)
@@ -75,6 +78,7 @@ Rectangle {
     }
 
     function refreshAccountComboBox(index) {
+        console.error("refresAccountComboBox")
         AccountAdapter.accountChanged(index)
 
         accountComboBox.update()
@@ -89,6 +93,13 @@ Rectangle {
 
     function forceUpdateConversationSmartListView() {
         conversationSmartListView.updateListView()
+    }
+
+    function setTabIndex(setIndex) {
+        if (setIndex === 1)
+            sidePanelTabBar.showRequests()
+        else
+            sidePanelTabBar.showConversations()
     }
 
     // Intended -> since strange behavior will happen without this for stackview.

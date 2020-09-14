@@ -220,6 +220,15 @@ Window {
 
         function onIncomingCallNeedToSetupMainView(accountId, convUid, fromNotification) {
 
+            var convType = UtilsAdapter.getProfileType(convUid)
+            if (convType === Profile.Type.PENDING) {
+                mainViewWindowSidePanel.setTabIndex(1)
+            } else {
+                mainViewWindowSidePanel.setTabIndex(0)
+            }
+
+
+            console.error("onIncomingCallNeedToSetupMainView")
             // Set up the call stack view that is needed by call overlay.
             if (!inSettingsView) {
                 mainViewStack.pop(null, StackView.Immediate)
