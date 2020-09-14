@@ -70,6 +70,13 @@ Window {
         }
     }
 
+    function selectSidePanelTab(convUid) {
+        var convType = UtilsAdapter.getProfileType(convUid)
+        mainViewWindowSidePanel.selectTab(convType === Profile.Type.PENDING ?
+                                              SidePanelTabBar.Requests :
+                                              SidePanelTabBar.Conversations)
+    }
+
     function showWelcomeView() {
         mainViewWindowSidePanel.deselectConversationSmartList()
         if (communicationPageMessageWebView.visible || callStackView.visible) {
@@ -110,6 +117,7 @@ Window {
         callStackView.responsibleAccountId = currentAccount
         callStackView.responsibleConvUid = currentCallConv
         callStackView.updateCorrespondingUI()
+        selectSidePanelTab(currentCallConv)
     }
 
 
@@ -218,6 +226,7 @@ Window {
                     if (!inSettingsView) {
                         callStackView.needToCloseInCallConversationAndPotentialWindow()
                         pushCommunicationMessageWebView()
+                        MessagesAdapter.setupChatView(convUid)
                     }
                 }
             }
@@ -250,6 +259,7 @@ Window {
             AccountAdapter.accountChanged(index)
             ConversationsAdapter.selectConversation(accountId, convUid, !fromNotification)
             MessagesAdapter.setupChatView(convUid)
+            selectSidePanelTab(convUid)
         }
     }
 
@@ -444,6 +454,7 @@ Window {
 
         // TODO: remove the evil in this slot
         onConversationSmartListNeedToAccessMessageWebView: {
+
             communicationPageMessageWebView.headerUserAliasLabelText = currentUserAlias
             communicationPageMessageWebView.headerUserUserNameLabelText = currentUserDisplayName
 
@@ -571,7 +582,7 @@ Window {
                 mainViewWindowSidePanel.forceUpdateConversationSmartListView()
             }
 
-            function onContactBanned() {
+            function onNavigateToWelcomePageRequested() {
                 showWelcomeView()
             }
         }
