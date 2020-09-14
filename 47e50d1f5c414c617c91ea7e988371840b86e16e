@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8247907_99df5049",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-14T16:28:01Z",
+      "side": 1,
+      "message": "dsdsd",
+      "range": {
+        "startLine": 197,
+        "startChar": 3,
+        "endLine": 200,
+        "endChar": 20
+      },
+      "revId": "47e50d1f5c414c617c91ea7e988371840b86e16e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    }
+  ]
+}
