@@ -61,8 +61,7 @@ Rectangle {
 
     function accountChangedUIReset() {
         contactSearchBar.clearText()
-        sidePanelTabBar.converstationTabDown = true
-        sidePanelTabBar.invitationTabDown = false
+        selectTab(SidePanelTabBar.Conversations)
     }
 
     function refreshAccountComboBox(index) {
@@ -78,6 +77,10 @@ Rectangle {
 
     function forceUpdateConversationSmartListView() {
         conversationSmartListView.updateListView()
+    }
+
+    function selectTab(tabIndex) {
+        sidePanelTabBar.selectTab(tabIndex)
     }
 
     // Intended -> since strange behavior will happen without this for stackview.
@@ -178,6 +181,8 @@ Rectangle {
 
             function onShowConversationTabs(visible) {
                 tabBarVisible = visible
+                if (!tabBarVisible)
+                    selectTab(SidePanelTabBar.Conversations)
                 updatePendingRequestCount()
                 updateTotalUnreadMessagesCount()
             }
