@@ -33,6 +33,7 @@
 #include <QFontDatabase>
 #include <QMenu>
 #include <QQmlContext>
+#include <QWindow>
 
 #include <locale.h>
 
@@ -135,6 +136,24 @@ MainApplication::init()
     initLrc();
     initConnectivityMonitor();
 
+#ifdef Q_OS_WINDOWS
+    QObject::connect(&LRCInstance::instance(), &LRCInstance::notificationClicked, [] {
+        for (QWindow* appWindow : qApp->allWindows()) {
+            if (appWindow->objectName().compare("mainViewWindow"))
+                continue;
+            // clang-format off
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_TOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_NOTOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            // clang-format on
+            return;
+        }
+    });
+#endif
+
     bool startMinimized {false};
     parseArguments(startMinimized);
 
@@ -214,7 +233,7 @@ MainApplication::initConnectivityMonitor()
 {
 #ifdef Q_OS_WIN
     connectivityMonitor_.reset(new ConnectivityMonitor(this));
-    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [this] {
+    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [] {
         LRCInstance::connectivityChanged();
     });
 #endif // Q_OS_WIN

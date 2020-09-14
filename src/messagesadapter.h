@@ -93,6 +93,7 @@ public slots:
     void slotUpdateDraft(const QString& content);
     void slotMessagesCleared();
     void slotMessagesLoaded();
+    void onNotificationMessageClicked();
 
 private:
     void setConversationProfileData(const lrc::api::conversation::Info& convInfo);

@@ -32,6 +32,7 @@ import "../settingsview/components"
 
 Window {
     id: mainViewWindow
+    objectName: "mainViewWindow"
 
     property int minWidth: 400
     property int minHeight: aboutPopUpDialog.contentHeight

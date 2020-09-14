@@ -27,27 +27,20 @@ class GlobalSystemTray : public QSystemTrayIcon
     Q_OBJECT
 
 public:
+    ~GlobalSystemTray() = default;
     static GlobalSystemTray& instance()
     {
         static GlobalSystemTray* instance_ = new GlobalSystemTray();
         return *instance_;
     }
 
-    /*
-     * Remember the last triggering account for the notification,
-     * safe since user cannot activate previous notifications.
-     */
-    void setTriggeredAccountId(const QString& accountId);
-
-    const QString& getTriggeredAccountId();
-
-    void setPossibleOnGoingConversationUid(const QString& convUid);
-
-    const QString& getPossibleOnGoingConversationUid();
+    static QString notificationAccountId;
+    static QString notificationConvUid;
 
 private:
-    GlobalSystemTray();
-
-    QString triggeredAccountId_;
-    QString triggeredOnGoingConvUid_;
+    explicit GlobalSystemTray()
+        : QSystemTrayIcon() {};
 };
+
+QString GlobalSystemTray::notificationAccountId = {};
+QString GlobalSystemTray::notificationConvUid = {};
