@@ -32,6 +32,7 @@ import "../settingsview/components"
 
 Window {
     id: mainViewWindow
+    objectName: "mainViewWindow"
 
     property int minWidth: 400
     property int minHeight: aboutPopUpDialog.contentHeight
@@ -121,6 +122,7 @@ Window {
 
     function newAccountAdded(index) {
         mainViewWindowSidePanel.refreshAccountComboBox(index)
+        AccountAdapter.accountChanged(index)
     }
 
     function currentAccountIsCalling() {
@@ -243,6 +245,7 @@ Window {
             callStackView.updateCorrespondingUI()
 
             mainViewWindowSidePanel.refreshAccountComboBox(index)
+            AccountAdapter.accountChanged(index)
             ConversationsAdapter.selectConversation(accountId, convUid, !fromNotification)
             MessagesAdapter.setupChatView(convUid)
         }
@@ -340,6 +343,7 @@ Window {
                         mainViewWindowSidePanel.deselectConversationSmartList()
 
                         mainViewWindowSidePanel.refreshAccountComboBox(index)
+                        AccountAdapter.accountChanged(index)
 
                         settingsView.slotAccountListChanged()
                         settingsView.setSelected(settingsView.selectedMenu, true)
@@ -564,6 +568,7 @@ Window {
 
         onSettingsViewWindowNeedToShowMainViewWindow: {
             mainViewWindowSidePanel.refreshAccountComboBox(0)
+            AccountAdapter.accountChanged(index)
             toggleSettingsView()
         }
 
