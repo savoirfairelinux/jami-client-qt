@@ -192,6 +192,7 @@ Rectangle {
 
         onCallAcceptButtonIsClicked: {
             CallAdapter.acceptACall(responsibleAccountId, responsibleConvUid)
+            mainViewWindowSidePanel.selectTab(SidePanelTabBar.Conversations)
         }
 
         onCallCancelButtonIsClicked: {

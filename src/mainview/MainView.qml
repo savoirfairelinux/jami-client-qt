@@ -78,6 +78,13 @@ Window {
         return foundItem ? true : false
     }
 
+    function selectSidePanelTab(convUid) {
+        var convType = UtilsAdapter.getProfileType(convUid)
+        mainViewWindowSidePanel.selectTab(convType === Profile.Type.PENDING ?
+                                              SidePanelTabBar.Requests :
+                                              SidePanelTabBar.Conversations)
+    }
+
     function showWelcomeView() {
         callStackView.needToCloseInCallConversationAndPotentialWindow()
         mainViewWindowSidePanel.deselectConversationSmartList()
@@ -120,6 +127,7 @@ Window {
         return UtilsAdapter.hasCall(AccountAdapter.currentAccountId)
     }
 
+    // Only called onWidthChanged
     function recursionStackViewItemMove(stackOne, stackTwo, depth=1) {
         // Move all items (expect the bottom item) to stacktwo by the same order in stackone.
         if (stackOne.depth === depth) {
@@ -220,6 +228,7 @@ Window {
 
         // selectConversation causes UI update
         function onCallSetupMainViewRequired(accountId, convUid) {
+            selectSidePanelTab(convUid)
             ConversationsAdapter.selectConversation(accountId, convUid)
         }
     }
@@ -450,7 +459,7 @@ Window {
                 mainViewWindowSidePanel.forceUpdateConversationSmartListView()
             }
 
-            function onContactBanned() {
+            function onNavigateToWelcomePageRequested() {
                 backToMainView()
             }
         }
