@@ -100,6 +100,18 @@ CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
         LRCInstance::getAccountInfo(accountId).callModel->accept(convInfo.callId);
         auto& accInfo = LRCInstance::getAccountInfo(convInfo.accountId);
         accInfo.callModel->setCurrentCall(convInfo.callId);
+
+        auto contactUri = convInfo.participants.front();
+        if (contactUri.isEmpty()) {
+            return;
+        }
+        try {
+            auto& contact = accInfo.contactModel->getContact(contactUri);
+            if (contact.profileInfo.type == lrc::api::profile::Type::PENDING) {
+                LRCInstance::getCurrentConversationModel()->makePermanent(convInfo.uid);
+            }
+        } catch (...) {
+        }
     }
 }
 
