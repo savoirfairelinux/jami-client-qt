@@ -34,7 +34,7 @@ import "../settingsview/components"
 Window {
     id: mainViewWindow
 
-    property int minWidth: 400
+    property int minWidth: settingsViewPreferredWidth
     property int minHeight: aboutPopUpDialog.contentHeight
 
     property int mainViewWindowPreferredWidth: 650
@@ -42,6 +42,8 @@ Window {
     property int sidePanelViewStackPreferredWidth: 250
     property int mainViewStackPreferredWidth: 250
     property int aboutPopUpPreferredWidth: 400
+    property int settingsViewPreferredWidth: 445
+    property int onWidthChangedTriggerDistance: 5
 
     property int savedSidePanelViewMinWidth: 0
     property int savedSidePanelViewMaxWidth: 0
@@ -99,9 +101,7 @@ Window {
     }
 
     function toggleSettingsView() {
-
         if (!inSettingsView) {
-
             if (sidePanelHidden){
                 recursionStackViewItemMove(sidePanelViewStack, mainViewStack, 1)
                 mainViewStack.push(settingsView, StackView.Immediate)
@@ -113,8 +113,9 @@ Window {
             }
             ConversationsAdapter.disconnectConversationModel()
 
+            mainViewWindow.width = settingsViewPreferredWidth
+                    + sidePanelViewStackPreferredWidth + onWidthChangedTriggerDistance
         } else {
-
             ConversationsAdapter.connectConversationModel(false)
             ConversationsAdapter.refill() // to be sure to have latest informations
             mainViewWindowSidePanel.forceUpdateConversationSmartListView()
@@ -366,7 +367,6 @@ Window {
         id: accountListModel
     }
 
-
     LeftPanelView {
         id: leftPanelSettingsView
 
@@ -411,7 +411,6 @@ Window {
             }
         }
     }
-
 
     SidePanel {
         id: mainViewWindowSidePanel
@@ -523,9 +522,6 @@ Window {
 
         visible: false
 
-        width: Math.max(mainViewStackPreferredWidth, mainViewStack.width - 100)
-        height: mainViewWindow.minimumHeight
-
         onSettingsViewWindowNeedToShowMainViewWindow: {
             mainViewWindowSidePanel.refreshAccountComboBox(0)
             toggleSettingsView()
@@ -593,7 +589,6 @@ Window {
                                                sidePanelViewStack.height + recordBox.y_offset
             })
 
-
             // Set qml MessageWebView object pointer to c++.
             MessagesAdapter.setQmlObject(this)
         }
@@ -601,8 +596,10 @@ Window {
 
     onWidthChanged: {
         // Hide unnecessary stackview when width is changed.
-        if (mainViewWindow.width < sidePanelViewStackPreferredWidth
-                + mainViewStackPreferredWidth - 5
+        var widthToCompare = sidePanelViewStackPreferredWidth +
+                (inSettingsView ? settingsViewPreferredWidth : mainViewStackPreferredWidth)
+
+        if (mainViewWindow.width < widthToCompare - onWidthChangedTriggerDistance
                 && mainViewStack.visible) {
             mainViewStack.visible = false
             sidePanelHidden = true
@@ -618,8 +615,7 @@ Window {
             }
 
             mainViewWindow.update()
-        } else if (mainViewWindow.width >= sidePanelViewStackPreferredWidth
-                   + mainViewStackPreferredWidth + 5
+        } else if (mainViewWindow.width >= widthToCompare + onWidthChangedTriggerDistance
                    && !mainViewStack.visible) {
             mainViewStack.visible = true
             sidePanelHidden = false
