@@ -281,34 +281,36 @@ Utils::getCirclePhoto(const QImage original, int sizePhoto)
 }
 
 void
-Utils::showSystemNotification(QWidget* widget,
-                              const QString& message,
-                              long delay,
-                              const QString& triggeredAccountId)
+Utils::showNotification(const QString& message,
+                        const QString& from,
+                        const QString& accountId,
+                        const QString& convUid,
+                        const std::function<void()>& onClicked)
 {
-    if (!AppSettingsManager::getValue(Settings::Key::EnableNotifications).toBool()) {
-        qWarning() << "Notifications are disabled";
-        return;
+    if (accountId.isEmpty() || convUid.isEmpty()) {
+        // This should never happen.
+        qFatal("Invalid account or conversation.");
     }
-    GlobalSystemTray::instance().setTriggeredAccountId(triggeredAccountId);
-    GlobalSystemTray::instance().showMessage(message, "", QIcon(":images/jami.png"));
-    QApplication::alert(widget, delay);
-}
 
-void
-Utils::showSystemNotification(QWidget* widget,
-                              const QString& sender,
-                              const QString& message,
-                              long delay,
-                              const QString& triggeredAccountId)
-{
     if (!AppSettingsManager::getValue(Settings::Key::EnableNotifications).toBool()) {
         qWarning() << "Notifications are disabled";
         return;
     }
-    GlobalSystemTray::instance().setTriggeredAccountId(triggeredAccountId);
-    GlobalSystemTray::instance().showMessage(sender, message, QIcon(":images/jami.png"));
-    QApplication::alert(widget, delay);
+
+    GlobalSystemTray::instance().disconnect();
+    QObject::connect(&GlobalSystemTray::instance(), &QSystemTrayIcon::messageClicked, [onClicked] {
+        onClicked();
+        GlobalSystemTray::notificationAccountId.clear();
+        GlobalSystemTray::notificationConvUid.clear();
+    });
+
+    GlobalSystemTray::notificationAccountId = accountId;
+    GlobalSystemTray::notificationConvUid = convUid;
+
+    if (from.isEmpty())
+        GlobalSystemTray::instance().showMessage(message, "", QIcon(":images/jami.png"));
+    else
+        GlobalSystemTray::instance().showMessage(from, message, QIcon(":images/jami.png"));
 }
 
 QSize

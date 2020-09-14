@@ -62,6 +62,9 @@ public:
 protected:
     void safeInit() override;
 
+public:
+    void setSelectedAccountId(const QString& accountId = {});
+
     /*
      * Change to account corresponding to combox box index.
      */
@@ -105,7 +108,6 @@ protected:
     Q_INVOKABLE bool hasVideoCall();
     Q_INVOKABLE bool isPreviewing();
     Q_INVOKABLE void setCurrAccDisplayName(const QString& text);
-    Q_INVOKABLE void setSelectedAccountId(const QString& accountId = {});
     Q_INVOKABLE void setSelectedConvId(const QString& convId = {});
 
 signals:

@@ -226,6 +226,16 @@ public:
         return invalid;
     }
 
+    static const conversation::Info& getConversationFromConvUid(const QString& convUid,
+                                                                const QString& accountId = {},
+                                                                bool filtered = false)
+    {
+        return getConversation(
+            !accountId.isEmpty() ? accountId : getCurrAccId(),
+            [&](const conversation::Info& conv) -> bool { return convUid == conv.uid; },
+            filtered);
+    }
+
     static const conversation::Info& getConversationFromCallId(const QString& callId,
                                                                const QString& accountId = {},
                                                                bool filtered = false)
@@ -284,6 +294,26 @@ public:
     static const QString& getCurrentConvUid()
     {
         return instance().selectedConvUid_;
+    }
+
+    static bool selectConversation(const lrc::api::conversation::Info& convInfo,
+                                   bool preventSendingSignal = false)
+    {
+        // accInfo.conversationModel->selectConversation(item.uid) only emit ui
+        // behavior control signals, but sometimes we do not want that,
+        // preventSendingSignal boolean can help us to determine.
+        auto& instance_ = instance();
+        if (instance_.getCurrentConvUid() == convInfo.uid) {
+            return false;
+        } else if (convInfo.participants.size() > 0) {
+            auto& accInfo = instance_.getAccountInfo(convInfo.accountId);
+            instance_.setSelectedConvId(convInfo.uid);
+            if (!preventSendingSignal)
+                accInfo.conversationModel->selectConversation(convInfo.uid);
+            accInfo.conversationModel->clearUnreadInteractions(convInfo.uid);
+            emit instance_.conversationSelected(convInfo);
+            return true;
+        }
     }
 
     static void setSelectedConvId(const QString& convUid = {})
@@ -431,6 +461,9 @@ signals:
     void accountListChanged();
     void currentAccountChanged();
     void restoreAppRequested();
+    void notificationClicked(bool forceToTop = false);
+    void updateSmartList();
+    void conversationSelected(const lrc::api::conversation::Info& convInfo);
 
 private:
     LRCInstance(migrateCallback willMigrateCb = {}, migrateCallback didMigrateCb = {})
