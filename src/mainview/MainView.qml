@@ -189,6 +189,7 @@ Window {
 
         function onIncomingCallNeedToSetupMainView(accountId, convUid) {
 
+            console.error("onIncomingCallNeedToSetupMainView")
             // Set up the call stack view that is needed by call overlay.
             if (!inSettingsView) {
                 mainViewStack.pop(null, StackView.Immediate)
@@ -216,6 +217,9 @@ Window {
             ConversationsAdapter.selectConversation(accountId, convUid)
 
             MessagesAdapter.setupChatView(convUid)
+
+            //mainViewWindowSidePanel.setCurrentUidSmartListModelIndex()
+            //mainViewWindowSidePanel.forceReselectConversationSmartListCurrentIndex()
         }
     }
 

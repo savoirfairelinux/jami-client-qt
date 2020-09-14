@@ -88,6 +88,7 @@ ListView {
     }
 
     onCurrentIndexChanged: {
+        console.error("ConversationSmartListView::onCurrentIndexChanged")
         root.currentIndexIsChanged()
     }
 
