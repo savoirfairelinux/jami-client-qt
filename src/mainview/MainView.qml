@@ -32,6 +32,7 @@ import "../settingsview/components"
 
 Window {
     id: mainViewWindow
+    objectName: "mainViewWindow"
 
     property int minWidth: 400
     property int minHeight: aboutPopUpDialog.contentHeight
@@ -121,6 +122,7 @@ Window {
 
     function newAccountAdded(index) {
         mainViewWindowSidePanel.refreshAccountComboBox(index)
+        AccountAdapter.accountChanged(index)
     }
 
     function currentAccountIsCalling() {
@@ -243,6 +245,32 @@ Window {
             callStackView.updateCorrespondingUI()
 
             mainViewWindowSidePanel.refreshAccountComboBox(index)
+            AccountAdapter.accountChanged(index)
+            ConversationsAdapter.selectConversation(accountId, convUid, !fromNotification)
+            MessagesAdapter.setupChatView(convUid)
+        }
+    }
+
+    Connections {
+        target: ConversationsAdapter
+
+        function onShowChatViewRequested(accountId, convUid, fromNotification) {
+            if (!inSettingsView) {
+                mainViewStack.pop(null, StackView.Immediate)
+                sidePanelViewStack.pop(null, StackView.Immediate)
+            } else {
+                toggleSettingsView()
+            }
+
+            var index = UtilsAdapter.getCurrAccList().indexOf(accountId)
+            var name = UtilsAdapter.getBestName(accountId, convUid)
+            var id = UtilsAdapter.getBestId(accountId, convUid)
+
+            communicationPageMessageWebView.headerUserAliasLabelText = name
+            communicationPageMessageWebView.headerUserUserNameLabelText = (name !== id) ? id : ""
+
+            mainViewWindowSidePanel.refreshAccountComboBox(index)
+            AccountAdapter.accountChanged(index)
             ConversationsAdapter.selectConversation(accountId, convUid, !fromNotification)
             MessagesAdapter.setupChatView(convUid)
         }
@@ -339,6 +367,7 @@ Window {
                         mainViewWindowSidePanel.deselectConversationSmartList()
 
                         mainViewWindowSidePanel.refreshAccountComboBox(index)
+                        AccountAdapter.accountChanged(index)
 
                         settingsView.slotAccountListChanged()
                         settingsView.setSelected(settingsView.selectedMenu, true)
@@ -562,6 +591,7 @@ Window {
 
         onSettingsViewWindowNeedToShowMainViewWindow: {
             mainViewWindowSidePanel.refreshAccountComboBox(0)
+            AccountAdapter.accountChanged(index)
             toggleSettingsView()
         }
 

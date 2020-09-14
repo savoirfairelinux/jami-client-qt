@@ -56,9 +56,16 @@ signals:
     void modelSorted(const QVariant& uri);
     void updateListViewRequested();
     void navigateToWelcomePageRequested();
+    void showChatViewRequested(const QString& accountId,
+                               const QString& convUid,
+                               bool fromNotification = false);
 
 private slots:
     void onCurrentAccountIdChanged();
+    void onNewUnreadInteraction(const QString& accountId,
+                                const QString& convUid,
+                                uint64_t interactionId,
+                                const interaction::Info& interaction);
 
 private:
     void setConversationFilter(lrc::api::profile::Type filter);
