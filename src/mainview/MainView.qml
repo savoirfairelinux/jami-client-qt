@@ -58,6 +58,11 @@ Window {
     signal closeApp
     signal noAccountIsAvailable
 
+    function selectSidePanelTab(convUid) {
+        var convType = UtilsAdapter.getProfileType(convUid)
+        mainViewWindowSidePanel.selectTab(convType === Profile.Type.PENDING ? 1 : 0)
+    }
+
     function showWelcomeView() {
         mainViewWindowSidePanel.deselectConversationSmartList()
         if (communicationPageMessageWebView.visible || callStackView.visible) {
@@ -97,6 +102,9 @@ Window {
         callStackView.responsibleAccountId = currentAccount
         callStackView.responsibleConvUid = currentCallConv
         callStackView.updateCorrespondingUI()
+
+        selectSidePanelTab(currentCallConv)
+
     }
 
 
@@ -239,6 +247,8 @@ Window {
             AccountAdapter.accountChanged(index)
             ConversationsAdapter.selectConversation(accountId, convUid, !fromNotification)
             MessagesAdapter.setupChatView(convUid)
+            selectSidePanelTab(convUid)
+
         }
     }
 
