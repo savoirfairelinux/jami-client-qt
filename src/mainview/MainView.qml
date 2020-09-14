@@ -34,7 +34,7 @@ import "../settingsview/components"
 Window {
     id: mainViewWindow
 
-    property int minWidth: 400
+    property int minWidth: settingsViewPreferredWidth
     property int minHeight: aboutPopUpDialog.contentHeight
 
     property int mainViewWindowPreferredWidth: 650
@@ -42,12 +42,14 @@ Window {
     property int sidePanelViewStackPreferredWidth: 250
     property int mainViewStackPreferredWidth: 250
     property int aboutPopUpPreferredWidth: 400
+    property int settingsViewPreferredWidth: 445
+    property int onWidthChangedTriggerDistance: 5
 
     property int savedSidePanelViewMinWidth: 0
     property int savedSidePanelViewMaxWidth: 0
     property int savedWelcomeViewMinWidth: 0
     property int savedWelcomeViewMaxWidth: 0
-    property bool sidePanelHidden: false
+    property bool sidePanelOnly: false
 
     // To calculate tab bar bottom border hidden rect left margin.
     property int tabBarLeftMargin: 8
@@ -87,7 +89,6 @@ Window {
     }
 
     function recursionStackViewItemMove(stackOne, stackTwo, depth=1) {
-
         // Move all items (expect the bottom item) to stacktwo by the same order in stackone.
         if (stackOne.depth === depth) {
             return
@@ -99,35 +100,30 @@ Window {
     }
 
     function toggleSettingsView() {
-
         if (!inSettingsView) {
+            if (sidePanelOnly)
+                sidePanelViewStack.push(leftPanelSettingsView, StackView.Immediate)
+            else {
+                mainViewStack.pop(welcomePage, StackView.Immediate)
+                mainViewStack.push(settingsView, StackView.Immediate)
+                sidePanelViewStack.push(leftPanelSettingsView, StackView.Immediate)
 
-            if (sidePanelHidden){
-                recursionStackViewItemMove(sidePanelViewStack, mainViewStack, 1)
-                mainViewStack.push(settingsView, StackView.Immediate)
-                sidePanelViewStack.push(leftPanelSettingsView, StackView.Immediate)
-                recursionStackViewItemMove(mainViewStack, sidePanelViewStack, 1)
-            } else {
-                mainViewStack.push(settingsView, StackView.Immediate)
-                sidePanelViewStack.push(leftPanelSettingsView, StackView.Immediate)
+                mainViewWindow.width = settingsViewPreferredWidth
+                        + sidePanelViewStackPreferredWidth + onWidthChangedTriggerDistance
             }
+
+            mainViewWindowSidePanel.deselectConversationSmartList()
             ConversationsAdapter.disconnectConversationModel()
-
         } else {
-
             ConversationsAdapter.connectConversationModel(false)
             ConversationsAdapter.refill() // to be sure to have latest informations
             mainViewWindowSidePanel.forceUpdateConversationSmartListView()
 
-            if (!sidePanelHidden) {
-                sidePanelViewStack.pop(mainViewWindowSidePanel, StackView.Immediate)
-                mainViewStack.pop(StackView.Immediate)
-            } else {
-                recursionStackViewItemMove(sidePanelViewStack, mainViewStack, 2)
+            if (!sidePanelOnly) {
                 sidePanelViewStack.pop(StackView.Immediate)
                 mainViewStack.pop(StackView.Immediate)
-                recursionStackViewItemMove(mainViewStack, sidePanelViewStack, 1)
-            }
+            } else
+                sidePanelViewStack.pop(StackView.Immediate)
 
             if (needToCloseCallStack) {
                 pushCommunicationMessageWebView()
@@ -135,6 +131,7 @@ Window {
                 needToCloseCallStack = false
             }
         }
+
         inSettingsView = !inSettingsView
     }
 
@@ -272,7 +269,7 @@ Window {
                 id: mainViewSidePanelRect
 
                 SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.maximumWidth: (sidePanelHidden ? splitView.width :
+                SplitView.maximumWidth: (sidePanelOnly ? splitView.width :
                                                       splitView.width - sidePanelViewStackPreferredWidth)
                 SplitView.fillHeight: true
 
@@ -353,7 +350,8 @@ Window {
 
                 initialItem: welcomePage
 
-                SplitView.maximumWidth: sidePanelHidden ? splitView.width : splitView.width - sidePanelViewStackPreferredWidth
+                SplitView.maximumWidth: sidePanelOnly ? splitView.width :
+                                                        splitView.width - sidePanelViewStackPreferredWidth
                 SplitView.minimumWidth: sidePanelViewStackPreferredWidth
                 SplitView.fillHeight: true
 
@@ -366,9 +364,10 @@ Window {
         id: accountListModel
     }
 
-
     LeftPanelView {
         id: leftPanelSettingsView
+
+        objectName: "leftPanelSettingsView"
 
         visible: false
         contentViewportWidth: mainViewSidePanelRect.width
@@ -378,40 +377,35 @@ Window {
             target: leftPanelSettingsView.btnAccountSettings
             function onCheckedToggledForRightPanel(checked) {
                 settingsView.setSelected(SettingsView.Account)
-                if (sidePanelHidden) {
-                    recursionStackViewItemMove(mainViewStack, sidePanelViewStack, 1)
-                }
+                if (sidePanelOnly)
+                    sidePanelViewStack.push(settingsView, StackView.Immediate)
             }
         }
         Connections {
             target: leftPanelSettingsView.btnGeneralSettings
             function onCheckedToggledForRightPanel(checked) {
                 settingsView.setSelected(SettingsView.General)
-                if (sidePanelHidden) {
-                    recursionStackViewItemMove(mainViewStack, sidePanelViewStack, 1)
-                }
+                if (sidePanelOnly)
+                    sidePanelViewStack.push(settingsView, StackView.Immediate)
             }
         }
         Connections {
             target: leftPanelSettingsView.btnMediaSettings
             function onCheckedToggledForRightPanel(checked) {
                 settingsView.setSelected(SettingsView.Media)
-                if (sidePanelHidden) {
-                    recursionStackViewItemMove(mainViewStack, sidePanelViewStack, 1)
-                }
+                if (sidePanelOnly)
+                    sidePanelViewStack.push(settingsView, StackView.Immediate)
             }
         }
         Connections {
             target: leftPanelSettingsView.btnPluginSettings
             function onCheckedToggledForRightPanel(checked) {
                 settingsView.setSelected(SettingsView.Plugin)
-                if (sidePanelHidden) {
-                    recursionStackViewItemMove(mainViewStack, sidePanelViewStack, 1)
-                }
+                if (sidePanelOnly)
+                    sidePanelViewStack.push(settingsView, StackView.Immediate)
             }
         }
     }
-
 
     SidePanel {
         id: mainViewWindowSidePanel
@@ -445,16 +439,6 @@ Window {
             MessagesAdapter.setupChatView(currentUID)
             callStackView.setLinkedWebview(
                         communicationPageMessageWebView)
-
-            if (mainViewStack.find(function (item, index) {
-                return item.objectName === "communicationPageMessageWebView"
-            }) || sidePanelViewStack.find(function (item, index) {
-                return item.objectName === "communicationPageMessageWebView"
-            })) {
-                if (!callStackViewShouldShow)
-                    return
-            }
-
 
             // Push messageWebView or callStackView onto the correct stackview
             mainViewStack.pop(null, StackView.Immediate)
@@ -523,9 +507,6 @@ Window {
 
         visible: false
 
-        width: Math.max(mainViewStackPreferredWidth, mainViewStack.width - 100)
-        height: mainViewWindow.minimumHeight
-
         onSettingsViewWindowNeedToShowMainViewWindow: {
             mainViewWindowSidePanel.refreshAccountComboBox(0)
             toggleSettingsView()
@@ -535,10 +516,7 @@ Window {
             mainViewWindow.noAccountIsAvailable()
         }
 
-        onSettingsBackArrowClicked: {
-            mainViewStack.pop(StackView.Immediate)
-            recursionStackViewItemMove(sidePanelViewStack, mainViewStack, 2)
-        }
+        onSettingsBackArrowClicked: sidePanelViewStack.pop(StackView.Immediate)
     }
 
     MessageWebView {
@@ -573,11 +551,6 @@ Window {
         }
 
         Component.onCompleted: {
-            mainViewSidePanelRect.SplitView.maximumWidth = Qt.binding(function() {
-                return sidePanelHidden ? splitView.width :
-                                         splitView.width - sidePanelViewStackPreferredWidth
-            })
-
             recordBox.x = Qt.binding(function() {
                 var i = ((mainViewStack.visible && mainViewStack.width > 1000) ?
                              Math.round((mainViewStack.width-1000)*0.5) :
@@ -593,7 +566,6 @@ Window {
                                                sidePanelViewStack.height + recordBox.y_offset
             })
 
-
             // Set qml MessageWebView object pointer to c++.
             MessagesAdapter.setQmlObject(this)
         }
@@ -601,11 +573,12 @@ Window {
 
     onWidthChanged: {
         // Hide unnecessary stackview when width is changed.
-        if (mainViewWindow.width < sidePanelViewStackPreferredWidth
-                + mainViewStackPreferredWidth - 5
+        var widthToCompare = sidePanelViewStackPreferredWidth +
+                (inSettingsView ? settingsViewPreferredWidth : mainViewStackPreferredWidth)
+
+        if (mainViewWindow.width < widthToCompare - onWidthChangedTriggerDistance
                 && mainViewStack.visible) {
             mainViewStack.visible = false
-            sidePanelHidden = true
 
             // The find callback function is called for each item in the stack.
             var inWelcomeViewStack = mainViewStack.find(
@@ -613,25 +586,32 @@ Window {
                             return index > 0
                         })
 
-            if (inWelcomeViewStack) {
-                recursionStackViewItemMove(mainViewStack, sidePanelViewStack)
+            if (inSettingsView) {
+                mainViewStack.pop(StackView.Immediate)
+                sidePanelViewStack.push(settingsView, StackView.Immediate)
             }
+            else if (inWelcomeViewStack)
+                recursionStackViewItemMove(mainViewStack, sidePanelViewStack)
 
+            sidePanelOnly = true
             mainViewWindow.update()
-        } else if (mainViewWindow.width >= sidePanelViewStackPreferredWidth
-                   + mainViewStackPreferredWidth + 5
+        } else if (mainViewWindow.width >= widthToCompare + onWidthChangedTriggerDistance
                    && !mainViewStack.visible) {
             mainViewStack.visible = true
-            sidePanelHidden = false
 
             var inSidePanelViewStack = sidePanelViewStack.find(
                         function (item, index) {
                             return index > 0
                         })
-            if (inSidePanelViewStack) {
-                recursionStackViewItemMove(sidePanelViewStack, mainViewStack, (inSettingsView ? 2 : 1))
-            }
 
+            if (inSettingsView) {
+                if (sidePanelViewStack.currentItem.objectName !== leftPanelSettingsView.objectName)
+                    sidePanelViewStack.pop(StackView.Immediate)
+                mainViewStack.push(settingsView, StackView.Immediate)
+            } else if (inSidePanelViewStack)
+                recursionStackViewItemMove(sidePanelViewStack, mainViewStack)
+
+            sidePanelOnly = false
             mainViewWindow.update()
         }
     }
