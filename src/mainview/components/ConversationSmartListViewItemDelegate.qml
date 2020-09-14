@@ -43,6 +43,12 @@ ItemDelegate {
 
         // When currentIndex is -1, deselect items, if not, change select item
         function onCurrentIndexIsChanged() {
+
+            console.error("currentIndexIsChanged CONTACT TYPE", ContactType)
+
+            console.error("ConversationSmartListViewItemDelegate::onCurrentIndexChanged",
+                          conversationSmartListView.currentIndex)
+
             if (conversationSmartListView.currentIndex === -1
                     || conversationSmartListView.currentIndex !== index) {
                 itemSmartListBackground.color = Qt.binding(function () {
@@ -60,6 +66,7 @@ ItemDelegate {
         }
 
         function onNeedToShowChatView(accountId, convUid) {
+            console.error("onNeedToShowChatView")
             if (convUid === UID) {
                 conversationSmartListView.needToAccessMessageWebView(
                             DisplayID == DisplayName ? "" : DisplayID,

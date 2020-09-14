@@ -203,6 +203,8 @@ TabBar {
                             JamiTheme.contactSearchBarPlaceHolderInivitionText)
                 pageTwo.down = true
                 pageOne.down = false
+                setCurrentUidSmartListModelIndex()
+                forceReselectConversationSmartListCurrentIndex()
             }
 
             Image {

@@ -44,6 +44,8 @@ Rectangle {
         var index = conversationSmartListView.currentIndex
         conversationSmartListView.currentIndex = -1
         conversationSmartListView.currentIndex = index
+        console.error("forceReselectConversationSmartListCurrentIndex",
+                      conversationSmartListView.currentIndex)
     }
 
 
@@ -52,6 +54,8 @@ Rectangle {
         conversationSmartListView.currentIndex
                 = conversationSmartListView.model.currentUidSmartListModelIndex(
                     )
+        console.error("setCurrentUidSmartListModelIndex",
+                      conversationSmartListView.currentIndex)
     }
 
     function updatePendingRequestCount() {
@@ -188,6 +192,7 @@ Rectangle {
             target: ConversationsAdapter
 
             function onShowChatView(accountId, convUid) {
+                console.error("onShowChatView", convUid)
                 conversationSmartListView.needToShowChatView(accountId,
                                                              convUid)
             }
@@ -204,6 +209,7 @@ Rectangle {
         }
 
         onNeedToSelectItems: {
+            console.error("onNeedToSelectItems", conversationUid)
             ConversationsAdapter.selectConversation(conversationUid)
         }
 
@@ -212,6 +218,7 @@ Rectangle {
         }
 
         onNeedToAccessMessageWebView: {
+            console.error("onNeedToAccesMessageWebView")
             sidePanelRect.conversationSmartListNeedToAccessMessageWebView(
                         currentUserDisplayName, currentUserAlias,
                         currentUID, callStackViewShouldShow,
