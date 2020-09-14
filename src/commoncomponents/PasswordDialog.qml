@@ -247,7 +247,6 @@ Dialog {
                     }
                 }
 
-
                 Button {
                     id: btnChangePasswordCancel
                     Layout.leftMargin: JamiTheme.preferredMarginSize / 2
