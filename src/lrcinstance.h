@@ -431,6 +431,7 @@ signals:
     void accountListChanged();
     void currentAccountChanged();
     void restoreAppRequested();
+    void notificationClicked(bool forceToTop = false);
 
 private:
     LRCInstance(migrateCallback willMigrateCb = {}, migrateCallback didMigrateCb = {})

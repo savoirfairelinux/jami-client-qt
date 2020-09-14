@@ -23,7 +23,9 @@
 
 #include "messagesadapter.h"
 
+#include "globalsystemtray.h"
 #include "qtutils.h"
+#include "utils.h"
 #include "webchathelpers.h"
 
 #include <QApplication>
@@ -210,6 +212,16 @@ void
 MessagesAdapter::slotMessagesLoaded()
 {
     setMessagesVisibility(true);
+}
+
+void
+MessagesAdapter::onNotificationMessageClicked()
+{
+#ifdef Q_OS_WINDOWS
+    emit LRCInstance::instance().notificationClicked();
+#else
+    emit LRCInstance::instance().notificationClicked(true);
+#endif
 }
 
 void
@@ -477,12 +489,21 @@ MessagesAdapter::newInteraction(const QString& accountId,
             return;
         }
         if (!interaction.authorUri.isEmpty()
-            && (!QApplication::focusWindow() || LRCInstance::getCurrAccId() != accountId)) {
-            /*
-             * TODO: Notification from other accounts.
-             */
-        }
-        if (convUid != LRCInstance::getCurrentConvUid()) {
+            && (!QApplication::focusWindow() || accountId != LRCInstance::getCurrAccId()
+                || convUid != LRCInstance::getCurrentConvUid())) {
+            QObject::connect(&GlobalSystemTray::instance(),
+                             &GlobalSystemTray::messageClicked,
+                             this,
+                             &MessagesAdapter::onNotificationMessageClicked,
+                             Qt::UniqueConnection);
+            auto& accInfo = LRCInstance::getAccountInfo(accountId);
+            auto& contact = accInfo.contactModel->getContact(interaction.authorUri);
+            auto senderString = Utils::bestNameForContact(contact);
+            Utils::showSystemNotification(QApplication::focusWidget(),
+                                          senderString,
+                                          interaction.body,
+                                          2000,
+                                          accountId);
             return;
         }
         convModel->clearUnreadInteractions(convUid);

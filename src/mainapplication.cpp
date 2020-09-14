@@ -102,6 +102,8 @@ fileDebug(QFile* debugFile)
                      });
 }
 
+#include <QWindow>
+
 MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
     , engine_(new QQmlApplicationEngine())
@@ -134,6 +136,27 @@ MainApplication::init()
     GlobalInstances::setPixmapManipulator(std::make_unique<PixbufManipulator>());
     initLrc();
     initConnectivityMonitor();
+
+#ifdef Q_OS_WINDOWS
+    QObject::connect(&LRCInstance::instance(), &LRCInstance::notificationClicked, [] {
+        for (QWindow* appWindow : qApp->allWindows()) {
+            if (appWindow->objectName().compare("mainViewWindow"))
+                continue;
+            appWindow->show();            // bring window to top on OSX
+            appWindow->raise();           // bring window from minimized state on OSX
+            appWindow->requestActivate(); // bring window to front/unminimize on windows
+            // clang-format off
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_TOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_NOTOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            // clang-format on
+            return;
+        }
+    });
+#endif
 
     bool startMinimized {false};
     parseArguments(startMinimized);
@@ -214,7 +237,7 @@ MainApplication::initConnectivityMonitor()
 {
 #ifdef Q_OS_WIN
     connectivityMonitor_.reset(new ConnectivityMonitor(this));
-    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [this] {
+    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [] {
         LRCInstance::connectivityChanged();
     });
 #endif // Q_OS_WIN
