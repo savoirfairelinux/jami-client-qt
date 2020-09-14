@@ -84,6 +84,10 @@ Rectangle {
         conversationSmartListView.updateListView()
     }
 
+    function selectTab(tabIndex) {
+        sidePanelTabBar.selectTab(tabIndex)
+    }
+
     // Intended -> since strange behavior will happen without this for stackview.
     anchors.top: parent.top
     anchors.fill: parent

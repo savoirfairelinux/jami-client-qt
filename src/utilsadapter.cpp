@@ -135,6 +135,18 @@ UtilsAdapter::getBestId(const QString& accountId, const QString& uid)
 }
 
 int
+UtilsAdapter::getProfileType(const QString& convUid)
+{
+    try {
+        auto* convModel = LRCInstance::getCurrentConversationModel();
+        const auto convInfo = convModel->getConversationForUID(convUid);
+        return static_cast<int>(Utils::profileType(convInfo, *convModel));
+    } catch (...) {
+        return 0;
+    }
+}
+
+int
 UtilsAdapter::getTotalUnreadMessages()
 {
     int totalUnreadMessages {0};
