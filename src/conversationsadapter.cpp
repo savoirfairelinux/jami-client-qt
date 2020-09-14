@@ -30,7 +30,11 @@
 
 ConversationsAdapter::ConversationsAdapter(QObject* parent)
     : QmlAdapterBase(parent)
-{}
+{
+    connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
+        LRCInstance::getCurrentConversationModel()->setFilter(currentTypeFilter_);
+    });
+}
 
 void
 ConversationsAdapter::safeInit()
@@ -71,8 +75,7 @@ ConversationsAdapter::selectConversation(const QString& accountId, const QString
     auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
     const auto& convInfo = convModel->getConversationForUID(convUid);
 
-    if (LRCInstance::getCurrentConvUid() != convInfo.uid
-            && convInfo.participants.size() > 0) {
+    if (LRCInstance::getCurrentConvUid() != convInfo.uid && convInfo.participants.size() > 0) {
         // If the account is not currently selected, do that first, then
         // proceed to select the conversation.
         auto selectConversation = [convInfo] {
@@ -83,9 +86,7 @@ ConversationsAdapter::selectConversation(const QString& accountId, const QString
         if (convInfo.accountId != LRCInstance::getCurrAccId()) {
             Utils::oneShotConnect(&LRCInstance::instance(),
                                   &LRCInstance::currentAccountChanged,
-                                  [selectConversation] {
-                selectConversation();
-            });
+                                  [selectConversation] { selectConversation(); });
             LRCInstance::setSelectedConvId(); // Hack UI
             LRCInstance::setSelectedAccountId(convInfo.accountId);
         } else {
@@ -120,8 +121,7 @@ ConversationsAdapter::onCurrentAccountIdChanged()
     auto accountId = LRCInstance::getCurrAccId();
 
     auto& accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
-    currentTypeFilter_ = accountInfo.profileInfo.type;
-    LRCInstance::getCurrentConversationModel()->setFilter(accountInfo.profileInfo.type);
+    setProperty("currentTypeFilter", QVariant::fromValue(accountInfo.profileInfo.type));
     updateConversationsFilterWidget();
 
     disconnectConversationModel();
@@ -141,7 +141,11 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
         auto& accInfo = LRCInstance::getAccountInfo(accountId);
         auto& contact = accInfo.contactModel->getContact(interaction.authorUri);
         auto from = Utils::bestNameForContact(contact);
-        auto onClicked = [this, accountId, convUid, uri = interaction.authorUri] {
+        auto onClicked = [this,
+                          accountId,
+                          convUid,
+                          uri = interaction.authorUri,
+                          contactType = contact.profileInfo.type] {
 #ifdef Q_OS_WINDOWS
             emit LRCInstance::instance().notificationClicked();
 #else
@@ -149,6 +153,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
 #endif
             auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
             if (!convInfo.uid.isEmpty()) {
+                setProperty("currentTypeFilter", QVariant::fromValue(contactType));
                 selectConversation(accountId, convInfo.uid);
                 emit LRCInstance::instance().updateSmartList();
                 emit modelSorted(uri);
@@ -166,35 +171,9 @@ ConversationsAdapter::updateConversationsFilterWidget()
     // Update status of "Conversations" and "Invitations".
     auto invites = LRCInstance::getCurrentAccountInfo().contactModel->pendingRequestCount();
     if (invites == 0 && currentTypeFilter_ == lrc::api::profile::Type::PENDING) {
-        currentTypeFilter_ = lrc::api::profile::Type::RING;
-        LRCInstance::getCurrentConversationModel()->setFilter(currentTypeFilter_);
+        setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::profile::Type::RING));
     }
     showConversationTabs(invites);
-}
-
-void
-ConversationsAdapter::setConversationFilter(const QString& type)
-{
-    // Set conversation filter according to type,
-    // type needs to be recognizable by lrc::api::profile::to_type.
-    if (type.isEmpty()) {
-        if (LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::RING)
-            setConversationFilter(lrc::api::profile::Type::RING);
-        else
-            setConversationFilter(lrc::api::profile::Type::SIP);
-    } else {
-        setConversationFilter(lrc::api::profile::to_type(type));
-    }
-}
-
-void
-ConversationsAdapter::setConversationFilter(lrc::api::profile::Type filter)
-{
-    if (currentTypeFilter_ == filter) {
-        return;
-    }
-    currentTypeFilter_ = filter;
-    LRCInstance::getCurrentConversationModel()->setFilter(currentTypeFilter_);
 }
 
 void

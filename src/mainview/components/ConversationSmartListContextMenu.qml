@@ -80,7 +80,8 @@ Item {
                                              })
         }
 
-        if ((contactType === Profile.Type.RING || contactType === Profile.Type.PENDING)) {
+        if ((contactType === Profile.Type.RING || contactType === Profile.Type.PENDING
+             || contactType === Profile.Type.TEMPORARY)) {
             if (contactType === Profile.Type.PENDING || !hasCall) {
                 ContextMenuGenerator.addMenuSeparator()
             }
@@ -91,7 +92,10 @@ Item {
                                                  function (){
                                                      MessagesAdapter.acceptInvitation(
                                                                  responsibleConvUid)
+                                                     communicationPageMessageWebView.
+                                                     setSendContactRequestButtonVisible(false)
                                                  })
+
                 ContextMenuGenerator.addMenuItem(JamiStrings.declineContactRequest,
                                                  "qrc:/images/icons/round-close-24px.svg",
                                                  function (){

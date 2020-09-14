@@ -297,6 +297,12 @@ AccountAdapter::setSelectedConvId(const QString& convId)
     LRCInstance::setSelectedConvId(convId);
 }
 
+lrc::api::profile::Type
+AccountAdapter::getCurrentAccountType()
+{
+    return LRCInstance::getCurrentAccountInfo().profileInfo.type;
+}
+
 void
 AccountAdapter::onCurrentAccountChanged()
 {
