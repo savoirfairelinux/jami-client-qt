@@ -58,6 +58,13 @@ Window {
     signal closeApp
     signal noAccountIsAvailable
 
+    function selectSidePanelTab(convUid) {
+        var convType = UtilsAdapter.getProfileType(convUid)
+        mainViewWindowSidePanel.selectTab(convType === Profile.Type.PENDING ?
+                                              SidePanelTabBar.Requests :
+                                              SidePanelTabBar.Conversations)
+    }
+
     function showWelcomeView() {
         mainViewWindowSidePanel.deselectConversationSmartList()
         if (communicationPageMessageWebView.visible || callStackView.visible) {
@@ -97,6 +104,7 @@ Window {
         callStackView.responsibleAccountId = currentAccount
         callStackView.responsibleConvUid = currentCallConv
         callStackView.updateCorrespondingUI()
+        selectSidePanelTab(currentCallConv)
     }
 
 
@@ -165,7 +173,6 @@ Window {
             else
                 mainViewWindowSidePanel.deselectConversationSmartList()
         }
-
     }
 
     title: "Jami"
@@ -179,7 +186,6 @@ Window {
         target: CallAdapter
 
         function onShowCallStack(accountId, convUid, forceReset) {
-
             if (forceReset) {
                 callStackView.responsibleAccountId = accountId
                 callStackView.responsibleConvUid = convUid
@@ -205,6 +211,7 @@ Window {
                     if (!inSettingsView) {
                         callStackView.needToCloseInCallConversationAndPotentialWindow()
                         pushCommunicationMessageWebView()
+                        MessagesAdapter.setupChatView(convUid)
                     }
                 }
             }
@@ -237,6 +244,7 @@ Window {
             AccountAdapter.accountChanged(index)
             ConversationsAdapter.selectConversation(accountId, convUid, !fromNotification)
             MessagesAdapter.setupChatView(convUid)
+            selectSidePanelTab(convUid)
         }
     }
 

@@ -68,16 +68,20 @@ Item {
                                              })
         }
 
-        if (contactType === Profile.Type.RING || contactType === Profile.Type.PENDING) {
+        if (contactType === Profile.Type.RING || contactType === Profile.Type.PENDING
+                || contactType === Profile.Type.TEMPORARY) {
             ContextMenuGenerator.addMenuSeparator()
 
-            if (contactType === Profile.Type.PENDING) {
+            if (contactType === Profile.Type.PENDING || contactType === Profile.Type.TEMPORARY) {
                 ContextMenuGenerator.addMenuItem(JamiStrings.acceptContactRequest,
                                                  "qrc:/images/icons/person_add-24px.svg",
                                                  function (){
                                                      MessagesAdapter.acceptInvitation(
                                                                  responsibleConvUid)
+                                                     communicationPageMessageWebView.
+                                                     setSendContactRequestButtonVisible(false)
                                                  })
+
                 ContextMenuGenerator.addMenuItem(JamiStrings.declineContactRequest,
                                                  "qrc:/images/icons/round-close-24px.svg",
                                                  function (){
