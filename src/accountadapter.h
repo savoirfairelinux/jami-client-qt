@@ -62,6 +62,7 @@ public:
 protected:
     void safeInit() override;
 
+public:
     /*
      * Change to account corresponding to combox box index.
      */
