@@ -63,22 +63,18 @@ MessagesAdapter::setupChatView(const QString& uid)
 
     QString contactURI = convInfo.participants.at(0);
 
-    bool isContact = false;
     auto selectedAccountId = LRCInstance::getCurrAccId();
     auto& accountInfo = LRCInstance::accountModel().getAccountInfo(selectedAccountId);
 
     lrc::api::profile::Type contactType;
     try {
         auto contactInfo = accountInfo.contactModel->getContact(contactURI);
-        if (contactInfo.isTrusted) {
-            isContact = true;
-        }
         contactType = contactInfo.profileInfo.type;
     } catch (...) {
     }
 
-    bool shouldShowSendContactRequestBtn = !isContact
-                                           && contactType != lrc::api::profile::Type::SIP;
+    bool shouldShowSendContactRequestBtn = (contactType == lrc::api::profile::Type::PENDING
+                                            || contactType == lrc::api::profile::Type::TEMPORARY);
 
     QMetaObject::invokeMethod(qmlObj_,
                               "setSendContactRequestButtonVisible",
@@ -513,6 +509,9 @@ MessagesAdapter::requestSendMessageContent()
 void
 MessagesAdapter::setInvitation(bool show, const QString& contactUri, const QString& contactId)
 {
+    QMetaObject::invokeMethod(qmlObj_,
+                              "setSendContactRequestButtonVisible",
+                              Q_ARG(QVariant, show));
     QString s
         = show
               ? QString::fromLatin1("showInvitation(\"%1\", \"%2\")").arg(contactUri).arg(contactId)
