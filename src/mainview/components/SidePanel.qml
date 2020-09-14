@@ -30,6 +30,7 @@ Rectangle {
     color: JamiTheme.backgroundColor
 
     property bool tabBarVisible: true
+    property int tabIndex: sidePanelTabBar.currentIndex
     property int pendingRequestCount: 0
     property int totalUnreadMessagesCount: 0
 
@@ -92,6 +93,10 @@ Rectangle {
 
     function forceUpdateConversationSmartListView() {
         conversationSmartListView.updateListView()
+    }
+
+    function selectTab(tabIndex) {
+        sidePanelTabBar.selectTab(tabIndex)
     }
 
     // Intended -> since strange behavior will happen without this for stackview.
