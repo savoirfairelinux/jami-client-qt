@@ -25,6 +25,11 @@ ApplicationWindow {
         }
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: forceActiveFocus()
+    }
+
     function close() {
         // If we're in the onboarding wizard or 'MinimizeOnClose'
         // is set, then we can quit
