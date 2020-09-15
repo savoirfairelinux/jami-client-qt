@@ -22,6 +22,30 @@
       "revId": "76c96257fa03ccb0d23cbd111ad609b53671c0d5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e795761_6b8eea58",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-15T20:14:07Z",
+      "side": 1,
+      "message": "True but needed it just below:\nvar index \u003d UtilsAdapter.getCurrAccList().indexOf(currentAccountId)",
+      "parentUuid": "77dc4a9c_b3bfbe6f",
+      "range": {
+        "startLine": 36,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 5
+      },
+      "revId": "76c96257fa03ccb0d23cbd111ad609b53671c0d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
