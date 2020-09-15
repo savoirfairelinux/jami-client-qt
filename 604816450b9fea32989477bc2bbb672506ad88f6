@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64b21d11_35b00b21",
+        "filename": "src/MainApplicationWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-15T20:53:38Z",
+      "side": 1,
+      "message": "Do we still need this?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 5
+      },
+      "revId": "604816450b9fea32989477bc2bbb672506ad88f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3c011ff_4b1d2bde",
+        "filename": "src/mainview/components/ContactSearchBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-15T20:53:38Z",
+      "side": 1,
+      "message": "str?",
+      "range": {
+        "startLine": 31,
+        "startChar": 32,
+        "endLine": 31,
+        "endChar": 34
+      },
+      "revId": "604816450b9fea32989477bc2bbb672506ad88f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
