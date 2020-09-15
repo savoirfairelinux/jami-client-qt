@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77dc4a9c_b3bfbe6f",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-15T19:40:24Z",
+      "side": 1,
+      "message": "Is this currentAccountId used somewhere,\n\nif not , maybe we can use Connection{target: AccountAdapter} instead",
+      "range": {
+        "startLine": 36,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 5
+      },
+      "revId": "76c96257fa03ccb0d23cbd111ad609b53671c0d5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
