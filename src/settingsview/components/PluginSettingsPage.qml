@@ -40,34 +40,40 @@ Rectangle {
 
     signal backArrowClicked
 
-    ColumnLayout {
-        anchors.centerIn: root
+    ScrollView {
+        id: scrollView
 
-        height: root.height
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
+        property ScrollBar vScrollBar: ScrollBar.vertical
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-        SettingsHeader {
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.fillWidth: true
-            Layout.preferredHeight: 64
+        anchors.fill: root
 
-            title: qsTr("Plugin")
+        focus: true
+        clip: true
 
-            onBackArrowClicked: root.backArrowClicked()
-        }
+        ColumnLayout {
+            height: Math.min(scrollView.height, pluginSettingsColumnLayout.implicitHeight)
+            width: scrollView.width
 
-        ScrollView {
-            id: pluginScrollView
-
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-
-            focus: true
-            clip: true
+            spacing: 0
 
             ColumnLayout {
-                width: pluginScrollView.width
+                id: pluginSettingsColumnLayout
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+
+                SettingsHeader {
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 64
+
+                    title: qsTr("Plugin")
+
+                    onBackArrowClicked: root.backArrowClicked()
+                }
 
                 ToggleSwitch {
                     id: enabledplugin
