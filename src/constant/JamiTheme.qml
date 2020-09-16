@@ -96,6 +96,7 @@ Item {
     property int preferredMarginSize: 16
     property int preferredDialogWidth: 400
     property int preferredDialogHeight: 300
+    property int preferredAvSettingsHeight: 500
 
     // Jami theme colors
     function rgb256(r, g, b) {

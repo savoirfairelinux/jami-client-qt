@@ -47,38 +47,40 @@ Rectangle {
         videoSettings.populateVideoSettings()
     }
 
-    ColumnLayout {
-        anchors.centerIn: root
+    ScrollView {
+        id: scrollView
 
-        height: root.height
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
+        property ScrollBar vScrollBar: ScrollBar.vertical
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-        SettingsHeader {
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.fillWidth: true
-            Layout.preferredHeight: 64
+        anchors.fill: root
 
-            title: JamiStrings.avSettingsTitle
+        focus: true
+        clip: true
 
-            onBackArrowClicked: root.backArrowClicked()
-        }
+        ColumnLayout {
+            height: Math.min(scrollView.height, JamiTheme.preferredAvSettingsHeight)
+            width: scrollView.width
 
-        ScrollView {
-            id: avSettingsScrollView
-
-            property ScrollBar vScrollBar: ScrollBar.vertical
-            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            ScrollBar.vertical.policy: ScrollBar.AsNeeded
-
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-
-            focus: true
-            clip: true
+            spacing: 0
 
             ColumnLayout {
-                width: avSettingsScrollView.width
+                id: avSettingsColumnLayout
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+
+                SettingsHeader {
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 64
+
+                    title: JamiStrings.avSettingsTitle
+
+                    onBackArrowClicked: root.backArrowClicked()
+                }
 
                 // Audio
                 AudioSettings {
