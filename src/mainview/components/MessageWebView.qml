@@ -195,7 +195,6 @@ Rectangle {
     }
 
     WebEngineView {
-
         id: messageWebView
 
         anchors.top: messageWebViewHeader.bottom
@@ -220,7 +219,7 @@ Rectangle {
         webChannel: messageWebViewChannel
         profile: messageWebViewProfile
 
-        DropArea{
+        DropArea {
             anchors.fill: parent
             onDropped: {
                 var path = UtilsAdapter.getAbsPath(drop.text.toString())
@@ -262,6 +261,11 @@ Rectangle {
                 messageWebView.runJavaScript("displayNavbar(false);")
             }
         }
+
+        onContextMenuRequested: {
+            request.accepted = true
+        }
+
         Component.onCompleted: {
             messageWebView.loadHtml(UtilsAdapter.qStringFromFile(
                                         ":/chatview.html"), ":/chatview.html")
