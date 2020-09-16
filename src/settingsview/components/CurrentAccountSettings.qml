@@ -174,40 +174,50 @@ Rectangle {
         }
     }
 
-    ColumnLayout {
-        anchors.centerIn: root
+    SettingsHeader {
+        id: currentAccountSettingsHeader
 
-        height: root.height
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
+        anchors.left: root.left
+        anchors.leftMargin: (root.width - accountLayout.width) / 2
+                            + JamiTheme.preferredMarginSize
+        anchors.top: root.top
 
-        SettingsHeader {
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.fillWidth: true
-            Layout.preferredHeight: 64
+        height: JamiTheme.settingsHeaderpreferredHeight
 
-            title: qsTr("Account Settings")
+        title: qsTr("Account Settings")
 
-            onBackArrowClicked: root.backArrowClicked()
-        }
+        onBackArrowClicked: root.backArrowClicked()
+    }
 
-        ScrollView {
-            id: scrollView
+    // TODO: Refactor to a common component
+    ScrollView {
+        id: scrollView
 
-            property ScrollBar vScrollBar: ScrollBar.vertical
-            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        property ScrollBar vScrollBar: ScrollBar.vertical
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+        anchors.top: currentAccountSettingsHeader.bottom
+        anchors.topMargin: JamiTheme.preferredMarginSize
+        anchors.horizontalCenter: root.horizontalCenter
 
-            focus: true
-            clip: true
+        height: root.height - JamiTheme.preferredMarginSize - currentAccountSettingsHeader.height
+        width: root.width
+
+        focus: true
+        clip: true
+
+        ColumnLayout {
+            height: Math.min(scrollView.height, accountLayout.implicitHeight)
+            width: scrollView.width
+
+            spacing: 0
 
             ColumnLayout {
                 id: accountLayout
 
-                width: scrollView.width
+                Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
 
                 ToggleSwitch {
                     id: accountEnableCheckBox
@@ -342,7 +352,12 @@ Rectangle {
                     itemWidth: preferredColumnWidth
                     isSIP: root.isSIP
 
-                    onScrolled: scrollView.vScrollBar.position = advancedSettings.y / accountLayout.height
+                    onHeightChanged: {
+                        if (settingsVisible)
+                            scrollView.vScrollBar.position = advancedSettings.y / accountLayout.height
+                        else
+                            scrollView.vScrollBar.position = 0
+                    }
                 }
             }
         }
