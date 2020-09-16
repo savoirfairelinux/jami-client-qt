@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "791293b6_514600c6",
+        "filename": "src/commoncomponents/PasswordDialog.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-16T16:02:30Z",
+      "side": 1,
+      "message": "Choose a new password --\u003e JamiStrings.qml (avoid duplicates)",
+      "range": {
+        "startLine": 100,
+        "startChar": 25,
+        "endLine": 100,
+        "endChar": 42
+      },
+      "revId": "4053e8c10ef74da60f7c343a97b562a343e81319",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
