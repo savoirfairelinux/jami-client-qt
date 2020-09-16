@@ -47,38 +47,47 @@ Rectangle {
         videoSettings.populateVideoSettings()
     }
 
-    ColumnLayout {
-        anchors.centerIn: root
+    SettingsHeader {
+        id: avSettingsHeader
 
-        height: root.height
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
+        anchors.left: root.left
+        anchors.leftMargin: (root.width - avSettingsColumnLayout.width) / 2
+                            + JamiTheme.preferredMarginSize
+        anchors.top: root.top
 
-        SettingsHeader {
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.fillWidth: true
-            Layout.preferredHeight: 64
+        title: JamiStrings.avSettingsTitle
 
-            title: JamiStrings.avSettingsTitle
+        onBackArrowClicked: root.backArrowClicked()
+    }
 
-            onBackArrowClicked: root.backArrowClicked()
-        }
+    ScrollView {
+        id: scrollView
 
-        ScrollView {
-            id: avSettingsScrollView
+        property ScrollBar vScrollBar: ScrollBar.vertical
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-            property ScrollBar vScrollBar: ScrollBar.vertical
-            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        anchors.top: avSettingsHeader.bottom
+        anchors.topMargin: JamiTheme.preferredMarginSize
+        anchors.horizontalCenter: root.horizontalCenter
 
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+        height: root.height - JamiTheme.preferredMarginSize - avSettingsHeader.height
+        width: root.width
 
-            focus: true
-            clip: true
+        focus: true
+        clip: true
+
+        ColumnLayout {
+            height: Math.min(scrollView.height, JamiTheme.preferredAvSettingsHeight)
+            width: scrollView.width
+
+            spacing: 0
 
             ColumnLayout {
-                width: avSettingsScrollView.width
+                id: avSettingsColumnLayout
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
 
                 // Audio
                 AudioSettings {
