@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "f6a790c2_4557dc0f",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-16T16:16:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02be5608_f3bad4a2",
+      "range": {
+        "startLine": 583,
+        "startChar": 26,
+        "endLine": 583,
+        "endChar": 35
+      },
+      "revId": "f4c10d9b12f08253c601008f8984bf72daa359b6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b613c4ec_1db9c3db",
         "filename": "src/settingsview/components/LinkDeviceDialog.qml",
         "patchSetId": 11
@@ -68,6 +92,30 @@
       "revId": "f4c10d9b12f08253c601008f8984bf72daa359b6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71ba8020_62b736f2",
+        "filename": "src/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-16T16:16:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b613c4ec_1db9c3db",
+      "range": {
+        "startLine": 288,
+        "startChar": 30,
+        "endLine": 288,
+        "endChar": 41
+      },
+      "revId": "f4c10d9b12f08253c601008f8984bf72daa359b6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
