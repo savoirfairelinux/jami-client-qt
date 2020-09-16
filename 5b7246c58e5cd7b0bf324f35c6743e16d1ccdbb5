@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f07ccc1_96fbaa16",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-16T15:38:16Z",
+      "side": 1,
+      "message": "gj",
+      "range": {
+        "startLine": 320,
+        "startChar": 61,
+        "endLine": 320,
+        "endChar": 62
+      },
+      "revId": "5b7246c58e5cd7b0bf324f35c6743e16d1ccdbb5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
