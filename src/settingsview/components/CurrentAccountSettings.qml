@@ -173,40 +173,40 @@ Rectangle {
         }
     }
 
-    ColumnLayout {
-        anchors.centerIn: root
+    ScrollView {
+        id: scrollView
 
-        height: root.height
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
+        property ScrollBar vScrollBar: ScrollBar.vertical
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-        SettingsHeader {
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.fillWidth: true
-            Layout.preferredHeight: 64
+        anchors.fill: root
 
-            title: qsTr("Account Settings")
+        focus: true
+        clip: true
 
-            onBackArrowClicked: root.backArrowClicked()
-        }
+        ColumnLayout {
+            height: scrollView.height
+            width: scrollView.width
 
-        ScrollView {
-            id: scrollView
-
-            property ScrollBar vScrollBar: ScrollBar.vertical
-            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            ScrollBar.vertical.policy: ScrollBar.AsNeeded
-
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-
-            focus: true
-            clip: true
+            spacing: 0
 
             ColumnLayout {
                 id: accountLayout
 
-                width: scrollView.width
+                Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
+
+                SettingsHeader {
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 64
+
+                    title: qsTr("Account Settings")
+
+                    onBackArrowClicked: root.backArrowClicked()
+                }
 
                 ToggleSwitch {
                     id: accountEnableCheckBox
@@ -340,7 +340,14 @@ Rectangle {
                     itemWidth: preferredColumnWidth
                     isSIP: root.isSIP
 
-                    onScrolled: scrollView.vScrollBar.position = advancedSettings.y / accountLayout.height
+                    onHeightChanged: {
+                        if (settingsVisible)
+                            scrollView.vScrollBar.position =
+                                    (advancedSettings.y - Layout.bottomMargin -accountLayout.spacing)
+                                    / accountLayout.height
+                        else
+                            scrollView.vScrollBar.position = 0
+                    }
                 }
             }
         }
