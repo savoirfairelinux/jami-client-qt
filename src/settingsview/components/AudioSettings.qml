@@ -106,7 +106,7 @@ ColumnLayout {
         id: inputComboBoxSetting
 
         Layout.fillWidth: true
-        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.microphone
@@ -141,7 +141,7 @@ ColumnLayout {
         id: outputComboBoxSetting
 
         Layout.fillWidth: true
-        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.outputDevice
@@ -153,7 +153,8 @@ ColumnLayout {
 
         onIndexChanged: {
             stopAudioMeter(false)
-            var selectedOutputDeviceName = audioOutputDeviceModel.data(audioOutputDeviceModel.index( modelIndex, 0), AudioOutputDeviceModel.Device_ID)
+            var selectedOutputDeviceName = audioOutputDeviceModel.data(
+                        audioOutputDeviceModel.index(modelIndex, 0), AudioOutputDeviceModel.Device_ID)
             AVModel.setOutputDevice(selectedOutputDeviceName)
             startAudioMeter(false)
         }
@@ -163,7 +164,7 @@ ColumnLayout {
         id: ringtoneDeviceComboBoxSetting
 
         Layout.fillWidth: true
-        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.ringtoneDevice
@@ -175,7 +176,8 @@ ColumnLayout {
 
         onIndexChanged: {
             stopAudioMeter(false)
-            var selectedRingtoneDeviceName = audioOutputDeviceModel.data(audioOutputDeviceModel.index( modelIndex, 0), AudioOutputDeviceModel.Device_ID)
+            var selectedRingtoneDeviceName = audioOutputDeviceModel.data(
+                        audioOutputDeviceModel.index(modelIndex, 0), AudioOutputDeviceModel.Device_ID)
             AVModel.setRingtoneDevice(selectedRingtoneDeviceName)
             startAudioMeter(false)
         }
@@ -185,7 +187,7 @@ ColumnLayout {
         id: audioManagerComboBoxSetting
 
         Layout.fillWidth: true
-        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.audioManager
@@ -196,7 +198,8 @@ ColumnLayout {
 
         onIndexChanged: {
             stopAudioMeter(false)
-            var selectedAudioManager = comboModel.data(comboModel.index( modelIndex, 0), AudioManagerListModel.AudioManagerID)
+            var selectedAudioManager = comboModel.data(
+                        comboModel.index(modelIndex, 0), AudioManagerListModel.AudioManagerID)
             AVModel.setAudioManager(selectedAudioManager)
             startAudioMeter(false)
             populateAudioSettings()
