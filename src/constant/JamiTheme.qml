@@ -91,11 +91,13 @@ Item {
     property int menuFontSize: 12
 
     property int maximumWidthSettingsView: 600
+    property int settingsHeaderpreferredHeight: 64
     property int preferredFieldWidth: 256
     property int preferredFieldHeight: 32
     property int preferredMarginSize: 16
     property int preferredDialogWidth: 400
     property int preferredDialogHeight: 300
+    property int preferredAvSettingsHeight: 500
 
     // Misc.
     property color white: "white"

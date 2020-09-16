@@ -40,34 +40,47 @@ Rectangle {
 
     signal backArrowClicked
 
-    ColumnLayout {
-        anchors.centerIn: root
+    SettingsHeader {
+        id: pluginSettingsHeader
 
-        height: root.height
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
+        anchors.left: root.left
+        anchors.leftMargin: (root.width - pluginSettingsColumnLayout.width) / 2
+                            + JamiTheme.preferredMarginSize
+        anchors.top: root.top
 
-        SettingsHeader {
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.fillWidth: true
-            Layout.preferredHeight: 64
+        title: qsTr("Plugin")
 
-            title: qsTr("Plugin")
+        onBackArrowClicked: root.backArrowClicked()
+    }
 
-            onBackArrowClicked: root.backArrowClicked()
-        }
+    ScrollView {
+        id: scrollView
 
-        ScrollView {
-            id: pluginScrollView
+        property ScrollBar vScrollBar: ScrollBar.vertical
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+        anchors.top: pluginSettingsHeader.bottom
+        anchors.topMargin: JamiTheme.preferredMarginSize
+        anchors.horizontalCenter: root.horizontalCenter
 
-            focus: true
-            clip: true
+        height: root.height - JamiTheme.preferredMarginSize - pluginSettingsHeader.height
+        width: root.width
+
+        focus: true
+        clip: true
+
+        ColumnLayout {
+            height: Math.min(scrollView.height, pluginSettingsColumnLayout.implicitHeight)
+            width: scrollView.width
+
+            spacing: 0
 
             ColumnLayout {
-                width: pluginScrollView.width
+                id: pluginSettingsColumnLayout
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
 
                 ToggleSwitch {
                     id: enabledplugin
