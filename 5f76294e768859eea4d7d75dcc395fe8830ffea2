@@ -1,0 +1,533 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44bc4082_d5e47bec",
+        "filename": "src/commoncomponents/AccountMigrationDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "\u003e\u003e JamiStrings.authentication -\u003e \"Authentication\"",
+      "range": {
+        "startLine": 199,
+        "startChar": 11,
+        "endLine": 199,
+        "endChar": 36
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33b3e71c_4eb86d0c",
+        "filename": "src/commoncomponents/AccountMigrationDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "JamiStrings.authenticationRequired",
+      "range": {
+        "startLine": 251,
+        "startChar": 30,
+        "endLine": 251,
+        "endChar": 64
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eae123c8_fb757396",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "JamiStrings.deleteAccount",
+      "range": {
+        "startLine": 52,
+        "startChar": 11,
+        "endLine": 52,
+        "endChar": 33
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1af4ae0_3d450fe3",
+        "filename": "src/mainview/components/UserProfile.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "JamiStrings.username",
+      "range": {
+        "startLine": 104,
+        "startChar": 22,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0eb96b9_aa468250",
+        "filename": "src/mainview/components/WelcomePageQrDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "-\u003e JamiStrings.qml -\u003e \"Account QR\"",
+      "range": {
+        "startLine": 31,
+        "startChar": 11,
+        "endLine": 31,
+        "endChar": 29
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9527f17e_8757002c",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 55,
+        "startChar": 29,
+        "endLine": 55,
+        "endChar": 56
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b50d1e3_4eadb6fd",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 60,
+        "startChar": 29,
+        "endLine": 60,
+        "endChar": 68
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4f966ba_3b9b3df5",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 65,
+        "startChar": 29,
+        "endLine": 65,
+        "endChar": 64
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea7d2142_d98f4507",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 70,
+        "startChar": 29,
+        "endLine": 70,
+        "endChar": 53
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "92263b8b_c89c01ae",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 75,
+        "startChar": 29,
+        "endLine": 75,
+        "endChar": 47
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef00fda1_7edfa69a",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 83,
+        "startChar": 29,
+        "endLine": 83,
+        "endChar": 56
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b17cb593_5880f33e",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 88,
+        "startChar": 29,
+        "endLine": 88,
+        "endChar": 56
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f402bc7_fe6d805f",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 111,
+        "startChar": 29,
+        "endLine": 111,
+        "endChar": 58
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "771686db_9cec1a41",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 116,
+        "startChar": 29,
+        "endLine": 116,
+        "endChar": 60
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d0e7d18_970037f0",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 121,
+        "startChar": 29,
+        "endLine": 121,
+        "endChar": 60
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0874fb08_fa30b152",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 126,
+        "startChar": 29,
+        "endLine": 126,
+        "endChar": 67
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad33ed85_d2e9b8d1",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 131,
+        "startChar": 29,
+        "endLine": 131,
+        "endChar": 53
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0de6abc2_efe113fd",
+        "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "overwrotte string refactoring",
+      "range": {
+        "startLine": 385,
+        "startChar": 74,
+        "endLine": 385,
+        "endChar": 89
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f8e64e6_75ed9d37",
+        "filename": "src/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "JamiStrings",
+      "range": {
+        "startLine": 152,
+        "startChar": 30,
+        "endLine": 152,
+        "endChar": 65
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90f2d28c_485acee1",
+        "filename": "src/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "JamiStrings",
+      "range": {
+        "startLine": 170,
+        "startChar": 41,
+        "endLine": 170,
+        "endChar": 71
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8690e24_2eb2f6db",
+        "filename": "src/settingsview/components/LinkDeviceDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "Check JamiSTrings. \"Export\" should be changed to \"Backup\".\nSame for every string appearance of \"Export\"\nJamiStrings",
+      "range": {
+        "startLine": 238,
+        "startChar": 30,
+        "endLine": 238,
+        "endChar": 55
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cd77164_0aa2a94e",
+        "filename": "src/settingsview/components/NameRegistrationDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "JamiStrings",
+      "range": {
+        "startLine": 126,
+        "startChar": 30,
+        "endLine": 126,
+        "endChar": 65
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b793b8c5_6e4c9f7b",
+        "filename": "src/settingsview/components/RevokeDevicePasswordDialog.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-16T16:44:01Z",
+      "side": 1,
+      "message": "JamiStrings",
+      "range": {
+        "startLine": 78,
+        "startChar": 33,
+        "endLine": 78,
+        "endChar": 64
+      },
+      "revId": "5f76294e768859eea4d7d75dcc395fe8830ffea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
