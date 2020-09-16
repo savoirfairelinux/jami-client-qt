@@ -35,34 +35,49 @@ Rectangle {
 
     signal backArrowClicked
 
-    ColumnLayout {
-        anchors.centerIn: root
+    SettingsHeader {
+        id: generalSettingsHeader
 
-        height: root.height
-        width: Math.min(JamiTheme.maximumWidthSettingsView, root.width)
+        anchors.left: root.left
+        anchors.leftMargin: (root.width - generalSettingsColumnLayout.width) / 2
+                            + JamiTheme.preferredMarginSize
+        anchors.top: root.top
 
-        SettingsHeader {
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.fillWidth: true
-            Layout.preferredHeight: 64
+        height: JamiTheme.settingsHeaderpreferredHeight
 
-            title: qsTr("General")
+        title: qsTr("General")
 
-            onBackArrowClicked: root.backArrowClicked()
-        }
+        onBackArrowClicked: root.backArrowClicked()
+    }
 
-        ScrollView {
-            id: generalSettingsScrollView
+    ScrollView {
+        id: scrollView
 
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+        property ScrollBar vScrollBar: ScrollBar.vertical
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-            focus: true
-            clip: true
+        anchors.top: generalSettingsHeader.bottom
+        anchors.topMargin: JamiTheme.preferredMarginSize
+        anchors.horizontalCenter: root.horizontalCenter
+
+        height: root.height - JamiTheme.preferredMarginSize - generalSettingsHeader.height
+        width: root.width
+
+        focus: true
+        clip: true
+
+        ColumnLayout {
+            height: Math.min(scrollView.height, generalSettingsColumnLayout.implicitHeight)
+            width: scrollView.width
+
+            spacing: 0
 
             ColumnLayout {
-                width: generalSettingsScrollView.width
+                id: generalSettingsColumnLayout
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: JamiTheme.maximumWidthSettingsView
 
                 // system setting panel
                 SystemSettings {
