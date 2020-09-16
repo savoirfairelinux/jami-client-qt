@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "01efd919_a43cad3c",
+        "filename": "src/mainview/components/UserProfile.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-16T18:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d757eba_c1125637",
+      "range": {
+        "startLine": 193,
+        "startChar": 22,
+        "endLine": 193,
+        "endChar": 35
+      },
+      "revId": "f4c10d9b12f08253c601008f8984bf72daa359b6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02be5608_f3bad4a2",
         "filename": "src/settingsview/components/KeyBoardShortcutTable.qml",
         "patchSetId": 11
