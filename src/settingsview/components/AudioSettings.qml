@@ -106,7 +106,7 @@ ColumnLayout {
         id: inputComboBoxSetting
 
         Layout.fillWidth: true
-        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.microphone
@@ -141,7 +141,7 @@ ColumnLayout {
         id: outputComboBoxSetting
 
         Layout.fillWidth: true
-        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.outputDevice
@@ -163,7 +163,7 @@ ColumnLayout {
         id: ringtoneDeviceComboBoxSetting
 
         Layout.fillWidth: true
-        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.ringtoneDevice
@@ -185,7 +185,7 @@ ColumnLayout {
         id: audioManagerComboBoxSetting
 
         Layout.fillWidth: true
-        Layout.maximumHeight: JamiTheme.preferredFieldHeight
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.audioManager
