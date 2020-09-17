@@ -74,9 +74,12 @@ Window {
         var currentAccount = AccountAdapter.currentAccountId
         var currentCallConv = UtilsAdapter.getCallConvForAccount(currentAccount)
 
-        ConversationsAdapter.selectConversation(currentCallConv)
         var callId = UtilsAdapter.getCallId(currentAccount, currentCallConv)
         var callStatus = UtilsAdapter.getCallStatus(callId)
+
+        callStackView.responsibleAccountId = currentAccount
+        callStackView.responsibleConvUid = currentCallConv
+        callStackView.updateCorrespondingUI()
 
         switch (callStatus) {
         case Call.Status.INCOMING_RINGING:
@@ -86,16 +89,20 @@ Window {
             callStackView.showOutgoingCallPage()
             break
         default:
+            if (callStatus === Call.Status.IN_PROGRESS
+                    || callStatus === Call.Status.PAUSED) {
+                UtilsAdapter.setCurrentCall(currentAccount, currentCallConv)
+            }
             if (UtilsAdapter.hasVideoCall()) {
                 callStackView.showVideoCallPage(callId)
             } else {
                 callStackView.showAudioCallPage()
             }
         }
+        pushCallStackView()
+        MessagesAdapter.setupChatView(currentCallConv)
+        callStackView.setLinkedWebview(communicationPageMessageWebView)
 
-        callStackView.responsibleAccountId = currentAccount
-        callStackView.responsibleConvUid = currentCallConv
-        callStackView.updateCorrespondingUI()
     }
 
 
@@ -442,7 +449,7 @@ Window {
             communicationPageMessageWebView.headerUserUserNameLabelText = currentUserDisplayName
 
             callStackView.needToCloseInCallConversationAndPotentialWindow()
-            callStackView.responsibleAccountId = UtilsAdapter.getCurrAccId()
+            callStackView.responsibleAccountId = AccountAdapter.currentAccountId
             callStackView.responsibleConvUid = currentUID
             callStackView.updateCorrespondingUI()
 
