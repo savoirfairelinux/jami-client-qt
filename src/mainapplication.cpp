@@ -22,14 +22,17 @@
 #include "mainapplication.h"
 
 #include "appsettingsmanager.h"
-#include "globalinstances.h"
 #include "globalsystemtray.h"
 #include "qmlregister.h"
 #include "qrimageprovider.h"
 #include "pixbufmanipulator.h"
 #include "tintedbuttonimageprovider.h"
 
+#include "globalinstances.h"
+
 #include <QAction>
+#include <QCommandLineParser>
+#include <QCoreApplication>
 #include <QFontDatabase>
 #include <QMenu>
 #include <QQmlContext>
@@ -120,11 +123,9 @@ MainApplication::init()
         setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
 #endif
 
-    for (auto string : QCoreApplication::arguments()) {
-        if (string == "-d" || string == "--debug") {
-            consoleDebug();
-        }
-    }
+    bool startMinimized {false};
+    QString updateUrl {};
+    parseArguments(startMinimized, updateUrl);
 
     Utils::removeOldVersions();
     loadTranslations();
@@ -135,31 +136,17 @@ MainApplication::init()
 #endif
 
     GlobalInstances::setPixmapManipulator(std::make_unique<PixbufManipulator>());
-    initLrc();
+    initLrc(updateUrl);
 
+    QObject::connect(
+        &LRCInstance::instance(),
+        &LRCInstance::quitEngineRequested,
+        this,
+        [this] { engine_->quit(); },
+        Qt::DirectConnection);
+
+    connectForceWindowToTop();
     initConnectivityMonitor();
-
-#ifdef Q_OS_WINDOWS
-    QObject::connect(&LRCInstance::instance(), &LRCInstance::notificationClicked, [] {
-        for (QWindow* appWindow : qApp->allWindows()) {
-            if (appWindow->objectName().compare("mainViewWindow"))
-                continue;
-            // clang-format off
-            ::SetWindowPos((HWND) appWindow->winId(),
-                           HWND_TOPMOST, 0, 0, 0, 0,
-                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
-            ::SetWindowPos((HWND) appWindow->winId(),
-                           HWND_NOTOPMOST, 0, 0, 0, 0,
-                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
-            // clang-format on
-            return;
-        }
-    });
-#endif
-
-    bool startMinimized {false};
-    parseArguments(startMinimized);
-
     initSettings();
     initSystray();
     initQmlEngine();
@@ -205,7 +192,7 @@ MainApplication::loadTranslations()
 }
 
 void
-MainApplication::initLrc()
+MainApplication::initLrc(const QString& downloadUrl)
 {
     /*
      * Init mainwindow and finish splash when mainwindow shows up.
@@ -226,7 +213,8 @@ MainApplication::initLrc()
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
             isMigrating = false;
-        });
+        },
+        downloadUrl);
     LRCInstance::subscribeToDebugReceived();
     LRCInstance::getAPI().holdConferences = false;
 }
@@ -243,34 +231,60 @@ MainApplication::initConnectivityMonitor()
 }
 
 void
-MainApplication::parseArguments(bool& startMinimized)
+MainApplication::parseArguments(bool& startMinimized, QString& downloadUrl)
 {
-    QString uri = "";
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addVersionOption();
 
-    for (auto string : QCoreApplication::arguments()) {
-        if (string.startsWith("jami:")) {
-            uri = string;
-        } else {
-            if (string == "-m" || string == "--minimized") {
-                startMinimized = true;
-            }
-#ifdef Q_OS_WINDOWS
-            debugFile_.reset(new QFile(getDebugFilePath()));
-            auto dbgFile = string == "-f" || string == "--file";
-            auto dbgConsole = string == "-c" || string == "--vsconsole";
-            if (dbgFile || dbgConsole) {
-                if (dbgFile) {
-                    debugFile_->open(QIODevice::WriteOnly | QIODevice::Truncate);
-                    debugFile_->close();
-                    fileDebug(debugFile_.get());
-                }
-                if (dbgConsole) {
-                    vsConsoleDebug();
-                }
-            }
-#endif
-        }
+    QCommandLineOption debugOption(QStringList() << "d"
+                                                 << "debug",
+                                   "Debug out.");
+    parser.addOption(debugOption);
+
+    QCommandLineOption debugFileOption(QStringList() << "f"
+                                                     << "file",
+                                       "Debug to file.");
+    parser.addOption(debugFileOption);
+
+    QCommandLineOption debugConsoleOption(QStringList() << "c"
+                                                        << "console",
+                                          "Debug out to IDE console.");
+    parser.addOption(debugConsoleOption);
+
+    QCommandLineOption updateUrlOption(QStringList() << "u"
+                                                     << "url",
+                                       "Reference <url> for client versioning.",
+                                       "url");
+    parser.addOption(updateUrlOption);
+
+    QCommandLineOption minimizedOption(QStringList() << "m"
+                                                     << "minimized",
+                                       "Start minimized.");
+    parser.addOption(minimizedOption);
+
+    parser.process(*this);
+
+    if (parser.isSet(debugOption)) {
+        consoleDebug();
     }
+
+#ifdef Q_OS_WINDOWS
+    if (parser.isSet(debugFileOption)) {
+        debugFile_.reset(new QFile(getDebugFilePath()));
+        debugFile_->open(QIODevice::WriteOnly | QIODevice::Truncate);
+        debugFile_->close();
+        fileDebug(debugFile_.get());
+    }
+
+    if (parser.isSet(debugConsoleOption)) {
+        vsConsoleDebug();
+    }
+
+    downloadUrl = parser.value(updateUrlOption);
+#endif
+
+    startMinimized = parser.isSet(minimizedOption);
 }
 
 void
@@ -332,4 +346,26 @@ MainApplication::cleanup()
     FreeConsole();
 #endif
     QApplication::exit(0);
+}
+
+void
+MainApplication::connectForceWindowToTop()
+{
+#ifdef Q_OS_WINDOWS
+    QObject::connect(&LRCInstance::instance(), &LRCInstance::notificationClicked, [] {
+        for (QWindow* appWindow : qApp->allWindows()) {
+            if (appWindow->objectName().compare("mainViewWindow"))
+                continue;
+            // clang-format off
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_TOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_NOTOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            // clang-format on
+            return;
+        }
+    });
+#endif
 }

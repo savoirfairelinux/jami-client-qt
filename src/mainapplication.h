@@ -41,14 +41,15 @@ public:
 
 private:
     void loadTranslations();
-    void initLrc();
+    void initLrc(const QString& downloadUrl);
     void initConnectivityMonitor();
-    void parseArguments(bool& startMinimized);
+    void parseArguments(bool& startMinimized, QString& updateUrl);
     void setApplicationFont();
     void initQmlEngine();
     void initSettings();
     void initSystray();
     void cleanup();
+    void connectForceWindowToTop();
 
 private:
 #ifdef Q_OS_WIN
