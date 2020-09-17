@@ -38,7 +38,21 @@
     <WixVariable Id="WixUIDialogBmp" Value="main-banner.bmp" />
     <WixVariable Id="WixUISupportPerUser" Value="0" />
 
-    <CustomAction Id="removeOldJamiFiles" Directory="APPLICATIONFOLDER" ExeCommand="cmd /c &quot;del vc_redist.x64.exe; del uninstall.exe; del WinSparkle.dll;&quot;" Execute="deferred" Return="ignore" HideTarget="no" Impersonate="no" />
+    <CustomAction Id="removeOldJamiFiles"
+                  Directory="APPLICATIONFOLDER"
+                  ExeCommand="cmd /c &quot;del vc_redist.x64.exe; del uninstall.exe; del WinSparkle.dll;&quot;"
+                  Execute="deferred"
+                  Return="ignore"
+                  HideTarget="no"
+                  Impersonate="no"/>
+
+    <CustomAction Id="fixQtWebEngine"
+                  Directory="APPLICATIONFOLDER"
+                  ExeCommand="cmd /c &quot;copy 'C:\Qt\5.15.0\msvc2019_64\bin\QtWebEngineProcess.exe' QtWebEngineProcess.exe&quot;"
+                  Execute="deferred"
+                  Return="ignore"
+                  HideTarget="no"
+                  Impersonate="no"/>
 
     <Property Id="QtExecCmdLine" Value='"[WindowsFolder]\System32\taskkill.exe" /F /IM QtWebEngineProcess.exe /IM Jami.exe'/>
     <CustomAction Id="JamiProcesses.TaskKill"
@@ -113,7 +127,8 @@
     <InstallExecuteSequence>
       <Custom Action='JamiProcesses.TaskKill' Before='InstallValidate'/>
       <Custom Action="removeOldJamiFiles" After="RemoveFiles" />
-      <Custom Action="LaunchApplication_nonUI" After="InstallFinalize"> WIXNONUILAUNCH </Custom>
+      <Custom Action="fixQtWebEngine" After="InstallFinalize" />
+      <Custom Action="LaunchApplication_nonUI" After="fixQtWebEngine"> WIXNONUILAUNCH </Custom>
       <Custom Action="Overwrite_WixSetDefaultPerMachineFolder" After="WixSetDefaultPerMachineFolder" />
     </InstallExecuteSequence>
 
