@@ -140,5 +140,6 @@
         <file>src/commoncomponents/BaseDialog.qml</file>
         <file>src/commoncomponents/ModalPopup.qml</file>
         <file>src/commoncomponents/SimpleMessageDialog.qml</file>
+        <file>src/settingsview/components/UpdateDownloadDialog.qml</file>
     </qresource>
 </RCC>

@@ -35,16 +35,17 @@ BaseDialog {
     property var buttonTitles: []
     property var buttonCallBacks: []
     property var buttonStyles: []
-    property alias description: descriptionText.text
+    property alias infoText: infoText.text
+    property alias innerContentData: innerContent.data
 
-    function openWithParameters(title, info) {
+    function openWithParameters(title, info = "") {
         root.title = title
-        descriptionText.text = info
+        root.infoText = info
         open()
     }
 
     contentItem: Rectangle {
-        id: simpleMessageDialogContentRect
+        id: container
 
         implicitWidth: Math.max(JamiTheme.preferredDialogWidth,
                                 buttonTitles.length * (JamiTheme.preferredFieldWidth / 2
@@ -55,7 +56,7 @@ BaseDialog {
             anchors.fill: parent
 
             Label {
-                id: descriptionText
+                id: infoText
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: JamiTheme.preferredDialogWidth - JamiTheme.preferredMarginSize
@@ -65,6 +66,11 @@ BaseDialog {
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+            }
+
+            Item {
+                id: innerContent
+                Layout.fillWidth: true
             }
 
             RowLayout {
