@@ -35,6 +35,7 @@
 #include "mediahandleritemlistmodel.h"
 #include "messagesadapter.h"
 #include "namedirectory.h"
+#include "networkmanager.h"
 #include "preferenceitemlistmodel.h"
 #include "pluginitemlistmodel.h"
 #include "pluginlistpreferencemodel.h"
@@ -136,6 +137,7 @@ registerTypes()
     QML_REGISTERSINGLETONTYPE_CUSTOM("net.jami.Models", AVModel, 1, 0, &LRCInstance::avModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM("net.jami.Models", PluginModel, 1, 0, &LRCInstance::pluginModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM("net.jami.Models", RenderManager, 1, 0, LRCInstance::renderer())
+    QML_REGISTERSINGLETONTYPE_CUSTOM("net.jami.Models", NetWorkManager, 1, 0, LRCInstance::getNetworkManager())
 
     /*
      * Qml singleton components

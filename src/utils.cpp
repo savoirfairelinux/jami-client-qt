@@ -424,26 +424,6 @@ Utils::cleanUpdateFiles()
     }
 }
 
-void
-Utils::checkForUpdates(bool withUI, QWidget* parent)
-{
-    Q_UNUSED(withUI)
-    Q_UNUSED(parent)
-    /*
-     * TODO: check update logic.
-     */
-}
-
-void
-Utils::applyUpdates(bool updateToBeta, QWidget* parent)
-{
-    Q_UNUSED(updateToBeta)
-    Q_UNUSED(parent)
-    /*
-     * TODO: update logic.
-     */
-}
-
 inline QString
 removeEndlines(const QString& str)
 {
