@@ -61,107 +61,133 @@ Rectangle {
 
     color: JamiTheme.backgroundColor
 
-    ColumnLayout {
-        spacing: layoutSpacing
+    ScrollView {
+        id: backupKeysPageScroll
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        property ScrollBar vScrollBar: ScrollBar.vertical
 
-        RowLayout {
-            spacing: layoutSpacing
+        anchors.top: root.top
+        anchors.topMargin: layoutSpacing
+        anchors.bottom: root.bottom
+        anchors.bottomMargin: layoutSpacing
+        anchors.horizontalCenter: root.horizontalCenter
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: backupBtn.width
+        width: root.width
+        height: root.height - layoutSpacing * 2
 
-            Label {
-                text: JamiStrings.backupAccount
-                font.pointSize: JamiTheme.textFontSize + 3
-            }
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
-            Label {
-                Layout.alignment: Qt.AlignRight
+        clip: true
 
-                text: JamiStrings.recommended
-                color: "white"
-                padding: 8
+        ColumnLayout {
+            width: Math.max(root.width, implicitWidth)
+            height: Math.max(backupKeysPageScroll.height, implicitHeight)
 
-                background: Rectangle {
-                    color: "#aed581"
-                    radius: 24
-                    anchors.fill: parent
+            spacing: 0
+
+            ColumnLayout {
+                spacing: layoutSpacing
+
+                Layout.alignment: Qt.AlignCenter
+
+                RowLayout {
+                    spacing: layoutSpacing
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: backupBtn.width
+
+                    Label {
+                        text: JamiStrings.backupAccount
+                        font.pointSize: JamiTheme.textFontSize + 3
+                    }
+
+                    Label {
+                        Layout.alignment: Qt.AlignRight
+
+                        text: JamiStrings.recommended
+                        color: "white"
+                        padding: 8
+
+                        background: Rectangle {
+                            color: "#aed581"
+                            radius: 24
+                            anchors.fill: parent
+                        }
+                    }
                 }
-            }
-        }
 
-        Label {
-            property int preferredHeight: 0
+                Label {
+                    property int preferredHeight: 0
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: backupBtn.width
-            Layout.preferredHeight: preferredHeight
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: backupBtn.width
+                    Layout.preferredHeight: preferredHeight
 
-            text: JamiStrings.backupAccountInfos
-            wrapMode: Text.WordWrap
-            font.pointSize: JamiTheme.textFontSize
+                    text: JamiStrings.backupAccountInfos
+                    wrapMode: Text.WordWrap
+                    font.pointSize: JamiTheme.textFontSize
 
-            onFontChanged: {
-                var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
-                preferredHeight = (boundingRect.width / backupBtn.preferredWidth)
-                        * boundingRect.height
-            }
-        }
-
-        RowLayout {
-            spacing: layoutSpacing
-
-            Layout.alignment: Qt.AlignCenter
-
-            Label {
-                text: JamiStrings.neverShowAgain
-                font.pointSize: JamiTheme.textFontSize
-            }
-
-            Switch {
-                id: passwordSwitch
-                Layout.alignment: Qt.AlignRight
-
-                onToggled: {
-                    neverShowAgainBoxClicked(checked)
+                    onFontChanged: {
+                        var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
+                        preferredHeight = (boundingRect.width / backupBtn.preferredWidth)
+                                * boundingRect.height
+                    }
                 }
-            }
-        }
 
-        MaterialButton {
-            id: backupBtn
+                RowLayout {
+                    spacing: layoutSpacing
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                    Layout.alignment: Qt.AlignCenter
 
-            text: JamiStrings.backupAccountBtn
-            color: JamiTheme.buttonTintedGrey
-            hoveredColor: JamiTheme.buttonTintedGreyHovered
-            pressedColor: JamiTheme.buttonTintedGreyPressed
+                    Label {
+                        text: JamiStrings.neverShowAgain
+                        font.pointSize: JamiTheme.textFontSize
+                    }
 
-            onClicked: {
-                exportBtn_Dialog.open()
-                leavePage()
-            }
-        }
+                    Switch {
+                        id: passwordSwitch
+                        Layout.alignment: Qt.AlignRight
 
-        MaterialButton {
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                        onToggled: {
+                            neverShowAgainBoxClicked(checked)
+                        }
+                    }
+                }
 
-            text: JamiStrings.skip
-            color: JamiTheme.buttonTintedGrey
-            hoveredColor: JamiTheme.buttonTintedGreyHovered
-            pressedColor: JamiTheme.buttonTintedGreyPressed
-            outlined: true
+                MaterialButton {
+                    id: backupBtn
 
-            onClicked: {
-                leavePage()
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
+
+                    text: JamiStrings.backupAccountBtn
+                    color: JamiTheme.buttonTintedGrey
+                    hoveredColor: JamiTheme.buttonTintedGreyHovered
+                    pressedColor: JamiTheme.buttonTintedGreyPressed
+
+                    onClicked: {
+                        exportBtn_Dialog.open()
+                        leavePage()
+                    }
+                }
+
+                MaterialButton {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
+
+                    text: JamiStrings.skip
+                    color: JamiTheme.buttonTintedGrey
+                    hoveredColor: JamiTheme.buttonTintedGreyHovered
+                    pressedColor: JamiTheme.buttonTintedGreyPressed
+                    outlined: true
+
+                    onClicked: {
+                        leavePage()
+                    }
+                }
             }
         }
     }

@@ -55,104 +55,131 @@ Rectangle {
             sipServernameEdit.focus = true
     }
 
-    ColumnLayout {
-        spacing: layoutSpacing
+    ScrollView {
+        id: createSIPAccountPageScroll
 
-        anchors.centerIn: parent
+        property ScrollBar vScrollBar: ScrollBar.vertical
 
-        RowLayout {
-            spacing: layoutSpacing
+        anchors.top: root.top
+        anchors.topMargin: layoutSpacing
+        anchors.bottom: root.bottom
+        anchors.bottomMargin: layoutSpacing
+        anchors.horizontalCenter: root.horizontalCenter
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: createAccountButton.width
+        width: root.width
+        height: root.height - layoutSpacing * 2
 
-            Label {
-                text: JamiStrings.configureExistingSIP
-                font.pointSize: JamiTheme.textFontSize + 3
-            }
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
-            Label {
-                Layout.alignment: Qt.AlignRight
+        clip: true
 
-                text: JamiStrings.optional
-                color: "white"
-                padding: 8
+        ColumnLayout {
+            width: Math.max(root.width, implicitWidth)
+            height: Math.max(createSIPAccountPageScroll.height, implicitHeight)
 
-                background: Rectangle {
-                    color: "#28b1ed"
-                    radius: 24
-                    anchors.fill: parent
+            spacing: 0
+
+            ColumnLayout {
+                spacing: layoutSpacing
+
+                Layout.alignment: Qt.AlignCenter
+
+                RowLayout {
+                    spacing: layoutSpacing
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: createAccountButton.width
+
+                    Label {
+                        text: JamiStrings.configureExistingSIP
+                        font.pointSize: JamiTheme.textFontSize + 3
+                    }
+
+                    Label {
+                        Layout.alignment: Qt.AlignRight
+
+                        text: JamiStrings.optional
+                        color: "white"
+                        padding: 8
+
+                        background: Rectangle {
+                            color: "#28b1ed"
+                            radius: 24
+                            anchors.fill: parent
+                        }
+                    }
                 }
-            }
-        }
 
-        MaterialLineEdit {
-            id: sipServernameEdit
+                MaterialLineEdit {
+                    id: sipServernameEdit
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: createAccountButton.width
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: createAccountButton.width
 
-            selectByMouse: true
-            placeholderText: JamiStrings.server
-            font.pointSize: 9
-            font.kerning: true
-        }
+                    selectByMouse: true
+                    placeholderText: JamiStrings.server
+                    font.pointSize: 9
+                    font.kerning: true
+                }
 
-        MaterialLineEdit {
-            id: sipProxyEdit
+                MaterialLineEdit {
+                    id: sipProxyEdit
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: createAccountButton.width
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: createAccountButton.width
 
-            selectByMouse: true
-            placeholderText: JamiStrings.proxy
-            font.pointSize: 9
-            font.kerning: true
-        }
+                    selectByMouse: true
+                    placeholderText: JamiStrings.proxy
+                    font.pointSize: 9
+                    font.kerning: true
+                }
 
-        MaterialLineEdit {
-            id: sipUsernameEdit
+                MaterialLineEdit {
+                    id: sipUsernameEdit
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: createAccountButton.width
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: createAccountButton.width
 
-            selectByMouse: true
-            placeholderText: JamiStrings.username
-            font.pointSize: 9
-            font.kerning: true
-        }
+                    selectByMouse: true
+                    placeholderText: JamiStrings.username
+                    font.pointSize: 9
+                    font.kerning: true
+                }
 
-        MaterialLineEdit {
-            id: sipPasswordEdit
+                MaterialLineEdit {
+                    id: sipPasswordEdit
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: createAccountButton.width
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: createAccountButton.width
 
-            selectByMouse: true
-            echoMode: TextInput.Password
-            placeholderText: JamiStrings.password
-            font.pointSize: 9
-            font.kerning: true
-        }
+                    selectByMouse: true
+                    echoMode: TextInput.Password
+                    placeholderText: JamiStrings.password
+                    font.pointSize: 9
+                    font.kerning: true
+                }
 
-        MaterialButton {
-            id: createAccountButton
+                MaterialButton {
+                    id: createAccountButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
 
-            text: JamiStrings.createSIPAccount
-            color: JamiTheme.wizardBlueButtons
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+                    text: JamiStrings.createSIPAccount
+                    color: JamiTheme.wizardBlueButtons
+                    hoveredColor: JamiTheme.buttonTintedBlueHovered
+                    pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                createAccount()
+                    onClicked: {
+                        createAccount()
+                    }
+                }
             }
         }
     }
