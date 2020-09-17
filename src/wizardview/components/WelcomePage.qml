@@ -70,154 +70,161 @@ Rectangle {
             }
         }
 
-        MaterialButton {
-            id: newAccountButton
+        Flow {
+            property int visibleButtonCounts: 0
+            property int alwaysShownButtonCounts: 0
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+            spacing: layoutSpacing
+            flow: Flow.TopToBottom
 
-            text: qsTr("Create a jami account")
-            fontCapitalization: Font.AllUppercase
-            toolTipText: qsTr("Create new Jami account")
-            source: "qrc:/images/default_avatar_overlay.svg"
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
-
-            onClicked: {
-                welcomePageRedirectPage(1)
+            Layout.preferredHeight: {
+                var leftSpace = Math.min(
+                            root.height - welcomeLabel.height - welcomeLogo.height - layoutSpacing * 2,
+                            (newAccountButton.preferredHeight + layoutSpacing) * 7)
+                if (visibleButtonCounts === 0)
+                    return (newAccountButton.preferredHeight + layoutSpacing) * alwaysShownButtonCounts
+                else
+                    return leftSpace
             }
-        }
 
-        MaterialButton {
-            id: newRdvButton
+            MaterialButton {
+                id: newAccountButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                width: preferredWidth
+                height: preferredHeight
 
-            text: JamiStrings.createRV
-            fontCapitalization: Font.AllUppercase
-            toolTipText: JamiStrings.createNewRV
-            source: "qrc:/images/icons/groups-24px.svg"
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+                text: qsTr("Create a jami account")
+                fontCapitalization: Font.AllUppercase
+                toolTipText: qsTr("Create new Jami account")
+                source: "qrc:/images/default_avatar_overlay.svg"
+                color: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(8)
+                onClicked: welcomePageRedirectPage(1)
+                Component.onCompleted: parent.alwaysShownButtonCounts += visible ? 1 : 0
             }
-        }
 
-        MaterialButton {
-            id: fromDeviceButton
+            MaterialButton {
+                id: newRdvButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                width: preferredWidth
+                height: preferredHeight
 
-            text: JamiStrings.linkFromAnotherDevice
-            fontCapitalization: Font.AllUppercase
-            toolTipText: qsTr("Import account from other device")
-            source: "qrc:/images/icons/devices-24px.svg"
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+                text: JamiStrings.createRV
+                fontCapitalization: Font.AllUppercase
+                toolTipText: JamiStrings.createNewRV
+                source: "qrc:/images/icons/groups-24px.svg"
+                color: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(5)
+                onClicked: welcomePageRedirectPage(8)
+                Component.onCompleted: parent.alwaysShownButtonCounts += visible ? 1 : 0
             }
-        }
 
-        MaterialButton {
-            id: fromBackupButton
+            MaterialButton {
+                id: fromDeviceButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                width: preferredWidth
+                height: preferredHeight
 
-            text: JamiStrings.connectFromBackup
-            fontCapitalization: Font.AllUppercase
-            toolTipText: qsTr("Import account from backup file")
-            source: "qrc:/images/icons/backup-24px.svg"
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+                text: JamiStrings.linkFromAnotherDevice
+                fontCapitalization: Font.AllUppercase
+                toolTipText: qsTr("Import account from other device")
+                source: "qrc:/images/icons/devices-24px.svg"
+                color: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(3)
+                onClicked: welcomePageRedirectPage(5)
+                Component.onCompleted: parent.alwaysShownButtonCounts += visible ? 1 : 0
             }
-        }
 
-        MaterialButton {
-            id: showAdvancedButton
+            MaterialButton {
+                id: fromBackupButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                width: preferredWidth
+                height: preferredHeight
 
-            text: JamiStrings.advancedFeatures
-            fontCapitalization: Font.AllUppercase
-            toolTipText: JamiStrings.showAdvancedFeatures
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
-            outlined: true
+                text: JamiStrings.connectFromBackup
+                fontCapitalization: Font.AllUppercase
+                toolTipText: qsTr("Import account from backup file")
+                source: "qrc:/images/icons/backup-24px.svg"
+                color: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: JamiTheme.buttonTintedBluePressed
 
-            hoverEnabled: true
-
-            ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
-            ToolTip.visible: hovered
-            ToolTip.text: JamiStrings.showAdvancedFeatures
-
-            onClicked: {
-                connectAccountManagerButton.visible = !connectAccountManagerButton.visible
-                newSIPAccountButton.visible = !newSIPAccountButton.visible
+                onClicked: welcomePageRedirectPage(3)
+                Component.onCompleted: parent.alwaysShownButtonCounts += visible ? 1 : 0
             }
-        }
 
-        MaterialButton {
-            id: connectAccountManagerButton
+            MaterialButton {
+                id: showAdvancedButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                width: preferredWidth
+                height: preferredHeight
 
-            visible: false
+                text: JamiStrings.advancedFeatures
+                fontCapitalization: Font.AllUppercase
+                toolTipText: JamiStrings.showAdvancedFeatures
+                color: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: JamiTheme.buttonTintedBluePressed
+                outlined: true
 
-            text: JamiStrings.connectJAMSServer
-            fontCapitalization: Font.AllUppercase
-            toolTipText: JamiStrings.createFromJAMS
-            source: "qrc:/images/icons/router-24px.svg"
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+                hoverEnabled: true
 
-            onClicked: {
-                welcomePageRedirectPage(6)
+                ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
+                ToolTip.visible: hovered
+                ToolTip.text: JamiStrings.showAdvancedFeatures
+
+                onClicked: {
+                    connectAccountManagerButton.visible = !connectAccountManagerButton.visible
+                    newSIPAccountButton.visible = !newSIPAccountButton.visible
+                }
+
+                Component.onCompleted: parent.alwaysShownButtonCounts += visible ? 1 : 0
             }
-        }
 
-        MaterialButton {
-            id: newSIPAccountButton
+            MaterialButton {
+                id: connectAccountManagerButton
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+                width: preferredWidth
+                height: preferredHeight
 
-            visible: false
+                visible: false
 
-            text: JamiStrings.addSIPAccount
-            fontCapitalization: Font.AllUppercase
-            toolTipText: qsTr("Create new SIP account")
-            source: "qrc:/images/default_avatar_overlay.svg"
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+                text: JamiStrings.connectJAMSServer
+                fontCapitalization: Font.AllUppercase
+                toolTipText: JamiStrings.createFromJAMS
+                source: "qrc:/images/icons/router-24px.svg"
+                color: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(2)
+                onClicked: welcomePageRedirectPage(6)
+                onVisibleChanged: parent.visibleButtonCounts += visible ? 1 : 0
+            }
+
+            MaterialButton {
+                id: newSIPAccountButton
+
+                width: preferredWidth
+                height: preferredHeight
+
+                visible: false
+
+                text: JamiStrings.addSIPAccount
+                fontCapitalization: Font.AllUppercase
+                toolTipText: qsTr("Create new SIP account")
+                source: "qrc:/images/default_avatar_overlay.svg"
+                color: JamiTheme.buttonTintedBlue
+                hoveredColor: JamiTheme.buttonTintedBlueHovered
+                pressedColor: JamiTheme.buttonTintedBluePressed
+
+                onClicked: welcomePageRedirectPage(2)
+                onVisibleChanged: parent.visibleButtonCounts += visible ? 1 : 0
             }
         }
     }
