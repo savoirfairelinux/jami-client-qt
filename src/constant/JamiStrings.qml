@@ -267,8 +267,19 @@ Item {
     property string tipChooseDownloadFolder: qsTr("Choose download directory")
     property string recordCall: qsTr("Record call")
 
-    // UpdateSettings
+    // Updates
     property string betaInstall: qsTr("Install beta version")
+    property string checkForUpdates: qsTr("Check for updates now")
+    property string autoUpdate: qsTr("Check for updates automatically")
+    property string tipAutoUpdate: qsTr("toggle automatic updates")
+    property string updatesTitle: qsTr("Updates")
+    property string updateDialogTitle: qsTr("Update")
+    property string updateFound: qsTr("A new version of Jami was found. Would you like to update now?")
+    property string updateNotFound: qsTr("No new version found")
+    property string updateCheckError: qsTr("An error occured when checking for a new version")
+    property string updateDownloadNetworkError: qsTr("Installer download failed due to a network error")
+    property string updateDownloadCanceled: qsTr("Installer download canceled")
+    property string updateDownloading: "Downloading"
 
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")
@@ -345,4 +356,8 @@ Item {
     property string addSIPAccount: qsTr("Add a SIP account")
     property string errorCreateAccount: qsTr("Error while creating your account. Check your credentials.")
     property string createNewRV: qsTr("Create new rendezvous")
+
+    // Generic dialog options
+    property string optionOk: qsTr("Ok")
+    property string optionCancel: qsTr("Cancel")
 }
