@@ -42,6 +42,7 @@ Rectangle {
     // these values will also be changed.
     property string responsibleConvUid: ""
     property string responsibleAccountId: ""
+    property bool canGoFullscreen: false
 
     function needToCloseInCallConversationAndPotentialWindow() {
         audioCallPage.closeInCallConversation()
@@ -144,6 +145,7 @@ Rectangle {
         }
 
         function onShowVideoCallPage(accountId, convUid, callId) {
+            canGoFullscreen = true
             if (responsibleConvUid === convUid
                     && responsibleAccountId === accountId) {
                 showVideoCallPage(callId)
@@ -187,6 +189,8 @@ Rectangle {
         property bool isFullscreen: false
 
         onNeedToShowInFullScreen: {
+            if (!canGoFullscreen) return
+
             isFullscreen = !isFullscreen
             VideoCallFullScreenWindowContainerCreation.createvideoCallFullScreenWindowContainerObject()
 
