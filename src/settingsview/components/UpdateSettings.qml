@@ -40,7 +40,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        text: qsTr("Updates")
+        text: JamiStrings.updatesTitle
         font.pointSize: JamiTheme.headerFontSize
         font.kerning: true
 
@@ -52,47 +52,47 @@ ColumnLayout {
         id: autoUpdateCheckBox
 
         checked: SettingsAdapter.getAppValue(Settings.Key.AutoUpdate)
-        labelText: qsTr("Check for updates automatically")
         fontPointSize: JamiTheme.settingsFontSize
 
-        tooltipText: qsTr("toggle automatic updates")
+        labelText: JamiStrings.autoUpdate
+        tooltipText: JamiStrings.tipAutoUpdate
 
         onSwitchToggled: SettingsAdapter.setAppValue(Settings.Key.AutoUpdate, checked)
     }
 
-    HoverableRadiusButton {
+    MaterialButton {
         id: checkUpdateButton
 
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: JamiTheme.preferredFieldWidth
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        radius: height / 2
+        color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+        hoveredColor: JamiTheme.buttonTintedBlackHovered
+        pressedColor: JamiTheme.buttonTintedBlackPressed
+        outlined: true
 
-        toolTipText: qsTr("Check for updates now")
-        text: qsTr("Updates")
-        fontPointSize: JamiTheme.buttonFontSize
+        toolTipText: JamiStrings.checkForUpdates
+        text: JamiStrings.checkForUpdates
 
-        onClicked: {
-            checkForUpdateSlot()
-        }
+        onClicked: checkForUpdateSlot()
     }
 
-    HoverableRadiusButton {
+    MaterialButton {
         id: installBetaButton
 
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: JamiTheme.preferredFieldWidth
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        radius: height / 2
+        color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+        hoveredColor: JamiTheme.buttonTintedBlackHovered
+        pressedColor: JamiTheme.buttonTintedBlackPressed
+        outlined: true
 
-        toolTipText: qsTr("Install the latest beta version")
+        toolTipText: JamiStrings.betaInstall
         text: JamiStrings.betaInstall
-        fontPointSize: JamiTheme.buttonFontSize
 
-        onClicked: {
-            installBetaSlot()
-        }
+        onClicked: installBetaSlot()
     }
 }

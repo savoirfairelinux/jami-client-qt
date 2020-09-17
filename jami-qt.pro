@@ -111,6 +111,7 @@ unix {
 
 # Input
 HEADERS += \
+        src/networkmanager.h \
         src/smartlistmodel.h \
         src/utils.h \
         src/bannedlistmodel.h \
@@ -159,6 +160,7 @@ HEADERS += \
 SOURCES += \
         src/bannedlistmodel.cpp \
         src/accountlistmodel.cpp \
+        src/networkmanager.cpp \
         src/runguard.cpp \
         src/webchathelpers.cpp \
         src/main.cpp \
