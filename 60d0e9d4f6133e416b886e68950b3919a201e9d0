@@ -22,6 +22,30 @@
       "revId": "60d0e9d4f6133e416b886e68950b3919a201e9d0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23c556ce_5d461ce9",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-17T16:39:00Z",
+      "side": 1,
+      "message": "Good idea, but I would prefer we leave the todos in the code for 2 reasons,\n- 1) they serve as markers to remind developers of problematic sections of the code-base.\n- 2) in the future, a sonarqube can detect them and generate gerrit comments.\nI will link an issue though.",
+      "parentUuid": "fd22a5f9_85354b50",
+      "range": {
+        "startLine": 319,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 59
+      },
+      "revId": "60d0e9d4f6133e416b886e68950b3919a201e9d0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
