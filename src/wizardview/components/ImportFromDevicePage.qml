@@ -55,99 +55,124 @@ Rectangle {
             pinFromDevice.focus = true
     }
 
-    ColumnLayout {
-        spacing: layoutSpacing
+    ScrollView {
+        id: importFromDevicePageScroll
 
-        // Prevent possible anchor loop detected on centerIn.
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        property ScrollBar vScrollBar: ScrollBar.vertical
 
-        Text {
-            Layout.alignment: Qt.AlignCenter
+        anchors.top: root.top
+        anchors.topMargin: layoutSpacing
+        anchors.bottom: root.bottom
+        anchors.bottomMargin: layoutSpacing
+        anchors.horizontalCenter: root.horizontalCenter
 
-            text: JamiStrings.mainAccountPassword
-            font.pointSize: JamiTheme.menuFontSize
-        }
+        width: root.width
+        height: root.height - layoutSpacing * 2
 
-        MaterialLineEdit {
-            id: passwordFromDevice
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
-            Layout.alignment: Qt.AlignCenter
+        clip: true
 
-            selectByMouse: true
-            placeholderText: qsTr("Password")
-            font.pointSize: 9
-            font.kerning: true
+        ColumnLayout {
+            width: Math.max(root.width, implicitWidth)
+            height: Math.max(importFromDevicePageScroll.height, implicitHeight)
 
-            echoMode: TextInput.Password
-            borderColorMode: MaterialLineEdit.NORMAL
+            spacing: 0
 
-            onTextChanged: errorText = ""
-        }
+            ColumnLayout {
+                spacing: layoutSpacing
 
-        Text {
-            property int preferredHeight: layoutSpacing
+                Layout.alignment: Qt.AlignCenter
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: connectBtn.width
-            Layout.preferredHeight: preferredHeight
+                Text {
+                    Layout.alignment: Qt.AlignCenter
 
-            text: JamiStrings.enterPIN
-            wrapMode: Text.Wrap
+                    text: JamiStrings.mainAccountPassword
+                    font.pointSize: JamiTheme.menuFontSize
+                }
 
-            onTextChanged: {
-                var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
-                preferredHeight += (boundingRect.width / connectBtn.preferredWidth)
-                        * boundingRect.height
+                MaterialLineEdit {
+                    id: passwordFromDevice
+
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: connectBtn.width
+                    Layout.alignment: Qt.AlignCenter
+
+                    selectByMouse: true
+                    placeholderText: qsTr("Password")
+                    font.pointSize: 9
+                    font.kerning: true
+
+                    echoMode: TextInput.Password
+                    borderColorMode: MaterialLineEdit.NORMAL
+
+                    onTextChanged: errorText = ""
+                }
+
+                Text {
+                    property int preferredHeight: layoutSpacing
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: connectBtn.width
+                    Layout.preferredHeight: preferredHeight
+
+                    text: JamiStrings.enterPIN
+                    wrapMode: Text.Wrap
+
+                    onTextChanged: {
+                        var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
+                        preferredHeight += (boundingRect.width / connectBtn.preferredWidth)
+                                * boundingRect.height
+                    }
+                }
+
+                MaterialLineEdit {
+                    id: pinFromDevice
+
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: connectBtn.width
+                    Layout.alignment: Qt.AlignCenter
+
+                    selectByMouse: true
+                    placeholderText: qsTr("PIN")
+                    font.pointSize: 9
+                    font.kerning: true
+
+                    borderColorMode: MaterialLineEdit.NORMAL
+
+                    onTextChanged: errorText = ""
+                }
+
+                SpinnerButton {
+                    id: connectBtn
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
+
+                    spinnerTriggeredtext: qsTr("Generating account…")
+                    normalText: JamiStrings.connectFromAnotherDevice
+
+                    enabled: pinFromDevice.text.length !== 0 && !spinnerTriggered
+
+                    onClicked: {
+                        spinnerTriggered = true
+                        importAccount()
+                    }
+                }
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+
+                    visible: errorText.length !== 0
+
+                    text: errorText
+
+                    font.pointSize: JamiTheme.textFontSize
+                    color: "red"
+                }
             }
-        }
-
-        MaterialLineEdit {
-            id: pinFromDevice
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
-            Layout.alignment: Qt.AlignCenter
-
-            selectByMouse: true
-            placeholderText: qsTr("PIN")
-            font.pointSize: 9
-            font.kerning: true
-
-            borderColorMode: MaterialLineEdit.NORMAL
-
-            onTextChanged: errorText = ""
-        }
-
-        SpinnerButton {
-            id: connectBtn
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
-
-            spinnerTriggeredtext: qsTr("Generating account…")
-            normalText: JamiStrings.connectFromAnotherDevice
-
-            enabled: pinFromDevice.text.length !== 0 && !spinnerTriggered
-
-            onClicked: {
-                spinnerTriggered = true
-                importAccount()
-            }
-        }
-
-        Label {
-            Layout.alignment: Qt.AlignCenter
-
-            visible: errorText.length !== 0
-
-            text: errorText
-
-            font.pointSize: JamiTheme.textFontSize
-            color: "red"
         }
     }
 

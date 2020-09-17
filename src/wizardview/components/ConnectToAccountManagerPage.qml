@@ -58,126 +58,156 @@ Rectangle {
             accountManagerEdit.focus = true
     }
 
-    ColumnLayout {
-        spacing: layoutSpacing
+    ScrollView {
+        id: connectToAccountManagerPageScroll
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        property ScrollBar vScrollBar: ScrollBar.vertical
 
-        RowLayout {
-            spacing: layoutSpacing
+        anchors.top: root.top
+        anchors.topMargin: layoutSpacing
+        anchors.bottom: root.bottom
+        anchors.bottomMargin: layoutSpacing
+        anchors.horizontalCenter: root.horizontalCenter
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: connectBtn.width
+        width: root.width
+        height: root.height - layoutSpacing * 2
 
-            Label {
-                text: JamiStrings.enterJAMSURL
-                font.pointSize: JamiTheme.textFontSize + 3
-            }
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
-            Label {
-                Layout.alignment: Qt.AlignRight
+        clip: true
 
-                text: JamiStrings.required
-                color: "#ff1f62"
-                padding: 8
+        ColumnLayout {
+            width: Math.max(root.width, implicitWidth)
+            height: Math.max(connectToAccountManagerPageScroll.height, implicitHeight)
 
-                background: Rectangle {
-                    color: "#fee4e9"
-                    radius: 24
-                    anchors.fill: parent
+            spacing: 0
+
+            ColumnLayout {
+                spacing: layoutSpacing
+
+                Layout.alignment: Qt.AlignCenter
+
+                RowLayout {
+                    spacing: layoutSpacing
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: implicitWidth
+
+                    Label {
+                        text: JamiStrings.enterJAMSURL
+                        font.pointSize: JamiTheme.textFontSize + 3
+                    }
+
+                    Label {
+                        Layout.alignment: Qt.AlignRight
+
+                        text: JamiStrings.required
+                        color: "#ff1f62"
+                        padding: 8
+
+                        background: Rectangle {
+                            color: "#fee4e9"
+                            radius: 24
+                            anchors.fill: parent
+                        }
+                    }
+                }
+
+                MaterialLineEdit {
+                    id: accountManagerEdit
+
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: connectBtn.width
+                    Layout.alignment: Qt.AlignCenter
+
+                    selectByMouse: true
+                    placeholderText: JamiStrings.jamiManagementServerURL
+                    font.pointSize: 9
+                    font.kerning: true
+
+                    borderColorMode: MaterialLineEdit.NORMAL
+
+                    onTextChanged: errorText = ""
+                }
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: connectBtn.width
+
+                    text: JamiStrings.jamsCredentials
+                    wrapMode: Text.Wrap
+
+                    onTextChanged: Layout.preferredHeight =
+                                   JamiQmlUtils.getTextBoundingRect(font, text).height
+                }
+
+                MaterialLineEdit {
+                    id: usernameManagerEdit
+
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: connectBtn.width
+                    Layout.alignment: Qt.AlignCenter
+
+                    selectByMouse: true
+                    placeholderText: JamiStrings.username
+                    font.pointSize: 9
+                    font.kerning: true
+
+                    borderColorMode: MaterialLineEdit.NORMAL
+
+                    onTextChanged: errorText = ""
+                }
+
+                MaterialLineEdit {
+                    id: passwordManagerEdit
+
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: connectBtn.width
+                    Layout.alignment: Qt.AlignCenter
+
+                    selectByMouse: true
+                    placeholderText: JamiStrings.password
+                    font.pointSize: 9
+                    font.kerning: true
+
+                    echoMode: TextInput.Password
+                    borderColorMode: MaterialLineEdit.NORMAL
+
+                    onTextChanged: errorText = ""
+                }
+
+                SpinnerButton {
+                    id: connectBtn
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
+
+                    spinnerTriggeredtext: JamiStrings.generatingAccount
+                    normalText: JamiStrings.connect
+
+                    enabled: accountManagerEdit.text.length !== 0
+                             && usernameManagerEdit.text.length !== 0
+                             && passwordManagerEdit.text.length !== 0
+                             && !spinnerTriggered
+
+                    onClicked: {
+                        spinnerTriggered = true
+                        createAccount()
+                    }
+                }
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+
+                    visible: errorText.length !== 0
+                    text: errorText
+
+                    font.pointSize: JamiTheme.textFontSize
+                    color: "red"
                 }
             }
-        }
-
-        MaterialLineEdit {
-            id: accountManagerEdit
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
-            Layout.alignment: Qt.AlignCenter
-
-            selectByMouse: true
-            placeholderText: JamiStrings.jamiManagementServerURL
-            font.pointSize: 9
-            font.kerning: true
-
-            borderColorMode: MaterialLineEdit.NORMAL
-
-            onTextChanged: errorText = ""
-        }
-
-        Label {
-            Layout.alignment: Qt.AlignLeft
-
-            text: JamiStrings.jamsCredentials
-            wrapMode: Text.Wrap
-        }
-
-        MaterialLineEdit {
-            id: usernameManagerEdit
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
-            Layout.alignment: Qt.AlignCenter
-
-            selectByMouse: true
-            placeholderText: JamiStrings.username
-            font.pointSize: 9
-            font.kerning: true
-
-            borderColorMode: MaterialLineEdit.NORMAL
-
-            onTextChanged: errorText = ""
-        }
-
-        MaterialLineEdit {
-            id: passwordManagerEdit
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
-            Layout.alignment: Qt.AlignCenter
-
-            selectByMouse: true
-            placeholderText: JamiStrings.password
-            font.pointSize: 9
-            font.kerning: true
-
-            echoMode: TextInput.Password
-            borderColorMode: MaterialLineEdit.NORMAL
-
-            onTextChanged: errorText = ""
-        }
-
-        SpinnerButton {
-            id: connectBtn
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
-
-            spinnerTriggeredtext: JamiStrings.generatingAccount
-            normalText: JamiStrings.connect
-
-            enabled: accountManagerEdit.text.length !== 0
-                     && usernameManagerEdit.text.length !== 0
-                     && passwordManagerEdit.text.length !== 0
-                     && !spinnerTriggered
-
-            onClicked: {
-                spinnerTriggered = true
-                createAccount()
-            }
-        }
-
-        Label {
-            Layout.alignment: Qt.AlignCenter
-
-            visible: errorText.length !== 0
-            text: errorText
-
-            font.pointSize: JamiTheme.textFontSize
-            color: "red"
         }
     }
 
