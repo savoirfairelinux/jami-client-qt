@@ -50,104 +50,130 @@ Rectangle {
     property alias displayName: aliasEdit.text
     property bool isRdv: false
 
-    ColumnLayout {
-        spacing: layoutSpacing
+    ScrollView {
+        id: profilePageScroll
 
-        width: parent.width
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        property ScrollBar vScrollBar: ScrollBar.vertical
 
-        RowLayout {
-            spacing: layoutSpacing
-
-            Layout.preferredWidth: saveProfileBtn.width
-            Layout.alignment: Qt.AlignCenter
-
-            Label {
-                text: qsTr("Profile is only shared with contacts")
-                font.pointSize: JamiTheme.textFontSize + 3
-            }
-
-            Label {
-                Layout.alignment: Qt.AlignRight
-
-                text: qsTr("Optional")
-                color: "white"
-                padding: 8
-
-                background: Rectangle {
-                    color: "#28b1ed"
-                    radius: 24
-                    anchors.fill: parent
-                }
-            }
-        }
-
-        PhotoboothView {
-            id: setAvatarWidget
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: size
-            Layout.preferredHeight: size
-
-            boothWidth: 200
-        }
-
-        MaterialLineEdit {
-            id: aliasEdit
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: fieldLayoutWidth
-            Layout.alignment: Qt.AlignCenter
-
-            selectByMouse: true
-            placeholderText: isRdv ? JamiStrings.enterRVName : qsTr("Enter your name")
-            font.pointSize: 9
-            font.kerning: true
-
-            borderColorMode: MaterialLineEdit.NORMAL
-
-            fieldLayoutWidth: saveProfileBtn.width
-        }
-
-        SpinnerButton {
-            id: saveProfileBtn
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
-
-            enabled: !spinnerTriggered
-            normalText: JamiStrings.saveProfile
-            spinnerTriggeredtext: root.isRdv ? JamiStrings.generatingRV : qsTr("Generating account…")
-            onClicked: saveProfile()
-        }
-
-        MaterialButton {
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
-
-            text: JamiStrings.skip
-            enabled: saveProfileBtn.enabled
-            color: enabled? JamiTheme.buttonTintedGrey : JamiTheme.buttonTintedGreyInactive
-            hoveredColor: JamiTheme.buttonTintedGreyHovered
-            pressedColor: JamiTheme.buttonTintedGreyPressed
-            outlined: true
-
-            onClicked: {
-                leavePage()
-            }
-        }
-    }
-
-    AccountCreationStepIndicator {
+        anchors.top: root.top
+        anchors.topMargin: layoutSpacing
         anchors.bottom: root.bottom
-        anchors.bottomMargin: 30
+        anchors.bottomMargin: layoutSpacing
         anchors.horizontalCenter: root.horizontalCenter
 
-        spacing: layoutSpacing
-        steps: 3
-        currentStep: 3
+        width: root.width
+        height: root.height - layoutSpacing * 2
+
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
+
+        clip: true
+
+        ColumnLayout {
+            width: Math.max(root.width, implicitWidth)
+            height: Math.max(profilePageScroll.height, implicitHeight)
+
+            spacing: layoutSpacing
+
+            ColumnLayout {
+                id: profilePageColumnLayout
+
+                Layout.alignment: Qt.AlignCenter
+
+                spacing: layoutSpacing
+
+                RowLayout {
+                    spacing: layoutSpacing
+
+                    Layout.preferredWidth: saveProfileBtn.width
+                    Layout.alignment: Qt.AlignCenter
+
+                    Label {
+                        text: qsTr("Profile is only shared with contacts")
+                        font.pointSize: JamiTheme.textFontSize + 3
+                    }
+
+                    Label {
+                        Layout.alignment: Qt.AlignRight
+
+                        text: qsTr("Optional")
+                        color: "white"
+                        padding: 8
+
+                        background: Rectangle {
+                            color: "#28b1ed"
+                            radius: 24
+                            anchors.fill: parent
+                        }
+                    }
+                }
+
+                PhotoboothView {
+                    id: setAvatarWidget
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: size
+                    Layout.preferredHeight: size
+
+                    boothWidth: 200
+                }
+
+                MaterialLineEdit {
+                    id: aliasEdit
+
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: fieldLayoutWidth
+                    Layout.alignment: Qt.AlignCenter
+
+                    selectByMouse: true
+                    placeholderText: isRdv ? JamiStrings.enterRVName : qsTr("Enter your name")
+                    font.pointSize: 9
+                    font.kerning: true
+
+                    borderColorMode: MaterialLineEdit.NORMAL
+
+                    fieldLayoutWidth: saveProfileBtn.width
+                }
+
+                SpinnerButton {
+                    id: saveProfileBtn
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
+
+                    enabled: !spinnerTriggered
+                    normalText: JamiStrings.saveProfile
+                    spinnerTriggeredtext: root.isRdv ? JamiStrings.generatingRV :
+                                                       qsTr("Generating account…")
+                    onClicked: saveProfile()
+                }
+
+                MaterialButton {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
+
+                    text: JamiStrings.skip
+                    enabled: saveProfileBtn.enabled
+                    color: enabled? JamiTheme.buttonTintedGrey : JamiTheme.buttonTintedGreyInactive
+                    hoveredColor: JamiTheme.buttonTintedGreyHovered
+                    pressedColor: JamiTheme.buttonTintedGreyPressed
+                    outlined: true
+
+                    onClicked: {
+                        leavePage()
+                    }
+                }
+            }
+
+            AccountCreationStepIndicator {
+                Layout.alignment: Qt.AlignHCenter
+
+                spacing: layoutSpacing
+                steps: 3
+                currentStep: 3
+            }
+        }
     }
 }

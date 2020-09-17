@@ -123,7 +123,7 @@ Rectangle {
             isRdv = false
             createAccountPage.nameRegistrationUIState = UsernameLineEdit.NameRegistrationState.BLANK
         } else if (pageIndex === WizardView.WizardViewPageIndex.CREATEACCOUNTPAGE) {
-            createAccountPage.initializeOnShowUp()
+            createAccountPage.initializeOnShowUp(false)
         } else if (pageIndex === WizardView.WizardViewPageIndex.CREATESIPACCOUNTPAGE) {
             createSIPAccountPage.initializeOnShowUp()
         } else if (pageIndex === WizardView.WizardViewPageIndex.IMPORTFROMDEVICEPAGE) {

@@ -71,108 +71,134 @@ Rectangle {
         }
     }
 
-    ColumnLayout {
-        spacing: layoutSpacing
+    ScrollView {
+        id: importFromBackupPageScroll
 
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        property ScrollBar vScrollBar: ScrollBar.vertical
 
-        Text {
-            Layout.alignment: Qt.AlignCenter
+        anchors.top: root.top
+        anchors.topMargin: layoutSpacing
+        anchors.bottom: root.bottom
+        anchors.bottomMargin: layoutSpacing
+        anchors.horizontalCenter: root.horizontalCenter
 
-            text: qsTr("Import from backup")
-            font.pointSize: JamiTheme.menuFontSize
-        }
+        width: root.width
+        height: root.height - layoutSpacing * 2
 
-        MaterialButton {
-            id: fileImportBtn
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
+        ScrollBar.vertical.interactive: true
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+        clip: true
 
-            text: fileImportBtnText
-            toolTipText: JamiStrings.importAccountArchive
-            source: "qrc:/images/icons/round-folder-24px.svg"
-            color: JamiTheme.buttonTintedGrey
-            hoveredColor: JamiTheme.buttonTintedGreyHovered
-            pressedColor: JamiTheme.buttonTintedGreyPressed
+        ColumnLayout {
+            width: Math.max(root.width, implicitWidth)
+            height: Math.max(importFromBackupPageScroll.height, implicitHeight)
 
-            onClicked: {
-                errorText = ""
-                importFromFile_Dialog.open()
+            spacing: 0
+
+            ColumnLayout {
+                spacing: layoutSpacing
+
+                Layout.alignment: Qt.AlignCenter
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+
+                    text: qsTr("Import from backup")
+                    font.pointSize: JamiTheme.menuFontSize
+                }
+
+                MaterialButton {
+                    id: fileImportBtn
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
+
+                    text: fileImportBtnText
+                    toolTipText: JamiStrings.importAccountArchive
+                    source: "qrc:/images/icons/round-folder-24px.svg"
+                    color: JamiTheme.buttonTintedGrey
+                    hoveredColor: JamiTheme.buttonTintedGreyHovered
+                    pressedColor: JamiTheme.buttonTintedGreyPressed
+
+                    onClicked: {
+                        errorText = ""
+                        importFromFile_Dialog.open()
+                    }
+                }
+
+                Text {
+                    // For multiline text, recursive rearrange warning will show up when
+                    // directly assigning contentHeight to Layout.preferredHeight
+                    property int preferredHeight: layoutSpacing
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: fileImportBtn.width
+                    Layout.preferredHeight: preferredHeight
+
+                    text: JamiStrings.importAccountExplanation
+                    wrapMode: Text.Wrap
+
+                    onTextChanged: {
+                        var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
+                        preferredHeight += (boundingRect.width / fileImportBtn.preferredWidth)
+                                * boundingRect.height
+                    }
+                }
+
+                MaterialLineEdit {
+                    id: passwordFromBackupEdit
+
+                    Layout.preferredHeight: fieldLayoutHeight
+                    Layout.preferredWidth: connectBtn.width
+                    Layout.alignment: Qt.AlignCenter
+
+                    selectByMouse: true
+                    placeholderText: qsTr("Password")
+                    font.pointSize: 9
+                    font.kerning: true
+
+                    echoMode: TextInput.Password
+                    borderColorMode: MaterialLineEdit.NORMAL
+
+                    onTextChanged: errorText = ""
+                }
+
+                SpinnerButton {
+                    id: connectBtn
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: preferredWidth
+                    Layout.preferredHeight: preferredHeight
+
+                    spinnerTriggeredtext: qsTr("Generating account…")
+                    normalText: JamiStrings.connectFromBackup
+
+                    enabled: {
+                        if (spinnerTriggered)
+                            return false
+                        if (!(filePath.length === 0) && errorText.length === 0)
+                            return true
+                        return false
+                    }
+
+                    onClicked: {
+                        spinnerTriggered = true
+                        importAccount()
+                    }
+                }
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+
+                    visible: errorText.length !== 0
+
+                    text: errorText
+                    font.pointSize: JamiTheme.textFontSize
+                    color: "red"
+                }
             }
-        }
-
-        Text {
-            // For multiline text, recursive rearrange warning will show up when
-            // directly assigning contentHeight to Layout.preferredHeight
-            property int preferredHeight: layoutSpacing
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: fileImportBtn.width
-            Layout.preferredHeight: preferredHeight
-
-            text: JamiStrings.importAccountExplanation
-            wrapMode: Text.Wrap
-
-            onTextChanged: {
-                var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
-                preferredHeight += (boundingRect.width / fileImportBtn.preferredWidth)
-                        * boundingRect.height
-            }
-        }
-
-        MaterialLineEdit {
-            id: passwordFromBackupEdit
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
-            Layout.alignment: Qt.AlignCenter
-
-            selectByMouse: true
-            placeholderText: qsTr("Password")
-            font.pointSize: 9
-            font.kerning: true
-
-            echoMode: TextInput.Password
-            borderColorMode: MaterialLineEdit.NORMAL
-
-            onTextChanged: errorText = ""
-        }
-
-        SpinnerButton {
-            id: connectBtn
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
-
-            spinnerTriggeredtext: qsTr("Generating account…")
-            normalText: JamiStrings.connectFromBackup
-
-            enabled: {
-                if (spinnerTriggered)
-                    return false
-                if (!(filePath.length === 0) && errorText.length === 0)
-                    return true
-                return false
-            }
-
-            onClicked: {
-                spinnerTriggered = true
-                importAccount()
-            }
-        }
-
-        Label {
-            Layout.alignment: Qt.AlignCenter
-
-            visible: errorText.length !== 0
-
-            text: errorText
-            font.pointSize: JamiTheme.textFontSize
-            color: "red"
         }
     }
 
