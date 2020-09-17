@@ -46,7 +46,11 @@ Rectangle {
     signal uninstalled
 
     function resetPluginSlot() {
-        resetPluginMessageBox.open()
+        msgDialog.buttonCallBacks = [function () {resetPlugin()}]
+        msgDialog.openWithParameters(qsTr("Reset preferences"),
+                                     qsTr("Are you sure you wish to reset "+ pluginName +
+                                          " preferences?"),
+                                     SimpleMessageDialog.MessageMode.Information)
     }
 
     function resetPlugin() {
@@ -61,7 +65,13 @@ Rectangle {
     }
 
     function uninstallPluginSlot() {
-        uninstallPluginMessageBox.open()
+        msgDialog.buttonCallBacks = [function () {
+            uninstallPlugin()
+            root.visible = false
+        }]
+        msgDialog.openWithParameters(qsTr("Uninstall plugin"),
+                                     qsTr("Are you sure you wish to uninstall " + pluginName + " ?"),
+                                     SimpleMessageDialog.MessageMode.Information)
     }
 
     function uninstallPlugin() {
@@ -79,29 +89,17 @@ Rectangle {
             PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
     }
 
-    MessageDialog {
-        id: uninstallPluginMessageBox
+    SimpleMessageDialog {
+        id: msgDialog
 
-        title:qsTr("Uninstall plugin")
-        text :qsTr("Are you sure you wish to uninstall " + pluginName + " ?")
-        icon: StandardIcon.Warning
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
+        buttonTitles: [qsTr("Ok"), qsTr("Cancel")]
+        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
+                       SimpleMessageDialog.ButtonStyle.TintedBlack]
 
         onAccepted: {
             uninstallPlugin()
             root.visible = false
         }
-    }
-
-    MessageDialog {
-        id: resetPluginMessageBox
-
-        title:qsTr("Reset preferences")
-        text :qsTr("Are you sure you wish to reset "+ pluginName + " preferences?")
-        icon: StandardIcon.Warning
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        onAccepted: resetPlugin()
     }
 
     ColumnLayout {
