@@ -49,6 +49,7 @@ private:
     void initSettings();
     void initSystray();
     void cleanup();
+    void connectForceWindowToTop();
 
 private:
 #ifdef Q_OS_WIN
