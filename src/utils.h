@@ -86,8 +86,6 @@ static constexpr bool isBeta = true;
 static constexpr bool isBeta = false;
 #endif
 void cleanUpdateFiles();
-void checkForUpdates(bool withUI, QWidget* parent = nullptr);
-void applyUpdates(bool updateToBeta, QWidget* parent = nullptr);
 
 /*
  * LRC helpers

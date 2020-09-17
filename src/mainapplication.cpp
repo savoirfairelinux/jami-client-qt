@@ -136,30 +136,11 @@ MainApplication::init()
 
     GlobalInstances::setPixmapManipulator(std::make_unique<PixbufManipulator>());
     initLrc();
-
+    connectForceWindowToTop();
     initConnectivityMonitor();
-
-#ifdef Q_OS_WINDOWS
-    QObject::connect(&LRCInstance::instance(), &LRCInstance::notificationClicked, [] {
-        for (QWindow* appWindow : qApp->allWindows()) {
-            if (appWindow->objectName().compare("mainViewWindow"))
-                continue;
-            // clang-format off
-            ::SetWindowPos((HWND) appWindow->winId(),
-                           HWND_TOPMOST, 0, 0, 0, 0,
-                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
-            ::SetWindowPos((HWND) appWindow->winId(),
-                           HWND_NOTOPMOST, 0, 0, 0, 0,
-                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
-            // clang-format on
-            return;
-        }
-    });
-#endif
-
+    checkForUpdates();
     bool startMinimized {false};
     parseArguments(startMinimized);
-
     initSettings();
     initSystray();
     initQmlEngine();
@@ -332,4 +313,34 @@ MainApplication::cleanup()
     FreeConsole();
 #endif
     QApplication::exit(0);
+}
+
+void
+MainApplication::connectForceWindowToTop()
+{
+#ifdef Q_OS_WINDOWS
+    QObject::connect(&LRCInstance::instance(), &LRCInstance::notificationClicked, [] {
+        for (QWindow* appWindow : qApp->allWindows()) {
+            if (appWindow->objectName().compare("mainViewWindow"))
+                continue;
+            // clang-format off
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_TOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_NOTOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            // clang-format on
+            return;
+        }
+    });
+#endif
+}
+
+void
+MainApplication::checkForUpdates()
+{
+    //    if (AppSettingsManager::getValue(Settings::Key::AutoUpdate).toBool()) {
+    //        Utils::checkForUpdates(false, this);
+    //    }
 }
