@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb023aac_7b9bdb2c",
+        "filename": "src/lrcinstance.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-17T21:33:39Z",
+      "side": 1,
+      "message": "just this",
+      "range": {
+        "startLine": 283,
+        "startChar": 8,
+        "endLine": 283,
+        "endChar": 69
+      },
+      "revId": "89db954c9cc536dd9234c854dfdf70f1860f8ad7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
