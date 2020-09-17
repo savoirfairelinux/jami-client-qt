@@ -25,6 +25,7 @@
 #endif
 
 #include "accountlistmodel.h"
+#include "networkmanager.h"
 #include "rendermanager.h"
 #include "appsettingsmanager.h"
 #include "utils.h"
@@ -84,6 +85,11 @@ public:
     static RenderManager* renderer()
     {
         return instance().renderer_.get();
+    }
+
+    static NetWorkManager* getNetworkManager()
+    {
+        return instance().netWorkManager_.get();
     }
 
     static void connectivityChanged()
@@ -450,10 +456,12 @@ private:
     {
         lrc_ = std::make_unique<Lrc>(willMigrateCb, didMigrateCb);
         renderer_ = std::make_unique<RenderManager>(lrc_->getAVModel());
+        netWorkManager_ = std::make_unique<NetWorkManager>();
     };
 
     std::unique_ptr<Lrc> lrc_;
     std::unique_ptr<RenderManager> renderer_;
+    std::unique_ptr<NetWorkManager> netWorkManager_;
     AccountListModel accountListModel_;
     QString selectedAccountId_;
     QString selectedConvUid_;

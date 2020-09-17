@@ -234,11 +234,11 @@ UtilsAdapter::hasVideoCall()
 }
 
 bool
-UtilsAdapter::hasCall(const QString &accountId)
+UtilsAdapter::hasCall(const QString& accountId)
 {
     auto activeCalls = LRCInstance::getActiveCalls();
-    for (const auto &callId : activeCalls) {
-        auto &accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
+    for (const auto& callId : activeCalls) {
+        auto& accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
         if (accountInfo.callModel->hasCall(callId)) {
             return true;
         }
@@ -247,11 +247,11 @@ UtilsAdapter::hasCall(const QString &accountId)
 }
 
 const QString
-UtilsAdapter::getCallConvForAccount(const QString &accountId)
+UtilsAdapter::getCallConvForAccount(const QString& accountId)
 {
     // TODO: Currently returning first call, establish priority according to state?
-    for (const auto &callId : LRCInstance::getActiveCalls()) {
-        auto &accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
+    for (const auto& callId : LRCInstance::getActiveCalls()) {
+        auto& accountInfo = LRCInstance::accountModel().getAccountInfo(accountId);
         if (accountInfo.callModel->hasCall(callId)) {
             return LRCInstance::getConversationFromCallId(callId, accountId).uid;
         }
@@ -278,10 +278,9 @@ UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
 }
 
 int
-UtilsAdapter::getCallStatus(const QString &callId)
+UtilsAdapter::getCallStatus(const QString& callId)
 {
-    const auto callStatus = LRCInstance::getCallInfo(
-                callId, LRCInstance::getCurrAccId());
+    const auto callStatus = LRCInstance::getCallInfo(callId, LRCInstance::getCurrAccId());
     return static_cast<int>(callStatus->status);
 }
 
@@ -396,4 +395,52 @@ bool
 UtilsAdapter::isImage(const QString& fileExt)
 {
     return Utils::isImage(fileExt);
+}
+
+void
+UtilsAdapter::checkForUpdates(bool withUI)
+{
+    Utils::cleanUpdateFiles();
+    QUrl downloadPath {Utils::isBeta ? QUrl::fromEncoded("https://dl.jami.net/windows/beta/version")
+                                     : QUrl::fromEncoded("https://dl.jami.net/windows/version")};
+
+    LRCInstance::instance()
+        .getNetworkManager()
+        ->getRequestReply(downloadPath, [this, withUI](int status, const QString& onlineVersion) {
+            if (status != 200) {
+                if (withUI) {
+                    emit LRCInstance::instance()
+                        .getNetworkManager()
+                        ->openMessageBox(QObject::tr("Update"),
+                                         QObject::tr("Version cannot be verified"),
+                                         QMessageBox::Critical);
+                }
+                return;
+            }
+            auto currentVersion = QString(VERSION_STRING).toULongLong();
+            if (onlineVersion.isEmpty()) {
+                qWarning() << "No version file found";
+            } else if (onlineVersion.toULongLong() > currentVersion) {
+                qDebug() << "New version found";
+                applyUpdates(false);
+            } else {
+                qDebug() << "No new version found";
+                if (withUI) {
+                    emit LRCInstance::instance()
+                        .getNetworkManager()
+                        ->openMessageBox(QObject::tr("Update"),
+                                         QObject::tr("No new version found"),
+                                         QMessageBox::Information);
+                }
+            }
+        });
+}
+
+void
+UtilsAdapter::applyUpdates(bool updateToBeta)
+{
+    Q_UNUSED(updateToBeta)
+    /*
+     * TODO: update logic.
+     */
 }

@@ -269,6 +269,10 @@ Item {
 
     // UpdateSettings
     property string betaInstall: qsTr("Install beta version")
+    property string checkForUpdates: qsTr("Check for updates now")
+    property string autoUpdate: qsTr("Check for updates automatically")
+    property string tipAutoUpdate: qsTr("toggle automatic updates")
+    property string updatesTitle: qsTr("Updates")
 
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")
