@@ -22,12 +22,13 @@
 #include "mainapplication.h"
 
 #include "appsettingsmanager.h"
-#include "globalinstances.h"
 #include "globalsystemtray.h"
 #include "qmlregister.h"
 #include "qrimageprovider.h"
 #include "pixbufmanipulator.h"
 #include "tintedbuttonimageprovider.h"
+
+#include "globalinstances.h"
 
 #include <QAction>
 #include <QFontDatabase>
@@ -137,29 +138,17 @@ MainApplication::init()
     GlobalInstances::setPixmapManipulator(std::make_unique<PixbufManipulator>());
     initLrc();
 
+    QObject::connect(
+        &LRCInstance::instance(),
+        &LRCInstance::appKillRequested,
+        this,
+        [this] { engine_->quit(); },
+        Qt::DirectConnection);
+
+    connectForceWindowToTop();
     initConnectivityMonitor();
-
-#ifdef Q_OS_WINDOWS
-    QObject::connect(&LRCInstance::instance(), &LRCInstance::notificationClicked, [] {
-        for (QWindow* appWindow : qApp->allWindows()) {
-            if (appWindow->objectName().compare("mainViewWindow"))
-                continue;
-            // clang-format off
-            ::SetWindowPos((HWND) appWindow->winId(),
-                           HWND_TOPMOST, 0, 0, 0, 0,
-                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
-            ::SetWindowPos((HWND) appWindow->winId(),
-                           HWND_NOTOPMOST, 0, 0, 0, 0,
-                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
-            // clang-format on
-            return;
-        }
-    });
-#endif
-
     bool startMinimized {false};
     parseArguments(startMinimized);
-
     initSettings();
     initSystray();
     initQmlEngine();
@@ -332,4 +321,26 @@ MainApplication::cleanup()
     FreeConsole();
 #endif
     QApplication::exit(0);
+}
+
+void
+MainApplication::connectForceWindowToTop()
+{
+#ifdef Q_OS_WINDOWS
+    QObject::connect(&LRCInstance::instance(), &LRCInstance::notificationClicked, [] {
+        for (QWindow* appWindow : qApp->allWindows()) {
+            if (appWindow->objectName().compare("mainViewWindow"))
+                continue;
+            // clang-format off
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_TOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            ::SetWindowPos((HWND) appWindow->winId(),
+                           HWND_NOTOPMOST, 0, 0, 0, 0,
+                           SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            // clang-format on
+            return;
+        }
+    });
+#endif
 }
