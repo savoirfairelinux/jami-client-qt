@@ -141,7 +141,10 @@ Window {
     }
 
     function toggleSettingsView() {
-        if (!inSettingsView) {
+
+        inSettingsView = !inSettingsView
+
+        if (inSettingsView) {
             if (sidePanelOnly)
                 sidePanelViewStack.push(leftPanelSettingsView, StackView.Immediate)
             else {
@@ -162,7 +165,6 @@ Window {
                 mainViewWindowSidePanel.deselectConversationSmartList()
         }
 
-        inSettingsView = !inSettingsView
     }
 
     title: "Jami"
