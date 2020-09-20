@@ -1,6 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<context>
+    <name>AboutPopUp</name>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="30"/>
+        <source>About</source>
+        <translation>À Propos</translation>
+    </message>
+    <message>
+        <location filename="../src/mainview/components/AboutPopUp.qml" line="289"/>
+        <source>Close</source>
+        <translation>Fermer</translation>
+    </message>
+</context>
 <context>
     <name>AccountComboBoxPopup</name>
     <message>
@@ -117,15 +128,15 @@
 <context>
     <name>CallAdapter</name>
     <message>
-        <location filename="../src/calladapter.cpp" line="281"/>
-        <location filename="../src/calladapter.cpp" line="377"/>
+        <location filename="../src/calladapter.cpp" line="279"/>
+        <location filename="../src/calladapter.cpp" line="369"/>
         <source>me</source>
         <translation>moi</translation>
     </message>
     <message>
-        <location filename="../src/calladapter.cpp" line="341"/>
+        <location filename="../src/calladapter.cpp" line="333"/>
         <source>is calling you</source>
-        <translation type="unfinished"></translation>
+        <translation>vous appelle</translation>
     </message>
 </context>
 <context>
@@ -151,7 +162,7 @@
     <message>
         <location filename="../src/mainview/components/CallOverlay.qml" line="169"/>
         <source>Toggle to display side panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher le tableau à coté</translation>
     </message>
 </context>
 <context>
@@ -179,11 +190,6 @@
         <source>Transfer this call</source>
         <translation>Transférer cet appel</translation>
     </message>
-    <message>
-        <location filename="../src/mainview/components/ContactPicker.qml" line="107"/>
-        <source>Search contacts</source>
-        <translation>Recherche des contacts</translation>
-    </message>
 </context>
 <context>
     <name>ConversationSmartListContextMenu</name>
@@ -206,16 +212,6 @@
         <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="62"/>
         <source>Remove contact</source>
         <translation>Retirer le contact</translation>
-    </message>
-    <message>
-        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="75"/>
-        <source>Accept request</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="81"/>
-        <source>Decline request</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="88"/>
@@ -253,7 +249,7 @@
     <message>
         <location filename="../src/wizardview/components/CreateAccountPage.qml" line="140"/>
         <source>Choose a name</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir un nom</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/CreateAccountPage.qml" line="155"/>
@@ -263,7 +259,7 @@
     <message>
         <location filename="../src/wizardview/components/CreateAccountPage.qml" line="155"/>
         <source>Invalid name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;utilisateur invalide</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/CreateAccountPage.qml" line="157"/>
@@ -273,35 +269,40 @@
     <message>
         <location filename="../src/wizardview/components/CreateAccountPage.qml" line="157"/>
         <source>Name already taken</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce nom d&apos;utilisateur est déjà utilisé</translation>
     </message>
 </context>
 <context>
     <name>CurrentAccountSettings</name>
     <message>
-        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="111"/>
-        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="152"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="104"/>
+        <source>Ok</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="127"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="167"/>
         <source>Success</source>
         <translation>Succès</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="111"/>
-        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="152"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="127"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="167"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="140"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="155"/>
         <source>Jami archive files</source>
         <translation>Fichiers d&apos;archive Jami</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="140"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="155"/>
         <source>All files</source>
         <translation>Tous les fichiers</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="170"/>
+        <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="188"/>
         <source>Account Settings</source>
         <translation>Paramètres Compte Jami</translation>
     </message>
@@ -310,24 +311,19 @@
     <name>CurrentAccountSettingsScrollPage</name>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettingsScrollPage.qml" line="816"/>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DeleteAccountDialog</name>
     <message>
-        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="62"/>
-        <source>Account deletion</source>
-        <translation>Suppression de compte</translation>
-    </message>
-    <message>
-        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="158"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="151"/>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="185"/>
+        <location filename="../src/commoncomponents/DeleteAccountDialog.qml" line="172"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
@@ -348,7 +344,7 @@
 <context>
     <name>GeneralSettingsPage</name>
     <message>
-        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="47"/>
+        <location filename="../src/settingsview/components/GeneralSettingsPage.qml" line="50"/>
         <source>General</source>
         <translation>Général</translation>
     </message>
@@ -373,12 +369,12 @@
     <message>
         <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="151"/>
         <source>Generating account…</source>
-        <translation type="unfinished"></translation>
+        <translation>Création du compte en cours... </translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="195"/>
         <source>Back to welcome page</source>
-        <translation type="unfinished"></translation>
+        <translation>Revenir à la page de bienvenue</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="134"/>
@@ -396,12 +392,12 @@
     <message>
         <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="131"/>
         <source>Generating account…</source>
-        <translation type="unfinished"></translation>
+        <translation>Création du compte en cours... </translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="170"/>
         <source>Back to welcome page</source>
-        <translation type="unfinished"></translation>
+        <translation>Revenir à la page de bienvenue</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="115"/>
@@ -414,7 +410,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="26"/>
         <source>Find a user or search for a conversation</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher un utilisateur ou  une conversation</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="27"/>
@@ -429,7 +425,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="29"/>
         <source>Jami is free software for universal communication which respects the freedoms and the privacy of its users.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jami est un logiciel libre de communication universel qui respecte les libertés et la vie privée de ses utilisateurs.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="32"/>
@@ -444,12 +440,12 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="34"/>
         <source>Jami is a free software for universal communication which respects the freedom and privacy of its users.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jami est un logiciel libre de communication universel qui respecte les libertés et la vie privée de ses utilisateurs.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="35"/>
         <source>Changelog</source>
-        <translation type="unfinished"></translation>
+        <translation>Journal des modifications</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="36"/>
@@ -459,47 +455,43 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="39"/>
         <source>Display QR code</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher le code QR</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="40"/>
         <source>Open settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir les paramètres</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="41"/>
         <source>Close settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermer la page des paramètres</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="44"/>
         <source>Authentication required</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous devez vous authentifier</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="45"/>
         <source>Your session has expired or been revoked on this device. Please enter your password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Votre session a expiré ou votre appareil a été révoqué.
+Veuillez entrer votre mot de passe.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="46"/>
         <source>JAMS server</source>
-        <translation type="unfinished"></translation>
+        <translation>Serveur JAMS</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="47"/>
         <source>Authenticate</source>
-        <translation type="unfinished"></translation>
+        <translation>Authentification</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="48"/>
         <source>Delete account</source>
         <translation>Supprimer le compte</translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="49"/>
-        <source>In progress...</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="50"/>
@@ -533,24 +525,29 @@
         <translation>Autoriser les appels entrants de contacts inconnus</translation>
     </message>
     <message>
+        <location filename="../src/constant/JamiStrings.qml" line="49"/>
+        <source>In progress…</source>
+        <translation>En cours</translation>
+    </message>
+    <message>
         <location filename="../src/constant/JamiStrings.qml" line="58"/>
-        <source>Rendezvous point: turn your account into a meeting point</source>
-        <translation type="unfinished"></translation>
+        <source>Convert your account into a rendezvous point</source>
+        <translation>Transformer votre compte en point de rendez-vous</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="59"/>
         <source>Automatically answer calls</source>
-        <translation type="unfinished"></translation>
+        <translation>Répondre automatiquement aux appels</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="60"/>
         <source>Enable custom ringtone</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer les sonneries personnalisables</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="61"/>
         <source>Select custom ringtone</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir une sonnerie personnalisée</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="62"/>
@@ -570,7 +567,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="67"/>
         <source>Voicemail dial code</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéro de boîte vocale</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="70"/>
@@ -585,12 +582,12 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="72"/>
         <source>Enable SDES key exchange</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer SDES (échange de clés)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="73"/>
         <source>Allow fallback on RTP</source>
-        <translation type="unfinished"></translation>
+        <translation>Se rabattre sur RTP</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="74"/>
@@ -620,17 +617,17 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="79"/>
         <source>Verify certificates for incoming TLS connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier les certificats pour les connexions TLS entrantes</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="80"/>
         <source>Verify server TLS certificates</source>
-        <translation type="unfinished"></translation>
+        <translation>Vérifier les certificats cotés serveur</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="81"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Nécessite un certificat pour les connexions TLS entrantes</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="82"/>
@@ -645,7 +642,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="84"/>
         <source>TLS server name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom du serveur TLS</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="85"/>
@@ -659,8 +656,149 @@
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="87"/>
-        <source>Select an user certificate</source>
-        <translation type="unfinished"></translation>
+        <source>Select a user certificate</source>
+        <translation>Sélectionner un certificat utilisateur</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="105"/>
+        <source>Use custom address and port</source>
+        <translation>Utiliser une adresse et un port personnalisés</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="122"/>
+        <source>Enable local peer discovery</source>
+        <translation>Activer la découverte des utilisateurs locaux</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="133"/>
+        <source>Audio and Video Settings</source>
+        <translation>Paramètres audio et vidéo</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="151"/>
+        <source>Frames per second</source>
+        <translation>Images par seconde</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="152"/>
+        <source>Select video frame rate (frames per second)</source>
+        <translation>Choisir le nombre d&apos;image vidéo par seconde</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="176"/>
+        <source>End call</source>
+        <translation>Fin d’appel</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="203"/>
+        <source>Creating account…</source>
+        <translation>Création du compte en cours... </translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="209"/>
+        <source>Encrypt account with password</source>
+        <translation>Encrypter mon compte avec un mot de passe</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="210"/>
+        <source>Create a rendezvous point</source>
+        <translation>Créer un point de rendez-vous</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="213"/>
+        <source>Choose a password to encrypt your account on this device. Note that the password cannot be recovered.</source>
+        <translation>Pour  chiffrer votre compte sur cet appareil, choisissez un mot de passe.
+Notez que le mot de passe ne peut être récupéré.</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="215"/>
+        <source>Choose a name for your rendezvous point</source>
+        <translation>Choisissez un nom pour votre point de rendez-vous</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="266"/>
+        <source>Launch at startup</source>
+        <translation>Lancer au démarrage </translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="289"/>
+        <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
+        <translation>Entrer le NIP obtenu à partir d&apos;un autre compte sur un autre appareil. Utiliser la fonction &quot;Associer un autre appareil&quot; pour obtenir un NIP.</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="291"/>
+        <source>Link device</source>
+        <translation>Associer l&apos;appareil</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="294"/>
+        <source>Conversations</source>
+        <translation>Conversations</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="323"/>
+        <source>Display or hide preferences</source>
+        <translation>Afficher ou cacher les préférences</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="326"/>
+        <source>Add new plugin</source>
+        <translation>Ajouter un nouveau module d&apos;extension</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="329"/>
+        <source>Select a file</source>
+        <translation>Sélectionner un fichier</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="330"/>
+        <source>Select</source>
+        <translation>Sélectionner</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="331"/>
+        <source>Choose image file</source>
+        <translation>Choisir un fichier image</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="335"/>
+        <source>Enter the rendezvous point&apos;s name</source>
+        <translation>Entrer le nom du point de rendez-vous</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="336"/>
+        <source>Creating rendezvous point…</source>
+        <translation>Création du point de rendez-vous... </translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="356"/>
+        <source>Create account from Jami Account Management Server (JAMS)</source>
+        <translation>Créer un compte à partir d&apos;un serveur de gestion de comptes (JAMS)</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="359"/>
+        <source>Create new rendezvous point</source>
+        <translation>Créer un nouveau point de rendez-vous</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="360"/>
+        <source>Create a Jami account</source>
+        <translation>Créer un compte Jami</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="363"/>
+        <source>Decline contact request</source>
+        <translation>Refuser la demande de contact</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="364"/>
+        <source>Accept contact request</source>
+        <translation>Accepter la demande de contact</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="367"/>
+        <source>Automatically check for updates</source>
+        <translation>Vérifier automatiquement les mises à jour</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="88"/>
@@ -725,12 +863,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="104"/>
         <source>Public address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="105"/>
-        <source>Use custom address/port</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresse publique</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="106"/>
@@ -765,32 +898,27 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="116"/>
         <source>Audio RTP minimum Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port audio RTP minimum</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="117"/>
         <source>Audio RTP maximum Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port audio RTP maximum</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="118"/>
         <source>Video RTP minimum Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Port vidéo RTP minimum</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="119"/>
         <source>Video RTP maximum port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="122"/>
-        <source>Enable local peer discovery.</source>
-        <translation type="unfinished"></translation>
+        <translation>Port vidéo RTP maximum</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="123"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se connecter à d&apos;autres nœuds DHT affichés sur votre réseau local</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="124"/>
@@ -818,11 +946,6 @@
         <translation>Précédent</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="133"/>
-        <source>Audio &amp; Video Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="136"/>
         <source>Audio</source>
         <translation>Audio</translation>
@@ -835,32 +958,32 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="138"/>
         <source>Select audio input device</source>
-        <translation type="unfinished"></translation>
+        <translation>Périphérique de sortie audio </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="139"/>
         <source>Output device</source>
-        <translation>Périphérique de sortie&#xa0;:</translation>
+        <translation>Périphérique de sortie :</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="140"/>
         <source>Select audio output device</source>
-        <translation type="unfinished"></translation>
+        <translation>Périphérique de sortie audio</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="141"/>
         <source>Ringtone device</source>
-        <translation>Périphérique pour la sonnerie&#xa0;:</translation>
+        <translation>Périphérique pour la sonnerie :</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="142"/>
         <source>Select ringtone output device</source>
-        <translation type="unfinished"></translation>
+        <translation>Périphérique de sortie pour la sonnerie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="143"/>
         <source>Audio manager</source>
-        <translation>Gestionnaire audio&#xa0;:</translation>
+        <translation>Gestionnaire audio :</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="146"/>
@@ -870,7 +993,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="147"/>
         <source>Select video device</source>
-        <translation type="unfinished"></translation>
+        <translation>Périphérique vidéo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="148"/>
@@ -885,17 +1008,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="150"/>
         <source>Select video resolution</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="151"/>
-        <source>Frame per second</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="152"/>
-        <source>Select video frame per second (fps)</source>
-        <translation type="unfinished"></translation>
+        <translation>Résolution de la vidéo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="153"/>
@@ -910,12 +1023,12 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="157"/>
         <source>Your account only exists on this device. If you lost your device or uninstall the application, your account will be deleted and can not be recovered. You can backup your account now or later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce compte n&apos;existe que sur votre appareil. Si vous perdez votre appareil ou bien si vous désinstallez l&apos;application, votre compte sera détruit. Vous pouvez sauvegarder votre compte maintenant ou plus tard.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="161"/>
         <source>Backup account here</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder le compte</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="162"/>
@@ -945,7 +1058,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="169"/>
         <source>Reinstate as contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Réintégrer comme contact</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="170"/>
@@ -955,22 +1068,17 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="171"/>
         <source>Identifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifiant </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="174"/>
         <source>Mute</source>
-        <translation type="unfinished"></translation>
+        <translation>Couper le micro</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="175"/>
         <source>Unmute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="176"/>
-        <source>Hang-up</source>
-        <translation type="unfinished"></translation>
+        <translation>Ouvrir le micro</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="177"/>
@@ -980,12 +1088,12 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="178"/>
         <source>Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>Reprendre l&apos;appel</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="179"/>
         <source>Add participants</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter des participants</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="180"/>
@@ -995,7 +1103,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="181"/>
         <source>More options</source>
-        <translation type="unfinished"></translation>
+        <translation>Plus d&apos;options</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="184"/>
@@ -1005,7 +1113,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="185"/>
         <source>Sip input panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Clavier téléphonique</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="186"/>
@@ -1030,7 +1138,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="190"/>
         <source>Full screen</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode plein écran</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="191"/>
@@ -1050,7 +1158,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="194"/>
         <source>View plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Voir les modules d&apos;extension</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="195"/>
@@ -1060,7 +1168,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="198"/>
         <source>Enter Jami Account Management Server (JAMS) URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer l&apos;URL du serveur de gestion de comptes JAMS</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="199"/>
@@ -1070,12 +1178,12 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="200"/>
         <source>Jami Account Management Server URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL du serveur de gestion de comptes Jami</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="201"/>
         <source>Enter your JAMS credentials</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrez vos références JAMS</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="202"/>
@@ -1083,39 +1191,19 @@
         <translation>Se connecter</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="203"/>
-        <source>Generating account…</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="204"/>
         <source>Back to welcome page</source>
-        <translation type="unfinished"></translation>
+        <translation>Revenir à la page de bienvenue</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="207"/>
         <source>Choose name</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir un nom</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="208"/>
         <source>Choose username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="209"/>
-        <source>Create password</source>
-        <translation>Créer mot de passe</translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="210"/>
-        <source>Create rendezvous</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="340"/>
-        <source>Create new rendezvous</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir un nom d&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="211"/>
@@ -1128,19 +1216,9 @@
         <translation>Confirmer le mot de passe</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="213"/>
-        <source>Note that the password cannot be recovered</source>
-        <translation>Notez que le mot de passe ne peut pas être récupéré</translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="214"/>
         <source>Optional</source>
         <translation>Optionnel</translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="215"/>
-        <source>Choose a name for your rendezvous</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="218"/>
@@ -1155,17 +1233,17 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="220"/>
         <source>Create SIP account</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un compte SIP</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="221"/>
         <source>Configure an existing SIP account</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurez un compte SIP existant.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="224"/>
         <source>Backup successful</source>
-        <translation type="unfinished"></translation>
+        <translation>La sauvegarde s&apos;est bien effectuée</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="225"/>
@@ -1175,22 +1253,22 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="226"/>
         <source>Password changed successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Le mot de passe a été modifié</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="227"/>
         <source>Password change failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de changement du mot de passe</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="228"/>
         <source>Password set successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Le mot de passe a été modifié</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="229"/>
         <source>Password set failed</source>
-        <translation type="unfinished"></translation>
+        <translation>Le positionnement du mot de passe a échoué</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="230"/>
@@ -1199,28 +1277,24 @@
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="231"/>
+        <location filename="../src/constant/JamiStrings.qml" line="232"/>
         <source>Set password</source>
         <translation>Définir un mot de passe</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="232"/>
-        <source>Set a password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="233"/>
         <source>Change current password</source>
-        <translation type="unfinished"></translation>
+        <translation>Changer le mot de passe courant </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="234"/>
         <source>Backup account to a .gz file</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder le compte dans un fichier .gz</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="235"/>
         <source>Display or hide advanced settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher ou cacher les préférences avancés</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="236"/>
@@ -1230,12 +1304,12 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="239"/>
         <source>Set username</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrer un nom d’utilisateur</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="240"/>
         <source>Registering name</source>
-        <translation type="unfinished"></translation>
+        <translation>Enregistrement du nom</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="243"/>
@@ -1243,265 +1317,275 @@
         <translation>Enregistrer un nom d&apos;utilisateur</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="246"/>
-        <source>Link a new device to this account</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/constant/JamiStrings.qml" line="244"/>
+        <source>Register username</source>
+        <translation>Enregistrer le nom d&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="247"/>
+        <source>Link a new device to this account</source>
+        <translation>Lier un autre appareil à ce compte</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="248"/>
         <source>Link another device</source>
         <translation>Associer un nouvel appareil</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="250"/>
+        <location filename="../src/constant/JamiStrings.qml" line="251"/>
         <source>Display or hide banned contacts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="253"/>
-        <source>Do you really want to delete this account?</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher ou cacher les contacts bannis</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="254"/>
-        <source>If your account has not been backuped, or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation type="unfinished"></translation>
+        <source>Do you really want to delete this account?</source>
+        <translation>Voulez-vous vraiment supprimer ce compte?</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="257"/>
-        <source>Edit device name</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/constant/JamiStrings.qml" line="255"/>
+        <source>If your account has not been backuped, or added to another device, your account and registered name will be irrevocably lost.</source>
+        <translation>Si ce compte n&apos;a pas été sauvegardé ou ajouté vers un autre appareil, il sera perdu irrémédiablement.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
-        <source>Unlink device from account</source>
-        <translation type="unfinished"></translation>
+        <source>Edit device name</source>
+        <translation>Modifier le nom de l&apos;appareil</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="261"/>
-        <source>Select a folder</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/constant/JamiStrings.qml" line="259"/>
+        <source>Unlink device from account</source>
+        <translation>Dissocier cet appareil d&apos;un compte</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
+        <source>Select a folder</source>
+        <translation>Choisir un répertoire</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="263"/>
         <source>Enable notifications</source>
         <translation>Activer les notifications</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="263"/>
+        <location filename="../src/constant/JamiStrings.qml" line="264"/>
         <source>Keep minimized on close</source>
         <translation>Laisser minimisé en fermant</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="264"/>
-        <source>Run application on system startup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="265"/>
-        <source>Run on startup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="266"/>
-        <source>Downloads directory</source>
-        <translation type="unfinished"></translation>
+        <source>Run application on system startup</source>
+        <translation>Lancer l&apos;application au démarrage</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="267"/>
-        <source>Choose download directory</source>
-        <translation type="unfinished"></translation>
+        <source>Downloads directory</source>
+        <translation>Répertoire des téléchargements</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="268"/>
+        <source>Choose download directory</source>
+        <translation>Choisir le répertoire de téléchargement</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="269"/>
         <source>Record call</source>
         <translation>Enregistrer l&apos;appel</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="271"/>
+        <location filename="../src/constant/JamiStrings.qml" line="272"/>
         <source>Install beta version</source>
-        <translation type="unfinished"></translation>
+        <translation>Installer la  version Bêta</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="274"/>
+        <location filename="../src/constant/JamiStrings.qml" line="273"/>
+        <source>Enable/Disable automatic updates</source>
+        <translation>Activer/Désactiver les mises à jour automatiques</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="276"/>
         <source>Select a record directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir un répertoire pour les enregistrements</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="277"/>
+        <location filename="../src/constant/JamiStrings.qml" line="279"/>
         <source>Archive</source>
         <translation>Archive</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="278"/>
+        <location filename="../src/constant/JamiStrings.qml" line="280"/>
         <source>Open file</source>
         <translation>Ouvrir le fichier</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="279"/>
+        <location filename="../src/constant/JamiStrings.qml" line="281"/>
         <source>Create your account from a backup</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer votre compte à partir d&apos;une sauvegarde</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="280"/>
+        <location filename="../src/constant/JamiStrings.qml" line="282"/>
         <source>You can obtain an archive by clicking on &quot;Backup account&quot; in the account settings. This will create a .gz file on your device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vous pouvez créer une archive en cliquant sur &quot;Sauvegarder le compte&quot; dans les paramètres de compte. Ceci créera un fichier .gz sur votre appareil.</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="283"/>
+        <location filename="../src/constant/JamiStrings.qml" line="285"/>
         <source>Restore an account from backup</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un compte à partir d&apos;une sauvegarde</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="286"/>
+        <location filename="../src/constant/JamiStrings.qml" line="288"/>
         <source>Enter Jami account password</source>
-        <translation type="unfinished"></translation>
+        <translation>Saisissez le mot de passe du compte Jami </translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="287"/>
-        <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="289"/>
-        <source>Create account from an another device</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="295"/>
+        <location filename="../src/constant/JamiStrings.qml" line="297"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ce NIP ainsi que le mot de passe du compte doivent être saisis dans votre nouvel appareil dans les 10 prochaines minutes. </translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="296"/>
+        <location filename="../src/constant/JamiStrings.qml" line="298"/>
         <source>Close</source>
         <translation>Fermer</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="299"/>
-        <source>Enter the password</source>
-        <translation type="unfinished"></translation>
+        <source>Enter your account password</source>
+        <translation>Entrer le mot de passe de votre compte</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="300"/>
-        <source>Enter current password</source>
-        <translation type="unfinished"></translation>
+        <source>Add Device</source>
+        <translation>Ajouter un appareil</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="301"/>
+        <location filename="../src/constant/JamiStrings.qml" line="303"/>
+        <source>Enter the password</source>
+        <translation>Entrer le mot de passe</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="304"/>
+        <source>Enter current password</source>
+        <translation>Entrez le mot de passe actuel</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="305"/>
         <source>Enter new password</source>
         <translation>Entrer le nouveau mot de passe</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="302"/>
+        <location filename="../src/constant/JamiStrings.qml" line="306"/>
         <source>Confirm new password</source>
         <translation>Confirmer le nouveau mot de passe</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="303"/>
+        <location filename="../src/constant/JamiStrings.qml" line="307"/>
+        <source>Change</source>
+        <translation>Modifier</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="308"/>
         <source>Confirm</source>
         <translation>Confirmer</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="306"/>
+        <location filename="../src/constant/JamiStrings.qml" line="309"/>
+        <source>Export</source>
+        <translation>Exporter</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="312"/>
         <source>Choose a picture as avatar</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisissez une image comme avatar</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="307"/>
+        <location filename="../src/constant/JamiStrings.qml" line="313"/>
         <source>Import avatar from image file</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisir un avatar à partir d&apos;une image</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="310"/>
+        <location filename="../src/constant/JamiStrings.qml" line="314"/>
+        <source>Take photo</source>
+        <translation>Prendre une photo</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="315"/>
+        <source>Retake photo</source>
+        <translation>Reprendre une photo</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="318"/>
         <source>Reset</source>
         <translation>Reset</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="311"/>
-        <source>Select a plugin to install</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="312"/>
-        <source>Install plugin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="315"/>
-        <source>Please select a file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="318"/>
-        <source>Save profile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="319"/>
-        <source>Enter the rendezvous&apos;s name</source>
-        <translation type="unfinished"></translation>
+        <source>Select a plugin to install</source>
+        <translation>Choisissez un module d&apos;extension à installer</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="320"/>
-        <source>Generating rendezvous…</source>
-        <translation type="unfinished"></translation>
+        <source>Install plugin</source>
+        <translation>Installer un module d&apos;extension</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="323"/>
+        <location filename="../src/constant/JamiStrings.qml" line="334"/>
+        <source>Save profile</source>
+        <translation>Sauvegardez votre profile</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="339"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation type="unfinished"></translation>
+        <translation>Entrer le mot de passe du compte pour confirmer la suppression de cet appareil</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="326"/>
+        <location filename="../src/constant/JamiStrings.qml" line="342"/>
         <source>Select a screen to share</source>
-        <translation type="unfinished"></translation>
+        <translation>Choisissez l&apos;écran à partager</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="329"/>
+        <location filename="../src/constant/JamiStrings.qml" line="345"/>
         <source>QR code</source>
-        <translation type="unfinished"></translation>
+        <translation>Code QR</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="332"/>
+        <location filename="../src/constant/JamiStrings.qml" line="348"/>
+        <source>Account QR</source>
+        <translation>Code QR</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="351"/>
         <source>This is your Jami username.
 Copy and share it with your friends!</source>
         <translation>Ceci est votre nom d&apos;utilisateur Jami. Conservez et partagez-le avec vos amis !</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="333"/>
+        <location filename="../src/constant/JamiStrings.qml" line="352"/>
         <source>Link this device to an existing account</source>
         <translation>Lier cet appareil à un compte existant</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="334"/>
+        <location filename="../src/constant/JamiStrings.qml" line="353"/>
         <source>Advanced features</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonctionnalités avancées</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="335"/>
+        <location filename="../src/constant/JamiStrings.qml" line="354"/>
         <source>Show advanced features</source>
-        <translation type="unfinished"></translation>
+        <translation>Montrer les fonctionnalités avancées</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="336"/>
+        <location filename="../src/constant/JamiStrings.qml" line="355"/>
         <source>Connect to a JAMS server</source>
-        <translation type="unfinished"></translation>
+        <translation>Se connecter à un serveur JAMS</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="337"/>
-        <source>Create account from Jami Account Manager Server (JAMS)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/constant/JamiStrings.qml" line="338"/>
+        <location filename="../src/constant/JamiStrings.qml" line="357"/>
         <source>Add a SIP account</source>
         <translation>Ajouter un compte SIP</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="339"/>
+        <location filename="../src/constant/JamiStrings.qml" line="358"/>
         <source>Error while creating your account. Check your credentials.</source>
-        <translation type="unfinished"></translation>
+        <translation>Une erreur est survenue pendant la création de compte. Vérifiez votre mot de passe.</translation>
     </message>
 </context>
 <context>
@@ -1511,53 +1595,113 @@ Copy and share it with your friends!</source>
         <source>Register</source>
         <translation>Enregistrer</translation>
     </message>
-    <message>
-        <location filename="../src/settingsview/components/JamiUserIdentity.qml" line="187"/>
-        <source>Register the username</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>KeyBoardShortcutTable</name>
     <message>
-        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="73"/>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="33"/>
+        <source>Shortcuts</source>
+        <translation>Raccourcis</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="45"/>
         <source>Open account list</source>
         <translation>Ouvrir la liste des comptes</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="78"/>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="50"/>
         <source>Focus conversations list</source>
-        <translation type="unfinished"></translation>
+        <translation>Allez sur la liste des conversations</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="121"/>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="55"/>
+        <source>Requests list</source>
+        <translation>Liste des sollicitations</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="60"/>
+        <source>Previous conversation</source>
+        <translation>Conversation précédente</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="65"/>
+        <source>Next conversation</source>
+        <translation>Conversation précédente</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="70"/>
+        <source>Search bar</source>
+        <translation>Barre de recherche</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="75"/>
+        <source>Fullscreen</source>
+        <translation>Plein écran</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="83"/>
+        <source>Start an audio call</source>
+        <translation>Démarrer un appel audio</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="88"/>
+        <source>Start a video call</source>
+        <translation>Démarrer un appel vidéo</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="93"/>
         <source>Clear history</source>
         <translation>Effacer l&apos;historique</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="126"/>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="98"/>
         <source>Block contact</source>
         <translation>Bloquer le contact</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="131"/>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="103"/>
         <source>Accept contact request</source>
-        <translation type="unfinished"></translation>
+        <translation>Accepter la demande de contact</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="167"/>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="111"/>
+        <source>Media settings</source>
+        <translation>Paramètres média</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="116"/>
+        <source>General settings</source>
+        <translation>Paramètres généraux</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="121"/>
+        <source>Account settings</source>
+        <translation>Paramètres du compte</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="126"/>
+        <source>Open account creation wizard</source>
+        <translation>Ouvrir l&apos;assistant de création de compte</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="131"/>
+        <source>Open window</source>
+        <translation>Ouvrir la fenêtre</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="139"/>
         <source>Answer an incoming call</source>
-        <translation type="unfinished"></translation>
+        <translation>Répondre à l&apos;appel entrant</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="172"/>
-        <source>Hangup current call</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="144"/>
+        <source>End call</source>
+        <translation>Fin d’appel</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="177"/>
+        <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="149"/>
         <source>Decline the call request</source>
-        <translation type="unfinished"></translation>
+        <translation>Refuser l&apos;appel</translation>
     </message>
 </context>
 <context>
@@ -1586,45 +1730,45 @@ Copy and share it with your friends!</source>
 <context>
     <name>LinkDeviceDialog</name>
     <message>
-        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="179"/>
-        <source>Enter your account password</source>
-        <translation>Entrer le mot de passe de votre compte</translation>
-    </message>
-    <message>
-        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="197"/>
-        <source>Password</source>
-        <translation>Mot de passe</translation>
-    </message>
-    <message>
-        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="238"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="217"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="101"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="103"/>
         <source>Error connecting to the network.
 Please try again later.</source>
         <translation>Erreur de connexion réseau
 Veuillez réessayer plus tard</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="105"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="107"/>
         <source>Something went wrong.
 </source>
         <translation>Quelque chose s&apos;est mal passée</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="213"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="197"/>
         <source>Register</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="265"/>
-        <source>Exporting Account</source>
-        <translation>L&apos;export du compte en cours</translation>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="287"/>
+        <source>Your PIN is:</source>
+        <translation>Votre NIP est :</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="97"/>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="297"/>
+        <source>PIN</source>
+        <translation>NIP</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="317"/>
+        <source>This pin and the account password should be entered in your device within 10 minutes.</source>
+        <translation>Ce NIP ainsi que le mot de passe du compte doivent être saisis dans votre nouvel appareil dans les 10 prochaines minutes. </translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkDeviceDialog.qml" line="99"/>
         <source>Incorrect password</source>
         <translation>Mot de passe incorrecte</translation>
     </message>
@@ -1632,17 +1776,27 @@ Veuillez réessayer plus tard</translation>
 <context>
     <name>LinkedDevices</name>
     <message>
-        <location filename="../src/settingsview/components/LinkedDevices.qml" line="100"/>
+        <location filename="../src/settingsview/components/LinkedDevices.qml" line="96"/>
         <source>Remove Device</source>
         <translation>Supprimer cet appareil</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/LinkedDevices.qml" line="101"/>
+        <location filename="../src/settingsview/components/LinkedDevices.qml" line="97"/>
         <source>Are you sure you wish to remove this device?</source>
         <translation>Êtes-vous certain que vous souhaitez supprimer cet appareil ?</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/LinkedDevices.qml" line="111"/>
+        <location filename="../src/settingsview/components/LinkedDevices.qml" line="99"/>
+        <source>Ok</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkedDevices.qml" line="99"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/LinkedDevices.qml" line="108"/>
         <source>Linked Devices</source>
         <translation>Appareils associés</translation>
     </message>
@@ -1650,7 +1804,7 @@ Veuillez réessayer plus tard</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="290"/>
+        <location filename="../src/mainapplication.cpp" line="312"/>
         <source>Exit</source>
         <translation>Sortir</translation>
     </message>
@@ -1660,7 +1814,7 @@ Veuillez réessayer plus tard</translation>
     <message>
         <location filename="../src/mainview/components/MediaHandlerItemDelegate.qml" line="84"/>
         <source>On/Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Marche/Arrêt</translation>
     </message>
 </context>
 <context>
@@ -1673,49 +1827,44 @@ Veuillez réessayer plus tard</translation>
     <message>
         <location filename="../src/mainview/components/MediaHandlerPicker.qml" line="151"/>
         <source>Go back to plugins list</source>
-        <translation type="unfinished"></translation>
+        <translation>Revenir à la liste des modules d&apos;extension</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/MediaHandlerPicker.qml" line="195"/>
-        <source>Preference</source>
-        <translation type="unfinished"></translation>
+        <source>Preferences</source>
+        <translation>Préférences</translation>
     </message>
 </context>
 <context>
     <name>NameRegistrationDialog</name>
     <message>
-        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="148"/>
-        <source>Enter your account password</source>
-        <translation>Entrer le mot de passe de votre compte</translation>
-    </message>
-    <message>
-        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="178"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="142"/>
         <source>Password</source>
         <translation>Mot de passe</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="219"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="165"/>
         <source>Register</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="258"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="184"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="35"/>
-        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="475"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="39"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="248"/>
         <source>Something went wrong</source>
         <translation>Quelque chose s&apos;est mal passée.</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="82"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="86"/>
         <source>Incorrect password</source>
         <translation>Mot de passe incorrecte</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="86"/>
+        <location filename="../src/settingsview/components/NameRegistrationDialog.qml" line="89"/>
         <source>Network error</source>
         <translation>Erreur de réseau</translation>
     </message>
@@ -1723,9 +1872,9 @@ Veuillez réessayer plus tard</translation>
 <context>
     <name>OutgoingCallPage</name>
     <message>
-        <location filename="../src/mainview/components/OutgoingCallPage.qml" line="112"/>
+        <location filename="../src/mainview/components/OutgoingCallPage.qml" line="113"/>
         <source>Cancel the call</source>
-        <translation type="unfinished"></translation>
+        <translation>Annuler l&apos;appel</translation>
     </message>
 </context>
 <context>
@@ -1744,19 +1893,9 @@ Veuillez réessayer plus tard</translation>
 <context>
     <name>PasswordDialog</name>
     <message>
-        <location filename="../src/commoncomponents/PasswordDialog.qml" line="59"/>
-        <source>Changing password</source>
-        <translation>Changement du mot de passe en cours</translation>
-    </message>
-    <message>
-        <location filename="../src/commoncomponents/PasswordDialog.qml" line="61"/>
-        <source>Set password</source>
-        <translation>Définir un mot de passe</translation>
-    </message>
-    <message>
-        <location filename="../src/commoncomponents/PasswordDialog.qml" line="257"/>
-        <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/commoncomponents/PasswordDialog.qml" line="224"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -1772,20 +1911,15 @@ Veuillez réessayer plus tard</translation>
         <translation>Tous les fichiers</translation>
     </message>
     <message>
-        <location filename="../src/commoncomponents/PhotoboothView.qml" line="192"/>
-        <location filename="../src/commoncomponents/PhotoboothView.qml" line="206"/>
-        <source>Press this button to take photo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/commoncomponents/PhotoboothView.qml" line="198"/>
-        <source>Press this button to finish taking photo</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/commoncomponents/PhotoboothView.qml" line="206"/>
+        <source>Take photo</source>
+        <translation>Prendre une photo</translation>
     </message>
     <message>
         <location filename="../src/commoncomponents/PhotoboothView.qml" line="203"/>
-        <source>Press this button to retake photo</source>
-        <translation type="unfinished"></translation>
+        <source>Retake photo</source>
+        <translation>Reprendre une photo</translation>
     </message>
 </context>
 <context>
@@ -1795,26 +1929,31 @@ Veuillez réessayer plus tard</translation>
         <source>Load/Unload</source>
         <translation>Charger/décharger</translation>
     </message>
-    <message>
-        <location filename="../src/settingsview/components/PluginItemDelegate.qml" line="123"/>
-        <source>Show/Hide preferences</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PluginListPreferencesView</name>
     <message>
-        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="85"/>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="71"/>
         <source>Uninstall plugin</source>
         <translation>Désinstaller votre module d&apos;extension</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="99"/>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="50"/>
         <source>Reset preferences</source>
         <translation>Remettre vos préférences à leur valeur par défaut</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="168"/>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="93"/>
+        <source>Ok</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="93"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="164"/>
         <source>Uninstall</source>
         <translation>Désinstaller</translation>
     </message>
@@ -1836,16 +1975,11 @@ Veuillez réessayer plus tard</translation>
         <source>Installed plugins</source>
         <translation>Modules d&apos;extension installés</translation>
     </message>
-    <message>
-        <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="124"/>
-        <source>Press to add new plugins</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>PluginSettingsPage</name>
     <message>
-        <location filename="../src/settingsview/components/PluginSettingsPage.qml" line="52"/>
+        <location filename="../src/settingsview/components/PluginSettingsPage.qml" line="55"/>
         <source>Plugin</source>
         <translation>Module d&apos;extension</translation>
     </message>
@@ -1855,17 +1989,7 @@ Veuillez réessayer plus tard</translation>
     <message>
         <location filename="../src/commoncomponents/PreferenceItemDelegate.qml" line="123"/>
         <source>Edit preference</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/commoncomponents/PreferenceItemDelegate.qml" line="165"/>
-        <source>Press to choose an image file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/commoncomponents/PreferenceItemDelegate.qml" line="144"/>
-        <source>Choose the preference</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifier les préférences</translation>
     </message>
 </context>
 <context>
@@ -1888,23 +2012,23 @@ Veuillez réessayer plus tard</translation>
     <message>
         <location filename="../src/wizardview/components/ProfilePage.qml" line="122"/>
         <source>Generating account…</source>
-        <translation type="unfinished"></translation>
+        <translation>Création du compte en cours... </translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/utils.cpp" line="383"/>
+        <location filename="../src/utils.cpp" line="387"/>
         <source>Created by:</source>
         <translation>Créé par :</translation>
     </message>
     <message>
-        <location filename="../src/utils.cpp" line="389"/>
+        <location filename="../src/utils.cpp" line="393"/>
         <source>Artwork by:</source>
         <translation>Graphismes par :</translation>
     </message>
     <message>
-        <location filename="../src/utils.cpp" line="397"/>
+        <location filename="../src/utils.cpp" line="401"/>
         <source>Based on the SFLPhone project</source>
         <translation>Basé sur le projet SFLphone</translation>
     </message>
@@ -1912,7 +2036,7 @@ Veuillez réessayer plus tard</translation>
         <location filename="../src/videoinputdevicemodel.cpp" line="68"/>
         <location filename="../src/videoinputdevicemodel.cpp" line="70"/>
         <source>No device</source>
-        <translation type="unfinished"></translation>
+        <translation>Aucun périphérique</translation>
     </message>
 </context>
 <context>
@@ -1949,19 +2073,24 @@ Veuillez réessayer plus tard</translation>
 <context>
     <name>RevokeDevicePasswordDialog</name>
     <message>
-        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="83"/>
-        <source>Password</source>
-        <translation>Mot de passe</translation>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="41"/>
+        <source>Remove device</source>
+        <translation>Supprimer l&apos;appareil</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="94"/>
-        <source>CONFIRM</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="61"/>
+        <source>Enter this account&apos;s password to confirm the removal of this device</source>
+        <translation>Entrer le mot de passe du compte pour confirmer la suppression de cet appareil</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="113"/>
-        <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="105"/>
+        <source>Remove</source>
+        <translation>Enlever</translation>
+    </message>
+    <message>
+        <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="126"/>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -2000,8 +2129,8 @@ Veuillez réessayer plus tard</translation>
     <name>SettingParaCombobox</name>
     <message>
         <location filename="../src/commoncomponents/SettingParaCombobox.qml" line="42"/>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2049,16 +2178,6 @@ Veuillez réessayer plus tard</translation>
         <translation>Mises à jour</translation>
     </message>
     <message>
-        <location filename="../src/settingsview/components/UpdateSettings.qml" line="55"/>
-        <source>Check for updates automatically</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/settingsview/components/UpdateSettings.qml" line="58"/>
-        <source>toggle automatic updates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/settingsview/components/UpdateSettings.qml" line="72"/>
         <source>Check for updates now</source>
         <translation>Vérifier les mises-à-jour</translation>
@@ -2066,7 +2185,7 @@ Veuillez réessayer plus tard</translation>
     <message>
         <location filename="../src/settingsview/components/UpdateSettings.qml" line="90"/>
         <source>Install the latest beta version</source>
-        <translation type="unfinished"></translation>
+        <translation>Installer la dernière version Bêta</translation>
     </message>
 </context>
 <context>
@@ -2082,20 +2201,15 @@ Veuillez réessayer plus tard</translation>
     <message>
         <location filename="../src/mainview/components/UserInfoCallPage.qml" line="66"/>
         <source>Toggle to display side panel</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher le tableau à coté</translation>
     </message>
 </context>
 <context>
     <name>UserProfile</name>
     <message>
-        <location filename="../src/mainview/components/UserProfile.qml" line="94"/>
-        <source>Informations</source>
+        <location filename="../src/mainview/components/UserProfile.qml" line="96"/>
+        <source>Information</source>
         <translation>Informations</translation>
-    </message>
-    <message>
-        <location filename="../src/mainview/components/UserProfile.qml" line="102"/>
-        <source>Username</source>
-        <translation>Nom d&apos;utilisateur</translation>
     </message>
 </context>
 <context>
@@ -2109,7 +2223,7 @@ Veuillez réessayer plus tard</translation>
 <context>
     <name>WelcomePage</name>
     <message>
-        <location filename="../src/mainview/components/WelcomePage.qml" line="151"/>
+        <location filename="../src/mainview/components/WelcomePage.qml" line="154"/>
         <source>About Jami</source>
         <translation>À propos de Jami</translation>
     </message>
@@ -2119,40 +2233,35 @@ Veuillez réessayer plus tard</translation>
         <translation>Bienvenue sur</translation>
     </message>
     <message>
-        <location filename="../src/wizardview/components/WelcomePage.qml" line="80"/>
-        <source>Create a jami account</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../src/wizardview/components/WelcomePage.qml" line="82"/>
         <source>Create new Jami account</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un nouveau compte Jami </translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/WelcomePage.qml" line="122"/>
         <source>Import account from other device</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un compte à partir d&apos;un autre appareil</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/WelcomePage.qml" line="142"/>
         <source>Import account from backup file</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un compte à partir d&apos;une sauvegarde</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/WelcomePage.qml" line="213"/>
         <source>Create new SIP account</source>
-        <translation type="unfinished"></translation>
+        <translation>Créer un nouveau compte SIP</translation>
     </message>
 </context>
 <context>
     <name>WizardView</name>
     <message>
-        <location filename="../src/wizardview/WizardView.qml" line="158"/>
+        <location filename="../src/wizardview/WizardView.qml" line="154"/>
         <source>Success</source>
         <translation>Succès</translation>
     </message>
     <message>
-        <location filename="../src/wizardview/WizardView.qml" line="158"/>
+        <location filename="../src/wizardview/WizardView.qml" line="154"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
