@@ -19,6 +19,12 @@ vs_where_path = os.path.join(
 
 host_is_64bit = (False, True)[platform.machine().endswith('64')]
 
+def find_msm():
+    filename = 'Microsoft_VC' + win_toolset_default.replace("v", "") + '_CRT_x64.msm'
+    # Wlaking top-down from the root
+    for root, _, files in os.walk("C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC"):
+        if filename in files:
+            return os.path.join(root, filename)
 
 def execute_cmd(cmd, with_shell=False, env_vars={}):
     if(bool(env_vars)):
@@ -110,6 +116,26 @@ def replace_vs_prop(filename, prop, val):
         for line in file:
             print(re.sub(p, val, line), end='')
 
+def generate_msi():
+    vs_env_vars = {}
+    vs_env_vars.update(getVSEnv())
+
+    merge_module_path = find_msm()
+    if not os.path.isfile(merge_module_path):
+        raise IOError('Microsoft_VC142_CRT_x64.msm not found. path=' + merge_module_path)
+    vs_env_vars['VCRedistMergeModule'] = merge_module_path
+
+    msbuild = findMSBuild()
+    if not os.path.isfile(msbuild):
+        raise IOError('msbuild.exe not found. path=' + msbuild)
+    msbuild_args = [
+        '/nologo',
+        '/verbosity:normal',
+        '/maxcpucount:' + str(multiprocessing.cpu_count()),
+        '/p:Platform=x64',
+        '/p:Configuration=Release',
+        '/p:useenv=true']
+    build_project(msbuild, msbuild_args, "JamiInstaller\\JamiInstaller.wixproj", vs_env_vars)
 
 def deps(arch, toolset, qtver):
     print('Deps Qt Client Release|' + arch)
@@ -218,6 +244,9 @@ def parse_args():
         '-c', '--releasecompile', action='store_true',
         help='Build Qt Client in ReleaseCompile Config')
     ap.add_argument(
+        '-m', '--msi', action='store_true',
+        help='Generate msi')
+    ap.add_argument(
         '-s', '--sdk', default=win_sdk_default, type=str,
         help='Use specified windows sdk version')
     ap.add_argument(
@@ -242,6 +271,9 @@ def main():
         sys.exit(1)
 
     parsed_args = parse_args()
+
+    if parsed_args.msi:
+        generate_msi()
 
     if parsed_args.deps:
         deps(parsed_args.arch, parsed_args.toolset, parsed_args.qtver)
