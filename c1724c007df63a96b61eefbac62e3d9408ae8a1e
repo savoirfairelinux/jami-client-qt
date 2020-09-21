@@ -22,6 +22,30 @@
       "revId": "c1724c007df63a96b61eefbac62e3d9408ae8a1e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be28d015_fef816cc",
+        "filename": "src/settingsview/components/VideoSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-21T16:12:29Z",
+      "side": 1,
+      "message": "I think we still need it for fpsComboBoxSetting?",
+      "parentUuid": "c3c89652_91b342ee",
+      "range": {
+        "startLine": 105,
+        "startChar": 43,
+        "endLine": 105,
+        "endChar": 48
+      },
+      "revId": "c1724c007df63a96b61eefbac62e3d9408ae8a1e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
