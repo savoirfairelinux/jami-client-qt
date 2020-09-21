@@ -46,6 +46,30 @@
       "revId": "c1724c007df63a96b61eefbac62e3d9408ae8a1e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ab58742_15abdebb",
+        "filename": "src/settingsview/components/VideoSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-21T17:18:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "be28d015_fef816cc",
+      "range": {
+        "startLine": 105,
+        "startChar": 43,
+        "endLine": 105,
+        "endChar": 48
+      },
+      "revId": "c1724c007df63a96b61eefbac62e3d9408ae8a1e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
