@@ -28,7 +28,6 @@ ComboBox {
     id: root
 
     signal accountChanged(int index)
-    signal needToBackToWelcomePage
     signal newAccountButtonClicked
     signal settingBtnClicked
 
@@ -47,14 +46,6 @@ ComboBox {
                     accountListModel.data(accountListModel.index(0, 0), 261)
             textMetricsUserAliasRoot.text = accountListModel.data(accountListModel.index(0,0), 257)
             textMetricsUsernameRoot.text = accountListModel.data(accountListModel.index(0,0), 258)
-        }
-    }
-
-    Connections {
-        target: AccountAdapter
-
-        function onNavigateToWelcomePageRequested() {
-            needToBackToWelcomePage()
         }
     }
 
