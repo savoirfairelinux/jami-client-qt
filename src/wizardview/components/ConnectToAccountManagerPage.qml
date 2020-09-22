@@ -68,7 +68,7 @@ Rectangle {
             spacing: layoutSpacing
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: connectBtn.width
+            Layout.preferredWidth: implicitWidth
 
             Label {
                 text: JamiStrings.enterJAMSURL
@@ -108,10 +108,14 @@ Rectangle {
         }
 
         Label {
-            Layout.alignment: Qt.AlignLeft
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: connectBtn.width
 
             text: JamiStrings.jamsCredentials
             wrapMode: Text.Wrap
+
+            onTextChanged: Layout.preferredHeight =
+                           JamiQmlUtils.getTextBoundingRect(font, text).height
         }
 
         MaterialLineEdit {
