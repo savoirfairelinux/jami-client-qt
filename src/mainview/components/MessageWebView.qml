@@ -262,6 +262,13 @@ Rectangle {
                 messageWebView.runJavaScript("displayNavbar(false);")
             }
         }
+
+        onContextMenuRequested: {
+            var needContextMenu = request.selectedText.length || request.isContentEditable
+            if (!needContextMenu)
+                request.accepted = true
+        }
+
         Component.onCompleted: {
             messageWebView.loadHtml(UtilsAdapter.qStringFromFile(
                                         ":/chatview.html"), ":/chatview.html")
