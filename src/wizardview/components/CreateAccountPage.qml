@@ -214,19 +214,21 @@ Rectangle {
                 Layout.preferredWidth: usernameEdit.width
 
                 Label {
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     text: JamiStrings.createPassword
                     font.pointSize: JamiTheme.textFontSize + 3
+                }
 
-                    Switch {
-                        id: passwordSwitch
+                Switch {
+                    id: passwordSwitch
 
-                        anchors.left: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    Layout.leftMargin:  -layoutSpacing
+                    Layout.topMargin: 5
                 }
 
                 Label {
-                    Layout.alignment: Qt.AlignRight
+                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
                     text: JamiStrings.optional
                     color: "white"
@@ -274,18 +276,21 @@ Rectangle {
 
             Label {
                 Layout.alignment: Qt.AlignLeft
-                Layout.topMargin: 10
+                Layout.preferredWidth: createAccountButton.width - 10
                 Layout.leftMargin: (root.width - createAccountButton.width) / 2
 
                 text: JamiStrings.notePasswordRecovery
+                wrapMode: Text.WordWrap
                 font.pointSize: JamiTheme.textFontSize
+
+                onFontChanged: Layout.preferredHeight =
+                               JamiQmlUtils.getTextBoundingRect(font, text).height * 2
             }
 
             MaterialButton {
                 id: createAccountButton
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.topMargin: 10
                 Layout.preferredWidth: preferredWidth
                 Layout.preferredHeight: preferredHeight
 
