@@ -1,0 +1,7 @@
+Code-Review+2: Ming Rui Zhang <mingrui.zhang@savoirfairelinux.com>
+Verified+1: Jenkins CI <jenkins@ring-packaging.cx>
+Submitted-by: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+Submitted-at: Wed, 23 Sep 2020 13:45:47 -0400
+Reviewed-on: https://review.jami.net/c/jami-client-qt/+/15729
+Project: jami-client-qt
+Branch: refs/heads/master
