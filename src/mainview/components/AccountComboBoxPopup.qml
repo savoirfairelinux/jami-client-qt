@@ -28,9 +28,6 @@ Popup {
 
     property bool toogleUpdatePopupHeight: false
 
-    signal accountNeedToChange(int index)
-    signal newAccountButtonClicked
-
     y: accountComboBox.height - 1
     implicitWidth: accountComboBox.width - 1
 
@@ -143,7 +140,7 @@ Popup {
                     itemCoboBackground.color = JamiTheme.releaseColor
                     currentIndex = index
                     comboBoxPopup.close()
-                    comboBoxPopup.accountNeedToChange(index)
+                    mainViewWindow.accountIndexChanged(index)
                 }
                 onEntered: {
                     itemCoboBackground.color = JamiTheme.hoverColor
@@ -169,7 +166,7 @@ Popup {
 
             onClicked: {
                 comboBoxPopup.close()
-                comboBoxPopup.newAccountButtonClicked()
+                mainViewWindow.startWizard()
             }
         }
 

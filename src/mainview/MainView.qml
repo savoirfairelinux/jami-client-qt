@@ -125,6 +125,21 @@ Window {
         AccountAdapter.accountChanged(index)
     }
 
+    function accountIndexChanged(index) {
+        AccountAdapter.accountChanged(index)
+
+        if (inSettingsView) {
+            settingsView.slotAccountListChanged()
+            settingsView.setSelected(settingsView.selectedMenu, true)
+        } else if (currentAccountIsCalling()) {
+            setCallStackView()
+        }
+    }
+
+    function startWizard() {
+        mainViewStackLayout.currentIndex = 1
+    }
+
     function currentAccountIsCalling() {
         return UtilsAdapter.hasCall(AccountAdapter.currentAccountId)
     }
@@ -311,23 +326,6 @@ Window {
                         toggleSettingsView()
                     }
 
-                    onAccountChanged: {
-                        mainViewWindowSidePanel.deselectConversationSmartList()
-
-                        AccountAdapter.accountChanged(index)
-
-                        if (inSettingsView) {
-                            settingsView.slotAccountListChanged()
-                            settingsView.setSelected(settingsView.selectedMenu, true)
-                        } else if (currentAccountIsCalling()) {
-                            setCallStackView()
-                        }
-                    }
-
-                    onNewAccountButtonClicked: {
-                        mainViewWindowSidePanel.needToAddNewAccount()
-                    }
-
                     Component.onCompleted: {
                         AccountAdapter.setQmlObject(this)
                     }
@@ -438,7 +436,6 @@ Window {
         id: mainViewWindowSidePanel
 
         onConversationSmartListNeedToAccessMessageWebView: {
-
             communicationPageMessageWebView.headerUserAliasLabelText = currentUserAlias
             communicationPageMessageWebView.headerUserUserNameLabelText = currentUserDisplayName
 
@@ -509,10 +506,6 @@ Window {
             MessagesAdapter.updateConversationForAddedContact()
             mainViewWindowSidePanel.clearContactSearchBar()
             mainViewWindowSidePanel.forceReselectConversationSmartListCurrentIndex()
-        }
-
-        onNeedToAddNewAccount: {
-            mainViewStackLayout.currentIndex = 1
         }
 
         Connections {
@@ -747,7 +740,7 @@ Window {
     Shortcut {
         sequence: "Ctrl+Shift+N"
         context: Qt.ApplicationShortcut
-        onActivated: mainViewWindowSidePanel.needToAddNewAccount()
+        onActivated: startWizard()
     }
 
     KeyBoardShortcutTable {
