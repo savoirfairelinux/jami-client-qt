@@ -179,7 +179,7 @@ BaseDialog {
                 TextMetrics {
                     id: textMetricsjamiDeclarationYearText
                     font: jamiDeclarationYearText.font
-                    text: "© 2015-2020 Savoir-faire Linux"
+                    text: JamiStrings.companyDeclarationYear
                 }
             }
 
