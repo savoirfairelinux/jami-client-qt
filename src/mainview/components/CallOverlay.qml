@@ -112,6 +112,14 @@ Rectangle {
                 participantOverlays.push(hover)
             }
         }
+    }    
+
+    // x, y position does not need to be translated
+    // since they all fill the call page
+    function openCallViewContextMenuInPos(x, y) {
+        callViewContextMenu.x = x
+        callViewContextMenu.y = y
+        callViewContextMenu.openMenu()
     }
 
     anchors.fill: parent
@@ -343,7 +351,6 @@ Rectangle {
             }
         }
     }
-
 
     // MouseAreas to make sure that overlay states are correctly set.
     MouseArea {
