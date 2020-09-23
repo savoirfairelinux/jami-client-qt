@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dce7d05c_a7524f6a",
+        "filename": "changelog.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-23T21:00:47Z",
+      "side": 1,
+      "message": "## New Features\n\n+ Rendezvous points: easily create meeting points\n+ Control conference layout and see participant names\n+ New and improved user interface\n+ Better support for screen scaling (high DPI)",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "20678292c310a0ed67c278c080d0e278898d0b3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
