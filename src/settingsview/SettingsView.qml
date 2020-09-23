@@ -96,7 +96,8 @@ Rectangle {
         target: LRCInstance
 
         function onAccountListChanged() {
-            slotAccountListChanged()
+            console.error("onAcccountListChanged")
+            accountListChanged()
         }
     }
 
@@ -111,7 +112,7 @@ Rectangle {
             settingsViewWindowNeedToShowNewWizardWindow()
     }
 
-    function slotAccountListChanged() {
+    function accountListChanged() {
         var accountList = AccountAdapter.model.getAccountList()
         if(accountList.length === 0)
             return
