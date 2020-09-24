@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f466deb_da878616",
+        "filename": "src/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-09-24T17:56:19Z",
+      "side": 1,
+      "message": "Not working. Better use UtilsAdapter.checkShowPluginsButton()",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 119,
+        "endChar": 89
+      },
+      "revId": "2b306e70ae8bc760366814df7b157ebf1560af0b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
