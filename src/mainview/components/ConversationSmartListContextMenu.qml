@@ -39,7 +39,7 @@ Item {
                                          function (){
                                              ConversationsAdapter.selectConversation(
                                                          responsibleAccountId,
-                                                         responsibleConvUid, false)
+                                                         responsibleConvUid)
                                              CallAdapter.placeCall()
                                          })
         ContextMenuGenerator.addMenuItem(qsTr("Start audio call"),
@@ -47,7 +47,7 @@ Item {
                                          function (){
                                              ConversationsAdapter.selectConversation(
                                                          responsibleAccountId,
-                                                         responsibleConvUid, false)
+                                                         responsibleConvUid)
                                              CallAdapter.placeAudioOnlyCall()
                                          })
         ContextMenuGenerator.addMenuItem(qsTr("Clear conversation"),

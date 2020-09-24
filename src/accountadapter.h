@@ -116,7 +116,6 @@ signals:
      * send report failure to QML to make it show the right UI state .
      */
     void reportFailure();
-    void navigateToWelcomePageRequested();
     void accountAdded(bool showBackUp, int index);
 
 private slots:
@@ -127,7 +126,6 @@ private:
     lrc::api::profile::Type currentAccountType_ {};
     int accountListSize_ {};
 
-    void backToWelcomePage();
     void deselectConversation();
 
     /*
