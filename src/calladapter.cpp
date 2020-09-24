@@ -45,6 +45,13 @@ CallAdapter::CallAdapter(QObject* parent)
             &BehaviorController::showCallView,
             this,
             &CallAdapter::slotShowCallView);
+
+    threadPool_.setMaxThreadCount(1);
+}
+
+CallAdapter::~CallAdapter()
+{
+    threadPool_.clear();
 }
 
 void
@@ -67,7 +74,9 @@ CallAdapter::placeCall()
 {
     const auto convUid = LRCInstance::getCurrentConvUid();
     if (!convUid.isEmpty()) {
-        LRCInstance::getCurrentConversationModel()->placeCall(convUid);
+        QtConcurrent::run(&threadPool_, [convUid] {
+            LRCInstance::getCurrentConversationModel()->placeCall(convUid);
+        });
     }
 }
 
@@ -104,8 +113,11 @@ CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
 }
 
 void
-CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversation::Info& convInfo)
+CallAdapter::slotShowIncomingCallView(const QString& accountId, const QString& convUid)
 {
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
+    if (convInfo.uid.isEmpty())
+        return;
     auto selectedAccountId = LRCInstance::getCurrAccId();
     auto* callModel = LRCInstance::getCurrentCallModel();
     if (!callModel->hasCall(convInfo.callId)) {

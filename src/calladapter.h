@@ -25,8 +25,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QThreadPool>
 #include <QVariant>
-#include <QSystemTrayIcon>
 
 class CallAdapter final : public QmlAdapterBase
 {
@@ -34,7 +34,7 @@ class CallAdapter final : public QmlAdapterBase
 
 public:
     explicit CallAdapter(QObject* parent = nullptr);
-    ~CallAdapter() = default;
+    ~CallAdapter();
 
 protected:
     void safeInit() override {};
@@ -98,8 +98,7 @@ signals:
                        const QString& bestName);
 
 public slots:
-    void slotShowIncomingCallView(const QString& accountId,
-                                  const lrc::api::conversation::Info& convInfo);
+    void slotShowIncomingCallView(const QString& accountId, const QString& convUid);
     void slotShowCallView(const QString& accountId, const lrc::api::conversation::Info& convInfo);
     void slotAccountChanged();
 
@@ -127,4 +126,6 @@ private:
     void updateCallOverlay(const lrc::api::conversation::Info& convInfo);
     void setTime(const QString& accountId, const QString& convUid);
     QTimer* oneSecondTimer_;
+
+    QThreadPool threadPool_;
 };
