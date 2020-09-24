@@ -22,6 +22,30 @@
       "revId": "fc6e1f81728147d245d5c1395be82e195b33b119",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "466eb742_9ae00d28",
+        "filename": "src/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-24T14:18:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bce9ad28_9f7313e8",
+      "range": {
+        "startLine": 119,
+        "startChar": 59,
+        "endLine": 119,
+        "endChar": 79
+      },
+      "revId": "fc6e1f81728147d245d5c1395be82e195b33b119",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
