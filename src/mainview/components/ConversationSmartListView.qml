@@ -26,12 +26,9 @@ import net.jami.Adapters 1.0
 ListView {
     id: root
 
-    signal needToAccessMessageWebView(string currentUserDisplayName, string currentUserAlias, string currentUID, bool callStackViewShouldShow, bool isAudioOnly, int callState)
-    signal needToSelectItems(string conversationUid)
     signal needToDeselectItems
     signal needToGrabFocus
 
-    signal needToShowChatView(string accountId, string convUid)
     signal currentIndexIsChanged
     signal forceUpdatePotentialInvalidItem
 
@@ -76,7 +73,9 @@ ListView {
 
     Connections {
         target: LRCInstance
-        function onUpdateSmartList() { updateListView() }
+        function onUpdateSmartList() {
+            console.error("ConversationSmartListView::onUpdateSmartList")
+                          updateListView() }
     }
 
     onCurrentIndexChanged: {

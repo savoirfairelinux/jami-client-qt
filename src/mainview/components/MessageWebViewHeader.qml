@@ -149,7 +149,7 @@ Rectangle {
                 onExitColor: "white"
 
                 onClicked: {
-                    messagingHeaderRect.sendContactRequestButtonClicked()
+                    MessagesAdapter.sendContactRequest()
                     CallAdapter.placeAudioOnlyCall()
                 }
             }
@@ -170,7 +170,7 @@ Rectangle {
                 onExitColor: "white"
 
                 onClicked: {
-                    messagingHeaderRect.sendContactRequestButtonClicked()
+                    MessagesAdapter.sendContactRequest()
                     CallAdapter.placeCall()
                 }
             }
@@ -192,7 +192,7 @@ Rectangle {
                 onExitColor: "white"
 
                 onClicked: {
-                    messagingHeaderRect.sendContactRequestButtonClicked()
+                    MessagesAdapter.sendContactRequest()
                     sendContactRequestButtonVisible = false
                 }
 
