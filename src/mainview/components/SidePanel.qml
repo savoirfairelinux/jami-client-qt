@@ -33,7 +33,6 @@ Rectangle {
     property int pendingRequestCount: 0
     property int totalUnreadMessagesCount: 0
 
-    signal conversationSmartListNeedToAccessMessageWebView(string currentUserDisplayName, string currentUserAlias, string currentUID, bool callStackViewShouldShow, bool isAudioOnly, int callState)
     signal focusMessageWebViewRequested
 
     // Hack -> force redraw.
@@ -181,10 +180,6 @@ Rectangle {
         Connections {
             target: ConversationsAdapter
 
-            function onShowChatView(accountId, convUid) {
-                conversationSmartListView.needToShowChatView(accountId, convUid)
-            }
-
             function onShowConversationTabs(visible) {
                 tabBarVisible = visible
                 updatePendingRequestCount()
@@ -194,17 +189,6 @@ Rectangle {
             function onShowSearchStatus(status) {
                 lblSearchStatus.text = status
             }
-        }
-
-        onNeedToSelectItems: {
-            ConversationsAdapter.selectConversation(conversationUid)
-        }
-
-        onNeedToAccessMessageWebView: {
-            sidePanelRect.conversationSmartListNeedToAccessMessageWebView(
-                        currentUserDisplayName, currentUserAlias,
-                        currentUID, callStackViewShouldShow,
-                        isAudioOnly, callState)
         }
 
         Component.onCompleted: {
