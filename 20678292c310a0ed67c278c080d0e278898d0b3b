@@ -22,6 +22,30 @@
       "revId": "20678292c310a0ed67c278c080d0e278898d0b3b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3026d73f_e08ab53f",
+        "filename": "changelog.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-24T13:49:27Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dce7d05c_a7524f6a",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "20678292c310a0ed67c278c080d0e278898d0b3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
