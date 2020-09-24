@@ -40,7 +40,7 @@ AccountAdapter::safeInit()
             this,
             &AccountAdapter::onCurrentAccountChanged);
 
-    backToWelcomePage();
+    deselectConversation();
 
     auto accountId = LRCInstance::getCurrAccId();
     setProperties(accountId);
@@ -71,7 +71,6 @@ AccountAdapter::accountChanged(int index)
     auto accountList = LRCInstance::accountModel().getAccountList();
     if (accountList.size() > index) {
         LRCInstance::setSelectedAccountId(accountList.at(index));
-        backToWelcomePage();
     }
 }
 
@@ -345,13 +344,6 @@ AccountAdapter::passwordSetStatusMessageBox(bool success, QString title, QString
     } else {
         QMessageBox::critical(0, title, infoToDisplay);
     }
-}
-
-void
-AccountAdapter::backToWelcomePage()
-{
-    deselectConversation();
-    emit navigateToWelcomePageRequested();
 }
 
 void

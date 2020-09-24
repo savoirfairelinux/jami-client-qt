@@ -91,7 +91,7 @@ Popup {
 
                 anchors.left: userImage.right
                 anchors.leftMargin: 10
-                anchors.top: itemCoboBackground.top
+                anchors.top: itemComboBackground.top
                 anchors.topMargin: 15
 
                 text: textMetricsUserAliasPopup.elidedText
@@ -125,7 +125,7 @@ Popup {
             }
 
             background: Rectangle {
-                id: itemCoboBackground
+                id: itemComboBackground
                 color: JamiTheme.backgroundColor
                 implicitWidth: accountComboBox.width
                 implicitHeight: accountComboBox.height
@@ -135,19 +135,21 @@ Popup {
                 anchors.fill: parent
                 hoverEnabled: true
                 onPressed: {
-                    itemCoboBackground.color = JamiTheme.pressColor
+                    itemComboBackground.color = JamiTheme.pressColor
                 }
                 onReleased: {
-                    itemCoboBackground.color = JamiTheme.releaseColor
+                    itemComboBackground.color = JamiTheme.releaseColor
                     currentIndex = index
                     comboBoxPopup.close()
+                    // Hack: correct smartlist selection during a call
+                    mainViewWindowSidePanel.deselectConversationSmartList()
                     AccountAdapter.accountChanged(index)
                 }
                 onEntered: {
-                    itemCoboBackground.color = JamiTheme.hoverColor
+                    itemComboBackground.color = JamiTheme.hoverColor
                 }
                 onExited: {
-                    itemCoboBackground.color = JamiTheme.backgroundColor
+                    itemComboBackground.color = JamiTheme.backgroundColor
                 }
             }
         }
