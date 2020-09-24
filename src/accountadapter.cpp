@@ -71,7 +71,8 @@ AccountAdapter::accountChanged(int index)
     auto accountList = LRCInstance::accountModel().getAccountList();
     if (accountList.size() > index) {
         LRCInstance::setSelectedAccountId(accountList.at(index));
-        backToWelcomePage();
+        //TODO: unnecessary, already check property
+        //backToWelcomePage();
     }
 }
 

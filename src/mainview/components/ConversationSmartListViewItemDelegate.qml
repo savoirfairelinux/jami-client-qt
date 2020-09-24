@@ -29,6 +29,7 @@ ItemDelegate {
     height: 72
 
     property int lastInteractionPreferredWidth: 80
+
     Connections {
         target: conversationSmartListView
 
@@ -54,17 +55,21 @@ ItemDelegate {
                     return InCall ? Qt.lighter(JamiTheme.selectionBlue,
                                                1.8) : JamiTheme.releaseColor
                 })
-                conversationSmartListView.needToSelectItems(UID)
+                console.error("current index")
+                ConversationsAdapter.showConversation(UID)
                 conversationSmartListView.needToGrabFocus()
             }
         }
+    }
 
-        function onNeedToShowChatView(accountId, convUid) {
+    Connections {
+        target: ConversationsAdapter
+
+        function onShowChatView(accountId, convUid) {
             if (convUid === UID) {
-                conversationSmartListView.needToAccessMessageWebView(
-                            DisplayID == DisplayName ? "" : DisplayID,
-                            DisplayName, UID, CallStackViewShouldShow,
-                            IsAudioOnly, CallState)
+                console.error("ConversationsAdapter::onShowChatView", accountId, convUid)
+                mainViewWindow.setMessageWebView(DisplayID == DisplayName ? "" : DisplayID,
+                            DisplayName, UID, CallStackViewShouldShow, IsAudioOnly, CallState)
             }
         }
     }
@@ -169,9 +174,7 @@ ItemDelegate {
         }
         onDoubleClicked: {
             if (!InCall) {
-                ConversationsAdapter.selectConversation(AccountAdapter.currentAccountId,
-                                                        UID,
-                                                        false)
+                ConversationsAdapter.showConversation(UID)
                 CallAdapter.placeCall()
             }
         }
