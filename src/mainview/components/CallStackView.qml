@@ -123,7 +123,7 @@ Rectangle {
     Connections {
         target: CallAdapter
 
-        function onShowOutgoingCallPage(accountId, convUid) {
+        /*function onShowOutgoingCallPage(accountId, convUid) {
 
             // Need to check whether it is the current selected conversation.
             if (responsibleConvUid === convUid
@@ -148,7 +148,7 @@ Rectangle {
                     && responsibleAccountId === accountId) {
                 showVideoCallPage(callId)
             }
-        }
+        } */
 
         function onCallStatusChanged(status, accountId, convUid) {
             if (responsibleConvUid === convUid && responsibleAccountId === accountId) {
