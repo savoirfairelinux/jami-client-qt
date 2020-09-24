@@ -42,6 +42,7 @@ public:
                                         const QString& convUid,
                                         bool preventSendingSignal = true);
     Q_INVOKABLE void selectConversation(const QString& uid);
+    Q_INVOKABLE void showConversation(const QString& uid);
     Q_INVOKABLE void deselectConversation();
     Q_INVOKABLE void refill();
     Q_INVOKABLE void updateConversationsFilterWidget();

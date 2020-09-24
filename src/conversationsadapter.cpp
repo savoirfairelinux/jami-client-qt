@@ -42,6 +42,7 @@ ConversationsAdapter::safeInit()
     connect(&LRCInstance::behaviorController(),
             &BehaviorController::showChatView,
             [this](const QString& accountId, lrc::api::conversation::Info convInfo) {
+                qDebug()<<"behaviour: emit showChatView";
                 emit showChatView(accountId, convInfo.uid);
             });
 
@@ -70,6 +71,7 @@ ConversationsAdapter::selectConversation(const QString& accountId,
                                          const QString& convUid,
                                          bool preventSendingSignal)
 {
+    qDebug()<<"selectConversation3"<<convUid;
     auto& accInfo = LRCInstance::getAccountInfo(accountId);
     const auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
 
@@ -79,6 +81,7 @@ ConversationsAdapter::selectConversation(const QString& accountId,
 void
 ConversationsAdapter::selectConversation(const QString& convUid)
 {
+    qDebug()<<"selectConversation1"<<convUid;
     auto* convModel = LRCInstance::getCurrentConversationModel();
     if (convModel == nullptr) {
         return;
@@ -87,9 +90,11 @@ ConversationsAdapter::selectConversation(const QString& convUid)
     const auto& conversation = convModel->getConversationForUID(convUid);
 
     if (selectConversation(conversation, false)) {
+        qDebug()<<"here";
         // If it is calling, show callview (can use showChatView signal, since it will be determined on qml).
-        if (!conversation.uid.isEmpty()
-            && LRCInstance::getCurrentCallModel()->hasCall(conversation.callId)) {
+        if (!conversation.uid.isEmpty()) {
+            qDebug()<<"here";
+            //&& LRCInstance::getCurrentCallModel()->hasCall(conversation.callId)) {
             emit showChatView(LRCInstance::getCurrAccId(), conversation.uid);
         }
     }
@@ -99,11 +104,16 @@ bool
 ConversationsAdapter::selectConversation(const lrc::api::conversation::Info& convInfo,
                                          bool preventSendingSignal)
 {
+    qDebug()<<"selectConversation2"<<convInfo.uid;
     // accInfo.conversationModel->selectConversation(item.uid) only emit ui
     // behavior control signals, but sometimes we do not want that,
     // preventSendingSignal boolean can help us to determine.
+    qDebug()<<LRCInstance::getCurrentConvUid()<<convInfo.uid;
+    qDebug()<<LRCInstance::getCurrAccId()<<convInfo.accountId;
+
     if (LRCInstance::getCurrentConvUid() == convInfo.uid
         && LRCInstance::getCurrAccId() == convInfo.accountId) {
+        qDebug()<<"false";
         return false;
     } else if (convInfo.participants.size() > 0) {
         // If the account is not currently selected, do that first, then
@@ -126,6 +136,28 @@ ConversationsAdapter::selectConversation(const lrc::api::conversation::Info& con
         return true;
     }
 }
+
+
+void
+ConversationsAdapter::showConversation(const QString& convUid)
+{
+    qDebug()<<"showConversation1"<<convUid;
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    if (convModel == nullptr) {
+        qDebug()<<"shit";
+        return;
+    }
+
+    const auto& conversation = convModel->getConversationForUID(convUid);
+
+    selectConversation(conversation, false);
+
+    if (!conversation.uid.isEmpty()) {
+        qDebug()<<"showconversation:: showChatView";
+        emit showChatView(LRCInstance::getCurrAccId(), conversation.uid);
+    }
+}
+
 
 void
 ConversationsAdapter::deselectConversation()
