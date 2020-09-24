@@ -202,6 +202,7 @@ UtilsAdapter::getAccountListSize()
 void
 UtilsAdapter::setCurrentCall(const QString& accountId, const QString& convUid)
 {
+    qDebug()<<"setCurrentCall"<<accountId<<convUid;
     auto& accInfo = LRCInstance::getAccountInfo(accountId);
     const auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
     accInfo.callModel->setCurrentCall(convInfo.callId);
