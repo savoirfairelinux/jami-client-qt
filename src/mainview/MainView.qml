@@ -58,13 +58,22 @@ Window {
     signal closeApp
     signal noAccountIsAvailable
 
+    function isPageExistInStackView(objectName, stackView) {
+        var foundItem = stackView.find(function (item, index) {
+            return item.objectName === objectName
+        })
+
+        return foundItem ? true : false
+    }
+
     function showWelcomeView() {
         mainViewWindowSidePanel.deselectConversationSmartList()
-        if (communicationPageMessageWebView.visible || callStackView.visible) {
+        if (isPageExistInStackView("callStackViewObject", sidePanelViewStack) ||
+                isPageExistInStackView("communicationPageMessageWebView", sidePanelViewStack) ||
+                isPageExistInStackView("communicationPageMessageWebView", mainViewStack) ||
+                isPageExistInStackView("callStackViewObject", mainViewStack)) {
             sidePanelViewStack.pop(StackView.Immediate)
-            if (!sidePanelOnly) {
-                mainViewStack.pop(welcomePage, StackView.Immediate)
-            }
+            mainViewStack.pop(welcomePage, StackView.Immediate)
         }
         recordBox.visible = false
     }
@@ -99,7 +108,6 @@ Window {
         callStackView.responsibleConvUid = currentCallConv
         callStackView.updateCorrespondingUI()
     }
-
 
     function pushCallStackView() {
         if (sidePanelOnly) {
@@ -141,7 +149,6 @@ Window {
     }
 
     function toggleSettingsView() {
-
         inSettingsView = !inSettingsView
 
         if (inSettingsView) {
@@ -198,11 +205,8 @@ Window {
             // Check if call stack view is on any of the stackview.
             if (callStackView.responsibleAccountId === accountId
                     && callStackView.responsibleConvUid === convUid) {
-                if (mainViewStack.find(function (item, index) {
-                    return item.objectName === "callStackViewObject"
-                }) || sidePanelViewStack.find(function (item, index) {
-                    return item.objectName === "callStackViewObject"
-                })) {
+                if (isPageExistInStackView("callStackViewObject", sidePanelViewStack) ||
+                        isPageExistInStackView("callStackViewObject", mainViewStack)) {
                     if (!inSettingsView) {
                         callStackView.needToCloseInCallConversationAndPotentialWindow()
                         pushCommunicationMessageWebView()
@@ -212,7 +216,6 @@ Window {
         }
 
         function onIncomingCallNeedToSetupMainView(accountId, convUid, fromNotification) {
-
             // Set up the call stack view that is needed by call overlay.
             if (!inSettingsView) {
                 mainViewStack.pop(welcomePage, StackView.Immediate)
@@ -469,11 +472,8 @@ Window {
             MessagesAdapter.setupChatView(currentUID)
             callStackView.setLinkedWebview(communicationPageMessageWebView)
 
-            if (mainViewStack.find(function (item, index) {
-                return item.objectName === "communicationPageMessageWebView"
-            }) || sidePanelViewStack.find(function (item, index) {
-                return item.objectName === "communicationPageMessageWebView"
-            })) {
+            if (isPageExistInStackView("communicationPageMessageWebView", sidePanelViewStack) ||
+                    isPageExistInStackView("communicationPageMessageWebView", mainViewStack)) {
                 if (!callStackViewShouldShow)
                     return
             }
