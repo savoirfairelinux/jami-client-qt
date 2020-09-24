@@ -34,22 +34,35 @@ Item {
     property int contactType: Profile.Type.INVALID
 
     function openMenu(){
-        ContextMenuGenerator.addMenuItem(qsTr("Start video call"),
-                                         "qrc:/images/icons/ic_video_call_24px.svg",
-                                         function (){
-                                             ConversationsAdapter.selectConversation(
-                                                         responsibleAccountId,
-                                                         responsibleConvUid, false)
-                                             CallAdapter.placeCall()
-                                         })
-        ContextMenuGenerator.addMenuItem(qsTr("Start audio call"),
-                                         "qrc:/images/icons/ic_phone_24px.svg",
-                                         function (){
-                                             ConversationsAdapter.selectConversation(
-                                                         responsibleAccountId,
-                                                         responsibleConvUid, false)
-                                             CallAdapter.placeAudioOnlyCall()
-                                         })
+        if (UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid) === "") {
+
+            ContextMenuGenerator.addMenuItem(qsTr("Start video call"),
+                                             "qrc:/images/icons/videocam-24px.svg",
+                                             function (){
+                                                 ConversationsAdapter.selectConversation(
+                                                             responsibleAccountId,
+                                                             responsibleConvUid, false)
+                                                 CallAdapter.placeCall()
+                                             })
+            ContextMenuGenerator.addMenuItem(qsTr("Start audio call"),
+                                             "qrc:/images/icons/ic_phone_24px.svg",
+                                             function (){
+                                                 ConversationsAdapter.selectConversation(
+                                                             responsibleAccountId,
+                                                             responsibleConvUid, false)
+                                                 CallAdapter.placeAudioOnlyCall()
+                                             })
+
+        } else {
+            ContextMenuGenerator.addMenuItem(qsTr("Hang up call"),
+                                             "qrc:/images/icons/ic_call_end_white_24px.svg",
+                                             function (){
+                                                 CallAdapter.hangUpACall(responsibleAccountId,
+                                                                         responsibleConvUid)
+                                             })
+        }
+
+
         ContextMenuGenerator.addMenuItem(qsTr("Clear conversation"),
                                          "qrc:/images/icons/ic_clear_24px.svg",
                                          function (){
