@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7067ce1b_07b3ebd8",
+        "filename": "src/networkmanager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-24T23:53:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f701f707_0ac8eba5",
+      "range": {
+        "startLine": 35,
+        "startChar": 35,
+        "endLine": 35,
+        "endChar": 54
+      },
+      "revId": "67ff42e814c55995c7142ab169b51bb510207446",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0729792_b9a860c7",
         "filename": "src/updatemanager.cpp",
         "patchSetId": 20
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "a813cd68_a28b30ea",
+        "filename": "src/updatemanager.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-24T23:53:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0729792_b9a860c7",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 18
+      },
+      "revId": "67ff42e814c55995c7142ab169b51bb510207446",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cf6f785_5ef50adb",
         "filename": "src/updatemanager.h",
         "patchSetId": 20
@@ -68,6 +116,30 @@
       "revId": "67ff42e814c55995c7142ab169b51bb510207446",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cca49cfa_aa68b59e",
+        "filename": "src/updatemanager.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-24T23:53:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cf6f785_5ef50adb",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 10
+      },
+      "revId": "67ff42e814c55995c7142ab169b51bb510207446",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
