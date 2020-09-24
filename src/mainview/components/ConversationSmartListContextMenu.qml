@@ -37,17 +37,21 @@ Item {
         ContextMenuGenerator.addMenuItem(qsTr("Start video call"),
                                          "qrc:/images/icons/ic_video_call_24px.svg",
                                          function (){
-                                             ConversationsAdapter.selectConversation(
+                                             ConversationsAdapter.showConversation(
+                                                         responsibleConvUid)
+                                             /*ConversationsAdapter.showConversation(
                                                          responsibleAccountId,
-                                                         responsibleConvUid, false)
+                                                         responsibleConvUid, false)*/
                                              CallAdapter.placeCall()
                                          })
         ContextMenuGenerator.addMenuItem(qsTr("Start audio call"),
                                          "qrc:/images/icons/ic_phone_24px.svg",
                                          function (){
-                                             ConversationsAdapter.selectConversation(
+                                             ConversationsAdapter.showConversation(
+                                                         responsibleConvUid)
+                                             /*ConversationsAdapter.selectConversation(
                                                          responsibleAccountId,
-                                                         responsibleConvUid, false)
+                                                         responsibleConvUid, false)*/
                                              CallAdapter.placeAudioOnlyCall()
                                          })
         ContextMenuGenerator.addMenuItem(qsTr("Clear conversation"),
