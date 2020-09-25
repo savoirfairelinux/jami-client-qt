@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df89d868_2737778f",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-25T19:40:56Z",
+      "side": 1,
+      "message": "isPageInStack... ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 13,
+        "endLine": 61,
+        "endChar": 35
+      },
+      "revId": "b2da0301f3793ac426c5956dd160f75fa0bedfd8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
