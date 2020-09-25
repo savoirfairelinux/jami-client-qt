@@ -215,8 +215,11 @@ Rectangle {
                         pressedColor: JamiTheme.buttonTintedGreyPressed
                         outlined: true
 
-                        onClicked: createAccountStack.currentIndex =
-                                   createAccountStack.currentIndex + 1
+                        onClicked: {
+                            usernameEdit.clear()
+                            createAccountStack.currentIndex =
+                                    createAccountStack.currentIndex + 1
+                        }
                     }
                 }
 
