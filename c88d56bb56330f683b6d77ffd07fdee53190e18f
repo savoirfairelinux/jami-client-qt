@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d8168dd_6e69ae0c",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-25T17:18:56Z",
+      "side": 1,
+      "message": "I do not think this change is needed,\n\nNow the ui behaves the same without the patch\n\nCan you give an example about what this may affect?",
+      "range": {
+        "startLine": 369,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 17
+      },
+      "revId": "c88d56bb56330f683b6d77ffd07fdee53190e18f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1e3506f_ce453469",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-25T17:18:56Z",
+      "side": 1,
+      "message": "same in here",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 388,
+        "endChar": 17
+      },
+      "revId": "c88d56bb56330f683b6d77ffd07fdee53190e18f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
