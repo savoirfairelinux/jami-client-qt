@@ -50,13 +50,13 @@ MessagesAdapter::safeInit()
 }
 
 void
-MessagesAdapter::setupChatView(const QString& uid)
+MessagesAdapter::setupChatView(const QString& convUid)
 {
     auto* convModel = LRCInstance::getCurrentConversationModel();
     if (convModel == nullptr) {
         return;
     }
-    const auto& convInfo = convModel->getConversationForUID(uid);
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
     if (convInfo.uid.isEmpty() || convInfo.participants.isEmpty()) {
         return;
     }
@@ -92,8 +92,8 @@ MessagesAdapter::setupChatView(const QString& uid)
     contactIsComposing(convInfo.uid, "", false);
     connect(LRCInstance::getCurrentConversationModel(),
             &ConversationModel::composingStatusChanged,
-            [this](const QString& uid, const QString& contactUri, bool isComposing) {
-                contactIsComposing(uid, contactUri, isComposing);
+            [this](const QString& convUid, const QString& contactUri, bool isComposing) {
+                contactIsComposing(convUid, contactUri, isComposing);
             });
 
     /*
@@ -161,11 +161,11 @@ void
 MessagesAdapter::updateConversationForAddedContact()
 {
     auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(LRCInstance::getCurrentConvUid());
 
     clear();
-    setConversationProfileData(conversation);
-    printHistory(*convModel, conversation.interactions);
+    setConversationProfileData(convInfo);
+    printHistory(*convModel, convInfo.interactions);
 }
 
 void
@@ -199,7 +199,7 @@ void
 MessagesAdapter::slotMessagesCleared()
 {
     auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto convInfo = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(LRCInstance::getCurrentConvUid());
 
     printHistory(*convModel, convInfo.interactions);
 
@@ -433,13 +433,12 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
 {
     auto* convModel = LRCInstance::getCurrentConversationModel();
     auto accInfo = &LRCInstance::getCurrentAccountInfo();
-    const auto conv = convModel->getConversationForUID(convInfo.uid);
 
-    if (conv.participants.isEmpty()) {
+    if (convInfo.participants.isEmpty()) {
         return;
     }
 
-    auto contactUri = conv.participants.front();
+    auto contactUri = convInfo.participants.front();
     if (contactUri.isEmpty()) {
         return;
     }
@@ -453,7 +452,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
         } else {
-            auto avatar = Utils::conversationPhoto(convInfo.uid, *accInfo, true);
+            auto avatar = Utils::conversationPhoto(convInfo.uid, *accInfo);
             QByteArray ba;
             QBuffer bu(&ba);
             avatar.save(&bu, "PNG");

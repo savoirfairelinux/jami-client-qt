@@ -63,9 +63,7 @@ public:
     Q_ENUM(Role)
 
     explicit SmartListModel(QObject* parent = 0,
-                            const QString& accId = {},
-                            SmartListModel::Type listModelType = Type::CONVERSATION,
-                            const QString& convUid = {});
+                            SmartListModel::Type listModelType = Type::CONVERSATION);
     ~SmartListModel();
 
     /*
@@ -75,15 +73,16 @@ public:
     int columnCount(const QModelIndex& parent) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
-    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& child) const;
-    Qt::ItemFlags flags(const QModelIndex& index) const;
+    QModelIndex index(int row,
+                      int column = 0,
+                      const QModelIndex& parent = QModelIndex()) const override;
+    QModelIndex parent(const QModelIndex& child) const override;
+    Qt::ItemFlags flags(const QModelIndex& index) const override;
 
     Q_INVOKABLE void setConferenceableFilter(const QString& filter = {});
     Q_INVOKABLE void toggleSection(const QString& section);
     Q_INVOKABLE int currentUidSmartListModelIndex();
     Q_INVOKABLE void fillConversationsList();
-    Q_INVOKABLE void updateConversation(const QString& conv);
 
 private:
     QVariant getConversationItemData(const ConversationInfo& item,

@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -112,10 +112,19 @@ UtilsAdapter::getContactImageString(const QString& accountId, const QString& uid
 }
 
 const QString
-UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
+UtilsAdapter::getBestName(const QString& accountId, const QString& convUid)
 {
     auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    return Utils::bestNameForConversation(convModel->getConversationForUID(uid), *convModel);
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
+    return Utils::bestNameForConversation(convInfo, *convModel);
+}
+
+const QString
+UtilsAdapter::getBestId(const QString& accountId, const QString& convUid)
+{
+    auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
+    return Utils::bestIdForConversation(convInfo, *convModel);
 }
 
 QString
@@ -127,20 +136,14 @@ UtilsAdapter::getBestId(const QString& accountId)
     return Utils::bestIdForAccount(accountInfo);
 }
 
-const QString
-UtilsAdapter::getBestId(const QString& accountId, const QString& uid)
-{
-    auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    return Utils::bestIdForConversation(convModel->getConversationForUID(uid), *convModel);
-}
-
 int
 UtilsAdapter::getTotalUnreadMessages()
 {
     int totalUnreadMessages {0};
     if (LRCInstance::getCurrentAccountInfo().profileInfo.type != lrc::api::profile::Type::SIP) {
         auto* convModel = LRCInstance::getCurrentConversationModel();
-        auto ringConversations = convModel->getFilteredConversations(lrc::api::profile::Type::RING);
+        auto ringConversations = convModel->getFilteredConversations(lrc::api::profile::Type::RING,
+                                                                     false);
         std::for_each(ringConversations.begin(),
                       ringConversations.end(),
                       [&totalUnreadMessages](const auto& conversation) {
@@ -203,7 +206,7 @@ void
 UtilsAdapter::setCurrentCall(const QString& accountId, const QString& convUid)
 {
     auto& accInfo = LRCInstance::getAccountInfo(accountId);
-    const auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
+    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     accInfo.callModel->setCurrentCall(convInfo.callId);
 }
 
@@ -256,19 +259,16 @@ UtilsAdapter::getCallConvForAccount(const QString& accountId)
 const QString
 UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
 {
-    auto& accInfo = LRCInstance::getAccountInfo(accountId);
-    const auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
-
+    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     if (convInfo.uid.isEmpty()) {
-        return "";
+        return {};
     }
 
-    auto call = LRCInstance::getCallInfoForConversation(convInfo, false);
-    if (!call) {
-        return "";
+    if (auto* call = LRCInstance::getCallInfoForConversation(convInfo, false)) {
+        return call->id;
     }
 
-    return call->id;
+    return {};
 }
 
 int
