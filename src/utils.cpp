@@ -560,10 +560,10 @@ Utils::getReplyMessageBox(QWidget* widget, const QString& title, const QString& 
 }
 
 QImage
-Utils::conversationPhoto(const QString& convUid,
-                         const lrc::api::account::Info& accountInfo,
-                         bool filtered)
+Utils::conversationPhoto(const QString& convUid, const lrc::api::account::Info& accountInfo)
 {
+    // TODO: remove the useless conversation::Info copy here
+    // getConversationForUID is required in case the conversation is a search result
     auto* convModel = LRCInstance::getCurrentConversationModel();
     const auto convInfo = convModel->getConversationForUID(convUid);
     if (!convInfo.uid.isEmpty()) {
