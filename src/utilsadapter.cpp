@@ -112,10 +112,11 @@ UtilsAdapter::getContactImageString(const QString& accountId, const QString& uid
 }
 
 const QString
-UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
+UtilsAdapter::getBestName(const QString& accountId, const QString& convUid)
 {
     auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    return Utils::bestNameForConversation(convModel->getConversationForUID(uid), *convModel);
+    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+    return Utils::bestNameForConversation(convInfo, *convModel);
 }
 
 QString
@@ -128,10 +129,11 @@ UtilsAdapter::getBestId(const QString& accountId)
 }
 
 const QString
-UtilsAdapter::getBestId(const QString& accountId, const QString& uid)
+UtilsAdapter::getBestId(const QString& accountId, const QString& convUid)
 {
     auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    return Utils::bestIdForConversation(convModel->getConversationForUID(uid), *convModel);
+    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+    return Utils::bestIdForConversation(convInfo, *convModel);
 }
 
 int
@@ -203,7 +205,7 @@ void
 UtilsAdapter::setCurrentCall(const QString& accountId, const QString& convUid)
 {
     auto& accInfo = LRCInstance::getAccountInfo(accountId);
-    const auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
+    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     accInfo.callModel->setCurrentCall(convInfo.callId);
 }
 
@@ -256,19 +258,16 @@ UtilsAdapter::getCallConvForAccount(const QString& accountId)
 const QString
 UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
 {
-    auto& accInfo = LRCInstance::getAccountInfo(accountId);
-    const auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
-
+    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     if (convInfo.uid.isEmpty()) {
-        return "";
+        return {};
     }
 
-    auto call = LRCInstance::getCallInfoForConversation(convInfo, false);
-    if (!call) {
-        return "";
+    if (auto* call = LRCInstance::getCallInfoForConversation(convInfo, false)) {
+        return call->id;
     }
 
-    return call->id;
+    return {};
 }
 
 int

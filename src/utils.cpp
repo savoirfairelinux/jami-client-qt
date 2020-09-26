@@ -560,12 +560,10 @@ Utils::getReplyMessageBox(QWidget* widget, const QString& title, const QString& 
 }
 
 QImage
-Utils::conversationPhoto(const QString& convUid,
-                         const lrc::api::account::Info& accountInfo,
-                         bool filtered)
+Utils::conversationPhoto(const QString& convUid, const lrc::api::account::Info& accountInfo)
 {
-    auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto convInfo = convModel->getConversationForUID(convUid);
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
+
     if (!convInfo.uid.isEmpty()) {
         return GlobalInstances::pixmapManipulator()
             .decorationRole(convInfo, accountInfo)

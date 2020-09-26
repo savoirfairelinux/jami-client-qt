@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2017-2020 by Savoir-faire Linux
  * Author: Anthony Léonard <anthony.leonard@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -29,10 +29,7 @@
 
 #include <QDateTime>
 
-SmartListModel::SmartListModel(QObject* parent,
-                               const QString& accId,
-                               SmartListModel::Type listModelType,
-                               const QString& convUid)
+SmartListModel::SmartListModel(QObject* parent, SmartListModel::Type listModelType)
     : QAbstractListModel(parent)
     , listModelType_(listModelType)
 {
@@ -83,20 +80,20 @@ SmartListModel::data(const QModelIndex& index, int role) const
     }
 
     try {
-        auto& accountInfo = LRCInstance::accountModel().getAccountInfo(LRCInstance::getCurrAccId());
-        auto& convModel = accountInfo.conversationModel;
-        lrc::api::conversation::Info item;
+        auto& currentAccountInfo = LRCInstance::accountModel().getAccountInfo(
+            LRCInstance::getCurrAccId());
+        auto& convModel = currentAccountInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
-            auto filterType = accountInfo.profileInfo.type;
-            item = convModel->getFilteredConversations(filterType).at(index.row());
-            return getConversationItemData(item, accountInfo, role);
+            auto filterType = currentAccountInfo.profileInfo.type;
+            auto& item = convModel->getFilteredConversations(filterType).at(index.row());
+            return getConversationItemData(item, currentAccountInfo, role);
         } else if (listModelType_ == Type::CONFERENCE) {
             auto calls = conferenceables_[ConferenceableItem::CALL];
             auto contacts = conferenceables_[ConferenceableItem::CONTACT];
-            QString itemConvUid {}, itemAccId {};
+            QString itemConvUid {}, itemAccountId {};
             if (calls.size() == 0) {
                 itemConvUid = contacts.at(index.row()).at(0).convId;
-                itemAccId = contacts.at(index.row()).at(0).accountId;
+                itemAccountId = contacts.at(index.row()).at(0).accountId;
             } else {
                 bool callsOpen = sectionState_[tr("Calls")];
                 bool contactsOpen = sectionState_[tr("Contacts")];
@@ -111,7 +108,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
                     } else {
                         auto idx = index.row() - 1;
                         itemConvUid = calls.at(idx).at(0).convId;
-                        itemAccId = calls.at(idx).at(0).accountId;
+                        itemAccountId = calls.at(idx).at(0).accountId;
                     }
                 } else if (index.row() < contactSectionEnd) {
                     if (index.row() == callSectionEnd) {
@@ -121,20 +118,20 @@ SmartListModel::data(const QModelIndex& index, int role) const
                     } else {
                         auto idx = index.row() - (callSectionEnd + 1);
                         itemConvUid = contacts.at(idx).at(0).convId;
-                        itemAccId = contacts.at(idx).at(0).accountId;
+                        itemAccountId = contacts.at(idx).at(0).accountId;
                     }
                 }
             }
             if (role == Role::AccountId) {
-                return QVariant(itemAccId);
+                return QVariant(itemAccountId);
             }
 
-            auto& itemAccountInfo = LRCInstance::accountModel().getAccountInfo(itemAccId);
-            item = itemAccountInfo.conversationModel->getConversationForUID(itemConvUid);
+            auto& itemAccountInfo = LRCInstance::accountModel().getAccountInfo(itemAccountId);
+            auto& item = LRCInstance::getConversationFromConvUid(itemConvUid, itemAccountId);
             return getConversationItemData(item, itemAccountInfo, role);
         } else if (listModelType_ == Type::CONVERSATION) {
-            item = conversations_.at(index.row());
-            return getConversationItemData(item, accountInfo, role);
+            auto& item = conversations_.at(index.row());
+            return getConversationItemData(item, currentAccountInfo, role);
         }
     } catch (const std::exception& e) {
         qWarning() << e.what();
@@ -194,18 +191,6 @@ SmartListModel::fillConversationsList()
         conversations_.emplace_back(convFilt);
     }
     endResetModel();
-}
-
-void
-SmartListModel::updateConversation(const QString& convUid)
-{
-    auto* convModel = LRCInstance::getCurrentConversationModel();
-    for (lrc::api::conversation::Info& conversation : conversations_) {
-        if (conversation.uid == convUid) {
-            conversation = convModel->getConversationForUID(convUid);
-            return;
-        }
-    }
 }
 
 void
@@ -306,8 +291,7 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
     case Role::UID:
         return QVariant(item.uid);
     case Role::InCall: {
-        auto* convModel = LRCInstance::getCurrentConversationModel();
-        const auto convInfo = convModel->getConversationForUID(item.uid);
+        const auto& convInfo = LRCInstance::getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
             auto* callModel = LRCInstance::getCurrentCallModel();
             return QVariant(callModel->hasCall(convInfo.callId));
@@ -315,8 +299,7 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         return QVariant(false);
     }
     case Role::IsAudioOnly: {
-        auto* convModel = LRCInstance::getCurrentConversationModel();
-        const auto convInfo = convModel->getConversationForUID(item.uid);
+        const auto& convInfo = LRCInstance::getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
             auto* call = LRCInstance::getCallInfoForConversation(convInfo);
             if (call) {
@@ -326,11 +309,10 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         return QVariant();
     }
     case Role::CallStackViewShouldShow: {
-        auto* convModel = LRCInstance::getCurrentConversationModel();
-        const auto convInfo = convModel->getConversationForUID(item.uid);
+        const auto& convInfo = LRCInstance::getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
             auto* callModel = LRCInstance::getCurrentCallModel();
-            const auto call = callModel->getCall(convInfo.callId);
+            const auto& call = callModel->getCall(convInfo.callId);
             return QVariant(callModel->hasCall(convInfo.callId)
                             && ((!call.isOutgoing
                                  && (call.status == lrc::api::call::Status::IN_PROGRESS
@@ -341,11 +323,9 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         return QVariant(false);
     }
     case Role::CallState: {
-        auto* convModel = LRCInstance::getCurrentConversationModel();
-        const auto convInfo = convModel->getConversationForUID(item.uid);
+        const auto& convInfo = LRCInstance::getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
-            auto* call = LRCInstance::getCallInfoForConversation(convInfo);
-            if (call) {
+            if (auto* call = LRCInstance::getCallInfoForConversation(convInfo)) {
                 return QVariant(static_cast<int>(call->status));
             }
         }

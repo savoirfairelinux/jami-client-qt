@@ -169,8 +169,7 @@ public:
 
     static QString getCallIdForConversationUid(const QString& convUid, const QString& accountId)
     {
-        auto& accInfo = LRCInstance::getAccountInfo(accountId);
-        auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
+        const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
         if (convInfo.uid.isEmpty()) {
             return {};
         }
