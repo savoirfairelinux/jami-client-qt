@@ -102,9 +102,7 @@ bool getReplyMessageBox(QWidget* widget, const QString& title, const QString& te
 static const QSize defaultAvatarSize {128, 128};
 QString getContactImageString(const QString& accountId, const QString& uid);
 QImage getCirclePhoto(const QImage original, int sizePhoto);
-QImage conversationPhoto(const QString& convUid,
-                         const lrc::api::account::Info& accountInfo,
-                         bool filtered = false);
+QImage conversationPhoto(const QString& convUid, const lrc::api::account::Info& accountInfo);
 QColor getAvatarColor(const QString& canonicalUri);
 QImage fallbackAvatar(const QString& canonicalUriStr,
                       const QString& letterStr = QString(),
