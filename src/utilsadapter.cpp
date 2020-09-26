@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -134,7 +134,8 @@ UtilsAdapter::getTotalUnreadMessages()
     int totalUnreadMessages {0};
     if (LRCInstance::getCurrentAccountInfo().profileInfo.type != lrc::api::profile::Type::SIP) {
         auto* convModel = LRCInstance::getCurrentConversationModel();
-        auto ringConversations = convModel->getFilteredConversations(lrc::api::profile::Type::RING);
+        auto ringConversations = convModel->getFilteredConversations(lrc::api::profile::Type::RING,
+                                                                     false);
         std::for_each(ringConversations.begin(),
                       ringConversations.end(),
                       [&totalUnreadMessages](const auto& conversation) {
@@ -197,7 +198,7 @@ void
 UtilsAdapter::setCurrentCall(const QString& accountId, const QString& convUid)
 {
     auto& accInfo = LRCInstance::getAccountInfo(accountId);
-    const auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
+    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     accInfo.callModel->setCurrentCall(convInfo.callId);
 }
 
@@ -230,19 +231,16 @@ UtilsAdapter::getCallConvForAccount(const QString& accountId)
 const QString
 UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
 {
-    auto& accInfo = LRCInstance::getAccountInfo(accountId);
-    const auto convInfo = accInfo.conversationModel->getConversationForUID(convUid);
-
+    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     if (convInfo.uid.isEmpty()) {
-        return "";
+        return {};
     }
 
-    auto call = LRCInstance::getCallInfoForConversation(convInfo, false);
-    if (!call) {
-        return "";
+    if (auto* call = LRCInstance::getCallInfoForConversation(convInfo, false)) {
+        return call->id;
     }
 
-    return call->id;
+    return {};
 }
 
 int
