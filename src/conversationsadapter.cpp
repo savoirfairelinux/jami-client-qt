@@ -1,7 +1,7 @@
 /*!
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
- * Author: Anthony L�onard <anthony.leonard@savoirfairelinux.com>
+ * Author: Anthony Léonard <anthony.leonard@savoirfairelinux.com>
  * Author: Olivier Soldano <olivier.soldano@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  * Author: Isa Nanic <isa.nanic@savoirfairelinux.com>
@@ -39,15 +39,14 @@ ConversationsAdapter::ConversationsAdapter(QObject* parent)
 void
 ConversationsAdapter::safeInit()
 {
-    conversationSmartListModel_ = new SmartListModel(this, LRCInstance::getCurrAccId());
+    conversationSmartListModel_ = new SmartListModel(this);
 
     emit modelChanged(QVariant::fromValue(conversationSmartListModel_));
 
     connect(&LRCInstance::behaviorController(),
             &BehaviorController::showChatView,
-            [this](const QString& accountId, lrc::api::conversation::Info convInfo) {
-                emit showConversation(accountId, convInfo.uid);
-            });
+            this,
+            &ConversationsAdapter::showChatView);
 
     connect(&LRCInstance::behaviorController(),
             &BehaviorController::newUnreadInteraction,
@@ -73,7 +72,8 @@ ConversationsAdapter::backToWelcomePage()
 }
 
 void
-ConversationsAdapter::selectConversation(const QString& accountId, const QString& convUid)
+ConversationsAdapter::selectConversation(const QString& accountId,
+                                         const QString& convUid)
 {
     auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
     const auto& convInfo = convModel->getConversationForUID(convUid);
@@ -193,14 +193,15 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
             conversationSmartListModel_->fillConversationsList();
             updateConversationsFilterWidget();
             emit updateListViewRequested();
+
             auto* convModel = LRCInstance::getCurrentConversationModel();
-            const auto conversation = convModel->getConversationForUID(
+            const auto& convInfo = LRCInstance::getConversationFromConvUid(
                 LRCInstance::getCurrentConvUid());
 
-            if (conversation.uid.isEmpty() || conversation.participants.isEmpty()) {
+            if (convInfo.uid.isEmpty() || convInfo.participants.isEmpty()) {
                 return;
             }
-            const auto contactURI = conversation.participants[0];
+            const auto contactURI = convInfo.participants[0];
             if (contactURI.isEmpty()
                 || convModel->owner.contactModel->getContact(contactURI).profileInfo.type
                        == lrc::api::profile::Type::TEMPORARY) {
@@ -304,13 +305,13 @@ ConversationsAdapter::updateConversationForNewContact(const QString& convUid)
     if (convModel == nullptr) {
         return;
     }
-    const auto selectedUid = LRCInstance::getCurrentConvUid();
-    const auto conversation = convModel->getConversationForUID(convUid);
-    if (!conversation.uid.isEmpty() && !conversation.participants.isEmpty()) {
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
+
+    if (!convInfo.uid.isEmpty() && !convInfo.participants.isEmpty()) {
         try {
-            const auto contact = convModel->owner.contactModel->getContact(
-                conversation.participants[0]);
-            if (!contact.profileInfo.uri.isEmpty() && contact.profileInfo.uri == selectedUid) {
+            const auto contact = convModel->owner.contactModel->getContact(convInfo.participants[0]);
+            if (!contact.profileInfo.uri.isEmpty()
+                && contact.profileInfo.uri == LRCInstance::getCurrentConvUid()) {
                 LRCInstance::setSelectedConvId(convUid);
                 convModel->selectConversation(convUid);
             }
