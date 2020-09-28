@@ -627,8 +627,7 @@ CallAdapter::isCurrentHost() const
 bool
 CallAdapter::isCurrentModerator() const
 {
-    auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto convInfo = convModel->getConversationForUID(convUid_);
+    const auto convInfo = LRCInstance::getConversationFromConvUid(convUid_);
     if (!convInfo.uid.isEmpty()) {
         auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
         try {
