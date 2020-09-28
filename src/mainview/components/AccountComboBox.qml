@@ -100,6 +100,9 @@ ComboBox {
         width: 24
         height: 24
 
+        sourceSize.width: width
+        sourceSize.height: height
+
         fillMode: Image.PreserveAspectFit
         mipmap: true
         source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
@@ -147,19 +150,11 @@ ComboBox {
         anchors.rightMargin: 10
         anchors.verticalCenter: root.verticalCenter
 
-        buttonImageHeight: height - 8
-        buttonImageWidth: width - 8
-        radius: height / 2
-
-        width: 24
-        height: 24
-
         visible: AccountAdapter.currentAccountType === Profile.Type.RING
         toolTipText: JamiStrings.displayQRCode
-        hoverEnabled: true
 
-        source: "qrc:/images/qrcode.png"
-        backgroundColor: "white"
+        source: "qrc:/images/icons/qr_code-24px.svg"
+
         onClicked: {
             if (visible)
                 qrDialog.open()
@@ -173,21 +168,14 @@ ComboBox {
         anchors.rightMargin: 10
         anchors.verticalCenter: root.verticalCenter
 
-        buttonImageHeight: height - 8
-        buttonImageWidth: width - 8
-        radius: height / 2
-        width: 25
-        height: 25
-
         source: !mainViewWindow.inSettingsView ?
                     "qrc:/images/icons/round-settings-24px.svg" :
                     "qrc:/images/icons/round-close-24px.svg"
+
         toolTipText: !mainViewWindow.inSettingsView ?
                          JamiStrings.openSettings :
                          JamiStrings.closeSettings
-        hoverEnabled: true
 
-        backgroundColor: "white"
         onClicked: {
             settingBtnClicked()
         }
@@ -222,10 +210,10 @@ ComboBox {
 
         onPressed: {
             if (isMouseOnButton(mouse, qrCodeGenerateButton)) {
-                qrCodeGenerateButton.backgroundColor = JamiTheme.pressColor
+                qrCodeGenerateButton.normalColor = JamiTheme.pressColor
                 qrCodeGenerateButton.clicked()
             }if (isMouseOnButton(mouse, settingsButton)) {
-                settingsButton.backgroundColor = JamiTheme.pressColor
+                settingsButton.normalColor = JamiTheme.pressColor
                 settingsButton.clicked()
             } else {
                 rootItemBackground.color = JamiTheme.pressColor
@@ -234,11 +222,11 @@ ComboBox {
 
         onReleased: {
             if (isMouseOnButton(mouse, qrCodeGenerateButton)) {
-                qrCodeGenerateButton.backgroundColor = JamiTheme.releaseColor
+                qrCodeGenerateButton.normalColor = JamiTheme.normalButtonColor
             } else if (isMouseOnButton(mouse, settingsButton)) {
-                settingsButton.backgroundColor = JamiTheme.releaseColor
+                settingsButton.normalColor = JamiTheme.normalButtonColor
             } else {
-                rootItemBackground.color = JamiTheme.releaseColor
+                rootItemBackground.color = JamiTheme.normalButtonColor
                 if (comboBoxPopup.opened) {
                     root.popup.close()
                 } else {
@@ -253,12 +241,11 @@ ComboBox {
             rootItemBackground.color = JamiTheme.backgroundColor
         }
         onMouseXChanged: {
-
             // Manually making button hover.
-            qrCodeGenerateButton.backgroundColor = (isMouseOnButton(mouse, qrCodeGenerateButton)) ?
+            qrCodeGenerateButton.hoveredColor = (isMouseOnButton(mouse, qrCodeGenerateButton)) ?
                         JamiTheme.hoverColor : "white"
 
-            settingsButton.backgroundColor = (isMouseOnButton(mouse, settingsButton)) ?
+            settingsButton.hoveredColor = (isMouseOnButton(mouse, settingsButton)) ?
                         JamiTheme.hoverColor : "white"
         }
 

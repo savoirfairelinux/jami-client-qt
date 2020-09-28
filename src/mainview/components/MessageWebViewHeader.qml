@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -16,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
@@ -26,11 +26,10 @@ import "../../commoncomponents"
 Rectangle {
     id: messagingHeaderRect
 
-    property int buttonPreferredSize: 30
-    property string userAliasLabelText: ""
-    property string userUserNameLabelText: ""
+    property string userAliasLabelText
+    property string userUserNameLabelText
     property string backToWelcomeViewButtonSource: "qrc:/images/icons/ic_arrow_back_24px.svg"
-    property bool sendContactRequestButtonVisible: true
+    property alias sendContactRequestButtonVisible: sendContactRequestButton.visible
 
     signal backClicked
     signal needToHideConversationInCall
@@ -54,13 +53,10 @@ Rectangle {
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.leftMargin: 16
-            Layout.preferredWidth: buttonPreferredSize
-            Layout.preferredHeight: buttonPreferredSize
 
-            radius: 30
             source: backToWelcomeViewButtonSource
-            backgroundColor: "white"
-            onExitColor: "white"
+
+            normalColor: JamiTheme.primaryBackgroundColor
 
             onClicked: {
                 if (backToWelcomeViewButtonSource === "qrc:/images/icons/ic_arrow_back_24px.svg")
@@ -74,6 +70,7 @@ Rectangle {
             id: userNameOrIdRect
 
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+
             // Width + margin.
             Layout.preferredWidth: messagingHeaderRect.width
                                    - backToWelcomeViewButton.width - buttonGroup.width - 45
@@ -82,7 +79,7 @@ Rectangle {
             Layout.bottomMargin: 7
             Layout.leftMargin: 16
 
-            color: "transparent"
+            color: JamiTheme.transparentColor
 
             ColumnLayout {
                 id: userNameOrIdColumnLayout
@@ -126,8 +123,8 @@ Rectangle {
             id: buttonGroup
 
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            Layout.preferredWidth: buttonPreferredSize * 3 + 18
-            Layout.preferredHeight: buttonPreferredSize
+            Layout.preferredWidth: childrenRect.width + 18
+            Layout.preferredHeight: childrenRect.height
             Layout.rightMargin: 16
 
             color: "transparent"
@@ -139,13 +136,9 @@ Rectangle {
                 anchors.rightMargin: 16
                 anchors.verticalCenter: buttonGroup.verticalCenter
 
-                height: buttonPreferredSize
-                width: buttonPreferredSize
-
-                radius: 30
                 source: "qrc:/images/icons/ic_phone_24px.svg"
-                backgroundColor: "white"
-                onExitColor: "white"
+
+                normalColor: JamiTheme.primaryBackgroundColor
 
                 onClicked: {
                     MessagesAdapter.sendContactRequest()
@@ -156,17 +149,15 @@ Rectangle {
             HoverableButton {
                 id: startAVideoCallButton
 
-                anchors.right: sendContactRequestButton.visible ? sendContactRequestButton.left : buttonGroup.right
+                anchors.right: sendContactRequestButton.visible ?
+                                   sendContactRequestButton.left :
+                                   buttonGroup.right
                 anchors.rightMargin: 16
                 anchors.verticalCenter: buttonGroup.verticalCenter
 
-                height: buttonPreferredSize
-                width: buttonPreferredSize
-
-                radius: 30
                 source: "qrc:/images/icons/videocam-24px.svg"
-                backgroundColor: "white"
-                onExitColor: "white"
+
+                normalColor: JamiTheme.primaryBackgroundColor
 
                 onClicked: {
                     MessagesAdapter.sendContactRequest()
@@ -181,26 +172,14 @@ Rectangle {
                 anchors.rightMargin: 8
                 anchors.verticalCenter: buttonGroup.verticalCenter
 
-                height: buttonPreferredSize
-                width: buttonPreferredSize
-
-                visible: sendContactRequestButtonVisible
-                radius: 30
+                width: sendContactRequestButton.visible ? preferredSize : 0
                 source: "qrc:/images/icons/person_add-24px.svg"
-                backgroundColor: "white"
-                onExitColor: "white"
+
+                normalColor: JamiTheme.primaryBackgroundColor
 
                 onClicked: {
                     MessagesAdapter.sendContactRequest()
-                    sendContactRequestButtonVisible = false
-                }
-
-                onVisibleChanged: {
-                    if (sendContactRequestButton.visible) {
-                        sendContactRequestButton.width = buttonPreferredSize
-                    } else {
-                        sendContactRequestButton.width = 0
-                    }
+                    visible = false
                 }
             }
         }

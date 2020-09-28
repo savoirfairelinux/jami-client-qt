@@ -1,7 +1,7 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Andreas Tracyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,50 +16,51 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtGraphicalEffects 1.15
 import "../constant"
 
-// HoverableButton contains the following configurable properties:
-// 1. Color changes on different button state
-// 2. Radius control (rounded)
-// 3. Text content or image content
-// 4. Can use OnClicked slot to implement some click logic
 //
-// Note: if use text property directly, buttonTextColor will not work.
-Button {
-    id: hoverableButton
+// HoverableButton contains the following configurable properties:
+// 1. colored states
+// 2. radius
+// 3. text or image content
+//
+// Note: if the text property is used directly,
+// the buttonTextColor will not work
+//
+AbstractButton {
+    id: root
+
+    property int preferredSize: 30
+    width: preferredSize
+    height: preferredSize
+
+    property int fontPointSize: 9
+    property alias source: image.source
+    property string buttonText
+    property string buttonTextColor: JamiTheme.primaryForegroundColor
+    property string toolTipText: ""
+
+    property string pressedColor: JamiTheme.pressedButtonColor
+    property string hoveredColor: JamiTheme.hoveredButtonColor
+    property string normalColor: JamiTheme.normalButtonColor
+
+    property string normalImageSource
+
+    property var checkedColor: null
+    property string checkedImageSource
+
+    property var baseColor: null
+    property alias radius: background.radius
 
     checkable: true
     checked: false
-
-    property int fontPointSize: 9
-    property int buttonImageHeight: hoverableButtonBackground.height - 10
-    property int buttonImageWidth: hoverableButtonBackground.width - 10
-
-    property string buttonText: ""
-    property string buttonTextColor: "black"
-
-    property string backgroundColor: JamiTheme.releaseColor
-    property string onPressColor: JamiTheme.pressColor
-    property string onReleaseColor: JamiTheme.releaseColor
-    property string onEnterColor: JamiTheme.hoverColor
-    property string onExitColor: JamiTheme.releaseColor
-
-    property alias radius: hoverableButtonBackground.radius
-    property alias source: hoverableButtonImage.source
-    property var checkedImage: ""
-    property var baseImage: ""
-    property var checkedColor: null
-    property var baseColor: null
-    property alias color: hoverableButton.baseColor
-    property string toolTipText: ""
-
-    font.pointSize: fontPointSize
-
     hoverEnabled: true
 
+    font.pointSize: fontPointSize
     text: "<font color=" + "'" + buttonTextColor + "'>" + buttonText + "</font>"
 
     ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
@@ -67,25 +68,25 @@ Button {
     ToolTip.text: toolTipText
 
     background: Rectangle {
-        id: hoverableButtonBackground
+        id: background
 
-        color: backgroundColor
+        radius: root.width
 
-        Image {
-            id: hoverableButtonImage
+        color: {
+            if (pressed) return pressedColor
+            else if (hovered) return hoveredColor
+            else return normalColor
+        }
 
-            anchors.centerIn: hoverableButtonBackground
+        ResponsiveImage {
+            id: image
 
-            height: buttonImageHeight
-            width: buttonImageWidth
-
-            fillMode: Image.PreserveAspectFit
-            mipmap: true
-            asynchronous: true
+            containerWidth: root.width
+            containerHeight: root.height
 
             source: {
-                if (checkable && checkedImage)
-                    return hoverableButton.checked ? checkedImage : baseImage
+                if (checkable && checkedImageSource)
+                    return checked ? checkedImageSource : normalImageSource
                 else
                     return ""
             }
@@ -94,31 +95,12 @@ Button {
                 enabled: true
                 effect: ColorOverlay {
                     id: overlay
-                    color: hoverableButton.checked && checkedColor?
-                        checkedColor :
-                        (baseColor? baseColor : "transparent")
+                    color: {
+                        if (checked && checkedColor) return checkedColor
+                        else if (baseColor) return baseColor
+                        else return JamiTheme.transparentColor
+                    }
                 }
-            }
-        }
-
-        MouseArea {
-            anchors.fill: parent
-
-            hoverEnabled: hoverableButton.hoverEnabled
-
-            onPressed: {
-                hoverableButtonBackground.color = onPressColor
-            }
-            onReleased: {
-                hoverableButtonBackground.color = onReleaseColor
-                hoverableButton.toggle()
-                hoverableButton.clicked()
-            }
-            onEntered: {
-                hoverableButtonBackground.color = onEnterColor
-            }
-            onExited: {
-                hoverableButtonBackground.color = onExitColor
             }
         }
     }
