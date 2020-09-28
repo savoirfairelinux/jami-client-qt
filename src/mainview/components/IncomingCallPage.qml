@@ -100,16 +100,11 @@ Rectangle {
                     Layout.preferredWidth: buttonPreferredSize
                     Layout.preferredHeight: buttonPreferredSize
 
-                    backgroundColor: JamiTheme.acceptButtonGreen
-                    onEnterColor: JamiTheme.acceptButtonHoverGreen
-                    onPressColor: JamiTheme.acceptButtonPressedGreen
-                    onReleaseColor: JamiTheme.acceptButtonHoverGreen
-                    onExitColor: JamiTheme.acceptButtonGreen
+                    pressedColor: JamiTheme.acceptButtonPressedGreen
+                    hoveredColor: JamiTheme.acceptButtonHoverGreen
+                    normalColor: JamiTheme.acceptButtonGreen
 
-                    buttonImageHeight: buttonPreferredSize / 2
-                    buttonImageWidth: buttonPreferredSize / 2
                     source: "qrc:/images/icons/ic_check_white_18dp_2x.png"
-                    radius: 32
 
                     onClicked: {
                         callAcceptButtonIsClicked()
@@ -130,16 +125,11 @@ Rectangle {
                     Layout.preferredWidth: buttonPreferredSize
                     Layout.preferredHeight: buttonPreferredSize
 
-                    backgroundColor: JamiTheme.declineButtonRed
-                    onEnterColor: JamiTheme.declineButtonHoverRed
-                    onPressColor: JamiTheme.declineButtonPressedRed
-                    onReleaseColor: JamiTheme.declineButtonHoverRed
-                    onExitColor: JamiTheme.declineButtonRed
+                    hoveredColor: JamiTheme.declineButtonHoverRed
+                    pressedColor: JamiTheme.declineButtonPressedRed
+                    normalColor: JamiTheme.declineButtonRed
 
-                    buttonImageHeight: buttonPreferredSize / 2
-                    buttonImageWidth: buttonPreferredSize / 2
                     source: "qrc:/images/icons/ic_close_white_24dp.png"
-                    radius: 32
 
                     onClicked: {
                         callCancelButtonIsClicked()
