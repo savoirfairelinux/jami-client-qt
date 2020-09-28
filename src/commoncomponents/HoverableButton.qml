@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -19,6 +18,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtGraphicalEffects 1.15
+import QtQuick.Window 2.15
 import "../constant"
 
 // HoverableButton contains the following configurable properties:
@@ -35,8 +35,6 @@ Button {
     checked: false
 
     property int fontPointSize: 9
-    property int buttonImageHeight: hoverableButtonBackground.height - 10
-    property int buttonImageWidth: hoverableButtonBackground.width - 10
 
     property string buttonText: ""
     property string buttonTextColor: "black"
@@ -56,6 +54,8 @@ Button {
     property alias color: hoverableButton.baseColor
     property string toolTipText: ""
 
+    radius: width
+
     font.pointSize: fontPointSize
 
     hoverEnabled: true
@@ -71,38 +71,76 @@ Button {
 
         color: backgroundColor
 
-        Image {
+        ResponsiveImage {
             id: hoverableButtonImage
 
-            anchors.centerIn: hoverableButtonBackground
+            containerWidth: hoverableButton.width
+            containerHeight: hoverableButton.height
 
-            height: buttonImageHeight
-            width: buttonImageWidth
-
-            fillMode: Image.PreserveAspectFit
-            mipmap: true
-            asynchronous: true
-
-            source: {
-                if (checkable && checkedImage)
-                    return hoverableButton.checked ? checkedImage : baseImage
-                else
-                    return ""
-            }
-
-            layer {
-                enabled: true
-                effect: ColorOverlay {
-                    id: overlay
-                    color: hoverableButton.checked && checkedColor?
-                        checkedColor :
-                        (baseColor? baseColor : "transparent")
-                }
-            }
+            baseColor: hoverableButton.baseColor
+            baseImage: hoverableButton.baseColor
+            checked: hoverableButton.checked
+            checkable: hoverableButton.checkable
+            checkedColor: hoverableButton.checkedColor
+            checkedImage: hoverableButton.checkedImage
         }
 
+//        Image {
+//            id: hoverableButtonImage
+
+//            property real pixelDensity: Screen.pixelDensity
+//            property int margin: 4
+//            property real isSvg: {
+//                var match = /[^.]+$/.exec(source)
+//                return match.length > 0 && match[0] === 'svg'
+//            }
+
+//            anchors.centerIn: hoverableButtonBackground
+
+////            width: buttonImageWidth
+////            height: buttonImageHeight
+
+////            width: isSvg ? hoverableButton.width - margin : hoverableButton.width
+////            height: isSvg ? hoverableButton.width - margin : hoverableButton.height
+
+//            width: isSvg ? hoverableButton.width - margin : hoverableButton.width
+//            height: isSvg ? hoverableButton.width - margin : hoverableButton.height
+
+//            fillMode: Image.PreserveAspectFit
+//            mipmap: true
+//            asynchronous: true
+
+//            function setSourceSize() {
+//                if (isSvg) {
+//                    sourceSize.width = width
+//                    sourceSize.height = height
+//                } else
+//                    sourceSize = undefined
+//            }
+
+//            onPixelDensityChanged: setSourceSize()
+//            Component.onCompleted: setSourceSize()
+
+//            source: {
+//                if (checkable && checkedImage)
+//                    return hoverableButton.checked ? checkedImage : baseImage
+//                else
+//                    return ""
+//            }
+
+//            layer {
+//                enabled: true
+//                effect: ColorOverlay {
+//                    id: overlay
+//                    color: hoverableButton.checked && checkedColor?
+//                        checkedColor :
+//                        (baseColor? baseColor : "transparent")
+//                }
+//            }
+//        }
+
         MouseArea {
-            anchors.fill: parent
+            anchors.fill: hoverableButtonBackground
 
             hoverEnabled: hoverableButton.hoverEnabled
 
@@ -115,9 +153,11 @@ Button {
                 hoverableButton.clicked()
             }
             onEntered: {
+                console.log("enter")
                 hoverableButtonBackground.color = onEnterColor
             }
             onExited: {
+                console.log("exit")
                 hoverableButtonBackground.color = onExitColor
             }
         }
