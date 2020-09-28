@@ -546,7 +546,9 @@ CallAdapter::maximizeParticipant(const QString& uri, bool isActive)
     auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
     auto* convModel = LRCInstance::getCurrentConversationModel();
     const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
-    const auto confId = conversation.confId;
+    auto confId = conversation.confId;
+    if (confId.isEmpty())
+        confId = convInfo.callId;
 
     try {
         const auto call = callModel->getCall(confId);
@@ -576,7 +578,9 @@ CallAdapter::minimizeParticipant()
     auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
     auto* convModel = LRCInstance::getCurrentConversationModel();
     const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
-    const auto confId = conversation.confId;
+    auto confId = conversation.confId;
+    if (confId.isEmpty())
+        confId = convInfo.callId;
     try {
         auto call = callModel->getCall(confId);
         switch (call.layout) {
@@ -626,12 +630,19 @@ CallAdapter::isCurrentMaster() const
     if (!convInfo.uid.isEmpty()) {
         auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
         try {
-            if (!convInfo.confId.isEmpty() && callModel->hasCall(convInfo.confId)) {
+            auto call = callModel->getCall(convInfo.callId);
+            if (call.participantsInfos.size() == 0) {
                 return true;
             } else {
-                auto call = callModel->getCall(convInfo.callId);
-                return call.participantsInfos.size() == 0;
+                auto& accInfo = LRCInstance::accountModel().getAccountInfo(accountId_);
+                for (const auto& participant : call.participantsInfos) {
+                    if (participant["uri"] == accInfo.profileInfo.uri) {
+                        qWarning() << participant["isMaster"];
+                        return participant["isMaster"] == "true";
+                    }
+                }
             }
+            return false;
         } catch (...) {
         }
     }
