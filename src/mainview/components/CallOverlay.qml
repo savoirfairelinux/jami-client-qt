@@ -76,7 +76,7 @@ Rectangle {
     
     function handleParticipantsInfo(infos) {
         videoCallOverlay.updateMaster()
-        var isMaster = CallAdapter.isCurrentMaster()
+        var isModerator = CallAdapter.isCurrentModerator()
         for (var p in participantOverlays) {
             if (participantOverlays[p])
                 participantOverlays[p].destroy()
@@ -102,7 +102,7 @@ Rectangle {
                 hover.setParticipantName(infos[infoVariant].bestName)
                 hover.active = infos[infoVariant].active;
                 hover.isLocal = infos[infoVariant].isLocal;
-                hover.setMenuVisible(isMaster)
+                hover.setMenuVisible(isModerator)
                 hover.uri = infos[infoVariant].uri
                 if (infos[infoVariant].videoMuted)
                     hover.setAvatar(infos[infoVariant].avatar)
