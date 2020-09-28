@@ -198,7 +198,8 @@ SmartListModel::fillConversationsList()
         conversations_.emplace_back(convSearch);
     }
 
-    for (auto convFilt : convModel->allFilteredConversations()) {
+    auto afc = convModel->allFilteredConversations();
+    for (auto convFilt : afc()) {
         conversations_.emplace_back(convFilt);
     }
     endResetModel();
@@ -324,13 +325,13 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         if (!convInfo.uid.isEmpty()) {
             auto* callModel = LRCInstance::getCurrentCallModel();
             const auto& call = callModel->getCall(convInfo.callId);
-            return QVariant(callModel->hasCall(convInfo.callId)
-                            && ((!call.isOutgoing
-                                 && (call.status == lrc::api::call::Status::IN_PROGRESS
-                                     || call.status == lrc::api::call::Status::PAUSED
-                                     || call.status == lrc::api::call::Status::INCOMING_RINGING))
-                                || (call.isOutgoing
-                                    && call.status != lrc::api::call::Status::ENDED)));
+            return QVariant(
+                callModel->hasCall(convInfo.callId)
+                && ((!call.isOutgoing
+                     && (call.status == lrc::api::call::Status::IN_PROGRESS
+                         || call.status == lrc::api::call::Status::PAUSED
+                         || call.status == lrc::api::call::Status::INCOMING_RINGING))
+                    || (call.isOutgoing && call.status != lrc::api::call::Status::ENDED)));
         }
         return QVariant(false);
     }
