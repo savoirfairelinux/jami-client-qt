@@ -213,7 +213,7 @@ public:
         auto& accInfo = LRCInstance::accountModel().getAccountInfo(
             !accountId.isEmpty() ? accountId : getCurrAccId());
         auto& convModel = accInfo.conversationModel;
-        return convModel->getConversationForUid(convUid);
+        return convModel->getConversationForUid(convUid).value_or(instance().invalid);
     }
 
     static const conversation::Info& getConversationFromPeerUri(const QString& peerUri,
@@ -222,7 +222,7 @@ public:
         auto& accInfo = LRCInstance::accountModel().getAccountInfo(
             !accountId.isEmpty() ? accountId : getCurrAccId());
         auto& convModel = accInfo.conversationModel;
-        return convModel->getConversationForPeerUri(peerUri);
+        return convModel->getConversationForPeerUri(peerUri).value_or(instance().invalid);
     }
 
     static const conversation::Info& getConversationFromCallId(const QString& callId,
@@ -231,7 +231,7 @@ public:
         auto& accInfo = LRCInstance::accountModel().getAccountInfo(
             !accountId.isEmpty() ? accountId : getCurrAccId());
         auto& convModel = accInfo.conversationModel;
-        return convModel->getConversationForCallId(callId);
+        return convModel->getConversationForCallId(callId).value_or(instance().invalid);
     }
 
     static ConversationModel* getCurrentConversationModel()
@@ -440,5 +440,7 @@ private:
     QString selectedConvUid_;
     MapStringString contentDrafts_;
     MapStringString lastConferencees_;
+
+    conversation::Info invalid {};
 };
 Q_DECLARE_METATYPE(LRCInstance*)
