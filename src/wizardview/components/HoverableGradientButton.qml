@@ -31,7 +31,7 @@ import net.jami.Models 1.0
 Button {
     id: hoverableButton
     property int fontPointSize: 9
-    property string backgroundColor: JamiTheme.releaseColor
+    property string backgroundColor: JamiTheme.normalButtonColor
     property string backgroundColorDisabled : Qt.rgba(242/256, 242/256, 242/256, 0.8)
 
     property string startColor :"#109ede"
