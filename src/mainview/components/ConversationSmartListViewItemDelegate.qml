@@ -52,7 +52,7 @@ ItemDelegate {
             } else {
                 itemSmartListBackground.color = Qt.binding(function () {
                     return InCall ? Qt.lighter(JamiTheme.selectionBlue,
-                                               1.8) : JamiTheme.releaseColor
+                                               1.8) : JamiTheme.normalButtonColor
                 })
                 conversationSmartListView.needToSelectItems(UID)
             }
@@ -176,7 +176,7 @@ ItemDelegate {
         }
         onReleased: {
             if (!InCall) {
-                itemSmartListBackground.color = JamiTheme.releaseColor
+                itemSmartListBackground.color = JamiTheme.normalButtonColor
             }
             if (mouse.button === Qt.RightButton) {
                 smartListContextMenu.parent = mouseAreaSmartListItemDelegate
@@ -216,7 +216,7 @@ ItemDelegate {
                 } else {
                     itemSmartListBackground.color = Qt.binding(function () {
                         return InCall ? Qt.lighter(JamiTheme.selectionBlue,
-                                                   1.8) : JamiTheme.releaseColor
+                                                   1.8) : JamiTheme.normalButtonColor
                     })
                 }
             }
