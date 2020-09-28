@@ -106,10 +106,7 @@ Rectangle {
                     onReleaseColor: JamiTheme.acceptButtonHoverGreen
                     onExitColor: JamiTheme.acceptButtonGreen
 
-                    buttonImageHeight: buttonPreferredSize / 2
-                    buttonImageWidth: buttonPreferredSize / 2
                     source: "qrc:/images/icons/ic_check_white_18dp_2x.png"
-                    radius: 32
 
                     onClicked: {
                         callAcceptButtonIsClicked()
@@ -136,10 +133,7 @@ Rectangle {
                     onReleaseColor: JamiTheme.declineButtonHoverRed
                     onExitColor: JamiTheme.declineButtonRed
 
-                    buttonImageHeight: buttonPreferredSize / 2
-                    buttonImageWidth: buttonPreferredSize / 2
                     source: "qrc:/images/icons/ic_close_white_24dp.png"
-                    radius: 32
 
                     onClicked: {
                         callCancelButtonIsClicked()

@@ -100,6 +100,9 @@ ComboBox {
         width: 24
         height: 24
 
+        sourceSize.width: width
+        sourceSize.height: height
+
         fillMode: Image.PreserveAspectFit
         mipmap: true
         source: "qrc:/images/icons/round-arrow_drop_down-24px.svg"
@@ -147,12 +150,8 @@ ComboBox {
         anchors.rightMargin: 10
         anchors.verticalCenter: root.verticalCenter
 
-        buttonImageHeight: height - 8
-        buttonImageWidth: width - 8
-        radius: height / 2
-
-        width: 24
-        height: 24
+        width: JamiTheme.preferredRoundButtonSize
+        height: JamiTheme.preferredRoundButtonSize
 
         visible: AccountAdapter.currentAccountType === Profile.Type.RING
         toolTipText: JamiStrings.displayQRCode
@@ -173,11 +172,12 @@ ComboBox {
         anchors.rightMargin: 10
         anchors.verticalCenter: root.verticalCenter
 
-        buttonImageHeight: height - 8
-        buttonImageWidth: width - 8
+
+//        buttonImageHeight: height - 4
+//        buttonImageWidth: height - 4
         radius: height / 2
-        width: 25
-        height: 25
+        width: 34
+        height: 34
 
         source: !mainViewWindow.inSettingsView ?
                     "qrc:/images/icons/round-settings-24px.svg" :

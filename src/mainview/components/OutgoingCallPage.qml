@@ -105,10 +105,7 @@ Rectangle {
                 onReleaseColor: JamiTheme.declineButtonHoverRed
                 onExitColor: JamiTheme.declineButtonRed
 
-                buttonImageHeight: buttonPreferredSize / 2
-                buttonImageWidth: buttonPreferredSize / 2
                 source: "qrc:/images/icons/ic_close_white_24dp.png"
-                radius: 30
 
                 toolTipText: qsTr("Cancel the call")
 
