@@ -57,7 +57,7 @@ MessagesAdapter::setupChatView(const QString& convUid)
         return;
     }
 
-    if (currentConvUid_ == uid)
+    if (currentConvUid_ == convUid)
         return;
 
     const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
@@ -106,7 +106,7 @@ MessagesAdapter::setupChatView(const QString& convUid)
 
     requestSendMessageContent();
 
-    currentConvUid_ = uid;
+    currentConvUid_ = convUid;
 }
 
 void
@@ -449,7 +449,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = Utils::bestNameForConversation(convInfo, *convModel);
         setInvitation(contact.profileInfo.type == lrc::api::profile::Type::PENDING
-                      || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY,
+                          || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY,
                       bestName,
                       contactUri);
 

@@ -46,7 +46,7 @@ ConversationsAdapter::safeInit()
     connect(&LRCInstance::behaviorController(),
             &BehaviorController::showChatView,
             this,
-            &ConversationsAdapter::showChatView);
+            &ConversationsAdapter::showConversation);
 
     connect(&LRCInstance::behaviorController(),
             &BehaviorController::newUnreadInteraction,
@@ -75,8 +75,7 @@ void
 ConversationsAdapter::selectConversation(const QString& accountId,
                                          const QString& convUid)
 {
-    auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    const auto& convInfo = convModel->getConversationForUID(convUid);
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
 
     if (LRCInstance::getCurrentConvUid() != convInfo.uid && convInfo.participants.size() > 0) {
         // If the account is not currently selected, do that first, then
@@ -207,7 +206,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                        == lrc::api::profile::Type::TEMPORARY) {
                 return;
             }
-            emit modelSorted(QVariant::fromValue(conversation.uid));
+            emit modelSorted(QVariant::fromValue(convInfo.uid));
         });
 
     modelUpdatedConnection_ = QObject::connect(currentConversationModel,
