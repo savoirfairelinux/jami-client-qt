@@ -696,7 +696,7 @@ CallAdapter::isModerator(const QString& uri) const
 bool
 CallAdapter::isCurrentModerator() const
 {
-    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid_);
+    const auto convInfo = LRCInstance::getConversationFromConvUid(convUid_);
     if (!convInfo.uid.isEmpty()) {
         auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
         try {

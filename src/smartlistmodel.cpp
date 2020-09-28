@@ -196,7 +196,8 @@ SmartListModel::fillConversationsList()
         conversations_.emplace_back(convSearch);
     }
 
-    for (auto convFilt : convModel->allFilteredConversations()) {
+    auto afc = convModel->allFilteredConversations();
+    for (auto convFilt : afc()) {
         conversations_.emplace_back(convFilt);
     }
     endResetModel();
