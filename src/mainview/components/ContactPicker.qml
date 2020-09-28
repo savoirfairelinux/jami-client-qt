@@ -59,7 +59,6 @@ Popup {
             width: 30
             height: 30
 
-            radius: 30
             source: "qrc:/images/icons/ic_close_black_24dp.png"
 
             onClicked: {

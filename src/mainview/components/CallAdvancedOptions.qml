@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
@@ -60,7 +59,6 @@ Popup {
             width: 30
             height: 30
 
-            radius: 30
             source: "qrc:/images/icons/ic_close_black_24dp.png"
 
             onClicked: {
