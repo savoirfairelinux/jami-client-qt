@@ -40,8 +40,9 @@ RowLayout {
 
         radius: JamiTheme.preferredFieldHeight
         source: "qrc:/images/icons/ic_arrow_back_24px.svg"
-        backgroundColor: "white"
-        onExitColor: "white"
+
+        normalColor: JamiTheme.primaryBackgroundColor
+
         toolTipText: JamiStrings.back
         hoverEnabled: true
 

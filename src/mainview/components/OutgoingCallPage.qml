@@ -99,16 +99,11 @@ Rectangle {
                 Layout.preferredWidth: buttonPreferredSize
                 Layout.preferredHeight: buttonPreferredSize
 
-                backgroundColor: JamiTheme.declineButtonRed
-                onEnterColor: JamiTheme.declineButtonHoverRed
-                onPressColor: JamiTheme.declineButtonPressedRed
-                onReleaseColor: JamiTheme.declineButtonHoverRed
-                onExitColor: JamiTheme.declineButtonRed
+                pressedColor: JamiTheme.declineButtonPressedRed
+                hoveredColor: JamiTheme.declineButtonHoverRed
+                normalColor: JamiTheme.declineButtonRed
 
-                buttonImageHeight: buttonPreferredSize / 2
-                buttonImageWidth: buttonPreferredSize / 2
                 source: "qrc:/images/icons/ic_close_white_24dp.png"
-                radius: 30
 
                 toolTipText: qsTr("Cancel the call")
 

@@ -79,19 +79,14 @@ Rectangle {
             Layout.preferredWidth: buttonPreferredSize * 2
             Layout.preferredHeight: buttonPreferredSize * 2
 
-            backgroundColor: Qt.rgba(0, 0, 0, 0.75)
-            onEnterColor: Qt.rgba(0, 0, 0, 0.6)
-            onPressColor: Qt.rgba(0, 0, 0, 0.5)
-            onReleaseColor: Qt.rgba(0, 0, 0, 0.6)
-            onExitColor: Qt.rgba(0, 0, 0, 0.75)
+            pressedColor: JamiTheme.invertedPressedButtonColor
+            hoveredColor: JamiTheme.invertedHoveredButtonColor
+            normalColor: JamiTheme.invertedNormalButtonColor
 
-            buttonImageHeight: buttonPreferredSize
-            buttonImageWidth: buttonPreferredSize
-            baseImage: "qrc:/images/icons/ic_mic_white_24dp.png"
-            checkedImage: "qrc:/images/icons/ic_mic_off_white_24dp.png"
+            normalImageSource: "qrc:/images/icons/ic_mic_white_24dp.png"
+            checkedImageSource: "qrc:/images/icons/ic_mic_off_white_24dp.png"
             baseColor: "white"
             checkedColor: JamiTheme.declineButtonPressedRed
-            radius: 30
 
             toolTipText: !checked ? JamiStrings.mute : JamiStrings.unmute
 
@@ -106,17 +101,11 @@ Rectangle {
             Layout.preferredWidth: buttonPreferredSize * 2
             Layout.preferredHeight: buttonPreferredSize * 2
 
-            backgroundColor: JamiTheme.declineButtonRed
-            onEnterColor: JamiTheme.declineButtonHoverRed
-            onPressColor: JamiTheme.declineButtonPressedRed
-            onReleaseColor: JamiTheme.declineButtonHoverRed
-            onExitColor: JamiTheme.declineButtonRed
+            pressedColor: JamiTheme.invertedPressedButtonColor
+            hoveredColor: JamiTheme.invertedHoveredButtonColor
+            normalColor: JamiTheme.invertedNormalButtonColor
 
-            buttonImageHeight: buttonPreferredSize
-            buttonImageWidth: buttonPreferredSize
             source: "qrc:/images/icons/ic_call_end_white_24px.svg"
-            color: "white"
-            radius: 30
 
             toolTipText: JamiStrings.hangup
 
@@ -131,19 +120,14 @@ Rectangle {
             Layout.preferredWidth: buttonPreferredSize * 2
             Layout.preferredHeight: buttonPreferredSize * 2
 
-            backgroundColor: Qt.rgba(0, 0, 0, 0.75)
-            onEnterColor: Qt.rgba(0, 0, 0, 0.6)
-            onPressColor: Qt.rgba(0, 0, 0, 0.5)
-            onReleaseColor: Qt.rgba(0, 0, 0, 0.6)
-            onExitColor: Qt.rgba(0, 0, 0, 0.75)
+            pressedColor: JamiTheme.invertedPressedButtonColor
+            hoveredColor: JamiTheme.invertedHoveredButtonColor
+            normalColor: JamiTheme.invertedNormalButtonColor
 
-            buttonImageHeight: buttonPreferredSize
-            buttonImageWidth: buttonPreferredSize
-            baseImage: "qrc:/images/icons/ic_videocam_white.png"
-            checkedImage: "qrc:/images/icons/ic_videocam_off_white_24dp.png"
+            normalImageSource: "qrc:/images/icons/ic_videocam_white.png"
+            checkedImageSource: "qrc:/images/icons/ic_videocam_off_white_24dp.png"
             baseColor: "white"
             checkedColor: JamiTheme.declineButtonPressedRed
-            radius: 30
 
             toolTipText: !checked ? JamiStrings.pause : JamiStrings.resume
 
@@ -163,17 +147,11 @@ Rectangle {
             Layout.preferredHeight: buttonPreferredSize * 2
             visible: !isHost
 
-            backgroundColor: Qt.rgba(0, 0, 0, 0.75)
-            onEnterColor: Qt.rgba(0, 0, 0, 0.6)
-            onPressColor: Qt.rgba(0, 0, 0, 0.5)
-            onReleaseColor: Qt.rgba(0, 0, 0, 0.6)
-            onExitColor: Qt.rgba(0, 0, 0, 0.75)
+            pressedColor: JamiTheme.invertedPressedButtonColor
+            hoveredColor: JamiTheme.invertedHoveredButtonColor
+            normalColor: JamiTheme.invertedNormalButtonColor
 
-            buttonImageHeight: buttonPreferredSize
-            buttonImageWidth: buttonPreferredSize
-            color: "white"
             source: "qrc:/images/icons/ic_group_add_white_24dp.png"
-            radius: 30
 
             toolTipText: JamiStrings.addParticipants
 
@@ -188,17 +166,11 @@ Rectangle {
             Layout.preferredWidth: buttonPreferredSize * 2
             Layout.preferredHeight: buttonPreferredSize * 2
 
-            backgroundColor: Qt.rgba(0, 0, 0, 0.75)
-            onEnterColor: Qt.rgba(0, 0, 0, 0.6)
-            onPressColor: Qt.rgba(0, 0, 0, 0.5)
-            onReleaseColor: Qt.rgba(0, 0, 0, 0.6)
-            onExitColor: Qt.rgba(0, 0, 0, 0.75)
+            pressedColor: JamiTheme.invertedPressedButtonColor
+            hoveredColor: JamiTheme.invertedHoveredButtonColor
+            normalColor: JamiTheme.invertedNormalButtonColor
 
-            buttonImageHeight: buttonPreferredSize
-            buttonImageWidth: buttonPreferredSize
-            color: "white"
             source: "qrc:/images/icons/ic_chat_white_24dp.png"
-            radius: 30
 
             toolTipText: JamiStrings.chat
 
@@ -213,16 +185,11 @@ Rectangle {
             Layout.preferredWidth: buttonPreferredSize * 2
             Layout.preferredHeight: buttonPreferredSize * 2
 
-            backgroundColor: Qt.rgba(0, 0, 0, 0.75)
-            onEnterColor: Qt.rgba(0, 0, 0, 0.6)
-            onPressColor: Qt.rgba(0, 0, 0, 0.5)
-            onReleaseColor: Qt.rgba(0, 0, 0, 0.6)
-            onExitColor: Qt.rgba(0, 0, 0, 0.75)
+            pressedColor: JamiTheme.invertedPressedButtonColor
+            hoveredColor: JamiTheme.invertedHoveredButtonColor
+            normalColor: JamiTheme.invertedNormalButtonColor
 
-            buttonImageHeight: buttonPreferredSize
-            buttonImageWidth: buttonPreferredSize
             source: "qrc:/images/icons/more_vert-24px.svg"
-            radius: 30
 
             toolTipText: JamiStrings.moreOptions
 
