@@ -136,11 +136,10 @@ UtilsAdapter::getTotalUnreadMessages()
         auto* convModel = LRCInstance::getCurrentConversationModel();
         auto ringConversations = convModel->getFilteredConversations(lrc::api::profile::Type::RING,
                                                                      false);
-        std::for_each(ringConversations.begin(),
-                      ringConversations.end(),
-                      [&totalUnreadMessages](const auto& conversation) {
-                          totalUnreadMessages += conversation.unreadMessages;
-                      });
+        ringConversations.for_each(
+            [&totalUnreadMessages](const lrc::api::conversation::Info& conversation) {
+                totalUnreadMessages += conversation.unreadMessages;
+            });
     }
     return totalUnreadMessages;
 }

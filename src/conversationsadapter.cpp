@@ -75,7 +75,7 @@ ConversationsAdapter::backToWelcomePage()
 void
 ConversationsAdapter::selectConversation(const QString& accountId, const QString& convUid)
 {
-    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
 
     if (LRCInstance::getCurrentConvUid() != convInfo.uid && convInfo.participants.size() > 0) {
         // If the account is not currently selected, do that first, then
