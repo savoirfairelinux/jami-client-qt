@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7d2cb6b1_87072a49",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-28T07:14:26Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "2dda45df_17c16350",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 9
+      },
+      "revId": "95146f97b3bab0a84c7879643c9a895f6e1e5570",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c413615_b94c5325",
         "filename": "src/messagesadapter.cpp",
         "patchSetId": 17
@@ -45,6 +69,30 @@
       "revId": "95146f97b3bab0a84c7879643c9a895f6e1e5570",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "566ab5a7_b8f8df33",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-28T07:14:26Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "6c413615_b94c5325",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 90
+      },
+      "revId": "95146f97b3bab0a84c7879643c9a895f6e1e5570",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
