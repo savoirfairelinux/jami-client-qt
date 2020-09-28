@@ -58,7 +58,6 @@ Popup {
                 width: 30
                 height: 30
 
-                radius: 30
                 source: "qrc:/images/icons/round-close-24px.svg"
 
                 onClicked: {
@@ -146,7 +145,6 @@ Popup {
                 width: 30
                 height: 30
 
-                radius: 30
                 source: "qrc:/images/icons/ic_arrow_back_24px.svg"
                 toolTipText: qsTr("Go back to plugins list")
                 hoverEnabled: true
@@ -166,7 +164,6 @@ Popup {
                 width: 30
                 height: 30
 
-                radius: 30
                 source: "qrc:/images/icons/round-close-24px.svg"
 
                 onClicked: {
