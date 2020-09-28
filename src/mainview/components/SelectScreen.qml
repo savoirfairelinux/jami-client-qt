@@ -254,7 +254,7 @@ Window {
         }
     }
 
-    HoverableButton {
+    PushButton {
         id: selectButton
 
         anchors.bottom: selectScreenWindowRect.bottom
