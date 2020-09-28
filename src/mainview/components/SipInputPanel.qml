@@ -62,15 +62,13 @@ Popup {
                     Layout.preferredWidth: 30
                     Layout.preferredHeight: 30
 
-                    radius: 30
                     buttonText: modelData
                     buttonTextColor: "white"
                     checkable: false
-                    backgroundColor: JamiTheme.sipInputButtonBackgroundColor
-                    onEnterColor: JamiTheme.sipInputButtonHoverColor
-                    onExitColor: JamiTheme.sipInputButtonBackgroundColor
-                    onPressColor: JamiTheme.sipInputButtonPressColor
-                    onReleaseColor: JamiTheme.sipInputButtonHoverColor
+
+                    pressedColor: JamiTheme.sipInputButtonPressColor
+                    hoveredColor: JamiTheme.sipInputButtonHoverColor
+                    normalColor: JamiTheme.sipInputButtonBackgroundColor
 
                     toolTipText: modelData
 

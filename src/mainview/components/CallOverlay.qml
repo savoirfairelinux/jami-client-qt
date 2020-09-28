@@ -171,9 +171,10 @@ Rectangle {
 
                 radius: 32
                 source: "qrc:/images/icons/arrow_back-white-24dp.svg"
-                backgroundColor: "transparent"
-                onExitColor: "transparent"
-                onEnterColor: JamiTheme.lightGrey_
+
+                normalColor: JamiTheme.transparentColor
+                hoveredColor: JamiTheme.lightGrey_
+
                 toolTipText: qsTr("Toggle to display side panel")
                 hoverEnabled: true
 
