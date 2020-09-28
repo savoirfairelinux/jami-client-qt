@@ -181,8 +181,6 @@ ColumnLayout {
             property string addPhotoIconUrl: "qrc:/images/icons/round-add_a_photo-24px.svg"
             property string refreshIconUrl: "qrc:/images/icons/baseline-refresh-24px.svg"
 
-            Layout.preferredWidth: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
             Layout.alignment: Qt.AlignHCenter
 
             text: ""
