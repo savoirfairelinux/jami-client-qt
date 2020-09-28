@@ -22,12 +22,23 @@ pragma Singleton
 import QtQuick 2.14
 
 Item {
-    // Color strings.
+    // Color strings
+    property string primaryForegroundColor: "000000"
+    property string primaryBackgroundColor: "ffffff"
+    property string transparentColor: "transparent"
+
+    property string pressedButtonColor: "#c0c0c0"
+    property string hoveredButtonColor: "#c7c7c7"
+    property string normalButtonColor: "#e0e0e0"
+
+    property string invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
+    property string invertedHoveredButtonColor: Qt.rgba(0, 0, 0, 0.6)
+    property string invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.6)
+
     property string hoverColor: "#c7c7c7"
     property string pressColor: "#c0c0c0"
-    property string releaseColor: "#e0e0e0"
+
     property string tabbarBorderColor: "#e3e3e3"
-    property string transparentColor: "transparent"
     property string presenceGreen: "#4cd964"
     property string notificationRed: "#ff3b30"
     property string unPresenceOrange: "orange"
@@ -97,6 +108,7 @@ Item {
     property int preferredMarginSize: 16
     property int preferredDialogWidth: 400
     property int preferredDialogHeight: 300
+    property int preferredRoundButtonSize: 32
 
     // Misc.
     property color white: "white"

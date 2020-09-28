@@ -127,7 +127,6 @@ Rectangle {
                         Layout.alignment: Qt.AlignCenter
                         Layout.preferredWidth: buttonPreferredSize
                         Layout.preferredHeight: buttonPreferredSize
-                        radius: 30
                         source: "qrc:/images/icons/ic_content_copy.svg"
                         onClicked: {
                             UtilsAdapter.setText(
