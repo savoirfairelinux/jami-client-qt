@@ -49,7 +49,7 @@ public:
 
 signals:
     void showChatView(const QString& accountId, const QString& convUid);
-    void showConversationTabs(bool visible);
+    void showConversationTabs(bool visible, bool selectInvitationsTab);
     void showSearchStatus(const QString& status);
 
     void modelChanged(const QVariant& model);
