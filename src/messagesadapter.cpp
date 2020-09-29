@@ -105,6 +105,8 @@ MessagesAdapter::setupChatView(const QString& uid)
                           SLOT(slotSendMessageContentSaved(const QString&)));
 
     requestSendMessageContent();
+
+    emit chatViewFocusRequested();
 }
 
 void
