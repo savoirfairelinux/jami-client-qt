@@ -442,6 +442,7 @@ Window {
     SidePanel {
         id: mainViewWindowSidePanel
 
+        // TODO: remove the evil in this slot
         onConversationSmartListNeedToAccessMessageWebView: {
             communicationPageMessageWebView.headerUserAliasLabelText = currentUserAlias
             communicationPageMessageWebView.headerUserUserNameLabelText = currentUserDisplayName
@@ -469,19 +470,6 @@ Window {
                 }
             }
 
-            // Set up chatview.
-            MessagesAdapter.setupChatView(currentUID)
-            callStackView.setLinkedWebview(communicationPageMessageWebView)
-
-            if (mainViewStack.find(function (item, index) {
-                return item.objectName === "communicationPageMessageWebView"
-            }) || sidePanelViewStack.find(function (item, index) {
-                return item.objectName === "communicationPageMessageWebView"
-            })) {
-                if (!callStackViewShouldShow)
-                    return
-            }
-
             // Push messageWebView or callStackView onto the correct stackview
             mainViewStack.pop(welcomePage, StackView.Immediate)
             sidePanelViewStack.pop(mainViewWindowSidePanel, StackView.Immediate)
@@ -507,6 +495,19 @@ Window {
                     sidePanelViewStack.push(communicationPageMessageWebView)
                 }
             }
+
+            // Set up chatview.
+            MessagesAdapter.setupChatView(currentUID)
+            callStackView.setLinkedWebview(communicationPageMessageWebView)
+
+            if (mainViewStack.find(function (item, index) {
+                return item.objectName === "communicationPageMessageWebView"
+            }) || sidePanelViewStack.find(function (item, index) {
+                return item.objectName === "communicationPageMessageWebView"
+            })) {
+                if (!callStackViewShouldShow)
+                    return
+            }
         }
 
         Connections {
@@ -527,6 +528,7 @@ Window {
 
     WelcomePage {
         id: welcomePage
+
         visible: false
     }
 
