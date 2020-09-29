@@ -194,7 +194,6 @@ Rectangle {
     }
 
     WebEngineView {
-
         id: messageWebView
 
         anchors.top: messageWebViewHeader.bottom
@@ -259,6 +258,7 @@ Rectangle {
                                                  ":/chatview.js"))
                 messageWebView.runJavaScript("init_i18n();")
                 messageWebView.runJavaScript("displayNavbar(false);")
+                messageWebView.runJavaScript("focusOnMessageBarInput()")
             }
         }
 
@@ -272,6 +272,14 @@ Rectangle {
             messageWebView.loadHtml(UtilsAdapter.qStringFromFile(
                                         ":/chatview.html"), ":/chatview.html")
             messageWebView.url = "qrc:/chatview.html"
+        }
+
+        Connections {
+            target: MessagesAdapter
+            function onChatViewFocusRequested() {
+                messageWebView.forceActiveFocus()
+                messageWebView.runJavaScript("focusOnMessageBarInput()")
+            }
         }
     }
 

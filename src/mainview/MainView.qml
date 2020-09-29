@@ -34,6 +34,22 @@ Window {
     id: mainViewWindow
     objectName: "mainViewWindow"
 
+    Component.onCompleted: {
+        console.log(this.toString());
+        for (var i = 0; i < children.length; i++)
+            console.log(children[i].toString());
+    }
+
+    onActiveFocusItemChanged: {
+        print("activeFocusItem", activeFocusItem)
+        if ("QQuickRootItem" === activeFocusItem.toString().split('(')[0]) {
+            Qt.createQmlObject('import QtQuick 2.0; Rectangle {color: "#09f00000"; anchors.fill:parent}', activeFocusItem, "");
+            for (var i = 0; i < activeFocusItem.children.length; i++)
+                console.log(activeFocusItem.children[i].toString());
+            console.log("-------------------");
+        }
+    }
+
     property int minWidth: settingsViewPreferredWidth
     property int minHeight: 400
 
@@ -515,6 +531,7 @@ Window {
 
     WelcomePage {
         id: welcomePage
+
         visible: false
     }
 
