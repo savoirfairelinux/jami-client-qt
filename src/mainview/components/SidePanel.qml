@@ -47,8 +47,7 @@ Rectangle {
     // For contact request conv to be focused correctly.
     function setCurrentUidSmartListModelIndex() {
         conversationSmartListView.currentIndex
-                = conversationSmartListView.model.currentUidSmartListModelIndex(
-                    )
+                = conversationSmartListView.model.currentUidSmartListModelIndex()
     }
 
     function updatePendingRequestCount() {
@@ -204,10 +203,6 @@ Rectangle {
                         currentUserDisplayName, currentUserAlias,
                         currentUID, callStackViewShouldShow,
                         isAudioOnly, callState)
-        }
-
-        onNeedToGrabFocus: {
-            contactSearchBar.clearFocus()
         }
 
         Component.onCompleted: {
