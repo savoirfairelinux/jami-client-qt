@@ -39,8 +39,8 @@ TabBar {
     currentIndex: 0
 
     TabButton {
-
         id: pageOne
+
         down: true
 
         Rectangle {
@@ -70,10 +70,11 @@ TabBar {
         }
 
         background: Rectangle {
-
             id: buttonRectOne
+
             width: tabBar.width / 2 + 1
             height: tabBar.height
+
             color: JamiTheme.backgroundColor
 
             function showConversations() {
@@ -86,6 +87,7 @@ TabBar {
 
             Image {
                 id: imgRectOne
+
                 anchors.horizontalCenter: buttonRectOne.horizontalCenter
                 anchors.top: buttonRectOne.top
                 anchors.topMargin: 12
@@ -102,6 +104,7 @@ TabBar {
 
             ColorOverlay {
                 anchors.fill: imgRectOne
+
                 source: imgRectOne
                 color: JamiTheme.blueLogo_
                 opacity: pageOne.down == true ? 1.0 : opacityDegree
@@ -125,14 +128,18 @@ TabBar {
 
             Rectangle {
                 id: markerTabOne
-                width: buttonRectOne.width
+
                 anchors.bottom: buttonRectOne.bottom
+
+                width: buttonRectOne.width
                 height: 2
+
                 color: pageOne.down == true ? JamiTheme.blueLogo_ : "transparent"
             }
 
             MouseArea {
                 anchors.fill: parent
+
                 hoverEnabled: true
                 onPressed: {
                     buttonRectOne.showConversations()
@@ -160,7 +167,6 @@ TabBar {
     }
 
     TabButton {
-
         id: pageTwo
 
         Rectangle {
@@ -193,6 +199,7 @@ TabBar {
 
             width: tabBar.width / 2
             height: tabBar.height
+
             color: JamiTheme.backgroundColor
 
             function showRequests() {
@@ -203,6 +210,7 @@ TabBar {
 
             Image {
                 id: imgRectTwo
+
                 anchors.horizontalCenter: buttonRectTwo.horizontalCenter
                 anchors.top: buttonRectTwo.top
                 anchors.topMargin: 10
@@ -244,14 +252,18 @@ TabBar {
 
             Rectangle {
                 id: markerTabTwo
-                width: buttonRectTwo.width
+
                 anchors.bottom: buttonRectTwo.bottom
+
+                width: buttonRectTwo.width
                 height: 2
+
                 color: pageTwo.down == true ? JamiTheme.blueLogo_ : "transparent"
             }
 
             MouseArea {
                 anchors.fill: parent
+
                 hoverEnabled: true
                 onPressed: {
                     buttonRectTwo.showRequests()
