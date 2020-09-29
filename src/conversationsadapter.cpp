@@ -170,7 +170,11 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
         auto& accInfo = LRCInstance::getAccountInfo(accountId);
         auto& contact = accInfo.contactModel->getContact(interaction.authorUri);
         auto from = Utils::bestNameForContact(contact);
-        auto onClicked = [this, accountId, convUid, uri = interaction.authorUri] {
+        auto onClicked = [this,
+                          accountId,
+                          convUid,
+                          uri = interaction.authorUri,
+                          contactType = contact.profileInfo.type] {
 #ifdef Q_OS_WINDOWS
             emit LRCInstance::instance().notificationClicked();
 #else
@@ -178,6 +182,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
 #endif
             auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
             if (!convInfo.uid.isEmpty()) {
+                setConversationFilter(contactType);
                 selectConversation(convInfo, false);
                 emit LRCInstance::instance().updateSmartList();
                 emit modelSorted(uri);
@@ -198,7 +203,7 @@ ConversationsAdapter::updateConversationsFilterWidget()
         currentTypeFilter_ = lrc::api::profile::Type::RING;
         LRCInstance::getCurrentConversationModel()->setFilter(currentTypeFilter_);
     }
-    showConversationTabs(invites);
+    showConversationTabs(invites, currentTypeFilter_ == lrc::api::profile::Type::PENDING);
 }
 
 void

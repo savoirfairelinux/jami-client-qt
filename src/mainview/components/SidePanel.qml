@@ -182,8 +182,15 @@ Rectangle {
                 conversationSmartListView.needToShowChatView(accountId, convUid)
             }
 
-            function onShowConversationTabs(visible) {
+            function onShowConversationTabs(visible, selectInvitationsTab) {
                 tabBarVisible = visible
+                if (selectInvitationsTab) {
+                    sidePanelTabBar.invitationTabDown = true
+                    sidePanelTabBar.converstationTabDown = false
+                } else {
+                    sidePanelTabBar.invitationTabDown = false
+                    sidePanelTabBar.converstationTabDown = true
+                }
                 updatePendingRequestCount()
                 updateTotalUnreadMessagesCount()
             }
