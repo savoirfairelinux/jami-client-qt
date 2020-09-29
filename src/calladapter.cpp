@@ -143,7 +143,7 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
         }
     } else {
         auto accountProperties = LRCInstance::accountModel().getAccountConfig(selectedAccountId);
-        if (!accountProperties.autoAnswer && !accountProperties.isRendezVous) {
+        if (!accountProperties.isRendezVous) {
             // App not focused or in different account
             if (QApplication::focusObject() == nullptr || accountId != selectedAccountId) {
                 showNotification(accountId, convInfo.uid);
@@ -172,8 +172,9 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
             } else { // Not current conversation
                 if (currentConvHasCall) {
                     auto currentCall = callModel->getCall(currentConvInfo.callId);
-                    if (currentCall.status == lrc::api::call::Status::CONNECTED
-                        || currentCall.status == lrc::api::call::Status::IN_PROGRESS) {
+                    if ((currentCall.status == lrc::api::call::Status::CONNECTED
+                        || currentCall.status == lrc::api::call::Status::IN_PROGRESS)
+                            && !accountProperties.autoAnswer) {
                         showNotification(accountId, convInfo.uid);
                         return;
                     }
