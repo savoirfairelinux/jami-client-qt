@@ -22,6 +22,30 @@
       "revId": "edaf8f9cfe33a8113e112991494fec9e7747a6e0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cd8939f_ace410b6",
+        "filename": "src/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-29T22:32:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "930ec9af_f4da6f5d",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 32,
+        "endChar": 3
+      },
+      "revId": "edaf8f9cfe33a8113e112991494fec9e7747a6e0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
