@@ -22,6 +22,30 @@
       "revId": "09f046821633dff67897c64f9ee4ce9a0a730133",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b12a5af_b532c2ba",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-09-30T09:07:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8417f132_160ecb5f",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 98
+      },
+      "revId": "09f046821633dff67897c64f9ee4ce9a0a730133",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
