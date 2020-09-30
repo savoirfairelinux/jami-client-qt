@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa60d8e2_086e0227",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-30T20:02:43Z",
+      "side": 1,
+      "message": "Remove?",
+      "range": {
+        "startLine": 133,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 28
+      },
+      "revId": "c8b563557e8a9d62a74244718a35869d74064e60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a962e25a_24e096f3",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-30T20:02:43Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 28
+      },
+      "revId": "c8b563557e8a9d62a74244718a35869d74064e60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3374fcbd_c6399996",
+        "filename": "src/settingsview/components/AudioSettings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-30T20:02:43Z",
+      "side": 1,
+      "message": "AvAdapter.",
+      "range": {
+        "startLine": 171,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 26
+      },
+      "revId": "c8b563557e8a9d62a74244718a35869d74064e60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
