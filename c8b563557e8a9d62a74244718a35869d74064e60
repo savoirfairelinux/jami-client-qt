@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "eef75268_8873d5fa",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-30T20:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa60d8e2_086e0227",
+      "range": {
+        "startLine": 133,
+        "startChar": 4,
+        "endLine": 133,
+        "endChar": 28
+      },
+      "revId": "c8b563557e8a9d62a74244718a35869d74064e60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a962e25a_24e096f3",
         "filename": "src/avadapter.cpp",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9e389efb_7748dff1",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-30T20:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a962e25a_24e096f3",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 28
+      },
+      "revId": "c8b563557e8a9d62a74244718a35869d74064e60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3374fcbd_c6399996",
         "filename": "src/settingsview/components/AudioSettings.qml",
         "patchSetId": 3
@@ -68,6 +116,30 @@
       "revId": "c8b563557e8a9d62a74244718a35869d74064e60",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "600b0a0b_dd9da368",
+        "filename": "src/settingsview/components/AudioSettings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-09-30T20:15:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3374fcbd_c6399996",
+      "range": {
+        "startLine": 171,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 26
+      },
+      "revId": "c8b563557e8a9d62a74244718a35869d74064e60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
