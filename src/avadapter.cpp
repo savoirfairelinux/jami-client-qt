@@ -126,3 +126,17 @@ AvAdapter::shareScreenArea(int screenNumber, int x, int y, int width, int height
                                       width < 128 ? 128 : width,
                                       height < 128 ? 128 : height);
 }
+
+void
+AvAdapter::startAudioMeter(bool async)
+{
+    qDebug() << Q_FUNC_INFO;
+    LRCInstance::startAudioMeter(async);
+}
+
+void
+AvAdapter::stopAudioMeter(bool async)
+{
+    qDebug() << Q_FUNC_INFO;
+    LRCInstance::stopAudioMeter(async);
+}
