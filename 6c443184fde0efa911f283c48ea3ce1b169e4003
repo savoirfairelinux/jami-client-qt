@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e5c93ee_eecfa29a",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-30T19:59:01Z",
+      "side": 1,
+      "message": "Now we do not have any animation when message web view shows, since we use this only\n\nnot sure if we want that anymore",
+      "range": {
+        "startLine": 94,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 44
+      },
+      "revId": "6c443184fde0efa911f283c48ea3ce1b169e4003",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5bc5729_d01ff3db",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-09-30T19:59:01Z",
+      "side": 1,
+      "message": "if (mainViewStack.find(function (item, index) {\n                return item.objectName \u003d\u003d\u003d \"communicationPageMessageWebView\"\n            }) || sidePanelViewStack.find(function (item, index) {\n                return item.objectName \u003d\u003d\u003d \"communicationPageMessageWebView\"\n            })) {\n                if (!callStackViewShouldShow)\n                    return\n            }\n\nThis check code is still needed I think, (maybe with some modification)\n\nif you click the same converstion twice. messageweb view will be poped and pushed twice,\n\nbut we only need one",
+      "range": {
+        "startLine": 195,
+        "startChar": 12,
+        "endLine": 195,
+        "endChar": 43
+      },
+      "revId": "6c443184fde0efa911f283c48ea3ce1b169e4003",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
