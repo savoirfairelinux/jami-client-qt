@@ -43,12 +43,12 @@ SmartListModel::~SmartListModel() {}
 void
 SmartListModel::updateConversation(const QString& convUid)
 {
-    for (lrc::api::conversation::Info& conversation : conversations_) {
+    /*for (lrc::api::conversation::Info& conversation : conversations_) {
         if (conversation.uid == convUid) {
             conversation = LRCInstance::getConversationFromConvUid(convUid);
             return;
         }
-    }
+    }*/
 }
 
 int
@@ -192,15 +192,16 @@ SmartListModel::fillConversationsList()
 {
     beginResetModel();
     auto* convModel = LRCInstance::getCurrentConversationModel();
-    conversations_.clear();
 
-    for (auto convSearch : convModel->getAllSearchResults()) {
+    /*for (auto convSearch : convModel->getAllSearchResults()) {
         conversations_.emplace_back(convSearch);
-    }
+    }*/
 
-    for (auto convFilt : convModel->allFilteredConversations()) {
+    conversations_ = convModel->allFilteredConversations();
+
+    /*for (auto convFilt : convModel->allFilteredConversations()) {
         conversations_.emplace_back(convFilt);
-    }
+    }*/
     endResetModel();
 }
 

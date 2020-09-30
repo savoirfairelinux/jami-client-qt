@@ -140,15 +140,12 @@ int
 UtilsAdapter::getTotalUnreadMessages()
 {
     int totalUnreadMessages {0};
-    if (LRCInstance::getCurrentAccountInfo().profileInfo.type != lrc::api::profile::Type::SIP) {
+    if (LRCInstance::getCurrentAccountInfo().profileInfo.type != profile::Type::SIP) {
         auto* convModel = LRCInstance::getCurrentConversationModel();
-        auto ringConversations = convModel->getFilteredConversations(lrc::api::profile::Type::RING,
-                                                                     false);
-        std::for_each(ringConversations.begin(),
-                      ringConversations.end(),
-                      [&totalUnreadMessages](const auto& conversation) {
-                          totalUnreadMessages += conversation.unreadMessages;
-                      });
+        auto ringConversations = convModel->getFilteredConversations(profile::Type::RING, false);
+        ringConversations.for_each([&totalUnreadMessages](const conversation::Info& conversation) {
+            totalUnreadMessages += conversation.unreadMessages;
+        });
     }
     return totalUnreadMessages;
 }

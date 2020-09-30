@@ -96,5 +96,5 @@ private:
     Type listModelType_;
     QMap<QString, bool> sectionState_;
     QMap<ConferenceableItem, ConferenceableValue> conferenceables_;
-    ConversationModel::ConversationQueue conversations_;
+    ConversationModel::ConversationQueueProxy conversations_;
 };
