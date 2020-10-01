@@ -45,12 +45,13 @@ Popup {
     contentItem: ListView {
         id: comboBoxPopupListView
 
-
         // In list view, index is an interger.
         clip: true
         model: accountListModel
         implicitHeight: contentHeight
         delegate: ItemDelegate {
+            id: delegate
+
             Image {
                 id: userImage
 
@@ -86,42 +87,54 @@ Popup {
                 }
             }
 
-            Text {
-                id: textUserAliasPopup
-
+            ColumnLayout {
                 anchors.left: userImage.right
-                anchors.leftMargin: 10
-                anchors.top: itemCoboBackground.top
-                anchors.topMargin: 15
+                anchors.leftMargin: 16
+                anchors.top: delegate.top
 
-                text: textMetricsUserAliasPopup.elidedText
-                font.pointSize: JamiTheme.textFontSize
-            }
+                height: delegate.height
 
-            Text {
-                id: textUsernamePopup
+                spacing: 0
 
-                anchors.left: userImage.right
-                anchors.leftMargin: 10
-                anchors.top: textUserAliasPopup.bottom
+                Text {
+                    id: textUserAliasPopup
 
-                text: textMetricsUsernamePopup.elidedText
-                font.pointSize: JamiTheme.textFontSize
-                color: JamiTheme.faddedLastInteractionFontColor
-            }
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    Layout.topMargin: textUsernamePopup.visible ?
+                                          delegate.height / 2 - implicitHeight : 0
 
-            TextMetrics {
-                id: textMetricsUserAliasPopup
-                elide: Text.ElideRight
-                elideWidth: accountComboBox.width - userImage.width - settingsButton.width - 30
-                text: Alias
-            }
+                    text: textMetricsUserAliasPopup.elidedText
+                    font.pointSize: JamiTheme.textFontSize
 
-            TextMetrics {
-                id: textMetricsUsernamePopup
-                elide: Text.ElideRight
-                elideWidth: accountComboBox.width - userImage.width - settingsButton.width - 30
-                text: Username
+                    TextMetrics {
+                        id: textMetricsUserAliasPopup
+                        elide: Text.ElideRight
+                        elideWidth: accountComboBox.width - userImage.width -
+                                    settingsButton.width - 30
+                        text: Alias
+                    }
+                }
+
+                Text {
+                    id: textUsernamePopup
+
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                    Layout.bottomMargin: delegate.height / 2 - implicitHeight
+
+                    visible: !(textMetricsUsernamePopup.text === textMetricsUserAliasPopup.text)
+
+                    text: textMetricsUsernamePopup.elidedText
+                    font.pointSize: JamiTheme.textFontSize
+                    color: JamiTheme.faddedLastInteractionFontColor
+
+                    TextMetrics {
+                        id: textMetricsUsernamePopup
+                        elide: Text.ElideRight
+                        elideWidth: accountComboBox.width - userImage.width -
+                                    settingsButton.width - 30
+                        text: Username
+                    }
+                }
             }
 
             background: Rectangle {
