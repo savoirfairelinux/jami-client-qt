@@ -22,6 +22,30 @@
       "revId": "5f272b33102916ff05329598897b51fea55a99e6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b566d714_815866bd",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 514,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-01T09:42:27Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "1aa46f68_1ad957fc",
+      "range": {
+        "startLine": 445,
+        "startChar": 8,
+        "endLine": 514,
+        "endChar": 13
+      },
+      "revId": "5f272b33102916ff05329598897b51fea55a99e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }

@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4a1ed462_c4c4477c",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-01T09:42:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e5c93ee_eecfa29a",
+      "range": {
+        "startLine": 94,
+        "startChar": 13,
+        "endLine": 94,
+        "endChar": 44
+      },
+      "revId": "6c443184fde0efa911f283c48ea3ce1b169e4003",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b5bc5729_d01ff3db",
         "filename": "src/mainview/MainView.qml",
         "patchSetId": 25
@@ -36,6 +60,30 @@
       "writtenOn": "2020-09-30T19:59:01Z",
       "side": 1,
       "message": "if (mainViewStack.find(function (item, index) {\n                return item.objectName \u003d\u003d\u003d \"communicationPageMessageWebView\"\n            }) || sidePanelViewStack.find(function (item, index) {\n                return item.objectName \u003d\u003d\u003d \"communicationPageMessageWebView\"\n            })) {\n                if (!callStackViewShouldShow)\n                    return\n            }\n\nThis check code is still needed I think, (maybe with some modification)\n\nif you click the same converstion twice. messageweb view will be poped and pushed twice,\n\nbut we only need one",
+      "range": {
+        "startLine": 195,
+        "startChar": 12,
+        "endLine": 195,
+        "endChar": 43
+      },
+      "revId": "6c443184fde0efa911f283c48ea3ce1b169e4003",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b42399d_6e4f5b83",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 25
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-01T09:42:27Z",
+      "side": 1,
+      "message": "I agree with you for the unnecessary stack modification on double access to conversation.\n\nHowever, this handles correctly the transition from CallView to MsgView when a call has finished and works also fine for the \"only side panel\" layout, keeping the logic really simple.\n\nThis logic for checking views needs to handle: current view, recursive reordering on resize, navigation to settings / account change... \n\nSo in my opinion it is better to keep it simple to avoid UI bugs, but we can discuss it!",
+      "parentUuid": "b5bc5729_d01ff3db",
       "range": {
         "startLine": 195,
         "startChar": 12,
