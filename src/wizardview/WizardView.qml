@@ -376,7 +376,15 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignCenter
 
+                function setPotentialAlias() {
+                    var currentUserRegisteredName =
+                            SettingsAdapter.get_CurrentAccountInfo_RegisteredName()
+                    if (profilePage.displayName.length === 0 && currentUserRegisteredName.length)
+                        AccountAdapter.setCurrAccDisplayName(currentUserRegisteredName)
+                }
+
                 function leave() {
+                    setPotentialAlias()
                     if (showBackUp)
                         changePageQML(WizardView.WizardViewPageIndex.BACKUPKEYSPAGE)
                     else {
@@ -387,7 +395,10 @@ Rectangle {
 
                 onSaveProfile: {
                     SettingsAdapter.setCurrAccAvatar(profilePage.boothImgBase64)
-                    AccountAdapter.setCurrAccDisplayName(profilePage.displayName)
+                    if (profilePage.displayName.length === 0)
+                        setPotentialAlias()
+                    else
+                        AccountAdapter.setCurrAccDisplayName(profilePage.displayName)
                     leave()
                 }
 
