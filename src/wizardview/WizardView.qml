@@ -387,7 +387,8 @@ Rectangle {
 
                 onSaveProfile: {
                     SettingsAdapter.setCurrAccAvatar(profilePage.boothImgBase64)
-                    AccountAdapter.setCurrAccDisplayName(profilePage.displayName)
+                    if (profilePage.displayName.length !== 0)
+                        AccountAdapter.setCurrAccDisplayName(profilePage.displayName)
                     leave()
                 }
 
