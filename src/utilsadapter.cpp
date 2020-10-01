@@ -115,7 +115,7 @@ const QString
 UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
 {
     auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    return Utils::bestNameForConversation(convModel->getConversationForUID(uid), *convModel);
+    return convModel->bestNameForConversation(uid);
 }
 
 QString
@@ -123,15 +123,14 @@ UtilsAdapter::getBestId(const QString& accountId)
 {
     if (accountId.isEmpty())
         return {};
-    auto& accountInfo = LRCInstance::getAccountInfo(accountId);
-    return Utils::bestIdForAccount(accountInfo);
+    return LRCInstance::accountModel().bestIdForAccount(accountId);
 }
 
 const QString
 UtilsAdapter::getBestId(const QString& accountId, const QString& uid)
 {
     auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    return Utils::bestIdForConversation(convModel->getConversationForUID(uid), *convModel);
+    return convModel->bestIdForConversation(uid);
 }
 
 int
