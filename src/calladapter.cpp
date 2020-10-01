@@ -271,9 +271,8 @@ CallAdapter::getConferencesInfos()
                     data["isLocal"] = true;
                 } else {
                     try {
-                        auto& contact = LRCInstance::getCurrentAccountInfo()
-                                            .contactModel->getContact(participant["uri"]);
-                        bestName = Utils::bestNameForContact(contact);
+                        bestName = LRCInstance::getCurrentAccountInfo()
+                                       .contactModel->bestNameForContact(participant["uri"]);
                     } catch (...) {
                     }
                 }
@@ -295,10 +294,8 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
     auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     if (!accountId.isEmpty() && !convInfo.uid.isEmpty()) {
         auto& accInfo = LRCInstance::getAccountInfo(accountId);
-        if (!convInfo.participants.isEmpty()) {
-            auto& contact = accInfo.contactModel->getContact(convInfo.participants[0]);
-            from = Utils::bestNameForContact(contact);
-        }
+        if (!convInfo.participants.isEmpty())
+            from = accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
     }
 
     auto onClicked = [this, convInfo]() {
@@ -356,7 +353,8 @@ CallAdapter::connectCallModel(const QString& accountId)
                         try {
                             auto& contact = LRCInstance::getCurrentAccountInfo()
                                                 .contactModel->getContact(participant["uri"]);
-                            bestName = Utils::bestNameForContact(contact);
+                            bestName = LRCInstance::getCurrentAccountInfo()
+                                           .contactModel->bestNameForContact(participant["uri"]);
                             if (participant["videoMuted"] == "true")
                                 data["avatar"] = contact.profileInfo.avatar;
                         } catch (...) {
@@ -488,8 +486,8 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                        isRecording,
                        accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
                        !convInfo.confId.isEmpty(),
-                       Utils::bestNameForConversation(convInfo,
-                                                      *LRCInstance::getCurrentConversationModel()));
+                       LRCInstance::getCurrentConversationModel()->bestNameForConversation(
+                           convInfo.uid));
 }
 
 void

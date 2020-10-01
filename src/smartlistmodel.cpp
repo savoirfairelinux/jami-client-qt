@@ -248,17 +248,13 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         return QString::fromLatin1(Utils::QImageToByteArray(contactImage).toBase64().data());
     }
     case Role::DisplayName: {
-        if (!item.participants.isEmpty()) {
-            auto& contact = contactModel->getContact(item.participants[0]);
-            return QVariant(Utils::bestNameForContact(contact));
-        }
+        if (!item.participants.isEmpty())
+            return QVariant(contactModel->bestNameForContact(item.participants[0]));
         return QVariant("");
     }
     case Role::DisplayID: {
-        if (!item.participants.isEmpty()) {
-            auto& contact = contactModel->getContact(item.participants[0]);
-            return QVariant(Utils::bestIdForContact(contact));
-        }
+        if (!item.participants.isEmpty())
+            return QVariant(contactModel->bestIdForContact(item.participants[0]));
         return QVariant("");
     }
     case Role::Presence: {

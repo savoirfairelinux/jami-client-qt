@@ -102,8 +102,8 @@ PixbufManipulator::decorationRole(const lrc::api::conversation::Info& conversati
         auto contactUri = contacts.front();
         auto contactInfo = accountInfo.contactModel->getContact(contactUri);
         auto contactPhoto = contactInfo.profileInfo.avatar;
-        auto bestName = Utils::bestNameForContact(contactInfo);
-        auto bestId = Utils::bestIdForContact(contactInfo);
+        auto bestName = accountInfo.contactModel->bestNameForContact(contactUri);
+        auto bestId = accountInfo.contactModel->bestIdForContact(contactUri);
         if (accountInfo.profileInfo.type == lrc::api::profile::Type::SIP
             && contactInfo.profileInfo.type == lrc::api::profile::Type::TEMPORARY) {
             photo = Utils::fallbackAvatar(QString(), QString());
