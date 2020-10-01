@@ -123,8 +123,7 @@ UtilsAdapter::getBestId(const QString& accountId)
 {
     if (accountId.isEmpty())
         return {};
-    auto& accountInfo = LRCInstance::getAccountInfo(accountId);
-    return Utils::bestIdForAccount(accountInfo);
+    return LRCInstance::accountModel().bestIdForAccount(accountId);
 }
 
 const QString

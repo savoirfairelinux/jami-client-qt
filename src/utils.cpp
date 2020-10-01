@@ -424,24 +424,6 @@ Utils::bestIdForConversation(const lrc::api::conversation::Info& conv,
 }
 
 QString
-Utils::bestIdForAccount(const lrc::api::account::Info& account)
-{
-    if (!account.registeredName.isEmpty()) {
-        return removeEndlines(account.registeredName);
-    }
-    return removeEndlines(account.profileInfo.uri);
-}
-
-QString
-Utils::bestNameForAccount(const lrc::api::account::Info& account)
-{
-    if (account.profileInfo.alias.isEmpty()) {
-        return bestIdForAccount(account);
-    }
-    return account.profileInfo.alias;
-}
-
-QString
 Utils::bestIdForContact(const lrc::api::contact::Info& contact)
 {
     if (!contact.registeredName.isEmpty()) {
@@ -474,32 +456,6 @@ Utils::bestNameForConversation(const lrc::api::conversation::Info& conv,
     } catch (...) {
     }
     return {};
-}
-
-/*
- * Returns empty string if only infoHash is available,
- * second best identifier otherwise.
- */
-QString
-Utils::secondBestNameForAccount(const lrc::api::account::Info& account)
-{
-    auto alias = removeEndlines(account.profileInfo.alias);
-    auto registeredName = removeEndlines(account.registeredName);
-    auto infoHash = account.profileInfo.uri;
-
-    if (alias.length() != 0) {
-        if (registeredName.length() != 0) {
-            return registeredName;
-        } else {
-            return infoHash;
-        }
-    } else {
-        if (registeredName.length() != 0) {
-            return infoHash;
-        } else {
-            return "";
-        }
-    }
 }
 
 lrc::api::profile::Type
@@ -814,8 +770,8 @@ Utils::accountPhoto(const lrc::api::account::Info& accountInfo, const QSize& siz
         QByteArray ba = accountInfo.profileInfo.avatar.toLocal8Bit();
         photo = GlobalInstances::pixmapManipulator().personPhoto(ba, nullptr).value<QImage>();
     } else {
-        auto bestId = bestIdForAccount(accountInfo);
-        auto bestName = bestNameForAccount(accountInfo);
+        auto bestId = LRCInstance::accountModel().bestIdForAccount(accountInfo.id);
+        auto bestName = LRCInstance::accountModel().bestNameForAccount(accountInfo.id);
         QString letterStr = bestId == bestName ? QString() : bestName;
         QString prefix = accountInfo.profileInfo.type == lrc::api::profile::Type::RING ? "ring:"
                                                                                        : "sip:";
