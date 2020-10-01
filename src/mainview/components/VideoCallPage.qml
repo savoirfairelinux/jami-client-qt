@@ -237,7 +237,7 @@ Rectangle {
                         }
                     }
 
-                    width: videoCallPageMainRect.width / 4
+                    width: Math.max(videoCallPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                     height: {
                         previewImageScalingFactorUpdated
                         return previewRenderer.width * previewRenderer.getPreviewImageScalingFactor()
