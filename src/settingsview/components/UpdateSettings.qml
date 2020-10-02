@@ -81,6 +81,8 @@ ColumnLayout {
     MaterialButton {
         id: installBetaButton
 
+        visible: !UpdateManager.isCurrentVersionBeta()
+
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: JamiTheme.preferredFieldWidth
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
