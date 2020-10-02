@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "786a11f6_b48c152f",
+        "filename": "src/mainview/components/AudioCallPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-02T15:48:44Z",
+      "side": 1,
+      "message": "showFullScreenReqested",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 33
+      },
+      "revId": "6dc7cbc9a2d6959cdad17694c18d62e644c12d1b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
