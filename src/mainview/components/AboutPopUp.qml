@@ -27,6 +27,7 @@ import "../../commoncomponents"
 
 BaseDialog {
     id: root
+    objectName: "aboutPopUpDialog"
 
     height: aboutPopUpContentRectColumnLayout.implicitHeight
 

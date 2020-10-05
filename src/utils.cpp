@@ -853,3 +853,15 @@ Utils::isImage(const QString& fileExt)
         return true;
     return false;
 }
+
+bool
+Utils::isAppFocused()
+{
+    if (QApplication::focusObject() == nullptr)
+        return false;
+    if (QApplication::focusObject()->parent()){
+        const auto objName = QApplication::focusObject()->parent()->objectName();
+        return !objName.contains("Dialog");
+    }
+    return true;
+}

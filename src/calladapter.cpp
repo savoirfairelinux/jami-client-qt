@@ -109,7 +109,7 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
     auto selectedAccountId = LRCInstance::getCurrAccId();
     auto* callModel = LRCInstance::getCurrentCallModel();
     if (!callModel->hasCall(convInfo.callId)) {
-        if (QApplication::focusObject() == nullptr || accountId != selectedAccountId) {
+        if (!Utils::isAppFocused() || accountId != selectedAccountId) {
             showNotification(accountId, convInfo.uid);
             return;
         }
@@ -150,7 +150,7 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
         auto accountProperties = LRCInstance::accountModel().getAccountConfig(selectedAccountId);
         if (!accountProperties.autoAnswer && !accountProperties.isRendezVous) {
             // App not focused or in different account
-            if (QApplication::focusObject() == nullptr || accountId != selectedAccountId) {
+            if (!Utils::isAppFocused() || accountId != selectedAccountId) {
                 showNotification(accountId, convInfo.uid);
                 return;
             }
@@ -328,6 +328,10 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
             emit showCallStack(accountId, convInfo.uid, true);
         }
         emit LRCInstance::instance().updateSmartList();
+
+        if (!Utils::isAppFocused()) {
+            emit LRCInstance::instance().closeModalDialogRequested();
+        }
     };
 
     Utils::showNotification(tr("is calling you"), from, accountId, convUid, onClicked);
