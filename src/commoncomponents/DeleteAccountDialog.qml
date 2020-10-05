@@ -28,6 +28,7 @@ import "../commoncomponents"
 
 BaseDialog {
     id: root
+    objectName: "deleteAccountDialog"
 
     property int profileType: SettingsAdapter.getCurrentAccount_Profile_Info_Type()
 

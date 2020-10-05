@@ -458,6 +458,7 @@ signals:
     void notificationClicked(bool forceToTop = false);
     void updateSmartList();
     void quitEngineRequested();
+    void closeModalDialogRequested();
 
 private:
     LRCInstance(migrateCallback willMigrateCb = {},
