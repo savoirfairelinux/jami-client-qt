@@ -26,6 +26,7 @@ import "../../commoncomponents"
 
 BaseDialog {
     id: root
+    objectName: "userProfileDialog"
 
     property string responsibleConvUid: ""
     property string contactPicBase64: ""

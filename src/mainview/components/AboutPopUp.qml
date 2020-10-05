@@ -27,6 +27,7 @@ import "../../commoncomponents"
 
 ModalPopup {
     id: root
+    objectName: "aboutPopUpDialog"
 
     property alias preferredHeight: aboutPopUpContentRectColumnLayout.implicitHeight
 
