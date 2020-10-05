@@ -17,7 +17,9 @@
  */
 
 import QtQuick 2.14
-import QtQuick.Dialogs 1.3
+import QtQuick.Dialogs 1.2
+import net.jami.Models 1.0
+import net.jami.Adapters 1.0
 
 import "../constant"
 
@@ -25,4 +27,14 @@ Dialog {
     id: root
 
     visible: false
+
+    Connections {
+        target: LRCInstance
+
+        function onCloseModalDialogRequested() {
+            if (root.visible) {
+                close()
+            }
+        }
+    }
 }

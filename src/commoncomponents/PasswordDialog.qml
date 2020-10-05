@@ -28,6 +28,7 @@ import "../constant"
 // PasswordDialog for changing password and exporting account
 BaseDialog {
     id: root
+    objectName: "passwordDialog"
 
     enum PasswordEnteringPurpose {
         ChangePassword,

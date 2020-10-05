@@ -123,7 +123,7 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
     auto* convModel = LRCInstance::getCurrentConversationModel();
 
     if (!callModel->hasCall(convInfo.callId)) {
-        if (QApplication::focusObject() == nullptr || accountId != selectedAccountId) {
+        if (!Utils::isAppFocused() || accountId != selectedAccountId) {
             showNotification(accountId, convInfo.uid);
             return;
         }
@@ -131,7 +131,7 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
         const auto currentConvUid = LRCInstance::getCurrentConvUid();
         const auto currentConvInfo = convModel->getConversationForUID(currentConvUid);
 
-        // Current call
+        // Call in current conversation
         auto currentConvHasCall = callModel->hasCall(currentConvInfo.callId);
         if (currentConvHasCall) {
             auto currentCall = callModel->getCall(currentConvInfo.callId);
@@ -157,7 +157,7 @@ CallAdapter::slotShowIncomingCallView(const QString& accountId, const conversati
         auto accountProperties = LRCInstance::accountModel().getAccountConfig(selectedAccountId);
         if (!accountProperties.isRendezVous) {
             // App not focused or in different account
-            if (QApplication::focusObject() == nullptr || accountId != selectedAccountId) {
+            if (!Utils::isAppFocused() || accountId != selectedAccountId) {
                 showNotification(accountId, convInfo.uid);
                 return;
             }
@@ -310,8 +310,11 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
         if (!convInfo.uid.isEmpty()) {
             emit callSetupMainViewRequired(convInfo.accountId, convInfo.uid);
         }
+        emit LRCInstance::instance().updateSmartList();
+        if (!Utils::isAppFocused()) {
+            emit LRCInstance::instance().closeModalDialogRequested();
+        }
     };
-    emit LRCInstance::instance().updateSmartList();
     Utils::showNotification(tr("is calling you"), from, accountId, convUid, onClicked);
 }
 

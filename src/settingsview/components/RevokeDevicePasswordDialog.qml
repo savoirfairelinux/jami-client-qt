@@ -27,6 +27,7 @@ import "../../commoncomponents"
 
 BaseDialog {
     id: root
+    objectName: "revokeDevicePasswordDialog"
 
     property string deviceId : ""
 

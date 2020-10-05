@@ -28,6 +28,7 @@ import "../../commoncomponents"
 
 BaseDialog {
     id: root
+    objectName: "shortcutTableDialog"
 
     visible: false
     title: qsTr("Shortcuts")
