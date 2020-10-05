@@ -157,6 +157,9 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
                 emit LRCInstance::instance().updateSmartList();
                 emit modelSorted(convInfo.uid);
             }
+            if (!Utils::isAppFocused()) {
+                emit LRCInstance::instance().closeModalDialogRequested();
+            }
         };
 
         Utils::showNotification(interaction.body, from, accountId, convUid, onClicked);
