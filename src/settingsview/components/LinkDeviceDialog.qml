@@ -29,6 +29,7 @@ import "../../commoncomponents"
 
 BaseDialog {
     id: root
+    objectName: "linkDeviceDialog"
 
     function openLinkDeviceDialog() {
         infoLabel.text = JamiStrings.pinTimerInfos
