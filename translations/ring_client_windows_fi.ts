@@ -682,7 +682,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="214"/>
         <source>Create a rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Luo tapaamispaikka</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="217"/>
@@ -692,7 +692,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="219"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Valitse tapaamispaikan nimi</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="270"/>
@@ -702,7 +702,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="306"/>
         <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
-        <translation type="unfinished"/>
+        <translation>Syötä toisen määritetyn Jami-tilin PIN-koodi. Käytä PIN-koodin &quot;Yhdistä toinen laite&quot; -ominaisuutta.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="308"/>
@@ -1092,7 +1092,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="185"/>
         <source>More options</source>
-        <translation type="unfinished"/>
+        <translation>Lisää vaihtoehtoja</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="188"/>
@@ -1157,7 +1157,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="202"/>
         <source>Enter Jami Account Management Server (JAMS) URL</source>
-        <translation type="unfinished"/>
+        <translation>Anna Jami Account Management Serverin (JAMS) verkko-osoite</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="203"/>
@@ -1172,7 +1172,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="205"/>
         <source>Enter your JAMS credentials</source>
-        <translation type="unfinished"/>
+        <translation>Anna JAMS-tunnuksesi</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="206"/>
@@ -1474,17 +1474,17 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="299"/>
         <source>You can obtain an archive by clicking on &quot;Backup account&quot; in the account settings. This will create a .gz file on your device.</source>
-        <translation type="unfinished"/>
+        <translation>Voit tehdä pakatun varmistuksen napsauttamalla &quot;Varmuuskopioi tili&quot;  Tilin asetuksissa. Tämä luo gz-tiedoston laitteellesi.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="302"/>
         <source>Restore an account from backup</source>
-        <translation type="unfinished"/>
+        <translation>Tilin palauttaminen varmuuskopiosta</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="305"/>
         <source>Enter Jami account password</source>
-        <translation type="unfinished"/>
+        <translation>Anna Jami-tilin salasana</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="314"/>
@@ -1616,7 +1616,7 @@ Kopioi ja jaa se ystäviesi kanssa!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="370"/>
         <source>Advanced features</source>
-        <translation type="unfinished"/>
+        <translation>Lisäominaisuudet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="371"/>
@@ -1626,7 +1626,7 @@ Kopioi ja jaa se ystäviesi kanssa!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="372"/>
         <source>Connect to a JAMS server</source>
-        <translation type="unfinished"/>
+        <translation>Yhdistä JAMS-palvelimeen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="374"/>

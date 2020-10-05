@@ -1398,7 +1398,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
         <source>toggle automatic updates</source>
-        <translation type="unfinished"/>
+        <translation>přepnout nastavení automatických aktualizací</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="280"/>
@@ -1414,37 +1414,38 @@
         <location filename="../src/constant/JamiStrings.qml" line="282"/>
         <source>A new version of Jami was found
  Would you like to update now?</source>
-        <translation type="unfinished"/>
+        <translation>Byla nalezena nová verze Jami.
+Přejete si nyní provést aktualizaci?</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="283"/>
         <source>No new version of Jami was found</source>
-        <translation type="unfinished"/>
+        <translation>Nebyla nalezena žádná nová verze Jami.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="284"/>
         <source>An error occured when checking for a new version</source>
-        <translation type="unfinished"/>
+        <translation>Při zjišťování dostupnosti nové verze došlo k chybě.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="285"/>
         <source>Installer download failed due to a network error</source>
-        <translation type="unfinished"/>
+        <translation>Stažení instalačního souboru selhalo kvůli chybě sítě.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="286"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>Stažení instalačního souboru bylo zrušeno.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="288"/>
         <source>This will uninstall your current Release version and you can always download the latest Release version on our website</source>
-        <translation type="unfinished"/>
+        <translation>Tímto bude odinstalována vaše současná verze vydání. Nejnovější verzi vydání můžete vždy stáhnout z naší webové stránky.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="289"/>
         <source>Network disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Síť odpojena.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="290"/>
