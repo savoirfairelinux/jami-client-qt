@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a74087c_5b92d23d",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-05T15:48:57Z",
+      "side": 1,
+      "message": "Why do we need this?",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 36
+      },
+      "revId": "b644f380a998859484e3c88d034ffd22c85737a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b74f827e_d141541c",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-05T15:48:57Z",
+      "side": 1,
+      "message": "why do we need this?\n\nsetProperty will automatically trigger the signal right?",
+      "range": {
+        "startLine": 130,
+        "startChar": 4,
+        "endLine": 130,
+        "endChar": 36
+      },
+      "revId": "b644f380a998859484e3c88d034ffd22c85737a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
