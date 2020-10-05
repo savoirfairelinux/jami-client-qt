@@ -18,10 +18,14 @@
 
 import QtQuick 2.14
 import Qt.labs.platform 1.1
+import net.jami.Models 1.0
+import net.jami.Adapters 1.0
+
 import "../constant"
 
 FileDialog {
     id: root
+    objectName: "jamiFileDialog"
 
     // Use enum to avoid importing Qt.labs.platform when using JamiFileDialog.
     property int mode: JamiFileDialog.Mode.OpenFile
@@ -44,6 +48,16 @@ FileDialog {
               break
           default:
               root.fileMode = FileDialog.SaveFile
+        }
+    }
+
+    Connections {
+        target: LRCInstance
+
+        function onCloseModalDialogRequested() {
+            if (root.visible) {
+                close()
+            }
         }
     }
 }
