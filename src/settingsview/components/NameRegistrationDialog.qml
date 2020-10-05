@@ -29,6 +29,7 @@ import "../../commoncomponents"
 
 BaseDialog {
     id: root
+    objectName: "nameRegistrationDialog"
 
     property string registerdName : ""
 
