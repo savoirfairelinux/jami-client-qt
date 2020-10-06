@@ -144,8 +144,7 @@ ItemDelegate {
                 }
             }
 
-            ToolTip.visible: hovered
-            ToolTip.text: {
+            toolTipText: {
                 if(isCurrent) {
                     if (editable) {
                         return JamiStrings.editDeviceName
