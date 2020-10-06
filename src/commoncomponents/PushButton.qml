@@ -38,6 +38,8 @@ AbstractButton {
     property int preferredSize: 30
     property int preferredWidth: preferredSize
     property int preferredHeight: preferredSize
+    property int preferredMargin: 16
+    property alias textHAlign: textContent.horizontalAlignment
     // Note the radius will default to preferredSize
     property alias radius: background.radius
 
@@ -52,13 +54,16 @@ AbstractButton {
     property string pressedColor: JamiTheme.pressedButtonColor
     property string hoveredColor: JamiTheme.hoveredButtonColor
     property string normalColor: JamiTheme.normalButtonColor
+    property string checkedColor: Qt.lighter(pressedColor, 1.15)
+
+    // State transition duration
     property int duration: JamiTheme.fadeDuration
 
     // Image properties
     property alias source: image.source
     property var imageColor: null
     property string normalImageSource
-    property var checkedColor: null
+    property var checkedImageColor: null
     property string checkedImageSource
     property alias imagePadding: image.padding
     property alias imageOffset: image.offset
@@ -66,9 +71,11 @@ AbstractButton {
     width: preferredSize
     height: preferredSize
 
-    checkable: true
+    checkable: false
     checked: false
     hoverEnabled: true
+
+    onCheckedChanged: print(checked)
 
     ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
     ToolTip.visible: hovered && (toolTipText.length > 0)
@@ -81,16 +88,19 @@ AbstractButton {
 
         states: [
             State {
+                name: "checked"; when: checked
+                PropertyChanges { target: background; color: checkedColor }
+            },
+            State {
                 name: "pressed"; when: pressed
                 PropertyChanges { target: background; color: pressedColor }
-                PropertyChanges { target: image; offset: Qt.point(0, 0.5) }
             },
             State {
                 name: "hovered"; when: hovered
                 PropertyChanges { target: background; color: hoveredColor }
             },
             State {
-                name: "normal"; when: !hovered
+                name: "normal"; when: !hovered && ! checked
                 PropertyChanges { target: background; color: normalColor }
             }
         ]
@@ -102,10 +112,7 @@ AbstractButton {
             },
             Transition {
                 to: "pressed"; reversible: true
-                ParallelAnimation {
-                    ColorAnimation { duration: root.duration * 0.5 }
-                    NumberAnimation { duration: root.duration * 0.5 }
-                }
+                ColorAnimation { duration: root.duration * 0.5 }
             },
             Transition {
                 to: ""; reversible: true
@@ -122,7 +129,7 @@ AbstractButton {
             anchors.verticalCenter: background.verticalCenter
             anchors.horizontalCenter: textContent.text ? undefined : parent.horizontalCenter
             anchors.left: textContent.text ? parent.left : undefined
-            anchors.leftMargin: 16
+            anchors.leftMargin: preferredMargin
 
             source: {
                 if (checkable && checkedImageSource)
@@ -136,9 +143,12 @@ AbstractButton {
                 effect: ColorOverlay {
                     id: overlay
                     color: {
-                        if (checked && checkedColor) return checkedColor
-                        else if (imageColor) return imageColor
-                        else return JamiTheme.transparentColor
+                        if (checked && checkedImageColor)
+                            return checkedImageColor
+                        else if (imageColor)
+                            return imageColor
+                        else
+                            return JamiTheme.transparentColor
                     }
                 }
             }
@@ -148,10 +158,10 @@ AbstractButton {
             id: textContent
 
             anchors.left: image.right
-            anchors.leftMargin: 8
+            anchors.leftMargin: preferredMargin
             anchors.right: background.right
-            anchors.rightMargin: 16
-            anchors.verticalCenter: background.verticalCenter
+            anchors.rightMargin: preferredMargin
+            anchors.verticalCenter: background.verticalCenter 
 
             horizontalAlignment: Text.AlignHCenter
 

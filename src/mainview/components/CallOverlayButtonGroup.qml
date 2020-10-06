@@ -94,7 +94,7 @@ Rectangle {
             imageColor: JamiTheme.whiteColor
 
             checkedImageSource: "qrc:/images/icons/mic_off-24px.svg"
-            checkedColor: JamiTheme.declineButtonPressedRed
+            checkedImageColor: JamiTheme.declineButtonPressedRed
 
             toolTipText: !checked ? JamiStrings.mute : JamiStrings.unmute
 
@@ -133,7 +133,7 @@ Rectangle {
             imageColor: JamiTheme.whiteColor
 
             checkedImageSource: "qrc:/images/icons/videocam_off-24px.svg"
-            checkedColor: JamiTheme.declineButtonPressedRed
+            checkedImageColor: JamiTheme.declineButtonPressedRed
 
             toolTipText: !checked ? JamiStrings.pause : JamiStrings.resume
 
