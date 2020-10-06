@@ -224,7 +224,7 @@ def parse_args():
         '-t', '--toolset', default=win_toolset_default, type=str,
         help='Use specified platform toolset version')
     ap.add_argument(
-        '-q', '--qtver', default='5.15.0',
+        '-q', '--qtver', default='5.14.2',
         help='Sets the version of Qmake')
 
     parsed_args = ap.parse_args()
