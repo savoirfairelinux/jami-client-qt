@@ -76,8 +76,9 @@ NetWorkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& 
 
     emit statusChanged(GetStatus::STARTED);
 
+    // deprecated: Use NetworkReply::errorOcurred from Qt 5.15 on
     connect(reply_,
-            QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
+            QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::error),
             [this, doneCb, path](QNetworkReply::NetworkError error) {
                 reply_->disconnect();
                 reset(true);
