@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "be054cb5_1fb53012",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c777e597_c1e52391",
+      "range": {
+        "startLine": 178,
+        "startChar": 30,
+        "endLine": 178,
+        "endChar": 50
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96b0fe83_6b69d11e",
         "filename": "src/mainview/components/CallOverlayButtonGroup.qml",
         "patchSetId": 18
@@ -445,6 +469,30 @@
       "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ce9aaec_36b0b559",
+        "filename": "src/mainview/components/UserInfoCallPage.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:56:39Z",
+      "side": 1,
+      "message": "I made it look a little better. I see now that the overlay and buttons are quite wonky though. Lots of broken ui in there.",
+      "parentUuid": "1a2ec5a6_134dfa1c",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 46
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
