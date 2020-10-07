@@ -110,8 +110,8 @@ Rectangle {
                 Image {
                     anchors.centerIn: parent
                     source: pluginIcon === "" ? "" : "file:" + pluginIcon
-                    height: 36
-                    width: 36
+                    height: 48
+                    width: 48
                     mipmap: true
                 }
             }
@@ -119,7 +119,7 @@ Rectangle {
 
         Label {
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 10
+            Layout.topMargin: 16
 
             text: qsTr(pluginName + "\npreferences")
             font.pointSize: JamiTheme.headerFontSize
@@ -133,26 +133,38 @@ Rectangle {
             Layout.topMargin: 10
             height: 30
 
-            PushButton {
+            MaterialButton {
                 id: resetButton
 
                 Layout.fillWidth: true
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+                color: JamiTheme.buttonTintedBlack
+                hoveredColor: JamiTheme.buttonTintedBlackHovered
+                pressedColor: JamiTheme.buttonTintedBlackPressed
+                outlined: true
 
                 source: "qrc:/images/icons/settings_backup_restore-24px.svg"
-                buttonText: JamiStrings.reset
-                fontPointSize: JamiTheme.settingsFontSize
+
+                text: JamiStrings.reset
 
                 onClicked: resetPluginSlot()
             }
 
-            PushButton {
+            MaterialButton {
                 id: uninstallButton
 
                 Layout.fillWidth: true
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+                color: JamiTheme.buttonTintedBlack
+                hoveredColor: JamiTheme.buttonTintedBlackHovered
+                pressedColor: JamiTheme.buttonTintedBlackPressed
+                outlined: true
 
                 source: "qrc:/images/icons/delete-24px.svg"
-                buttonText: qsTr("Uninstall")
-                fontPointSize: JamiTheme.settingsFontSize
+
+                text: qsTr("Uninstall")
 
                 onClicked: uninstallPluginSlot()
             }
@@ -166,12 +178,13 @@ Rectangle {
             Layout.preferredHeight: childrenRect.height + 30
 
             model: PluginAdapter.getPluginPreferencesModel(pluginId)
+            interactive: false
 
             delegate: PreferenceItemDelegate {
                 id: preferenceItemDelegate
 
                 width: pluginPreferenceView.width
-                height: childrenRect.height
+                height: 50
 
                 preferenceName: PreferenceName
                 preferenceSummary: PreferenceSummary
@@ -182,18 +195,20 @@ Rectangle {
                 preferenceKey: PreferenceKey
                 fileFilters: FileFilters
                 isImage: IsImage
-                pluginListPreferenceModel: PluginListPreferenceModel{
+                pluginListPreferenceModel: PluginListPreferenceModel {
                     id: pluginListPreferenceModel
                     preferenceKey : PreferenceKey
                     pluginId: PluginId
                 }
 
-                onClicked: {
-                    pluginPreferenceView.currentIndex = index
-                }
                 onBtnPreferenceClicked: {
                     setPreference(pluginId, preferenceKey, preferenceNewValue)
                     pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId)
+                }
+
+                background: Rectangle {
+                    anchors.fill: parent
+                    color: "white"
                 }
             }
         }
