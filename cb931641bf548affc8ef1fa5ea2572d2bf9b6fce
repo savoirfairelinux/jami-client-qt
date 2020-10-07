@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4dbd6d1c_7418e1af",
+        "filename": "src/mainview/components/CallAdvancedOptions.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28070343_ead9a524",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7ccbd3e_a2879583",
         "filename": "src/mainview/components/CallOverlay.qml",
         "patchSetId": 18
@@ -36,6 +60,30 @@
       "writtenOn": "2020-10-07T20:00:23Z",
       "side": 1,
       "message": "I think this might be too grey,\n\nwhat do you think?",
+      "range": {
+        "startLine": 178,
+        "startChar": 30,
+        "endLine": 178,
+        "endChar": 50
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c777e597_c1e52391",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "is it different from before?",
+      "parentUuid": "a7ccbd3e_a2879583",
       "range": {
         "startLine": 178,
         "startChar": 30,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "dff9a743_be191f48",
+        "filename": "src/mainview/components/CallOverlayButtonGroup.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.6) --\u003e Qt.rgba(0, 0, 0, 0.75)",
+      "parentUuid": "96b0fe83_6b69d11e",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 51
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "874cfa87_179848d4",
         "filename": "src/mainview/components/ContactPicker.qml",
         "patchSetId": 18
@@ -91,6 +163,30 @@
       "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec342c96_5108a253",
+        "filename": "src/mainview/components/ContactPicker.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "874cfa87_179848d4",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d107e0a1_33110506",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "693ec0cb_daf3989f",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 26
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e3c227bf_1cbb23c4",
         "filename": "src/mainview/components/MediaHandlerPicker.qml",
         "patchSetId": 18
@@ -137,6 +257,30 @@
       "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6aff215_ee99eda6",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3c227bf_1cbb23c4",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 26
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "a7d252cc_a1d627dd",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0670fb01_40da70eb",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 26
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75511d8b_74ec3fa7",
         "filename": "src/mainview/components/SelectScreen.qml",
         "patchSetId": 18
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "5d1908da_5f7ae577",
+        "filename": "src/mainview/components/SelectScreen.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75511d8b_74ec3fa7",
+      "range": {
+        "startLine": 266,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 37
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "980d8465_f55fbe86",
         "filename": "src/mainview/components/SipInputPanel.qml",
         "patchSetId": 18
@@ -206,6 +398,30 @@
       "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "512d62de_0e1eef4e",
+        "filename": "src/mainview/components/SipInputPanel.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-07T22:30:39Z",
+      "side": 1,
+      "message": "cool. pointed out a problem but I replaced it with a material button",
+      "parentUuid": "980d8465_f55fbe86",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 0
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
