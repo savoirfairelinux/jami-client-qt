@@ -94,8 +94,10 @@ Popup {
                 Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: 5
                 Layout.bottomMargin: 5
-                Layout.preferredWidth: contactPickerPopupRect.width - 10
+                Layout.preferredWidth: implicitWidth
                 Layout.preferredHeight: 35
+
+                implicitWidth: contactPickerPopupRect.width - 10
 
                 onContactSearchBarTextChanged: {
                     ContactAdapter.setSearchFilter(text)
