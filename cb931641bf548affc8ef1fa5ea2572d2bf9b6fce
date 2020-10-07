@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28070343_ead9a524",
+        "filename": "src/mainview/components/CallAdvancedOptions.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "Can be deleted",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7ccbd3e_a2879583",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "I think this might be too grey,\n\nwhat do you think?",
+      "range": {
+        "startLine": 178,
+        "startChar": 30,
+        "endLine": 178,
+        "endChar": 50
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96b0fe83_6b69d11e",
+        "filename": "src/mainview/components/CallOverlayButtonGroup.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "I think for now, in overlay,\n\nbutton hover does not work anymore (opacity change),\n\nespecially for add to conference and more options button,\n\nfor other buttons, originally they do not work either, so maybe fine for them",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 51
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "874cfa87_179848d4",
+        "filename": "src/mainview/components/ContactPicker.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "Can be removed",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "693ec0cb_daf3989f",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 26
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3c227bf_1cbb23c4",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 26
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0670fb01_40da70eb",
+        "filename": "src/mainview/components/MediaHandlerPicker.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 165,
+        "endChar": 26
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75511d8b_74ec3fa7",
+        "filename": "src/mainview/components/SelectScreen.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "Text seems to be gone here",
+      "range": {
+        "startLine": 266,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 37
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "980d8465_f55fbe86",
+        "filename": "src/mainview/components/SipInputPanel.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "Text seems to be gone for sip input panel",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 0
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a2ec5a6_134dfa1c",
+        "filename": "src/mainview/components/UserInfoCallPage.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-07T20:00:23Z",
+      "side": 1,
+      "message": "I think the on hover is too grey,\n\nwhat do you think?",
+      "range": {
+        "startLine": 65,
+        "startChar": 27,
+        "endLine": 65,
+        "endChar": 46
+      },
+      "revId": "cb931641bf548affc8ef1fa5ea2572d2bf9b6fce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
