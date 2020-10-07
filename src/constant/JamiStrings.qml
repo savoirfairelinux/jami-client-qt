@@ -386,4 +386,21 @@ Item {
     // Generic dialog options
     property string optionOk: qsTr("Ok")
     property string optionCancel: qsTr("Cancel")
+
+    // ChatView
+    property string backButtonTitle: qsTr("Hide chat view")
+    property string placeCallButtonTitle: qsTr("Place video call")
+    property string placeAudioCallButtonTitle: qsTr("Place audio call")
+    property string addToConversationsButtonTitle: qsTr("Add to conversations")
+    property string unbanButtonTitle: qsTr("Unban contact")
+    property string sendButtonTitle: qsTr("Send")
+    property string optionsButtonTitle: qsTr("Options")
+    property string backToBottomBtnInnerHTML: qsTr("Jump to latest")
+    property string sendFileButtonTitle: qsTr("Send file")
+    property string videoRecordButtonTitle: qsTr("Leave video message")
+    property string audioRecordButtonTitle: qsTr("Leave audio message")
+    property string acceptButtonTitle: qsTr("Accept")
+    property string refuseButtonTitle: qsTr("Refuse")
+    property string blockButtonTitle: qsTr("Block")
+    property string messageBarInputPlaceholder: qsTr("Type a message")
 }
