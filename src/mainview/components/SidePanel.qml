@@ -99,6 +99,13 @@ Rectangle {
         onContactSearchBarTextChanged: {
             UtilsAdapter.setConversationFilter(text)
         }
+
+        onReturnPressedWhileSearching: {
+            var convUid = conversationSmartListView.itemAtIndex(0).convUid()
+            var currentAccountId = AccountAdapter.currentAccountId
+            ConversationsAdapter.selectConversation(currentAccountId, convUid)
+            conversationSmartListView.repositionIndex(convUid)
+        }
     }
 
     SidePanelTabBar {

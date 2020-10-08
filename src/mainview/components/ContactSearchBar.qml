@@ -26,6 +26,7 @@ Rectangle {
     id: contactSearchBarRect
 
     signal contactSearchBarTextChanged(string text)
+    signal returnPressedWhileSearching
 
     function clearText() {
         contactSearchBar.clear()
@@ -92,5 +93,15 @@ Rectangle {
         sequence: "Ctrl+F"
         context: Qt.ApplicationShortcut
         onActivated: contactSearchBar.forceActiveFocus()
+    }
+
+    Shortcut {
+        sequence: "Return"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            if (contactSearchBar.text !== "") {
+                returnPressedWhileSearching()
+            }
+        }
     }
 }

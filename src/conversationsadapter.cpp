@@ -61,9 +61,8 @@ ConversationsAdapter::safeInit()
 
     connectConversationModel();
 
-    setProperty("currentTypeFilter", QVariant::fromValue(
-                    LRCInstance::getCurrentAccountInfo().profileInfo.type));
-
+    setProperty("currentTypeFilter",
+                QVariant::fromValue(LRCInstance::getCurrentAccountInfo().profileInfo.type));
 }
 
 void
@@ -129,8 +128,8 @@ ConversationsAdapter::onCurrentAccountIdChanged()
     disconnectConversationModel();
     connectConversationModel();
 
-    setProperty("currentTypeFilter", QVariant::fromValue(
-                    LRCInstance::getCurrentAccountInfo().profileInfo.type));
+    setProperty("currentTypeFilter",
+                QVariant::fromValue(LRCInstance::getCurrentAccountInfo().profileInfo.type));
 }
 
 void
@@ -146,10 +145,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
         auto& accInfo = LRCInstance::getAccountInfo(accountId);
         auto& contact = accInfo.contactModel->getContact(interaction.authorUri);
         auto from = Utils::bestNameForContact(contact);
-        auto onClicked = [this,
-                          accountId,
-                          convUid,
-                          uri = interaction.authorUri] {
+        auto onClicked = [this, accountId, convUid, uri = interaction.authorUri] {
 #ifdef Q_OS_WINDOWS
             emit LRCInstance::instance().notificationClicked();
 #else
@@ -210,7 +206,8 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                        == lrc::api::profile::Type::TEMPORARY) {
                 return;
             }
-            emit modelSorted(QVariant::fromValue(contactURI));
+            // emit modelSorted(QVariant::fromValue(contactURI));
+            emit modelSorted(QVariant::fromValue(conversation.uid));
         });
 
     modelUpdatedConnection_ = QObject::connect(currentConversationModel,
