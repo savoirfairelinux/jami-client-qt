@@ -22,6 +22,30 @@
       "revId": "e648b94eb8b171faf2f9bf9e7dbd00ab03cbd373",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72fa5dfc_1fc2ce13",
+        "filename": "src/commoncomponents/PushButton.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-08T19:52:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e29557d_ddf4853c",
+      "range": {
+        "startLine": 167,
+        "startChar": 61,
+        "endLine": 167,
+        "endChar": 62
+      },
+      "revId": "e648b94eb8b171faf2f9bf9e7dbd00ab03cbd373",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
