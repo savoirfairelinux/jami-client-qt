@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "a1821951_5fcd9d8c",
+        "filename": "src/mainview/components/SipInputPanel.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-08T16:13:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5af0582_0bbcc044",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 26
+      },
+      "revId": "0bc58c33d4227ee800fb756b11d477840104e776",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec2dd240_b52957b3",
         "filename": "src/settingsview/components/BannedContacts.qml",
         "patchSetId": 21
