@@ -26,9 +26,9 @@
 using namespace lrc::api;
 
 FrameWrapper::FrameWrapper(AVModel& avModel, const QString& id)
-    : avModel_(avModel)
-    , id_(id)
+    : id_(id)
     , isRendering_(false)
+    , avModel_(avModel)
 {}
 
 FrameWrapper::~FrameWrapper()
@@ -167,8 +167,9 @@ FrameWrapper::slotRenderingStopped(const QString& id)
     emit renderingStopped(id);
 }
 
-RenderManager::RenderManager(AVModel& avModel)
-    : avModel_(avModel)
+RenderManager::RenderManager(AVModel& avModel, QObject* parent)
+    : QObject(parent)
+    , avModel_(avModel)
 {
     deviceListSize_ = avModel_.getDevices().size();
     connect(&avModel_, &lrc::api::AVModel::deviceEvent, this, &RenderManager::slotDeviceEvent);

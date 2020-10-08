@@ -165,7 +165,7 @@ class RenderManager final : public QObject
     Q_OBJECT;
 
 public:
-    explicit RenderManager(AVModel& avModel);
+    explicit RenderManager(AVModel& avModel, QObject* parent = nullptr);
     ~RenderManager();
 
     /*

@@ -18,4 +18,8 @@
 
 #pragma once
 
-void registerTypes();
+#include <QSharedPointer>
+
+class Lrc;
+
+void registerTypes(const QSharedPointer<Lrc>& lrc);

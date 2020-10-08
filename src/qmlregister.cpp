@@ -18,6 +18,8 @@
 
 #include "qmlregister.h"
 
+#include "api/lrc.h"
+
 #include "accountadapter.h"
 #include "accountstomigratelistmodel.h"
 #include "mediacodeclistmodel.h"
@@ -92,7 +94,7 @@
  * This function will expose custom types to the QML engine.
  */
 void
-registerTypes()
+registerTypes(const Lrc& lrc)
 {
     /*
      * QAbstractListModels
