@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af121922_16d3ce12",
+        "filename": "src/mainview/components/AccountComboBox.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-08T10:46:34Z",
+      "side": 1,
+      "message": "Not started in this patch, but hovering qr or settings buttons disables the \"hover state\" of account combo box, is this the desired behavior?",
+      "range": {
+        "startLine": 175,
+        "startChar": 8,
+        "endLine": 175,
+        "endChar": 70
+      },
+      "revId": "0bc58c33d4227ee800fb756b11d477840104e776",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec2dd240_b52957b3",
+        "filename": "src/settingsview/components/BannedContacts.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-08T10:46:34Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it be PushButton like in AdvancedSettings.qml line 71?\nThen we can remove HoverableButtonTextItem from project",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 31
+      },
+      "revId": "0bc58c33d4227ee800fb756b11d477840104e776",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c3df659_c49c4330",
+        "filename": "src/wizardview/components/HoverableGradientButton.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-08T10:46:34Z",
+      "side": 1,
+      "message": "Not used, can we remove it?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 8
+      },
+      "revId": "0bc58c33d4227ee800fb756b11d477840104e776",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
