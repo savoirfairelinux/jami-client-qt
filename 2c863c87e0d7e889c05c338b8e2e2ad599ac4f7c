@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "683f5d27_02d390d8",
+        "filename": "src/settingsview/components/PluginItemDelegate.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-08T18:01:30Z",
+      "side": 1,
+      "message": "sourceSize: Qt.size(256, 256)\n                    mipmap: true\n                    width: 32\n                    height: 32",
+      "range": {
+        "startLine": 54,
+        "startChar": 20,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "2c863c87e0d7e889c05c338b8e2e2ad599ac4f7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb4278d6_ab31609e",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-08T18:01:30Z",
+      "side": 1,
+      "message": "sourceSize: Qt.size(256, 256)\n                    mipmap: true\n                    height: 48\n                    width: 48",
+      "range": {
+        "startLine": 113,
+        "startChar": 20,
+        "endLine": 116,
+        "endChar": 32
+      },
+      "revId": "2c863c87e0d7e889c05c338b8e2e2ad599ac4f7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d569daa0_20722aaf",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-08T18:01:30Z",
+      "side": 1,
+      "message": "16",
+      "range": {
+        "startLine": 134,
+        "startChar": 30,
+        "endLine": 134,
+        "endChar": 32
+      },
+      "revId": "2c863c87e0d7e889c05c338b8e2e2ad599ac4f7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
