@@ -57,15 +57,15 @@ Rectangle {
 
     function clearContactSearchBar() {
         contactSearchBar.clearText()
-    }
-
-    function accountChangedUIReset() {
-        contactSearchBar.clearText()
+        //forceReselectConversationSmartListCurrentIndex()
+        //conversationSmartListView.currentItem.forceActiveFocus()
+//        conversationSmartListView.repositionIndex(currentSmartListIndex)
+//        conversationSmartListView.updateListView()
     }
 
     function refreshAccountComboBox(index) {
         accountComboBox.update()
-        accountChangedUIReset()
+        clearContactSearchBar()
         accountComboBox.resetAccountListModel()
     }
 
@@ -98,6 +98,13 @@ Rectangle {
 
         onContactSearchBarTextChanged: {
             UtilsAdapter.setConversationFilter(text)
+        }
+
+        onReturnPressedWhileSearching: {
+            var convUid = conversationSmartListView.itemAtIndex(0).convUid()
+            var currentAccountId = AccountAdapter.currentAccountId
+            ConversationsAdapter.selectConversation(currentAccountId, convUid)
+            conversationSmartListView.repositionIndex(convUid)
         }
     }
 
