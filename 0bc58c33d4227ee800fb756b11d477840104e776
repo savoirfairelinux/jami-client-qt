@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ee2cd5e9_3d9de3ea",
+        "filename": "src/settingsview/components/BannedContacts.qml",
+        "patchSetId": 21
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-08T12:04:24Z",
+      "side": 1,
+      "message": "Done in another patch of the stack",
+      "parentUuid": "ec2dd240_b52957b3",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 31
+      },
+      "revId": "0bc58c33d4227ee800fb756b11d477840104e776",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c3df659_c49c4330",
         "filename": "src/wizardview/components/HoverableGradientButton.qml",
         "patchSetId": 21
