@@ -20,14 +20,21 @@
 
 #pragma once
 
-#include <QFile>
 #include <QApplication>
+#include <QFile>
 #include <QQmlApplicationEngine>
 #include <QQmlEngine>
-
-#include <memory>
+#include <QSharedPointer>
 
 class ConnectivityMonitor;
+
+#include "updatemanager.h"
+#include "rendermanager.h"
+#include "api/lrc.h"
+
+// class RenderManager;
+// class UpdateManager;
+// class Lrc;
 
 class MainApplication : public QApplication
 {
@@ -41,7 +48,7 @@ public:
 
 private:
     void loadTranslations();
-    void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm);
+    void initLrc(const QString& downloadUrl);
     const QVariantMap parseArguments();
     void setApplicationFont();
     void initQmlEngine();
@@ -53,5 +60,9 @@ private:
 private:
     QScopedPointer<QFile> debugFile_;
     QQmlApplicationEngine* engine_;
+
     ConnectivityMonitor* connectivityMonitor_;
+    UpdateManager* updateManager_;
+    RenderManager* renderManager_;
+    QSharedPointer<Lrc> lrc_;
 };

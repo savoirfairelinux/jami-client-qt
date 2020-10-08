@@ -149,20 +149,26 @@ MainApplication::init()
 #endif
 
     GlobalInstances::setPixmapManipulator(std::make_unique<PixbufManipulator>());
-    initLrc(results[opts::UPDATEURL].toString(), connectivityMonitor_);
+    initLrc(results[opts::UPDATEURL].toString());
+
+    renderManager_ = new RenderManager(lrc_->getAVModel(), this);
+    updateManager_ = new UpdateManager(results[opts::UPDATEURL].toString(),
+                                       connectivityMonitor_,
+                                       this);
 
 #ifdef Q_OS_WIN
-    connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, [] {
-        LRCInstance::connectivityChanged();
+    connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, [this] {
+        lrc_->connectivityChanged();
     });
 #endif // Q_OS_WIN
 
-    QObject::connect(
-        &LRCInstance::instance(),
-        &LRCInstance::quitEngineRequested,
-        this,
-        [this] { engine_->quit(); },
-        Qt::DirectConnection);
+    // TODO: LRCInstance signals --> signalhub ??
+    //    QObject::connect(
+    //        &LRCInstance::instance(),
+    //        &LRCInstance::quitEngineRequested,
+    //        this,
+    //        [this] { engine_->quit(); },
+    //        Qt::DirectConnection);
 
     if (results[opts::DEBUGFILE].toBool()) {
         debugFile_.reset(new QFile(getDebugFilePath()));
@@ -318,7 +324,7 @@ MainApplication::setApplicationFont()
 void
 MainApplication::initQmlEngine()
 {
-    registerTypes();
+    registerTypes(lrc_);
 
     engine_->addImageProvider(QLatin1String("qrImage"), new QrImageProvider());
     engine_->addImageProvider(QLatin1String("tintedPixmap"), new TintedButtonImageProvider());
