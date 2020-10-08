@@ -144,21 +144,22 @@ Rectangle {
         }
     }
 
-    Button {
-        id: btnAbout
+    MaterialButton {
+        id: btnClose
 
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 10
         anchors.horizontalCenter: parent.horizontalCenter
 
-        background: Rectangle {
-            color: "transparent"
-        }
+        width: 150
+        height: 30
 
-        contentItem: Text {
-            text: qsTr("About Jami")
-            color: "grey"
-        }
+        color: JamiTheme.buttonTintedBlack
+        hoveredColor: JamiTheme.buttonTintedBlackHovered
+        pressedColor: JamiTheme.buttonTintedBlackPressed
+        outlined: true
+
+        text: JamiStrings.aboutJami
 
         onClicked: aboutPopUpDialog.open()
     }
