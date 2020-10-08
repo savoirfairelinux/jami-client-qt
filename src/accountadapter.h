@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang   <mingrui.zhang@savoirfairelinux.com>
  *
@@ -19,13 +19,13 @@
 #pragma once
 
 #include "qmladapterbase.h"
+#include "utils.h"
 
 #include <QObject>
 #include <QSettings>
 #include <QString>
 
-#include "lrcinstance.h"
-#include "utils.h"
+class Lrc;
 
 class AccountAdapter final : public QmlAdapterBase
 {
@@ -54,7 +54,7 @@ signals:
     void accountListSizeChanged();
 
 public:
-    explicit AccountAdapter(QObject* parent = 0);
+    explicit AccountAdapter(const QSharedPointer<Lrc>& lrc, QObject* parent = nullptr);
     ~AccountAdapter() = default;
 
 protected:
@@ -122,6 +122,8 @@ private slots:
     void onCurrentAccountChanged();
 
 private:
+    QSharedPointer<Lrc> lrc_;
+
     QString currentAccountId_ {};
     lrc::api::profile::Type currentAccountType_ {};
     int accountListSize_ {};

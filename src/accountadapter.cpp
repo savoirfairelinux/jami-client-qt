@@ -25,38 +25,44 @@
 
 #include "qtutils.h"
 
+#include "api/lrc.h"
+#include "api/newaccountmodel.h"
+
 #undef REGISTERED
 #include "../daemon/src/dring/account_const.h"
 
-AccountAdapter::AccountAdapter(QObject* parent)
+AccountAdapter::AccountAdapter(const QSharedPointer<Lrc>& lrc, QObject* parent)
     : QmlAdapterBase(parent)
+    , lrc_(lrc)
 {}
 
 void
 AccountAdapter::safeInit()
 {
-    connect(&LRCInstance::instance(),
-            &LRCInstance::currentAccountChanged,
-            this,
-            &AccountAdapter::onCurrentAccountChanged);
+    // TODO: LRCInstance signals --> signalhub ??
+    //    connect(&LRCInstance::instance(),
+    //            &LRCInstance::currentAccountChanged,
+    //            this,
+    //            &AccountAdapter::onCurrentAccountChanged);
 
     deselectConversation();
 
-    auto accountId = LRCInstance::getCurrAccId();
-    setProperties(accountId);
-    connectAccount(accountId);
+    // TODO: manage currentAccountId in this object
+    //    auto accountId = LRCInstance::getCurrAccId();
+    //    setProperties(accountId);
+    //    connectAccount(accountId);
 }
 
 lrc::api::NewAccountModel*
 AccountAdapter::getModel()
 {
-    return &(LRCInstance::accountModel());
+    return lrc_->getAccountModel();
 }
 
 lrc::api::ContactModel*
 AccountAdapter::getContactModel()
 {
-    return LRCInstance::getCurrentAccountInfo().contactModel.get();
+    return lrc_->accountModel().getAccountInfo(accountId).contactModel.get();
 }
 
 lrc::api::NewDeviceModel*
