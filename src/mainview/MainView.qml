@@ -200,7 +200,6 @@ Window {
             callStackView.setLinkedWebview(communicationPageMessageWebView)
             callStackView.responsibleAccountId = AccountAdapter.currentAccountId
             callStackView.responsibleConvUid = currentUID
-            callStackView.updateCorrespondingUI()
 
             if (callState === Call.Status.IN_PROGRESS || callState === Call.Status.PAUSED) {
                 UtilsAdapter.setCurrentCall(AccountAdapter.currentAccountId, currentUID)
@@ -209,12 +208,12 @@ Window {
                 else
                     callStackView.showVideoCallPage()
             } else if (callState === Call.Status.INCOMING_RINGING) {
-                callStackView.showIncomingCallPage(AccountAdapter.currentAccountId,
-                                                   currentUID)
+                callStackView.showIncomingCallPage()
             } else {
                 callStackView.showOutgoingCallPage(callState)
             }
             pushCallStackView()
+
         } else if (!inSettingsView) {
             if (currentConvUID !== currentUID) {
                 callStackView.needToCloseInCallConversationAndPotentialWindow()

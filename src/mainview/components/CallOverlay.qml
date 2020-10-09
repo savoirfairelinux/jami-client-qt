@@ -183,12 +183,12 @@ Rectangle {
 
                 toolTipText: qsTr("Toggle to display side panel")
 
-                visible: mainViewWindow.sidePanelOnly
+                visible: (mainViewWindow.sidePanelOnly || callStackView.isFullscreen)
 
                 onClicked: {
                     if (callStackView.isFullscreen) {
                         callStackView.toggleFullScreen()
-                    } else {
+                    } else if (mainViewWindow.sidePanelOnly) {
                         mainViewWindow.showWelcomeView()
                     }
                 }
