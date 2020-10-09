@@ -188,9 +188,8 @@ Rectangle {
                 onClicked: {
                     if (callStackView.isFullscreen) {
                         callStackView.toggleFullScreen()
-                    } else {
-                        mainViewWindow.showWelcomeView()
                     }
+                    mainViewWindow.showWelcomeView()
                 }
             }
 
