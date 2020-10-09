@@ -34,8 +34,6 @@ Rectangle {
 
     property var linkedWebview: null
 
-    signal showFullScreenReqested
-
     function updateUI(accountId, convUid) {
         contactImgSource = "data:image/png;base64," + UtilsAdapter.getContactImageString(
                     accountId, convUid)
