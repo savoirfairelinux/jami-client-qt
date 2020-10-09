@@ -523,6 +523,11 @@ Window {
 
     AboutPopUp {
         id: aboutPopUpDialog
+
+        height: Math.min(preferredHeight,
+                         mainViewWindow.height - JamiTheme.preferredMarginSize * 2)
+
+        Component.onCompleted: print(height)
     }
 
     WelcomePageQrDialog {
