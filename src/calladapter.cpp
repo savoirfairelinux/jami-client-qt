@@ -123,7 +123,6 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
     }
     auto selectedAccountId = LRCInstance::getCurrAccId();
     auto* callModel = LRCInstance::getCurrentCallModel();
-    auto* convModel = LRCInstance::getCurrentConversationModel();
 
     if (!callModel->hasCall(convInfo.callId)) {
         if (QApplication::focusObject() == nullptr || accountId != selectedAccountId) {
@@ -188,8 +187,8 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
                 if (currentConvHasCall) {
                     auto currentCall = callModel->getCall(currentConvInfo.callId);
                     if ((currentCall.status == lrc::api::call::Status::CONNECTED
-                        || currentCall.status == lrc::api::call::Status::IN_PROGRESS)
-                            && !accountProperties.autoAnswer) {
+                         || currentCall.status == lrc::api::call::Status::IN_PROGRESS)
+                        && !accountProperties.autoAnswer) {
                         showNotification(accountId, convInfo.uid);
                         return;
                     }
@@ -297,7 +296,7 @@ void
 CallAdapter::showNotification(const QString& accountId, const QString& convUid)
 {
     QString from {};
-    auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
     if (!accountId.isEmpty() && !convInfo.uid.isEmpty()) {
         auto& accInfo = LRCInstance::getAccountInfo(accountId);
         if (!convInfo.participants.isEmpty()) {
@@ -306,15 +305,17 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
         }
     }
 
-    auto onClicked = [this, convInfo]() {
+    auto onClicked = [this, accountId, convUid = convInfo.uid]() {
+        const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+        if (convInfo.uid.isEmpty()) {
+            return;
+        }
 #ifdef Q_OS_WINDOWS
         emit LRCInstance::instance().notificationClicked();
 #else
         emit LRCInstance::instance().notificationClicked(true);
 #endif
-        if (!convInfo.uid.isEmpty()) {
-            emit callSetupMainViewRequired(convInfo.accountId, convInfo.uid);
-        }
+        emit callSetupMainViewRequired(convInfo.accountId, convInfo.uid);
     };
     emit LRCInstance::instance().updateSmartList();
     Utils::showNotification(tr("is calling you"), from, accountId, convUid, onClicked);
@@ -335,7 +336,7 @@ CallAdapter::connectCallModel(const QString& accountId)
             auto& accInfo = LRCInstance::accountModel().getAccountInfo(accountId);
             auto& callModel = accInfo.callModel;
             auto call = callModel->getCall(confId);
-            const auto convInfo = LRCInstance::getConversationFromCallId(confId);
+            const auto& convInfo = LRCInstance::getConversationFromCallId(confId);
             if (!convInfo.uid.isEmpty()) {
                 // Convert to QML
                 QVariantList map;
@@ -385,7 +386,7 @@ CallAdapter::connectCallModel(const QString& accountId)
             /*
              * Change status label text.
              */
-            const auto convInfo = LRCInstance::getConversationFromCallId(callId);
+            const auto& convInfo = LRCInstance::getConversationFromCallId(callId);
             if (!convInfo.uid.isEmpty()) {
                 emit callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
             }
@@ -418,7 +419,7 @@ CallAdapter::connectCallModel(const QString& accountId)
                         if (!callModel->hasCall(callId)) {
                             continue;
                         }
-                        auto otherConv = LRCInstance::getConversationFromCallId(callId);
+                        const auto& otherConv = LRCInstance::getConversationFromCallId(callId);
                         if (!otherConv.uid.isEmpty() && otherConv.uid != convInfo.uid) {
                             /*
                              * Reset the call view corresponding accountId, uid.
@@ -433,7 +434,7 @@ CallAdapter::connectCallModel(const QString& accountId)
             }
             case lrc::api::call::Status::CONNECTED:
             case lrc::api::call::Status::IN_PROGRESS: {
-                const auto convInfo = LRCInstance::getConversationFromCallId(callId, accountId);
+                const auto& convInfo = LRCInstance::getConversationFromCallId(callId, accountId);
                 if (!convInfo.uid.isEmpty() && convInfo.uid == LRCInstance::getCurrentConvUid()) {
                     accInfo.conversationModel->selectConversation(convInfo.uid);
                 }
@@ -627,7 +628,7 @@ CallAdapter::isCurrentHost() const
 bool
 CallAdapter::isCurrentModerator() const
 {
-    const auto convInfo = LRCInstance::getConversationFromConvUid(convUid_);
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid_);
     if (!convInfo.uid.isEmpty()) {
         auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
         try {
