@@ -79,7 +79,11 @@ ConversationsAdapter::selectConversation(const QString& accountId, const QString
     if (LRCInstance::getCurrentConvUid() != convInfo.uid && convInfo.participants.size() > 0) {
         // If the account is not currently selected, do that first, then
         // proceed to select the conversation.
-        auto selectConversation = [this, convInfo] {
+        auto selectConversation = [this, accountId, convUid = convInfo.uid] {
+            const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+            if (convInfo.uid.isEmpty()) {
+                return;
+            }
             auto& accInfo = LRCInstance::getAccountInfo(convInfo.accountId);
             LRCInstance::setSelectedConvId(convInfo.uid);
             accInfo.conversationModel->clearUnreadInteractions(convInfo.uid);
@@ -149,7 +153,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
 #else
             emit LRCInstance::instance().notificationClicked(true);
 #endif
-            auto convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+            const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
             if (!convInfo.uid.isEmpty()) {
                 selectConversation(accountId, convInfo.uid);
                 emit LRCInstance::instance().updateSmartList();
@@ -187,7 +191,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
     auto currentConversationModel = LRCInstance::getCurrentConversationModel();
 
     modelSortedConnection_ = QObject::connect(
-        currentConversationModel, &lrc::api::ConversationModel::modelSorted, [this]() {
+        currentConversationModel, &lrc::api::ConversationModel::modelChanged, [this]() {
             conversationSmartListModel_->fillConversationsList();
             updateConversationsFilterWidget();
             emit updateListViewRequested();
@@ -210,9 +214,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
 
     modelUpdatedConnection_ = QObject::connect(currentConversationModel,
                                                &lrc::api::ConversationModel::conversationUpdated,
-                                               [this](const QString& convUid) {
-                                                   conversationSmartListModel_->updateConversation(
-                                                       convUid);
+                                               [this](const QString&) {
                                                    updateConversationsFilterWidget();
                                                    emit updateListViewRequested();
                                                });
