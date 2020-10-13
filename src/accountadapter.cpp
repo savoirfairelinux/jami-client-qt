@@ -42,6 +42,7 @@ AccountAdapter::safeInit()
 
     deselectConversation();
 
+    getModel()->sortAccounts();
     auto accountId = LRCInstance::getCurrAccId();
     setProperties(accountId);
     connectAccount(accountId);
