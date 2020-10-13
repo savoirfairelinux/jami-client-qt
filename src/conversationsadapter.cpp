@@ -72,8 +72,7 @@ ConversationsAdapter::backToWelcomePage()
 }
 
 void
-ConversationsAdapter::selectConversation(const QString& accountId,
-                                         const QString& convUid)
+ConversationsAdapter::selectConversation(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid);
 
@@ -211,9 +210,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
 
     modelUpdatedConnection_ = QObject::connect(currentConversationModel,
                                                &lrc::api::ConversationModel::conversationUpdated,
-                                               [this](const QString& convUid) {
-                                                   conversationSmartListModel_->updateConversation(
-                                                       convUid);
+                                               [this](const QString&) {
                                                    updateConversationsFilterWidget();
                                                    emit updateListViewRequested();
                                                });
