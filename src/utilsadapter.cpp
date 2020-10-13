@@ -103,7 +103,7 @@ UtilsAdapter::checkStartupLink()
 const QString
 UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
 {
-    auto conv = LRCInstance::getConversationFromConvUid(uid);
+    const auto& conv = LRCInstance::getConversationFromConvUid(uid);
     if (!conv.participants.isEmpty())
         return LRCInstance::getAccountInfo(accountId).contactModel->bestNameForContact(
             conv.participants[0]);
@@ -121,7 +121,7 @@ UtilsAdapter::getBestId(const QString& accountId)
 const QString
 UtilsAdapter::getBestId(const QString& accountId, const QString& uid)
 {
-    auto conv = LRCInstance::getConversationFromConvUid(uid);
+    const auto& conv = LRCInstance::getConversationFromConvUid(uid);
     if (!conv.participants.isEmpty())
         return LRCInstance::getAccountInfo(accountId).contactModel->bestIdForContact(
             conv.participants[0]);
