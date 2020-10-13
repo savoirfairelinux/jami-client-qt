@@ -4,8 +4,9 @@ param (
 );
 
 $clientDir = split-path -parent $MyInvocation.MyCommand.Definition
-$qtver = If ($qtver) { $qtver } Else { "5.15.0" }
-$qtMsvcDir = "msvc2019_64"
+$qtver = If ($qtver) { $qtver } Else { "5.14.2" }
+$qtMinorVer = $qtver.split('.')[1]
+$qtMsvcDir = If (([int]$qtMinorVer) -le 14) {"msvc2017_64"} Else {"msvc2019_64"}
 $QtDir = "C:\Qt\$qtver\$qtMsvcDir"
 
 $tsFileNames = Get-ChildItem -Path "$clientDir\translations" -Recurse -Include *.ts
