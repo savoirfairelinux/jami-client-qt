@@ -67,8 +67,6 @@ public:
                             SmartListModel::Type listModelType = Type::CONVERSATION);
     ~SmartListModel();
 
-    void updateConversation(const QString& convUid);
-
     /*
      * QAbstractListModel.
      */
@@ -110,5 +108,5 @@ private:
     QMap<QString, bool> sectionState_;
     QMap<ConferenceableItem, ConferenceableValue> conferenceables_;
     QMap<QString, QString> contactAvatarUidMap_;
-    ConversationModel::ConversationQueue conversations_;
+    ConversationModel::ConversationQueueProxy conversations_;
 };

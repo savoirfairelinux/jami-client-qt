@@ -36,17 +36,6 @@ SmartListModel::SmartListModel(QObject* parent, SmartListModel::Type listModelTy
 
 SmartListModel::~SmartListModel() {}
 
-void
-SmartListModel::updateConversation(const QString& convUid)
-{
-    for (lrc::api::conversation::Info& conversation : conversations_) {
-        if (conversation.uid == convUid) {
-            conversation = LRCInstance::getConversationFromConvUid(convUid);
-            return;
-        }
-    }
-}
-
 int
 SmartListModel::rowCount(const QModelIndex& parent) const
 {
@@ -190,16 +179,9 @@ SmartListModel::fillConversationsList()
     fillContactAvatarUidMap(LRCInstance::getCurrentAccountInfo().contactModel->getAllContacts());
 
     auto* convModel = LRCInstance::getCurrentConversationModel();
-    conversations_.clear();
-
-    for (auto convSearch : convModel->getAllSearchResults()) {
-        conversations_.emplace_back(convSearch);
-    }
-
-    auto afc = convModel->allFilteredConversations();
-    for (auto convFilt : afc()) {
-        conversations_.emplace_back(convFilt);
-    }
+    using ConversationList = ConversationModel::ConversationQueueProxy;
+    conversations_ = ConversationList(convModel->getAllSearchResults())
+                     + convModel->allFilteredConversations();
     endResetModel();
 }
 
