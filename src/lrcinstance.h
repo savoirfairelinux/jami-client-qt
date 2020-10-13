@@ -299,6 +299,7 @@ public:
 
         instance().selectedAccountId_ = accountId;
 
+        accountModel().sortAccounts();
         // Last selected account should be set as preferred.
         accountModel().setTopAccount(accountId);
 
