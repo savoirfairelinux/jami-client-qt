@@ -210,9 +210,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
 
     modelUpdatedConnection_ = QObject::connect(currentConversationModel,
                                                &lrc::api::ConversationModel::conversationUpdated,
-                                               [this](const QString& convUid) {
-                                                   conversationSmartListModel_->updateConversation(
-                                                       convUid);
+                                               [this](const QString&) {
                                                    updateConversationsFilterWidget();
                                                    emit updateListViewRequested();
                                                });
