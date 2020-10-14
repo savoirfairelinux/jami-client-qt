@@ -30,6 +30,18 @@ Rectangle {
 
     signal itemSelected(int index)
 
+    // The following two function are used specically
+    // for compact mode to make sure that the button
+    // can be rechecked when clicking the back button
+    // in settings
+    function resetButtonCheckedState(){
+        buttonGroup.checkedButton = null
+    }
+
+    function recoverButtonCheckedState(index){
+        repeater.itemAt(index).checked = true
+    }
+
     Component.onCompleted: {
         listModel.append({ 'type': SettingsView.Account, 'name': qsTr("Account"),
                          'iconSource': "qrc:/images/icons/baseline-people-24px.svg"})
@@ -45,8 +57,13 @@ Rectangle {
     color: JamiTheme.backgroundColor
 
     ButtonGroup {
+        id: buttonGroup
+
         buttons: buttons.children
-        onCheckedButtonChanged: itemSelected(checkedButton.menuType)
+        onCheckedButtonChanged: {
+            if (checkedButton)
+                itemSelected(checkedButton.menuType)
+        }
     }
 
     Column {

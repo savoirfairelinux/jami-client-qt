@@ -429,7 +429,10 @@ Window {
             mainViewWindow.noAccountIsAvailable()
         }
 
-        onSettingsBackArrowClicked: sidePanelViewStack.pop(StackView.Immediate)
+        onSettingsBackArrowClicked: {
+            settingsMenu.resetButtonCheckedState()
+            sidePanelViewStack.pop(StackView.Immediate)
+        }
     }
 
     MessageWebView {
@@ -512,6 +515,7 @@ Window {
                 if (sidePanelViewStack.currentItem.objectName !== settingsMenu.objectName)
                     sidePanelViewStack.pop(StackView.Immediate)
                 mainViewStack.push(settingsView, StackView.Immediate)
+                settingsMenu.recoverButtonCheckedState(settingsView.selectedMenu)
             } else if (inSidePanelViewStack) {
                 recursionStackViewItemMove(sidePanelViewStack, mainViewStack)
                 if (currentAccountIsCalling())
