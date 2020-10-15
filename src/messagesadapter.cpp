@@ -27,6 +27,7 @@
 #include "qtutils.h"
 #include "utils.h"
 #include "webchathelpers.h"
+#include "api/chatview.h"
 
 #include <QApplication>
 #include <QClipboard>
@@ -38,6 +39,7 @@
 
 MessagesAdapter::MessagesAdapter(QObject* parent)
     : QmlAdapterBase(parent)
+    , chatviewTranslatedStrings_ {lrc::api::chatview::getTranslatedStrings()}
 {}
 
 void
@@ -450,7 +452,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = Utils::bestNameForConversation(convInfo, *convModel);
         setInvitation(contact.profileInfo.type == lrc::api::profile::Type::PENDING
-                      || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY,
+                          || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY,
                       bestName,
                       contactUri);
 

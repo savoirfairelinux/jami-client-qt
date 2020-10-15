@@ -20,7 +20,6 @@
 
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
-#include "api/chatview.h"
 
 #include <QObject>
 #include <QString>
@@ -109,7 +108,7 @@ private:
     QString LastConvUid_;
     QString currentConvUid_;
 
-    const QVariantMap chatviewTranslatedStrings_ {lrc::api::chatview::getTranslatedStrings()};
+    const QVariantMap chatviewTranslatedStrings_;
 
     /*
      * Interaction connections.
