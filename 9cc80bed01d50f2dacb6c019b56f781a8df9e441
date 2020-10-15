@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "021b50b2_9b835035",
+        "filename": "src/commoncomponents/GeneralMenuItem.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-15T16:05:59Z",
+      "side": 1,
+      "message": "Maybe a better name",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 22
+      },
+      "revId": "9cc80bed01d50f2dacb6c019b56f781a8df9e441",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
