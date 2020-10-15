@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8372b2b6_98e5463a",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-15T21:03:18Z",
+      "side": 1,
+      "message": "Can be removed",
+      "range": {
+        "startLine": 193,
+        "startChar": 12,
+        "endLine": 193,
+        "endChar": 38
+      },
+      "revId": "149049ff188cfd54efa07153b5e0b4f9707bfad2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
