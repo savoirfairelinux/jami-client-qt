@@ -73,8 +73,7 @@ NetWorkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& 
 
     QNetworkRequest request(url);
     reply_ = manager_->get(request);
-
-    emit statusChanged(GetStatus::STARTED);
+    reply_->ignoreSslErrors();
 
     connect(reply_,
             QOverload<QNetworkReply::NetworkError>::of(&QNetworkReply::errorOccurred),
@@ -111,6 +110,8 @@ NetWorkManager::get(const QUrl& url, const DoneCallBack& doneCb, const QString& 
             SLOT(onSslErrors(QList<QSslError>)),
             Qt::UniqueConnection);
 #endif
+
+    emit statusChanged(GetStatus::STARTED);
 }
 
 void
