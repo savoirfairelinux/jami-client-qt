@@ -233,8 +233,7 @@ Rectangle {
                     inputParaObject["password"] = text_passwordEditAlias
                     AccountAdapter.createJamiAccount(
                         createAccountPage.text_usernameEditAlias,
-                        inputParaObject,
-                        createAccountPage.boothImgBase64,
+                        inputParaObject, "",
                         true)
                     showBackUp = !isRdv
                     showBottom = true
@@ -385,14 +384,12 @@ Rectangle {
                 }
 
                 onSaveProfile: {
-                    SettingsAdapter.setCurrAccAvatar(profilePage.boothImgBase64)
+                    SettingsAdapter.setCurrAccAvatar(profilePage.profileImg)
                     AccountAdapter.setCurrAccDisplayName(profilePage.displayName)
                     leave()
                 }
 
-                onLeavePage: {
-                    leave()
-                }
+                onLeavePage: leave()
             }
         }
     }

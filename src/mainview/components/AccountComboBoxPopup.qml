@@ -51,7 +51,7 @@ Popup {
         model: accountListModel
         implicitHeight: contentHeight
         delegate: ItemDelegate {
-            Image {
+            AvatarImage {
                 id: userImage
 
                 anchors.left: parent.left
@@ -61,17 +61,10 @@ Popup {
                 width: 30
                 height: 30
 
-                fillMode: Image.PreserveAspectFit
-                mipmap: true
-
-                // Role::Picture
-                source: {
-                    var data = accountListModel.data(accountListModel.index(index, 0),
-                                                     AccountListModel.Picture)
-                    if (data === undefined) {
-                        return ""
-                    }
-                    return "data:image/png;base64," + data
+                imageId: {
+                    var accountId = accountListModel.data(
+                                accountListModel.index(index, 0), AccountListModel.ID)
+                    return accountId === undefined ? "" : accountId
                 }
 
                 PresenceIndicator {

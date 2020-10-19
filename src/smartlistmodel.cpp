@@ -21,11 +21,9 @@
 #include "smartlistmodel.h"
 
 #include "lrcinstance.h"
-#include "pixbufmanipulator.h"
 #include "utils.h"
 
 #include "api/contactmodel.h"
-#include "globalinstances.h"
 
 #include <QDateTime>
 
@@ -148,7 +146,6 @@ SmartListModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[DisplayName] = "DisplayName";
     roles[DisplayID] = "DisplayID";
-    roles[Picture] = "Picture";
     roles[Presence] = "Presence";
     roles[URI] = "URI";
     roles[UnreadMessagesCount] = "UnreadMessagesCount";
@@ -242,11 +239,6 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
     }
     auto& contactModel = accountInfo.contactModel;
     switch (role) {
-    case Role::Picture: {
-        auto contactImage
-            = GlobalInstances::pixmapManipulator().decorationRole(item, accountInfo).value<QImage>();
-        return QString::fromLatin1(Utils::QImageToByteArray(contactImage).toBase64().data());
-    }
     case Role::DisplayName: {
         if (!item.participants.isEmpty()) {
             auto& contact = contactModel->getContact(item.participants[0]);
@@ -270,8 +262,7 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
     }
     case Role::URI: {
         if (!item.participants.isEmpty()) {
-            auto& contact = contactModel->getContact(item.participants[0]);
-            return QVariant(contact.profileInfo.uri);
+            return QVariant(item.participants[0]);
         }
         return QVariant("");
     }
@@ -331,13 +322,13 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         if (!convInfo.uid.isEmpty()) {
             auto* callModel = LRCInstance::getCurrentCallModel();
             const auto call = callModel->getCall(convInfo.callId);
-            return QVariant(callModel->hasCall(convInfo.callId)
-                            && ((!call.isOutgoing
-                                 && (call.status == lrc::api::call::Status::IN_PROGRESS
-                                     || call.status == lrc::api::call::Status::PAUSED
-                                     || call.status == lrc::api::call::Status::INCOMING_RINGING))
-                                || (call.isOutgoing
-                                    && call.status != lrc::api::call::Status::ENDED)));
+            return QVariant(
+                callModel->hasCall(convInfo.callId)
+                && ((!call.isOutgoing
+                     && (call.status == lrc::api::call::Status::IN_PROGRESS
+                         || call.status == lrc::api::call::Status::PAUSED
+                         || call.status == lrc::api::call::Status::INCOMING_RINGING))
+                    || (call.isOutgoing && call.status != lrc::api::call::Status::ENDED)));
         }
         return QVariant(false);
     }
