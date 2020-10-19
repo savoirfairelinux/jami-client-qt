@@ -2,9 +2,9 @@ win32-msvc {
     TARGET = Jami
     TEMPLATE = app
 
-    QT += core winextras qml quickcontrols2 quick xml multimedia network webengine svg sql
+    QT += core winextras qml quickcontrols2 quick xml multimedia network webengine svg sql testlib
 
-    CONFIG += suppress_vcproj_warnings c++17 qtquickcompiler
+    CONFIG += suppress_vcproj_warnings c++17 qtquickcompiler qmltestcase
 
     QTQUICK_COMPILER_SKIPPED_RESOURCES += resources.qrc
 
@@ -85,12 +85,13 @@ unix {
     TEMPLATE = app
 
     QT += quick quickwidgets widgets xml multimedia multimediawidgets network \
-          webenginewidgets svg quickcontrols2 webengine webenginecore sql dbus
+          webenginewidgets svg quickcontrols2 webengine webenginecore sql dbus \
+          testlib
 
     # Maj/min versions can be checked(if needed) using:
     # equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 12) {}
     versionAtLeast(QT_VERSION, 5.12.0) {
-        CONFIG += c++17
+        CONFIG += c++17 qmltestcase
     } else {
         QMAKE_CXXFLAGS += -std=c++17
     }
@@ -107,12 +108,41 @@ unix {
     isEmpty(PREFIX) { PREFIX = /tmp/$${TARGET}/bin }
     target.path = $$PREFIX/bin
     INSTALLS += target
+
+    # TODO: Best way to add googletest to project?
+    GOOGLETEST_DIR = $$PWD/../../googletest
+    GTEST_SRCDIR = $$GOOGLETEST_DIR/googletest
+    GMOCK_SRCDIR = $$GOOGLETEST_DIR/googlemock
+
+    requires(exists($$GTEST_SRCDIR):exists($$GMOCK_SRCDIR))
+
+    DEFINES += \
+        GTEST_LANG_CXX11
+
+    !isEmpty(GTEST_SRCDIR) {
+        INCLUDEPATH *= \
+            $$GTEST_SRCDIR \
+            $$GTEST_SRCDIR/include
+
+        SOURCES += \
+            $$GTEST_SRCDIR/src/gtest-all.cc
+    }
+
+    !isEmpty(GMOCK_SRCDIR) {
+        INCLUDEPATH *= \
+            $$GMOCK_SRCDIR \
+            $$GMOCK_SRCDIR/include
+
+        SOURCES += \
+            $$GMOCK_SRCDIR/src/gmock-all.cc
+    }
 }
 
 # Input
 HEADERS += \
         src/networkmanager.h \
         src/smartlistmodel.h \
+        src/tst_test.h \
         src/updatemanager.h \
         src/utils.h \
         src/bannedlistmodel.h \
@@ -161,11 +191,13 @@ HEADERS += \
 SOURCES += \
         src/bannedlistmodel.cpp \
         src/accountlistmodel.cpp \
+        src/main.cpp \
         src/networkmanager.cpp \
         src/runguard.cpp \
+        src/tst_clientgtest.cpp \
+        src/tst_clientui.cpp \
         src/updatemanager.cpp \
         src/webchathelpers.cpp \
-        src/main.cpp \
         src/smartlistmodel.cpp \
         src/utils.cpp \
         src/pixbufmanipulator.cpp \
