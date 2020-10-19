@@ -94,6 +94,7 @@ Rectangle {
 
                 PushButton {
                     id: callAnswerButton
+                    objectName: "callAnswerButton"
 
                     Layout.alignment: Qt.AlignCenter
 
@@ -118,6 +119,7 @@ Rectangle {
 
                 PushButton {
                     id: callDeclineButton
+                    objectName: "callDeclineButton"
 
                     Layout.alignment: Qt.AlignCenter
 

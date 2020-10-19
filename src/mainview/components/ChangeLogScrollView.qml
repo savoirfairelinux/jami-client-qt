@@ -23,6 +23,7 @@ import net.jami.Adapters 1.0
 
 ScrollView {
     id: changeLogScrollView
+    objectName: "changeLogScrollView"
 
     anchors.fill: parent
 

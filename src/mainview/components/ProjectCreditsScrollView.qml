@@ -23,6 +23,7 @@ import net.jami.Adapters 1.0
 
 ScrollView {
     id: projectCreditsScrollView
+    objectName: "projectCreditsScrollView"
 
     anchors.fill: parent
 

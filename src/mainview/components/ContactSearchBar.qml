@@ -24,6 +24,7 @@ import net.jami.Models 1.0
 
 Rectangle {
     id: contactSearchBarRect
+    objectName: "contactSearchBar"
 
     signal contactSearchBarTextChanged(string text)
     signal returnPressedWhileSearching
@@ -63,6 +64,7 @@ Rectangle {
 
     TextField {
         id: contactSearchBar
+        objectName: "contactSearchBarTextField"
 
         anchors.verticalCenter: contactSearchBarRect.verticalCenter
         anchors.left: searchIconImage.right
