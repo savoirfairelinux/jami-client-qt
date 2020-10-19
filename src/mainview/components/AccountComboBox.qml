@@ -39,8 +39,8 @@ ComboBox {
         target: accountListModel
 
         function onModelReset() {
-            userImageRoot.source = "data:image/png;base64," + accountListModel.data(
-                        accountListModel.index(0, 0), AccountListModel.Picture)
+            userImageRoot.updateImage(accountListModel.data(
+                        accountListModel.index(0, 0), AccountListModel.ID))
             currentAccountPresenceIndicator.status =
                     accountListModel.data(accountListModel.index(0, 0), AccountListModel.Status)
             textMetricsUserAliasRoot.text = accountListModel.data(accountListModel.index(0,0),
@@ -50,7 +50,7 @@ ComboBox {
         }
     }
 
-    Image {
+    AvatarImage {
         id: userImageRoot
 
         anchors.left: root.left
@@ -60,12 +60,8 @@ ComboBox {
         width: 30
         height: 30
 
-        fillMode: Image.PreserveAspectFit
-
-        // Base 64 format
-        source: "data:image/png;base64," + accountListModel.data(
-                            accountListModel.index(0, 0), AccountListModel.Picture)
-        mipmap: true
+        imageId: accountListModel.data(
+                     accountListModel.index(0, 0), AccountListModel.ID)
 
         PresenceIndicator {
             id: currentAccountPresenceIndicator
@@ -250,8 +246,6 @@ ComboBox {
             }
         }
     }
-
-
 
     indicator: null
 
