@@ -21,10 +21,7 @@
 
 #include <QDateTime>
 
-#include "globalinstances.h"
-
 #include "lrcinstance.h"
-#include "pixbufmanipulator.h"
 #include "utils.h"
 
 AccountListModel::AccountListModel(QObject* parent)
@@ -68,6 +65,8 @@ AccountListModel::data(const QModelIndex& index, int role) const
 
     auto& accountInfo = LRCInstance::accountModel().getAccountInfo(accountList.at(index.row()));
 
+    // Since we are using image provider right now, image url representation should be unique to
+    // be able to use the image cache, account avatar will only be updated once PictureUID changed
     switch (role) {
     case Role::Alias:
         return QVariant(Utils::bestNameForAccount(accountInfo));
@@ -77,11 +76,10 @@ AccountListModel::data(const QModelIndex& index, int role) const
         return QVariant(static_cast<int>(accountInfo.profileInfo.type));
     case Role::Status:
         return QVariant(static_cast<int>(accountInfo.status));
-    case Role::Picture:
-        return QString::fromLatin1(
-            Utils::QImageToByteArray(Utils::accountPhoto(accountInfo)).toBase64().data());
     case Role::ID:
         return QVariant(accountInfo.id);
+    case Role::PictureUID:
+        return avatarUuidMap_[accountInfo.id];
     }
     return QVariant();
 }
@@ -92,10 +90,10 @@ AccountListModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[Alias] = "Alias";
     roles[Username] = "Username";
-    roles[Picture] = "Picture";
     roles[Type] = "Type";
     roles[Status] = "Status";
     roles[ID] = "ID";
+    roles[PictureUID] = "PictureUID";
     return roles;
 }
 
@@ -134,5 +132,28 @@ void
 AccountListModel::reset()
 {
     beginResetModel();
+    fillUuidMap(LRCInstance::accountModel().getAccountList());
     endResetModel();
+}
+
+void
+AccountListModel::updateAvatarUuid(const QString& accountId)
+{
+    avatarUuidMap_[accountId] = Utils::getUUID();
+}
+
+void
+AccountListModel::fillUuidMap(const QStringList& accountList)
+{
+    if (accountList.size() == 0) {
+        avatarUuidMap_.clear();
+        return;
+    }
+
+    if (avatarUuidMap_.isEmpty() || accountList.size() != avatarUuidMap_.size()) {
+        for (int i = 0; i < accountList.size(); ++i) {
+            if (!avatarUuidMap_.contains(accountList.at(i)))
+                avatarUuidMap_.insert(accountList.at(i), Utils::getUUID());
+        }
+    }
 }
