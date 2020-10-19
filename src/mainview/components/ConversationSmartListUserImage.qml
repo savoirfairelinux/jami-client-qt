@@ -22,15 +22,14 @@ import QtQuick.Layouts 1.14
 import net.jami.Models 1.0
 import "../../commoncomponents"
 
-Image {
+AvatarImage {
     id: userImage
 
     width: 40
     height: 40
 
-    fillMode: Image.PreserveAspectFit
-    source: "data:image/png;base64," + Picture
-    mipmap: true
+    mode: AvatarImage.Mode.FromContactUri
+    imageId: updateImage(URI)
 
     PresenceIndicator {
         anchors.right: userImage.right
