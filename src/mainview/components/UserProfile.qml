@@ -69,6 +69,7 @@ BaseDialog {
             // Visible when user alias is not empty or equals to id.
             Text {
                 id: contactAlias
+                objectName: "contactAlias"
 
                 Layout.alignment: Qt.AlignLeft
 
@@ -109,6 +110,7 @@ BaseDialog {
             // Visible when user name is not empty or equals to alias.
             Text {
                 id: contactDisplayName
+                objectName: "contactDisplayName"
 
                 Layout.alignment: Qt.AlignLeft
 
@@ -134,6 +136,7 @@ BaseDialog {
 
             TextEdit {
                 id: contactId
+                objectName: "contactId"
 
                 Layout.alignment: Qt.AlignLeft
 
@@ -160,6 +163,7 @@ BaseDialog {
 
             Image {
                 id: contactQrImage
+                objectName: "contactQrImage"
 
                 Layout.alignment: Qt.AlignLeft
 
@@ -171,6 +175,7 @@ BaseDialog {
 
             MaterialButton {
                 id: btnClose
+                objectName: "userProfileBtnClose"
 
                 Layout.columnSpan: 2
                 Layout.alignment: Qt.AlignHCenter
