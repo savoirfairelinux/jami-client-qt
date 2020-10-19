@@ -31,7 +31,6 @@ ItemDelegate {
 
     property string contactName : ""
     property string contactID: ""
-    property string contactPicture_base64:""
 
     signal btnReAddContactClicked
 
@@ -52,11 +51,14 @@ ItemDelegate {
             background: Rectangle {
                 anchors.fill: parent
                 color: "transparent"
-                Image {
+                AvatarImage {
                     id: avatarImg
 
                     anchors.fill: parent
-                    source: contactPicture_base64 === "" ? "" : "data:image/png;base64," + contactPicture_base64
+
+                    mode: AvatarImage.Mode.FromContactUri
+                    imageId: updateImage(contactID)
+
                     fillMode: Image.PreserveAspectCrop
                     layer.enabled: true
                     layer.effect: OpacityMask {
