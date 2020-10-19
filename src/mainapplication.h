@@ -27,6 +27,8 @@
 
 #include <memory>
 
+#define ENABLE_TESTS 1
+
 class ConnectivityMonitor;
 
 class MainApplication : public QApplication
