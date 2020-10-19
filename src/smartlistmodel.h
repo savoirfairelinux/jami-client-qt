@@ -42,7 +42,6 @@ public:
     enum Role {
         DisplayName = Qt::UserRole + 1,
         DisplayID,
-        Picture,
         Presence,
         URI,
         UnreadMessagesCount,
