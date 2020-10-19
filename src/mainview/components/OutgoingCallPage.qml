@@ -55,6 +55,7 @@ Rectangle {
 
         UserInfoCallPage {
             id: userInfoCallPage
+            objectName: "userInfoCallPage"
             Layout.fillHeight: true
             Layout.fillWidth: true
         }
@@ -71,6 +72,7 @@ Rectangle {
 
         Text {
             id: callStatusText
+            objectName: "callStatusText"
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: outgoingCallPageRect.width
@@ -81,7 +83,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: UtilsAdapter.getCallStatusStr(callStatus) + "…"
+            text: UtilsAdapter.getCallStatusStr(callStatus) + "..."
             color: Qt.lighter("white", 1.5)
         }
 
@@ -93,6 +95,7 @@ Rectangle {
 
             PushButton {
                 id: callCancelButton
+                objectName: "callCancelButton"
 
                 Layout.alignment: Qt.AlignCenter
 
