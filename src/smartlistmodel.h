@@ -42,7 +42,6 @@ public:
     enum Role {
         DisplayName = Qt::UserRole + 1,
         DisplayID,
-        Picture,
         Presence,
         URI,
         UnreadMessagesCount,
@@ -58,6 +57,7 @@ public:
         CallState,
         SectionName,
         AccountId,
+        PictureUID,
         Draft
     };
     Q_ENUM(Role)
