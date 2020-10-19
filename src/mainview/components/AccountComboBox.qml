@@ -39,9 +39,12 @@ ComboBox {
         target: accountListModel
 
         function onModelReset() {
-            userImageRoot.source = "data:image/png;base64," + accountListModel.data(
-                        accountListModel.index(0, 0), AccountListModel.Picture)
-            currentAccountPresenceIndicator.status =
+            console.log("ssssssssssssssssssssssssssssssssss")
+            userImageRoot.updateImage(
+                        AccountAdapter.currentAccountId,
+                        accountListModel.data(
+                            accountListModel.index(0, 0), AccountListModel.PictureUID))
+            userImageRoot.presenceStatus =
                     accountListModel.data(accountListModel.index(0, 0), AccountListModel.Status)
             textMetricsUserAliasRoot.text = accountListModel.data(accountListModel.index(0,0),
                                                                   AccountListModel.Alias)
@@ -50,34 +53,20 @@ ComboBox {
         }
     }
 
-    Image {
+    AvatarImage {
         id: userImageRoot
 
         anchors.left: root.left
         anchors.leftMargin: 16
         anchors.verticalCenter: root.verticalCenter
 
-        width: 30
-        height: 30
+        width: 40
+        height: 40
 
-        fillMode: Image.PreserveAspectFit
+        presenceStatus: accountListModel.data(accountListModel.index(0, 0),
+                                              AccountListModel.Status)
 
-        // Base 64 format
-        source: "data:image/png;base64," + accountListModel.data(
-                            accountListModel.index(0, 0), AccountListModel.Picture)
-        mipmap: true
-
-        PresenceIndicator {
-            id: currentAccountPresenceIndicator
-
-            anchors.right: userImageRoot.right
-            anchors.rightMargin: -2
-            anchors.bottom: userImageRoot.bottom
-            anchors.bottomMargin: -2
-
-            status: accountListModel.data(accountListModel.index(0, 0),
-                                                 AccountListModel.Status)
-        }
+        Component.onCompleted: updateImage(AccountAdapter.currentAccountId)
     }
 
     Text {
@@ -250,8 +239,6 @@ ComboBox {
             }
         }
     }
-
-
 
     indicator: null
 
