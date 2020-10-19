@@ -85,6 +85,8 @@ Rectangle {
     // Search bar container to embed search label
     ContactSearchBar {
         id: contactSearchBar
+        objectName: "contactSearchBar"
+
         width: sidePanelRect.width - 26
         height: 35
         anchors.top: sidePanelRect.top
@@ -106,6 +108,7 @@ Rectangle {
 
     SidePanelTabBar {
         id: sidePanelTabBar
+        objectName: "sidePanelTabBar"
         anchors.top: contactSearchBar.bottom
         anchors.topMargin: 10
         width: sidePanelRect.width
@@ -114,6 +117,7 @@ Rectangle {
 
     Rectangle {
         id: searchStatusRect
+        objectName: "searchStatusRect"
 
         visible: lblSearchStatus.text !== ""
 
@@ -139,6 +143,7 @@ Rectangle {
 
         Label {
             id: lblSearchStatus
+            objectName: "lblSearchStatus"
 
             anchors.verticalCenter: searchStatusRect.verticalCenter
             anchors.left: searchIcon.right
