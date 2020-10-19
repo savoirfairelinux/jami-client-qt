@@ -137,5 +137,11 @@
         <file>src/commoncomponents/SimpleMessageDialog.qml</file>
         <file>src/commoncomponents/ResponsiveImage.qml</file>
         <file>src/commoncomponents/PresenceIndicator.qml</file>
+        <file>src/tests/tst_aboutpopup.qml</file>
+        <file>src/tests/tst_outgoingcallpage.qml</file>
+        <file>src/tests/tst_incomingcallpage.qml</file>
+        <file>src/tests/tst_callstackview.qml</file>
+        <file>src/tests/tst_sidepanel.qml</file>
+        <file>src/tests/tst_userprofile.qml</file>
     </qresource>
 </RCC>

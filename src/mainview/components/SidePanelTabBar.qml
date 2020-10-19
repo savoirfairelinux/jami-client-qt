@@ -62,6 +62,7 @@ TabBar {
     TabButton {
 
         id: pageOne
+        objectName: "pageOne"
         down: true
 
         Rectangle {
@@ -145,6 +146,7 @@ TabBar {
             }
 
             MouseArea {
+                objectName: "mouseAreaTabConversations"
                 anchors.fill: parent
                 hoverEnabled: true
                 onPressed: {
@@ -258,6 +260,7 @@ TabBar {
             }
 
             MouseArea {
+                objectName: "mouseAreaTabRequests"
                 anchors.fill: parent
                 hoverEnabled: true
                 onPressed: {
