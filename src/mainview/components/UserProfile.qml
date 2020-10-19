@@ -171,6 +171,7 @@ BaseDialog {
 
             MaterialButton {
                 id: btnClose
+                objectName: "userProfileBtnClose"
 
                 Layout.columnSpan: 2
                 Layout.alignment: Qt.AlignHCenter

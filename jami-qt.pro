@@ -2,9 +2,9 @@ win32-msvc {
     TARGET = Jami
     TEMPLATE = app
 
-    QT += core winextras qml quickcontrols2 quick xml multimedia network webengine svg sql
+    QT += core winextras qml quickcontrols2 quick xml multimedia network webengine svg sql testlib
 
-    CONFIG += suppress_vcproj_warnings c++17 qtquickcompiler
+    CONFIG += suppress_vcproj_warnings c++17 qtquickcompiler qmltestcase
 
     QTQUICK_COMPILER_SKIPPED_RESOURCES += ./resources.qrc
 
@@ -85,12 +85,13 @@ unix {
     TEMPLATE = app
 
     QT += quick quickwidgets widgets xml multimedia multimediawidgets network \
-          webenginewidgets svg quickcontrols2 webengine webenginecore sql dbus
+          webenginewidgets svg quickcontrols2 webengine webenginecore sql dbus \
+          testlib
 
     # Maj/min versions can be checked(if needed) using:
     # equals(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 12) {}
     versionAtLeast(QT_VERSION, 5.12.0) {
-        CONFIG += c++17
+        CONFIG += c++17 qmltestcase
     } else {
         QMAKE_CXXFLAGS += -std=c++17
     }
@@ -163,6 +164,8 @@ SOURCES += \
         src/accountlistmodel.cpp \
         src/networkmanager.cpp \
         src/runguard.cpp \
+        src/tst_clientlrc.cpp \
+        src/tst_clientui.cpp \
         src/updatemanager.cpp \
         src/webchathelpers.cpp \
         src/main.cpp \

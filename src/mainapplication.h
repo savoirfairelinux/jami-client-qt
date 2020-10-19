@@ -27,6 +27,10 @@
 
 #include <memory>
 
+//#define NO_TEST 1
+#define TEST_QML 1
+//#define TEST_CPP 1
+
 class ConnectivityMonitor;
 
 class MainApplication : public QApplication
