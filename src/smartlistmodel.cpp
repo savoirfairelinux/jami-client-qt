@@ -21,11 +21,7 @@
 #include "smartlistmodel.h"
 
 #include "lrcinstance.h"
-#include "pixbufmanipulator.h"
 #include "utils.h"
-
-#include "api/contactmodel.h"
-#include "globalinstances.h"
 
 #include <QDateTime>
 
@@ -148,7 +144,6 @@ SmartListModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[DisplayName] = "DisplayName";
     roles[DisplayID] = "DisplayID";
-    roles[Picture] = "Picture";
     roles[Presence] = "Presence";
     roles[URI] = "URI";
     roles[UnreadMessagesCount] = "UnreadMessagesCount";
@@ -163,6 +158,7 @@ SmartListModel::roleNames() const
     roles[SectionName] = "SectionName";
     roles[AccountId] = "AccountId";
     roles[Draft] = "Draft";
+    roles[PictureUID] = "PictureUID";
     return roles;
 }
 
@@ -183,6 +179,8 @@ void
 SmartListModel::fillConversationsList()
 {
     beginResetModel();
+    fillUuidMap(LRCInstance::getCurrentAccountInfo().contactModel->getAllContacts());
+
     auto* convModel = LRCInstance::getCurrentConversationModel();
     conversations_.clear();
 
@@ -204,6 +202,32 @@ SmartListModel::updateConversation(const QString& convUid)
         if (conversation.uid == convUid) {
             conversation = convModel->getConversationForUID(convUid);
             return;
+        }
+    }
+}
+
+void
+SmartListModel::updateContactAvatarUuid(const QString& contactUri)
+{
+    beginResetModel();
+    contactAvatarUuidMap_[contactUri] = Utils::getUUID();
+    endResetModel();
+}
+
+void
+SmartListModel::fillUuidMap(const ContactModel::ContactInfoMap& contacts)
+{
+    if (contacts.size() == 0) {
+        contactAvatarUuidMap_.clear();
+        return;
+    }
+
+    if (contactAvatarUuidMap_.isEmpty() || contacts.size() != contactAvatarUuidMap_.size()) {
+        ContactModel::ContactInfoMap::const_iterator iter = contacts.constBegin();
+        while (iter != contacts.constEnd()) {
+            if (!contactAvatarUuidMap_.contains(iter.key()))
+                contactAvatarUuidMap_.insert(iter.key(), Utils::getUUID());
+            ++iter;
         }
     }
 }
@@ -242,11 +266,6 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
     }
     auto& contactModel = accountInfo.contactModel;
     switch (role) {
-    case Role::Picture: {
-        auto contactImage
-            = GlobalInstances::pixmapManipulator().decorationRole(item, accountInfo).value<QImage>();
-        return QString::fromLatin1(Utils::QImageToByteArray(contactImage).toBase64().data());
-    }
     case Role::DisplayName: {
         if (!item.participants.isEmpty()) {
             auto& contact = contactModel->getContact(item.participants[0]);
@@ -268,10 +287,15 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         }
         return QVariant(false);
     }
+    case Role::PictureUID: {
+        if (!item.participants.isEmpty()) {
+            return QVariant(contactAvatarUuidMap_[item.participants[0]]);
+        }
+        return QVariant("");
+    }
     case Role::URI: {
         if (!item.participants.isEmpty()) {
-            auto& contact = contactModel->getContact(item.participants[0]);
-            return QVariant(contact.profileInfo.uri);
+            return QVariant(item.participants[0]);
         }
         return QVariant("");
     }
@@ -331,13 +355,13 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         if (!convInfo.uid.isEmpty()) {
             auto* callModel = LRCInstance::getCurrentCallModel();
             const auto call = callModel->getCall(convInfo.callId);
-            return QVariant(callModel->hasCall(convInfo.callId)
-                            && ((!call.isOutgoing
-                                 && (call.status == lrc::api::call::Status::IN_PROGRESS
-                                     || call.status == lrc::api::call::Status::PAUSED
-                                     || call.status == lrc::api::call::Status::INCOMING_RINGING))
-                                || (call.isOutgoing
-                                    && call.status != lrc::api::call::Status::ENDED)));
+            return QVariant(
+                callModel->hasCall(convInfo.callId)
+                && ((!call.isOutgoing
+                     && (call.status == lrc::api::call::Status::IN_PROGRESS
+                         || call.status == lrc::api::call::Status::PAUSED
+                         || call.status == lrc::api::call::Status::INCOMING_RINGING))
+                    || (call.isOutgoing && call.status != lrc::api::call::Status::ENDED)));
         }
         return QVariant(false);
     }

@@ -30,7 +30,7 @@ class AccountListModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    enum Role { Alias = Qt::UserRole + 1, Username, Picture, Type, Status, ID };
+    enum Role { Alias = Qt::UserRole + 1, Username, Type, Status, ID, PictureUID };
     Q_ENUM(Role)
 
     explicit AccountListModel(QObject* parent = 0);
@@ -55,4 +55,14 @@ public:
      * This function is to reset the model when there's new account added.
      */
     Q_INVOKABLE void reset();
+
+    /*
+     * This function is to update avatar Uuid when there's an avatar changed.
+     */
+    Q_INVOKABLE void updateAvatarUuid(const QString& accountId);
+
+private:
+    void fillUuidMap(const QStringList& accountList);
+
+    QMap<QString, QString> avatarUuidMap_;
 };
