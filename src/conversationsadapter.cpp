@@ -209,6 +209,14 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
             emit modelSorted(QVariant::fromValue(conversation.uid));
         });
 
+    contactProfileUpdatedConnection_
+        = QObject::connect(LRCInstance::getCurrentAccountInfo().contactModel.get(),
+                           &lrc::api::ContactModel::profileUpdated,
+                           [this](const QString& contactUir) {
+                               conversationSmartListModel_->updateContactAvatarUuid(contactUir);
+                               emit updateListViewRequested();
+                           });
+
     modelUpdatedConnection_ = QObject::connect(currentConversationModel,
                                                &lrc::api::ConversationModel::conversationUpdated,
                                                [this](const QString& convUid) {
@@ -295,6 +303,7 @@ ConversationsAdapter::disconnectConversationModel()
     QObject::disconnect(interactionRemovedConnection_);
     QObject::disconnect(searchStatusChangedConnection_);
     QObject::disconnect(searchResultUpdatedConnection_);
+    QObject::disconnect(contactProfileUpdatedConnection_);
 }
 
 void
