@@ -202,7 +202,7 @@ ItemDelegate {
                 userProfile.aliasText = DisplayName
                 userProfile.registeredNameText = DisplayID
                 userProfile.idText = URI
-                userProfile.contactPicBase64 = Picture
+                userProfile.contactImageId = UID
                 smartListContextMenu.openMenu()
             } else if (mouse.button === Qt.LeftButton) {
                 conversationSmartListView.currentIndex = -1

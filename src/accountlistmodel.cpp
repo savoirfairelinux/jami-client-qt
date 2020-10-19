@@ -21,10 +21,7 @@
 
 #include <QDateTime>
 
-#include "globalinstances.h"
-
 #include "lrcinstance.h"
-#include "pixbufmanipulator.h"
 #include "utils.h"
 
 AccountListModel::AccountListModel(QObject* parent)
@@ -77,9 +74,6 @@ AccountListModel::data(const QModelIndex& index, int role) const
         return QVariant(static_cast<int>(accountInfo.profileInfo.type));
     case Role::Status:
         return QVariant(static_cast<int>(accountInfo.status));
-    case Role::Picture:
-        return QString::fromLatin1(
-            Utils::QImageToByteArray(Utils::accountPhoto(accountInfo)).toBase64().data());
     case Role::ID:
         return QVariant(accountInfo.id);
     }
@@ -92,7 +86,6 @@ AccountListModel::roleNames() const
     QHash<int, QByteArray> roles;
     roles[Alias] = "Alias";
     roles[Username] = "Username";
-    roles[Picture] = "Picture";
     roles[Type] = "Type";
     roles[Status] = "Status";
     roles[ID] = "ID";
