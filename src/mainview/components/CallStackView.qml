@@ -177,6 +177,7 @@ Rectangle {
 
     OutgoingCallPage {
         id: outgoingCallPage
+        objectName: "outgoingCallPage"
 
         property int stackNumber: CallStackView.OutgoingPageStack
 
@@ -210,6 +211,7 @@ Rectangle {
 
     StackView {
         id: callStackMainView
+        objectName: "callStackMainView"
 
         anchors.fill: parent
 

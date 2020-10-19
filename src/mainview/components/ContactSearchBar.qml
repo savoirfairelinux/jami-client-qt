@@ -63,6 +63,7 @@ Rectangle {
 
     TextField {
         id: contactSearchBar
+        objectName: "contactSearchBarTextField"
 
         anchors.verticalCenter: contactSearchBarRect.verticalCenter
         anchors.left: searchIconImage.right
