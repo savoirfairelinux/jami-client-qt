@@ -50,6 +50,7 @@ Rectangle {
 
         PushButton {
             id: backButton
+            objectName: "backButton"
 
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
             Layout.preferredWidth: JamiTheme.preferredFieldHeight
