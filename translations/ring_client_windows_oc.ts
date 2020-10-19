@@ -407,7 +407,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="32"/>
         <source>Jami is free software for universal communication which respects the freedoms and the privacy of its users.</source>
-        <translation type="unfinished"/>
+        <translation>Jami es un logicial liure per comunicacions universalas que respèctan la libertat e la vida privada de sos utilizaires.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="35"/>
@@ -417,7 +417,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="38"/>
         <source>Jami is a free software for universal communication which respects the freedom and privacy of its users.</source>
-        <translation type="unfinished"/>
+        <translation>Jami es un logicial liure per comunicacions universalas que respèctan la libertat e la vida privada de sos utilizaires.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="39"/>
@@ -1212,7 +1212,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="215"/>
         <source>Create account</source>
-        <translation type="unfinished"/>
+        <translation>Crear compte</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="216"/>

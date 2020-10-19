@@ -702,7 +702,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="286"/>
         <source>SSL error</source>
-        <translation type="unfinished"/>
+        <translation>Gabim SSL</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="307"/>

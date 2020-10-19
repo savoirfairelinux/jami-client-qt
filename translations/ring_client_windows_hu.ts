@@ -191,7 +191,7 @@
     <message>
         <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="40"/>
         <source>Start video call</source>
-        <translation>Videóhívás indítása</translation>
+        <translation>Videohívás indítása</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/ConversationSmartListContextMenu.qml" line="49"/>
@@ -497,7 +497,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="61"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation>Az ismeretlen kapcsolatoktól érkező bejövő hívások engedélyezése </translation>
+        <translation>Az ismeretlen kapcsolatoktól érkező bejövő hívások engedélyezése</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="53"/>
@@ -702,7 +702,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="286"/>
         <source>SSL error</source>
-        <translation type="unfinished"/>
+        <translation>SSL hiba</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="307"/>
@@ -927,7 +927,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="128"/>
         <source>OpenDHT Configuration</source>
-        <translation>OpenDHT beállítások</translation>
+        <translation>OpenDHT-beállítások</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="129"/>
@@ -1429,8 +1429,7 @@
         <location filename="../src/constant/JamiStrings.qml" line="282"/>
         <source>A new version of Jami was found
  Would you like to update now?</source>
-        <translation>A Jami új verziója megtalálható
-Kíván most frissíteni?</translation>
+        <translation>A Jami új verziója elérhető. Kíván most frissíteni?</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="283"/>
@@ -1708,7 +1707,7 @@ Másolja ki, és ossza meg barátaival!</translation>
     <message>
         <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="88"/>
         <source>Start a video call</source>
-        <translation>Videóhívás indítása</translation>
+        <translation>Videohívás indítása</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="93"/>

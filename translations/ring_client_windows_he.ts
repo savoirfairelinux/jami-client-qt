@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/mainview/components/AboutPopUp.qml" line="306"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>סגירה</translation>
     </message>
 </context>
 <context>
@@ -28,12 +28,12 @@
     <message>
         <location filename="../src/settingsview/components/AdvancedCallSettings.qml" line="67"/>
         <source>Audio Files</source>
-        <translation type="unfinished"/>
+        <translation>קובצי שמע</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/AdvancedCallSettings.qml" line="67"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
 </context>
 <context>
@@ -49,7 +49,7 @@
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="94"/>
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="114"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="114"/>
@@ -83,7 +83,7 @@
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="112"/>
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="130"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="130"/>
@@ -109,7 +109,7 @@
     <message>
         <location filename="../src/wizardview/components/BackupKeyPage.qml" line="46"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
 </context>
 <context>
@@ -229,7 +229,7 @@
     <message>
         <location filename="../src/wizardview/components/CreateAccountPage.qml" line="81"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/CreateAccountPage.qml" line="126"/>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="110"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>אישור</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="133"/>
@@ -294,7 +294,7 @@
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="161"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
 </context>
 <context>
@@ -341,7 +341,7 @@
     <message>
         <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="63"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="87"/>
@@ -356,7 +356,7 @@
     <message>
         <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="200"/>
         <source>Back to welcome page</source>
-        <translation type="unfinished"/>
+        <translation>חזרה לעמוד קבלת הפנים</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ImportFromBackupPage.qml" line="138"/>
@@ -379,7 +379,7 @@
     <message>
         <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="175"/>
         <source>Back to welcome page</source>
-        <translation type="unfinished"/>
+        <translation>חזרה לעמוד קבלת הפנים</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ImportFromDevicePage.qml" line="119"/>
@@ -402,7 +402,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="31"/>
         <source>Invitations</source>
-        <translation type="unfinished"/>
+        <translation>הזמנות</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="32"/>
@@ -662,7 +662,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="180"/>
         <source>End call</source>
-        <translation>סיים שיחה</translation>
+        <translation>סיום שיחה</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="207"/>
@@ -772,12 +772,12 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Create a Jami account</source>
-        <translation type="unfinished"/>
+        <translation>יצירת חשבון Jami</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>About Jami</source>
-        <translation type="unfinished"/>
+        <translation>על אודות Jami</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="385"/>
@@ -792,12 +792,12 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="389"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>לבדוק אוטומטית אם יש עדכונים</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="392"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>אישור</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="393"/>
@@ -947,7 +947,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="134"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>חזרה</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="140"/>
@@ -1047,7 +1047,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="168"/>
         <source>Skip</source>
-        <translation type="unfinished"/>
+        <translation>דילוג</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="169"/>
@@ -1102,7 +1102,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="184"/>
         <source>Chat</source>
-        <translation>שיחה</translation>
+        <translation>צ׳אט</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="185"/>
@@ -1197,7 +1197,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="208"/>
         <source>Back to welcome page</source>
-        <translation type="unfinished"/>
+        <translation>חזרה לעמוד קבלת הפנים</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="211"/>
@@ -1474,7 +1474,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="298"/>
         <source>Open file</source>
-        <translation type="unfinished"/>
+        <translation>פתיחת קובץ</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="299"/>
@@ -1504,7 +1504,7 @@
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="316"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>סגירה</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="317"/>
@@ -1756,7 +1756,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="144"/>
         <source>End call</source>
-        <translation>סיים שיחה</translation>
+        <translation>סיום שיחה</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/KeyBoardShortcutTable.qml" line="149"/>
@@ -1824,7 +1824,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/settingsview/components/LinkedDevices.qml" line="99"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>אישור</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/LinkedDevices.qml" line="99"/>
@@ -1936,7 +1936,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/commoncomponents/PhotoboothView.qml" line="65"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
     <message>
         <location filename="../src/commoncomponents/PhotoboothView.qml" line="196"/>
@@ -1973,7 +1973,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="93"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>אישור</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="93"/>
@@ -1996,7 +1996,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="85"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>כל הקבצים</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="104"/>
@@ -2204,7 +2204,7 @@ Please try again later.</source>
         <location filename="../src/smartlistmodel.cpp" line="215"/>
         <location filename="../src/smartlistmodel.cpp" line="216"/>
         <source>Calls</source>
-        <translation>קריאות</translation>
+        <translation>שיחות</translation>
     </message>
     <message>
         <location filename="../src/smartlistmodel.cpp" line="62"/>
@@ -2267,7 +2267,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/wizardview/components/WelcomePage.qml" line="55"/>
         <source>Welcome to</source>
-        <translation type="unfinished"/>
+        <translation>ברוך בואך אל</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/WelcomePage.qml" line="85"/>

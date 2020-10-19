@@ -705,7 +705,7 @@ Notez que le mot de passe ne peut être récupéré.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="286"/>
         <source>SSL error</source>
-        <translation type="unfinished"/>
+        <translation>Erreur SSL</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="307"/>
