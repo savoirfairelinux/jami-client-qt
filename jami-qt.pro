@@ -35,7 +35,7 @@ win32-msvc {
 
     # daemon
     INCLUDEPATH += ../daemon/contrib/msvc/include/
-    LIBS += $${DRING}/build-local/x64/ReleaseLib_win32/bin/dring.lib
+    LIBS += $${DRING}/build/x64/ReleaseLib_win32/bin/dring.lib
     LIBS += $${DRING}/contrib/msvc/lib/x64/libgnutls.lib
 
     # windows system libs
