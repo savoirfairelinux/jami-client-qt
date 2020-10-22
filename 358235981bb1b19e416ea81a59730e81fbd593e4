@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "587ca52d_f46bfa59",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-22T13:41:09Z",
+      "side": 1,
+      "message": "I don\u0027t think we need to other than to throw an error if the minimum of 5.14 is not met.",
+      "range": {
+        "startLine": 5,
+        "startChar": 8,
+        "endLine": 5,
+        "endChar": 25
+      },
+      "revId": "358235981bb1b19e416ea81a59730e81fbd593e4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31eb9382_a90406f8",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-22T13:41:09Z",
+      "side": 1,
+      "message": "stuff like this can later be put into a common.cmake file",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 38
+      },
+      "revId": "358235981bb1b19e416ea81a59730e81fbd593e4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "205ffd01_c7462446",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-22T13:41:09Z",
+      "side": 1,
+      "message": "strong suggestion: put line endings between each included lib to avoid merge conflicts and bonus confusion when adding/removing across patches, even if it seems strange to orient the list vertically, it will help",
+      "range": {
+        "startLine": 25,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 111
+      },
+      "revId": "358235981bb1b19e416ea81a59730e81fbd593e4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b50aa011_86256907",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-22T13:41:09Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 118,
+        "startChar": 33,
+        "endLine": 119,
+        "endChar": 66
+      },
+      "revId": "358235981bb1b19e416ea81a59730e81fbd593e4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
