@@ -20,14 +20,17 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls.Universal 2.12
 import net.jami.Models 1.0
+import net.jami.Adapters 1.0
 
 import "../../commoncomponents"
 
 Popup {
     id: root
     function toggleMediaHandlerSlot(mediaHandlerId, isLoaded) {
-        PluginModel.toggleCallMediaHandler(mediaHandlerId, !isLoaded)
-        mediahandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel()
+        var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
+                                            callStackViewWindow.responsibleConvUid)
+        PluginModel.toggleCallMediaHandler(mediaHandlerId, callId, !isLoaded)
+        mediahandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
     }
 
     width: 350
@@ -92,7 +95,11 @@ Popup {
                     Layout.preferredWidth: mediahandlerPickerPopupRect.width
                     Layout.preferredHeight: 200
 
-                    model: PluginAdapter.getMediaHandlerSelectableModel()
+                    model: {
+                        var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
+                                                            callStackViewWindow.responsibleConvUid)
+                        return PluginAdapter.getMediaHandlerSelectableModel(callId)
+                        }
 
                     clip: true
 
@@ -234,7 +241,9 @@ Popup {
 
     onAboutToShow: {
         // Reset the model on each show.
-        mediahandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel()
+        var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
+                                            callStackViewWindow.responsibleConvUid)
+        mediahandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
     }
 
     background: Rectangle {
