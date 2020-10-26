@@ -27,6 +27,7 @@
 class MediaHandlerItemListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(QString callId READ callId WRITE setCallId)
 
 public:
     enum Role {
@@ -38,7 +39,7 @@ public:
     };
     Q_ENUM(Role)
 
-    explicit MediaHandlerItemListModel(QObject* parent = 0);
+    explicit MediaHandlerItemListModel(QObject* parent = 0, const QString& callId = QString(""));
     ~MediaHandlerItemListModel();
 
     /*
@@ -59,4 +60,10 @@ public:
      * This function is to reset the model when there's new account added.
      */
     Q_INVOKABLE void reset();
+
+    QString callId();
+    void setCallId(QString callId);
+
+private:
+    QString callId_ = QString("");
 };
