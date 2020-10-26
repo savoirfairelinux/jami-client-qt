@@ -137,5 +137,6 @@
         <file>src/commoncomponents/SimpleMessageDialog.qml</file>
         <file>src/commoncomponents/ResponsiveImage.qml</file>
         <file>src/commoncomponents/PresenceIndicator.qml</file>
+        <file>tests/qml/tst_test.qml</file>
     </qresource>
 </RCC>
