@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a203b9b_a52aa171",
+        "filename": "src/accountadapter.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-26T21:32:13Z",
+      "side": 1,
+      "message": "{}",
+      "range": {
+        "startLine": 113,
+        "startChar": 50,
+        "endLine": 113,
+        "endChar": 52
+      },
+      "revId": "19f446d2cbde4d6b2a96f6a409a46b438cee0055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5abd098f_38c0c318",
+        "filename": "src/accountlistmodel.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-26T21:32:13Z",
+      "side": 1,
+      "message": "PictureUid",
+      "range": {
+        "startLine": 33,
+        "startChar": 70,
+        "endLine": 33,
+        "endChar": 81
+      },
+      "revId": "19f446d2cbde4d6b2a96f6a409a46b438cee0055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c67e464_2fc95831",
+        "filename": "src/accountlistmodel.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-26T21:32:13Z",
+      "side": 1,
+      "message": "updateAvatarUid",
+      "range": {
+        "startLine": 62,
+        "startChar": 21,
+        "endLine": 62,
+        "endChar": 37
+      },
+      "revId": "19f446d2cbde4d6b2a96f6a409a46b438cee0055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f868d1b7_4460097b",
+        "filename": "src/avatarimageprovider.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-26T21:32:13Z",
+      "side": 1,
+      "message": "the above examples are good enough. maybe remove this",
+      "range": {
+        "startLine": 42,
+        "startChar": 5,
+        "endLine": 42,
+        "endChar": 58
+      },
+      "revId": "19f446d2cbde4d6b2a96f6a409a46b438cee0055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b64d8f4_88db0a2b",
+        "filename": "src/mainview/components/UserProfile.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-26T21:32:13Z",
+      "side": 1,
+      "message": "contactImageUid",
+      "range": {
+        "startLine": 31,
+        "startChar": 20,
+        "endLine": 31,
+        "endChar": 34
+      },
+      "revId": "19f446d2cbde4d6b2a96f6a409a46b438cee0055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10fee9cc_10f23065",
+        "filename": "src/utils.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-26T21:32:13Z",
+      "side": 1,
+      "message": "contactPhotoFromBase64",
+      "range": {
+        "startLine": 103,
+        "startChar": 7,
+        "endLine": 103,
+        "endChar": 38
+      },
+      "revId": "19f446d2cbde4d6b2a96f6a409a46b438cee0055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c5ba4be0_55912a7e",
+        "filename": "src/utils.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-26T21:32:13Z",
+      "side": 1,
+      "message": "size",
+      "range": {
+        "startLine": 104,
+        "startChar": 60,
+        "endLine": 104,
+        "endChar": 74
+      },
+      "revId": "19f446d2cbde4d6b2a96f6a409a46b438cee0055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0f826d5_2c261f27",
+        "filename": "src/utils.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-26T21:32:13Z",
+      "side": 1,
+      "message": "Uid",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 15
+      },
+      "revId": "19f446d2cbde4d6b2a96f6a409a46b438cee0055",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
