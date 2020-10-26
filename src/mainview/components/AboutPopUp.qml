@@ -244,6 +244,8 @@ ModalPopup {
 
                             MaterialButton {
                                 id: changeLogButton
+                                objectName: "changeLogButton"
+
                                 text: JamiStrings.changelog
                                 color: projectCreditsScrollView.visible? JamiTheme.buttonTintedGreyInactive :
                                                                          JamiTheme.buttonTintedGrey
@@ -263,6 +265,8 @@ ModalPopup {
 
                             MaterialButton {
                                 id: creditsButton
+                                objectName: "creditsButton"
+
                                 text: JamiStrings.credits
                                 color: projectCreditsScrollView.visible? JamiTheme.buttonTintedGrey :
                                                                          JamiTheme.buttonTintedGreyInactive
@@ -284,6 +288,7 @@ ModalPopup {
 
                     StackView {
                         id: changeLogOrCreditsStack
+                        objectName: "changeLogOrCreditsStack"
 
                         Layout.alignment: Qt.AlignCenter
                         Layout.preferredWidth: contentRect.width - JamiTheme.preferredMarginSize * 2
@@ -297,6 +302,7 @@ ModalPopup {
 
                     MaterialButton {
                         id: btnClose
+                        objectName: "closeButton"
 
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredWidth: JamiTheme.preferredFieldWidth / 2
