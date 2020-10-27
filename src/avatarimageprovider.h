@@ -56,9 +56,9 @@ public:
             return Utils::accountPhoto(LRCInstance::accountModel().getAccountInfo(idContent),
                                        requestedSize);
         } else if (idType == "conversation") {
-            return Utils::contactPhoto(LRCInstance::getConversationFromConvUid(idContent)
-                                           .participants[0],
-                                       requestedSize);
+            auto* convModel = LRCInstance::getCurrentAccountInfo().conversationModel.get();
+            const auto& conv = convModel->getConversationForUID(idContent);
+            return Utils::contactPhoto(conv.participants[0], requestedSize);
         } else if (idType == "contact") {
             return Utils::contactPhoto(idContent, requestedSize);
         } else {

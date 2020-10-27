@@ -30,6 +30,8 @@ ItemDelegate {
 
     property int lastInteractionPreferredWidth: 80
 
+    signal updateContactAvatarUidRequested(string uid)
+
     function convUid() {
         return UID
     }
@@ -92,7 +94,12 @@ ItemDelegate {
 
         unreadMessagesCount: UnreadMessagesCount
 
-        Component.onCompleted: updateImage(URI, PictureUid)
+        Component.onCompleted: {
+            var contactUid = URI
+            if (ContactType === Profile.Type.TEMPORARY)
+                updateContactAvatarUidRequested(contactUid)
+            updateImage(contactUid, PictureUid)
+        }
     }
 
     RowLayout {

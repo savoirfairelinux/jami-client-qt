@@ -221,11 +221,20 @@ SmartListModel::fillContactAvatarUidMap(const ContactModel::ContactInfoMap& cont
     }
 
     if (contactAvatarUidMap_.isEmpty() || contacts.size() != contactAvatarUidMap_.size()) {
-        ContactModel::ContactInfoMap::const_iterator iter = contacts.constBegin();
-        while (iter != contacts.constEnd()) {
-            if (!contactAvatarUidMap_.contains(iter.key()))
-                contactAvatarUidMap_.insert(iter.key(), Utils::generateUid());
-            ++iter;
+        bool useContacts = contacts.size() > contactAvatarUidMap_.size();
+        auto contactsKeyList = contacts.keys();
+        auto contactAvatarUidMapKeyList = contactAvatarUidMap_.keys();
+
+        for (int i = 0;
+             i < (useContacts ? contactsKeyList.size() : contactAvatarUidMapKeyList.size());
+             ++i) {
+            // Insert or update
+            if (i < contactsKeyList.size() && !contactAvatarUidMap_.contains(contactsKeyList.at(i)))
+                contactAvatarUidMap_.insert(contactsKeyList.at(i), Utils::generateUid());
+            // Remove
+            if (i < contactAvatarUidMapKeyList.size()
+                && !contacts.contains(contactAvatarUidMapKeyList.at(i)))
+                contactAvatarUidMap_.remove(contactAvatarUidMapKeyList.at(i));
         }
     }
 }

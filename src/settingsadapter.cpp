@@ -937,13 +937,23 @@ SettingsAdapter::setDeviceName(QString text)
 void
 SettingsAdapter::unbanContact(int index)
 {
-    auto bannedContactList = LRCInstance::getCurrentAccountInfo().contactModel->getBannedContacts();
+    auto& accountInfo = LRCInstance::getCurrentAccountInfo();
+    auto bannedContactList = accountInfo.contactModel->getBannedContacts();
     auto it = bannedContactList.begin();
     std::advance(it, index);
 
-    auto contactInfo = LRCInstance::getCurrentAccountInfo().contactModel->getContact(*it);
+    auto contactInfo = accountInfo.contactModel->getContact(*it);
 
-    LRCInstance::getCurrentAccountInfo().contactModel->addContact(contactInfo);
+    contactUnbannedConnection_ = QObject::connect(accountInfo.contactModel.get(),
+                                                  &lrc::api::ContactModel::bannedStatusChanged,
+                                                  [this](const QString& contactUri, bool banned) {
+                                                      if (!banned)
+                                                          emit contactUnbanned();
+                                                      QObject::disconnect(
+                                                          contactUnbannedConnection_);
+                                                  });
+
+    accountInfo.contactModel->addContact(contactInfo);
 }
 
 void

@@ -212,8 +212,8 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
     contactProfileUpdatedConnection_
         = QObject::connect(LRCInstance::getCurrentAccountInfo().contactModel.get(),
                            &lrc::api::ContactModel::profileUpdated,
-                           [this](const QString& contactUir) {
-                               conversationSmartListModel_->updateContactAvatarUid(contactUir);
+                           [this](const QString& contactUri) {
+                               conversationSmartListModel_->updateContactAvatarUid(contactUri);
                                emit updateListViewRequested();
                            });
 
@@ -270,7 +270,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                            &lrc::api::ConversationModel::searchStatusChanged,
                            [this](const QString& status) { emit showSearchStatus(status); });
 
-    // This connection is ideal when  separated search results list.
+    // This connection is ideal when separated search results list.
     // This signal is guaranteed to fire just after filterChanged during a search if results are
     // changed, and once before filterChanged when calling setFilter.
     // NOTE: Currently, when searching, the entire conversation list will be copied 2-3 times each
