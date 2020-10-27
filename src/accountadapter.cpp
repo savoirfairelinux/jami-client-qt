@@ -53,12 +53,6 @@ AccountAdapter::getModel()
     return &(LRCInstance::accountModel());
 }
 
-lrc::api::ContactModel*
-AccountAdapter::getContactModel()
-{
-    return LRCInstance::getCurrentAccountInfo().contactModel.get();
-}
-
 lrc::api::NewDeviceModel*
 AccountAdapter::getDeviceModel()
 {
@@ -424,6 +418,5 @@ AccountAdapter::setProperties(const QString& accountId)
     setProperty("currentAccountId", accountId);
     auto accountType = LRCInstance::getAccountInfo(accountId).profileInfo.type;
     setProperty("currentAccountType", lrc::api::profile::to_string(accountType));
-    emit contactModelChanged();
     emit deviceModelChanged();
 }

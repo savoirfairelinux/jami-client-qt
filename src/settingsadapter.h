@@ -229,5 +229,11 @@ public:
     Q_INVOKABLE void set_FileCACert(QString text);
     Q_INVOKABLE void set_FileUserCert(QString text);
     Q_INVOKABLE void set_FilePrivateKey(QString text);
+
+signals:
+    void contactUnbanned();
+
+private:
+    QMetaObject::Connection contactUnbannedConnection_;
 };
 Q_DECLARE_METATYPE(SettingsAdapter*)
