@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0800836f_12b3bb58",
+        "filename": "src/settingsview/components/AccountProfile.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-28T11:17:45Z",
+      "side": 1,
+      "message": "Should also be called on displayNameLineEdit.onEditingFinished ? Otherwise on name update accountcombobox avatar is updated and photobooth not. \n\nHowever, still with this change the color of the two avatars is different on name update.",
+      "revId": "e556165cf5f8d595268ddb601eb4f0ab9fd5cfb8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
