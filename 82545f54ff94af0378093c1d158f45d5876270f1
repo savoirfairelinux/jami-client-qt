@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40e0ceed_bc90d0da",
+        "filename": "qml.qrc",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-28T17:18:16Z",
+      "side": 1,
+      "message": "these resources should be in a separate qrc\nwhy is the CMakeLists.txt in here??",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 143,
+        "endChar": 43
+      },
+      "revId": "82545f54ff94af0378093c1d158f45d5876270f1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e328ff8_f954af57",
+        "filename": "tests/qml/tst_test.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-28T17:18:16Z",
+      "side": 1,
+      "message": "make this called something like `DummyTest` with `test_dummy` and use `verify(true, \"oops\")`",
+      "revId": "82545f54ff94af0378093c1d158f45d5876270f1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
