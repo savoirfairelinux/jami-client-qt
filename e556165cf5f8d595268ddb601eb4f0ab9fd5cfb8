@@ -16,6 +16,24 @@
       "revId": "e556165cf5f8d595268ddb601eb4f0ab9fd5cfb8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8276b75_aa9daad1",
+        "filename": "src/settingsview/components/AccountProfile.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-28T14:28:22Z",
+      "side": 1,
+      "message": "Let me confirm the change with andreas",
+      "parentUuid": "0800836f_12b3bb58",
+      "revId": "e556165cf5f8d595268ddb601eb4f0ab9fd5cfb8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
