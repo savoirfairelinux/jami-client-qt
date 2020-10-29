@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d79bc46f_66411da4",
+        "filename": "qml.qrc",
+        "patchSetId": 7
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-29T11:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40e0ceed_bc90d0da",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 143,
+        "endChar": 43
+      },
+      "revId": "82545f54ff94af0378093c1d158f45d5876270f1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e328ff8_f954af57",
         "filename": "tests/qml/tst_test.qml",
         "patchSetId": 7
@@ -39,6 +63,24 @@
       "revId": "82545f54ff94af0378093c1d158f45d5876270f1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb1b70ff_e65b2d54",
+        "filename": "tests/qml/tst_test.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-10-29T11:42:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e328ff8_f954af57",
+      "revId": "82545f54ff94af0378093c1d158f45d5876270f1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
