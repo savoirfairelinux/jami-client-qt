@@ -44,6 +44,8 @@ void
 MessagesAdapter::safeInit()
 {
     connect(&LRCInstance::instance(), &LRCInstance::currentAccountChanged, [this]() {
+        LastConvUid_.clear();
+        currentConvUid_.clear();
         connectConversationModel();
     });
     connectConversationModel();
