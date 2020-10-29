@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "5b8df835_bfd6e5ff",
+        "filename": "tests/unittests/main.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T15:49:55Z",
+      "side": 1,
+      "message": "add #include \u003cQApplication\u003e",
+      "parentUuid": "4d156e8c_66ae81de",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 20
+      },
+      "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "01375fb3_67f82f95",
         "filename": "tests/unittests/main.cpp",
         "patchSetId": 11
@@ -105,6 +129,23 @@
         "endLine": 17,
         "endChar": 1
       },
+      "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eee83ed8_9cc8941b",
+        "filename": "tests/unittests/main.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T15:49:55Z",
+      "side": 1,
+      "message": "QApplication a(argc, argv);\n    a.processEvents();",
       "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
