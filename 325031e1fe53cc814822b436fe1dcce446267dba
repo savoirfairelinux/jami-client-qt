@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11b86049_e1c7ffb0",
+        "filename": "tests/unittests/dummy_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T18:33:30Z",
+      "side": 1,
+      "message": "I think we will benefit from having the \u0027_unittest.cpp\u0027 suffix instead of just \u0027_test.cpp\u0027",
+      "revId": "325031e1fe53cc814822b436fe1dcce446267dba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd156c10_99f34467",
+        "filename": "tests/unittests/dummy_test.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T18:33:30Z",
+      "side": 1,
+      "message": "this shouldn\u0027t be here",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 18
+      },
+      "revId": "325031e1fe53cc814822b436fe1dcce446267dba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
