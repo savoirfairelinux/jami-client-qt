@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3dc79f66_31ed54f9",
+        "filename": "src/settingsadapter.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T16:19:22Z",
+      "side": 1,
+      "message": "I dont\u0027t think this is a good location for this signal. This is account related.",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 55
+      },
+      "revId": "7f126713eddea1157f22a731869b53ab9931c725",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
