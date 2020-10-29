@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "22131dec_a554d9fc",
+        "filename": "tests/unittests/main.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T15:48:03Z",
+      "side": 1,
+      "message": "main_unittest.cpp",
+      "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d156e8c_66ae81de",
+        "filename": "tests/unittests/main.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T15:48:03Z",
+      "side": 1,
+      "message": "no need for this",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 20
+      },
+      "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01375fb3_67f82f95",
+        "filename": "tests/unittests/main.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T15:48:03Z",
+      "side": 1,
+      "message": "we should have the tests in cpp files in the same directory",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fe3a53d_862a3ece",
+        "filename": "tests/unittests/main.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T15:48:03Z",
+      "side": 1,
+      "message": "why this?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 19
+      },
+      "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6fffb09_e9bdb4a3",
+        "filename": "tests/unittests/main.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T15:48:03Z",
+      "side": 1,
+      "message": "this should be in dummy_unittest.cpp",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 1
+      },
+      "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d60a94e3_33bd4fc0",
+        "filename": "tests/unittests/tst_test.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T15:48:03Z",
+      "side": 1,
+      "message": "this should be dummy_unittest.cpp",
+      "revId": "bc37f751ff3e34e7ebbfa673d6bcb4e5b5118662",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
