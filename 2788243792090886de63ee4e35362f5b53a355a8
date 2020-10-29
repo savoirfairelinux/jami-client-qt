@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e8e5da9_c31db83b",
+        "filename": "tests/qml/tst_test.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2020-10-29T14:52:51Z",
+      "side": 1,
+      "message": "failed or nothing at all ???\n\"Fails the current test case if condition is false, and displays the optional message\"",
+      "range": {
+        "startLine": 8,
+        "startChar": 33,
+        "endLine": 8,
+        "endChar": 39
+      },
+      "revId": "2788243792090886de63ee4e35362f5b53a355a8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
