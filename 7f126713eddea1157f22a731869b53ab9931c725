@@ -22,6 +22,30 @@
       "revId": "7f126713eddea1157f22a731869b53ab9931c725",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4b07f9fc_56866ee4",
+        "filename": "src/settingsadapter.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-30T13:53:49Z",
+      "side": 1,
+      "message": "right, will change to other places",
+      "parentUuid": "3dc79f66_31ed54f9",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 55
+      },
+      "revId": "7f126713eddea1157f22a731869b53ab9931c725",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
