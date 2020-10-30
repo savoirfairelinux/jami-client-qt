@@ -22,6 +22,30 @@
       "revId": "0e5d4d038e5f47ffe684172b2b8e11ecf05be849",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "924dca20_23fd1a0f",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-10-30T13:41:37Z",
+      "side": 1,
+      "message": "I think better not to use qtcreator indents, since we are using clang-format,\n\ni think they didi not follow our file right?",
+      "parentUuid": "3ad48094_5a028304",
+      "range": {
+        "startLine": 188,
+        "startChar": 24,
+        "endLine": 189,
+        "endChar": 26
+      },
+      "revId": "0e5d4d038e5f47ffe684172b2b8e11ecf05be849",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
