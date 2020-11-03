@@ -40,6 +40,8 @@ Rectangle {
     onVisibleChanged: {
         if(visible){
             setSelected(selectedMenu,true)
+        } else {
+            AccountAdapter.stopPreviewing()
         }
     }
 
@@ -50,21 +52,20 @@ Rectangle {
         switch(sel) {
             case SettingsView.Account:
                 pageIdCurrentAccountSettings.connectCurrentAccount()
-                settingsViewRect.stopPreviewing()
+                AccountAdapter.stopPreviewing()
                 selectedMenu = sel
                 pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
                 break
             case SettingsView.General:
-                settingsViewRect.stopPreviewing()
+                AccountAdapter.stopPreviewing()
                 selectedMenu = sel
                 break
             case SettingsView.Media:
                 selectedMenu = sel
-                settingsViewRect.stopPreviewing()
                 avSettings.populateAVSettings()
                 break
             case SettingsView.Plugin:
-                settingsViewRect.stopPreviewing()
+                AccountAdapter.stopPreviewing()
                 selectedMenu = sel
                 pluginSettings.populatePluginSettings()
                 break
@@ -82,7 +83,7 @@ Rectangle {
 
     // slots
     function leaveSettingsSlot(showMainView) {
-        settingsViewRect.stopPreviewing()
+        AccountAdapter.stopPreviewing()
         settingsViewRect.stopBooth()
         if (showMainView)
             settingsViewWindowNeedToShowMainViewWindow()
@@ -116,7 +117,6 @@ Rectangle {
 
         anchors.fill: root
 
-        signal stopPreviewing
         signal stopBooth
 
         property bool isSIP: {
