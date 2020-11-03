@@ -77,7 +77,7 @@ ColumnLayout {
             AVModel.setCurrentVideoCaptureDevice(deviceId)
             AVModel.setDefaultDevice(deviceId)
             setFormatListForCurrentDevice()
-            startPreviewing(true)
+            startPreviewing() // (true) // TODO: To be analysed from lower level layers
         } catch(err){ console.warn(err.message) }
     }
 
@@ -98,8 +98,8 @@ ColumnLayout {
         } catch(err){ console.warn("Exception: " + err.message) }
     }
 
-    function stopPreviewing(async = true) {
-        AccountAdapter.stopPreviewing(async)
+    function stopPreviewing() {
+        AccountAdapter.stopPreviewing()
     }
 
     function slotFormatCurrentIndexChanged(index, isResolutionIndex) {
