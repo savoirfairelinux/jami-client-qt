@@ -234,12 +234,6 @@ Rectangle {
                 VideoCallPreviewRenderer {
                     id: previewRenderer
 
-                    // Property is used in the {} expression for height (extra dependency),
-                    // it will not affect the true height expression, since expression
-                    // at last will be taken only, but it will force the height to update
-                    // and reevaluate getPreviewImageScalingFactor().
-                    property int previewImageScalingFactorUpdated: 0
-
                     Connections {
                         target: CallAdapter
 
@@ -249,10 +243,6 @@ Rectangle {
                     }
 
                     width: Math.max(videoCallPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
-                    height: {
-                        previewImageScalingFactorUpdated
-                        return previewRenderer.width * previewRenderer.getPreviewImageScalingFactor()
-                    }
                     x: videoCallPageMainRect.width - previewRenderer.width - previewMargin
                     y: videoCallPageMainRect.height - previewRenderer.height - previewMargin - 56 // Avoid overlay
                     z: -1
@@ -312,9 +302,11 @@ Rectangle {
                         }
                     }
 
-                    onPreviewImageAvailable: {
-                        previewImageScalingFactorUpdated++
-                        previewImageScalingFactorUpdated--
+                    onWidthChanged: {
+                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
+                    }
+                    onPreviewImageScalingFactorChanged: {
+                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
                     }
                 }
             }
