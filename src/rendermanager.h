@@ -62,6 +62,11 @@ public:
     bool startRendering();
 
     /*
+     * Locally disable frame access to this FrameWrapper
+     */
+    void stopRendering();
+
+    /*
      * Get the most recently rendered frame as a QImage.
      * @return the rendered image of this object's id
      */

@@ -51,6 +51,10 @@ FrameWrapper::connectStartRendering()
 bool
 FrameWrapper::startRendering()
 {
+    qDebug() << "FrameWrapper::startRendering " << id_;
+    if (isRendering())
+        return true;
+
     try {
         renderer_ = const_cast<video::Renderer*>(&avModel_.getRenderer(id_));
     } catch (std::out_of_range& e) {
@@ -69,15 +73,20 @@ FrameWrapper::startRendering()
     renderConnections_.stopped = QObject::connect(&avModel_,
                                                   &AVModel::rendererStopped,
                                                   this,
-                                                  &FrameWrapper::slotRenderingStopped);
+                                                  &FrameWrapper::slotRenderingStopped,
+                                                  Qt::DirectConnection);
 
     return true;
 }
 
+void
+FrameWrapper::stopRendering()
+{}
+
 QImage*
 FrameWrapper::getFrame()
 {
-    return image_.get();
+    return isRendering_ ? image_.get() : nullptr;
 }
 
 bool
@@ -147,6 +156,7 @@ FrameWrapper::slotFrameUpdated(const QString& id)
 void
 FrameWrapper::slotRenderingStopped(const QString& id)
 {
+    qDebug() << Q_FUNC_INFO << QThread::currentThread() << "FrameWrapper::slotRenderingStopped";
     if (id != id_) {
         return;
     }
@@ -155,14 +165,14 @@ FrameWrapper::slotRenderingStopped(const QString& id)
     QObject::disconnect(renderConnections_.stopped);
     renderer_ = nullptr;
 
+    isRendering_ = false;
+
     /*
      * The object's QImage pointer is reset before renderingStopped
      * is emitted, allowing the listener to invoke specific behavior
      * like clearing the widget or changing the UI entirely.
      */
     image_.reset();
-
-    isRendering_ = false;
 
     emit renderingStopped(id);
 }
@@ -185,12 +195,16 @@ RenderManager::RenderManager(AVModel& avModel)
                      &FrameWrapper::frameUpdated,
                      [this](const QString& id) {
                          Q_UNUSED(id);
+                         qDebug() << Q_FUNC_INFO << QThread::currentThread()
+                                  << "FrameWrapper::frameUpdated";
                          emit previewFrameUpdated();
                      });
     QObject::connect(previewFrameWrapper_.get(),
                      &FrameWrapper::renderingStopped,
                      [this](const QString& id) {
                          Q_UNUSED(id);
+                         qDebug() << Q_FUNC_INFO << QThread::currentThread()
+                                  << "FrameWrapper::renderingStopped";
                          emit previewRenderingStopped();
                      });
 
@@ -215,6 +229,7 @@ RenderManager::isPreviewing()
 QImage*
 RenderManager::getPreviewFrame()
 {
+    qDebug() << Q_FUNC_INFO << QThread::currentThread();
     return previewFrameWrapper_->getFrame();
 }
 
@@ -235,6 +250,7 @@ RenderManager::stopPreviewing(bool async)
 void
 RenderManager::startPreviewing(bool force, bool async)
 {
+    qDebug() << "RenderManager::startPreviewing " << force << async;
     if (previewFrameWrapper_->isRendering() && !force) {
         return;
     }
