@@ -34,12 +34,6 @@ Rectangle {
     property int contentWidth: avSettingsColumnLayout.width
     property int preferredHeight: avSettingsColumnLayout.implicitHeight
 
-    onVisibleChanged: {
-        if (!visible) {
-            videoSettings.stopPreviewing()
-        }
-    }
-
     function populateAVSettings() {
         audioSettings.populateAudioSettings()
         videoSettings.populateVideoSettings()
