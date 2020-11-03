@@ -66,12 +66,19 @@ AvAdapter::populateVideoDeviceContextMenuItem()
 void
 AvAdapter::onVideoContextMenuDeviceItemClicked(const QString& deviceName)
 {
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    auto call = LRCInstance::getCallInfoForConversation(conversation);
+    if (!call) {
+        return;
+    }
+
     auto deviceId = LRCInstance::avModel().getDeviceIdFromName(deviceName);
     if (deviceId.isEmpty()) {
         qWarning() << "Couldn't find device: " << deviceName;
         return;
     }
-    LRCInstance::avModel().switchInputTo(deviceId);
+    LRCInstance::avModel().switchInputTo(deviceId, call->id);
     LRCInstance::avModel().setCurrentVideoCaptureDevice(deviceId);
 }
 
