@@ -81,8 +81,8 @@ ColumnLayout {
         } catch(err){ console.warn(err.message) }
     }
 
-    function startPreviewing(force = false, async = true) {
-        AccountAdapter.startPreviewing(force, async)
+    function startPreviewing(force = false) {
+        AccountAdapter.startPreviewing(force)
         previewAvailable = true
     }
 
@@ -98,8 +98,8 @@ ColumnLayout {
         } catch(err){ console.warn("Exception: " + err.message) }
     }
 
-    function stopPreviewing(async = true) {
-        AccountAdapter.stopPreviewing(async)
+    function stopPreviewing() {
+        AccountAdapter.stopPreviewing()
     }
 
     function slotFormatCurrentIndexChanged(index, isResolutionIndex) {
