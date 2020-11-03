@@ -21,9 +21,9 @@ ColumnLayout {
                                 buttonsRowLayout.height +
                                 JamiTheme.preferredMarginSize / 2
 
-    function startBooth(force = false){
+    function startBooth(){
         hasAvatar = false
-        AccountAdapter.startPreviewing(force)
+        AccountAdapter.startPreviewing(false)
         takePhotoState = true
     }
 
