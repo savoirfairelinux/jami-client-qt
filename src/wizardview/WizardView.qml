@@ -24,6 +24,7 @@ import QtGraphicalEffects 1.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../"
 import "../commoncomponents"
 import "../constant"
 import "components"
@@ -67,7 +68,7 @@ Rectangle {
     property var inputParaObject: ({})
 
     // signal to redirect the page to main view
-    signal needToShowMainViewWindow(int accountIndex)
+    signal loaderSourceChangeRequested(int sourceToLoad)
     signal wizardViewIsClosed
 
     visible: true
@@ -94,7 +95,7 @@ Rectangle {
                 changePageQML(WizardView.WizardViewPageIndex.BACKUPKEYSPAGE)
             } else {
                 changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                needToShowMainViewWindow(addedAccountIndex)
+                loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
             }
         }
 
@@ -158,7 +159,7 @@ Rectangle {
                                                          title, info)
                 if (success) {
                     console.log("Account Export Succeed")
-                    needToShowMainViewWindow(addedAccountIndex)
+                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
                 }
             }
         }
@@ -318,12 +319,12 @@ Rectangle {
                     }
 
                     changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                    needToShowMainViewWindow(addedAccountIndex)
+                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
                 }
 
                 onLeavePage: {
                     changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                    needToShowMainViewWindow(addedAccountIndex)
+                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
                 }
             }
 
@@ -380,7 +381,7 @@ Rectangle {
                         changePageQML(WizardView.WizardViewPageIndex.BACKUPKEYSPAGE)
                     else {
                         changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                        needToShowMainViewWindow(addedAccountIndex)
+                        loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
                     }
                 }
 
