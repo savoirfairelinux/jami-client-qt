@@ -85,9 +85,9 @@ Rectangle {
         settingsViewRect.stopPreviewing()
         settingsViewRect.stopBooth()
         if (showMainView)
-            settingsViewWindowNeedToShowMainViewWindow()
+            settingsViewNeedToShowMainView()
         else
-            settingsViewWindowNeedToShowNewWizardWindow()
+            settingsViewNeedToShowNewWizardWindow()
     }
 
     function accountListChanged() {
@@ -104,8 +104,8 @@ Rectangle {
     property int profileType: SettingsAdapter.getCurrentAccount_Profile_Info_Type()
     property int selectedMenu: SettingsView.Account
     // signal to redirect the page to main view
-    signal settingsViewWindowNeedToShowMainViewWindow()
-    signal settingsViewWindowNeedToShowNewWizardWindow
+    signal settingsViewNeedToShowMainView()
+    signal settingsViewNeedToShowNewWizardWindow
 
     signal settingsBackArrowClicked
 
