@@ -131,4 +131,14 @@ Item {
     property color presenceGreen_: rgb256(76, 217, 100)
 
     property int fadeDuration: 150
+
+    // main application spec
+    property int mainViewMinWidth: 445
+    property int mainViewMinHeight: 400
+
+    property int wizardViewMinWidth: 500
+    property int wizardViewMinHeight: 600
+
+    property int mainViewPreferredWidth: 650
+    property int mainViewPreferredHeight: 600
 }
