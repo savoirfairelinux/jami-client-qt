@@ -25,143 +25,139 @@ import net.jami.Adapters 1.0
 import "../../commoncomponents"
 
 Rectangle {
-    id: welcomeRect
+    id: root
 
     anchors.fill: parent
 
-    Rectangle {
-        id: welcomeRectComponentsGroup
+    ColumnLayout {
+        id: welcomePageColumnLayout
 
         anchors.centerIn: parent
 
-        width: Math.max(mainViewStackPreferredWidth, welcomeRect.width - 100)
-        height: mainViewWindow.minimumHeight
+        width: Math.max(mainViewStackPreferredWidth, root.width - 100)
+        height: parent.height
 
-        ColumnLayout {
-            id: welcomeRectComponentsGroupColumnLayout
+        ResponsiveImage {
+            id: jamiLogoImage
 
-            ResponsiveImage {
-                id: jamiLogoImage
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: welcomePageColumnLayout.width
+            Layout.preferredHeight: 100
+            Layout.topMargin: JamiTheme.preferredMarginSize
+            Layout.bottomMargin: 10
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomeRectComponentsGroup.width
-                Layout.preferredHeight: 100
-                Layout.topMargin: JamiTheme.preferredMarginSize
-                Layout.bottomMargin: 10
+            smooth: true
+            antialiasing: true
 
-                smooth: true
-                antialiasing: true
+            source: "qrc:/images/logo-jami-standard-coul.svg"
+        }
 
-                source: "qrc:/images/logo-jami-standard-coul.svg"
-            }
+        Label {
+            id: jamiIntroText
 
-            Label {
-                id: jamiIntroText
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: welcomePageColumnLayout.width
+            Layout.preferredHeight: 80
+            Layout.bottomMargin: 5
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomeRectComponentsGroup.width
-                Layout.preferredHeight: 80
-                Layout.bottomMargin: 5
+            wrapMode: Text.WordWrap
+            font.pointSize: JamiTheme.textFontSize + 1
 
-                wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize + 1
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+            text: JamiStrings.description
+        }
 
-                text: JamiStrings.description
-            }
+        Label {
+            id: jamiShareWithFriendText
 
-            Label {
-                id: jamiShareWithFriendText
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: welcomePageColumnLayout.width
+            Layout.preferredHeight: 50
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomeRectComponentsGroup.width
-                Layout.preferredHeight: 50
+            wrapMode: Text.WordWrap
+            font.pointSize: JamiTheme.textFontSize
 
-                wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+            visible: AccountAdapter.currentAccountType === Profile.Type.RING
 
-                visible: AccountAdapter.currentAccountType === Profile.Type.RING
+            text: JamiStrings.shareInvite
+            color: JamiTheme.faddedFontColor
+        }
 
-                text: JamiStrings.shareInvite
-                color: JamiTheme.faddedFontColor
-            }
+        Rectangle {
+            id: jamiRegisteredNameRect
 
-            Rectangle {
-                id: jamiRegisteredNameRect
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: welcomePageColumnLayout.width
+            Layout.preferredHeight: 65
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomeRectComponentsGroup.width
-                Layout.preferredHeight: 65
-                Layout.bottomMargin: JamiTheme.preferredMarginSize
+            visible: AccountAdapter.currentAccountType === Profile.Type.RING
 
-                visible: AccountAdapter.currentAccountType === Profile.Type.RING
+            ColumnLayout {
+                id: jamiRegisteredNameRectColumnLayout
 
-                ColumnLayout {
-                    id: jamiRegisteredNameRectColumnLayout
+                spacing: 0
 
-                    spacing: 0
+                Text {
+                    id: jamiRegisteredNameText
 
-                    Text {
-                        id: jamiRegisteredNameText
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: welcomeRectComponentsGroup.width
-                        Layout.preferredHeight: 30
-                        font.pointSize: JamiTheme.textFontSize + 1
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        text: textMetricsjamiRegisteredNameText.elidedText
-                        TextMetrics {
-                            id: textMetricsjamiRegisteredNameText
-                            font: jamiRegisteredNameText.font
-                            text: UtilsAdapter.getBestId(AccountAdapter.currentAccountId)
-                            elideWidth: welcomeRectComponentsGroup.width
-                            elide: Qt.ElideMiddle
-                        }
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: welcomePageColumnLayout.width
+                    Layout.preferredHeight: 30
+
+                    font.pointSize: JamiTheme.textFontSize + 1
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    text: textMetricsjamiRegisteredNameText.elidedText
+                    TextMetrics {
+                        id: textMetricsjamiRegisteredNameText
+                        font: jamiRegisteredNameText.font
+                        text: UtilsAdapter.getBestId(AccountAdapter.currentAccountId)
+                        elideWidth: welcomePageColumnLayout.width
+                        elide: Qt.ElideMiddle
                     }
+                }
 
-                    PushButton {
-                        id: copyRegisterednameButton
+                PushButton {
+                    id: copyRegisterednameButton
 
-                        Layout.alignment: Qt.AlignCenter
+                    Layout.alignment: Qt.AlignCenter
 
-                        preferredSize: 34
-                        imagePadding: 4
+                    preferredSize: 34
+                    imagePadding: 4
 
-                        source: "qrc:/images/icons/content_copy-24px.svg"
+                    source: "qrc:/images/icons/content_copy-24px.svg"
 
-                        onClicked: {
-                            UtilsAdapter.setText(
-                                        textMetricsjamiRegisteredNameText.text)
-                        }
+                    onClicked: {
+                        UtilsAdapter.setText(
+                                    textMetricsjamiRegisteredNameText.text)
                     }
                 }
             }
         }
-    }
 
-    MaterialButton {
-        id: btnClose
+        MaterialButton {
+            id: btnAboutPopUp
 
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: JamiTheme.preferredMarginSize
-        anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
+            Layout.preferredWidth: 150
+            Layout.preferredHeight: 30
 
-        width: 150
-        height: 30
+            color: JamiTheme.buttonTintedBlack
+            hoveredColor: JamiTheme.buttonTintedBlackHovered
+            pressedColor: JamiTheme.buttonTintedBlackPressed
+            outlined: true
 
-        color: JamiTheme.buttonTintedBlack
-        hoveredColor: JamiTheme.buttonTintedBlackHovered
-        pressedColor: JamiTheme.buttonTintedBlackPressed
-        outlined: true
+            text: JamiStrings.aboutJami
 
-        text: JamiStrings.aboutJami
-
-        onClicked: aboutPopUpDialog.open()
+            onClicked: aboutPopUpDialog.open()
+        }
     }
 
     CustomBorder {
