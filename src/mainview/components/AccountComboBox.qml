@@ -237,11 +237,11 @@ ComboBox {
         PushButton {
             id: settingsButton
 
-            source: !mainViewWindow.inSettingsView ?
+            source: !mainView.inSettingsView ?
                         "qrc:/images/icons/round-settings-24px.svg" :
                         "qrc:/images/icons/round-close-24px.svg"
 
-            toolTipText: !mainViewWindow.inSettingsView ?
+            toolTipText: !mainView.inSettingsView ?
                              JamiStrings.openSettings :
                              JamiStrings.closeSettings
 
