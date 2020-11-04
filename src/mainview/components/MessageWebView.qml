@@ -97,7 +97,7 @@ Rectangle {
 
         onBackClicked: {
             MessagesAdapter.updateDraft()
-            mainViewWindow.showWelcomeView()
+            mainView.showWelcomeView()
         }
 
         onNeedToHideConversationInCall: {
