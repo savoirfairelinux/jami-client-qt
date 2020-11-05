@@ -85,6 +85,7 @@ MessagesAdapter::setupChatView(const QString& uid)
                               "setSendContactRequestButtonVisible",
                               Q_ARG(QVariant, shouldShowSendContactRequestBtn));
 
+    setDisplayLinks();
     setMessagesVisibility(false);
 
     /*
@@ -94,6 +95,9 @@ MessagesAdapter::setupChatView(const QString& uid)
     connect(LRCInstance::getCurrentConversationModel(),
             &ConversationModel::composingStatusChanged,
             [this](const QString& uid, const QString& contactUri, bool isComposing) {
+                if (!AppSettingsManager::getValue(Settings::Key::EnableTypingIndicator).toBool()) {
+                    return;
+                }
                 contactIsComposing(uid, contactUri, isComposing);
             });
 
@@ -168,6 +172,7 @@ MessagesAdapter::updateConversationForAddedContact()
 
     clear();
     setConversationProfileData(conversation);
+    setDisplayLinks();
     printHistory(*convModel, conversation.interactions);
 }
 
@@ -428,6 +433,9 @@ MessagesAdapter::pasteKeyDetected()
 void
 MessagesAdapter::onComposing(bool isComposing)
 {
+    if (!AppSettingsManager::getValue(Settings::Key::EnableTypingIndicator).toBool()) {
+        return;
+    }
     LRCInstance::getCurrentConversationModel()->setIsComposing(LRCInstance::getCurrentConvUid(),
                                                                isComposing);
 }
@@ -532,6 +540,15 @@ void
 MessagesAdapter::clear()
 {
     QString s = QString::fromLatin1("clearMessages();");
+    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
+}
+
+void
+MessagesAdapter::setDisplayLinks()
+{
+    QString s = QString::fromLatin1("setDisplayLinks(%1);")
+                    .arg(
+                        AppSettingsManager::getValue(Settings::Key::DisplayImagesChatview).toBool());
     QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
 }
 

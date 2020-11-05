@@ -73,6 +73,7 @@ protected:
     void requestSendMessageContent();
     void setInvitation(bool show, const QString& contactUri = "", const QString& contactId = "");
     void clear();
+    void setDisplayLinks();
     void printHistory(lrc::api::ConversationModel& conversationModel,
                       const std::map<uint64_t, lrc::api::interaction::Info> interactions);
     void setSenderImage(const QString& sender, const QString& senderImage);
