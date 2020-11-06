@@ -141,6 +141,7 @@ Rectangle {
                         AccountAdapter.currentAccountId)
             ConversationsAdapter.selectConversation(
                         AccountAdapter.currentAccountId, callConv)
+            CallAdapter.updateCall(callConv, currentAccountId)
         } else {
             showWelcomeView()
         }
