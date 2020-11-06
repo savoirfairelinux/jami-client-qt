@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM ubuntu:20.10
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV QT_QUICK_BACKEND software
