@@ -65,6 +65,9 @@ public:
     Q_INVOKABLE void videoPauseThisCallToggle();
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE QVariantList getConferencesInfos();
+    Q_INVOKABLE void updateCall(const QString& convUid = {},
+                                const QString& accountId = {},
+                                bool forceCallOnly = false);
 
 signals:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
@@ -96,9 +99,6 @@ public slots:
     void slotAccountChanged();
 
 private:
-    void updateCall(const QString& convUid = {},
-                    const QString& accountId = {},
-                    bool forceCallOnly = false);
     bool shouldShowPreview(bool force);
     void showNotification(const QString& accountId, const QString& convUid);
 
