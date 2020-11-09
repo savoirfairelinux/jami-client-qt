@@ -161,6 +161,8 @@ Rectangle {
                         injectedContextMenu.active = active
                         injectedContextMenu.x = mousePos.x
                         injectedContextMenu.y = mousePos.y - injectedContextMenu.height
+                        injectedContextMenu.showSetModerator = true
+                        injectedContextMenu.showUnsetModerator = false
                         injectedContextMenu.openMenu()
                     }
                 }
