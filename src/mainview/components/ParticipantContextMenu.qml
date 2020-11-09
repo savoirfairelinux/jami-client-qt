@@ -34,6 +34,8 @@ Item {
     property var showHangup: false
     property var showMaximize: false
     property var showMinimize: false
+    property var showSetModerator: false
+    property var showUnsetModerator: false
 
     function openMenu(){
         ContextMenuGenerator.initMenu()
@@ -55,6 +57,20 @@ Item {
                                              "qrc:/images/icons/close_fullscreen-24px.svg",
                                              function (){
                                                   CallAdapter.minimizeParticipant()
+                                             })
+
+        if (showSetModerator)
+            ContextMenuGenerator.addMenuItem(qsTr("Set moderator"),
+                                             "qrc:/images/icons/person_add-24px.svg",
+                                             function (){
+                                                  CallAdapter.setModerator(uri, true)
+                                             })
+
+        if (showUnsetModerator)
+            ContextMenuGenerator.addMenuItem(qsTr("Unset moderator"),
+                                             "qrc:/images/icons/round-close-24px.svg",
+                                             function (){
+                                                  CallAdapter.setModerator(uri, false)
                                              })
 
         root.height = ContextMenuGenerator.getMenu().height
