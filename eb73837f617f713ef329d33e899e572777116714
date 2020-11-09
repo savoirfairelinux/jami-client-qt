@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9d7a8665_749db045",
+        "filename": "src/MainApplicationWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-11-09T18:29:22Z",
+      "side": 1,
+      "message": "Actually, on Windows this does not work as well....\n\nI added some extra logic to make it on top first and yeah, minimized should be added",
+      "parentUuid": "7136a87f_35bf20af",
+      "range": {
+        "startLine": 160,
+        "startChar": 16,
+        "endLine": 160,
+        "endChar": 44
+      },
+      "revId": "eb73837f617f713ef329d33e899e572777116714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "af94fb9c_11feea12",
         "filename": "src/mainview/MainView.qml",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "eb73837f617f713ef329d33e899e572777116714",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce32a69f_ee145546",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-11-09T18:29:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "af94fb9c_11feea12",
+      "range": {
+        "startLine": 243,
+        "startChar": 8,
+        "endLine": 251,
+        "endChar": 9
+      },
+      "revId": "eb73837f617f713ef329d33e899e572777116714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "2a47dfee_5566b59d",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-11-09T18:29:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3b3b48dc_004e703a",
+      "range": {
+        "startLine": 602,
+        "startChar": 47,
+        "endLine": 602,
+        "endChar": 48
+      },
+      "revId": "eb73837f617f713ef329d33e899e572777116714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3852f24_5d4561e5",
         "filename": "src/mainview/MainView.qml",
         "patchSetId": 8
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "968425b4_9850ef3b",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 603,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-11-09T18:29:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b3852f24_5d4561e5",
+      "range": {
+        "startLine": 603,
+        "startChar": 45,
+        "endLine": 603,
+        "endChar": 57
+      },
+      "revId": "eb73837f617f713ef329d33e899e572777116714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "468290fe_173c70ea",
         "filename": "src/mainview/MainView.qml",
         "patchSetId": 8
@@ -114,6 +210,30 @@
       "revId": "eb73837f617f713ef329d33e899e572777116714",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f680bc3_b0f14b84",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-11-09T18:29:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "468290fe_173c70ea",
+      "range": {
+        "startLine": 605,
+        "startChar": 45,
+        "endLine": 605,
+        "endChar": 55
+      },
+      "revId": "eb73837f617f713ef329d33e899e572777116714",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
