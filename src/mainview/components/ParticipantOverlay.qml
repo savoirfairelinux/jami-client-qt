@@ -154,6 +154,7 @@ Rectangle {
                         var layout = CallAdapter.getCurrentLayoutType()
                         var showMaximized = layout !== 2
                         var showMinimized = !(layout === 0 || (layout === 1 && !active))
+                        //var isModerator = CallAdapter.isModerator(uri)
                         injectedContextMenu.showHangup = !root.isLocal && showEndCall
                         injectedContextMenu.showMaximize = showMaximized
                         injectedContextMenu.showMinimize = showMinimized
@@ -161,6 +162,8 @@ Rectangle {
                         injectedContextMenu.active = active
                         injectedContextMenu.x = mousePos.x
                         injectedContextMenu.y = mousePos.y - injectedContextMenu.height
+                        injectedContextMenu.showSetModerator = true//!isModerator
+                        injectedContextMenu.showUnsetModerator = true//isModerator
                         injectedContextMenu.openMenu()
                     }
                 }
