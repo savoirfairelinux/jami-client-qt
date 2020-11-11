@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,33 +17,36 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// JamiQmlUtils as a singleton is to provide global property entry
-pragma Singleton
+// SettingsLayoutCoordinator is to provide global ui presentation management
+// for settings view
 
 import QtQuick 2.14
+import QtQuick.Controls 2.14
+import net.jami.Adapters 1.0
+
+import "../constant"
 
 Item {
-    readonly property string mainViewLoadPath: "qrc:/src/mainview/MainView.qml"
-    readonly property string wizardViewLoadPath: "qrc:/src/wizardview/WizardView.qml"
+    id: root
 
-    property bool callIsFullscreen: false
+    // map<name, obj>
+    property var views: new Map()
+    property bool initialized: false
 
-    TextMetrics {
-        id: globalTextMetrics
+    property var settingsViewStackLayout: ""
+
+    function registerLayout(settingsViewStackLayout) {
+        root.settingsViewStackLayout = settingsViewStackLayout
+
+        initialized = true
     }
 
-    function getTextBoundingRect(font, text) {
-        globalTextMetrics.font = font
-        globalTextMetrics.text = text
-
-        return globalTextMetrics.boundingRect
-    }
-
-    function isEmpty(obj) {
-        for(var key in obj) {
-            if(obj.hasOwnProperty(key))
-                return false;
+    function registerView(view, name) {
+        if (JamiQmlUtils.isEmpty(view) || JamiQmlUtils.isEmpty(name)) {
+            console.log("View registered failed")
+            return
         }
-        return true;
+
+        views.set(name, view)
     }
 }

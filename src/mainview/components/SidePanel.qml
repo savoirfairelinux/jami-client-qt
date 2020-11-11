@@ -22,6 +22,7 @@ import QtQuick.Layouts 1.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 
 Rectangle {
@@ -59,7 +60,7 @@ Rectangle {
         contactSearchBar.clearText()
     }
 
-    function refreshAccountComboBox(index) {
+    function refreshAccountComboBox(index = 0) {
         accountComboBox.update()
         clearContactSearchBar()
         accountComboBox.resetAccountListModel()
@@ -81,6 +82,12 @@ Rectangle {
     // Intended -> since strange behavior will happen without this for stackview.
     anchors.top: parent.top
     anchors.fill: parent
+
+    ViewBase {
+        id: viewbase
+
+        view: sidePanelRect
+    }
 
     // Search bar container to embed search label
     ContactSearchBar {

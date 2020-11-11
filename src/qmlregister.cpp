@@ -75,6 +75,9 @@
 #define QML_REGISTERSINGLETONTYPE_URL(URL, T, MAJ, MIN) \
     qmlRegisterSingletonType(QUrl(QStringLiteral(URL)), "net.jami.Models", MAJ, MIN, #T);
 
+#define QML_REGISTERSINGLETONTYPE_URL_NAME(URL, T, MAJ, MIN, NAME) \
+    qmlRegisterSingletonType(QUrl(QStringLiteral(URL)), "net.jami." #NAME, MAJ, MIN, #T);
+
 #define QML_REGISTERTYPE(N, T, MAJ, MIN) qmlRegisterType<T>(N, MAJ, MIN, #T);
 
 #define QML_REGISTERNAMESPACE(T, NAME, MAJ, MIN) \
@@ -125,12 +128,12 @@ registerTypes()
     /*
      * Adaptors
      */
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", CallAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", MessagesAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", ConversationsAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", AvAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", ContactAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", PluginAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", CallAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", MessagesAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", ConversationsAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", AvAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", ContactAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", PluginAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Adapters", AccountAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Adapters", UtilsAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Adapters", SettingsAdapter, 1, 0);
@@ -147,23 +150,14 @@ registerTypes()
     QML_REGISTERSINGLETONTYPE_URL("qrc:/src/constant/JamiTheme.qml", JamiTheme, 1, 0);
     QML_REGISTERSINGLETONTYPE_URL("qrc:/src/constant/JamiQmlUtils.qml", JamiQmlUtils, 1, 0);
     QML_REGISTERSINGLETONTYPE_URL("qrc:/src/constant/JamiStrings.qml", JamiStrings, 1, 0);
+    QML_REGISTERSINGLETONTYPE_URL_NAME("qrc:/src/layoutmanagement/MainLayoutCoordinator.qml",
+        MainLayoutCoordinator, 1, 0, LayoutCoordinator);
 
     /*
      * C++ singletons
      */
     QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(LRCInstance, 1, 0);
     QML_REGISTERSINGLETONTYPE_WITH_INSTANCE(NameDirectory, 1, 0);
-
-    /*
-     * lrc namespaces, models, and singletons
-     */
-    QML_REGISTERNAMESPACE(lrc::api::staticMetaObject, "Lrc", 1, 0);
-    QML_REGISTERNAMESPACE(lrc::api::account::staticMetaObject, "Account", 1, 0);
-    QML_REGISTERNAMESPACE(lrc::api::call::staticMetaObject, "Call", 1, 0);
-    QML_REGISTERNAMESPACE(lrc::api::datatransfer::staticMetaObject, "Datatransfer", 1, 0);
-    QML_REGISTERNAMESPACE(lrc::api::interaction::staticMetaObject, "Interaction", 1, 0);
-    QML_REGISTERNAMESPACE(lrc::api::video::staticMetaObject, "Video", 1, 0);
-    QML_REGISTERNAMESPACE(lrc::api::profile::staticMetaObject, "Profile", 1, 0);
 
     /*
      * same as QML_REGISTERUNCREATABLE but omit the namespace in Qml
@@ -183,5 +177,12 @@ registerTypes()
      */
     QML_REGISTERUNCREATABLE("net.jami.Enums", Settings, 1, 0);
     QML_REGISTERUNCREATABLE("net.jami.Enums", NetWorkManager, 1, 0);
+    QML_REGISTERNAMESPACE(lrc::api::staticMetaObject, "Lrc", 1, 0);
+    QML_REGISTERNAMESPACE(lrc::api::account::staticMetaObject, "Account", 1, 0);
+    QML_REGISTERNAMESPACE(lrc::api::call::staticMetaObject, "Call", 1, 0);
+    QML_REGISTERNAMESPACE(lrc::api::datatransfer::staticMetaObject, "Datatransfer", 1, 0);
+    QML_REGISTERNAMESPACE(lrc::api::interaction::staticMetaObject, "Interaction", 1, 0);
+    QML_REGISTERNAMESPACE(lrc::api::video::staticMetaObject, "Video", 1, 0);
+    QML_REGISTERNAMESPACE(lrc::api::profile::staticMetaObject, "Profile", 1, 0);
 }
 // clang-format on
