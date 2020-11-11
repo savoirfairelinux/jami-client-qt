@@ -27,6 +27,7 @@ import Qt.labs.platform 1.1
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 import "../../constant"
 
@@ -99,6 +100,11 @@ Rectangle {
         passwdPushButton.text = hasPassword ?
                     JamiStrings.changePassword :
                     JamiStrings.setPassword
+    }
+
+    ViewBase {
+        view: root
+        type: ViewBase.Type.Settings
     }
 
     SimpleMessageDialog {
