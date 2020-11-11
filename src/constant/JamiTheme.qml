@@ -141,4 +141,9 @@ Item {
 
     property int mainViewPreferredWidth: 650
     property int mainViewPreferredHeight: 600
+
+    property int sidePanelViewStackPreferredWidth: 250
+    property int mainViewStackPreferredWidth: 250
+    property int settingsViewPreferredWidth: 460
+    property int onWidthChangedTriggerDistance: 5
 }

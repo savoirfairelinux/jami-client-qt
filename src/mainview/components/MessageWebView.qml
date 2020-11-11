@@ -24,6 +24,7 @@ import QtWebChannel 1.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 
 Rectangle {
@@ -58,6 +59,12 @@ Rectangle {
 
     function resetMessagingHeaderBackButtonSource(reset) {
         messageWebViewHeader.resetBackToWelcomeViewButtonSource(reset)
+    }
+
+    ViewBase {
+        id: viewbase
+
+        view: messageWebViewRect
     }
 
     JamiFileDialog {
@@ -97,7 +104,7 @@ Rectangle {
 
         onBackClicked: {
             MessagesAdapter.updateDraft()
-            mainView.showWelcomeView()
+            MainLayoutCoordinator.showWelcomeView()
         }
 
         onNeedToHideConversationInCall: {

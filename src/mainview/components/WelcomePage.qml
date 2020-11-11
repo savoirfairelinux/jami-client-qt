@@ -22,6 +22,7 @@ import QtQuick.Layouts 1.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 
 Rectangle {
@@ -29,12 +30,18 @@ Rectangle {
 
     anchors.fill: parent
 
+    ViewBase {
+        id: viewbase
+
+        view: root
+    }
+
     ColumnLayout {
         id: welcomePageColumnLayout
 
         anchors.centerIn: parent
 
-        width: Math.max(mainViewStackPreferredWidth, root.width - 100)
+        width: Math.max(JamiTheme.mainViewStackPreferredWidth, root.width - 100)
         height: parent.height
 
         ColumnLayout {
