@@ -25,6 +25,7 @@ import QtGraphicalEffects 1.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../layoutmanagement"
 import "components"
 
 Rectangle {
@@ -49,10 +50,10 @@ Rectangle {
         if(selectedMenu === sel && (!recovery)) { return }
         switch(sel) {
             case SettingsView.Account:
-                pageIdCurrentAccountSettings.connectCurrentAccount()
+                currentAccountSettings.connectCurrentAccount()
                 settingsViewRect.stopPreviewing()
                 selectedMenu = sel
-                pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
+                currentAccountSettings.updateAccountInfoDisplayed()
                 break
             case SettingsView.General:
                 settingsViewRect.stopPreviewing()
@@ -94,7 +95,7 @@ Rectangle {
         var accountList = AccountAdapter.model.getAccountList()
         if(accountList.length === 0)
             return
-        pageIdCurrentAccountSettings.disconnectAccountConnections()
+        currentAccountSettings.disconnectAccountConnections()
         var device = AVModel.getDefaultDevice()
         if(device.length === 0) {
             AVModel.setCurrentVideoCaptureDevice(device)
@@ -110,6 +111,12 @@ Rectangle {
     signal settingsBackArrowClicked
 
     visible: true
+
+    ViewBase {
+        id: viewbase
+
+        view: root
+    }
 
     Rectangle {
         id: settingsViewRect
@@ -210,7 +217,9 @@ Rectangle {
 
                 // current account setting scroll page, index 0
                 CurrentAccountSettings {
-                    id: pageIdCurrentAccountSettings
+                    id: currentAccountSettings
+
+                    objectName: "currentAccountSettings"
 
                     Layout.alignment: Qt.AlignCenter
 
@@ -237,12 +246,16 @@ Rectangle {
                 GeneralSettingsPage {
                     id: generalSettings
 
+                    objectName: "generalSettings"
+
                     Layout.alignment: Qt.AlignCenter
                 }
 
                 // av setting page, index 2
                 AvSettingPage {
                     id: avSettings
+
+                    objectName: "avSettings"
 
                     Layout.alignment: Qt.AlignCenter
                 }
@@ -251,9 +264,15 @@ Rectangle {
                 PluginSettingsPage {
                     id: pluginSettings
 
+                    objectName: "pluginSettings"
+
                     Layout.alignment: Qt.AlignCenter
                 }
             }
         }
+    }
+
+    Component.onCompleted: {
+        MainLayoutCoordinator.registerSettingsLayout(rightSettingsStackLayout)
     }
 }

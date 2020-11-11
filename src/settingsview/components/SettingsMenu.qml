@@ -22,6 +22,7 @@ import QtQuick.Layouts 1.14
 import net.jami.Models 1.0
 
 // TODO: these includes should generally be resource uris
+import "../../layoutmanagement"
 import "../../commoncomponents"
 import "../../settingsview"
 
@@ -43,6 +44,12 @@ Rectangle {
 
     anchors.fill: parent
     color: JamiTheme.backgroundColor
+
+    ViewBase {
+        id: viewbase
+
+        view: root
+    }
 
     ButtonGroup {
         buttons: buttons.children

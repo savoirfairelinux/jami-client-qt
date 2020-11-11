@@ -33,6 +33,7 @@ import net.jami.Enums 1.0
 import "mainview"
 import "wizardview"
 import "commoncomponents"
+import "layoutmanagement"
 
 ApplicationWindow {
     id: root
@@ -169,6 +170,7 @@ ApplicationWindow {
     onClosing: root.close()
 
     Component.onCompleted: {
+        MainLayoutCoordinator.mainApplicationWindow = root
         if(!startAccountMigration()){
             startClient()
         }

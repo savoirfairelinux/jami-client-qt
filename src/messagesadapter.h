@@ -29,6 +29,7 @@ class MessagesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     Q_PROPERTY(QVariantMap chatviewTranslatedStrings MEMBER chatviewTranslatedStrings_ CONSTANT)
+    Q_PROPERTY(QString currentConvUID MEMBER currentConvUid_)
 
 public:
     explicit MessagesAdapter(QObject* parent = 0);

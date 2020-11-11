@@ -24,6 +24,7 @@ import Qt.labs.platform 1.1
 import QtGraphicalEffects 1.14
 import net.jami.Models 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 
 Rectangle {
@@ -39,6 +40,11 @@ Rectangle {
 
     function slotSetPluginEnabled(state) {
         PluginModel.setPluginsEnabled(state)
+    }
+
+    ViewBase {
+        view: root
+        type: ViewBase.Type.Settings
     }
 
     ColumnLayout {
