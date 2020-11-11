@@ -23,11 +23,18 @@ import QtQuick.Controls.Universal 2.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../layoutmanagement"
 import "../js/incomingcallpagecreation.js" as IncomingCallPageCreation
 import "../js/callfullscreenwindowcontainercreation.js" as CallFullScreenWindowContainerCreation
 
 Rectangle {
     id: callStackViewWindow
+
+    ViewBase {
+        id: viewbase
+
+        view: callStackViewWindow
+    }
 
     enum StackNumber {
         IncomingPageStack,

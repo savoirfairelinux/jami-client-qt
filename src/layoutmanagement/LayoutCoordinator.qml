@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,33 +17,35 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// JamiQmlUtils as a singleton is to provide global property entry
+// LayoutCoordinator as a singleton is to provide global ui presentation management
 pragma Singleton
 
 import QtQuick 2.14
 
-Item {
-    readonly property string mainViewLoadPath: "qrc:/src/mainview/MainView.qml"
-    readonly property string wizardViewLoadPath: "qrc:/src/wizardview/WizardView.qml"
+import "../constant"
 
-    property bool callIsFullscreen: false
+QtObject {
+    id: root
 
-    TextMetrics {
-        id: globalTextMetrics
-    }
+    objectName: "LayoutCoordinator"
 
-    function getTextBoundingRect(font, text) {
-        globalTextMetrics.font = font
-        globalTextMetrics.text = text
+    // map<name, obj>
+    property var views: new Map()
 
-        return globalTextMetrics.boundingRect
-    }
+    property var mainApplicationWindow: ""
 
-    function isEmpty(obj) {
-        for(var key in obj) {
-            if(obj.hasOwnProperty(key))
-                return false;
+    // MainView
+    property var mainStackLayout: ""
+    property var leftStackView: ""
+    property var rightStackView: ""
+
+    function registerView(view, name) {
+        if (JamiQmlUtils.isEmpty(view) || JamiQmlUtils.isEmpty(name)) {
+            console.log("View registered failed")
+            return
         }
-        return true;
+
+        views.set(name, view)
+        console.log(name)
     }
 }
