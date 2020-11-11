@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,33 +17,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// JamiQmlUtils as a singleton is to provide global property entry
-pragma Singleton
-
 import QtQuick 2.14
 
-Item {
-    readonly property string mainViewLoadPath: "qrc:/src/mainview/MainView.qml"
-    readonly property string wizardViewLoadPath: "qrc:/src/wizardview/WizardView.qml"
+QtObject {
+    id: root
 
-    property bool callIsFullscreen: false
+    property var view: ""
 
-    TextMetrics {
-        id: globalTextMetrics
-    }
+    signal presented
+    signal dismissed
 
-    function getTextBoundingRect(font, text) {
-        globalTextMetrics.font = font
-        globalTextMetrics.text = text
-
-        return globalTextMetrics.boundingRect
-    }
-
-    function isEmpty(obj) {
-        for(var key in obj) {
-            if(obj.hasOwnProperty(key))
-                return false;
-        }
-        return true;
-    }
+    Component.onCompleted: LayoutCoordinator.registerView(view,
+                                                          view.objectName)
 }
