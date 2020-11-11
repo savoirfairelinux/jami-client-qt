@@ -25,6 +25,7 @@ import QtQuick.Controls.Styles 1.4
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 
 Rectangle {
@@ -43,6 +44,11 @@ Rectangle {
     function populateAVSettings() {
         audioSettings.populateAudioSettings()
         videoSettings.populateVideoSettings()
+    }
+
+    ViewBase {
+        view: root
+        type: ViewBase.Type.Settings
     }
 
     ColumnLayout {

@@ -26,6 +26,7 @@ import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Enums 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 
 Rectangle {
@@ -34,6 +35,11 @@ Rectangle {
     property int preferredColumnWidth : Math.min(root.width / 2 - 50, 350)
     property int contentWidth: generalSettingsColumnLayout.width
     property int preferredHeight: generalSettingsColumnLayout.implicitHeight
+
+    ViewBase {
+        view: root
+        type: ViewBase.Type.Settings
+    }
 
     ColumnLayout {
         id: generalSettingsColumnLayout

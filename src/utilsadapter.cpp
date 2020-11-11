@@ -181,16 +181,10 @@ UtilsAdapter::makePermanentCurrentConv()
     LRCInstance::getCurrentConversationModel()->makePermanent(LRCInstance::getCurrentConvUid());
 }
 
-const QStringList
-UtilsAdapter::getCurrAccList()
-{
-    return LRCInstance::accountModel().getAccountList();
-}
-
 int
 UtilsAdapter::getAccountListSize()
 {
-    return getCurrAccList().size();
+    return LRCInstance::accountModel().getAccountList().size();
 }
 
 void

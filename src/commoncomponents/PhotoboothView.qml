@@ -124,6 +124,7 @@ ColumnLayout {
 
                 showPresenceIndicator: false
 
+                imageId: AccountAdapter.currentAccountId
                 fillMode: Image.PreserveAspectCrop
 
                 layer.enabled: true
