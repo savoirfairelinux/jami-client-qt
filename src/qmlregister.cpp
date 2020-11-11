@@ -125,12 +125,12 @@ registerTypes()
     /*
      * Adaptors
      */
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", CallAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", MessagesAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", ConversationsAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", AvAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", ContactAdapter, 1, 0);
-    QML_REGISTERSINGLETONTYPE("net.jami.Models", PluginAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", CallAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", MessagesAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", ConversationsAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", AvAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", ContactAdapter, 1, 0);
+    QML_REGISTERSINGLETONTYPE("net.jami.Adapters", PluginAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Adapters", AccountAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Adapters", UtilsAdapter, 1, 0);
     QML_REGISTERSINGLETONTYPE("net.jami.Adapters", SettingsAdapter, 1, 0);
@@ -147,6 +147,7 @@ registerTypes()
     QML_REGISTERSINGLETONTYPE_URL("qrc:/src/constant/JamiTheme.qml", JamiTheme, 1, 0);
     QML_REGISTERSINGLETONTYPE_URL("qrc:/src/constant/JamiQmlUtils.qml", JamiQmlUtils, 1, 0);
     QML_REGISTERSINGLETONTYPE_URL("qrc:/src/constant/JamiStrings.qml", JamiStrings, 1, 0);
+    QML_REGISTERSINGLETONTYPE_URL("qrc:/src/layoutmanagement/MainLayoutCoordinator.qml", MainLayoutCoordinator, 1, 0);
 
     /*
      * C++ singletons

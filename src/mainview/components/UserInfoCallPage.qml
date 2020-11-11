@@ -23,6 +23,7 @@ import QtQuick.Controls.Universal 2.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 
 // Common element for IncomingCallPage and OutgoingCallPage
@@ -67,9 +68,9 @@ Rectangle {
 
             toolTipText: qsTr("Toggle to display side panel")
 
-            visible: mainView.sidePanelOnly
+            visible: MainLayoutCoordinator.sidePanelOnly
 
-            onClicked: mainView.showWelcomeView()
+            onClicked: MainLayoutCoordinator.showWelcomeView()
         }
 
         AvatarImage {

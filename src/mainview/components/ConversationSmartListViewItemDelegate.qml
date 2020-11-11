@@ -22,6 +22,7 @@ import QtQuick.Layouts 1.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
+import "../../layoutmanagement"
 import "../../commoncomponents"
 
 ItemDelegate {
@@ -72,7 +73,7 @@ ItemDelegate {
 
         function onShowConversation(accountId, convUid) {
             if (convUid === UID) {
-                mainView.setMainView(DisplayID == DisplayName ? "" : DisplayID,
+                MainLayoutCoordinator.setMainView(DisplayID == DisplayName ? "" : DisplayID,
                             DisplayName, UID, CallStackViewShouldShow, IsAudioOnly, CallState)
             }
         }
