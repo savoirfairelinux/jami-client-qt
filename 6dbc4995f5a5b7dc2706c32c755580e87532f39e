@@ -22,6 +22,30 @@
       "revId": "6dbc4995f5a5b7dc2706c32c755580e87532f39e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32b4598a_f19669fb",
+        "filename": "src/mediahandleritemlistmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2020-11-12T23:13:38Z",
+      "side": 1,
+      "message": "It\u0027s not used. Removed.\nAck",
+      "parentUuid": "b0f16f72_79c21e30",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 58
+      },
+      "revId": "6dbc4995f5a5b7dc2706c32c755580e87532f39e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
