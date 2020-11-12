@@ -167,7 +167,7 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings, QString photoBooth
                               confProps.hostname = settings["hostname"].toString();
                               confProps.username = settings["username"].toString();
                               confProps.password = settings["password"].toString();
-                              confProps.proxyServer = settings["proxy"].toString();
+                              confProps.routeset = settings["proxy"].toString();
                               LRCInstance::accountModel().setAccountConfig(accountId, confProps);
 
                               // set up photobooth avatar to SIP avatar
