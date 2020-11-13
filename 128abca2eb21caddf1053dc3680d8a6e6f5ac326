@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8125514e_0a726262",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-11-13T15:36:01Z",
+      "side": 1,
+      "message": "I think this may not be a good place for calling the function\n\nsetDisplayLinks is going to be applied to all conversations, since it is changing the chatview.js,\n\nand if the user change the option, there is no need to set it in every chatview set up,\n\n\nOnce the user changes the option, then call the function once is enough right?\n\n\nSo I think it should be in the QML,\n\nMessagesAdapter.setDisplayLinks() something like this\n\nAlso, when js is initialized,\n\nonLoadingChanged in MessageWebView.qml",
+      "range": {
+        "startLine": 88,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 19
+      },
+      "revId": "128abca2eb21caddf1053dc3680d8a6e6f5ac326",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b7cefe63_3e30446d",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-11-13T15:36:01Z",
+      "side": 1,
+      "message": "same in here",
+      "range": {
+        "startLine": 175,
+        "startChar": 4,
+        "endLine": 175,
+        "endChar": 19
+      },
+      "revId": "128abca2eb21caddf1053dc3680d8a6e6f5ac326",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d07cbe4_17ca97c8",
+        "filename": "src/settingsview/components/ChatviewSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2020-11-13T15:36:01Z",
+      "side": 1,
+      "message": "So I think it should be in here",
+      "range": {
+        "startLine": 75,
+        "startChar": 25,
+        "endLine": 75,
+        "endChar": 97
+      },
+      "revId": "128abca2eb21caddf1053dc3680d8a6e6f5ac326",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
