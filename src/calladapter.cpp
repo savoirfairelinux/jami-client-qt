@@ -331,6 +331,7 @@ CallAdapter::connectCallModel(const QString& accountId)
             auto& callModel = accInfo.callModel;
             auto call = callModel->getCall(confId);
             const auto convInfo = LRCInstance::getConversationFromCallId(confId);
+            bool currentMuted = false;
             if (!convInfo.uid.isEmpty()) {
                 // Convert to QML
                 QVariantList map;
@@ -350,6 +351,7 @@ CallAdapter::connectCallModel(const QString& accountId)
                     if (bestName == accInfo.profileInfo.uri) {
                         bestName = tr("me");
                         data["isLocal"] = true;
+                        currentMuted = participant["audioMuted"] == "true";
                         if (participant["videoMuted"] == "true")
                             data["avatar"] = accInfo.profileInfo.avatar;
                     } else {
@@ -365,6 +367,21 @@ CallAdapter::connectCallModel(const QString& accountId)
                     }
                     data["bestName"] = bestName;
                     map.push_back(QVariant(data));
+                }
+
+                // Link local mute to conference mute
+                auto* convModel = LRCInstance::getCurrentConversationModel();
+                const auto convInfo = convModel->getConversationForUID(convUid_);
+                if (!convInfo.uid.isEmpty()) {
+                    qDebug() << "@@@ convInfo.callId" << convInfo.callId << ", convInfo.confId" << convInfo.confId;
+                    auto call = LRCInstance::getCallInfoForConversation(convInfo);
+                    if (call) {
+                        qDebug() << "@@@ currentMuted" << currentMuted << "@@@ call->audioMuted" << call->audioMuted;
+                        if (currentMuted != call->audioMuted) {
+                            muteThisCallToggle();
+                            updateCallOverlay(convInfo);
+                        }
+                    }
                 }
                 emit updateParticipantsInfos(map, accountId, confId);
             }
@@ -700,6 +717,72 @@ CallAdapter::setModerator(const QString& uri, const bool state)
     } catch (...) {}
 }
 
+void
+CallAdapter::muteParticipant(const QString& uri, const bool state) {
+
+    auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    auto confId = conversation.confId;
+    qDebug() << "CallAdapter::muteParticipant";
+    if (confId.isEmpty())
+        confId = conversation.callId;
+    try {
+        const auto call = callModel->getCall(confId);
+        callModel->muteParticipant(confId, uri, state);
+    } catch (...) {}
+}
+
+bool
+CallAdapter::isMuted(const QString& uri) const
+{
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    const auto convInfo = convModel->getConversationForUID(convUid_);
+    auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
+    auto confId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
+    try {
+        auto call = callModel->getCall(confId);
+        if (call.participantsInfos.size() == 0) {
+            qDebug() << "CallAdapter::isMuted no size";
+            return false;
+        } else {
+            qDebug() << "CallAdapter::isMuted yes size";
+            for (const auto& participant : call.participantsInfos) {
+                qDebug() << "participant[\"uri\"]: " << participant["uri"] << ", uri:" << uri;
+                if (participant["uri"] == uri)
+                    return participant["audioMuted"] == "true";
+            }
+        }
+        return false;
+    } catch (...) {
+    }
+    return false;
+}
+
+bool
+CallAdapter::isCurrentMuted() const
+{
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    const auto convInfo = convModel->getConversationForUID(convUid_);
+    if (!convInfo.uid.isEmpty()) {
+        auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
+        try {
+            auto call = callModel->getCall(convInfo.callId);
+            if (call.participantsInfos.size() == 0) {
+                return false;
+            } else {
+                auto& accInfo = LRCInstance::accountModel().getAccountInfo(accountId_);
+                for (const auto& participant : call.participantsInfos) {
+                    if (participant["uri"] == accInfo.profileInfo.uri)
+                        return participant["audioMuted"] == "true";
+                }
+            }
+            return false;
+        } catch (...) {
+        }
+    }
+    return true;
+}
 
 int
 CallAdapter::getCurrentLayoutType() const
