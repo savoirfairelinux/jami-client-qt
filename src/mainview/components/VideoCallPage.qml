@@ -198,6 +198,7 @@ Rectangle {
                     }
 
                     onOverlayChatButtonClicked: {
+                        console.error("onOverlayChatButtonClicked")
                         if (inVideoCallMessageWebViewStack.visible) {
                             linkedWebview.resetMessagingHeaderBackButtonSource(
                                         true)

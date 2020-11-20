@@ -33,10 +33,9 @@ Rectangle {
     property var active: true
     property var isLocal: true
     property var showEndCall: true
-    property var injectedContextMenu: null
 
     function setParticipantName(name) {
-        participantName.text = name
+        overlayMenu.participantName = name
     }
 
     // TODO: try to use AvatarImage as well
@@ -51,12 +50,32 @@ Rectangle {
     }
 
     function setMenuVisible(isVisible) {
-        optionsButton.visible = isVisible
+        console.error("setMenuVisible", isVisible)
+        overlayMenu.visible = isVisible
     }
 
     function setEndCallVisible(isVisible) {
         showEndCall = isVisible
     }
+
+    function setState() {
+        var layout = CallAdapter.getCurrentLayoutType()
+        var showMaximized = layout !== 2
+        var showMinimized = !(layout === 0 || (layout === 1 && !active))
+        var isModerator = CallAdapter.isModerator(uri)
+        var isHost = CallAdapter.isCurrentHost()
+        var participantIsHost = CallAdapter.participantIsHost(uri)
+        var isMuted = CallAdapter.isMuted(uri)
+        injectedContextMenu.showHangup = !root.isLocal && showEndCall
+        injectedContextMenu.showMaximize = showMaximized
+        injectedContextMenu.showMinimize = showMinimized
+        injectedContextMenu.active = active
+        injectedContextMenu.showSetModerator = (isHost && !participantIsHost && !isModerator)
+        injectedContextMenu.showUnsetModerator = (isHost && !participantIsHost && isModerator)
+        injectedContextMenu.showMute = !isMuted
+        injectedContextMenu.showUnmute = isMuted
+    }
+
 
     border.width: 1
     opacity: 0
@@ -88,92 +107,37 @@ Rectangle {
                     width: contactImage.width
                     height: contactImage.height
                     radius: {
-                        var size = ((contactImage.width <= contactImage.height)? contactImage.width:contactImage.height)
-                        return size /2
+                        var size = ((contactImage.width <= contactImage.height)?
+                                        contactImage.width : contactImage.height)
+                        return size / 2
                     }
                 }
             }
+            layer.mipmap: false
+            layer.smooth: true
         }
-
-        RowLayout {
-            id: bottomLabel
-
-            height: 24
-            width: parent.width
-            anchors.bottom: parent.bottom
 
             Rectangle {
                 color: "black"
-                opacity: 0.8
+                opacity: 0.6
                 height: parent.height
                 width: parent.width
-                Layout.fillWidth: true
-                Layout.preferredHeight: parent.height
 
-                Text {
-                    id: participantName
-                    anchors.fill: parent
-                    leftPadding: 8.0
 
-                    TextMetrics {
-                        id: participantMetrics
-                        elide: Text.ElideRight
-                        elideWidth: bottomLabel.width - 8
-                    }
+                ParticipantOverlayMenu {
+                    id: overlayMenu
+                    visible: false
+                    anchors.centerIn: parent
 
-                    text: participantMetrics.elidedText
-
-                    color: "white"
-                    font.pointSize: JamiTheme.textFontSize
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
+                    isModerator: CallAdapter.isModerator(uri)
+                    isHost: CallAdapter.isCurrentHost()
+                    participantIsHost: CallAdapter.participantIsHost(uri)
+                    isMuted: CallAdapter.isMuted(uri)
+                    isMinimumWidth: root.width > minimumOverlayWidth
                 }
 
-                Button {
-                    id: optionsButton
-
-                    anchors.right: parent.right
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
-
-
-                    icon.color: "white"
-                    icon.height: buttonPreferredSize
-                    icon.width: buttonPreferredSize
-                    icon.source: "qrc:/images/icons/more_vert-24px.svg"
-
-                    onClicked: {
-                        if (!injectedContextMenu) {
-                            console.log("Participant's overlay don't have any injected context menu")
-                            return
-                        }
-                        var mousePos = mapToItem(videoCallPageRect, parent.x, parent.y)
-                        var layout = CallAdapter.getCurrentLayoutType()
-                        var showMaximized = layout !== 2
-                        var showMinimized = !(layout === 0 || (layout === 1 && !active))
-                        var isModerator = CallAdapter.isModerator(uri)
-                        var isHost = CallAdapter.isCurrentHost()
-                        var participantIsHost = CallAdapter.participantIsHost(uri)
-                        var isMuted = CallAdapter.isMuted(uri)
-                        injectedContextMenu.showHangup = !root.isLocal && showEndCall
-                        injectedContextMenu.showMaximize = showMaximized
-                        injectedContextMenu.showMinimize = showMinimized
-                        injectedContextMenu.uri = uri
-                        injectedContextMenu.active = active
-                        injectedContextMenu.x = mousePos.x
-                        injectedContextMenu.y = mousePos.y - injectedContextMenu.height
-                        injectedContextMenu.showSetModerator = (isHost && !participantIsHost && !isModerator)
-                        injectedContextMenu.showUnsetModerator = (isHost && !participantIsHost && isModerator)
-                        injectedContextMenu.showMute = !isMuted
-                        injectedContextMenu.showUnmute = isMuted
-                        injectedContextMenu.openMenu()
-                    }
-                }
             }
-        }
+       // }
 
         onClicked: {
             CallAdapter.maximizeParticipant(uri, active)
