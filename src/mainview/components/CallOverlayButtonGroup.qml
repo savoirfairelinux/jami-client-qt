@@ -44,11 +44,12 @@ Rectangle {
         addToConferenceButton.visible = !root.isSip && root.isHost
     }
 
-    function setButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall) {
-        root.isHost = CallAdapter.isCurrentModerator()
+    function setButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
+                             isRecording, isSIP, isConferenceCall) {
+        root.isHost = CallAdapter.isCurrentHost()
         root.isSip = isSIP
         noVideoButton.visible = !isAudioOnly
-        addToConferenceButton.visible = !isSIP && isHost
+        addToConferenceButton.visible = !root.isSIP && root.isHost
 
         noMicButton.checked = isAudioMuted
         noVideoButton.checked = isVideoMuted
