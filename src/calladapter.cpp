@@ -399,6 +399,7 @@ CallAdapter::connectCallModel(const QString& accountId)
             const auto convInfo = LRCInstance::getConversationFromCallId(callId);
             if (!convInfo.uid.isEmpty()) {
                 emit callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
+                updateCallOverlay(convInfo);
             }
 
             switch (call.status) {
@@ -631,29 +632,6 @@ CallAdapter::isCurrentHost() const
                 return true;
             } else {
                 return !convInfo.confId.isEmpty() && callModel->hasCall(convInfo.confId);
-            }
-        } catch (...) {
-        }
-    }
-    return true;
-}
-
-bool
-CallAdapter::participantIsHost(const QString& uri) const
-{
-    auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto convInfo = convModel->getConversationForUID(convUid_);
-    if (!convInfo.uid.isEmpty()) {
-        auto& accInfo = LRCInstance::getAccountInfo(accountId_);
-        auto* callModel = accInfo.callModel.get();
-        try {
-            auto call = callModel->getCall(convInfo.callId);
-            if (call.participantsInfos.size() == 0) {
-                return (uri.isEmpty() || uri == accInfo.profileInfo.uri);
-            } else {
-                return !convInfo.confId.isEmpty()
-                        && callModel->hasCall(convInfo.confId)
-                        && (uri.isEmpty() || uri == accInfo.profileInfo.uri);
             }
         } catch (...) {
         }
