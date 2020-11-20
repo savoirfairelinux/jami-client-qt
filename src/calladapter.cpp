@@ -624,29 +624,6 @@ CallAdapter::isCurrentHost() const
 }
 
 bool
-CallAdapter::participantIsHost(const QString& uri) const
-{
-    auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto convInfo = convModel->getConversationForUID(convUid_);
-    if (!convInfo.uid.isEmpty()) {
-        auto& accInfo = LRCInstance::getAccountInfo(accountId_);
-        auto* callModel = accInfo.callModel.get();
-        try {
-            auto call = callModel->getCall(convInfo.callId);
-            if (call.participantsInfos.size() == 0) {
-                return (uri.isEmpty() || uri == accInfo.profileInfo.uri);
-            } else {
-                return !convInfo.confId.isEmpty()
-                        && callModel->hasCall(convInfo.confId)
-                        && (uri.isEmpty() || uri == accInfo.profileInfo.uri);
-            }
-        } catch (...) {
-        }
-    }
-    return true;
-}
-
-bool
 CallAdapter::isModerator(const QString& uri) const
 {
     auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
