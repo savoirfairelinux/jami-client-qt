@@ -58,7 +58,6 @@ public:
     Q_INVOKABLE void hangUpThisCall();
     Q_INVOKABLE void setModerator(const QString& uri, const bool state);
     Q_INVOKABLE bool isCurrentHost() const;
-    Q_INVOKABLE bool participantIsHost(const QString& uri = {}) const;
     Q_INVOKABLE bool isModerator(const QString& uri = {}) const;
     Q_INVOKABLE bool isCurrentModerator() const;
     Q_INVOKABLE int getCurrentLayoutType() const;
