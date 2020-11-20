@@ -52,13 +52,13 @@ Item {
             ContextMenuGenerator.addMenuItem(qsTr("Maximize participant"),
                                              "qrc:/images/icons/open_in_full-24px.svg",
                                              function (){
-                                                  CallAdapter.maximizeParticipant(uri, active)
+                                                  CallAdapter.maximizeParticipant(uri)
                                              })
         if (showMinimize)
             ContextMenuGenerator.addMenuItem(qsTr("Minimize participant"),
                                              "qrc:/images/icons/close_fullscreen-24px.svg",
                                              function (){
-                                                  CallAdapter.minimizeParticipant()
+                                                  CallAdapter.minimizeParticipant(uri)
                                              })
 
         if (showSetModerator)
