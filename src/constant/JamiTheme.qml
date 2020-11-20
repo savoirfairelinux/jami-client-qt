@@ -25,6 +25,9 @@ Item {
     // Color strings
     property string blackColor: "#000000"
     property string whiteColor: "#ffffff"
+    property string darkGreyColor: "#272727"
+    property string darkGreyColor60: "#3C272727"
+    property string darkGreyColor70: "#C4272727"
     property string transparentColor: "transparent"
     property string primaryForegroundColor: blackColor
     property string primaryBackgroundColor: whiteColor
@@ -71,6 +74,10 @@ Item {
     property string buttonTintedRed: "red"
     property string buttonTintedRedHovered: "#c00"
     property string buttonTintedRedPressed: "#b00"
+
+    property string buttonConference: "#110000"
+    property string buttonConferenceHovered: "#66cfff"
+    property string buttonConferencePressed: "#66cfff"
 
     property string selectionBlue: "#109ede"
     property string selectionGreen: "#21be2b"

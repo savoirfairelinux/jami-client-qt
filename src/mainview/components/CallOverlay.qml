@@ -38,6 +38,7 @@ Rectangle {
 
     signal overlayChatButtonClicked
 
+    property var participants: []
     property var participantOverlays: []
     property var participantComponent: Qt.createComponent("ParticipantOverlay.qml")
 
@@ -46,7 +47,8 @@ Rectangle {
         recordingRect.visible = isRecording
     }
 
-    function updateButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall) {
+    function updateButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
+                                isRecording, isSIP, isConferenceCall) {
         callViewContextMenu.isSIP = isSIP
         callViewContextMenu.isPaused = isPaused
         callViewContextMenu.isAudioOnly = isAudioOnly
@@ -76,42 +78,90 @@ Rectangle {
 
     function handleParticipantsInfo(infos) {
         videoCallOverlay.updateMenu()
+
         var isModerator = CallAdapter.isCurrentModerator()
         var isHost = CallAdapter.isCurrentHost()
-        for (var p in participantOverlays) {
-            if (participantOverlays[p])
-                participantOverlays[p].destroy()
+
+        console.error("current conference")
+        for (var k in participantOverlays) {
+            console.error(participantOverlays[k].uri)
         }
-        participantOverlays = []
-        if (infos.length == 0) {
+
+        console.error("incoming infos")
+        for (var kk in infos) {
+            console.error(infos[kk].uri)
+        }
+
+        var currentUris = []
+        for (var p in participantOverlays) {
+            if (participantOverlays[p]) {
+                // Check if participant is already in conference
+                var participant = infos.find(e => e.uri === participantOverlays[p].uri);
+                if (participant) {
+                    console.error("Update overlay", participantOverlays[p].uri)
+                    var newX = distantRenderer.getXOffset()
+                            + participant.x * distantRenderer.getScaledWidth()
+                    var newY = distantRenderer.getYOffset()
+                            + participant.y * distantRenderer.getScaledHeight()
+                    var newWidth = participant.w * distantRenderer.getScaledWidth()
+                    var newHeight = participant.h * distantRenderer.getScaledHeight()
+                    var newVisible = participant.w !== 0 && participant.h !== 0
+
+                    // UI updated only if necessary
+                    if (participantOverlays[p].x !== newX)
+                        participantOverlays[p].x = newX
+                    if (participantOverlays[p].y !== newY)
+                        participantOverlays[p].y = newY
+                    if (participantOverlays[p].width !== newWidth)
+                        participantOverlays[p].width = newWidth
+                    if (participantOverlays[p].height !== newHeight)
+                        participantOverlays[p].height = newHeight
+                    if (participantOverlays[p].visible !== newVisible)
+                        participantOverlays[p].visible = newVisible
+
+                    participantOverlays[p].setMenu(isModerator, isHost, participant.uri, participant.bestName,
+                                                  participant.active, participant.isLocal)
+                    if (participant.videoMuted)
+                        participantOverlays[p].setAvatar(participant.avatar)
+                    else
+                        participantOverlays[p].setAvatar("")
+                    currentUris.push(participantOverlays[p].uri)
+                } else {
+                    // Participant is no longer in conference
+                    console.error("Destroy overlay", participantOverlays[p].uri)
+                    participantOverlays[p].destroy()
+                    participantOverlays.splice(p, 1)
+                }
+            }
+        }
+
+        if (infos.length === 0) {
             previewRenderer.visible = true
         } else {
             previewRenderer.visible = false
             for (var infoVariant in infos) {
-                var hover = participantComponent.createObject(callOverlayRectMouseArea, {
-                    x: distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth(),
-                    y: distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight(),
-                    width: infos[infoVariant].w * distantRenderer.getScaledWidth(),
-                    height: infos[infoVariant].h * distantRenderer.getScaledHeight(),
-                    visible: infos[infoVariant].w != 0 && infos[infoVariant].h != 0
-                })
-                if (!hover) {
-                    console.log("Error when creating the hover")
-                    return
+                // Only create overlay for new participants
+                if (!currentUris.includes(infos[infoVariant].uri)) {
+                    var hover = participantComponent.createObject(callOverlayRectMouseArea, {
+                        x: distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth(),
+                        y: distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight(),
+                        width: infos[infoVariant].w * distantRenderer.getScaledWidth(),
+                        height: infos[infoVariant].h * distantRenderer.getScaledHeight(),
+                        visible: infos[infoVariant].w !== 0 && infos[infoVariant].h !== 0
+                    })
+                    if (!hover) {
+                        console.log("Error when creating the hover")
+                        return
+                    }
+                    hover.setMenu(isModerator, isHost, infos[infoVariant].uri, infos[infoVariant].bestName,
+                                  infos[infoVariant].active, infos[infoVariant].isLocal)
+                    if (infos[infoVariant].videoMuted)
+                        hover.setAvatar(infos[infoVariant].avatar)
+                    else
+                        hover.setAvatar("")
+                    console.error("New overlay for", hover.uri)
+                    participantOverlays.push(hover)
                 }
-
-                hover.setParticipantName(infos[infoVariant].bestName)
-                hover.active = infos[infoVariant].active;
-                hover.isLocal = infos[infoVariant].isLocal;
-                hover.setMenuVisible(isModerator)
-                hover.setEndCallVisible(isHost)
-                hover.uri = infos[infoVariant].uri
-                if (infos[infoVariant].videoMuted)
-                    hover.setAvatar(infos[infoVariant].avatar)
-                else
-                    hover.setAvatar("")
-                hover.injectedContextMenu = participantContextMenu
-                participantOverlays.push(hover)
             }
         }
     }
