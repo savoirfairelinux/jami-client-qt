@@ -25,6 +25,8 @@ Item {
     // Color strings
     property string blackColor: "#000000"
     property string whiteColor: "#ffffff"
+    property string darkGreyColor: "#272727"
+    property string darkGreyColorOpacity: "#4D272727" // 77%
     property string transparentColor: "transparent"
     property string primaryForegroundColor: blackColor
     property string primaryBackgroundColor: whiteColor
@@ -72,6 +74,10 @@ Item {
     property string buttonTintedRedHovered: "#c00"
     property string buttonTintedRedPressed: "#b00"
 
+    property string buttonConference: "#110000"
+    property string buttonConferenceHovered: "#66cfff"
+    property string buttonConferencePressed: "#66cfff"
+
     property string selectionBlue: "#109ede"
     property string selectionGreen: "#21be2b"
     property string rubberBandSelectionBlue: "steelblue"
@@ -102,6 +108,7 @@ Item {
     property int headerFontSize: 13
     property int titleFontSize: 16
     property int menuFontSize: 12
+    property int participantFontSize: 10
 
     property int maximumWidthSettingsView: 600
     property int settingsHeaderpreferredHeight: 64
