@@ -134,6 +134,7 @@ Rectangle {
 
                         source: "qrc:/images/icons/content_copy-24px.svg"
 
+
                         onClicked: {
                             UtilsAdapter.setText(
                                         textMetricsjamiRegisteredNameText.text)
