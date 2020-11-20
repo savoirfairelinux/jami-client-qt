@@ -28,15 +28,12 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property int buttonPreferredSize: 12
     property var uri: ""
     property var active: true
-    property var isLocal: true
-    property var showEndCall: true
-    property var injectedContextMenu: null
+    property int minimumOverlayMenuWidth: 200
 
     function setParticipantName(name) {
-        participantName.text = name
+        overlayMenu.participantName = name
     }
 
     // TODO: try to use AvatarImage as well
@@ -50,12 +47,22 @@ Rectangle {
         }
     }
 
-    function setMenuVisible(isVisible) {
-        optionsButton.visible = isVisible
-    }
-
-    function setEndCallVisible(isVisible) {
-        showEndCall = isVisible
+    function setMenu(isModerator, isHost, setUri, bestName, setActive, isLocal) {
+        overlayMenu.isModerator = isModerator //CallAdapter.isModerator(uri) // Albert: review!!!
+        uri = setUri
+        overlayMenu.bestName = bestName
+        active = setActive
+        var layout = CallAdapter.getCurrentLayoutType()
+        var showMaximized = layout !== 2
+        var showMinimized = !(layout === 0 || (layout === 1 && !active))
+        var participantIsHost = CallAdapter.participantIsHost(uri)
+        overlayMenu.showHangup = !isLocal && isHost
+        overlayMenu.showMaximize = showMaximized
+        overlayMenu.showMinimize = showMinimized
+        overlayMenu.active = active
+        overlayMenu.showSetModerator = (isHost && !participantIsHost && !isModerator)
+        overlayMenu.showUnsetModerator = (isHost && !participantIsHost && isModerator)
+        overlayMenu.isMuted = CallAdapter.isMuted(uri)
     }
 
     border.width: 1
@@ -88,90 +95,28 @@ Rectangle {
                     width: contactImage.width
                     height: contactImage.height
                     radius: {
-                        var size = ((contactImage.width <= contactImage.height)? contactImage.width:contactImage.height)
-                        return size /2
+                        var size = ((contactImage.width <= contactImage.height)?
+                                        contactImage.width : contactImage.height)
+                        return size / 2
                     }
                 }
             }
+            layer.mipmap: false
+            layer.smooth: true
         }
 
-        RowLayout {
-            id: bottomLabel
-
-            height: 24
+        Rectangle {
+            color: "black"
+            opacity: 0.6
+            height: parent.height
             width: parent.width
-            anchors.bottom: parent.bottom
 
-            Rectangle {
-                color: "black"
-                opacity: 0.8
-                height: parent.height
-                width: parent.width
-                Layout.fillWidth: true
-                Layout.preferredHeight: parent.height
+            ParticipantOverlayMenu {
+                id: overlayMenu
+                visible: true
+                anchors.centerIn: parent
 
-                Text {
-                    id: participantName
-                    anchors.fill: parent
-                    leftPadding: 8.0
-
-                    TextMetrics {
-                        id: participantMetrics
-                        elide: Text.ElideRight
-                        elideWidth: bottomLabel.width - 8
-                    }
-
-                    text: participantMetrics.elidedText
-
-                    color: "white"
-                    font.pointSize: JamiTheme.textFontSize
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                Button {
-                    id: optionsButton
-
-                    anchors.right: parent.right
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
-
-
-                    icon.color: "white"
-                    icon.height: buttonPreferredSize
-                    icon.width: buttonPreferredSize
-                    icon.source: "qrc:/images/icons/more_vert-24px.svg"
-
-                    onClicked: {
-                        if (!injectedContextMenu) {
-                            console.log("Participant's overlay don't have any injected context menu")
-                            return
-                        }
-                        var mousePos = mapToItem(videoCallPageRect, parent.x, parent.y)
-                        var layout = CallAdapter.getCurrentLayoutType()
-                        var showMaximized = layout !== 2
-                        var showMinimized = !(layout === 0 || (layout === 1 && !active))
-                        var isModerator = CallAdapter.isModerator(uri)
-                        var isHost = CallAdapter.isCurrentHost()
-                        var participantIsHost = CallAdapter.participantIsHost(uri)
-                        var isMuted = CallAdapter.isMuted(uri)
-                        injectedContextMenu.showHangup = !root.isLocal && showEndCall
-                        injectedContextMenu.showMaximize = showMaximized
-                        injectedContextMenu.showMinimize = showMinimized
-                        injectedContextMenu.uri = uri
-                        injectedContextMenu.active = active
-                        injectedContextMenu.x = mousePos.x
-                        injectedContextMenu.y = mousePos.y - injectedContextMenu.height
-                        injectedContextMenu.showSetModerator = (isHost && !participantIsHost && !isModerator)
-                        injectedContextMenu.showUnsetModerator = (isHost && !participantIsHost && isModerator)
-                        injectedContextMenu.showMute = !isMuted
-                        injectedContextMenu.showUnmute = isMuted
-                        injectedContextMenu.openMenu()
-                    }
-                }
+                hasMinimumWidth: root.width > minimumOverlayMenuWidth
             }
         }
 
