@@ -72,6 +72,7 @@ Item {
     property string buttonTintedRedHovered: "#c00"
     property string buttonTintedRedPressed: "#b00"
 
+
     property string selectionBlue: "#109ede"
     property string selectionGreen: "#21be2b"
     property string rubberBandSelectionBlue: "steelblue"

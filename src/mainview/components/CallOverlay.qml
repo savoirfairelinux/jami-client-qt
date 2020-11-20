@@ -110,7 +110,6 @@ Rectangle {
                     hover.setAvatar(infos[infoVariant].avatar)
                 else
                     hover.setAvatar("")
-                hover.injectedContextMenu = participantContextMenu
                 participantOverlays.push(hover)
             }
         }
