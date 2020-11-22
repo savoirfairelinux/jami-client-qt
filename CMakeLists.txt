@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.11)
 
 project(jami-qt)
 
@@ -20,6 +20,18 @@ set(QML_RESOURCES_QML ${CMAKE_SOURCE_DIR}/qml.qrc)
 
 # todo: check LRC exists?
 set(LRC ${CMAKE_CURRENT_SOURCE_DIR}/../install/lrc)
+
+if (APPLE)
+include(FetchContent)
+FetchContent_Declare(
+    libqrencode
+    GIT_REPOSITORY https://github.com/fukuchi/libqrencode.git
+)
+
+FetchContent_Populate(libqrencode)
+add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
+include_directories(${libqrencode_SOURCE_DIR})
+endif()
 
 set(QML_LIBS
     Qt5::Quick
@@ -141,11 +153,19 @@ add_executable(${PROJECT_NAME}
 
 # alternative: link_directories(${LRC}/lib)
 find_library(ringclient ringclient ${LRC}/lib NO_DEFAULT_PATH)
+if (NOT APPLE)
 find_library(qrencode qrencode)
-
+target_link_libraries(jami-qt
+     ${QML_LIBS}
+     ${ringclient}
+     ${qrencode})
+else()
 target_link_libraries(jami-qt
     ${QML_LIBS}
     ${ringclient}
-    ${qrencode})
+    qrencode)
+endif()
 
-add_subdirectory(tests)
+if (NOT APPLE)
+    add_subdirectory(tests)
+endif()
