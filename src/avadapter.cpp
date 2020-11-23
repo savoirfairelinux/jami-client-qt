@@ -66,13 +66,19 @@ AvAdapter::populateVideoDeviceContextMenuItem()
 void
 AvAdapter::onVideoContextMenuDeviceItemClicked(const QString& deviceName)
 {
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    auto call = LRCInstance::getCallInfoForConversation(conversation);
+    if (!call)
+        return;
+
     auto deviceId = LRCInstance::avModel().getDeviceIdFromName(deviceName);
     if (deviceId.isEmpty()) {
         qWarning() << "Couldn't find device: " << deviceName;
         return;
     }
-    LRCInstance::avModel().switchInputTo(deviceId);
     LRCInstance::avModel().setCurrentVideoCaptureDevice(deviceId);
+    LRCInstance::avModel().switchInputTo(deviceId, call->id);
 }
 
 void
@@ -179,6 +185,7 @@ AvAdapter::slotDeviceEvent()
             avModel.switchInputTo({}, callId);
             avModel.stopPreview();
         } else if (deviceEvent == DeviceEvent::RemovedCurrent && currentDeviceListSize > 0) {
+            avModel.setDefaultDevice(defaultDevice);
             avModel.switchInputTo(defaultDevice, callId);
             avModel.setCurrentVideoCaptureDevice(defaultDevice);
         }
@@ -190,6 +197,7 @@ AvAdapter::slotDeviceEvent()
                               [cb] { QtConcurrent::run([cb]() { cb(); }); });
     } else {
         if (deviceEvent == DeviceEvent::Added && currentDeviceListSize == 1) {
+            avModel.setDefaultDevice(defaultDevice);
             avModel.switchInputTo(defaultDevice, callId);
             avModel.setCurrentVideoCaptureDevice(defaultDevice);
         } else {
@@ -197,7 +205,7 @@ AvAdapter::slotDeviceEvent()
         }
     }
 
-    emit videoDeviceListChanged();
+    emit videoDeviceListChanged(currentDeviceListSize == 0);
 
     deviceListSize_ = currentDeviceListSize;
 }
