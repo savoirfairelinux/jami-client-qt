@@ -49,6 +49,7 @@ ColumnLayout {
         deviceComboBoxSetting.comboModel.reset()
 
         var count = deviceComboBoxSetting.comboModel.deviceCount() > 0
+        previewWidget.visible = count
         deviceComboBoxSetting.setEnabled(count)
         resolutionComboBoxSetting.setEnabled(count)
         fpsComboBoxSetting.setEnabled(count)
@@ -70,9 +71,12 @@ ColumnLayout {
                 return
             }
 
-            AVModel.setCurrentVideoCaptureDevice(deviceId)
-            AVModel.setDefaultDevice(deviceId)
-            setFormatListForCurrentDevice()
+            if (AVModel.getCurrentVideoCaptureDevice() !== deviceId) {
+                AVModel.setCurrentVideoCaptureDevice(deviceId)
+                AVModel.setDefaultDevice(deviceId)
+                setFormatListForCurrentDevice()
+            }
+
             startPreviewing()
         } catch(err){ console.warn(err.message) }
     }
