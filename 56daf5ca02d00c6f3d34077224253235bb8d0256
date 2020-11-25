@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a105ad1_817103cb",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-11-25T21:37:02Z",
+      "side": 1,
+      "message": "Please avoid multiline comment and use //",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 158,
+        "endChar": 7
+      },
+      "revId": "56daf5ca02d00c6f3d34077224253235bb8d0256",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23fadbc3_d9599759",
+        "filename": "src/rendermanager.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-11-25T21:37:02Z",
+      "side": 1,
+      "message": "stopRendering",
+      "range": {
+        "startLine": 67,
+        "startChar": 9,
+        "endLine": 67,
+        "endChar": 22
+      },
+      "revId": "56daf5ca02d00c6f3d34077224253235bb8d0256",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
