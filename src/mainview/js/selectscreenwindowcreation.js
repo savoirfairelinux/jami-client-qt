@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -18,41 +17,31 @@
  */
 
 
-/*
- * Global select screen window component, object variable for creation.
- */
+// Global select screen window component, object variable for creation.
 var selectScreenWindowComponent
 var selectScreenWindowObject
 
-function createSelectScreenWindowObject(selectArea = false) {
+function createSelectScreenWindowObject() {
     if (selectScreenWindowObject)
         return
     selectScreenWindowComponent = Qt.createComponent(
                 "../components/SelectScreen.qml")
     if (selectScreenWindowComponent.status === Component.Ready)
-        finishCreation(selectArea)
+        finishCreation()
     else if (selectScreenWindowComponent.status === Component.Error)
         console.log("Error loading component:",
                     selectScreenWindowComponent.errorString())
 }
 
-function finishCreation(selectArea) {
+function finishCreation() {
     selectScreenWindowObject = selectScreenWindowComponent.createObject()
     if (selectScreenWindowObject === null) {
 
-
-        /*
-         * Error Handling.
-         */
+        // Error Handling.
         console.log("Error creating select screen object")
     }
 
-    selectScreenWindowObject.selectArea = selectArea
-
-
-    /*
-     * Signal connection.
-     */
+    // Signal connection.
     selectScreenWindowObject.onClosing.connect(destorySelectScreenWindow)
 }
 
@@ -61,9 +50,7 @@ function showSelectScreenWindow() {
 }
 
 
-/*
- * Destroy and reset selectScreenWindowObject when window is closed.
- */
+// Destroy and reset selectScreenWindowObject when window is closed.
 function destorySelectScreenWindow() {
     if(!selectScreenWindowObject)
         return
