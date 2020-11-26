@@ -39,6 +39,8 @@ signals:
      */
     void videoDeviceListChanged(bool listIsEmpty);
 
+    void screenCaptured(int screenNumber, QString source);
+
 protected:
     void safeInit() override {};
 
@@ -58,9 +60,19 @@ protected:
     Q_INVOKABLE void shareEntireScreen(int screenNumber);
 
     /*
-     * Take snap shot of the screen by returning base64 image string.
+     * Share the all screens connected.
      */
-    Q_INVOKABLE const QString captureScreen(int screenNumber);
+    Q_INVOKABLE void shareAllScreens();
+
+    /*
+     * Take snap shot of the screen and return emitting signal.
+     */
+    Q_INVOKABLE void captureScreen(int screenNumber);
+
+    /*
+     * Take snap shot of the all screens and return by emitting signal.
+     */
+    Q_INVOKABLE void captureAllScreens();
 
     /*
      * Share a media file.
@@ -76,6 +88,11 @@ protected:
     Q_INVOKABLE void stopAudioMeter(bool async);
 
 private:
+    /*
+     * Get current callId from current selected conv id.
+     */
+    const QString& getCurrentCallId();
+
     /*
      * Used to classify capture device events.
      */

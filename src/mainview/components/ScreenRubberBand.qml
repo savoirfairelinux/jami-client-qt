@@ -34,14 +34,30 @@ Window {
 
     property int screenNumber: 0
 
-    flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WA_TranslucentBackground
+    function setAllScreensGeo() {
+        var width = 0, height = 0
+        var screens = Qt.application.screens
+        for (var i = 0; i < screens.length; ++i) {
+            width += screens[i].width
+            if (height < screens[i].height)
+                height = screens[i].height
+        }
 
+        screenRubberBandWindow.width = width
+        screenRubberBandWindow.height = height
+        screenRubberBandWindow.x = 0
+        screenRubberBandWindow.y = 0
+    }
+
+    flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WA_TranslucentBackground
 
     // Opacity with 0.7 window that will fill the entire screen,
     // provide the users to select the area that they
     // want to share.
     color: Qt.rgba(0, 0, 0, 0.7)
-
+    // +1 so that it does not fallback to the previous screen
+    x: screen.virtualX + 1
+    y: screen.virtualY + 1
 
     // Rect for selection.
     Rectangle {
@@ -66,7 +82,6 @@ Window {
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.CrossCursor
-
 
         // Geo changing for user selection.
         onPressed: {

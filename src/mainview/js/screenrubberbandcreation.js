@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -17,12 +16,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-/*
- * Global screen rubber band window component, object variable for creation.
- */
+// Global screen rubber band window component, object variable for creation.
 var screenRubberBandWindowComponent
 var screenRubberBandWindowObject
+
+var selectAllScreens = false
 
 function createScreenRubberBandWindowObject(parent, screenNumber) {
     if (screenRubberBandWindowObject)
@@ -40,34 +38,34 @@ function finishCreation(parent, screenNumber) {
     screenRubberBandWindowObject = screenRubberBandWindowComponent.createObject(
                 parent)
     if (screenRubberBandWindowObject === null) {
-
-
-        /*
-         * Error Handling.
-         */
+        // Error Handling.
         console.log("Error creating screen rubber band object")
     }
 
-    screenRubberBandWindowObject.screenNumber = screenNumber
-    screenRubberBandWindowObject.screen = Qt.application.screens[screenNumber]
+    var selectedScreenNumber = screenNumber
+    if (screenNumber < 0) {
+        selectAllScreens = true
+        selectedScreenNumber = 0
+    }
+    screenRubberBandWindowObject.screenNumber = selectedScreenNumber
+    screenRubberBandWindowObject.screen = Qt.application.screens[selectedScreenNumber]
 
-
-    /*
-     * Signal connection.
-     */
+    // Signal connection.
     screenRubberBandWindowObject.onClosing.connect(
-                destoryScreenRubberBandWindow)
+                destroyScreenRubberBandWindow)
 }
 
 function showScreenRubberBandWindow() {
-    screenRubberBandWindowObject.showFullScreen()
+    if (selectAllScreens) {
+        screenRubberBandWindowObject.show()
+        screenRubberBandWindowObject.setAllScreensGeo()
+    }
+    else
+        screenRubberBandWindowObject.showFullScreen()
 }
 
-
-/*
- * Destroy and reset screenRubberBandWindowObject when window is closed.
- */
-function destoryScreenRubberBandWindow() {
+// Destroy and reset screenRubberBandWindowObject when window is closed.
+function destroyScreenRubberBandWindow() {
     if (!screenRubberBandWindowObject)
         return
     screenRubberBandWindowObject.destroy()
