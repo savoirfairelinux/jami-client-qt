@@ -48,9 +48,10 @@ function finishCreation(parent, screenNumber) {
         console.log("Error creating screen rubber band object")
     }
 
-    screenRubberBandWindowObject.screenNumber = screenNumber
-    screenRubberBandWindowObject.screen = Qt.application.screens[screenNumber]
-
+    //screenRubberBandWindowObject.screenNumber = screenNumber
+    //screenRubberBandWindowObject.screen = Qt.application.screens[screenNumber]
+    screenRubberBandWindowObject.x = 0
+    screenRubberBandWindowObject.y = 0
 
     /*
      * Signal connection.
@@ -60,7 +61,7 @@ function finishCreation(parent, screenNumber) {
 }
 
 function showScreenRubberBandWindow() {
-    screenRubberBandWindowObject.showFullScreen()
+    screenRubberBandWindowObject.show()
 }
 
 

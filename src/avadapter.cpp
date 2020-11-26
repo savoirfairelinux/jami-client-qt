@@ -81,8 +81,21 @@ AvAdapter::shareEntireScreen(int screenNumber)
     QScreen* screen = qApp->screens().at(screenNumber);
     if (!screen)
         return;
-    QRect rect = screen ? screen->geometry() : qApp->primaryScreen()->geometry();
-    LRCInstance::avModel().setDisplay(screenNumber, rect.x(), rect.y(), rect.width(), rect.height());
+
+    QRect rect = screen->geometry();
+
+    // Get display
+    QString display_env{getenv("DISPLAY")};
+    int display = 0;
+    if (!display_env.isEmpty()) {
+        auto list = display_env.split(":", Qt::SkipEmptyParts);
+        // Should only be one display, so get the first one
+        if (list.size() > 0) {
+            display = list.at(0).toInt();
+        }
+    }
+
+    LRCInstance::avModel().setDisplay(display, rect.x(), rect.y(), rect.width(), rect.height());
 }
 
 const QString
@@ -111,18 +124,22 @@ AvAdapter::shareFile(const QString& filePath)
 void
 AvAdapter::shareScreenArea(int screenNumber, int x, int y, int width, int height)
 {
-    QScreen* screen = qApp->screens().at(screenNumber);
-    if (!screen)
-        return;
-    QRect rect = screen ? screen->geometry() : qApp->primaryScreen()->geometry();
+    // Get display
+    QString display_env{getenv("DISPLAY")};
+    int display = 0;
+    if (!display_env.isEmpty()) {
+        auto list = display_env.split(":", Qt::SkipEmptyParts);
+        // Should only be one display, so get the first one
+        if (list.size() > 0) {
+            display = list.at(0).toInt();
+        }
+    }
 
-    /*
-     * Provide minimum width, height.
-     * Need to add screen x, y initial value to the setDisplay api call.
-     */
-    LRCInstance::avModel().setDisplay(screenNumber,
-                                      rect.x() + x,
-                                      rect.y() + y,
+    // Provide minimum width, height.
+    // Need to add screen x, y initial value to the setDisplay api call.
+    LRCInstance::avModel().setDisplay(display,
+                                      x,//rect.x() + x,
+                                      y,//rect.y() + y,
                                       width < 128 ? 128 : width,
                                       height < 128 ? 128 : height);
 }

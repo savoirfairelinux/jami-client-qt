@@ -22,7 +22,7 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls.Universal 2.14
 import net.jami.Models 1.0
-
+//import QtQuick.Window 2.2
 
 // ScreenRubberBand as a seperate frameless window,
 // is to simulate the whole screen area and provide the user
@@ -36,11 +36,28 @@ Window {
 
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WA_TranslucentBackground
 
-
     // Opacity with 0.7 window that will fill the entire screen,
     // provide the users to select the area that they
     // want to share.
     color: Qt.rgba(0, 0, 0, 0.7)
+
+    //x: 0 //Screen.virtualX
+    //y: 0 //Screen.virtualY
+
+    //minimumWidth: Screen.desktopAvailableWidth
+    //minimumHeight: Screen.desktopAvailableHeight
+    width: Screen.desktopAvailableWidth
+    height: Screen.desktopAvailableHeight
+
+
+    function setSize() {
+        var virtX = 0
+        var virtY = 0
+        for (var screen in Qt.application.screens) {
+            console.error(screen)
+        }
+    }
+
 
 
     // Rect for selection.
@@ -97,6 +114,7 @@ Window {
 
         onReleased: {
             recSelect.visible = false
+
             AvAdapter.shareScreenArea(screenNumber, recSelect.x, recSelect.y,
                                       recSelect.width, recSelect.height)
             screenRubberBandWindow.close()
