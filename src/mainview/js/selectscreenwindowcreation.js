@@ -53,7 +53,7 @@ function finishCreation(selectArea) {
     /*
      * Signal connection.
      */
-    selectScreenWindowObject.onClosing.connect(destorySelectScreenWindow)
+    selectScreenWindowObject.onClosing.connect(destroySelectScreenWindow)
 }
 
 function showSelectScreenWindow() {
@@ -64,7 +64,7 @@ function showSelectScreenWindow() {
 /*
  * Destroy and reset selectScreenWindowObject when window is closed.
  */
-function destorySelectScreenWindow() {
+function destroySelectScreenWindow() {
     if(!selectScreenWindowObject)
         return
     selectScreenWindowObject.destroy()
