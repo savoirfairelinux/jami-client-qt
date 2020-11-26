@@ -25,6 +25,7 @@
 
 #include <QtConcurrent/QtConcurrent>
 #include <QApplication>
+#include <QPainter>
 #include <QScreen>
 
 AvAdapter::AvAdapter(QObject* parent)
@@ -66,19 +67,13 @@ AvAdapter::populateVideoDeviceContextMenuItem()
 void
 AvAdapter::onVideoContextMenuDeviceItemClicked(const QString& deviceName)
 {
-    auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
-    auto call = LRCInstance::getCallInfoForConversation(conversation);
-    if (!call)
-        return;
-
     auto deviceId = LRCInstance::avModel().getDeviceIdFromName(deviceName);
     if (deviceId.isEmpty()) {
         qWarning() << "Couldn't find device: " << deviceName;
         return;
     }
     LRCInstance::avModel().setCurrentVideoCaptureDevice(deviceId);
-    LRCInstance::avModel().switchInputTo(deviceId, call->id);
+    LRCInstance::avModel().switchInputTo(deviceId, getCurrentCallId());
 }
 
 void
@@ -87,31 +82,97 @@ AvAdapter::shareEntireScreen(int screenNumber)
     QScreen* screen = qApp->screens().at(screenNumber);
     if (!screen)
         return;
-    QRect rect = screen ? screen->geometry() : qApp->primaryScreen()->geometry();
-    LRCInstance::avModel().setDisplay(screenNumber, rect.x(), rect.y(), rect.width(), rect.height());
+    QRect rect = screen->geometry();
+
+    int display = 0;
+#ifdef Q_OS_WIN
+    display = screenNumber;
+#else
+    QString display_env {getenv("DISPLAY")};
+    if (!display_env.isEmpty()) {
+        auto list = display_env.split(":", Qt::SkipEmptyParts);
+        // Should only be one display, so get the first one
+        if (list.size() > 0) {
+            display = list.at(0).toInt();
+        }
+    }
+#endif
+    LRCInstance::avModel()
+        .setDisplay(display, rect.x(), rect.y(), rect.width(), rect.height(), getCurrentCallId());
 }
 
-const QString
+void
+AvAdapter::shareAllScreens()
+{
+    auto screens = QGuiApplication::screens();
+
+    int width = 0, height = 0;
+    for (auto scr : screens) {
+        width += scr->geometry().width();
+        if (height < scr->geometry().height())
+            height = scr->geometry().height();
+    }
+
+    LRCInstance::avModel().setDisplay(0, 0, 0, width, height, getCurrentCallId());
+}
+
+void
 AvAdapter::captureScreen(int screenNumber)
 {
-    QScreen* screen = qApp->screens().at(screenNumber);
-    if (!screen)
-        return QString("");
-    /*
-     * The screen window id is always 0.
-     */
-    auto pixmap = screen->grabWindow(0);
+    QtConcurrent::run([this, screenNumber]() {
+        QScreen* screen = qApp->screens().at(screenNumber);
+        if (!screen)
+            return;
+        /*
+         * The screen window id is always 0.
+         */
+        auto pixmap = screen->grabWindow(0);
 
-    QBuffer buffer;
-    buffer.open(QIODevice::WriteOnly);
-    pixmap.save(&buffer, "PNG");
-    return Utils::byteArrayToBase64String(buffer.data());
+        QBuffer buffer;
+        buffer.open(QIODevice::WriteOnly);
+        pixmap.save(&buffer, "PNG");
+
+        emit screenCaptured(screenNumber, Utils::byteArrayToBase64String(buffer.data()));
+    });
+}
+
+void
+AvAdapter::captureAllScreens()
+{
+    QtConcurrent::run([this]() {
+        auto screens = QGuiApplication::screens();
+
+        QList<QPixmap> scrs;
+        int width = 0, height = 0, currentPoint = 0;
+
+        foreach (auto scr, screens) {
+            QPixmap pix = scr->grabWindow(0);
+            width += pix.width();
+            if (height < pix.height())
+                height = pix.height();
+            scrs << pix;
+        }
+
+        QPixmap final(width, height);
+        QPainter painter(&final);
+        final.fill(Qt::black);
+
+        foreach (auto scr, scrs) {
+            painter.drawPixmap(QPoint(currentPoint, 0), scr);
+            currentPoint += scr.width();
+        }
+
+        QBuffer buffer;
+        buffer.open(QIODevice::WriteOnly);
+        final.save(&buffer, "PNG");
+        emit screenCaptured(-1, Utils::byteArrayToBase64String(buffer.data()));
+    });
 }
 
 void
 AvAdapter::shareFile(const QString& filePath)
 {
-    LRCInstance::avModel().setInputFile(filePath);
+    LRCInstance::avModel().setInputFile(filePath, getCurrentCallId());
 }
 
 void
@@ -120,17 +181,31 @@ AvAdapter::shareScreenArea(int screenNumber, int x, int y, int width, int height
     QScreen* screen = qApp->screens().at(screenNumber);
     if (!screen)
         return;
-    QRect rect = screen ? screen->geometry() : qApp->primaryScreen()->geometry();
+    QRect rect = screen->geometry();
 
-    /*
-     * Provide minimum width, height.
-     * Need to add screen x, y initial value to the setDisplay api call.
-     */
-    LRCInstance::avModel().setDisplay(screenNumber,
+    int display = 0;
+#ifdef Q_OS_WIN
+    display = screenNumber;
+#else
+    // Get display
+    QString display_env {getenv("DISPLAY")};
+    if (!display_env.isEmpty()) {
+        auto list = display_env.split(":", Qt::SkipEmptyParts);
+        // Should only be one display, so get the first one
+        if (list.size() > 0) {
+            display = list.at(0).toInt();
+        }
+    }
+#endif
+
+    // Provide minimum width, height.
+    // Need to add screen x, y initial value to the setDisplay api call.
+    LRCInstance::avModel().setDisplay(display,
                                       rect.x() + x,
                                       rect.y() + y,
                                       width < 128 ? 128 : width,
-                                      height < 128 ? 128 : height);
+                                      height < 128 ? 128 : height,
+                                      getCurrentCallId());
 }
 
 void
@@ -145,19 +220,24 @@ AvAdapter::stopAudioMeter(bool async)
     LRCInstance::stopAudioMeter(async);
 }
 
+const QString&
+AvAdapter::getCurrentCallId()
+{
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    auto call = LRCInstance::getCallInfoForConversation(conversation);
+    if (!call)
+        return QString();
+    return call->id;
+}
+
 void
 AvAdapter::slotDeviceEvent()
 {
     auto& avModel = LRCInstance::avModel();
     auto defaultDevice = avModel.getDefaultDevice();
     auto currentCaptureDevice = avModel.getCurrentVideoCaptureDevice();
-    QString callId {};
-
-    auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
-    auto call = LRCInstance::getCallInfoForConversation(conversation);
-    if (call)
-        callId = call->id;
+    QString callId = getCurrentCallId();
 
     /*
      * Decide whether a device has plugged, unplugged, or nothing has changed.
