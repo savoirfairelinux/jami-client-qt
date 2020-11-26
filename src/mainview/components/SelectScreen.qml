@@ -37,9 +37,6 @@ Window {
 
     property int selectedScreenNumber: -1
 
-    // Decide whether to show screen area or entire screen.
-    property bool selectArea: false
-
     // How many rows the ScrollView should have.
     function calculateRepeaterModel() {
         var numberOfScreens = Qt.application.screens.length
@@ -54,7 +51,7 @@ Window {
     minimumWidth: minWidth
     minimumHeight: minHeight
 
-    title: "Screen sharing"
+    title: JamiStrings.shareScreen
 
     // Note: Qt.application.screens[0] is the app's current existing screen.
     screen: Qt.application.screens[0]
@@ -274,21 +271,8 @@ Window {
         text: JamiStrings.shareScreen
 
         onClicked: {
-            if (selectArea) {
-                selectScreenWindow.hide()
-                ScreenRubberBandCreation.createScreenRubberBandWindowObject(
-                            selectScreenWindow, selectedScreenNumber - 1)
-                ScreenRubberBandCreation.showScreenRubberBandWindow()
-
-
-                // Destory selectScreenWindow once screenRubberBand is closed.
-                ScreenRubberBandCreation.connectOnClosingEvent(function () {
-                    selectScreenWindow.close()
-                })
-            } else {
-                AvAdapter.shareEntireScreen(selectedScreenNumber - 1)
-                selectScreenWindow.close()
-            }
+            AvAdapter.shareEntireScreen(selectedScreenNumber - 1)
+            selectScreenWindow.close()
         }
     }
 }
