@@ -85,7 +85,10 @@ FrameWrapper::stopRendering()
 QImage*
 FrameWrapper::getFrame()
 {
-    return isRendering_ ? image_.get() : nullptr;
+    if (image_.get()) {
+        return isRendering_ ? (image_.get()->isNull() ? nullptr : image_.get()) : nullptr;
+    }
+    return nullptr;
 }
 
 bool
@@ -100,6 +103,8 @@ FrameWrapper::slotRenderingStarted(const QString& id)
     if (id != id_) {
         return;
     }
+
+    image_.reset();
 
     if (!startRendering()) {
         qWarning() << "Couldn't start rendering for id: " << id_;
@@ -160,8 +165,6 @@ FrameWrapper::slotRenderingStopped(const QString& id)
     QObject::disconnect(renderConnections_.updated);
 
     renderer_ = nullptr;
-
-    image_.reset();
 
     emit renderingStopped(id);
 }
