@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -17,10 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-/*
- * Global select screen window component, object variable for creation.
- */
+// Global select screen window component, object variable for creation.
 var selectScreenWindowComponent
 var selectScreenWindowObject
 
@@ -39,32 +35,28 @@ function createSelectScreenWindowObject(selectArea = false) {
 function finishCreation(selectArea) {
     selectScreenWindowObject = selectScreenWindowComponent.createObject()
     if (selectScreenWindowObject === null) {
-
-
-        /*
-         * Error Handling.
-         */
+        // Error Handling.
         console.log("Error creating select screen object")
     }
 
     selectScreenWindowObject.selectArea = selectArea
 
-
-    /*
-     * Signal connection.
-     */
-    selectScreenWindowObject.onClosing.connect(destorySelectScreenWindow)
+    // Signal connection.
+    selectScreenWindowObject.onClosing.connect(destroySelectScreenWindow)
 }
 
 function showSelectScreenWindow() {
     selectScreenWindowObject.show()
+
+    var screen = selectScreenWindowObject.screen
+    selectScreenWindowObject.x = screen.virtualX +
+            (screen.width - selectScreenWindowObject.width) / 2
+    selectScreenWindowObject.y = screen.virtualY +
+            (screen.height - selectScreenWindowObject.height) / 2
 }
 
-
-/*
- * Destroy and reset selectScreenWindowObject when window is closed.
- */
-function destorySelectScreenWindow() {
+// Destroy and reset selectScreenWindowObject when window is closed.
+function destroySelectScreenWindow() {
     if(!selectScreenWindowObject)
         return
     selectScreenWindowObject.destroy()
