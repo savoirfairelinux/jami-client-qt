@@ -47,7 +47,7 @@ Rectangle {
             contactImage.source = ""
         } else {
             opacity = 1
-            contactImage.source = "data:image/png;base64," + avatar
+            contactImage.source = JamiQmlUtils.base64StringTitle + avatar
         }
     }
 
