@@ -37,6 +37,7 @@ Window {
     property int minHeight: 500
 
     property int selectedScreenNumber: -1
+    property bool selectAllScreens: false
 
     // Decide whether to show screen area or entire screen.
     property bool selectArea: false
@@ -55,10 +56,10 @@ Window {
     minimumWidth: minWidth
     minimumHeight: minHeight
 
-    title: "Screen sharing"
+    width: minWidth
+    height: minHeight
 
-    // Note: Qt.application.screens[0] is the app's current existing screen.
-    screen: Qt.application.screens[0]
+    screen: JamiQmlUtils.mainApplicationScreen
 
     modality: Qt.ApplicationModal
 
@@ -125,6 +126,21 @@ Window {
                             }
                         }
 
+                        Connections {
+                            target: AvAdapter
+
+                            function onScreenCaptured(screenNumber, source) {
+                                if (screenNumber === -1)
+                                    screenShotAll.source = JamiQmlUtils.base64StringTitle + source
+                                if (screenNumber !== index && screenNumber !== index + 1)
+                                    return
+                                if (screenNumber % 2 !== 1)
+                                    screenShotEven.source = JamiQmlUtils.base64StringTitle + source
+                                else
+                                    screenShotOdd.source = JamiQmlUtils.base64StringTitle + source
+                            }
+                        }
+
                         // To make sure that two screen captures in one row,
                         // a repeater of two rect is needed, which one in charge
                         // of odd number screen, one in charge of even number screen.
@@ -154,11 +170,8 @@ Window {
                                 fillMode: Image.PreserveAspectFit
                                 mipmap: true
 
-                                Component.onCompleted: {
-                                    screenShotOdd.source = "data:image/png;base64,"
-                                            + AvAdapter.captureScreen(
-                                                calculateScreenNumber(index, false) - 1)
-                                }
+                                Component.onCompleted: AvAdapter.captureScreen(
+                                                           calculateScreenNumber(index, false) - 1)
                             }
 
                             Text {
@@ -224,8 +237,7 @@ Window {
 
                                 Component.onCompleted: {
                                     if (screenSelectionRectEven.visible)
-                                        screenShotEven.source = "data:image/png;base64,"
-                                                + AvAdapter.captureScreen(
+                                        AvAdapter.captureScreen(
                                                     calculateScreenNumber(index, true) - 1)
                                 }
                             }
@@ -259,6 +271,68 @@ Window {
                         }
                     }
                 }
+
+                Rectangle {
+                    id: screenSelectionRectAll
+
+                    property string borderColor: JamiTheme.tabbarBorderColor
+
+                    anchors.horizontalCenter: screenSelectionScrollViewColumn.horizontalCenter
+
+                    height: screenSelectionScrollView.height
+                    width: screenSelectionScrollView.width - 2 * JamiTheme.preferredMarginSize
+
+                    border.color: borderColor
+
+                    Connections {
+                        target: selectScreenWindow
+
+                        function onSelectedScreenNumberChanged() {
+                            // Recover from green state.
+                            selectAllScreens = false
+                            screenSelectionRectAll.borderColor = JamiTheme.tabbarBorderColor
+                        }
+                    }
+
+                    Image {
+                        id: screenShotAll
+
+                        anchors.top: screenSelectionRectAll.top
+                        anchors.topMargin: 10
+                        anchors.horizontalCenter: screenSelectionRectAll.horizontalCenter
+
+                        height: screenSelectionRectAll.height - 50
+                        width: screenSelectionRectAll.width - 50
+
+                        fillMode: Image.PreserveAspectFit
+                        mipmap: true
+
+                        Component.onCompleted: AvAdapter.captureAllScreens()
+                    }
+
+                    Text {
+                        id: screenNameAll
+
+                        anchors.top: screenShotAll.bottom
+                        anchors.topMargin: 10
+                        anchors.horizontalCenter: screenSelectionRectAll.horizontalCenter
+
+                        font.pointSize: JamiTheme.textFontSize - 2
+                        text: qsTr("All Screens")
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+
+                        onClicked: {
+                            selectedScreenNumber = -1
+                            selectAllScreens = true
+                            screenSelectionRectAll.borderColor
+                                    = JamiTheme.screenSelectionBorderGreen
+                        }
+                    }
+                }
             }
         }
     }
@@ -273,7 +347,7 @@ Window {
         width: 200
         height: 36
 
-        visible: selectedScreenNumber != -1
+        visible: selectedScreenNumber != -1 || selectAllScreens
 
         color: JamiTheme.buttonTintedBlack
         hoveredColor: JamiTheme.buttonTintedBlackHovered
@@ -287,7 +361,7 @@ Window {
             if (selectArea) {
                 selectScreenWindow.hide()
                 ScreenRubberBandCreation.createScreenRubberBandWindowObject(
-                            selectScreenWindow, selectedScreenNumber - 1)
+                            null, selectedScreenNumber - 1)
                 ScreenRubberBandCreation.showScreenRubberBandWindow()
 
 
@@ -296,7 +370,10 @@ Window {
                     selectScreenWindow.close()
                 })
             } else {
-                AvAdapter.shareEntireScreen(selectedScreenNumber - 1)
+                if (selectAllScreens)
+                    AvAdapter.shareAllScreens()
+                else
+                    AvAdapter.shareEntireScreen(selectedScreenNumber - 1)
                 selectScreenWindow.close()
             }
         }
