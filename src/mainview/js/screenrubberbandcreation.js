@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -17,64 +16,45 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
-/*
- * Global screen rubber band window component, object variable for creation.
- */
+// Global screen rubber band window component, object variable for creation.
 var screenRubberBandWindowComponent
 var screenRubberBandWindowObject
 
-function createScreenRubberBandWindowObject(parent, screenNumber) {
+function createScreenRubberBandWindowObject(parent) {
     if (screenRubberBandWindowObject)
         return
     screenRubberBandWindowComponent = Qt.createComponent(
                 "../components/ScreenRubberBand.qml")
     if (screenRubberBandWindowComponent.status === Component.Ready)
-        finishCreation(parent, screenNumber)
+        finishCreation(parent)
     else if (screenRubberBandWindowComponent.status === Component.Error)
         console.log("Error loading component:",
                     screenRubberBandWindowComponent.errorString())
 }
 
-function finishCreation(parent, screenNumber) {
+function finishCreation(parent) {
     screenRubberBandWindowObject = screenRubberBandWindowComponent.createObject(
                 parent)
     if (screenRubberBandWindowObject === null) {
 
-
-        /*
-         * Error Handling.
-         */
+        // Error Handling.
         console.log("Error creating screen rubber band object")
     }
 
-    screenRubberBandWindowObject.screenNumber = screenNumber
-    screenRubberBandWindowObject.screen = Qt.application.screens[screenNumber]
-
-
-    /*
-     * Signal connection.
-     */
+    // Signal connection.
     screenRubberBandWindowObject.onClosing.connect(
                 destoryScreenRubberBandWindow)
 }
 
 function showScreenRubberBandWindow() {
-    screenRubberBandWindowObject.showFullScreen()
+    screenRubberBandWindowObject.show()
 }
 
 
-/*
- * Destroy and reset screenRubberBandWindowObject when window is closed.
- */
+// Destroy and reset screenRubberBandWindowObject when window is closed.
 function destoryScreenRubberBandWindow() {
     if (!screenRubberBandWindowObject)
         return
     screenRubberBandWindowObject.destroy()
     screenRubberBandWindowObject = false
-}
-
-function connectOnClosingEvent(func) {
-    if (screenRubberBandWindowObject)
-        screenRubberBandWindowObject.onClosing.connect(func)
 }

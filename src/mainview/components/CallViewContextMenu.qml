@@ -113,14 +113,9 @@ Item {
             ContextMenuGenerator.addMenuItem(JamiStrings.shareScreenArea,
                                              "qrc:/images/icons/screen_share-24px.svg",
                                              function (){
-                                                 if (Qt.application.screens.length === 1) {
-                                                     ScreenRubberBandCreation.createScreenRubberBandWindowObject(
-                                                                 null, 0)
-                                                     ScreenRubberBandCreation.showScreenRubberBandWindow()
-                                                 } else {
-                                                     SelectScreenWindowCreation.createSelectScreenWindowObject(true)
-                                                     SelectScreenWindowCreation.showSelectScreenWindow()
-                                                 }
+                                                 ScreenRubberBandCreation.createScreenRubberBandWindowObject(
+                                                             callOverlayRect)
+                                                 ScreenRubberBandCreation.showScreenRubberBandWindow()
                                              })
             ContextMenuGenerator.addMenuItem(JamiStrings.shareFile,
                                              "qrc:/images/icons/insert_photo-24px.svg",
