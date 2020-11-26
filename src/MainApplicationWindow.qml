@@ -168,9 +168,12 @@ ApplicationWindow {
 
     onClosing: root.close()
 
+    onScreenChanged: JamiQmlUtils.mainApplicationScreen = root.screen
+
     Component.onCompleted: {
         if(!startAccountMigration()){
             startClient()
         }
+        JamiQmlUtils.mainApplicationScreen = root.screen
     }
 }
