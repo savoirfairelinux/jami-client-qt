@@ -51,12 +51,11 @@ function finishCreation(parent, screenNumber) {
     screenRubberBandWindowObject.screenNumber = screenNumber
     screenRubberBandWindowObject.screen = Qt.application.screens[screenNumber]
 
-
     /*
      * Signal connection.
      */
     screenRubberBandWindowObject.onClosing.connect(
-                destoryScreenRubberBandWindow)
+                destroyScreenRubberBandWindow)
 }
 
 function showScreenRubberBandWindow() {
@@ -67,7 +66,7 @@ function showScreenRubberBandWindow() {
 /*
  * Destroy and reset screenRubberBandWindowObject when window is closed.
  */
-function destoryScreenRubberBandWindow() {
+function destroyScreenRubberBandWindow() {
     if (!screenRubberBandWindowObject)
         return
     screenRubberBandWindowObject.destroy()

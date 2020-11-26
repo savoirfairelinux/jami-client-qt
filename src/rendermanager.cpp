@@ -85,13 +85,28 @@ FrameWrapper::stopRendering()
 QImage*
 FrameWrapper::getFrame()
 {
-    return isRendering_ ? image_.get() : nullptr;
+    if (image_.get()) {
+        return isRendering_ ? (image_.get()->isNull() ? nullptr : image_.get()) : nullptr;
+    }
+    return nullptr;
 }
 
 bool
 FrameWrapper::isRendering()
 {
     return isRendering_;
+}
+
+bool
+FrameWrapper::frameMutexTryLock()
+{
+    return mutex_.tryLock();
+}
+
+void
+FrameWrapper::frameMutexUnlock()
+{
+    mutex_.unlock();
 }
 
 void
@@ -141,7 +156,7 @@ FrameWrapper::slotFrameUpdated(const QString& id)
                                     height,
                                     QImage::Format_ARGB32_Premultiplied));
 #else
-        if (frame_.ptr) {
+        if (frame_.ptr && frame_.size != 0) {
             image_.reset(new QImage(frame_.ptr, width, height, QImage::Format_ARGB32));
 #endif
         }
@@ -161,7 +176,10 @@ FrameWrapper::slotRenderingStopped(const QString& id)
 
     renderer_ = nullptr;
 
-    image_.reset();
+    {
+        QMutexLocker lock(&mutex_);
+        image_.reset();
+    }
 
     emit renderingStopped(id);
 }
@@ -202,12 +220,6 @@ RenderManager::isPreviewing()
     return previewFrameWrapper_->isRendering();
 }
 
-QImage*
-RenderManager::getPreviewFrame()
-{
-    return previewFrameWrapper_->getFrame();
-}
-
 void
 RenderManager::stopPreviewing()
 {
@@ -230,16 +242,6 @@ RenderManager::startPreviewing(bool force)
         avModel_.stopPreview();
     }
     avModel_.startPreview();
-}
-
-QImage*
-RenderManager::getFrame(const QString& id)
-{
-    auto dfwIt = distantFrameWrapperMap_.find(id);
-    if (dfwIt != distantFrameWrapperMap_.end()) {
-        return dfwIt->second->getFrame();
-    }
-    return nullptr;
 }
 
 void
@@ -303,5 +305,24 @@ RenderManager::removeDistantRenderer(const QString& id)
          * Erase.
          */
         distantFrameWrapperMap_.erase(dfwIt);
+    }
+}
+
+void
+RenderManager::drawFrame(const QString& id, DrawFrameCallback cb)
+{
+    if (id == lrc::api::video::PREVIEW_RENDERER_ID) {
+        if (previewFrameWrapper_->frameMutexTryLock()) {
+            cb(previewFrameWrapper_->getFrame());
+            previewFrameWrapper_->frameMutexUnlock();
+        }
+    } else {
+        auto dfwIt = distantFrameWrapperMap_.find(id);
+        if (dfwIt != distantFrameWrapperMap_.end()) {
+            if (dfwIt->second->frameMutexTryLock()) {
+                cb(dfwIt->second->getFrame());
+                dfwIt->second->frameMutexUnlock();
+            }
+        }
     }
 }
