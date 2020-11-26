@@ -63,7 +63,7 @@ protected:
     /*
      * Select screen area to display.
      */
-    Q_INVOKABLE void shareScreenArea(int screenNumber, int x, int y, int width, int height);
+    Q_INVOKABLE void shareScreenArea(int x, int y, int width, int height);
 
     Q_INVOKABLE void startAudioMeter(bool async);
     Q_INVOKABLE void stopAudioMeter(bool async);
