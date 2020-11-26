@@ -54,10 +54,11 @@ Window {
     minimumWidth: minWidth
     minimumHeight: minHeight
 
-    title: "Screen sharing"
+    title: JamiStrings.selectScreen
 
-    // Note: Qt.application.screens[0] is the app's current existing screen.
-    screen: Qt.application.screens[0]
+    screen: JamiQmlUtils.mainApplicationScreen
+    x: screen.virtualX + (screen.width - selectScreenWindow.width) / 2
+    y: screen.virtualY + (screen.height - selectScreenWindow.height) / 2
 
     modality: Qt.ApplicationModal
 
@@ -277,7 +278,7 @@ Window {
             if (selectArea) {
                 selectScreenWindow.hide()
                 ScreenRubberBandCreation.createScreenRubberBandWindowObject(
-                            selectScreenWindow, selectedScreenNumber - 1)
+                            null, selectedScreenNumber - 1)
                 ScreenRubberBandCreation.showScreenRubberBandWindow()
 
 

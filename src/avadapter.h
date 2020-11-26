@@ -77,6 +77,11 @@ protected:
 
 private:
     /*
+     * Get current callId from current selected conv id.
+     */
+    const QString& getCurrentCallId();
+
+    /*
      * Used to classify capture device events.
      */
     enum class DeviceEvent { Added, RemovedCurrent, None };
