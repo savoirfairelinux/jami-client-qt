@@ -54,7 +54,7 @@ Window {
     minimumWidth: minWidth
     minimumHeight: minHeight
 
-    title: "Screen sharing"
+    title: JamiStrings.selectScreen
 
     // Note: Qt.application.screens[0] is the app's current existing screen.
     screen: Qt.application.screens[0]
