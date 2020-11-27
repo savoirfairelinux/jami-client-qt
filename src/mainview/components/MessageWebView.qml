@@ -259,6 +259,23 @@ Rectangle {
                             UtilsAdapter.qStringFromFile(":/chatview.js"),
                             function() {
                                 messageWebView.runJavaScript("init_i18n();")
+                                messageWebView.runJavaScript("setTheme(\
+                                    \"--jami-light-blue: #003b4e;\
+                                    --jami-dark-blue: #28b1ed;\
+                                    --text-color: white;\
+                                    --timestamp-color: #bbb;\
+                                    --message-out-bg: #28b1ed;\
+                                    --message-out-txt: white;\
+                                    --message-in-bg: #616161;\
+                                    --message-in-txt: white;\
+                                    --file-in-timestamp-color: #999;\
+                                    --file-out-timestamp-color: #eee;\
+                                    --bg-color: " + JamiTheme.backgroundColor + ";\
+                                    --non-action-icon-color: white;\
+                                    --placeholder-text-color: #2b2b2b;\
+                                    --invite-hover-color: black;\
+                                    --hairline-color: #262626;\
+                                \")")
                                 messageWebView.runJavaScript("displayNavbar(false);")
                                 jsLoaded = true
                             })

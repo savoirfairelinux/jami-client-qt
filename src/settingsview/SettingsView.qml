@@ -118,6 +118,7 @@ Rectangle {
         id: settingsViewRect
 
         anchors.fill: root
+        color: JamiTheme.backgroundColor
 
         signal stopPreviewing
         signal stopBooth

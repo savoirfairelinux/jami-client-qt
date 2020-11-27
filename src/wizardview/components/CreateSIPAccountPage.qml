@@ -70,6 +70,7 @@ Rectangle {
 
             Label {
                 text: JamiStrings.configureExistingSIP
+                color: JamiTheme.textColor
                 font.pointSize: JamiTheme.textFontSize + 3
             }
 
@@ -171,6 +172,7 @@ Rectangle {
         height: 35
 
         normalColor: root.color
+        imageColor: JamiTheme.primaryForegroundColor
 
         source: "qrc:/images/icons/ic_arrow_back_24px.svg"
         toolTipText: JamiStrings.backToWelcome

@@ -123,6 +123,7 @@ BaseDialog {
 
         implicitWidth: JamiTheme.preferredDialogWidth
         implicitHeight: JamiTheme.preferredDialogHeight
+        color: JamiTheme.backgroundColor
 
         ColumnLayout {
             anchors.centerIn: parent

@@ -45,6 +45,8 @@ Rectangle {
         videoSettings.populateVideoSettings()
     }
 
+    color: JamiTheme.backgroundColor
+
     ColumnLayout {
         id: avSettingsColumnLayout
 

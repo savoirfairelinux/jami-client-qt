@@ -28,6 +28,7 @@ Rectangle {
     id: welcomeRect
 
     anchors.fill: parent
+    color: JamiTheme.backgroundColor
 
     Rectangle {
         id: welcomeRectComponentsGroup
@@ -36,6 +37,7 @@ Rectangle {
 
         width: Math.max(mainViewStackPreferredWidth, welcomeRect.width - 100)
         height: mainViewWindow.minimumHeight
+        color: JamiTheme.backgroundColor
 
         ColumnLayout {
             id: welcomeRectComponentsGroupColumnLayout
@@ -52,7 +54,7 @@ Rectangle {
                 smooth: true
                 antialiasing: true
 
-                source: "qrc:/images/logo-jami-standard-coul.svg"
+                source: "qrc:/images/logo-jami-standard-coul-white.svg"
             }
 
             Label {
@@ -70,6 +72,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
 
                 text: JamiStrings.description
+                color: JamiTheme.textColor
             }
 
             Label {
@@ -98,6 +101,7 @@ Rectangle {
                 Layout.preferredWidth: welcomeRectComponentsGroup.width
                 Layout.preferredHeight: 65
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
+                color: JamiTheme.backgroundColor
 
                 visible: AccountAdapter.currentAccountType === Profile.Type.RING
 
@@ -115,6 +119,7 @@ Rectangle {
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                         text: textMetricsjamiRegisteredNameText.elidedText
+                        color: JamiTheme.textColor
                         TextMetrics {
                             id: textMetricsjamiRegisteredNameText
                             font: jamiRegisteredNameText.font
@@ -131,6 +136,7 @@ Rectangle {
 
                         preferredSize: 34
                         imagePadding: 4
+                        imageColor: JamiTheme.textColor
 
                         source: "qrc:/images/icons/content_copy-24px.svg"
 

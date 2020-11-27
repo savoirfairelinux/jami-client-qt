@@ -75,6 +75,7 @@ Rectangle {
 
             Label {
                 text: qsTr("Profile is only shared with contacts")
+                color: JamiTheme.textColor
                 font.pointSize: JamiTheme.textFontSize + 3
             }
 

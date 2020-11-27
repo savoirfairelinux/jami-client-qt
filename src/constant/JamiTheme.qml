@@ -26,25 +26,27 @@ Item {
     property string blackColor: "#000000"
     property string whiteColor: "#ffffff"
     property string transparentColor: "transparent"
-    property string primaryForegroundColor: blackColor
-    property string primaryBackgroundColor: whiteColor
+    property string primaryForegroundColor: whiteColor
+    property string primaryBackgroundColor: bgDarkMode_
 
-    property string pressedButtonColor: "#a0a0a0"
-    property string hoveredButtonColor: "#c7c7c7"
-    property string normalButtonColor: "#e0e0e0"
+    property string pressedButtonColor: pressColor
+    property string hoveredButtonColor: hoverColor
+    property string normalButtonColor: backgroundColor
 
     property string invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
     property string invertedHoveredButtonColor: Qt.rgba(0, 0, 0, 0.6)
     property string invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
 
-    property string hoverColor: "#c7c7c7"
-    property string pressColor: "#c0c0c0"
+    property string hoverColor: "#515151"
+    property string pressColor: "#777"
+    property string selectedColor: "#0e81c5"
+    property string editBackgroundColor: "#373737" // "#333"
 
-    property string tabbarBorderColor: "#e3e3e3"
+    property string tabbarBorderColor: "black"
     property string presenceGreen: "#4cd964"
     property string notificationRed: "#ff3b30"
     property string unPresenceOrange: "orange"
-    property string backgroundColor: lightGrey_
+    property string backgroundColor: bgSideBarDarkMode_
     property string backgroundDarkColor: rgb256(220, 220, 220)
 
     property string screenSelectionBorderGreen: "green"
@@ -61,18 +63,18 @@ Item {
     property string buttonTintedBlue: "#00aaff"
     property string buttonTintedBlueHovered: "#0e81c5"
     property string buttonTintedBluePressed: "#273261"
-    property string buttonTintedGrey: "#999"
+    property string buttonTintedGrey: "#555" //"#333"
     property string buttonTintedGreyHovered: "#777"
     property string buttonTintedGreyPressed: "#777"
-    property string buttonTintedGreyInactive: "#bbb"
-    property string buttonTintedBlack: "#333"
-    property string buttonTintedBlackHovered: "#111"
-    property string buttonTintedBlackPressed: "#000"
+    property string buttonTintedGreyInactive: "#777" //"#bbb"
+    property string buttonTintedBlack: "#fff"
+    property string buttonTintedBlackHovered: "#ddd"
+    property string buttonTintedBlackPressed: "#ddd"
     property string buttonTintedRed: "red"
     property string buttonTintedRedHovered: "#c00"
     property string buttonTintedRedPressed: "#b00"
 
-    property string selectionBlue: "#109ede"
+    property string selectionBlue: "#0061a5"
     property string selectionGreen: "#21be2b"
     property string rubberBandSelectionBlue: "steelblue"
 
@@ -92,7 +94,8 @@ Item {
 
     // Font.
     property string faddedFontColor: "#c0c0c0"
-    property string faddedLastInteractionFontColor: "#505050"
+    property string faddedLastInteractionFontColor: "#c0c0c0"
+    property string textColor: "#fff"
 
     property int splitViewHandlePreferredWidth: 4
     property int textFontSize: 9
@@ -112,6 +115,8 @@ Item {
     property int preferredDialogHeight: 300
     property int minimumPreviewWidth: 120
 
+    property string chatviewButtonColor: "#28b1ed"
+
     // Misc.
     property color white: "white"
     property color darkGrey: rgb256(63, 63, 63)
@@ -122,7 +127,9 @@ Item {
     }
 
     property color wizardBlueButtons: "#28b1ed"
-    property color blueLogo_: rgb256(0, 7, 71)
+    property color blueLogo_: "white"
+    property color bgSideBarDarkMode_: rgb256(20, 20, 20)
+    property color bgDarkMode_: rgb256(24, 24, 24)
     property color lightGrey_: rgb256(242, 242, 242)
     property color grey_: rgb256(160, 160, 160)
     property color red_: rgb256(251, 72, 71)
