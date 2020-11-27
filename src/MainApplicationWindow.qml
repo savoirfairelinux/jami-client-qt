@@ -116,6 +116,9 @@ ApplicationWindow {
         onAccountMigrationFinished: startClient()
     }
 
+    DaemonReconnectPopup {
+        id: daemonReconnectPopup
+    }
 
     Loader {
         id: mainApplicationLoader
@@ -167,6 +170,22 @@ ApplicationWindow {
         }
     }
 
+    Connections {
+        target: DBusErrorHandler
+        ignoreUnknownSignals: true
+
+        function onShowDaemonReconnectPopup(visible) {
+            if (visible)
+                daemonReconnectPopup.open()
+            else
+                daemonReconnectPopup.close()
+        }
+
+        function onDaemonReconnectFailed() {
+            daemonReconnectPopup.connectionFailed = true
+        }
+    }
+
     onClosing: root.close()
 
     onScreenChanged: JamiQmlUtils.mainApplicationScreen = root.screen
@@ -176,5 +195,8 @@ ApplicationWindow {
             startClient()
         }
         JamiQmlUtils.mainApplicationScreen = root.screen
+
+        if (Qt.platform.os !== "windows")
+            DBusErrorHandler.setActive(true)
     }
 }
