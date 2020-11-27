@@ -115,6 +115,9 @@ ApplicationWindow {
         onAccountMigrationFinished: startClient()
     }
 
+    DaemonReconnectPopup {
+        id: daemonReconnectPopup
+    }
 
     Loader {
         id: mainApplicationLoader
@@ -163,6 +166,14 @@ ApplicationWindow {
             if (visibility === Window.Hidden ||
                     visibility === Window.Minimized)
                 showNormal()
+        }
+
+        function onShowDaemonReconnectPopup() {
+            daemonReconnectPopup.open()
+        }
+
+        function onDaemonReconnectFailed() {
+            daemonReconnectPopup.connectionFailed = true
         }
     }
 
