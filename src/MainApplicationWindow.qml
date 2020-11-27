@@ -164,7 +164,17 @@ ApplicationWindow {
                     visibility === Window.Minimized)
                 showNormal()
         }
+
+        function onShowDaemonReconnectPopup() {
+            test.open()
+        }
+
+        function onDaemonReconnectFailed() {
+            test.connectionFailed = true
+        }
     }
+
+    DaemonReconnectPopup {id: test}
 
     onClosing: root.close()
 

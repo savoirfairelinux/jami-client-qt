@@ -449,6 +449,8 @@ signals:
     void notificationClicked();
     void updateSmartList();
     void quitEngineRequested();
+    void showDaemonReconnectPopup();
+    void daemonReconnectFailed();
 
 private:
     LRCInstance(migrateCallback willMigrateCb = {},
