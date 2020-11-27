@@ -107,6 +107,10 @@ unix {
     isEmpty(PREFIX) { PREFIX = /tmp/$${TARGET}/bin }
     target.path = $$PREFIX/bin
     INSTALLS += target
+
+    # unix specific
+    HEADERS += src/dbuserrorhandler.h
+    SOURCES += src/dbuserrorhandler.cpp
 }
 
 # Input
