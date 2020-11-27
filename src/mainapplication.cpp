@@ -43,6 +43,11 @@
 #include <windows.h>
 #endif
 
+#ifdef Q_OS_UNIX
+#include "globalinstances.h"
+#include "dbuserrorhandler.h"
+#endif
+
 #if defined _MSC_VER && !COMPILE_ONLY
 #include <gnutls/gnutls.h>
 #endif
@@ -147,6 +152,18 @@ MainApplication::init()
 #endif
 
     initLrc(results[opts::UPDATEURL].toString(), connectivityMonitor_);
+
+#ifdef Q_OS_UNIX
+    GlobalInstances::setDBusErrorHandler(std::make_unique<Interfaces::DBusErrorHandler>());
+    qmlRegisterSingletonType<Interfaces::DBusErrorHandler>(
+        "net.jami.Models", 1, 0, "DBusErrorHandler", [](QQmlEngine* e, QJSEngine* se) -> QObject* {
+            Q_UNUSED(e)
+            Q_UNUSED(se)
+            return dynamic_cast<QObject*>(&GlobalInstances::dBusErrorHandler());
+        });
+    engine_->setObjectOwnership(dynamic_cast<QObject*>(&GlobalInstances::dBusErrorHandler()),
+                                QQmlEngine::CppOwnership);
+#endif
 
 #ifdef Q_OS_WIN
     connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, [] {

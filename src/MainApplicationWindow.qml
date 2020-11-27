@@ -116,6 +116,9 @@ ApplicationWindow {
         onAccountMigrationFinished: startClient()
     }
 
+    DaemonReconnectPopup {
+        id: daemonReconnectPopup
+    }
 
     Loader {
         id: mainApplicationLoader
@@ -164,6 +167,21 @@ ApplicationWindow {
             if (visibility === Window.Hidden ||
                     visibility === Window.Minimized)
                 showNormal()
+        }
+    }
+
+    Connections {
+        target: DBusErrorHandler
+
+        function onShowDaemonReconnectPopup(visible) {
+            if (visible)
+                daemonReconnectPopup.open()
+            else
+                daemonReconnectPopup.close()
+        }
+
+        function onDaemonReconnectFailed() {
+            daemonReconnectPopup.connectionFailed = true
         }
     }
 
