@@ -43,6 +43,11 @@
 #include <windows.h>
 #endif
 
+#ifdef Q_OS_UNIX
+#include "globalinstances.h"
+#include "dbuserrorhandler.h"
+#endif
+
 #if defined _MSC_VER && !COMPILE_ONLY
 #include <gnutls/gnutls.h>
 #endif
@@ -147,6 +152,10 @@ MainApplication::init()
 #endif
 
     initLrc(results[opts::UPDATEURL].toString(), connectivityMonitor_);
+
+#ifdef Q_OS_UNIX
+    GlobalInstances::setDBusErrorHandler(std::make_unique<Interfaces::DBusErrorHandler>());
+#endif
 
 #ifdef Q_OS_WIN
     connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, [] {
