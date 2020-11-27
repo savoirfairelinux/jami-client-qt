@@ -397,4 +397,8 @@ Item {
     // Generic dialog options
     property string optionOk: qsTr("Ok")
     property string optionCancel: qsTr("Cancel")
+
+    // Daemon reconnection
+    property string reconnectDaemon: qsTr("Trying to reconnect to the Jami daemon (dring)…")
+    property string reconnectionFailed: qsTr("Could not re-connect to the Jami daemon (dring).\nJami will now quit.")
 }
