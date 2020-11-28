@@ -22,10 +22,11 @@ import QtQuick.Controls.Universal 2.14
 import QtQuick.Layouts 1.14
 import QtGraphicalEffects 1.14
 import QtQuick.Controls.Styles 1.4
+import Qt.labs.platform 1.1
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Enums 1.0
-import Qt.labs.platform 1.1
+import net.jami.Constants 1.0
 
 import "../../commoncomponents"
 
@@ -62,6 +63,25 @@ ColumnLayout {
 
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
+    }
+
+    ToggleSwitch {
+        id: darkThemeCheckBox
+        Layout.fillWidth: true
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+
+        checked: SettingsAdapter.getAppValue(Settings.EnableDarkTheme)
+
+        labelText: qsTr("Enable dark theme")
+        fontPointSize: JamiTheme.settingsFontSize
+
+        tooltipText: JamiStrings.enableDarkTheme
+
+        onSwitchToggled: {
+            JamiTheme.setTheme(checked)
+            MessagesAdapter.setTheme(checked)
+            SettingsAdapter.setAppValue(Settings.Key.EnableDarkTheme, checked)
+        }
     }
 
     ToggleSwitch {

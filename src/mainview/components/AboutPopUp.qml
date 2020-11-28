@@ -19,10 +19,10 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
-import net.jami.Models 1.0
+import net.jami.Models 1.0 //Albert
 import net.jami.Adapters 1.0
+import net.jami.Constants 1.0
 
-import "../../constant"
 import "../../commoncomponents"
 
 ModalPopup {
@@ -68,7 +68,7 @@ ModalPopup {
                         smooth: true
                         antialiasing: true
 
-                        source: "qrc:/images/logo-jami-standard-coul.svg"
+                        source: JamiTheme.darkTheme? "qrc:/images/logo-jami-standard-coul-white.svg" : "qrc:/images/logo-jami-standard-coul.svg"
                     }
 
                     Label {
