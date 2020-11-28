@@ -60,6 +60,7 @@ protected:
     Q_INVOKABLE void refuseFile(const QString& arg);
     Q_INVOKABLE void pasteKeyDetected();
     Q_INVOKABLE void onComposing(bool isComposing);
+    Q_INVOKABLE void setTheme(bool darkTheme);
 
     /*
      * Manually update draft when hiding message web view (Back to welcome page).
