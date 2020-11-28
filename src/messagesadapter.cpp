@@ -86,6 +86,7 @@ MessagesAdapter::setupChatView(const QString& uid)
                               Q_ARG(QVariant, shouldShowSendContactRequestBtn));
 
     setMessagesVisibility(false);
+    setTheme(AppSettingsManager::getValue(Settings::Key::EnableDarkTheme).toBool());
 
     /*
      * Type Indicator (contact).
@@ -430,6 +431,52 @@ MessagesAdapter::onComposing(bool isComposing)
 {
     LRCInstance::getCurrentConversationModel()->setIsComposing(LRCInstance::getCurrentConvUid(),
                                                                isComposing);
+}
+
+void
+MessagesAdapter::setTheme(bool darkTheme)
+{
+    if (darkTheme) {
+        QMetaObject::invokeMethod(qmlObj_,
+                                  "webViewRunJavaScript",
+                                  Q_ARG(QVariant, QStringLiteral("setTheme(\
+                    \"--jami-light-blue: #003b4e;\
+                    --jami-dark-blue: #28b1ed;\
+                    --text-color: white;\
+                    --timestamp-color: #bbb;\
+                    --message-out-bg: #28b1ed;\
+                    --message-out-txt: white;\
+                    --message-in-bg: #616161;\
+                    --message-in-txt: white;\
+                    --file-in-timestamp-color: #999;\
+                    --file-out-timestamp-color: #eee;\
+                    --bg-color: #3e3e3e;\
+                    --non-action-icon-color: white;\
+                    --placeholder-text-color: #2b2b2b;\
+                    --invite-hover-color: black;\
+                    --hairline-color: #262626;\
+                \")")));
+    } else {
+        QMetaObject::invokeMethod(qmlObj_,
+                                  "webViewRunJavaScript",
+                                  Q_ARG(QVariant, QStringLiteral("setTheme(\
+                    \"--jami-light-blue: rgba(59, 193, 211, 0.3);\
+                    --jami-dark-blue: #003b4e;\
+                    --text-color: black;\
+                    --timestamp-color: #333;\
+                    --message-out-bg: #cfd8dc;\
+                    --message-out-txt: black;\
+                    --message-in-bg: #fdfdfd;\
+                    --message-in-txt: black;\
+                    --file-in-timestamp-color: #555;\
+                    --file-out-timestamp-color: #555;\
+                    --bg-color: white;\
+                    --non-action-icon-color: #212121;\
+                    --placeholder-text-color: #d3d3d3;\
+                    --invite-hover-color: white;\
+                    --hairline-color: #d9d9d9;\
+                \")")));
+    }
 }
 
 void

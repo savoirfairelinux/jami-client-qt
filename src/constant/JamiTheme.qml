@@ -19,36 +19,42 @@
 // JamiTheme as a singleton is to provide global theme property entry.
 pragma Singleton
 
+import net.jami.Adapters 1.0
+import net.jami.Enums 1.0
+import net.jami.Models 1.0
+
 import QtQuick 2.14
 
 Item {
+    property bool darkTheme: SettingsAdapter.getAppValue(Settings.EnableDarkTheme)
+
     // Color strings
     property string blackColor: "#000000"
     property string whiteColor: "#ffffff"
     property string transparentColor: "transparent"
-    property string primaryForegroundColor: blackColor
-    property string primaryBackgroundColor: whiteColor
+    property string primaryForegroundColor: darkTheme? whiteColor : blackColor
+    property string primaryBackgroundColor: darkTheme? bgDarkMode_ : whiteColor
 
-    property string pressedButtonColor: "#a0a0a0"
-    property string hoveredButtonColor: "#c7c7c7"
-    property string normalButtonColor: "#e0e0e0"
+    property string pressedButtonColor: darkTheme? pressColor : "#a0a0a0"
+    property string hoveredButtonColor: darkTheme? hoverColor : "#c7c7c7"
+    property string normalButtonColor: darkTheme? backgroundColor : "#e0e0e0"
 
     property string invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
     property string invertedHoveredButtonColor: Qt.rgba(0, 0, 0, 0.6)
     property string invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
 
-    property string hoverColor: "#c7c7c7"
-    property string pressColor: "#c0c0c0"
-    property string selectedColor: "#e0e0e0"
-    property string editBackgroundColor: lightGrey_
+    property string hoverColor: darkTheme? "#515151" : "#c7c7c7"
+    property string pressColor: darkTheme? "#777" : "#c0c0c0"
+    property string selectedColor: darkTheme? "#0e81c5" : "#e0e0e0"
+    property string editBackgroundColor: darkTheme? "#373737" : lightGrey_
     property string textColor: primaryForegroundColor
 
-    property string tabbarBorderColor: "#e3e3e3"
+    property string tabbarBorderColor: darkTheme? "black" : "#e3e3e3"
     property string presenceGreen: "#4cd964"
     property string notificationRed: "#ff3b30"
     property string unPresenceOrange: "orange"
-    property string backgroundColor: lightGrey_
-    property string secondaryBackgroundColor: "white"
+    property string backgroundColor: darkTheme? bgSideBarDarkMode_ : lightGrey_
+    property string secondaryBackgroundColor: darkTheme? bgDarkMode_ : "white"
     property string backgroundDarkColor: rgb256(220, 220, 220)
 
     property string screenSelectionBorderGreen: "green"
@@ -65,18 +71,18 @@ Item {
     property string buttonTintedBlue: "#00aaff"
     property string buttonTintedBlueHovered: "#0e81c5"
     property string buttonTintedBluePressed: "#273261"
-    property string buttonTintedGrey: "#999"
+    property string buttonTintedGrey: darkTheme? "#555" : "#999"
     property string buttonTintedGreyHovered: "#777"
     property string buttonTintedGreyPressed: "#777"
-    property string buttonTintedGreyInactive: "#bbb"
-    property string buttonTintedBlack: "#333"
-    property string buttonTintedBlackHovered: "#111"
-    property string buttonTintedBlackPressed: "#000"
+    property string buttonTintedGreyInactive: darkTheme? "#777" : "#bbb"
+    property string buttonTintedBlack: darkTheme? "#fff" : "#333"
+    property string buttonTintedBlackHovered: darkTheme? "#ddd" : "#111"
+    property string buttonTintedBlackPressed: darkTheme? "#ddd" : "#000"
     property string buttonTintedRed: "red"
     property string buttonTintedRedHovered: "#c00"
     property string buttonTintedRedPressed: "#b00"
 
-    property string selectionBlue: "#109ede"
+    property string selectionBlue: darkTheme? "#0061a5" : "#109ede"
     property string selectionGreen: "#21be2b"
     property string rubberBandSelectionBlue: "steelblue"
 
@@ -95,8 +101,10 @@ Item {
     property string accountCreationCurrentStepColor: "#28b1ed"
 
     // Font.
-    property string faddedFontColor: "#a0a0a0"
-    property string faddedLastInteractionFontColor: "#505050"
+    property string faddedFontColor: darkTheme? "#c0c0c0" : "#a0a0a0"
+    property string faddedLastInteractionFontColor: darkTheme? "#c0c0c0" : "#505050"
+
+    property string chatviewButtonColor: darkTheme? "#28b1ed" : "#003b4e"
 
     property int splitViewHandlePreferredWidth: 4
     property int textFontSize: 9
@@ -125,14 +133,43 @@ Item {
         return Qt.rgba(r / 255, g / 255, b / 255, 1.0)
     }
 
+    function setTheme(dark) {
+        darkTheme = dark
+        primaryForegroundColor = darkTheme? whiteColor : blackColor
+        primaryBackgroundColor = darkTheme? bgDarkMode_ : whiteColor
+        pressedButtonColor = darkTheme? pressColor : "#a0a0a0"
+        hoveredButtonColor = darkTheme? hoverColor : "#c7c7c7"
+        normalButtonColor = darkTheme? backgroundColor : "#e0e0e0"
+        hoverColor = darkTheme? "#515151" : "#c7c7c7"
+        pressColor = darkTheme? "#777" : "#c0c0c0"
+        selectedColor = darkTheme? "#0e81c5" : "#e0e0e0"
+        editBackgroundColor = darkTheme? "#373737" : lightGrey_
+        tabbarBorderColor = darkTheme? "black" : "#e3e3e3"
+        backgroundColor = darkTheme? bgSideBarDarkMode_ : lightGrey_
+        secondaryBackgroundColor = darkTheme? bgDarkMode_ : "white"
+        buttonTintedGrey = darkTheme? "#555" : "#999"
+        buttonTintedGreyInactive = darkTheme? "#777" : "#bbb"
+        buttonTintedBlack = darkTheme? "#fff" : "#333"
+        buttonTintedBlackHovered = darkTheme? "#ddd" : "#111"
+        buttonTintedBlackPressed = darkTheme? "#ddd" : "#000"
+        selectionBlue = darkTheme? "#0061a5" : "#109ede"
+        faddedFontColor = darkTheme? "#c0c0c0" : "#a0a0a0"
+        faddedLastInteractionFontColor = darkTheme? "#c0c0c0" : "#505050"
+        chatviewButtonColor = darkTheme? "#28b1ed" : "#003b4e"
+        blueLogo_ = darkTheme? "white" : rgb256(0, 7, 71)
+
+    }
+
     property color wizardBlueButtons: "#28b1ed"
-    property color blueLogo_: rgb256(0, 7, 71)
+    property color blueLogo_: darkTheme? "white" : rgb256(0, 7, 71)
     property color lightGrey_: rgb256(242, 242, 242)
     property color grey_: rgb256(160, 160, 160)
     property color red_: rgb256(251, 72, 71)
     property color urgentOrange_: rgb256(255, 165, 0)
     property color green_: rgb256(127, 255, 0)
     property color presenceGreen_: rgb256(76, 217, 100)
+    property color bgSideBarDarkMode_: rgb256(20, 20, 20)
+    property color bgDarkMode_: rgb256(62, 62, 62)
 
     property int fadeDuration: 150
 }
