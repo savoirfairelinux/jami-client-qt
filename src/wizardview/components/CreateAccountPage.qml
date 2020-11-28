@@ -124,6 +124,7 @@ Rectangle {
 
                     Label {
                         text: isRendezVous ? JamiStrings.chooseNameRV : qsTr("Choose a username for your account")
+                        color: JamiTheme.textColor
                         font.pointSize: JamiTheme.textFontSize + 3
                     }
 
@@ -249,6 +250,7 @@ Rectangle {
                     Label {
                         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                         text: JamiStrings.createPassword
+                        color: JamiTheme.textColor
                         font.pointSize: JamiTheme.textFontSize + 3
                     }
 
@@ -313,6 +315,7 @@ Rectangle {
                     Layout.leftMargin: (root.width - createAccountButton.width) / 2
 
                     text: JamiStrings.notePasswordRecovery
+                    color: JamiTheme.textColor
                     wrapMode: Text.WordWrap
                     font.pointSize: JamiTheme.textFontSize
 
@@ -371,6 +374,7 @@ Rectangle {
         height: 35
 
         normalColor: root.color
+        imageColor: JamiTheme.primaryForegroundColor
 
         source: "qrc:/images/icons/ic_arrow_back_24px.svg"
         toolTipText: JamiStrings.back

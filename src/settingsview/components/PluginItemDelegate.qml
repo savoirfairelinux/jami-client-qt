@@ -62,6 +62,7 @@ ItemDelegate {
             id: labelDeviceId
             Layout.fillWidth: true
             Layout.leftMargin: 8
+            color: JamiTheme.textColor
 
             font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
@@ -82,6 +83,7 @@ ItemDelegate {
 
             background: Rectangle {
                 id: switchBackground
+                color: "transparent"
                 MouseArea {
                     id: btnMouseArea
                     hoverEnabled: true
@@ -106,6 +108,7 @@ ItemDelegate {
 
             source: "qrc:/images/icons/round-settings-24px.svg"
             normalColor: JamiTheme.primaryBackgroundColor
+            imageColor: JamiTheme.textColor
             toolTipText: JamiStrings.showHidePrefs
 
             onClicked: btnPreferencesPluginClicked()

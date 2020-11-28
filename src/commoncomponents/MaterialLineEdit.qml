@@ -37,7 +37,7 @@ TextField {
 
     property int borderColorMode: MaterialLineEdit.NORMAL
     property var iconSource: ""
-    property var backgroundColor: JamiTheme.rgb256(240,240,240)
+    property var backgroundColor: JamiTheme.editBackgroundColor
     property var borderColor: "#333"
 
     signal imageClicked
@@ -76,6 +76,7 @@ TextField {
     font.kerning: true
     horizontalAlignment: Text.AlignLeft
     verticalAlignment: Text.AlignVCenter
+    color: JamiTheme.textColor
 
     Image {
         id: lineEditImage

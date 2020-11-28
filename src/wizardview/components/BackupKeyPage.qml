@@ -80,6 +80,7 @@ Rectangle {
 
             Label {
                 text: JamiStrings.backupAccount
+                color: JamiTheme.textColor
                 font.pointSize: JamiTheme.textFontSize + 3
             }
 
@@ -106,6 +107,7 @@ Rectangle {
             Layout.preferredHeight: preferredHeight
 
             text: JamiStrings.backupAccountInfos
+            color: JamiTheme.textColor
             wrapMode: Text.WordWrap
             font.pointSize: JamiTheme.textFontSize
 
@@ -123,6 +125,7 @@ Rectangle {
 
             Label {
                 text: JamiStrings.neverShowAgain
+                color: JamiTheme.textColor
                 font.pointSize: JamiTheme.textFontSize
             }
 

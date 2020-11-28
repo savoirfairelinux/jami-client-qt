@@ -39,12 +39,16 @@ Item {
 
     property string hoverColor: "#c7c7c7"
     property string pressColor: "#c0c0c0"
+    property string selectedColor: "#e0e0e0"
+    property string editBackgroundColor: lightGrey_
+    property string textColor: primaryForegroundColor
 
     property string tabbarBorderColor: "#e3e3e3"
     property string presenceGreen: "#4cd964"
     property string notificationRed: "#ff3b30"
     property string unPresenceOrange: "orange"
     property string backgroundColor: lightGrey_
+    property string secondaryBackgroundColor: "white"
     property string backgroundDarkColor: rgb256(220, 220, 220)
 
     property string screenSelectionBorderGreen: "green"
@@ -91,7 +95,7 @@ Item {
     property string accountCreationCurrentStepColor: "#28b1ed"
 
     // Font.
-    property string faddedFontColor: "#c0c0c0"
+    property string faddedFontColor: "#a0a0a0"
     property string faddedLastInteractionFontColor: "#505050"
 
     property int splitViewHandlePreferredWidth: 4

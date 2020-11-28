@@ -95,6 +95,7 @@ ItemDelegate {
             Layout.leftMargin: 8
 
             text: preferenceName
+            color: JamiTheme.textColor
             font.pointSize: JamiTheme.settingsFontSize
             ToolTip.visible: hovered
             ToolTip.text: preferenceSummary
