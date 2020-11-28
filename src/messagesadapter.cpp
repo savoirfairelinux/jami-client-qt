@@ -86,6 +86,7 @@ MessagesAdapter::setupChatView(const QString& uid)
                               Q_ARG(QVariant, shouldShowSendContactRequestBtn));
 
     setMessagesVisibility(false);
+    updateTheme();
 
     /*
      * Type Indicator (contact).
@@ -436,6 +437,12 @@ MessagesAdapter::onComposing(bool isComposing)
     }
     LRCInstance::getCurrentConversationModel()->setIsComposing(LRCInstance::getCurrentConvUid(),
                                                                isComposing);
+}
+
+void
+MessagesAdapter::updateTheme()
+{
+    QMetaObject::invokeMethod(qmlObj_, "updateChatviewTheme");
 }
 
 void

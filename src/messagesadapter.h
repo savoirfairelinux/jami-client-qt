@@ -88,6 +88,7 @@ protected:
     void removeInteraction(uint64_t interactionId);
     void setSendMessageContent(const QString& content);
     void contactIsComposing(const QString& uid, const QString& contactUri, bool isComposing);
+    void updateTheme();
 
 signals:
     void needToUpdateSmartList();
