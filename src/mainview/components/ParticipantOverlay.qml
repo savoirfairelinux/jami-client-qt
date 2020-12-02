@@ -59,15 +59,16 @@ Rectangle {
         overlayMenu.bestName = bestName
 
         participantIsModerator = CallAdapter.isModerator(overlayMenu.uri)
-        overlayMenu.showSetModerator = isHost && !isLocal && !participantIsModerator
-        overlayMenu.showUnsetModerator = isHost && !isLocal && participantIsModerator
+        overlayMenu.showSetModerator = !isLocal && isHost && !participantIsModerator
+        overlayMenu.showUnsetModerator = !isLocal && isHost && participantIsModerator
 
-        participantIsMuted = CallAdapter.isMuted(overlayMenu.uri)
-        overlayMenu.showMute = isModerator && !participantIsMuted
-        overlayMenu.showUnmute = isModerator && participantIsMuted && isLocal
-        overlayMenu.showMaximize = isModerator && showMax
-        overlayMenu.showMinimize = isModerator && showMin
-        overlayMenu.showHangup = isHost && !isLocal
+        isMuted = CallAdapter.isMuted(overlayMenu.uri)
+        overlayMenu.showMute = isModerator && !isMuted
+        overlayMenu.showUnmute = isModerator && isMuted && isLocal
+
+        overlayMenu.showMaximize = isModerator && showMaximized
+        overlayMenu.showMinimize = isModerator && showMinimized
+        overlayMenu.showHangup = isModerator && !participantIsModerator
     }
 
     color: "transparent"
