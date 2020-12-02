@@ -67,7 +67,7 @@ Rectangle {
         overlayMenu.showUnmute = isModerator && participantIsMuted && isLocal
         overlayMenu.showMaximize = isModerator && showMax
         overlayMenu.showMinimize = isModerator && showMin
-        overlayMenu.showHangup = isHost && !isLocal
+        overlayMenu.showHangup = isModerator && !isLocal
     }
 
     color: "transparent"
