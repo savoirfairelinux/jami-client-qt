@@ -639,6 +639,7 @@ CallAdapter::isCurrentHost() const
                 qDebug()<<"call.participantsInfossize == 0";
                 return true;
             } else {
+                qDebug()<<"convInfo.confId"<<convInfo.confId<<(!convInfo.confId.isEmpty() && callModel->hasCall(convInfo.confId));
                 return !convInfo.confId.isEmpty() && callModel->hasCall(convInfo.confId);
             }
         } catch (...) {
@@ -657,13 +658,16 @@ CallAdapter::participantIsHost(const QString& uri) const
         auto* callModel = accInfo.callModel.get();
         try {
             if (isCurrentHost()) {
+                qDebug()<<"isCurrentHost"<<(uri == accInfo.profileInfo.uri);
                 return uri == accInfo.profileInfo.uri;
             } else {
                 auto call = callModel->getCall(convInfo.callId);
                 auto peer = call.peerUri.remove("ring:");
-                return (!convInfo.confId.isEmpty()
-                        && callModel->hasCall(convInfo.confId)
-                        && uri == peer);
+                qDebug()<<convInfo.confId<<uri<<peer;
+                qDebug()<<(!convInfo.confId.isEmpty()
+                           && callModel->hasCall(convInfo.confId)
+                           && uri == peer);
+                return (uri == peer);
             }
         } catch (...) {
         }
@@ -726,8 +730,8 @@ CallAdapter::setModerator(const QString& uri, const bool state)
 }
 
 void
-CallAdapter::muteParticipant(const QString& uri, const bool state) {
-
+CallAdapter::muteParticipant(const QString& uri, const bool state)
+{
     auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
     auto* convModel = LRCInstance::getCurrentConversationModel();
     const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
@@ -763,29 +767,19 @@ CallAdapter::isMuted(const QString& uri) const
     return false;
 }
 
-bool
-CallAdapter::isCurrentMuted() const
+void
+CallAdapter::hangupParticipant(const QString& uri)
 {
+    auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
     auto* convModel = LRCInstance::getCurrentConversationModel();
-    const auto convInfo = convModel->getConversationForUID(convUid_);
-    if (!convInfo.uid.isEmpty()) {
-        auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
-        try {
-            auto call = callModel->getCall(convInfo.callId);
-            if (call.participantsInfos.size() == 0) {
-                return false;
-            } else {
-                auto& accInfo = LRCInstance::accountModel().getAccountInfo(accountId_);
-                for (const auto& participant : call.participantsInfos) {
-                    if (participant["uri"] == accInfo.profileInfo.uri)
-                        return participant["audioMuted"] == "true";
-                }
-            }
-            return false;
-        } catch (...) {
-        }
-    }
-    return true;
+    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    auto confId = conversation.confId;
+    if (confId.isEmpty())
+        confId = conversation.callId;
+    try {
+        const auto call = callModel->getCall(confId);
+        callModel->hangupParticipant(confId, uri);
+    } catch (...) {}
 }
 
 void
