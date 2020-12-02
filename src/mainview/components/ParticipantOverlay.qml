@@ -71,7 +71,7 @@ Rectangle {
 
         overlayMenu.showMaximize = isModerator && showMaximized
         overlayMenu.showMinimize = isModerator && showMinimized
-        overlayMenu.showHangup = !isLocal && isHost
+        overlayMenu.showHangup = isModerator && !participantIsModerator
     }
 
     color: "transparent"
