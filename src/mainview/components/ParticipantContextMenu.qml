@@ -46,7 +46,7 @@ Item {
             ContextMenuGenerator.addMenuItem(JamiStrings.hangup,
                                              "qrc:/images/icons/ic_call_end_white_24px.svg",
                                              function (){
-                                                 CallAdapter.hangupCall(uri)
+                                                 CallAdapter.hangupParticipant(uri)
                                              })
 
         if (showMaximize)
