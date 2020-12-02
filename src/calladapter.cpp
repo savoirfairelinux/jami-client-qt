@@ -755,6 +755,21 @@ CallAdapter::isCurrentMuted() const
     return true;
 }
 
+void
+CallAdapter::hangupParticipant(const QString& uri) {
+
+    auto* callModel = LRCInstance::getAccountInfo(accountId_).callModel.get();
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    const auto conversation = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    auto confId = conversation.confId;
+    if (confId.isEmpty())
+        confId = conversation.callId;
+    try {
+        const auto call = callModel->getCall(confId);
+        callModel->hangupParticipant(confId, uri);
+    } catch (...) {}
+}
+
 int
 CallAdapter::getCurrentLayoutType() const
 {
