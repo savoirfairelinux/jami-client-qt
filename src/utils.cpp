@@ -587,6 +587,18 @@ Utils::QImageToByteArray(QImage image)
     return ba;
 }
 
+QString
+Utils::byteArrayToBase64String(QByteArray byteArray)
+{
+    return QString::fromLatin1(byteArray.toBase64().data());
+}
+
+QByteArray
+Utils::base64StringToByteArray(QString base64)
+{
+    return QByteArray::fromBase64(base64.toLatin1());
+}
+
 QImage
 Utils::cropImage(const QImage& img)
 {

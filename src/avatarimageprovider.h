@@ -38,6 +38,7 @@ public:
      * 2. file_ + file path
      * 3. contact_+ contact uri
      * 4. conversation_+ conversation uid
+     * 5. base64_ + base64 string
      */
     QImage requestImage(const QString& id, QSize* size, const QSize& requestedSize) override
     {
@@ -65,11 +66,12 @@ public:
             return Utils::fallbackAvatar(QString(), idContent, requestedSize);
         } else if (idType == "default") {
             return Utils::fallbackAvatar(QString(), QString(), requestedSize);
+        } else if (idType == "base64") {
+            return Utils::cropImage(QImage::fromData(Utils::base64StringToByteArray(idContent)))
+                .scaled(requestedSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         } else {
-            auto image = Utils::cropImage(QImage(idContent));
-            return image.scaled(requestedSize,
-                                Qt::KeepAspectRatioByExpanding,
-                                Qt::SmoothTransformation);
+            return Utils::cropImage(QImage(idContent))
+                .scaled(requestedSize, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
         }
     }
 };
