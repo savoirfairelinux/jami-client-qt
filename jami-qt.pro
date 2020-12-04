@@ -143,7 +143,7 @@ HEADERS += \
         src/settingsadapter.h \
         src/deviceitemlistmodel.h \
         src/pluginitemlistmodel.h \
-        src/mediahandleritemlistmodel.h \
+        src/pluginhandleritemlistmodel.h \
         src/preferenceitemlistmodel.h \
         src/mediacodeclistmodel.h \
         src/accountstomigratelistmodel.h \
@@ -183,7 +183,7 @@ SOURCES += \
         src/settingsadapter.cpp \
         src/deviceitemlistmodel.cpp \
         src/pluginitemlistmodel.cpp \
-        src/mediahandleritemlistmodel.cpp \
+        src/pluginhandleritemlistmodel.cpp \
         src/preferenceitemlistmodel.cpp \
         src/mediacodeclistmodel.cpp \
         src/accountstomigratelistmodel.cpp \
