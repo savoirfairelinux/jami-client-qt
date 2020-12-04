@@ -28,11 +28,21 @@ import "../../commoncomponents"
 
 Popup {
     id: root
-    function toggleMediaHandlerSlot(mediaHandlerId, isLoaded) {
-        var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
+
+    property bool isCall
+
+    function toggleHandlerSlot(handlerId, isLoaded) {
+        if (isCall) {
+            var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
                                             callStackViewWindow.responsibleConvUid)
-        PluginModel.toggleCallMediaHandler(mediaHandlerId, callId, !isLoaded)
-        mediahandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
+            PluginModel.toggleCallMediaHandler(handlerId, callId, !isLoaded)
+            pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
+        } else {
+            var accountId = AccountAdapter.currentAccountId
+            var peerId = UtilsAdapter.getPeerUri(accountId, UtilsAdapter.getCurrConvId())
+            PluginModel.toggleChatHandler(handlerId, accountId, peerId, !isLoaded)
+            pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
+        }
     }
 
     width: 350
@@ -46,7 +56,7 @@ Popup {
         height: childrenRect.height
 
         Rectangle {
-            id: mediahandlerPickerPopupRect
+            id: pluginhandlerPickerPopupRect
             width: root.width
             height: childrenRect.height + 50
             color: JamiTheme.backgroundColor
@@ -55,9 +65,9 @@ Popup {
             PushButton {
                 id: closeButton
 
-                anchors.top: mediahandlerPickerPopupRect.top
+                anchors.top: pluginhandlerPickerPopupRect.top
                 anchors.topMargin: 5
-                anchors.right: mediahandlerPickerPopupRect.right
+                anchors.right: pluginhandlerPickerPopupRect.right
                 anchors.rightMargin: 5
 
                 source: "qrc:/images/icons/round-close-24px.svg"
@@ -69,17 +79,15 @@ Popup {
             }
 
             ColumnLayout {
-                id: mediahandlerPickerPopupRectColumnLayout
+                id: pluginhandlerPickerPopupRectColumnLayout
 
-                anchors.top: mediahandlerPickerPopupRect.top
+                anchors.top: pluginhandlerPickerPopupRect.top
                 anchors.topMargin: 15
                 height: 230
 
                 Text {
-                    id: mediahandlerPickerTitle
-
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: mediahandlerPickerPopupRect.width
+                    Layout.preferredWidth: pluginhandlerPickerPopupRect.width
                     Layout.preferredHeight: 30
 
                     font.pointSize: JamiTheme.textFontSize
@@ -93,40 +101,46 @@ Popup {
                 }
 
                 ListView {
-                    id: mediahandlerPickerListView
+                    id: pluginhandlerPickerListView
 
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: mediahandlerPickerPopupRect.width
+                    Layout.preferredWidth: pluginhandlerPickerPopupRect.width
                     Layout.preferredHeight: 200
 
                     model: {
-                        var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
-                                                            callStackViewWindow.responsibleConvUid)
-                        return PluginAdapter.getMediaHandlerSelectableModel(callId)
+                        if (isCall) {
+                            var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
+                                                                callStackViewWindow.responsibleConvUid)
+                            return PluginAdapter.getMediaHandlerSelectableModel(callId)
+                        } else {
+                            var accountId = AccountAdapter.currentAccountId
+                            var peerId = UtilsAdapter.getPeerUri(accountId, UtilsAdapter.getCurrConvId())
+                            return PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
                         }
+                    }
 
                     clip: true
 
-                    delegate: MediaHandlerItemDelegate {
-                        id: mediaHandlerItemDelegate
+                    delegate: PluginHandlerItemDelegate {
+                        id: pluginHandlerItemDelegate
                         visible: PluginModel.getPluginsEnabled()
-                        width: mediahandlerPickerListView.width
+                        width: pluginhandlerPickerListView.width
                         height: 50
 
-                        mediaHandlerName : MediaHandlerName
-                        mediaHandlerId: MediaHandlerId
-                        mediaHandlerIcon: MediaHandlerIcon
+                        handlerName : HandlerName
+                        handlerId: HandlerId
+                        handlerIcon: HandlerIcon
                         isLoaded: IsLoaded
                         pluginId: PluginId
 
-                        onBtnLoadMediaHandlerToggled: {
-                            toggleMediaHandlerSlot(mediaHandlerId, isLoaded)
+                        onBtnLoadHandlerToggled: {
+                            toggleHandlerSlot(HandlerId, isLoaded)
                         }
 
                         onOpenPreferences: {
-                            mediahandlerPreferencePickerListView.pluginId = pluginId
-                            mediahandlerPreferencePickerListView.mediaHandlerName = mediaHandlerName
-                            mediahandlerPreferencePickerListView.model = PluginAdapter.getPluginPreferencesModel(pluginId, mediaHandlerName)
+                            pluginhandlerPreferencePickerListView.pluginId = pluginId
+                            pluginhandlerPreferencePickerListView.handlerName = handlerName
+                            pluginhandlerPreferencePickerListView.model = PluginAdapter.getPluginPreferencesModel(pluginId, handlerName)
                             stack.currentIndex = 1
                         }
                     }
@@ -137,7 +151,7 @@ Popup {
         }
 
         Rectangle {
-            id: mediahandlerPreferencePopupRect2
+            id: pluginhandlerPreferencePopupRect2
             width: root.width
             height: childrenRect.height + 50
             color: JamiTheme.backgroundColor
@@ -145,9 +159,9 @@ Popup {
 
             PushButton {
                 id: backButton
-                anchors.top: mediahandlerPreferencePopupRect2.top
+                anchors.top: pluginhandlerPreferencePopupRect2.top
                 anchors.topMargin: 5
-                anchors.left: mediahandlerPreferencePopupRect2.left
+                anchors.left: pluginhandlerPreferencePopupRect2.left
                 anchors.leftMargin: 5
 
                 imageColor: JamiTheme.textColor
@@ -162,9 +176,9 @@ Popup {
             PushButton {
                 id: closeButton2
 
-                anchors.top: mediahandlerPreferencePopupRect2.top
+                anchors.top: pluginhandlerPreferencePopupRect2.top
                 anchors.topMargin: 5
-                anchors.right: mediahandlerPreferencePopupRect2.right
+                anchors.right: pluginhandlerPreferencePopupRect2.right
                 anchors.rightMargin: 5
 
                 source: "qrc:/images/icons/round-close-24px.svg"
@@ -178,13 +192,13 @@ Popup {
 
             ColumnLayout {
 
-                anchors.top: mediahandlerPreferencePopupRect2.top
+                anchors.top: pluginhandlerPreferencePopupRect2.top
                 anchors.topMargin: 15
                 height: 230
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: mediahandlerPreferencePopupRect2.width
+                    Layout.preferredWidth: pluginhandlerPreferencePopupRect2.width
                     Layout.preferredHeight: 30
 
                     font.pointSize: JamiTheme.textFontSize
@@ -198,21 +212,21 @@ Popup {
                 }
 
                 ListView {
-                    id: mediahandlerPreferencePickerListView
+                    id: pluginhandlerPreferencePickerListView
                     Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: mediahandlerPickerPopupRect.width
+                    Layout.preferredWidth: pluginhandlerPickerPopupRect.width
                     Layout.preferredHeight: 200
 
                     property string pluginId: ""
-                    property string mediaHandlerName: ""
+                    property string handlerName: ""
 
-                    model: PluginAdapter.getPluginPreferencesModel(pluginId, mediaHandlerName)
+                    model: PluginAdapter.getPluginPreferencesModel(pluginId, handlerName)
 
                     clip: true
 
                     delegate: PreferenceItemDelegate {
-                        id: mediaHandlerPreferenceDelegate
-                        width: mediahandlerPreferencePickerListView.width
+                        id: pluginHandlerPreferenceDelegate
+                        width: pluginhandlerPreferencePickerListView.width
                         height: childrenRect.height
 
                         preferenceName: PreferenceName
@@ -224,17 +238,17 @@ Popup {
                         preferenceKey : PreferenceKey
                         fileFilters: FileFilters
                         isImage: IsImage
-                        pluginListPreferenceModel: PluginListPreferenceModel{
+                        pluginListPreferenceModel: PluginListPreferenceModel {
                             id: pluginListPreferenceModel
                             preferenceKey : PreferenceKey
                             pluginId: PluginId
                         }
 
-                        onClicked:  mediahandlerPreferencePickerListView.currentIndex = index
+                        onClicked:  pluginhandlerPreferencePickerListView.currentIndex = index
 
                         onBtnPreferenceClicked: {
                             PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
-                            mediahandlerPreferencePickerListView.model = PluginAdapter.getPluginPreferencesModel(pluginId, mediahandlerPreferencePickerListView.mediaHandlerName)
+                            pluginhandlerPreferencePickerListView.model = PluginAdapter.getPluginPreferencesModel(pluginId, pluginhandlerPreferencePickerListView.handlerName)
                         }
                     }
 
@@ -247,10 +261,17 @@ Popup {
     onAboutToHide: stack.currentIndex = 0
 
     onAboutToShow: {
-        // Reset the model on each show.
-        var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
-                                            callStackViewWindow.responsibleConvUid)
-        mediahandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
+        if (isCall) {
+            // Reset the model on each show.
+            var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
+                                                callStackViewWindow.responsibleConvUid)
+            pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
+        } else {
+            // Reset the model on each show.
+            var accountId = AccountAdapter.currentAccountId
+            var peerId = UtilsAdapter.getPeerUri(accountId, UtilsAdapter.getCurrConvId())
+            pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
+        }
     }
 
     background: Rectangle {

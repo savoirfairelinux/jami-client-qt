@@ -26,6 +26,7 @@ import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
+import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
 Rectangle {
     id: messageWebViewRect
@@ -136,6 +137,14 @@ Rectangle {
         onNeedToHideConversationInCall: {
             messageWebViewRect.needToHideConversationInCall()
         }
+
+        onPluginSelector : {
+            // Create plugin handler picker - PLUGINS
+            PluginHandlerPickerCreation.createPluginHandlerPickerObjects(messageWebViewRect, false)
+            PluginHandlerPickerCreation.calculateCurrentGeo(
+                        messageWebViewRect.width / 2, messageWebViewRect.height / 2)
+            PluginHandlerPickerCreation.openPluginHandlerPicker()
+        }
     }
 
     QtObject {
@@ -231,6 +240,10 @@ Rectangle {
 
         function parseI18nData() {
             return MessagesAdapter.chatviewTranslatedStrings
+        }
+
+        function openPluginSelector(spikePosX, spikePosY) {
+            recordBox.openRecorder(spikePosX, spikePosY, false)
         }
     }
 
