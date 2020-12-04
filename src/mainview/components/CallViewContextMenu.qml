@@ -129,7 +129,7 @@ Item {
                                              })
         }
 
-        if (UtilsAdapter.checkShowPluginsButton()) {
+        if (UtilsAdapter.checkShowPluginsButton(true)) {
             ContextMenuGenerator.addMenuItem(JamiStrings.viewPlugin,
                                              "qrc:/images/icons/extension_24dp.svg",
                                              function (){
