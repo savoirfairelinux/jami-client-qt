@@ -63,7 +63,7 @@ MediaHandlerItemListModel::data(const QModelIndex& index, int role) const
         mediahandlerList.at(index.row()));
     auto status = LRCInstance::pluginModel().getCallMediaHandlerStatus(callId_);
     bool loaded = false;
-    for (const auto& mediaHandler : status[callId_])
+    for (const auto& mediaHandler : status)
         if (mediaHandler == details.id)
             loaded = true;
     if (!details.pluginId.isEmpty()) {
