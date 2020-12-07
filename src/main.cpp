@@ -24,8 +24,10 @@
 
 #include <QCryptographicHash>
 #include <QtWebEngine>
+#include <QDebug>
 
 #include <clocale>
+
 
 #ifndef ENABLE_TESTS
 

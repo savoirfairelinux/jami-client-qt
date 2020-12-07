@@ -104,6 +104,9 @@ unix {
     LIBS += -L$${LRC}/lib -lringclient
     LIBS += -lqrencode
 
+    CONFIG += link_pkgconfig
+    PKGCONFIG += libnm
+
     isEmpty(PREFIX) { PREFIX = /tmp/$${TARGET}/bin }
     target.path = $$PREFIX/bin
     INSTALLS += target
@@ -200,3 +203,4 @@ SOURCES += \
 RESOURCES += \
         resources.qrc \
         qml.qrc
+

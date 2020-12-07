@@ -15,11 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
+#ifndef Q_OS_WIN
+#include <glib.h>
+#include <NetworkManager.h>
+#endif
 #include "connectivitymonitor.h"
 
-#ifdef Q_OS_WIN
 #include <QDebug>
+
+#ifdef Q_OS_WIN
 #include <atlbase.h>
 #include <netlistmgr.h>
 
@@ -158,4 +162,102 @@ ConnectivityMonitor::~ConnectivityMonitor()
     destroy();
     CoUninitialize();
 }
+
+#else
+
+static void
+logConnectionInfo(NMActiveConnection *connection)
+{
+    if (connection) {
+        qDebug() << "primary network connection:"
+                 << nm_active_connection_get_uuid(connection)
+                 << nm_active_connection_get_default(connection);
+    } else {
+        qWarning()<<"no primary network connection detected, check network settings";
+    }
+}
+
+static void
+primaryConnectionChanged(NMClient *nm)
+{
+    //auto* priv = MAIN_WINDOW_GET_PRIVATE(MAIN_WINDOW(self));
+    auto connection = nm_client_get_primary_connection(nm);
+    logConnectionInfo(connection);
+    //emit connectivityChanged();
+}
+
+/*
+static void
+nm_client_cb(G_GNUC_UNUSED GObject *source_object, GAsyncResult *result,  int* self)
+{
+    //auto* priv = MAIN_WINDOW_GET_PRIVATE(MAIN_WINDOW(self));
+
+    GError* error = nullptr;
+    if (auto nm_client = nm_client_new_finish(result, &error)) {
+        //priv->nm_client = nm_client;
+        g_debug("NetworkManager client initialized, version: %s\ndaemon running: %s\nnnetworking enabled: %s",
+                nm_client_get_version(nm_client),
+                nm_client_get_nm_running(nm_client) ? "yes" : "no",
+                nm_client_networking_get_enabled(nm_client) ? "yes" : "no");
+
+        auto connection = nm_client_get_primary_connection(nm_client);
+        logConnectionInfo(connection);
+        g_signal_connect(nm_client, "notify::active-connections", G_CALLBACK(primaryConnectionChanged), self);
+
+    } else {
+        g_warning("error initializing NetworkManager client: %s", error->message);
+        g_clear_error(&error);
+    }
+}*/
+
+static void
+nmClientCallback(G_GNUC_UNUSED GObject *source_object, GAsyncResult *result,  int* self)
+{
+    //auto* priv = MAIN_WINDOW_GET_PRIVATE(MAIN_WINDOW(self));
+    qDebug()<<"callbackkkkk";
+    GError* error = nullptr;
+    if (auto nm_client = nm_client_new_finish(result, &error)) {
+        //priv->nm_client = nm_client;
+        qDebug()<<"NetworkManager client initialized" << nm_client_get_version(nm_client) <<
+                nm_client_get_nm_running(nm_client) <<
+                nm_client_networking_get_enabled(nm_client);
+
+        auto connection = nm_client_get_primary_connection(nm_client);
+        logConnectionInfo(connection);
+        g_signal_connect(nm_client, "notify::active-connections",
+                         G_CALLBACK(primaryConnectionChanged), self);
+
+    } else {
+        g_warning("error initializing NetworkManager client: %s", error->message);
+        g_clear_error(&error);
+    }
+}
+
+
+ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
+    : QObject(parent)
+{
+    //void client;
+
+    GCancellable * cancellable = g_cancellable_new();
+
+    nm_client_new_async(cancellable, (GAsyncReadyCallback)nmClientCallback, NULL);
+}
+
+ConnectivityMonitor::~ConnectivityMonitor()
+{
+    qDebug()<<"Destroing connectivity monitor";
+}
+
+
+bool
+ConnectivityMonitor::isOnline()
+{
+    return false;
+}
+
+
+
+
+
 #endif // Q_OS_WIN
