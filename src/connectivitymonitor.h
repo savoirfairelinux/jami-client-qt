@@ -20,6 +20,8 @@
 
 #include <QObject>
 
+
+
 #ifdef Q_OS_WIN
 class ConnectivityMonitor final : public QObject
 {
@@ -44,20 +46,22 @@ private:
 };
 
 #else
-// Dummy implementation for non-Windows platforms.
 // TODO: platform implementations should be in the daemon.
 
-// clang-format off
 class ConnectivityMonitor final : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConnectivityMonitor(QObject* parent = 0) : QObject(parent) {};
-    ~ConnectivityMonitor() = default;
+    explicit ConnectivityMonitor(QObject* parent = 0);
+    ~ConnectivityMonitor();
 
-    bool isOnline() { return false; };
+    bool isOnline();
+//private:
+    //void primaryConnectionChanged(NMClient *nm);
+    //void nmClientCallback(G_GNUC_UNUSED GObject *source_object, GAsyncResult *result,  int* self);
+    //void logConnectionInfo(NMActiveConnection *connection);
+
 signals:
     void connectivityChanged();
 };
-// clang-format on
 #endif // Q_OS_WIN

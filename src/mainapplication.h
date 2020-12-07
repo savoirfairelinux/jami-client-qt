@@ -27,6 +27,7 @@
 
 #include <memory>
 
+
 class ConnectivityMonitor;
 
 class MainApplication : public QApplication
