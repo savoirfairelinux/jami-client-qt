@@ -104,9 +104,16 @@ unix {
     LIBS += -L$${LRC}/lib -lringclient
     LIBS += -lqrencode
 
+    CONFIG += link_pkgconfig
+    PKGCONFIG += libnm
+
     isEmpty(PREFIX) { PREFIX = /tmp/$${TARGET}/bin }
     target.path = $$PREFIX/bin
     INSTALLS += target
+
+    packagesExist(libnm) {
+        DEFINES += USE_LIBNM
+    }
 }
 
 # Input
