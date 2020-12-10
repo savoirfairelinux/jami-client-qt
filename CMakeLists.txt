@@ -19,6 +19,19 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS}
 set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
 set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
 
+if(NOT DEFINED DAEMON)
+    set(DAEMON ${CMAKE_CURRENT_SOURCE_DIR}/../install/daemon)
+    set(DAEMONPATH ${DAEMON}/include/)
+    set(DAEMONLIBDIR ${DAEMON}/lib)
+else()
+    set(DAEMONPATH ${DAEMON}/src)
+    if (NOT DEFINED DAEMONBUILD)
+        set(DAEMONLIBDIR ${DAEMON}/build)
+    else()
+        set(DAEMONLIBDIR ${DAEMONBUILD})
+    endif()
+endif()
+
 set(QML_LIBS
     Qt5::Quick
     Qt5::QuickWidgets
@@ -199,6 +212,7 @@ message("Will expect lrc headers in ${LRC_SRC_PATH}")
 include_directories(${PROJECT_SOURCE_DIR}
     ${SRC_DIR}
     ${LRC_SRC_PATH}
+    ${DAEMONPATH}
     ${LIBNM_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME}
@@ -212,12 +226,14 @@ add_executable(${PROJECT_NAME}
 set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
 find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
+find_library(ring ring ${DAEMONLIBDIR} NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
 
 target_link_libraries(jami-qt
     ${QML_LIBS}
     ${LRC_LIB_NAME}
+    ${ring}
     ${qrencode}
     ${X11}
     ${LIBNM_LIBRARIES})
