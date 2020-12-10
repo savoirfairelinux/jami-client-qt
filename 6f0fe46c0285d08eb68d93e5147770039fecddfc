@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64f6547a_123b26e4",
+        "filename": "src/connectivitymonitor.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-12-10T19:53:44Z",
+      "side": 1,
+      "message": "should detect if NM is present (cf #if USE_LIBNM for gnome)",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 5
+      },
+      "revId": "6f0fe46c0285d08eb68d93e5147770039fecddfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8d3d148_868383cc",
+        "filename": "src/connectivitymonitor.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-12-10T19:53:44Z",
+      "side": 1,
+      "message": "printed 2 times when disabling the wifi, to check\nalso to check VPN",
+      "range": {
+        "startLine": 176,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 87
+      },
+      "revId": "6f0fe46c0285d08eb68d93e5147770039fecddfc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
