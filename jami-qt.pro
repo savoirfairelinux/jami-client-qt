@@ -97,6 +97,19 @@ unix {
 
     INCLUDEPATH += ../src
 
+    isEmpty(DAEMON) {
+        DAEMON=$$PWD/../install/daemon
+        INCLUDEPATH += $${DAEMON}/include/
+        LIBDIRDAEMON = $${DAEMON}/lib
+    } else {
+        INCLUDEPATH += $${DAEMON}/src
+        isEmpty(DAEMONBUILD) {
+            LIBDIRDAEMON = $${DAEMON}/build
+        } else {
+            LIBDIRDAEMON = $${DAEMONBUILD}
+        }
+    }
+
     isEmpty(LRC) {
         LRC=$$PWD/../install/lrc
         INCLUDEPATH += $${LRC}/include/libringclient
@@ -109,9 +122,9 @@ unix {
             LIBDIR = $${LRCBUILD}
         }
     }
-    QMAKE_RPATHDIR += $${LIBDIR}
+    QMAKE_RPATHDIR += $${LIBDIR} $${LIBDIRDAEMON}
 
-    LIBS += -L$${LIBDIR} -lringclient
+    LIBS += -L$${LIBDIR} -L$${LIBDIRDAEMON} -lringclient -lring
     LIBS += -lqrencode
     LIBS += -lX11
 
