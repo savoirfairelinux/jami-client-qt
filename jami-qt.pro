@@ -104,6 +104,19 @@ unix {
     # Client source path
     INCLUDEPATH += $$PWD/src
 
+    isEmpty(DAEMON) {
+        DAEMON=$$PWD/../install/daemon
+        INCLUDEPATH += $${DAEMON}/include/
+        LIBDIRDAEMON = $${DAEMON}/lib
+    } else {
+        INCLUDEPATH += $${DAEMON}/src
+        isEmpty(DAEMONBUILD) {
+            LIBDIRDAEMON = $${DAEMON}/build
+        } else {
+            LIBDIRDAEMON = $${DAEMONBUILD}
+        }
+    }
+
     # Default LRC path
     isEmpty(LRC) { LRC=$$PWD/../install/lrc }
 
@@ -127,11 +140,11 @@ unix {
 
     # Include LRC lib path if custom installation
     contains(LRCLIB, .*/usr.*) {
-        LIBS += -lringclient
+        LIBS += -lringclient -lring
         message(Will expect lrc library in /usr)
     } else {
-        QMAKE_RPATHDIR += $${LRCLIB}
-        LIBS += -L$${LRCLIB} -lringclient
+        QMAKE_RPATHDIR += $${LRCLIB} $${LIBDIRDAEMON}
+        LIBS += -L$${LRCLIB} -lringclient -lring
         message(Will expect lrc library in $${LRCLIB})
     }
 
