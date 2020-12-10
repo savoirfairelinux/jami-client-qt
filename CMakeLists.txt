@@ -31,6 +31,19 @@ else()
     endif()
 endif()
 
+if(NOT DEFINED DAEMON)
+    set(DAEMON ${CMAKE_CURRENT_SOURCE_DIR}/../install/daemon)
+    set(DAEMONPATH ${DAEMON}/include/)
+    set(DAEMONLIBDIR ${DAEMON}/lib)
+else()
+    set(DAEMONPATH ${DAEMON}/src)
+    if (NOT DEFINED DAEMONBUILD)
+        set(DAEMONLIBDIR ${DAEMON}/build)
+    else()
+        set(DAEMONLIBDIR ${DAEMONBUILD})
+    endif()
+endif()
+
 set(QML_LIBS
     Qt5::Quick
     Qt5::QuickWidgets
