@@ -96,6 +96,8 @@ unix {
     }
 
     isEmpty(LRC) { LRC=$$PWD/../install/lrc/ }
+    isEmpty(DAEMON) { DAEMON=$$PWD/../install/daemon/ }
+    LIBS += -L$${DAEMON}/lib -lring
 
     INCLUDEPATH += $${LRC}/include/libringclient
     INCLUDEPATH += $${LRC}/include
