@@ -100,7 +100,7 @@ MessagesAdapter::setupChatView(const QString& convUid)
     setInvitation(convInfo.isRequest or convInfo.needsSyncing,
                   bestName,
                   contactURI,
-                  convInfo.mode != conversation::Mode::NON_SWARM ,
+                  convInfo.mode != conversation::Mode::NON_SWARM,
                   convInfo.needsSyncing);
 
     // Type Indicator (contact). TODO: Not shown when invitation request?
@@ -248,7 +248,7 @@ MessagesAdapter::slotMessagesCleared()
     if (!convInfo)
         return;
     auto& conv = convInfo->get();
-    if (conv.mode != conversation::Mode::NON_SWARM  && !conv.allMessagesLoaded) {
+    if (conv.mode != conversation::Mode::NON_SWARM && !conv.allMessagesLoaded) {
         convModel->loadConversationMessages(conv.uid, 20); // TODO: n should be configurable
     } else {
         const auto contactUri = conv.participants.front();
@@ -368,7 +368,7 @@ void
 MessagesAdapter::retryInteraction(const QString& interactionId)
 {
     lrcInstance_->getCurrentConversationModel()->retryInteraction(lrcInstance_->getCurrentConvUid(),
-                                                                 interactionId);
+                                                                  interactionId);
 }
 
 void
@@ -499,7 +499,7 @@ MessagesAdapter::setConversationProfileData(const conversation::Info& convInfo)
         setInvitation(convInfo.isRequest or convInfo.needsSyncing,
                       bestName,
                       contactUri,
-                      convInfo.mode != conversation::Mode::NON_SWARM ,
+                      convInfo.mode != conversation::Mode::NON_SWARM,
                       convInfo.needsSyncing);
 
         if (!contact.profileInfo.avatar.isEmpty()) {
@@ -779,9 +779,9 @@ MessagesAdapter::removeConversation(const QString& accountId,
                                     const QString& convUid,
                                     bool banContact)
 {
-    lrcInstance_->getAccountInfo(accountId).conversationModel->declineConversationRequest(uid,
-                                                                                         banContact);
-    if (uid == currentConvUid_)
+    lrcInstance_->getAccountInfo(accountId)
+        .conversationModel->declineConversationRequest(convUid, banContact);
+    if (convUid == currentConvUid_)
         currentConvUid_.clear();
 }
 
@@ -793,6 +793,6 @@ MessagesAdapter::loadMessages(int n)
     if (!convInfo)
         return;
     auto& conv = convInfo->get();
-    if (conv.mode != conversation::Mode::NON_SWARM  && !conv.allMessagesLoaded)
+    if (conv.mode != conversation::Mode::NON_SWARM && !conv.allMessagesLoaded)
         convModel->loadConversationMessages(conv.uid, n);
 }
