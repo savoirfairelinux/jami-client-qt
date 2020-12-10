@@ -97,10 +97,10 @@ unix {
 
     INCLUDEPATH += ../src
 
-    isEmpty(LRC) {
-        LRC=$$PWD/../install/lrc
-        INCLUDEPATH += $${LRC}/include/libringclient
-        LIBDIR = $${LRC}/lib
+    isEmpty(DAEMON) {
+        DAEMON=$$PWD/../install/daemon
+        INCLUDEPATH += $${DAEMON}/include/
+        LIBDIR = $${DAEMON}/lib
     } else {
         INCLUDEPATH += $${LRC}/src
         isEmpty(LRCBUILD) {
@@ -109,9 +109,22 @@ unix {
             LIBDIR = $${LRCBUILD}
         }
     }
+
+    isEmpty(LRC) {
+        LRC=$$PWD/../install/lrc
+        INCLUDEPATH += $${LRC}/include/libringclient
+        LIBDIR += $${LRC}/lib
+    } else {
+        INCLUDEPATH += $${LRC}/src
+        isEmpty(LRCBUILD) {
+            LIBDIR += $${LRC}/build
+        } else {
+            LIBDIR += $${LRCBUILD}
+        }
+    }
     QMAKE_RPATHDIR += $${LIBDIR}
 
-    LIBS += -L$${LIBDIR} -lringclient
+    LIBS += -L$${LIBDIR} -lringclient -lring
     LIBS += -lqrencode
     LIBS += -lX11
 
