@@ -95,6 +95,9 @@ unix {
         QMAKE_CXXFLAGS += -std=c++17
     }
 
+    isEmpty(DAEMON) { DAEMON=$$PWD/../install/daemon/ }
+    LIBS += -L$${DAEMON}/lib -lring
+
     INCLUDEPATH += ../src
 
     isEmpty(LRC) {
