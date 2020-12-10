@@ -19,6 +19,19 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS}
 set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
 set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
 
+if(NOT DEFINED DAEMON)
+    set(DAEMON ${CMAKE_CURRENT_SOURCE_DIR}/../install/daemon)
+    set(DAEMONPATH ${DAEMON}/include/)
+    set(DAEMONLIBDIR ${DAEMON}/lib)
+else()
+    set(DAEMONPATH ${DAEMON}/src)
+    if (NOT DEFINED DAEMONBUILD)
+        set(DAEMONLIBDIR ${DAEMON}/build)
+    else()
+        set(DAEMONLIBDIR ${DAEMONBUILD})
+    endif()
+endif()
+
 set(QML_LIBS
     Qt5::Quick
     Qt5::QuickWidgets
@@ -166,6 +179,34 @@ else()
 endif()
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
+# If daemon is not globally installed, it's path should be specified
+# by setting variable DAEMON. If library is not inside DAEMON + suffixes
+# lib, build or build-local, it's path should be set with DAEMONLIB.
+if(DEFINED DAEMON)
+    if(EXISTS ${DAEMON}/include/dring)
+        set(DAEMON_SRC_PATH ${DAEMON}/include/dring)
+    else()
+        set(DAEMON_SRC_PATH ${DAEMON}/src)
+    endif()
+	
+    if(NOT DEFINED DAEMONLIB)
+        set(DAEMONLIB ${DAEMON})
+    endif()
+	
+    find_library(ring ring
+        PATHS ${DAEMONLIB}
+        PATH_SUFFIXES lib build build-local NO_DEFAULT_PATH)
+    message("Will expect daemon library in ${DAEMONLIB} (including \
+subdirs /lib, /build and /build-local)")
+    # Fixed Relative Path
+    find_library(avcodec avcodec
+                 PATHS ${DAEMON}/../../daemon/contrib/x86_64-linux-gnu/lib
+                 NO_DEFAULT_PATH)
+    message("Will expect avcodec library in ${avcodec}")
+
+    set(DAEMON_LIB_NAME ${ring})
+endif()
+
 # If LRC is not globally installed, it's path should be specified
 # by setting variable LRC. If library is not inside LRC + suffixes
 # lib, build or build-local, it's path should be set with LRCLIB.
@@ -199,6 +240,7 @@ message("Will expect lrc headers in ${LRC_SRC_PATH}")
 include_directories(${PROJECT_SOURCE_DIR}
     ${SRC_DIR}
     ${LRC_SRC_PATH}
+    ${DAEMON_SRC_PATH}
     ${LIBNM_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME}
@@ -212,12 +254,14 @@ add_executable(${PROJECT_NAME}
 set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
 find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
+find_library(ring ring ${DAEMONLIBDIR} NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
 
 target_link_libraries(jami-qt
     ${QML_LIBS}
-    ${LRC_LIB_NAME}
+    ${LRC_LIB_NAME}	
+    ${DAEMON_LIB_NAME}
     ${qrencode}
     ${X11}
     ${LIBNM_LIBRARIES})
