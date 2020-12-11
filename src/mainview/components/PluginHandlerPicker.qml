@@ -46,7 +46,6 @@ Popup {
     }
 
     width: 350
-    height: contentItem.height
 
     modal: true
 
@@ -103,7 +102,7 @@ Popup {
                 ListView {
                     id: pluginhandlerPickerListView
 
-                    Layout.alignment: Qt.AlignCenter
+                    Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: pluginhandlerPickerPopupRect.width
                     Layout.preferredHeight: 200
 
@@ -213,9 +212,9 @@ Popup {
 
                 ListView {
                     id: pluginhandlerPreferencePickerListView
-                    Layout.alignment: Qt.AlignCenter
+                    Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: pluginhandlerPickerPopupRect.width
-                    Layout.preferredHeight: 200
+                    Layout.fillHeight: true
 
                     property string pluginId: ""
                     property string handlerName: ""
@@ -227,7 +226,7 @@ Popup {
                     delegate: PreferenceItemDelegate {
                         id: pluginHandlerPreferenceDelegate
                         width: pluginhandlerPreferencePickerListView.width
-                        height: childrenRect.height
+                        height: 50
 
                         preferenceName: PreferenceName
                         preferenceSummary: PreferenceSummary
