@@ -423,24 +423,32 @@ CallAdapter::connectCallModel(const QString& accountId)
                     if (callList.empty()) {
                         auto lastConferencee = LRCInstance::instance().popLastConferencee(
                             convInfo.confId);
-                        callList.append(lastConferencee);
+                        if (!lastConferencee.isEmpty()) {
+                            callList.append(lastConferencee);
+                            forceCallOnly = true;
+                        }
+                    }
+                    if (callList.isEmpty()) {
+                        callList = LRCInstance::getActiveCalls();
                         forceCallOnly = true;
                     }
                     for (const auto& callId : callList) {
                         if (!callModel->hasCall(callId)) {
                             continue;
                         }
-                        auto otherConv = LRCInstance::getConversationFromCallId(callId);
-                        if (!otherConv.uid.isEmpty() && otherConv.uid != convInfo.uid) {
-                            /*
-                             * Reset the call view corresponding accountId, uid.
-                             */
-                            LRCInstance::setSelectedConvId(otherConv.uid);
-                            updateCall(otherConv.uid, otherConv.accountId, forceCallOnly);
+                        auto currentCall = callModel->getCall(callId);
+                        if (currentCall.status == lrc::api::call::Status::IN_PROGRESS) {
+                            auto otherConv = LRCInstance::getConversationFromCallId(callId);
+                            if (!otherConv.uid.isEmpty() && otherConv.uid != convInfo.uid) {
+                                /*
+                                 * Reset the call view corresponding accountId, uid.
+                                 */
+                                LRCInstance::setSelectedConvId(otherConv.uid);
+                                updateCall(otherConv.uid, otherConv.accountId, forceCallOnly);
+                            }
                         }
                     }
                 }
-
                 break;
             }
             case lrc::api::call::Status::CONNECTED:
