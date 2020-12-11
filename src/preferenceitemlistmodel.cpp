@@ -65,7 +65,7 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     int type = Type::DEFAULT;
     QString currentPath = "";
     QStringList acceptedFiles = {};
-    bool checkImage = false;
+    bool checkImage = true;
     auto it = mapType.find(details["type"]);
     if (it != mapType.end()) {
         type = mapType[details["type"]];
@@ -74,10 +74,11 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
             currentPath.truncate(preferenceCurrent.lastIndexOf("/"));
             QStringList mimeTypeList = details["mimeType"].split(',');
             for (auto& mimeType : mimeTypeList) {
-                QString fileExt = mimeType.mid(mimeType.lastIndexOf("/") + 1);
-                acceptedFiles.append((fileExt.toUpper() + " Files") + " (*." + fileExt + ")");
-                checkImage = Utils::isImage(fileExt);
+                mimeType = mimeType.mid(mimeType.lastIndexOf("/") + 1);
+                acceptedFiles.append((mimeType.toUpper() + " Files") + " (*." + mimeType + ")");
+                checkImage &= Utils::isImage(mimeType);
             }
+            acceptedFiles.append(QString("All (*.%1)").arg(mimeTypeList.join(" *.")));
         }
     }
     switch (role) {
