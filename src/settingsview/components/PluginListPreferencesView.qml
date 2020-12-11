@@ -34,6 +34,7 @@ Rectangle {
     enum Type {
         LIST,
         PATH,
+        EDITTEXT,
         DEFAULT
     }
 
