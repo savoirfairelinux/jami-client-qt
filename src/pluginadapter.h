@@ -47,6 +47,7 @@ protected:
 
 signals:
     void pluginHandlersUpdateStatus();
+    void pluginUninstalled();
 
 private:
     std::unique_ptr<PluginHandlerItemListModel> pluginHandlerListModel_;
