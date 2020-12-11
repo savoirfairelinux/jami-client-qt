@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "254e0dc6_7abf9302",
+        "filename": "jami-qt.pro",
+        "patchSetId": 29
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-12-11T17:09:21Z",
+      "side": 1,
+      "message": "not for this aptch",
+      "range": {
+        "startLine": 113,
+        "startChar": 16,
+        "endLine": 118,
+        "endChar": 26
+      },
+      "revId": "03a280b3e536c1f886f44eadf7dc2cab00b0e8c7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
