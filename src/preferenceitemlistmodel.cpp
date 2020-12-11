@@ -37,7 +37,10 @@ PreferenceItemListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid()) {
         /// Count.
-        return preferenceList_.size();
+        if (!mediaHandlerName_.isEmpty())
+            return preferenceList_.size();
+        else if (!pluginId_.isEmpty())
+            return preferenceList_.size() + 1;
     }
     /// A valid QModelIndex returns 0 as no entry has sub-elements.
     return 0;
@@ -54,52 +57,77 @@ PreferenceItemListModel::columnCount(const QModelIndex& parent) const
 QVariant
 PreferenceItemListModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || preferenceList_.size() <= index.row()) {
+    if (!index.isValid()) {
         return QVariant();
     }
-
-    auto details = preferenceList_.at(index.row());
     QString preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(
-        pluginId_)[details["key"]];
-
+        pluginId_)[QString("always")];
     int type = Type::DEFAULT;
-    QString currentPath = "";
+    QString currentPath = QString("");
     QStringList acceptedFiles = {};
     bool checkImage = false;
-    auto it = mapType.find(details["type"]);
-    if (it != mapType.end()) {
-        type = mapType[details["type"]];
-        if (type == Type::PATH) {
-            currentPath = preferenceCurrent;
-            currentPath.truncate(preferenceCurrent.lastIndexOf("/"));
-            QStringList mimeTypeList = details["mimeType"].split(',');
-            for (auto& mimeType : mimeTypeList) {
-                QString fileExt = mimeType.mid(mimeType.lastIndexOf("/") + 1);
-                acceptedFiles.append((fileExt.toUpper() + " Files") + " (*." + fileExt + ")");
-                checkImage = Utils::isImage(fileExt);
+
+    if (preferenceList_.size() > index.row()) {
+        auto details = preferenceList_.at(index.row());
+        preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(
+            pluginId_)[details["key"]];
+        auto it = mapType.find(details["type"]);
+        if (it != mapType.end()) {
+            type = mapType[details["type"]];
+            if (type == Type::PATH) {
+                currentPath = preferenceCurrent;
+                currentPath.truncate(preferenceCurrent.lastIndexOf("/"));
+                QStringList mimeTypeList = details["mimeType"].split(',');
+                for (auto& mimeType : mimeTypeList) {
+                    QString fileExt = mimeType.mid(mimeType.lastIndexOf("/") + 1);
+                    acceptedFiles.append((fileExt.toUpper() + " Files") + " (*." + fileExt + ")");
+                    checkImage = Utils::isImage(fileExt);
+                }
             }
         }
+        switch (role) {
+        case Role::PreferenceKey:
+            return QVariant(details["key"]);
+        case Role::PreferenceName:
+            return QVariant(details["title"]);
+        case Role::PreferenceSummary:
+            return QVariant(details["summary"]);
+        case Role::PreferenceType:
+            return QVariant(type);
+        case Role::PluginId:
+            return QVariant(pluginId_);
+        case Role::PreferenceCurrentValue:
+            return QVariant(preferenceCurrent);
+        case Role::CurrentPath:
+            return QVariant(currentPath);
+        case Role::FileFilters:
+            return QVariant(acceptedFiles);
+        case Role::IsImage:
+            return QVariant(checkImage);
+        }
+    } else {
+        switch (role) {
+        case Role::PreferenceKey:
+            return QVariant(QString("always"));
+        case Role::PreferenceName:
+            return QVariant(QString("Automatically turn plugin on for calls and chats"));
+        case Role::PreferenceSummary:
+            return QVariant(QString("Plugin will take effect immediatly"));
+        case Role::PreferenceType:
+            return QVariant(type);
+        case Role::PluginId:
+            return QVariant(pluginId_);
+        case Role::PreferenceCurrentValue:
+            return QVariant(preferenceCurrent);
+        case Role::CurrentPath:
+            return QVariant(QString(""));
+        case Role::FileFilters:
+            return QVariant(acceptedFiles);
+        case Role::IsImage:
+            return QVariant(checkImage);
+        }
     }
-    switch (role) {
-    case Role::PreferenceKey:
-        return QVariant(details["key"]);
-    case Role::PreferenceName:
-        return QVariant(details["title"]);
-    case Role::PreferenceSummary:
-        return QVariant(details["summary"]);
-    case Role::PreferenceType:
-        return QVariant(type);
-    case Role::PluginId:
-        return QVariant(pluginId_);
-    case Role::PreferenceCurrentValue:
-        return QVariant(preferenceCurrent);
-    case Role::CurrentPath:
-        return QVariant(currentPath);
-    case Role::FileFilters:
-        return QVariant(acceptedFiles);
-    case Role::IsImage:
-        return QVariant(checkImage);
-    }
+
     return QVariant();
 }
 
