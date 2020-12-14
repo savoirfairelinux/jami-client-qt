@@ -38,7 +38,7 @@ public:
     using ConversationInfo = lrc::api::conversation::Info;
     using ContactInfo = lrc::api::contact::Info;
 
-    enum class Type { CONVERSATION, CONFERENCE, TRANSFER, COUNT__ };
+    enum class Type { CONVERSATION, CONFERENCE, TRANSFER, MODERATOR, COUNT__ };
 
     enum Role {
         DisplayName = Qt::UserRole + 1,

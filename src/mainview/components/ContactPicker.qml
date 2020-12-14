@@ -34,7 +34,8 @@ Popup {
     // Important to keep it one, since enum in c++ starts at one for conferences.
     enum ContactPickerType {
         JAMICONFERENCE = 1,
-        SIPTRANSFER
+        SIPTRANSFER,
+        ADDMODERATOR
     }
 
     contentWidth: 250
@@ -84,7 +85,11 @@ Popup {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 
-                text: type === ContactPicker.ContactPickerType.JAMICONFERENCE ? qsTr("Add to conference") : qsTr("Transfer this call")
+                text: type === ContactPicker.ContactPickerType.JAMICONFERENCE ?
+                          qsTr("Add to conference")
+                        : type === ContactPicker.ContactPickerType.SIPTRANSFER ?
+                              qsTr("Transfer this call")
+                            : qsTr("Add default moderator")
             }
 
             ContactSearchBar {
@@ -110,7 +115,13 @@ Popup {
                 Layout.preferredWidth: contactPickerPopupRect.width
                 Layout.preferredHeight: 200
 
-                model: ContactAdapter.getContactSelectableModel(type)
+                model: {
+                    var t = type === ContactPicker.ContactPickerType.ADDMODERATOR?
+                                ContactPicker.ContactPickerType.JAMICONFERENCE
+                              : type
+                    console.error("type", t, type)
+                    ContactAdapter.getContactSelectableModel(t)
+                }
 
                 clip: true
 
@@ -127,9 +138,16 @@ Popup {
     }
 
     onAboutToShow: {
+
+        var t = type === ContactPicker.ContactPickerType.ADDMODERATOR?
+                    ContactPicker.ContactPickerType.JAMICONFERENCE
+                  : type
+        //console.error("type", t, type)
+        ContactAdapter.getContactSelectableModel(t)
+
         // Reset the model on each show.
-        contactPickerListView.model = ContactAdapter.getContactSelectableModel(
-                    type)
+        //contactPickerListView.model = ContactAdapter.getContactSelectableModel(
+        //            type)
     }
 
     background: Rectangle {

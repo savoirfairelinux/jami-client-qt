@@ -34,6 +34,7 @@ ContactAdapter::getContactSelectableModel(int type)
     /*
      * Called from qml every time contact picker refreshes.
      */
+    qDebug()<<"getContactSelectableModel"<<type;
     listModeltype_ = static_cast<SmartListModel::Type>(type);
     smartListModel_.reset(new SmartListModel(this,
                                              LRCInstance::getCurrAccId(),
@@ -45,6 +46,9 @@ ContactAdapter::getContactSelectableModel(int type)
      * Adjust filter.
      */
     switch (listModeltype_) {
+    case SmartListModel::Type::MODERATOR:
+        break;
+
     case SmartListModel::Type::CONFERENCE:
         selectableProxyModel_->setPredicate([this](const QModelIndex& index, const QRegExp&) {
             return index.data(SmartListModel::Presence).toBool();
