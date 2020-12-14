@@ -126,6 +126,7 @@ unix {
 # Input
 HEADERS += \
         src/avatarimageprovider.h \
+        src/moderatorlistmodel.h \
         src/networkmanager.h \
         src/smartlistmodel.h \
         src/updatemanager.h \
@@ -175,6 +176,7 @@ HEADERS += \
 SOURCES += \
         src/bannedlistmodel.cpp \
         src/accountlistmodel.cpp \
+        src/moderatorlistmodel.cpp \
         src/networkmanager.cpp \
         src/runguard.cpp \
         src/updatemanager.cpp \
