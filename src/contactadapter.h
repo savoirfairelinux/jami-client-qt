@@ -95,4 +95,7 @@ private:
      */
     std::unique_ptr<SmartListModel> smartListModel_;
     std::unique_ptr<SelectableProxyModel> selectableProxyModel_;
+signals:
+    void defaultModeratorsUpdated();
+
 };
