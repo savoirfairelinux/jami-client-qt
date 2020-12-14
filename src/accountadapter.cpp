@@ -355,24 +355,23 @@ AccountAdapter::connectAccount(const QString& accountId)
         auto& accInfo = LRCInstance::accountModel().getAccountInfo(accountId);
 
         QObject::disconnect(accountStatusChangedConnection_);
+        QObject::disconnect(accountDetailsChangedConnection_);
         QObject::disconnect(contactAddedConnection_);
-        QObject::disconnect(accountProfileChangedConnection_);
         QObject::disconnect(addedToConferenceConnection_);
         QObject::disconnect(contactUnbannedConnection_);
-
-        accountProfileChangedConnection_
-            = QObject::connect(&LRCInstance::accountModel(),
-                               &lrc::api::NewAccountModel::profileUpdated,
-                               [this](const QString& accountId) {
-                                   if (LRCInstance::getCurrAccId() == accountId)
-                                       emit accountStatusChanged(accountId);
-                               });
 
         accountStatusChangedConnection_
             = QObject::connect(accInfo.accountModel,
                                &lrc::api::NewAccountModel::accountStatusChanged,
                                [this](const QString& accountId) {
                                    emit accountStatusChanged(accountId);
+                               });
+
+        accountDetailsChangedConnection_
+            = QObject::connect(accInfo.accountModel,
+                               &lrc::api::NewAccountModel::accountDetailsChanged,
+                               [this](const QString& accountId) {
+                                   emit accountDetailsChanged(accountId);
                                });
 
         contactAddedConnection_
