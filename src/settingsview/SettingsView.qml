@@ -82,6 +82,15 @@ Rectangle {
         }
     }
 
+
+    Connections {
+        target: AccountAdapter
+
+        function onAccountDetailsChanged(accountId) {
+            if (accountId === AccountAdapter.currentAccountId)
+                pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
+        }
+    }
     // slots
     function leaveSettingsSlot(showMainView) {
         AccountAdapter.stopPreviewing()
