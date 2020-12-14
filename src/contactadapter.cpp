@@ -35,18 +35,35 @@ ContactAdapter::getContactSelectableModel(int type)
      * Called from qml every time contact picker refreshes.
      */
     listModeltype_ = static_cast<SmartListModel::Type>(type);
-    smartListModel_.reset(new SmartListModel(this,
-                                             LRCInstance::getCurrAccId(),
-                                             listModeltype_,
-                                             LRCInstance::getCurrentConvUid()));
+
+    QStringList defaultModerators {};
+
+    if (listModeltype_ == SmartListModel::Type::CONVERSATION) {
+        defaultModerators =
+                LRCInstance::accountModel().getDefaultModerators(LRCInstance::getCurrAccId());
+        smartListModel_.reset(new SmartListModel(this, LRCInstance::getCurrAccId()));
+        smartListModel_->fillConversationsList();
+    } else {
+        smartListModel_.reset(new SmartListModel(this,
+                                                 LRCInstance::getCurrAccId(),
+                                                 listModeltype_,
+                                                 LRCInstance::getCurrentConvUid()));
+    }
     selectableProxyModel_->setSourceModel(smartListModel_.get());
 
     /*
      * Adjust filter.
      */
     switch (listModeltype_) {
+    case SmartListModel::Type::CONVERSATION:
+        selectableProxyModel_->setPredicate([defaultModerators]
+                                            (const QModelIndex& index, const QRegExp&) {
+            return !defaultModerators.contains(index.data(SmartListModel::URI).toString());
+        });
+        break;
+
     case SmartListModel::Type::CONFERENCE:
-        selectableProxyModel_->setPredicate([this](const QModelIndex& index, const QRegExp&) {
+        selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegExp&) {
             return index.data(SmartListModel::Presence).toBool();
         });
         break;
@@ -71,7 +88,6 @@ ContactAdapter::getContactSelectableModel(int type)
         break;
     }
     selectableProxyModel_->invalidate();
-
     return QVariant::fromValue(selectableProxyModel_.get());
 }
 
@@ -80,9 +96,15 @@ ContactAdapter::setSearchFilter(const QString& filter)
 {
     if (listModeltype_ == SmartListModel::Type::CONFERENCE) {
         smartListModel_->setConferenceableFilter(filter);
+    } else if (listModeltype_ == SmartListModel::Type::CONVERSATION) {
+        selectableProxyModel_->setPredicate([filter](
+                                            const QModelIndex& index,
+                                            const QRegExp&) {
+            return index.data(SmartListModel::DisplayName).toString().contains(filter);
+        });
     }
     selectableProxyModel_->setFilterRegExp(
-        QRegExp(filter, Qt::CaseInsensitive, QRegExp::FixedString));
+                QRegExp(filter, Qt::CaseInsensitive, QRegExp::FixedString));
 }
 
 void
@@ -163,6 +185,17 @@ ContactAdapter::contactSelected(int index)
                 callModel->hangUp(callId);
                 callModel->hangUp(destCallId);
             }
+        } break;
+        case SmartListModel::Type::CONVERSATION: {
+            const auto contactUri = contactIndex.data(SmartListModel::Role::URI).value<QString>();
+            if (contactUri.isEmpty()) {
+                return;
+            }
+
+            LRCInstance::accountModel().setDefaultModerator(
+                        LRCInstance::getCurrAccId(), contactUri, true);
+            emit defaultModeratorsUpdated();
+
         } break;
         default:
             break;

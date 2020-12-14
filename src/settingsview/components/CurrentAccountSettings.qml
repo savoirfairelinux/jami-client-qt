@@ -51,6 +51,7 @@ Rectangle {
         userIdentity.updateAccountInfo()
         linkedDevices.updateAndShowDevicesSlot()
         bannedContacts.updateAndShowBannedContactsSlot()
+        moderatorContacts.updateAndShowModeratorsSlot()
         advancedSettings.updateAdvancedAccountInfos()
         var isJams = !isSIP && SettingsAdapter.getAccountConfig_Manageruri() !== ""
         passwdPushButton.visible = !isJams
@@ -291,6 +292,16 @@ Rectangle {
         LinkedDevices {
             id: linkedDevices
             visible: !isSIP
+
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+        }
+
+        ModeratorContacts {
+            id: moderatorContacts
+            isSIP: root.isSIP
 
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
