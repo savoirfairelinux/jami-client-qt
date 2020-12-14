@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d60cc2c_5d395ec1",
+        "filename": "src/previewrenderer.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2020-12-14T18:21:21Z",
+      "side": 1,
+      "message": "adds warning \n\"Updates can only be scheduled from GUI thread or from QQuickItem::updatePaintNode()\"",
+      "range": {
+        "startLine": 38,
+        "startChar": 50,
+        "endLine": 38,
+        "endChar": 56
+      },
+      "revId": "3ade8ee12fdca4c3168b21f882929e4a48ffdf0b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
