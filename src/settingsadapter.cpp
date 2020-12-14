@@ -1015,3 +1015,27 @@ SettingsAdapter::set_FilePrivateKey(QString text)
     confProps.TLS.privateKeyFile = text;
     LRCInstance::accountModel().setAccountConfig(LRCInstance::getCurrAccId(), confProps);
 }
+
+void
+SettingsAdapter::setDefaultModerator(const QString& accountId,
+                                     const QString& peerURI,
+                                     const bool& state)
+{
+    return LRCInstance::accountModel().setDefaultModerator(accountId, peerURI, state);
+}
+
+QStringList
+SettingsAdapter::getDefaultModerators(const QString& accountId)
+{
+    qDebug()<<LRCInstance::accountModel().getDefaultModerators(accountId);
+    return LRCInstance::accountModel().getDefaultModerators(accountId);
+}
+
+void
+SettingsAdapter::enableLocalModerators(const QString& accountId,
+                                       const bool& isModEnabled)
+{
+    qDebug()<<"enableLocalModerators"<<accountId<<isModEnabled;
+    return LRCInstance::accountModel().enableLocalModerators(accountId,
+                                                             isModEnabled);
+}

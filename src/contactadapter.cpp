@@ -34,19 +34,32 @@ ContactAdapter::getContactSelectableModel(int type)
     /*
      * Called from qml every time contact picker refreshes.
      */
+    qDebug()<<"getContactSelectableModel"<<type;
     listModeltype_ = static_cast<SmartListModel::Type>(type);
-    smartListModel_.reset(new SmartListModel(this,
-                                             LRCInstance::getCurrAccId(),
-                                             listModeltype_,
-                                             LRCInstance::getCurrentConvUid()));
+    if (listModeltype_ == SmartListModel::Type::CONVERSATION) {
+        smartListModel_.reset(new SmartListModel(this, LRCInstance::getCurrAccId()));
+        smartListModel_->fillConversationsList();
+    } else {
+        smartListModel_.reset(new SmartListModel(this,
+                                                 LRCInstance::getCurrAccId(),
+                                                 listModeltype_,
+                                                 LRCInstance::getCurrentConvUid()));
+    }
+
     selectableProxyModel_->setSourceModel(smartListModel_.get());
 
     /*
      * Adjust filter.
      */
     switch (listModeltype_) {
+    case SmartListModel::Type::CONVERSATION:
+        selectableProxyModel_->setPredicate([](const QModelIndex&, const QRegExp&) {
+            return true;
+        });
+        break;
+
     case SmartListModel::Type::CONFERENCE:
-        selectableProxyModel_->setPredicate([this](const QModelIndex& index, const QRegExp&) {
+        selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegExp&) {
             return index.data(SmartListModel::Presence).toBool();
         });
         break;
@@ -71,7 +84,6 @@ ContactAdapter::getContactSelectableModel(int type)
         break;
     }
     selectableProxyModel_->invalidate();
-
     return QVariant::fromValue(selectableProxyModel_.get());
 }
 
@@ -88,6 +100,7 @@ ContactAdapter::setSearchFilter(const QString& filter)
 void
 ContactAdapter::contactSelected(int index)
 {
+    qDebug()<<"contactSelected"<<index;
     auto contactIndex = selectableProxyModel_->index(index, 0);
     auto* callModel = LRCInstance::getCurrentCallModel();
     auto* convModel = LRCInstance::getCurrentConversationModel();
@@ -163,6 +176,17 @@ ContactAdapter::contactSelected(int index)
                 callModel->hangUp(callId);
                 callModel->hangUp(destCallId);
             }
+        } break;
+        case SmartListModel::Type::CONVERSATION: {
+            qDebug()<<"conversation";
+            const auto contactUri = contactIndex.data(SmartListModel::Role::URI).value<QString>();
+            if (contactUri.isEmpty()) {
+                return;
+            }
+
+            LRCInstance::accountModel().setDefaultModerator(LRCInstance::getCurrAccId(), contactUri, true);
+            emit defaultModeratorsUpdated();
+
         } break;
         default:
             break;

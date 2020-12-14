@@ -59,8 +59,10 @@ SmartListModel::rowCount(const QModelIndex& parent) const
             }
             return rowCount;
         }
+        //qDebug()<<"conversationsSize"<<conversations_.size();
         return conversations_.size();
     }
+    qDebug()<<"size 0";
     return 0;
 }
 

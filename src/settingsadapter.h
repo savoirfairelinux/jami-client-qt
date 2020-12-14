@@ -227,5 +227,13 @@ public:
     Q_INVOKABLE void set_FileCACert(QString text);
     Q_INVOKABLE void set_FileUserCert(QString text);
     Q_INVOKABLE void set_FilePrivateKey(QString text);
+
+    Q_INVOKABLE void setDefaultModerator(const QString& accountID,
+                                         const QString& peerURI,
+                                         const bool& state);
+    Q_INVOKABLE QStringList getDefaultModerators(const QString& accId);
+    Q_INVOKABLE void enableLocalModerators(const QString& accountID,
+                                           const bool& isModEnabled);
+
 };
 Q_DECLARE_METATYPE(SettingsAdapter*)
