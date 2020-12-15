@@ -1,4 +1,4 @@
-/*
+/*!
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
@@ -98,10 +98,9 @@ signals:
                        const QString& bestName);
 
 public slots:
-    void slotShowIncomingCallView(const QString& accountId,
-                                  const lrc::api::conversation::Info& convInfo);
-    void slotShowCallView(const QString& accountId, const lrc::api::conversation::Info& convInfo);
-    void slotAccountChanged();
+    void onShowIncomingCallView(const QString& accountId, const QString& convUid);
+    void onShowCallView(const QString& accountId, const QString& convUid);
+    void onAccountChanged();
 
 private:
     bool shouldShowPreview(bool force);
