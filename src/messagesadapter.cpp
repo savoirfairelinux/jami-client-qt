@@ -677,3 +677,20 @@ MessagesAdapter::blockConversation(const QString& convUid)
     emit contactBanned();
     emit navigateToWelcomePageRequested();
 }
+
+void
+MessagesAdapter::clearConversationHistory(const QString& accountId, const QString& uid)
+{
+    LRCInstance::getAccountInfo(accountId).conversationModel->clearHistory(uid);
+    if (uid == currentConvUid_)
+        currentConvUid_.clear();
+}
+
+void
+MessagesAdapter::removeConversation(const QString& accountId, const QString& uid, bool banContact)
+{
+    LRCInstance::getAccountInfo(accountId).conversationModel->removeConversation(uid, banContact);
+    if (uid == currentConvUid_)
+        currentConvUid_.clear();
+    emit navigateToWelcomePageRequested();
+}
