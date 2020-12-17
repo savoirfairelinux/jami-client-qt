@@ -469,6 +469,32 @@ CallAdapter::connectCallModel(const QString& accountId)
 
             emit LRCInstance::instance().updateSmartList();
         });
+
+    remoteRecordingChangedConnection_ = QObject::connect(
+        accInfo.callModel.get(),
+        &lrc::api::NewCallModel::remoteRecordingChanged,
+        [this](const QString& callId, const QSet<QString>& peerRec, bool state) {
+            auto& accInfo = LRCInstance::getCurrentAccountInfo();
+            QString label;
+            auto idx = 0;
+            for (const auto& uri: peerRec) {
+                if (callId == accInfo.callModel->getCallFromURI(uri).id) {
+                    auto bestName = accInfo.contactModel->bestNameForContact(uri);
+                    if (bestName.isEmpty())
+                        continue;
+                    label.append(bestName);
+                    if (idx != static_cast<int>(peerRec.size()) - 1)
+                        label.append(", ");
+                    idx ++;
+                }
+            }
+
+            if (!peerRec.isEmpty()) {
+                emit remoteRecordingChanged(label, state);
+            } else if (!state) {
+                emit remoteRecordingChanged(label, state);
+            }
+    });
 }
 
 void
