@@ -36,15 +36,17 @@ Rectangle {
     id: callOverlayRect
 
     property string timeText: "00:00"
-
-    signal overlayChatButtonClicked
+    property string remoteRecordingLabel: ""
 
     property var participantOverlays: []
     property var participantComponent: Qt.createComponent("ParticipantOverlay.qml")
 
-    function setRecording(isRecording) {
-        callViewContextMenu.isRecording = isRecording
-        recordingRect.visible = isRecording
+    signal overlayChatButtonClicked
+
+    function setRecording(localIsRecording) {
+        callViewContextMenu.localIsRecording = localIsRecording
+        recordingRect.visible = localIsRecording
+                || callViewContextMenu.peerIsRecording
     }
 
     function updateButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
@@ -52,12 +54,11 @@ Rectangle {
         callViewContextMenu.isSIP = isSIP
         callViewContextMenu.isPaused = isPaused
         callViewContextMenu.isAudioOnly = isAudioOnly
-        callViewContextMenu.isRecording = isRecording
+        callViewContextMenu.localIsRecording = isRecording
         recordingRect.visible = isRecording
         callOverlayButtonGroup.setButtonStatus(isPaused, isAudioOnly,
                                                isAudioMuted, isVideoMuted,
-                                               isRecording, isSIP,
-                                               isConferenceCall)
+                                               isSIP, isConferenceCall)
     }
 
     function updateMenu() {
@@ -90,7 +91,6 @@ Rectangle {
         return (pX - distantRenderer.getXOffset() === 0
                 && pW >= distantRenderer.width - distantRenderer.getXOffset() * 2 - 1)
     }
-
 
     function handleParticipantsInfo(infos) {
         // TODO: in the future the conference layout should be entirely managed by the client
@@ -185,7 +185,6 @@ Rectangle {
                 }
             }
         }
-
     }
 
     // x, y position does not need to be translated
@@ -194,6 +193,15 @@ Rectangle {
         callViewContextMenu.x = x
         callViewContextMenu.y = y
         callViewContextMenu.openMenu()
+    }
+
+    function showRemoteRecording(label, state) {
+        remoteRecordingLabel = state? label + " " + JamiStrings.isRecording
+                                    : JamiStrings.peerStoppedRecording
+        callViewContextMenu.peerIsRecording = state
+        recordingRect.visible = callViewContextMenu.localIsRecording
+                || callViewContextMenu.peerIsRecording
+        callOverlayRectMouseArea.entered()
     }
 
     anchors.fill: parent
@@ -212,10 +220,23 @@ Rectangle {
         onTriggered: {
             if (overlayUpperPartRect.state !== 'freezed') {
                 overlayUpperPartRect.state = 'freezed'
+                resetRecordingLabelTimer.restart()
             }
             if (callOverlayButtonGroup.state !== 'freezed') {
                 callOverlayButtonGroup.state = 'freezed'
+                resetRecordingLabelTimer.restart()
             }
+        }
+    }
+
+    // Timer to reset recording label text
+    Timer {
+        id: resetRecordingLabelTimer
+        interval: 1000
+        onTriggered: {
+            if (callOverlayButtonGroup.state === 'freezed'
+                    && !callViewContextMenu.peerIsRecording)
+                remoteRecordingLabel = ""
         }
     }
 
@@ -287,8 +308,13 @@ Rectangle {
                     id: textMetricsjamiBestNameText
                     font: jamiBestNameText.font
                     text: {
-                        if (videoCallPageRect)
-                            return videoCallPageRect.bestName
+                        if (videoCallPageRect) {
+                            if (remoteRecordingLabel === "") {
+                                return videoCallPageRect.bestName
+                            } else {
+                                return remoteRecordingLabel
+                            }
+                        }
                         return ""
                     }
                     elideWidth: overlayUpperPartRect.width / 3
@@ -299,8 +325,11 @@ Rectangle {
             Text {
                 id: callTimerText
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                Layout.preferredWidth: overlayUpperPartRect.width / 3
+                Layout.preferredWidth: 64
+                Layout.minimumWidth: 64
                 Layout.preferredHeight: 48
+                Layout.rightMargin: recordingRect.visible?
+                                        0 : JamiTheme.preferredMarginSize
                 font.pointSize: JamiTheme.textFontSize
                 horizontalAlignment: Text.AlignRight
                 verticalAlignment: Text.AlignVCenter
@@ -310,7 +339,7 @@ Rectangle {
                     id: textMetricscallTimerText
                     font: callTimerText.font
                     text: timeText
-                    elideWidth: overlayUpperPartRect.width / 3
+                    elideWidth: overlayUpperPartRect.width / 4
                     elide: Qt.ElideRight
                 }
             }
@@ -318,6 +347,7 @@ Rectangle {
             Rectangle {
                 id: recordingRect
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                Layout.rightMargin: JamiTheme.preferredMarginSize
                 height: 16
                 width: 16
                 radius: height / 2
@@ -329,10 +359,6 @@ Rectangle {
                     ColorAnimation { from: "red"; to: "transparent";  duration: 500 }
                     ColorAnimation { from: "transparent"; to: "red"; duration: 500 }
                 }
-            }
-
-            Item {
-                width: 8
             }
         }
 
