@@ -252,7 +252,7 @@ SmartListModel::currentUidSmartListModelIndex()
 }
 
 QVariant
-SmartListModel::getConversationItemData(const conversation::Info& item,
+SmartListModel::getConversationItemData(conversation::Info& item,
                                         const account::Info& accountInfo,
                                         int role) const
 {
