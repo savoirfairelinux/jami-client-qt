@@ -92,7 +92,7 @@ public:
     Q_INVOKABLE void updateContactAvatarUid(const QString& contactUri);
 
 private:
-    QVariant getConversationItemData(const ConversationInfo& item,
+    QVariant getConversationItemData(ConversationInfo& item,
                                      const AccountInfo& accountInfo,
                                      int role) const;
 
