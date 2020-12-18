@@ -252,7 +252,7 @@ SmartListModel::currentUidSmartListModelIndex()
 }
 
 QVariant
-SmartListModel::getConversationItemData(const conversation::Info& item,
+SmartListModel::getConversationItemData(conversation::Info& item,
                                         const account::Info& accountInfo,
                                         int role) const
 {
@@ -297,7 +297,7 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         return QVariant(item.unreadMessages);
     case Role::LastInteractionDate: {
         if (!item.interactions.empty()) {
-            auto& date = item.interactions.at(item.lastMessageUid).timestamp;
+            const auto& date = item.interactions.at(item.lastMessageUid).timestamp;
             return QVariant(QString::fromStdString(Utils::formatTimeString(date)));
         }
         return QVariant("");

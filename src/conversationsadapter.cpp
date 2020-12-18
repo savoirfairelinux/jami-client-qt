@@ -165,7 +165,7 @@ ConversationsAdapter::onCurrentAccountIdChanged()
 void
 ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
                                              const QString& convUid,
-                                             uint64_t interactionId,
+                                             const QString& interactionId,
                                              const interaction::Info& interaction)
 {
     if (!interaction.authorUri.isEmpty()
