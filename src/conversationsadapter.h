@@ -62,7 +62,7 @@ private slots:
     void onCurrentAccountIdChanged();
     void onNewUnreadInteraction(const QString& accountId,
                                 const QString& convUid,
-                                uint64_t interactionId,
+                                const QString& interactionId,
                                 const interaction::Info& interaction);
 
 private:
