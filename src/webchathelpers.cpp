@@ -23,7 +23,7 @@
 
 QJsonObject
 buildInteractionJson(lrc::api::ConversationModel& conversationModel,
-                     const uint64_t msgId,
+                     const QString msgId,
                      const lrc::api::interaction::Info& inter)
 {
     QRegExp reg(".(jpeg|jpg|gif|png)$");
@@ -40,7 +40,7 @@ buildInteractionJson(lrc::api::ConversationModel& conversationModel,
 
     QJsonObject interactionObject = QJsonObject();
     interactionObject.insert("text", QJsonValue(interaction.body));
-    interactionObject.insert("id", QJsonValue(QString::number(msgId)));
+    interactionObject.insert("id", QJsonValue(msgId));
     interactionObject.insert("sender", QJsonValue(sender));
     interactionObject.insert("sender_contact_method", QJsonValue(sender));
     interactionObject.insert("timestamp", QJsonValue(timestamp));
@@ -125,7 +125,7 @@ buildInteractionJson(lrc::api::ConversationModel& conversationModel,
 
 QString
 interactionToJsonInteractionObject(lrc::api::ConversationModel& conversationModel,
-                                   const uint64_t msgId,
+                                   const QString& msgId,
                                    const lrc::api::interaction::Info& interaction)
 {
     auto interactionObject = buildInteractionJson(conversationModel, msgId, interaction);
@@ -134,7 +134,7 @@ interactionToJsonInteractionObject(lrc::api::ConversationModel& conversationMode
 
 QString
 interactionsToJsonArrayObject(lrc::api::ConversationModel& conversationModel,
-                              const std::map<uint64_t, lrc::api::interaction::Info> interactions)
+                              MessagesList interactions)
 {
     QJsonArray array;
     for (const auto& interaction : interactions) {
