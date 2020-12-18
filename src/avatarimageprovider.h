@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include "lrcinstance.h"
 #include "utils.h"
 #include "lrcinstance.h"
 
