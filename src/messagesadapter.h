@@ -53,8 +53,8 @@ protected:
     Q_INVOKABLE void sendMessage(const QString& message);
     Q_INVOKABLE void sendImage(const QString& message);
     Q_INVOKABLE void sendFile(const QString& message);
-    Q_INVOKABLE void retryInteraction(const QString& arg);
-    Q_INVOKABLE void deleteInteraction(const QString& arg);
+    Q_INVOKABLE void retryInteraction(const QString& interactionId);
+    Q_INVOKABLE void deleteInteraction(const QString& interactionId);
     Q_INVOKABLE void openUrl(const QString& url);
     Q_INVOKABLE void openFile(const QString& arg);
     Q_INVOKABLE void acceptFile(const QString& arg);
@@ -78,14 +78,14 @@ protected:
                       const std::map<uint64_t, lrc::api::interaction::Info> interactions);
     void setSenderImage(const QString& sender, const QString& senderImage);
     void printNewInteraction(lrc::api::ConversationModel& conversationModel,
-                             uint64_t msgId,
+                             const QString& msgId,
                              const lrc::api::interaction::Info& interaction);
     void updateInteraction(lrc::api::ConversationModel& conversationModel,
-                           uint64_t msgId,
+                           const QString& msgId,
                            const lrc::api::interaction::Info& interaction);
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
     void setMessagesFileContent(const QString& path);
-    void removeInteraction(uint64_t interactionId);
+    void removeInteraction(const QString& interactionId);
     void setSendMessageContent(const QString& content);
     void contactIsComposing(const QString& uid, const QString& contactUri, bool isComposing);
 
@@ -104,7 +104,7 @@ private:
     void setConversationProfileData(const lrc::api::conversation::Info& convInfo);
     void newInteraction(const QString& accountId,
                         const QString& convUid,
-                        uint64_t interactionId,
+                        const QString& interactionId,
                         const interaction::Info& interaction);
 
     QString LastConvUid_;
