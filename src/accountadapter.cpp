@@ -296,6 +296,8 @@ AccountAdapter::onCurrentAccountChanged()
     auto accountId = LRCInstance::getCurrAccId();
     setProperties(accountId);
     connectAccount(accountId);
+    qDebug()<<"onCurrentAccountChanged()"<<accountId;
+
 }
 
 bool
@@ -392,7 +394,9 @@ AccountAdapter::connectAccount(const QString& accountId)
                                    auto* convModel = LRCInstance::getCurrentConversationModel();
                                    const auto conversation = convModel->getConversationForUID(
                                        LRCInstance::getCurrentConvUid());
+                                   qDebug() << "addedContact";
                                    if (conversation.uid.isEmpty()) {
+                                       qDebug()<<"converstion.uid.isempty";
                                        return;
                                    }
                                    if (contactUri
@@ -402,6 +406,7 @@ AccountAdapter::connectAccount(const QString& accountId)
                                        /*
                                         * Update conversation.
                                         */
+                                       qDebug()<<"udpateConversationForAddedContact";
                                        emit updateConversationForAddedContact();
                                    }
                                });

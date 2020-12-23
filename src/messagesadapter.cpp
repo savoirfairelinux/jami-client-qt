@@ -157,6 +157,7 @@ MessagesAdapter::connectConversationModel()
         auto* convModel =
                 LRCInstance::accountModel().getAccountInfo(accountId).conversationModel.get();
         auto convInfo = convModel->getConversationForUID(conversationId);
+        qDebug() << "read inter" <<convInfo.interactions.size();
         printHistory(*convModel, convInfo.interactions);
         Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
     });
@@ -217,7 +218,9 @@ MessagesAdapter::slotMessagesCleared()
     auto* convModel = LRCInstance::getCurrentConversationModel();
     auto convInfo = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
     if (convInfo.isSwarm && !convInfo.allMessagesLoaded) {
-        convModel->loadConversationMessages(convInfo.uid, 0);
+        qDebug() << "there are " << convInfo.interactions.size() << "msgs loaded";
+        qDebug() << "load 2 messages";
+        convModel->loadConversationMessages(convInfo.uid, 20);
     } else {
         printHistory(*convModel, convInfo.interactions);
         Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
@@ -669,4 +672,16 @@ MessagesAdapter::blockConversation(const QString& convUid)
     setInvitation(false);
     emit contactBanned();
     emit navigateToWelcomePageRequested();
+}
+
+void
+MessagesAdapter::loadMessages()
+{
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    auto convInfo = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    if (convInfo.isSwarm && !convInfo.allMessagesLoaded) {
+        qDebug() << "there are " << convInfo.interactions.size() << "msgs loaded";
+        qDebug() << "load 20 more messages";
+        convModel->loadConversationMessages(convInfo.uid, 20);
+    }
 }
