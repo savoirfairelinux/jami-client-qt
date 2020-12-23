@@ -67,6 +67,7 @@ protected:
     Q_INVOKABLE void refuseFile(const QString& arg);
     Q_INVOKABLE void pasteKeyDetected();
     Q_INVOKABLE void onComposing(bool isComposing);
+    Q_INVOKABLE void loadMessages(int n);
 
     // Manually update draft when hiding message web view (Back to welcome page).
     Q_INVOKABLE void updateDraft();
@@ -78,6 +79,9 @@ protected:
     void clear();
     void printHistory(lrc::api::ConversationModel& conversationModel,
                       MessagesList interactions);
+    void updateHistory(lrc::api::ConversationModel& conversationModel,
+                      MessagesList interactions,
+                      bool allLoaded);
     void setSenderImage(const QString& sender, const QString& senderImage);
     void printNewInteraction(lrc::api::ConversationModel& conversationModel,
                              const QString& msgId,

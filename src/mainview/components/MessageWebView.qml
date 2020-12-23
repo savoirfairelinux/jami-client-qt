@@ -243,6 +243,10 @@ Rectangle {
         function parseI18nData() {
             return MessagesAdapter.chatviewTranslatedStrings
         }
+
+        function loadMessages(n) {
+            return MessagesAdapter.loadMessages(n)
+        }
     }
 
     WebEngineView {
