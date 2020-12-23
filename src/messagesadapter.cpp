@@ -162,7 +162,7 @@ MessagesAdapter::connectConversationModel()
         auto* convModel =
                 LRCInstance::accountModel().getAccountInfo(accountId).conversationModel.get();
         auto convInfo = convModel->getConversationForUID(conversationId);
-        printHistory(*convModel, convInfo.interactions);
+        updateHistory(*convModel, convInfo.interactions, convInfo.allMessagesLoaded);
         Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
     });
 
@@ -222,7 +222,7 @@ MessagesAdapter::slotMessagesCleared()
     auto* convModel = LRCInstance::getCurrentConversationModel();
     auto convInfo = convModel->getConversationFromConvUid(LRCInstance::getCurrentConvUid());
     if (convInfo.isSwarm && !convInfo.allMessagesLoaded) {
-        convModel->loadConversationMessages(convInfo.uid, 0);
+        convModel->loadConversationMessages(convInfo.uid, 20); // TODO: n should be configurable
     } else {
         printHistory(*convModel, convInfo.interactions);
         Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
@@ -555,6 +555,16 @@ MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
 }
 
 void
+MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
+                               MessagesList interactions,
+                               bool allLoaded)
+{
+    auto interactionsStr = interactionsToJsonArrayObject(conversationModel, interactions).toUtf8();
+    QString s = QString::fromLatin1("updateHistory(%1, %2);").arg(interactionsStr.constData()).arg(allLoaded);
+    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
+}
+
+void
 MessagesAdapter::setSenderImage(const QString& sender, const QString& senderImage)
 {
     QJsonObject setSenderImageObject = QJsonObject();
@@ -696,4 +706,13 @@ MessagesAdapter::removeConversation(const QString& accountId, const QString& uid
     if (uid == currentConvUid_)
         currentConvUid_.clear();
     emit navigateToWelcomePageRequested();
+}
+
+void
+MessagesAdapter::loadMessages(int n)
+{
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    auto convInfo = convModel->getConversationForUID(LRCInstance::getCurrentConvUid());
+    if (convInfo.isSwarm && !convInfo.allMessagesLoaded)
+        convModel->loadConversationMessages(convInfo.uid, n);
 }
