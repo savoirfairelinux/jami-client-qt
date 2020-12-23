@@ -125,6 +125,7 @@ ConversationsAdapter::deselectConversation()
 void
 ConversationsAdapter::onCurrentAccountIdChanged()
 {
+    qDebug() << "ConversationsAdapter::onCurrentAccountIdChanged()";
     disconnectConversationModel();
     connectConversationModel();
 
@@ -174,6 +175,7 @@ ConversationsAdapter::updateConversationsFilterWidget()
 void
 ConversationsAdapter::refill()
 {
+    qDebug()<<"refill";
     if (conversationSmartListModel_)
         conversationSmartListModel_->fillConversationsList();
 }
@@ -186,6 +188,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
 
     modelSortedConnection_ = QObject::connect(
         currentConversationModel, &lrc::api::ConversationModel::modelSorted, [this]() {
+        qDebug()<<"modelSorted";
             conversationSmartListModel_->fillConversationsList();
             updateConversationsFilterWidget();
             emit updateListViewRequested();
@@ -225,6 +228,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
     filterChangedConnection_ = QObject::connect(currentConversationModel,
                                                 &lrc::api::ConversationModel::filterChanged,
                                                 [this]() {
+        qDebug()<<"filterChanged";
                                                     conversationSmartListModel_
                                                         ->fillConversationsList();
                                                     updateConversationsFilterWidget();
@@ -236,6 +240,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
     newConversationConnection_ = QObject::connect(currentConversationModel,
                                                   &lrc::api::ConversationModel::newConversation,
                                                   [this](const QString& convUid) {
+        qDebug()<<"newConversation";
                                                       conversationSmartListModel_
                                                           ->fillConversationsList();
                                                       updateConversationForNewContact(convUid);
@@ -245,6 +250,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
         = QObject::connect(currentConversationModel,
                            &lrc::api::ConversationModel::conversationRemoved,
                            [this]() {
+            qDebug()<<"conversationRemoved";
                                conversationSmartListModel_->fillConversationsList();
                                backToWelcomePage();
                            });
@@ -275,6 +281,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
         = QObject::connect(currentConversationModel,
                            &lrc::api::ConversationModel::searchResultUpdated,
                            [this]() {
+            qDebug()<<"searchUpdated";
                                conversationSmartListModel_->fillConversationsList();
                                emit updateListViewRequested();
                            });

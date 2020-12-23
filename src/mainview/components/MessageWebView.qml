@@ -198,6 +198,7 @@ Rectangle {
         }
 
         function emitMessagesLoaded() {
+            console.error("emitMessagesLoaded")
             messageWebViewRect.messagesLoaded()
         }
 
@@ -223,6 +224,10 @@ Rectangle {
 
         function parseI18nData() {
             return MessagesAdapter.chatviewTranslatedStrings
+        }
+
+        function loadMessages() {
+            return MessagesAdapter.loadMessages()
         }
     }
 

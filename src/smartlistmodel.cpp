@@ -178,6 +178,7 @@ SmartListModel::setConferenceableFilter(const QString& filter)
 void
 SmartListModel::fillConversationsList()
 {
+    qDebug()<<"fillConversationList";
     beginResetModel();
     fillContactAvatarUidMap(LRCInstance::getCurrentAccountInfo().contactModel->getAllContacts());
 
@@ -216,6 +217,7 @@ void
 SmartListModel::fillContactAvatarUidMap(const ContactModel::ContactInfoMap& contacts)
 {
     if (contacts.size() == 0) {
+        qDebug() << "empty contacts list";
         contactAvatarUidMap_.clear();
         return;
     }
