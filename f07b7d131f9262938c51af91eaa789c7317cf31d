@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ba454c2_4aacd4e0",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-12-24T18:30:36Z",
+      "side": 1,
+      "message": "can be const",
+      "range": {
+        "startLine": 480,
+        "startChar": 16,
+        "endLine": 480,
+        "endChar": 20
+      },
+      "revId": "f07b7d131f9262938c51af91eaa789c7317cf31d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "958fd306_48122611",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-12-24T18:30:36Z",
+      "side": 1,
+      "message": "can be replaced by 0u to remove the static_cast",
+      "range": {
+        "startLine": 482,
+        "startChar": 27,
+        "endLine": 482,
+        "endChar": 29
+      },
+      "revId": "f07b7d131f9262938c51af91eaa789c7317cf31d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7ffdb7d_10549608",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2020-12-24T18:30:36Z",
+      "side": 1,
+      "message": "incorrect if multi participants (is/are)",
+      "range": {
+        "startLine": 199,
+        "startChar": 52,
+        "endLine": 199,
+        "endChar": 75
+      },
+      "revId": "f07b7d131f9262938c51af91eaa789c7317cf31d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
