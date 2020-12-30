@@ -177,6 +177,26 @@ def copy_ringtones():
             shutil.copy(ringtone_path + os.sep + file, copy_to_path)
 
 
+def compile_and_copy_web_resources():
+    # web resources
+    rcc = 'rcc'
+
+    if globalVar.qt_path:
+        rcc = globalVar.qt_path + os.sep + 'bin' + os.sep + \
+            'rcc' + ('.exe' if globalVar.system_name == "Windows" else '')
+
+    if execute_cmd(rcc + ' -v', True) == -1:
+        rcc = rcc.replace('rcc', 'rcc-qt5')
+        if execute_cmd(rcc + ' -v', True) == -1:
+            print(bcolors.FAIL + "No rcc found!" + bcolors.ENDC)
+            sys.exit()
+
+    lrc_web_resources_path = globalVar.lrc_path + os.sep + 'webresource.qrc'
+
+    execute_cmd(rcc + ' -binary ' + lrc_web_resources_path +
+                ' -o ' + globalVar.output_path + os.sep + 'webresource.rcc')
+
+
 def release_and_copy_translations():
     # translations binary
     lrelease = 'lrelease'
@@ -304,6 +324,9 @@ def main():
 
     # translations
     release_and_copy_translations()
+
+    # web resources
+    compile_and_copy_web_resources()
 
     # write stamp
     write_stamp()
