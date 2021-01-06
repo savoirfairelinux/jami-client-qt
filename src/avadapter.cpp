@@ -116,8 +116,29 @@ AvAdapter::shareAllScreens()
         if (height < scr->geometry().height())
             height = scr->geometry().height();
     }
+#ifdef Q_OS_LINUX
+    int display;
 
-    LRCInstance::avModel().setDisplay(0, 0, 0, width, height, getCurrentCallId());
+    // Get display
+    QString display_env {getenv("DISPLAY")};
+    if (!display_env.isEmpty()) {
+        auto list = display_env.split(":", Qt::SkipEmptyParts);
+        // Should only be one display, so get the first one
+        if (list.size() > 0) {
+            display = list.at(0).toInt();
+        }
+    }
+    LRCInstance::avModel().setDisplay(display, 0, 0, width, height, getCurrentCallId());
+
+#else
+    LRCInstance::avModel().setDisplay(0,
+                                      x,
+                                      y,
+                                      width,
+                                      height,
+                                      getCurrentCallId());
+#endif
+
 }
 
 void
@@ -202,7 +223,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
         x = y = width = height = 0;
         xrectsel(&x, &y, &width, &height);
 
-        LRCInstance::avModel().setDisplay(0,
+        LRCInstance::avModel().setDisplay(display,
                                           x,
                                           y,
                                           width < 128 ? 128 : width,
