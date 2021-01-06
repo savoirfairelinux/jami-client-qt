@@ -38,6 +38,8 @@ ContactAdapter::getContactSelectableModel(int type)
     smartListModel_.reset(new SmartListModel(this, listModeltype_));
     selectableProxyModel_->setSourceModel(smartListModel_.get());
 
+    smartListModel_->fillConversationsList();
+
     /*
      * Adjust filter.
      */

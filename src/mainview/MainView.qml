@@ -230,6 +230,12 @@ Rectangle {
         }
     }
 
+    function showGroupCreationPage() {
+        mainViewStack.pop(welcomePage, StackView.Immediate)
+        mainViewStack.push(groupCreationPage, StackView.Immediate)
+    }
+
+
     color: JamiTheme.backgroundColor
 
     Connections {
@@ -401,6 +407,8 @@ Rectangle {
     SidePanel {
         id: mainViewSidePanel
 
+        onGroupCreationClicked: showGroupCreationPage()
+
         Connections {
             target: ConversationsAdapter
 
@@ -481,6 +489,15 @@ Rectangle {
             // Set qml MessageWebView object pointer to c++.
             MessagesAdapter.setQmlObject(this)
         }
+    }
+
+    GroupCreationPage {
+        id: groupCreationPage
+
+        signal groupCreated
+        visible: false
+
+        //onGroupCreationBackArrowClicked: sidePanelViewStack.pop(StackView.Immediate)
     }
 
     onWidthChanged: {

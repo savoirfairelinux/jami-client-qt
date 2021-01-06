@@ -31,6 +31,8 @@ Rectangle {
 
     color: JamiTheme.backgroundColor
 
+    signal groupCreationClicked
+
     property bool tabBarVisible: true
     property int pendingRequestCount: 0
     property int totalUnreadMessagesCount: 0
@@ -80,6 +82,9 @@ Rectangle {
         sidePanelTabBar.selectTab(tabIndex)
     }
 
+    function showGroupCreation() {
+    }
+
     // Intended -> since strange behavior will happen without this for stackview.
     anchors.top: parent.top
     anchors.fill: parent
@@ -106,9 +111,70 @@ Rectangle {
         }
     }
 
+    Rectangle {
+        id: createGroupRect
+        anchors.top: contactSearchBar.bottom
+        anchors.topMargin: 10
+        width: parent.width
+        height: 72
+
+        color: JamiTheme.backgroundColor
+
+        ResponsiveImage {
+            id: groupIconImage
+
+            anchors.verticalCenter: createGroupRect.verticalCenter
+            anchors.left: createGroupRect.left
+            anchors.leftMargin: 8
+
+            width: 24
+            height: 24
+
+            color: JamiTheme.textColor
+
+            fillMode: Image.PreserveAspectFit
+            source: "qrc:/images/icons/group.svg"
+        }
+
+        ElidedTextLabel {
+            anchors.left: groupIconImage.right
+            width: createGroupRect.width - 24
+
+            eText: JamiStrings.createGroup
+            fontSize: JamiTheme.menuFontSize
+            font.capitalization: Font.AllUppercase
+
+            maxWidth: createGroupRect.width - 36
+
+        }
+
+        MouseArea {
+            id: createGroupMouseArea
+
+            anchors.fill: parent
+            hoverEnabled: true
+
+            onPressed: {
+                createGroupRect.color = Qt.binding(function(){return JamiTheme.pressColor}) }
+
+            onReleased: {
+                createGroupRect.color = Qt.binding(function(){return JamiTheme.normalButtonColor})
+                groupCreationClicked()
+            }
+
+            onEntered: {
+                createGroupRect.color = Qt.binding(function(){return JamiTheme.hoverColor})
+            }
+
+            onExited: {
+                createGroupRect.color = Qt.binding(function(){return JamiTheme.backgroundColor})
+            }
+        }
+    }
+
     SidePanelTabBar {
         id: sidePanelTabBar
-        anchors.top: contactSearchBar.bottom
+        anchors.top: createGroupRect.bottom
         anchors.topMargin: 10
         width: sidePanelRect.width
         height: tabBarVisible ? 64 : 0
@@ -119,7 +185,7 @@ Rectangle {
 
         visible: lblSearchStatus.text !== ""
 
-        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom
+        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : createGroupRect.bottom
         anchors.topMargin: tabBarVisible ? 0 : 10
         width: parent.width
         height: 72
@@ -182,7 +248,9 @@ Rectangle {
     ConversationSmartListView {
         id: conversationSmartListView
 
-        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom)
+        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom
+                                              : (tabBarVisible ? sidePanelTabBar.bottom
+                                                               : createGroupRect.bottom)
         anchors.topMargin: (tabBarVisible || searchStatusRect.visible) ? 0 : 10
         width: parent.width
         height: tabBarVisible ? sidePanelRect.height - sidePanelTabBar.height - contactSearchBar.height - 20 :

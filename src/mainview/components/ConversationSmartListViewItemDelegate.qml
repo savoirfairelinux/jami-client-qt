@@ -27,9 +27,11 @@ import "../../commoncomponents"
 
 ItemDelegate {
     id: smartListItemDelegate
-    height: 72
+    height: isSelectable? 48 : 72
 
     property int lastInteractionPreferredWidth: 80
+    property bool isSelectable: false
+    property bool isSelected: false
 
     signal updateContactAvatarUidRequested(string uid)
 
@@ -86,8 +88,8 @@ ItemDelegate {
         anchors.verticalCenter: parent.verticalCenter
         anchors.leftMargin: 16
 
-        width: 40
-        height: 40
+        width: isSelectable? 36 : 40
+        height: isSelectable? 36 : 40
 
         mode: AvatarImage.Mode.FromContactUri
 
@@ -127,11 +129,13 @@ ItemDelegate {
                 text: DisplayName === undefined ? "" : DisplayName
             }
             text: textMetricsConversationSmartListUserName.elidedText
-            font.pointSize: JamiTheme.menuFontSize
+            font.pointSize: isSelectable? JamiTheme.textFontSize : JamiTheme.menuFontSize
             color: JamiTheme.textColor
         }
 
         Text {
+            visible: !isSelectable
+
             id: conversationSmartListUserLastInteractionDate
             Layout.alignment: Qt.AlignRight
             TextMetrics {
@@ -155,6 +159,7 @@ ItemDelegate {
         anchors.leftMargin: 16
         anchors.bottom: rowUsernameAndLastInteractionDate.bottom
         anchors.bottomMargin: -20
+        visible: !isSelectable
 
         TextMetrics {
             id: textMetricsConversationSmartListUserLastInteractionMessage
@@ -172,6 +177,37 @@ ItemDelegate {
         font.pointSize: JamiTheme.textFontSize
         color: Draft ? JamiTheme.draftRed : JamiTheme.faddedLastInteractionFontColor
     }
+
+    Rectangle {
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.rightMargin: 14
+
+        width: 16
+        height: 16
+        radius: 8
+        visible: isSelectable
+
+        color: "transparent"
+        border.width: 1
+        border.color: JamiTheme.textColor
+
+        ResponsiveImage {
+            id: isSelectedImage
+
+            anchors.centerIn: parent
+
+            width: 12
+            height: 12
+
+            visible: isSelected
+
+            color: JamiTheme.textColor
+
+            source: "qrc:/images/icons/check-24px.svg"
+        }
+    }
+
 
     background: Rectangle {
         id: itemSmartListBackground
@@ -194,7 +230,7 @@ ItemDelegate {
             }
         }
         onDoubleClicked: {
-            if (!InCall) {
+            if (!isSelectable && !InCall) {
                 ConversationsAdapter.selectConversation(AccountAdapter.currentAccountId,
                                                         UID,
                                                         false)
@@ -203,29 +239,33 @@ ItemDelegate {
             }
         }
         onReleased: {
-            if (!InCall) {
-                itemSmartListBackground.color = JamiTheme.selectionBlue
-            }
-            if (mouse.button === Qt.RightButton) {
-                smartListContextMenu.parent = mouseAreaSmartListItemDelegate
+            if (isSelectable) {
+                isSelected = !isSelected
+            } else {
+                if (!InCall) {
+                    itemSmartListBackground.color = JamiTheme.selectionBlue
+                }
+                if (mouse.button === Qt.RightButton) {
+                    smartListContextMenu.parent = mouseAreaSmartListItemDelegate
 
-                // Make menu pos at mouse.
-                var relativeMousePos = mapToItem(itemSmartListBackground,
-                                                 mouse.x, mouse.y)
-                smartListContextMenu.x = relativeMousePos.x
-                smartListContextMenu.y = relativeMousePos.y
-                smartListContextMenu.responsibleAccountId = AccountAdapter.currentAccountId
-                smartListContextMenu.responsibleConvUid = UID
-                smartListContextMenu.contactType = ContactType
-                userProfile.responsibleConvUid = UID
-                userProfile.aliasText = DisplayName
-                userProfile.registeredNameText = DisplayID
-                userProfile.idText = URI
-                userProfile.contactImageUid = UID
-                smartListContextMenu.openMenu()
-            } else if (mouse.button === Qt.LeftButton) {
-                conversationSmartListView.currentIndex = -1
-                conversationSmartListView.currentIndex = index
+                    // Make menu pos at mouse.
+                    var relativeMousePos = mapToItem(itemSmartListBackground,
+                                                     mouse.x, mouse.y)
+                    smartListContextMenu.x = relativeMousePos.x
+                    smartListContextMenu.y = relativeMousePos.y
+                    smartListContextMenu.responsibleAccountId = AccountAdapter.currentAccountId
+                    smartListContextMenu.responsibleConvUid = UID
+                    smartListContextMenu.contactType = ContactType
+                    userProfile.responsibleConvUid = UID
+                    userProfile.aliasText = DisplayName
+                    userProfile.registeredNameText = DisplayID
+                    userProfile.idText = URI
+                    userProfile.contactImageUid = UID
+                    smartListContextMenu.openMenu()
+                } else if (mouse.button === Qt.LeftButton) {
+                    conversationSmartListView.currentIndex = -1
+                    conversationSmartListView.currentIndex = index
+                }
             }
         }
         onEntered: {
