@@ -41,6 +41,8 @@ ContactAdapter::getContactSelectableModel(int type)
                                              LRCInstance::getCurrentConvUid()));
     selectableProxyModel_->setSourceModel(smartListModel_.get());
 
+    smartListModel_->fillConversationsList();
+
     /*
      * Adjust filter.
      */

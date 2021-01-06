@@ -139,5 +139,7 @@
         <file>src/mainview/components/ParticipantOverlayMenu.qml</file>
         <file>src/commoncomponents/DaemonReconnectPopup.qml</file>
         <file>src/DaemonReconnectWindow.qml</file>
+        <file>src/mainview/components/GroupCreationPage.qml</file>
+        <file>src/mainview/components/GroupListItemDelegate.qml</file>
     </qresource>
 </RCC>
