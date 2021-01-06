@@ -202,7 +202,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
         x = y = width = height = 0;
         xrectsel(&x, &y, &width, &height);
 
-        LRCInstance::avModel().setDisplay(0,
+        LRCInstance::avModel().setDisplay(display,
                                           x,
                                           y,
                                           width < 128 ? 128 : width,
