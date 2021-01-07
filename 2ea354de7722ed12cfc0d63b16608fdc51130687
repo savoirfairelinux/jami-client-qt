@@ -22,6 +22,30 @@
       "revId": "2ea354de7722ed12cfc0d63b16608fdc51130687",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0ad85d1_e19bf88a",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 641
+      },
+      "writtenOn": "2021-01-07T20:54:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71f41d89_a51e8899",
+      "range": {
+        "startLine": 123,
+        "startChar": 5,
+        "endLine": 130,
+        "endChar": 5
+      },
+      "revId": "2ea354de7722ed12cfc0d63b16608fdc51130687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
