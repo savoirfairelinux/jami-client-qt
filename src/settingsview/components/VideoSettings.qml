@@ -231,7 +231,7 @@ ColumnLayout {
     }
 
     // video Preview
-    Rectangle {
+    Item {
         id: rectBox
 
         Layout.alignment: Qt.AlignHCenter
@@ -242,17 +242,13 @@ ColumnLayout {
         Layout.preferredWidth: itemWidth * 2
         Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-        color: "white"
-        radius: 5
-
-        PreviewRenderer {
+        VideoRenderingItemBase {
             id: previewWidget
-            anchors.fill: rectBox
 
-            layer.enabled: true
-            layer.effect: OpacityMask {
-                maskSource: rectBox
-            }
+            anchors.centerIn: parent
+
+            height: rectBox.height
+            width: rectBox.width
         }
     }
 
