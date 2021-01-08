@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
@@ -31,7 +31,6 @@
 #include "contactadapter.h"
 #include "conversationsadapter.h"
 #include "deviceitemlistmodel.h"
-#include "distantrenderer.h"
 #include "pluginadapter.h"
 #include "pluginhandleritemlistmodel.h"
 #include "messagesadapter.h"
@@ -40,13 +39,13 @@
 #include "preferenceitemlistmodel.h"
 #include "pluginitemlistmodel.h"
 #include "pluginlistpreferencemodel.h"
-#include "previewrenderer.h"
 #include "settingsadapter.h"
 #include "utilsadapter.h"
 #include "version.h"
 #include "videoformatfpsmodel.h"
 #include "videoformatresolutionmodel.h"
 #include "videoinputdevicemodel.h"
+#include "videorenderingitembase.h"
 
 #include <QMetaType>
 #include <QQmlEngine>
@@ -119,10 +118,7 @@ registerTypes()
     /*
      * QQuickItems
      */
-    QML_REGISTERTYPE("net.jami.Models", PreviewRenderer, 1, 0);
-    QML_REGISTERTYPE("net.jami.Models", VideoCallPreviewRenderer, 1, 0);
-    QML_REGISTERTYPE("net.jami.Models", DistantRenderer, 1, 0);
-    QML_REGISTERTYPE("net.jami.Models", PhotoboothPreviewRender, 1, 0)
+    QML_REGISTERTYPE("net.jami.Models", VideoRenderingItemBase, 1, 0)
 
     /*
      * Adaptors
