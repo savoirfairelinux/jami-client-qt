@@ -30,6 +30,7 @@ import "../../commoncomponents"
 
 
 Rectangle {
+    id: root
 
     enum States {
         INIT,
@@ -37,7 +38,6 @@ Rectangle {
         REC_SUCCESS
     }
 
-    id: recBox
     width: 320
     height: 240
     radius: 5
@@ -114,16 +114,16 @@ Rectangle {
 
     function updateState(new_state) {
         state = new_state
-        recordButton.visible = (state == RecordBox.States.INIT)
-        btnStop.visible = (state == RecordBox.States.RECORDING)
-        btnRestart.visible = (state == RecordBox.States.REC_SUCCESS)
-        btnSend.visible = (state == RecordBox.States.REC_SUCCESS)
+        recordButton.visible = (state === RecordBox.States.INIT)
+        btnStop.visible = (state === RecordBox.States.RECORDING)
+        btnRestart.visible = (state === RecordBox.States.REC_SUCCESS)
+        btnSend.visible = (state === RecordBox.States.REC_SUCCESS)
 
-        if (state == RecordBox.States.INIT) {
+        if (state === RecordBox.States.INIT) {
             duration = 0
             time.text = "00:00"
             timer.stop()
-        } else if (state == RecordBox.States.REC_SUCCESS) {
+        } else if (state === RecordBox.States.REC_SUCCESS) {
             timer.stop()
         }
     }
@@ -163,11 +163,14 @@ Rectangle {
 
     Shape {
         id: backgroundShape
-        width: recBox.width
-        height: recBox.height
+
         anchors.centerIn: parent
+
+        width: root.width
+        height: root.height
         x: -offset
         y: -offset
+
         ShapePath {
             fillColor: JamiTheme.backgroundColor
 
@@ -214,19 +217,21 @@ Rectangle {
 
     Rectangle {
         id: rectBox
-        visible: (isVideo && previewAvailable)
-        Layout.alignment: Qt.AlignHCenter
+
         anchors.fill: parent
+
+        visible: (isVideo && previewAvailable)
         color: JamiTheme.blackColor
         radius: 5
 
-        PreviewRenderer{
+
+        VideoRenderingItemBase {
             id: previewWidget
 
-            anchors.fill: rectBox
             anchors.centerIn: rectBox
 
             lrcInstance: LRCInstance
+            expectedSize: Qt.size(rectBox.width, rectBox.height)
 
             layer.enabled: true
             layer.effect: OpacityMask {
@@ -238,8 +243,7 @@ Rectangle {
     Label {
         visible: (isVideo && !previewAvailable)
 
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignCenter
+        anchors.fill: root
 
         text: qsTr("Preview unavailable")
         font.pointSize: 10
@@ -248,14 +252,16 @@ Rectangle {
 
     Timer {
         id: timer
-        interval: 1000;
-        running: false;
+
+        interval: 1000
+        running: false
         repeat: true
         onTriggered: updateTimer()
     }
 
     Text {
         id: time
+
         visible: true
         text: "00:00"
         color: (isVideo? JamiTheme.whiteColor : JamiTheme.textColor)
@@ -271,8 +277,8 @@ Rectangle {
 
         preferredSize: btnSize
 
-        anchors.horizontalCenter: recBox.horizontalCenter
-        anchors.bottom: recBox.bottom
+        anchors.horizontalCenter: root.horizontalCenter
+        anchors.bottom: root.bottom
         anchors.bottomMargin: 5
 
         normalColor: isVideo? "transparent" : JamiTheme.backgroundColor
@@ -291,8 +297,8 @@ Rectangle {
 
         preferredSize: btnSize
 
-        anchors.horizontalCenter: recBox.horizontalCenter
-        anchors.bottom: recBox.bottom
+        anchors.horizontalCenter: root.horizontalCenter
+        anchors.bottom: root.bottom
         anchors.bottomMargin: 5
 
         normalColor: isVideo? "transparent" : JamiTheme.backgroundColor
@@ -311,9 +317,9 @@ Rectangle {
 
         preferredSize: btnSize
 
-        anchors.horizontalCenter: recBox.horizontalCenter
+        anchors.horizontalCenter: root.horizontalCenter
         anchors.horizontalCenterOffset: -25
-        anchors.bottom: recBox.bottom
+        anchors.bottom: root.bottom
         anchors.bottomMargin: 5
 
         normalColor: isVideo? "transparent" : JamiTheme.backgroundColor
@@ -332,7 +338,7 @@ Rectangle {
 
         preferredSize: btnSize
 
-        anchors.horizontalCenter: recBox.horizontalCenter
+        anchors.horizontalCenter: root.horizontalCenter
         anchors.horizontalCenterOffset: 25
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 5
