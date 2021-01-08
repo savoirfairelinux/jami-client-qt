@@ -54,6 +54,7 @@ public:
     Q_INVOKABLE void makePermanentCurrentConv();
     Q_INVOKABLE const QStringList getCurrAccList();
     Q_INVOKABLE int getAccountListSize();
+    Q_INVOKABLE void setCurrentCall(const QString& accountId, const QString& convUid);
     Q_INVOKABLE bool hasCall(const QString& accountId);
     Q_INVOKABLE const QString getCallConvForAccount(const QString& accountId);
     Q_INVOKABLE const QString getCallId(const QString& accountId, const QString& convUid);
@@ -74,6 +75,7 @@ public:
     Q_INVOKABLE bool isImage(const QString& fileExt);
     Q_INVOKABLE QString humanFileSize(qint64 fileSize);
     Q_INVOKABLE void setSystemTrayIconVisible(bool visible);
+    Q_INVOKABLE void preventRendering(bool prevent);
 
 private:
     QClipboard* clipboard_;

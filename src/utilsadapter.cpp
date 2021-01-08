@@ -357,3 +357,9 @@ UtilsAdapter::setSystemTrayIconVisible(bool visible)
 {
     GlobalSystemTray::instance().setVisible(visible);
 }
+
+void
+UtilsAdapter::preventRendering(bool prevent)
+{
+    LRCInstance::renderer()->setPreventUpdating(prevent);
+}
