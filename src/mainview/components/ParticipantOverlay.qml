@@ -85,20 +85,26 @@ Rectangle {
     }
 
     color: "transparent"
-    z: 1
 
     // Participant header with host, moderator and mute indicators
     Rectangle {
         id: participantIndicators
+
+        anchors.top: root.top
+        anchors.left: root.left
+
         width: indicatorsRowLayout.width
         height: shapeHeight
+
         visible: participantIsHost || participantIsModerator || participantIsMuted
         color: "transparent"
 
         Shape {
             id: myShape
+
             ShapePath {
                 id: backgroundShape
+
                 strokeColor: "transparent"
                 fillColor: JamiTheme.darkGreyColorOpacity
                 capStyle: ShapePath.RoundCap
@@ -108,16 +114,18 @@ Rectangle {
 
         RowLayout {
             id: indicatorsRowLayout
-            height: parent.height
+
             anchors.verticalCenter: parent.verticalCenter
+
+            height: parent.height
 
             ResponsiveImage {
                 id: isHostIndicator
 
-                visible: participantIsHost
-
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: 6
+
+                visible: participantIsHost
                 containerHeight: 12
                 containerWidth: 12
 
@@ -133,10 +141,10 @@ Rectangle {
             ResponsiveImage {
                 id: isModeratorIndicator
 
-                visible: participantIsModerator
-
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: 6
+
+                visible: participantIsModerator
                 containerHeight: 12
                 containerWidth: 12
 
@@ -152,9 +160,10 @@ Rectangle {
             ResponsiveImage {
                 id: isMutedIndicator
 
-                visible: participantIsMuted
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: 6
+
+                visible: participantIsMuted
                 containerHeight: 12
                 containerWidth: 12
 
@@ -174,16 +183,17 @@ Rectangle {
         id: participantRect
 
         anchors.fill: parent
+
         opacity: 0
         color: JamiTheme.darkGreyColorOpacity
-        z: 1
 
         MouseArea {
             id: mouseAreaHover
 
             anchors.fill: parent
+
             hoverEnabled: true
-            propagateComposedEvents: false
+            propagateComposedEvents: true
             acceptedButtons: Qt.LeftButton
 
             Image {
@@ -215,8 +225,10 @@ Rectangle {
 
             ParticipantOverlayMenu {
                 id: overlayMenu
-                visible: participantRect.opacity !== 0
+
                 anchors.centerIn: parent
+
+                visible: participantRect.opacity !== 0
                 hasMinimumSize: root.width > minimumWidth && root.height > minimumHeight
 
                 onMouseAreaExited: {
