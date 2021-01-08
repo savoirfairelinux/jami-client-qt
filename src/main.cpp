@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -58,7 +58,6 @@ main(int argc, char* argv[])
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication::setQuitOnLastWindowClosed(false);
-    QCoreApplication::setAttribute(Qt::AA_UseOpenGLES);
     QCoreApplication::setApplicationVersion(QString(VERSION_STRING));
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::RoundPreferFloor);
