@@ -20,149 +20,27 @@
 #pragma once
 
 #include "api/avmodel.h"
-#include "api/lrc.h"
 
 #include <QImage>
-#include <QMutex>
 #include <QObject>
+
+extern "C" {
+struct AVFrame;
+struct SwsContext;
+}
+
+class FrameWrapper;
+struct RenderConnections;
 
 using namespace lrc::api;
 
-/*
- * This class acts as a QImage rendering sink and manages
- * signal/slot connections to it's underlying (AVModel) renderer
- * corresponding to the object's renderer id.
- * A QImage pointer is provisioned and updated once rendering
- * starts.
- */
-
-struct RenderConnections
-{
-    QMetaObject::Connection started, stopped, updated;
-};
-
-class FrameWrapper final : public QObject
-{
-    Q_OBJECT;
-
-public:
-    FrameWrapper(AVModel& avModel, const QString& id = video::PREVIEW_RENDERER_ID);
-    ~FrameWrapper();
-
-    /*
-     * Reconnect the started rendering connection for this object.
-     */
-    void connectStartRendering();
-
-    /*
-     * Get a pointer to the renderer and reconnect the update/stopped
-     * rendering connections for this object.
-     * @return whether the start succeeded or not
-     */
-    bool startRendering();
-
-    /*
-     * Locally disable frame access to this FrameWrapper
-     */
-    void stopRendering();
-
-    /*
-     * Get the most recently rendered frame as a QImage.
-     * @return the rendered image of this object's id
-     */
-    QImage* getFrame();
-
-    /*
-     * Check if the object is updating actively.
-     */
-    bool isRendering();
-
-    bool frameMutexTryLock();
-
-    void frameMutexUnlock();
-
-signals:
-    /*
-     * Emitted each time a frame is ready to be displayed.
-     * @param id of the renderer
-     */
-    void frameUpdated(const QString& id);
-    /*
-     * Emitted once in slotRenderingStopped.
-     * @param id of the renderer
-     */
-    void renderingStopped(const QString& id);
-
-public slots:
-    /*
-     * Used to listen to AVModel::rendererStarted.
-     * @param id of the renderer
-     */
-    void slotRenderingStarted(const QString& id = video::PREVIEW_RENDERER_ID);
-    /*
-     * Used to listen to AVModel::frameUpdated.
-     * @param id of the renderer
-     */
-    void slotFrameUpdated(const QString& id = video::PREVIEW_RENDERER_ID);
-    /*
-     * Used to listen to AVModel::renderingStopped.
-     * @param id of the renderer
-     */
-    void slotRenderingStopped(const QString& id = video::PREVIEW_RENDERER_ID);
-
-private:
-    /*
-     * The id of the renderer.
-     */
-    QString id_;
-
-    /*
-     * A pointer to the lrc renderer object.
-     */
-    video::Renderer* renderer_;
-
-    /*
-     * A local copy of the renderer's current frame.
-     */
-    video::Frame frame_;
-
-    /*
-     * A the frame's storage data used to set the image.
-     */
-    std::vector<uint8_t> buffer_;
-
-    /*
-     * The frame's paint ready QImage.
-     */
-    std::unique_ptr<QImage> image_;
-
-    /*
-     * Used to protect the buffer during QImage creation routine.
-     */
-    QMutex mutex_;
-
-    /*
-     * True if the object is rendering
-     */
-    std::atomic_bool isRendering_;
-
-    /*
-     * Convenience ref to avmodel
-     */
-    AVModel& avModel_;
-
-    /*
-     * Connections to the underlying renderer signals in avmodel
-     */
-    RenderConnections renderConnections_;
-};
-
 /**
  * RenderManager filters signals and ecapsulates preview and distant
- * frame wrappers, providing access to QImages for each and simplified
- * start/stop mechanisms for renderers. It should contain as much
- * renderer control logic as possible and prevent ui widgets from directly
- * interfacing the rendering logic.
+ * frame wrappers. Depending on whether to use old video pipeline,
+ * it provides access to QImages or moved AVFrames for each and simplified
+ * start/stop mechanisms for renderers depending on whether to use old video pipeline.
+ * It should contain as much renderer control logic as possible and prevent
+ * ui widgets from directly interfacing the rendering logic.
  */
 class RenderManager final : public QObject
 {
@@ -174,80 +52,92 @@ public:
 
     using DrawFrameCallback = std::function<void(QImage*)>;
 
-    /*
-     * Check if the preview is active.
-     */
-    bool isPreviewing();
-    /*
-     * Start capturing and rendering preview frames.
-     * @param force if the capture device should be started
-     */
-    void startPreviewing(bool force = false);
-    /*
-     * Stop capturing.
-     */
-    void stopPreviewing();
-    /*
-     * Add and connect a distant renderer for a given id
-     * to a FrameWrapper object
-     * @param id
-     */
-    void addDistantRenderer(const QString& id);
-    /*
-     * Disconnect and remove a FrameWrapper object connected to a
-     * distant renderer for a given id
-     * @param id
-     */
-    void removeDistantRenderer(const QString& id);
-    /*
-     * Frame will be provided in the callback thread safely
-     * @param id
-     * @param cb
-     */
-    void drawFrame(const QString& id, DrawFrameCallback cb);
+    // Set whether to use old pipline
+    // @param use
+    void useOldPipline(bool use)
+    {
+        useOldPipline_ = use;
+        avModel_.useAVFrame(!useOldPipline_);
+    }
 
-    /*
-     * Get the most recently rendered preview frame as a QImage (none thread safe).
-     * @return the rendered preview image
-     */
+    // Check if the preview is active.
+    bool isPreviewing();
+
+    // Start capturing and rendering preview frames.
+    // @param force if the capture device should be started
+    void startPreviewing(bool force = false);
+
+    // Stop capturing.
+    void stopPreviewing();
+
+    // Add and connect a distant renderer for a given id
+    // to a FrameWrapper object
+    // @param id
+    void addDistantRenderer(const QString& id);
+
+    // Disconnect and remove a FrameWrapper object connected to a
+    // distant renderer for a given id
+    // @param id
+    void removeDistantRenderer(const QString& id);
+
+    // Get the most recently rendered distant frame for a given id
+    // as an AVFrame pointer.
+    // @return the rendered preview image
+    AVFrame* getAVFrame(const QString& id);
+
+    // Get the most recently rendered preview frame as a QImage (none thread safe).
+    // @return the rendered preview image
     QImage* getPreviewFrame();
+
+    // Get the most recently rendered preview AVFrame.
+    // @return the rendered preview image
+    AVFrame* getPreviewAVFrame();
+
+    // Try lock preview frame mutex
+    // @return try lock result
+    bool requestPreviewFrameMutexTryLock();
+
+    // Unlock preview frame mutex
+    void requestPreviewFrameMutexUnLock();
+
+    // Try lock distant frame mutex
+    // @return try lock result
+    bool requestDistantFrameMutexTryLock(const QString& id);
+
+    // Unlock distant frame mutex
+    void requestDistantFrameMutexUnLock(const QString& id);
 
 signals:
 
-    /*
-     * Emitted when the preview has a new frame ready.
-     */
+    // Emitted when the preview has a new frame ready.
     void previewFrameUpdated();
 
-    /*
-     * Emitted when the preview is stopped.
-     */
+    // Emitted when the preview has a new frame object for OpenGL ready.
+    void previewAvFrameUpdated();
+
+    // Emitted when the preview is stopped.
     void previewRenderingStopped();
 
-    /*
-     * Emitted when a distant renderer has a new frame ready for a given id.
-     */
+    // Emitted when a distant renderer has a new frame ready for a given id.
     void distantFrameUpdated(const QString& id);
 
-    /*
-     * Emitted when a distant renderer is stopped for a given id.
-     */
+    // Emitted when a distant renderer has a new avframe frame ready for a given id.
+    void distantAVFrameUpdated(const QString& id);
+
+    // Emitted when a distant renderer is stopped for a given id.
     void distantRenderingStopped(const QString& id);
 
 private:
-    /*
-     * One preview frame.
-     */
+    // Decide whether to use old video pipline
+    bool useOldPipline_ {false};
+
+    // One preview frame.
     std::unique_ptr<FrameWrapper> previewFrameWrapper_;
 
-    /*
-     * Distant for each call/conf/conversation.
-     */
+    // Distant for each call/conf/conversation.
     std::map<QString, std::unique_ptr<FrameWrapper>> distantFrameWrapperMap_;
     std::map<QString, RenderConnections> distantConnectionMap_;
 
-    /*
-     * Convenience ref to avmodel.
-     */
+    // Convenience ref to avmodel.
     AVModel& avModel_;
 };
