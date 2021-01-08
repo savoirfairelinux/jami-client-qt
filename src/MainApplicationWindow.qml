@@ -108,7 +108,7 @@ ApplicationWindow {
             hide()
     }
 
-    AccountMigrationDialog{
+    AccountMigrationDialog {
         id: accountMigrationDialog
 
         visible: false
@@ -190,6 +190,13 @@ ApplicationWindow {
         }
     }
 
+    Timer {
+        id: resizeCheckTimer
+
+        interval: 500
+        onTriggered: UtilsAdapter.preventRendering(false)
+    }
+
     onClosing: root.close()
 
     onScreenChanged: JamiQmlUtils.mainApplicationScreen = root.screen
@@ -203,4 +210,7 @@ ApplicationWindow {
         if (Qt.platform.os !== "windows")
             DBusErrorHandler.setActive(true)
     }
+
+    onHeightChanged: { UtilsAdapter.preventRendering(true); resizeCheckTimer.restart() }
+    onWidthChanged: { UtilsAdapter.preventRendering(true); resizeCheckTimer.restart() }
 }
