@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
@@ -22,17 +22,25 @@
 #include "api/avmodel.h"
 #include "api/lrc.h"
 
+#include <libavutil/pixfmt.h>
+
 #include <QImage>
 #include <QMutex>
 #include <QObject>
 
+extern "C" {
+struct AVFrame;
+struct SwsContext;
+}
+
 using namespace lrc::api;
 
 /*
- * This class acts as a QImage rendering sink and manages
+ * This class acts as a QImage / AVFrame rendering sink depending on
+ * whether to use old video pipeline and manages
  * signal/slot connections to it's underlying (AVModel) renderer
  * corresponding to the object's renderer id.
- * A QImage pointer is provisioned and updated once rendering
+ * A QImage / AVFrame pointer is provisioned and updated once rendering
  * starts.
  */
 
@@ -73,6 +81,12 @@ public:
     QImage* getFrame();
 
     /*
+     * Get the most recently rendered AVFrame.
+     * @return the rendered image of this object's id
+     */
+    AVFrame* getAVFrame();
+
+    /*
      * Check if the object is updating actively.
      */
     bool isRendering();
@@ -81,12 +95,26 @@ public:
 
     void frameMutexUnlock();
 
+    /*
+     * Set whether to use old pipline
+     * @param use
+     */
+    void useOldPipline(bool use)
+    {
+        useOldPipline_ = use;
+    }
+
 signals:
     /*
      * Emitted each time a frame is ready to be displayed.
      * @param id of the renderer
      */
     void frameUpdated(const QString& id);
+    /*
+     * Emitted each time an av frame is ready to be displayed.
+     * @param id of the renderer
+     */
+    void avFrameUpdated(const QString& id);
     /*
      * Emitted once in slotRenderingStopped.
      * @param id of the renderer
@@ -111,6 +139,14 @@ public slots:
     void slotRenderingStopped(const QString& id = video::PREVIEW_RENDERER_ID);
 
 private:
+    bool isHardwareAccelFormat(AVPixelFormat format);
+    AVFrame* transferToMainMemory(AVFrame* frame, int desiredFormat);
+
+    /*
+     * Decide whether to use old video pipline
+     */
+    bool useOldPipline_ {false};
+
     /*
      * The id of the renderer.
      */
@@ -125,6 +161,11 @@ private:
      * A local copy of the renderer's current frame.
      */
     video::Frame frame_;
+
+    /*
+     * A local copy of the renderer's current avframe.
+     */
+    std::unique_ptr<AVFrame, void (*)(AVFrame*)> avFrame_;
 
     /*
      * A the frame's storage data used to set the image.
@@ -155,14 +196,22 @@ private:
      * Connections to the underlying renderer signals in avmodel
      */
     RenderConnections renderConnections_;
+
+    /*
+     * Temporary variables for converting frame by using SWS
+     */
+    std::unique_ptr<AVFrame, void (*)(AVFrame*)> pFrameCorrectFormat_;
+    std::unique_ptr<SwsContext, void (*)(SwsContext*)> imgConvertCtx_;
+    std::unique_ptr<uint8_t, void (*)(uint8_t*)> convertedFrameBuffer_;
 };
 
 /**
  * RenderManager filters signals and ecapsulates preview and distant
- * frame wrappers, providing access to QImages for each and simplified
- * start/stop mechanisms for renderers. It should contain as much
- * renderer control logic as possible and prevent ui widgets from directly
- * interfacing the rendering logic.
+ * frame wrappers. Depending on whether to use old video pipeline,
+ * it provides access to QImages or moved AVFrames for each and simplified
+ * start/stop mechanisms for renderers depending on whether to use old video pipeline.
+ * It should contain as much renderer control logic as possible and prevent
+ * ui widgets from directly interfacing the rendering logic.
  */
 class RenderManager final : public QObject
 {
@@ -173,6 +222,16 @@ public:
     ~RenderManager();
 
     using DrawFrameCallback = std::function<void(QImage*)>;
+
+    /*
+     * Set whether to use old pipline
+     * @param use
+     */
+    void useOldPipline(bool use)
+    {
+        useOldPipline_ = use;
+        avModel_.useAVFrame(!useOldPipline_);
+    }
 
     /*
      * Check if the preview is active.
@@ -207,10 +266,28 @@ public:
     void drawFrame(const QString& id, DrawFrameCallback cb);
 
     /*
+     * Get the most recently rendered distant frame for a given id
+     * as an AVFrame pointer.
+     * @return the rendered preview image
+     */
+    AVFrame* getAVFrame(const QString& id);
+
+    /*
      * Get the most recently rendered preview frame as a QImage (none thread safe).
      * @return the rendered preview image
      */
     QImage* getPreviewFrame();
+
+    /*
+     * Get the most recently rendered preview AVFrame.
+     * @return the rendered preview image
+     */
+    AVFrame* getPreviewAVFrame();
+
+    void setPreventUpdating(bool prevent)
+    {
+        preventUpdating_ = prevent;
+    }
 
 signals:
 
@@ -218,6 +295,11 @@ signals:
      * Emitted when the preview has a new frame ready.
      */
     void previewFrameUpdated();
+
+    /*
+     * Emitted when the preview has a new frame object for OpenGL ready.
+     */
+    void previewAvFrameUpdated();
 
     /*
      * Emitted when the preview is stopped.
@@ -230,11 +312,26 @@ signals:
     void distantFrameUpdated(const QString& id);
 
     /*
+     * Emitted when a distant renderer has a new avframe frame ready for a given id.
+     */
+    void avDistantFrameUpdated(const QString& id);
+
+    /*
      * Emitted when a distant renderer is stopped for a given id.
      */
     void distantRenderingStopped(const QString& id);
 
 private:
+    /*
+     * Decide whether to use old video pipline
+     */
+    bool useOldPipline_ {false};
+
+    /*
+     * Decide whether to prevent emit signals
+     */
+    bool preventUpdating_ {false};
+
     /*
      * One preview frame.
      */
