@@ -17,7 +17,7 @@ win32-msvc {
     QMAKE_LFLAGS+= /ignore:4006,4049,4078,4098 /FORCE:MULTIPLE /INCREMENTAL:NO /Debug /LTCG /NODEFAULTLIB:LIBCMT
 
     # preprocessor defines
-    DEFINES += UNICODE QT_NO_DEBUG NDEBUG
+    DEFINES += UNICODE QT_NO_DEBUG NDEBUG ENABLE_LIBWRAP
 
     # dependencies
     LRC= ../lrc
@@ -34,7 +34,8 @@ win32-msvc {
     LIBS += $${LRC}/build/src/qtwrapper/Release/qtwrapper.lib
 
     # daemon
-    INCLUDEPATH += ../daemon/contrib/msvc/include/
+    INCLUDEPATH += $${DRING}/contrib/msvc/include/
+    INCLUDEPATH += $${DRING}/contrib/build/ffmpeg/Build/win32/x64/include/
     LIBS += $${DRING}/build/x64/ReleaseLib_win32/bin/dring.lib
     LIBS += $${DRING}/contrib/msvc/lib/x64/libgnutls.lib
 
@@ -47,8 +48,11 @@ win32-msvc {
     RCC_DIR = obj/.rcc
     UI_DIR = obj/.ui
 
+    MODE = "Release"
+
     # ReleaseCompile config
     contains(CONFIG, ReleaseCompile) {
+        MODE = "ReleaseCompile"
         CONFIG(ReleaseCompile) {
             message(ReleaseCompile config enabled)
             Release: DEFINES += COMPILE_ONLY
@@ -57,6 +61,7 @@ win32-msvc {
 
     # beta config
     contains(CONFIG, Beta) {
+        MODE = "Beta"
         CONFIG(Beta) {
             message(Beta config enabled)
             Release: DESTDIR = x64/Beta
@@ -77,7 +82,9 @@ win32-msvc {
     Release: RC_FILE = ico.rc
 
     # run the deployment script(run windeployqt)
-    QMAKE_POST_LINK += $$quote(python .\copy-runtime-files.py -o $${DESTDIR})
+    !equals(MODE, "ReleaseCompile") {
+        QMAKE_POST_LINK += $$quote(python .\copy-runtime-files.py -m  $${MODE} -q $${QT_VERSION} -o $${DESTDIR})
+    }
 }
 
 unix {
@@ -170,6 +177,7 @@ HEADERS += \
         src/lrcinstance.h \
         src/globalsystemtray.h \
         src/appsettingsmanager.h \
+        src/videorenderingitembase.h \
         src/webchathelpers.h \
         src/rendermanager.h \
         src/connectivitymonitor.h \
@@ -213,6 +221,7 @@ SOURCES += \
         src/runguard.cpp \
         src/screensaver.cpp \
         src/updatemanager.cpp \
+        src/videorenderingitembase.cpp \
         src/webchathelpers.cpp \
         src/main.cpp \
         src/smartlistmodel.cpp \
