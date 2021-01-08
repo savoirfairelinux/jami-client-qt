@@ -85,13 +85,14 @@ Rectangle {
     }
 
     color: "transparent"
-    z: 1
 
     // Participant header with host, moderator and mute indicators
     Rectangle {
         id: participantIndicators
+
         width: indicatorsRowLayout.width
         height: shapeHeight
+
         visible: participantIsHost || participantIsModerator || participantIsMuted
         color: "transparent"
 
@@ -174,16 +175,17 @@ Rectangle {
         id: participantRect
 
         anchors.fill: parent
+
         opacity: 0
         color: JamiTheme.darkGreyColorOpacity
-        z: 1
 
         MouseArea {
             id: mouseAreaHover
 
             anchors.fill: parent
+
             hoverEnabled: true
-            propagateComposedEvents: false
+            propagateComposedEvents: true
             acceptedButtons: Qt.LeftButton
 
             Image {
