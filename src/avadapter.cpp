@@ -267,9 +267,7 @@ AvAdapter::slotDeviceEvent()
         if (deviceEvent == DeviceEvent::Added && currentDeviceListSize == 1) {
             avModel.setDefaultDevice(defaultDevice);
             avModel.setCurrentVideoCaptureDevice(defaultDevice);
-            if (callId.isEmpty())
-                lrcInstance_->renderer()->startPreviewing();
-            else
+            if (!callId.isEmpty())
                 avModel.switchInputTo(defaultDevice, callId);
         } else {
             cb();
