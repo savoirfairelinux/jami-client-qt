@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -364,4 +364,10 @@ void
 UtilsAdapter::setSystemTrayIconVisible(bool visible)
 {
     GlobalSystemTray::instance().setVisible(visible);
+}
+
+void
+UtilsAdapter::preventRendering(bool prevent)
+{
+    LRCInstance::renderer()->setPreventUpdating(prevent);
 }
