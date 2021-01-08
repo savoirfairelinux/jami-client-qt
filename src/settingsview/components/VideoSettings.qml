@@ -34,7 +34,6 @@ ColumnLayout {
     id: root
 
     property real aspectRatio: 0.75
-    property bool previewAvailable: false
     property int itemWidth
 
     Connections {
@@ -90,8 +89,8 @@ ColumnLayout {
     }
 
     function startPreviewing(force = false) {
-        AccountAdapter.startPreviewing(force)
-        previewAvailable = true
+        if (previewWidget.visible)
+            AccountAdapter.startPreviewing(force)
     }
 
     function setFormatListForCurrentDevice() {
@@ -237,46 +236,43 @@ ColumnLayout {
     }
 
     // video Preview
-    Rectangle {
+    Item {
         id: rectBox
 
         Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: width * aspectRatio
 
         Layout.minimumWidth: 200
         Layout.maximumWidth: 400
+        Layout.preferredHeight: width * aspectRatio
         Layout.preferredWidth: itemWidth * 2
+
         Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-        color: "white"
-        radius: 5
-
-        PreviewRenderer {
+        VideoRenderingItemBase {
             id: previewWidget
 
-            anchors.fill: rectBox
+            anchors.centerIn: parent
 
             lrcInstance: LRCInstance
+            expectedSize: JamiTheme.preferredPreviewSize
+        }
 
-            layer.enabled: true
-            layer.effect: OpacityMask {
-                maskSource: rectBox
+        Label {
+            visible: !previewWidget.visible
+
+            anchors.fill: parent
+
+            text: JamiStrings.previewUnavailable
+            color: "white"
+            font.pointSize: JamiTheme.settingsFontSize
+            font.kerning: true
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            background: Rectangle {
+                color: "black"
             }
         }
-    }
-
-    Label {
-        visible: !previewAvailable
-
-        Layout.fillWidth: true
-        Layout.preferredHeight: JamiTheme.preferredFieldHeight
-        Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-        text: JamiStrings.previewUnavailable
-        font.pointSize: JamiTheme.settingsFontSize
-        font.kerning: true
-
-        horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
     }
 }
