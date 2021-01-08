@@ -19,177 +19,20 @@
 
 #include "rendermanager.h"
 
+#include "framewrapper.h"
+
+#include <QtMultimedia/QVideoFrame>
+
 #include <stdexcept>
 
 using namespace lrc::api;
-
-FrameWrapper::FrameWrapper(AVModel& avModel, const QString& id)
-    : avModel_(avModel)
-    , id_(id)
-    , isRendering_(false)
-{}
-
-FrameWrapper::~FrameWrapper()
-{
-    if (id_ == video::PREVIEW_RENDERER_ID) {
-        avModel_.stopPreview();
-    }
-}
-
-void
-FrameWrapper::connectStartRendering()
-{
-    QObject::disconnect(renderConnections_.started);
-    renderConnections_.started = QObject::connect(&avModel_,
-                                                  &AVModel::rendererStarted,
-                                                  this,
-                                                  &FrameWrapper::slotRenderingStarted);
-}
-
-bool
-FrameWrapper::startRendering()
-{
-    if (isRendering())
-        return true;
-
-    try {
-        renderer_ = const_cast<video::Renderer*>(&avModel_.getRenderer(id_));
-    } catch (std::out_of_range& e) {
-        qWarning() << e.what();
-        return false;
-    }
-
-    QObject::disconnect(renderConnections_.updated);
-    QObject::disconnect(renderConnections_.stopped);
-
-    renderConnections_.updated = QObject::connect(&avModel_,
-                                                  &AVModel::frameUpdated,
-                                                  this,
-                                                  &FrameWrapper::slotFrameUpdated);
-
-    renderConnections_.stopped = QObject::connect(&avModel_,
-                                                  &AVModel::rendererStopped,
-                                                  this,
-                                                  &FrameWrapper::slotRenderingStopped,
-                                                  Qt::DirectConnection);
-
-    return true;
-}
-
-void
-FrameWrapper::stopRendering()
-{
-    isRendering_ = false;
-}
-
-QImage*
-FrameWrapper::getFrame()
-{
-    if (image_.get()) {
-        return isRendering_ ? (image_.get()->isNull() ? nullptr : image_.get()) : nullptr;
-    }
-    return nullptr;
-}
-
-bool
-FrameWrapper::isRendering()
-{
-    return isRendering_;
-}
-
-bool
-FrameWrapper::frameMutexTryLock()
-{
-    return mutex_.tryLock();
-}
-
-void
-FrameWrapper::frameMutexUnlock()
-{
-    mutex_.unlock();
-}
-
-void
-FrameWrapper::slotRenderingStarted(const QString& id)
-{
-    if (id != id_) {
-        return;
-    }
-
-    if (!startRendering()) {
-        qWarning() << "Couldn't start rendering for id: " << id_;
-        return;
-    }
-
-    isRendering_ = true;
-}
-
-void
-FrameWrapper::slotFrameUpdated(const QString& id)
-{
-    if (id != id_) {
-        return;
-    }
-
-    if (!renderer_ || !renderer_->isRendering()) {
-        return;
-    }
-
-    {
-        QMutexLocker lock(&mutex_);
-
-        frame_ = renderer_->currentFrame();
-
-        unsigned int width = renderer_->size().width();
-        unsigned int height = renderer_->size().height();
-#ifndef Q_OS_LINUX
-        unsigned int size = frame_.storage.size();
-        auto imageFormat = QImage::Format_ARGB32_Premultiplied;
-#else
-        unsigned int size = frame_.size;
-        auto imageFormat = QImage::Format_ARGB32;
-#endif
-        /*
-         * If the frame is empty or not the expected size,
-         * do nothing and keep the last rendered QImage.
-         */
-        if (size != 0 && size == width * height * 4) {
-#ifndef Q_OS_LINUX
-            buffer_ = std::move(frame_.storage);
-#else
-            buffer_.reserve(size);
-            std::move(frame_.ptr, frame_.ptr + size, buffer_.begin());
-#endif
-            image_.reset(new QImage((uchar*) buffer_.data(), width, height, imageFormat));
-        }
-    }
-    emit frameUpdated(id);
-}
-
-void
-FrameWrapper::slotRenderingStopped(const QString& id)
-{
-    if (id != id_) {
-        return;
-    }
-    isRendering_ = false;
-
-    QObject::disconnect(renderConnections_.updated);
-
-    renderer_ = nullptr;
-
-    {
-        QMutexLocker lock(&mutex_);
-        image_.reset();
-    }
-
-    emit renderingStopped(id);
-}
 
 RenderManager::RenderManager(AVModel& avModel)
     : avModel_(avModel)
 {
     previewFrameWrapper_ = std::make_unique<FrameWrapper>(avModel_);
+
+    avModel_.useAVFrame(!useOldPipline_);
 
     QObject::connect(previewFrameWrapper_.get(),
                      &FrameWrapper::frameUpdated,
@@ -202,6 +45,12 @@ RenderManager::RenderManager(AVModel& avModel)
                      [this](const QString& id) {
                          Q_UNUSED(id);
                          emit previewRenderingStopped();
+                     });
+    QObject::connect(previewFrameWrapper_.get(),
+                     &FrameWrapper::avFrameUpdated,
+                     [this](const QString& id) {
+                         Q_UNUSED(id);
+                         emit previewAvFrameUpdated();
                      });
 
     previewFrameWrapper_->connectStartRendering();
@@ -268,6 +117,11 @@ RenderManager::addDistantRenderer(const QString& id)
                                                              [this](const QString& id) {
                                                                  emit distantFrameUpdated(id);
                                                              });
+        distantConnectionMap_[id].updated = QObject::connect(dfw.get(),
+                                                             &FrameWrapper::avFrameUpdated,
+                                                             [this](const QString& id) {
+                                                                 emit distantAVFrameUpdated(id);
+                                                             });
 
         /*
          * Connect FrameWrapper to avmodel.
@@ -310,27 +164,24 @@ RenderManager::removeDistantRenderer(const QString& id)
     }
 }
 
-void
-RenderManager::drawFrame(const QString& id, DrawFrameCallback cb)
+AVFrame*
+RenderManager::getAVFrame(const QString& id)
 {
-    if (id == lrc::api::video::PREVIEW_RENDERER_ID) {
-        if (previewFrameWrapper_->frameMutexTryLock()) {
-            cb(previewFrameWrapper_->getFrame());
-            previewFrameWrapper_->frameMutexUnlock();
-        }
-    } else {
-        auto dfwIt = distantFrameWrapperMap_.find(id);
-        if (dfwIt != distantFrameWrapperMap_.end()) {
-            if (dfwIt->second->frameMutexTryLock()) {
-                cb(dfwIt->second->getFrame());
-                dfwIt->second->frameMutexUnlock();
-            }
-        }
+    auto dfwIt = distantFrameWrapperMap_.find(id);
+    if (dfwIt != distantFrameWrapperMap_.end()) {
+        return dfwIt->second->getAVFrame();
     }
+    return nullptr;
 }
 
 QImage*
 RenderManager::getPreviewFrame()
 {
     return previewFrameWrapper_->getFrame();
+}
+
+AVFrame*
+RenderManager::getPreviewAVFrame()
+{
+    return previewFrameWrapper_->getAVFrame();
 }
