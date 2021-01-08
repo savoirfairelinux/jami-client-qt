@@ -17,7 +17,7 @@ win32-msvc {
     QMAKE_LFLAGS+= /ignore:4006,4049,4078,4098 /FORCE:MULTIPLE /INCREMENTAL:NO /Debug /LTCG /NODEFAULTLIB:LIBCMT
 
     # preprocessor defines
-    DEFINES += UNICODE QT_NO_DEBUG NDEBUG
+    DEFINES += UNICODE QT_NO_DEBUG NDEBUG ENABLE_LIBWRAP
 
     # dependencies
     LRC= ../lrc
@@ -34,7 +34,8 @@ win32-msvc {
     LIBS += $${LRC}/build/src/qtwrapper/Release/qtwrapper.lib
 
     # daemon
-    INCLUDEPATH += ../daemon/contrib/msvc/include/
+    INCLUDEPATH += $${DRING}/contrib/msvc/include/
+    INCLUDEPATH += $${DRING}/contrib/build/ffmpeg/Build/win32/x64/include/
     LIBS += $${DRING}/build/x64/ReleaseLib_win32/bin/dring.lib
     LIBS += $${DRING}/contrib/msvc/lib/x64/libgnutls.lib
 
@@ -175,6 +176,7 @@ HEADERS += \
         src/lrcinstance.h \
         src/globalsystemtray.h \
         src/appsettingsmanager.h \
+        src/videorenderingitembase.h \
         src/webchathelpers.h \
         src/rendermanager.h \
         src/connectivitymonitor.h \
@@ -217,6 +219,7 @@ SOURCES += \
         src/networkmanager.cpp \
         src/runguard.cpp \
         src/updatemanager.cpp \
+        src/videorenderingitembase.cpp \
         src/webchathelpers.cpp \
         src/main.cpp \
         src/smartlistmodel.cpp \
