@@ -28,6 +28,11 @@ Item {
 
     property var mainApplicationScreen: ""
     property bool callIsFullscreen: false
+    property string currentDistantRendererId: ""
+
+    signal updateParticipantsInfo(var infos)
+
+    signal setVideoCallPagePreviewVisible(bool visible)
 
     TextMetrics {
         id: globalTextMetrics
