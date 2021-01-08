@@ -119,7 +119,7 @@ Rectangle {
         videoCallPage.updateUI(responsibleAccountId, responsibleConvUid)
         var callId = UtilsAdapter.getCallId(responsibleAccountId,
                                             responsibleConvUid)
-        videoCallPage.setDistantRendererId(callId)
+         JamiQmlUtils.currentDistantRendererId = callId
     }
 
     function toggleFullScreen() {
@@ -138,7 +138,7 @@ Rectangle {
         }
 
         if (callPage.stackNumber === CallStackView.VideoPageStack) {
-            videoCallPage.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+            JamiQmlUtils.updateParticipantsInfo(CallAdapter.getConferencesInfos())
         }
     }
 
@@ -156,7 +156,7 @@ Rectangle {
             if (callStackMainView.currentItem.stackNumber === CallStackView.VideoPageStack) {
                 var responsibleCallId = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid)
                 if (responsibleCallId === callId) {
-                    videoCallPage.handleParticipantsInfo(infos)
+                    JamiQmlUtils.updateParticipantsInfo(infos)
                 }
             }
         }
@@ -198,7 +198,7 @@ Rectangle {
         onCallAcceptButtonIsClicked: {
             CallAdapter.acceptACall(responsibleAccountId, responsibleConvUid)
             communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
-            mainViewWindowSidePanel.selectTab(SidePanelTabBar.Conversations)
+            mainViewSidePanel.selectTab(SidePanelTabBar.Conversations)
         }
 
         onCallCancelButtonIsClicked: {
