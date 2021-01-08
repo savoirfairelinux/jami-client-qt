@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -75,6 +75,7 @@ public:
     Q_INVOKABLE bool isImage(const QString& fileExt);
     Q_INVOKABLE QString humanFileSize(qint64 fileSize);
     Q_INVOKABLE void setSystemTrayIconVisible(bool visible);
+    Q_INVOKABLE void preventRendering(bool prevent);
 
 private:
     QClipboard* clipboard_;
