@@ -10,7 +10,8 @@ import net.jami.Constants 1.0
 
 ColumnLayout {
     property int photoState: PhotoboothView.PhotoState.Default
-    property bool avatarSet: false
+    property bool avatarSettled: false
+    property bool photoOnBoard: true
     // saveToConfig is to specify whether the image should be saved to account config
     property alias saveToConfig: avatarImg.saveToConfig
     property string fileName: ""
@@ -29,7 +30,8 @@ ColumnLayout {
 
     function initUI(useDefaultAvatar = true) {
         photoState = PhotoboothView.PhotoState.Default
-        avatarSet = false
+        photoOnBoard = true
+        avatarSettled = false
         if (useDefaultAvatar)
             setAvatarImage(AvatarImage.Mode.Default, "")
     }
@@ -88,7 +90,7 @@ ColumnLayout {
                 "All files") + " (*)"]
 
         onAccepted: {
-            avatarSet = true
+            avatarSettled = true
             photoState = PhotoboothView.PhotoState.Default
 
             fileName = file
@@ -143,60 +145,78 @@ ColumnLayout {
                 }
 
                 onImageIsReady: {
-                    if (mode === AvatarImage.Mode.FromBase64)
+                    if (mode === AvatarImage.Mode.FromBase64) {
                         photoState = PhotoboothView.PhotoState.Taken
-
-                    if (photoState === PhotoboothView.PhotoState.Taken) {
-                        avatarImg.state = ""
-                        avatarImg.state = "flashIn"
-                    }
-                }
-
-                onOpacityChanged: {
-                    if (avatarImg.state === "flashIn" && opacity === 0)
-                        avatarImg.state = "flashOut"
-                }
-
-                states: [
-                    State {
-                        name: "flashIn"
-                        PropertyChanges { target: avatarImg; opacity: 0}
-                    }, State {
-                        name: "flashOut"
-                        PropertyChanges { target: avatarImg; opacity: 1}
-                    }]
-
-                transitions: Transition {
-                    NumberAnimation {
-                        properties: "opacity"
-                        easing.type: Easing.Linear
-                        duration: 100
+                        photoOnBoard = true
+                        avatarSettled = true
                     }
                 }
             }
         }
     }
 
-    PhotoboothPreviewRender {
-        id:previewWidget
-
-        onHideBooth: stopBooth()
-
-        visible: photoState === PhotoboothView.PhotoState.CameraRendering
-        focus: visible
+    Rectangle {
+        id: previewRect
 
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: boothWidth
         Layout.preferredHeight: boothWidth
 
+        visible: photoState === PhotoboothView.PhotoState.CameraRendering
+        focus: visible
+
+        color: "white"
+
+        VideoRenderingItemBase {
+            id: previewWidget
+
+            property var photoCache: ""
+
+            anchors.centerIn: previewRect
+
+            expectedSize: Qt.size(boothWidth, boothWidth)
+            renderingType: VideoRenderingItemBase.Type.PHOTO
+
+            //onHideBooth: stopBooth()
+
+            onPhotoIsReady: {
+                photoCache = photoBase64
+            }
+
+            onOpacityChanged: {
+                if (previewWidget.state === "flashIn" && opacity === 0)
+                    previewWidget.state = "flashOut"
+                else if (previewWidget.state === "flashOut" && opacity === 1) {
+                    setAvatarImage(AvatarImage.Mode.FromBase64, photoCache)
+                }
+            }
+
+            states: [
+                State {
+                    name: "flashIn"
+                    PropertyChanges { target: previewWidget; opacity: 0}
+                }, State {
+                    name: "flashOut"
+                    PropertyChanges { target: previewWidget; opacity: 1}
+                }]
+
+            transitions: Transition {
+                NumberAnimation {
+                    properties: "opacity"
+                    easing.type: Easing.Linear
+                    duration: 100
+                }
+            }
+        }
+
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Rectangle {
-                width: previewWidget.width
-                height: previewWidget.height
+                width: previewRect.width
+                height: previewRect.height
                 radius: {
-                    var size = ((previewWidget.width <= previewWidget.height) ?
-                                    previewWidget.width:previewWidget.height)
+                    var size = ((previewRect.width <= previewRect.height) ?
+                                    previewRect.width : previewRect.height)
                     return size / 2
                 }
             }
@@ -247,12 +267,15 @@ ColumnLayout {
                 if(photoState !== PhotoboothView.PhotoState.CameraRendering){
                     startBooth()
                     return
-                } else {
-                    setAvatarImage(AvatarImage.Mode.FromBase64,
-                                   previewWidget.takePhoto(boothWidth))
+                } else if (photoOnBoard) {
+                    photoOnBoard = false
 
-                    avatarSet = true
                     stopBooth()
+
+                    previewWidget.takePhoto()
+
+                    previewWidget.state = ""
+                    previewWidget.state = "flashIn"
                 }
             }
         }
