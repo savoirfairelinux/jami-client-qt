@@ -109,7 +109,7 @@ ApplicationWindow {
             hide()
     }
 
-    AccountMigrationDialog{
+    AccountMigrationDialog {
         id: accountMigrationDialog
 
         visible: false
