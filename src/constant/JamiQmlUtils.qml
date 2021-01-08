@@ -29,6 +29,9 @@ Item {
 
     property var mainApplicationScreen: ""
     property bool callIsFullscreen: false
+    property string currentDistantRendererId: ""
+
+    signal updateParticipantsInfo(var infos)
 
     TextMetrics {
         id: globalTextMetrics

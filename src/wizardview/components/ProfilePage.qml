@@ -123,7 +123,7 @@ Rectangle {
             fieldLayoutWidth: saveProfileBtn.width
 
             onTextEdited: {
-                if (!(setAvatarWidget.avatarSet)) {
+                if (!(setAvatarWidget.avatarSettled)) {
                     if (text.length === 0) {
                         setAvatarWidget.setAvatarImage(AvatarImage.Mode.FromAccount,
                                                        createdAccountId)
