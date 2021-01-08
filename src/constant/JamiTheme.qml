@@ -178,6 +178,9 @@ Item {
     property int pluginHandlersPopupViewHeight: 200
     property int pluginHandlersPopupViewDelegateHeight: 50
 
+    property double preferredPreviewScaleFactor: 9 / 16
+    property size preferredPreviewSize: Qt.size(320, 180)
+
     // main application spec
     property int mainViewMinWidth: 460
     property int mainViewMinHeight: 400
