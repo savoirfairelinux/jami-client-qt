@@ -42,16 +42,12 @@ Rectangle {
     property var linkedWebview: null
 
     function updateUI(accountId, convUid) {
-        videoCallOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+        JamiQmlUtils.updateParticipantsInfo(CallAdapter.getConferencesInfos())
 
         bestName = UtilsAdapter.getBestName(accountId, convUid)
 
         var id = UtilsAdapter.getBestId(accountId, convUid)
         bestId = (bestName !== id) ? id : ""
-    }
-
-    function setDistantRendererId(id) {
-        distantRenderer.setRendererId(id)
     }
 
     function setLinkedWebview(webViewId) {
@@ -76,24 +72,14 @@ Rectangle {
         videoCallOverlay.closePotentialContactPicker()
     }
 
-    function handleParticipantsInfo(infos) {
-        if (infos.length === 0) {
-            bestName = UtilsAdapter.getBestName(AccountAdapter.currentAccountId,
-                                                UtilsAdapter.getCurrConvId())
-        } else {
-            bestName = ""
-        }
-        videoCallOverlay.handleParticipantsInfo(infos)
-    }
-
     function previewMagneticSnap() {
         // Calculate the position where the previewRenderer should attach to.
         var previewRendererCenter = Qt.point(
                     previewRenderer.x + previewRenderer.width / 2,
                     previewRenderer.y + previewRenderer.height / 2)
         var distantRendererCenter = Qt.point(
-                    distantRenderer.x + distantRenderer.width / 2,
-                    distantRenderer.y + distantRenderer.height / 2)
+                    videoCallPageMainRect.x + videoCallPageMainRect.width / 2,
+                    videoCallPageMainRect.y + videoCallPageMainRect.height / 2)
 
         if (previewRendererCenter.x >= distantRendererCenter.x) {
             if (previewRendererCenter.y >= distantRendererCenter.y) {
@@ -146,6 +132,7 @@ Rectangle {
 
         Rectangle {
             id: videoCallPageMainRect
+
             SplitView.preferredHeight: (videoCallPageRect.height / 3) * 2
             SplitView.minimumHeight: videoCallPageRect.height / 2 + 20
             SplitView.fillWidth: true
@@ -191,7 +178,7 @@ Rectangle {
                                                                 isRecording, isSIP,
                                                                 isConferenceCall)
                             videoCallPageRect.bestName = bestName
-                            videoCallOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+                            JamiQmlUtils.updateParticipantsInfo(CallAdapter.getConferencesInfos())
                         }
 
                         function onShowOnHoldLabel(isPaused) {
@@ -223,24 +210,22 @@ Rectangle {
                     }
                 }
 
-                DistantRenderer {
-                    id: distantRenderer
-
-                    anchors.centerIn: parent
-                    z: -1
-
-                    width: videoCallPageMainRect.width
-                    height: videoCallPageMainRect.height
-
-                    lrcInstance: LRCInstance
-
-                    onOffsetChanged: {
-                        videoCallOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
-                    }
-                }
-
-                VideoCallPreviewRenderer {
+                VideoRenderingItemBase {
                     id: previewRenderer
+
+                    property bool noVideoDevice: false
+
+                    visible: false
+
+                    Connections {
+                        target: JamiQmlUtils
+
+                        function onSetVideoCallPagePreviewVisible(visible) {
+                            if (previewRenderer.noVideoDevice)
+                                return
+                            previewRenderer.visible = visible
+                        }
+                    }
 
                     lrcInstance: LRCInstance
 
@@ -248,6 +233,8 @@ Rectangle {
                         target: CallAdapter
 
                         function onPreviewVisibilityNeedToChange(visible) {
+                            if (previewRenderer.noVideoDevice)
+                                return
                             previewRenderer.visible = visible
                         }
                     }
@@ -256,14 +243,18 @@ Rectangle {
                         target: AvAdapter
 
                         function onVideoDeviceListChanged(listIsEmpty) {
+                            previewRenderer.noVideoDevice = listIsEmpty
                             previewRenderer.visible = !listIsEmpty
                         }
                     }
 
-                    width: Math.max(videoCallPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
+                    expectedSize: {
+                        var preferedWidth = Math.max(videoCallPageMainRect.width / 4, JamiTheme.minimumPreviewWidth)
+                        return Qt.size(preferedWidth, preferedWidth * JamiTheme.preferredPreviewScaleFactor)
+                    }
+
                     x: videoCallPageMainRect.width - previewRenderer.width - previewMargin
                     y: videoCallPageMainRect.height - previewRenderer.height - previewMargin - 56 // Avoid overlay
-                    z: -1
 
                     states: [
                         State {
@@ -318,13 +309,6 @@ Rectangle {
                                     && previewRenderer.y + delta.y > 1)
                                 previewRenderer.y += delta.y
                         }
-                    }
-
-                    onWidthChanged: {
-                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
-                    }
-                    onPreviewImageScalingFactorChanged: {
-                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
                     }
                 }
             }
