@@ -69,6 +69,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/dbuserrorhandler.cpp
     ${SRC_DIR}/xrectsel.c
     ${SRC_DIR}/moderatorlistmodel.cpp
+    ${SRC_DIR}/framewrapper.cpp
     ${SRC_DIR}/screensaver.cpp)
 
 set(COMMON_HEADERS
@@ -122,6 +123,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/dbuserrorhandler.h
     ${SRC_DIR}/xrectsel.h
     ${SRC_DIR}/moderatorlistmodel.h
+    ${SRC_DIR}/framewrapper.h
     ${SRC_DIR}/screensaver.h)
 
 find_package(PkgConfig REQUIRED)
