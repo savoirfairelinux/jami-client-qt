@@ -236,7 +236,7 @@ Rectangle {
         target: CallAdapter
 
         // selectConversation causes UI update
-        function onCallSetupMainViewRequired(accountId, convUid) {
+        onCallSetupMainViewRequired: {
             ConversationsAdapter.selectConversation(accountId, convUid)
         }
     }
@@ -245,7 +245,7 @@ Rectangle {
         target: JamiQmlUtils
 
         // TODO: call in fullscreen inside containerWindow
-        function onCallIsFullscreenChanged() {
+        onCallIsFullscreenChanged: {
             if (JamiQmlUtils.callIsFullscreen) {
                 UtilsAdapter.setSystemTrayIconVisible(false)
                 containerWindow.hide()
@@ -263,35 +263,38 @@ Rectangle {
 
         currentIndex: 0
 
-        SplitView {
+        QtQuickOne.SplitView {
             id: splitView
 
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            width: mainView.width
-            height: mainView.height
-
-            handle: Rectangle {
+            handleDelegate : Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
                 implicitHeight: splitView.height
+
+                visible: mainViewStack.visible
                 color: JamiTheme.backgroundColor
+
                 Rectangle {
-                    implicitWidth: 1
+                    implicitWidth: 5
                     implicitHeight: splitView.height
-                    color: SplitHandle.pressed ? JamiTheme.pressColor :
-                                                 (SplitHandle.hovered ? JamiTheme.hoverColor :
-                                                                        JamiTheme.tabbarBorderColor)
+                    color: styleData.pressed ? JamiTheme.pressColor :
+                                                 (styleData.hovered ? JamiTheme.hoverColor :
+                                                                      JamiTheme.tabbarBorderColor)
                 }
             }
 
             Rectangle {
                 id: mainViewSidePanelRect
 
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.maximumWidth: (sidePanelOnly ? splitView.width :
-                                                      splitView.width - sidePanelViewStackPreferredWidth)
-                SplitView.fillHeight: true
+                Layout.minimumWidth: sidePanelViewStackPreferredWidth
+                Layout.fillHeight: true
+
+                width: sidePanelOnly ?
+                           splitView.width :
+                           sidePanelViewStackPreferredWidth
+
                 color: JamiTheme.backgroundColor
 
                 // AccountComboBox is always visible
@@ -309,13 +312,13 @@ Rectangle {
                     Connections {
                         target: AccountAdapter
 
-                        function onUpdateConversationForAddedContact() {
+                        onUpdateConversationForAddedContact: {
                             MessagesAdapter.updateConversationForAddedContact()
                             mainViewSidePanel.clearContactSearchBar()
                             mainViewSidePanel.forceReselectConversationSmartListCurrentIndex()
                         }
 
-                        function onAccountStatusChanged(accountId) {
+                        onAccountStatusChanged: {
                             accountComboBox.resetAccountListModel(accountId)
                         }
                     }
@@ -349,11 +352,10 @@ Rectangle {
 
                 initialItem: welcomePage
 
-                SplitView.maximumWidth: sidePanelOnly ?
-                                            splitView.width :
-                                            splitView.width - sidePanelViewStackPreferredWidth
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.fillHeight: true
+                Layout.minimumWidth: sidePanelViewStackPreferredWidth
+
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
                 clip: true
             }
@@ -404,7 +406,7 @@ Rectangle {
         Connections {
             target: ConversationsAdapter
 
-            function onNavigateToWelcomePageRequested() {
+            onNavigateToWelcomePageRequested: {
                 backToMainView()
             }
         }
@@ -453,11 +455,11 @@ Rectangle {
         Connections {
             target: MessagesAdapter
 
-            function onNeedToUpdateSmartList() {
+            onNeedToUpdateSmartList: {
                 mainViewSidePanel.forceUpdateConversationSmartListView()
             }
 
-            function onNavigateToWelcomePageRequested() {
+            onNavigateToWelcomePageRequested: {
                 backToMainView()
             }
         }
@@ -491,6 +493,7 @@ Rectangle {
         if (mainView.width < widthToCompare - onWidthChangedTriggerDistance
                 && mainViewStack.visible) {
             mainViewStack.visible = false
+            mainViewSidePanelRect.width = Qt.binding(function(){ return mainView.width })
 
             // The find callback function is called for each item in the stack.
             var inWelcomeViewStack = mainViewStack.find(
@@ -504,8 +507,6 @@ Rectangle {
             }
             else if (inWelcomeViewStack)
                 recursionStackViewItemMove(mainViewStack, sidePanelViewStack)
-
-            mainView.update()
         } else if (mainView.width >= widthToCompare + onWidthChangedTriggerDistance
                    && !mainViewStack.visible) {
             mainViewStack.visible = true
@@ -524,9 +525,13 @@ Rectangle {
                 if (currentAccountIsCalling())
                     pushCallStackView()
             }
-
-            mainView.update()
         }
+
+        if (mainViewStack.visible &&
+                mainView.width < mainViewStack.width + mainViewSidePanelRect.width -
+                onWidthChangedTriggerDistance)
+            mainViewSidePanelRect.width =
+                    mainView.width - mainViewStack.width - onWidthChangedTriggerDistance
     }
 
     AboutPopUp {
