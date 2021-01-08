@@ -88,8 +88,12 @@ AvAdapter::shareEntireScreen(int screenNumber)
         return;
     QRect rect = screen->geometry();
 
-    LRCInstance::avModel()
-        .setDisplay(getScreenNumber(), rect.x(), rect.y(), rect.width(), rect.height(), getCurrentCallId());
+    LRCInstance::avModel().setDisplay(getScreenNumber(),
+                                      rect.x(),
+                                      rect.y(),
+                                      rect.width(),
+                                      rect.height(),
+                                      getCurrentCallId());
 }
 
 void
@@ -264,9 +268,7 @@ AvAdapter::slotDeviceEvent()
         if (deviceEvent == DeviceEvent::Added && currentDeviceListSize == 1) {
             avModel.setDefaultDevice(defaultDevice);
             avModel.setCurrentVideoCaptureDevice(defaultDevice);
-            if (callId.isEmpty())
-                LRCInstance::renderer()->startPreviewing();
-            else
+            if (!callId.isEmpty())
                 avModel.switchInputTo(defaultDevice, callId);
         } else {
             cb();
