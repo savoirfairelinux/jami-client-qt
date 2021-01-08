@@ -46,6 +46,7 @@
 #include "videoformatfpsmodel.h"
 #include "videoformatresolutionmodel.h"
 #include "videoinputdevicemodel.h"
+#include "videorenderingitembase.h"
 
 #include <QMetaType>
 #include <QQmlEngine>
@@ -121,6 +122,7 @@ registerTypes()
     QML_REGISTERTYPE("net.jami.Models", VideoCallPreviewRenderer, 1, 0);
     QML_REGISTERTYPE("net.jami.Models", DistantRenderer, 1, 0);
     QML_REGISTERTYPE("net.jami.Models", PhotoboothPreviewRender, 1, 0)
+    QML_REGISTERTYPE("net.jami.Models", VideoRenderingItemBase, 1, 0)
 
     /*
      * Adaptors
