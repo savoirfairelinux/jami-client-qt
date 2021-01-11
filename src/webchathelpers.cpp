@@ -23,6 +23,7 @@
 
 QJsonObject
 buildInteractionJson(lrc::api::ConversationModel& conversationModel,
+                     const QString& convUid,
                      const QString msgId,
                      const lrc::api::interaction::Info& inter)
 {
@@ -65,7 +66,7 @@ buildInteractionJson(lrc::api::ConversationModel& conversationModel,
     case lrc::api::interaction::Type::DATA_TRANSFER: {
         interactionObject.insert("type", QJsonValue("data_transfer"));
         lrc::api::datatransfer::Info info = {};
-        conversationModel.getTransferInfo(msgId, info);
+        conversationModel.getTransferInfo(convUid, msgId, info);
         if (info.status != lrc::api::datatransfer::Status::INVALID) {
             interactionObject.insert("totalSize", QJsonValue(qint64(info.totalSize)));
             interactionObject.insert("progress", QJsonValue(qint64(info.progress)));
@@ -130,20 +131,23 @@ buildInteractionJson(lrc::api::ConversationModel& conversationModel,
 
 QString
 interactionToJsonInteractionObject(lrc::api::ConversationModel& conversationModel,
+                                   const QString& convUid,
                                    const QString& msgId,
                                    const lrc::api::interaction::Info& interaction)
 {
-    auto interactionObject = buildInteractionJson(conversationModel, msgId, interaction);
+    auto interactionObject = buildInteractionJson(conversationModel, convUid, msgId, interaction);
     return QString(QJsonDocument(interactionObject).toJson(QJsonDocument::Compact));
 }
 
 QString
 interactionsToJsonArrayObject(lrc::api::ConversationModel& conversationModel,
+                              const QString& convUid,
                               MessagesList interactions)
 {
     QJsonArray array;
     for (const auto& interaction : interactions) {
         auto interactionObject = buildInteractionJson(conversationModel,
+                                                      convUid,
                                                       interaction.first,
                                                       interaction.second);
         if (!interactionObject.isEmpty()) {

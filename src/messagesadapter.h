@@ -78,15 +78,19 @@ protected:
     void setInvitation(bool show, const QString& contactUri = "", const QString& contactId = "");
     void clear();
     void printHistory(lrc::api::ConversationModel& conversationModel,
+                      const QString& convUid,
                       MessagesList interactions);
     void updateHistory(lrc::api::ConversationModel& conversationModel,
-                      MessagesList interactions,
-                      bool allLoaded);
+                       const QString& convUid,
+                       MessagesList interactions,
+                       bool allLoaded);
     void setSenderImage(const QString& sender, const QString& senderImage);
     void printNewInteraction(lrc::api::ConversationModel& conversationModel,
+                             const QString& convUid,
                              const QString& msgId,
                              const lrc::api::interaction::Info& interaction);
     void updateInteraction(lrc::api::ConversationModel& conversationModel,
+                           const QString& convUid,
                            const QString& msgId,
                            const lrc::api::interaction::Info& interaction);
     void setMessagesImageContent(const QString& path, bool isBased64 = false);

@@ -88,7 +88,7 @@ public:
     Q_INVOKABLE void updateContactAvatarUid(const QString& contactUri);
 
 private:
-    QVariant getConversationItemData(ConversationInfo& item,
+    QVariant getConversationItemData(const ConversationInfo& item,
                                      const AccountInfo& accountInfo,
                                      int role) const;
 
