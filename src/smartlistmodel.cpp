@@ -90,7 +90,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
         auto& convModel = currentAccountInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
             auto filterType = currentAccountInfo.profileInfo.type;
-            auto& item = convModel->getFilteredConversations(filterType).at(index.row());
+            const auto& item = convModel->getFilteredConversations(filterType).at(index.row());
             return getConversationItemData(item, currentAccountInfo, role);
         } else if (listModelType_ == Type::CONFERENCE) {
             auto calls = conferenceables_[ConferenceableItem::CALL];
@@ -132,7 +132,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
             }
 
             auto& itemAccountInfo = lrcInstance_->accountModel().getAccountInfo(itemAccountId);
-            auto& item = lrcInstance_->getConversationFromConvUid(itemConvUid, itemAccountId);
+            const auto& item = lrcInstance_->getConversationFromConvUid(itemConvUid, itemAccountId);
             return getConversationItemData(item, itemAccountInfo, role);
         } else if (listModelType_ == Type::CONVERSATION) {
             auto& item = conversations_.at(index.row());
@@ -252,7 +252,7 @@ SmartListModel::currentUidSmartListModelIndex()
 }
 
 QVariant
-SmartListModel::getConversationItemData(conversation::Info& item,
+SmartListModel::getConversationItemData(const conversation::Info& item,
                                         const account::Info& accountInfo,
                                         int role) const
 {
@@ -260,36 +260,37 @@ SmartListModel::getConversationItemData(conversation::Info& item,
         return QVariant();
     }
     auto& contactModel = accountInfo.contactModel;
+    const auto& interactions = item.interactions;
 
     // Since we are using image provider right now, image url representation should be unique to
     // be able to use the image cache, account avatar will only be updated once PictureUid changed
     switch (role) {
     case Role::DisplayName: {
         if (!item.participants.isEmpty())
-            return QVariant(contactModel->bestNameForContact(item.participants[0]));
+            return QVariant(contactModel->bestNameForContact(item.participants.at(0)));
         return QVariant("");
     }
     case Role::DisplayID: {
         if (!item.participants.isEmpty())
-            return QVariant(contactModel->bestIdForContact(item.participants[0]));
+            return QVariant(contactModel->bestIdForContact(item.participants.at(0)));
         return QVariant("");
     }
     case Role::Presence: {
         if (!item.participants.isEmpty()) {
-            auto& contact = contactModel->getContact(item.participants[0]);
+            auto& contact = contactModel->getContact(item.participants.at(0));
             return QVariant(contact.isPresent);
         }
         return QVariant(false);
     }
     case Role::PictureUid: {
         if (!item.participants.isEmpty()) {
-            return QVariant(contactAvatarUidMap_[item.participants[0]]);
+            return QVariant(contactAvatarUidMap_[item.participants.at(0)]);
         }
         return QVariant("");
     }
     case Role::URI: {
         if (!item.participants.isEmpty()) {
-            return QVariant(item.participants[0]);
+            return QVariant(item.participants.at(0));
         }
         return QVariant("");
     }
@@ -303,20 +304,20 @@ SmartListModel::getConversationItemData(conversation::Info& item,
         return QVariant("");
     }
     case Role::LastInteraction: {
-        if (!item.interactions.empty()) {
-            return QVariant(item.interactions.at(item.lastMessageUid).body);
+        if (!interactions.empty()) {
+            return QVariant(interactions.at(item.lastMessageUid).body);
         }
         return QVariant("");
     }
     case Role::LastInteractionType: {
-        if (!item.interactions.empty()) {
-            return QVariant(static_cast<int>(item.interactions.at(item.lastMessageUid).type));
+        if (!interactions.empty()) {
+            return QVariant(static_cast<int>(interactions.at(item.lastMessageUid).type));
         }
         return QVariant(0);
     }
     case Role::ContactType: {
         if (!item.participants.isEmpty()) {
-            auto& contact = contactModel->getContact(item.participants[0]);
+            auto& contact = contactModel->getContact(item.participants.at(0));
             return QVariant(static_cast<int>(contact.profileInfo.type));
         }
         return QVariant(0);
