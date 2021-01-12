@@ -20,15 +20,9 @@ set(QML_RESOURCES_QML ${CMAKE_SOURCE_DIR}/qml.qrc)
 
 if(NOT DEFINED LRC)
     set(LRC ${CMAKE_CURRENT_SOURCE_DIR}/../install/lrc)
-    set(LRCPATH ${LRC}/include/libringclient)
-    set(LRCLIBDIR ${LRC}/lib)
+    set(LRCPATH ${LRC})
 else()
-    set(LRCPATH ${LRC}/src)
-    if (NOT DEFINED LRCBUILD)
-        set(LRCLIBDIR ${LRC}/build)
-    else()
-        set(LRCLIBDIR ${LRCBUILD})
-    endif()
+    set(LRCPATH ${LRC})
 endif()
 
 set(QML_LIBS
@@ -176,6 +170,7 @@ endif()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}
     ${SRC_DIR}
     ${LRCPATH}
+    ${LRCPATH}/include
     ${LIBNM_INCLUDE_DIRS})
 
 link_libraries(${LIBNM_LIBRARIES})
@@ -187,8 +182,10 @@ add_executable(${PROJECT_NAME}
     ${QML_RESOURCES}
     ${QML_RESOURCES_QML})
 
-message(${LRCLIBDIR})
-find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
+message(${LRCPATH})
+find_library(ringclient ringclient
+    PATHS ${LRCPATH}
+    PATH_SUFFIXES lib build build-local NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
 
