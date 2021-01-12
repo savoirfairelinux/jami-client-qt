@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0785c8a_8fdd44a7",
+        "filename": "src/main.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-01-12T17:04:43Z",
+      "side": 1,
+      "message": "this should guarantee a segfault on windows",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 24
+      },
+      "revId": "70c61a3e9e419c9e48bc278d3ed6971e92afb777",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
