@@ -209,3 +209,88 @@ if(ENABLE_TESTS)
     message("Add Jami tests")
     add_subdirectory(tests)
 endif()
+
+# Installation rules
+INSTALL(TARGETS jami-qt
+   RUNTIME DESTINATION bin
+)
+
+# install .desktop in XDG desktop dir so that it is recognized by the system
+INSTALL(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications
+)
+
+# install audio files
+#INSTALL(FILES ${PROJECT_SOURCE_DIR}/sounds/ringtone_notify.wav
+#    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/sounds/jami-gnome
+#)
+
+# install .desktop in the jami-qt data dir, so that it can be copied to the
+# autostart dir by the client
+#INSTALL(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop.autostart
+#   DESTINATION
+#      ${CMAKE_INSTALL_PREFIX}/share/jami-qt
+#   PERMISSIONS
+#      WORLD_READ
+#      OWNER_WRITE
+#      OWNER_READ
+#      GROUP_READ
+#   RENAME
+#      jami-qt.desktop
+#)
+
+INSTALL(FILES images/jami.svg
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps
+)
+
+INSTALL(FILES jami-qt.appdata.xml
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo/
+)
+
+# install shell script which will launch Jami
+#INSTALL(
+#   FILES
+#      "${PROJECT_SOURCE_DIR}/src/jami"
+#   DESTINATION
+#      ${CMAKE_INSTALL_PREFIX}/bin
+#   PERMISSIONS
+#      WORLD_READ
+#      OWNER_WRITE
+#      OWNER_READ
+#      GROUP_READ
+#      OWNER_EXECUTE
+#      GROUP_EXECUTE
+#      WORLD_EXECUTE
+#)
+
+#INSTALL(CODE "
+#    EXECUTE_PROCESS(COMMAND rm ${CMAKE_INSTALL_PREFIX}/bin/ring.cx -f)
+#    EXECUTE_PROCESS(COMMAND ln -s ${CMAKE_INSTALL_PREFIX}/bin/jami ${CMAKE_INSTALL_PREFIX}/bin/ring.cx)
+#    ")
+
+# add a target to generate API documentation with Doxygen
+#FIND_PACKAGE(Doxygen)
+#IF(DOXYGEN_FOUND)
+#    CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile @ONLY)
+#    ADD_CUSTOM_TARGET(doc
+#        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
+#        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
+#        COMMENT "Generating API documentation with Doxygen" VERBATIM
+#    )
+
+#    # create doc/README.md symlink to README since Doxygen doesn't understand file with no extension
+#    ADD_CUSTOM_COMMAND(
+#        TARGET doc
+#        PRE_BUILD
+#        COMMAND ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_SOURCE_DIR}/doc/README.md
+#    )
+#ENDIF(DOXYGEN_FOUND)
+
+## uninstall target
+#CONFIGURE_FILE(
+#    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+#    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+#    IMMEDIATE @ONLY)
+
+#ADD_CUSTOM_TARGET(uninstall
+#    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
