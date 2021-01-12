@@ -25,6 +25,7 @@
 #include <QCryptographicHash>
 #include <QtWebEngine>
 
+#include "lrcinstance.h"
 #include <clocale>
 
 #ifndef ENABLE_TESTS
@@ -63,6 +64,8 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::RoundPreferFloor);
     QtWebEngine::initialize();
+
+    LRCInstance::init();
 
     char ARG_DISABLE_WEB_SECURITY[] = "--disable-web-security";
     auto newArgv = parseInputArgument(argc, argv, ARG_DISABLE_WEB_SECURITY);
