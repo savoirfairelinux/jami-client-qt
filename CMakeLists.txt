@@ -33,7 +33,7 @@ if(NOT DEFINED LRCLIB)
 endif()
 
 message("Will expect lrc headers in ${LRC_SRC_PATH}")
-message("Will expect lrc library in ${LRC} (including\
+message("Will expect lrc library in ${LRC} (including \
 subdirs ../lib, /lib, /build and /build-local)")
 
 set(QML_LIBS
@@ -85,7 +85,8 @@ set(COMMON_SOURCES
     ${SRC_DIR}/qmlregister.cpp
     ${SRC_DIR}/utilsadapter.cpp
     ${SRC_DIR}/dbuserrorhandler.cpp
-    ${SRC_DIR}/xrectsel.c)
+    ${SRC_DIR}/xrectsel.c
+    ${SRC_DIR}/moderatorlistmodel.cpp)
 
 set(COMMON_HEADERS
     ${SRC_DIR}/avatarimageprovider.h
@@ -135,7 +136,8 @@ set(COMMON_HEADERS
     ${SRC_DIR}/qtutils.h
     ${SRC_DIR}/utilsadapter.h
     ${SRC_DIR}/dbuserrorhandler.h
-    ${SRC_DIR}/xrectsel.h)
+    ${SRC_DIR}/xrectsel.h
+    ${SRC_DIR}/moderatorlistmodel.h)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBNM libnm)
@@ -150,32 +152,35 @@ if(QT5_VER AND QT5_PATH)
    list(GET VERSION_LIST 1 QT5_VER_MINOR)
    list(GET VERSION_LIST 2 QT5_VER_PATCH)
 
-   if ((${QT5_VER_MAJOR} GREATER_EQUAL 5) AND (${QT5_VER_MINOR} GREATER_EQUAL 14))
+   if((${QT5_VER_MAJOR} GREATER_EQUAL 5) AND (${QT5_VER_MINOR} GREATER_EQUAL 14))
       message(STATUS "Using custom Qt version")
-      find_package(Qt5 ${QT5_VER} REQUIRED
-                  COMPONENTS
-                  Core
-                  Quick
-                  QuickWidgets
-                  Network
-                  Svg
-                  QuickControls2
-                  WebEngine
-                  DBus
-                  PATHS ${QT5_PATH} NO_DEFAULT_PATH)
+      find_package(Qt5 ${QT5_VER} REQUIRED COMPONENTS
+          Core
+          Quick
+          QuickWidgets
+          Network
+          Svg
+          QuickControls2
+          WebEngine
+          DBus
+          PATHS ${QT5_PATH} NO_DEFAULT_PATH)
+      find_package(Qt5 ${QT5_VER} COMPONENTS
+          LinguistTools
+          PATHS ${QT5_PATH} NO_DEFAULT_PATH)
       set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
    endif()
 else()
-   find_package(Qt5 REQUIRED
-                COMPONENTS
-                Core
-                Quick
-                QuickWidgets
-                Network
-                Svg
-                QuickControls2
-                WebEngine
-                DBus)
+    find_package(Qt5 REQUIRED COMPONENTS
+        Core
+        Quick
+        QuickWidgets
+        Network
+        Svg
+        QuickControls2
+        WebEngine
+        DBus)
+    find_package(Qt5 COMPONENTS
+        LinguistTools)
 endif()
 
 include_directories(${PROJECT_SOURCE_DIR}
@@ -190,11 +195,13 @@ add_executable(${PROJECT_NAME}
     ${COMMON_HEADERS}
     ${COMMON_SOURCES}
     ${QML_RESOURCES}
-    ${QML_RESOURCES_QML})
+    ${QML_RESOURCES_QML}
+    ${LRC_SRC_PATH}/webresource.qrc)
 
 find_library(ringclient ringclient
-    PATHS ${LRC}
+    PATHS ${LRCLIB}
     PATH_SUFFIXES ../lib lib build build-local NO_DEFAULT_PATH)
+
 find_library(qrencode qrencode)
 find_library(X11 X11)
 
@@ -209,3 +216,44 @@ if(ENABLE_TESTS)
     message("Add Jami tests")
     add_subdirectory(tests)
 endif()
+
+# Installation rules
+install(TARGETS jami-qt
+   RUNTIME DESTINATION bin
+)
+
+# install .desktop in XDG desktop dir so that it is recognized by the system
+install(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications
+)
+
+# logo
+install(FILES images/jami.svg
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps
+)
+
+install(FILES jami-qt.appdata.xml
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo
+)
+
+# translations
+if(Qt5LinguistTools_FOUND)
+    message("Releasing and copying translation files")
+    file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
+    qt5_add_translation(QM_FILES ${TS_FILES})
+    add_custom_target(translations ALL DEPENDS ${QM_FILES})
+    install(FILES ${QM_FILES}
+        DESTINATION "${CMAKE_INSTALL_PREFIX}/share/libringclient/translations")
+endif()
+
+# todo: uninstall
+#CONFIGURE_FILE(
+#    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+#    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+#    IMMEDIATE @ONLY)
+
+#ADD_CUSTOM_TARGET(uninstall
+#    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+
+
+
