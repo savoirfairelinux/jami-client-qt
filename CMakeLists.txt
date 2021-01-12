@@ -12,24 +12,29 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 
-set(QML_RESOURCES ${CMAKE_SOURCE_DIR}/resources.qrc)
-set(QML_RESOURCES_QML ${CMAKE_SOURCE_DIR}/qml.qrc)
+set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
+set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
 
 if(NOT DEFINED LRC)
-    set(LRC ${CMAKE_CURRENT_SOURCE_DIR}/../install/lrc)
-    set(LRCPATH ${LRC}/include/libringclient)
-    set(LRCLIBDIR ${LRC}/lib)
-else()
-    set(LRCPATH ${LRC}/src)
-    if (NOT DEFINED LRCBUILD)
-        set(LRCLIBDIR ${LRC}/build)
-    else()
-        set(LRCLIBDIR ${LRCBUILD})
-    endif()
+    set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
 endif()
+
+if(EXISTS ${LRC}/include/libringclient)
+    set(LRC_SRC_PATH ${LRC}/include/libringclient)
+else()
+    set(LRC_SRC_PATH ${LRC}/src)
+endif()
+
+if(NOT DEFINED LRCLIB)
+    set(LRCLIB ${LRC})
+endif()
+
+message("Will expect lrc headers in ${LRC_SRC_PATH}")
+message("Will expect lrc library in ${LRC} (including\
+subdirs ../lib, /lib, /build and /build-local)")
 
 set(QML_LIBS
     Qt5::Quick
@@ -173,9 +178,9 @@ else()
                 DBus)
 endif()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}
+include_directories(${PROJECT_SOURCE_DIR}
     ${SRC_DIR}
-    ${LRCPATH}
+    ${LRC_SRC_PATH}
     ${LIBNM_INCLUDE_DIRS})
 
 link_libraries(${LIBNM_LIBRARIES})
@@ -187,8 +192,9 @@ add_executable(${PROJECT_NAME}
     ${QML_RESOURCES}
     ${QML_RESOURCES_QML})
 
-message(${LRCLIBDIR})
-find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
+find_library(ringclient ringclient
+    PATHS ${LRC}
+    PATH_SUFFIXES ../lib lib build build-local NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
 
