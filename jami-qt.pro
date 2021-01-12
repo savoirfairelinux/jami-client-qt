@@ -102,9 +102,9 @@ unix {
         INCLUDEPATH += $${LRC}/include/libringclient
         LIBDIR = $${LRC}/lib
     } else {
-        INCLUDEPATH += $${LRC}/src
+        INCLUDEPATH += $${LRC}
         isEmpty(LRCBUILD) {
-            LIBDIR = $${LRC}/build
+            LIBDIR = $${LRC}
         } else {
             LIBDIR = $${LRCBUILD}
         }
