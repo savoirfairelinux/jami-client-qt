@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "23a17522_e8a56b0e",
+        "filename": "src/mainview/components/ContactPicker.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-01-14T17:38:55Z",
+      "side": 1,
+      "message": "hard to read with double ternary",
+      "range": {
+        "startLine": 88,
+        "startChar": 61,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "b786026b03a64eea29ce1177ae7e66908b71055d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e90e9c7_eb7b9711",
+        "filename": "src/moderatorlistmodel.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-01-14T17:38:55Z",
+      "side": 1,
+      "message": "question: copy really necessary?",
+      "range": {
+        "startLine": 25,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 54
+      },
+      "revId": "b786026b03a64eea29ce1177ae7e66908b71055d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
