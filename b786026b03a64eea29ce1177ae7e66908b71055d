@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ee76b8c8_1bd9bbbe",
+        "filename": "src/mainview/components/ContactPicker.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-01-15T17:40:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23a17522_e8a56b0e",
+      "range": {
+        "startLine": 88,
+        "startChar": 61,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "b786026b03a64eea29ce1177ae7e66908b71055d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4e90e9c7_eb7b9711",
         "filename": "src/moderatorlistmodel.h",
         "patchSetId": 16
@@ -36,6 +60,30 @@
       "writtenOn": "2021-01-14T17:38:55Z",
       "side": 1,
       "message": "question: copy really necessary?",
+      "range": {
+        "startLine": 25,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 54
+      },
+      "revId": "b786026b03a64eea29ce1177ae7e66908b71055d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e6a9153_a38007ca",
+        "filename": "src/moderatorlistmodel.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-01-15T17:40:22Z",
+      "side": 1,
+      "message": "Not necessary",
+      "parentUuid": "4e90e9c7_eb7b9711",
       "range": {
         "startLine": 25,
         "startChar": 12,
