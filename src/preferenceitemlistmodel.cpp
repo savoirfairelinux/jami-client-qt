@@ -58,14 +58,15 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
         return QVariant();
     }
 
-    auto details = preferenceList_.at(index.row());
-    QString preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(
-        pluginId_)[details["key"]];
-
+    QString preferenceCurrent = QString("");
     int type = Type::DEFAULT;
-    QString currentPath = "";
+    QString currentPath = QString("");
     QStringList acceptedFiles = {};
     bool checkImage = false;
+
+    auto details = preferenceList_.at(index.row());
+    preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(
+        pluginId_)[details["key"]];
     auto it = mapType.find(details["type"]);
     if (it != mapType.end()) {
         type = mapType[details["type"]];
@@ -101,6 +102,7 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     case Role::IsImage:
         return QVariant(checkImage);
     }
+
     return QVariant();
 }
 
@@ -188,9 +190,21 @@ PreferenceItemListModel::preferencesCount()
 {
     if (!preferenceList_.isEmpty())
         return preferenceList_.size();
+    auto prefValues = LRCInstance::pluginModel().getPluginPreferencesValues(pluginId_);
     if (mediaHandlerName_.isEmpty()) {
         preferenceList_ = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
-        return preferenceList_.size();
+        for (auto it = prefValues.begin(); it != prefValues.end(); it++) {
+            if(it.key().endsWith("Always")) {
+                QMap<QString, QString> prefMap;
+                QString name = it.key();
+                name.truncate(name.indexOf("Always"));
+                prefMap.insert("key", it.key());
+                prefMap.insert("title", "Automatically turn " + name + " on");
+                prefMap.insert("summary", name + " will take effect immediatly");
+
+                preferenceList_.append(prefMap);
+            }
+        }
     } else {
         auto preferences = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
         for (auto& preference : preferences) {
@@ -198,6 +212,7 @@ PreferenceItemListModel::preferencesCount()
             if (scopeList.contains(mediaHandlerName_))
                 preferenceList_.push_back(preference);
         }
-        return preferenceList_.size();
     }
+
+    return preferenceList_.size();
 }
