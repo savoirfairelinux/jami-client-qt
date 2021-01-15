@@ -37,10 +37,7 @@ PreferenceItemListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid()) {
         /// Count.
-        if (!mediaHandlerName_.isEmpty())
-            return preferenceList_.size();
-        else if (!pluginId_.isEmpty())
-            return preferenceList_.size() + 1;
+        return preferenceList_.size();
     }
     /// A valid QModelIndex returns 0 as no entry has sub-elements.
     return 0;
@@ -57,76 +54,53 @@ PreferenceItemListModel::columnCount(const QModelIndex& parent) const
 QVariant
 PreferenceItemListModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid()) {
+    if (!index.isValid() || preferenceList_.size() <= index.row()) {
         return QVariant();
     }
-    QString preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(
-        pluginId_)[QString("always")];
+
+    QString preferenceCurrent = QString("");
     int type = Type::DEFAULT;
     QString currentPath = QString("");
     QStringList acceptedFiles = {};
     bool checkImage = true;
 
-    if (preferenceList_.size() > index.row()) {
-        auto details = preferenceList_.at(index.row());
-        preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(
-            pluginId_)[details["key"]];
-        auto it = mapType.find(details["type"]);
-        if (it != mapType.end()) {
-            type = mapType[details["type"]];
-            if (type == Type::PATH) {
-                currentPath = preferenceCurrent;
-                currentPath.truncate(preferenceCurrent.lastIndexOf("/"));
-                QStringList mimeTypeList = details["mimeType"].split(',');
-                for (auto& mimeType : mimeTypeList) {
-	                mimeType = mimeType.mid(mimeType.lastIndexOf("/") + 1);
-	                acceptedFiles.append((mimeType.toUpper() + " Files") + " (*." + mimeType + ")");
-	                checkImage &= Utils::isImage(mimeType);
-	            }
-	            acceptedFiles.append(QString("All (*.%1)").arg(mimeTypeList.join(" *.")));
-	        }
-	    }
-        switch (role) {
-        case Role::PreferenceKey:
-            return QVariant(details["key"]);
-        case Role::PreferenceName:
-            return QVariant(details["title"]);
-        case Role::PreferenceSummary:
-            return QVariant(details["summary"]);
-        case Role::PreferenceType:
-            return QVariant(type);
-        case Role::PluginId:
-            return QVariant(pluginId_);
-        case Role::PreferenceCurrentValue:
-            return QVariant(preferenceCurrent);
-        case Role::CurrentPath:
-            return QVariant(currentPath);
-        case Role::FileFilters:
-            return QVariant(acceptedFiles);
-        case Role::IsImage:
-            return QVariant(checkImage);
+    auto details = preferenceList_.at(index.row());
+    preferenceCurrent = LRCInstance::pluginModel().getPluginPreferencesValues(
+        pluginId_)[details["key"]];
+    auto it = mapType.find(details["type"]);
+    if (it != mapType.end()) {
+        type = mapType[details["type"]];
+        if (type == Type::PATH) {
+            currentPath = preferenceCurrent;
+            currentPath.truncate(preferenceCurrent.lastIndexOf("/"));
+            QStringList mimeTypeList = details["mimeType"].split(',');
+            for (auto& mimeType : mimeTypeList) {
+                mimeType = mimeType.mid(mimeType.lastIndexOf("/") + 1);
+                acceptedFiles.append((mimeType.toUpper() + " Files") + " (*." + mimeType + ")");
+                checkImage &= Utils::isImage(mimeType);
+            }
+            acceptedFiles.append(QString("All (*.%1)").arg(mimeTypeList.join(" *.")));
         }
-    } else {
-        switch (role) {
-        case Role::PreferenceKey:
-            return QVariant(QString("always"));
-        case Role::PreferenceName:
-            return QVariant(QString("Automatically turn plugin on for calls and chats"));
-        case Role::PreferenceSummary:
-            return QVariant(QString("Plugin will take effect immediatly"));
-        case Role::PreferenceType:
-            return QVariant(type);
-        case Role::PluginId:
-            return QVariant(pluginId_);
-        case Role::PreferenceCurrentValue:
-            return QVariant(preferenceCurrent);
-        case Role::CurrentPath:
-            return QVariant(QString(""));
-        case Role::FileFilters:
-            return QVariant(acceptedFiles);
-        case Role::IsImage:
-            return QVariant(checkImage);
-        }
+    }
+    switch (role) {
+    case Role::PreferenceKey:
+        return QVariant(details["key"]);
+    case Role::PreferenceName:
+        return QVariant(details["title"]);
+    case Role::PreferenceSummary:
+        return QVariant(details["summary"]);
+    case Role::PreferenceType:
+        return QVariant(type);
+    case Role::PluginId:
+        return QVariant(pluginId_);
+    case Role::PreferenceCurrentValue:
+        return QVariant(preferenceCurrent);
+    case Role::CurrentPath:
+        return QVariant(currentPath);
+    case Role::FileFilters:
+        return QVariant(acceptedFiles);
+    case Role::IsImage:
+        return QVariant(checkImage);
     }
 
     return QVariant();
@@ -216,9 +190,21 @@ PreferenceItemListModel::preferencesCount()
 {
     if (!preferenceList_.isEmpty())
         return preferenceList_.size();
+    auto prefValues = LRCInstance::pluginModel().getPluginPreferencesValues(pluginId_);
     if (mediaHandlerName_.isEmpty()) {
         preferenceList_ = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
-        return preferenceList_.size();
+        for (auto it = prefValues.begin(); it != prefValues.end(); it++) {
+            if(it.key().endsWith("Always")) {
+                QMap<QString, QString> prefMap;
+                QString name = it.key();
+                name.truncate(name.indexOf("Always"));
+                prefMap.insert("key", it.key());
+                prefMap.insert("title", "Automatically turn " + name + " on");
+                prefMap.insert("summary", name + " will take effect immediatly");
+
+                preferenceList_.append(prefMap);
+            }
+        }
     } else {
         auto preferences = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
         for (auto& preference : preferences) {
@@ -226,6 +212,7 @@ PreferenceItemListModel::preferencesCount()
             if (scopeList.contains(mediaHandlerName_))
                 preferenceList_.push_back(preference);
         }
-        return preferenceList_.size();
     }
+
+    return preferenceList_.size();
 }

@@ -52,6 +52,7 @@ Rectangle {
             PluginModel.unloadPlugin(pluginId)
         else
             loaded = PluginModel.loadPlugin(pluginId)
+        pluginListView.model = PluginAdapter.getPluginSelectableModel()
         PluginAdapter.pluginHandlersUpdateStatus()
         return loaded
     }
