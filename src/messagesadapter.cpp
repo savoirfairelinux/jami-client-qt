@@ -82,20 +82,15 @@ MessagesAdapter::setupChatView(const QString& convUid)
     } catch (...) {
     }
 
-    bool shouldShowSendContactRequestBtn = (contactInfo.profileInfo.type
-                                                == lrc::api::profile::Type::PENDING
-                                            || contactInfo.profileInfo.type
-                                                   == lrc::api::profile::Type::TEMPORARY);
+    bool isPending = contactInfo.profileInfo.type == profile::Type::TEMPORARY;
 
     QMetaObject::invokeMethod(qmlObj_,
                               "setSendContactRequestButtonVisible",
-                              Q_ARG(QVariant, shouldShowSendContactRequestBtn));
+                              Q_ARG(QVariant, isPending));
 
     setMessagesVisibility(false);
 
-    /*
-     * Type Indicator (contact).
-     */
+    // Type Indicator (contact). TODO: Not shown when invitation request?
     contactIsComposing(convInfo.uid, "", false);
     connect(lrcInstance_->getCurrentConversationModel(),
             &ConversationModel::composingStatusChanged,
@@ -106,9 +101,7 @@ MessagesAdapter::setupChatView(const QString& convUid)
                 contactIsComposing(convUid, contactUri, isComposing);
             });
 
-    /*
-     * Draft and message content set up.
-     */
+    // Draft and message content set up.
     Utils::oneShotConnect(qmlObj_,
                           SIGNAL(sendMessageContentSaved(const QString&)),
                           this,
@@ -240,8 +233,28 @@ MessagesAdapter::slotMessagesCleared()
     if (conv.isSwarm && !conv.allMessagesLoaded) {
         convModel->loadConversationMessages(conv.uid, 20); // TODO: n should be configurable
     } else {
-        printHistory(*convModel, conv.uid, conv.interactions);
-        Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
+        const auto contactUri = conv.participants.front();
+        bool isPending = false;
+
+        if (!contactUri.isEmpty()) {
+            try {
+                auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
+                auto contact = accountInfo.contactModel->getContact(contactUri);
+                isPending = contact.profileInfo.type == lrc::api::profile::Type::PENDING
+                            || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY;
+            } catch (std::out_of_range e) {
+                qDebug() << e.what();
+            }
+        }
+
+        // Only show messages when there is no invitation
+        if (!isPending) {
+            printHistory(*convModel, conv.uid, conv.interactions);
+            Utils::oneShotConnect(qmlObj_,
+                                  SIGNAL(messagesLoaded()),
+                                  this,
+                                  SLOT(slotMessagesLoaded()));
+        }
     }
     setConversationProfileData(conv);
 }
@@ -465,10 +478,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
-        setInvitation(contact.profileInfo.type == lrc::api::profile::Type::PENDING
-                          || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY,
-                      bestName,
-                      contactUri);
+        setInvitation(convInfo.isRequest, bestName, contactUri, convInfo.isSwarm);
 
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
@@ -533,12 +543,16 @@ MessagesAdapter::requestSendMessageContent()
 }
 
 void
-MessagesAdapter::setInvitation(bool show, const QString& contactUri, const QString& contactId)
+MessagesAdapter::setInvitation(bool show,
+                               const QString& contactUri,
+                               const QString& contactId,
+                               bool isSwarm)
 {
-    QString s
-        = show
-              ? QString::fromLatin1("showInvitation(\"%1\", \"%2\")").arg(contactUri).arg(contactId)
-              : QString::fromLatin1("showInvitation()");
+    QString s = show ? QString::fromLatin1("showInvitation(\"%1\", \"%2\", %3)")
+                           .arg(contactUri)
+                           .arg(contactId)
+                           .arg(isSwarm)
+                     : QString::fromLatin1("showInvitation()");
 
     QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
 }
@@ -676,16 +690,18 @@ MessagesAdapter::setSendMessageContent(const QString& content)
 }
 
 void
-MessagesAdapter::contactIsComposing(const QString& convUid, const QString& contactUri, bool isComposing)
+MessagesAdapter::contactIsComposing(const QString& convUid,
+                                    const QString& contactUri,
+                                    bool isComposing)
 {
     auto* convModel = lrcInstance_->getCurrentConversationModel();
     auto convInfo = convModel->getConversationForUid(lrcInstance_->getCurrentConvUid());
     if (!convInfo)
         return;
     auto& conv = convInfo->get();
-    bool showIsComposing = conv.isSwarm ? convUid == conv.uid
-                                        : convUid.isEmpty()
-                                          && conv.participants.first() == contactUri;
+    bool showIsComposing = conv.isSwarm
+                               ? convUid == conv.uid
+                               : convUid.isEmpty() && conv.participants.first() == contactUri;
 
     if (showIsComposing) {
         QString s
