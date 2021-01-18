@@ -71,7 +71,10 @@ protected:
     // Run corrsponding js functions, c++ to qml.
     void setMessagesVisibility(bool visible);
     void requestSendMessageContent();
-    void setInvitation(bool show, const QString& contactUri = "", const QString& contactId = "");
+    void setInvitation(bool show,
+                       const QString& contactUri = "",
+                       const QString& contactId = "",
+                       bool isSwarm = false);
     void clear();
     void printHistory(lrc::api::ConversationModel& conversationModel,
                       const QString& convUid,
@@ -93,9 +96,7 @@ protected:
     void setMessagesFileContent(const QString& path);
     void removeInteraction(const QString& interactionId);
     void setSendMessageContent(const QString& content);
-    void contactIsComposing(const QString& convUid,
-                            const QString& contactUri,
-                            bool isComposing);
+    void contactIsComposing(const QString& convUid, const QString& contactUri, bool isComposing);
 
 signals:
     void needToUpdateSmartList();
