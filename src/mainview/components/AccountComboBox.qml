@@ -236,7 +236,7 @@ ComboBox {
             visible: AccountAdapter.currentAccountType === Profile.Type.RING
             toolTipText: JamiStrings.displayQRCode
 
-            source: "qrc:/images/icons/qr_code-24px.svg"
+            source: "qrc:/images/icons/share-24px.svg"
 
             normalColor: JamiTheme.backgroundColor
             imageColor: JamiTheme.textColor
@@ -251,7 +251,7 @@ ComboBox {
             id: settingsButton
 
             source: !mainView.inSettingsView ?
-                        "qrc:/images/icons/round-settings-24px.svg" :
+                        "qrc:/images/icons/settings-24px.svg" :
                         "qrc:/images/icons/round-close-24px.svg"
 
             normalColor: JamiTheme.backgroundColor
