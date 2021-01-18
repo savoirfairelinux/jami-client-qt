@@ -77,20 +77,16 @@ MessagesAdapter::setupChatView(const QString& convUid)
     } catch (...) {
     }
 
-    bool shouldShowSendContactRequestBtn = (contactInfo.profileInfo.type
-                                                == lrc::api::profile::Type::PENDING
-                                            || contactInfo.profileInfo.type
-                                                   == lrc::api::profile::Type::TEMPORARY);
+    bool isPending = (contactInfo.profileInfo.type == lrc::api::profile::Type::PENDING
+                      || contactInfo.profileInfo.type == lrc::api::profile::Type::TEMPORARY);
 
     QMetaObject::invokeMethod(qmlObj_,
                               "setSendContactRequestButtonVisible",
-                              Q_ARG(QVariant, shouldShowSendContactRequestBtn));
+                              Q_ARG(QVariant, isPending));
 
     setMessagesVisibility(false);
 
-    /*
-     * Type Indicator (contact).
-     */
+    // Type Indicator (contact). Not shown when invitation request.
     contactIsComposing(convInfo.uid, "", false);
     connect(LRCInstance::getCurrentConversationModel(),
             &ConversationModel::composingStatusChanged,
@@ -101,9 +97,7 @@ MessagesAdapter::setupChatView(const QString& convUid)
                 contactIsComposing(convUid, contactUri, isComposing);
             });
 
-    /*
-     * Draft and message content set up.
-     */
+    // Draft and message content set up.
     Utils::oneShotConnect(qmlObj_,
                           SIGNAL(sendMessageContentSaved(const QString&)),
                           this,
@@ -171,6 +165,7 @@ MessagesAdapter::sendContactRequest()
 void
 MessagesAdapter::updateConversationForAddedContact()
 {
+    qDebug() << "updateConversationForAddedContact()";
     auto* convModel = LRCInstance::getCurrentConversationModel();
     const auto& convInfo = LRCInstance::getConversationFromConvUid(LRCInstance::getCurrentConvUid());
 
@@ -182,6 +177,7 @@ MessagesAdapter::updateConversationForAddedContact()
 void
 MessagesAdapter::slotSendMessageContentSaved(const QString& content)
 {
+    qDebug() << "slotSendMessageContentSaved";
     if (!LastConvUid_.isEmpty()) {
         LRCInstance::setContentDraft(LastConvUid_, LRCInstance::getCurrAccId(), content);
     }
@@ -212,16 +208,33 @@ MessagesAdapter::slotMessagesCleared()
     auto* convModel = LRCInstance::getCurrentConversationModel();
     const auto& convInfo = LRCInstance::getConversationFromConvUid(LRCInstance::getCurrentConvUid());
 
-    printHistory(*convModel, convInfo.interactions);
+    const auto contactUri = convInfo.participants.front();
+    bool isPending = false;
 
-    Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
+    if (!contactUri.isEmpty()) {
 
+        try {
+            auto& accountInfo = LRCInstance::getCurrentAccountInfo();
+            auto contact = accountInfo.contactModel->getContact(contactUri);
+            isPending =  contact.profileInfo.type == lrc::api::profile::Type::PENDING
+                    || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY;
+        } catch (std::out_of_range e) {
+            qDebug() << e.what();
+        }
+    }
+
+    // Only show messages when there is no invitation
+    if (!isPending) {
+        printHistory(*convModel, convInfo.interactions);
+        Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
+    }
     setConversationProfileData(convInfo);
 }
 
 void
 MessagesAdapter::slotMessagesLoaded()
 {
+    qDebug() << "slotMessagesLoaded";
     setMessagesVisibility(true);
 }
 
@@ -530,6 +543,7 @@ MessagesAdapter::requestSendMessageContent()
 void
 MessagesAdapter::setInvitation(bool show, const QString& contactUri, const QString& contactId)
 {
+    qDebug() << "setInvitation" << show;
     QString s
         = show
               ? QString::fromLatin1("showInvitation(\"%1\", \"%2\")").arg(contactUri).arg(contactId)
