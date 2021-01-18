@@ -91,7 +91,8 @@ Rectangle {
             --non-action-icon-color:' + JamiTheme.nonActionIconColor + ';\
             --placeholder-text-color:' + JamiTheme.placeholderTextColor + ';\
             --invite-hover-color:' + JamiTheme.inviteHoverColor + ';\
-            --hairline-color:' + JamiTheme.hairlineColor + ';")'
+            --hairline-color:' + JamiTheme.hairlineColor + ';\
+            --bg-text-input:' + JamiTheme.bgTextInput + ';")'
         messageWebView.runJavaScript(theme);
     }
 
