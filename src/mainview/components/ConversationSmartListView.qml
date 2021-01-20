@@ -41,14 +41,18 @@ ListView {
     }
 
     function repositionIndex(uid = "") {
+        // Only update index if it has changed
+        var currentI = root.currentIndex
         if (uid === "")
             uid = mainView.currentConvUID
-        root.currentIndex = -1
         updateListView()
         for (var i = 0; i < count; i++) {
             if (root.model.data(
                 root.model.index(i, 0), SmartListModel.UID) === uid) {
-                root.currentIndex = i
+                if (currentI !== i) {
+                    root.currentIndex = -1
+                    root.currentIndex = i
+                }
                 break
             }
         }
