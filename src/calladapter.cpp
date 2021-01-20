@@ -393,6 +393,7 @@ CallAdapter::connectCallModel(const QString& accountId)
             case lrc::api::call::Status::TIMEOUT:
             case lrc::api::call::Status::TERMINATING: {
                 LRCInstance::renderer()->removeDistantRenderer(callId);
+                emit callSetupMainViewRequired(accountId, convInfo.uid);
                 if (convInfo.uid.isEmpty()) {
                     break;
                 }
@@ -448,8 +449,6 @@ CallAdapter::connectCallModel(const QString& accountId)
             default:
                 break;
             }
-
-            emit LRCInstance::instance().updateSmartList();
         });
 
     remoteRecordingChangedConnection_ = QObject::connect(
