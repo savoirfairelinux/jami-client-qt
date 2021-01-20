@@ -40,12 +40,11 @@ ItemDelegate {
     Connections {
         target: conversationSmartListView
 
-
         // Hack, make sure that smartListItemDelegate does not show extra item
         // when searching new contacts.
         function onForceUpdatePotentialInvalidItem() {
-            smartListItemDelegate.visible = conversationSmartListView.model.rowCount(
-                        ) <= index ? false : true
+            smartListItemDelegate.visible =
+                    conversationSmartListView.model.rowCount() <= index ? false : true
         }
 
 
@@ -122,8 +121,9 @@ ItemDelegate {
                 id: textMetricsConversationSmartListUserName
                 font: conversationSmartListUserName.font
                 elide: Text.ElideRight
-                elideWidth: LastInteractionDate ? (smartListItemDelegate.width - lastInteractionPreferredWidth - conversationSmartListUserImage.width-32) :
-                                                  smartListItemDelegate.width - lastInteractionPreferredWidth
+                elideWidth: LastInteractionDate ? (smartListItemDelegate.width - lastInteractionPreferredWidth
+                                                   - conversationSmartListUserImage.width-32)
+                                                : smartListItemDelegate.width - lastInteractionPreferredWidth
                 text: DisplayName === undefined ? "" : DisplayName
             }
             text: textMetricsConversationSmartListUserName.elidedText
@@ -160,8 +160,9 @@ ItemDelegate {
             id: textMetricsConversationSmartListUserLastInteractionMessage
             font: conversationSmartListUserLastInteractionMessage.font
             elide: Text.ElideRight
-            elideWidth: LastInteractionDate ? (smartListItemDelegate.width - lastInteractionPreferredWidth - conversationSmartListUserImage.width-32) :
-                                              smartListItemDelegate.width - lastInteractionPreferredWidth
+            elideWidth: LastInteractionDate ? (smartListItemDelegate.width - lastInteractionPreferredWidth
+                                               - conversationSmartListUserImage.width-32)
+                                            : smartListItemDelegate.width - lastInteractionPreferredWidth
             text: InCall ? UtilsAdapter.getCallStatusStr(CallState) : (Draft ? Draft : LastInteraction)
         }
 
