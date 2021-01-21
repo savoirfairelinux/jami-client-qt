@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bb26b3d_8b37d502",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-01-21T19:24:09Z",
+      "side": 1,
+      "message": "mmh, imho checkImage \u003d false; checkImage |\u003d. Because we should checkImage if one of the mimeTypeList is an image, right?",
+      "revId": "10e1bc5289ed7b9cb8f5e1aae510617347c69d51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
