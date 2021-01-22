@@ -22,6 +22,30 @@
       "revId": "30be4862b6b155c1b9bb5d1918df89d469baa2d7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "067ace0d_58747a09",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-01-22T17:33:20Z",
+      "side": 1,
+      "message": "to be discussed",
+      "parentUuid": "2fbdea03_d86eb443",
+      "range": {
+        "startLine": 197,
+        "startChar": 37,
+        "endLine": 203,
+        "endChar": 40
+      },
+      "revId": "30be4862b6b155c1b9bb5d1918df89d469baa2d7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
