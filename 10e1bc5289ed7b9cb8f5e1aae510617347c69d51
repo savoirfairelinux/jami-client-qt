@@ -16,6 +16,24 @@
       "revId": "10e1bc5289ed7b9cb8f5e1aae510617347c69d51",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1266ca2b_853a17ee",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-01-22T17:33:53Z",
+      "side": 1,
+      "message": "It is not yet used by the UI. My idea is to show the image instead of it\u0027s name in a material button.",
+      "parentUuid": "1bb26b3d_8b37d502",
+      "revId": "10e1bc5289ed7b9cb8f5e1aae510617347c69d51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
