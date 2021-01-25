@@ -190,21 +190,9 @@ PreferenceItemListModel::preferencesCount()
 {
     if (!preferenceList_.isEmpty())
         return preferenceList_.size();
-    auto prefValues = LRCInstance::pluginModel().getPluginPreferencesValues(pluginId_);
     if (mediaHandlerName_.isEmpty()) {
         preferenceList_ = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
-        for (auto it = prefValues.begin(); it != prefValues.end(); it++) {
-            if(it.key().endsWith("Always")) {
-                QMap<QString, QString> prefMap;
-                QString name = it.key();
-                name.truncate(name.indexOf("Always"));
-                prefMap.insert("key", it.key());
-                prefMap.insert("title", "Automatically turn " + name + " on");
-                prefMap.insert("summary", name + " will take effect immediatly");
-
-                preferenceList_.append(prefMap);
-            }
-        }
+        return preferenceList_.size();
     } else {
         auto preferences = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
         for (auto& preference : preferences) {
@@ -212,7 +200,6 @@ PreferenceItemListModel::preferencesCount()
             if (scopeList.contains(mediaHandlerName_))
                 preferenceList_.push_back(preference);
         }
+        return preferenceList_.size();
     }
-
-    return preferenceList_.size();
 }
