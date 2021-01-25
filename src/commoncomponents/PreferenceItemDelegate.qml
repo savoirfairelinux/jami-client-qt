@@ -37,6 +37,7 @@ ItemDelegate {
         LIST,
         PATH,
         EDITTEXT,
+        SWITCH,
         DEFAULT
     }
 
@@ -75,7 +76,7 @@ ItemDelegate {
                 preferenceNewValue = editTextPreference.text
                 btnPreferenceClicked()
                 break
-            case PreferenceItemDelegate.DEFAULT:
+            case PreferenceItemDelegate.SWITCH:
                 preferenceNewValue = index ? "1" : "0"
                 btnPreferenceClicked()
                 break
@@ -114,10 +115,27 @@ ItemDelegate {
             ToolTip.text: preferenceSummary
         }
 
-        Switch {
-            id: btnPreference
+        PushButton {
+            id: btnPreferenceDefault
 
             visible: preferenceType === PreferenceItemDelegate.DEFAULT
+            normalColor: JamiTheme.primaryBackgroundColor
+
+            Layout.alignment: Qt.AlignRight | Qt.AlingVCenter
+            Layout.rightMargin: 8
+            Layout.preferredWidth: preferredSize
+            Layout.preferredHeight: preferredSize
+            imageColor: JamiTheme.textColor
+
+            source: "qrc:/images/icons/round-settings-24px.svg"
+
+            toolTipText: qsTr("Edit preference")
+        }
+
+        Switch {
+            id: btnPreferenceSwitch
+
+            visible: preferenceType === PreferenceItemDelegate.SWITCH
             Layout.alignment: Qt.AlignRight | Qt.AlingVCenter
             Layout.rightMargin: 16
             Layout.preferredHeight: 30
