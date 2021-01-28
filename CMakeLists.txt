@@ -69,7 +69,8 @@ set(COMMON_SOURCES
     ${SRC_DIR}/utilsadapter.cpp
     ${SRC_DIR}/dbuserrorhandler.cpp
     ${SRC_DIR}/xrectsel.c
-    ${SRC_DIR}/moderatorlistmodel.cpp)
+    ${SRC_DIR}/moderatorlistmodel.cpp
+    ${SRC_DIR}/xssutils.c)
 
 set(COMMON_HEADERS
     ${SRC_DIR}/avatarimageprovider.h
@@ -120,7 +121,8 @@ set(COMMON_HEADERS
     ${SRC_DIR}/utilsadapter.h
     ${SRC_DIR}/dbuserrorhandler.h
     ${SRC_DIR}/xrectsel.h
-    ${SRC_DIR}/moderatorlistmodel.h)
+    ${SRC_DIR}/moderatorlistmodel.h
+    ${SRC_DIR}/xssutils.h)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBNM libnm)
@@ -210,18 +212,21 @@ add_executable(${PROJECT_NAME}
 find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
+find_library(Xss Xss)
 
 target_link_libraries(jami-qt
     ${QML_LIBS}
     ${LRC_LIB_NAME}
     ${qrencode}
     ${X11}
+    ${Xss}
     ${LIBNM_LIBRARIES})
 
 if(ENABLE_TESTS)
     message("Add Jami tests")
     add_subdirectory(tests)
 endif()
+
 
 # Installation rules
 install(TARGETS jami-qt
