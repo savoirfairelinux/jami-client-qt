@@ -114,6 +114,7 @@ unix {
     LIBS += -L$${LIBDIR} -lringclient
     LIBS += -lqrencode
     LIBS += -lX11
+    LIBS += -lXss
 
     CONFIG += link_pkgconfig
     PKGCONFIG += libnm
@@ -183,7 +184,8 @@ HEADERS += \
         src/audiomanagerlistmodel.h \
         src/qmlregister.h \
         src/qtutils.h \
-        src/utilsadapter.h
+        src/utilsadapter.h \
+        src/xssutils.h
 
 SOURCES += \
         src/bannedlistmodel.cpp \
@@ -223,7 +225,8 @@ SOURCES += \
         src/videoformatresolutionmodel.cpp \
         src/audiomanagerlistmodel.cpp \
         src/qmlregister.cpp \
-        src/utilsadapter.cpp
+        src/utilsadapter.cpp \
+        src/xssutils.c
 
 RESOURCES += \
         resources.qrc \

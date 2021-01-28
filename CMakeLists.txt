@@ -80,7 +80,9 @@ set(COMMON_SOURCES
     ${SRC_DIR}/qmlregister.cpp
     ${SRC_DIR}/utilsadapter.cpp
     ${SRC_DIR}/dbuserrorhandler.cpp
-    ${SRC_DIR}/xrectsel.c)
+    ${SRC_DIR}/xrectsel.c
+    ${SRC_DIR}/moderatorlistmodel.cpp
+    ${SRC_DIR}/xssutils.c)
 
 set(COMMON_HEADERS
     ${SRC_DIR}/avatarimageprovider.h
@@ -130,7 +132,9 @@ set(COMMON_HEADERS
     ${SRC_DIR}/qtutils.h
     ${SRC_DIR}/utilsadapter.h
     ${SRC_DIR}/dbuserrorhandler.h
-    ${SRC_DIR}/xrectsel.h)
+    ${SRC_DIR}/xrectsel.h
+    ${SRC_DIR}/moderatorlistmodel.h
+    ${SRC_DIR}/xssutils.h)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBNM libnm)
