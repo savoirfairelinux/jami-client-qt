@@ -66,7 +66,7 @@ PreviewRenderer::paint(QPainter* painter)
 
                 // If the given size is empty, this function returns a null image.
                 QImage scaledPreview;
-                scaledPreview = previewImage->scaled(size().toSize(), Qt::KeepAspectRatio);
+                scaledPreview = previewImage->scaled(textureSize(), Qt::KeepAspectRatio);
                 painter->drawImage(QRect(0, 0, scaledPreview.width(), scaledPreview.height()),
                                    scaledPreview);
             } else {
@@ -102,7 +102,7 @@ VideoCallPreviewRenderer::paint(QPainter* painter)
                                      / static_cast<qreal>(previewImage->width());
                 setProperty("previewImageScalingFactor", scalingFactor);
                 QImage scaledPreview;
-                scaledPreview = previewImage->scaled(size().toSize(), Qt::KeepAspectRatio);
+                scaledPreview = previewImage->scaled(textureSize(), Qt::KeepAspectRatio);
                 painter->drawImage(QRect(0, 0, scaledPreview.width(), scaledPreview.height()),
                                    scaledPreview);
             }

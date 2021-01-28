@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls 2.14
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
 import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
@@ -85,10 +85,10 @@ Rectangle {
             selectByMouse: true
             placeholderText: qsTr("Password")
             font.pointSize: 9
-            font.kerning: true
+            //font.kerning: true
 
             echoMode: TextInput.Password
-            borderColorMode: MaterialLineEdit.NORMAL
+            borderColorMode: 0
 
             onTextChanged: errorText = ""
         }
@@ -121,9 +121,9 @@ Rectangle {
             selectByMouse: true
             placeholderText: qsTr("PIN")
             font.pointSize: 9
-            font.kerning: true
+            //font.kerning: true
 
-            borderColorMode: MaterialLineEdit.NORMAL
+            borderColorMode: 0
 
             onTextChanged: errorText = ""
         }

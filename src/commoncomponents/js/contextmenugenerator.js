@@ -88,7 +88,9 @@ function addMenuSeparator(separatorHeight, separatorColor) {
 function addMenuItem(itemName,
                      iconSource,
                      onClickedCallback,
-                     iconColor="") {
+                     iconColor) {
+    if (iconColor === undefined)
+        iconColor = ""
     if (!baseContextMenuObject.count){
         // Add default separator at the top.
         addMenuSeparator(8, "transparent")

@@ -16,8 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
 import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
@@ -28,7 +28,7 @@ Rectangle {
 
     // This is set to REGISTERED for contact presence
     // as status is not currently tracked for contact items.
-    property int status: Account.Status.REGISTERED
+    property int status: 5//Account.Status.REGISTERED
     property int size: 12
 
     width: size
@@ -39,9 +39,9 @@ Rectangle {
         width: 2
     }
     color: {
-        if (status === Account.Status.REGISTERED)
+        if (status === 5)//Account.Status.REGISTERED)
             return JamiTheme.presenceGreen
-        else if (status === Account.Status.TRYING)
+        else if (status === 4)//Account.Status.TRYING)
             return JamiTheme.unPresenceOrange
         return JamiTheme.notificationRed
     }

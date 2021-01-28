@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls 2.14
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
@@ -53,7 +53,7 @@ Rectangle {
     color: JamiTheme.backgroundColor
 
     onCreatedAccountIdChanged: {
-        setAvatarWidget.setAvatarImage(AvatarImage.Mode.FromAccount,
+        setAvatarWidget.setAvatarImage(0,
                                        createdAccountId)
     }
 
@@ -116,23 +116,23 @@ Rectangle {
             selectByMouse: true
             placeholderText: isRdv ? JamiStrings.enterRVName : qsTr("Enter your name")
             font.pointSize: 9
-            font.kerning: true
+            //font.kerning: true
 
-            borderColorMode: MaterialLineEdit.NORMAL
+            borderColorMode: 0
 
             fieldLayoutWidth: saveProfileBtn.width
 
             onTextEdited: {
                 if (!(setAvatarWidget.avatarSet)) {
                     if (text.length === 0) {
-                        setAvatarWidget.setAvatarImage(AvatarImage.Mode.FromAccount,
+                        setAvatarWidget.setAvatarImage(0,
                                                        createdAccountId)
                         return
                     }
 
                     if (text.length == 1 && text.charAt(0) !== lastInitialCharacter) {
                         lastInitialCharacter = text.charAt(0)
-                        setAvatarWidget.setAvatarImage(AvatarImage.Mode.FromTemporaryName,
+                        setAvatarWidget.setAvatarImage(5,
                                                        text)
                     }
                 }

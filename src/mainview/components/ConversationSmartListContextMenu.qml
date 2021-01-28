@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -31,7 +31,7 @@ Item {
 
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
-    property int contactType: Profile.Type.INVALID
+    property int contactType: 0
 
     function openMenu() {
         ContextMenuGenerator.initMenu()
@@ -64,7 +64,7 @@ Item {
                                                              responsibleConvUid)
                                              })
 
-            if (contactType === Profile.Type.RING || contactType === Profile.Type.SIP)  {
+            if (contactType === 1 || contactType === 2)  {
                 ContextMenuGenerator.addMenuItem(qsTr("Remove contact"),
                                                  "qrc:/images/icons/round-remove_circle-24px.svg",
                                                  function (){
@@ -83,13 +83,13 @@ Item {
                                              })
         }
 
-        if ((contactType === Profile.Type.RING || contactType === Profile.Type.PENDING
-             || contactType === Profile.Type.TEMPORARY)) {
-            if (contactType === Profile.Type.PENDING || !hasCall) {
+        if ((contactType === 1 || contactType === 3
+             || contactType === 4)) {
+            if (contactType === 3 || !hasCall) {
                 ContextMenuGenerator.addMenuSeparator()
             }
 
-            if (contactType === Profile.Type.PENDING) {
+            if (contactType === 3) {
                 ContextMenuGenerator.addMenuItem(JamiStrings.acceptContactRequest,
                                                  "qrc:/images/icons/person_add-24px.svg",
                                                  function (){

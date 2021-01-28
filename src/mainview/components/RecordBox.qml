@@ -16,12 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
-import QtGraphicalEffects 1.14
-import QtQuick.Shapes 1.14
+import QtGraphicalEffects 1.0
+//import QtQuick.Shapes 1.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -31,11 +31,11 @@ import "../../commoncomponents"
 
 Rectangle {
 
-    enum States {
-        INIT,
-        RECORDING,
-        REC_SUCCESS
-    }
+//    enum States {
+//        INIT,
+//        RECORDING,
+//        REC_SUCCESS
+//    }
 
     id: recBox
     width: 320
@@ -47,7 +47,7 @@ Rectangle {
     property string pathRecorder: ""
     property string timeText: "00:00"
     property int duration: 0
-    property int state: RecordBox.States.INIT
+    property int state: 0
     property bool isVideo: false
     property bool previewAvailable: false
     property int preferredWidth: 320
@@ -114,16 +114,16 @@ Rectangle {
 
     function updateState(new_state) {
         state = new_state
-        recordButton.visible = (state == RecordBox.States.INIT)
-        btnStop.visible = (state == RecordBox.States.RECORDING)
-        btnRestart.visible = (state == RecordBox.States.REC_SUCCESS)
-        btnSend.visible = (state == RecordBox.States.REC_SUCCESS)
+        recordButton.visible = (state === 0)
+        btnStop.visible = (state === 1)
+        btnRestart.visible = (state === 2)
+        btnSend.visible = (state == 2)
 
-        if (state == RecordBox.States.INIT) {
+        if (state === 0) {
             duration = 0
             time.text = "00:00"
             timer.stop()
-        } else if (state == RecordBox.States.REC_SUCCESS) {
+        } else if (state === 2) {
             timer.stop()
         }
     }
@@ -152,7 +152,7 @@ Rectangle {
 
         duration += 1
 
-        var m = Math.trunc(duration / 60)
+        var m = Math.floor(duration / 60)
         var s = (duration % 60)
 
         var min = (m < 10) ? "0" + String(m) : String(m)
@@ -161,56 +161,56 @@ Rectangle {
         time.text = min + ":" + sec;
     }
 
-    Shape {
-        id: backgroundShape
-        width: recBox.width
-        height: recBox.height
-        anchors.centerIn: parent
-        x: -offset
-        y: -offset
-        ShapePath {
-            fillColor: JamiTheme.backgroundColor
+//    Shape {
+//        id: backgroundShape
+//        width: recBox.width
+//        height: recBox.height
+//        anchors.centerIn: parent
+//        x: -offset
+//        y: -offset
+//        ShapePath {
+//            fillColor: JamiTheme.backgroundColor
 
-            strokeWidth: 1
-            strokeColor: JamiTheme.tabbarBorderColor
+//            strokeWidth: 1
+//            strokeColor: JamiTheme.tabbarBorderColor
 
-            startX: -offset+curveRadius; startY: -offset
-            joinStyle: ShapePath.RoundJoin
+//            startX: -offset+curveRadius; startY: -offset
+//            joinStyle: ShapePath.RoundJoin
 
-            PathLine { x: width+offset-curveRadius; y: -offset }
+//            PathLine { x: width+offset-curveRadius; y: -offset }
 
-            PathArc {
-                x: width+offset; y: -offset+curveRadius
-                radiusX: curveRadius; radiusY: curveRadius
-            }
+//            PathArc {
+//                x: width+offset; y: -offset+curveRadius
+//                radiusX: curveRadius; radiusY: curveRadius
+//            }
 
-            PathLine { x: width+offset; y: height+offset-curveRadius }
+//            PathLine { x: width+offset; y: height+offset-curveRadius }
 
-            PathArc {
-                x: width+offset-curveRadius; y: height+offset
-                radiusX: curveRadius; radiusY: curveRadius
-            }
+//            PathArc {
+//                x: width+offset-curveRadius; y: height+offset
+//                radiusX: curveRadius; radiusY: curveRadius
+//            }
 
-            PathLine { x: width/2+10; y: height+offset }
-            PathLine { x: width/2; y: height+offset+10 }
-            PathLine { x: width/2-10; y: height+offset }
+//            PathLine { x: width/2+10; y: height+offset }
+//            PathLine { x: width/2; y: height+offset+10 }
+//            PathLine { x: width/2-10; y: height+offset }
 
 
-            PathLine { x: -offset+curveRadius; y: height+offset }
+//            PathLine { x: -offset+curveRadius; y: height+offset }
 
-            PathArc {
-                x: -offset; y: height+offset-curveRadius
-                radiusX: curveRadius; radiusY: curveRadius
-            }
+//            PathArc {
+//                x: -offset; y: height+offset-curveRadius
+//                radiusX: curveRadius; radiusY: curveRadius
+//            }
 
-            PathLine { x: -offset; y: -offset+curveRadius }
+//            PathLine { x: -offset; y: -offset+curveRadius }
 
-            PathArc {
-                x: -offset+curveRadius; y: -offset
-                radiusX: curveRadius; radiusY: curveRadius
-            }
-        }
-    }
+//            PathArc {
+//                x: -offset+curveRadius; y: -offset
+//                radiusX: curveRadius; radiusY: curveRadius
+//            }
+//        }
+//    }
 
     Rectangle {
         id: rectBox
@@ -239,7 +239,7 @@ Rectangle {
 
         text: qsTr("Preview unavailable")
         font.pointSize: 10
-        font.kerning: true
+        //font.kerning: true
     }
 
     Timer {
@@ -319,7 +319,7 @@ Rectangle {
 
         onClicked: {
             stopRecording()
-            updateState(RecordBox.States.INIT)
+            updateState(0)
         }
     }
 
@@ -342,7 +342,7 @@ Rectangle {
             stopRecording()
             sendRecord()
             closeRecorder()
-            updateState(RecordBox.States.INIT)
+            updateState(0)
         }
     }
 }

@@ -17,10 +17,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -30,17 +30,12 @@ import "../../commoncomponents"
 TabBar {
     id: tabBar
 
-    enum TabIndex {
-        Conversations,
-        Requests
-    }
-
     Connections {
         target: ConversationsAdapter
 
         function onCurrentTypeFilterChanged() {
-            pageOne.down = ConversationsAdapter.currentTypeFilter !==  Profile.Type.PENDING
-            pageTwo.down = ConversationsAdapter.currentTypeFilter ===  Profile.Type.PENDING
+            pageOne.down = ConversationsAdapter.currentTypeFilter !==  3
+            pageTwo.down = ConversationsAdapter.currentTypeFilter ===  3
             setCurrentUidSmartListModelIndex()
             forceReselectConversationSmartListCurrentIndex()
         }
@@ -48,8 +43,8 @@ TabBar {
 
     function selectTab(tabIndex) {
         ConversationsAdapter.currentTypeFilter = tabIndex ===
-                SidePanelTabBar.Conversations ? AccountAdapter.getCurrentAccountType() :
-                                                Profile.Type.PENDING
+                0 ? AccountAdapter.getCurrentAccountType() :
+                                                3
     }
 
     property alias converstationTabWidth: pageOne.width
@@ -151,7 +146,7 @@ TabBar {
                 anchors.fill: parent
                 hoverEnabled: true
                 onPressed: {
-                    selectTab(SidePanelTabBar.Conversations)
+                    selectTab(0)
                 }
                 onReleased: {
                     buttonRectOne.color = Qt.binding(function(){return JamiTheme.backgroundColor})
@@ -169,7 +164,7 @@ TabBar {
                 context: Qt.ApplicationShortcut
                 enabled: buttonRectOne.visible
                 onActivated: {
-                    selectTab(SidePanelTabBar.Conversations)
+                    selectTab(0)
                 }
             }
         }
@@ -264,7 +259,7 @@ TabBar {
                 anchors.fill: parent
                 hoverEnabled: true
                 onPressed: {
-                    selectTab(SidePanelTabBar.Requests)
+                    selectTab(1)
                 }
                 onReleased: {
                     buttonRectTwo.color = Qt.binding(function(){return JamiTheme.backgroundColor})
@@ -282,7 +277,7 @@ TabBar {
                 context: Qt.ApplicationShortcut
                 enabled: buttonRectTwo.visible
                 onActivated: {
-                    selectTab(SidePanelTabBar.Requests)
+                    selectTab(1)
                 }
             }
         }

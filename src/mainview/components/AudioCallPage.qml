@@ -16,10 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Universal 2.2
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -66,25 +66,25 @@ Rectangle {
 
     anchors.fill: parent
 
-    SplitView {
+    ColumnLayout {
         id: mainColumnLayout
 
         anchors.fill: parent
 
-        orientation: Qt.Vertical
+//        orientation: Qt.Vertical
 
-        handle: Rectangle {
-            implicitWidth: audioCallPageRect.width
-            implicitHeight: JamiTheme.splitViewHandlePreferredWidth
-            color: SplitHandle.pressed ? JamiTheme.pressColor : (SplitHandle.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
-        }
+//        handle: Rectangle {
+//            implicitWidth: audioCallPageRect.width
+//            implicitHeight: JamiTheme.splitViewHandlePreferredWidth
+//            color: SplitHandle.pressed ? JamiTheme.pressColor : (SplitHandle.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
+//        }
 
         Rectangle {
             id: audioCallPageMainRect
 
-            SplitView.preferredHeight: (audioCallPageRect.height / 3) * 2
-            SplitView.minimumHeight: audioCallPageRect.height / 2 + 20
-            SplitView.fillWidth: true
+            Layout.preferredHeight: (audioCallPageRect.height / 3) * 2
+            Layout.minimumHeight: audioCallPageRect.height / 2 + 20
+            Layout.fillWidth: true
 
             MouseArea {
                 anchors.fill: parent
@@ -175,7 +175,7 @@ Rectangle {
                             Layout.preferredWidth: 100
                             Layout.preferredHeight: 100
 
-                            mode: AvatarImage.Mode.FromConvUid
+                            mode: 3
                             showPresenceIndicator: false
                         }
 
@@ -239,8 +239,8 @@ Rectangle {
         StackView {
             id: inAudioCallMessageWebViewStack
 
-            SplitView.preferredHeight: audioCallPageRect.height / 3
-            SplitView.fillWidth: true
+            Layout.preferredHeight: audioCallPageRect.height / 3
+            Layout.fillWidth: true
 
             visible: false
 

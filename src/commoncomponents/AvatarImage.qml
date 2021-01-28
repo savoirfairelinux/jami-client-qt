@@ -16,44 +16,34 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Window 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Window 2.3
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
 Item {
     id: root
 
-    enum Mode {
-        FromAccount = 0,
-        FromFile,
-        FromContactUri,
-        FromConvUid,
-        FromBase64,
-        FromTemporaryName,
-        Default
-    }
-
     property alias fillMode: rootImage.fillMode
     property alias sourceSize: rootImage.sourceSize
     property bool saveToConfig: false
-    property int mode: AvatarImage.Mode.FromAccount
+    property int mode: 0
     property string imageProviderIdPrefix: {
         switch(mode) {
-        case AvatarImage.Mode.FromAccount:
+        case 0:
             return "account_"
-        case AvatarImage.Mode.FromFile:
+        case 1:
             return "file_"
-        case AvatarImage.Mode.FromContactUri:
+        case 2:
             return "contact_"
-        case AvatarImage.Mode.FromConvUid:
+        case 3:
             return "conversation_"
-        case AvatarImage.Mode.FromTemporaryName:
+        case 5:
             return "fallback_"
-        case AvatarImage.Mode.FromBase64:
+        case 4:
             return "base64_"
-        case AvatarImage.Mode.Default:
+        case 6:
             return "default_"
         default:
             return ""
@@ -74,10 +64,10 @@ Item {
 
     function saveAvatarToConfig() {
         switch(mode) {
-        case AvatarImage.Mode.FromFile:
+        case 1:
             AccountAdapter.setCurrAccAvatar(true, imageId)
             break
-        case AvatarImage.Mode.FromBase64:
+        case 4:
             AccountAdapter.setCurrAccAvatar(false, imageId)
             break
         default:

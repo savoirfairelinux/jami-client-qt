@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -27,23 +27,20 @@ import net.jami.Constants 1.0
 BaseDialog {
     id: root
 
-    enum PasswordEnteringPurpose {
-        ChangePassword,
-        ExportAccount,
-        SetPassword
-    }
 
     property string path: ""
-    property int purpose: PasswordDialog.ChangePassword
+    property int purpose: 0
 
     signal doneSignal(bool success, int currentPurpose)
 
-    function openDialog(purposeIn, exportPathIn = "") {
+    function openDialog(purposeIn, exportPathIn) {
+        if (exportPathIn === undefined)
+            exportPathIn = ""
         purpose = purposeIn
         path = exportPathIn
         currentPasswordEdit.clear()
-        passwordEdit.borderColorMode = InfoLineEdit.NORMAL
-        confirmPasswordEdit.borderColorMode = InfoLineEdit.NORMAL
+        passwordEdit.borderColorMode = 0
+        confirmPasswordEdit.borderColorMode = 0
         passwordEdit.clear()
         confirmPasswordEdit.clear()
         validatePassword()
@@ -52,10 +49,10 @@ BaseDialog {
 
     function validatePassword() {
         switch (purpose) {
-        case PasswordDialog.ExportAccount:
+        case 1:
             btnConfirm.enabled = currentPasswordEdit.length > 0
             break
-        case PasswordDialog.SetPassword:
+        case 2:
             btnConfirm.enabled = passwordEdit.length > 0 &&
                     passwordEdit.text === confirmPasswordEdit.text
             break
@@ -92,11 +89,11 @@ BaseDialog {
 
     title: {
         switch(purpose){
-        case PasswordDialog.ExportAccount:
+        case 1:
             return JamiStrings.enterPassword
-        case PasswordDialog.ChangePassword:
+        case 0:
             return JamiStrings.changePassword
-        case PasswordDialog.SetPassword:
+        case 2:
             return JamiStrings.setPassword
         }
     }
@@ -108,7 +105,7 @@ BaseDialog {
         repeat: false
 
         onTriggered: {
-            if (purpose === PasswordDialog.ExportAccount) {
+            if (purpose === 1) {
                 exportAccountQML()
             } else {
                 savePasswordQML()
@@ -135,8 +132,8 @@ BaseDialog {
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 Layout.preferredHeight: visible ? 48 : 0
 
-                visible: purpose === PasswordDialog.ChangePassword ||
-                         purpose === PasswordDialog.ExportAccount
+                visible: purpose === 0 ||
+                         purpose === 1
                 echoMode: TextInput.Password
                 placeholderText: JamiStrings.enterCurrentPassword
 
@@ -152,8 +149,8 @@ BaseDialog {
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 Layout.preferredHeight: visible ? 48 : 0
 
-                visible: purpose === PasswordDialog.ChangePassword ||
-                         purpose === PasswordDialog.SetPassword
+                visible: purpose === 0 ||
+                         purpose === 2
                 echoMode: TextInput.Password
 
                 placeholderText: JamiStrings.enterNewPassword
@@ -170,8 +167,8 @@ BaseDialog {
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 Layout.preferredHeight: visible ? 48 : 0
 
-                visible: purpose === PasswordDialog.ChangePassword ||
-                         purpose === PasswordDialog.SetPassword
+                visible: purpose === 0 ||
+                         purpose === 2
                 echoMode: TextInput.Password
 
                 placeholderText: JamiStrings.confirmNewPassword
@@ -197,9 +194,9 @@ BaseDialog {
                     hoveredColor: JamiTheme.buttonTintedBlackHovered
                     pressedColor: JamiTheme.buttonTintedBlackPressed
                     outlined: true
-                    enabled: purpose === PasswordDialog.SetPassword
+                    enabled: purpose === 2
 
-                    text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount :
+                    text: (purpose === 1) ? JamiStrings.exportAccount :
                                                                       JamiStrings.change
 
                     onClicked: {

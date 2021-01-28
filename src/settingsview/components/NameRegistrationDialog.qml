@@ -17,9 +17,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
@@ -126,7 +126,7 @@ BaseDialog {
                         Layout.alignment: Qt.AlignCenter
                         text: JamiStrings.enterAccountPassword
                         font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
+                        //font.kerning: true
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
@@ -205,7 +205,7 @@ BaseDialog {
                         Layout.alignment: Qt.AlignCenter
                         text: JamiStrings.registeringName
                         font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
+                        //font.kerning: true
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
@@ -248,7 +248,7 @@ BaseDialog {
                         Layout.alignment: Qt.AlignCenter
                         text: qsTr("Something went wrong")
                         font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
+                        //font.kerning: true
                         color: "red"
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
