@@ -432,6 +432,7 @@ CallAdapter::connectCallModel(const QString& accountId)
                         }
                     }
                 }
+                screenSaver.uninhibit();
                 break;
             }
             case lrc::api::call::Status::CONNECTED:
@@ -441,6 +442,7 @@ CallAdapter::connectCallModel(const QString& accountId)
                     accInfo.conversationModel->selectConversation(convInfo.uid);
                 }
                 updateCall(convInfo.uid, accountId);
+                screenSaver.inhibit();
                 break;
             }
             case lrc::api::call::Status::PAUSED:

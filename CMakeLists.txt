@@ -223,6 +223,7 @@ if(ENABLE_TESTS)
     add_subdirectory(tests)
 endif()
 
+
 # Installation rules
 install(TARGETS jami-qt
    RUNTIME DESTINATION bin)
