@@ -69,7 +69,8 @@ set(COMMON_SOURCES
     ${SRC_DIR}/utilsadapter.cpp
     ${SRC_DIR}/dbuserrorhandler.cpp
     ${SRC_DIR}/xrectsel.c
-    ${SRC_DIR}/moderatorlistmodel.cpp)
+    ${SRC_DIR}/moderatorlistmodel.cpp
+    ${SRC_DIR}/xssutils.c)
 
 set(COMMON_HEADERS
     ${SRC_DIR}/avatarimageprovider.h
@@ -120,7 +121,8 @@ set(COMMON_HEADERS
     ${SRC_DIR}/utilsadapter.h
     ${SRC_DIR}/dbuserrorhandler.h
     ${SRC_DIR}/xrectsel.h
-    ${SRC_DIR}/moderatorlistmodel.h)
+    ${SRC_DIR}/moderatorlistmodel.h
+    ${SRC_DIR}/xssutils.h)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBNM libnm)
@@ -210,93 +212,17 @@ add_executable(${PROJECT_NAME}
 find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
+find_library(Xss Xss)
 
 target_link_libraries(jami-qt
     ${QML_LIBS}
     ${LRC_LIB_NAME}
     ${qrencode}
     ${X11}
+    ${Xss}
     ${LIBNM_LIBRARIES})
 
 if(ENABLE_TESTS)
     message("Add Jami tests")
     add_subdirectory(tests)
 endif()
-
-# Installation rules
-install(TARGETS jami-qt
-   RUNTIME DESTINATION bin)
-
-# install .desktop in XDG desktop dir so that it is recognized by the system
-install(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications)
-
-# install .desktop in the jami-qt data dir, so that it can be copied to the
-# autostart dir by the client
-install(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
-   DESTINATION
-      ${CMAKE_INSTALL_PREFIX}/share/jami-qt
-   PERMISSIONS
-      WORLD_READ
-      OWNER_WRITE
-      OWNER_READ
-      GROUP_READ
-)
-
-# logo
-install(FILES images/jami.svg
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps)
-
-install(FILES jami-qt.appdata.xml
-    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo)
-
-# install jami launcher that selects between clients
-install(
-    FILES
-        "${PROJECT_SOURCE_DIR}/src/jami"
-    DESTINATION
-        ${CMAKE_INSTALL_PREFIX}/bin
-    PERMISSIONS
-        WORLD_READ
-        OWNER_WRITE
-        OWNER_READ
-        GROUP_READ
-        OWNER_EXECUTE
-        GROUP_EXECUTE
-        WORLD_EXECUTE)
-
-# add a target to generate API documentation with Doxygen
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile @ONLY)
-    add_custom_target(doc
-        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
-        COMMENT "Generating API documentation with Doxygen" VERBATIM)
-
-    # create doc/README.md symlink to README since Doxygen doesn't understand file with no extension
-    add_custom_command(
-        TARGET doc
-        PRE_BUILD
-        COMMAND ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_SOURCE_DIR}/doc/README.md)
-endif(DOXYGEN_FOUND)
-
-
-# translations
-if(Qt5LinguistTools_FOUND)
-    message("Releasing and copying translation files")
-    file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
-    qt5_add_translation(QM_FILES ${TS_FILES})
-    add_custom_target(translations ALL DEPENDS ${QM_FILES})
-    install(FILES ${QM_FILES}
-        DESTINATION "${CMAKE_INSTALL_PREFIX}/share/libringclient/translations")
-endif()
-
-# uninstall
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY)
-
-add_custom_target(uninstall
-    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
