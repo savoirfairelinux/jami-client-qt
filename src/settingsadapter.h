@@ -41,8 +41,8 @@ public:
     Q_INVOKABLE QString getDir_Document();
     Q_INVOKABLE QString getDir_Download();
 
-    Q_INVOKABLE QVariant getAppValue(const Settings::Key key);
-    Q_INVOKABLE void setAppValue(const Settings::Key key, const QVariant& value);
+    Q_INVOKABLE QVariant getAppValue(int);
+    Q_INVOKABLE void setAppValue(int, const QVariant& value);
 
     Q_INVOKABLE void setRunOnStartUp(bool state);
     Q_INVOKABLE void setDownloadPath(QString dir);

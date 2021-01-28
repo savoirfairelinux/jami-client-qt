@@ -21,8 +21,7 @@
 /*
  * Global incomingCallPage storage map<accountId, map<convUid, callwindowpointer>>.
  */
-let incomingCallPageWindowMap = new Map()
-
+var incomingCallPageWindowMap
 
 /*
  * Global incomingCallPage component, object variable for creation.
@@ -75,7 +74,7 @@ function finishCreation(accountId, convUid) {
         incomingCallPageWindowMap.get(accountId).set(
                     convUid, incomingCallPageWindowObject)
     } else {
-        let incomingCallPageWindowTempMap = new Map()
+        var incomingCallPageWindowTempMap = new Map()
         incomingCallPageWindowTempMap.set(convUid, incomingCallPageWindowObject)
         incomingCallPageWindowMap.set(accountId, incomingCallPageWindowTempMap)
     }
@@ -96,7 +95,7 @@ function showIncomingCallPageWindow(accountId, convUid) {
 
 function closeIncomingCallPageWindow(accountId, convUid) {
     if (incomingCallPageWindowMap.has(accountId)) {
-        let incomingCallPageWindowTempMap = incomingCallPageWindowMap.get(
+        var incomingCallPageWindowTempMap = incomingCallPageWindowMap.get(
                 accountId)
         if (incomingCallPageWindowTempMap.has(convUid)) {
             var incomingCallPageWindow = incomingCallPageWindowTempMap.get(

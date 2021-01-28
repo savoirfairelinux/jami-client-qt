@@ -16,11 +16,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -99,7 +99,7 @@ Rectangle {
                 changePageQML(WizardView.WizardViewPageIndex.BACKUPKEYSPAGE)
             } else {
                 changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                loaderSourceChangeRequested(1)
             }
         }
 
@@ -126,7 +126,7 @@ Rectangle {
         if (pageIndex === WizardView.WizardViewPageIndex.WELCOMEPAGE) {
             fileToImport = ""
             isRdv = false
-            createAccountPage.nameRegistrationUIState = UsernameLineEdit.NameRegistrationState.BLANK
+            createAccountPage.nameRegistrationUIState = 0
         } else if (pageIndex === WizardView.WizardViewPageIndex.CREATEACCOUNTPAGE) {
             createAccountPage.initializeOnShowUp(false)
         } else if (pageIndex === WizardView.WizardViewPageIndex.CREATESIPACCOUNTPAGE) {
@@ -152,7 +152,7 @@ Rectangle {
         id: passwordDialog
 
         visible: false
-        purpose: PasswordDialog.ExportAccount
+        purpose: 1
 
         onDoneSignal: {
             if (currentPurpose === passwordDialog.ExportAccount) {
@@ -163,7 +163,7 @@ Rectangle {
                                                          title, info)
                 if (success) {
                     console.log("Account Export Succeed")
-                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                    loaderSourceChangeRequested(1)
                 }
             }
         }
@@ -302,7 +302,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
 
                 onNeverShowAgainBoxClicked: {
-                    SettingsAdapter.setValue(Settings.NeverShowMeAgain, isChecked)
+                    SettingsAdapter.setValue(7, isChecked)
                 }
 
                 onExport_Btn_FileDialogAccepted: {
@@ -322,12 +322,12 @@ Rectangle {
                     }
 
                     changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                    loaderSourceChangeRequested(1)
                 }
 
                 onLeavePage: {
                     changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                    loaderSourceChangeRequested(1)
                 }
             }
 
@@ -384,7 +384,7 @@ Rectangle {
                         changePageQML(WizardView.WizardViewPageIndex.BACKUPKEYSPAGE)
                     else {
                         changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                        loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                        loaderSourceChangeRequested(1)
                     }
 
                     profilePage.initializeOnShowUp()

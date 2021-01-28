@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls 2.14
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
@@ -99,7 +99,7 @@ Rectangle {
             selectByMouse: true
             placeholderText: JamiStrings.server
             font.pointSize: 9
-            font.kerning: true
+            //font.kerning: true
         }
 
         MaterialLineEdit {
@@ -112,7 +112,7 @@ Rectangle {
             selectByMouse: true
             placeholderText: JamiStrings.proxy
             font.pointSize: 9
-            font.kerning: true
+            //font.kerning: true
         }
 
         MaterialLineEdit {
@@ -125,7 +125,7 @@ Rectangle {
             selectByMouse: true
             placeholderText: JamiStrings.username
             font.pointSize: 9
-            font.kerning: true
+            //font.kerning: true
         }
 
         MaterialLineEdit {
@@ -139,7 +139,7 @@ Rectangle {
             echoMode: TextInput.Password
             placeholderText: JamiStrings.password
             font.pointSize: 9
-            font.kerning: true
+            //font.kerning: true
         }
 
         MaterialButton {

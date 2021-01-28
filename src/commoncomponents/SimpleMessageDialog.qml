@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
@@ -26,11 +26,6 @@ BaseDialog {
     id: root
 
     // TODO: make MaterialButton ButtonStyle
-    enum ButtonStyle {
-        TintedBlue,
-        TintedBlack,
-        TintedRed
-    }
 
     property var buttonTitles: []
     property var buttonCallBacks: []
@@ -38,9 +33,9 @@ BaseDialog {
     property alias infoText: infoText.text
     property alias innerContentData: innerContent.data
 
-    function openWithParameters(title, info = "") {
+    function openWithParameters(title, info) {
         root.title = title
-        if (info !== "")
+        if (info !== undefined && info !== "")
             root.infoText = info
         open()
     }
@@ -95,31 +90,31 @@ BaseDialog {
 
                         color: {
                             switch(buttonStyles[modelData]) {
-                            case SimpleMessageDialog.ButtonStyle.TintedBlue:
+                            case 0:
                                 return JamiTheme.buttonTintedBlue
-                            case SimpleMessageDialog.ButtonStyle.TintedBlack:
+                            case 1:
                                 return JamiTheme.buttonTintedBlack
-                            case SimpleMessageDialog.ButtonStyle.TintedRed:
+                            case 2:
                                 return JamiTheme.buttonTintedRed
                             }
                         }
                         hoveredColor: {
                             switch(buttonStyles[modelData]) {
-                            case SimpleMessageDialog.ButtonStyle.TintedBlue:
+                            case 0:
                                 return JamiTheme.buttonTintedBlueHovered
-                            case SimpleMessageDialog.ButtonStyle.TintedBlack:
+                            case 1:
                                 return JamiTheme.buttonTintedBlackHovered
-                            case SimpleMessageDialog.ButtonStyle.TintedRed:
+                            case 2:
                                 return JamiTheme.buttonTintedRedHovered
                             }
                         }
                         pressedColor: {
                             switch(buttonStyles[modelData]) {
-                            case SimpleMessageDialog.ButtonStyle.TintedBlue:
+                            case 0:
                                 return JamiTheme.buttonTintedBluePressed
-                            case SimpleMessageDialog.ButtonStyle.TintedBlack:
+                            case 1:
                                 return JamiTheme.buttonTintedBlackPressed
-                            case SimpleMessageDialog.ButtonStyle.TintedRed:
+                            case 2:
                                 return JamiTheme.buttonTintedRedPressed
                             }
                         }

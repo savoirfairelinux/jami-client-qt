@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 import QtQuick.Controls.Styles 1.4
-import Qt.labs.platform 1.1
+import Qt.labs.platform 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Enums 1.0
@@ -59,7 +59,7 @@ ColumnLayout {
         text: qsTr("System")
         color: JamiTheme.textColor
         font.pointSize: JamiTheme.headerFontSize
-        font.kerning: true
+        //font.kerning: true
 
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
@@ -70,7 +70,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        checked: SettingsAdapter.getAppValue(Settings.EnableDarkTheme)
+        checked: SettingsAdapter.getAppValue(5)
 
         labelText: qsTr("Enable dark theme")
         fontPointSize: JamiTheme.settingsFontSize
@@ -79,7 +79,7 @@ ColumnLayout {
 
         onSwitchToggled: {
             JamiTheme.setTheme(checked)
-            SettingsAdapter.setAppValue(Settings.Key.EnableDarkTheme, checked)
+            SettingsAdapter.setAppValue(5, checked)
         }
     }
 
@@ -88,26 +88,26 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        checked: SettingsAdapter.getAppValue(Settings.EnableNotifications)
+        checked: SettingsAdapter.getAppValue(2)
 
         labelText: qsTr("Enable desktop notifications")
         fontPointSize: JamiTheme.settingsFontSize
 
         tooltipText: JamiStrings.enableNotifications
 
-        onSwitchToggled: SettingsAdapter.setAppValue(Settings.Key.EnableNotifications, checked)
+        onSwitchToggled: SettingsAdapter.setAppValue(2, checked)
     }
 
     ToggleSwitch {
         id: closeOrMinCheckBox
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
-        checked: SettingsAdapter.getAppValue(Settings.MinimizeOnClose)
+        checked: SettingsAdapter.getAppValue(0)
 
         labelText: JamiStrings.keepMinimized
         fontPointSize: JamiTheme.settingsFontSize
 
-        onSwitchToggled: SettingsAdapter.setAppValue(Settings.Key.MinimizeOnClose, checked)
+        onSwitchToggled: SettingsAdapter.setAppValue(0, checked)
     }
 
     ToggleSwitch {
@@ -137,7 +137,7 @@ ColumnLayout {
             color: JamiTheme.textColor
             text: JamiStrings.downloadFolder
             font.pointSize: JamiTheme.settingsFontSize
-            font.kerning: true
+            //font.kerning: true
 
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter

@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtQuick.Layouts 1.14
-import Qt.labs.platform 1.1
-import QtQuick.Dialogs 1.3
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtQuick.Layouts 1.3
+import Qt.labs.platform 1.0
+import QtQuick.Dialogs 1.2
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
@@ -31,11 +31,11 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    enum Type {
-        LIST,
-        PATH,
-        DEFAULT
-    }
+//    enum Type {
+//        LIST,
+//        PATH,
+//        DEFAULT
+//    }
 
     property string pluginName: ""
     property string pluginIcon: ""
@@ -93,8 +93,8 @@ Rectangle {
         id: msgDialog
 
         buttonTitles: [qsTr("Ok"), qsTr("Cancel")]
-        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                       SimpleMessageDialog.ButtonStyle.TintedBlack]
+        buttonStyles: [0,
+                       1]
 
         onAccepted: {
             uninstallPlugin()
@@ -126,7 +126,7 @@ Rectangle {
 
             text: qsTr(pluginName + "\npreferences")
             font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
+            //font.kerning: true
             color: JamiTheme.textColor
 
             horizontalAlignment: Text.AlignHCenter

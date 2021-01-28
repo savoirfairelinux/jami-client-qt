@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
@@ -32,13 +32,13 @@ Rectangle {
     signal itemSelected(int index)
 
     Component.onCompleted: {
-        listModel.append({ 'type': SettingsView.Account, 'name': qsTr("Account"),
+        listModel.append({ 'type': 0, 'name': qsTr("Account"),
                          'iconSource': "qrc:/images/icons/baseline-people-24px.svg"})
-        listModel.append({ 'type': SettingsView.General, 'name': qsTr("General"),
+        listModel.append({ 'type': 1, 'name': qsTr("General"),
                          'iconSource': "qrc:/images/icons/round-settings-24px.svg"})
-        listModel.append({ 'type': SettingsView.Media, 'name': qsTr("Audio/Video"),
+        listModel.append({ 'type': 2, 'name': qsTr("Audio/Video"),
                          'iconSource': "qrc:/images/icons/baseline-desktop_windows-24px.svg"})
-        listModel.append({ 'type': SettingsView.Plugin, 'name': qsTr("Plugin"),
+        listModel.append({ 'type': 3, 'name': qsTr("Plugin"),
                          'iconSource': "qrc:/images/icons/extension_24dp.svg"})
     }
 
@@ -66,7 +66,7 @@ Rectangle {
             PushButton {
                 property int menuType: type
 
-                Component.onCompleted: checked = type === SettingsView.Account
+                Component.onCompleted: checked = type === 0
 
                 width: root.width
                 height: 64

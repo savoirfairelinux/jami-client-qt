@@ -43,13 +43,13 @@ public:
      * Cannot use getCurrentAccId to replace account index,
      * since we need to keep each image id unique.
      */
-    QPair<QrType, QString> getIndexFromID(const QString& id)
+    QPair<int, QString> getIndexFromID(const QString& id)
     {
-        auto list = id.split('_', Qt::SkipEmptyParts);
+        auto list = id.split('_');
         if (list.size() < 2)
-            return QPair(QrType::Account, "");
+            return QPair(0, list[1]);
         if (list.contains("account") && list.size() > 1) {
-            return QPair(QrType::Account, list[1]);
+            return QPair(0, list[1]);
         } else if (list.contains("contact") && list.size() > 1) {
             /*
              * For contact_xxx, xxx is "" initially
@@ -57,9 +57,9 @@ public:
             const auto& convInfo = LRCInstance::getConversationFromConvUid(list[1]);
             auto contact = LRCInstance::getCurrentAccountInfo().contactModel->getContact(
                 convInfo.participants.at(0));
-            return QPair(QrType::Contact, contact.profileInfo.uri);
+            return QPair(1, list[1]);
         }
-        return QPair(QrType::Account, "");
+        return QPair(0, list[1]);
     }
 
     QImage requestImage(const QString& id, QSize* size, const QSize& requestedSize) override
@@ -69,7 +69,7 @@ public:
         QString uri;
         auto indexPair = getIndexFromID(id);
 
-        if (indexPair.first == QrType::Contact) {
+        if (indexPair.first == 1) {
             uri = indexPair.second;
         } else {
             if (indexPair.second.isEmpty())

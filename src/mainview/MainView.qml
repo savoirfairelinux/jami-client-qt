@@ -16,12 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Window 2.3
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Universal 2.2
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -121,7 +121,9 @@ Rectangle {
     }
 
     // Only called onWidthChanged
-    function recursionStackViewItemMove(stackOne, stackTwo, depth=1) {
+    function recursionStackViewItemMove(stackOne, stackTwo, depth) {
+        if (depth === undefined)
+            depth = 1
         // Move all items (expect the bottom item) to stacktwo by the same order in stackone.
         if (stackOne.depth === depth) {
             return
@@ -134,7 +136,9 @@ Rectangle {
 
     // Back to WelcomeView required, but can also check, i. e., on account switch or
     // settings exit, if there is need to switch to a current call
-    function backToMainView(checkCurrentCall = false) {
+    function backToMainView(checkCurrentCall) {
+        if (checkCurrentCall === undefined)
+            checkCurrentCall = false
         if (inSettingsView)
             return
         if (checkCurrentCall && currentAccountIsCalling()) {
@@ -263,7 +267,7 @@ Rectangle {
 
         currentIndex: 0
 
-        SplitView {
+        RowLayout {
             id: splitView
 
             Layout.fillWidth: true
@@ -272,26 +276,26 @@ Rectangle {
             width: mainView.width
             height: mainView.height
 
-            handle: Rectangle {
-                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: splitView.height
-                color: JamiTheme.backgroundColor
-                Rectangle {
-                    implicitWidth: 1
-                    implicitHeight: splitView.height
-                    color: SplitHandle.pressed ? JamiTheme.pressColor :
-                                                 (SplitHandle.hovered ? JamiTheme.hoverColor :
-                                                                        JamiTheme.tabbarBorderColor)
-                }
-            }
+//            handle: Rectangle {
+//                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
+//                implicitHeight: splitView.height
+//                color: JamiTheme.backgroundColor
+//                Rectangle {
+//                    implicitWidth: 1
+//                    implicitHeight: splitView.height
+//                    color: SplitHandle.pressed ? JamiTheme.pressColor :
+//                                                 (SplitHandle.hovered ? JamiTheme.hoverColor :
+//                                                                        JamiTheme.tabbarBorderColor)
+//                }
+//            }
 
             Rectangle {
                 id: mainViewSidePanelRect
 
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.maximumWidth: (sidePanelOnly ? splitView.width :
+                Layout.minimumWidth: sidePanelViewStackPreferredWidth
+                Layout.maximumWidth: (sidePanelOnly ? splitView.width :
                                                       splitView.width - sidePanelViewStackPreferredWidth)
-                SplitView.fillHeight: true
+                Layout.fillHeight: true
                 color: JamiTheme.backgroundColor
 
                 // AccountComboBox is always visible
@@ -349,32 +353,32 @@ Rectangle {
 
                 initialItem: welcomePage
 
-                SplitView.maximumWidth: sidePanelOnly ?
+                Layout.maximumWidth: sidePanelOnly ?
                                             splitView.width :
                                             splitView.width - sidePanelViewStackPreferredWidth
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.fillHeight: true
+                Layout.minimumWidth: sidePanelViewStackPreferredWidth
+                Layout.fillHeight: true
 
                 clip: true
             }
         }
 
-        WizardView {
-            id: wizardView
+//        WizardView {
+//            id: wizardView
 
-            Layout.fillWidth: true
-            Layout.fillHeight: true
+//            Layout.fillWidth: true
+//            Layout.fillHeight: true
 
-            onLoaderSourceChangeRequested: {
-                mainViewStackLayout.currentIndex = 0
-                backToMainView()
-            }
+//            onLoaderSourceChangeRequested: {
+//                mainViewStackLayout.currentIndex = 0
+//                backToMainView()
+//            }
 
-            onWizardViewIsClosed: {
-                mainViewStackLayout.currentIndex = 0
-                backToMainView()
-            }
-        }
+//            onWizardViewIsClosed: {
+//                mainViewStackLayout.currentIndex = 0
+//                backToMainView()
+//            }
+//        }
     }
 
     AccountListModel {
@@ -434,7 +438,7 @@ Rectangle {
         }
 
         onSettingsViewNeedToShowNewWizardWindow: loaderSourceChangeRequested(
-                                                     MainApplicationWindow.LoadedSource.WizardView)
+                                                     0)
 
         onSettingsBackArrowClicked: sidePanelViewStack.pop(StackView.Immediate)
     }

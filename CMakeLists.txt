@@ -80,7 +80,9 @@ set(COMMON_SOURCES
     ${SRC_DIR}/qmlregister.cpp
     ${SRC_DIR}/utilsadapter.cpp
     ${SRC_DIR}/dbuserrorhandler.cpp
-    ${SRC_DIR}/xrectsel.c)
+    ${SRC_DIR}/xrectsel.c
+    ${SRC_DIR}/moderatorlistmodel.cpp
+    )
 
 set(COMMON_HEADERS
     ${SRC_DIR}/avatarimageprovider.h
@@ -130,7 +132,9 @@ set(COMMON_HEADERS
     ${SRC_DIR}/qtutils.h
     ${SRC_DIR}/utilsadapter.h
     ${SRC_DIR}/dbuserrorhandler.h
-    ${SRC_DIR}/xrectsel.h)
+    ${SRC_DIR}/xrectsel.h
+    ${SRC_DIR}/moderatorlistmodel.h
+    )
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBNM libnm)
@@ -145,7 +149,7 @@ if(QT5_VER AND QT5_PATH)
    list(GET VERSION_LIST 1 QT5_VER_MINOR)
    list(GET VERSION_LIST 2 QT5_VER_PATCH)
 
-   if ((${QT5_VER_MAJOR} GREATER_EQUAL 5) AND (${QT5_VER_MINOR} GREATER_EQUAL 14))
+   if ((${QT5_VER_MAJOR} GREATER_EQUAL 5) AND (${QT5_VER_MINOR} GREATER_EQUAL 9))
       message(STATUS "Using custom Qt version")
       find_package(Qt5 ${QT5_VER} REQUIRED
                   COMPONENTS

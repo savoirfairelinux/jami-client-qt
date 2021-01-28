@@ -16,22 +16,22 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
 import net.jami.Models 1.0
 
 MaterialLineEdit {
     id: root
 
-    enum NameRegistrationState {
-        BLANK,
-        INVALID,
-        TAKEN,
-        FREE,
-        SEARCHING
-    }
+//    enum NameRegistrationState {
+//        BLANK,
+//        INVALID,
+//        TAKEN,
+//        FREE,
+//        SEARCHING
+//    }
 
-    property int nameRegistrationState: UsernameLineEdit.NameRegistrationState.BLANK
+    property int nameRegistrationState: 0
 
     Connections {
         id: registeredNameFoundConnection
@@ -43,15 +43,15 @@ MaterialLineEdit {
             if (text === name) {
                 switch(status) {
                 case NameDirectory.LookupStatus.NOT_FOUND:
-                    nameRegistrationState = UsernameLineEdit.NameRegistrationState.FREE
+                    nameRegistrationState = 3
                     break
                 case NameDirectory.LookupStatus.ERROR:
                 case NameDirectory.LookupStatus.INVALID_NAME:
                 case NameDirectory.LookupStatus.INVALID:
-                    nameRegistrationState = UsernameLineEdit.NameRegistrationState.INVALID
+                    nameRegistrationState = 1
                     break
                 case NameDirectory.LookupStatus.SUCCESS:
-                    nameRegistrationState = UsernameLineEdit.NameRegistrationState.TAKEN
+                    nameRegistrationState = 2
                     break
                 }
             }
@@ -66,29 +66,29 @@ MaterialLineEdit {
 
         onTriggered: {
             if (text.length !== 0 && readOnly === false) {
-                nameRegistrationState = UsernameLineEdit.NameRegistrationState.SEARCHING
+                nameRegistrationState = 4
                 NameDirectory.lookupName("", text)
             } else {
-                nameRegistrationState = UsernameLineEdit.NameRegistrationState.BLANK
+                nameRegistrationState = 0
             }
         }
     }
 
     selectByMouse: true
     font.pointSize: 9
-    font.kerning: true
+    //font.kerning: true
 
     borderColorMode: {
         switch (nameRegistrationState){
-        case UsernameLineEdit.NameRegistrationState.BLANK:
-            return MaterialLineEdit.NORMAL
-        case UsernameLineEdit.NameRegistrationState.INVALID:
-        case UsernameLineEdit.NameRegistrationState.TAKEN:
-            return MaterialLineEdit.ERROR
-        case UsernameLineEdit.NameRegistrationState.FREE:
-            return MaterialLineEdit.RIGHT
-        case UsernameLineEdit.NameRegistrationState.SEARCHING:
-            return MaterialLineEdit.SEARCHING
+        case 0:
+            return 0
+        case 1:
+        case 2:
+            return 3
+        case 3:
+            return 2
+        case 4:
+            return 1
         }
     }
 

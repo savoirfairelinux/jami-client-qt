@@ -16,11 +16,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtWebEngine 1.10
-import QtWebChannel 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtWebEngine 1.5
+import QtWebChannel 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -105,7 +105,7 @@ Rectangle {
     JamiFileDialog {
         id: jamiFileDialog
 
-        mode: JamiFileDialog.Mode.OpenFiles
+        mode: 1
 
         onAccepted: setFilePathsToSend(jamiFileDialog.files)
     }
@@ -249,7 +249,7 @@ Rectangle {
         settings.javascriptEnabled: true
         settings.javascriptCanOpenWindows: true
         settings.javascriptCanAccessClipboard: true
-        settings.javascriptCanPaste: true
+        //settings.javascriptCanPaste: true
         settings.fullScreenSupportEnabled: true
         settings.allowRunningInsecureContent: true
         settings.localContentCanAccessRemoteUrls: true

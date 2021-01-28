@@ -161,17 +161,17 @@ MainApplication::init()
 #ifdef Q_OS_UNIX
     GlobalInstances::setDBusErrorHandler(std::make_unique<Interfaces::DBusErrorHandler>());
     auto dBusErrorHandlerQObject = dynamic_cast<QObject*>(&GlobalInstances::dBusErrorHandler());
-    qmlRegisterSingletonType<Interfaces::DBusErrorHandler>("net.jami.Models",
-                                                           1,
-                                                           0,
-                                                           "DBusErrorHandler",
-                                                           [dBusErrorHandlerQObject](QQmlEngine* e,
-                                                                                     QJSEngine* se)
-                                                               -> QObject* {
-                                                               Q_UNUSED(e)
-                                                               Q_UNUSED(se)
-                                                               return dBusErrorHandlerQObject;
-                                                           });
+//    qmlRegisterSingletonType<Interfaces::DBusErrorHandler>("net.jami.Models",
+//                                                           1,
+//                                                           0,
+//                                                           "DBusErrorHandler",
+//                                                           [dBusErrorHandlerQObject](QQmlEngine* e,
+//                                                                                     QJSEngine* se)
+//                                                               -> QObject* {
+//                                                               Q_UNUSED(e)
+//                                                               Q_UNUSED(se)
+//                                                               return dBusErrorHandlerQObject;
+//                                                           });
     engine_->setObjectOwnership(dBusErrorHandlerQObject, QQmlEngine::CppOwnership);
 
     if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
@@ -201,7 +201,7 @@ MainApplication::init()
         debugFile_.reset(new QFile(getDebugFilePath()));
         debugFile_->open(QIODevice::WriteOnly | QIODevice::Truncate);
         debugFile_->close();
-        fileDebug(debugFile_.get());
+        //fileDebug(debugFile_.get());
     }
 
     if (results[opts::DEBUGCONSOLE].toBool()) {
@@ -273,7 +273,8 @@ MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm)
         },
         [&isMigrating] {
             while (!isMigrating) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                //std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                QThread::msleep(10);
             }
             isMigrating = false;
         },
