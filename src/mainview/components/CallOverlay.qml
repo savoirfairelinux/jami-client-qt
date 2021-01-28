@@ -18,11 +18,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
-import QtQml 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Universal 2.2
+import QtQml 2.8
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -102,7 +102,7 @@ Rectangle {
         var currentUris = []
         for (var p in participantOverlays) {
             if (participantOverlays[p]) {
-                var participant = infos.find(e => e.uri === participantOverlays[p].uri);
+                var participant //= infos.find(e => e.uri === participantOverlays[p].uri);
                 if (participant) {
                     // Update participant's information
                     var newX = distantRenderer.getXOffset()
@@ -145,7 +145,7 @@ Rectangle {
                 }
             }
         }
-        participantOverlays = participantOverlays.filter(part => !deletedUris.includes(part.uri))
+        //participantOverlays = participantOverlays.filter(part => !deletedUris.includes(part.uri))
 
         if (infos.length === 0) { // Return to normal call
             previewRenderer.visible = true
@@ -320,13 +320,13 @@ Rectangle {
                     id: textMetricsjamiBestNameText
                     font: jamiBestNameText.font
                     text: {
-                        if (videoCallPageRect) {
-                            if (remoteRecordingLabel === "") {
-                                return videoCallPageRect.bestName
-                            } else {
-                                return remoteRecordingLabel
-                            }
-                        }
+//                        if (videoCallPageRect) {
+//                            if (remoteRecordingLabel === "") {
+//                                return videoCallPageRect.bestName
+//                            } else {
+//                                return remoteRecordingLabel
+//                            }
+//                        }
                         return ""
                     }
                     elideWidth: overlayUpperPartRect.width / 3

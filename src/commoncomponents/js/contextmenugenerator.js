@@ -23,6 +23,7 @@ var menuItemList = []
 
 function createBaseContextMenuObjects(parent) {
     // If already created, return, since object cannot be destroyed.
+    console.error("createBaseContextMenuObjects")
     if (baseContextMenuObject)
         return
 
@@ -33,9 +34,11 @@ function createBaseContextMenuObjects(parent) {
     else if (baseContextMenuComponent.status === Component.Error)
         console.log("Error loading component:",
                     baseContextMenuComponent.errorString())
+
 }
 
 function initMenu() {
+    console.error("initMenu")
     // Clear any existing items in the menu.
     for (var i = 0; i < menuItemList.length; i++) {
         baseContextMenuObject.removeItem(menuItemList[i])
@@ -43,6 +46,7 @@ function initMenu() {
 }
 
 function finishCreation(parent) {
+    console.error("finishCreation")
     baseContextMenuObject = baseContextMenuComponent.createObject(parent)
     if (baseContextMenuObject === null) {
         // Error Handling.
@@ -88,7 +92,9 @@ function addMenuSeparator(separatorHeight, separatorColor) {
 function addMenuItem(itemName,
                      iconSource,
                      onClickedCallback,
-                     iconColor="") {
+                     iconColor) {
+    if (iconColor === undefined)
+        iconColor = ""
     if (!baseContextMenuObject.count){
         // Add default separator at the top.
         addMenuSeparator(8, "transparent")
@@ -117,7 +123,7 @@ function addMenuItem(itemName,
             baseContextMenuObject.onVisibleChanged.connect(callback)
             baseContextMenuObject.visible = false
         })
-        menuItemObject.icon.color = "green"
+        //menuItemObject.icon.color = "green"
 
         baseContextMenuObject.addItem(menuItemObject)
 

@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtGraphicalEffects 1.0
 import QtQuick.Controls.Styles 1.4
-import Qt.labs.platform 1.1
+import Qt.labs.platform 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -31,11 +31,6 @@ import "../../commoncomponents"
 
 ColumnLayout {
     id: root
-
-    enum Type {
-        VIDEO,
-        AUDIO
-    }
 
     property int mediaType
 
@@ -46,9 +41,9 @@ ColumnLayout {
         var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index,0),
                                                  MediaCodecListModel.MediaCodecID)
 
-        if (mediaType === MediaSettings.VIDEO)
+        if (mediaType === 0)
             SettingsAdapter.decreaseVideoCodecPriority(codecId)
-        else if (mediaType === MediaSettings.AUDIO)
+        else if (mediaType === 1)
             SettingsAdapter.decreaseAudioCodecPriority(codecId)
         mediaListWidget.currentIndex = index + 1
         updateCodecs()
@@ -69,9 +64,9 @@ ColumnLayout {
         var codecId = mediaListWidget.model.data(mediaListWidget.model.index(index,0),
                                                  MediaCodecListModel.MediaCodecID)
 
-        if (mediaType === MediaSettings.VIDEO)
+        if (mediaType === 0)
             SettingsAdapter.increaseVideoCodecPriority(codecId)
-        else if (mediaType === MediaSettings.AUDIO)
+        else if (mediaType === 1)
             SettingsAdapter.increaseAudioCodecPriority(codecId)
         mediaListWidget.currentIndex = index - 1
         updateCodecs()
@@ -88,9 +83,9 @@ ColumnLayout {
 
             maxWidth: width
             eText:  {
-                if (mediaType === MediaSettings.VIDEO)
+                if (mediaType === 0)
                     return "Video Codecs"
-                else if (mediaType === MediaSettings.AUDIO)
+                else if (mediaType === 1)
                     return "Audio Codecs"
             }
             fontSize: JamiTheme.settingsFontSize
@@ -136,9 +131,9 @@ ColumnLayout {
             }
 
             onMediaCodecStateChange: {
-                if (mediaType === MediaSettings.VIDEO)
+                if (mediaType === 0)
                     SettingsAdapter.videoCodecsStateChange(idToSet, isToBeEnabled)
-                if (mediaType === MediaSettings.AUDIO)
+                if (mediaType === 1)
                     SettingsAdapter.audioCodecsStateChange(idToSet, isToBeEnabled)
                 updateCodecs()
             }

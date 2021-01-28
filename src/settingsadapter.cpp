@@ -60,14 +60,80 @@ SettingsAdapter::getDir_Download()
 }
 
 QVariant
-SettingsAdapter::getAppValue(const Settings::Key key)
+SettingsAdapter::getAppValue(int keyInt)
 {
+
+//    X(MinimizeOnClose, true) \
+//    X(DownloadPath, defaultDownloadPath) \
+//    X(EnableNotifications, true) \
+//    X(EnableTypingIndicator, true) \
+//    X(DisplayImagesChatview, true) \
+//    X(EnableDarkTheme, false) \
+//    X(AutoUpdate, true) \
+//    X(NeverShowMeAgain, false)
+    Settings::Key key;
+    switch (keyInt) {
+    case 0:
+        key = Settings::Key::MinimizeOnClose;
+        break;
+    case 1:
+        key = Settings::Key::DownloadPath;
+        break;
+    case 2:
+        key = Settings::Key::EnableNotifications;
+        break;
+    case 3:
+        key = Settings::Key::EnableTypingIndicator;
+        break;
+    case 4:
+        key = Settings::Key::DisplayImagesChatview;
+        break;
+    case 5:
+        key = Settings::Key::EnableDarkTheme;
+        break;
+    case 6:
+        key = Settings::Key::AutoUpdate;
+        break;
+    case 7:
+        key = Settings::Key::NeverShowMeAgain;
+        break;
+    }
     return AppSettingsManager::getValue(key);
 }
 
 void
-SettingsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
+SettingsAdapter::setAppValue(int keyInt, const QVariant& value)
 {
+
+    Settings::Key key;
+    switch (keyInt) {
+    case 0:
+        key = Settings::Key::MinimizeOnClose;
+        break;
+    case 1:
+        key = Settings::Key::DownloadPath;
+        break;
+    case 2:
+        key = Settings::Key::EnableNotifications;
+        break;
+    case 3:
+        key = Settings::Key::EnableTypingIndicator;
+        break;
+    case 4:
+        key = Settings::Key::DisplayImagesChatview;
+        break;
+    case 5:
+        key = Settings::Key::EnableDarkTheme;
+        break;
+    case 6:
+        key = Settings::Key::AutoUpdate;
+        break;
+    case 7:
+        key = Settings::Key::NeverShowMeAgain;
+        break;
+    }
+
+
     AppSettingsManager::setValue(key, value);
 }
 
@@ -86,7 +152,7 @@ SettingsAdapter::setRunOnStartUp(bool state)
 void
 SettingsAdapter::setDownloadPath(QString dir)
 {
-    setAppValue(Settings::Key::DownloadPath, dir);
+    setAppValue(1, dir);
     LRCInstance::dataTransferModel().downloadDirectory = dir + "/";
 }
 

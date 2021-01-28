@@ -16,10 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtGraphicalEffects 1.14
-import QtQuick.Window 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
+import QtQuick.Window 2.3
 import net.jami.Constants 1.0
 
 Button {
@@ -42,7 +42,7 @@ Button {
 
     property int elide: Text.ElideRight
 
-    font.kerning: true
+    //font.kerning: true
     font.pointSize: JamiTheme.textFontSize
 
     hoverEnabled: hoveredColor !== undefined

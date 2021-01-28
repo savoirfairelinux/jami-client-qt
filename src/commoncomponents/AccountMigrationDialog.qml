@@ -16,12 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Window 2.3
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -148,7 +148,7 @@ Window {
         enabled: false
         target: AccountAdapter.model
 
-        function onMigrationEnded(accountIdIn, ok) {
+        onMigrationEnded: {
             nonOperationClosing = true
             connectionMigrationEnded.enabled = false
             if (accountID !== accountIdIn) {
@@ -243,7 +243,7 @@ Window {
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                         font.pointSize: JamiTheme.headerFontSize
-                        font.kerning: true
+                        //font.kerning: true
                         wrapMode:Text.Wrap
 
                         text: JamiStrings.authenticationRequired
@@ -259,7 +259,7 @@ Window {
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                         font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
+                        //font.kerning: true
                         wrapMode:Text.Wrap
 
                         text: JamiStrings.migrationReason
@@ -325,7 +325,7 @@ Window {
 
                             text: JamiStrings.alias
                             font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
+                            //font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -338,7 +338,7 @@ Window {
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
+                            //font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -353,7 +353,7 @@ Window {
 
                             text: JamiStrings.username
                             font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
+                            //font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -366,7 +366,7 @@ Window {
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
+                            //font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -381,7 +381,7 @@ Window {
 
                             text: JamiStrings.jamsServer
                             font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
+                            //font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -394,7 +394,7 @@ Window {
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
+                            //font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -409,7 +409,7 @@ Window {
 
                             text: JamiStrings.password
                             font.pointSize: JamiTheme.textFontSize
-                            font.kerning: true
+                            //font.kerning: true
 
                             horizontalAlignment: Text.AlignLeft
                             verticalAlignment: Text.AlignVCenter
@@ -519,7 +519,7 @@ Window {
                             onSpinnerDisplyStateChanged: {
                                 switch (spinnerDisplyState) {
                                 case "spinnerLabel_Regular":
-                                    background = Qt.createQmlObject("import QtQuick 2.14;
+                                    background = Qt.createQmlObject("import QtQuick 2.9;
                                                                         AnimatedImage {
                                                                         source: \"qrc:/images/jami_eclipse_spinner.gif\"
 
@@ -530,7 +530,7 @@ Window {
                                                                         }", spinnerLabel)
                                     break
                                 case "spinnerLabel_Failure":
-                                    background = Qt.createQmlObject("import QtQuick 2.14;
+                                    background = Qt.createQmlObject("import QtQuick 2.9;
                                                                         import \"qrc:/src/constant/\";
                                                                         Image {
                                                                         anchors.fill: parent;
@@ -552,7 +552,7 @@ Window {
                         color: successState? "black" : "red"
                         text: successState? JamiStrings.inProgress : JamiStrings.authenticationFailed
                         font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
+                        //font.kerning: true
 
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter

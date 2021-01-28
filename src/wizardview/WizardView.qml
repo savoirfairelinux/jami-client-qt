@@ -16,11 +16,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -32,31 +32,22 @@ import "components"
 Rectangle {
     id: root
 
-    enum Mode {
-        CREATE,
-        IMPORT,
-        MIGRATE,
-        CREATESIP,
-        CONNECTMANAGER
-    }
-
-    enum WizardViewPageIndex {
-        WELCOMEPAGE = 0,
-        CREATEACCOUNTPAGE,
-        CREATESIPACCOUNTPAGE,
-        IMPORTFROMBACKUPPAGE,
-        BACKUPKEYSPAGE,
-        IMPORTFROMDEVICEPAGE,
-        CONNECTTOACCOUNTMANAGERPAGE,
-        PROFILEPAGE,
-        CREATERENDEZVOUS
-    }
+//    enum WizardViewPageIndex {
+//        WELCOMEPAGE = 0,
+//        CREATEACCOUNTPAGE,
+//        CREATESIPACCOUNTPAGE,
+//        IMPORTFROMBACKUPPAGE,
+//        BACKUPKEYSPAGE,
+//        IMPORTFROMDEVICEPAGE,
+//        CONNECTTOACCOUNTMANAGERPAGE,
+//        PROFILEPAGE,
+//        CREATERENDEZVOUS
+//    }
 
     readonly property int layoutSpacing: 12
     readonly property int backButtonMargins: 20
 
     property int textFontSize: 9
-    property int wizardMode: WizardView.CREATE
     property int addedAccountIndex: -1
     property bool isRdv: false
     property bool showBackUp: false
@@ -75,46 +66,46 @@ Rectangle {
     color: JamiTheme.backgroundColor
 
     Component.onCompleted: {
-        changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
+        changePageQML(0)
     }
 
-    Connections{
+    Connections {
         target: AccountAdapter
 
-        enabled: controlPanelStackView.currentIndex !== WizardView.WizardViewPageIndex.WELCOMEPAGE
+        enabled: controlPanelStackView.currentIndex !== 0
 
-        function onAccountAdded(accountId, showBackUp, index) {
+        onAccountAdded: {
             addedAccountIndex = index
             AccountAdapter.accountChanged(index)
             if (showProfile) {
-                changePageQML(WizardView.WizardViewPageIndex.PROFILEPAGE)
+                changePageQML(7)
                 profilePage.readyToSaveDetails()
                 profilePage.isRdv = isRdv
                 profilePage.createdAccountId = accountId
-            } else if (controlPanelStackView.currentIndex === WizardView.WizardViewPageIndex.PROFILEPAGE) {
+            } else if (controlPanelStackView.currentIndex === 7) {
                 profilePage.readyToSaveDetails()
                 profilePage.isRdv = isRdv
                 profilePage.createdAccountId = accountId
             } else if (showBackUp) {
-                changePageQML(WizardView.WizardViewPageIndex.BACKUPKEYSPAGE)
+                changePageQML(4)
             } else {
-                changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                changePageQML(0)
+                loaderSourceChangeRequested(1)
             }
         }
 
         // reportFailure
-        function onReportFailure() {
+        onReportFailure: {
             var errorMessage = JamiStrings.errorCreateAccount
 
             switch(controlPanelStackView.currentIndex) {
-            case WizardView.WizardViewPageIndex.IMPORTFROMDEVICEPAGE:
+            case 5:
                 importFromDevicePage.errorOccured(errorMessage)
                 break
-            case WizardView.WizardViewPageIndex.IMPORTFROMBACKUPPAGE:
+            case 3:
                 importFromBackupPage.errorOccured(errorMessage)
                 break
-            case WizardView.WizardViewPageIndex.CONNECTTOACCOUNTMANAGERPAGE:
+            case 6:
                 connectToAccountManagerPage.errorOccured(errorMessage)
                 break
             }
@@ -123,27 +114,27 @@ Rectangle {
 
     function changePageQML(pageIndex) {
         controlPanelStackView.currentIndex = pageIndex
-        if (pageIndex === WizardView.WizardViewPageIndex.WELCOMEPAGE) {
+        if (pageIndex === 0) {
             fileToImport = ""
             isRdv = false
-            createAccountPage.nameRegistrationUIState = UsernameLineEdit.NameRegistrationState.BLANK
-        } else if (pageIndex === WizardView.WizardViewPageIndex.CREATEACCOUNTPAGE) {
+            createAccountPage.nameRegistrationUIState = 0
+        } else if (pageIndex === 1) {
             createAccountPage.initializeOnShowUp(false)
-        } else if (pageIndex === WizardView.WizardViewPageIndex.CREATESIPACCOUNTPAGE) {
+        } else if (pageIndex === 2) {
             createSIPAccountPage.initializeOnShowUp()
-        } else if (pageIndex === WizardView.WizardViewPageIndex.IMPORTFROMDEVICEPAGE) {
+        } else if (pageIndex === 5) {
             importFromDevicePage.initializeOnShowUp()
-        } else if (pageIndex === WizardView.WizardViewPageIndex.CONNECTTOACCOUNTMANAGERPAGE) {
+        } else if (pageIndex === 6) {
             connectToAccountManagerPage.initializeOnShowUp()
-        } else if (pageIndex === WizardView.WizardViewPageIndex.IMPORTFROMBACKUPPAGE) {
+        } else if (pageIndex === 3) {
             importFromBackupPage.clearAllTextFields()
             fileToImport = ""
-        } else if (pageIndex === WizardView.WizardViewPageIndex.PROFILEPAGE) {
+        } else if (pageIndex === 7) {
             profilePage.initializeOnShowUp()
             profilePage.showBottom = showBottom
-        } else if (pageIndex === WizardView.WizardViewPageIndex.CREATERENDEZVOUS) {
+        } else if (pageIndex === 8) {
             isRdv = true
-            controlPanelStackView.currentIndex = WizardView.WizardViewPageIndex.CREATEACCOUNTPAGE
+            controlPanelStackView.currentIndex = 1
             createAccountPage.initializeOnShowUp(true)
         }
     }
@@ -152,7 +143,7 @@ Rectangle {
         id: passwordDialog
 
         visible: false
-        purpose: PasswordDialog.ExportAccount
+        purpose: 1
 
         onDoneSignal: {
             if (currentPurpose === passwordDialog.ExportAccount) {
@@ -163,7 +154,7 @@ Rectangle {
                                                          title, info)
                 if (success) {
                     console.log("Account Export Succeed")
-                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                    loaderSourceChangeRequested(1)
                 }
             }
         }
@@ -194,14 +185,14 @@ Rectangle {
 
             width: wizardViewScrollView.width
 
-            currentIndex: WizardView.WizardViewPageIndex.WELCOMEPAGE
+            currentIndex: 0
 
             Component.onCompleted: {
                 // avoid binding loop
                 height = Qt.binding(function (){
                     var index = currentIndex
-                            === WizardView.WizardViewPageIndex.CREATERENDEZVOUS ?
-                                WizardView.WizardViewPageIndex.CREATEACCOUNTPAGE : currentIndex
+                            === 8 ?
+                                1 : currentIndex
                     return Math.max(
                                 controlPanelStackView.itemAt(index).preferredHeight,
                                 wizardViewScrollView.height)
@@ -242,11 +233,11 @@ Rectangle {
                         true)
                     showBackUp = !isRdv
                     showBottom = true
-                    changePageQML(WizardView.WizardViewPageIndex.PROFILEPAGE)
+                    changePageQML(7)
                 }
 
                 onLeavePage: {
-                    changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
+                    changePageQML(0)
                 }
             }
 
@@ -256,7 +247,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
 
                 onLeavePage: {
-                    changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
+                    changePageQML(0)
                 }
 
                 onCreateAccount: {
@@ -270,7 +261,7 @@ Rectangle {
                     AccountAdapter.createSIPAccount(inputParaObject, "")
                     showBackUp = false
                     showBottom = false
-                    changePageQML(WizardView.WizardViewPageIndex.PROFILEPAGE)
+                    changePageQML(7)
                     controlPanelStackView.profilePage.readyToSaveDetails()
                 }
             }
@@ -281,7 +272,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
 
                 onLeavePage: {
-                    changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
+                    changePageQML(0)
                 }
 
                 onImportAccount: {
@@ -302,7 +293,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
 
                 onNeverShowAgainBoxClicked: {
-                    SettingsAdapter.setValue(Settings.NeverShowMeAgain, isChecked)
+                    SettingsAdapter.setValue(7, isChecked)
                 }
 
                 onExport_Btn_FileDialogAccepted: {
@@ -321,13 +312,13 @@ Rectangle {
                         }
                     }
 
-                    changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                    changePageQML(0)
+                    loaderSourceChangeRequested(1)
                 }
 
                 onLeavePage: {
-                    changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                    loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                    changePageQML(0)
+                    loaderSourceChangeRequested(1)
                 }
             }
 
@@ -337,7 +328,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
 
                 onLeavePage: {
-                    changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
+                    changePageQML(0)
                 }
 
                 onImportAccount: {
@@ -370,7 +361,7 @@ Rectangle {
                 }
 
                 onLeavePage: {
-                    changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
+                    changePageQML(0)
                 }
             }
 
@@ -381,10 +372,10 @@ Rectangle {
 
                 function leave() {
                     if (showBackUp)
-                        changePageQML(WizardView.WizardViewPageIndex.BACKUPKEYSPAGE)
+                        changePageQML(4)
                     else {
-                        changePageQML(WizardView.WizardViewPageIndex.WELCOMEPAGE)
-                        loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+                        changePageQML(0)
+                        loaderSourceChangeRequested(1)
                     }
 
                     profilePage.initializeOnShowUp()

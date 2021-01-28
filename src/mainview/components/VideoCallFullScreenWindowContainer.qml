@@ -16,8 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
+import QtQuick 2.9
+import QtQuick.Window 2.3
 import net.jami.Models 1.0
 
 Window {

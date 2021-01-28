@@ -20,12 +20,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Window 2.3
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Universal 2.2
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Enums 1.0
@@ -38,33 +38,27 @@ import "commoncomponents"
 ApplicationWindow {
     id: root
 
-    enum LoadedSource {
-        WizardView = 0,
-        MainView,
-        None
-    }
-
     Universal.theme: Universal.Light
 
     title: JamiStrings.appTitle
 
     width: {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
+        if (checkLoadedSource() === 0)
             return JamiTheme.wizardViewMinWidth
         return JamiTheme.mainViewPreferredWidth
     }
     height: {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
+        if (checkLoadedSource() === 0)
             return JamiTheme.wizardViewMinHeight
         return JamiTheme.mainViewPreferredHeight
     }
     minimumWidth: {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
+        if (checkLoadedSource() === 0)
             return JamiTheme.wizardViewMinWidth
         return JamiTheme.mainViewMinWidth
     }
     minimumHeight: {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
+        if (checkLoadedSource() === 0)
             return JamiTheme.wizardViewMinHeight
         return JamiTheme.mainViewMinHeight
     }
@@ -75,11 +69,10 @@ ApplicationWindow {
         var sourceString = mainApplicationLoader.source.toString()
 
         if (sourceString === JamiQmlUtils.wizardViewLoadPath)
-            return MainApplicationWindow.LoadedSource.WizardView
+            return 0
         else if (sourceString === JamiQmlUtils.mainViewLoadPath)
-            return MainApplicationWindow.LoadedSource.MainView
-
-        return MainApplicationWindow.LoadedSource.None
+            return 1
+        return 2
     }
 
     function startAccountMigration(){
@@ -98,9 +91,11 @@ ApplicationWindow {
         }
     }
 
-    function close(force = false) {
+    function close(force) {
         // If we're in the onboarding wizard or 'MinimizeOnClose'
         // is set, then we can quit
+        if (force === undefined)
+            force = false
         if (force || !SettingsAdapter.getAppValue(Settings.MinimizeOnClose) ||
                 !UtilsAdapter.getAccountListSize()) {
             Qt.quit()
@@ -132,8 +127,8 @@ ApplicationWindow {
         Connections {
             target: mainApplicationLoader.item
 
-            function onLoaderSourceChangeRequested(sourceToLoad) {
-                if (sourceToLoad === MainApplicationWindow.LoadedSource.WizardView)
+            onLoaderSourceChangeRequested: {
+                if (sourceToLoad === 0)
                     mainApplicationLoader.setSource(JamiQmlUtils.wizardViewLoadPath)
                 else
                     mainApplicationLoader.setSource(JamiQmlUtils.mainViewLoadPath,
@@ -156,12 +151,12 @@ ApplicationWindow {
     Connections {
         target: LRCInstance
 
-        function onRestoreAppRequested() {
+        onRestoreAppRequested: {
             requestActivate()
             showNormal()
         }
 
-        function onNotificationClicked() {
+        onNotificationClicked: {
             requestActivate()
             raise()
             if (visibility === Window.Hidden ||
@@ -170,25 +165,25 @@ ApplicationWindow {
         }
     }
 
-    Connections {
-        target: {
-            if (Qt.platform.os !== "windows")
-                return DBusErrorHandler
-            return null
-        }
-        ignoreUnknownSignals: true
+//    Connections {
+////        target: {
+////            if (Qt.platform.os !== "windows")
+////                return DBusErrorHandler
+////            return null
+////        }
+//        ignoreUnknownSignals: true
 
-        function onShowDaemonReconnectPopup(visible) {
-            if (visible)
-                daemonReconnectPopup.open()
-            else
-                daemonReconnectPopup.close()
-        }
+//        function onShowDaemonReconnectPopup(visible) {
+//            if (visible)
+//                daemonReconnectPopup.open()
+//            else
+//                daemonReconnectPopup.close()
+//        }
 
-        function onDaemonReconnectFailed() {
-            daemonReconnectPopup.connectionFailed = true
-        }
-    }
+//        function onDaemonReconnectFailed() {
+//            daemonReconnectPopup.connectionFailed = true
+//        }
+//    }
 
     onClosing: root.close()
 
@@ -200,7 +195,7 @@ ApplicationWindow {
         }
         JamiQmlUtils.mainApplicationScreen = root.screen
 
-        if (Qt.platform.os !== "windows")
-            DBusErrorHandler.setActive(true)
+        //if (Qt.platform.os !== "windows")
+            //DBusErrorHandler.setActive(true)
     }
 }

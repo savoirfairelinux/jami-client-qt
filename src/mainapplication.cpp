@@ -165,13 +165,13 @@ MainApplication::init()
                                                            1,
                                                            0,
                                                            "DBusErrorHandler",
-                                                           [dBusErrorHandlerQObject](QQmlEngine* e,
+                                                           [](QQmlEngine* e,
                                                                                      QJSEngine* se)
                                                                -> QObject* {
                                                                Q_UNUSED(e)
                                                                Q_UNUSED(se)
-                                                               return dBusErrorHandlerQObject;
-                                                           });
+                                                            });
+
     engine_->setObjectOwnership(dBusErrorHandlerQObject, QQmlEngine::CppOwnership);
 
     if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
@@ -194,14 +194,14 @@ MainApplication::init()
         &LRCInstance::instance(),
         &LRCInstance::quitEngineRequested,
         this,
-        [this] { engine_->quit(); },
+        [this] { },//engine_.quit(); },
         Qt::DirectConnection);
 
     if (results[opts::DEBUGFILE].toBool()) {
         debugFile_.reset(new QFile(getDebugFilePath()));
         debugFile_->open(QIODevice::WriteOnly | QIODevice::Truncate);
         debugFile_->close();
-        fileDebug(debugFile_.get());
+        fileDebug(debugFile_.data());
     }
 
     if (results[opts::DEBUGCONSOLE].toBool()) {
@@ -210,6 +210,7 @@ MainApplication::init()
 
     initSettings();
     initSystray();
+
     initQmlEngine();
 
     return true;
@@ -273,7 +274,8 @@ MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm)
         },
         [&isMigrating] {
             while (!isMigrating) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                //std::this_thread::sleep_for(std::chrono::milliseconds(10));
+                QThread::msleep(10);
             }
             isMigrating = false;
         },
@@ -353,7 +355,6 @@ void
 MainApplication::initQmlEngine()
 {
     registerTypes();
-
     engine_->addImageProvider(QLatin1String("qrImage"), new QrImageProvider());
     engine_->addImageProvider(QLatin1String("tintedPixmap"), new TintedButtonImageProvider());
     engine_->addImageProvider(QLatin1String("avatarImage"), new AvatarImageProvider());

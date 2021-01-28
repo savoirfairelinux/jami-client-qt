@@ -17,9 +17,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
@@ -122,7 +122,7 @@ BaseDialog {
     Connections {
         target: NameDirectory
 
-        function onExportOnRingEnded(status, pin) {
+        onExportOnRingEnded: {
             setExportPage(status, pin)
         }
     }
@@ -155,7 +155,7 @@ BaseDialog {
                         text: JamiStrings.enterAccountPassword
                         color: JamiTheme.textColor
                         font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
+                        //font.kerning: true
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
@@ -173,7 +173,7 @@ BaseDialog {
 
                         placeholderText: JamiStrings.enterCurrentPassword
 
-                        borderColorMode: InfoLineEdit.NORMAL
+                        borderColorMode: 0
 
                         onTextChanged: {
                             btnConfirm.enabled = text.length > 0
@@ -243,7 +243,7 @@ BaseDialog {
                         text: JamiStrings.backupAccount
                         color: JamiTheme.textColor
                         font.pointSize: JamiTheme.headerFontSize
-                        font.kerning: true
+                        //font.kerning: true
                         horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
                     }
@@ -295,7 +295,7 @@ BaseDialog {
                             text: qsTr("Your PIN is:")
                             color: JamiTheme.textColor
                             font.pointSize: JamiTheme.headerFontSize
-                            font.kerning: true
+                            //font.kerning: true
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                         }
@@ -306,7 +306,7 @@ BaseDialog {
                             text: qsTr("PIN")
                             color: JamiTheme.textColor
                             font.pointSize: JamiTheme.headerFontSize
-                            font.kerning: true
+                            //font.kerning: true
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                         }
@@ -326,7 +326,7 @@ BaseDialog {
                         wrapMode: Text.Wrap
                         text: qsTr("This pin and the account password should be entered in your device within 10 minutes.")
                         font.pointSize: JamiTheme.textFontSize
-                        font.kerning: true
+                        //font.kerning: true
 
                         Layout.maximumWidth: linkDeviceContentRect.width - JamiTheme.preferredMarginSize * 2
 

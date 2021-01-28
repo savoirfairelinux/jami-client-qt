@@ -16,10 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtGraphicalEffects 1.14
-import QtQuick.Window 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
+import QtQuick.Window 2.3
 
 Image {
     id: root
@@ -44,8 +44,8 @@ Image {
     anchors.verticalCenterOffset: offset.y
 
     // works out to 24 if containerWidth is 30
-    width: Math.trunc(containerWidth * Math.sqrt(2) * 0.5) + 3 - padding
-    height: Math.trunc(containerHeight * Math.sqrt(2) * 0.5) + 3 - padding
+    width: Math.floor(containerWidth * Math.sqrt(2) * 0.5) + 3 - padding
+    height: Math.floor(containerHeight * Math.sqrt(2) * 0.5) + 3 - padding
 
     fillMode: Image.PreserveAspectFit
     smooth: false

@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtGraphicalEffects 1.0
 import QtQuick.Controls.Styles 1.4
-import Qt.labs.platform 1.1
+import Qt.labs.platform 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -52,7 +52,7 @@ ColumnLayout {
         onAccepted: {
             registeredIdNeedsSet = false
             currentRegisteredID.nameRegistrationState =
-                    UsernameLineEdit.NameRegistrationState.BLANK
+                    0
         }
     }
 
@@ -71,7 +71,7 @@ ColumnLayout {
             text: JamiStrings.identifier
             color: JamiTheme.textColor
             font.pointSize: JamiTheme.settingsFontSize
-            font.kerning: true
+            //font.kerning: true
 
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
@@ -88,7 +88,7 @@ ColumnLayout {
             height: JamiTheme.preferredFieldHeight
 
             font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
+            //font.kerning: true
             font.bold: true
 
             padding: 0
@@ -136,7 +136,7 @@ ColumnLayout {
             text: JamiStrings.username
             color: JamiTheme.textColor
             font.pointSize: JamiTheme.settingsFontSize
-            font.kerning: true
+            //font.kerning: true
 
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
@@ -185,7 +185,7 @@ ColumnLayout {
 
         visible: registeredIdNeedsSet &&
                     currentRegisteredID.nameRegistrationState ===
-                    UsernameLineEdit.NameRegistrationState.FREE
+                    3
 
         text: qsTr("Register")
         toolTipText: JamiStrings.registerUsername

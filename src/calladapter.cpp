@@ -146,6 +146,8 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
             }
         }
         emit callSetupMainViewRequired(accountId, convInfo.uid);
+        qDebug() << "LRCInstance::instance().updateSmartList();";
+
         emit LRCInstance::instance().updateSmartList();
         return;
     }
@@ -200,6 +202,8 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
         }
     }
     emit callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
+
+    qDebug() << "LRCInstance::instance().updateSmartList();";
     emit LRCInstance::instance().updateSmartList();
 }
 
@@ -337,6 +341,8 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
         emit LRCInstance::instance().notificationClicked();
         emit callSetupMainViewRequired(convInfo.accountId, convInfo.uid);
     };
+    qDebug() << "LRCInstance::instance().updateSmartList();";
+
     emit LRCInstance::instance().updateSmartList();
     Utils::showNotification(tr("is calling you"), from, accountId, convUid, onClicked);
 }
@@ -448,7 +454,7 @@ CallAdapter::connectCallModel(const QString& accountId)
             default:
                 break;
             }
-
+            qDebug() << "LRCInstance::instance().updateSmartList();";
             emit LRCInstance::instance().updateSmartList();
         });
 

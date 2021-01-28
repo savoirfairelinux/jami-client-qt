@@ -16,14 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 import QtQuick.Controls.Styles 1.4
-import Qt.labs.platform 1.1
-import QtQuick.Dialogs 1.3
+import Qt.labs.platform 1.0
+import QtQuick.Dialogs 1.2
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -33,11 +33,11 @@ import "../commoncomponents"
 ItemDelegate {
     id: root
 
-    enum Type {
-        LIST,
-        PATH,
-        DEFAULT
-    }
+//    enum Type {
+//        LIST,
+//        PATH,
+//        DEFAULT
+//    }
 
     property string preferenceName: ""
     property string preferenceSummary: ""
@@ -55,12 +55,12 @@ ItemDelegate {
 
     function getNewPreferenceValueSlot(index){
         switch (preferenceType){
-            case PreferenceItemDelegate.LIST:
+            case 0:
                 pluginListPreferenceModel.idx = index
                 preferenceNewValue = pluginListPreferenceModel.preferenceNewValue
                 btnPreferenceClicked()
                 break
-            case PreferenceItemDelegate.PATH:
+            case 1:
                 if(index === 0){
                     preferenceFilePathDialog.title = qsTr("Select An Image to " + preferenceName)
                     preferenceFilePathDialog.nameFilters = fileFilters
@@ -105,7 +105,7 @@ ItemDelegate {
         PushButton {
             id: btnPreference
 
-            visible: preferenceType === PreferenceItemDelegate.DEFAULT
+            visible: preferenceType === 2
             normalColor: JamiTheme.primaryBackgroundColor
 
             Layout.alignment: Qt.AlignRight | Qt.AlingVCenter
@@ -124,13 +124,13 @@ ItemDelegate {
         SettingParaCombobox {
             id: listPreferenceComboBox
 
-            visible: preferenceType === PreferenceItemDelegate.LIST
+            visible: preferenceType === 0
             Layout.preferredWidth: root.width / 2 - 8
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: 8
 
             font.pointSize: JamiTheme.settingsFontSize
-            font.kerning: true
+            //font.kerning: true
 
             model: pluginListPreferenceModel
             currentIndex: pluginListPreferenceModel.getCurrentSettingIndex()
@@ -142,7 +142,7 @@ ItemDelegate {
         MaterialButton {
             id: pathPreferenceButton
 
-            visible: preferenceType === PreferenceItemDelegate.PATH
+            visible: preferenceType === 1
             width: root.width / 2 - 16
             Layout.preferredWidth: width
             Layout.preferredHeight: 30

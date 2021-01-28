@@ -17,11 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Controls.Universal 2.2
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -33,13 +33,6 @@ import "../mainview/js/contactpickercreation.js" as ContactPickerCreation
 Rectangle {
     id: root
 
-    enum SettingsMenu {
-        Account,
-        General,
-        Media,
-        Plugin
-    }
-
     onVisibleChanged: {
         if(visible){
             setSelected(selectedMenu,true)
@@ -48,26 +41,28 @@ Rectangle {
         }
     }
 
-    function setSelected(sel, recovery = false) {
+    function setSelected(sel, recovery) {
+        if (recovery === undefined)
+        recovery = false
         profileType = SettingsAdapter.getCurrentAccount_Profile_Info_Type()
 
         if(selectedMenu === sel && (!recovery)) { return }
         switch(sel) {
-            case SettingsView.Account:
+            case 0:
                 pageIdCurrentAccountSettings.connectCurrentAccount()
                 AccountAdapter.stopPreviewing()
                 selectedMenu = sel
                 pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
                 break
-            case SettingsView.General:
+            case 1:
                 AccountAdapter.stopPreviewing()
                 selectedMenu = sel
                 break
-            case SettingsView.Media:
+            case 2:
                 selectedMenu = sel
                 avSettings.populateAVSettings()
                 break
-            case SettingsView.Plugin:
+            case 3:
                 AccountAdapter.stopPreviewing()
                 selectedMenu = sel
                 pluginSettings.populatePluginSettings()
@@ -106,7 +101,7 @@ Rectangle {
     }
 
     property int profileType: SettingsAdapter.getCurrentAccount_Profile_Info_Type()
-    property int selectedMenu: SettingsView.Account
+    property int selectedMenu: 0
     // signal to redirect the page to main view
     signal settingsViewNeedToShowMainView()
     signal settingsViewNeedToShowNewWizardWindow
@@ -125,7 +120,7 @@ Rectangle {
 
         property bool isSIP: {
             switch (profileType) {
-                case Profile.Type.SIP:
+                case 2:
                     return true;
                 default:
                     return false;
@@ -147,13 +142,13 @@ Rectangle {
 
             title: {
                 switch(selectedMenu){
-                    case SettingsView.Account:
+                    case 0:
                         return qsTr("Account Settings")
-                    case SettingsView.General:
+                    case 1:
                         return qsTr("General")
-                    case SettingsView.Media:
+                    case 2:
                         return JamiStrings.avSettingsTitle
-                    case SettingsView.Plugin:
+                    case 3:
                         return qsTr("Plugin")
                 }
             }
@@ -192,13 +187,13 @@ Rectangle {
 
                 currentIndex: {
                     switch(selectedMenu){
-                        case SettingsView.Account:
+                        case 0:
                             return pageIdCurrentAccountSettingsPage
-                        case SettingsView.General:
+                        case 1:
                             return pageIdGeneralSettingsPage
-                        case SettingsView.Media:
+                        case 2:
                             return pageIdAvSettingPage
-                        case SettingsView.Plugin:
+                        case 3:
                             return pageIdPluginSettingsPage
                     }
                 }

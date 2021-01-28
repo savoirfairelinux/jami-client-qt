@@ -17,9 +17,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import net.jami.Constants 1.0
 
@@ -60,7 +60,7 @@ BaseDialog {
 
                 text: qsTr("Enter this account's password to confirm the removal of this device")
                 font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
+                //font.kerning: true
                 wrapMode: Text.Wrap
 
                 horizontalAlignment: Text.AlignHCenter
@@ -76,7 +76,7 @@ BaseDialog {
 
                 echoMode: TextInput.Password
                 placeholderText: JamiStrings.enterCurrentPassword
-                borderColorMode: InfoLineEdit.NORMAL
+                borderColorMode: 0
 
                 onTextChanged: {
                     btnRemove.enabled = text.length > 0

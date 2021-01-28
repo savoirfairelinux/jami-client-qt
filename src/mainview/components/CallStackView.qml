@@ -16,10 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Universal 2.2
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
@@ -28,13 +28,6 @@ import "../js/callfullscreenwindowcontainercreation.js" as CallFullScreenWindowC
 
 Rectangle {
     id: callStackViewWindow
-
-    enum StackNumber {
-        IncomingPageStack,
-        OutgoingPageStack,
-        AudioPageStack,
-        VideoPageStack
-    }
 
     anchors.fill: parent
 
@@ -54,11 +47,11 @@ Rectangle {
         // Close potential window, context menu releated windows.
         if (!callStackMainView.currentItem)
             return
-        if (callStackMainView.currentItem.stackNumber === CallStackView.AudioPageStack) {
+        if (callStackMainView.currentItem.stackNumber === 2) {
             audioCallPage.closeInCallConversation()
             CallFullScreenWindowContainerCreation.closeVideoCallFullScreenWindowContainer()
             audioCallPage.closeContextMenuAndRelatedWindows()
-        } else if (callStackMainView.currentItem.stackNumber === CallStackView.VideoPageStack) {
+        } else if (callStackMainView.currentItem.stackNumber === 3) {
             videoCallPage.closeInCallConversation()
             CallFullScreenWindowContainerCreation.closeVideoCallFullScreenWindowContainer()
             videoCallPage.closeContextMenuAndRelatedWindows()
@@ -66,9 +59,9 @@ Rectangle {
     }
 
     function setLinkedWebview(webViewId) {
-        if (callStackMainView.currentItem.stackNumber === CallStackView.AudioPageStack) {
+        if (callStackMainView.currentItem.stackNumber === 2) {
             audioCallPage.setLinkedWebview(webViewId)
-        } else if (callStackMainView.currentItem.stackNumber === CallStackView.VideoPageStack) {
+        } else if (callStackMainView.currentItem.stackNumber === 3) {
             videoCallPage.setLinkedWebview(webViewId)
         }
     }
@@ -80,7 +73,7 @@ Rectangle {
     }
 
     function showAudioCallPage() {
-        var itemToFind = getItemFromStack(CallStackView.AudioPageStack)
+        var itemToFind = getItemFromStack(2)
         if (!itemToFind) {
             callStackMainView.push(audioCallPage, StackView.Immediate)
         } else {
@@ -90,7 +83,7 @@ Rectangle {
     }
 
     function showOutgoingCallPage() {
-        var itemToFind = getItemFromStack(CallStackView.OutgoingPageStack)
+        var itemToFind = getItemFromStack(1)
         if (!itemToFind) {
             callStackMainView.push(outgoingCallPage, StackView.Immediate)
         } else {
@@ -100,7 +93,7 @@ Rectangle {
     }
 
     function showIncomingCallPage(accountId, convUid) {
-        var itemToFind = getItemFromStack(CallStackView.IncomingPageStack)
+        var itemToFind = getItemFromStack(0)
         if (!itemToFind) {
             callStackMainView.push(incomingCallPage, StackView.Immediate)
         } else {
@@ -110,7 +103,7 @@ Rectangle {
     }
 
     function showVideoCallPage() {
-        var itemToFind = getItemFromStack(CallStackView.VideoPageStack)
+        var itemToFind = getItemFromStack(3)
         if (!itemToFind) {
             callStackMainView.push(videoCallPage, StackView.Immediate)
         } else {
@@ -137,7 +130,7 @@ Rectangle {
             CallFullScreenWindowContainerCreation.closeVideoCallFullScreenWindowContainer()
         }
 
-        if (callPage.stackNumber === CallStackView.VideoPageStack) {
+        if (callPage.stackNumber === 3) {
             videoCallPage.handleParticipantsInfo(CallAdapter.getConferencesInfos())
         }
     }
@@ -145,15 +138,15 @@ Rectangle {
     Connections {
         target: CallAdapter
 
-        function onCallStatusChanged(status, accountId, convUid) {
-            if (callStackMainView.currentItem.stackNumber === CallStackView.OutgoingPageStack
+        onCallStatusChanged: {
+            if (callStackMainView.currentItem.stackNumber === 1
                     && responsibleConvUid === convUid && responsibleAccountId === accountId) {
                 outgoingCallPage.callStatus = status
             }
         }
 
-        function onUpdateParticipantsInfos(infos, accountId, callId) {
-            if (callStackMainView.currentItem.stackNumber === CallStackView.VideoPageStack) {
+        onUpdateParticipantsInfos: {
+            if (callStackMainView.currentItem.stackNumber === 3) {
                 var responsibleCallId = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid)
                 if (responsibleCallId === callId) {
                     videoCallPage.handleParticipantsInfo(infos)
@@ -165,7 +158,7 @@ Rectangle {
     AudioCallPage {
         id: audioCallPage
 
-        property int stackNumber: CallStackView.AudioPageStack
+        property int stackNumber: 2
 
         visible: callStackMainView.currentItem.stackNumber === stackNumber
     }
@@ -173,7 +166,7 @@ Rectangle {
     OutgoingCallPage {
         id: outgoingCallPage
 
-        property int stackNumber: CallStackView.OutgoingPageStack
+        property int stackNumber: 1
 
         visible: callStackMainView.currentItem.stackNumber === stackNumber
 
@@ -185,7 +178,7 @@ Rectangle {
     VideoCallPage {
         id: videoCallPage
 
-        property int stackNumber: CallStackView.VideoPageStack
+        property int stackNumber: 3
 
         visible: callStackMainView.currentItem.stackNumber === stackNumber
     }
@@ -193,12 +186,12 @@ Rectangle {
     IncomingCallPage {
         id: incomingCallPage
 
-        property int stackNumber: CallStackView.IncomingPageStack
+        property int stackNumber: 0
 
         onCallAcceptButtonIsClicked: {
             CallAdapter.acceptACall(responsibleAccountId, responsibleConvUid)
             communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
-            mainViewWindowSidePanel.selectTab(SidePanelTabBar.Conversations)
+            mainViewWindowSidePanel.selectTab(0)
         }
 
         onCallCancelButtonIsClicked: {

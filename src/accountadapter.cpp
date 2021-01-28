@@ -413,6 +413,27 @@ AccountAdapter::setProperties(const QString& accountId)
 {
     setProperty("currentAccountId", accountId);
     auto accountType = LRCInstance::getAccountInfo(accountId).profileInfo.type;
-    setProperty("currentAccountType", lrc::api::profile::to_string(accountType));
+//    setProperty("currentAccountType", lrc::api::profile::to_string(accountType));
+    enum class Type { INVALID, RING, SIP, PENDING, TEMPORARY, COUNT__ };
+    int val;
+    switch (accountType) {
+    case lrc::api::profile::Type::INVALID:
+        val = 0;
+        break;
+    case lrc::api::profile::Type::RING:
+        val = 1;
+        break;
+    case lrc::api::profile::Type::SIP:
+        val = 2;
+        break;
+    case lrc::api::profile::Type::PENDING:
+        val = 3;
+        break;
+    case lrc::api::profile::Type::TEMPORARY:
+        val = 4;
+        break;
+
+    }
+    setProperty("currentAccountType", val);
     emit deviceModelChanged();
 }

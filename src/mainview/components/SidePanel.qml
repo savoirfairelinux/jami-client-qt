@@ -16,10 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -179,6 +179,10 @@ Rectangle {
         }
     }
 
+    function test(v) {
+        console.error("test", v)
+    }
+
     ConversationSmartListView {
         id: conversationSmartListView
 
@@ -191,18 +195,20 @@ Rectangle {
         Connections {
             target: ConversationsAdapter
 
-            function onShowConversationTabs(visible) {
+            onShowConversationTabs: {
+                console.error("onShowConversationTabs", visible)
                 tabBarVisible = visible
                 updatePendingRequestCount()
                 updateTotalUnreadMessagesCount()
             }
 
-            function onShowSearchStatus(status) {
+            onShowSearchStatus: {
                 lblSearchStatus.text = status
             }
         }
 
         Component.onCompleted: {
+            console.error("onCompleted")
             ConversationsAdapter.setQmlObject(this)
             conversationSmartListView.currentIndex = -1
         }

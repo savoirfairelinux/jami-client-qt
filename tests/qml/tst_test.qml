@@ -1,4 +1,4 @@
-import QtQuick 2.14
+import QtQuick 2.9
 import QtTest 1.2
 
 TestCase {

@@ -1,29 +1,29 @@
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
 import net.jami.Constants 1.0
 
 TextField{
-    enum BorderColorMode{
-        NORMAL,
-        RIGHT,
-        ERROR
-    }
+//    enum BorderColorMode{
+//        NORMAL,
+//        RIGHT,
+//        ERROR
+//    }
 
     property int fieldLayoutWidth: 256
     property int fieldLayoutHeight: 30
     property bool layoutFillwidth: false
 
-    property int borderColorMode: InfoLineEdit.NORMAL
+    property int borderColorMode: 0
     property var backgroundColor: JamiTheme.rgb256(240,240,240)
     property var borderColor: {
         switch(borderColorMode){
-        case InfoLineEdit.NORMAL:
+        case 0:
             return "transparent"
-        case InfoLineEdit.RIGHT:
+        case 1:
             return "green"
-        case InfoLineEdit.ERROR:
+        case 2:
             return "red"
         }
     }
@@ -33,7 +33,7 @@ TextField{
     readOnly: false
     selectByMouse: true
     font.pointSize: JamiTheme.settingsFontSize
-    font.kerning: true
+    //font.kerning: true
     horizontalAlignment: Text.AlignLeft
     verticalAlignment: Text.AlignVCenter
 

@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls 2.14
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
 import net.jami.Constants 1.0
 
 Label {
@@ -42,11 +42,11 @@ Label {
         switch (lookupStatusState) {
         case "Blank":
             background = Qt.createQmlObject(
-                        "import QtQuick 2.14; Rectangle { anchors.fill: parent; color: \"transparent\"; }",
+                        "import QtQuick 2.9; Rectangle { anchors.fill: parent; color: \"transparent\"; }",
                         lookupStatusLabel)
             break
         case "Invalid":
-            background = Qt.createQmlObject("import QtQuick 2.14;
+            background = Qt.createQmlObject("import QtQuick 2.9;
 import \"qrc:/src/constant/\";
 Rectangle {
 anchors.fill: parent;
@@ -58,7 +58,7 @@ mipmap: true;
 }", lookupStatusLabel)
             break
         case "Taken":
-            background = Qt.createQmlObject("import QtQuick 2.14;
+            background = Qt.createQmlObject("import QtQuick 2.9;
 import \"qrc:/src/constant/\";
 Rectangle {
 anchors.fill: parent;
@@ -70,7 +70,7 @@ mipmap: true;
 }", lookupStatusLabel)
             break
         case "Free":
-            background = Qt.createQmlObject("import QtQuick 2.14;
+            background = Qt.createQmlObject("import QtQuick 2.9;
 import \"qrc:/src/constant/\";
 Rectangle {
 anchors.fill: parent;
@@ -82,7 +82,7 @@ mipmap: true;
 }", lookupStatusLabel)
             break
         case "Searching":
-            background = Qt.createQmlObject("import QtQuick 2.14;
+            background = Qt.createQmlObject("import QtQuick 2.9;
 import \"qrc:/src/constant/\";
 Rectangle {
 anchors.fill: parent;

@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
@@ -42,11 +42,11 @@ ProgressBar {
         return Math.max(Math.min(num, Math.max(a, b)), Math.min(a, b))
     }
 
-    Connections{
+    Connections {
         target: AVModel
         enabled: root.visible
 
-        function onAudioMeter(id, level) {
+        onAudioMeter: {
             if (id === "audiolayer_id") {
                 rmsLevel = level
             }

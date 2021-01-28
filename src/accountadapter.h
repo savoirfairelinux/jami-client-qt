@@ -34,7 +34,7 @@ class AccountAdapter final : public QmlAdapterBase
     Q_PROPERTY(lrc::api::NewAccountModel* model READ getModel NOTIFY modelChanged)
     Q_PROPERTY(lrc::api::NewDeviceModel* deviceModel READ getDeviceModel NOTIFY deviceModelChanged)
     Q_PROPERTY(QString currentAccountId MEMBER currentAccountId_ NOTIFY currentAccountIdChanged)
-    Q_PROPERTY(lrc::api::profile::Type currentAccountType MEMBER currentAccountType_ NOTIFY
+    Q_PROPERTY(int currentAccountType MEMBER currentAccountType_ NOTIFY
                    currentAccountTypeChanged)
     Q_PROPERTY(int accountListSize MEMBER accountListSize_ NOTIFY accountListSizeChanged)
 
@@ -122,7 +122,8 @@ private slots:
 
 private:
     QString currentAccountId_ {};
-    lrc::api::profile::Type currentAccountType_ {};
+//    lrc::api::profile::Type currentAccountType_ {};
+    int currentAccountType_;
     int accountListSize_ {};
 
     void deselectConversation();

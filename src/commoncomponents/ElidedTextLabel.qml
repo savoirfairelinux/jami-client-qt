@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
+import QtQuick 2.9
 import QtQuick.Controls 1.4
 import net.jami.Constants 1.0
 
@@ -29,7 +29,7 @@ Label {
     property int textWidth: 0
 
     font.pointSize: fontSize
-    font.kerning: true
+    //font.kerning: true
 
     text: elided.elidedText
 

@@ -16,12 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.9
+import QtQuick.Window 2.3
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Universal 2.2
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -59,7 +59,9 @@ Rectangle {
 
     property string currentAccountId: AccountAdapter.currentAccountId
     onCurrentAccountIdChanged: {
+        console.error("onCurrentAccountIdChanged")
         var index = UtilsAdapter.getCurrAccList().indexOf(currentAccountId)
+        console.error(index)
         mainViewSidePanel.refreshAccountComboBox(index)
         if (inSettingsView) {
             settingsView.accountListChanged()
@@ -78,6 +80,7 @@ Rectangle {
     }
 
     function showWelcomeView() {
+        console.error("showWelcomeView")
         currentConvUID = ""
         callStackView.needToCloseInCallConversationAndPotentialWindow()
         mainViewSidePanel.deselectConversationSmartList()
@@ -121,7 +124,9 @@ Rectangle {
     }
 
     // Only called onWidthChanged
-    function recursionStackViewItemMove(stackOne, stackTwo, depth=1) {
+    function recursionStackViewItemMove(stackOne, stackTwo, depth) {
+        if (depth === undefined)
+            depth = 1
         // Move all items (expect the bottom item) to stacktwo by the same order in stackone.
         if (stackOne.depth === depth) {
             return
@@ -134,7 +139,9 @@ Rectangle {
 
     // Back to WelcomeView required, but can also check, i. e., on account switch or
     // settings exit, if there is need to switch to a current call
-    function backToMainView(checkCurrentCall = false) {
+    function backToMainView(checkCurrentCall) {
+        if (checkCurrentCall === undefined)
+            checkCurrentCall = false
         if (inSettingsView)
             return
         if (checkCurrentCall && currentAccountIsCalling()) {
@@ -174,7 +181,9 @@ Rectangle {
     // ConversationSmartListViewItemDelegate provides UI information
     function setMainView(currentUserDisplayName, currentUserAlias, currentUID,
                                callStackViewShouldShow, isAudioOnly, callState) {
+        console.error("setMainView")
         if (!(communicationPageMessageWebView.jsLoaded)) {
+            console.error("reconnect")
             communicationPageMessageWebView.jsLoadedChanged.connect(
                         function(currentUserDisplayName, currentUserAlias, currentUID,
                                  callStackViewShouldShow, isAudioOnly, callState) {
@@ -199,13 +208,13 @@ Rectangle {
             callStackView.responsibleConvUid = currentUID
             currentConvUID = currentUID
 
-            if (callState === Call.Status.IN_PROGRESS || callState === Call.Status.PAUSED) {
+            if (callState === 5 || callState === 6) {
                 UtilsAdapter.setCurrentCall(AccountAdapter.currentAccountId, currentUID)
                 if (isAudioOnly)
                     callStackView.showAudioCallPage()
                 else
                     callStackView.showVideoCallPage()
-            } else if (callState === Call.Status.INCOMING_RINGING) {
+            } else if (callState === 1) {
                 callStackView.showIncomingCallPage()
             } else {
                 callStackView.showOutgoingCallPage(callState)
@@ -236,7 +245,7 @@ Rectangle {
         target: CallAdapter
 
         // selectConversation causes UI update
-        function onCallSetupMainViewRequired(accountId, convUid) {
+        onCallSetupMainViewRequired: {
             ConversationsAdapter.selectConversation(accountId, convUid)
         }
     }
@@ -245,7 +254,7 @@ Rectangle {
         target: JamiQmlUtils
 
         // TODO: call in fullscreen inside containerWindow
-        function onCallIsFullscreenChanged() {
+        onCallIsFullscreenChanged: {
             if (JamiQmlUtils.callIsFullscreen) {
                 UtilsAdapter.setSystemTrayIconVisible(false)
                 containerWindow.hide()
@@ -263,7 +272,7 @@ Rectangle {
 
         currentIndex: 0
 
-        SplitView {
+        RowLayout {
             id: splitView
 
             Layout.fillWidth: true
@@ -272,26 +281,26 @@ Rectangle {
             width: mainView.width
             height: mainView.height
 
-            handle: Rectangle {
-                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
-                implicitHeight: splitView.height
-                color: JamiTheme.backgroundColor
-                Rectangle {
-                    implicitWidth: 1
-                    implicitHeight: splitView.height
-                    color: SplitHandle.pressed ? JamiTheme.pressColor :
-                                                 (SplitHandle.hovered ? JamiTheme.hoverColor :
-                                                                        JamiTheme.tabbarBorderColor)
-                }
-            }
+//            handle: Rectangle {
+//                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
+//                implicitHeight: splitView.height
+//                color: JamiTheme.backgroundColor
+//                Rectangle {
+//                    implicitWidth: 1
+//                    implicitHeight: splitView.height
+//                    color: SplitHandle.pressed ? JamiTheme.pressColor :
+//                                                 (SplitHandle.hovered ? JamiTheme.hoverColor :
+//                                                                        JamiTheme.tabbarBorderColor)
+//                }
+//            }
 
             Rectangle {
                 id: mainViewSidePanelRect
 
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.maximumWidth: (sidePanelOnly ? splitView.width :
+                Layout.minimumWidth: sidePanelViewStackPreferredWidth
+                Layout.maximumWidth: (sidePanelOnly ? splitView.width :
                                                       splitView.width - sidePanelViewStackPreferredWidth)
-                SplitView.fillHeight: true
+                Layout.fillHeight: true
                 color: JamiTheme.backgroundColor
 
                 // AccountComboBox is always visible
@@ -309,13 +318,13 @@ Rectangle {
                     Connections {
                         target: AccountAdapter
 
-                        function onUpdateConversationForAddedContact() {
+                        onUpdateConversationForAddedContact: {
                             MessagesAdapter.updateConversationForAddedContact()
                             mainViewSidePanel.clearContactSearchBar()
                             mainViewSidePanel.forceReselectConversationSmartListCurrentIndex()
                         }
 
-                        function onAccountStatusChanged(accountId) {
+                        onAccountStatusChanged: {
                             accountComboBox.resetAccountListModel(accountId)
                         }
                     }
@@ -349,11 +358,11 @@ Rectangle {
 
                 initialItem: welcomePage
 
-                SplitView.maximumWidth: sidePanelOnly ?
+                Layout.maximumWidth: sidePanelOnly ?
                                             splitView.width :
                                             splitView.width - sidePanelViewStackPreferredWidth
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.fillHeight: true
+                Layout.minimumWidth: sidePanelViewStackPreferredWidth
+                Layout.fillHeight: true
 
                 clip: true
             }
@@ -404,7 +413,7 @@ Rectangle {
         Connections {
             target: ConversationsAdapter
 
-            function onNavigateToWelcomePageRequested() {
+            onNavigateToWelcomePageRequested: {
                 backToMainView()
             }
         }
@@ -433,8 +442,7 @@ Rectangle {
             toggleSettingsView()
         }
 
-        onSettingsViewNeedToShowNewWizardWindow: loaderSourceChangeRequested(
-                                                     MainApplicationWindow.LoadedSource.WizardView)
+        onSettingsViewNeedToShowNewWizardWindow: loaderSourceChangeRequested(0)
 
         onSettingsBackArrowClicked: sidePanelViewStack.pop(StackView.Immediate)
     }
@@ -453,11 +461,11 @@ Rectangle {
         Connections {
             target: MessagesAdapter
 
-            function onNeedToUpdateSmartList() {
+            onNeedToUpdateSmartList: {
                 mainViewSidePanel.forceUpdateConversationSmartListView()
             }
 
-            function onNavigateToWelcomePageRequested() {
+            onNavigateToWelcomePageRequested: {
                 backToMainView()
             }
         }

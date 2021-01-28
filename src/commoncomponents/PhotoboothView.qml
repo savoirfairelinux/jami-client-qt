@@ -1,15 +1,15 @@
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.9
+import QtQuick.Controls 2.2
+import QtQuick.Layouts 1.3
 import QtQuick.Controls.Styles 1.4
-import Qt.labs.platform 1.1
-import QtGraphicalEffects 1.14
+import Qt.labs.platform 1.0
+import QtGraphicalEffects 1.0
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
 ColumnLayout {
-    property int photoState: PhotoboothView.PhotoState.Default
+    property int photoState: 0
     property bool avatarSet: false
     // saveToConfig is to specify whether the image should be saved to account config
     property alias saveToConfig: avatarImg.saveToConfig
@@ -17,29 +17,23 @@ ColumnLayout {
 
     property int boothWidth: 224
 
-    enum PhotoState {
-        Default = 0,
-        CameraRendering,
-        Taken
-    }
-
     readonly property int size: boothWidth +
                                 buttonsRowLayout.height +
                                 JamiTheme.preferredMarginSize / 2
 
-    function initUI(useDefaultAvatar = true) {
-        photoState = PhotoboothView.PhotoState.Default
+    function initUI(useDefaultAvatar) {
+        photoState = 0
         avatarSet = false
-        if (useDefaultAvatar)
-            setAvatarImage(AvatarImage.Mode.Default, "")
+        if (useDefaultAvatar === undefined || useDefaultAvatar)
+            setAvatarImage(6, "")
     }
 
     function startBooth() {
         AccountAdapter.startPreviewing(false)
-        photoState = PhotoboothView.PhotoState.CameraRendering
+        photoState = 1
     }
 
-    function stopBooth(){
+    function stopBooth() {
         try{
             if(!AccountAdapter.hasVideoCall()) {
                 AccountAdapter.stopPreviewing()
@@ -47,16 +41,19 @@ ColumnLayout {
         } catch(erro){console.log("Exception: " +  erro.message)}
     }
 
-    function setAvatarImage(mode = AvatarImage.Mode.FromAccount,
-                            imageId = AccountAdapter.currentAccountId){
-        if (mode !== AvatarImage.Mode.FromBase64)
+    function setAvatarImage(mode, imageId) {
+        if (mode === undefined)
+            mode = 0
+        if (imageId === undefined)
+            imageId = AccountAdapter.currentAccountId
+        if (mode !== 4)
             avatarImg.enableAnimation = true
         else
             avatarImg.enableAnimation = false
 
         avatarImg.mode = mode
 
-        if (mode === AvatarImage.Mode.Default) {
+        if (mode === 6) {
             avatarImg.updateImage(imageId)
             return
         }
@@ -89,7 +86,7 @@ ColumnLayout {
 
         onAccepted: {
             avatarSet = true
-            photoState = PhotoboothView.PhotoState.Default
+            photoState = 0
 
             fileName = file
             if (fileName.length === 0) {
@@ -98,7 +95,7 @@ ColumnLayout {
                 return
             }
 
-            setAvatarImage(AvatarImage.Mode.FromFile,
+            setAvatarImage(1,
                            UtilsAdapter.getAbsPath(fileName))
         }
     }
@@ -106,7 +103,7 @@ ColumnLayout {
     Label {
         id: avatarLabel
 
-        visible: photoState !== PhotoboothView.PhotoState.CameraRendering
+        visible: photoState !== 1
 
         Layout.fillWidth: true
         Layout.maximumWidth: boothWidth
@@ -143,10 +140,10 @@ ColumnLayout {
                 }
 
                 onImageIsReady: {
-                    if (mode === AvatarImage.Mode.FromBase64)
-                        photoState = PhotoboothView.PhotoState.Taken
+                    if (mode === 4)
+                        photoState = 2
 
-                    if (photoState === PhotoboothView.PhotoState.Taken) {
+                    if (photoState === 2) {
                         avatarImg.state = ""
                         avatarImg.state = "flashIn"
                     }
@@ -182,7 +179,7 @@ ColumnLayout {
 
         onHideBooth: stopBooth()
 
-        visible: photoState === PhotoboothView.PhotoState.CameraRendering
+        visible: photoState === 1
         focus: visible
 
         Layout.alignment: Qt.AlignHCenter
@@ -222,19 +219,19 @@ ColumnLayout {
 
             text: ""
             font.pointSize: 10
-            font.kerning: true
+            //font.kerning: true
             imageColor: JamiTheme.textColor
 
             toolTipText: JamiStrings.takePhoto
 
             radius: height / 6
             source: {
-                if(photoState === PhotoboothView.PhotoState.Default) {
+                if(photoState === 0) {
                     toolTipText = qsTr("Take photo")
                     return cameraAltIconUrl
                 }
 
-                if(photoState === PhotoboothView.PhotoState.Taken){
+                if(photoState === 2){
                     toolTipText = qsTr("Retake photo")
                     return refreshIconUrl
                 } else {
@@ -244,11 +241,11 @@ ColumnLayout {
             }
 
             onClicked: {
-                if(photoState !== PhotoboothView.PhotoState.CameraRendering){
+                if(photoState !== 1){
                     startBooth()
                     return
                 } else {
-                    setAvatarImage(AvatarImage.Mode.FromBase64,
+                    setAvatarImage(4,
                                    previewWidget.takePhoto(boothWidth))
 
                     avatarSet = true
@@ -266,7 +263,7 @@ ColumnLayout {
 
             text: ""
             font.pointSize: 10
-            font.kerning: true
+            //font.kerning: true
 
             radius: height / 6
             source: "qrc:/images/icons/round-folder-24px.svg"

@@ -16,10 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls 2.14
-import Qt.labs.platform 1.1
+import QtQuick 2.9
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.2
+import Qt.labs.platform 1.0
 import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
@@ -162,13 +162,13 @@ Rectangle {
 
                     text: {
                         switch(nameRegistrationUIState){
-                        case UsernameLineEdit.NameRegistrationState.BLANK:
-                        case UsernameLineEdit.NameRegistrationState.SEARCHING:
-                        case UsernameLineEdit.NameRegistrationState.FREE:
+                        case 0:
+                        case 4:
+                        case 3:
                             return ""
-                        case UsernameLineEdit.NameRegistrationState.INVALID:
+                        case 1:
                             return isRendezVous ? qsTr("Invalid name") : qsTr("Invalid username")
-                        case UsernameLineEdit.NameRegistrationState.TAKEN:
+                        case 2:
                             return isRendezVous ? qsTr("Name already taken") : qsTr("Username already taken")
                         }
                     }
@@ -185,15 +185,15 @@ Rectangle {
 
                     fontCapitalization: Font.AllUppercase
                     text: isRendezVous ? JamiStrings.chooseName : JamiStrings.chooseUsername
-                    enabled: nameRegistrationUIState === UsernameLineEdit.NameRegistrationState.FREE
-                    color: nameRegistrationUIState === UsernameLineEdit.NameRegistrationState.FREE ?
+                    enabled: nameRegistrationUIState === 3
+                    color: nameRegistrationUIState === 3 ?
                                JamiTheme.wizardBlueButtons :
                                JamiTheme.buttonTintedGreyInactive
                     hoveredColor: JamiTheme.buttonTintedBlueHovered
                     pressedColor: JamiTheme.buttonTintedBluePressed
 
                     onClicked: {
-                        if (nameRegistrationUIState === UsernameLineEdit.NameRegistrationState.FREE)
+                        if (nameRegistrationUIState === 3)
                             createAccountStack.currentIndex = createAccountStack.currentIndex + 1
                     }
                 }
@@ -291,7 +291,7 @@ Rectangle {
                     echoMode: TextInput.Password
                     placeholderText: JamiStrings.password
                     font.pointSize: 9
-                    font.kerning: true
+                    //font.kerning: true
                 }
 
                 MaterialLineEdit {
@@ -307,7 +307,7 @@ Rectangle {
                     echoMode: TextInput.Password
                     placeholderText: JamiStrings.confirmPassword
                     font.pointSize: 9
-                    font.kerning: true
+                    //font.kerning: true
                 }
 
                 Label {
