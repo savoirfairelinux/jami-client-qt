@@ -129,4 +129,9 @@ private:
     void updateCallOverlay(const lrc::api::conversation::Info& convInfo);
     void setTime(const QString& accountId, const QString& convUid);
     QTimer* oneSecondTimer_;
+#ifdef Q_OS_LINUX
+    QTimer* screenSaverTimer_;
+#endif
+
+    void preventScreenSaver(bool state);
 };

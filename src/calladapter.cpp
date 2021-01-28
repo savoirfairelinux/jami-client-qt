@@ -27,9 +27,16 @@
 
 #include <QApplication>
 
+#ifdef Q_OS_LINUX
+#include "xssutils.h"
+#endif
+
 CallAdapter::CallAdapter(QObject* parent)
     : QmlAdapterBase(parent)
     , oneSecondTimer_(new QTimer(this))
+#ifdef Q_OS_LINUX
+    , screenSaverTimer_(new QTimer(this))
+#endif
 {
     accountId_ = LRCInstance::getCurrAccId();
     connectCallModel(accountId_);
@@ -432,6 +439,7 @@ CallAdapter::connectCallModel(const QString& accountId)
                         }
                     }
                 }
+                preventScreenSaver(false);
                 break;
             }
             case lrc::api::call::Status::CONNECTED:
@@ -441,6 +449,7 @@ CallAdapter::connectCallModel(const QString& accountId)
                     accInfo.conversationModel->selectConversation(convInfo.uid);
                 }
                 updateCall(convInfo.uid, accountId);
+                preventScreenSaver(true);
                 break;
             }
             case lrc::api::call::Status::PAUSED:
@@ -864,4 +873,21 @@ CallAdapter::setTime(const QString& accountId, const QString& convUid)
         auto timeString = LRCInstance::getCurrentCallModel()->getFormattedCallDuration(callId);
         emit updateTimeText(timeString);
     }
+}
+
+void
+CallAdapter::preventScreenSaver(bool state)
+{
+#ifdef Q_OS_LINUX
+    qDebug() << "CallAdapter::preventScreenSaver" << state;
+    if (state) {
+        QObject::disconnect(screenSaverTimer_);
+        QObject::connect(screenSaverTimer_, &QTimer::timeout, [] { resetScreenSaver(); });
+        screenSaverTimer_->start(1000);
+    } else {
+        if (screenSaverTimer_->isActive()) {
+            screenSaverTimer_->stop();
+        }
+    }
+#endif
 }
