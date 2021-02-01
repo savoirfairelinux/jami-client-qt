@@ -701,7 +701,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="220"/>
         <source>Encrypt account with password</source>
-        <translation type="unfinished"/>
+        <translation>Зашифрувати мій профіль за допомогою пароля</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="221"/>
@@ -1091,7 +1091,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="170"/>
         <source>Recommended</source>
-        <translation type="unfinished"/>
+        <translation>Рекомендовано</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="173"/>
@@ -1218,7 +1218,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="210"/>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Обов&apos;язково</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="211"/>
@@ -1263,7 +1263,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="225"/>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>За бажанням</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="229"/>
@@ -1535,7 +1535,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="311"/>
         <source>Open file</source>
-        <translation type="unfinished"/>
+        <translation>Відкрити файл</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="312"/>
@@ -1722,7 +1722,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Збільшити</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="414"/>
@@ -1969,7 +1969,7 @@ Please try again later.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="385"/>
+        <location filename="../src/mainapplication.cpp" line="386"/>
         <source>Exit</source>
         <translation>Вийти</translation>
     </message>
@@ -2133,17 +2133,17 @@ Please try again later.</source>
     <message>
         <location filename="../src/wizardview/components/ProfilePage.qml" line="77"/>
         <source>Profile is only shared with contacts</source>
-        <translation type="unfinished"/>
+        <translation>Ваш профіль бачитимуть лише ваші контакти</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ProfilePage.qml" line="85"/>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>За бажанням</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ProfilePage.qml" line="117"/>
         <source>Enter your name</source>
-        <translation type="unfinished"/>
+        <translation>Введіть своє ім&apos;я</translation>
     </message>
     <message>
         <location filename="../src/wizardview/components/ProfilePage.qml" line="151"/>

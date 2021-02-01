@@ -1148,7 +1148,7 @@ Jami vai pechar agora.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="192"/>
         <source>More options</source>
-        <translation type="unfinished"/>
+        <translation>Máis opcións</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="195"/>
@@ -1555,7 +1555,7 @@ Jami vai pechar agora.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="319"/>
         <source>Enter Jami account password</source>
-        <translation type="unfinished"/>
+        <translation>Escribe o contrasinal da conta Jami</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="328"/>
@@ -1676,7 +1676,8 @@ Jami vai pechar agora.</translation>
         <location filename="../src/constant/JamiStrings.qml" line="385"/>
         <source>This is your Jami username.
 Copy and share it with your friends!</source>
-        <translation type="unfinished"/>
+        <translation>Este é o teu nome de usuaria Jami.
+Copiao e compárteo coas túas amizades!</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="386"/>
@@ -1726,12 +1727,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="414"/>
         <source>Minimize</source>
-        <translation type="unfinished"/>
+        <translation>Minimizar</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>
         <source>Hangup</source>
-        <translation type="unfinished"/>
+        <translation>Colgar</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="416"/>
@@ -1968,7 +1969,7 @@ Please try again later.</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="385"/>
+        <location filename="../src/mainapplication.cpp" line="386"/>
         <source>Exit</source>
         <translation type="unfinished"/>
     </message>
