@@ -32,21 +32,24 @@ Rectangle {
     id: root
 
     // svg path for the background participant shape (width is offset dependant)
-    property int offset: indicatorsRowLayout.width
+    property int offset: indicatorsRowLayout.width + 8
     property int shapeHeight: 16
-    property string pathShape: "M 0.0,%8
-    C 0.0,%8 %1,%8 %1,%8 %2,%8 %3,%9 %4,10.0 %5,5.0 %5,0.0 %6,0.0 %7,0.0 %4,0.0
-      0.0,0.0 0.0,0.0 0.0,%8 0.0,%8 Z".arg(offset).arg(4.0+offset).arg(7+offset)
-    .arg(9+offset).arg(11+offset).arg(15+offset).arg(18+offset).arg(shapeHeight)
-    .arg(shapeHeight-2)
+    property int shapeRadius: 8
 
-    // TODO: properties should be
+    property string pathShapeLeft: "M0,0 h%1 v%2 q0,%3 -%3,%3 h-%4 z"
+    .arg(offset).arg(shapeHeight-shapeRadius).arg(shapeRadius).arg(offset-shapeRadius)
+
+    property string paz: "M0,0 h%1 v%2 h-%3 q-%4,0 -%4,-%4 z".
+    arg(offset).arg(shapeHeight).arg(offset-shapeRadius).arg(shapeRadius)
+
     property string uri: overlayMenu.uri
     property bool participantIsHost: false
     property bool participantIsModerator: false
     property bool participantIsMuted: false
     property bool participantIsLocalMuted: false
     property bool participantIsModeratorMuted: false
+
+    property bool fromParticipantMenu: false
 
     // TODO: try to use AvatarImage as well
     function setAvatar(avatar) {
@@ -102,7 +105,7 @@ Rectangle {
                 strokeColor: "transparent"
                 fillColor: JamiTheme.darkGreyColorOpacity
                 capStyle: ShapePath.RoundCap
-                PathSvg { path: pathShape }
+                PathSvg { path: pathShapeLeft }
             }
         }
 
@@ -175,7 +178,7 @@ Rectangle {
 
         anchors.fill: parent
         opacity: 0
-        color: JamiTheme.darkGreyColorOpacity
+        color: "transparent"// JamiTheme.darkGreyColorOpacity
         z: 1
 
         MouseArea {
@@ -216,14 +219,21 @@ Rectangle {
             ParticipantOverlayMenu {
                 id: overlayMenu
                 visible: participantRect.opacity !== 0
-                anchors.centerIn: parent
+                participantWidth: participantRect.width
                 hasMinimumSize: root.width > minimumWidth && root.height > minimumHeight
 
                 onMouseAreaExited: {
+                    console.error("onMouseAreaExited child!!!")
                     if (contactImage.status === Image.Null) {
                         root.z = 1
                         participantRect.state = "exited"
                     }
+                }
+                onMouseChanged: {
+                    console.error("mousechanged child!!")
+                    participantRect.state = "entered"
+                    fadeOutTimer.restart()
+                    fromParticipantMenu = true
                 }
             }
 
@@ -232,6 +242,7 @@ Rectangle {
             }
 
             onEntered: {
+                console.error("onEntered")
                 if (contactImage.status === Image.Null) {
                     root.z = 2
                     participantRect.state = "entered"
@@ -239,9 +250,20 @@ Rectangle {
             }
 
             onExited: {
+                console.error("onExited")
                 if (contactImage.status === Image.Null) {
                     root.z = 1
                     participantRect.state = "exited"
+                }
+            }
+
+            onMouseXChanged: {
+                console.error("mouseXChanged parent!!")
+                if (fromParticipantMenu) { // Hack: when ParticipantOverlayMenu is exited
+                    fromParticipantMenu = false
+                } else {
+                    participantRect.state = "entered"
+                    fadeOutTimer.restart()
                 }
             }
         }
@@ -269,6 +291,27 @@ Rectangle {
                 property: "opacity"
                 duration: 500
             }
+        }
+    }
+
+
+    // Timer to decide when ParticipantOverlay fade out.
+    Timer {
+        id: fadeOutTimer
+        interval: 5000
+        onTriggered: {
+            console.error("timer triggered")
+            participantRect.state = "fadeout"
+
+
+//            if (overlayUpperPartRect.state !== 'freezed') {
+//                overlayUpperPartRect.state = 'freezed'
+//                resetRecordingLabelTimer.restart()
+//            }
+//            if (callOverlayButtonGroup.state !== 'freezed') {
+//                callOverlayButtonGroup.state = 'freezed'
+//                resetRecordingLabelTimer.restart()
+//            }
         }
     }
 }
