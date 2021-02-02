@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a6872b70_f80e385a",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-02T19:47:58Z",
+      "side": 1,
+      "message": "This source was missing for CMake, otherwise we can create a separated patch...",
+      "parentUuid": "8a6cb5cc_0e7b4c8b",
+      "range": {
+        "startLine": 121,
+        "startChar": 25,
+        "endLine": 122,
+        "endChar": 36
+      },
+      "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe89b4d5_aa511ee9",
         "filename": "CMakeLists.txt",
         "patchSetId": 20
@@ -45,6 +69,30 @@
       "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ac864bd7_d7f847b5",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-02T19:47:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe89b4d5_aa511ee9",
+      "range": {
+        "startLine": 234,
+        "startChar": 29,
+        "endLine": 235,
+        "endChar": 74
+      },
+      "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3631c3a0_78671f19",
+        "filename": "cmake/cmake_uninstall.cmake.in",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-02T19:47:58Z",
+      "side": 1,
+      "message": "Done, client-qt still needs year revision.",
+      "parentUuid": "a18ebb31_74d60c86",
+      "range": {
+        "startLine": 3,
+        "startChar": 1,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d689595d_b3e591af",
         "filename": "jami-qt.appdata.xml",
         "patchSetId": 20
@@ -91,6 +163,30 @@
       "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "285cbed1_03bb0ab2",
+        "filename": "jami-qt.appdata.xml",
+        "patchSetId": 20
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-02T19:47:58Z",
+      "side": 1,
+      "message": "Done for the text, we are still missing the correct screenshots.",
+      "parentUuid": "d689595d_b3e591af",
+      "range": {
+        "startLine": 20,
+        "startChar": 26,
+        "endLine": 27,
+        "endChar": 14
+      },
+      "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
