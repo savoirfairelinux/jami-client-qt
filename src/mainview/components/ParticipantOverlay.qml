@@ -48,6 +48,8 @@ Rectangle {
     property bool participantIsLocalMuted: false
     property bool participantIsModeratorMuted: false
 
+    property bool fromParticipantMenu: false
+
     // TODO: try to use AvatarImage as well
     function setAvatar(avatar) {
         if (avatar === "") {
@@ -220,10 +222,17 @@ Rectangle {
                 hasMinimumSize: root.width > minimumWidth && root.height > minimumHeight
 
                 onMouseAreaExited: {
+                    console.error("onMouseAreaExited child!!!")
                     if (contactImage.status === Image.Null) {
                         root.z = 1
                         participantRect.state = "exited"
                     }
+                }
+                onMouseChanged: {
+                    console.error("mousechanged child!!")
+                    participantRect.state = "entered"
+                    fadeOutTimer.restart()
+                    fromParticipantMenu = true
                 }
             }
 
@@ -232,6 +241,7 @@ Rectangle {
             }
 
             onEntered: {
+                console.error("onEntered")
                 if (contactImage.status === Image.Null) {
                     root.z = 2
                     participantRect.state = "entered"
@@ -239,9 +249,20 @@ Rectangle {
             }
 
             onExited: {
+                console.error("onExited")
                 if (contactImage.status === Image.Null) {
                     root.z = 1
                     participantRect.state = "exited"
+                }
+            }
+
+            onMouseXChanged: {
+                console.error("mouseXChanged parent!!")
+                if (fromParticipantMenu) { // Hack: when ParticipantOverlayMenu is exited
+                    fromParticipantMenu = false
+                } else {
+                    participantRect.state = "entered"
+                    fadeOutTimer.restart()
                 }
             }
         }
@@ -269,6 +290,27 @@ Rectangle {
                 property: "opacity"
                 duration: 500
             }
+        }
+    }
+
+
+    // Timer to decide when ParticipantOverlay fade out.
+    Timer {
+        id: fadeOutTimer
+        interval: 5000
+        onTriggered: {
+            console.error("timer triggered")
+            participantRect.state = "fadeout"
+
+
+//            if (overlayUpperPartRect.state !== 'freezed') {
+//                overlayUpperPartRect.state = 'freezed'
+//                resetRecordingLabelTimer.restart()
+//            }
+//            if (callOverlayButtonGroup.state !== 'freezed') {
+//                callOverlayButtonGroup.state = 'freezed'
+//                resetRecordingLabelTimer.restart()
+//            }
         }
     }
 }
