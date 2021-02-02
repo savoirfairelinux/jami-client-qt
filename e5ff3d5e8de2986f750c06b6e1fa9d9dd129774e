@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ec7c89b_c2dd4330",
+        "filename": "src/mainview/components/MessageWebView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-02-02T19:03:50Z",
+      "side": 1,
+      "message": "Why opening recordBox?",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 9
+      },
+      "revId": "e5ff3d5e8de2986f750c06b6e1fa9d9dd129774e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0700d0a_dbeea3bc",
+        "filename": "src/pluginhandleritemlistmodel.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-02-02T19:03:50Z",
+      "side": 1,
+      "message": "think we should take advantage of the .clang-format file that we have \n\nhttps://www.dynamsoft.com/codepool/vscode-format-c-code-windows-linux.html",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 120
+      },
+      "revId": "e5ff3d5e8de2986f750c06b6e1fa9d9dd129774e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eedf6fdc_3be75586",
+        "filename": "src/pluginhandleritemlistmodel.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-02-02T19:03:50Z",
+      "side": 1,
+      "message": "format",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 195
+      },
+      "revId": "e5ff3d5e8de2986f750c06b6e1fa9d9dd129774e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
