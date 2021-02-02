@@ -31,22 +31,22 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    // svg path for the background participant shape (width is offset dependant)
-    property int offset: indicatorsRowLayout.width
+    // svg path for the participant indicators background shape
+    property int shapeWidth: indicatorsRowLayout.width + 8
     property int shapeHeight: 16
-    property string pathShape: "M 0.0,%8
-    C 0.0,%8 %1,%8 %1,%8 %2,%8 %3,%9 %4,10.0 %5,5.0 %5,0.0 %6,0.0 %7,0.0 %4,0.0
-      0.0,0.0 0.0,0.0 0.0,%8 0.0,%8 Z".arg(offset).arg(4.0+offset).arg(7+offset)
-    .arg(9+offset).arg(11+offset).arg(15+offset).arg(18+offset).arg(shapeHeight)
-    .arg(shapeHeight-2)
+    property int shapeRadius: 6
+    property string pathShape: "M0,0 h%1 q%2,0 %2,%2 v%3 h-%4 z"
+    .arg(shapeWidth-shapeRadius).arg(shapeRadius).arg(shapeHeight-shapeRadius).
+    arg(shapeWidth)
 
-    // TODO: properties should be
     property string uri: overlayMenu.uri
     property bool participantIsHost: false
     property bool participantIsModerator: false
     property bool participantIsMuted: false
     property bool participantIsLocalMuted: false
     property bool participantIsModeratorMuted: false
+
+    property bool participantMenuActive: false
 
     // TODO: try to use AvatarImage as well
     function setAvatar(avatar) {
@@ -87,6 +87,9 @@ Rectangle {
     color: "transparent"
     z: 1
 
+    border.color: "transparent"
+    border.width: 2
+
     // Participant header with host, moderator and mute indicators
     Rectangle {
         id: participantIndicators
@@ -94,11 +97,12 @@ Rectangle {
         height: shapeHeight
         visible: participantIsHost || participantIsModerator || participantIsMuted
         color: "transparent"
+        anchors.bottom: parent.bottom
 
         Shape {
-            id: myShape
+            id: backgroundShape
             ShapePath {
-                id: backgroundShape
+                id: backgroundShapePath
                 strokeColor: "transparent"
                 fillColor: JamiTheme.darkGreyColorOpacity
                 capStyle: ShapePath.RoundCap
@@ -175,7 +179,7 @@ Rectangle {
 
         anchors.fill: parent
         opacity: 0
-        color: JamiTheme.darkGreyColorOpacity
+        color: "transparent"
         z: 1
 
         MouseArea {
@@ -216,14 +220,17 @@ Rectangle {
             ParticipantOverlayMenu {
                 id: overlayMenu
                 visible: participantRect.opacity !== 0
-                anchors.centerIn: parent
-                hasMinimumSize: root.width > minimumWidth && root.height > minimumHeight
 
                 onMouseAreaExited: {
                     if (contactImage.status === Image.Null) {
                         root.z = 1
                         participantRect.state = "exited"
                     }
+                }
+                onMouseChanged: {
+                    participantRect.state = "entered"
+                    fadeOutTimer.restart()
+                    participantMenuActive = true
                 }
             }
 
@@ -244,6 +251,17 @@ Rectangle {
                     participantRect.state = "exited"
                 }
             }
+
+            onMouseXChanged: {
+                // Hack: avoid listening mouseXChanged emitted when
+                // ParticipantOverlayMenu is exited
+                if (participantMenuActive) {
+                    participantMenuActive = false
+                } else {
+                    participantRect.state = "entered"
+                    fadeOutTimer.restart()
+                }
+            }
         }
 
         states: [
@@ -253,12 +271,21 @@ Rectangle {
                     target: participantRect
                     opacity: 1
                 }
+                PropertyChanges {
+                    target: root
+                    border.color: overlayMenu.isOverlayRect? "transparent"
+                                                           : JamiTheme.darkGreyColorOpacity
+                }
             },
             State {
                 name: "exited"
                 PropertyChanges {
                     target: participantRect
                     opacity: 0
+                }
+                PropertyChanges {
+                    target: root
+                    border.color: "transparent"
                 }
             }
         ]
@@ -269,6 +296,18 @@ Rectangle {
                 property: "opacity"
                 duration: 500
             }
+            PropertyAnimation {
+                target: root
+                property: "border.color"
+                duration: 500
+            }
         }
+    }
+
+    // Timer to decide when ParticipantOverlay fade out
+    Timer {
+        id: fadeOutTimer
+        interval: 5000
+        onTriggered: participantRect.state = "exited"
     }
 }
