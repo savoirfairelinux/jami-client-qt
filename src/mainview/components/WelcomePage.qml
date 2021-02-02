@@ -45,113 +45,29 @@ Rectangle {
             Layout.preferredHeight: implicitHeight
             Layout.topMargin: JamiTheme.preferredMarginSize
 
-            ResponsiveImage {
-                id: jamiLogoImage
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomePageColumnLayout.width
-                Layout.preferredHeight: 100
-                Layout.bottomMargin: 10
-
-                smooth: true
-                antialiasing: true
-
-                source: JamiTheme.darkTheme? "qrc:/images/logo-jami-standard-coul-white.svg" : "qrc:/images/logo-jami-standard-coul.svg"
-            }
-
-            Label {
-                id: jamiIntroText
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomePageColumnLayout.width
-                Layout.preferredHeight: 80
-                Layout.bottomMargin: 5
-
-                wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize + 1
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                text: JamiStrings.description
-                color: JamiTheme.textColor
-            }
-
-            Label {
-                id: jamiShareWithFriendText
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomePageColumnLayout.width
-                Layout.preferredHeight: 50
-
-                wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                visible: AccountAdapter.currentAccountType === Profile.Type.RING
-
-                text: JamiStrings.shareInvite
-                color: JamiTheme.faddedFontColor
-            }
-
             Rectangle {
-                id: jamiRegisteredNameRect
+                width: root.width - 100
+                height: 400
+                color: "green"
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomePageColumnLayout.width
-                Layout.preferredHeight: 65
+            ParticipantOverlayMenu {
+                id: overlayMenu
+                visible: true
+                //anchors.centerIn: parent
+                hasMinimumSize: root.width > minimumWidth && root.height > minimumHeight
+                participantWidth: root.width
 
-                color: JamiTheme.secondaryBackgroundColor
+                uri: "albert"
+                bestName: "bestName"
 
-                visible: AccountAdapter.currentAccountType === Profile.Type.RING
+                showSetModerator: true
 
-                ColumnLayout {
-                    id: jamiRegisteredNameRectColumnLayout
-
-                    spacing: 0
-
-                    Text {
-                        id: jamiRegisteredNameText
-
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: welcomePageColumnLayout.width
-                        Layout.preferredHeight: 30
-
-                        font.pointSize: JamiTheme.textFontSize + 1
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        text: textMetricsjamiRegisteredNameText.elidedText
-                        color: JamiTheme.textColor
-                        TextMetrics {
-                            id: textMetricsjamiRegisteredNameText
-                            font: jamiRegisteredNameText.font
-                            text: UtilsAdapter.getBestId(AccountAdapter.currentAccountId)
-                            elideWidth: welcomePageColumnLayout.width
-                            elide: Qt.ElideMiddle
-                        }
-                    }
-
-                    PushButton {
-                        id: copyRegisterednameButton
-
-                        Layout.alignment: Qt.AlignCenter
-
-                        preferredSize: 34
-                        imagePadding: 4
-                        imageColor: JamiTheme.textColor
-
-                        source: "qrc:/images/icons/content_copy-24px.svg"
-
-                        onClicked: {
-                            UtilsAdapter.setText(
-                                        textMetricsjamiRegisteredNameText.text)
-                        }
-                    }
-                }
+                showModeratorMute: true
+                showMaximize: true
+                showMinimize: true
+                showHangup: true
             }
-
+            }
         }
 
         MaterialButton {
