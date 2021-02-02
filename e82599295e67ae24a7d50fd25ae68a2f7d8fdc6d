@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a6cb5cc_0e7b4c8b",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-02-02T18:58:34Z",
+      "side": 1,
+      "message": "in this patch?",
+      "range": {
+        "startLine": 121,
+        "startChar": 25,
+        "endLine": 122,
+        "endChar": 36
+      },
+      "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe89b4d5_aa511ee9",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-02-02T18:58:34Z",
+      "side": 1,
+      "message": "For the icons\n\nA 32x32 px XPM file in /usr/share/pixmaps/.\nA 48x48 px PNG file in /usr/share/icons/hicolor/48x48/apps/\n\nto be available for a max of themes.\nhttps://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-0.11.html#install_icons",
+      "range": {
+        "startLine": 234,
+        "startChar": 29,
+        "endLine": 235,
+        "endChar": 74
+      },
+      "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a18ebb31_74d60c86",
+        "filename": "cmake/cmake_uninstall.cmake.in",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-02-02T18:58:34Z",
+      "side": 1,
+      "message": "fix date",
+      "range": {
+        "startLine": 3,
+        "startChar": 1,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d689595d_b3e591af",
+        "filename": "jami-qt.appdata.xml",
+        "patchSetId": 20
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-02-02T18:58:34Z",
+      "side": 1,
+      "message": "cf https://review.jami.net/c/ring-client-gnome/+/16855",
+      "range": {
+        "startLine": 20,
+        "startChar": 26,
+        "endLine": 27,
+        "endChar": 14
+      },
+      "revId": "e82599295e67ae24a7d50fd25ae68a2f7d8fdc6d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
