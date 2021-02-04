@@ -17,10 +17,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtGraphicalEffects 1.12
+import QtQml 2.12
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -38,7 +40,7 @@ TabBar {
     Connections {
         target: ConversationsAdapter
 
-        function onCurrentTypeFilterChanged() {
+        onCurrentTypeFilterChanged: {
             pageOne.down = ConversationsAdapter.currentTypeFilter !==  Profile.Type.PENDING
             pageTwo.down = ConversationsAdapter.currentTypeFilter ===  Profile.Type.PENDING
             setCurrentUidSmartListModelIndex()
@@ -48,7 +50,7 @@ TabBar {
 
     function selectTab(tabIndex) {
         ConversationsAdapter.currentTypeFilter = tabIndex ===
-                SidePanelTabBar.Conversations ? AccountAdapter.getCurrentAccountType() :
+                SidePanelTabBar.Conversations ? AccountAdapter.currentAccountType :
                                                 Profile.Type.PENDING
     }
 
@@ -63,8 +65,8 @@ TabBar {
     currentIndex: 0
 
     TabButton {
-
         id: pageOne
+
         down: true
 
         Rectangle {
@@ -223,7 +225,6 @@ TabBar {
                 fillMode: Image.PreserveAspectFit
                 mipmap: true
                 source: "qrc:/images/icons/drafts-24px.svg"
-                //opacity: enabled ? 0.8 : 0.3
                 opacity: pageTwo.down == true ? 1.0 : opacityDegree
             }
 
@@ -247,7 +248,6 @@ TabBar {
                 font.pointSize: JamiTheme.textFontSize
 
                 text: JamiStrings.invitations
-                //opacity: enabled ? 1.0 : 0.3
                 opacity: pageTwo.down == true ? 1.0 : opacityDegree
                 color: JamiTheme.blueLogo_
             }

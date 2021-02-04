@@ -17,9 +17,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtQml 2.12
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
@@ -61,28 +63,29 @@ ListView {
     Connections {
         target: ConversationsAdapter
 
-        function onModelChanged(model) {
+        onModelChanged: {
             root.model = model
         }
 
         // When the model has been sorted, we need to adjust the focus (currentIndex)
         // to the previously focused conversation item.
-        function onModelSorted(uid) {
+        onModelSorted: {
             repositionIndex(uid)
         }
 
-        function onUpdateListViewRequested() {
+        onUpdateListViewRequested: {
             updateListView()
         }
 
-        function onIndexRepositionRequested() {
+        onIndexRepositionRequested: {
             repositionIndex()
         }
     }
 
     Connections {
         target: LRCInstance
-        function onUpdateSmartList() { updateListView() }
+
+        onUpdateSmartList: { updateListView() }
     }
 
     clip: true
