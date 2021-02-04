@@ -16,9 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls 2.14
+import QtQuick 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls 2.12
+
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
@@ -122,13 +123,13 @@ GridLayout {
         background: {
             switch (passwordStatusState) {
             case "Hide":
-                return Qt.createQmlObject("import QtQuick 2.14;
+                return Qt.createQmlObject("import QtQuick 2.12;
 import \"qrc:/src/constant/\";
 Rectangle {
 anchors.fill: parent;
 color: \"transparent\"; }", passwordStatusLabel)
             case "Fail":
-                return Qt.createQmlObject("import QtQuick 2.14;
+                return Qt.createQmlObject("import QtQuick 2.12;
 import \"qrc:/src/constant/\";
 Rectangle {
 anchors.fill: parent;
@@ -138,7 +139,7 @@ source: \"image://tintedPixmap/\"+ (\"qrc:/images/icons/baseline-close-24px.svg\
 mipmap: true;}
 }", passwordStatusLabel)
             case "Success":
-                return Qt.createQmlObject("import QtQuick 2.14;
+                return Qt.createQmlObject("import QtQuick 2.12;
 import \"qrc:/src/constant/\";
 Rectangle {
 anchors.fill: parent;

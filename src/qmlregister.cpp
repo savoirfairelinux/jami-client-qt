@@ -166,6 +166,8 @@ registerTypes()
     QML_REGISTERNAMESPACE(lrc::api::video::staticMetaObject, "Video", 1, 0);
     QML_REGISTERNAMESPACE(lrc::api::profile::staticMetaObject, "Profile", 1, 0);
 
+    qRegisterMetaType<lrc::api::profile::Type>();
+
     /*
      * same as QML_REGISTERUNCREATABLE but omit the namespace in Qml
      */
