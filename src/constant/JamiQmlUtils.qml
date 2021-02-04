@@ -19,7 +19,7 @@
 // JamiQmlUtils as a singleton is to provide global property entry
 pragma Singleton
 
-import QtQuick 2.14
+import QtQuick 2.12
 
 Item {
     readonly property string mainViewLoadPath: "qrc:/src/mainview/MainView.qml"
