@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
+import QtQuick 2.12
 import QtQuick.Dialogs 1.3
 
 Dialog {

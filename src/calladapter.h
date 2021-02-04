@@ -78,11 +78,9 @@ public:
                                 bool forceCallOnly = false);
 
 signals:
-    void callStatusChanged(int index, const QString& accountId, const QString& convUid);
+    void callStatusChanged(int statusIndex, const QString& accountId, const QString& convUid);
     void updateConversationSmartList();
-    void updateParticipantsInfos(const QVariantList& infos,
-                                 const QString& accountId,
-                                 const QString& callId);
+    void updateParticipantsInfos(const QVariantList& infos, const QString& callId);
     void callSetupMainViewRequired(const QString& accountId, const QString& convUid);
     void previewVisibilityNeedToChange(bool visible);
 

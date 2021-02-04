@@ -82,7 +82,7 @@ def setup_parameters(parsed_args):
         if parsed_args.qtVersion:
             globalVar.qt_version = parsed_args.qtVersion
             qt_minor_ver = int(globalVar.qt_version.split('.')[1])
-            if qt_minor_ver < 14:
+            if qt_minor_ver < 12:
                 print(bcolors.WARNING + "Qt version not supported" + bcolors.ENDC)
                 sys.exit()
             globalVar.qt_path = "C:\\Qt\\" + globalVar.qt_version + \
@@ -107,7 +107,7 @@ def setup_parameters(parsed_args):
             globalVar.qt_version = globalVar.qt_version.split(
                 'Qt version')[1].split('in')[0].strip()
             qt_minor_ver = int(globalVar.qt_version.split('.')[1])
-            if qt_minor_ver < 14:
+            if qt_minor_ver < 12:
                 print(bcolors.WARNING + "Qt version not supported" + bcolors.ENDC)
                 sys.exit()
 
@@ -222,7 +222,7 @@ def release_and_copy_translations():
         qt_version_check = qt_version_check.decode("utf-8")
     qt_version_check = qt_version_check.split('version')[1].strip()
     qt_minor_ver = int(qt_version_check.split('.')[1])
-    if qt_minor_ver < 14:
+    if qt_minor_ver < 12:
         print(bcolors.WARNING + "Qt version not supported" + bcolors.ENDC)
         sys.exit()
 
