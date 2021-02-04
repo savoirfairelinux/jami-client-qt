@@ -16,10 +16,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls.Universal 2.12
+import QtQml 2.12
+
+import QtQuick.Controls 1.4 as QtQuickOne
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -52,6 +56,8 @@ Rectangle {
 
     function closeInCallConversation() {
         if (inAudioCallMessageWebViewStack.visible) {
+            mainColumnLayout.removeItem(inAudioCallMessageWebViewStack)
+
             linkedWebview.resetMessagingHeaderBackButtonSource(
                         true)
             linkedWebview.setMessagingHeaderButtonsVisible(true)
@@ -66,25 +72,37 @@ Rectangle {
 
     anchors.fill: parent
 
-    SplitView {
+    StackView {
+        id: inAudioCallMessageWebViewStack
+
+        Layout.minimumHeight: audioCallPageRect.height / 3
+        Layout.fillWidth: true
+
+        visible: false
+
+        clip: true
+    }
+
+    QtQuickOne.SplitView {
         id: mainColumnLayout
 
         anchors.fill: parent
 
         orientation: Qt.Vertical
 
-        handle: Rectangle {
+        handleDelegate: Rectangle {
             implicitWidth: audioCallPageRect.width
             implicitHeight: JamiTheme.splitViewHandlePreferredWidth
-            color: SplitHandle.pressed ? JamiTheme.pressColor : (SplitHandle.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
+
+            visible: inAudioCallMessageWebViewStack.visible
+            color: styleData.pressed ? JamiTheme.pressColor : (styleData.hovered ? JamiTheme.hoverColor : JamiTheme.tabbarBorderColor)
         }
 
         Rectangle {
             id: audioCallPageMainRect
 
-            SplitView.preferredHeight: (audioCallPageRect.height / 3) * 2
-            SplitView.minimumHeight: audioCallPageRect.height / 2 + 20
-            SplitView.fillWidth: true
+            Layout.minimumHeight: audioCallPageRect.height / 2 + 20
+            Layout.fillWidth: true
 
             MouseArea {
                 anchors.fill: parent
@@ -112,12 +130,12 @@ Rectangle {
                     Connections {
                         target: CallAdapter
 
-                        function onUpdateTimeText(time) {
+                        onUpdateTimeText: {
                             audioCallOverlay.timeText = time
                             audioCallOverlay.setRecording(CallAdapter.isRecordingThisCall())
                         }
 
-                        function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP, isConferenceCall, bestName) {
+                        onUpdateOverlay: {
                             audioCallOverlay.showOnHoldImage(isPaused)
                             audioCallPageRectCentralRect.visible = !isPaused
                             audioCallOverlay.updateButtonStatus(isPaused,
@@ -129,7 +147,7 @@ Rectangle {
                             audioCallPageRect.bestName = bestName
                         }
 
-                        function onShowOnHoldLabel(isPaused) {
+                        onShowOnHoldLabel: {
                             audioCallOverlay.showOnHoldImage(isPaused)
                             audioCallPageRectCentralRect.visible = !isPaused
                         }
@@ -137,13 +155,21 @@ Rectangle {
 
                     onOverlayChatButtonClicked: {
                         if (inAudioCallMessageWebViewStack.visible) {
+                            mainColumnLayout.removeItem(inAudioCallMessageWebViewStack)
+
                             linkedWebview.resetMessagingHeaderBackButtonSource(
                                         true)
                             linkedWebview.setMessagingHeaderButtonsVisible(
                                         true)
                             inAudioCallMessageWebViewStack.visible = false
                             inAudioCallMessageWebViewStack.clear()
+
+                            audioCallPageMainRect.height = Qt.binding(function() {
+                                return mainColumnLayout.height
+                            })
                         } else {
+                            mainColumnLayout.addItem(inAudioCallMessageWebViewStack)
+
                             linkedWebview.resetMessagingHeaderBackButtonSource(
                                         false)
                             linkedWebview.setMessagingHeaderButtonsVisible(
@@ -151,6 +177,8 @@ Rectangle {
                             inAudioCallMessageWebViewStack.visible = true
                             inAudioCallMessageWebViewStack.push(
                                         linkedWebview)
+
+                            audioCallPageMainRect.height = audioCallPageRect.height / 2 + 20
                         }
                     }
                 }
@@ -234,17 +262,6 @@ Rectangle {
                 }
             }
             color: "transparent"
-        }
-
-        StackView {
-            id: inAudioCallMessageWebViewStack
-
-            SplitView.preferredHeight: audioCallPageRect.height / 3
-            SplitView.fillWidth: true
-
-            visible: false
-
-            clip: true
         }
     }
 
