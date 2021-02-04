@@ -38,7 +38,7 @@ public:
     void finishedHandlingError();
 
 signals:
-    void showDaemonReconnectPopup(bool visible);
+    void showDaemonReconnectPopup(bool showPopup);
     void daemonReconnectFailed();
 
 private:

@@ -120,6 +120,17 @@ fileDebug(QFile* debugFile)
                      });
 }
 
+#ifdef Q_OS_LINUX
+static QObject*
+dBusErrorHandlerQObjectProvider(QQmlEngine* engine, QJSEngine* scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+
+    return dynamic_cast<QObject*>(&GlobalInstances::dBusErrorHandler());
+}
+#endif
+
 MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
     , engine_(new QQmlApplicationEngine())
@@ -140,6 +151,8 @@ MainApplication::init()
 #ifdef Q_OS_LINUX
     if (!getenv("QT_QPA_PLATFORMTHEME"))
         setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
+
+    GlobalInstances::setDBusErrorHandler(std::make_unique<Interfaces::DBusErrorHandler>());
 #endif
 
     auto results = parseArguments();
@@ -159,20 +172,13 @@ MainApplication::init()
     initLrc(results[opts::UPDATEURL].toString(), connectivityMonitor_);
 
 #ifdef Q_OS_UNIX
-    GlobalInstances::setDBusErrorHandler(std::make_unique<Interfaces::DBusErrorHandler>());
-    auto dBusErrorHandlerQObject = dynamic_cast<QObject*>(&GlobalInstances::dBusErrorHandler());
     qmlRegisterSingletonType<Interfaces::DBusErrorHandler>("net.jami.Models",
                                                            1,
                                                            0,
                                                            "DBusErrorHandler",
-                                                           [dBusErrorHandlerQObject](QQmlEngine* e,
-                                                                                     QJSEngine* se)
-                                                               -> QObject* {
-                                                               Q_UNUSED(e)
-                                                               Q_UNUSED(se)
-                                                               return dBusErrorHandlerQObject;
-                                                           });
-    engine_->setObjectOwnership(dBusErrorHandlerQObject, QQmlEngine::CppOwnership);
+                                                           dBusErrorHandlerQObjectProvider);
+    engine_->setObjectOwnership(dynamic_cast<QObject*>(&GlobalInstances::dBusErrorHandler()),
+                                QQmlEngine::CppOwnership);
 
     if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
         engine_->load(QUrl(QStringLiteral("qrc:/src/DaemonReconnectWindow.qml")));
@@ -184,7 +190,6 @@ MainApplication::init()
             engine_.reset(new QQmlApplicationEngine());
     }
 #endif
-
 
     connect(connectivityMonitor_, &ConnectivityMonitor::connectivityChanged, [] {
         LRCInstance::connectivityChanged();

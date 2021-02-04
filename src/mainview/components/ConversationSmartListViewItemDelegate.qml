@@ -16,9 +16,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtQml 2.12
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -43,14 +45,14 @@ ItemDelegate {
 
         // Hack, make sure that smartListItemDelegate does not show extra item
         // when searching new contacts.
-        function onForceUpdatePotentialInvalidItem() {
+        onForceUpdatePotentialInvalidItem: {
             smartListItemDelegate.visible = conversationSmartListView.model.rowCount(
                         ) <= index ? false : true
         }
 
 
         // When currentIndex is -1, deselect items, if not, change select item
-        function onCurrentIndexChanged() {
+        onCurrentIndexChanged: {
             if (conversationSmartListView.currentIndex === -1
                     || conversationSmartListView.currentIndex !== index) {
                 itemSmartListBackground.color = Qt.binding(function () {
@@ -71,7 +73,7 @@ ItemDelegate {
     Connections {
         target: ConversationsAdapter
 
-        function onShowConversation(accountId, convUid) {
+        onShowConversation: {
             if (convUid === UID) {
                 mainView.setMainView(DisplayID == DisplayName ? "" : DisplayID,
                             DisplayName, UID, CallStackViewShouldShow, IsAudioOnly, CallState)
