@@ -60,9 +60,6 @@ main(int argc, char* argv[])
     QApplication::setQuitOnLastWindowClosed(false);
     QCoreApplication::setAttribute(Qt::AA_UseOpenGLES);
     QCoreApplication::setApplicationVersion(QString(VERSION_STRING));
-    QApplication::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::RoundPreferFloor);
-    QtWebEngine::initialize();
 
     char ARG_DISABLE_WEB_SECURITY[] = "--disable-web-security";
     auto newArgv = parseInputArgument(argc, argv, ARG_DISABLE_WEB_SECURITY);
@@ -84,6 +81,8 @@ main(int argc, char* argv[])
         guard.release();
         return 0;
     }
+
+    QtWebEngine::initialize();
 
     /*
      * Exec the application.

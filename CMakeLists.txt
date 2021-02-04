@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.7)
 
 project(jami-qt)
 
-# todo: show error if Qt version < 5.14
+# todo: show error if Qt version < 5.12
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
@@ -135,7 +135,7 @@ if(QT5_VER AND QT5_PATH)
     list(GET VERSION_LIST 1 QT5_VER_MINOR)
     list(GET VERSION_LIST 2 QT5_VER_PATCH)
 
-    if((${QT5_VER_MAJOR} GREATER_EQUAL 5) AND (${QT5_VER_MINOR} GREATER_EQUAL 14))
+    if((${QT5_VER_MAJOR} GREATER_EQUAL 5) AND (${QT5_VER_MINOR} GREATER_EQUAL 12))
         message(STATUS "Using custom Qt version")
         find_package(Qt5 ${QT5_VER} REQUIRED COMPONENTS
             Core
