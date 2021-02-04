@@ -16,12 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.12
+import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Universal 2.12
+import QtQuick.Layouts 1.12
+import QtGraphicalEffects 1.12
+import QtQml 2.12
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -148,7 +150,7 @@ Window {
         enabled: false
         target: AccountAdapter.model
 
-        function onMigrationEnded(accountIdIn, ok) {
+        onMigrationEnded: {
             nonOperationClosing = true
             connectionMigrationEnded.enabled = false
             if (accountID !== accountIdIn) {
@@ -519,7 +521,7 @@ Window {
                             onSpinnerDisplyStateChanged: {
                                 switch (spinnerDisplyState) {
                                 case "spinnerLabel_Regular":
-                                    background = Qt.createQmlObject("import QtQuick 2.14;
+                                    background = Qt.createQmlObject("import QtQuick 2.12;
                                                                         AnimatedImage {
                                                                         source: \"qrc:/images/jami_eclipse_spinner.gif\"
 
@@ -530,7 +532,7 @@ Window {
                                                                         }", spinnerLabel)
                                     break
                                 case "spinnerLabel_Failure":
-                                    background = Qt.createQmlObject("import QtQuick 2.14;
+                                    background = Qt.createQmlObject("import QtQuick 2.12;
                                                                         import \"qrc:/src/constant/\";
                                                                         Image {
                                                                         anchors.fill: parent;

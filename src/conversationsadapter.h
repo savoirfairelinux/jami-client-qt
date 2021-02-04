@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -29,8 +29,7 @@ class ConversationsAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
 
-    Q_PROPERTY(lrc::api::profile::Type currentTypeFilter MEMBER currentTypeFilter_ NOTIFY
-                   currentTypeFilterChanged)
+    Q_PROPERTY(int currentTypeFilter MEMBER currentTypeFilter_ NOTIFY currentTypeFilterChanged)
 public:
     explicit ConversationsAdapter(QObject* parent = nullptr);
     ~ConversationsAdapter() = default;
@@ -71,7 +70,7 @@ private:
 
     SmartListModel* conversationSmartListModel_;
 
-    lrc::api::profile::Type currentTypeFilter_ {};
+    int currentTypeFilter_ {-1};
 
     /*
      * Connections.
