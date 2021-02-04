@@ -16,14 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Controls.Universal 2.14
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Universal 2.12
 import QtQuick.Dialogs 1.3
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick.Layouts 1.12
+import QtGraphicalEffects 1.12
 import QtQuick.Controls.Styles 1.4
 import Qt.labs.platform 1.1
+import QtQml 2.12
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -35,18 +37,19 @@ ColumnLayout {
 
     Connections {
         id: accountConnections_DeviceModel
+
         target: AccountAdapter.deviceModel
         enabled: root.visible
 
-        function onDeviceAdded(id) {
+        onDeviceAdded: {
             updateAndShowDevicesSlot()
         }
 
-        function onDeviceRevoked(id, status) {
+        onDeviceRevoked: {
             updateAndShowDevicesSlot()
         }
 
-        function onDeviceUpdated(id) {
+        onDeviceUpdated: {
             updateAndShowDevicesSlot()
         }
     }

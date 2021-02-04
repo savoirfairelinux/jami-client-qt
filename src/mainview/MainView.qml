@@ -16,12 +16,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.12
+import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls.Universal 2.12
+import QtGraphicalEffects 1.12
+import QtQml 2.12
+
+import QtQuick.Controls 1.4 as QtQuickOne
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -236,7 +240,7 @@ Rectangle {
         target: CallAdapter
 
         // selectConversation causes UI update
-        function onCallSetupMainViewRequired(accountId, convUid) {
+        onCallSetupMainViewRequired: {
             ConversationsAdapter.selectConversation(accountId, convUid)
         }
     }
@@ -245,7 +249,7 @@ Rectangle {
         target: JamiQmlUtils
 
         // TODO: call in fullscreen inside containerWindow
-        function onCallIsFullscreenChanged() {
+        onCallIsFullscreenChanged: {
             if (JamiQmlUtils.callIsFullscreen) {
                 UtilsAdapter.setSystemTrayIconVisible(false)
                 containerWindow.hide()
@@ -263,7 +267,7 @@ Rectangle {
 
         currentIndex: 0
 
-        SplitView {
+        QtQuickOne.SplitView {
             id: splitView
 
             Layout.fillWidth: true
@@ -272,26 +276,29 @@ Rectangle {
             width: mainView.width
             height: mainView.height
 
-            handle: Rectangle {
+            handleDelegate : Rectangle {
                 implicitWidth: JamiTheme.splitViewHandlePreferredWidth
                 implicitHeight: splitView.height
                 color: JamiTheme.backgroundColor
                 Rectangle {
-                    implicitWidth: 1
+                    implicitWidth: 5
                     implicitHeight: splitView.height
-                    color: SplitHandle.pressed ? JamiTheme.pressColor :
-                                                 (SplitHandle.hovered ? JamiTheme.hoverColor :
-                                                                        JamiTheme.tabbarBorderColor)
+                    color: styleData.pressed ? JamiTheme.pressColor :
+                                                 (styleData.hovered ? JamiTheme.hoverColor :
+                                                                      JamiTheme.tabbarBorderColor)
                 }
             }
 
             Rectangle {
                 id: mainViewSidePanelRect
 
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.maximumWidth: (sidePanelOnly ? splitView.width :
-                                                      splitView.width - sidePanelViewStackPreferredWidth)
-                SplitView.fillHeight: true
+                Layout.minimumWidth: sidePanelViewStackPreferredWidth
+                Layout.fillHeight: true
+
+                width: sidePanelOnly ?
+                           splitView.width :
+                           sidePanelViewStackPreferredWidth
+
                 color: JamiTheme.backgroundColor
 
                 // AccountComboBox is always visible
@@ -309,13 +316,13 @@ Rectangle {
                     Connections {
                         target: AccountAdapter
 
-                        function onUpdateConversationForAddedContact() {
+                        onUpdateConversationForAddedContact: {
                             MessagesAdapter.updateConversationForAddedContact()
                             mainViewSidePanel.clearContactSearchBar()
                             mainViewSidePanel.forceReselectConversationSmartListCurrentIndex()
                         }
 
-                        function onAccountStatusChanged(accountId) {
+                        onAccountStatusChanged: {
                             accountComboBox.resetAccountListModel(accountId)
                         }
                     }
@@ -349,11 +356,10 @@ Rectangle {
 
                 initialItem: welcomePage
 
-                SplitView.maximumWidth: sidePanelOnly ?
-                                            splitView.width :
-                                            splitView.width - sidePanelViewStackPreferredWidth
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.fillHeight: true
+                Layout.minimumWidth: sidePanelViewStackPreferredWidth
+
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
                 clip: true
             }
@@ -404,7 +410,7 @@ Rectangle {
         Connections {
             target: ConversationsAdapter
 
-            function onNavigateToWelcomePageRequested() {
+            onNavigateToWelcomePageRequested: {
                 backToMainView()
             }
         }
@@ -453,11 +459,11 @@ Rectangle {
         Connections {
             target: MessagesAdapter
 
-            function onNeedToUpdateSmartList() {
+            onNeedToUpdateSmartList: {
                 mainViewSidePanel.forceUpdateConversationSmartListView()
             }
 
-            function onNavigateToWelcomePageRequested() {
+            onNavigateToWelcomePageRequested: {
                 backToMainView()
             }
         }
