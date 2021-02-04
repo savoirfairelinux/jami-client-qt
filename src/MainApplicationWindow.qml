@@ -20,12 +20,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.12
+import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls.Universal 2.12
+import QtGraphicalEffects 1.12
+import QtQml 2.12
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Enums 1.0
@@ -132,7 +134,7 @@ ApplicationWindow {
         Connections {
             target: mainApplicationLoader.item
 
-            function onLoaderSourceChangeRequested(sourceToLoad) {
+            onLoaderSourceChangeRequested: {
                 if (sourceToLoad === MainApplicationWindow.LoadedSource.WizardView)
                     mainApplicationLoader.setSource(JamiQmlUtils.wizardViewLoadPath)
                 else
@@ -156,12 +158,12 @@ ApplicationWindow {
     Connections {
         target: LRCInstance
 
-        function onRestoreAppRequested() {
+        onRestoreAppRequested: {
             requestActivate()
             showNormal()
         }
 
-        function onNotificationClicked() {
+        onNotificationClicked: {
             requestActivate()
             raise()
             if (visibility === Window.Hidden ||
@@ -178,14 +180,14 @@ ApplicationWindow {
         }
         ignoreUnknownSignals: true
 
-        function onShowDaemonReconnectPopup(visible) {
+        onShowDaemonReconnectPopup: {
             if (visible)
                 daemonReconnectPopup.open()
             else
                 daemonReconnectPopup.close()
         }
 
-        function onDaemonReconnectFailed() {
+        onDaemonReconnectFailed: {
             daemonReconnectPopup.connectionFailed = true
         }
     }
