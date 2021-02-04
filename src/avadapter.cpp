@@ -88,8 +88,12 @@ AvAdapter::shareEntireScreen(int screenNumber)
         return;
     QRect rect = screen->geometry();
 
-    LRCInstance::avModel()
-        .setDisplay(getScreenNumber(), rect.x(), rect.y(), rect.width(), rect.height(), getCurrentCallId());
+    LRCInstance::avModel().setDisplay(getScreenNumber(),
+                                      rect.x(),
+                                      rect.y(),
+                                      rect.width(),
+                                      rect.height(),
+                                      getCurrentCallId());
 }
 
 void
@@ -287,7 +291,7 @@ AvAdapter::getScreenNumber() const
     // Get display
     QString display_env {getenv("DISPLAY")};
     if (!display_env.isEmpty()) {
-        auto list = display_env.split(":", Qt::SkipEmptyParts);
+        auto list = display_env.split(":", QString::SkipEmptyParts);
         // Should only be one display, so get the first one
         if (list.size() > 0) {
             display = list.at(0).toInt();

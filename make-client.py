@@ -77,6 +77,18 @@ def findMSBuild():
         if filename in files:
             return os.path.join(root, filename)
 
+def getMSBuildArgs(arch, config_str, configuration_type, toolset):
+    msbuild_args = [
+        '/nologo',
+        '/verbosity:minimal',
+        '/maxcpucount:' + str(multiprocessing.cpu_count()),
+        '/p:Platform=' + arch,
+        '/p:Configuration=' + config_str,
+        '/p:ConfigurationType=' + configuration_type,
+        '/p:useenv=true']
+    if (toolset != ''):
+        msbuild_args.append('/p:PlatformToolset=' + toolset)
+    return msbuild_args
 
 def getVSEnv(arch='x64', platform='', version=''):
     env_cmd = 'set path=%path:"=% && ' + \
@@ -137,9 +149,19 @@ def deps(arch, toolset, qtver):
         sys.exit(1)
 
     print('Building qrcodelib')
-    build(arch, '', '', 'Release-Lib',
-          '\\qrencode-win32\\qrencode-win32\\vc8\\qrcodelib\\qrcodelib.vcxproj', qtver, False)
 
+    vs_env_vars = {}
+    vs_env_vars.update(getVSEnv())  
+
+    msbuild = findMSBuild()
+    if not os.path.isfile(msbuild):
+        raise IOError('msbuild.exe not found. path=' + msbuild)
+    msbuild_args = getMSBuildArgs(arch, 'Release-Lib', 'StaticLibrary', toolset)
+
+    this_dir = os.path.dirname(os.path.realpath(__file__))
+    proj_path = this_dir + '\\qrencode-win32\\qrencode-win32\\vc8\\qrcodelib\\qrcodelib.vcxproj'
+
+    build_project(msbuild, msbuild_args, proj_path, vs_env_vars)
 
 def build(arch, toolset, sdk_version, config_str, project_path_under_current_path, qtver, force_option=True):
     print("Building with Qt " + qtver)
@@ -183,16 +205,8 @@ def build(arch, toolset, sdk_version, config_str, project_path_under_current_pat
     msbuild = findMSBuild()
     if not os.path.isfile(msbuild):
         raise IOError('msbuild.exe not found. path=' + msbuild)
-    msbuild_args = [
-        '/nologo',
-        '/verbosity:minimal',
-        '/maxcpucount:' + str(multiprocessing.cpu_count()),
-        '/p:Platform=' + arch,
-        '/p:Configuration=' + config_str,
-        '/p:ConfigurationType=' + configuration_type,
-        '/p:useenv=true']
-    if (toolset != ''):
-        msbuild_args.append('/p:PlatformToolset=' + toolset)
+    msbuild_args = getMSBuildArgs(arch, config_str, configuration_type, toolset)
+    
     if (force_option):
         # force toolset
         replace_vs_prop(qt_client_proj_path,

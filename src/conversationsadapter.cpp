@@ -32,7 +32,8 @@ ConversationsAdapter::ConversationsAdapter(QObject* parent)
     : QmlAdapterBase(parent)
 {
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
-        LRCInstance::getCurrentConversationModel()->setFilter(currentTypeFilter_);
+        LRCInstance::getCurrentConversationModel()->setFilter(
+            static_cast<lrc::api::profile::Type>(currentTypeFilter_));
     });
 }
 
@@ -167,7 +168,7 @@ ConversationsAdapter::updateConversationsFilterWidget()
 {
     // Update status of "Conversations" and "Invitations".
     auto invites = LRCInstance::getCurrentAccountInfo().contactModel->pendingRequestCount();
-    if (invites == 0 && currentTypeFilter_ == lrc::api::profile::Type::PENDING) {
+    if (invites == 0 && currentTypeFilter_ == static_cast<int>(lrc::api::profile::Type::PENDING)) {
         setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::profile::Type::RING));
     }
     showConversationTabs(invites);
@@ -281,7 +282,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                            });
 
     if (updateFilter) {
-        currentTypeFilter_ = lrc::api::profile::Type::INVALID;
+        currentTypeFilter_ = static_cast<int>(lrc::api::profile::Type::INVALID);
     }
     return true;
 }

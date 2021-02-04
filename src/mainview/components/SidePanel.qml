@@ -16,10 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtGraphicalEffects 1.12
+import QtQml 2.12
+
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
@@ -108,8 +110,10 @@ Rectangle {
 
     SidePanelTabBar {
         id: sidePanelTabBar
+
         anchors.top: contactSearchBar.bottom
         anchors.topMargin: 10
+
         width: sidePanelRect.width
         height: tabBarVisible ? 64 : 0
     }
@@ -191,13 +195,13 @@ Rectangle {
         Connections {
             target: ConversationsAdapter
 
-            function onShowConversationTabs(visible) {
+            onShowConversationTabs: {
                 tabBarVisible = visible
                 updatePendingRequestCount()
                 updateTotalUnreadMessagesCount()
             }
 
-            function onShowSearchStatus(status) {
+            onShowSearchStatus: {
                 lblSearchStatus.text = status
             }
         }
