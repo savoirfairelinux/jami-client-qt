@@ -16,8 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Controls 2.14
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQml 2.12
+
 import net.jami.Models 1.0
 
 MaterialLineEdit {
@@ -39,7 +41,7 @@ MaterialLineEdit {
         target: NameDirectory
         enabled: root.text.length !== 0
 
-        function onRegisteredNameFound(status, address, name) {
+        onRegisteredNameFound: {
             if (text === name) {
                 switch(status) {
                 case NameDirectory.LookupStatus.NOT_FOUND:

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -45,9 +45,9 @@ public:
      */
     QPair<QrType, QString> getIndexFromID(const QString& id)
     {
-        auto list = id.split('_', Qt::SkipEmptyParts);
+        auto list = id.split('_', QString::SkipEmptyParts);
         if (list.size() < 2)
-            return QPair(QrType::Account, "");
+            return QPair(QrType::Account, QString(""));
         if (list.contains("account") && list.size() > 1) {
             return QPair(QrType::Account, list[1]);
         } else if (list.contains("contact") && list.size() > 1) {
@@ -59,7 +59,7 @@ public:
                 convInfo.participants.at(0));
             return QPair(QrType::Contact, contact.profileInfo.uri);
         }
-        return QPair(QrType::Account, "");
+        return QPair(QrType::Account, QString(""));
     }
 
     QImage requestImage(const QString& id, QSize* size, const QSize& requestedSize) override
