@@ -16,11 +16,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.14
-import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
-import QtQuick.Layouts 1.14
-import QtQuick.Controls.Universal 2.14
+import QtQuick 2.12
+import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtQuick.Controls.Universal 2.12
+import QtQml 2.12
+
 import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
@@ -117,7 +119,7 @@ Window {
                         Connections {
                             target: selectScreenWindow
 
-                            function onSelectedScreenNumberChanged() {
+                            onSelectedScreenNumberChanged: {
                                 // Recover from green state.
                                 screenSelectionRectOdd.borderColor = JamiTheme.tabbarBorderColor
                                 screenSelectionRectEven.borderColor = JamiTheme.tabbarBorderColor
@@ -127,7 +129,7 @@ Window {
                         Connections {
                             target: AvAdapter
 
-                            function onScreenCaptured(screenNumber, source) {
+                            onScreenCaptured: {
                                 if (screenNumber === -1)
                                     screenShotAll.source = JamiQmlUtils.base64StringTitle + source
                                 if (screenNumber !== index && screenNumber !== index + 1)
@@ -287,7 +289,7 @@ Window {
                     Connections {
                         target: selectScreenWindow
 
-                        function onSelectedScreenNumberChanged() {
+                        onSelectedScreenNumberChanged: {
                             // Recover from green state.
                             selectAllScreens = false
                             screenSelectionRectAll.borderColor = JamiTheme.tabbarBorderColor

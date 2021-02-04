@@ -260,12 +260,6 @@ AccountAdapter::setSelectedConvId(const QString& convId)
     LRCInstance::setSelectedConvId(convId);
 }
 
-lrc::api::profile::Type
-AccountAdapter::getCurrentAccountType()
-{
-    return LRCInstance::getCurrentAccountInfo().profileInfo.type;
-}
-
 void
 AccountAdapter::setCurrAccAvatar(bool fromFile, const QString& source)
 {
@@ -400,6 +394,7 @@ AccountAdapter::connectAccount(const QString& accountId)
                                                       &lrc::api::ContactModel::bannedStatusChanged,
                                                       [this](const QString& contactUri,
                                                              bool banned) {
+                                                          Q_UNUSED(contactUri)
                                                           if (!banned)
                                                               emit contactUnbanned();
                                                       });
@@ -413,6 +408,6 @@ AccountAdapter::setProperties(const QString& accountId)
 {
     setProperty("currentAccountId", accountId);
     auto accountType = LRCInstance::getAccountInfo(accountId).profileInfo.type;
-    setProperty("currentAccountType", lrc::api::profile::to_string(accountType));
+    setProperty("currentAccountType", QVariant::fromValue(static_cast<int>(accountType)));
     emit deviceModelChanged();
 }
