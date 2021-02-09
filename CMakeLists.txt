@@ -207,8 +207,13 @@ add_executable(${PROJECT_NAME}
     ${QML_RESOURCES_QML}
     ${LRC_SRC_PATH}/webresource.qrc)
 
-target_compile_definitions(jami-qt PRIVATE
-    JAMI_DATA_DIR="${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}")
+if(NOT DEFINED ENV{SNAP})
+    set(JAMI_DATA_PATH "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}")
+else()
+    set(JAMI_DATA_PATH "$ENV{SNAP}/usr/share/${PROJECT_NAME}")
+endif()
+
+target_compile_definitions(jami-qt PRIVATE JAMI_DATA_DIR="${JAMI_DATA_PATH}")
 
 find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
@@ -228,7 +233,7 @@ endif()
 
 # Installation rules
 install(TARGETS jami-qt
-   RUNTIME DESTINATION bin)
+    RUNTIME DESTINATION bin)
 
 # install .desktop in XDG desktop dir so that it is recognized by the system
 install(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
@@ -238,7 +243,7 @@ install(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
 # autostart dir by the client
 install(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
    DESTINATION
-      ${CMAKE_INSTALL_PREFIX}/share/jami-qt
+      ${JAMI_DATA_PATH}
    PERMISSIONS
       WORLD_READ
       OWNER_WRITE
