@@ -99,19 +99,25 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
         return false;
     }
 
-    qDebug() << "Setting autostart link from " << desktopPath;
+    bool isSnap = getenv("SNAP");
+    if (!isSnap)
+        qDebug() << "Setting autostart link from " << desktopPath;
+    else
+        qDebug() << "Copying file from " << desktopPath;
 
-    QString symlink = QStandardPaths::locate(QStandardPaths::ConfigLocation,
-                                             "autostart/jami-qt.desktop");
-    if (!symlink.isEmpty()) {
-        QFileInfo symlinkInfo(symlink);
+    QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation,
+                                                  "autostart/jami-qt.desktop");
+    if (!desktopFile.isEmpty()) {
+        if (isSnap) // For snap packaging no need to verify symlink
+            return true;
+        QFileInfo symlinkInfo(desktopFile);
         if (symlinkInfo.isSymLink()) {
             if (symlinkInfo.symLinkTarget() == desktopPath) {
-                qDebug() << symlink << "already points to" << desktopPath;
+                qDebug() << desktopFile << "already points to" << desktopPath;
                 return true;
             } else {
-                qDebug() << symlink << "exists but does not point to " << desktopPath;
-                QFile::remove(symlink);
+                qDebug() << desktopFile << "exists but does not point to " << desktopPath;
+                QFile::remove(desktopFile);
             }
         }
     } else {
@@ -126,14 +132,20 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
                 return false;
             }
         }
-        symlink = autoStartDir + "/jami-qt.desktop";
+        desktopFile = autoStartDir + "/jami-qt.desktop";
     }
 
-    QFile srcFile (desktopPath);
-
-    bool result = srcFile.link(symlink);
-    qDebug() << symlink << (result ? "->" + desktopPath + " created successfully"
-                                   : "cannot be created");
+    QFile srcFile(desktopPath);
+    bool result;
+    if (!isSnap) {
+        result = srcFile.link(desktopFile);
+        qDebug() << desktopFile << (result ? " -> " + desktopPath + " successfully created"
+                                           : "cannot be created");
+    } else {
+        result = srcFile.copy(desktopFile);
+        qDebug() << desktopPath << (result ? " successfully copied to " + desktopFile
+                                           : " cannot be copied");
+    }
     return result;
 #endif
 }
