@@ -94,24 +94,33 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
     }
 #endif
 
+    const char* snap = getenv("SNAP");
+    if (snap)
+        desktopPath = QString(snap) + desktopPath;
+
     if (desktopPath.isEmpty() || !(QFile::exists(desktopPath))) {
-        qDebug() << "Cannot locate .desktop file";
+        qDebug() << "Could not locate .desktop file at" << desktopPath;
         return false;
     }
 
-    qDebug() << "Setting autostart link from " << desktopPath;
+    qDebug() <<
+        QString("%1 autostart file from %2")
+        .arg(snap ? "Copying" : "Linking")
+        .arg(desktopPath);
 
-    QString symlink = QStandardPaths::locate(QStandardPaths::ConfigLocation,
-                                             "autostart/jami-qt.desktop");
-    if (!symlink.isEmpty()) {
-        QFileInfo symlinkInfo(symlink);
+    QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation,
+                                                  "autostart/jami-qt.desktop");
+    if (!desktopFile.isEmpty()) {
+        if (snap) // For snap packaging no need to verify symlink
+            return true;
+        QFileInfo symlinkInfo(desktopFile);
         if (symlinkInfo.isSymLink()) {
             if (symlinkInfo.symLinkTarget() == desktopPath) {
-                qDebug() << symlink << "already points to" << desktopPath;
+                qDebug() << desktopFile << "already points to" << desktopPath;
                 return true;
             } else {
-                qDebug() << symlink << "exists but does not point to " << desktopPath;
-                QFile::remove(symlink);
+                qDebug() << desktopFile << "exists but does not point to" << desktopPath;
+                QFile::remove(desktopFile);
             }
         }
     } else {
@@ -120,20 +129,26 @@ Utils::CreateStartupLink(const std::wstring& wstrAppName)
 
         if (!QDir(autoStartDir).exists()) {
             if (QDir().mkdir(autoStartDir)) {
-                qDebug() << "Created autostart directory: " << autoStartDir;
+                qDebug() << "Created autostart directory:" << autoStartDir;
             } else {
-                qWarning() << "Cannot create autostart directory: " << autoStartDir;
+                qWarning() << "Could not create autostart directory:" << autoStartDir;
                 return false;
             }
         }
-        symlink = autoStartDir + "/jami-qt.desktop";
+        desktopFile = autoStartDir + "/jami-qt.desktop";
     }
 
-    QFile srcFile (desktopPath);
-
-    bool result = srcFile.link(symlink);
-    qDebug() << symlink << (result ? "->" + desktopPath + " created successfully"
-                                   : "cannot be created");
+    QFile srcFile(desktopPath);
+    bool result;
+    if (!snap) {
+        result = srcFile.link(desktopFile);
+        qDebug() << desktopFile << (result ? "-> " + desktopPath + " successfully created"
+                                           : "could not be created");
+    } else {
+        result = srcFile.copy(desktopFile);
+        qDebug() << desktopPath << (result ? "successfully copied to " + desktopFile
+                                           : "could not be copied");
+    }
     return result;
 #endif
 }
@@ -183,17 +198,17 @@ Utils::DeleteStartupLink(const std::wstring& wstrAppName)
     DeleteFile(linkPath.c_str());
 
 #else
-    QString symlink = QStandardPaths::locate(QStandardPaths::ConfigLocation,
-                                             "autostart/jami-qt.desktop");
-    if (!symlink.isEmpty()) {
+    QString desktopFile = QStandardPaths::locate(QStandardPaths::ConfigLocation,
+                                                 "autostart/jami-qt.desktop");
+    if (!desktopFile.isEmpty()) {
         try {
-            QFile::remove(symlink);
-            qDebug() << "Autostart disabled," << symlink << "removed";
+            QFile::remove(desktopFile);
+            qDebug() << "Autostart disabled," << desktopFile << "removed";
         } catch (...) {
-            qDebug() << "Could not remove" << symlink;
+            qDebug() << "Could not remove" << desktopFile;
         }
     } else {
-        qDebug() << "jami-qt.desktop symlink does not exist";
+        qDebug() << desktopFile << "does not exist";
     }
 #endif
 }
