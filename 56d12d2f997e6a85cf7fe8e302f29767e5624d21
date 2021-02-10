@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cc1e7bf_172838dd",
+        "filename": "src/utils.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-02-10T19:11:18Z",
+      "side": 1,
+      "message": "modifying utils.cpp to take care of packaging system is a bad idea for me. cf DM",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 38
+      },
+      "revId": "56d12d2f997e6a85cf7fe8e302f29767e5624d21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
