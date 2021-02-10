@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6f98be7_e567c4ca",
+        "filename": "src/DaemonReconnectWindow.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-10T12:14:03Z",
+      "side": 1,
+      "message": "Change parameter name to avoid collision with the property",
+      "range": {
+        "startLine": 196,
+        "startChar": 16,
+        "endLine": 196,
+        "endChar": 23
+      },
+      "revId": "eb967b802e22c6ea2a9b909d997de28641e1447f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a233bb3_7ad7d96f",
+        "filename": "src/calladapter.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-10T12:14:03Z",
+      "side": 1,
+      "message": "not used, maybe we can remove it?",
+      "range": {
+        "startLine": 84,
+        "startChar": 48,
+        "endLine": 84,
+        "endChar": 58
+      },
+      "revId": "eb967b802e22c6ea2a9b909d997de28641e1447f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9207cb00_b2a9678b",
+        "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-10T12:14:03Z",
+      "side": 1,
+      "message": "accountId is not used, maybe we can delete it from the signal?",
+      "range": {
+        "startLine": 76,
+        "startChar": 26,
+        "endLine": 76,
+        "endChar": 29
+      },
+      "revId": "eb967b802e22c6ea2a9b909d997de28641e1447f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5cdcc0f0_dea8e16b",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-10T12:14:03Z",
+      "side": 1,
+      "message": "Change parameter name?",
+      "range": {
+        "startLine": 199,
+        "startChar": 32,
+        "endLine": 199,
+        "endChar": 39
+      },
+      "revId": "eb967b802e22c6ea2a9b909d997de28641e1447f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "23b1d360_b47ba943",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-10T12:14:03Z",
+      "side": 1,
+      "message": "Collision between property and parameter?",
+      "range": {
+        "startLine": 100,
+        "startChar": 23,
+        "endLine": 100,
+        "endChar": 33
+      },
+      "revId": "eb967b802e22c6ea2a9b909d997de28641e1447f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
