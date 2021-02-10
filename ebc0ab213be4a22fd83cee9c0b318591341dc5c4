@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "19d5ba77_9a89c0ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-02-10T19:54:45Z",
+      "side": 1,
+      "message": "line is too long, should not be ­\u003e 80 chars here",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 126
+      },
+      "revId": "ebc0ab213be4a22fd83cee9c0b318591341dc5c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d97559c_19a4e2f3",
+        "filename": "src/mainview/components/ConversationSmartListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-02-10T19:54:45Z",
+      "side": 1,
+      "message": "why double change?",
+      "range": {
+        "startLine": 52,
+        "startChar": 37,
+        "endLine": 54,
+        "endChar": 41
+      },
+      "revId": "ebc0ab213be4a22fd83cee9c0b318591341dc5c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
