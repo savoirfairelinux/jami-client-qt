@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a2b88771_cbc44715",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-11T12:21:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19d5ba77_9a89c0ff",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 126
+      },
+      "revId": "ebc0ab213be4a22fd83cee9c0b318591341dc5c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d97559c_19a4e2f3",
         "filename": "src/mainview/components/ConversationSmartListView.qml",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2021-02-10T19:54:45Z",
       "side": 1,
       "message": "why double change?",
+      "range": {
+        "startLine": 52,
+        "startChar": 37,
+        "endLine": 54,
+        "endChar": 41
+      },
+      "revId": "ebc0ab213be4a22fd83cee9c0b318591341dc5c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31198015_e795ca60",
+        "filename": "src/mainview/components/ConversationSmartListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-11T12:21:38Z",
+      "side": 1,
+      "message": "First we deselect index in order to make sure currentIndexChanged is emitted",
+      "parentUuid": "0d97559c_19a4e2f3",
       "range": {
         "startLine": 52,
         "startChar": 37,
