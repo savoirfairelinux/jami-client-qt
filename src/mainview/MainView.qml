@@ -460,6 +460,12 @@ Rectangle {
             function onNavigateToWelcomePageRequested() {
                 backToMainView()
             }
+
+            function onInvitationAccepted(convUid) {
+                mainViewSidePanel.selectTab(SidePanelTabBar.Conversations)
+                ConversationsAdapter.selectConversation(
+                            AccountAdapter.currentAccountId, convUid)
+            }
         }
 
         Component.onCompleted: {
