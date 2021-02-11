@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2206519_339774f4",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-02-11T20:05:33Z",
+      "side": 1,
+      "message": "tabs here. Unfortunately, the clang-formatting doesn\u0027t extend into qml files.",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 5
+      },
+      "revId": "afe10d1fa1354f848cfada2b2e04628537d4b08e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
