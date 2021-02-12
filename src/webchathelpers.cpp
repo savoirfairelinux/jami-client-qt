@@ -30,9 +30,7 @@ buildInteractionJson(lrc::api::ConversationModel& conversationModel,
     QRegExp reg(".(jpeg|jpg|gif|png)$");
     auto interaction = inter;
     if (interaction.type == lrc::api::interaction::Type::DATA_TRANSFER) {
-        if (interaction.body.isEmpty())
-            return {};
-        else if (interaction.body.toLower().contains(reg))
+        if (interaction.body.toLower().contains(reg))
             interaction.body = "file://" + interaction.body;
     }
 
