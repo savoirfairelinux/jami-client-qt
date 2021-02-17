@@ -111,11 +111,14 @@ UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
 }
 
 const QString
-UtilsAdapter::getPeerUri(const QString& accountId, const QString& uid)
+UtilsAdapter::getPeerUri()
 {
-    auto* convModel = LRCInstance::getAccountInfo(accountId).conversationModel.get();
-    const auto& convInfo = convModel->getConversationForUid(uid).value();
-    return convInfo.get().participants.front();
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    auto convInfo = convModel->getConversationForUid(LRCInstance::getCurrentConvUid());
+    auto& conv = convInfo->get();
+    if (conv.isSwarm)
+        return conv.uid;
+    return conv.participants.front();
 }
 
 QString

@@ -65,7 +65,7 @@ Popup {
                     } else {
                         // Reset the model on each show.
                         var accountId = AccountAdapter.currentAccountId
-                        var peerId = UtilsAdapter.getPeerUri(accountId, UtilsAdapter.getCurrConvId())
+                        var peerId = UtilsAdapter.getPeerUri()
                         pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
                     }
                 }
@@ -79,7 +79,7 @@ Popup {
                     pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
                 } else {
                     var accountId = AccountAdapter.currentAccountId
-                    var peerId = UtilsAdapter.getPeerUri(accountId, UtilsAdapter.getCurrConvId())
+                    var peerId = UtilsAdapter.getPeerUri()
                     PluginModel.toggleChatHandler(handlerId, accountId, peerId, !isLoaded)
                     pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
                 }
@@ -136,7 +136,7 @@ Popup {
                             return PluginAdapter.getMediaHandlerSelectableModel(callId)
                         } else {
                             var accountId = AccountAdapter.currentAccountId
-                            var peerId = UtilsAdapter.getPeerUri(accountId, UtilsAdapter.getCurrConvId())
+                            var peerId = UtilsAdapter.getPeerUri()
                             return PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
                         }
                     }
