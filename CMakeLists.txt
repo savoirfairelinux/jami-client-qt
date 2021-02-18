@@ -313,7 +313,7 @@ if(Qt5LinguistTools_FOUND)
     qt5_add_translation(QM_FILES ${TS_FILES})
     add_custom_target(translations ALL DEPENDS ${QM_FILES})
     install(FILES ${QM_FILES}
-        DESTINATION "${CMAKE_INSTALL_PREFIX}/share/libringclient/translations")
+        DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ring/translations")
 endif()
 
 # uninstall
