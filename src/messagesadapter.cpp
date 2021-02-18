@@ -671,9 +671,18 @@ MessagesAdapter::setSendMessageContent(const QString& content)
 }
 
 void
-MessagesAdapter::contactIsComposing(const QString& uid, const QString& contactUri, bool isComposing)
+MessagesAdapter::contactIsComposing(const QString& convUid, const QString& contactUri, bool isComposing)
 {
-    if (LRCInstance::getCurrentConvUid() == uid) {
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    auto convInfo = convModel->getConversationForUid(LRCInstance::getCurrentConvUid());
+    if (!convInfo)
+        return;
+    auto& conv = convInfo->get();
+    bool showIsComposing = conv.isSwarm ? convUid == conv.uid
+                                        : convUid.isEmpty()
+                                          && conv.participants.first() == contactUri;
+
+    if (showIsComposing) {
         QString s
             = QString::fromLatin1("showTypingIndicator(`%1`, %2);").arg(contactUri).arg(isComposing);
         QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
