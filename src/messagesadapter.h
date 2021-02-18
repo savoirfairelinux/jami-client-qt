@@ -97,7 +97,9 @@ protected:
     void setMessagesFileContent(const QString& path);
     void removeInteraction(const QString& interactionId);
     void setSendMessageContent(const QString& content);
-    void contactIsComposing(const QString& uid, const QString& contactUri, bool isComposing);
+    void contactIsComposing(const QString& convUid,
+                            const QString& contactUri,
+                            bool isComposing);
 
 Q_SIGNALS:
     void needToUpdateSmartList();
