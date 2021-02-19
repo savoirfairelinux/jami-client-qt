@@ -311,6 +311,8 @@ Rectangle {
         AdvancedSettings {
             id: advancedSettings
 
+            property bool lastToggleState: false
+
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
@@ -319,7 +321,13 @@ Rectangle {
             itemWidth: preferredColumnWidth
             isSIP: root.isSIP
 
-            onHeightChanged: advancedSettingsToggled(settingsVisible)
+            onHeightChanged: {
+                if (lastToggleState != settingsVisible) {
+                    // Prevent heightChanged to send multiple times
+                    advancedSettingsToggled(settingsVisible)
+                    lastToggleState = settingsVisible
+                }
+            }
         }
     }
 }
