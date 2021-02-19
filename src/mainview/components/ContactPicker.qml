@@ -123,6 +123,7 @@ Popup {
                 model: ContactAdapter.getContactSelectableModel(type)
 
                 clip: true
+                maximumFlickVelocity: JamiTheme.maximumScrollVelocity
 
                 delegate: ContactPickerItemDelegate {
                     id: contactPickerItemDelegate

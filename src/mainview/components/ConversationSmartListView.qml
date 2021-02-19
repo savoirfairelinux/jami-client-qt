@@ -86,6 +86,7 @@ ListView {
     }
 
     clip: true
+    maximumFlickVelocity: JamiTheme.maximumScrollVelocity
 
     delegate: ConversationSmartListViewItemDelegate {
         id: smartListItemDelegate

@@ -124,6 +124,7 @@ Rectangle {
 
             model: PluginAdapter.getPluginSelectableModel()
             interactive: false
+            maximumFlickVelocity: JamiTheme.maximumScrollVelocity
 
             delegate: PluginItemDelegate {
                 id: pluginItemDelegate

@@ -106,8 +106,9 @@ ComboBox {
         padding: 1
 
         contentItem: ListView {
-            clip: true
             implicitHeight: contentHeight
+            clip: true
+            maximumFlickVelocity: JamiTheme.maximumScrollVelocity
             model:  root.delegateModel
             currentIndex: root.highlightedIndex
 

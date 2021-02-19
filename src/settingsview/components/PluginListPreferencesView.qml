@@ -193,6 +193,7 @@ Rectangle {
 
             model: PluginAdapter.getPluginPreferencesModel(pluginId)
             interactive: false
+            maximumFlickVelocity: JamiTheme.maximumScrollVelocity
 
             delegate: PreferenceItemDelegate {
                 id: preferenceItemDelegate
