@@ -47,6 +47,7 @@ Item {
     property color editBackgroundColor: darkTheme? "#373737" : lightGrey_
     property color textColor: primaryForegroundColor
     property color tabbarBorderColor: darkTheme? "black" : "#e3e3e3"
+    property int maximumScrollVelocity: 350
 
     // Side panel
     property color presenceGreen: "#4cd964"
