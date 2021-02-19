@@ -142,6 +142,7 @@ Popup {
                     }
 
                     clip: true
+                    maximumFlickVelocity: JamiTheme.maximumScrollVelocity
 
                     delegate: PluginHandlerItemDelegate {
                         id: pluginHandlerItemDelegate

@@ -47,9 +47,11 @@ Popup {
         id: comboBoxPopupListView
 
         // In list view, index is an interger.
+        implicitHeight: contentHeight
         clip: true
         model: accountListModel
-        implicitHeight: contentHeight
+        maximumFlickVelocity: JamiTheme.maximumScrollVelocity
+
         delegate: Rectangle {
             id: delegate
 

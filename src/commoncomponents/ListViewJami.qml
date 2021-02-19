@@ -44,6 +44,7 @@ Rectangle {
         visible: listViewBackground.visible
         layer.mipmap: false
         clip: true
+        maximumFlickVelocity: JamiTheme.maximumScrollVelocity
 
         ScrollIndicator.vertical: ScrollIndicator {}
     }
