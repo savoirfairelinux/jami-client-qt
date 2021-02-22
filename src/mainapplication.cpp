@@ -218,12 +218,15 @@ MainApplication::init()
 void
 MainApplication::loadTranslations()
 {
+    QString clientDataDir = qApp->applicationDirPath() + QDir::separator() + "share";
 #if defined(Q_OS_LINUX) && defined(JAMI_INSTALL_PREFIX)
-    QString appDir = JAMI_INSTALL_PREFIX;
-#else
-    QString appDir = qApp->applicationDirPath() + QDir::separator() + "share";
+    clientDataDir = JAMI_INSTALL_PREFIX;
 #endif
 
+    QString lrcDataDir = clientDataDir;
+#if defined(Q_OS_LINUX) && defined(LRC_INSTALL_PREFIX)
+    lrcDataDir = LRC_INSTALL_PREFIX;
+#endif
     QString locale_name = QLocale::system().name();
     QString locale_lang = locale_name.split('_')[0];
 
@@ -241,7 +244,7 @@ MainApplication::loadTranslations()
     QTranslator* lrcTranslator_lang = new QTranslator(this);
     QTranslator* lrcTranslator_name = new QTranslator(this);
     if (locale_name != locale_lang) {
-        if (lrcTranslator_lang->load(appDir
+        if (lrcTranslator_lang->load(lrcDataDir
                                      + QDir::separator() + "libringclient"
                                      + QDir::separator() + "translations"
                                      + QDir::separator() + "lrc_"
@@ -249,7 +252,7 @@ MainApplication::loadTranslations()
             installTranslator(lrcTranslator_lang);
         }
     }
-    if (lrcTranslator_name->load(appDir
+    if (lrcTranslator_name->load(lrcDataDir
                                  + QDir::separator() + "libringclient"
                                  + QDir::separator() + "translations"
                                  + QDir::separator() + "lrc_"
@@ -260,7 +263,7 @@ MainApplication::loadTranslations()
     QTranslator* mainTranslator_lang = new QTranslator(this);
     QTranslator* mainTranslator_name = new QTranslator(this);
     if (locale_name != locale_lang) {
-        if (mainTranslator_lang->load(appDir
+        if (mainTranslator_lang->load(clientDataDir
                                       + QDir::separator() + "ring"
                                       + QDir::separator() + "translations"
                                       + QDir::separator() + "ring_client_windows_"
@@ -268,7 +271,7 @@ MainApplication::loadTranslations()
             installTranslator(mainTranslator_lang);
         }
     }
-    if (mainTranslator_name->load(appDir
+    if (mainTranslator_name->load(clientDataDir
                                   + QDir::separator() + "ring"
                                   + QDir::separator() + "translations"
                                   + QDir::separator() + "ring_client_windows_"

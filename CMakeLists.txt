@@ -258,6 +258,10 @@ endif()
 # (this must come after the above adjustment to JAMI_DATA_PREFIX)
 target_compile_definitions(jami-qt PRIVATE JAMI_INSTALL_PREFIX="${JAMI_DATA_PREFIX}")
 
+if(DEFINED LRCDATA)
+    target_compile_definitions(jami-qt PRIVATE LRC_INSTALL_PREFIX="${LRCDATA}")
+endif()
+
 # logos
 install(FILES images/jami.svg
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps)
