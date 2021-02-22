@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "105327d3_74b21748",
+        "filename": "src/constant/JamiTheme.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-22T15:45:29Z",
+      "side": 1,
+      "message": "To discuss",
+      "range": {
+        "startLine": 50,
+        "startChar": 40,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "333b08d540ded97f833640f792f80c09c498c784",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "215d3bc9_b1df5d29",
+        "filename": "src/mainview/components/ConversationSmartListView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 816
+      },
+      "writtenOn": "2021-02-22T15:45:29Z",
+      "side": 1,
+      "message": "\"import net.jami.Constants 1.0\" is missing on header",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "333b08d540ded97f833640f792f80c09c498c784",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
