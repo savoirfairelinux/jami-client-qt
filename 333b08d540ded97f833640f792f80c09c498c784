@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "91abba8b_ecffccf4",
+        "filename": "src/constant/JamiTheme.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-02-22T16:01:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "105327d3_74b21748",
+      "range": {
+        "startLine": 50,
+        "startChar": 40,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "333b08d540ded97f833640f792f80c09c498c784",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "215d3bc9_b1df5d29",
         "filename": "src/mainview/components/ConversationSmartListView.qml",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "333b08d540ded97f833640f792f80c09c498c784",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d28df45d_2cf0a8d6",
+        "filename": "src/mainview/components/ConversationSmartListView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-02-22T16:01:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "215d3bc9_b1df5d29",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 1
+      },
+      "revId": "333b08d540ded97f833640f792f80c09c498c784",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
