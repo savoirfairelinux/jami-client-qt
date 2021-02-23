@@ -17,7 +17,6 @@ RUN apt-get install -y -o Acquire::Retries=10 \
         libdbus-1-dev \
         libdbus-c++-dev \
         libargon2-0-dev \
-        libcanberra-gtk3-dev \
         libclutter-gtk-1.0-dev \
         libclutter-1.0-dev \
         libglib2.0-dev \
@@ -52,10 +51,8 @@ RUN apt-get install -y -o Acquire::Retries=10 \
         libjsoncpp-dev \
         libmsgpack-dev \
         libnatpmp-dev \
-        libappindicator3-dev \
         libqrencode-dev \
         libnm-dev \
-        libwebkit2gtk-4.0-dev \
         libcrypto++-dev \
         libva-dev \
         libvdpau-dev \
