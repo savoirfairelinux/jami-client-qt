@@ -37,6 +37,7 @@ Item {
 
     property alias fillMode: rootImage.fillMode
     property alias sourceSize: rootImage.sourceSize
+    property real pixelDensity: Screen.pixelDensity
     property bool saveToConfig: false
     property int mode: AvatarImage.Mode.FromAccount
     property string imageProviderIdPrefix: {
@@ -207,5 +208,15 @@ Item {
 
         radius: 30
         color: JamiTheme.notificationRed
+    }
+
+    onPixelDensityChanged: {
+        var tempEnableAnimation = enableAnimation
+        var tempImageSource = rootImage.source
+
+        enableAnimation = false
+        rootImage.source = ""
+        rootImage.source = tempImageSource
+        enableAnimation = tempEnableAnimation
     }
 }
