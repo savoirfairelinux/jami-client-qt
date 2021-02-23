@@ -50,7 +50,7 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: welcomePageColumnLayout.width
-                Layout.preferredHeight: 100
+                Layout.preferredHeight: welcomePageColumnLayout.width / 3
                 Layout.bottomMargin: 10
 
                 smooth: true
