@@ -46,8 +46,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/accountadapter.cpp
     ${SRC_DIR}/calladapter.cpp
     ${SRC_DIR}/conversationsadapter.cpp
-    ${SRC_DIR}/distantrenderer.cpp
-    ${SRC_DIR}/previewrenderer.cpp
+    ${SRC_DIR}/videorenderingitembase.cpp
     ${SRC_DIR}/avadapter.cpp
     ${SRC_DIR}/contactadapter.cpp
     ${SRC_DIR}/pluginadapter.cpp
@@ -96,8 +95,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/tintedbuttonimageprovider.h
     ${SRC_DIR}/calladapter.h
     ${SRC_DIR}/conversationsadapter.h
-    ${SRC_DIR}/distantrenderer.h
-    ${SRC_DIR}/previewrenderer.h
+    ${SRC_DIR}/videorenderingitembase.h
     ${SRC_DIR}/qmladapterbase.h
     ${SRC_DIR}/avadapter.h
     ${SRC_DIR}/contactadapter.h
@@ -166,7 +164,34 @@ else()
 endif()
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
-# If LRC is not globally installed, it's path should be specified
+# If daemon is not globally installed, it's path should be specified
+# by setting variable DAEMON. If library is not inside DAEMON + suffixes
+# lib, build or build-local, it's path should be set with DAEMONLIB.
+if(DEFINED DAEMON)
+    if(EXISTS ${DAEMON}/include/dring)
+        set(DAEMON_SRC_PATH ${DAEMON}/include/dring)
+    else()
+        set(DAEMON_SRC_PATH ${DAEMON}/src)
+    endif()
+    if(NOT DEFINED DAEMONLIB)
+        set(DAEMONLIB ${DAEMON})
+    endif()
+    find_library(ring ring
+        PATHS ${DAEMONLIB}
+        PATH_SUFFIXES lib build build-local NO_DEFAULT_PATH)
+    message("Will expect daemon library in ${DAEMONLIB} (including \
+subdirs /lib, /build and /build-local)")
+    
+    # Fixed Relative Path
+    find_library(avcodec avcodec
+                 PATHS ${DAEMON}/../../daemon/contrib/x86_64-linux-gnu/lib
+                 NO_DEFAULT_PATH)
+    message("Will expect avcodec library in ${avcodec}")
+    
+    set(DAEMON_LIB_NAME ${ring})
+endif()
+
+# If lrc is not globally installed, it's path should be specified
 # by setting variable LRC. If library is not inside LRC + suffixes
 # lib, build or build-local, it's path should be set with LRCLIB.
 if(DEFINED LRC)
@@ -196,9 +221,12 @@ endif()
 
 message("Will expect lrc headers in ${LRC_SRC_PATH}")
 
+add_definitions(-DENABLE_LIBWRAP)
+
 include_directories(${PROJECT_SOURCE_DIR}
     ${SRC_DIR}
     ${LRC_SRC_PATH}
+    ${DAEMON_SRC_PATH}
     ${LIBNM_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME}
@@ -211,15 +239,16 @@ add_executable(${PROJECT_NAME}
 
 set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
-find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
 
 target_link_libraries(jami-qt
     ${QML_LIBS}
     ${LRC_LIB_NAME}
+    ${DAEMON_LIB_NAME}
     ${qrencode}
     ${X11}
+    ${avcodec}
     ${LIBNM_LIBRARIES})
 
 if(ENABLE_TESTS)
