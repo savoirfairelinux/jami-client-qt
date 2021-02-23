@@ -8,31 +8,31 @@ cpuCount=$(nproc || echo -n 4)
 topDir=$(pwd)/..
 echo "Project root dir: "${topDir}
 
-installDir=$topDir/install
-daemonDir=$topDir/daemon
-lrcDir=$topDir/lrc
-clientDir=$topDir/client-qt
+installDir=${topDir}/install
+daemonDir=${topDir}/daemon
+lrcDir=${topDir}/lrc
+clientDir=${topDir}/client-qt
 
 # Build lrc
 cd ${lrcDir}
 mkdir -p build
 cd build
 echo "Building lrc in "$PWD
-cmake .. -DCMAKE_INSTALL_PREFIX=$installDir/lrc \
-      -DRING_INCLUDE_DIR=$daemonDir/src/dring \
-      -DRING_XML_INTERFACES_DIR=$daemonDir/bin/dbus
+cmake .. -DCMAKE_INSTALL_PREFIX=${installDir}/lrc \
+      -DRING_INCLUDE_DIR=${daemonDir}/src/dring \
+      -DRING_XML_INTERFACES_DIR=${daemonDir}/bin/dbus
 make -j${cpuCount}
 make install
 
 # Build client and tests
-cd $clientDir
+cd ${clientDir}
 mkdir -p build
 cd build
 echo "Building client in "$PWD
-cmake ..
+cmake .. -DLRC=${installDir}/lrc -DENABLE_TESTS=True
 make -j${cpuCount}
 
 # Pass Tests
 cd tests
 ./unittests
-./qml_tests -input $clientDir/tests/qml
+./qml_tests -input ${clientDir}/tests/qml
