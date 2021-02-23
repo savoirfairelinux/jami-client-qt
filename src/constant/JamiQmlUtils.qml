@@ -20,6 +20,7 @@
 pragma Singleton
 
 import QtQuick 2.14
+import QtQuick.Window 2.14
 
 Item {
     readonly property string mainViewLoadPath: "qrc:/src/mainview/MainView.qml"
