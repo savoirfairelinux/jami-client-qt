@@ -20,12 +20,14 @@
 pragma Singleton
 
 import QtQuick 2.14
+import QtQuick.Window 2.14
 
 Item {
     readonly property string mainViewLoadPath: "qrc:/src/mainview/MainView.qml"
     readonly property string wizardViewLoadPath: "qrc:/src/wizardview/WizardView.qml"
     readonly property string base64StringTitle: "data:image/png;base64,"
 
+    property real devicePixelRatio: 0.0
     property var mainApplicationScreen: ""
     property bool callIsFullscreen: false
 
@@ -38,5 +40,17 @@ Item {
         globalTextMetrics.text = text
 
         return globalTextMetrics.boundingRect
+    }
+
+    Timer {
+        id: screenPropertyTracker
+
+        interval: 500
+        repeat: true
+        onTriggered: devicePixelRatio = mainApplicationScreen.devicePixelRatio
+    }
+
+    onMainApplicationScreenChanged: {
+        screenPropertyTracker.start()
     }
 }
