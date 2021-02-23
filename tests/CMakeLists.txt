@@ -30,7 +30,9 @@ target_link_libraries(qml_tests
     ${QMLTEST_LIBS}
     ${test_common_objects}
     ${ringclient}
-    ${qrencode})
+    ${qrencode}
+    ${X11}
+    ${LIBNM_LIBRARIES})
 
 target_include_directories(qml_tests PUBLIC
     ${TESTS_INCLUDES}
@@ -54,6 +56,8 @@ target_link_libraries(unittests
     ${test_common_objects}
     ${ringclient}
     ${qrencode}
+    ${X11}
+    ${LIBNM_LIBRARIES}
     gtest
     pthread)
 
