@@ -701,5 +701,4 @@ MessagesAdapter::removeConversation(const QString& accountId, const QString& uid
     LRCInstance::getAccountInfo(accountId).conversationModel->removeConversation(uid, banContact);
     if (uid == currentConvUid_)
         currentConvUid_.clear();
-    emit navigateToWelcomePageRequested();
 }
