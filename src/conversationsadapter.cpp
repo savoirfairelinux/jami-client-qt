@@ -400,3 +400,12 @@ ConversationsAdapter::updateConversationForNewContact(const QString& convUid)
         }
     }
 }
+
+bool
+ConversationsAdapter::isSwarm(const QString& convUid) {
+    auto* convModel = LRCInstance::getCurrentConversationModel();
+    auto convInfo = convModel->getConversationForUid(convUid);
+    if (!convInfo)
+        return false;
+    return convInfo->get().isSwarm;
+}
