@@ -88,10 +88,6 @@ ConversationsAdapter::selectConversation(const QString& accountId, const QString
             auto& accInfo = LRCInstance::getAccountInfo(convInfo.accountId);
             LRCInstance::setSelectedConvId(convInfo.uid);
             accInfo.conversationModel->clearUnreadInteractions(convInfo.uid);
-
-            // Set contact filter (for conversation tab selection)
-            auto& contact = accInfo.contactModel->getContact(convInfo.participants.front());
-            setProperty("currentTypeFilter", QVariant::fromValue(contact.profileInfo.type));
         };
         if (convInfo.accountId != LRCInstance::getCurrAccId()) {
             Utils::oneShotConnect(&LRCInstance::instance(),
