@@ -45,6 +45,7 @@ public:
     Q_INVOKABLE void deselectConversation();
     Q_INVOKABLE void refill();
     Q_INVOKABLE void updateConversationsFilterWidget();
+    Q_INVOKABLE bool isSwarm(const QString& uid);
 
 signals:
     void showConversation(const QString& accountId, const QString& convUid);
