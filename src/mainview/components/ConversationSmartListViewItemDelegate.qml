@@ -208,6 +208,7 @@ ItemDelegate {
             userProfile.aliasText = DisplayName
             userProfile.registeredNameText = DisplayID
             userProfile.idText = URI
+            userProfile.isSwarm = ConversationsAdapter.isSwarm(UID)
             userProfile.contactImageUid = UID
             smartListContextMenu.openMenu()
         }
