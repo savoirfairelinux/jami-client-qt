@@ -48,19 +48,23 @@ BannedListModel::columnCount(const QModelIndex& parent) const
 QVariant
 BannedListModel::data(const QModelIndex& index, int role) const
 {
-    auto contactList = LRCInstance::getCurrentAccountInfo().contactModel->getBannedContacts();
-    if (!index.isValid() || contactList.size() <= index.row()) {
-        return QVariant();
-    }
+    try {
+        auto contactList = LRCInstance::getCurrentAccountInfo().contactModel->getBannedContacts();
+        if (!index.isValid() || contactList.size() <= index.row()) {
+            return QVariant();
+        }
 
-    auto contactInfo = LRCInstance::getCurrentAccountInfo().contactModel->getContact(
-        contactList.at(index.row()));
+        auto contactInfo = LRCInstance::getCurrentAccountInfo().contactModel->getContact(
+            contactList.at(index.row()));
 
-    switch (role) {
-    case Role::ContactName:
-        return QVariant(contactInfo.registeredName);
-    case Role::ContactID:
-        return QVariant(contactInfo.profileInfo.uri);
+        switch (role) {
+        case Role::ContactName:
+            return QVariant(contactInfo.registeredName);
+        case Role::ContactID:
+            return QVariant(contactInfo.profileInfo.uri);
+        }
+    } catch (const std::out_of_range& e) {
+        qDebug() << e.what();
     }
     return QVariant();
 }
