@@ -227,6 +227,7 @@ ItemDelegate {
                 userProfile.registeredNameText = DisplayID
                 userProfile.idText = URI
                 userProfile.contactImageUid = UID
+                userProfile.isSwarm = ConversationsAdapter.isSwarm(UID)
                 smartListContextMenu.openMenu()
             } else if (mouse.button === Qt.LeftButton) {
                 conversationSmartListView.currentIndex = -1
