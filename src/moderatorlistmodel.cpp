@@ -48,22 +48,26 @@ ModeratorListModel::columnCount(const QModelIndex& parent) const
 QVariant
 ModeratorListModel::data(const QModelIndex& index, int role) const
 {
-    QStringList list = LRCInstance::accountModel().getDefaultModerators(
-                LRCInstance::getCurrAccId());
-    if (!index.isValid() || list.size() <= index.row()) {
-        return QVariant();
-    }
-    auto contactInfo = LRCInstance::getCurrentAccountInfo().contactModel->getContact(
-        list.at(index.row()));
+    try {
+        QStringList list = LRCInstance::accountModel().getDefaultModerators(
+                    LRCInstance::getCurrAccId());
+        if (!index.isValid() || list.size() <= index.row()) {
+            return QVariant();
+        }
+        auto contactInfo = LRCInstance::getCurrentAccountInfo().contactModel->getContact(
+            list.at(index.row()));
 
-    switch (role) {
-    case Role::ContactName: {
-        QString str = LRCInstance::getCurrentAccountInfo().contactModel->
-                bestNameForContact(list.at(index.row()));
-        return QVariant(str);
-    }
-    case Role::ContactID:
-        return QVariant(contactInfo.profileInfo.uri);
+        switch (role) {
+        case Role::ContactName: {
+            QString str = LRCInstance::getCurrentAccountInfo().contactModel->
+                    bestNameForContact(list.at(index.row()));
+            return QVariant(str);
+        }
+        case Role::ContactID:
+            return QVariant(contactInfo.profileInfo.uri);
+        }
+    } catch (const std::exception& e) {
+        qDebug() << e.what();
     }
     return QVariant();
 }

@@ -354,7 +354,8 @@ Utils::contactPhoto(const QString& contactUri, const QSize& size)
             auto avatarName = contactInfo.profileInfo.uri == bestName ? QString() : bestName;
             photo = Utils::fallbackAvatar("ring:" + contactInfo.profileInfo.uri, avatarName);
         }
-    } catch (...) {
+    } catch (const std::exception& e) {
+        qDebug() << e.what();
     }
     return Utils::scaleAndFrame(photo, size);
 }
@@ -508,7 +509,8 @@ Utils::profileType(const lrc::api::conversation::Info& conv,
     try {
         auto contact = model.owner.contactModel->getContact(conv.participants[0]);
         return contact.profileInfo.type;
-    } catch (...) {
+    } catch (const std::out_of_range& e) {
+        qDebug() << e.what();
         return lrc::api::profile::Type::INVALID;
     }
 }
@@ -541,12 +543,17 @@ Utils::isInteractionGenerated(const lrc::api::interaction::Type& type)
 bool
 Utils::isContactValid(const QString& contactUid, const lrc::api::ConversationModel& model)
 {
-    const auto contact = model.owner.contactModel->getContact(contactUid);
-    return (contact.profileInfo.type == lrc::api::profile::Type::PENDING
-            || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY
-            || contact.profileInfo.type == lrc::api::profile::Type::RING
-            || contact.profileInfo.type == lrc::api::profile::Type::SIP)
-           && !contact.profileInfo.uri.isEmpty();
+    try {
+        const auto contact = model.owner.contactModel->getContact(contactUid);
+        return (contact.profileInfo.type == lrc::api::profile::Type::PENDING
+                || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY
+                || contact.profileInfo.type == lrc::api::profile::Type::RING
+                || contact.profileInfo.type == lrc::api::profile::Type::SIP)
+               && !contact.profileInfo.uri.isEmpty();
+    } catch (const std::out_of_range& e) {
+        qDebug() << e.what();
+        return false;
+    }
 }
 
 bool
