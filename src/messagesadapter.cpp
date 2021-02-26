@@ -691,17 +691,28 @@ MessagesAdapter::blockConversation(const QString& convUid)
 }
 
 void
-MessagesAdapter::clearConversationHistory(const QString& accountId, const QString& uid)
+MessagesAdapter::clearConversationHistory(const QString& accountId, const QString& convUid)
 {
-    LRCInstance::getAccountInfo(accountId).conversationModel->clearHistory(uid);
-    if (uid == currentConvUid_)
+    LRCInstance::getAccountInfo(accountId).conversationModel->clearHistory(convUid);
+    if (convUid == currentConvUid_)
         currentConvUid_.clear();
 }
 
 void
-MessagesAdapter::removeConversation(const QString& accountId, const QString& uid, bool banContact)
+MessagesAdapter::removeConversation(const QString& accountId,
+                                    const QString& convUid,
+                                    bool banContact)
 {
-    LRCInstance::getAccountInfo(accountId).conversationModel->removeConversation(uid, banContact);
-    if (uid == currentConvUid_)
+    QStringList list = LRCInstance::accountModel().getDefaultModerators(accountId);
+    const auto& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
+    const auto contactURI = convInfo.participants.front();
+
+    if (!contactURI.isEmpty() && list.contains(contactURI)) {
+        LRCInstance::accountModel().setDefaultModerator(accountId, contactURI, false);
+    }
+
+    LRCInstance::getAccountInfo(accountId).conversationModel->removeConversation(convUid,
+                                                                                 banContact);
+    if (convUid == currentConvUid_)
         currentConvUid_.clear();
 }
