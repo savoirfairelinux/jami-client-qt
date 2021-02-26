@@ -39,6 +39,37 @@ Rectangle {
         }
     }
 
+    function msgDialogTrustCallBack(trust, rootPath) {
+        PluginModel.answerTrustPlugin(trust, rootPath)
+        pluginListView.model = PluginAdapter.getPluginSelectableModel()
+        PluginAdapter.pluginHandlersUpdateStatus()
+    }
+
+    Connections {
+        target: PluginModel
+
+        function onAskTrustPluginIssuer(issuer, companyDivision, pluginName, rootPath) {
+            var authorship = companyDivision === "" ? issuer : issuer + " - " + companyDivision
+
+            msgDialogTrustRequest.buttonCallBacks = [function () {
+                msgDialogTrustCallBack(true, rootPath)
+            }, function () {
+                msgDialogTrustCallBack(false, rootPath)
+            }]
+            msgDialogTrustRequest.openWithParameters(qsTr("Plugin Trust Request"),
+                                        qsTr("Do you want to trust " + pluginName +
+                                            "?\n\nAuthor: " + authorship))
+        }
+    }
+
+    SimpleMessageDialog {
+        id: msgDialogTrustRequest
+
+        buttonTitles: [qsTr("Yes"), qsTr("No")]
+        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
+                       SimpleMessageDialog.ButtonStyle.TintedBlack]
+    }
+
     visible: false
     color: JamiTheme.secondaryBackgroundColor
 
