@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -187,14 +187,6 @@ int
 UtilsAdapter::getAccountListSize()
 {
     return getCurrAccList().size();
-}
-
-void
-UtilsAdapter::setCurrentCall(const QString& accountId, const QString& convUid)
-{
-    auto& accInfo = LRCInstance::getAccountInfo(accountId);
-    auto const& convInfo = LRCInstance::getConversationFromConvUid(convUid, accountId);
-    accInfo.callModel->setCurrentCall(convInfo.callId);
 }
 
 bool
