@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a1f61277_fd2ac4ec",
+        "filename": "src/settingsview/components/CurrentAccountSettings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-03-02T22:16:40Z",
+      "side": 1,
+      "message": "Why don\u0027t we use a signal after advanced settings toggle button is clicked?",
+      "range": {
+        "startLine": 324,
+        "startChar": 12,
+        "endLine": 330,
+        "endChar": 13
+      },
+      "revId": "6e6f476a4c26378c45d8bc5f8d956c26db06e8b3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
