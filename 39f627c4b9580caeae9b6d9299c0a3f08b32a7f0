@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "93053d83_9ae96c31",
+        "filename": "src/commoncomponents/AvatarImage.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-03-02T19:51:54Z",
+      "side": 1,
+      "message": "Not really, once the source is changed it will reload,\n\nrootImage.source \u003d \"\"\nrootImage.source \u003d tempImageSource\n\nthis is just to trigger the event",
+      "parentUuid": "10c63c65_d82dc7d6",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 45
+      },
+      "revId": "39f627c4b9580caeae9b6d9299c0a3f08b32a7f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0be01612_1805a196",
         "filename": "src/commoncomponents/ResponsiveImage.qml",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2021-03-02T19:37:49Z",
       "side": 1,
       "message": "can erase line 65?",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 47
+      },
+      "revId": "39f627c4b9580caeae9b6d9299c0a3f08b32a7f0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6be6018c_2eea62f3",
+        "filename": "src/commoncomponents/ResponsiveImage.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-03-02T19:51:54Z",
+      "side": 1,
+      "message": "Same in here, souceSize change will trigger the image reload event",
+      "parentUuid": "0be01612_1805a196",
       "range": {
         "startLine": 65,
         "startChar": 12,
