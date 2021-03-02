@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -54,7 +54,6 @@ public:
     Q_INVOKABLE void makePermanentCurrentConv();
     Q_INVOKABLE const QStringList getCurrAccList();
     Q_INVOKABLE int getAccountListSize();
-    Q_INVOKABLE void setCurrentCall(const QString& accountId, const QString& convUid);
     Q_INVOKABLE bool hasCall(const QString& accountId);
     Q_INVOKABLE const QString getCallConvForAccount(const QString& accountId);
     Q_INVOKABLE const QString getCallId(const QString& accountId, const QString& convUid);
