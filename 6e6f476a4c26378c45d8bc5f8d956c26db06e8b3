@@ -22,6 +22,30 @@
       "revId": "6e6f476a4c26378c45d8bc5f8d956c26db06e8b3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db35f26e_d857cb68",
+        "filename": "src/settingsview/components/CurrentAccountSettings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-03-03T14:58:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a1f61277_fd2ac4ec",
+      "range": {
+        "startLine": 324,
+        "startChar": 12,
+        "endLine": 330,
+        "endChar": 13
+      },
+      "revId": "6e6f476a4c26378c45d8bc5f8d956c26db06e8b3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
