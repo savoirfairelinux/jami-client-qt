@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0781f105_c98ad5e2",
+        "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-03-03T14:29:14Z",
+      "side": 1,
+      "message": "why  this change?",
+      "range": {
+        "startLine": 200,
+        "startChar": 22,
+        "endLine": 203,
+        "endChar": 20
+      },
+      "revId": "badc7fc50830629df8541aedaec492d45b432292",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
