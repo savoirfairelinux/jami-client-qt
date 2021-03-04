@@ -374,27 +374,19 @@ AccountAdapter::connectAccount(const QString& accountId)
                                    emit accountStatusChanged(accountId);
                                });
 
-        contactAddedConnection_
-            = QObject::connect(accInfo.contactModel.get(),
-                               &lrc::api::ContactModel::contactAdded,
-                               [this, accountId](const QString& contactUri) {
-                                   const auto& convInfo = LRCInstance::getConversationFromConvUid(
-                                       LRCInstance::getCurrentConvUid());
-                                   if (convInfo.uid.isEmpty()) {
-                                       return;
-                                   }
-                                   auto& accInfo = LRCInstance::accountModel().getAccountInfo(
-                                       accountId);
-                                   if (contactUri
-                                       == accInfo.contactModel
-                                              ->getContact(convInfo.participants.at(0))
-                                              .profileInfo.uri) {
-                                       /*
-                                        * Update conversation.
-                                        */
-                                       emit updateConversationForAddedContact();
-                                   }
-                               });
+        contactAddedConnection_ = QObject::connect(accInfo.contactModel.get(),
+                                                   &lrc::api::ContactModel::contactAdded,
+                                                   [this](const QString&) {
+                                                       // Always update here. if we are here, this
+                                                       // means that we add a new contact
+                                                       // Note: for swarm, creating a conv is
+                                                       // asynchronous this means that adding a
+                                                       // contact will not do anything until we
+                                                       // receives ConversationReady Note2:
+                                                       // contactAdded is also common to SIP
+                                                       // accounts
+                                                       emit updateConversationForAddedContact();
+                                                   });
 
         addedToConferenceConnection_
             = QObject::connect(accInfo.callModel.get(),
