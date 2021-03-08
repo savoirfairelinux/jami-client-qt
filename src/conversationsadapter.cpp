@@ -327,7 +327,7 @@ void
 ConversationsAdapter::updateConversationsFilterWidget()
 {
     // Update status of "Conversations" and "Invitations".
-    auto invites = lrcInstance_->getCurrentAccountInfo().contactModel->pendingRequestCount();
+    auto invites = lrcInstance_->getCurrentAccountInfo().conversationModel->pendingRequestCount();
     if (invites == 0 && currentTypeFilter_ == lrc::api::profile::Type::PENDING) {
         setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::profile::Type::RING));
     }
@@ -431,8 +431,9 @@ ConversationsAdapter::updateConversationForNewContact(const QString& convUid)
 }
 
 bool
-ConversationsAdapter::isSwarm(const QString& convUid) {
-    auto* convModel = LRCInstance::getCurrentConversationModel();
+ConversationsAdapter::isSwarm(const QString& convUid)
+{
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
     auto convInfo = convModel->getConversationForUid(convUid);
     if (!convInfo)
         return false;
