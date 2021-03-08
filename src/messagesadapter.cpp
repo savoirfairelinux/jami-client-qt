@@ -711,6 +711,8 @@ MessagesAdapter::acceptInvitation(const QString& convUid)
 {
     const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
     LRCInstance::getCurrentConversationModel()->makePermanent(currentConvUid);
+    setInvitation(false);
+    LRCInstance::setSelectedConvId();
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
     emit invitationAccepted();
@@ -722,6 +724,7 @@ MessagesAdapter::refuseInvitation(const QString& convUid)
     const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
     LRCInstance::getCurrentConversationModel()->removeConversation(currentConvUid, false);
     setInvitation(false);
+    LRCInstance::setSelectedConvId();
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
     emit navigateToWelcomePageRequested();
@@ -733,6 +736,7 @@ MessagesAdapter::blockConversation(const QString& convUid)
     const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
     LRCInstance::getCurrentConversationModel()->removeConversation(currentConvUid, true);
     setInvitation(false);
+    LRCInstance::setSelectedConvId();
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
     emit contactBanned();
