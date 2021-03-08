@@ -164,7 +164,7 @@ int
 UtilsAdapter::getTotalPendingRequest()
 {
     auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
-    return accountInfo.contactModel->pendingRequestCount();
+    return accountInfo.conversationModel->pendingRequestCount();
 }
 
 void
