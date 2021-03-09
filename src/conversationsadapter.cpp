@@ -118,9 +118,10 @@ ConversationsAdapter::safeInit()
             &ConversationsAdapter::onCurrentAccountIdChanged);
 
     connectConversationModel();
+    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::JAMI;
 
     setProperty("currentTypeFilter",
-                QVariant::fromValue(lrcInstance_->getCurrentAccountInfo().profileInfo.type));
+                QVariant::fromValue(type));
 }
 
 void
@@ -156,9 +157,10 @@ void
 ConversationsAdapter::onCurrentAccountIdChanged()
 {
     connectConversationModel();
+    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::JAMI;
 
     setProperty("currentTypeFilter",
-                QVariant::fromValue(lrcInstance_->getCurrentAccountInfo().profileInfo.type));
+                QVariant::fromValue(type));
 }
 
 void
@@ -328,8 +330,8 @@ ConversationsAdapter::updateConversationsFilterWidget()
 {
     // Update status of "Conversations" and "Invitations".
     auto invites = lrcInstance_->getCurrentAccountInfo().conversationModel->pendingRequestCount();
-    if (invites == 0 && currentTypeFilter_ == lrc::api::profile::Type::PENDING) {
-        setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::profile::Type::RING));
+    if (invites == 0 && currentTypeFilter_ == lrc::api::FilterType::REQUEST) {
+        setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::FilterType::JAMI));
     }
     showConversationTabs(invites);
 }
@@ -402,7 +404,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                      Qt::UniqueConnection);
 
     if (updateFilter) {
-        currentTypeFilter_ = lrc::api::profile::Type::INVALID;
+        currentTypeFilter_ = lrc::api::FilterType::INVALID;
     }
     return true;
 }

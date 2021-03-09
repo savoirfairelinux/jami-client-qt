@@ -46,8 +46,8 @@ TabBar {
         target: ConversationsAdapter
 
         function onCurrentTypeFilterChanged() {
-            pageOne.down = ConversationsAdapter.currentTypeFilter !==  Profile.Type.PENDING
-            pageTwo.down = ConversationsAdapter.currentTypeFilter ===  Profile.Type.PENDING
+            pageOne.down = ConversationsAdapter.currentTypeFilter !==  Lrc.FilterType.REQUEST
+            pageTwo.down = ConversationsAdapter.currentTypeFilter ===  Lrc.FilterType.REQUEST
             setCurrentUidSmartListModelIndex()
             forceReselectConversationSmartListCurrentIndex()
         }
