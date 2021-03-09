@@ -168,8 +168,9 @@ def build(arch, toolset, sdk_version, config_str, project_path_under_current_pat
 
     configuration_type = 'StaticLibrary'
 
+    qt_major_version = getQtVersionNumber(qtver, QtVerison.Major)
     qt_minor_version = getQtVersionNumber(qtver, QtVerison.Minor)
-    qtFolderDir = 'msvc2017_64' if int(qt_minor_version) <= 14 else 'msvc2019_64'
+    qtFolderDir = 'msvc2017_64' if int(qt_minor_version) <= 14 and int(qt_major_version) <= 5 else 'msvc2019_64'
 
     vs_env_vars = {}
     vs_env_vars.update(getVSEnv())

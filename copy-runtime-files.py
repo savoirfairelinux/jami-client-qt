@@ -7,25 +7,38 @@ import platform
 import argparse
 import shutil
 import fileinput
+from enum import Enum
+
+use_color_log = True
 
 if platform.system() == "Windows":
-    from colorama import init
+    try:
+        from colorama import init
 
-    # init ANSI escape character sequences for windows
-    init()
-
+        # init ANSI escape character sequences for windows
+        init()
+    except ImportError:
+        use_color_log = False
 
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+    HEADER = '\033[95m' if use_color_log else ""
+    OKBLUE = '\033[94m' if use_color_log else ""
+    OKCYAN = '\033[96m' if use_color_log else ""
+    OKGREEN = '\033[92m' if use_color_log else ""
+    WARNING = '\033[93m' if use_color_log else ""
+    FAIL = '\033[91m' if use_color_log else ""
+    ENDC = '\033[0m' if use_color_log else ""
+    BOLD = '\033[1m' if use_color_log else ""
+    UNDERLINE = '\033[4m' if use_color_log else ""
 
+class QtVerison(Enum):
+    Major = 0
+    Minor = 1
+    Micro = 2
+
+def getQtVersionNumber(qt_version, version_type):
+    version_list = qt_version.split('.')
+    return version_list[version_type.value]
 
 def execute_cmd(cmd, use_subprocess_pipe=False):
     p = subprocess.Popen(cmd,
@@ -81,12 +94,13 @@ def setup_parameters(parsed_args):
 
         if parsed_args.qtVersion:
             globalVar.qt_version = parsed_args.qtVersion
-            qt_minor_ver = int(globalVar.qt_version.split('.')[1])
-            if qt_minor_ver < 14:
+            qt_major_version = getQtVersionNumber(globalVar.qt_version, QtVerison.Major)
+            qt_minor_version = getQtVersionNumber(globalVar.qt_version, QtVerison.Minor)
+            if qt_minor_version < 14 and qt_major_version < 6:
                 print(bcolors.WARNING + "Qt version not supported" + bcolors.ENDC)
                 sys.exit()
             globalVar.qt_path = "C:\\Qt\\" + globalVar.qt_version + \
-                ("\\msvc2017_64" if qt_minor_ver < 15 else "\\msvc2019_64")
+                ("\\msvc2017_64" if qt_minor_version <= 14 and qt_major_version <= 5 else "\\msvc2019_64")
         else:
             globalVar.qt_path = "C:\\Qt\\5.15.0\\msvc2019_64"
     else:
@@ -106,8 +120,9 @@ def setup_parameters(parsed_args):
                 globalVar.qt_version = globalVar.qt_version.decode("utf-8")
             globalVar.qt_version = globalVar.qt_version.split(
                 'Qt version')[1].split('in')[0].strip()
-            qt_minor_ver = int(globalVar.qt_version.split('.')[1])
-            if qt_minor_ver < 14:
+            qt_major_version = getQtVersionNumber(globalVar.qt_version, QtVerison.Major)
+            qt_minor_version = getQtVersionNumber(globalVar.qt_version, QtVerison.Minor)
+            if qt_minor_version < 14 and qt_major_version < 6:
                 print(bcolors.WARNING + "Qt version not supported" + bcolors.ENDC)
                 sys.exit()
 
@@ -220,9 +235,9 @@ def release_and_copy_translations():
     qt_version_check = execute_cmd(lrelease + ' -version', True)
     if type(qt_version_check) is bytes:
         qt_version_check = qt_version_check.decode("utf-8")
-    qt_version_check = qt_version_check.split('version')[1].strip()
-    qt_minor_ver = int(qt_version_check.split('.')[1])
-    if qt_minor_ver < 14:
+    qt_major_version = getQtVersionNumber(globalVar.qt_version, QtVerison.Major)
+    qt_minor_version = getQtVersionNumber(globalVar.qt_version, QtVerison.Minor)
+    if qt_minor_version < 14 and qt_major_version < 6:
         print(bcolors.WARNING + "Qt version not supported" + bcolors.ENDC)
         sys.exit()
 
