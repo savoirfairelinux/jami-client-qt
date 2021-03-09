@@ -32,6 +32,7 @@ ConversationsAdapter::ConversationsAdapter(QObject* parent)
     : QmlAdapterBase(parent)
 {
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
+        auto filter = currentTypeFilter_ == lrc::api::FilterType::REQUEST ? "request" : currentTypeFilter_ == lrc::api::FilterType::RING ? "ring" : currentTypeFilter_ == lrc::api::FilterType::INVALID ? "invalid" : "sip";
         LRCInstance::getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });
 }
@@ -60,9 +61,10 @@ ConversationsAdapter::safeInit()
             &ConversationsAdapter::onCurrentAccountIdChanged);
 
     connectConversationModel();
+    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::RING;
 
     setProperty("currentTypeFilter",
-                QVariant::fromValue(LRCInstance::getCurrentAccountInfo().profileInfo.type));
+                QVariant::fromValue(type));
 }
 
 void
@@ -92,7 +94,8 @@ ConversationsAdapter::selectConversation(const QString& accountId, const QString
             try {
                 // Set contact filter (for conversation tab selection)
                 auto& contact = accInfo.contactModel->getContact(convInfo.participants.front());
-                setProperty("currentTypeFilter", QVariant::fromValue(contact.profileInfo.type));
+                auto type = contact.profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::RING;
+                setProperty("currentTypeFilter", QVariant::fromValue(type));
             } catch (const std::out_of_range& e) {
                 qDebug() << e.what();
             }
@@ -134,9 +137,10 @@ ConversationsAdapter::onCurrentAccountIdChanged()
 {
     disconnectConversationModel();
     connectConversationModel();
+    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::RING;
 
     setProperty("currentTypeFilter",
-                QVariant::fromValue(LRCInstance::getCurrentAccountInfo().profileInfo.type));
+                QVariant::fromValue(type));
 }
 
 void
@@ -171,8 +175,8 @@ ConversationsAdapter::updateConversationsFilterWidget()
 {
     // Update status of "Conversations" and "Invitations".
     auto invites = LRCInstance::getCurrentAccountInfo().conversationModel->pendingRequestCount();
-    if (invites == 0 && currentTypeFilter_ == lrc::api::profile::Type::PENDING) {
-        setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::profile::Type::RING));
+    if (invites == 0 && currentTypeFilter_ == lrc::api::FilterType::REQUEST) {
+        setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::FilterType::RING));
     }
     showConversationTabs(invites);
 }
@@ -281,7 +285,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                            });
 
     if (updateFilter) {
-        currentTypeFilter_ = lrc::api::profile::Type::INVALID;
+        currentTypeFilter_ = lrc::api::FilterType::INVALID;
     }
     return true;
 }

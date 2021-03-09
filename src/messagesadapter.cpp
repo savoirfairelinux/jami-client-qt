@@ -473,7 +473,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
-        setInvitation(contact.profileInfo.type == lrc::api::profile::Type::PENDING,
+        setInvitation(convInfo.isRequest,
                       bestName,
                       contactUri);
 
