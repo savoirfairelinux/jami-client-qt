@@ -109,7 +109,7 @@ CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
         try {
             auto& contact = accInfo.contactModel->getContact(contactUri);
             if (contact.profileInfo.type == lrc::api::profile::Type::PENDING) {
-                LRCInstance::getCurrentConversationModel()->makePermanent(convInfo.uid);
+                LRCInstance::getCurrentConversationModel()->acceptConversationRequest(convInfo.uid);
             }
         } catch (...) {
         }
