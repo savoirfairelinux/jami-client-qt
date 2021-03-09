@@ -473,7 +473,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
-        setInvitation(convInfo.isRequest, bestName, contactUri, convInfo.isSwarm);
+        setInvitation(convInfo.isRequest, bestName, contactUri);
 
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
@@ -710,7 +710,7 @@ void
 MessagesAdapter::acceptInvitation(const QString& convUid)
 {
     const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
-    LRCInstance::getCurrentConversationModel()->makePermanent(currentConvUid);
+    LRCInstance::getCurrentConversationModel()->acceptConversationRequest(currentConvUid);
     setInvitation(false);
     LRCInstance::setSelectedConvId();
     if (convUid == currentConvUid_)
@@ -722,7 +722,7 @@ void
 MessagesAdapter::refuseInvitation(const QString& convUid)
 {
     const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
-    LRCInstance::getCurrentConversationModel()->removeConversation(currentConvUid, false);
+    LRCInstance::getCurrentConversationModel()->declineConversationRequest(currentConvUid, false);
     setInvitation(false);
     LRCInstance::setSelectedConvId();
     if (convUid == currentConvUid_)
@@ -734,7 +734,8 @@ void
 MessagesAdapter::blockConversation(const QString& convUid)
 {
     const auto currentConvUid = convUid.isEmpty() ? LRCInstance::getCurrentConvUid() : convUid;
-    LRCInstance::getCurrentConversationModel()->removeConversation(currentConvUid, true);
+    LRCInstance::getCurrentConversationModel()->declineConversationRequest(
+                currentConvUid, true);
     setInvitation(false);
     LRCInstance::setSelectedConvId();
     if (convUid == currentConvUid_)
@@ -754,7 +755,7 @@ MessagesAdapter::clearConversationHistory(const QString& accountId, const QStrin
 void
 MessagesAdapter::removeConversation(const QString& accountId, const QString& uid, bool banContact)
 {
-    LRCInstance::getAccountInfo(accountId).conversationModel->removeConversation(uid, banContact);
+    LRCInstance::getAccountInfo(accountId).conversationModel->declineConversationRequest(uid, banContact);
     if (uid == currentConvUid_)
         currentConvUid_.clear();
 }

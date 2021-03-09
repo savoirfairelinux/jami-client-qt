@@ -147,7 +147,7 @@ UtilsAdapter::getTotalUnreadMessages()
     int totalUnreadMessages {0};
     if (LRCInstance::getCurrentAccountInfo().profileInfo.type != lrc::api::profile::Type::SIP) {
         auto* convModel = LRCInstance::getCurrentConversationModel();
-        auto ringConversations = convModel->getFilteredConversations(lrc::api::profile::Type::RING,
+        auto ringConversations = convModel->getFilteredConversations(lrc::api::FilterType::JAMI,
                                                                      false);
         ringConversations.for_each(
             [&totalUnreadMessages](const lrc::api::conversation::Info& conversation) {
@@ -179,7 +179,7 @@ UtilsAdapter::getCurrConvId()
 void
 UtilsAdapter::makePermanentCurrentConv()
 {
-    LRCInstance::getCurrentConversationModel()->makePermanent(LRCInstance::getCurrentConvUid());
+    LRCInstance::getCurrentConversationModel()->acceptConversationRequest(LRCInstance::getCurrentConvUid());
 }
 
 const QStringList
