@@ -43,7 +43,8 @@ SmartListModel::rowCount(const QModelIndex& parent) const
         auto& accInfo = LRCInstance::accountModel().getAccountInfo(LRCInstance::getCurrAccId());
         auto& convModel = accInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
-            auto filterType = accInfo.profileInfo.type;
+            auto filterType = accInfo.profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::RING;
+            qDebug() << "@@@@row count3 " << convModel->getFilteredConversations(filterType).size();
             return convModel->getFilteredConversations(filterType).size();
         } else if (listModelType_ == Type::CONFERENCE) {
             auto calls = conferenceables_[ConferenceableItem::CALL];
@@ -54,10 +55,13 @@ SmartListModel::rowCount(const QModelIndex& parent) const
                 rowCount += sectionState_[tr("Calls")] ? calls.size() : 0;
                 rowCount += sectionState_[tr("Contacts")] ? contacts.size() : 0;
             }
+            qDebug() << "@@@@row count2 " << rowCount;
             return rowCount;
         }
+        qDebug() << "@@@@row count1 " << conversations_.size();
         return conversations_.size();
     }
+    qDebug() << "@@@@row count0 " << "0";
     return 0;
 }
 
@@ -80,7 +84,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
             LRCInstance::getCurrAccId());
         auto& convModel = currentAccountInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
-            auto filterType = currentAccountInfo.profileInfo.type;
+            auto filterType = currentAccountInfo.profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::RING;
             const auto& item = convModel->getFilteredConversations(filterType).at(index.row());
             return getConversationItemData(item, currentAccountInfo, role);
         } else if (listModelType_ == Type::CONFERENCE) {
