@@ -473,7 +473,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
-        setInvitation(convInfo.isRequest, bestName, contactUri, convInfo.isSwarm);
+        setInvitation(convInfo.isRequest, bestName, contactUri);
 
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
