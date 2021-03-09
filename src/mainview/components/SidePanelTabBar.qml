@@ -40,17 +40,17 @@ TabBar {
         target: ConversationsAdapter
 
         function onCurrentTypeFilterChanged() {
-            pageOne.down = ConversationsAdapter.currentTypeFilter !==  Profile.Type.PENDING
-            pageTwo.down = ConversationsAdapter.currentTypeFilter ===  Profile.Type.PENDING
+            pageOne.down = ConversationsAdapter.currentTypeFilter !==  Lrc.FilterType.REQUEST
+            pageTwo.down = ConversationsAdapter.currentTypeFilter ===  Lrc.FilterType.REQUEST
             setCurrentUidSmartListModelIndex()
             forceReselectConversationSmartListCurrentIndex()
         }
     }
 
     function selectTab(tabIndex) {
+
         ConversationsAdapter.currentTypeFilter = tabIndex ===
-                SidePanelTabBar.Conversations ? AccountAdapter.getCurrentAccountType() :
-                                                Profile.Type.PENDING
+                SidePanelTabBar.Conversations ? AccountAdapter.getCurrentAccountType() === Profile.Type.RING ? Lrc.FilterType.JAMI : Lrc.FilterType.SIP : Lrc.FilterType.REQUEST
     }
 
     property alias converstationTabWidth: pageOne.width

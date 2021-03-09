@@ -478,7 +478,7 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
-        setInvitation(convInfo.isRequest, bestName, contactUri, convInfo.isSwarm);
+        setInvitation(convInfo.isRequest, bestName, contactUri);
 
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
@@ -713,8 +713,8 @@ MessagesAdapter::contactIsComposing(const QString& convUid,
 void
 MessagesAdapter::acceptInvitation(const QString& convUid)
 {
-    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
-    lrcInstance_->getCurrentConversationModel()->makePermanent(currentConvUid);
+    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->getCurrentConvUid() : convUid;
+    lrcInstance_->getCurrentConversationModel()->acceptConversationRequest(currentConvUid);
     setInvitation(false);
     lrcInstance_->setSelectedConvId();
     if (convUid == currentConvUid_)
@@ -725,8 +725,8 @@ MessagesAdapter::acceptInvitation(const QString& convUid)
 void
 MessagesAdapter::refuseInvitation(const QString& convUid)
 {
-    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
-    lrcInstance_->getCurrentConversationModel()->removeConversation(currentConvUid, false);
+    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->getCurrentConvUid() : convUid;
+    lrcInstance_->getCurrentConversationModel()->declineConversationRequest(currentConvUid, false);
     setInvitation(false);
     lrcInstance_->setSelectedConvId();
     if (convUid == currentConvUid_)
@@ -737,8 +737,9 @@ MessagesAdapter::refuseInvitation(const QString& convUid)
 void
 MessagesAdapter::blockConversation(const QString& convUid)
 {
-    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
-    lrcInstance_->getCurrentConversationModel()->removeConversation(currentConvUid, true);
+    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->getCurrentConvUid() : convUid;
+    lrcInstance_->getCurrentConversationModel()->declineConversationRequest(
+                currentConvUid, true);
     setInvitation(false);
     lrcInstance_->setSelectedConvId();
     if (convUid == currentConvUid_)
@@ -760,17 +761,8 @@ MessagesAdapter::removeConversation(const QString& accountId,
                                     const QString& convUid,
                                     bool banContact)
 {
-    QStringList list = lrcInstance_->accountModel().getDefaultModerators(accountId);
-    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
-    const auto contactURI = convInfo.participants.front();
-
-    if (!contactURI.isEmpty() && list.contains(contactURI)) {
-        lrcInstance_->accountModel().setDefaultModerator(accountId, contactURI, false);
-    }
-
-    lrcInstance_->getAccountInfo(accountId).conversationModel->removeConversation(convUid,
-                                                                                  banContact);
-    if (convUid == currentConvUid_)
+    lrcInstance_->getAccountInfo(accountId).conversationModel->declineConversationRequest(uid, banContact);
+    if (uid == currentConvUid_)
         currentConvUid_.clear();
 }
 

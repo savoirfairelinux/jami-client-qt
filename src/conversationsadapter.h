@@ -31,7 +31,7 @@ class ConversationsAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
 
-    Q_PROPERTY(lrc::api::profile::Type currentTypeFilter MEMBER currentTypeFilter_ NOTIFY
+    Q_PROPERTY(lrc::api::FilterType currentTypeFilter MEMBER currentTypeFilter_ NOTIFY
                    currentTypeFilterChanged)
 public:
     explicit ConversationsAdapter(SystemTray* systemTray,
@@ -81,7 +81,7 @@ private:
 
     SmartListModel* conversationSmartListModel_;
 
-    lrc::api::profile::Type currentTypeFilter_ {};
+    lrc::api::FilterType currentTypeFilter_ {};
 
     // Connections.
     QMetaObject::Connection modelSortedConnection_;
