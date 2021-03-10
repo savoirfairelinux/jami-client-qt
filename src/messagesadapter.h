@@ -127,6 +127,7 @@ private:
     const QVariantMap chatviewTranslatedStrings_ {lrc::api::chatview::getTranslatedStrings()};
 
     // Interaction connections.
+    QMetaObject::Connection composingStatusChangedConnection_;
     QMetaObject::Connection newInteractionConnection_;
     QMetaObject::Connection interactionStatusUpdatedConnection_;
     QMetaObject::Connection interactionRemovedConnection_;

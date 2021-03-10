@@ -76,13 +76,14 @@ MessagesAdapter::setupChatView(const QString& convUid)
     auto selectedAccountId = lrcInstance_->getCurrAccId();
     auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(selectedAccountId);
 
-    lrc::api::contact::Info contactInfo;
+    contact::Info contactInfo;
     try {
         contactInfo = accountInfo.contactModel->getContact(contactURI);
     } catch (...) {
     }
 
-    bool isPending = contactInfo.profileInfo.type == profile::Type::TEMPORARY;
+    bool isPending = (contactInfo.profileInfo.type == profile::Type::PENDING
+                      || contactInfo.profileInfo.type == profile::Type::TEMPORARY);
 
     QMetaObject::invokeMethod(qmlObj_,
                               "setSendContactRequestButtonVisible",
@@ -92,14 +93,6 @@ MessagesAdapter::setupChatView(const QString& convUid)
 
     // Type Indicator (contact). TODO: Not shown when invitation request?
     contactIsComposing(convInfo.uid, "", false);
-    connect(lrcInstance_->getCurrentConversationModel(),
-            &ConversationModel::composingStatusChanged,
-            [this](const QString& convUid, const QString& contactUri, bool isComposing) {
-                if (!settingsManager_->getValue(Settings::Key::EnableTypingIndicator).toBool()) {
-                    return;
-                }
-                contactIsComposing(convUid, contactUri, isComposing);
-            });
 
     // Draft and message content set up.
     Utils::oneShotConnect(qmlObj_,
@@ -121,42 +114,55 @@ MessagesAdapter::connectConversationModel()
 {
     auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
 
+    QObject::disconnect(composingStatusChangedConnection_);
     QObject::disconnect(newInteractionConnection_);
     QObject::disconnect(interactionRemovedConnection_);
     QObject::disconnect(interactionStatusUpdatedConnection_);
 
-    newInteractionConnection_
-        = QObject::connect(currentConversationModel,
-                           &lrc::api::ConversationModel::newInteraction,
-                           [this](const QString& convUid,
-                                  const QString& interactionId,
-                                  const lrc::api::interaction::Info& interaction) {
-                               auto accountId = lrcInstance_->getCurrAccId();
-                               newInteraction(accountId, convUid, interactionId, interaction);
-                           });
+    newInteractionConnection_ = QObject::connect(currentConversationModel,
+                                                 &ConversationModel::newInteraction,
+                                                 [this](const QString& convUid,
+                                                        const QString& interactionId,
+                                                        const interaction::Info& interaction) {
+                                                     auto accountId = lrcInstance_->getCurrAccId();
+                                                     newInteraction(accountId,
+                                                                    convUid,
+                                                                    interactionId,
+                                                                    interaction);
+                                                 });
+
+    composingStatusChangedConnection_ = QObject::connect(
+        currentConversationModel,
+        &ConversationModel::composingStatusChanged,
+        [this](const QString& convUid, const QString& contactUri, bool isComposing) {
+            if (!AppSettingsManager::getValue(Settings::Key::EnableTypingIndicator).toBool()) {
+                return;
+            }
+            contactIsComposing(convUid, contactUri, isComposing);
+        });
 
     interactionStatusUpdatedConnection_ = QObject::connect(
         currentConversationModel,
-        &lrc::api::ConversationModel::interactionStatusUpdated,
+        &ConversationModel::interactionStatusUpdated,
         [this](const QString& convUid,
                const QString& interactionId,
-               const lrc::api::interaction::Info& interaction) {
+               const interaction::Info& interaction) {
             auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
             currentConversationModel->clearUnreadInteractions(convUid);
             updateInteraction(*currentConversationModel, convUid, interactionId, interaction);
         });
 
-    interactionRemovedConnection_
-        = QObject::connect(currentConversationModel,
-                           &lrc::api::ConversationModel::interactionRemoved,
-                           [this](const QString& convUid, const QString& interactionId) {
-                               Q_UNUSED(convUid);
-                               removeInteraction(interactionId);
-                           });
+    interactionRemovedConnection_ = QObject::connect(currentConversationModel,
+                                                     &ConversationModel::interactionRemoved,
+                                                     [this](const QString& convUid,
+                                                            const QString& interactionId) {
+                                                         Q_UNUSED(convUid);
+                                                         removeInteraction(interactionId);
+                                                     });
 
     newMessagesAvailableConnection_ = QObject::connect(
         currentConversationModel,
-        &lrc::api::ConversationModel::newMessagesAvailable,
+        &ConversationModel::newMessagesAvailable,
         [this](const QString& accountId, const QString& conversationId) {
             auto* convModel
                 = lrcInstance_->accountModel().getAccountInfo(accountId).conversationModel.get();
@@ -240,8 +246,8 @@ MessagesAdapter::slotMessagesCleared()
             try {
                 auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
                 auto contact = accountInfo.contactModel->getContact(contactUri);
-                isPending = contact.profileInfo.type == lrc::api::profile::Type::PENDING
-                            || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY;
+                isPending = contact.profileInfo.type == profile::Type::PENDING
+                            || contact.profileInfo.type == profile::Type::TEMPORARY;
             } catch (std::out_of_range e) {
                 qDebug() << e.what();
             }
@@ -463,7 +469,7 @@ MessagesAdapter::onComposing(bool isComposing)
 }
 
 void
-MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& convInfo)
+MessagesAdapter::setConversationProfileData(const conversation::Info& convInfo)
 {
     auto accInfo = &lrcInstance_->getCurrentAccountInfo();
 
@@ -573,7 +579,7 @@ MessagesAdapter::setDisplayLinks()
 }
 
 void
-MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
+MessagesAdapter::printHistory(ConversationModel& conversationModel,
                               const QString& convUid,
                               MessagesList interactions)
 {
@@ -584,7 +590,7 @@ MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
 }
 
 void
-MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
+MessagesAdapter::updateHistory(ConversationModel& conversationModel,
                                const QString& convUid,
                                MessagesList interactions,
                                bool allLoaded)
@@ -612,10 +618,10 @@ MessagesAdapter::setSenderImage(const QString& sender, const QString& senderImag
 }
 
 void
-MessagesAdapter::printNewInteraction(lrc::api::ConversationModel& conversationModel,
+MessagesAdapter::printNewInteraction(ConversationModel& conversationModel,
                                      const QString& convUid,
                                      const QString& msgId,
-                                     const lrc::api::interaction::Info& interaction)
+                                     const interaction::Info& interaction)
 {
     auto interactionObject = interactionToJsonInteractionObject(conversationModel,
                                                                 convUid,
@@ -630,10 +636,10 @@ MessagesAdapter::printNewInteraction(lrc::api::ConversationModel& conversationMo
 }
 
 void
-MessagesAdapter::updateInteraction(lrc::api::ConversationModel& conversationModel,
+MessagesAdapter::updateInteraction(ConversationModel& conversationModel,
                                    const QString& convUid,
                                    const QString& msgId,
-                                   const lrc::api::interaction::Info& interaction)
+                                   const interaction::Info& interaction)
 {
     auto interactionObject = interactionToJsonInteractionObject(conversationModel,
                                                                 convUid,
