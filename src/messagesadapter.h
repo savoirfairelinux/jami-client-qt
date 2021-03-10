@@ -99,9 +99,7 @@ protected:
     void setMessagesFileContent(const QString& path);
     void removeInteraction(const QString& interactionId);
     void setSendMessageContent(const QString& content);
-    void contactIsComposing(const QString& convUid,
-                            const QString& contactUri,
-                            bool isComposing);
+    void contactIsComposing(const QString& convUid, const QString& contactUri, bool isComposing);
 
 signals:
     void needToUpdateSmartList();
@@ -130,6 +128,7 @@ private:
     /*
      * Interaction connections.
      */
+    QMetaObject::Connection composingStatusChangedConnection_;
     QMetaObject::Connection newInteractionConnection_;
     QMetaObject::Connection interactionStatusUpdatedConnection_;
     QMetaObject::Connection interactionRemovedConnection_;
