@@ -478,7 +478,7 @@ MessagesAdapter::setConversationProfileData(const conversation::Info& convInfo)
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
-        setInvitation(contact.profileInfo.type == profile::Type::PENDING, bestName, contactUri);
+        setInvitation(convInfo.isRequest, bestName, contactUri);
 
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
