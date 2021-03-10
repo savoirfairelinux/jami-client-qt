@@ -473,7 +473,11 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
+<<<<<<< HEAD
         setInvitation(convInfo.isRequest, bestName, contactUri, convInfo.isSwarm);
+=======
+        setInvitation(convInfo.isRequest, bestName, contactUri);
+>>>>>>> 6503b0c... swarm: show invitation page when necessary
 
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
