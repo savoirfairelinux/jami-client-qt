@@ -37,6 +37,7 @@ Item {
     function openMenu() {
         ContextMenuGenerator.initMenu()
         var hasCall = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid) !== ""
+        var isSwarm = ConversationsAdapter.isSwarm(responsibleConvUid)
         if (!hasCall) {
             ContextMenuGenerator.addMenuItem(qsTr("Start video call"),
                                              "qrc:/images/icons/videocam-24px.svg",
@@ -57,13 +58,16 @@ Item {
                                                  communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
                                              })
 
-            ContextMenuGenerator.addMenuItem(qsTr("Clear conversation"),
-                                             "qrc:/images/icons/ic_clear_24px.svg",
-                                             function (){
-                                                 MessagesAdapter.clearConversationHistory(
-                                                             responsibleAccountId,
-                                                             responsibleConvUid)
-                                             })
+
+            if (!isSwarm) {
+                ContextMenuGenerator.addMenuItem(qsTr("Clear conversation"),
+                                                "qrc:/images/icons/ic_clear_24px.svg",
+                                                function (){
+                                                    MessagesAdapter.clearConversationHistory(
+                                                                responsibleAccountId,
+                                                                responsibleConvUid)
+                                                })
+            }
 
             if (contactType === Profile.Type.JAMI || contactType === Profile.Type.SIP)  {
                 ContextMenuGenerator.addMenuItem(qsTr("Remove contact"),
