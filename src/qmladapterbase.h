@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang   <mingrui.zhang@savoirfairelinux.com>
  *
@@ -20,24 +20,23 @@
 
 #include <QObject>
 
-/*
- * The main purpose of this class is to operate on qml objects,
- * or provide api calls to qml objects that cannot be done directly in qml.
- */
+class LRCInstance;
+
+// The main purpose of this class is to operate on qml objects,
+// or provide api calls to qml objects that cannot be done directly in qml.
 class QmlAdapterBase : public QObject
 {
     Q_OBJECT
 public:
-    explicit QmlAdapterBase(QObject* parent = nullptr)
+    explicit QmlAdapterBase(QObject* parent = nullptr, LRCInstance* instance = nullptr)
         : QObject(parent)
-        , qmlObj_(nullptr) {};
+        , qmlObj_(nullptr)
+        , lrcInstance_(instance) {};
 
     virtual ~QmlAdapterBase() = default;
 
-    /*
-     * This function should be called in the Component.onCompleted slot
-     * in the qml component that this adapter should attach to.
-     */
+    // This function should be called in the Component.onCompleted slot
+    // in the qml component that this adapter should attach to.
     Q_INVOKABLE void setQmlObject(QObject* obj)
     {
         qmlObj_ = obj;
@@ -45,13 +44,12 @@ public:
     };
 
 protected:
-    /*
-     * Once the qml object is set, Qml method invokation can be done
-     */
+    // Once the qml object is set, Qml method invokation can be done
     virtual void safeInit() = 0;
 
-    /*
-     * Object pointer.
-     */
+    // Object pointer.
     QObject* qmlObj_;
+
+    // LRCInstance pointer
+    LRCInstance* lrcInstance_ {nullptr};
 };

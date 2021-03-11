@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
@@ -19,7 +19,7 @@
 
 #include "runguard.h"
 
-#include "lrcinstance.h"
+#include "mainapplication.h"
 
 #include <QCryptographicHash>
 
@@ -39,12 +39,13 @@ generateKeyHash(const QString& key, const QString& salt)
 
 } // namespace
 
-RunGuard::RunGuard(const QString& key)
+RunGuard::RunGuard(const QString& key, MainApplication* mainApp)
     : key_(key)
     , memLockKey_(generateKeyHash(key, "_memLockKey"))
     , sharedmemKey_(generateKeyHash(key, "_sharedmemKey"))
     , sharedMem_(sharedmemKey_)
     , memLock_(memLockKey_, 1)
+    , mainAppInstance_(mainApp)
 {}
 
 RunGuard::~RunGuard()
@@ -55,7 +56,7 @@ RunGuard::~RunGuard()
 void
 RunGuard::tryRestorePrimaryInstance()
 {
-    emit LRCInstance::instance().restoreAppRequested();
+    mainAppInstance_->restoreApp();
 }
 
 bool

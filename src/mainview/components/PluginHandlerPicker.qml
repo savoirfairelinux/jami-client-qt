@@ -270,8 +270,10 @@ Popup {
                         isImage: IsImage
                         pluginListPreferenceModel: PluginListPreferenceModel {
                             id: handlerPickerPreferenceModel
+
                             preferenceKey : PreferenceKey
                             pluginId: PluginId
+                            lrcInstance: LRCInstance
                         }
 
                         onClicked:  pluginhandlerPreferencePickerListView.currentIndex = index

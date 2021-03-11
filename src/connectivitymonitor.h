@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
@@ -25,7 +25,7 @@ class ConnectivityMonitor final : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConnectivityMonitor(QObject* parent = 0);
+    explicit ConnectivityMonitor(QObject* parent = nullptr);
     ~ConnectivityMonitor();
 
     bool isOnline();
@@ -50,7 +50,7 @@ class ConnectivityMonitor final : public QObject
 {
     Q_OBJECT
 public:
-    explicit ConnectivityMonitor(QObject* parent = 0);
+    explicit ConnectivityMonitor(QObject* parent = nullptr);
     ~ConnectivityMonitor();
 
     bool isOnline();
