@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43c10113_3ec71f50",
+        "filename": "shader/YUVConv.vert",
+        "patchSetId": 58
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-11T21:47:17Z",
+      "side": 1,
+      "message": "why are there 2 rotations? is one to rotate and one to mirror?",
+      "revId": "dc0eba3850a1b853724f64ef8aae785f3a93c687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81f51b36_bf9256ac",
+        "filename": "shader/YUVConv.vert",
+        "patchSetId": 58
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-11T21:47:17Z",
+      "side": 1,
+      "message": "this could be tightened up a bit:\n- postionAfterRotateZ  -\u003e pos\n- overwrite the same vec3: pos \u003d mat3(...) * pos, etc.\n- aAngleToRotate -\u003e alpha, beta, gamma, or rx, ry, rz or something",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 92
+      },
+      "revId": "dc0eba3850a1b853724f64ef8aae785f3a93c687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16081130_687e7dd3",
+        "filename": "src/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 58
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-11T21:47:17Z",
+      "side": 1,
+      "message": "I can\u0027t determine what these variables mean without reading more of the code.\n- photoOnBoard -\u003e photoOnBoarded?\n- set vs Settled? what is the difference?",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 36
+      },
+      "revId": "dc0eba3850a1b853724f64ef8aae785f3a93c687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd56da38_dbbe7581",
+        "filename": "src/rendermanager.h",
+        "patchSetId": 58
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-11T21:47:17Z",
+      "side": 1,
+      "message": "format is fine",
+      "range": {
+        "startLine": 143,
+        "startChar": 54,
+        "endLine": 143,
+        "endChar": 67
+      },
+      "revId": "dc0eba3850a1b853724f64ef8aae785f3a93c687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f03f4ba_0130b972",
+        "filename": "src/rendermanager.h",
+        "patchSetId": 58
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-11T21:47:17Z",
+      "side": 1,
+      "message": "distantAVFrameUpdated will be consistent with the oher naming here",
+      "range": {
+        "startLine": 306,
+        "startChar": 9,
+        "endLine": 306,
+        "endChar": 30
+      },
+      "revId": "dc0eba3850a1b853724f64ef8aae785f3a93c687",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
