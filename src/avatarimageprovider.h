@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -18,18 +18,19 @@
 
 #pragma once
 
+#include "qquickimageproviderbase.h"
 #include "utils.h"
 #include "lrcinstance.h"
 
 #include <QImage>
-#include <QQuickImageProvider>
 
-class AvatarImageProvider : public QObject, public QQuickImageProvider
+class AvatarImageProvider : public QQuickImageProviderBase
 {
 public:
-    AvatarImageProvider()
-        : QQuickImageProvider(QQuickImageProvider::Image,
-                              QQmlImageProviderBase::ForceAsynchronousImageLoading)
+    AvatarImageProvider(LRCInstance* instance = nullptr)
+        : QQuickImageProviderBase(QQuickImageProvider::Image,
+                                  QQmlImageProviderBase::ForceAsynchronousImageLoading,
+                                  instance)
     {}
 
     /*
@@ -55,13 +56,14 @@ public:
             return QImage();
 
         if (idType == "account") {
-            return Utils::accountPhoto(LRCInstance::accountModel().getAccountInfo(idContent),
+            return Utils::accountPhoto(lrcInstance_,
+                                       lrcInstance_->accountModel().getAccountInfo(idContent),
                                        requestedSize);
         } else if (idType == "conversation") {
-            const auto& convInfo = LRCInstance::getConversationFromConvUid(idContent);
-            return Utils::contactPhoto(convInfo.participants[0], requestedSize);
+            const auto& convInfo = lrcInstance_->getConversationFromConvUid(idContent);
+            return Utils::contactPhoto(lrcInstance_, convInfo.participants[0], requestedSize);
         } else if (idType == "contact") {
-            return Utils::contactPhoto(idContent, requestedSize);
+            return Utils::contactPhoto(lrcInstance_, idContent, requestedSize);
         } else if (idType == "fallback") {
             return Utils::fallbackAvatar(QString(), idContent, requestedSize);
         } else if (idType == "default") {

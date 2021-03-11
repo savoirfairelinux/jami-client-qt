@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Aline Gondim Santos   <aline.gondimsantos@savoirfairelinux.com>
  *
@@ -18,13 +18,11 @@
 
 #pragma once
 
-#include <QAbstractItemModel>
+#include "qabstractitemmodelbase.h"
 
-#include "api/pluginmodel.h"
+class LRCInstance;
 
-#include "lrcinstance.h"
-
-class PluginItemListModel : public QAbstractListModel
+class PluginItemListModel : public QAbstractListModelBase
 {
     Q_OBJECT
     Q_PROPERTY(int pluginsCount READ pluginsCount)
@@ -33,7 +31,7 @@ public:
     enum Role { PluginName = Qt::UserRole + 1, PluginId, PluginIcon, IsLoaded };
     Q_ENUM(Role)
 
-    explicit PluginItemListModel(QObject* parent = 0);
+    explicit PluginItemListModel(QObject* parent = nullptr, LRCInstance* instance = nullptr);
     ~PluginItemListModel();
 
     /*

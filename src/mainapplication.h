@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include "lrcinstance.h"
+
 #include <QFile>
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -69,8 +71,12 @@ public:
     ~MainApplication() = default;
 
     bool init();
+    void restoreApp();
 
 private:
+    void vsConsoleDebug();
+    void fileDebug(QFile* debugFile);
+
     void loadTranslations();
     void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm);
     const QVariantMap parseArguments();
@@ -83,6 +89,7 @@ private:
 private:
     QScopedPointer<QFile> debugFile_;
     QScopedPointer<QQmlApplicationEngine> engine_;
+    QScopedPointer<LRCInstance> lrcInstance_;
     ConnectivityMonitor* connectivityMonitor_ {nullptr};
 
     ScreenInfo screenInfo_;
