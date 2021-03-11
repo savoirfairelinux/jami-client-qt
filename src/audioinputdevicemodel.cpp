@@ -18,8 +18,15 @@
 
 #include "audioinputdevicemodel.h"
 
+#include "lrcinstance.h"
+
+#include "api/account.h"
+#include "api/contact.h"
+#include "api/conversation.h"
+#include "api/newdevicemodel.h"
+
 AudioInputDeviceModel::AudioInputDeviceModel(QObject* parent)
-    : QAbstractListModel(parent)
+    : AbstractListModelBase(parent)
 {}
 
 AudioInputDeviceModel::~AudioInputDeviceModel() {}
@@ -27,11 +34,11 @@ AudioInputDeviceModel::~AudioInputDeviceModel() {}
 int
 AudioInputDeviceModel::rowCount(const QModelIndex& parent) const
 {
-    if (!parent.isValid()) {
+    if (!parent.isValid() && lrcInstance_) {
         /*
          * Count.
          */
-        return LRCInstance::avModel().getAudioInputDevices().size();
+        return lrcInstance_->avModel().getAudioInputDevices().size();
     }
     /*
      * A valid QModelIndex returns 0 as no entry has sub-elements.
@@ -52,7 +59,7 @@ AudioInputDeviceModel::columnCount(const QModelIndex& parent) const
 QVariant
 AudioInputDeviceModel::data(const QModelIndex& index, int role) const
 {
-    auto deviceList = LRCInstance::avModel().getAudioInputDevices();
+    auto deviceList = lrcInstance_->avModel().getAudioInputDevices();
     if (!index.isValid() || deviceList.size() <= index.row()) {
         return QVariant();
     }
@@ -116,7 +123,7 @@ AudioInputDeviceModel::reset()
 int
 AudioInputDeviceModel::getCurrentSettingIndex()
 {
-    QString currentId = LRCInstance::avModel().getInputDevice();
+    QString currentId = lrcInstance_->avModel().getInputDevice();
     auto resultList = match(index(0, 0), Device_ID, QVariant(currentId));
 
     int resultRowIndex = 0;

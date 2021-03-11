@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Isa Nanic <isa.nanic@savoirfairelinux.com>
  * Author: Yang Wang <yang.wang@savoirfairelinux.com>
@@ -19,9 +19,9 @@
 
 #pragma once
 
-#include <QAbstractListModel>
+#include "abstractitemmodelbase.h"
 
-class BannedListModel : public QAbstractListModel
+class BannedListModel : public AbstractListModelBase
 {
     Q_OBJECT
 public:
