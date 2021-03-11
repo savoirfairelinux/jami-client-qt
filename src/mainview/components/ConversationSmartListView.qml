@@ -71,6 +71,7 @@ ListView {
         // When the model has been sorted, we need to adjust the focus (currentIndex)
         // to the previously focused conversation item.
         function onModelSorted(uid) {
+            MessagesAdapter.updateConversationForAddedContact()
             repositionIndex(uid)
         }
 

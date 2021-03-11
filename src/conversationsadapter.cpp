@@ -36,6 +36,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     , systemTray_(systemTray)
 {
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
+
         lrcInstance_->getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });
 
@@ -118,10 +119,13 @@ ConversationsAdapter::safeInit()
             &ConversationsAdapter::onCurrentAccountIdChanged);
 
     connectConversationModel();
-    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::JAMI;
 
-    setProperty("currentTypeFilter",
-                QVariant::fromValue(type));
+    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type
+                        == lrc::api::profile::Type::SIP
+                    ? lrc::api::FilterType::SIP
+                    : lrc::api::FilterType::JAMI;
+
+    setProperty("currentTypeFilter", QVariant::fromValue(type));
 }
 
 void
@@ -157,10 +161,12 @@ void
 ConversationsAdapter::onCurrentAccountIdChanged()
 {
     connectConversationModel();
-    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::JAMI;
+    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type
+                        == lrc::api::profile::Type::SIP
+                    ? lrc::api::FilterType::SIP
+                    : lrc::api::FilterType::JAMI;
 
-    setProperty("currentTypeFilter",
-                QVariant::fromValue(type));
+    setProperty("currentTypeFilter", QVariant::fromValue(type));
 }
 
 void

@@ -77,8 +77,10 @@ MessagesAdapter::setupChatView(const QString& convUid)
     auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(selectedAccountId);
 
     contact::Info contactInfo;
+    QString bestName;
     try {
         contactInfo = accountInfo.contactModel->getContact(contactURI);
+        bestName = accountInfo.contactModel->bestNameForContact(contactURI);
     } catch (...) {
     }
 
@@ -88,7 +90,18 @@ MessagesAdapter::setupChatView(const QString& convUid)
                               "setSendContactRequestButtonVisible",
                               Q_ARG(QVariant, isPending));
 
+    QMetaObject::invokeMethod(qmlObj_,
+                              "setMessagingHeaderButtonsVisible",
+                              Q_ARG(QVariant,
+                                    !(convInfo.isSwarm
+                                      && (convInfo.isRequest || convInfo.needsSyncing))));
+
     setMessagesVisibility(false);
+    setInvitation(convInfo.isRequest or convInfo.needsSyncing,
+                  bestName,
+                  contactURI,
+                  convInfo.isSwarm,
+                  convInfo.needsSyncing);
 
     // Type Indicator (contact). TODO: Not shown when invitation request?
     contactIsComposing(convInfo.uid, "", false);
@@ -483,7 +496,11 @@ MessagesAdapter::setConversationProfileData(const conversation::Info& convInfo)
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
-        setInvitation(convInfo.isRequest, bestName, contactUri);
+        setInvitation(convInfo.isRequest or convInfo.needsSyncing,
+                      bestName,
+                      contactUri,
+                      convInfo.isSwarm,
+                      convInfo.needsSyncing);
 
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
@@ -548,12 +565,15 @@ MessagesAdapter::requestSendMessageContent()
 }
 
 void
-MessagesAdapter::setInvitation(bool show, const QString& contactUri, const QString& contactId)
+MessagesAdapter::setInvitation(
+    bool show, const QString& contactUri, const QString& contactId, bool isSwarm, bool needsSyncing)
 {
-    QString s
-        = show
-              ? QString::fromLatin1("showInvitation(\"%1\", \"%2\")").arg(contactUri).arg(contactId)
-              : QString::fromLatin1("showInvitation()");
+    QString s = show ? QString::fromLatin1("showInvitation(\"%1\", \"%2\", %3, %4)")
+                           .arg(contactUri)
+                           .arg(contactId)
+                           .arg(isSwarm)
+                           .arg(needsSyncing)
+                     : QString::fromLatin1("showInvitation()");
 
     QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
 }
@@ -716,7 +736,7 @@ MessagesAdapter::acceptInvitation(const QString& convUid)
     lrcInstance_->getCurrentConversationModel()->acceptConversationRequest(currentConvUid);
     setInvitation(false);
     lrcInstance_->setSelectedConvId();
-    if (convUid == currentConvUid_)
+    if (currentConvUid == currentConvUid_)
         currentConvUid_.clear();
     Q_EMIT invitationAccepted();
 }
@@ -728,7 +748,7 @@ MessagesAdapter::refuseInvitation(const QString& convUid)
     lrcInstance_->getCurrentConversationModel()->declineConversationRequest(currentConvUid, false);
     setInvitation(false);
     lrcInstance_->setSelectedConvId();
-    if (convUid == currentConvUid_)
+    if (currentConvUid == currentConvUid_)
         currentConvUid_.clear();
     Q_EMIT navigateToWelcomePageRequested();
 }
@@ -740,7 +760,7 @@ MessagesAdapter::blockConversation(const QString& convUid)
     lrcInstance_->getCurrentConversationModel()->declineConversationRequest(currentConvUid, true);
     setInvitation(false);
     lrcInstance_->setSelectedConvId();
-    if (convUid == currentConvUid_)
+    if (currentConvUid == currentConvUid_)
         currentConvUid_.clear();
     Q_EMIT contactBanned();
     Q_EMIT navigateToWelcomePageRequested();

@@ -75,7 +75,11 @@ protected:
     // Run corrsponding js functions, c++ to qml.
     void setMessagesVisibility(bool visible);
     void requestSendMessageContent();
-    void setInvitation(bool show, const QString& contactUri = {}, const QString& contactId = {});
+    void setInvitation(bool show,
+                       const QString& contactUri = "",
+                       const QString& contactId = "",
+                       bool isSwarm = false,
+                       bool needsSyncing = false);
     void clear();
     void printHistory(lrc::api::ConversationModel& conversationModel,
                       const QString& convUid,
