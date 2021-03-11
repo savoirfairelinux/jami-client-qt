@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Aline Gondim Santos   <aline.gondimsantos@savoirfairelinux.com>
  *
@@ -17,10 +17,13 @@
  */
 
 #include "pluginlistpreferencemodel.h"
-#include <regex>
+
+#include "lrcinstance.h"
+
+#include "api/pluginmodel.h"
 
 PluginListPreferenceModel::PluginListPreferenceModel(QObject* parent)
-    : QAbstractListModel(parent)
+    : QAbstractListModelBase(parent)
 {}
 
 PluginListPreferenceModel::~PluginListPreferenceModel() {}
@@ -30,7 +33,7 @@ PluginListPreferenceModel::populateLists()
 {
     preferenceValuesList_.clear();
     preferenceList_.clear();
-    const auto preferences = LRCInstance::pluginModel().getPluginPreferences(pluginId_);
+    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
     for (const auto& preference : preferences) {
         if (preference["key"] == preferenceKey_) {
             if (preference.find("entries") != preference.end()
@@ -46,7 +49,7 @@ PluginListPreferenceModel::populateLists()
 int
 PluginListPreferenceModel::rowCount(const QModelIndex& parent) const
 {
-    if (!parent.isValid()) {
+    if (!parent.isValid() && lrcInstance_) {
         /// Count
         return preferenceList_.size();
     }

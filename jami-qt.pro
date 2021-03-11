@@ -165,6 +165,8 @@ HEADERS += \
         src/avatarimageprovider.h \
         src/moderatorlistmodel.h \
         src/networkmanager.h \
+        src/qabstractitemmodelbase.h \
+        src/qquickimageproviderbase.h \
         src/screensaver.h \
         src/smartlistmodel.h \
         src/updatemanager.h \

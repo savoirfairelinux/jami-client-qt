@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
  *
@@ -18,23 +18,16 @@
 
 #pragma once
 
-#include <QAbstractItemModel>
+#include "qabstractitemmodelbase.h"
 
-#include "api/account.h"
-#include "api/contact.h"
-#include "api/conversation.h"
-#include "api/newdevicemodel.h"
-
-#include "lrcinstance.h"
-
-class AccountsToMigrateListModel : public QAbstractListModel
+class AccountsToMigrateListModel : public QAbstractListModelBase
 {
     Q_OBJECT
 public:
     enum Role { Account_ID = Qt::UserRole + 1, ManagerUsername, ManagerUri, Username, Alias };
     Q_ENUM(Role)
 
-    explicit AccountsToMigrateListModel(QObject* parent = 0);
+    explicit AccountsToMigrateListModel(QObject* parent = nullptr);
     ~AccountsToMigrateListModel();
 
     /*

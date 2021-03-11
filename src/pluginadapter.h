@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
@@ -32,7 +32,7 @@ class PluginAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
 public:
-    explicit PluginAdapter(QObject* parent = nullptr);
+    explicit PluginAdapter(QObject* parent = nullptr, LRCInstance* instance = nullptr);
     ~PluginAdapter() = default;
 
 protected:

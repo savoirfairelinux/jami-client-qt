@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
  *
@@ -18,8 +18,15 @@
 
 #include "audiooutputdevicemodel.h"
 
+#include "lrcinstance.h"
+
+#include "api/account.h"
+#include "api/contact.h"
+#include "api/conversation.h"
+#include "api/newdevicemodel.h"
+
 AudioOutputDeviceModel::AudioOutputDeviceModel(QObject* parent)
-    : QAbstractListModel(parent)
+    : QAbstractListModelBase(parent)
 {}
 
 AudioOutputDeviceModel::~AudioOutputDeviceModel() {}
@@ -27,11 +34,11 @@ AudioOutputDeviceModel::~AudioOutputDeviceModel() {}
 int
 AudioOutputDeviceModel::rowCount(const QModelIndex& parent) const
 {
-    if (!parent.isValid()) {
+    if (!parent.isValid() && lrcInstance_) {
         /*
          * Count.
          */
-        return LRCInstance::avModel().getAudioOutputDevices().size();
+        return lrcInstance_->avModel().getAudioOutputDevices().size();
     }
     /*
      * A valid QModelIndex returns 0 as no entry has sub-elements.
@@ -52,7 +59,7 @@ AudioOutputDeviceModel::columnCount(const QModelIndex& parent) const
 QVariant
 AudioOutputDeviceModel::data(const QModelIndex& index, int role) const
 {
-    auto deviceList = LRCInstance::avModel().getAudioOutputDevices();
+    auto deviceList = lrcInstance_->avModel().getAudioOutputDevices();
     if (!index.isValid() || deviceList.size() <= index.row()) {
         return QVariant();
     }
@@ -116,7 +123,7 @@ AudioOutputDeviceModel::reset()
 int
 AudioOutputDeviceModel::getCurrentSettingIndex()
 {
-    QString currentId = LRCInstance::avModel().getOutputDevice();
+    QString currentId = lrcInstance_->avModel().getOutputDevice();
     auto resultList = match(index(0, 0), Device_ID, QVariant(currentId));
 
     int resultRowIndex = 0;
@@ -130,7 +137,7 @@ AudioOutputDeviceModel::getCurrentSettingIndex()
 int
 AudioOutputDeviceModel::getCurrentRingtoneDeviceIndex()
 {
-    QString currentId = LRCInstance::avModel().getRingtoneDevice();
+    QString currentId = lrcInstance_->avModel().getRingtoneDevice();
     auto resultList = match(index(0, 0), Device_ID, QVariant(currentId));
 
     int resultRowIndex = 0;
