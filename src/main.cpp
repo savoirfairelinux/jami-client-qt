@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -75,7 +75,7 @@ main(int argc, char* argv[])
     QCryptographicHash appData(QCryptographicHash::Sha256);
     appData.addData(QApplication::applicationName().toUtf8());
     appData.addData(QApplication::organizationDomain().toUtf8());
-    RunGuard guard(appData.result());
+    RunGuard guard(appData.result(), &app);
     if (!guard.tryToRun()) {
         return 0;
     }

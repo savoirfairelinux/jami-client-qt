@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
  *
@@ -18,16 +18,9 @@
 
 #pragma once
 
-#include <QAbstractItemModel>
+#include "qabstractitemmodelbase.h"
 
-#include "api/account.h"
-#include "api/contact.h"
-#include "api/conversation.h"
-#include "api/newdevicemodel.h"
-
-#include "lrcinstance.h"
-
-class VideoInputDeviceModel : public QAbstractListModel
+class VideoInputDeviceModel : public QAbstractListModelBase
 {
     Q_OBJECT
 public:
@@ -41,7 +34,7 @@ public:
     };
     Q_ENUM(Role)
 
-    explicit VideoInputDeviceModel(QObject* parent = 0);
+    explicit VideoInputDeviceModel(QObject* parent = nullptr);
     ~VideoInputDeviceModel();
 
     /*

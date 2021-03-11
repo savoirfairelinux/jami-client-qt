@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -18,21 +18,20 @@
 
 #pragma once
 
+#include "qquickimageproviderbase.h"
 #include "lrcinstance.h"
 #include "utils.h"
 
-#include <QImage>
-#include <QObject>
 #include <QPair>
-#include <QQuickImageProvider>
 #include <QString>
 
-class TintedButtonImageProvider : public QObject, public QQuickImageProvider
+class TintedButtonImageProvider : public QQuickImageProviderBase
 {
 public:
-    TintedButtonImageProvider()
-        : QQuickImageProvider(QQuickImageProvider::Pixmap,
-                              QQmlImageProviderBase::ForceAsynchronousImageLoading)
+    TintedButtonImageProvider(LRCInstance* instance = nullptr)
+        : QQuickImageProviderBase(QQuickImageProvider::Pixmap,
+                                  QQmlImageProviderBase::ForceAsynchronousImageLoading,
+                                  instance)
     {}
 
     QPixmap requestPixmap(const QString& id, QSize* size, const QSize& requestedSize) override
