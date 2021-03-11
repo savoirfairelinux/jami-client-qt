@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -18,21 +18,19 @@
 
 #pragma once
 
+#include "qquickimageproviderbase.h"
 #include "accountlistmodel.h"
-#include "lrcinstance.h"
 
-#include <QImage>
-#include <QObject>
 #include <QPair>
-#include <QQuickImageProvider>
 #include <QString>
 
-class QrImageProvider : public QObject, public QQuickImageProvider
+class QrImageProvider : public QQuickImageProviderBase
 {
 public:
-    QrImageProvider()
-        : QQuickImageProvider(QQuickImageProvider::Image,
-                              QQmlImageProviderBase::ForceAsynchronousImageLoading)
+    QrImageProvider(LRCInstance* instance = nullptr)
+        : QQuickImageProviderBase(QQuickImageProvider::Image,
+                                  QQmlImageProviderBase::ForceAsynchronousImageLoading,
+                                  instance)
     {}
 
     enum class QrType { Account, Contact };
@@ -54,8 +52,8 @@ public:
             /*
              * For contact_xxx, xxx is "" initially
              */
-            const auto& convInfo = LRCInstance::getConversationFromConvUid(list[1]);
-            auto contact = LRCInstance::getCurrentAccountInfo().contactModel->getContact(
+            const auto& convInfo = lrcInstance_->getConversationFromConvUid(list[1]);
+            auto contact = lrcInstance_->getCurrentAccountInfo().contactModel->getContact(
                 convInfo.participants.at(0));
             return QPair(QrType::Contact, contact.profileInfo.uri);
         }
@@ -75,12 +73,12 @@ public:
             if (indexPair.second.isEmpty())
                 return QImage();
 
-            auto accountList = LRCInstance::accountModel().getAccountList();
+            auto accountList = lrcInstance_->accountModel().getAccountList();
             auto accountIndex = indexPair.second.toInt();
             if (accountList.size() <= accountIndex)
                 return QImage();
 
-            auto& accountInfo = LRCInstance::accountModel().getAccountInfo(
+            auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(
                 accountList.at(accountIndex));
             uri = accountInfo.profileInfo.uri;
         }

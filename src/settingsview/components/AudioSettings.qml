@@ -59,6 +59,8 @@ ColumnLayout {
 
     AudioOutputDeviceModel{
         id: audioOutputDeviceModel
+
+        lrcInstance: LRCInstance
     }
 
     ElidedTextLabel {
@@ -79,7 +81,9 @@ ColumnLayout {
 
         labelText: JamiStrings.microphone
         fontPointSize: JamiTheme.settingsFontSize
-        comboModel: AudioInputDeviceModel {}
+        comboModel: AudioInputDeviceModel {
+            lrcInstance: LRCInstance
+        }
         widthOfComboBox: itemWidth
         tipText: JamiStrings.selectAudioInputDevice
         role: "ID_UTF8"
@@ -164,7 +168,9 @@ ColumnLayout {
 
         labelText: JamiStrings.audioManager
         fontPointSize: JamiTheme.settingsFontSize
-        comboModel: AudioManagerListModel {}
+        comboModel: AudioManagerListModel {
+            lrcInstance: LRCInstance
+        }
         widthOfComboBox: itemWidth
         role: "ID_UTF8"
 

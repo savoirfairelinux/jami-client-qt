@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
@@ -18,4 +18,6 @@
 
 #pragma once
 
-void registerTypes();
+class LRCInstance;
+
+void registerTypes(LRCInstance* instance);
