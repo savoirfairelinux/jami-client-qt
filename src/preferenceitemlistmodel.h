@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
@@ -18,13 +18,11 @@
 
 #pragma once
 
-#include <QAbstractItemModel>
+#include "qabstractitemmodelbase.h"
 
-#include "api/pluginmodel.h"
+class LRCInstance;
 
-#include "lrcinstance.h"
-
-class PreferenceItemListModel : public QAbstractListModel
+class PreferenceItemListModel : public QAbstractListModelBase
 {
     Q_OBJECT
 
@@ -54,7 +52,7 @@ public:
 
     Q_ENUM(Role)
 
-    explicit PreferenceItemListModel(QObject* parent = 0);
+    explicit PreferenceItemListModel(QObject* parent = nullptr, LRCInstance* instance = nullptr);
     ~PreferenceItemListModel();
 
     /*

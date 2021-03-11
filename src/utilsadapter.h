@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2015-2020 by Savoir-faire Linux
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -25,14 +25,18 @@
 #include <QApplication>
 #include <QObject>
 
+#include "qmladapterbase.h"
+
 class QClipboard;
 
-class UtilsAdapter final : public QObject
+class UtilsAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
 public:
-    explicit UtilsAdapter(QObject* parent = nullptr);
+    explicit UtilsAdapter(QObject* parent = nullptr, LRCInstance* instance = nullptr);
     ~UtilsAdapter() = default;
+
+    void safeInit() override {}
 
     Q_INVOKABLE const QString getProjectCredits();
     Q_INVOKABLE const QString getVersionStr();

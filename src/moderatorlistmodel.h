@@ -18,9 +18,9 @@
 
 #pragma once
 
-#include <QAbstractListModel>
+#include "qabstractitemmodelbase.h"
 
-class ModeratorListModel : public QAbstractListModel
+class ModeratorListModel : public QAbstractListModelBase
 {
     Q_OBJECT
 public:
