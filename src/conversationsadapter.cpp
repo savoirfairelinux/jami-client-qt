@@ -32,7 +32,10 @@ ConversationsAdapter::ConversationsAdapter(QObject* parent)
     : QmlAdapterBase(parent)
 {
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
-        auto filter = currentTypeFilter_ == lrc::api::FilterType::REQUEST ? "request" : currentTypeFilter_ == lrc::api::FilterType::RING ? "ring" : currentTypeFilter_ == lrc::api::FilterType::INVALID ? "invalid" : "sip";
+        auto filter = currentTypeFilter_ == lrc::api::FilterType::REQUEST   ? "request"
+                      : currentTypeFilter_ == lrc::api::FilterType::RING    ? "ring"
+                      : currentTypeFilter_ == lrc::api::FilterType::INVALID ? "invalid"
+                                                                            : "sip";
         LRCInstance::getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });
 }
@@ -61,10 +64,12 @@ ConversationsAdapter::safeInit()
             &ConversationsAdapter::onCurrentAccountIdChanged);
 
     connectConversationModel();
-    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::RING;
+    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type
+                        == lrc::api::profile::Type::SIP
+                    ? lrc::api::FilterType::SIP
+                    : lrc::api::FilterType::RING;
 
-    setProperty("currentTypeFilter",
-                QVariant::fromValue(type));
+    setProperty("currentTypeFilter", QVariant::fromValue(type));
 }
 
 void
@@ -128,10 +133,12 @@ ConversationsAdapter::onCurrentAccountIdChanged()
 {
     disconnectConversationModel();
     connectConversationModel();
-    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::RING;
+    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type
+                        == lrc::api::profile::Type::SIP
+                    ? lrc::api::FilterType::SIP
+                    : lrc::api::FilterType::RING;
 
-    setProperty("currentTypeFilter",
-                QVariant::fromValue(type));
+    setProperty("currentTypeFilter", QVariant::fromValue(type));
 }
 
 void
@@ -189,7 +196,6 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
         currentConversationModel, &lrc::api::ConversationModel::modelChanged, [this]() {
             conversationSmartListModel_->fillConversationsList();
             updateConversationsFilterWidget();
-
             auto* convModel = LRCInstance::getCurrentConversationModel();
             const auto& convInfo = LRCInstance::getConversationFromConvUid(
                 LRCInstance::getCurrentConvUid());
