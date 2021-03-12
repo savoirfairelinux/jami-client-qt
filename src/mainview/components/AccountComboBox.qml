@@ -234,7 +234,7 @@ ComboBox {
             width: visible ? preferredSize : 0
             height: visible ? preferredSize : 0
 
-            visible: AccountAdapter.currentAccountType === Profile.Type.RING
+            visible: AccountAdapter.currentAccountType === Profile.Type.JAMI
             toolTipText: JamiStrings.displayQRCode
 
             source: "qrc:/images/icons/share-24px.svg"
