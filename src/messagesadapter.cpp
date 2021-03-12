@@ -77,8 +77,7 @@ MessagesAdapter::setupChatView(const QString& convUid)
     } catch (...) {
     }
 
-    bool isPending = (contactInfo.profileInfo.type == profile::Type::PENDING
-                      || contactInfo.profileInfo.type == profile::Type::TEMPORARY);
+    bool isPending = contactInfo.profileInfo.type == profile::Type::TEMPORARY;
 
     QMetaObject::invokeMethod(qmlObj_,
                               "setSendContactRequestButtonVisible",
@@ -740,8 +739,7 @@ void
 MessagesAdapter::blockConversation(const QString& convUid)
 {
     const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->getCurrentConvUid() : convUid;
-    lrcInstance_->getCurrentConversationModel()->declineConversationRequest(
-                currentConvUid, true);
+    lrcInstance_->getCurrentConversationModel()->declineConversationRequest(currentConvUid, true);
     setInvitation(false);
     lrcInstance_->setSelectedConvId();
     if (convUid == currentConvUid_)
@@ -761,7 +759,8 @@ MessagesAdapter::clearConversationHistory(const QString& accountId, const QStrin
 void
 MessagesAdapter::removeConversation(const QString& accountId, const QString& uid, bool banContact)
 {
-    lrcInstance_->getAccountInfo(accountId).conversationModel->declineConversationRequest(uid, banContact);
+    lrcInstance_->getAccountInfo(accountId).conversationModel->declineConversationRequest(uid,
+                                                                                         banContact);
     if (uid == currentConvUid_)
         currentConvUid_.clear();
 }
