@@ -49,7 +49,7 @@ TabBar {
     function selectTab(tabIndex) {
 
         ConversationsAdapter.currentTypeFilter = tabIndex ===
-                SidePanelTabBar.Conversations ? AccountAdapter.getCurrentAccountType() === Profile.Type.RING ? Lrc.FilterType.JAMI : Lrc.FilterType.SIP : Lrc.FilterType.REQUEST
+                SidePanelTabBar.Conversations ? AccountAdapter.getCurrentAccountType() === Profile.Type.JAMI ? Lrc.FilterType.JAMI : Lrc.FilterType.SIP : Lrc.FilterType.REQUEST
     }
 
     property alias converstationTabWidth: pageOne.width

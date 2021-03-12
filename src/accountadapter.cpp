@@ -132,7 +132,7 @@ AccountAdapter::createJamiAccount(QString registeredName,
     connectFailure();
 
     QtConcurrent::run([settings] {
-        LRCInstance::accountModel().createNewAccount(lrc::api::profile::Type::RING,
+        LRCInstance::accountModel().createNewAccount(lrc::api::profile::Type::JAMI,
                                                      settings["alias"].toString(),
                                                      settings["archivePath"].toString(),
                                                      settings["password"].toString(),

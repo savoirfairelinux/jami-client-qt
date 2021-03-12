@@ -64,7 +64,7 @@ Item {
                                                              responsibleConvUid)
                                              })
 
-            if (contactType === Profile.Type.RING || contactType === Profile.Type.SIP)  {
+            if (contactType === Profile.Type.JAMI || contactType === Profile.Type.SIP)  {
                 ContextMenuGenerator.addMenuItem(qsTr("Remove contact"),
                                                  "qrc:/images/icons/round-remove_circle-24px.svg",
                                                  function (){
@@ -83,7 +83,7 @@ Item {
                                              })
         }
 
-        if ((contactType === Profile.Type.RING || contactType === Profile.Type.PENDING
+        if ((contactType === Profile.Type.JAMI || contactType === Profile.Type.PENDING
              || contactType === Profile.Type.TEMPORARY)) {
             if (contactType === Profile.Type.PENDING || !hasCall) {
                 ContextMenuGenerator.addMenuSeparator()
