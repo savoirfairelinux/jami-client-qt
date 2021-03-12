@@ -51,13 +51,25 @@ ColumnLayout {
         }
     }
 
+    Connections {
+        id: accountConnections
+        target: AccountAdapter
+        enabled: root.visible
+
+        function onAccountStatusChanged(id) {
+            if (SettingsAdapter.getAccountConfig_Manageruri() === ""){
+                linkDevPushButton.visible = SettingsAdapter.get_CurrentAccountInfo_Enabled()
+            }
+        }
+    }
+
     function connectCurrentAccount(status) {
         accountConnections_DeviceModel.enabled = status
     }
 
     function updateAndShowDevicesSlot() {
-        if(SettingsAdapter.getAccountConfig_Manageruri() === ""){
-            linkDevPushButton.visible = true
+        if (SettingsAdapter.getAccountConfig_Manageruri() === ""){
+            linkDevPushButton.visible = SettingsAdapter.get_CurrentAccountInfo_Enabled()
         }
         settingsListView.model.reset()
     }
@@ -144,8 +156,6 @@ ColumnLayout {
         Layout.alignment: Qt.AlignCenter
         Layout.preferredWidth: JamiTheme.preferredFieldWidth
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-        visible: SettingsAdapter.getAccountConfig_Manageruri() === ""
 
         color: JamiTheme.buttonTintedBlack
         hoveredColor: JamiTheme.buttonTintedBlackHovered
