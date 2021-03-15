@@ -48,7 +48,7 @@ Item {
                                                  communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
                                              })
             ContextMenuGenerator.addMenuItem(qsTr("Start audio call"),
-                                             "qrc:/images/icons/ic_phone_24px.svg",
+                                             "qrc:/images/icons/place_audiocall-24px.svg",
                                              function (){
                                                  ConversationsAdapter.selectConversation(
                                                              responsibleAccountId,
@@ -70,7 +70,7 @@ Item {
 
             if (contactType === Profile.Type.JAMI || contactType === Profile.Type.SIP)  {
                 ContextMenuGenerator.addMenuItem(qsTr("Remove contact"),
-                                                 "qrc:/images/icons/round-remove_circle-24px.svg",
+                                                 "qrc:/images/icons/ic_hangup_participant-24px.svg",
                                                  function (){
                                                      MessagesAdapter.removeConversation(
                                                                  responsibleAccountId,
@@ -95,7 +95,7 @@ Item {
 
             if (contactType === Profile.Type.PENDING) {
                 ContextMenuGenerator.addMenuItem(JamiStrings.acceptContactRequest,
-                                                 "qrc:/images/icons/person_add-24px.svg",
+                                                 "qrc:/images/icons/add_people-24px.svg",
                                                  function (){
                                                      MessagesAdapter.acceptInvitation(
                                                                  responsibleConvUid)
