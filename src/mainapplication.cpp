@@ -462,6 +462,14 @@ MainApplication::initQmlLayer()
 }
 
 void
+MainApplication::initSettings()
+{
+    AppSettingsManager::instance().initValues();
+    auto downloadPath = AppSettingsManager::instance().getValue(Settings::Key::DownloadPath);
+    lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
+}
+
+void
 MainApplication::initSystray()
 {
     systemTray_->setIcon(QIcon(":images/jami.png"));

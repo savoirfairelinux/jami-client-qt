@@ -93,14 +93,14 @@ MessagesAdapter::setupChatView(const QString& convUid)
     QMetaObject::invokeMethod(qmlObj_,
                               "setMessagingHeaderButtonsVisible",
                               Q_ARG(QVariant,
-                                    !(convInfo.isSwarm
+                                    !(convInfo.mode != conversation::Mode::NON_SWARM
                                       && (convInfo.isRequest || convInfo.needsSyncing))));
 
     setMessagesVisibility(false);
     setInvitation(convInfo.isRequest or convInfo.needsSyncing,
                   bestName,
                   contactURI,
-                  convInfo.isSwarm,
+                  convInfo.mode != conversation::Mode::NON_SWARM ,
                   convInfo.needsSyncing);
 
     // Type Indicator (contact). TODO: Not shown when invitation request?
@@ -248,7 +248,7 @@ MessagesAdapter::slotMessagesCleared()
     if (!convInfo)
         return;
     auto& conv = convInfo->get();
-    if (conv.isSwarm && !conv.allMessagesLoaded) {
+    if (conv.mode != conversation::Mode::NON_SWARM  && !conv.allMessagesLoaded) {
         convModel->loadConversationMessages(conv.uid, 20); // TODO: n should be configurable
     } else {
         const auto contactUri = conv.participants.front();
@@ -499,7 +499,7 @@ MessagesAdapter::setConversationProfileData(const conversation::Info& convInfo)
         setInvitation(convInfo.isRequest or convInfo.needsSyncing,
                       bestName,
                       contactUri,
-                      convInfo.isSwarm,
+                      convInfo.mode != conversation::Mode::NON_SWARM ,
                       convInfo.needsSyncing);
 
         if (!contact.profileInfo.avatar.isEmpty()) {
@@ -720,7 +720,7 @@ MessagesAdapter::contactIsComposing(const QString& convUid,
     if (!convInfo)
         return;
     auto& conv = convInfo->get();
-    bool showIsComposing = conv.isSwarm
+    bool showIsComposing = conv.mode != conversation::Mode::NON_SWARM
                                ? convUid == conv.uid
                                : convUid.isEmpty() && conv.participants.first() == contactUri;
 
@@ -795,6 +795,6 @@ MessagesAdapter::loadMessages(int n)
     if (!convInfo)
         return;
     auto& conv = convInfo->get();
-    if (conv.isSwarm && !conv.allMessagesLoaded)
+    if (conv.mode != conversation::Mode::NON_SWARM  && !conv.allMessagesLoaded)
         convModel->loadConversationMessages(conv.uid, n);
 }

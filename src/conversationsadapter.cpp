@@ -36,7 +36,6 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     , systemTray_(systemTray)
 {
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
-
         lrcInstance_->getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });
 
@@ -120,7 +119,7 @@ ConversationsAdapter::safeInit()
 
     connectConversationModel();
 
-    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type
+    auto type = lrcInstance_->getCurrentAccountInfo().profileInfo.type
                         == lrc::api::profile::Type::SIP
                     ? lrc::api::FilterType::SIP
                     : lrc::api::FilterType::JAMI;
@@ -162,7 +161,7 @@ ConversationsAdapter::onCurrentAccountIdChanged()
 {
     disconnectConversationModel();
     connectConversationModel();
-    auto type = LRCInstance::getCurrentAccountInfo().profileInfo.type
+    auto type = lrcInstance_->getCurrentAccountInfo().profileInfo.type
                         == lrc::api::profile::Type::SIP
                     ? lrc::api::FilterType::SIP
                     : lrc::api::FilterType::JAMI;
@@ -415,5 +414,5 @@ ConversationsAdapter::isSwarm(const QString& convUid)
     auto convInfo = convModel->getConversationForUid(convUid);
     if (!convInfo)
         return false;
-    return convInfo->get().isSwarm;
+    return convInfo->get().mode != conversation::Mode::NON_SWARM;
 }

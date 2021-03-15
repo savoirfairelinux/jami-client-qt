@@ -75,12 +75,6 @@ LRCInstance::behaviorController()
     return lrc_->getBehaviorController();
 }
 
-DataTransferModel&
-LRCInstance::dataTransferModel()
-{
-    return lrc_->getDataTransferModel();
-}
-
 AVModel&
 LRCInstance::avModel()
 {
