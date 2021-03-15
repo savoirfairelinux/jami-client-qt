@@ -23,7 +23,7 @@
         <file>images/icons/check_box-24px.svg</file>
         <file>images/icons/devices-24px.svg</file>
         <file>images/icons/ic_arrow_back_24px.svg</file>
-        <file>images/icons/ic_arrow_back_white_24dp.png</file>
+        <file>images/icons/ic_arrow_back_white_24dp.svg</file>
         <file>images/icons/ic_arrow_drop_down_black_9dp_2x.png</file>
         <file>images/icons/ic_arrow_drop_down_black_18dp_2x.png</file>
         <file>images/icons/ic_arrow_drop_up_black_9dp_2x.png</file>
@@ -103,11 +103,9 @@
         <file>images/icons/settings_backup_restore-black-18dp.svg</file>
         <file>images/icons/person-24px.svg</file>
         <file>images/icons/drafts-24px.svg</file>
-        <file>images/icons/person_add-24px.svg</file>
         <file>images/icons/router-24px.svg</file>
         <file>images/icons/insert_drive_file-24dp.svg</file>
         <file>images/icons/arrow_back-white-24dp.svg</file>
-        <file>images/icons/keyboard_voice-24px.svg</file>
         <file>images/icons/videocam-24px.svg</file>
         <file>images/icons/qr_code-24px.svg</file>
         <file>images/icons/content_copy-24px.svg</file>
