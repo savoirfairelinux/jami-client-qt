@@ -412,7 +412,7 @@ MainApplication::initSettings()
 {
     AppSettingsManager::instance().initValues();
     auto downloadPath = AppSettingsManager::instance().getValue(Settings::Key::DownloadPath);
-    LRCInstance::dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
+    LRCInstance::accountModel().downloadDirectory = downloadPath.toString() + "/";
 }
 
 void
