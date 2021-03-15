@@ -95,7 +95,7 @@ Item {
 
             if (contactType === Profile.Type.PENDING) {
                 ContextMenuGenerator.addMenuItem(JamiStrings.acceptContactRequest,
-                                                 "qrc:/images/icons/person_add-24px.svg",
+                                                 "qrc:/images/icons/add_people-24px.svg",
                                                  function (){
                                                      MessagesAdapter.acceptInvitation(
                                                                  responsibleConvUid)
