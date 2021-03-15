@@ -421,7 +421,7 @@ MainApplication::initSettings()
 {
     AppSettingsManager::instance().initValues();
     auto downloadPath = AppSettingsManager::instance().getValue(Settings::Key::DownloadPath);
-    lrcInstance_->dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
+    lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
 }
 
 void

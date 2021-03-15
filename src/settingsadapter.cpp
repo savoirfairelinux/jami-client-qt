@@ -35,11 +35,11 @@ QString
 SettingsAdapter::getDir_Download()
 {
     QString downloadPath = QDir::toNativeSeparators(
-        lrcInstance_->dataTransferModel().downloadDirectory);
+        lrcInstance_->accountModel().downloadDirectory);
     if (downloadPath.isEmpty()) {
         downloadPath = lrc::api::DataTransferModel::createDefaultDirectory();
         setDownloadPath(downloadPath);
-        lrcInstance_->dataTransferModel().downloadDirectory = downloadPath;
+        lrcInstance_->accountModel().downloadDirectory = downloadPath;
     }
 #ifdef Q_OS_WIN
     int pos = downloadPath.lastIndexOf(QChar('\\'));
@@ -79,7 +79,7 @@ void
 SettingsAdapter::setDownloadPath(QString dir)
 {
     setAppValue(Settings::Key::DownloadPath, dir);
-    lrcInstance_->dataTransferModel().downloadDirectory = dir + "/";
+    lrcInstance_->accountModel().downloadDirectory = dir + "/";
 }
 
 lrc::api::video::ResRateList

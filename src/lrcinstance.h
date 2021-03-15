@@ -107,11 +107,6 @@ public:
         return lrc_->getBehaviorController();
     }
 
-    DataTransferModel& dataTransferModel()
-    {
-        return lrc_->getDataTransferModel();
-    }
-
     AVModel& avModel()
     {
         return lrc_->getAVModel();
