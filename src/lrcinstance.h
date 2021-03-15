@@ -115,11 +115,6 @@ public:
         return instance().lrc_->getBehaviorController();
     }
 
-    static DataTransferModel& dataTransferModel()
-    {
-        return instance().lrc_->getDataTransferModel();
-    }
-
     static AVModel& avModel()
     {
         return instance().lrc_->getAVModel();

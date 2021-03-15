@@ -332,5 +332,5 @@ ConversationsAdapter::isSwarm(const QString& convUid)
     auto convInfo = convModel->getConversationForUid(convUid);
     if (!convInfo)
         return false;
-    return convInfo->get().isSwarm;
+    return convInfo->get().mode != conversation::Mode::NON_SWARM ;
 }
