@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0zm0 0h24v24H0z" fill="none"/><path d="M21 6.5l-4 4V7c0-.55-.45-1-1-1H9.82L21 17.18V6.5zM3.27 2L2 3.27 4.73 6H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.21 0 .39-.08.54-.18L19.73 21 21 19.73 3.27 2z"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Camera Off</title>
+    <g id="Icones_Outline" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Camera-Off" stroke="#000000" stroke-width="1.75">
+            <line x1="3" y1="21" x2="21" y2="4" id="Line" stroke-linecap="round"></line>
+            <g id="Ico_Camera" transform="translate(2.000000, 6.000000)" fill-rule="nonzero">
+                <path d="M14.6258454,1.18886225 L14.8700964,5.33691133 L18.3546016,3.22509002 L18.9246007,10.1559698 L14.8181125,7.90285231 L14.8181125,11.228979 L14.9607672,11.8606408 C14.9607672,11.8606408 14.9986147,12.0282258 14.9607672,12.0282258 L14.9607672,12.0282258 L1.102,12.028 L0.880585155,1.20485987 L14.6258454,1.18886225 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>
