@@ -43,7 +43,9 @@ SmartListModel::rowCount(const QModelIndex& parent) const
         auto& accInfo = LRCInstance::accountModel().getAccountInfo(LRCInstance::getCurrAccId());
         auto& convModel = accInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
-            auto filterType = accInfo.profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::JAMI;
+            auto filterType = accInfo.profileInfo.type == lrc::api::profile::Type::SIP
+                                  ? lrc::api::FilterType::SIP
+                                  : lrc::api::FilterType::JAMI;
             return convModel->getFilteredConversations(filterType).size();
         } else if (listModelType_ == Type::CONFERENCE) {
             auto calls = conferenceables_[ConferenceableItem::CALL];
@@ -80,7 +82,9 @@ SmartListModel::data(const QModelIndex& index, int role) const
             LRCInstance::getCurrAccId());
         auto& convModel = currentAccountInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
-            auto filterType = currentAccountInfo.profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::JAMI;
+            auto filterType = currentAccountInfo.profileInfo.type == lrc::api::profile::Type::SIP
+                                  ? lrc::api::FilterType::SIP
+                                  : lrc::api::FilterType::JAMI;
             const auto& item = convModel->getFilteredConversations(filterType).at(index.row());
             return getConversationItemData(item, currentAccountInfo, role);
         } else if (listModelType_ == Type::CONFERENCE) {
@@ -267,7 +271,7 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         return QVariant("");
     }
     case Role::Presence: {
-        if (!item.participants.isEmpty()) {
+        if (item.mode == conversation::Mode::NON_SWARM && !item.participants.isEmpty()) {
             auto& contact = contactModel->getContact(item.participants.at(0));
             return QVariant(contact.isPresent);
         }
@@ -307,7 +311,7 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         return QVariant(0);
     }
     case Role::ContactType: {
-        if (!item.participants.isEmpty()) {
+        if (item.mode == conversation::Mode::NON_SWARM && !item.participants.isEmpty()) {
             auto& contact = contactModel->getContact(item.participants.at(0));
             return QVariant(static_cast<int>(contact.profileInfo.type));
         }

@@ -106,9 +106,30 @@ Rectangle {
         }
     }
 
+
+    MaterialButton {
+        id: startConversationBtn
+
+        anchors.top: contactSearchBar.bottom
+        anchors.topMargin: 10
+        width: sidePanelRect.width
+        height: 48
+
+        color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+        hoveredColor: JamiTheme.buttonTintedBlackHovered
+        pressedColor: JamiTheme.buttonTintedBlackPressed
+        outlined: true
+
+        text: "Create SWARM TODO"
+
+        onClicked: {
+            ConversationsAdapter.startConversation()
+        }
+    }
+
     SidePanelTabBar {
         id: sidePanelTabBar
-        anchors.top: contactSearchBar.bottom
+        anchors.top: startConversationBtn.bottom
         anchors.topMargin: 10
         width: sidePanelRect.width
         height: tabBarVisible ? 48 : 0
@@ -119,7 +140,7 @@ Rectangle {
 
         visible: lblSearchStatus.text !== ""
 
-        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom
+        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : startConversationBtn.bottom
         anchors.topMargin: tabBarVisible ? 0 : 10
         width: parent.width
         height: 72
@@ -182,11 +203,11 @@ Rectangle {
     ConversationSmartListView {
         id: conversationSmartListView
 
-        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom)
+        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : startConversationBtn.bottom)
         anchors.topMargin: (tabBarVisible || searchStatusRect.visible) ? 0 : 10
         width: parent.width
-        height: tabBarVisible ? sidePanelRect.height - sidePanelTabBar.height - contactSearchBar.height - 20 :
-                                sidePanelRect.height - contactSearchBar.height - 20
+        height: tabBarVisible ? sidePanelRect.height - sidePanelTabBar.height - contactSearchBar.height - 20 - startConversationBtn.height :
+                                sidePanelRect.height - contactSearchBar.height - 20 - startConversationBtn.height
 
         Connections {
             target: ConversationsAdapter
