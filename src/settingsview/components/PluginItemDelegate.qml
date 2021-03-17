@@ -37,19 +37,27 @@ ItemDelegate {
 
     signal btnLoadPluginToggled
 
-    function btnPreferencesPluginClicked() {
+    function btnPreferencesPluginClicked(visibility) {
         pluginListPreferencesView.pluginName = pluginName
         pluginListPreferencesView.pluginIcon = pluginIcon
         pluginListPreferencesView.pluginId = pluginId
         pluginListPreferencesView.isLoaded = isLoaded
-        if (!pluginListPreferencesView.visible) {
-            pluginListPreferencesView.visible = !pluginListPreferencesView.visible
-            root.height += pluginListPreferencesView.childrenRect.height
-        } else {
-            root.height -= pluginListPreferencesView.childrenRect.height
-            pluginListPreferencesView.visible = !pluginListPreferencesView.visible
+        pluginListPreferencesView.categories = PluginAdapter.getPluginPreferencesCategories(root.pluginId)
+        if (pluginListPreferencesView.category == "" && pluginListPreferencesView.categories.length > 0)
+            pluginListPreferencesView.category = pluginListPreferencesView.categories[0]
+
+        if (visibility) {
+            PluginAdapter.preferenceChanged(pluginId)
+            pluginListPreferencesView.visible = visibility
+            var diff = pluginListPreferencesView.childrenRect.height - pluginListPreferencesView.lastHeight
+            pluginListPreferencesView.lastHeight = pluginListPreferencesView.childrenRect.height
+            root.height += diff
         }
-        PluginAdapter.preferenceChanged(pluginId)
+        else {
+            root.height -= pluginListPreferencesView.lastHeight
+            pluginListPreferencesView.lastHeight = 0
+            pluginListPreferencesView.visible = visibility
+        }
     }
 
     Connections {
@@ -144,7 +152,7 @@ ItemDelegate {
                 imageColor: JamiTheme.textColor
                 toolTipText: JamiStrings.showHidePrefs
 
-                onClicked: btnPreferencesPluginClicked()
+                onClicked: btnPreferencesPluginClicked(!pluginListPreferencesView.visible)
             }
         }
 
@@ -158,6 +166,11 @@ ItemDelegate {
             Layout.bottomMargin: JamiTheme.preferredMarginSize
             Layout.minimumHeight: 1
             Layout.preferredHeight: childrenRect.height
+
+            onHeightChanged: {
+                if (pluginListPreferencesView.pluginId == root.pluginId && pluginListPreferencesView.childrenRect.height != pluginListPreferencesView.lastHeight)
+                    btnPreferencesPluginClicked(pluginListPreferencesView.visible)
+            }
         }
     }
 }

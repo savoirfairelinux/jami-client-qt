@@ -42,6 +42,9 @@ Rectangle {
     property string pluginIcon: ""
     property string pluginId: ""
     property bool isLoaded: false
+    property string category: ""
+    property int lastHeight: 0
+    property var categories: ["all"]
 
     visible: false
     color: "transparent"
@@ -52,8 +55,22 @@ Rectangle {
         target: PluginAdapter
 
         function onPreferenceChanged(pluginId) {
-            if (root.pluginId == pluginId)
-                pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId)
+            if (root.pluginId == pluginId) {
+                root.categories = PluginAdapter.getPluginPreferencesCategories(root.pluginId)
+                if (root.categories.length <= 1)
+                    gridtest.visible = false
+                else {
+                    gridModel.model = root.categories
+                    if (root.categories.length % 2 == 1) {
+                        gridModel.model = PluginAdapter.getPluginPreferencesCategories(root.pluginId, true)
+                        oddCategory.text = root.categories[root.categories.length - 1]
+                        oddCategory.highlighted = root.category == oddCategory.text
+                    }
+                    oddCategory.visible = root.categories.length % 2 == 1
+                }
+                pluginPreferenceViewCategory.model = PluginAdapter.getPluginPreferencesModel(pluginId, root.category)
+                pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId, "")
+            }
         }
     }
 
@@ -74,7 +91,8 @@ Rectangle {
         } else {
             PluginModel.resetPluginPreferencesValues(pluginId)
         }
-        pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId)
+        pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId, "")
+        pluginPreferenceViewCategory.model = PluginAdapter.getPluginPreferencesModel(pluginId, root.category)
         PluginAdapter.pluginHandlersUpdateStatus()
     }
 
@@ -143,8 +161,173 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
         }
 
+        Rectangle {
+           Layout.fillWidth: true
+            implicitHeight: childrenRect.height
+            color: JamiTheme.backgroundColor
+        
+            ColumnLayout {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                implicitHeight: childrenRect.height
+
+                GridLayout {
+                    id: gridtest
+                    Layout.fillWidth: true
+                    implicitHeight: childrenRect.height
+                    columns: 2
+
+                    Repeater {
+                        id: gridModel
+                        model: root.categories
+                        Button {
+                            id: repDelegate
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            highlighted: root.category === modelData
+                            text: modelData
+                            flat: true
+                            onClicked: {
+                                root.category = modelData
+                                PluginAdapter.preferenceChanged(root.pluginId)
+                            }
+                            background: Rectangle {
+                                anchors.fill: parent
+                                color: repDelegate.highlighted ? JamiTheme.selectedColor : JamiTheme.primaryBackgroundColor
+                                border.color: JamiTheme.selectedColor
+                                border.width: 1
+                            }
+                            contentItem: Text {
+                                text: repDelegate.text
+                                font: repDelegate.font
+                                opacity: enabled ? 1.0 : 0.3
+                                color: JamiTheme.primaryForegroundColor 
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                elide: Text.ElideRight
+                            }
+                        }
+                    }
+                }
+
+                Button {
+                    id: oddCategory
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                    flat: true
+                    visible: false
+                    onClicked: {
+                        root.category = oddCategory.text
+                        PluginAdapter.preferenceChanged(root.pluginId)
+                    }
+                    background: Rectangle {
+                        anchors.fill: parent
+                        color: oddCategory.highlighted ? JamiTheme.selectedColor : JamiTheme.primaryBackgroundColor
+                        border.color: JamiTheme.selectedColor
+                        border.width: 1
+                    }
+                    contentItem: Text {
+                        text: oddCategory.text
+                        font: oddCategory.font
+                        opacity: enabled ? 1.0 : 0.3
+                        color: JamiTheme.primaryForegroundColor 
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                }
+
+                ListView {
+                    id: pluginPreferenceViewCategory
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: 1
+                    Layout.preferredHeight: childrenRect.height
+
+                    model: PluginAdapter.getPluginPreferencesModel(pluginId, root.category)
+                    interactive: false
+
+                    delegate: PreferenceItemDelegate {
+                        id: preferenceItemDelegateCategory
+
+                        width: pluginPreferenceViewCategory.width
+                        height: 50
+
+                        preferenceName: PreferenceName
+                        preferenceSummary: PreferenceSummary
+                        preferenceType: PreferenceType
+                        preferenceCurrentValue: PreferenceCurrentValue
+                        pluginId: PluginId
+                        currentPath: CurrentPath
+                        preferenceKey: PreferenceKey
+                        fileFilters: FileFilters
+                        isImage: IsImage
+                        enabled: Enabled
+                        pluginListPreferenceModel: PluginListPreferenceModel {
+                            id: pluginListPreferenceModel
+                            preferenceKey : PreferenceKey
+                            pluginId: PluginId
+                        }
+
+                        onBtnPreferenceClicked: {
+                            setPreference(pluginId, preferenceKey, preferenceNewValue)
+                            pluginPreferenceViewCategory.model = PluginAdapter.getPluginPreferencesModel(pluginId, root.category)
+                        }
+
+                        background: Rectangle {
+                            anchors.fill: parent
+                            color: JamiTheme.backgroundColor
+                        }
+                    }
+                }
+            }
+        }
+
+        ListView {
+            id: pluginPreferenceView
+            Layout.fillWidth: true
+            Layout.minimumHeight: 1
+            Layout.preferredHeight: childrenRect.height
+
+            model: PluginAdapter.getPluginPreferencesModel(pluginId)
+            interactive: false
+
+            delegate: PreferenceItemDelegate {
+                id: preferenceItemDelegate
+
+                width: pluginPreferenceView.width
+                height: 50
+
+                preferenceName: PreferenceName
+                preferenceSummary: PreferenceSummary
+                preferenceType: PreferenceType
+                preferenceCurrentValue: PreferenceCurrentValue
+                pluginId: PluginId
+                currentPath: CurrentPath
+                preferenceKey: PreferenceKey
+                fileFilters: FileFilters
+                isImage: IsImage
+                enabled: Enabled
+                pluginListPreferenceModel: PluginListPreferenceModel {
+                    id: pluginListPreferenceModel
+                    preferenceKey : PreferenceKey
+                    pluginId: PluginId
+                }
+
+                onBtnPreferenceClicked: {
+                    setPreference(pluginId, preferenceKey, preferenceNewValue)
+                    pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId, "")
+                }
+
+                background: Rectangle {
+                    anchors.fill: parent
+                    color: "transparent"
+                }
+            }
+        }
+
         RowLayout {
             Layout.topMargin: 10
+            Layout.bottomMargin: 10
             height: 30
 
             MaterialButton {
@@ -181,49 +364,6 @@ Rectangle {
                 text: qsTr("Uninstall")
 
                 onClicked: uninstallPluginSlot()
-            }
-        }
-
-        ListView {
-            id: pluginPreferenceView
-
-            Layout.fillWidth: true
-            Layout.minimumHeight: 1
-            Layout.preferredHeight: childrenRect.height + 30
-
-            model: PluginAdapter.getPluginPreferencesModel(pluginId)
-            interactive: false
-
-            delegate: PreferenceItemDelegate {
-                id: preferenceItemDelegate
-
-                width: pluginPreferenceView.width
-                height: 50
-
-                preferenceName: PreferenceName
-                preferenceSummary: PreferenceSummary
-                preferenceType: PreferenceType
-                preferenceCurrentValue: PreferenceCurrentValue
-                pluginId: PluginId
-                currentPath: CurrentPath
-                preferenceKey: PreferenceKey
-                fileFilters: FileFilters
-                isImage: IsImage
-                pluginListPreferenceModel: PluginListPreferenceModel {
-                    id: pluginListPreferenceModel
-                    preferenceKey : PreferenceKey
-                    pluginId: PluginId
-                }
-
-                onBtnPreferenceClicked: {
-                    setPreference(pluginId, preferenceKey, preferenceNewValue)
-                    pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId)
-                }
-
-                background: Rectangle {
-                    anchors.fill: parent
-                    color: JamiTheme.secondaryBackgroundColor
-                }
             }
         }
     }
