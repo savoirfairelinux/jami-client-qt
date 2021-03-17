@@ -42,28 +42,37 @@ ItemDelegate {
         pluginListPreferencesView.pluginIcon = pluginIcon
         pluginListPreferencesView.pluginId = pluginId
         pluginListPreferencesView.isLoaded = isLoaded
+        pluginListPreferencesView.categories = PluginAdapter.getPluginPreferencesCategories(root.pluginId)
+        if (pluginListPreferencesView.category == "" && pluginListPreferencesView.categories.length > 0)
+            pluginListPreferencesView.category = pluginListPreferencesView.categories[0]
+
         if (!pluginListPreferencesView.visible) {
             pluginListPreferencesView.visible = !pluginListPreferencesView.visible
-            root.height += pluginListPreferencesView.childrenRect.height
-        } else {
-            root.height -= pluginListPreferencesView.childrenRect.height
-            pluginListPreferencesView.visible = !pluginListPreferencesView.visible
+            var diff = pluginListPreferencesView.childrenRect.height - pluginListPreferencesView.lastHeight
+            pluginListPreferencesView.lastHeight = pluginListPreferencesView.childrenRect.height
+            root.height += diff
+            PluginAdapter.preferenceChanged(pluginId)
         }
-        PluginAdapter.preferenceChanged(pluginId)
+        else {
+            pluginListPreferencesView.visible = !pluginListPreferencesView.visible
+            root.height -= pluginListPreferencesView.lastHeight
+            pluginListPreferencesView.lastHeight = 0
+        }
     }
 
     Connections {
         target: enabledplugin
 
         function onHidePreferences() {
-            root.height = 50
             pluginListPreferencesView.visible = false
+            root.height -= pluginListPreferencesView.lastHeight
+            pluginListPreferencesView.lastHeight = 0
         }
     }
 
     ColumnLayout {
         anchors.fill: parent
-        Layout.preferredHeight: childrenRect.height
+        implicitHeight: childrenRect.height
 
         RowLayout {
             Layout.fillWidth: true
@@ -158,6 +167,15 @@ ItemDelegate {
             Layout.bottomMargin: JamiTheme.preferredMarginSize
             Layout.minimumHeight: 1
             Layout.preferredHeight: childrenRect.height
+
+            onHeightChanged: {
+                var diff = pluginListPreferencesView.childrenRect.height - pluginListPreferencesView.lastHeight
+                if (pluginListPreferencesView.pluginId == root.pluginId && pluginListPreferencesView.visible && diff != 0) {
+                    pluginListPreferencesView.lastHeight = pluginListPreferencesView.childrenRect.height
+                    root.height += diff
+                    PluginAdapter.preferenceChanged(pluginId)
+                }
+            }
         }
     }
 }

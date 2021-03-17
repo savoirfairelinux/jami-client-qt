@@ -110,6 +110,7 @@ Item {
     property color successLabelColor: "#2b5084"
     property color rubberBandSelectionBlue: "steelblue"
     property color screenSelectionBorderGreen: "green"
+    property color separationLine: darkTheme ? selectedColor : backgroundColor
 
     // Chatview
     property color jamiLightBlue: darkTheme? "#003b4e" : Qt.rgba(59, 193, 211, 0.3)
