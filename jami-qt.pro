@@ -81,9 +81,9 @@ win32-msvc {
     Release: RC_FILE = ico.rc
 
     # run the deployment script(run windeployqt)
-    !equals(MODE, "ReleaseCompile") {
-        QMAKE_POST_LINK += $$quote(python .\copy-runtime-files.py -m  $${MODE} -q $${QT_VERSION} -o $${DESTDIR})
-    }
+#    !equals(MODE, "ReleaseCompile") {
+#        QMAKE_POST_LINK += $$quote(python .\copy-runtime-files.py -m  $${MODE} -q $${QT_VERSION} -o $${DESTDIR})
+#    }
 }
 
 unix {
@@ -200,6 +200,7 @@ HEADERS += \
         src/preferenceitemlistmodel.h \
         src/mediacodeclistmodel.h \
         src/accountstomigratelistmodel.h \
+        src/audiodevicemodel.h \
         src/audioinputdevicemodel.h \
         src/videoinputdevicemodel.h \
         src/audiooutputdevicemodel.h \
@@ -242,6 +243,7 @@ SOURCES += \
         src/preferenceitemlistmodel.cpp \
         src/mediacodeclistmodel.cpp \
         src/accountstomigratelistmodel.cpp \
+        src/audiodevicemodel.h \
         src/audioinputdevicemodel.cpp \
         src/videoinputdevicemodel.cpp \
         src/audiooutputdevicemodel.cpp \
