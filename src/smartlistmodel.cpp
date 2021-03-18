@@ -265,30 +265,30 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
     // be able to use the image cache, account avatar will only be updated once PictureUid changed
     switch (role) {
     case Role::DisplayName: {
-        if (!item.participants.isEmpty())
+        if (!item.participants[0].isEmpty())
             return QVariant(contactModel->bestNameForContact(item.participants[0]));
         return QVariant("");
     }
     case Role::DisplayID: {
-        if (!item.participants.isEmpty())
+        if (!item.participants[0].isEmpty())
             return QVariant(contactModel->bestIdForContact(item.participants[0]));
         return QVariant("");
     }
     case Role::Presence: {
-        if (!item.participants.isEmpty()) {
+        if (!item.participants[0].isEmpty()) {
             auto& contact = contactModel->getContact(item.participants[0]);
             return QVariant(contact.isPresent);
         }
         return QVariant(false);
     }
     case Role::PictureUid: {
-        if (!item.participants.isEmpty()) {
+        if (!item.participants[0].isEmpty()) {
             return QVariant(contactAvatarUidMap_[item.participants[0]]);
         }
         return QVariant("");
     }
     case Role::URI: {
-        if (!item.participants.isEmpty()) {
+        if (!item.participants[0].isEmpty()) {
             return QVariant(item.participants[0]);
         }
         return QVariant("");
@@ -315,7 +315,7 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
         return QVariant(0);
     }
     case Role::ContactType: {
-        if (!item.participants.isEmpty()) {
+        if (!item.participants[0].isEmpty()) {
             auto& contact = contactModel->getContact(item.participants[0]);
             return QVariant(static_cast<int>(contact.profileInfo.type));
         }
