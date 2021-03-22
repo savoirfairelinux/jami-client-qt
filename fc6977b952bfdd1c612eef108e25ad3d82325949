@@ -705,6 +705,30 @@
     },
     {
       "key": {
+        "uuid": "5fe77ef2_58267c44",
+        "filename": "src/qabstractitemmodelbase.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-03-22T18:19:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fa88af10_76abf741",
+      "range": {
+        "startLine": 25,
+        "startChar": 6,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "64ed55f8_b0ddf101",
         "filename": "src/qmladapterbase.h",
         "patchSetId": 6
