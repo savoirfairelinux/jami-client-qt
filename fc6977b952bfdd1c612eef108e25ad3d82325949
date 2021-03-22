@@ -2,6 +2,686 @@
   "comments": [
     {
       "key": {
+        "uuid": "33f60537_f4b54130",
+        "filename": "src/accountlistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32ed7efa_3aea53b6",
+        "filename": "src/accountlistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6c95a31_e24a36e9",
+        "filename": "src/accountstomigratelistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47f9979a_435900a5",
+        "filename": "src/accountstomigratelistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1da7dec_85c006c4",
+        "filename": "src/audioinputdevicemodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cc67837_a6687eec",
+        "filename": "src/audioinputdevicemodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ee31451_0581bb6d",
+        "filename": "src/audiomanagerlistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1cdfad0_634d86be",
+        "filename": "src/audiomanagerlistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3c19e1e_3574f11a",
+        "filename": "src/audiooutputdevicemodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "02e2bfe1_bb4266b5",
+        "filename": "src/audiooutputdevicemodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30046069_3f13171e",
+        "filename": "src/avadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34d98c12_5a1cf724",
+        "filename": "src/avatarimageprovider.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ef02b70_f33f6e13",
+        "filename": "src/bannedlistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0937dfa9_af919c49",
+        "filename": "src/bannedlistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a06bbfe4_50ea9165",
+        "filename": "src/connectivitymonitor.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f11cc3f9_253b3b68",
+        "filename": "src/contactadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c74d2f49_d8f3c36b",
+        "filename": "src/contactadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "186042d1_96d6251b",
+        "filename": "src/conversationsadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37565480_e6a480c0",
+        "filename": "src/deviceitemlistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c743b5d1_c338334a",
+        "filename": "src/deviceitemlistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4d651dd7_caa52c58",
+        "filename": "src/distantrenderer.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cabf8490_67ebcb18",
+        "filename": "src/distantrenderer.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67bd8353_ee7a96a6",
+        "filename": "src/lrcinstance.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8db429ab_fa0f5fb0",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46d5a613_7195a69e",
+        "filename": "src/mediacodeclistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0010669a_45eef3ce",
+        "filename": "src/mediacodeclistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7e33c89_7a0721d3",
+        "filename": "src/messagesadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bbe9bfef_3928eef8",
+        "filename": "src/pluginadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e60fc20f_3ec11c2d",
+        "filename": "src/pluginadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47595911_f045d040",
+        "filename": "src/pluginhandleritemlistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64b9a546_107b9e43",
+        "filename": "src/pluginhandleritemlistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "672626b1_a8cbac90",
+        "filename": "src/pluginitemlistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0adca63_1259b446",
+        "filename": "src/pluginitemlistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "724a738e_32b0a5d9",
+        "filename": "src/pluginlistpreferencemodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba31da7d_6beb4f90",
+        "filename": "src/pluginlistpreferencemodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee8fc598_3a5a2024",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbb53a6d_3c9dfb39",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37394222_00953e6a",
+        "filename": "src/previewrenderer.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b1919bd_e8e98f34",
+        "filename": "src/previewrenderer.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "380d4afb_75705177",
+        "filename": "src/qabstractitemmodelbase.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM here too",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fa88af10_76abf741",
         "filename": "src/qabstractitemmodelbase.h",
         "patchSetId": 6
@@ -19,6 +699,403 @@
         "endLine": 25,
         "endChar": 29
       },
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64ed55f8_b0ddf101",
+        "filename": "src/qmladapterbase.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "300867d2_4575c077",
+        "filename": "src/qmlregister.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a46eb90_0cb87abd",
+        "filename": "src/qmlregister.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a5295fe_a036b784",
+        "filename": "src/qquickimageproviderbase.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM here too",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "124251ea_17b76ac7",
+        "filename": "src/qquickimageproviderbase.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "I vote remove the \"Q\" prefix",
+      "range": {
+        "startLine": 27,
+        "startChar": 6,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d65f9c_b7a4a9eb",
+        "filename": "src/qrimageprovider.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75cc8a22_073d0e20",
+        "filename": "src/runguard.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edb6f103_80411b3f",
+        "filename": "src/runguard.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa90f45d_d8682c54",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2034352f_79ea6c2a",
+        "filename": "src/settingsadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "170be5c5_5c56ef0d",
+        "filename": "src/tintedbuttonimageprovider.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42e8f749_be819532",
+        "filename": "src/updatemanager.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "883db9fa_2b39bc6d",
+        "filename": "src/updatemanager.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06046c52_f5811a20",
+        "filename": "src/utils.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05ece54a_b14c03fe",
+        "filename": "src/utils.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41574f3e_507a595a",
+        "filename": "src/utilsadapter.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd55ba6d_a0a38c43",
+        "filename": "src/utilsadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88da7299_b5989da8",
+        "filename": "src/videoformatfpsmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd830f1b_40eee133",
+        "filename": "src/videoformatfpsmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6339b798_30d35bf5",
+        "filename": "src/videoformatresolutionmodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c53be976_a9b8cf63",
+        "filename": "src/videoformatresolutionmodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5f06c4c4_2b017269",
+        "filename": "src/videoinputdevicemodel.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
+      "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f17f3aa_2436e75b",
+        "filename": "src/videoinputdevicemodel.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T16:37:30Z",
+      "side": 1,
+      "message": "BOM added",
       "revId": "fc6977b952bfdd1c612eef108e25ad3d82325949",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
