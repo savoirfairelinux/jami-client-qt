@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e18c73a_49c0c310",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T14:51:43Z",
+      "side": 1,
+      "message": "- trailing whitespace in here\n- if you are going to aerate qml code, try to aerate the id,objectName properties",
+      "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbf3d312_d674e20b",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T14:51:43Z",
+      "side": 1,
+      "message": "in declarative UI, this is a code smell; is there a cleaner way to do this?",
+      "range": {
+        "startLine": 46,
+        "startChar": 17,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bb5d93e_eaf79619",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T14:51:43Z",
+      "side": 1,
+      "message": "sounds a bit like a type of dinosaur; maybeCamelCase?",
+      "range": {
+        "startLine": 171,
+        "startChar": 16,
+        "endLine": 171,
+        "endChar": 31
+      },
+      "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60f674eb_7f60a4ed",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-22T14:51:43Z",
+      "side": 1,
+      "message": "what makes it odd? and it\u0027s a button, so maybe `oddCategoryButton` ?",
+      "range": {
+        "startLine": 224,
+        "startChar": 24,
+        "endLine": 224,
+        "endChar": 35
+      },
+      "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
