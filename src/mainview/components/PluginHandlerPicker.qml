@@ -187,7 +187,7 @@ Popup {
                 function onUpdateProperties() {
                     pluginhandlerPreferencePickerListView.pluginId = root.pluginId
                     pluginhandlerPreferencePickerListView.handlerName = root.handlerName
-                    pluginhandlerPreferencePickerListView.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.handlerName)
+                    pluginhandlerPreferencePickerListView.model = PluginAdapter.getHandlerPreferencesModel(root.pluginId, root.handlerName)
                 }
             }
 
@@ -250,7 +250,7 @@ Popup {
                     property string pluginId: ""
                     property string handlerName: ""
 
-                    model: PluginAdapter.getPluginPreferencesModel(pluginId, handlerName)
+                    model: PluginAdapter.getHandlerPreferencesModel(pluginId, handlerName)
 
                     clip: true
 
@@ -268,6 +268,7 @@ Popup {
                         preferenceKey : PreferenceKey
                         fileFilters: FileFilters
                         isImage: IsImage
+                        enabled: Enabled
                         pluginListPreferenceModel: PluginListPreferenceModel {
                             id: handlerPickerPreferenceModel
 
@@ -281,7 +282,7 @@ Popup {
                         onBtnPreferenceClicked: {
                             PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
                             PluginAdapter.preferenceChanged(pluginId)
-                            pluginhandlerPreferencePickerListView.model = PluginAdapter.getPluginPreferencesModel(pluginId, pluginhandlerPreferencePickerListView.handlerName)
+                            pluginhandlerPreferencePickerListView.model = PluginAdapter.getHandlerPreferencesModel(pluginId, pluginhandlerPreferencePickerListView.handlerName)
                         }
                     }
 
