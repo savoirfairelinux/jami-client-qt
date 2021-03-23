@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1bae05ba_cb951cad",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-03-23T21:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e18c73a_49c0c310",
+      "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cbf3d312_d674e20b",
         "filename": "src/settingsview/components/PluginListPreferencesView.qml",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7198f806_3d62c6fb",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-03-23T21:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbf3d312_d674e20b",
+      "range": {
+        "startLine": 46,
+        "startChar": 17,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "301a2de8_c972f1c3",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-03-23T21:51:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bb5d93e_eaf79619",
+      "range": {
+        "startLine": 171,
+        "startChar": 16,
+        "endLine": 171,
+        "endChar": 31
+      },
+      "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60f674eb_7f60a4ed",
         "filename": "src/settingsview/components/PluginListPreferencesView.qml",
         "patchSetId": 3
@@ -85,6 +151,30 @@
       "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fa2a9c87_26b71d6e",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-03-23T21:51:41Z",
+      "side": 1,
+      "message": "The grid before handles categories in even number. If we have an odd quantity of categories, we display the last one with \"oddCategoryButton\"",
+      "parentUuid": "60f674eb_7f60a4ed",
+      "range": {
+        "startLine": 224,
+        "startChar": 24,
+        "endLine": 224,
+        "endChar": 35
+      },
+      "revId": "dea19aff084ce44225d63541b1d14a777afaf513",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
