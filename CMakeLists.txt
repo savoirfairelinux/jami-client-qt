@@ -27,6 +27,7 @@ set(QML_LIBS
     Qt5::QuickControls2
     Qt5::WebEngine
     Qt5::DBus
+    Qt5::Sql
     Qt5::Core)
 
 set(COMMON_SOURCES
@@ -211,7 +212,6 @@ add_executable(${PROJECT_NAME}
 
 set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
-find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
 
