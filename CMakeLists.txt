@@ -166,6 +166,11 @@ else()
 endif()
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
+set(QT_JAMI_DIR "/opt/qt-jami")
+if(EXISTS "{QT_JAMI_DIR}/lib")
+    set(CMAKE_INSTALL_RPATH "${QT_JAMI_DIR}/lib")
+endif()
+
 # If LRC is not globally installed, it's path should be specified
 # by setting variable LRC. If library is not inside LRC + suffixes
 # lib, build or build-local, it's path should be set with LRCLIB.
@@ -211,7 +216,6 @@ add_executable(${PROJECT_NAME}
 
 set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
-find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
 find_library(qrencode qrencode)
 find_library(X11 X11)
 
