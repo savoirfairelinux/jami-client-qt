@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d17d3378_f569c961",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2021-03-25T14:14:25Z",
+      "side": 1,
+      "message": "Why this conditional? Shouldn\u0027t it bail out if it doesn\u0027t exist, as it won\u0027t work otherwise?",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 30
+      },
+      "revId": "fa29bc6e6b1e3738eddc07f865106796b96b2dd0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
