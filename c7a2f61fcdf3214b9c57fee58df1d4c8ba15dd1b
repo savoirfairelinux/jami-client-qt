@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7eaaedc5_b93dd3c7",
+        "filename": "src/contactadapter.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-03-25T17:30:37Z",
+      "side": 1,
+      "message": "this is the same as {} or \"\", but if the conv.participants.isEmpty() is true, can you just return false? then you can init the calleeDisplayId in one line",
+      "range": {
+        "startLine": 64,
+        "startChar": 36,
+        "endLine": 64,
+        "endChar": 40
+      },
+      "revId": "c7a2f61fcdf3214b9c57fee58df1d4c8ba15dd1b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
