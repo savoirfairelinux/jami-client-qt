@@ -22,6 +22,49 @@
 
 #include <QSystemTrayIcon>
 
+#ifdef USE_LIBNOTIFY
+#include <libnotify/notify.h>
+#include <QSize>
+
+class GlobalSystemTray final : public QObject
+{
+    Q_OBJECT
+
+public:
+    ~GlobalSystemTray() = default;
+    static GlobalSystemTray& instance()
+    {
+        static GlobalSystemTray* instance_ = new GlobalSystemTray();
+        notify_init ("Hello world!");
+        
+        return *instance_;
+    }
+
+    template<typename Func>
+    static void connectClicked(Func&& onClicked)
+    {
+        auto& instance_ = instance();
+        instance_.disconnect(instance_.messageClicked_);
+
+        notify_init("Sample");
+        NotifyNotification* n = notify_notification_new ("Hello world", 
+                                    "some message text... bla bla",
+                                    0);
+        notify_notification_set_timeout(n, 10000); // 10 seconds
+
+        if (!notify_notification_show(n, 0)) 
+        {
+            std::cerr << "show has failed" << std::endl;
+        }
+    }
+
+private:
+    explicit GlobalSystemTray()
+        : QObject() {};
+
+    QMetaObject::Connection messageClicked_;
+};
+#else
 class GlobalSystemTray final : public QSystemTrayIcon
 {
     Q_OBJECT
@@ -48,3 +91,4 @@ private:
 
     QMetaObject::Connection messageClicked_;
 };
+#endif

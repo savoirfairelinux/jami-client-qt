@@ -46,7 +46,7 @@ public:
     Q_INVOKABLE void refill();
     Q_INVOKABLE void updateConversationsFilterWidget();
 
-signals:
+Q_SIGNALS:
     void showConversation(const QString& accountId, const QString& convUid);
     void showConversationTabs(bool visible);
     void showSearchStatus(const QString& status);
@@ -58,7 +58,7 @@ signals:
     void currentTypeFilterChanged();
     void indexRepositionRequested();
 
-private slots:
+private Q_SLOTS:
     void onCurrentAccountIdChanged();
     void onNewUnreadInteraction(const QString& accountId,
                                 const QString& convUid,

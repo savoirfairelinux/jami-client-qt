@@ -75,13 +75,13 @@ AccountAdapter::connectFailure()
                           &lrc::api::NewAccountModel::accountRemoved,
                           [this](const QString& accountId) {
                               Q_UNUSED(accountId);
-                              emit reportFailure();
+                              Q_EMIT reportFailure();
                           });
     Utils::oneShotConnect(&lrcInstance_->accountModel(),
                           &lrc::api::NewAccountModel::invalidAccountDetected,
                           [this](const QString& accountId) {
                               Q_UNUSED(accountId);
-                              emit reportFailure();
+                              Q_EMIT reportFailure();
                           });
 }
 
@@ -109,8 +109,8 @@ AccountAdapter::createJamiAccount(QString registeredName,
                     &lrc::api::NewAccountModel::profileUpdated,
                     [this, showBackup, addedAccountId = accountId](const QString& accountId) {
                         if (addedAccountId == accountId) {
-                            emit lrcInstance_->accountListChanged();
-                            emit accountAdded(accountId,
+                            Q_EMIT lrcInstance_->accountListChanged();
+                            Q_EMIT accountAdded(accountId,
                                               showBackup,
                                               lrcInstance_->accountModel().getAccountList().indexOf(
                                                   accountId));
@@ -122,8 +122,8 @@ AccountAdapter::createJamiAccount(QString registeredName,
                                                           settings["password"].toString(),
                                                           registeredName);
             } else {
-                emit lrcInstance_->accountListChanged();
-                emit accountAdded(accountId,
+                Q_EMIT lrcInstance_->accountListChanged();
+                Q_EMIT accountAdded(accountId,
                                   showBackup,
                                   lrcInstance_->accountModel().getAccountList().indexOf(accountId));
             }
@@ -157,8 +157,8 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
                               confProps.Ringtone.ringtonePath = Utils::GetRingtonePath();
                               lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
 
-                              emit lrcInstance_->accountListChanged();
-                              emit accountAdded(accountId,
+                              Q_EMIT lrcInstance_->accountListChanged();
+                              Q_EMIT accountAdded(accountId,
                                                 false,
                                                 lrcInstance_->accountModel().getAccountList().indexOf(
                                                     accountId));
@@ -191,11 +191,11 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
                               confProps.Ringtone.ringtonePath = Utils::GetRingtonePath();
                               lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
 
-                              emit accountAdded(accountId,
+                              Q_EMIT accountAdded(accountId,
                                                 false,
                                                 lrcInstance_->accountModel().getAccountList().indexOf(
                                                     accountId));
-                              emit lrcInstance_->accountListChanged();
+                              Q_EMIT lrcInstance_->accountListChanged();
                           });
 
     connectFailure();
@@ -211,7 +211,7 @@ void
 AccountAdapter::deleteCurrentAccount()
 {
     lrcInstance_->accountModel().removeAccount(lrcInstance_->getCurrAccId());
-    emit lrcInstance_->accountListChanged();
+    Q_EMIT lrcInstance_->accountListChanged();
 }
 
 bool
@@ -364,14 +364,14 @@ AccountAdapter::connectAccount(const QString& accountId)
             = QObject::connect(accInfo.accountModel,
                                &lrc::api::NewAccountModel::accountStatusChanged,
                                [this](const QString& accountId) {
-                                   emit accountStatusChanged(accountId);
+                                   Q_EMIT accountStatusChanged(accountId);
                                });
 
         accountProfileUpdatedConnection_
             = QObject::connect(accInfo.accountModel,
                                &lrc::api::NewAccountModel::profileUpdated,
                                [this](const QString& accountId) {
-                                   emit accountStatusChanged(accountId);
+                                   Q_EMIT accountStatusChanged(accountId);
                                });
 
         contactAddedConnection_
@@ -392,7 +392,7 @@ AccountAdapter::connectAccount(const QString& accountId)
                                        /*
                                         * Update conversation.
                                         */
-                                       emit updateConversationForAddedContact();
+                                       Q_EMIT updateConversationForAddedContact();
                                    }
                                });
 
@@ -409,7 +409,7 @@ AccountAdapter::connectAccount(const QString& accountId)
                                                       [this](const QString& contactUri,
                                                              bool banned) {
                                                           if (!banned)
-                                                              emit contactUnbanned();
+                                                              Q_EMIT contactUnbanned();
                                                       });
     } catch (...) {
         qWarning() << "Couldn't get account: " << accountId;
@@ -422,5 +422,5 @@ AccountAdapter::setProperties(const QString& accountId)
     setProperty("currentAccountId", accountId);
     auto accountType = lrcInstance_->getAccountInfo(accountId).profileInfo.type;
     setProperty("currentAccountType", lrc::api::profile::to_string(accountType));
-    emit deviceModelChanged();
+    Q_EMIT deviceModelChanged();
 }

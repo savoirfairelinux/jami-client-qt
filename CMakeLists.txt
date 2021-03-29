@@ -126,9 +126,18 @@ set(COMMON_HEADERS
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBNM libnm)
+pkg_check_modules(LIBNOTIFY libnotify>=0.7.6)
 
 if(LIBNM_FOUND)
     add_definitions(-DUSE_LIBNM)
+endif()
+
+if(LIBNOTIFY_FOUND)
+    add_definitions(-DUSE_LIBNOTIFY)
+    add_definitions(-DQT_NO_KEYWORDS)
+    add_definitions(${LIBNOTIFY_CFLAGS})
+    link_directories(${LIBNOTIFY_LIBRARY_DIRS})
+    include_directories(${LIBNOTIFY_INCLUDE_DIRS})
 endif()
 
 if(QT5_VER AND QT5_PATH)
@@ -220,6 +229,7 @@ target_link_libraries(jami-qt
     ${LRC_LIB_NAME}
     ${qrencode}
     ${X11}
+    ${LIBNOTIFY_LIBRARIES}
     ${LIBNM_LIBRARIES})
 
 if(ENABLE_TESTS)

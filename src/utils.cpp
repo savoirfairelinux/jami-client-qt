@@ -20,6 +20,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+
 #include "utils.h"
 
 #include "globalsystemtray.h"
@@ -414,10 +416,10 @@ Utils::showNotification(const QString& message,
 
     GlobalSystemTray::connectClicked(std::move(onClicked));
 
-    if (from.isEmpty())
-        GlobalSystemTray::instance().showMessage(message, "", QIcon(":images/jami.png"));
-    else
-        GlobalSystemTray::instance().showMessage(from, message, QIcon(":images/jami.png"));
+    // if (from.isEmpty())
+    //     GlobalSystemTray::instance().showMessage(message, "", QIcon(":images/jami.png"));
+    // else
+    //     GlobalSystemTray::instance().showMessage(from, message, QIcon(":images/jami.png"));
 }
 
 QSize
