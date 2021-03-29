@@ -20,6 +20,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+
 #include "utilsadapter.h"
 
 #include "globalsystemtray.h"
@@ -360,5 +362,5 @@ UtilsAdapter::humanFileSize(qint64 fileSize)
 void
 UtilsAdapter::setSystemTrayIconVisible(bool visible)
 {
-    GlobalSystemTray::instance().setVisible(visible);
+    // GlobalSystemTray::instance().setVisible(visible);
 }

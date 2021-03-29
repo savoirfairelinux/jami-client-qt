@@ -19,6 +19,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+
 #include "mainapplication.h"
 
 #include "appsettingsmanager.h"
@@ -243,7 +245,7 @@ MainApplication::init()
 void
 MainApplication::restoreApp()
 {
-    emit lrcInstance_->restoreAppRequested();
+    Q_EMIT lrcInstance_->restoreAppRequested();
 }
 
 void
@@ -427,30 +429,30 @@ MainApplication::initSettings()
 void
 MainApplication::initSystray()
 {
-    GlobalSystemTray& sysIcon = GlobalSystemTray::instance();
-    sysIcon.setIcon(QIcon(":images/jami.png"));
+    // GlobalSystemTray& sysIcon = GlobalSystemTray::instance();
+    // sysIcon.setIcon(QIcon(":images/jami.png"));
 
-    QMenu* systrayMenu = new QMenu();
+    // QMenu* systrayMenu = new QMenu();
 
-    QAction* exitAction = new QAction(tr("Exit"), this);
-    connect(exitAction, &QAction::triggered, [this] {
-        engine_->quit();
-        cleanup();
-    });
-    connect(&sysIcon, &QSystemTrayIcon::activated, [this](QSystemTrayIcon::ActivationReason reason) {
-        if (reason != QSystemTrayIcon::ActivationReason::Context)
-            restoreApp();
-    });
+    // QAction* exitAction = new QAction(tr("Exit"), this);
+    // connect(exitAction, &QAction::triggered, [this] {
+    //     engine_->quit();
+    //     cleanup();
+    // });
+    // connect(&sysIcon, &QSystemTrayIcon::activated, [this](QSystemTrayIcon::ActivationReason reason) {
+    //     if (reason != QSystemTrayIcon::ActivationReason::Context)
+    //         restoreApp();
+    // });
 
-    systrayMenu->addAction(exitAction);
-    sysIcon.setContextMenu(systrayMenu);
-    sysIcon.show();
+    // systrayMenu->addAction(exitAction);
+    // sysIcon.setContextMenu(systrayMenu);
+    // sysIcon.show();
 }
 
 void
 MainApplication::cleanup()
 {
-    GlobalSystemTray::instance().hide();
+    // GlobalSystemTray::instance().hide();
 #ifdef Q_OS_WIN
     FreeConsole();
 #endif

@@ -21,6 +21,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+
 #include "messagesadapter.h"
 
 #include "globalsystemtray.h"
@@ -195,7 +197,7 @@ MessagesAdapter::slotSendMessageContentSaved(const QString& content)
     auto restoredContent = lrcInstance_->getContentDraft(lrcInstance_->getCurrentConvUid(),
                                                          lrcInstance_->getCurrAccId());
     setSendMessageContent(restoredContent);
-    emit needToUpdateSmartList();
+    Q_EMIT needToUpdateSmartList();
 }
 
 void
@@ -204,7 +206,7 @@ MessagesAdapter::slotUpdateDraft(const QString& content)
     if (!LastConvUid_.isEmpty()) {
         lrcInstance_->setContentDraft(LastConvUid_, lrcInstance_->getCurrAccId(), content);
     }
-    emit needToUpdateSmartList();
+    Q_EMIT needToUpdateSmartList();
 }
 
 void
@@ -666,7 +668,7 @@ MessagesAdapter::acceptInvitation(const QString& convUid)
     lrcInstance_->getCurrentConversationModel()->makePermanent(currentConvUid);
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
-    emit invitationAccepted();
+    Q_EMIT invitationAccepted();
 }
 
 void
@@ -677,7 +679,7 @@ MessagesAdapter::refuseInvitation(const QString& convUid)
     setInvitation(false);
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
-    emit navigateToWelcomePageRequested();
+    Q_EMIT navigateToWelcomePageRequested();
 }
 
 void
@@ -688,8 +690,8 @@ MessagesAdapter::blockConversation(const QString& convUid)
     setInvitation(false);
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
-    emit contactBanned();
-    emit navigateToWelcomePageRequested();
+    Q_EMIT contactBanned();
+    Q_EMIT navigateToWelcomePageRequested();
 }
 
 void

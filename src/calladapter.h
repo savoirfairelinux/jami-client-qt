@@ -19,6 +19,8 @@
 
 #pragma once
 
+
+
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
 #include "globalsystemtray.h"
@@ -76,7 +78,7 @@ public:
                                 const QString& accountId = {},
                                 bool forceCallOnly = false);
 
-signals:
+Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
     void updateConversationSmartList();
     void updateParticipantsInfos(const QVariantList& infos,
@@ -98,7 +100,7 @@ signals:
                        const QString& bestName);
     void remoteRecordingChanged(const QStringList& peers, bool state);
 
-public slots:
+public Q_SLOTS:
     void onShowIncomingCallView(const QString& accountId, const QString& convUid);
     void onShowCallView(const QString& accountId, const QString& convUid);
     void onAccountChanged();

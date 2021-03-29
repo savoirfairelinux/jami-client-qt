@@ -91,6 +91,6 @@ private:
 
     QStringList defaultModerators_;
 
-signals:
+Q_SIGNALS:
     void defaultModeratorsUpdated();
 };
