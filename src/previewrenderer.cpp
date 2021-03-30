@@ -115,15 +115,19 @@ VideoCallPreviewRenderer::paint(QPainter* painter)
 PhotoboothPreviewRender::PhotoboothPreviewRender(QQuickItem* parent)
     : PreviewRenderer(parent)
 {
-    connect(this, &PreviewRenderer::lrcInstanceChanged, [this] {
+    lrcInstanceChangedConnection_ = connect(this, &PreviewRenderer::lrcInstanceChanged, [this] {
         if (lrcInstance_)
-            connect(lrcInstance_->renderer(), &RenderManager::previewRenderingStopped, [this]() {
-                emit hideBooth();
-            });
+            rendererStoppedConnection_ = connect(lrcInstance_->renderer(),
+                                                 &RenderManager::previewRenderingStopped,
+                                                 [this]() { emit hideBooth(); });
     });
 }
 
-PhotoboothPreviewRender::~PhotoboothPreviewRender() {}
+PhotoboothPreviewRender::~PhotoboothPreviewRender()
+{
+    disconnect(lrcInstanceChangedConnection_);
+    disconnect(rendererStoppedConnection_);
+}
 
 QString
 PhotoboothPreviewRender::takePhoto(int size)
@@ -133,6 +137,7 @@ PhotoboothPreviewRender::takePhoto(int size)
             previewImage->copy()
                 .scaled(size, size, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation)));
     }
+    return {};
 }
 
 void
