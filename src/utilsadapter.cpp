@@ -22,8 +22,8 @@
 
 #include "utilsadapter.h"
 
-#include "globalsystemtray.h"
 #include "lrcinstance.h"
+#include "systemtray.h"
 #include "utils.h"
 #include "version.h"
 
@@ -31,10 +31,13 @@
 #include <QClipboard>
 #include <QFileInfo>
 
-UtilsAdapter::UtilsAdapter(LRCInstance* instance, QObject* parent)
+UtilsAdapter::UtilsAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
     , clipboard_(QApplication::clipboard())
-{}
+    , systemTray_(systemTray)
+{
+    QML_REGISTERSINGLETONTYPE_THIS
+}
 
 const QString
 UtilsAdapter::getProjectCredits()
@@ -360,5 +363,5 @@ UtilsAdapter::humanFileSize(qint64 fileSize)
 void
 UtilsAdapter::setSystemTrayIconVisible(bool visible)
 {
-    GlobalSystemTray::instance().setVisible(visible);
+    systemTray_->setVisible(visible);
 }

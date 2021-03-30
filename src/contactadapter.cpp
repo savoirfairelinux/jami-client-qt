@@ -25,6 +25,8 @@
 ContactAdapter::ContactAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
 {
+    QML_REGISTERSINGLETONTYPE_THIS
+
     selectableProxyModel_.reset(new SelectableProxyModel(smartListModel_.get()));
 }
 

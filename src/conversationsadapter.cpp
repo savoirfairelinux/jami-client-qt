@@ -25,12 +25,18 @@
 
 #include "utils.h"
 #include "qtutils.h"
+#include "systemtray.h"
 
 #include <QApplication>
 
-ConversationsAdapter::ConversationsAdapter(LRCInstance* instance, QObject* parent)
+ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
+                                           LRCInstance* instance,
+                                           QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , systemTray_(systemTray)
 {
+    QML_REGISTERSINGLETONTYPE_THIS
+
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
         lrcInstance_->getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });
@@ -163,7 +169,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             }
         };
 
-        Utils::showNotification(interaction.body, from, accountId, convUid, onClicked);
+        systemTray_->showNotification(interaction.body, from, onClicked);
         return;
     }
 }

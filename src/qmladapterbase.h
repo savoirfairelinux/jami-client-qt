@@ -18,6 +18,9 @@
 
 #pragma once
 
+// derived objects will need to register in the constructor
+#include "qmlregister.h"
+
 #include <QObject>
 
 class LRCInstance;

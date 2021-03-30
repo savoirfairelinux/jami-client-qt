@@ -22,6 +22,16 @@
 
 #include "lrcinstance.h"
 
+#include "accountadapter.h"
+#include "avadapter.h"
+#include "calladapter.h"
+#include "contactadapter.h"
+#include "pluginadapter.h"
+#include "messagesadapter.h"
+#include "settingsadapter.h"
+#include "utilsadapter.h"
+#include "conversationsadapter.h"
+
 #include <QFile>
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -32,6 +42,8 @@
 #include <memory>
 
 class ConnectivityMonitor;
+class AppSettingsManager;
+class SystemTray;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -81,16 +93,19 @@ private:
     void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm);
     const QVariantMap parseArguments();
     void setApplicationFont();
-    void initQmlEngine();
-    void initSettings();
+    void initQmlLayer();
     void initSystray();
     void cleanup();
 
 private:
     QScopedPointer<QFile> debugFile_;
     QScopedPointer<QQmlApplicationEngine> engine_;
+
     QScopedPointer<LRCInstance> lrcInstance_;
-    ConnectivityMonitor* connectivityMonitor_ {nullptr};
+
+    ConnectivityMonitor* connectivityMonitor_;
+    AppSettingsManager* settingsManager_;
+    SystemTray* systemTray_;
 
     ScreenInfo screenInfo_;
 };

@@ -23,13 +23,19 @@
 
 #include "accountadapter.h"
 
+#include "appsettingsmanager.h"
 #include "qtutils.h"
 
 #include <QtConcurrent/QtConcurrent>
 
-AccountAdapter::AccountAdapter(LRCInstance* instance, QObject* parent)
+AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
+                               LRCInstance* instance,
+                               QObject* parent)
     : QmlAdapterBase(instance, parent)
-{}
+    , settingsManager_(settingsManager)
+{
+    QML_REGISTERSINGLETONTYPE_THIS
+}
 
 void
 AccountAdapter::safeInit()
@@ -100,7 +106,7 @@ AccountAdapter::createJamiAccount(QString registeredName,
             lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
 
             auto showBackup = isCreating
-                              && !AppSettingsManager::getValue(Settings::Key::NeverShowMeAgain)
+                              && !settingsManager_->getValue(Settings::Key::NeverShowMeAgain)
                                       .toBool();
             if (!registeredName.isEmpty()) {
                 QObject::disconnect(registeredNameSavedConnection_);

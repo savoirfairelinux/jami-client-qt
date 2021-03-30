@@ -18,6 +18,49 @@
 
 #pragma once
 
-class LRCInstance;
+#define NS_MODELS    "net.jami.Models"
+#define NS_ADAPTERS  "net.jami.Adapters"
+#define NS_CONSTANTS "net.jami.Constants"
+#define NS_HELPERS   "net.jami.Helpers"
+#define NS_ENUMS     "net.jami.Enums"
+#define VER_MAJ      1
+#define VER_MIN      0
 
-void registerTypes(LRCInstance* instance);
+#include <string>
+
+#ifndef _WIN32
+#include <cxxabi.h>
+#endif
+
+#ifdef _WIN32
+template<typename T>
+const std::string
+demang() noexcept
+{
+    return std::string {typeid(T).name()}.substr(6);
+}
+#else
+template<typename T>
+std::string
+demang() noexcept
+{
+    int err = 0;
+    std::string ret {};
+    char* tname = abi::__cxa_demangle(typeid(T).name(), 0, 0, &err);
+    ret = err == 0 ? tname : "error";
+    std::free(tname);
+    return ret;
+#endif
+
+// clang-format off
+#define QML_REGISTERSINGLETONTYPE_THIS \
+    QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership); \
+    using T = std::remove_reference<decltype(*this)>::type; \
+    qmlRegisterSingletonType<T>(NS_ADAPTERS, VER_MAJ, VER_MIN, demang<T>().c_str(), \
+                                [this](QQmlEngine*, QJSEngine*) -> QObject* { \
+                                    return this; });
+// clang-format on
+
+namespace Utils {
+void registerTypes();
+}

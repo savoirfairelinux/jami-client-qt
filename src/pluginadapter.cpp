@@ -22,7 +22,9 @@
 
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
-{}
+{
+    QML_REGISTERSINGLETONTYPE_THIS;
+}
 
 QVariant
 PluginAdapter::getMediaHandlerSelectableModel(const QString& callId)

@@ -21,8 +21,6 @@ pragma Singleton
 
 import QtQuick 2.14
 
-import net.jami.Helpers 1.0
-
 Item {
     readonly property string appTitle: "Jami" + (UpdateManager.isCurrentVersionBeta() ? " (BETA)" : "")
 

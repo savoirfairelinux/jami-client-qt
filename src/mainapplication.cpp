@@ -21,11 +21,11 @@
 
 #include "mainapplication.h"
 
+#include "qmlregister.h"
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
-#include "globalsystemtray.h"
+#include "systemtray.h"
 #include "namedirectory.h"
-#include "qmlregister.h"
 #include "qrimageprovider.h"
 #include "tintedbuttonimageprovider.h"
 #include "avatarimageprovider.h"
@@ -146,6 +146,8 @@ MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
     , engine_(new QQmlApplicationEngine())
     , connectivityMonitor_(new ConnectivityMonitor(this))
+    , settingsManager_(new AppSettingsManager(this))
+    , systemTray_(new SystemTray(settingsManager_, this))
 {
     QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
 }
@@ -233,9 +235,11 @@ MainApplication::init()
         vsConsoleDebug();
     }
 
-    initSettings();
+    auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
+    lrcInstance_->dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
+
+    initQmlLayer();
     initSystray();
-    initQmlEngine();
 
     return true;
 }
@@ -394,9 +398,25 @@ MainApplication::setApplicationFont()
 }
 
 void
-MainApplication::initQmlEngine()
+MainApplication::initQmlLayer()
 {
-    registerTypes(lrcInstance_.get());
+    // setup the adapters (their lifetimes are that of MainApplication)
+    new CallAdapter(systemTray_, lrcInstance_.data(), this);
+    new MessagesAdapter(settingsManager_, lrcInstance_.data(), this);
+    new ConversationsAdapter(systemTray_, lrcInstance_.data(), this);
+    new AvAdapter(lrcInstance_.data(), this);
+    new ContactAdapter(lrcInstance_.data(), this);
+    new AccountAdapter(settingsManager_, lrcInstance_.data(), this);
+    new UtilsAdapter(systemTray_, lrcInstance_.data(), this);
+    new SettingsAdapter(settingsManager_, lrcInstance_.data(), this);
+    new PluginAdapter(lrcInstance_.data(), this);
+
+    engine_->rootContext()->setContextProperty("AVModel", &lrcInstance_->avModel());
+    engine_->rootContext()->setContextProperty("PluginModel", &lrcInstance_->pluginModel());
+    engine_->rootContext()->setContextProperty("UpdateManager", lrcInstance_->getUpdateManager());
+
+    // register other types that don't require injection(e.g. uncreatables, c++/qml singletons)
+    Utils::registerTypes();
 
     engine_->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance_.get()));
     engine_->addImageProvider(QLatin1String("tintedPixmap"),
@@ -417,18 +437,9 @@ MainApplication::initQmlEngine()
 }
 
 void
-MainApplication::initSettings()
-{
-    AppSettingsManager::instance().initValues();
-    auto downloadPath = AppSettingsManager::instance().getValue(Settings::Key::DownloadPath);
-    lrcInstance_->dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
-}
-
-void
 MainApplication::initSystray()
 {
-    GlobalSystemTray& sysIcon = GlobalSystemTray::instance();
-    sysIcon.setIcon(QIcon(":images/jami.png"));
+    systemTray_->setIcon(QIcon(":images/jami.png"));
 
     QMenu* systrayMenu = new QMenu();
 
@@ -437,20 +448,21 @@ MainApplication::initSystray()
         engine_->quit();
         cleanup();
     });
-    connect(&sysIcon, &QSystemTrayIcon::activated, [this](QSystemTrayIcon::ActivationReason reason) {
-        if (reason != QSystemTrayIcon::ActivationReason::Context)
-            restoreApp();
-    });
+    connect(systemTray_,
+            &QSystemTrayIcon::activated,
+            [this](QSystemTrayIcon::ActivationReason reason) {
+                if (reason != QSystemTrayIcon::ActivationReason::Context)
+                    restoreApp();
+            });
 
     systrayMenu->addAction(exitAction);
-    sysIcon.setContextMenu(systrayMenu);
-    sysIcon.show();
+    systemTray_->setContextMenu(systrayMenu);
+    systemTray_->show();
 }
 
 void
 MainApplication::cleanup()
 {
-    GlobalSystemTray::instance().hide();
 #ifdef Q_OS_WIN
     FreeConsole();
 #endif
