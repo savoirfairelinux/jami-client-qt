@@ -22,6 +22,16 @@
 
 #include "lrcinstance.h"
 
+#include "accountadapter.h"
+#include "avadapter.h"
+#include "calladapter.h"
+#include "contactadapter.h"
+#include "pluginadapter.h"
+#include "messagesadapter.h"
+#include "settingsadapter.h"
+#include "utilsadapter.h"
+#include "conversationsadapter.h"
+
 #include <QFile>
 #include <QApplication>
 #include <QQmlApplicationEngine>
@@ -32,6 +42,8 @@
 #include <memory>
 
 class ConnectivityMonitor;
+class AppSettingsManager;
+class SystemTray;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -82,15 +94,28 @@ private:
     const QVariantMap parseArguments();
     void setApplicationFont();
     void initQmlEngine();
-    void initSettings();
     void initSystray();
     void cleanup();
 
 private:
     QScopedPointer<QFile> debugFile_;
     QScopedPointer<QQmlApplicationEngine> engine_;
+
     QScopedPointer<LRCInstance> lrcInstance_;
+
+    QScopedPointer<CallAdapter> callAdapter_;
+    QScopedPointer<MessagesAdapter> messagesAdapter_;
+    QScopedPointer<ConversationsAdapter> conversationsAdapter_;
+    QScopedPointer<AvAdapter> avAdapter_;
+    QScopedPointer<ContactAdapter> contactAdapter_;
+    QScopedPointer<AccountAdapter> accountAdapter_;
+    QScopedPointer<UtilsAdapter> utilsAdapter_;
+    QScopedPointer<SettingsAdapter> settingsAdapter_;
+    QScopedPointer<PluginAdapter> pluginAdapter_;
+
     ConnectivityMonitor* connectivityMonitor_ {nullptr};
+    AppSettingsManager* settingsManager_;
+    SystemTray* systemTray_;
 
     ScreenInfo screenInfo_;
 };
