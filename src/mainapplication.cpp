@@ -23,7 +23,7 @@
 
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
-#include "globalsystemtray.h"
+#include "systemtray.h"
 #include "namedirectory.h"
 #include "qmlregister.h"
 #include "qrimageprovider.h"
@@ -146,6 +146,8 @@ MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
     , engine_(new QQmlApplicationEngine())
     , connectivityMonitor_(new ConnectivityMonitor(this))
+    , settingsManager_(new AppSettingsManager(this))
+    , systemTray_(new SystemTray(settingsManager_, this))
 {
     QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
 }
@@ -233,7 +235,9 @@ MainApplication::init()
         vsConsoleDebug();
     }
 
-    initSettings();
+    auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
+    lrcInstance_->dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
+
     initSystray();
     initQmlEngine();
 
@@ -417,18 +421,9 @@ MainApplication::initQmlEngine()
 }
 
 void
-MainApplication::initSettings()
-{
-    AppSettingsManager::instance().initValues();
-    auto downloadPath = AppSettingsManager::instance().getValue(Settings::Key::DownloadPath);
-    lrcInstance_->dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
-}
-
-void
 MainApplication::initSystray()
 {
-    GlobalSystemTray& sysIcon = GlobalSystemTray::instance();
-    sysIcon.setIcon(QIcon(":images/jami.png"));
+    systemTray_->setIcon(QIcon(":images/jami.png"));
 
     QMenu* systrayMenu = new QMenu();
 
@@ -437,20 +432,21 @@ MainApplication::initSystray()
         engine_->quit();
         cleanup();
     });
-    connect(&sysIcon, &QSystemTrayIcon::activated, [this](QSystemTrayIcon::ActivationReason reason) {
-        if (reason != QSystemTrayIcon::ActivationReason::Context)
-            restoreApp();
-    });
+    connect(systemTray_,
+            &QSystemTrayIcon::activated,
+            [this](QSystemTrayIcon::ActivationReason reason) {
+                if (reason != QSystemTrayIcon::ActivationReason::Context)
+                    restoreApp();
+            });
 
     systrayMenu->addAction(exitAction);
-    sysIcon.setContextMenu(systrayMenu);
-    sysIcon.show();
+    systemTray_->setContextMenu(systrayMenu);
+    systemTray_->show();
 }
 
 void
 MainApplication::cleanup()
 {
-    GlobalSystemTray::instance().hide();
 #ifdef Q_OS_WIN
     FreeConsole();
 #endif

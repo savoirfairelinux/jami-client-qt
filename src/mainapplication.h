@@ -32,6 +32,8 @@
 #include <memory>
 
 class ConnectivityMonitor;
+class AppSettingsManager;
+class SystemTray;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -82,7 +84,6 @@ private:
     const QVariantMap parseArguments();
     void setApplicationFont();
     void initQmlEngine();
-    void initSettings();
     void initSystray();
     void cleanup();
 
@@ -91,6 +92,8 @@ private:
     QScopedPointer<QQmlApplicationEngine> engine_;
     QScopedPointer<LRCInstance> lrcInstance_;
     ConnectivityMonitor* connectivityMonitor_ {nullptr};
+    AppSettingsManager* settingsManager_;
+    SystemTray* systemTray_;
 
     ScreenInfo screenInfo_;
 };
