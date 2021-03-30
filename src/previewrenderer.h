@@ -82,4 +82,6 @@ signals:
 
 private:
     void paint(QPainter* painter) override final;
+
+    QMetaObject::Connection rendererStoppedConnection_;
 };

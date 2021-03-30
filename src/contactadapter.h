@@ -61,6 +61,7 @@ public:
         if (filterPredicate_) {
             return filterPredicate_(index, filterRegExp());
         }
+        return false;
     }
 
 private:
