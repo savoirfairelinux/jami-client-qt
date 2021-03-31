@@ -29,8 +29,8 @@ class QrImageProvider : public QuickImageProviderBase
 public:
     QrImageProvider(LRCInstance* instance = nullptr)
         : QuickImageProviderBase(QQuickImageProvider::Image,
-                                  QQmlImageProviderBase::ForceAsynchronousImageLoading,
-                                  instance)
+                                 QQmlImageProviderBase::ForceAsynchronousImageLoading,
+                                 instance)
     {}
 
     enum class QrType { Account, Contact };
@@ -43,7 +43,7 @@ public:
      */
     QPair<QrType, QString> getIndexFromID(const QString& id)
     {
-        auto list = id.split('_', Qt::SkipEmptyParts);
+        auto list = id.split('_', QString::SplitBehavior::SkipEmptyParts);
         if (list.size() < 2)
             return QPair(QrType::Account, "");
         if (list.contains("account") && list.size() > 1) {

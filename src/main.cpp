@@ -23,6 +23,7 @@
 #include "version.h"
 
 #include <QCryptographicHash>
+#include <QGuiApplication>
 #include <QtWebEngine>
 
 #include <clocale>
