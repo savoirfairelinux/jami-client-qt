@@ -67,6 +67,7 @@
                                              VER_MAJ, VER_MIN, #T, \
                                              "Don't try to add to a qml definition of " #T);
 
+namespace jamiqt {
 namespace Utils {
 
 /*!
@@ -131,3 +132,4 @@ registerTypes()
 }
 // clang-format on
 } // namespace Utils
+} // namespace jamiqt

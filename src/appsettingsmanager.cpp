@@ -18,8 +18,6 @@
  * \file appsettingsmanager.cpp
  */
 
-#pragma once
-
 #include "appsettingsmanager.h"
 
 AppSettingsManager::AppSettingsManager(QObject* parent)
