@@ -23,6 +23,7 @@
 #include "version.h"
 
 #include <QCryptographicHash>
+#include <QApplication>
 #include <QtWebEngine>
 
 #include <clocale>
@@ -60,8 +61,8 @@ main(int argc, char* argv[])
     QApplication::setQuitOnLastWindowClosed(false);
     QCoreApplication::setAttribute(Qt::AA_UseOpenGLES);
     QCoreApplication::setApplicationVersion(QString(VERSION_STRING));
-    QApplication::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+    // QGuiApplication::setHighDpiScaleFactorRoundingPolicy(
+    //     Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
     QtWebEngine::initialize();
 
     char ARG_DISABLE_WEB_SECURITY[] = "--disable-web-security";
