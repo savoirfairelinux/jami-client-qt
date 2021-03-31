@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include <functional>
 #include <QSystemTrayIcon>
 
 class AppSettingsManager;
