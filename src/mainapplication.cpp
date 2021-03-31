@@ -38,6 +38,7 @@
 #include <QQmlContext>
 
 #include <locale.h>
+#include <thread>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -416,7 +417,7 @@ MainApplication::initQmlLayer()
     engine_->rootContext()->setContextProperty("UpdateManager", lrcInstance_->getUpdateManager());
 
     // register other types that don't require injection(e.g. uncreatables, c++/qml singletons)
-    Utils::registerTypes();
+    jamiqt::Utils::registerTypes();
 
     engine_->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance_.get()));
     engine_->addImageProvider(QLatin1String("tintedPixmap"),

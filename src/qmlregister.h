@@ -18,6 +18,10 @@
 
 #pragma once
 
+#include <QJSEngine>
+#include <QQmlEngine>
+#include <QObject>
+
 #define NS_MODELS    "net.jami.Models"
 #define NS_ADAPTERS  "net.jami.Adapters"
 #define NS_CONSTANTS "net.jami.Constants"
@@ -50,6 +54,7 @@ demang() noexcept
     ret = err == 0 ? tname : "error";
     std::free(tname);
     return ret;
+}
 #endif
 
 // clang-format off
