@@ -48,6 +48,12 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
             &CallAdapter::onShowCallView);
 
     connect(lrcInstance_, &LRCInstance::currentAccountChanged, this, &CallAdapter::onAccountChanged);
+    connect(systemTray_, &SystemTray::answerCallActivated, [this](const QString& convUid) {
+        acceptACall(lrcInstance_->getCurrentAccountInfo().id, convUid);
+    });
+    connect(systemTray_, &SystemTray::declineCallActivated, [this](const QString& convUid) {
+        refuseACall(lrcInstance_->getCurrentAccountInfo().id, convUid);
+    });
 }
 
 void
@@ -338,7 +344,15 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
         Q_EMIT callSetupMainViewRequired(convInfo.accountId, convInfo.uid);
     };
     Q_EMIT lrcInstance_->updateSmartList();
+#ifdef Q_OS_LINUX
+    systemTray_->showNotification("idsdad",
+                                  tr("Incoming call"),
+                                  from + " " + tr("is calling you"),
+                                  NotificationType::CALL,
+                                  convInfo.uid);
+#else
     systemTray_->showNotification(tr("is calling you"), from, onClicked);
+#endif
 }
 
 void
@@ -500,7 +514,7 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
     setTime(accountId_, convUid_);
     QObject::disconnect(oneSecondTimer_);
     QObject::connect(oneSecondTimer_, &QTimer::timeout, [this] { setTime(accountId_, convUid_); });
-    oneSecondTimer_->start(20);
+    oneSecondTimer_->start(1000);
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
 
     auto* call = lrcInstance_->getCallInfoForConversation(convInfo);
@@ -518,13 +532,13 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                         : accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
 
     Q_EMIT updateOverlay(isPaused,
-                       isAudioOnly,
-                       isAudioMuted,
-                       isVideoMuted,
-                       isRecording,
-                       accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
-                       !convInfo.confId.isEmpty(),
-                       bestName);
+                         isAudioOnly,
+                         isAudioMuted,
+                         isVideoMuted,
+                         isRecording,
+                         accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
+                         !convInfo.confId.isEmpty(),
+                         bestName);
 }
 
 void
