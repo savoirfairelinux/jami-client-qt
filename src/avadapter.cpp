@@ -35,8 +35,6 @@
 AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
 {
-    QML_REGISTERSINGLETONTYPE_THIS
-
     auto& avModel = lrcInstance_->avModel();
 
     deviceListSize_ = avModel.getDevices().size();

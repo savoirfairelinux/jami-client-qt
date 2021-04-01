@@ -23,10 +23,12 @@
 #include <QObject>
 #include <QVariant>
 #include <QString>
+#include <QQmlEngine>
 
 class AvAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 
 public:
     explicit AvAdapter(LRCInstance* instance, QObject* parent = nullptr);

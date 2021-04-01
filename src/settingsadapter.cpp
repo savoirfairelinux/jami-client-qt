@@ -25,9 +25,7 @@ SettingsAdapter::SettingsAdapter(AppSettingsManager* settingsManager,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-{
-    QML_REGISTERSINGLETONTYPE_THIS;
-}
+{}
 
 QString
 SettingsAdapter::getDir_Document()

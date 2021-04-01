@@ -24,6 +24,7 @@
 
 #include <QApplication>
 #include <QObject>
+#include <QQmlEngine>
 
 #include "qmladapterbase.h"
 
@@ -33,6 +34,7 @@ class SystemTray;
 class UtilsAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 public:
     explicit UtilsAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent = nullptr);
     ~UtilsAdapter() = default;

@@ -57,15 +57,6 @@ demang() noexcept
 }
 #endif
 
-// clang-format off
-#define QML_REGISTERSINGLETONTYPE_THIS \
-    QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership); \
-    using T = std::remove_reference<decltype(*this)>::type; \
-    qmlRegisterSingletonType<T>(NS_ADAPTERS, VER_MAJ, VER_MIN, demang<T>().c_str(), \
-                                [this](QQmlEngine*, QJSEngine*) -> QObject* { \
-                                    return this; });
-// clang-format on
-
 namespace Utils {
 void registerTypes();
 }

@@ -34,8 +34,6 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
     , oneSecondTimer_(new QTimer(this))
     , systemTray_(systemTray)
 {
-    QML_REGISTERSINGLETONTYPE_THIS
-
     accountId_ = lrcInstance_->getCurrAccId();
     connectCallModel(accountId_);
 

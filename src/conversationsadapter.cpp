@@ -35,8 +35,6 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
 {
-    QML_REGISTERSINGLETONTYPE_THIS
-
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
         lrcInstance_->getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });

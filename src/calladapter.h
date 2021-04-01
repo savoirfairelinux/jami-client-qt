@@ -27,12 +27,14 @@
 #include <QString>
 #include <QVariant>
 #include <QSystemTrayIcon>
+#include <QQmlEngine>
 
 class SystemTray;
 
 class CallAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 
 public:
     enum MuteStates { UNMUTED, LOCAL_MUTED, MODERATOR_MUTED, BOTH_MUTED };
