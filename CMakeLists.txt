@@ -130,10 +130,19 @@ set(COMMON_HEADERS
     ${SRC_DIR}/appsettingsmanager.h)
 
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBNM libnm)
 
+pkg_check_modules(LIBNM libnm)
 if(LIBNM_FOUND)
     add_definitions(-DUSE_LIBNM)
+endif()
+
+pkg_check_modules(LIBNOTIFY libnotify>=0.7.6)
+if(LIBNOTIFY_FOUND)
+    add_definitions(-DUSE_LIBNOTIFY)
+    add_definitions(${LIBNOTIFY_CFLAGS})
+    pkg_check_modules(GTK3 REQUIRED gtk+-3.0>=3.10)
+    add_definitions(${GTK3_CFLAGS})
+    add_definitions(${GTK3_CFLAGS_OTHER})
 endif()
 
 if(QT5_VER AND QT5_PATH)
@@ -210,7 +219,9 @@ message("Will expect lrc headers in ${LRC_SRC_PATH}")
 include_directories(${PROJECT_SOURCE_DIR}
     ${SRC_DIR}
     ${LRC_SRC_PATH}
-    ${LIBNM_INCLUDE_DIRS})
+    ${LIBNM_INCLUDE_DIRS}
+    ${LIBNOTIFY_INCLUDE_DIRS}
+    ${GTK3_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME}
     ${SRC_DIR}/main.cpp
@@ -231,7 +242,10 @@ target_link_libraries(jami-qt
     ${LRC_LIB_NAME}
     ${qrencode}
     ${X11}
-    ${LIBNM_LIBRARIES})
+    ${LIBNM_LIBRARIES}
+    ${LIBNOTIFY_LIBRARIES}
+    ${GTK3_LIBRARIES}
+    -pthread)
 
 if(ENABLE_TESTS)
     message("Add Jami tests")

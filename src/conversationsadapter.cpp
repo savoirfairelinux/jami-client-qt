@@ -167,7 +167,13 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             }
         };
 
-        systemTray_->showNotification(interaction.body, from, onClicked);
+        // systemTray_->showNotification(interaction.body, from, onClicked);
+        systemTray_->showNotification(interaction.body,
+                                      from,
+                                      onClicked,
+                                      NotificationType::CHAT,
+                                      "chattest",
+                                      "MESSAGE^^");
         return;
     }
 }
