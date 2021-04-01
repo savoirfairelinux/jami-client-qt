@@ -184,6 +184,7 @@ FrameWrapper::slotRenderingStopped(const QString& id)
     }
 
     emit renderingStopped(id);
+    QObject::disconnect(renderConnections_.stopped);
 }
 
 RenderManager::RenderManager(AVModel& avModel)
@@ -268,6 +269,11 @@ RenderManager::addDistantRenderer(const QString& id)
                                                              [this](const QString& id) {
                                                                  emit distantFrameUpdated(id);
                                                              });
+        distantConnectionMap_[id].stopped = QObject::connect(dfw.get(),
+                                                             &FrameWrapper::renderingStopped,
+                                                             [this](const QString& id) {
+                                                                 emit distantRenderingStopped(id);
+                                                             });
 
         /*
          * Connect FrameWrapper to avmodel.
@@ -301,6 +307,7 @@ RenderManager::removeDistantRenderer(const QString& id)
         if (dcIt != distantConnectionMap_.end()) {
             QObject::disconnect(dcIt->second.started);
             QObject::disconnect(dcIt->second.updated);
+            QObject::disconnect(dcIt->second.stopped);
         }
 
         /*
