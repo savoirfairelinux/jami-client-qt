@@ -518,13 +518,13 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                         : accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
 
     Q_EMIT updateOverlay(isPaused,
-                       isAudioOnly,
-                       isAudioMuted,
-                       isVideoMuted,
-                       isRecording,
-                       accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
-                       !convInfo.confId.isEmpty(),
-                       bestName);
+                         isAudioOnly,
+                         isAudioMuted,
+                         isVideoMuted,
+                         isRecording,
+                         accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
+                         !convInfo.confId.isEmpty(),
+                         bestName);
 }
 
 void

@@ -22,6 +22,9 @@
 
 #include <functional>
 
+enum class NotificationType { INVALID, CALL, REQUEST, CHAT };
+// Q_ENUMS(NotificationType)
+
 class AppSettingsManager;
 
 class SystemTray final : public QSystemTrayIcon
@@ -32,9 +35,14 @@ public:
     explicit SystemTray(AppSettingsManager* settingsManager, QObject* parent = nullptr);
     ~SystemTray();
 
+    bool hasNotification(const QString& id);
+    bool hideNotification(const QString& id);
     void showNotification(const QString& message,
                           const QString& from,
-                          std::function<void()> const& onClickedCb);
+                          std::function<void()> const& onClickedCb,
+                          NotificationType type = NotificationType::INVALID,
+                          const QString& id = {},
+                          const QString& title = {});
 
     template<typename Func>
     void setOnClickedCallback(Func&& onClickedCb);
@@ -42,4 +50,7 @@ public:
 private:
     QMetaObject::Connection messageClicked_;
     AppSettingsManager* settingsManager_;
+
+    struct SystemTrayImpl;
+    std::unique_ptr<SystemTrayImpl> pimpl_;
 };
