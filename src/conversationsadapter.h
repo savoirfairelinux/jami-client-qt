@@ -30,6 +30,7 @@ class SystemTray;
 class ConversationsAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 
     Q_PROPERTY(lrc::api::profile::Type currentTypeFilter MEMBER currentTypeFilter_ NOTIFY
                    currentTypeFilterChanged)

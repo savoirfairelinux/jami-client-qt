@@ -35,9 +35,7 @@ UtilsAdapter::UtilsAdapter(SystemTray* systemTray, LRCInstance* instance, QObjec
     : QmlAdapterBase(instance, parent)
     , clipboard_(QApplication::clipboard())
     , systemTray_(systemTray)
-{
-    QML_REGISTERSINGLETONTYPE_THIS
-}
+{}
 
 const QString
 UtilsAdapter::getProjectCredits()

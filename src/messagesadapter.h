@@ -30,6 +30,7 @@ class AppSettingsManager;
 class MessagesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
     Q_PROPERTY(QVariantMap chatviewTranslatedStrings MEMBER chatviewTranslatedStrings_ CONSTANT)
 
 public:

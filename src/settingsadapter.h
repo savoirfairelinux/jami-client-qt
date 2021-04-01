@@ -31,6 +31,7 @@
 class SettingsAdapter : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 public:
     explicit SettingsAdapter(AppSettingsManager* settingsManager,
                              LRCInstance* instance,

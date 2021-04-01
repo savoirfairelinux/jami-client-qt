@@ -67,6 +67,7 @@ private:
 class ContactAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 
 public:
     explicit ContactAdapter(LRCInstance* instance, QObject* parent = nullptr);

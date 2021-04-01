@@ -31,6 +31,7 @@
 class PluginAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    QML_SINGLETON
 public:
     explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
     ~PluginAdapter() = default;

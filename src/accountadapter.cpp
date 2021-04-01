@@ -33,9 +33,7 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
                                QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-{
-    QML_REGISTERSINGLETONTYPE_THIS
-}
+{}
 
 void
 AccountAdapter::safeInit()
