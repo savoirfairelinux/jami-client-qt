@@ -108,19 +108,21 @@ AccountAdapter::createJamiAccount(QString registeredName,
                                       .toBool();
             if (!registeredName.isEmpty()) {
                 QObject::disconnect(registeredNameSavedConnection_);
-                registeredNameSavedConnection_ = connect(
-                    &lrcInstance_->accountModel(),
-                    &lrc::api::NewAccountModel::profileUpdated,
-                    [this, showBackup, addedAccountId = accountId](const QString& accountId) {
-                        if (addedAccountId == accountId) {
-                            Q_EMIT lrcInstance_->accountListChanged();
-                            Q_EMIT accountAdded(accountId,
-                                              showBackup,
-                                              lrcInstance_->accountModel().getAccountList().indexOf(
-                                                  accountId));
-                            QObject::disconnect(registeredNameSavedConnection_);
-                        }
-                    });
+                registeredNameSavedConnection_
+                    = connect(&lrcInstance_->accountModel(),
+                              &lrc::api::NewAccountModel::profileUpdated,
+                              [this, showBackup, addedAccountId = accountId](
+                                  const QString& accountId) {
+                                  if (addedAccountId == accountId) {
+                                      Q_EMIT lrcInstance_->accountListChanged();
+                                      Q_EMIT accountAdded(accountId,
+                                                          showBackup,
+                                                          lrcInstance_->accountModel()
+                                                              .getAccountList()
+                                                              .indexOf(accountId));
+                                      QObject::disconnect(registeredNameSavedConnection_);
+                                  }
+                              });
 
                 lrcInstance_->accountModel().registerName(accountId,
                                                           settings["password"].toString(),
@@ -128,8 +130,9 @@ AccountAdapter::createJamiAccount(QString registeredName,
             } else {
                 Q_EMIT lrcInstance_->accountListChanged();
                 Q_EMIT accountAdded(accountId,
-                                  showBackup,
-                                  lrcInstance_->accountModel().getAccountList().indexOf(accountId));
+                                    showBackup,
+                                    lrcInstance_->accountModel().getAccountList().indexOf(
+                                        accountId));
             }
         });
 
@@ -163,9 +166,10 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
 
                               Q_EMIT lrcInstance_->accountListChanged();
                               Q_EMIT accountAdded(accountId,
-                                                false,
-                                                lrcInstance_->accountModel().getAccountList().indexOf(
-                                                    accountId));
+                                                  false,
+                                                  lrcInstance_->accountModel()
+                                                      .getAccountList()
+                                                      .indexOf(accountId));
                           });
 
     connectFailure();
@@ -196,9 +200,10 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
                               lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
 
                               Q_EMIT accountAdded(accountId,
-                                                false,
-                                                lrcInstance_->accountModel().getAccountList().indexOf(
-                                                    accountId));
+                                                  false,
+                                                  lrcInstance_->accountModel()
+                                                      .getAccountList()
+                                                      .indexOf(accountId));
                               Q_EMIT lrcInstance_->accountListChanged();
                           });
 
@@ -343,6 +348,7 @@ AccountAdapter::deselectConversation()
         return;
     }
 
+    // TODO: remove this unhealthy section
     auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
 
     if (currentConversationModel == nullptr) {
@@ -410,8 +416,7 @@ AccountAdapter::connectAccount(const QString& accountId)
 
         contactUnbannedConnection_ = QObject::connect(accInfo.contactModel.get(),
                                                       &lrc::api::ContactModel::bannedStatusChanged,
-                                                      [this](const QString& contactUri,
-                                                             bool banned) {
+                                                      [this](const QString&, bool banned) {
                                                           if (!banned)
                                                               Q_EMIT contactUnbanned();
                                                       });
