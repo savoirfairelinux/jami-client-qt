@@ -38,6 +38,9 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
         lrcInstance_->getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });
+    connect(systemTray_, &SystemTray::openConversationActivated, [this](const QString& convUid) {
+        selectConversation(lrcInstance_->getCurrentAccountInfo().id, convUid);
+    });
 }
 
 void
@@ -157,6 +160,14 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             || convUid != lrcInstance_->getCurrentConvUid())) {
         auto& accInfo = lrcInstance_->getAccountInfo(accountId);
         auto from = accInfo.contactModel->bestNameForContact(interaction.authorUri);
+#ifdef Q_OS_LINUX
+        systemTray_->showNotification("dsadas",
+                                      tr("New message"),
+                                      from + ": " + interaction.body,
+                                      NotificationType::CHAT,
+                                      convUid);
+
+#else
         auto onClicked = [this, accountId, convUid, uri = interaction.authorUri] {
             Q_EMIT lrcInstance_->notificationClicked();
             const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
@@ -166,9 +177,8 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
                 Q_EMIT modelSorted(convInfo.uid);
             }
         };
-
         systemTray_->showNotification(interaction.body, from, onClicked);
-        return;
+#endif
     }
 }
 
