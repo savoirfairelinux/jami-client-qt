@@ -130,10 +130,16 @@ set(COMMON_HEADERS
     ${SRC_DIR}/appsettingsmanager.h)
 
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBNM libnm)
 
+pkg_check_modules(LIBNM libnm)
 if(LIBNM_FOUND)
     add_definitions(-DUSE_LIBNM)
+endif()
+
+pkg_check_modules(LIBNOTIFY libnotify>=0.7.6)
+if(LIBNOTIFY_FOUND)
+    add_definitions(-DUSE_LIBNOTIFY)
+    add_definitions(${LIBNOTIFY_CFLAGS})
 endif()
 
 if(QT5_VER AND QT5_PATH)
@@ -163,13 +169,17 @@ else()
         Quick
         QuickWidgets
         Network
-        Svg
-        QuickControls2
+        Svg QuickControls2
         WebEngine
         DBus)
     find_package(Qt5LinguistTools)
 endif()
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
+
+set(notifications_xml ${SRC_DIR}/org.freedesktop.Notifications.xml)
+qt5_add_dbus_interface(GENERATED_SOURCES ${notifications_xml} notifications_interface)
+set_property(SOURCE ${GENERATED_SOURCES} PROPERTY SKIP_AUTOGEN ON)
+qt5_wrap_cpp(DBUS_INTERFACE_MOC ${CMAKE_CURRENT_BINARY_DIR}/notifications_interface.h)
 
 if(NOT DEFINED LRC)
     if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
@@ -210,12 +220,15 @@ message("Will expect lrc headers in ${LRC_SRC_PATH}")
 include_directories(${PROJECT_SOURCE_DIR}
     ${SRC_DIR}
     ${LRC_SRC_PATH}
-    ${LIBNM_INCLUDE_DIRS})
+    ${LIBNM_INCLUDE_DIRS}
+    ${LIBNOTIFY_INCLUDE_DIRS}
+    ${GTK3_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME}
     ${SRC_DIR}/main.cpp
     ${COMMON_HEADERS}
     ${COMMON_SOURCES}
+    ${GENERATED_SOURCES}
     ${QML_RESOURCES}
     ${QML_RESOURCES_QML}
     ${LRC_SRC_PATH}/webresource.qrc)
@@ -231,7 +244,8 @@ target_link_libraries(jami-qt
     ${LRC_LIB_NAME}
     ${qrencode}
     ${X11}
-    ${LIBNM_LIBRARIES})
+    ${LIBNM_LIBRARIES}
+    ${LIBNOTIFY_LIBRARIES})
 
 if(ENABLE_TESTS)
     message("Add Jami tests")

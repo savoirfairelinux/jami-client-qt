@@ -157,6 +157,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             || convUid != lrcInstance_->getCurrentConvUid())) {
         auto& accInfo = lrcInstance_->getAccountInfo(accountId);
         auto from = accInfo.contactModel->bestNameForContact(interaction.authorUri);
+#ifdef Q_OS_WIN
         auto onClicked = [this, accountId, convUid, uri = interaction.authorUri] {
             Q_EMIT lrcInstance_->notificationClicked();
             const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
@@ -166,9 +167,15 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
                 Q_EMIT modelSorted(convInfo.uid);
             }
         };
-
         systemTray_->showNotification(interaction.body, from, onClicked);
-        return;
+#else
+        systemTray_->showNotification(from + "" + interaction.body,
+                                      QString(),
+                                      {},
+                                      NotificationType::CHAT,
+                                      convUid,
+                                      tr("New message"));
+#endif
     }
 }
 
