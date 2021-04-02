@@ -166,6 +166,7 @@ Item {
     property int menuFontSize: 12
     property int headerFontSize: 13
     property int titleFontSize: 16
+    property int lineEditRadius: 4
 
     property int maximumWidthSettingsView: 600
     property int settingsHeaderpreferredHeight: 64
@@ -185,7 +186,7 @@ Item {
     property int wizardViewMinWidth: 500
     property int wizardViewMinHeight: 600
 
-    property int mainViewPreferredWidth: 650
+    property int mainViewPreferredWidth: 700
     property int mainViewPreferredHeight: 600
 
     function setTheme(dark) {
