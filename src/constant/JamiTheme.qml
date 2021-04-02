@@ -166,6 +166,7 @@ Item {
     property int menuFontSize: 12
     property int headerFontSize: 13
     property int titleFontSize: 16
+    property int lineEditRadius: 4
 
     property int maximumWidthSettingsView: 600
     property int settingsHeaderpreferredHeight: 64
