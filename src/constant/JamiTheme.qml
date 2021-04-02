@@ -53,7 +53,7 @@ Item {
     property color presenceGreen: "#4cd964"
     property color notificationRed: "#ff3b30"
     property color unPresenceOrange: "orange"
-    property color contactSearchBarPlaceHolderTextFontColor: "#767676"
+    property color searchBarPlaceHolderTextFontColor: "#767676"
     property color draftRed: "#cf5300"
 
     // General buttons

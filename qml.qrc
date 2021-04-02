@@ -90,7 +90,8 @@
         <file>src/commoncomponents/TintedButton.qml</file>
         <file>src/mainview/components/CallOverlayButtonGroup.qml</file>
         <file>src/mainview/js/incomingcallpagecreation.js</file>
-        <file>src/mainview/components/ContactSearchBar.qml</file>
+        <file>src/mainview/components/SearchBar.qml</file>
+        <file>src/mainview/components/EmojiPicker.qml</file>
         <file>src/mainview/components/VideoCallPage.qml</file>
         <file>src/mainview/components/ParticipantOverlay.qml</file>
         <file>src/mainview/components/ProjectCreditsScrollView.qml</file>

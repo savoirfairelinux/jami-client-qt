@@ -25,13 +25,18 @@ import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
 Rectangle {
-    id: contactSearchBarRect
+    id: root
 
-    signal contactSearchBarTextChanged(string text)
+    signal searchBarTextChanged(string text)
     signal returnPressedWhileSearching
 
     function clearText() {
-        contactSearchBar.clear()
+        searchBar.clear()
+        fakeFocus.forceActiveFocus()
+    }
+
+    function setText(data) {
+        searchBar.text = data
         fakeFocus.forceActiveFocus()
     }
 
@@ -45,8 +50,8 @@ Rectangle {
     Image {
         id: searchIconImage
 
-        anchors.verticalCenter: contactSearchBarRect.verticalCenter
-        anchors.left: contactSearchBarRect.left
+        anchors.verticalCenter: root.verticalCenter
+        anchors.left: root.left
         anchors.leftMargin: 8
 
         width: 20
@@ -60,25 +65,25 @@ Rectangle {
     ColorOverlay {
         anchors.fill: searchIconImage
         source: searchIconImage
-        color: JamiTheme.contactSearchBarPlaceHolderTextFontColor
+        color: JamiTheme.searchBarPlaceHolderTextFontColor
     }
 
     TextField {
-        id: contactSearchBar
+        id: searchBar
         color: JamiTheme.textColor
 
-        anchors.verticalCenter: contactSearchBarRect.verticalCenter
+        anchors.verticalCenter: root.verticalCenter
         anchors.left: searchIconImage.right
 
-        width: contactSearchBarRect.width - searchIconImage.width - 10
-        height: contactSearchBarRect.height - 5
+        width: root.width - searchIconImage.width - 10
+        height: root.height - 5
 
         font.pointSize: JamiTheme.textFontSize
         selectByMouse: true
-        selectionColor: JamiTheme.contactSearchBarPlaceHolderTextFontColor
+        selectionColor: JamiTheme.searchBarPlaceHolderTextFontColor
 
         placeholderText: JamiStrings.contactSearchConversation
-        placeholderTextColor: JamiTheme.contactSearchBarPlaceHolderTextFontColor
+        placeholderTextColor: JamiTheme.searchBarPlaceHolderTextFontColor
 
         background: Rectangle {
             id: searchBarBackground
@@ -87,22 +92,22 @@ Rectangle {
         }
 
         onTextChanged: {
-            contactSearchBarRect.contactSearchBarTextChanged(
-                        contactSearchBar.text)
+            root.searchBarTextChanged(
+                        searchBar.text)
         }
     }
 
     Shortcut {
         sequence: "Ctrl+F"
         context: Qt.ApplicationShortcut
-        onActivated: contactSearchBar.forceActiveFocus()
+        onActivated: searchBar.forceActiveFocus()
     }
 
     Shortcut {
         sequence: "Return"
         context: Qt.ApplicationShortcut
         onActivated: {
-            if (contactSearchBar.text !== "") {
+            if (searchBar.text !== "") {
                 returnPressedWhileSearching()
             }
         }

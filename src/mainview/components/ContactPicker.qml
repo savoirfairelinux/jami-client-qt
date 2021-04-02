@@ -99,7 +99,7 @@ Popup {
                 }
             }
 
-            ContactSearchBar {
+            SearchBar {
                 id: contactPickerContactSearchBar
 
                 Layout.alignment: Qt.AlignCenter
@@ -110,7 +110,7 @@ Popup {
 
                 implicitWidth: contactPickerPopupRect.width - 10
 
-                onContactSearchBarTextChanged: {
+                onSearchBarTextChanged: {
                     ContactAdapter.setSearchFilter(text)
                 }
             }

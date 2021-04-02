@@ -59,7 +59,7 @@ Rectangle {
     }
 
     function clearContactSearchBar() {
-        contactSearchBar.clearText()
+        searchBar.clearText()
     }
 
     function refreshAccountComboBox(index) {
@@ -86,8 +86,8 @@ Rectangle {
     anchors.fill: parent
 
     // Search bar container to embed search label
-    ContactSearchBar {
-        id: contactSearchBar
+    SearchBar {
+        id: searchBar
         width: sidePanelRect.width - 26
         height: 35
         anchors.top: sidePanelRect.top
@@ -95,7 +95,7 @@ Rectangle {
         anchors.left: sidePanelRect.left
         anchors.leftMargin: 16
 
-        onContactSearchBarTextChanged: {
+        onSearchBarTextChanged: {
             UtilsAdapter.setConversationFilter(text)
         }
 
@@ -109,7 +109,7 @@ Rectangle {
 
     SidePanelTabBar {
         id: sidePanelTabBar
-        anchors.top: contactSearchBar.bottom
+        anchors.top: searchBar.bottom
         anchors.topMargin: 10
         width: sidePanelRect.width
         height: tabBarVisible ? 64 : 0
@@ -120,7 +120,7 @@ Rectangle {
 
         visible: lblSearchStatus.text !== ""
 
-        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom
+        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : searchBar.bottom
         anchors.topMargin: tabBarVisible ? 0 : 10
         width: parent.width
         height: 72
@@ -183,11 +183,11 @@ Rectangle {
     ConversationSmartListView {
         id: conversationSmartListView
 
-        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom)
+        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : searchBar.bottom)
         anchors.topMargin: (tabBarVisible || searchStatusRect.visible) ? 0 : 10
         width: parent.width
-        height: tabBarVisible ? sidePanelRect.height - sidePanelTabBar.height - contactSearchBar.height - 20 :
-                                sidePanelRect.height - contactSearchBar.height - 20
+        height: tabBarVisible ? sidePanelRect.height - sidePanelTabBar.height - searchBar.height - 20 :
+                                sidePanelRect.height - searchBar.height - 20
 
         Connections {
             target: ConversationsAdapter

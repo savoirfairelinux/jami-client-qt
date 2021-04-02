@@ -548,9 +548,16 @@ Rectangle {
         id: qrDialog
     }
 
-    RecordBox{
+    RecordBox {
         id: recordBox
         visible: false
+    }
+
+    EmojiPicker {
+        id: emojiPicker
+        visible: true
+        x: 100
+        y: 100
     }
 
     UserProfile {
