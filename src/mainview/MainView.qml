@@ -41,7 +41,8 @@ Rectangle {
 
     property var containerWindow: ""
 
-    property int sidePanelViewStackPreferredWidth: 250
+    property int sidePanelViewStackMinimumWidth: 250
+    property int sidePanelViewStackPreferredWidth: 300
     property int mainViewStackPreferredWidth: 250
     property int settingsViewPreferredWidth: 460
     property int onWidthChangedTriggerDistance: 5
@@ -161,7 +162,7 @@ Rectangle {
                 sidePanelViewStack.push(settingsMenu, StackView.Immediate)
 
                 var windowCurrentMinimizedSize = settingsViewPreferredWidth
-                        + sidePanelViewStackPreferredWidth + onWidthChangedTriggerDistance
+                        + sidePanelViewStackMinimumWidth + onWidthChangedTriggerDistance
                 if (containerWindow.width < windowCurrentMinimizedSize)
                     containerWindow.width = windowCurrentMinimizedSize
             }
@@ -289,9 +290,11 @@ Rectangle {
             Rectangle {
                 id: mainViewSidePanelRect
 
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
-                SplitView.maximumWidth: (sidePanelOnly ? splitView.width :
-                                                      splitView.width - sidePanelViewStackPreferredWidth)
+                SplitView.minimumWidth: sidePanelViewStackMinimumWidth
+                SplitView.preferredWidth: sidePanelViewStackPreferredWidth
+                SplitView.maximumWidth: (sidePanelOnly ?
+                                             splitView.width :
+                                             splitView.width - sidePanelViewStackMinimumWidth)
                 SplitView.fillHeight: true
                 color: JamiTheme.backgroundColor
 
@@ -352,8 +355,8 @@ Rectangle {
 
                 SplitView.maximumWidth: sidePanelOnly ?
                                             splitView.width :
-                                            splitView.width - sidePanelViewStackPreferredWidth
-                SplitView.minimumWidth: sidePanelViewStackPreferredWidth
+                                            splitView.width - sidePanelViewStackMinimumWidth
+                SplitView.minimumWidth: sidePanelViewStackMinimumWidth
                 SplitView.fillHeight: true
 
                 clip: true
@@ -493,7 +496,7 @@ Rectangle {
 
     onWidthChanged: {
         // Hide unnecessary stackview when width is changed.
-        var widthToCompare = sidePanelViewStackPreferredWidth +
+        var widthToCompare = sidePanelViewStackMinimumWidth +
                 (inSettingsView ? settingsViewPreferredWidth : mainViewStackPreferredWidth)
 
         if (mainView.width < widthToCompare - onWidthChangedTriggerDistance
