@@ -343,11 +343,13 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
     Q_EMIT lrcInstance_->updateSmartList();
 
 #ifdef Q_OS_LINUX
+    auto contactPhoto = Utils::contactPhoto(lrcInstance_, convInfo.participants[0], QSize(50, 50));
     auto notifId = QString("%1;%2").arg(accountId).arg(convUid);
     systemTray_->showNotification(notifId,
                                   tr("Incoming call"),
                                   tr("%1 is calling you").arg(from),
-                                  NotificationType::CALL);
+                                  NotificationType::CALL,
+                                  Utils::QImageToByteArray(contactPhoto));
 #else
     auto onClicked = [this, accountId, convUid = convInfo.uid]() {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
@@ -416,13 +418,17 @@ CallAdapter::connectCallModel(const QString& accountId)
                 if (systemTray_->hideNotification(QString("%1;%2").arg(accountId).arg(convInfo.uid))
                     && call.startTime.time_since_epoch().count() == 0) {
                     // This was a missed call; show a missed call notification
+                    auto contactPhoto = Utils::contactPhoto(lrcInstance_,
+                                                            convInfo.participants[0],
+                                                            QSize(50, 50));
                     auto& accInfo = lrcInstance_->getAccountInfo(accountId);
                     auto from = accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
                     auto notifId = QString("%1;%2").arg(accountId).arg(convInfo.uid);
                     systemTray_->showNotification(notifId,
                                                   tr("Missed call"),
                                                   tr("Missed call from %1").arg(from),
-                                                  NotificationType::CHAT);
+                                                  NotificationType::CHAT,
+                                                  Utils::QImageToByteArray(contactPhoto));
                 }
             }
 
