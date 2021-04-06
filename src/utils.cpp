@@ -321,7 +321,10 @@ Utils::GetISODate()
 }
 
 QImage
-Utils::contactPhoto(LRCInstance* instance, const QString& contactUri, const QSize& size)
+Utils::contactPhoto(LRCInstance* instance,
+                    const QString& contactUri,
+                    const QSize& size,
+                    const QString& accountId)
 {
     QImage photo;
 
@@ -329,7 +332,8 @@ Utils::contactPhoto(LRCInstance* instance, const QString& contactUri, const QSiz
         /*
          * Get first contact photo.
          */
-        auto& accountInfo = instance->accountModel().getAccountInfo(instance->getCurrAccId());
+        auto& accountInfo = instance->accountModel().getAccountInfo(
+            accountId.isEmpty() ? instance->getCurrAccId() : accountId);
         auto contactInfo = accountInfo.contactModel->getContact(contactUri);
         auto contactPhoto = contactInfo.profileInfo.avatar;
         auto bestName = accountInfo.contactModel->bestNameForContact(contactUri);
