@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b562cf5f_d1d09a8c",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-07T17:40:36Z",
+      "side": 1,
+      "message": "good I will leave a TODO here to update this once the swarm stack in lrc is merged",
+      "parentUuid": "b2b5f758_06e0e1b1",
+      "range": {
+        "startLine": 420,
+        "startChar": 78,
+        "endLine": 431,
+        "endChar": 90
+      },
+      "revId": "2f4b840e738913fad6423305ef2cea06158c690e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78b201e2_312ba6b3",
         "filename": "src/systemtray.cpp",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "2f4b840e738913fad6423305ef2cea06158c690e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5718f140_6a971d86",
+        "filename": "src/systemtray.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-07T17:40:36Z",
+      "side": 1,
+      "message": "I think just gdk-pixbuf-2.0; added",
+      "parentUuid": "78b201e2_312ba6b3",
+      "range": {
+        "startLine": 183,
+        "startChar": 18,
+        "endLine": 191,
+        "endChar": 17
+      },
+      "revId": "2f4b840e738913fad6423305ef2cea06158c690e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
