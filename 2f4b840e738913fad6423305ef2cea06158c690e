@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2b5f758_06e0e1b1",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-04-07T13:40:26Z",
+      "side": 1,
+      "message": "Note, this is not swarm proof and get participants[0].\nIn the swarm stack (STEP2) it\u0027s simplified and the logic is moved to lrc :)",
+      "range": {
+        "startLine": 420,
+        "startChar": 78,
+        "endLine": 431,
+        "endChar": 90
+      },
+      "revId": "2f4b840e738913fad6423305ef2cea06158c690e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78b201e2_312ba6b3",
+        "filename": "src/systemtray.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-04-07T13:40:26Z",
+      "side": 1,
+      "message": "does this means that client-qt depends on gtk?",
+      "range": {
+        "startLine": 183,
+        "startChar": 18,
+        "endLine": 191,
+        "endChar": 17
+      },
+      "revId": "2f4b840e738913fad6423305ef2cea06158c690e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
