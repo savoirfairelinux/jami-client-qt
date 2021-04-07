@@ -175,6 +175,8 @@ MainApplication::init()
 #ifdef Q_OS_LINUX
     if (!getenv("QT_QPA_PLATFORMTHEME"))
         setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
+    if (strncmp(getenv("XDG_SESSION_TYPE"), "wayland", 7) == 0)
+        setenv("QT_QPA_PLATFORM", "wayland", true);
 #endif
 
     auto results = parseArguments();
