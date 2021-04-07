@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "22349f36_9b773e9f",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 9
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-07T16:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "975c181f_e4867da5",
+      "range": {
+        "startLine": 220,
+        "startChar": 6,
+        "endLine": 220,
+        "endChar": 23
+      },
+      "revId": "eb3eec4ccfe88277ed8420a8d968f6fc56b32c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f9381e5_be033a08",
         "filename": "src/accountadapter.cpp",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8afd8d51_9c2b61e3",
+        "filename": "src/accountadapter.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-07T16:23:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f9381e5_be033a08",
+      "range": {
+        "startLine": 344,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 1
+      },
+      "revId": "eb3eec4ccfe88277ed8420a8d968f6fc56b32c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc1a186f_076d9f7e",
         "filename": "src/systemtray.cpp",
         "patchSetId": 9
@@ -68,6 +116,30 @@
       "revId": "eb3eec4ccfe88277ed8420a8d968f6fc56b32c5b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "203df2ab_bb41ed83",
+        "filename": "src/systemtray.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-07T16:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc1a186f_076d9f7e",
+      "range": {
+        "startLine": 117,
+        "startChar": 9,
+        "endLine": 117,
+        "endChar": 13
+      },
+      "revId": "eb3eec4ccfe88277ed8420a8d968f6fc56b32c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
