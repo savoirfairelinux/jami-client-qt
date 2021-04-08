@@ -84,9 +84,9 @@ win32-msvc {
     Release: RC_FILE = ico.rc
 
     # run the deployment script(run windeployqt)
-    !equals(MODE, "ReleaseCompile") {
-        QMAKE_POST_LINK += $$quote(python .\copy-runtime-files.py -m  $${MODE} -q $${QT_VERSION} -o $${DESTDIR})
-    }
+#    !equals(MODE, "ReleaseCompile") {
+#        QMAKE_POST_LINK += $$quote(python .\copy-runtime-files.py -m  $${MODE} -q $${QT_VERSION} -o $${DESTDIR})
+#    }
 }
 
 # Input
@@ -139,7 +139,8 @@ HEADERS += \
         src/qtutils.h \
         src/utilsadapter.h \
         src/systemtray.h \
-        src/appsettingsmanager.h
+        src/appsettingsmanager.h \
+        src/layoutcoordinator.h
 
 SOURCES += \
         src/bannedlistmodel.cpp \
@@ -181,7 +182,8 @@ SOURCES += \
         src/qmlregister.cpp \
         src/utilsadapter.cpp \
         src/systemtray.cpp \
-        src/appsettingsmanager.cpp
+        src/appsettingsmanager.cpp \
+        src/layoutcoordinator.cpp
 
 RESOURCES += \
         resources.qrc \

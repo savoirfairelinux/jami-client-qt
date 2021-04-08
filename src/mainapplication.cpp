@@ -29,6 +29,7 @@
 #include "qrimageprovider.h"
 #include "tintedbuttonimageprovider.h"
 #include "avatarimageprovider.h"
+#include "layoutcoordinator.h"
 
 #include "accountadapter.h"
 #include "avadapter.h"
@@ -432,6 +433,9 @@ MainApplication::initQmlLayer()
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, utilsAdapter, "UtilsAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, settingsAdapter, "SettingsAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, pluginAdapter, "PluginAdapter");
+
+    auto layoutCoordinator = new LayoutCoordinator(this);
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, layoutCoordinator, "LayoutCoordinator");
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance_->avModel())

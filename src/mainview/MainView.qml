@@ -26,6 +26,7 @@ import QtGraphicalEffects 1.14
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
+import net.jami.Helpers 1.0
 
 // Import qml component files.
 import "components"
@@ -100,7 +101,8 @@ Rectangle {
         } else {
             sidePanelViewStack.pop(StackView.Immediate)
             mainViewStack.pop(welcomePage, StackView.Immediate)
-            mainViewStack.push(callStackView, StackView.Immediate)
+            //mainViewStack.push(callStackView, StackView.Immediate)
+            LayoutCoordinator.push(settingsView, StackView.Immediate)
         }
     }
 
@@ -110,7 +112,8 @@ Rectangle {
             sidePanelViewStack.push(communicationPageMessageWebView, StackView.Immediate)
         } else {
             mainViewStack.pop(welcomePage, StackView.Immediate)
-            mainViewStack.push(communicationPageMessageWebView, StackView.Immediate)
+            //mainViewStack.push(communicationPageMessageWebView, StackView.Immediate)
+            LayoutCoordinator.push(communicationPageMessageWebView, StackView.Immediate)
         }
     }
 
@@ -357,6 +360,8 @@ Rectangle {
                 SplitView.minimumWidth: sidePanelViewStackMinimumWidth
                 SplitView.fillHeight: true
 
+                Component.onCompleted: LayoutCoordinator.setRootView(this)
+
                 clip: true
             }
         }
@@ -527,7 +532,8 @@ Rectangle {
             if (inSettingsView) {
                 if (sidePanelViewStack.currentItem.objectName !== settingsMenu.objectName)
                     sidePanelViewStack.pop(StackView.Immediate)
-                mainViewStack.push(settingsView, StackView.Immediate)
+                LayoutCoordinator.push(settingsView, StackView.Immediate)
+                //mainViewStack.push(settingsView, StackView.Immediate)
             } else if (inSidePanelViewStack) {
                 recursionStackViewItemMove(sidePanelViewStack, mainViewStack)
                 if (currentAccountIsCalling())
