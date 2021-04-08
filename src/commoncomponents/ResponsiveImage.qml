@@ -61,12 +61,11 @@ Image {
     }
 
     function setSourceSize() {
-        if (ScreenInfo.getDevicePixelRatio() === 1.0)
-            return
         if (isSvg) {
-            sourceSize = undefined
+            sourceSize = Qt.size(0, 0)
             sourceSize = Qt.size(width, height)
-        } else
+        }
+        else
             sourceSize = undefined
     }
 
