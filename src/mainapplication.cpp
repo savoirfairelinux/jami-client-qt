@@ -29,6 +29,7 @@
 #include "qrimageprovider.h"
 #include "tintedbuttonimageprovider.h"
 #include "avatarimageprovider.h"
+#include "closehandler.h"
 
 #include "accountadapter.h"
 #include "avadapter.h"
@@ -439,6 +440,9 @@ MainApplication::initQmlLayer()
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance_->avModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, PluginModel, &lrcInstance_->pluginModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, UpdateManager, lrcInstance_->getUpdateManager())
+
+    auto closeHandler = new CloseHandler(this);
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, closeHandler, "CloseHandler");
 
     // register other types that don't require injection(e.g. uncreatables, c++/qml singletons)
     Utils::registerTypes();
