@@ -128,7 +128,8 @@ set(COMMON_HEADERS
     ${SRC_DIR}/screensaver.h
     ${SRC_DIR}/systemtray.h
     ${SRC_DIR}/appsettingsmanager.h
-    ${SRC_DIR}/lrcinstance.h)
+    ${SRC_DIR}/lrcinstance.h
+    ${SRC_DIR}/closehandler.h)
 
 find_package(PkgConfig REQUIRED)
 
