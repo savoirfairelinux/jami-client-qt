@@ -59,7 +59,7 @@ ColumnLayout {
 
     function stopBooth(){
         try{
-            if(!AccountAdapter.hasVideoCall()) {
+            if(!AccountAdapter.hasActiveCall(true)) {
                 AccountAdapter.stopPreviewing()
             }
         } catch(erro){console.log("Exception: " +  erro.message)}
