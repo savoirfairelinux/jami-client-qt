@@ -139,7 +139,8 @@ HEADERS += \
         src/utilsadapter.h \
         src/systemtray.h \
         src/appsettingsmanager.h \
-        src/lrcinstance.h
+        src/lrcinstance.h \
+        src/closehandler.h
 
 SOURCES += \
         src/bannedlistmodel.cpp \

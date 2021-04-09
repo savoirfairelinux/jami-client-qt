@@ -20,9 +20,10 @@ import QtQuick 2.14
 import QtQuick.Window 2.14
 
 import net.jami.Models 1.0
+import net.jami.Helpers 1.0
 
 Window {
-    id: videoWindow
+    id: root
 
     function setAsChild(obj) {
         obj.parent = containerRect
@@ -42,5 +43,16 @@ Window {
         id: containerRect
 
         anchors.fill: parent
+    }
+
+    Component.onCompleted: CloseHandler.installFilter(this)
+
+    Connections {
+        target: CloseHandler
+
+        function onCloseEventReceived() {
+            root.hide()
+            LRCInstance.quitEngineRequested()
+        }
     }
 }
