@@ -123,7 +123,7 @@ Popup {
                     }
                 }
 
-                ListView {
+                ListViewJami {
                     id: pluginhandlerPickerListView
 
                     Layout.alignment: Qt.AlignHCenter
@@ -252,6 +252,7 @@ Popup {
                     property string handlerName: ""
 
                     model: PluginAdapter.getHandlerPreferencesModel(pluginId, handlerName)
+                    maximumFlickVelocity: 1024
 
                     clip: true
 

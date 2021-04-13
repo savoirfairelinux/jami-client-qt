@@ -115,7 +115,7 @@ Popup {
                 }
             }
 
-            ListView {
+            ListViewJami {
                 id: contactPickerListView
 
                 Layout.alignment: Qt.AlignCenter
@@ -129,8 +129,6 @@ Popup {
                 delegate: ContactPickerItemDelegate {
                     id: contactPickerItemDelegate
                 }
-
-                ScrollIndicator.vertical: ScrollIndicator {}
             }
         }
 
