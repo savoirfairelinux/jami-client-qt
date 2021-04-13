@@ -130,6 +130,8 @@ Popup {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
+                    maximumFlickVelocity: 1024
+
                     model: {
                         if (isCall) {
                             var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
@@ -252,6 +254,7 @@ Popup {
                     property string handlerName: ""
 
                     model: PluginAdapter.getHandlerPreferencesModel(pluginId, handlerName)
+                    maximumFlickVelocity: 1024
 
                     clip: true
 

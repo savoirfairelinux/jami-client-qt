@@ -110,6 +110,7 @@ ComboBox {
             implicitHeight: contentHeight
             model:  root.delegateModel
             currentIndex: root.highlightedIndex
+            maximumFlickVelocity: 1024
 
             ScrollIndicator.vertical: ScrollIndicator { }
         }
