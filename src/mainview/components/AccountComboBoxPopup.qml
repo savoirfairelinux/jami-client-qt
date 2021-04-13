@@ -178,6 +178,7 @@ Popup {
             }
         }
 
+        maximumFlickVelocity: 1024
         ScrollIndicator.vertical: ScrollIndicator {}
     }
 

@@ -121,6 +121,7 @@ Popup {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: contactPickerPopupRect.width
                 Layout.preferredHeight: 200
+                maximumFlickVelocity: 1024
 
                 model: ContactAdapter.getContactSelectableModel(type)
 
