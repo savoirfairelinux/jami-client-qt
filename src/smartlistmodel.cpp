@@ -52,7 +52,9 @@ SmartListModel::rowCount(const QModelIndex& parent) const
         auto& accInfo = lrcInstance_->accountModel().getAccountInfo(lrcInstance_->getCurrAccId());
         auto& convModel = accInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
-            auto filterType = accInfo.profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::JAMI;
+            auto filterType = accInfo.profileInfo.type == lrc::api::profile::Type::SIP
+                                  ? lrc::api::FilterType::SIP
+                                  : lrc::api::FilterType::JAMI;
             return convModel->getFilteredConversations(filterType).size();
         } else if (listModelType_ == Type::CONFERENCE) {
             auto calls = conferenceables_[ConferenceableItem::CALL];
@@ -89,7 +91,9 @@ SmartListModel::data(const QModelIndex& index, int role) const
             lrcInstance_->getCurrAccId());
         auto& convModel = currentAccountInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
-            auto filterType = currentAccountInfo.profileInfo.type == lrc::api::profile::Type::SIP ? lrc::api::FilterType::SIP : lrc::api::FilterType::JAMI;
+            auto filterType = currentAccountInfo.profileInfo.type == lrc::api::profile::Type::SIP
+                                  ? lrc::api::FilterType::SIP
+                                  : lrc::api::FilterType::JAMI;
             const auto& item = convModel->getFilteredConversations(filterType).at(index.row());
             return getConversationItemData(item, currentAccountInfo, role);
         } else if (listModelType_ == Type::CONFERENCE) {
@@ -297,8 +301,8 @@ SmartListModel::getConversationItemData(const conversation::Info& item,
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);
     case Role::LastInteractionDate: {
-        if (!item.interactions.empty()) {
-            auto& date = item.interactions.at(item.lastMessageUid).timestamp;
+        if (!interactions.empty()) {
+            const auto& date = interactions.at(item.lastMessageUid).timestamp;
             return QVariant(Utils::formatTimeString(date));
         }
         return QVariant("");

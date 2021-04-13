@@ -210,7 +210,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
 void
 ConversationsAdapter::onNewReadInteraction(const QString& accountId,
                                            const QString& convUid,
-                                           uint64_t interactionId)
+                                           const QString& interactionId)
 {
 #ifdef Q_OS_LINUX
     // hide notification
