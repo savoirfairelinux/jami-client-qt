@@ -123,12 +123,13 @@ Popup {
                     }
                 }
 
-                ListView {
+                ListViewJami {
                     id: pluginhandlerPickerListView
 
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    border.width: 0
 
                     model: {
                         if (isCall) {
@@ -242,7 +243,7 @@ Popup {
                     }
                 }
 
-                ListView {
+                ListViewJami {
                     id: pluginhandlerPreferencePickerListView
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
@@ -252,6 +253,7 @@ Popup {
                     property string handlerName: ""
 
                     model: PluginAdapter.getHandlerPreferencesModel(pluginId, handlerName)
+                    border.width: 0
 
                     clip: true
 
@@ -286,8 +288,6 @@ Popup {
                             pluginhandlerPreferencePickerListView.model = PluginAdapter.getHandlerPreferencesModel(pluginId, pluginhandlerPreferencePickerListView.handlerName)
                         }
                     }
-
-                    ScrollIndicator.vertical: ScrollIndicator {}
                 }
             }
         }
