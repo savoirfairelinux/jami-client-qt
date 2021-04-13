@@ -147,7 +147,7 @@ MessagesAdapter::connectConversationModel()
         currentConversationModel,
         &ConversationModel::composingStatusChanged,
         [this](const QString& convUid, const QString& contactUri, bool isComposing) {
-            if (!AppSettingsManager::getValue(Settings::Key::EnableTypingIndicator).toBool()) {
+            if (!settingsManager_->getValue(Settings::Key::EnableTypingIndicator).toBool()) {
                 return;
             }
             contactIsComposing(convUid, contactUri, isComposing);
@@ -210,7 +210,7 @@ MessagesAdapter::updateConversationForAddedContact()
 
     clear();
     setConversationProfileData(convInfo);
-    printHistory(*convModel, lrcInstance_->getCurrentConvUid(), convInfo.interactions);
+    printHistory(*convModel, lrcInstance_->get_selectedConvUid(), convInfo.interactions);
 }
 
 void
@@ -244,7 +244,7 @@ void
 MessagesAdapter::slotMessagesCleared()
 {
     auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convInfo = convModel->getConversationForUid(lrcInstance_->getCurrentConvUid());
+    auto convInfo = convModel->getConversationForUid(lrcInstance_->get_selectedConvUid());
     if (!convInfo)
         return;
     auto& conv = convInfo->get();
@@ -367,8 +367,8 @@ MessagesAdapter::sendFile(const QString& message)
 void
 MessagesAdapter::retryInteraction(const QString& interactionId)
 {
-    lrcInstance_->getCurrentConversationModel()->retryInteraction(lrcInstance_->getCurrentConvUid(),
-                                                                  interactionId);
+    lrcInstance_->getCurrentConversationModel()
+        ->retryInteraction(lrcInstance_->get_selectedConvUid(), interactionId);
 }
 
 void
@@ -389,7 +389,7 @@ void
 MessagesAdapter::deleteInteraction(const QString& interactionId)
 {
     lrcInstance_->getCurrentConversationModel()
-        ->clearInteractionFromConversation(lrcInstance_->getCurrentConvUid(), interactionId);
+        ->clearInteractionFromConversation(lrcInstance_->get_selectedConvUid(), interactionId);
 }
 
 void
@@ -412,14 +412,14 @@ MessagesAdapter::openUrl(const QString& url)
 void
 MessagesAdapter::acceptFile(const QString& interactionId)
 {
-    auto convUid = lrcInstance_->getCurrentConvUid();
+    auto convUid = lrcInstance_->get_selectedConvUid();
     lrcInstance_->getCurrentConversationModel()->acceptTransfer(convUid, interactionId);
 }
 
 void
 MessagesAdapter::refuseFile(const QString& interactionId)
 {
-    const auto convUid = lrcInstance_->getCurrentConvUid();
+    const auto convUid = lrcInstance_->get_selectedConvUid();
     lrcInstance_->getCurrentConversationModel()->cancelTransfer(convUid, interactionId);
 }
 
@@ -716,7 +716,7 @@ MessagesAdapter::contactIsComposing(const QString& convUid,
                                     bool isComposing)
 {
     auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convInfo = convModel->getConversationForUid(lrcInstance_->getCurrentConvUid());
+    auto convInfo = convModel->getConversationForUid(lrcInstance_->get_selectedConvUid());
     if (!convInfo)
         return;
     auto& conv = convInfo->get();
@@ -734,10 +734,10 @@ MessagesAdapter::contactIsComposing(const QString& convUid,
 void
 MessagesAdapter::acceptInvitation(const QString& convUid)
 {
-    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->getCurrentConvUid() : convUid;
+    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
     lrcInstance_->getCurrentConversationModel()->acceptConversationRequest(currentConvUid);
     setInvitation(false);
-    lrcInstance_->setSelectedConvId();
+    lrcInstance_->set_selectedConvUid();
     if (currentConvUid == currentConvUid_)
         currentConvUid_.clear();
     Q_EMIT invitationAccepted();
@@ -746,10 +746,10 @@ MessagesAdapter::acceptInvitation(const QString& convUid)
 void
 MessagesAdapter::refuseInvitation(const QString& convUid)
 {
-    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->getCurrentConvUid() : convUid;
+    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
     lrcInstance_->getCurrentConversationModel()->declineConversationRequest(currentConvUid, false);
     setInvitation(false);
-    lrcInstance_->setSelectedConvId();
+    lrcInstance_->set_selectedConvUid();
     if (currentConvUid == currentConvUid_)
         currentConvUid_.clear();
     Q_EMIT navigateToWelcomePageRequested();
@@ -758,10 +758,10 @@ MessagesAdapter::refuseInvitation(const QString& convUid)
 void
 MessagesAdapter::blockConversation(const QString& convUid)
 {
-    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->getCurrentConvUid() : convUid;
+    const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
     lrcInstance_->getCurrentConversationModel()->declineConversationRequest(currentConvUid, true);
     setInvitation(false);
-    lrcInstance_->setSelectedConvId();
+    lrcInstance_->set_selectedConvUid();
     if (currentConvUid == currentConvUid_)
         currentConvUid_.clear();
     Q_EMIT contactBanned();
@@ -791,7 +791,7 @@ void
 MessagesAdapter::loadMessages(int n)
 {
     auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convInfo = convModel->getConversationForUid(lrcInstance_->getCurrentConvUid());
+    auto convInfo = convModel->getConversationForUid(lrcInstance_->get_selectedConvUid());
     if (!convInfo)
         return;
     auto& conv = convInfo->get();

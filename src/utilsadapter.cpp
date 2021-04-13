@@ -182,7 +182,8 @@ UtilsAdapter::getCurrConvId()
 void
 UtilsAdapter::makePermanentCurrentConv()
 {
-    lrcInstance_->getCurrentConversationModel()->acceptConversationRequest(lrcInstance_->getCurrentConvUid());
+    lrcInstance_->getCurrentConversationModel()->acceptConversationRequest(
+        lrcInstance_->get_selectedConvUid());
 }
 
 const QStringList

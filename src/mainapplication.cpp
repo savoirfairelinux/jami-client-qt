@@ -249,9 +249,6 @@ MainApplication::init()
         vsConsoleDebug();
     }
 
-    auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
-    lrcInstance_->dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
-
     initQmlLayer();
     initSystray();
 
@@ -459,14 +456,6 @@ MainApplication::initQmlLayer()
     engine_->setObjectOwnership(&NameDirectory::instance(), QQmlEngine::CppOwnership);
 
     engine_->load(QUrl(QStringLiteral("qrc:/src/MainApplicationWindow.qml")));
-}
-
-void
-MainApplication::initSettings()
-{
-    AppSettingsManager::instance().initValues();
-    auto downloadPath = AppSettingsManager::instance().getValue(Settings::Key::DownloadPath);
-    lrcInstance_->accountModel().downloadDirectory = downloadPath.toString() + "/";
 }
 
 void
