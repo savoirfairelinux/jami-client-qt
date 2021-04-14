@@ -25,7 +25,6 @@ import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 
 import "../js/incomingcallpagecreation.js" as IncomingCallPageCreation
-import "../js/callfullscreenwindowcontainercreation.js" as CallFullScreenWindowContainerCreation
 
 Rectangle {
     id: callStackViewWindow
@@ -124,22 +123,28 @@ Rectangle {
     }
 
     function toggleFullScreen() {
-        JamiQmlUtils.callIsFullscreen = !JamiQmlUtils.callIsFullscreen
         var callPage = callStackMainView.currentItem
         if (!callPage)
             return
-        CallFullScreenWindowContainerCreation.createvideoCallFullScreenWindowContainerObject()
 
-        if (!CallFullScreenWindowContainerCreation.checkIfVisible()) {
-            CallFullScreenWindowContainerCreation.setAsContainerChild(callPage)
-            CallFullScreenWindowContainerCreation.showVideoCallFullScreenWindowContainer()
-        } else {
-            callPage.parent = callStackMainView
-            CallFullScreenWindowContainerCreation.closeVideoCallFullScreenWindowContainer()
-        }
-
+        appWindow.toggleFullScreen()
+        JamiQmlUtils.callIsFullscreen = !JamiQmlUtils.callIsFullscreen
+        callPage.parent = JamiQmlUtils.callIsFullscreen ?
+                    appContainer :
+                    callStackMainView
+        print(JamiQmlUtils.callIsFullscreen)
         if (callPage.stackNumber === CallStackView.VideoPageStack) {
             videoCallPage.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+        }
+    }
+
+    Connections {
+        target: JamiQmlUtils
+
+        function onFullScreenCallEnded() {
+            if (appWindow.isFullScreen) {
+                toggleFullScreen()
+            }
         }
     }
 

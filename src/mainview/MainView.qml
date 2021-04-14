@@ -39,8 +39,6 @@ Rectangle {
 
     objectName: "mainView"
 
-    property var containerWindow: ""
-
     property int sidePanelViewStackMinimumWidth: 300
     property int mainViewStackPreferredWidth: 425
     property int settingsViewPreferredWidth: 460
@@ -163,8 +161,8 @@ Rectangle {
 
                 var windowCurrentMinimizedSize = settingsViewPreferredWidth
                         + sidePanelViewStackMinimumWidth + onWidthChangedTriggerDistance
-                if (containerWindow.width < windowCurrentMinimizedSize)
-                    containerWindow.width = windowCurrentMinimizedSize
+                if (appWindow.width < windowCurrentMinimizedSize)
+                    appWindow.width = windowCurrentMinimizedSize
             }
         } else {
             sidePanelViewStack.pop(StackView.Immediate)
@@ -240,21 +238,6 @@ Rectangle {
         // selectConversation causes UI update
         function onCallSetupMainViewRequired(accountId, convUid) {
             ConversationsAdapter.selectConversation(accountId, convUid)
-        }
-    }
-
-    Connections {
-        target: JamiQmlUtils
-
-        // TODO: call in fullscreen inside containerWindow
-        function onCallIsFullscreenChanged() {
-            if (JamiQmlUtils.callIsFullscreen) {
-                UtilsAdapter.setSystemTrayIconVisible(false)
-                containerWindow.hide()
-            } else {
-                UtilsAdapter.setSystemTrayIconVisible(true)
-                containerWindow.show()
-            }
         }
     }
 
@@ -616,12 +599,11 @@ Rectangle {
         sequence: "F11"
         context: Qt.ApplicationShortcut
         onActivated: {
+            // Don't toggle fullscreen mode when we're already
+            // in a fullscreen call.
             if (JamiQmlUtils.callIsFullscreen)
                 return
-            if (containerWindow.visibility !== Window.FullScreen)
-                containerWindow.visibility = Window.FullScreen
-            else
-                containerWindow.visibility = Window.Windowed
+            appWindow.toggleFullScreen()
         }
     }
 
