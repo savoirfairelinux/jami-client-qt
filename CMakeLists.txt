@@ -330,33 +330,32 @@ if(MSVC)
             target_sources(${PROJECT_NAME} PRIVATE ${QM_LRC_FILES})
         endif()
 
-        # copy runtime files
-        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                           COMMAND ${CMAKE_COMMAND} -E copy
-                                   "${DRING}/contrib/build/ffmpeg/Build/win32/x64/bin/avcodec-58.dll"
-                                   "${DRING}/contrib/build/ffmpeg/Build/win32/x64/bin/avutil-56.dll"
-                                   "${DRING}/contrib/build/ffmpeg/Build/win32/x64/bin/avformat-58.dll"
-                                   "${DRING}/contrib/build/ffmpeg/Build/win32/x64/bin/avdevice-58.dll"
-                                   "${DRING}/contrib/build/ffmpeg/Build/win32/x64/bin/swresample-3.dll"
-                                   "${DRING}/contrib/build/ffmpeg/Build/win32/x64/bin/swscale-5.dll"
-                                   "${DRING}/contrib/build/ffmpeg/Build/win32/x64/bin/avfilter-7.dll"
-                                   "${DRING}/contrib/build/openssl/libcrypto-1_1-x64.dll"
-                                   "${DRING}/contrib/build/openssl/libssl-1_1-x64.dll"
-                                   "${PROJECT_SOURCE_DIR}/qt.conf"
-                                   "${PROJECT_SOURCE_DIR}/images/jami.ico"
-                                   "${PROJECT_SOURCE_DIR}/License.rtf"
-                                   "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
+        # POST_BUILD steps
 
-        # POST_BUILD step
-        # - after build, we have a bin/lib for analyzing qt dependencies
-        # - we run windeployqt on target and deploy Qt libs
+        # check time stamp
+        set(File_To_Check ".deploy.stamp")
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-            COMMAND "${CMAKE_PREFIX_PATH}/bin/windeployqt.exe"
-                    --verbose 1
-                    --qmldir ${SRC_DIR}
-                    --release "$<TARGET_FILE:${PROJECT_NAME}>"
-            COMMENT "Deploying Qt libraries using windeployqt ..."
-        )
+                           WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+                           COMMAND ${CMAKE_COMMAND} -DFile_To_Check=${File_To_Check}
+                                   -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/time_stamp_check.cmake)
+
+        # copy runtime files and run windeployqt on target and deploy Qt libs
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                           WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+                           COMMAND ${CMAKE_COMMAND} -DFile_To_Check=${File_To_Check}
+                                   -DCOPY_TO_PATH=$<TARGET_FILE_DIR:${PROJECT_NAME}>
+                                   -DDRING_PATH=${DRING}
+                                   -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
+                                   -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
+                                   -DQML_SRC_DIR=${SRC_DIR}
+                                   -DEXE_NAME=$<TARGET_FILE:${PROJECT_NAME}>
+                                   -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_deploy.cmake)
+
+        # create time stamp
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                           WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+                           COMMAND ${CMAKE_COMMAND} -DFile_To_Check=${File_To_Check}
+                                   -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/time_stamp_create.cmake)
     endif()
 
     # executable name
