@@ -413,7 +413,7 @@ MainApplication::setApplicationFont()
 void
 MainApplication::initQmlLayer()
 {
-    // setup the adapters (their lifetimes are that of MainApplication)
+    // Setup the adapters and nameDirectory (their lifetimes are that of MainApplication)
     auto callAdapter = new CallAdapter(systemTray_, lrcInstance_.data(), this);
     auto messagesAdapter = new MessagesAdapter(settingsManager_, lrcInstance_.data(), this);
     auto conversationsAdapter = new ConversationsAdapter(systemTray_, lrcInstance_.data(), this);
@@ -423,8 +423,9 @@ MainApplication::initQmlLayer()
     auto utilsAdapter = new UtilsAdapter(systemTray_, lrcInstance_.data(), this);
     auto settingsAdapter = new SettingsAdapter(settingsManager_, lrcInstance_.data(), this);
     auto pluginAdapter = new PluginAdapter(lrcInstance_.data(), this);
+    auto nameDirectory = new NameDirectory(this);
 
-    // qml adapter registration
+    // Qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, messagesAdapter, "MessagesAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, conversationsAdapter, "ConversationsAdapter");
@@ -435,12 +436,15 @@ MainApplication::initQmlLayer()
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, settingsAdapter, "SettingsAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, pluginAdapter, "PluginAdapter");
 
+    // NameDirectory registration
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, nameDirectory, "NameDirectory");
+
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance_->avModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, PluginModel, &lrcInstance_->pluginModel())
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_HELPERS, UpdateManager, lrcInstance_->getUpdateManager())
 
-    // register other types that don't require injection(e.g. uncreatables, c++/qml singletons)
+    // Register other types that don't require injection(e.g. uncreatables, c++/qml singletons)
     Utils::registerTypes();
 
     engine_->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance_.get()));
@@ -456,7 +460,6 @@ MainApplication::initQmlLayer()
     engine_->setObjectOwnership(&lrcInstance_->pluginModel(), QQmlEngine::CppOwnership);
     engine_->setObjectOwnership(lrcInstance_->getUpdateManager(), QQmlEngine::CppOwnership);
     engine_->setObjectOwnership(lrcInstance_.get(), QQmlEngine::CppOwnership);
-    engine_->setObjectOwnership(&NameDirectory::instance(), QQmlEngine::CppOwnership);
 
     engine_->load(QUrl(QStringLiteral("qrc:/src/MainApplicationWindow.qml")));
 }
