@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9859c44_e0baf2b1",
+        "filename": "src/mainview/MainView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-15T17:07:36Z",
+      "side": 1,
+      "message": "Some error in here",
+      "range": {
+        "startLine": 600,
+        "startChar": 0,
+        "endLine": 604,
+        "endChar": 40
+      },
+      "revId": "8dd205561e6dfb9170181b4385b5f473cb7657d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d99230_a8da06d1",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-15T17:07:36Z",
+      "side": 1,
+      "message": "We can remove this",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 133,
+        "endChar": 44
+      },
+      "revId": "8dd205561e6dfb9170181b4385b5f473cb7657d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
