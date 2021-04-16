@@ -264,6 +264,8 @@ Rectangle {
                     inputParaObject = {}
                     inputParaObject["hostname"] = createSIPAccountPage.text_sipServernameEditAlias
                     inputParaObject["username"] = createSIPAccountPage.text_sipUsernameEditAlias
+                    inputParaObject["authenticationUsername"] =
+                            createSIPAccountPage.text_sipAuthUsernameEditAlias
                     inputParaObject["password"] = createSIPAccountPage.text_sipPasswordEditAlias
                     inputParaObject["proxy"] = createSIPAccountPage.text_sipProxyEditAlias
                     createSIPAccountPage.clearAllTextFields()

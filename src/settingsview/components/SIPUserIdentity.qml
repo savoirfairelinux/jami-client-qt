@@ -36,6 +36,7 @@ ColumnLayout {
 
     function updateAccountInfo() {
         usernameSIP.setText(SettingsAdapter.getAccountConfig_Username())
+        authUsernameSIP.setText(SettingsAdapter.getAccountConfig_AuthenticationUsername())
         hostnameSIP.setText(SettingsAdapter.getAccountConfig_Hostname())
         passSIPlineEdit.setText(SettingsAdapter.getAccountConfig_Password())
         proxySIP.setText(SettingsAdapter.getAccountConfig_RouteSet())
@@ -47,9 +48,20 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        titleField: qsTr("Username")
+        titleField: JamiStrings.username
         itemWidth: root.itemWidth
         onEditFinished: SettingsAdapter.setAccountConfig_Username(textField)
+    }
+
+    SettingsMaterialLineEdit {
+        id: authUsernameSIP
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+        titleField: JamiStrings.authenticationUsername
+        itemWidth: root.itemWidth
+        onEditFinished: SettingsAdapter.setAccountConfig_AuthenticationUsername(textField)
     }
 
     SettingsMaterialLineEdit {
@@ -58,7 +70,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        titleField: qsTr("Hostname")
+        titleField: JamiStrings.hostname
         itemWidth: root.itemWidth
         onEditFinished: SettingsAdapter.setAccountConfig_Hostname(textField)
     }
@@ -69,7 +81,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        titleField: qsTr("Proxy")
+        titleField: JamiStrings.proxy
         itemWidth: root.itemWidth
         onEditFinished: SettingsAdapter.setAccountConfig_RouteSet(textField)
     }
@@ -80,7 +92,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        titleField: qsTr("Password")
+        titleField: JamiStrings.password
         itemWidth: root.itemWidth
         onEditFinished: SettingsAdapter.setAccountConfig_Password(textField)
         echoMode: TextInput.Password
