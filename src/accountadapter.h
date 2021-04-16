@@ -119,8 +119,6 @@ private:
     lrc::api::profile::Type currentAccountType_ {};
     int accountListSize_ {};
 
-    void deselectConversation();
-
     // Make account signal connections.
     void connectAccount(const QString& accountId);
 
