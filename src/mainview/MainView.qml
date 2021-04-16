@@ -80,7 +80,7 @@ Rectangle {
     function showWelcomeView() {
         currentConvUID = ""
         callStackView.needToCloseInCallConversationAndPotentialWindow()
-        mainViewSidePanel.deselectConversationSmartList()
+        ConversationsAdapter.deselectConversation()
         if (isPageInStack("callStackViewObject", sidePanelViewStack) ||
                 isPageInStack("communicationPageMessageWebView", sidePanelViewStack) ||
                 isPageInStack("communicationPageMessageWebView", mainViewStack) ||
@@ -171,9 +171,9 @@ Rectangle {
         }
     }
 
-    // ConversationSmartListViewItemDelegate provides UI information
+    // SmartListViewItemDelegates provide UI information
     function setMainView(currentUserDisplayName, currentUserAlias, currentUID,
-                               callStackViewShouldShow, isAudioOnly, callState) {
+                         callStackViewShouldShow, isAudioOnly, callState) {
         if (!(communicationPageMessageWebView.jsLoaded)) {
             communicationPageMessageWebView.jsLoadedChanged.connect(
                         function(currentUserDisplayName, currentUserAlias, currentUID,
@@ -291,10 +291,11 @@ Rectangle {
                     Connections {
                         target: AccountAdapter
 
-                        function onUpdateConversationForAddedContact() {
+                        // TODO: hmm...
+                        function onSelectedContactAdded(convId) {
                             MessagesAdapter.updateConversationForAddedContact()
                             mainViewSidePanel.clearContactSearchBar()
-                            mainViewSidePanel.forceReselectConversationSmartListCurrentIndex()
+                            ConversationsAdapter.selectConversation(currentAccountId, convId)
                         }
 
                         function onAccountStatusChanged(accountId) {
@@ -437,10 +438,6 @@ Rectangle {
 
         Connections {
             target: MessagesAdapter
-
-            function onNeedToUpdateSmartList() {
-                mainViewSidePanel.forceUpdateConversationSmartListView()
-            }
 
             function onNavigateToWelcomePageRequested() {
                 backToMainView()
