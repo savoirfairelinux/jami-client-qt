@@ -26,6 +26,7 @@
 #include "utils.h"
 #include "qtutils.h"
 #include "systemtray.h"
+#include "qmlregister.h"
 
 #include <QApplication>
 
@@ -34,7 +35,14 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            QObject* parent)
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
+    , sourceModel_(new ConversationListModel(lrcInstance_))
+    , proxyModel_(new ConversationListProxyModel(sourceModel_.get()))
+    , searchModel_(new SearchResultsListModel(lrcInstance_))
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, sourceModel_.get(), "ConversationListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, proxyModel_.get(), "ConversationListProxyModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, searchModel_.get(), "SearchResultsListModel");
+
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
         lrcInstance_->getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });
@@ -155,6 +163,9 @@ ConversationsAdapter::deselectConversation()
 void
 ConversationsAdapter::onCurrentAccountIdChanged()
 {
+    sourceModel_.reset(new ConversationListModel(lrcInstance_));
+    proxyModel_->setSourceModel(sourceModel_.get());
+
     connectConversationModel();
 
     setProperty("currentTypeFilter",
@@ -209,6 +220,10 @@ ConversationsAdapter::onNewReadInteraction(const QString& accountId,
     // hide notification
     auto notifId = QString("%1;%2;%3").arg(accountId).arg(convUid).arg(interactionId);
     systemTray_->hideNotification(notifId);
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(convUid)
+    Q_UNUSED(interactionId)
 #endif
 }
 
@@ -227,6 +242,9 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId, const QString&
                                       NotificationType::REQUEST,
                                       Utils::QImageToByteArray(contactPhoto));
     }
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(peerUri)
 #endif
 }
 
@@ -237,6 +255,9 @@ ConversationsAdapter::onTrustRequestTreated(const QString& accountId, const QStr
     // hide notification
     auto notifId = QString("%1;%2").arg(accountId).arg(peerUri);
     systemTray_->hideNotification(notifId);
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(peerUri)
 #endif
 }
 
@@ -319,8 +340,11 @@ ConversationsAdapter::onSearchStatusChanged(const QString& status)
 void
 ConversationsAdapter::onSearchResultUpdated()
 {
+    // currently for contact pickers
     conversationSmartListModel_->fillConversationsList();
-    Q_EMIT updateListViewRequested();
+
+    // smartlist search results
+    searchModel_->onSearchResultsUpdated();
 }
 
 void
@@ -331,14 +355,14 @@ ConversationsAdapter::updateConversationsFilterWidget()
     if (invites == 0 && currentTypeFilter_ == lrc::api::profile::Type::PENDING) {
         setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::profile::Type::RING));
     }
-    showConversationTabs(invites);
+    Q_EMIT showConversationTabs(invites);
 }
 
 void
-ConversationsAdapter::refill()
+ConversationsAdapter::setFilter(const QString& filterString)
 {
-    if (conversationSmartListModel_)
-        conversationSmartListModel_->fillConversationsList();
+    proxyModel_->setFilter(filterString);
+    searchModel_->setFilter(filterString);
 }
 
 bool
