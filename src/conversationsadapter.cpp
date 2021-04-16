@@ -1,11 +1,7 @@
-/*!
+/*
  * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
- * Author: Anthony Léonard <anthony.leonard@savoirfairelinux.com>
- * Author: Olivier Soldano <olivier.soldano@savoirfairelinux.com>
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
- * Author: Isa Nanic <isa.nanic@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,17 +22,31 @@
 #include "utils.h"
 #include "qtutils.h"
 #include "systemtray.h"
+#include "qmlregister.h"
 
 #include <QApplication>
+
+using namespace lrc::api;
 
 ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            LRCInstance* instance,
                                            QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , currentTypeFilter_(profile::Type::RING)
     , systemTray_(systemTray)
+    , convSrcModel_(new ConversationListModel(lrcInstance_))
+    , convModel_(new ConversationListProxyModel(convSrcModel_.get()))
+    , searchSrcModel_(new SearchResultsListModel(lrcInstance_))
+    , searchModel_(new SelectableListProxyModel(searchSrcModel_.get()))
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, convModel_.get(), "ConversationListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, searchModel_.get(), "SearchResultsListModel");
+
+    new SelectableListProxyGroupModel({convModel_.data(), searchModel_.data()}, this);
+
+    setTypeFilter(currentTypeFilter_);
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
-        lrcInstance_->getCurrentConversationModel()->setFilter(currentTypeFilter_);
+        setTypeFilter(currentTypeFilter_);
     });
 
     connect(lrcInstance_, &LRCInstance::conversationSelected, [this]() {
@@ -46,6 +56,8 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
         }
     });
 
+    updateConversationFilterData();
+
 #ifdef Q_OS_LINUX
     // notification responses
     connect(systemTray_,
@@ -54,7 +66,6 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                 Q_EMIT lrcInstance_->notificationClicked();
                 selectConversation(accountId, convUid);
                 Q_EMIT lrcInstance_->updateSmartList();
-                Q_EMIT modelSorted(convUid);
             });
     connect(systemTray_,
             &SystemTray::acceptPendingActivated,
@@ -80,6 +91,8 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
 void
 ConversationsAdapter::safeInit()
 {
+    // TODO: remove these safeInits, they are possibly called
+    // multiple times during qml component inits
     conversationSmartListModel_ = new SmartListModel(this,
                                                      SmartListModel::Type::CONVERSATION,
                                                      lrcInstance_);
@@ -88,34 +101,39 @@ ConversationsAdapter::safeInit()
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::showChatView,
-            [this](const QString& accountId, const QString& convId) {
-                Q_EMIT showConversation(accountId, convId);
-            });
+            this,
+            &ConversationsAdapter::showConversation,
+            Qt::UniqueConnection);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newUnreadInteraction,
             this,
-            &ConversationsAdapter::onNewUnreadInteraction);
+            &ConversationsAdapter::onNewUnreadInteraction,
+            Qt::UniqueConnection);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newReadInteraction,
             this,
-            &ConversationsAdapter::onNewReadInteraction);
+            &ConversationsAdapter::onNewReadInteraction,
+            Qt::UniqueConnection);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newTrustRequest,
             this,
-            &ConversationsAdapter::onNewTrustRequest);
+            &ConversationsAdapter::onNewTrustRequest,
+            Qt::UniqueConnection);
 
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::trustRequestTreated,
             this,
-            &ConversationsAdapter::onTrustRequestTreated);
+            &ConversationsAdapter::onTrustRequestTreated,
+            Qt::UniqueConnection);
 
     connect(lrcInstance_,
             &LRCInstance::currentAccountChanged,
             this,
-            &ConversationsAdapter::onCurrentAccountIdChanged);
+            &ConversationsAdapter::onCurrentAccountIdChanged,
+            Qt::UniqueConnection);
 
     connectConversationModel();
 
@@ -139,22 +157,21 @@ ConversationsAdapter::selectConversation(const QString& accountId, const QString
 void
 ConversationsAdapter::deselectConversation()
 {
-    if (lrcInstance_->get_selectedConvUid().isEmpty()) {
-        return;
-    }
-
-    auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
-
-    if (currentConversationModel == nullptr) {
-        return;
-    }
-
     lrcInstance_->set_selectedConvUid();
+    convModel_->deselect();
+    searchModel_->deselect();
 }
 
 void
 ConversationsAdapter::onCurrentAccountIdChanged()
 {
+    deselectConversation();
+
+    convSrcModel_.reset(new ConversationListModel(lrcInstance_));
+    convModel_->setSourceModel(convSrcModel_.get());
+    searchSrcModel_.reset(new SearchResultsListModel(lrcInstance_));
+    searchModel_->setSourceModel(searchSrcModel_.get());
+
     connectConversationModel();
 
     setProperty("currentTypeFilter",
@@ -192,7 +209,6 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             if (!convInfo.uid.isEmpty()) {
                 selectConversation(accountId, convInfo.uid);
                 Q_EMIT lrcInstance_->updateSmartList();
-                Q_EMIT modelSorted(convInfo.uid);
             }
         };
         systemTray_->showNotification(interaction.body, from, onClicked);
@@ -209,6 +225,10 @@ ConversationsAdapter::onNewReadInteraction(const QString& accountId,
     // hide notification
     auto notifId = QString("%1;%2;%3").arg(accountId).arg(convUid).arg(interactionId);
     systemTray_->hideNotification(notifId);
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(convUid)
+    Q_UNUSED(interactionId)
 #endif
 }
 
@@ -227,6 +247,9 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId, const QString&
                                       NotificationType::REQUEST,
                                       Utils::QImageToByteArray(contactPhoto));
     }
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(peerUri)
 #endif
 }
 
@@ -237,6 +260,9 @@ ConversationsAdapter::onTrustRequestTreated(const QString& accountId, const QStr
     // hide notification
     auto notifId = QString("%1;%2").arg(accountId).arg(peerUri);
     systemTray_->hideNotification(notifId);
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(peerUri)
 #endif
 }
 
@@ -244,46 +270,30 @@ void
 ConversationsAdapter::onModelChanged()
 {
     conversationSmartListModel_->fillConversationsList();
-    updateConversationsFilterWidget();
-
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    const auto& convInfo = lrcInstance_->getConversationFromConvUid(
-        lrcInstance_->get_selectedConvUid());
-
-    if (convInfo.uid.isEmpty() || convInfo.participants.isEmpty()) {
-        return;
-    }
-    const auto contactURI = convInfo.participants[0];
-    if (contactURI.isEmpty()
-        || convModel->owner.contactModel->getContact(contactURI).profileInfo.type
-               == lrc::api::profile::Type::TEMPORARY) {
-        return;
-    }
-    Q_EMIT modelSorted(QVariant::fromValue(convInfo.uid));
+    updateConversationFilterData();
 }
 
 void
 ConversationsAdapter::onProfileUpdated(const QString& contactUri)
 {
+    // TODO: this will need a dataChanged call to keep the avatar
+    // updated. previously, 'reload-smartlist' was invoked here
     conversationSmartListModel_->updateContactAvatarUid(contactUri);
-    Q_EMIT updateListViewRequested();
 }
 
 void
 ConversationsAdapter::onConversationUpdated(const QString&)
 {
-    updateConversationsFilterWidget();
-    Q_EMIT updateListViewRequested();
+    updateConversationFilterData();
 }
 
 void
 ConversationsAdapter::onFilterChanged()
 {
     conversationSmartListModel_->fillConversationsList();
-    updateConversationsFilterWidget();
+    updateConversationFilterData();
     if (!lrcInstance_->get_selectedConvUid().isEmpty())
         Q_EMIT indexRepositionRequested();
-    Q_EMIT updateListViewRequested();
 }
 
 void
@@ -304,10 +314,9 @@ ConversationsAdapter::onConversationCleared(const QString& convUid)
 {
     // If currently selected, switch to welcome screen (deselecting
     // current smartlist item).
-    if (convUid != lrcInstance_->get_selectedConvUid()) {
-        return;
+    if (convUid == lrcInstance_->get_selectedConvUid()) {
+        deselectConversation();
     }
-    backToWelcomePage();
 }
 
 void
@@ -319,26 +328,46 @@ ConversationsAdapter::onSearchStatusChanged(const QString& status)
 void
 ConversationsAdapter::onSearchResultUpdated()
 {
+    // currently for contact pickers
     conversationSmartListModel_->fillConversationsList();
-    Q_EMIT updateListViewRequested();
+
+    // smartlist search results
+    searchSrcModel_->onSearchResultsUpdated();
 }
 
 void
-ConversationsAdapter::updateConversationsFilterWidget()
+ConversationsAdapter::updateConversationFilterData()
 {
-    // Update status of "Conversations" and "Invitations".
-    auto invites = lrcInstance_->getCurrentAccountInfo().contactModel->pendingRequestCount();
-    if (invites == 0 && currentTypeFilter_ == lrc::api::profile::Type::PENDING) {
-        setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::profile::Type::RING));
+    // TODO: this may be further spliced to respond separately to
+    // incoming messages and invites
+    // total unread message and pending invite counts, and tab selection
+    auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
+    int totalUnreadMessages {0};
+    if (accountInfo.profileInfo.type != profile::Type::SIP) {
+        auto& convModel = accountInfo.conversationModel;
+        auto conversations = convModel->getFilteredConversations(profile::Type::RING, false);
+        conversations.for_each([&totalUnreadMessages](const conversation::Info& conversation) {
+            totalUnreadMessages += conversation.unreadMessages;
+        });
     }
-    showConversationTabs(invites);
+    set_totalUnreadMessageCount(totalUnreadMessages);
+    set_pendingRequestCount(accountInfo.contactModel->pendingRequestCount());
+    if (pendingRequestCount_ == 0 && currentTypeFilter_ == profile::Type::PENDING) {
+        set_currentTypeFilter(profile::Type::RING);
+    }
 }
 
 void
-ConversationsAdapter::refill()
+ConversationsAdapter::setFilter(const QString& filterString)
 {
-    if (conversationSmartListModel_)
-        conversationSmartListModel_->fillConversationsList();
+    convModel_->setFilter(filterString);
+    searchSrcModel_->setFilter(filterString);
+}
+
+void
+ConversationsAdapter::setTypeFilter(const profile::Type& typeFilter)
+{
+    convModel_->setTypeFilter(typeFilter);
 }
 
 bool
