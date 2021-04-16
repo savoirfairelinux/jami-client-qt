@@ -38,6 +38,7 @@ Item {
 
     property alias fillMode: rootImage.fillMode
     property alias sourceSize: rootImage.sourceSize
+    property int transitionDuration: 150
     property bool saveToConfig: false
     property int mode: AvatarImage.Mode.FromAccount
     property string imageProviderIdPrefix: {
@@ -178,7 +179,7 @@ Item {
                 NumberAnimation {
                     properties: "opacity"
                     easing.type: Easing.InOutQuad
-                    duration: 400
+                    duration: transitionDuration
                 }
             }
         }
@@ -188,9 +189,11 @@ Item {
         id: presenceIndicator
 
         anchors.right: root.right
+        anchors.rightMargin: -1
         anchors.bottom: root.bottom
+        anchors.bottomMargin: -1
 
-        size: root.width * 0.3
+        size: root.width * 0.26
 
         visible: showPresenceIndicator
     }
