@@ -17,13 +17,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <QApplication>
-#include <gtest/gtest.h>
+import QtQuick 2.14
+import QtTest 1.2
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    a.processEvents();
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+import net.jami.Adapters 1.0
+
+TestCase {
+    name: "Local Account Test"
+    when: windowShown
+
+    function test_initially_no_account() {
+        compare(UtilsAdapter.getAccountListSize(), 0)
+    }
 }
