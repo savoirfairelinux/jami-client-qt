@@ -163,13 +163,14 @@ MessagesAdapter::sendContactRequest()
     const auto convUid = lrcInstance_->get_selectedConvUid();
     if (!convUid.isEmpty()) {
         lrcInstance_->getCurrentConversationModel()->makePermanent(convUid);
+        qDebug() << "makePermanent " << convUid;
     }
 }
 
 void
 MessagesAdapter::updateConversationForAddedContact()
 {
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
+    auto convModel = lrcInstance_->getCurrentConversationModel();
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(
         lrcInstance_->get_selectedConvUid());
 
@@ -460,11 +461,9 @@ MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& 
     try {
         auto& contact = accInfo->contactModel->getContact(contactUri);
         auto bestName = accInfo->contactModel->bestNameForContact(contactUri);
-        setInvitation(contact.profileInfo.type == lrc::api::profile::Type::PENDING
-                          || contact.profileInfo.type == lrc::api::profile::Type::TEMPORARY,
+        setInvitation(contact.profileInfo.type == lrc::api::profile::Type::PENDING,
                       bestName,
                       contactUri);
-
         if (!contact.profileInfo.avatar.isEmpty()) {
             setSenderImage(contactUri, contact.profileInfo.avatar);
         } else {
