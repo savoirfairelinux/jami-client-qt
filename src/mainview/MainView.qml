@@ -440,10 +440,6 @@ Rectangle {
         Connections {
             target: MessagesAdapter
 
-            function onNeedToUpdateSmartList() {
-                mainViewSidePanel.forceUpdateConversationSmartListView()
-            }
-
             function onNavigateToWelcomePageRequested() {
                 backToMainView()
             }
