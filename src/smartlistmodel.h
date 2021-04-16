@@ -21,51 +21,28 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
+#include "conversationlistmodelbase.h"
 
 using namespace lrc::api;
 class LRCInstance;
 
-class SmartListModel : public AbstractListModelBase
+class SmartListModel : public ConversationListModelBase
 {
     Q_OBJECT
 public:
     using AccountInfo = lrc::api::account::Info;
     using ConversationInfo = lrc::api::conversation::Info;
-    using ContactInfo = lrc::api::contact::Info;
 
     enum class Type { CONVERSATION, CONFERENCE, TRANSFER, COUNT__ };
-
-    enum Role {
-        DisplayName = Qt::UserRole + 1,
-        DisplayID,
-        Presence,
-        URI,
-        UnreadMessagesCount,
-        LastInteractionDate,
-        LastInteraction,
-        LastInteractionType,
-        ContactType,
-        UID,
-        ContextMenuOpen,
-        InCall,
-        IsAudioOnly,
-        CallStackViewShouldShow,
-        CallState,
-        SectionName,
-        AccountId,
-        PictureUid,
-        Draft
-    };
-    Q_ENUM(Role)
 
     explicit SmartListModel(QObject* parent = nullptr,
                             SmartListModel::Type listModelType = Type::CONVERSATION,
                             LRCInstance* instance = nullptr);
-    ~SmartListModel();
 
-    /*
-     * QAbstractListModel.
-     */
+    // ConversationListModelBase interface
+    item_t itemFromIndex(const QModelIndex& index) const override;
+
+    // QAbstractListModel
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     int columnCount(const QModelIndex& parent) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
@@ -81,25 +58,12 @@ public:
     Q_INVOKABLE int currentUidSmartListModelIndex();
     Q_INVOKABLE void fillConversationsList();
 
-    /*
-     * This function is to update contact avatar uuid for current account when there's an contact
-     * avatar changed.
-     */
-    Q_INVOKABLE void updateContactAvatarUid(const QString& contactUri);
-
 private:
     QVariant getConversationItemData(const ConversationInfo& item,
                                      const AccountInfo& accountInfo,
                                      int role) const;
 
-    /*
-     * Give a uuid for each contact avatar for current account and it will serve PictureUid role
-     */
-    void fillContactAvatarUidMap(const ContactModel::ContactInfoMap& contacts);
-
-    /*
-     * List sectioning.
-     */
+    // list sectioning
     Type listModelType_;
     QMap<QString, bool> sectionState_;
     QMap<ConferenceableItem, ConferenceableValue> conferenceables_;

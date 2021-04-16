@@ -34,16 +34,17 @@
 SmartListModel::SmartListModel(QObject* parent,
                                SmartListModel::Type listModelType,
                                LRCInstance* instance)
-    : AbstractListModelBase(parent)
+    : ConversationListModelBase(instance, parent)
     , listModelType_(listModelType)
 {
-    lrcInstance_ = instance;
     if (listModelType_ == Type::CONFERENCE) {
         setConferenceableFilter();
     }
 }
 
-SmartListModel::~SmartListModel() {}
+item_t
+SmartListModel::itemFromIndex(const QModelIndex& index) const
+{}
 
 int
 SmartListModel::rowCount(const QModelIndex& parent) const
@@ -68,13 +69,6 @@ SmartListModel::rowCount(const QModelIndex& parent) const
         return conversations_.size();
     }
     return 0;
-}
-
-int
-SmartListModel::columnCount(const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    return 1;
 }
 
 QVariant
@@ -142,30 +136,6 @@ SmartListModel::data(const QModelIndex& index, int role) const
         qWarning() << e.what();
     }
     return QVariant();
-}
-
-QHash<int, QByteArray>
-SmartListModel::roleNames() const
-{
-    QHash<int, QByteArray> roles;
-    roles[DisplayName] = "DisplayName";
-    roles[DisplayID] = "DisplayID";
-    roles[Presence] = "Presence";
-    roles[URI] = "URI";
-    roles[UnreadMessagesCount] = "UnreadMessagesCount";
-    roles[LastInteractionDate] = "LastInteractionDate";
-    roles[LastInteraction] = "LastInteraction";
-    roles[ContactType] = "ContactType";
-    roles[UID] = "UID";
-    roles[InCall] = "InCall";
-    roles[IsAudioOnly] = "IsAudioOnly";
-    roles[CallStackViewShouldShow] = "CallStackViewShouldShow";
-    roles[CallState] = "CallState";
-    roles[SectionName] = "SectionName";
-    roles[AccountId] = "AccountId";
-    roles[Draft] = "Draft";
-    roles[PictureUid] = "PictureUid";
-    return roles;
 }
 
 void
@@ -419,3 +389,7 @@ SmartListModel::flags(const QModelIndex& index) const
     }
     return flags;
 }
+
+item_t
+SmartListModel::itemFromIndex(const QModelIndex& index) const
+{}
