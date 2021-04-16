@@ -27,6 +27,7 @@
 #include "moderatorlistmodel.h"
 #include "deviceitemlistmodel.h"
 #include "smartlistmodel.h"
+#include "conversationlistmodel.h"
 
 #include "appsettingsmanager.h"
 #include "distantrenderer.h"

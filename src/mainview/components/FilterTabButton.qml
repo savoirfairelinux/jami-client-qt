@@ -82,6 +82,7 @@ TabButton {
                     text: badgeCount > 9 ? "…" : badgeCount
                     color: JamiTheme.filterBadgeTextColor
                     font.pointSize: JamiTheme.filterBadgeFontSize
+                    font.weight: Font.DemiBold
                 }
             }
         }
