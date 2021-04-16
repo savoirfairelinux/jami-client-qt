@@ -102,7 +102,6 @@
         <file>src/mainview/components/MessageWebView.qml</file>
         <file>src/mainview/components/MessageWebViewHeader.qml</file>
         <file>src/mainview/components/AccountComboBox.qml</file>
-        <file>src/mainview/components/ConversationSmartListView.qml</file>
         <file>src/mainview/components/CallStackView.qml</file>
         <file>src/mainview/components/IncomingCallPage.qml</file>
         <file>src/mainview/components/OutgoingCallPage.qml</file>
@@ -136,5 +135,6 @@
         <file>src/mainview/js/screenrubberbandcreation.js</file>
         <file>src/mainview/js/contactpickercreation.js</file>
         <file>src/mainview/js/pluginhandlerpickercreation.js</file>
+        <file>src/mainview/components/ConversationListView.qml</file>
     </qresource>
 </RCC>
