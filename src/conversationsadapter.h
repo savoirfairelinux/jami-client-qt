@@ -21,6 +21,8 @@
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
 #include "smartlistmodel.h"
+#include "conversationlistmodel.h"
+#include "searchresultslistmodel.h"
 
 #include <QObject>
 #include <QString>
@@ -46,8 +48,8 @@ public:
     Q_INVOKABLE bool connectConversationModel(bool updateFilter = true);
     Q_INVOKABLE void selectConversation(const QString& accountId, const QString& uid);
     Q_INVOKABLE void deselectConversation();
-    Q_INVOKABLE void refill();
     Q_INVOKABLE void updateConversationsFilterWidget();
+    Q_INVOKABLE void setFilter(const QString& filterString);
 
 Q_SIGNALS:
     void showConversation(const QString& accountId, const QString& convUid);
@@ -63,6 +65,8 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void onCurrentAccountIdChanged();
+
+    // cross-account slots
     void onNewUnreadInteraction(const QString& accountId,
                                 const QString& convUid,
                                 uint64_t interactionId,
@@ -73,6 +77,7 @@ private Q_SLOTS:
     void onNewTrustRequest(const QString& accountId, const QString& peerUri);
     void onTrustRequestTreated(const QString& accountId, const QString& peerUri);
 
+    // per-account slots
     void onModelChanged();
     void onProfileUpdated(const QString&);
     void onConversationUpdated(const QString&);
@@ -92,4 +97,8 @@ private:
     lrc::api::profile::Type currentTypeFilter_ {};
 
     SystemTray* systemTray_;
+
+    QScopedPointer<ConversationListModel> sourceModel_;
+    QScopedPointer<ConversationListProxyModel> proxyModel_;
+    QScopedPointer<SearchResultsListModel> searchModel_;
 };
