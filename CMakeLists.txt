@@ -374,11 +374,6 @@ else()
                           ${LIBNOTIFY_LIBRARIES}
                           ${LIBGDKPIXBUF_LIBRARIES})
 
-    if(ENABLE_TESTS)
-        message("Add Jami tests")
-        add_subdirectory(tests)
-    endif()
-
     # Installation rules
     install(TARGETS jami-qt
         RUNTIME DESTINATION bin)
@@ -477,4 +472,10 @@ else()
 
     add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+endif()
+
+# test
+if(ENABLE_TESTS)
+    message("Add Jami tests")
+    add_subdirectory(tests)
 endif()
