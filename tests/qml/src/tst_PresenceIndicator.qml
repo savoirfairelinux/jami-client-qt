@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Albert Babí Oller <albert.babi@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,31 +16,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "globaltestenvironment.h"
+import QtQuick 2.14
+import QtTest 1.2
 
-#include <QApplication>
-#include <gtest/gtest.h>
+import net.jami.Models 1.0
+import net.jami.Constants 1.0
 
-bool muteDring;
+import "qrc:/src/commoncomponents"
 
-int
-main(int argc, char* argv[])
-{
-    // Remove "-mutedring" from argv, as quick_test_main_with_setup() will
-    // fail if given an invalid command-line argument.
-    auto end = std::remove_if(argv + 1, argv + argc, [](char* argv) {
-        return (strcmp(argv, "-mutedring") == 0);
-    });
+PresenceIndicator {
+    id: uut
 
-    if (end != argv + argc) {
-        muteDring = true;
+    TestCase {
+        name: "Presence Indicator Color Test"
 
-        // Adjust the argument count.
-        argc = std::distance(argv, end);
+        function test_color() {
+            compare(uut.color, JamiTheme.presenceGreen)
+
+            uut.status = Account.Status.TRYING
+
+            compare(uut.color, JamiTheme.unPresenceOrange)
+
+            uut.status = Account.Status.UNREGISTERED
+
+            compare(uut.color, JamiTheme.notificationRed)
+        }
     }
-
-    QApplication a(argc, argv);
-    a.processEvents();
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }
