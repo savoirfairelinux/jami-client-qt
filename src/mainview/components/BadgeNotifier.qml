@@ -1,6 +1,7 @@
 /*
- * Copyright (C) 2020 by Savoir-faire Linux
+ * Copyright (C) 2020-2021 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,33 +18,28 @@
  */
 
 import QtQuick 2.14
-import QtQuick.Controls 2.14
 
-import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
-// Serves as either account or contact presence indicator.
-// TODO: this should be part of an avatar component at some point.
 Rectangle {
     id: root
 
-    // This is set to REGISTERED for contact presence
-    // as status is not currently tracked for contact items.
-    property int status: Account.Status.REGISTERED
-    property int size: 15
+    property real size
+    property int count: 0
 
     width: size
     height: size
-    radius: size * 0.5
-    border {
-        color: JamiTheme.backgroundColor
-        width: 2
-    }
-    color: {
-        if (status === Account.Status.REGISTERED)
-            return JamiTheme.presenceGreen
-        else if (status === Account.Status.TRYING)
-            return JamiTheme.unPresenceOrange
-        return JamiTheme.notificationRed
+
+    radius: JamiTheme.primaryRadius
+    color: JamiTheme.filterBadgeColor
+
+    visible: count > 0
+
+    Text {
+        anchors.centerIn: root
+        text: count > 9 ? "…" : count
+        color: JamiTheme.filterBadgeTextColor
+        font.pointSize: JamiTheme.filterBadgeFontSize
+        font.weight: Font.ExtraBold
     }
 }

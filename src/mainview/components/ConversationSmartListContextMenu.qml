@@ -34,6 +34,8 @@ Item {
     property string responsibleConvUid: ""
     property int contactType: Profile.Type.INVALID
 
+    function isOpen() { return ContextMenuGenerator.getMenu().visible }
+
     function openMenu() {
         ContextMenuGenerator.initMenu()
         var hasCall = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid) !== ""
