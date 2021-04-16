@@ -17,31 +17,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "globaltestenvironment.h"
+import QtQuick 2.14
+import QtTest 1.2
 
-#include <QApplication>
-#include <gtest/gtest.h>
+import net.jami.Adapters 1.0
 
-bool muteDring;
+TestCase {
+    name: "Local Account Test"
+    when: windowShown
 
-int
-main(int argc, char* argv[])
-{
-    // Remove "-mutedring" from argv, as quick_test_main_with_setup() will
-    // fail if given an invalid command-line argument.
-    auto end = std::remove_if(argv + 1, argv + argc, [](char* argv) {
-        return (strcmp(argv, "-mutedring") == 0);
-    });
-
-    if (end != argv + argc) {
-        muteDring = true;
-
-        // Adjust the argument count.
-        argc = std::distance(argv, end);
+    function test_initially_no_account() {
+        compare(UtilsAdapter.getAccountListSize(), 0)
     }
-
-    QApplication a(argc, argv);
-    a.processEvents();
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }
