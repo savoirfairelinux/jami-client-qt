@@ -104,5 +104,5 @@ private:
     QMap<QString, bool> sectionState_;
     QMap<ConferenceableItem, ConferenceableValue> conferenceables_;
     QMap<QString, QString> contactAvatarUidMap_;
-    ConversationModel::ConversationQueueProxy conversations_;
+    OptRef<const ConversationModel::ConversationQueue> conversations_;
 };

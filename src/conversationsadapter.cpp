@@ -252,13 +252,6 @@ ConversationsAdapter::updateConversationsFilterWidget()
     showConversationTabs(invites);
 }
 
-void
-ConversationsAdapter::refill()
-{
-    if (conversationSmartListModel_)
-        conversationSmartListModel_->fillConversationsList();
-}
-
 bool
 ConversationsAdapter::connectConversationModel(bool updateFilter)
 {
@@ -267,7 +260,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
 
     modelSortedConnection_ = QObject::connect(
         currentConversationModel, &lrc::api::ConversationModel::modelChanged, [this]() {
-            conversationSmartListModel_->fillConversationsList();
+            // conversationSmartListModel_->fillConversationsList();
             updateConversationsFilterWidget();
 
             auto* convModel = lrcInstance_->getCurrentConversationModel();
@@ -301,7 +294,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                                                    Q_EMIT updateListViewRequested();
                                                });
 
-    filterChangedConnection_
+    /*filterChangedConnection_
         = QObject::connect(currentConversationModel,
                            &lrc::api::ConversationModel::filterChanged,
                            [this]() {
@@ -310,13 +303,13 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                                if (!lrcInstance_->get_selectedConvUid().isEmpty())
                                    Q_EMIT indexRepositionRequested();
                                Q_EMIT updateListViewRequested();
-                           });
+                           });*/
 
     newConversationConnection_ = QObject::connect(currentConversationModel,
                                                   &lrc::api::ConversationModel::newConversation,
                                                   [this](const QString& convUid) {
-                                                      conversationSmartListModel_
-                                                          ->fillConversationsList();
+                                                      /*conversationSmartListModel_
+                                                          ->fillConversationsList();*/
                                                       updateConversationForNewContact(convUid);
                                                   });
 
