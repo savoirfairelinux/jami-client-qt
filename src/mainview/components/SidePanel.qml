@@ -32,31 +32,9 @@ Rectangle {
 
     color: JamiTheme.backgroundColor
 
-    property bool tabBarVisible: true
-    property int pendingRequestCount: 0
-    property int totalUnreadMessagesCount: 0
-
-    // Hack -> force redraw.
-    function forceReselectConversationSmartListCurrentIndex() {
-        var index = conversationSmartListView.currentIndex
-        conversationSmartListView.currentIndex = -1
-        conversationSmartListView.currentIndex = index
-    }
-
-
-    // For contact request conv to be focused correctly.
-    function setCurrentUidSmartListModelIndex() {
-        conversationSmartListView.currentIndex
-                = conversationSmartListView.model.currentUidSmartListModelIndex()
-    }
-
-    function updatePendingRequestCount() {
-        pendingRequestCount = UtilsAdapter.getTotalPendingRequest()
-    }
-
-    function updateTotalUnreadMessagesCount() {
-        totalUnreadMessagesCount = UtilsAdapter.getTotalUnreadMessages()
-    }
+    // TODO: hmm..
+    // Intended -> since strange behavior will happen without this for stackview.
+    anchors.fill: parent
 
     function clearContactSearchBar() {
         contactSearchBar.clearText()
@@ -68,22 +46,16 @@ Rectangle {
         accountComboBox.resetAccountListModel()
     }
 
+    // TODO: hmm..
     function deselectConversationSmartList() {
-        ConversationsAdapter.deselectConversation()
-        conversationSmartListView.currentIndex = -1
-    }
-
-    function forceUpdateConversationSmartListView() {
-        conversationSmartListView.updateListView()
+        print("deselectConversationSmartList")
+//        ConversationsAdapter.deselectConversation()
+//        conversationListView.currentIndex = -1
     }
 
     function selectTab(tabIndex) {
         sidePanelTabBar.selectTab(tabIndex)
     }
-
-    // Intended -> since strange behavior will happen without this for stackview.
-    anchors.top: parent.top
-    anchors.fill: parent
 
     // Search bar container to embed search label
     ContactSearchBar {
@@ -98,116 +70,128 @@ Rectangle {
         anchors.rightMargin: 15
 
         onContactSearchBarTextChanged: {
-            UtilsAdapter.setConversationFilter(text)
+            ConversationsAdapter.setFilter(text)
         }
 
         onReturnPressedWhileSearching: {
-            var convUid = conversationSmartListView.itemAtIndex(0).convUid()
+            var convUid = conversationListView.itemAtIndex(0).convUid()
             var currentAccountId = AccountAdapter.currentAccountId
             ConversationsAdapter.selectConversation(currentAccountId, convUid)
-            conversationSmartListView.repositionIndex(convUid)
+            conversationListView.repositionIndex(convUid)
         }
     }
 
     SidePanelTabBar {
         id: sidePanelTabBar
+
+        visible: ConversationsAdapter.pendingRequestCount &&
+                 !contactSearchBar.textContent
         anchors.top: contactSearchBar.bottom
-        anchors.topMargin: 10
+        anchors.topMargin: visible ? 10 : 0
         width: sidePanelRect.width
-        height: tabBarVisible ? 42 : 0
+        height: visible ? 42 : 0
     }
 
     Rectangle {
         id: searchStatusRect
 
-        visible: lblSearchStatus.text !== ""
+        visible: searchStatusText.text !== ""
 
-        anchors.top: tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom
-        anchors.topMargin: tabBarVisible ? 0 : 10
+        anchors.top: sidePanelTabBar.bottom
+        anchors.topMargin: visible ? 10 : 0
         width: parent.width
-        height: 72
+        height: visible ? 42 : 0
 
-        color: "transparent"
+        color: JamiTheme.backgroundColor
 
-        Image {
-            id: searchIcon
-            anchors.left: searchStatusRect.left
-            anchors.leftMargin: 24
-            anchors.verticalCenter: searchStatusRect.verticalCenter
-            width: 24
-            height: 24
+        Text {
+            id: searchStatusText
 
-            layer {
-                enabled: true
-                effect: ColorOverlay {
-                    color: JamiTheme.textColor
-                }
-            }
-
-            fillMode: Image.PreserveAspectFit
-            mipmap: true
-            source: "qrc:/images/icons/ic_baseline-search-24px.svg"
-        }
-
-        Label {
-            id: lblSearchStatus
-
-            anchors.verticalCenter: searchStatusRect.verticalCenter
-            anchors.left: searchIcon.right
-            anchors.leftMargin: 24
-            width: searchStatusRect.width - searchIcon.width - 24*2 - 8
-            text: ""
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 32
+            anchors.right: parent.right
+            anchors.rightMargin: 32
             color: JamiTheme.textColor
             wrapMode: Text.WordWrap
-            font.pointSize: JamiTheme.menuFontSize
-        }
-
-        MouseArea {
-            id: mouseAreaSearchRect
-
-            anchors.fill: parent
-            hoverEnabled: true
-
-            onReleased: {
-                searchStatusRect.color = Qt.binding(function(){return JamiTheme.normalButtonColor})
-            }
-
-            onEntered: {
-                searchStatusRect.color = Qt.binding(function(){return JamiTheme.hoverColor})
-            }
-
-            onExited: {
-                searchStatusRect.color = Qt.binding(function(){return JamiTheme.backgroundColor})
-            }
+            font.pointSize: JamiTheme.filterItemFontSize
         }
     }
 
-    ConversationSmartListView {
-        id: conversationSmartListView
+    Connections {
+        target: ConversationsAdapter
 
-        anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom)
-        anchors.topMargin: (tabBarVisible || searchStatusRect.visible) ? 0 : 10
+        function onShowSearchStatus(status) {
+            searchStatusText.text = status
+        }
+    }
+
+    ColumnLayout {
+        id: smartListLayout
+
         width: parent.width
-        height: tabBarVisible ? sidePanelRect.height - sidePanelTabBar.height - contactSearchBar.height - 20 :
-                                sidePanelRect.height - contactSearchBar.height - 20
+        anchors.top: searchStatusRect.bottom
+        anchors.topMargin: (sidePanelTabBar.visible ||
+                            searchStatusRect.visible) ? 0 : 8
+        anchors.bottom: parent.bottom
 
-        Connections {
-            target: ConversationsAdapter
+        spacing: 4
 
-            function onShowConversationTabs(visible) {
-                tabBarVisible = visible
-                updatePendingRequestCount()
-                updateTotalUnreadMessagesCount()
+        ConversationListView {
+            id: searchResultsListView
+
+            visible: count
+            opacity: visible ? 1 :0
+
+            Layout.topMargin: 10
+            Layout.alignment: Qt.AlignTop
+            Layout.fillWidth: true
+            Layout.preferredHeight: visible ? contentHeight : 0
+            Layout.maximumHeight: parent.height / 2
+
+            model: SearchResultsListModel
+            delegate: SmartListItemDelegate {
+                onUpdateContactAvatarUidRequested: root.model.updateContactAvatarUid(uid)
             }
-
-            function onShowSearchStatus(status) {
-                lblSearchStatus.text = status
-            }
+            headerLabel: JamiStrings.searchResults
+            headerVisible: visible
         }
 
-        Component.onCompleted: {
-            ConversationsAdapter.setQmlObject(this)
-            conversationSmartListView.currentIndex = -1
+        ConversationListView {
+            id: conversationListView
+
+            visible: count
+
+            Layout.preferredWidth: parent.width
+            Layout.fillHeight: true
+
+            highlight: Rectangle {
+                width: ListView.view ? ListView.view.width : 0
+                color: JamiTheme.selectedColor
+            }
+            highlightMoveDuration: 60
+
+            currentIndex: ConversationListProxyModel.currentFilteredRow
+            model: ConversationListProxyModel
+            delegate: SmartListItemDelegate {
+                onUpdateContactAvatarUidRequested: root.model.updateContactAvatarUid(uid)
+            }
+            headerLabel: JamiStrings.conversations
+            headerVisible: searchResultsListView.visible
+
+            Connections {
+                target: ConversationListProxyModel
+
+                // actually select the conversation
+                // TODO: make this generic to the model
+                function onValidSelectionChanged() {
+                    var row = ConversationListProxyModel.currentFilteredRow
+                    var uid = ConversationListProxyModel.dataForRow(row, ConversationListModel.UID)
+                    ConversationsAdapter.selectConversation(AccountAdapter.currentAccountId,
+                                                            uid,
+                                                            false)
+                }
+            }
         }
     }
 }

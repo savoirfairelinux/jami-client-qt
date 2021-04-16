@@ -31,6 +31,8 @@ Menu {
     property int commonBorderWidth: 1
     font.pointSize: JamiTheme.menuFontSize
 
+    modal: true
+
     function openMenu(){
         visible = true
         visible = false
