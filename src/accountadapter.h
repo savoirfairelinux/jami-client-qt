@@ -95,16 +95,14 @@ public:
     Q_INVOKABLE bool hasVideoCall();
     Q_INVOKABLE bool isPreviewing();
     Q_INVOKABLE void setCurrAccDisplayName(const QString& text);
-    Q_INVOKABLE void setSelectedConvId(const QString& convId = {});
     Q_INVOKABLE lrc::api::profile::Type getCurrentAccountType();
 
     Q_INVOKABLE void setCurrAccAvatar(bool fromFile, const QString& source);
 
 Q_SIGNALS:
     // Trigger other components to reconnect account related signals.
-    void accountStatusChanged(QString accountId = {});
-
-    void updateConversationForAddedContact();
+    void accountStatusChanged(QString accountId);
+    void selectedContactAdded(QString convId);
 
     // Send report failure to QML to make it show the right UI state .
     void reportFailure();
@@ -118,8 +116,6 @@ private:
     QString currentAccountId_ {};
     lrc::api::profile::Type currentAccountType_ {};
     int accountListSize_ {};
-
-    void deselectConversation();
 
     // Make account signal connections.
     void connectAccount(const QString& accountId);
