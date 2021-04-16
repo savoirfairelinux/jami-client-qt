@@ -36,6 +36,8 @@ import "mainview"
 import "wizardview"
 import "commoncomponents"
 
+import "mainview/components"
+
 ApplicationWindow {
     id: root
 
@@ -226,5 +228,11 @@ ApplicationWindow {
 
         if (Qt.platform.os !== "windows")
             DBusErrorHandler.setActive(true)
+    }
+
+    ScreenRubberBand {
+        Component.onCompleted: {
+            setAllScreensGeo()
+        }
     }
 }

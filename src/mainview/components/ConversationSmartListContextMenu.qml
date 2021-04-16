@@ -34,6 +34,8 @@ Item {
     property string responsibleConvUid: ""
     property int contactType: Profile.Type.INVALID
 
+    function isOpen() { return ContextMenuGenerator.getMenu().visible }
+
     function openMenu() {
         ContextMenuGenerator.initMenu()
         var hasCall = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid) !== ""
@@ -116,7 +118,7 @@ Item {
                                                  })
             }
             ContextMenuGenerator.addMenuSeparator()
-            ContextMenuGenerator.addMenuItem(qsTr("Profile"),
+            ContextMenuGenerator.addMenuItem(qsTr("Contact details"),
                                              "qrc:/images/icons/person-24px.svg",
                                              function (){
                                                  userProfile.open()
