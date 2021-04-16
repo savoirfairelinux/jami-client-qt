@@ -33,7 +33,7 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
                          bool muteDring)
-    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
+    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, true))
     , renderer_(std::make_unique<RenderManager>(lrc_->getAVModel()))
     , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
 {
@@ -219,6 +219,12 @@ LRCInstance::getCurrentCallModel()
     return getCurrentAccountInfo().callModel.get();
 }
 
+ContactModel*
+LRCInstance::getCurrentContactModel()
+{
+    return getCurrentAccountInfo().contactModel.get();
+}
+
 const QString&
 LRCInstance::getCurrAccId()
 {
@@ -299,6 +305,18 @@ const account::ConfProperties_t&
 LRCInstance::getCurrAccConfig()
 {
     return getCurrentAccountInfo().confProperties;
+}
+
+int
+LRCInstance::indexOf(const QString& convId)
+{
+    auto& convs = getCurrentConversationModel()->getConversations();
+    auto it = std::find_if(convs.begin(),
+                           convs.end(),
+                           [convId](const lrc::api::conversation::Info& conv) {
+                               return conv.uid == convId;
+                           });
+    return it != convs.end() ? std::distance(convs.begin(), it) : -1;
 }
 
 void
