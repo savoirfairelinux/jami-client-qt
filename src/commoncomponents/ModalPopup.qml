@@ -62,12 +62,12 @@ Popup {
     }
 
     DropShadow {
-        z: -1
+        z: -1        
         width: root.width
         height: root.height
         horizontalOffset: 3.0
         verticalOffset: 3.0
-        radius: container.radius * 2
+        radius: 16.0
         samples: 16
         color: JamiTheme.shadowColor
         source: container

@@ -72,6 +72,7 @@ public:
     NewAccountModel& accountModel();
     ConversationModel* getCurrentConversationModel();
     NewCallModel* getCurrentCallModel();
+    ContactModel* getCurrentContactModel();
     AVModel& avModel();
     PluginModel& pluginModel();
     BehaviorController& behaviorController();
@@ -104,6 +105,7 @@ public:
     void setCurrAccAvatar(const QString& avatar);
     void setCurrAccDisplayName(const QString& displayName);
     const account::ConfProperties_t& getCurrAccConfig();
+    int indexOf(const QString& convId);
 
     void startAudioMeter(bool async);
     void stopAudioMeter(bool async);
@@ -121,15 +123,14 @@ Q_SIGNALS:
     void currentAccountChanged();
     void restoreAppRequested();
     void notificationClicked();
-    void updateSmartList();
     void quitEngineRequested();
-    void conversationSelected();
+    void conversationUpdated(const QString& convId, const QString& accountId);
 
 private:
     std::unique_ptr<Lrc> lrc_;
     std::unique_ptr<RenderManager> renderer_;
     std::unique_ptr<UpdateManager> updateManager_;
-    QString selectedAccountId_ {""};
+    QString selectedAccountId_ {};
     MapStringString contentDrafts_;
     MapStringString lastConferences_;
 
