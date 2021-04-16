@@ -61,7 +61,7 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
                 Q_EMIT lrcInstance_->notificationClicked();
                 lrcInstance_->selectConversation(accountId, convUid);
                 updateCall(convUid, accountId);
-                Q_EMIT callSetupMainViewRequired(accountId, convUid);
+                Q_EMIT lrcInstance_->conversationUpdated(convUid, accountId);
             });
     connect(systemTray_,
             &SystemTray::declineCallActivated,
@@ -200,6 +200,7 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
     auto selectedAccountId = lrcInstance_->getCurrAccId();
     auto* callModel = lrcInstance_->getCurrentCallModel();
 
+    // new call
     if (!callModel->hasCall(convInfo.callId)) {
         if (QApplication::focusObject() == nullptr || accountId != selectedAccountId) {
             showNotification(accountId, convInfo.uid);
@@ -219,17 +220,19 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
                 return;
             }
         }
-        Q_EMIT callSetupMainViewRequired(accountId, convInfo.uid);
-        Q_EMIT lrcInstance_->updateSmartList();
+        // select
+        lrcInstance_->selectConversation(accountId, convInfo.uid);
         return;
     }
 
+    // this slot has been called as a result of either selecting the
     auto call = callModel->getCall(convInfo.callId);
     auto isCallSelected = lrcInstance_->get_selectedConvUid() == convInfo.uid;
 
     if (call.isOutgoing) {
         if (isCallSelected) {
-            Q_EMIT callSetupMainViewRequired(accountId, convInfo.uid);
+            // don't reselect
+            Q_EMIT lrcInstance_->conversationUpdated(convInfo.uid, accountId);
         }
     } else {
         auto accountProperties = lrcInstance_->accountModel().getAccountConfig(selectedAccountId);
@@ -254,10 +257,12 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
                         showNotification(accountId, convInfo.uid);
                         return;
                     } else {
-                        Q_EMIT callSetupMainViewRequired(accountId, convInfo.uid);
+                        // only update
+                        Q_EMIT lrcInstance_->conversationUpdated(convInfo.uid, accountId);
                     }
                 } else {
-                    Q_EMIT callSetupMainViewRequired(accountId, convInfo.uid);
+                    // only update
+                    Q_EMIT lrcInstance_->conversationUpdated(convInfo.uid, accountId);
                 }
             } else { // Not current conversation
                 if (currentConvHasCall) {
@@ -269,19 +274,19 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
                         return;
                     }
                 }
-                Q_EMIT callSetupMainViewRequired(accountId, convInfo.uid);
+                // reselect
+                lrcInstance_->selectConversation(accountId, convInfo.uid);
             }
         }
     }
     Q_EMIT callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
-    Q_EMIT lrcInstance_->updateSmartList();
 }
 
 void
 CallAdapter::onShowCallView(const QString& accountId, const QString& convUid)
 {
     updateCall(convUid, accountId);
-    Q_EMIT callSetupMainViewRequired(accountId, convUid);
+    Q_EMIT lrcInstance_->conversationUpdated(convUid, accountId);
 }
 
 void
@@ -399,8 +404,6 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
             from = accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
     }
 
-    Q_EMIT lrcInstance_->updateSmartList();
-
 #ifdef Q_OS_LINUX
     auto contactPhoto = Utils::contactPhoto(lrcInstance_,
                                             convInfo.participants[0],
@@ -419,7 +422,7 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
             return;
         }
         Q_EMIT lrcInstance_->notificationClicked();
-        Q_EMIT callSetupMainViewRequired(accountId, convInfo.uid);
+        Q_EMIT lrcInstance_->conversationUpdated(convInfo.uid, accountId);
     };
     systemTray_->showNotification(tr("is calling you"), from, onClicked);
 #endif
@@ -484,7 +487,7 @@ CallAdapter::connectCallModel(const QString& accountId)
             case lrc::api::call::Status::TIMEOUT:
             case lrc::api::call::Status::TERMINATING: {
                 lrcInstance_->renderer()->removeDistantRenderer(callId);
-                Q_EMIT callSetupMainViewRequired(accountId, convInfo.uid);
+                Q_EMIT lrcInstance_->conversationUpdated(convInfo.uid, accountId);
                 if (convInfo.uid.isEmpty()) {
                     break;
                 }
