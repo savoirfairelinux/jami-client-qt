@@ -20,10 +20,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
-import QtGraphicalEffects 1.14
 
-import net.jami.Models 1.0
-import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
@@ -34,7 +31,7 @@ TabButton {
     property var tabBar: undefined
     property alias labelText: label.text
     property alias acceleratorSequence: accelerator.sequence
-    property int badgeCount
+    property alias badgeCount: badge.count
     signal selected
 
     hoverEnabled: true
@@ -63,26 +60,10 @@ TabButton {
                                   root.down == true ? 1.0 : 1.5)
             }
 
-            Rectangle {
-                id: badgeRect
-
-                readonly property real size: 20
-
+            BadgeNotifier {
+                id: badge
+                size: 20
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-
-                width: size
-                height: size
-                radius: JamiTheme.primaryRadius
-                color: JamiTheme.filterBadgeColor
-
-                visible: badgeCount > 0
-
-                Text {
-                    anchors.centerIn: badgeRect
-                    text: badgeCount > 9 ? "…" : badgeCount
-                    color: JamiTheme.filterBadgeTextColor
-                    font.pointSize: JamiTheme.filterBadgeFontSize
-                }
             }
         }
     }
