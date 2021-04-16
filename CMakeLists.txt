@@ -181,9 +181,9 @@ if(MSVC)
         if(BETA)
             message("Beta config enabled")
             add_definitions(-DBETA)
-            set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Beta)
+            set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Beta)
         else()
-            set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Release)
+            set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Release)
         endif()
     endif()
 
@@ -310,6 +310,12 @@ if(MSVC)
                           Crypt32.lib
                           Strmiids.lib)
 
+    # specify output executable files
+    set_target_properties(${PROJECT_NAME}
+        PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${JAMI_OUTPUT_DIRECTORY_RELEASE}"
+    )
+
     if(NOT DEFINED ReleaseCompile)
         # executable icon
         target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/ico.rc)
@@ -353,10 +359,15 @@ if(MSVC)
                                    -DCOPY_TO_PATH=$<TARGET_FILE_DIR:${PROJECT_NAME}>
                                    -DDRING_PATH=${DRING}
                                    -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
+                                   -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_daemon_deploy.cmake)
+
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                           WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+                           COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
                                    -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
                                    -DQML_SRC_DIR=${SRC_DIR}
                                    -DEXE_NAME=$<TARGET_FILE:${PROJECT_NAME}>
-                                   -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_deploy.cmake)
+                                   -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
 
         # create time stamp
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -376,11 +387,6 @@ else()
                           ${LIBNM_LIBRARIES}
                           ${LIBNOTIFY_LIBRARIES}
                           ${LIBGDKPIXBUF_LIBRARIES})
-
-    if(ENABLE_TESTS)
-        message("Add Jami tests")
-        add_subdirectory(tests)
-    endif()
 
     # Installation rules
     install(TARGETS jami-qt
@@ -480,4 +486,10 @@ else()
 
     add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+endif()
+
+# test
+if(ENABLE_TESTS)
+    message("Add Jami tests")
+    add_subdirectory(tests)
 endif()
