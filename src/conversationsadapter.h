@@ -46,7 +46,6 @@ public:
     Q_INVOKABLE bool connectConversationModel(bool updateFilter = true);
     Q_INVOKABLE void selectConversation(const QString& accountId, const QString& uid);
     Q_INVOKABLE void deselectConversation();
-    Q_INVOKABLE void refill();
     Q_INVOKABLE void updateConversationsFilterWidget();
 
 Q_SIGNALS:
