@@ -177,6 +177,7 @@ Item {
     property real filterItemFontSize: smartlistItemFontSize
     property real filterBadgeFontSize: 8.25
 
+
     property real maximumWidthSettingsView: 600
     property real settingsHeaderpreferredHeight: 64
     property real preferredFieldWidth: 256
