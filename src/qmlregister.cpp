@@ -27,6 +27,7 @@
 #include "moderatorlistmodel.h"
 #include "deviceitemlistmodel.h"
 #include "smartlistmodel.h"
+#include "conversationlistmodel.h"
 
 #include "appsettingsmanager.h"
 #include "distantrenderer.h"
@@ -95,6 +96,8 @@ registerTypes()
     QML_REGISTERTYPE(NS_MODELS, VideoFormatFpsModel);
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, SmartListModel);
+    QML_REGISTERTYPE(NS_MODELS, ConversationListModel);
+    QML_REGISTERTYPE(NS_MODELS, ConversationListProxyModel);
 
     // QQuickItems
     QML_REGISTERTYPE(NS_MODELS, PreviewRenderer);
