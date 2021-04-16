@@ -43,8 +43,6 @@ AccountAdapter::safeInit()
             this,
             &AccountAdapter::onCurrentAccountChanged);
 
-    deselectConversation();
-
     auto accountId = lrcInstance_->getCurrAccId();
     setProperties(accountId);
     connectAccount(accountId);
@@ -65,7 +63,6 @@ AccountAdapter::getDeviceModel()
 void
 AccountAdapter::changeAccount(int row)
 {
-    deselectConversation(); // Hack UI
     auto accountList = lrcInstance_->accountModel().getAccountList();
     if (accountList.size() > row) {
         lrcInstance_->setSelectedAccountId(accountList.at(row));
@@ -345,23 +342,6 @@ AccountAdapter::passwordSetStatusMessageBox(bool success, QString title, QString
     } else {
         QMessageBox::critical(0, title, infoToDisplay);
     }
-}
-
-void
-AccountAdapter::deselectConversation()
-{
-    if (lrcInstance_->get_selectedConvUid().isEmpty()) {
-        return;
-    }
-
-    // TODO: remove this unhealthy section
-    auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
-
-    if (currentConversationModel == nullptr) {
-        return;
-    }
-
-    lrcInstance_->set_selectedConvUid();
 }
 
 void
