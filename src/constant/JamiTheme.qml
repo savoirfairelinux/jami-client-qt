@@ -163,6 +163,7 @@ Item {
 
     // Sizes
     property real splitViewHandlePreferredWidth: 4
+    property real smartListItemHeight: 72
     property real indicatorFontSize: 6
     property real tinyFontSize: 7
     property real textFontSize: 9

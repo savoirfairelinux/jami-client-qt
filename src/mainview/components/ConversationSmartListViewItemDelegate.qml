@@ -28,7 +28,7 @@ import "../../commoncomponents"
 
 ItemDelegate {
     id: smartListItemDelegate
-    height: 72
+    height: JamiTheme.smartListItemHeight
 
     property int lastInteractionPreferredWidth: 80
 
@@ -42,14 +42,6 @@ ItemDelegate {
 
     Connections {
         target: conversationSmartListView
-
-        // Hack, make sure that smartListItemDelegate does not show extra item
-        // when searching new contacts.
-        function onForceUpdatePotentialInvalidItem() {
-            smartListItemDelegate.visible =
-                    conversationSmartListView.model.rowCount() <= index ? false : true
-        }
-
 
         // When currentIndex is -1, deselect items, if not, change select item
         function onCurrentIndexChanged() {
