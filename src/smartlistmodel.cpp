@@ -38,6 +38,7 @@ SmartListModel::SmartListModel(QObject* parent,
     , listModelType_(listModelType)
 {
     lrcInstance_ = instance;
+    conversations_ = lrcInstance_->getCurrentConversationModel()->getConversations();
     if (listModelType_ == Type::CONFERENCE) {
         setConferenceableFilter();
     }
@@ -65,7 +66,7 @@ SmartListModel::rowCount(const QModelIndex& parent) const
             }
             return rowCount;
         }
-        return conversations_.size();
+        return conversations_.value().get().size();
     }
     return 0;
 }
@@ -135,7 +136,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
             auto& item = lrcInstance_->getConversationFromConvUid(itemConvUid, itemAccountId);
             return getConversationItemData(item, itemAccountInfo, role);
         } else if (listModelType_ == Type::CONVERSATION) {
-            auto& item = conversations_.at(index.row());
+            auto& item = conversations_.value().get().at(index.row());
             return getConversationItemData(item, currentAccountInfo, role);
         }
     } catch (const std::exception& e) {
@@ -185,12 +186,12 @@ void
 SmartListModel::fillConversationsList()
 {
     beginResetModel();
-    fillContactAvatarUidMap(lrcInstance_->getCurrentAccountInfo().contactModel->getAllContacts());
+    /*fillContactAvatarUidMap(lrcInstance_->getCurrentAccountInfo().contactModel->getAllContacts());
 
     auto* convModel = lrcInstance_->getCurrentConversationModel();
     using ConversationList = ConversationModel::ConversationQueueProxy;
     conversations_ = ConversationList(convModel->getAllSearchResults())
-                     + convModel->allFilteredConversations();
+                     + convModel->allFilteredConversations();*/
     endResetModel();
 }
 
