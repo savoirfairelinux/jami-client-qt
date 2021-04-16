@@ -153,28 +153,27 @@ AccountAdapter::createJamiAccount(QString registeredName,
 void
 AccountAdapter::createSIPAccount(const QVariantMap& settings)
 {
-    Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                          &lrc::api::NewAccountModel::accountAdded,
-                          [this, settings](const QString& accountId) {
-                              auto confProps = lrcInstance_->accountModel().getAccountConfig(
-                                  accountId);
-                              // set SIP details
-                              confProps.hostname = settings["hostname"].toString();
-                              confProps.username = settings["username"].toString();
-                              confProps.password = settings["password"].toString();
-                              confProps.routeset = settings["proxy"].toString();
+    Utils::oneShotConnect(
+        &lrcInstance_->accountModel(),
+        &lrc::api::NewAccountModel::accountAdded,
+        [this, settings](const QString& accountId) {
+            auto confProps = lrcInstance_->accountModel().getAccountConfig(accountId);
+            // set SIP details
+            confProps.hostname = settings["hostname"].toString();
+            confProps.username = settings["username"].toString();
+            confProps.password = settings["password"].toString();
+            confProps.routeset = settings["proxy"].toString();
+            confProps.authenticationUsername = settings["authenticationUsername"].toString();
 #ifdef Q_OS_WIN
-                              confProps.Ringtone.ringtonePath = Utils::GetRingtonePath();
+            confProps.Ringtone.ringtonePath = Utils::GetRingtonePath();
 #endif
-                              lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
+            lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
 
-                              Q_EMIT lrcInstance_->accountListChanged();
-                              Q_EMIT accountAdded(accountId,
-                                                  false,
-                                                  lrcInstance_->accountModel()
-                                                      .getAccountList()
-                                                      .indexOf(accountId));
-                          });
+            Q_EMIT lrcInstance_->accountListChanged();
+            Q_EMIT accountAdded(accountId,
+                                false,
+                                lrcInstance_->accountModel().getAccountList().indexOf(accountId));
+        });
 
     connectFailure();
 

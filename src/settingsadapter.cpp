@@ -284,6 +284,12 @@ SettingsAdapter::getAccountConfig_Username()
 }
 
 QString
+SettingsAdapter::getAccountConfig_AuthenticationUsername()
+{
+    return getAccountConfig().authenticationUsername;
+}
+
+QString
 SettingsAdapter::getAccountConfig_Hostname()
 {
     return getAccountConfig().hostname;
@@ -557,6 +563,14 @@ QString
 SettingsAdapter::getAccountConfig_Mailbox()
 {
     return getAccountConfig().mailbox;
+}
+
+void
+SettingsAdapter::setAccountConfig_AuthenticationUsername(QString input)
+{
+    auto confProps = getAccountConfig();
+    confProps.authenticationUsername = input;
+    lrcInstance_->accountModel().setAccountConfig(lrcInstance_->getCurrAccId(), confProps);
 }
 
 void

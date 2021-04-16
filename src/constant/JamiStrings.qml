@@ -228,6 +228,8 @@ Item {
 
     // CreateSIPAccountPage
     property string proxy: qsTr("Proxy")
+    property string hostname: qsTr("Hostname")
+    property string authenticationUsernameOptional: qsTr("Authentication Username (Optional)")
     property string server: qsTr("Server")
     property string createSIPAccount: qsTr("Create SIP account")
     property string configureExistingSIP: qsTr("Configure an existing SIP account")
@@ -254,6 +256,9 @@ Item {
     // JamiUserIdentity
     property string registerAUsername: qsTr("Register a username")
     property string registerUsername: qsTr("Register username")
+
+    // SipUserIdentity
+    property string authenticationUsername: qsTr("Authentication Username")
 
     // LinkedDevices
     property string tipLinkNewDevice: qsTr("Link a new device to this account")

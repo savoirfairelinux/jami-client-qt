@@ -90,6 +90,7 @@ public:
     // Getters
     Q_INVOKABLE lrc::api::account::ConfProperties_t getAccountConfig();
     Q_INVOKABLE QString getAccountConfig_Manageruri();
+    Q_INVOKABLE QString getAccountConfig_AuthenticationUsername();
     Q_INVOKABLE QString getAccountConfig_Username();
     Q_INVOKABLE QString getAccountConfig_Hostname();
     Q_INVOKABLE QString getAccountConfig_Password();
@@ -152,6 +153,7 @@ public:
 
     // Setters
     Q_INVOKABLE void setAccountConfig_Username(QString input);
+    Q_INVOKABLE void setAccountConfig_AuthenticationUsername(QString input);
     Q_INVOKABLE void setAccountConfig_Hostname(QString input);
     Q_INVOKABLE void setAccountConfig_Password(QString input);
     Q_INVOKABLE void setAccountConfig_RouteSet(QString input);

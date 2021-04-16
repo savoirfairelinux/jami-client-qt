@@ -30,6 +30,7 @@ Rectangle {
     property alias text_sipServernameEditAlias: sipServernameEdit.text
     property alias text_sipProxyEditAlias: sipProxyEdit.text
     property alias text_sipUsernameEditAlias: sipUsernameEdit.text
+    property alias text_sipAuthUsernameEditAlias: sipAuthUsernameEdit.text
     property alias text_sipPasswordEditAlias: sipPasswordEdit.text
     property int preferredHeight: createSIPAccountPageColumnLayout.implicitHeight
 
@@ -125,6 +126,19 @@ Rectangle {
 
             selectByMouse: true
             placeholderText: JamiStrings.username
+            font.pointSize: 9
+            font.kerning: true
+        }
+
+        MaterialLineEdit {
+            id: sipAuthUsernameEdit
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredHeight: fieldLayoutHeight
+            Layout.preferredWidth: createAccountButton.width
+
+            selectByMouse: true
+            placeholderText: JamiStrings.authenticationUsernameOptional
             font.pointSize: 9
             font.kerning: true
         }
