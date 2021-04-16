@@ -102,9 +102,8 @@ public:
 
 Q_SIGNALS:
     // Trigger other components to reconnect account related signals.
-    void accountStatusChanged(QString accountId = {});
-
-    void updateConversationForAddedContact();
+    void accountStatusChanged(QString accountId);
+    void selectedContactAdded(QString convId);
 
     // Send report failure to QML to make it show the right UI state .
     void reportFailure();
@@ -118,8 +117,6 @@ private:
     QString currentAccountId_ {};
     lrc::api::profile::Type currentAccountType_ {};
     int accountListSize_ {};
-
-    void deselectConversation();
 
     // Make account signal connections.
     void connectAccount(const QString& accountId);
