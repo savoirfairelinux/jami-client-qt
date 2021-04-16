@@ -399,7 +399,7 @@ Rectangle {
         onAddToConferenceButtonClicked: {
             // Create contact picker - conference.
             ContactPickerCreation.createContactPickerObjects(
-                        ContactPicker.ContactPickerType.JAMICONFERENCE,
+                        ContactList.JAMICONFERENCE,
                         callOverlayRect)
             ContactPickerCreation.openContactPicker()
         }

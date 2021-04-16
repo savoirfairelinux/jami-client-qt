@@ -30,15 +30,7 @@ import "../../commoncomponents"
 Popup {
     id: contactPickerPopup
 
-    property int type: ContactPicker.ContactPickerType.JAMICONFERENCE
-
-
-    // Important to keep it one, since enum in c++ starts at one for conferences.
-    enum ContactPickerType {
-        CONVERSATION = 0,
-        JAMICONFERENCE,
-        SIPTRANSFER
-    }
+    property int type: ContactList.CONFERENCE
 
     contentWidth: 250
     contentHeight: contactPickerPopupRectColumnLayout.height + 50
