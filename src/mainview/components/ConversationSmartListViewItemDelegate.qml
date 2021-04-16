@@ -28,7 +28,7 @@ import "../../commoncomponents"
 
 ItemDelegate {
     id: smartListItemDelegate
-    height: 72
+    height: JamiTheme.smartListItemHeight
 
     property int lastInteractionPreferredWidth: 80
 
@@ -40,35 +40,27 @@ ItemDelegate {
         return UID
     }
 
-    Connections {
-        target: conversationSmartListView
+//    Connections {
+//        target: conversationSmartListView
 
-        // Hack, make sure that smartListItemDelegate does not show extra item
-        // when searching new contacts.
-        function onForceUpdatePotentialInvalidItem() {
-            smartListItemDelegate.visible =
-                    conversationSmartListView.model.rowCount() <= index ? false : true
-        }
-
-
-        // When currentIndex is -1, deselect items, if not, change select item
-        function onCurrentIndexChanged() {
-            if (conversationSmartListView.currentIndex === -1
-                    || conversationSmartListView.currentIndex !== index) {
-                itemSmartListBackground.color = Qt.binding(function () {
-                    return InCall ? Qt.lighter(JamiTheme.selectionBlue,
-                                               1.8) : JamiTheme.backgroundColor
-                })
-            } else {
-                itemSmartListBackground.color = Qt.binding(function () {
-                    return InCall ? Qt.lighter(JamiTheme.selectionBlue,
-                                               1.8) : JamiTheme.selectedColor
-                })
-                ConversationsAdapter.selectConversation(
-                            AccountAdapter.currentAccountId, UID)
-            }
-        }
-    }
+//        // When currentIndex is -1, deselect items, if not, change select item
+//        function onCurrentIndexChanged() {
+//            if (conversationSmartListView.currentIndex === -1
+//                    || conversationSmartListView.currentIndex !== index) {
+//                itemSmartListBackground.color = Qt.binding(function () {
+//                    return InCall ? Qt.lighter(JamiTheme.selectionBlue,
+//                                               1.8) : JamiTheme.backgroundColor
+//                })
+//            } else {
+//                itemSmartListBackground.color = Qt.binding(function () {
+//                    return InCall ? Qt.lighter(JamiTheme.selectionBlue,
+//                                               1.8) : JamiTheme.selectedColor
+//                })
+//                ConversationsAdapter.selectConversation(
+//                            AccountAdapter.currentAccountId, UID)
+//            }
+//        }
+//    }
 
     Connections {
         target: ConversationsAdapter
