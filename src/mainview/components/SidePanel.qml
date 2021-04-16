@@ -30,11 +30,15 @@ import "../../commoncomponents"
 Rectangle {
     id: sidePanelRect
 
-    color: JamiTheme.backgroundColor
-
     property bool tabBarVisible: true
     property int pendingRequestCount: 0
     property int totalUnreadMessagesCount: 0
+
+    color: JamiTheme.backgroundColor
+
+    // Intended -> since strange behavior will happen without this for stackview.
+    anchors.top: parent.top
+    anchors.fill: parent
 
     // Hack -> force redraw.
     function forceReselectConversationSmartListCurrentIndex() {
@@ -43,11 +47,10 @@ Rectangle {
         conversationSmartListView.currentIndex = index
     }
 
-
     // For contact request conv to be focused correctly.
     function setCurrentUidSmartListModelIndex() {
-        conversationSmartListView.currentIndex
-                = conversationSmartListView.model.currentUidSmartListModelIndex()
+//        conversationSmartListView.currentIndex
+//                = conversationSmartListView.model.currentUidSmartListModelIndex()
     }
 
     function updatePendingRequestCount() {
@@ -81,10 +84,6 @@ Rectangle {
         sidePanelTabBar.selectTab(tabIndex)
     }
 
-    // Intended -> since strange behavior will happen without this for stackview.
-    anchors.top: parent.top
-    anchors.fill: parent
-
     // Search bar container to embed search label
     ContactSearchBar {
         id: contactSearchBar
@@ -98,7 +97,7 @@ Rectangle {
         anchors.rightMargin: 15
 
         onContactSearchBarTextChanged: {
-            UtilsAdapter.setConversationFilter(text)
+            ConversationListProxyModel.setFilter(text)
         }
 
         onReturnPressedWhileSearching: {
@@ -182,7 +181,7 @@ Rectangle {
         }
     }
 
-    ConversationSmartListView {
+    ConversationListView {
         id: conversationSmartListView
 
         anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom)
@@ -208,6 +207,19 @@ Rectangle {
         Component.onCompleted: {
             ConversationsAdapter.setQmlObject(this)
             conversationSmartListView.currentIndex = -1
+        }
+
+        add: Transition {
+            NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 250 }
+            NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 250 }
+        }
+
+        displaced: Transition {
+            NumberAnimation { properties: "x,y"; duration: 250; easing.type: Easing.OutBounce }
+        }
+
+        move: Transition {
+            NumberAnimation { properties: "x,y"; duration: 250; easing.type: Easing.OutBounce }
         }
     }
 }

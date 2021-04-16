@@ -26,6 +26,7 @@
 #include "utils.h"
 #include "qtutils.h"
 #include "systemtray.h"
+#include "qmlregister.h"
 
 #include <QApplication>
 
@@ -34,7 +35,12 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            QObject* parent)
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
+    , sourceModel_(new ConversationListModel(lrcInstance_))
+    , proxyModel_(new ConversationListProxyModel(sourceModel_.get()))
 {
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, sourceModel_.get(), "ConversationListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, proxyModel_.get(), "ConversationListProxyModel");
+
     connect(this, &ConversationsAdapter::currentTypeFilterChanged, [this]() {
         lrcInstance_->getCurrentConversationModel()->setFilter(currentTypeFilter_);
     });
@@ -155,6 +161,9 @@ ConversationsAdapter::deselectConversation()
 void
 ConversationsAdapter::onCurrentAccountIdChanged()
 {
+    sourceModel_.reset(new ConversationListModel(lrcInstance_));
+    proxyModel_->setSourceModel(sourceModel_.get());
+
     connectConversationModel();
 
     setProperty("currentTypeFilter",
@@ -209,6 +218,10 @@ ConversationsAdapter::onNewReadInteraction(const QString& accountId,
     // hide notification
     auto notifId = QString("%1;%2;%3").arg(accountId).arg(convUid).arg(interactionId);
     systemTray_->hideNotification(notifId);
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(convUid)
+    Q_UNUSED(interactionId)
 #endif
 }
 
@@ -227,6 +240,9 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId, const QString&
                                       NotificationType::REQUEST,
                                       Utils::QImageToByteArray(contactPhoto));
     }
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(peerUri)
 #endif
 }
 
@@ -237,6 +253,9 @@ ConversationsAdapter::onTrustRequestTreated(const QString& accountId, const QStr
     // hide notification
     auto notifId = QString("%1;%2").arg(accountId).arg(peerUri);
     systemTray_->hideNotification(notifId);
+#else
+    Q_UNUSED(accountId)
+    Q_UNUSED(peerUri)
 #endif
 }
 
@@ -331,14 +350,7 @@ ConversationsAdapter::updateConversationsFilterWidget()
     if (invites == 0 && currentTypeFilter_ == lrc::api::profile::Type::PENDING) {
         setProperty("currentTypeFilter", QVariant::fromValue(lrc::api::profile::Type::RING));
     }
-    showConversationTabs(invites);
-}
-
-void
-ConversationsAdapter::refill()
-{
-    if (conversationSmartListModel_)
-        conversationSmartListModel_->fillConversationsList();
+    Q_EMIT showConversationTabs(invites);
 }
 
 bool
