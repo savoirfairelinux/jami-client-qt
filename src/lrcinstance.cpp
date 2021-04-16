@@ -33,7 +33,8 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
                          bool muteDring)
-    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
+    //: lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
+    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, true))
     , renderer_(std::make_unique<RenderManager>(lrc_->getAVModel()))
     , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
 {
@@ -219,6 +220,12 @@ LRCInstance::getCurrentCallModel()
     return getCurrentAccountInfo().callModel.get();
 }
 
+ContactModel*
+LRCInstance::getCurrentContactModel()
+{
+    return getCurrentAccountInfo().contactModel.get();
+}
+
 const QString&
 LRCInstance::getCurrAccId()
 {
@@ -301,6 +308,18 @@ LRCInstance::getCurrAccConfig()
     return getCurrentAccountInfo().confProperties;
 }
 
+int
+LRCInstance::indexOf(const QString& convId)
+{
+    auto& convs = getCurrentConversationModel()->getConversations();
+    auto it = std::find_if(convs.begin(),
+                           convs.end(),
+                           [convId](const lrc::api::conversation::Info& conv) {
+                               return conv.uid == convId;
+                           });
+    return it != convs.end() ? std::distance(convs.begin(), it) : -1;
+}
+
 void
 LRCInstance::subscribeToDebugReceived()
 {
@@ -353,6 +372,8 @@ LRCInstance::setContentDraft(const QString& convUid,
 {
     auto draftKey = accountId + "_" + convUid;
     contentDrafts_[draftKey] = content;
+    // this signal is only needed to update the current smartlist
+    Q_EMIT draftSaved(convUid);
 }
 
 void
@@ -376,39 +397,23 @@ LRCInstance::poplastConference(const QString& confId)
 void
 LRCInstance::selectConversation(const QString& accountId, const QString& convUid)
 {
-    const auto& convInfo = getConversationFromConvUid(convUid, accountId);
-
-    if (get_selectedConvUid() != convInfo.uid || convInfo.participants.size() > 0) {
-        // If the account is not currently selected, do that first, then
-        // proceed to select the conversation.
-        auto selectConversation = [this, accountId, convUid = convInfo.uid] {
-            const auto& convInfo = getConversationFromConvUid(convUid, accountId);
-            if (convInfo.uid.isEmpty()) {
-                return;
-            }
-            auto& accInfo = getAccountInfo(convInfo.accountId);
-            set_selectedConvUid(convInfo.uid);
-            accInfo.conversationModel->clearUnreadInteractions(convInfo.uid);
-
-            try {
-                // Set contact filter (for conversation tab selection)
-                auto& contact = accInfo.contactModel->getContact(convInfo.participants.front());
-                setProperty("currentTypeFilter", QVariant::fromValue(contact.profileInfo.type));
-            } catch (const std::out_of_range& e) {
-                qDebug() << e.what();
-            }
-        };
-        if (convInfo.accountId != getCurrAccId()) {
-            Utils::oneShotConnect(this, &LRCInstance::currentAccountChanged, [selectConversation] {
-                selectConversation();
-            });
-            set_selectedConvUid();
-            setSelectedAccountId(convInfo.accountId);
-        } else {
-            selectConversation();
-        }
+    // If the account is not currently selected, do that first, then
+    // proceed to select the conversation.
+    auto doSelect = [this, accountId, convUid] {
+        set_selectedConvUid(convUid);
+    };
+    if (accountId != getCurrAccId()) {
+        Utils::oneShotConnect(this, &LRCInstance::currentAccountChanged, [doSelect] { doSelect(); });
+        setSelectedAccountId(accountId);
+    } else {
+        doSelect();
     }
-    Q_EMIT conversationSelected();
+}
+
+void
+LRCInstance::deselectConversation()
+{
+    set_selectedConvUid();
 }
 
 void
