@@ -188,9 +188,11 @@ Item {
         id: presenceIndicator
 
         anchors.right: root.right
+        anchors.rightMargin: -1
         anchors.bottom: root.bottom
+        anchors.bottomMargin: -1
 
-        size: root.width * 0.3
+        size: root.width * 0.26
 
         visible: showPresenceIndicator
     }
