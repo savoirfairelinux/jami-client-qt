@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Albert Babí Oller <albert.babi@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,31 +16,4 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "globaltestenvironment.h"
-
-#include <QApplication>
-#include <gtest/gtest.h>
-
-bool muteDring;
-
-int
-main(int argc, char* argv[])
-{
-    // Remove "-mutedring" from argv, as quick_test_main_with_setup() will
-    // fail if given an invalid command-line argument.
-    auto end = std::remove_if(argv + 1, argv + argc, [](char* argv) {
-        return (strcmp(argv, "-mutedring") == 0);
-    });
-
-    if (end != argv + argc) {
-        muteDring = true;
-
-        // Adjust the argument count.
-        argc = std::distance(argv, end);
-    }
-
-    QApplication a(argc, argv);
-    a.processEvents();
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+extern bool muteDring;
