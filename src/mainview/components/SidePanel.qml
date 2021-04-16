@@ -46,8 +46,8 @@ Rectangle {
 
     // For contact request conv to be focused correctly.
     function setCurrentUidSmartListModelIndex() {
-        conversationSmartListView.currentIndex
-                = conversationSmartListView.model.currentUidSmartListModelIndex()
+//        conversationSmartListView.currentIndex
+//                = conversationSmartListView.model.currentUidSmartListModelIndex()
     }
 
     function updatePendingRequestCount() {
@@ -180,7 +180,7 @@ Rectangle {
         }
     }
 
-    ConversationSmartListView {
+    ConversationListView {
         id: conversationSmartListView
 
         anchors.top: searchStatusRect.visible ? searchStatusRect.bottom : (tabBarVisible ? sidePanelTabBar.bottom : contactSearchBar.bottom)

@@ -67,7 +67,8 @@ set(COMMON_SOURCES
     ${SRC_DIR}/screensaver.cpp
     ${SRC_DIR}/systemtray.cpp
     ${SRC_DIR}/appsettingsmanager.cpp
-    ${SRC_DIR}/lrcinstance.cpp)
+    ${SRC_DIR}/lrcinstance.cpp
+    ${SRC_DIR}/conversationlistmodel.cpp)
 
 set(COMMON_HEADERS
     ${SRC_DIR}/avatarimageprovider.h
@@ -110,7 +111,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/videoformatresolutionmodel.h
     ${SRC_DIR}/audiomanagerlistmodel.h
     ${SRC_DIR}/qmlregister.h
-    ${SRC_DIR}/abstractitemmodelbase.h
+    ${SRC_DIR}/abstractlistmodelbase.h
     ${SRC_DIR}/quickimageproviderbase.h
     ${SRC_DIR}/qtutils.h
     ${SRC_DIR}/utilsadapter.h
@@ -118,7 +119,8 @@ set(COMMON_HEADERS
     ${SRC_DIR}/screensaver.h
     ${SRC_DIR}/systemtray.h
     ${SRC_DIR}/appsettingsmanager.h
-    ${SRC_DIR}/lrcinstance.h)
+    ${SRC_DIR}/lrcinstance.h
+    ${SRC_DIR}/conversationlistmodel.h)
 
 set(QML_LIBS
     Qt5::Quick
