@@ -40,7 +40,7 @@ public:
 
         QColor tintedColor;
 
-        auto list = id.split('+', Qt::SkipEmptyParts);
+        auto list = id.split('+', QString::SkipEmptyParts);
 
         if (list.size() == 2) {
             QPixmap pixmapToSend(":/images/icons/" + list[0]);
