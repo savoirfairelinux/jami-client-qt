@@ -1,10 +1,6 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.15)
 
 project(jami-qt)
-
-if(MSVC)
-    cmake_minimum_required(VERSION 3.15)
-endif()
 
 # todo: show error if Qt version < 5.14
 set(CMAKE_CXX_STANDARD 17)
