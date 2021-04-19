@@ -128,7 +128,7 @@ ItemDelegate {
                 text: DisplayName === undefined ? "" : DisplayName
             }
             text: textMetricsConversationSmartListUserName.elidedText
-            font.pointSize: JamiTheme.menuFontSize
+            font.pointSize: JamiTheme.smartlistItemFontSize
             color: JamiTheme.textColor
         }
 
