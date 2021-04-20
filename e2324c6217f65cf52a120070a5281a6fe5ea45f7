@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d9f138da_619a145e",
+        "filename": "src/mainview/components/FilterTabButton.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-20T18:05:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cb7c33e_9553bccb",
+      "range": {
+        "startLine": 94,
+        "startChar": 18,
+        "endLine": 94,
+        "endChar": 37
+      },
+      "revId": "e2324c6217f65cf52a120070a5281a6fe5ea45f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51cfe035_27e9f1fe",
         "filename": "src/mainview/components/SidePanelTabBar.qml",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2021-04-20T17:03:58Z",
       "side": 1,
       "message": "should be a ticket to avoid to forget this here",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 40
+      },
+      "revId": "e2324c6217f65cf52a120070a5281a6fe5ea45f7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "044cc7a8_c120fb7c",
+        "filename": "src/mainview/components/SidePanelTabBar.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-20T18:05:34Z",
+      "side": 1,
+      "message": "Do you think those kind of food-for-thought implementation details have a place in a ticket?",
+      "parentUuid": "51cfe035_27e9f1fe",
       "range": {
         "startLine": 30,
         "startChar": 0,
