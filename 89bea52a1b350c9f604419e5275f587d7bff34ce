@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b72befab_48a6d1de",
+        "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-20T18:02:44Z",
+      "side": 1,
+      "message": "this is used to track the opened state of the menu, of which there is only one, so I suggest this go into the smartListContextMenu component kinda like:\n\nfunction isOpen() { return ContextMenuGenerator.getMenu().visible }",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "89bea52a1b350c9f604419e5275f587d7bff34ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
