@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09a3019f_32ea7b6e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-04-20T17:04:59Z",
+      "side": 1,
+      "message": "bad ticket?",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "cf55a5d6617aa39b9e6f0fa9bef1afcb856c0dae",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
