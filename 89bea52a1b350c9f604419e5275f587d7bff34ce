@@ -22,6 +22,30 @@
       "revId": "89bea52a1b350c9f604419e5275f587d7bff34ce",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a386b11f_56a097a3",
+        "filename": "src/mainview/components/ConversationSmartListViewItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-22T16:05:10Z",
+      "side": 1,
+      "message": "to treat in https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/384",
+      "parentUuid": "b72befab_48a6d1de",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "89bea52a1b350c9f604419e5275f587d7bff34ce",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
