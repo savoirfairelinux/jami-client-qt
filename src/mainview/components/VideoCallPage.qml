@@ -320,6 +320,15 @@ Rectangle {
                         }
                     }
 
+                    layer.enabled: true
+                    layer.effect: OpacityMask {
+                        maskSource: Rectangle {
+                            width: previewRenderer.width
+                            height: previewRenderer.height
+                            radius: JamiTheme.lineEditRadius
+                        }
+                    }
+
                     onWidthChanged: {
                         previewRenderer.height = previewRenderer.width * previewImageScalingFactor
                     }
