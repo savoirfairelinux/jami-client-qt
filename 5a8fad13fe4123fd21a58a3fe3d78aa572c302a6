@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c48f6f86_cff4caa5",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 25
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-27T18:02:31Z",
+      "side": 1,
+      "message": "seems like a few items can be factored out into variables in the client CMakeLists.txt",
+      "revId": "5a8fad13fe4123fd21a58a3fe3d78aa572c302a6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ffed720_ceb0f5ab",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 25
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-27T18:02:31Z",
+      "side": 1,
+      "message": "these are the same?",
+      "range": {
+        "startLine": 61,
+        "startChar": 25,
+        "endLine": 62,
+        "endChar": 48
+      },
+      "revId": "5a8fad13fe4123fd21a58a3fe3d78aa572c302a6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdedaf42_5e33629b",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 25
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-27T18:02:31Z",
+      "side": 1,
+      "message": "it\u0027s okay but not ideal to use globbing here\nI think this variable should be outside the MSVC block and specify each test",
+      "range": {
+        "startLine": 136,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 82
+      },
+      "revId": "5a8fad13fe4123fd21a58a3fe3d78aa572c302a6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d136efdb_e58d5f7e",
+        "filename": "tests/CMakeLists.txt",
+        "patchSetId": 25
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-04-27T18:02:31Z",
+      "side": 1,
+      "message": "the MSVC block should ideally append to variables only\ntarget_link_libraries should be outside platform specific blocks",
+      "range": {
+        "startLine": 145,
+        "startChar": 26,
+        "endLine": 161,
+        "endChar": 31
+      },
+      "revId": "5a8fad13fe4123fd21a58a3fe3d78aa572c302a6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
