@@ -284,7 +284,7 @@ Rectangle {
 
                     anchors.top: mainViewSidePanelRect.top
                     width: mainViewSidePanelRect.width
-                    height: 64
+                    height: JamiTheme.accountListItemHeight
 
                     visible: (mainViewSidePanel.visible || settingsMenu.visible)
 
@@ -416,7 +416,7 @@ Rectangle {
         visible: false
 
         onSettingsViewNeedToShowMainView: {
-            AccountAdapter.accountChanged(0)
+            AccountAdapter.changeAccount(0)
             toggleSettingsView()
         }
 
