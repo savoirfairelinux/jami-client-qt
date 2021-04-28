@@ -138,5 +138,6 @@
         <file>src/mainview/components/ConversationListView.qml</file>
         <file>src/mainview/components/SmartListItemDelegate.qml</file>
         <file>src/mainview/components/BadgeNotifier.qml</file>
+        <file>src/mainview/components/AccountItemDelegate.qml</file>
     </qresource>
 </RCC>

@@ -179,6 +179,8 @@ Item {
     property real smartlistItemInfoFontSize: 9
     property real filterItemFontSize: smartlistItemFontSize
     property real filterBadgeFontSize: 8.25
+    property real accountListItemHeight: 64
+    property real accountListAvatarSize: 40
 
     property real maximumWidthSettingsView: 600
     property real settingsHeaderpreferredHeight: 64

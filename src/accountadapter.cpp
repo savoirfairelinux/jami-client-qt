@@ -61,11 +61,11 @@ AccountAdapter::getDeviceModel()
 }
 
 void
-AccountAdapter::accountChanged(int index)
+AccountAdapter::changeAccount(int row)
 {
     auto accountList = lrcInstance_->accountModel().getAccountList();
-    if (accountList.size() > index) {
-        lrcInstance_->setSelectedAccountId(accountList.at(index));
+    if (accountList.size() > row) {
+        lrcInstance_->setSelectedAccountId(accountList.at(row));
     }
 }
 
