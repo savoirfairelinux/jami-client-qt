@@ -30,147 +30,54 @@ import "../../commoncomponents"
 Popup {
     id: root
 
-    property bool toggleUpdatePopupHeight: false
+    y: parent.height
+    implicitWidth: parent.width
 
-    y: accountComboBox.height - 1
-    implicitWidth: accountComboBox.width - 1
-
-    // Hack - limite the accounts that can be shown.
+    // limit the number of accounts shown at once
     implicitHeight: {
         root.visible
-        return Math.min(accountComboBox.height *
+        return Math.min(JamiTheme.accountListItemHeight *
                         Math.min(5, accountListModel.rowCount() + 1),
                         mainViewSidePanelRect.height)
     }
     padding: 0
 
     contentItem: ListView {
-        id: comboBoxPopupListView
+        id: listView
 
-        // In list view, index is an interger.
         clip: true
+
+        // TODO: this should use proxy model or custom filter out the
+        // current account
         model: accountListModel
-        implicitHeight: contentHeight
-        delegate: Rectangle {
-            id: delegate
-
+        delegate: AccountItemDelegate {
+            height: JamiTheme.accountListItemHeight
             width: root.width
-            height: accountComboBox.height
-
-            color: JamiTheme.backgroundColor
-
-            AvatarImage {
-                id: userImage
-
-                anchors.left: parent.left
-                anchors.leftMargin: 10
-                anchors.verticalCenter: parent.verticalCenter
-
-                width: 40
-                height: 40
-
-                presenceStatus: Status
-
-                Component.onCompleted: {
-                    return updateImage(
-                                accountListModel.data(
-                                    accountListModel.index(index, 0), AccountListModel.ID),
-                                accountListModel.data(
-                                    accountListModel.index(index, 0), AccountListModel.PictureUid))
-                }
-            }
-
-            ColumnLayout {
-                anchors.left: userImage.right
-                anchors.leftMargin: 16
-                anchors.top: delegate.top
-
-                height: delegate.height
-
-                spacing: 0
-
-                Text {
-                    id: textUserAliasPopup
-
-                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.topMargin: textUsernamePopup.visible ?
-                                          delegate.height / 2 - implicitHeight : 0
-
-                    text: textMetricsUserAliasPopup.elidedText
-                    font.pointSize: JamiTheme.textFontSize
-                    color: JamiTheme.textColor
-
-                    TextMetrics {
-                        id: textMetricsUserAliasPopup
-                        elide: Text.ElideRight
-                        elideWidth: delegate.width - userImage.width - 80
-                        text: Alias
-                    }
-                }
-
-                Text {
-                    id: textUsernamePopup
-
-                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                    Layout.bottomMargin: delegate.height / 2 - implicitHeight
-
-                    visible: textMetricsUsernamePopup.text.length
-
-                    text: textMetricsUsernamePopup.elidedText
-                    font.pointSize: JamiTheme.textFontSize
-                    color: JamiTheme.faddedLastInteractionFontColor
-
-                    TextMetrics {
-                        id: textMetricsUsernamePopup
-                        elide: Text.ElideRight
-                        elideWidth: delegate.width - userImage.width - 80
-                        text: Username
-                    }
-                }
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-                onPressed: {
-                    delegate.color = JamiTheme.pressColor
-                }
-                onReleased: {
-                    delegate.color = JamiTheme.normalButtonColor
-                    currentIndex = index
-                    root.close()
-                    AccountAdapter.accountChanged(index)
-                }
-                onEntered: {
-                    delegate.color = JamiTheme.hoverColor
-                }
-                onExited: {
-                    delegate.color = JamiTheme.backgroundColor
-                }
+            onClicked: {
+                //listView.currentIndex = index
+                root.close()
+                AccountAdapter.changeAccount(index)
             }
         }
 
-        footer: Button {
-            id: comboBoxFooterItem
+        footer: ItemDelegate {
+            id: footerItem
 
-            implicitWidth: accountComboBox.width
-            implicitHeight: accountComboBox.height
+            implicitHeight: JamiTheme.accountListItemHeight
+            implicitWidth: parent.width
 
             background: Rectangle {
-                color: comboBoxFooterItem.hovered? JamiTheme.hoverColor : JamiTheme.backgroundColor
+                color: footerItem.hovered?
+                           JamiTheme.hoverColor :
+                           JamiTheme.backgroundColor
+
+                Text {
+                    anchors.centerIn: parent
+                    text: qsTr("Add Account") + "+"
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.textFontSize
+                }
             }
-
-            contentItem: Text {
-                width: parent.width
-                height: parent.height
-
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-
-                text: qsTr("Add Account") + "+"
-                color: JamiTheme.textColor
-            }
-            font.pointSize: JamiTheme.textFontSize
 
             onClicked: {
                 root.close()
@@ -182,15 +89,11 @@ Popup {
     }
 
     background: Rectangle {
-        id: accountComboBoxPopup
-
         color: JamiTheme.backgroundColor
         CustomBorder {
             commonBorder: false
-            lBorderwidth: 2
-            rBorderwidth: 1
-            tBorderwidth: 1
-            bBorderwidth: 2
+            tBorderwidth: 1; lBorderwidth: 2
+            bBorderwidth: 2; rBorderwidth: 1
             borderColor: JamiTheme.tabbarBorderColor
         }
 
