@@ -416,7 +416,7 @@ Rectangle {
         visible: false
 
         onSettingsViewNeedToShowMainView: {
-            AccountAdapter.accountChanged(0)
+            AccountAdapter.changeAccount(0)
             toggleSettingsView()
         }
 
