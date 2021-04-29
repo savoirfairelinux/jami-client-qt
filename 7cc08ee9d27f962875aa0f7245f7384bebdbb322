@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "76743244_005af746",
+        "filename": "cmake/windows_daemon_deploy.cmake",
+        "patchSetId": 24
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0acf1cb4_1af4ce80",
+      "range": {
+        "startLine": 4,
+        "startChar": 25,
+        "endLine": 5,
+        "endChar": 34
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aab53b49_de3163c4",
         "filename": "tests/qml/main.cpp",
         "patchSetId": 24
@@ -45,6 +69,30 @@
       "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "579fe7fc_c406e10e",
+        "filename": "tests/qml/main.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aab53b49_de3163c4",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 30
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c3d76f3a_223263fa",
+        "filename": "tests/qml/src/tst_LocalAccount.qml",
+        "patchSetId": 24
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d216fcb_9733c2f6",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b434bcf4_997dca46",
         "filename": "tests/qml/src/tst_LocalAccount.qml",
         "patchSetId": 24
@@ -82,6 +154,30 @@
       "writtenOn": "2021-04-27T15:29:07Z",
       "side": 1,
       "message": "same as the cpp test, are we sure?",
+      "range": {
+        "startLine": 29,
+        "startChar": 42,
+        "endLine": 30,
+        "endChar": 53
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2cc2f815_37a192ca",
+        "filename": "tests/qml/src/tst_LocalAccount.qml",
+        "patchSetId": 24
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "These are just to make sure that both qml and google test could build and run successfully\n\nTests will be in written in more structural way when integrated",
+      "parentUuid": "b434bcf4_997dca46",
       "range": {
         "startLine": 29,
         "startChar": 42,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "25c94e4e_d89b9b3b",
+        "filename": "tests/qml/src/tst_PresenceIndicator.qml",
+        "patchSetId": 24
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6117fb66_3a1624b8",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ae4bb41_6c8c61af",
         "filename": "tests/unittests/accountadapter_unittest.cpp",
         "patchSetId": 24
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "247d2e01_7ecf2e3d",
+        "filename": "tests/unittests/accountadapter_unittest.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5ae4bb41_6c8c61af",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "391ce147_a1125d51",
         "filename": "tests/unittests/accountadapter_unittest.cpp",
         "patchSetId": 24
@@ -151,6 +295,30 @@
       "writtenOn": "2021-04-27T15:29:07Z",
       "side": 1,
       "message": "author",
+      "range": {
+        "startLine": 2,
+        "startChar": 43,
+        "endLine": 3,
+        "endChar": 63
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "996d7a69_f43c47f4",
+        "filename": "tests/unittests/accountadapter_unittest.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "anything wrong with the author line?",
+      "parentUuid": "391ce147_a1125d51",
       "range": {
         "startLine": 2,
         "startChar": 43,
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "36ef56e6_4a151b05",
+        "filename": "tests/unittests/accountadapter_unittest.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "No, now the tests are just to make sure that both google and qml test are running fine,\n\nwill be added more when we have the final design\n\nso, fail will be fine for now as well",
+      "parentUuid": "0d0b26b7_0475147c",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 86,
+        "endChar": 80
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39dacc6d_7e76f45a",
         "filename": "tests/unittests/globaltestenvironment.h",
         "patchSetId": 24
@@ -206,6 +398,30 @@
       "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b8cc88dd_f9fcca7e",
+        "filename": "tests/unittests/globaltestenvironment.h",
+        "patchSetId": 24
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-04-29T14:08:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "39dacc6d_7e76f45a",
+      "range": {
+        "startLine": 2,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
