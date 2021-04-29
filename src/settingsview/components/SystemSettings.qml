@@ -102,7 +102,8 @@ ColumnLayout {
         id: closeOrMinCheckBox
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
-        checked: SettingsAdapter.getAppValue(Settings.MinimizeOnClose)
+        visible: UtilsAdapter.isSystemTrayIconVisible()
+        checked: SettingsAdapter.getAppValue(Settings.MinimizeOnClose) && UtilsAdapter.isSystemTrayIconVisible()
 
         labelText: JamiStrings.keepMinimized
         fontPointSize: JamiTheme.settingsFontSize

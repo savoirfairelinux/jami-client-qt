@@ -365,3 +365,11 @@ UtilsAdapter::setSystemTrayIconVisible(bool visible)
 {
     systemTray_->setVisible(visible);
 }
+
+bool
+UtilsAdapter::isSystemTrayIconVisible()
+{
+    if (!systemTray_)
+        return false;
+    return systemTray_->isVisible();
+}

@@ -32,7 +32,7 @@ const QString defaultDownloadPath = QStandardPaths::writableLocation(
 
 // clang-format off
 #define KEYS \
-    X(MinimizeOnClose, true) \
+    X(MinimizeOnClose, false) \
     X(DownloadPath, defaultDownloadPath) \
     X(EnableNotifications, true) \
     X(EnableTypingIndicator, true) \
