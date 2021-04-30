@@ -46,6 +46,10 @@
 
 class ConnectivityMonitor;
 
+namespace DRing {
+class CallbackWrapperBase;
+}
+
 using namespace lrc::api;
 
 using migrateCallback = std::function<void()>;
@@ -134,5 +138,6 @@ private:
     MapStringString lastConferences_;
 
     conversation::Info invalid {};
+    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> confHandlers_;
 };
 Q_DECLARE_METATYPE(LRCInstance*)
