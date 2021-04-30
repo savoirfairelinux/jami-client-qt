@@ -70,6 +70,30 @@
       "revId": "e68ef811347fb3123979ffb3f72df77bd440b94b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a93faf2_a3676eb8",
+        "filename": "src/mainview/components/ParticipantOverlay.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-04-30T14:50:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "38f08067_0d25c236",
+      "range": {
+        "startLine": 52,
+        "startChar": 49,
+        "endLine": 52,
+        "endChar": 58
+      },
+      "revId": "e68ef811347fb3123979ffb3f72df77bd440b94b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
