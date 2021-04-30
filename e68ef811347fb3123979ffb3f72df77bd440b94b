@@ -22,6 +22,30 @@
       "revId": "e68ef811347fb3123979ffb3f72df77bd440b94b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10dd83e5_dc308815",
+        "filename": "src/mainview/components/ParticipantOverlay.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-04-30T14:41:22Z",
+      "side": 1,
+      "message": "1. agreed that isUri is better. However the meaning is to check if the peer is a contact to get it\u0027s avatar from the provider if so. Otherwise, the provider will create a temporary avatar which color is based on the hash. Will make a slight change here.\n\n2. If we do not change the image mode, the image provider will not give us a valid avatar.",
+      "parentUuid": "47b681d3_1272d20b",
+      "range": {
+        "startLine": 52,
+        "startChar": 49,
+        "endLine": 52,
+        "endChar": 58
+      },
+      "revId": "e68ef811347fb3123979ffb3f72df77bd440b94b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
