@@ -402,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "1e227d12_3c0081fa",
+        "filename": "tests/unittests/accountadapter_unittest.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-04-30T13:17:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "36ef56e6_4a151b05",
+      "range": {
+        "startLine": 85,
+        "startChar": 1,
+        "endLine": 86,
+        "endChar": 80
+      },
+      "revId": "7cc08ee9d27f962875aa0f7245f7384bebdbb322",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39dacc6d_7e76f45a",
         "filename": "tests/unittests/globaltestenvironment.h",
         "patchSetId": 24
