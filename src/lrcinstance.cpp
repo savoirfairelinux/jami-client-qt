@@ -20,6 +20,10 @@
 
 #include "lrcinstance.h"
 
+#ifdef ENABLE_CLIENT_QT_TESTS
+#include <configurationmanager_interface.h>
+#endif
+
 #include <QBuffer>
 #include <QMutex>
 #include <QObject>
@@ -33,10 +37,17 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
                          bool muteDring)
-    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
-    , renderer_(std::make_unique<RenderManager>(lrc_->getAVModel()))
-    , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
 {
+#ifdef ENABLE_CLIENT_QT_TESTS
+    confHandlers_.insert(DRing::exportable_callback<DRing::ConfigurationSignal::GetAppDataPath>(
+        [&](const std::string& name, std::vector<std::string>* paths) {
+            paths->emplace_back(std::string(Utils::WinGetEnv("TEMP")) + "\\jami_tests");
+        }));
+    DRing::registerSignalHandlers(confHandlers_);
+#endif
+    lrc_ = std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring);
+    renderer_ = std::make_unique<RenderManager>(lrc_->getAVModel());
+    updateManager_ = std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this);
     lrc_->holdConferences = false;
 };
 

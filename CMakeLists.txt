@@ -177,7 +177,8 @@ if(MSVC)
     set(QTWRAPPER_LIB ${LRC}/build/src/qtwrapper/Release/qtwrapper.lib)
 
     # daemon
-    set(DRING_SRC_PATH ${DRING}/contrib/msvc/include)
+    set(DRING_CONTRIB_HEADER_PATH ${DRING}/contrib/msvc/include)
+    set(DRING_HEADER_PATH ${DRING}/src/dring)
     set(DRING_LIB ${DRING}/build/x64/ReleaseLib_win32/bin/dring.lib)
     set(GNUTLS_LIB ${DRING}/contrib/msvc/lib/x64/libgnutls.lib)
 
@@ -196,7 +197,8 @@ if(MSVC)
         endif()
     endif()
 
-    include_directories(${DRING_SRC_PATH}
+    include_directories(${DRING_HEADER_PATH}
+                        ${DRING_CONTRIB_HEADER_PATH}
                         ${LRC_SRC_PATH}
                         ${QRENCODE})
 else()
