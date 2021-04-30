@@ -55,6 +55,8 @@ public:
         gnutls_global_init();
 #endif
 
+        initDirectDaemonConnection();
+
         std::atomic_bool isMigrating(false);
         lrcInstance_.reset(
             new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), muteDring));

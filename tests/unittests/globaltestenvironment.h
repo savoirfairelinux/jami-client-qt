@@ -16,4 +16,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include "utils.h"
+
+#include <configurationmanager_interface.h>
+
 extern bool muteDring;
+
+void initDirectDaemonConnection() {
+#ifdef ENABLE_CLIENT_QT_TESTS
+    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> confHandlers;
+    confHandlers.insert(DRing::exportable_callback<DRing::ConfigurationSignal::GetAppDataPath>(
+        [&](const std::string& name, std::vector<std::string>* paths) {
+            paths->emplace_back(std::string(Utils::WinGetEnv("TEMP")) + "\\jami_tests");
+        }));
+    DRing::registerSignalHandlers(confHandlers);
+#endif
+}

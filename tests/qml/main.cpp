@@ -37,6 +37,8 @@
 #include "utilsadapter.h"
 #include "conversationsadapter.h"
 
+#include <configurationmanager_interface.h>
+
 #include <atomic>
 
 #include <QScopedPointer>
@@ -69,6 +71,14 @@ public:
 
 #if defined _MSC_VER && !COMPILE_ONLY
         gnutls_global_init();
+#endif
+
+#ifdef ENABLE_CLIENT_QT_TESTS
+        confHandlers_.insert(DRing::exportable_callback<DRing::ConfigurationSignal::GetAppDataPath>(
+            [&](const std::string& name, std::vector<std::string>* paths) {
+                paths->emplace_back(std::string(Utils::WinGetEnv("TEMP")) + "\\jami_tests");
+            }));
+        DRing::registerSignalHandlers(confHandlers_);
 #endif
 
         std::atomic_bool isMigrating(false);
@@ -175,6 +185,7 @@ private:
     ScreenInfo screenInfo_;
 
     bool muteDring_ {false};
+    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> confHandlers_;
 };
 
 int
