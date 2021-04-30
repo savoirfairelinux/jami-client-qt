@@ -80,8 +80,11 @@ target_link_libraries(unittests
 target_compile_definitions(unittests PRIVATE ENABLE_TESTS="ON")
 
 if(MSVC)
+    add_definitions(-DENABLE_CLIENT_QT_TESTS)
+
     include_directories(${LRC_SRC_PATH}
-                        ${DRING_SRC_PATH})
+                        ${DRING_HEADER_PATH}
+                        ${DRING_CONTRIB_HEADER_PATH})
 
     # QML tests
     target_link_libraries(qml_tests
@@ -95,7 +98,8 @@ if(MSVC)
     target_include_directories(qml_tests PUBLIC
                                ${TESTS_INCLUDES}
                                ${LRC_SRC_PATH}
-                               ${DRING_SRC_PATH})
+                               ${DRING_HEADER_PATH}
+                               ${DRING_CONTRIB_HEADER_PATH})
 
     # output test executable files into test folder
     set_target_properties(qml_tests
@@ -160,7 +164,8 @@ if(MSVC)
     target_include_directories(unittests PUBLIC
                                ${TESTS_INCLUDES}
                                ${LRC_SRC_PATH}
-                               ${DRING_SRC_PATH})
+                               ${DRING_HEADER_PATH}
+                               ${DRING_CONTRIB_HEADER_PATH})
 
     # output test executable files into test folder
     set_target_properties(unittests
