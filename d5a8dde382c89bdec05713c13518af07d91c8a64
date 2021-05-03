@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54045cd5_54caf526",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-03T19:59:07Z",
+      "side": 1,
+      "message": "put in a separate commit with support for all arrangements as discussed",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 1
+      },
+      "revId": "d5a8dde382c89bdec05713c13518af07d91c8a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
