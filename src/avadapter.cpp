@@ -91,8 +91,8 @@ AvAdapter::shareEntireScreen(int screenNumber)
     lrcInstance_->avModel().setDisplay(getScreenNumber(),
                                        rect.x(),
                                        rect.y(),
-                                       rect.width(),
-                                       rect.height(),
+                                       rect.width() * screen->devicePixelRatio(),
+                                       rect.height() * screen->devicePixelRatio(),
                                        getCurrentCallId());
 }
 
@@ -103,9 +103,10 @@ AvAdapter::shareAllScreens()
 
     int width = 0, height = 0;
     for (auto scr : screens) {
-        width += scr->geometry().width();
-        if (height < scr->geometry().height())
-            height = scr->geometry().height();
+        auto devicePixelRatio = scr->devicePixelRatio();
+        width += scr->geometry().width() * devicePixelRatio;
+        if (height < scr->geometry().height() * devicePixelRatio)
+            height = scr->geometry().height() * devicePixelRatio;
     }
 
     lrcInstance_->avModel().setDisplay(getScreenNumber(), 0, 0, width, height, getCurrentCallId());
@@ -140,11 +141,12 @@ AvAdapter::captureAllScreens()
         QList<QPixmap> scrs;
         int width = 0, height = 0, currentPoint = 0;
 
-        for(auto scr : screens) {
+        for (auto scr : screens) {
             QPixmap pix = scr->grabWindow(0);
-            width += pix.width();
-            if (height < pix.height())
-                height = pix.height();
+            auto devicePixelRatio = scr->devicePixelRatio();
+            width += scr->geometry().width() * devicePixelRatio;
+            if (height < scr->geometry().height() * devicePixelRatio)
+                height = scr->geometry().height() * devicePixelRatio;
             scrs << pix;
         }
 
@@ -152,8 +154,8 @@ AvAdapter::captureAllScreens()
         QPainter painter(&final);
         final.fill(Qt::black);
 
-        for(auto scr : scrs) {
-            painter.drawPixmap(QPoint(currentPoint, 0), scr);
+        for (auto scr : scrs) {
+            painter.drawPixmap(currentPoint, 0, scr.width(), scr.height(), scr);
             currentPoint += scr.width();
         }
 
