@@ -206,9 +206,9 @@ Rectangle {
                 else
                     callStackView.showVideoCallPage()
             } else if (callState === Call.Status.INCOMING_RINGING) {
-                callStackView.showIncomingCallPage()
+                callStackView.showIncomingCallPage(isAudioOnly)
             } else {
-                callStackView.showOutgoingCallPage(callState)
+                callStackView.showOutgoingCallPage(isAudioOnly)
             }
             pushCallStackView()
 
