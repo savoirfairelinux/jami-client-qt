@@ -168,6 +168,31 @@ CallAdapter::refuseACall(const QString& accountId, const QString& convUid)
 }
 
 void
+CallAdapter::setCallMedia(const QString& accountId, const QString& convUid, bool video)
+{
+    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
+    if (!convInfo.uid.isEmpty()) {
+        try {
+            auto callInfos = lrcInstance_->getAccountInfo(accountId).callModel->getCall(
+                convInfo.callId);
+            for (auto it = callInfos.mediaList.begin(); it != callInfos.mediaList.end();) {
+                if ((*it)["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO" && !video) {
+                    (*it)["ENABLED"] = "false";
+                    (*it)["MUTED"] = "true";
+                    callInfos.videoMuted = !video;
+                    callInfos.isAudioOnly = true;
+                    it++;
+                } else
+                    it++;
+            }
+            lrcInstance_->getAccountInfo(accountId).callModel->setCallMediaList(convInfo.callId,
+                                                                                callInfos.mediaList);
+        } catch (...) {
+        }
+    }
+}
+
+void
 CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
