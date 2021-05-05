@@ -53,6 +53,7 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
     connect(lrcInstance_, &LRCInstance::currentAccountChanged, this, &CallAdapter::onAccountChanged);
 
 #ifdef Q_OS_LINUX
+    // HERE!!!
     // notification responses (gnu/linux currently)
     connect(systemTray_,
             &SystemTray::answerCallActivated,
@@ -167,6 +168,32 @@ CallAdapter::refuseACall(const QString& accountId, const QString& convUid)
     }
 }
 
+// HERE!!!
+// void
+// CallAdapter::setCallMedia(const QString& accountId, const QString& convUid, bool audio, bool video)
+// {
+//     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
+//     if (!convInfo.uid.isEmpty()) {
+//         try {
+//             auto callInfos = lrcInstance_->getAccountInfo(accountId).callModel->getCall(convUid);
+//             for (auto it = callInfos.mediaList.begin(); it != callInfos.mediaList.end();) {
+//                 if (it["MEDIA_TYPE"] == "MEDIA_TYPE_AUDIO" && !audio) {
+//                     it["MUTED"] = "true";
+//                     callInfos.audioMuted = !audio;
+//                     it++;
+//                 } else if (it["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO" && !video) {
+//                     it = callInfos.mediaList.erase(it);
+//                     callInfos.videoMuted = !video;
+//                     callInfos.isAudioOnly = true;
+//                 } else
+//                     it++;
+//             }
+//         } catch (...) {
+//         }
+//     }
+// }
+
+// HERE!!!
 void
 CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
 {

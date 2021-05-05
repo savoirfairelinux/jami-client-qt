@@ -50,6 +50,11 @@ public:
     Q_INVOKABLE void placeCall();
     Q_INVOKABLE void hangUpACall(const QString& accountId, const QString& convUid);
     Q_INVOKABLE void refuseACall(const QString& accountId, const QString& convUid);
+    // HERE!!!
+    Q_INVOKABLE void setCallMedia(const QString& accountId,
+                                  const QString& convUid,
+                                  bool audio,
+                                  bool video);
     Q_INVOKABLE void acceptACall(const QString& accountId, const QString& convUid);
 
     Q_INVOKABLE void connectCallModel(const QString& accountId);

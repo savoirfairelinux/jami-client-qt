@@ -32,17 +32,18 @@ Rectangle {
     id: userInfoCallRect
 
     property int buttonPreferredSize: 48
+    property bool isAudioOnly: false
+    property bool isIncoming: false
     property string bestName: "Best Name"
-    property string bestId: "Best Id"
 
-    function updateUI(accountId, convUid) {
+    function updateUI(accountId, convUid, audioCall, incomingCall) {
         contactImg.updateImage(convUid)
-        bestName = UtilsAdapter.getBestName(accountId, convUid)
-        var id = UtilsAdapter.getBestId(accountId, convUid)
-        bestId = (bestName !== id) ? id : ""
+        userInfoCallRect.bestName = UtilsAdapter.getBestName(accountId, convUid)
+        userInfoCallRect.isAudioOnly = audioCall
+        userInfoCallRect.isIncoming = incomingCall
     }
 
-    color: "black"
+    color: "transparent"
 
     ColumnLayout {
         id: userInfoCallColumnLayout
@@ -78,7 +79,7 @@ Rectangle {
             id: contactImg
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 48
+            Layout.topMargin: 60
 
             Layout.preferredWidth: 100
             Layout.preferredHeight: 100
@@ -94,7 +95,7 @@ Rectangle {
             Layout.topMargin: 8
 
             Layout.preferredWidth: userInfoCallRect.width
-            Layout.preferredHeight: jamiBestNameText.height + jamiBestIdText.height + 100
+            Layout.preferredHeight: jamiBestNameText.height + jamiComplementarText.height + 50
 
             color: "transparent"
 
@@ -106,7 +107,7 @@ Rectangle {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: userInfoCallPageTextRect.width
-                    Layout.preferredHeight: 48
+                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     font.pointSize: JamiTheme.headerFontSize
 
@@ -119,33 +120,43 @@ Rectangle {
                     TextMetrics {
                         id: textMetricsjamiBestNameText
                         font: jamiBestNameText.font
-                        text: bestName
+                        text: {
+                            if (isIncoming) {
+                                if (isAudioOnly)
+                                    return JamiStrings.audioCallFrom + " " + bestName
+                                else
+                                    return JamiStrings.videoCallFrom + " " + bestName
+                            }
+                            return bestName
+                        }
                         elideWidth: userInfoCallPageTextRect.width - 48
                         elide: Qt.ElideMiddle
                     }
                 }
 
                 Text {
-                    id: jamiBestIdText
+                    id: jamiComplementarText
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: userInfoCallPageTextRect.width
-                    Layout.preferredHeight: 32
+                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                     font.pointSize: JamiTheme.textFontSize
 
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
 
-                    text: textMetricsjamiBestIdText.elidedText
+                    text: textMetricsjamiComplementarText.elidedText
                     color: Qt.lighter("white", 1.5)
 
                     TextMetrics {
-                        id: textMetricsjamiBestIdText
-                        font: jamiBestIdText.font
-                        text: bestId
-                        elideWidth: userInfoCallPageTextRect.width - 48
-                        elide: Qt.ElideMiddle
+                        id: textMetricsjamiComplementarText
+                        font: jamiComplementarText.font
+                        text: {
+                            if (isIncoming && !isAudioOnly)
+                                return "Your camera is active. Click on the camera\nto deactivate it and answer in audio."
+                            return ""
+                        }
                     }
                 }
             }
