@@ -20,9 +20,13 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls.Universal 2.14
+import QtGraphicalEffects 1.12
 
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
+import net.jami.Constants 1.0
+
+import "../../commoncomponents"
 
 import "../js/incomingcallpagecreation.js" as IncomingCallPageCreation
 
@@ -87,24 +91,36 @@ Rectangle {
         audioCallPage.updateUI(responsibleAccountId, responsibleConvUid)
     }
 
-    function showOutgoingCallPage() {
+    function showOutgoingCallPage(isAudioOnly) {
         var itemToFind = getItemFromStack(CallStackView.OutgoingPageStack)
         if (!itemToFind) {
             callStackMainView.push(outgoingCallPage, StackView.Immediate)
         } else {
             callStackMainView.pop(itemToFind, StackView.Immediate)
         }
-        outgoingCallPage.updateUI(responsibleAccountId, responsibleConvUid)
+        outgoingCallPage.updateUI(responsibleAccountId, responsibleConvUid, isAudioOnly)
+        if (isAudioOnly) {
+            avatarBackgroundImg.visible = false
+        } else {
+            avatarBackgroundImg.visible = true
+            avatarBackgroundImg.updateImage(responsibleConvUid)
+        }
     }
 
-    function showIncomingCallPage(accountId, convUid) {
+    function showIncomingCallPage(isAudioOnly) {
         var itemToFind = getItemFromStack(CallStackView.IncomingPageStack)
         if (!itemToFind) {
             callStackMainView.push(incomingCallPage, StackView.Immediate)
         } else {
             callStackMainView.pop(itemToFind, StackView.Immediate)
         }
-        incomingCallPage.updateUI(responsibleAccountId, responsibleConvUid)
+        incomingCallPage.updateUI(responsibleAccountId, responsibleConvUid, isAudioOnly)
+        if (isAudioOnly) {
+            avatarBackgroundImg.visible = false
+        } else {
+            avatarBackgroundImg.visible = true
+            avatarBackgroundImg.updateImage(responsibleConvUid)
+        }
     }
 
     function showVideoCallPage() {
@@ -223,5 +239,27 @@ Rectangle {
         anchors.fill: parent
 
         initialItem: outgoingCallPage
+
+        background: Rectangle {
+            anchors.fill: parent
+            color: "black"
+
+            AvatarImage {
+                id: avatarBackgroundImg
+
+                anchors.fill: parent
+
+                showPresenceIndicator: false
+                mode: AvatarImage.Mode.FromConvUid
+                enableAnimation: false
+
+                layer.enabled: true
+                layer.effect: ColorOverlay {
+                    anchors.fill: avatarBackgroundImg
+                    source: avatarBackgroundImg
+                    color: JamiTheme.shadowColor
+                }
+            }            
+        }
     }
 }
