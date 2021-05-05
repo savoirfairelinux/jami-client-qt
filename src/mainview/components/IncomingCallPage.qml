@@ -29,17 +29,36 @@ import net.jami.Constants 1.0
 import "../../commoncomponents"
 
 Rectangle {
-    id: incomingCallPage
+    id: root
 
     property int buttonPreferredSize: 48
+    property bool video: false
 
     signal callCancelButtonIsClicked
     signal callAcceptButtonIsClicked
 
-    color: "black"
+    color: "transparent"
+    
+    // ListModel {
+    //     id: incomeControlsModel
+    //     ListElement { type: "cancel"; image: "qrc:/images/icons/round-close-24px.svg"; enable: true }
+    //     ListElement { type: "accept"; image: "qrc:/images/icons/check-24px.svg"; enable: true }
+    // }
+    ListModel {
+        id: incomeControlsModelMS
+        ListElement { type: "cancel"; image: "qrc:/images/icons/round-close-24px.svg"; enable: true }
+        ListElement { type: "cam"; image: "qrc:/images/icons/videocam-24px.svg"; enable: true }
+        ListElement { type: "mic"; image: "qrc:/images/icons/mic-24px.svg"; enable: true }
+    }
 
-    function updateUI(accountId, convUid) {
-        userInfoIncomingCallPage.updateUI(accountId, convUid)
+    function updateUI(accountId, convUid, isAudioOnly) {
+        root.video = !isAudioOnly
+        if (isAudioOnly && incomeControlsModelMS.count === 3)
+            incomeControlsModelMS.remove(1)
+        else if (!isAudioOnly && incomeControlsModelMS.count === 2)
+            incomeControlsModelMS.insert(1, { "type": "cam", "image": "qrc:/images/icons/videocam-24px.svg", "enable": true })
+        incomeControlButtons.model = incomeControlsModelMS
+        userInfoIncomingCallPage.updateUI(accountId, convUid, isAudioOnly, true)
     }
 
     // Prevent right click propagate to VideoCallPage.
@@ -51,8 +70,6 @@ Rectangle {
     }
 
     ColumnLayout {
-        id: incomingCallPageColumnLayout
-
         anchors.fill: parent
 
         // Common elements with OutgoingCallPage
@@ -62,80 +79,98 @@ Rectangle {
             Layout.fillHeight: true
         }
 
-        Text {
-            id: talkToYouText
-
+        Rectangle {
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: incomingCallPage.width
-            Layout.preferredHeight: 32
-
-            font.pointSize: JamiTheme.textFontSize
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            color: "white"
-
-            text: "is calling you"
-        }
-
-        RowLayout {
-            id: incomingCallPageRowLayout
-
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
             Layout.bottomMargin: 48
-            Layout.topMargin: 48
+            Layout.preferredWidth: childrenRect.width
+            Layout.preferredHeight: childrenRect.height
 
-            Layout.preferredWidth: incomingCallPage.width - 200
-            Layout.maximumWidth: 200
-            Layout.preferredHeight: buttonPreferredSize
+            color: JamiTheme.darkGreyColorOpacity
+            radius: 4
 
-            ColumnLayout {
-                id: callAnswerButtonColumnLayout
+            RowLayout {
+                Repeater {
+                    id: incomeControlButtons
+                    model: incomeControlsModelMS
 
-                Layout.alignment: Qt.AlignLeft
+                    delegate: ColumnLayout {
+                        PushButton {
+                            Layout.leftMargin: 10
+                            Layout.rightMargin: 10
+                            Layout.topMargin: 10
 
-                PushButton {
-                    id: callAnswerButton
+                            Layout.preferredWidth: buttonPreferredSize
+                            Layout.preferredHeight: buttonPreferredSize
 
-                    Layout.alignment: Qt.AlignCenter
+                            pressedColor: {
+                                if (type === "cancel" )
+                                    return JamiTheme.declineButtonPressedRed
+                                else
+                                    return JamiTheme.acceptButtonPressedGreen
+                            }
+                            hoveredColor: {
+                                if (type === "cancel" )
+                                    return JamiTheme.declineButtonHoverRed
+                                else
+                                    return JamiTheme.acceptButtonHoverGreen
+                            }
+                            normalColor: {
+                                if (type === "cancel" )
+                                    return JamiTheme.declineButtonRed
+                                else
+                                    return JamiTheme.acceptButtonGreen
+                            }
+                            
+                            source: image
+                            imageColor: JamiTheme.whiteColor
 
-                    Layout.preferredWidth: buttonPreferredSize
-                    Layout.preferredHeight: buttonPreferredSize
+                            enabled: enable
+                            opacity: enable ? 1.0 : 0.5
 
-                    pressedColor: JamiTheme.acceptButtonPressedGreen
-                    hoveredColor: JamiTheme.acceptButtonHoverGreen
-                    normalColor: JamiTheme.acceptButtonGreen
+                            toolTipText: {
+                                return type === "cancel" ? JamiStrings.hangup : ""                                
+                            }
 
-                    source: "qrc:/images/icons/check-24px.svg"
-                    imageColor: JamiTheme.whiteColor
+                            onClicked: { 
+                                if (type === "cancel")
+                                    callCancelButtonIsClicked()
+                                else {
+                                    if (type === "cam")
+                                        root.video = true
+                                    else if (type === "mic")
+                                        root.video = false
+                                    CallAdapter.setCallMedia(responsibleAccountId, responsibleConvUid, root.video)
+                                    callAcceptButtonIsClicked()
+                                }
+                            }
+                        }
 
-                    onClicked: callAcceptButtonIsClicked()
-                }
-            }
+                        Label {
+                            Layout.alignment: Qt.AlignHCenter
+                            Layout.preferredHeight: 20
 
-            ColumnLayout {
-                id: callDeclineButtonColumnLayout
+                            font.pointSize: JamiTheme.indicatorFontSize
+                            font.kerning: true
+                            color: JamiTheme.whiteColor
+                            wrapMode:Text.Wrap
 
-                Layout.alignment: Qt.AlignRight
+                            text: {
+                                if (type === "cancel")
+                                    return JamiStrings.optionCancel
+                                else if (type === "accept")
+                                    return JamiStrings.accept
+                                else if (type === "cam")
+                                    return JamiStrings.camera
+                                else if (type === "chat")
+                                    return JamiStrings.message
+                                else
+                                    return ""
+                            }
 
-                PushButton {
-                    id: callDeclineButton
-
-                    Layout.alignment: Qt.AlignCenter
-
-                    Layout.preferredWidth: buttonPreferredSize
-                    Layout.preferredHeight: buttonPreferredSize
-
-                    pressedColor: JamiTheme.declineButtonPressedRed
-                    hoveredColor: JamiTheme.declineButtonHoverRed
-                    normalColor: JamiTheme.declineButtonRed
-
-                    source: "qrc:/images/icons/round-close-24px.svg"
-                    imageColor: JamiTheme.whiteColor
-
-                    toolTipText: JamiStrings.hangup
-
-                    onClicked: callCancelButtonIsClicked()
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
                 }
             }
         }
@@ -145,7 +180,7 @@ Rectangle {
         sequence: "Ctrl+Y"
         context: Qt.ApplicationShortcut
         onActivated: {
-            incomingCallPage.close()
+            root.close()
             CallAdapter.acceptACall(responsibleAccountId,
                                     responsibleConvUid)
             communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
@@ -156,7 +191,7 @@ Rectangle {
         sequence: "Ctrl+Shift+D"
         context: Qt.ApplicationShortcut
         onActivated: {
-            incomingCallPage.close()
+            root.close()
             CallAdapter.refuseACall(responsibleAccountId,
                                     responsibleConvUid)
         }
