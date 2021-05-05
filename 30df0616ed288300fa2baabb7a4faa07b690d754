@@ -22,6 +22,30 @@
       "revId": "30df0616ed288300fa2baabb7a4faa07b690d754",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1837b057_e3b1101e",
+        "filename": "src/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-05T19:20:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "243d33fb_efafbd4d",
+      "range": {
+        "startLine": 64,
+        "startChar": 20,
+        "endLine": 64,
+        "endChar": 51
+      },
+      "revId": "30df0616ed288300fa2baabb7a4faa07b690d754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
