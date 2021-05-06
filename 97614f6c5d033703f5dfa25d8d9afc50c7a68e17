@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ecd39333_04d839f5",
+        "filename": "src/commoncomponents/ModalPopup.qml",
+        "patchSetId": 66
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T19:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89404428_53661bf3",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 21
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e63775f1_3b5f5a2f",
         "filename": "src/commoncomponents/Scaffold.qml",
         "patchSetId": 66
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "f2f3a68b_3e5ffe7d",
+        "filename": "src/commoncomponents/Scaffold.qml",
+        "patchSetId": 66
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T19:00:53Z",
+      "side": 1,
+      "message": "dev widget for positioning, it is hacky and not guaranteed to work with item nested in layouts",
+      "parentUuid": "e63775f1_3b5f5a2f",
+      "range": {
+        "startLine": 67,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 5
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d577ee1_b27c95c8",
         "filename": "src/conversationlistmodelbase.cpp",
         "patchSetId": 66
@@ -68,6 +116,30 @@
       "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13d84c3e_fbeaac74",
+        "filename": "src/conversationlistmodelbase.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T19:00:53Z",
+      "side": 1,
+      "message": "put a comment in the code, to be revisited soon as discussed",
+      "parentUuid": "9d577ee1_b27c95c8",
+      "range": {
+        "startLine": 67,
+        "startChar": 19,
+        "endLine": 67,
+        "endChar": 40
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "d1fe3e6a_6c95697a",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T19:00:53Z",
+      "side": 1,
+      "message": "totally but in subsequent commit",
+      "parentUuid": "efa23846_16d390e3",
+      "range": {
+        "startLine": 36,
+        "startChar": 40,
+        "endLine": 36,
+        "endChar": 44
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7047bc76_0f6002cf",
         "filename": "src/conversationsadapter.cpp",
         "patchSetId": 66
@@ -154,6 +250,24 @@
       "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eab6ebe7_d16b16bd",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T19:00:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7047bc76_0f6002cf",
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -180,6 +294,30 @@
     },
     {
       "key": {
+        "uuid": "9af4d671_e9f1a0c1",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T19:00:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fb11cc9e_77d97092",
+      "range": {
+        "startLine": 420,
+        "startChar": 31,
+        "endLine": 422,
+        "endChar": 68
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "79b25ef0_433bd584",
         "filename": "src/mainview/components/BadgeNotifier.qml",
         "patchSetId": 66
@@ -203,6 +341,30 @@
     },
     {
       "key": {
+        "uuid": "06a137a6_1eda0543",
+        "filename": "src/mainview/components/BadgeNotifier.qml",
+        "patchSetId": 66
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T19:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79b25ef0_433bd584",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0117ad97_01bca4a3",
         "filename": "src/mainview/components/SidePanel.qml",
         "patchSetId": 66
@@ -223,6 +385,30 @@
       "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "663b2080_9db96f35",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 66
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T19:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0117ad97_01bca4a3",
+      "range": {
+        "startLine": 36,
+        "startChar": 3,
+        "endLine": 36,
+        "endChar": 18
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
