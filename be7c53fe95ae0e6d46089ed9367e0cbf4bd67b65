@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "004742b4_8337a575",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-06T14:36:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "46b7c916_44b28d19",
+      "range": {
+        "startLine": 84,
+        "startChar": 11,
+        "endLine": 84,
+        "endChar": 36
+      },
+      "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87813fc4_c9b2ad60",
         "filename": "src/avadapter.cpp",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0626350c_7178c402",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-06T14:36:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "87813fc4_c9b2ad60",
+      "range": {
+        "startLine": 88,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 34
+      },
+      "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9b103c82_e9c4c180",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-06T14:36:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0b64ff93_7fcf528d",
+      "range": {
+        "startLine": 93,
+        "startChar": 13,
+        "endLine": 93,
+        "endChar": 23
+      },
+      "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a583e80_3860e866",
         "filename": "src/avadapter.cpp",
         "patchSetId": 4
@@ -91,6 +163,30 @@
       "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88922821_3fec2ab7",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-06T14:36:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1a583e80_3860e866",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 96,
+        "endChar": 59
+      },
+      "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "c0e5071a_640cc646",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-06T14:36:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "95e210ab_044a78db",
+      "range": {
+        "startLine": 99,
+        "startChar": 56,
+        "endLine": 99,
+        "endChar": 57
+      },
+      "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1b16d093_5ece37b0",
         "filename": "src/avadapter.cpp",
         "patchSetId": 4
@@ -137,6 +257,30 @@
       "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3b15ce6_fb9e3274",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-06T14:36:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1b16d093_5ece37b0",
+      "range": {
+        "startLine": 107,
+        "startChar": 56,
+        "endLine": 107,
+        "endChar": 57
+      },
+      "revId": "be7c53fe95ae0e6d46089ed9367e0cbf4bd67b65",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
