@@ -212,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "f7369ca0_7cc1e4b2",
+        "filename": "src/conversationlistmodelbase.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-06T20:53:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3af36aa2_61e917aa",
+      "range": {
+        "startLine": 173,
+        "startChar": 22,
+        "endLine": 174,
+        "endChar": 1
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "096f4451_262acd25",
         "filename": "src/conversationlistmodelbase.cpp",
         "patchSetId": 66
