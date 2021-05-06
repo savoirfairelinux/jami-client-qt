@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89404428_53661bf3",
+        "filename": "src/commoncomponents/ModalPopup.qml",
+        "patchSetId": 66
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "trailing",
+      "range": {
+        "startLine": 65,
+        "startChar": 12,
+        "endLine": 65,
+        "endChar": 21
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e63775f1_3b5f5a2f",
+        "filename": "src/commoncomponents/Scaffold.qml",
+        "patchSetId": 66
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "seems a bit hacky to manually manage this",
+      "range": {
+        "startLine": 67,
+        "startChar": 6,
+        "endLine": 76,
+        "endChar": 5
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d577ee1_b27c95c8",
+        "filename": "src/conversationlistmodelbase.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "Please. can we avoid this asap (not in this patch but wyhen we rebase swarm). this make the swarm difficult.",
+      "range": {
+        "startLine": 67,
+        "startChar": 19,
+        "endLine": 67,
+        "endChar": 40
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3af36aa2_61e917aa",
+        "filename": "src/conversationlistmodelbase.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "right click-\u003eblock contact",
+      "range": {
+        "startLine": 173,
+        "startChar": 22,
+        "endLine": 174,
+        "endChar": 1
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "096f4451_262acd25",
+        "filename": "src/conversationlistmodelbase.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "Account with two invites:\nClick on second invite\nDecline invite\nGo to first invite \u003d\u003e the chatview doesn\u0027t show the invite bar",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 4
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efa23846_16d390e3",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "we must rename it :D",
+      "range": {
+        "startLine": 36,
+        "startChar": 40,
+        "endLine": 36,
+        "endChar": 44
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7047bc76_0f6002cf",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "note for the future. In swarm, we added conversation::Info isRequest this avoid to perform a getContact (which doesn\u0027t make sense for swarm)",
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fb11cc9e_77d97092",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "ideally we should not get contact there and move the complexity in conversation",
+      "range": {
+        "startLine": 420,
+        "startChar": 31,
+        "endLine": 422,
+        "endChar": 68
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79b25ef0_433bd584",
+        "filename": "src/mainview/components/BadgeNotifier.qml",
+        "patchSetId": 66
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "2021 only?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0117ad97_01bca4a3",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 66
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-06T16:18:53Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 36,
+        "startChar": 3,
+        "endLine": 36,
+        "endChar": 18
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
