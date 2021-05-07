@@ -307,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "854c7e26_03389d41",
+        "filename": "src/conversationlistmodelbase.cpp",
+        "patchSetId": 66
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-07T19:46:35Z",
+      "side": 1,
+      "message": "Okay so this would be on master but it\u0027s hidden by also setting the invitation for temporary items. I will log the issue, I believe this is in lrc.",
+      "parentUuid": "096f4451_262acd25",
+      "range": {
+        "startLine": 175,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 4
+      },
+      "revId": "97614f6c5d033703f5dfa25d8d9afc50c7a68e17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "efa23846_16d390e3",
         "filename": "src/conversationsadapter.cpp",
         "patchSetId": 66
