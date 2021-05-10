@@ -57,13 +57,10 @@ ItemDelegate {
             presenceStatus: Status
 
             Component.onCompleted: {
-                return updateImage(
-                            accountListModel.data(
-                                accountListModel.index(index, 0), AccountListModel.ID),
-                            accountListModel.data(
-                                accountListModel.index(index, 0), AccountListModel.PictureUid))
+                return updateImage(ID, PictureUid)
             }
         }
+
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true

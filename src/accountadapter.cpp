@@ -25,6 +25,7 @@
 
 #include "appsettingsmanager.h"
 #include "qtutils.h"
+#include "qmlregister.h"
 
 #include <QtConcurrent/QtConcurrent>
 
@@ -33,7 +34,12 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
                                QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-{}
+    , accSrcModel_(new AccountListModel(instance))
+    , accModel_(new CurrentAccountFilterModel(instance, accSrcModel_.get()))
+{
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accModel_.get(), "CurrentAccountFilterModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accSrcModel_.get(), "AccountListModel");
+}
 
 void
 AccountAdapter::safeInit()
@@ -64,8 +70,10 @@ void
 AccountAdapter::changeAccount(int row)
 {
     auto accountList = lrcInstance_->accountModel().getAccountList();
-    if (accountList.size() > row) {
-        lrcInstance_->setSelectedAccountId(accountList.at(row));
+    auto sourceRow = accModel_->mapToSource(accModel_->index(row, 0)).row();
+
+    if (accountList.size() > sourceRow) {
+        lrcInstance_->setSelectedAccountId(accountList.at(sourceRow));
     }
 }
 
