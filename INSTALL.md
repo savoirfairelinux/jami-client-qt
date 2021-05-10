@@ -34,14 +34,42 @@ Then, you can build daemon, lrc and client-qt with:
 ./build.py --install --qt
 ```
 
-And you will have the daemon in `daemon/bin/dring` and the client in `client-qt/build-local/jami-qt`. You also can run it with
+If you use a Qt version that is not wide-system installed you need to specify its path after the `--qt` flag, i. e., `./build.py --install --qt /home/<username>/Qt/5.15.0/gcc_64F 
 
-If you use a Qt version that is not wide-system installed you need to specify its path after the `--qt` flag, i. e., `./build.py --install --qt /home/<username>/Qt/5.15.0/gcc_64
+If you do not have the appropriate Qt version installed you may perform the following commands,
+```bash
+sudo apt install gnupg dirmngr ca-certificates curl --no-install-recommends
+curl -s https://dl.jami.net/public-key.gpg | sudo tee /usr/share/keyrings/jami-archive-keyring.gpg > /dev/null
+sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/jami-archive-keyring.gpg] https://dl.jami.net/internal/ubuntu_20.04/ ring main' > /etc/apt/sources.list.d/jami.list"
+sudo apt-get update && sudo apt-get install libqt-jami
+```
 
+The necessary Qt configurations will then be stored in `/usr/lib/libqt-jami`. You must then build daemon, lrc and client-qt with `./build.py --install --qt /usr/lib/libqt-jami`.
+
+
+You can run it with
 
 ```bash
 ./build.py --run --qt
 ```
+
+You can also run the daemon and client separately. The daemon will be in `daemon/bin/dring` and the client in `client-qt/build-local/jami-qt`. 
+
+In the `JamiBuild/ring-project` directory, the daemon can be run with
+
+```bash
+./daemon/bin/dring -cd
+```
+
+To run the client, open another terminal and inside this new terminal, enter the `JamiBuild/ring-project/client-qt/build-local` directory. Then run the command
+
+```bash
+./jami-qt
+```
+
+The daemon must be run prior to the client.
+
+
 
 Notes:
 + `--global-install` to install client-qt globally under /usr/local
