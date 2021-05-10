@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83df77aa_0f7d9be6",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-10T18:41:07Z",
+      "side": 1,
+      "message": "No Need For A Capital Letter For Each Word",
+      "range": {
+        "startLine": 215,
+        "startChar": 2,
+        "endLine": 215,
+        "endChar": 35
+      },
+      "revId": "0d609f5b5f8cc321b80e926fc4bc92069418e50b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
