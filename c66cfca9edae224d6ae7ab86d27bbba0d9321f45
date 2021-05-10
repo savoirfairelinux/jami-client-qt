@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "707dfb2b_2d50c144",
+        "filename": "INSTALL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-05-10T23:20:24Z",
+      "side": 1,
+      "message": "describe what the commands do, like:\n\"you can use a pre-built version of Qt from Jami\u0027 official repository by performing these commands (for Ubuntu 20.04)\"\nand/or refer to instructions on https://jami.net/download-jami-linux/",
+      "range": {
+        "startLine": 39,
+        "startChar": 56,
+        "endLine": 39,
+        "endChar": 94
+      },
+      "revId": "c66cfca9edae224d6ae7ab86d27bbba0d9321f45",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
