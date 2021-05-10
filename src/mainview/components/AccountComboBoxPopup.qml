@@ -35,7 +35,7 @@ Popup {
     // limit the number of accounts shown at once
     implicitHeight: {
         return Math.min(JamiTheme.accountListItemHeight *
-                        Math.min(5, accountListModel.rowCount() + 1),
+                        Math.min(5, CurrentAccountFilterModel.rowCount() + 1),
                         mainViewSidePanelRect.height)
     }
     padding: 0
@@ -54,9 +54,7 @@ Popup {
 
             clip: true
 
-            // TODO: this should use proxy model or custom filter out the
-            // current account
-            model: accountListModel
+            model: CurrentAccountFilterModel
             delegate: AccountItemDelegate {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
