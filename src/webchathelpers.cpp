@@ -60,7 +60,7 @@ buildInteractionJson(lrc::api::ConversationModel& conversationModel,
     case lrc::api::interaction::Type::DATA_TRANSFER: {
         interactionObject.insert("type", QJsonValue("data_transfer"));
         lrc::api::datatransfer::Info info = {};
-        conversationModel.getTransferInfo(msgId, info);
+        // conversationModel.getTransferInfo(msgId, info);
         if (info.status != lrc::api::datatransfer::Status::INVALID) {
             interactionObject.insert("totalSize", QJsonValue(qint64(info.totalSize)));
             interactionObject.insert("progress", QJsonValue(qint64(info.progress)));
