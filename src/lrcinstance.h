@@ -76,7 +76,6 @@ public:
     AVModel& avModel();
     PluginModel& pluginModel();
     BehaviorController& behaviorController();
-    DataTransferModel& dataTransferModel();
 
     void subscribeToDebugReceived();
     bool isConnected();
