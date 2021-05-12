@@ -91,7 +91,7 @@ Rectangle {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 
-                visible: LRCInstance.currentAccountType === Profile.Type.RING
+                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
 
                 text: JamiStrings.shareInvite
                 color: JamiTheme.faddedFontColor
@@ -106,7 +106,7 @@ Rectangle {
 
                 color: JamiTheme.secondaryBackgroundColor
 
-                visible: LRCInstance.currentAccountType === Profile.Type.RING
+                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
 
                 ColumnLayout {
                     id: jamiRegisteredNameRectColumnLayout
