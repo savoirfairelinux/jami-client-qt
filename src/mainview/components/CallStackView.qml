@@ -80,7 +80,7 @@ Rectangle {
         })
     }
 
-    function showInitialCallPage(callState) {
+    function showInitialCallPage(callState, isAudioOnly) {
         var itemToFind = getItemFromStack(CallStackView.InitialPageStack)
         if (!itemToFind) {
             callStackMainView.push(initialCallPage, StackView.Immediate)
@@ -89,6 +89,7 @@ Rectangle {
         }
         initialCallPage.accountPeerPair = [responsibleAccountId, responsibleConvUid]
         initialCallPage.callStatus = callState
+        initialCallPage.isAudioOnly = isAudioOnly
         if (initialCallPage.callStatus === Call.Status.INCOMING_RINGING)
             initialCallPage.isIncoming = true
         else
