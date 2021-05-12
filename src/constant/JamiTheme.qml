@@ -182,6 +182,7 @@ Item {
     property real smartListItemHeight: 64
     property real smartListAvatarSize: 52
     property real smartListTransitionDuration: 120
+    property real avatarSizeInitialCall: 130
 
     property real maximumWidthSettingsView: 600
     property real settingsHeaderpreferredHeight: 64
