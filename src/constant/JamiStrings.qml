@@ -27,6 +27,10 @@ Item {
     readonly property string appTitle: "Jami" + (UpdateManager.isCurrentVersionBeta() ? " (BETA)" : "")
 
     // Misc
+    property string accept: qsTr("Accept")
+    property string refuse: qsTr("Refuse")
+    property string endCall: qsTr("End call")
+    property string incomingCallFrom: qsTr("Incoming call from")
     property string contactSearchConversation: qsTr("Find a user or search for a conversation")
     property string contactSearchInvitations: qsTr("Search your invitations")
     property string invitations: qsTr("Invitations")
