@@ -32,53 +32,26 @@ Rectangle {
     id: userInfoCallRect
 
     property int buttonPreferredSize: 48
+    property bool isIncoming: false
     property string bestName: "Best Name"
-    property string bestId: "Best Id"
 
-    function updateUI(accountId, convUid) {
-        contactImg.updateImage(convUid)
-        bestName = UtilsAdapter.getBestName(accountId, convUid)
-        var id = UtilsAdapter.getBestId(accountId, convUid)
-        bestId = (bestName !== id) ? id : ""
+    function updateUI(accountId, convUid, incomingCall) {
+        userInfoCallRect.bestName = UtilsAdapter.getBestName(accountId, convUid)
+        userInfoCallRect.isIncoming = incomingCall
     }
 
-    color: "black"
+    color: "transparent"
 
     ColumnLayout {
         id: userInfoCallColumnLayout
 
         anchors.fill: parent
 
-        PushButton {
-            id: backButton
-
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            Layout.preferredWidth: JamiTheme.preferredFieldHeight
-            Layout.preferredHeight: JamiTheme.preferredFieldHeight
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            Layout.topMargin: JamiTheme.preferredMarginSize
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-
-            source: "qrc:/images/icons/ic_arrow_back_24px.svg"
-
-            pressedColor: JamiTheme.invertedPressedButtonColor
-            hoveredColor: JamiTheme.invertedHoveredButtonColor
-            normalColor: JamiTheme.invertedNormalButtonColor
-
-            imageColor: JamiTheme.whiteColor
-
-            toolTipText: qsTr("Toggle to display side panel")
-
-            visible: mainView.sidePanelOnly
-
-            onClicked: mainView.showWelcomeView()
-        }
-
         AvatarImage {
             id: contactImg
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 48
+            Layout.topMargin: 60
 
             Layout.preferredWidth: 100
             Layout.preferredHeight: 100
@@ -94,61 +67,11 @@ Rectangle {
             Layout.topMargin: 8
 
             Layout.preferredWidth: userInfoCallRect.width
-            Layout.preferredHeight: jamiBestNameText.height + jamiBestIdText.height + 100
+            Layout.preferredHeight: jamiBestNameText.height + jamiComplementarText.height + 50
 
             color: "transparent"
 
-            ColumnLayout {
-                id: userInfoCallPageTextRectColumnLayout
-
-                Text {
-                    id: jamiBestNameText
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: userInfoCallPageTextRect.width
-                    Layout.preferredHeight: 48
-
-                    font.pointSize: JamiTheme.headerFontSize
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    text: textMetricsjamiBestNameText.elidedText
-                    color: "white"
-
-                    TextMetrics {
-                        id: textMetricsjamiBestNameText
-                        font: jamiBestNameText.font
-                        text: bestName
-                        elideWidth: userInfoCallPageTextRect.width - 48
-                        elide: Qt.ElideMiddle
-                    }
-                }
-
-                Text {
-                    id: jamiBestIdText
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: userInfoCallPageTextRect.width
-                    Layout.preferredHeight: 32
-
-                    font.pointSize: JamiTheme.textFontSize
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    text: textMetricsjamiBestIdText.elidedText
-                    color: Qt.lighter("white", 1.5)
-
-                    TextMetrics {
-                        id: textMetricsjamiBestIdText
-                        font: jamiBestIdText.font
-                        text: bestId
-                        elideWidth: userInfoCallPageTextRect.width - 48
-                        elide: Qt.ElideMiddle
-                    }
-                }
-            }
+            
         }
     }
 }

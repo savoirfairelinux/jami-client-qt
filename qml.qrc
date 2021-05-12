@@ -103,8 +103,7 @@
         <file>src/mainview/components/MessageWebViewHeader.qml</file>
         <file>src/mainview/components/AccountComboBox.qml</file>
         <file>src/mainview/components/CallStackView.qml</file>
-        <file>src/mainview/components/IncomingCallPage.qml</file>
-        <file>src/mainview/components/OutgoingCallPage.qml</file>
+        <file>src/mainview/components/InitialCallPage.qml</file>
         <file>src/mainview/components/AudioCallPage.qml</file>
         <file>src/mainview/components/CallOverlay.qml</file>
         <file>src/mainview/components/CallOverlayButtonGroup.qml</file>
