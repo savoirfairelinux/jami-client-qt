@@ -125,34 +125,34 @@ MessagesAdapter::connectConversationModel()
     QObject::disconnect(interactionRemovedConnection_);
     QObject::disconnect(interactionStatusUpdatedConnection_);
 
-    newInteractionConnection_
-        = QObject::connect(currentConversationModel,
-                           &lrc::api::ConversationModel::newInteraction,
-                           [this](const QString& convUid,
-                                  uint64_t interactionId,
-                                  const lrc::api::interaction::Info& interaction) {
-                               auto accountId = lrcInstance_->getCurrAccId();
-                               newInteraction(accountId, convUid, interactionId, interaction);
-                           });
+    //    newInteractionConnection_
+    //        = QObject::connect(currentConversationModel,
+    //                           &lrc::api::ConversationModel::newInteraction,
+    //                           [this](const QString& convUid,
+    //                                  uint64_t interactionId,
+    //                                  const lrc::api::interaction::Info& interaction) {
+    //                               auto accountId = lrcInstance_->getCurrAccId();
+    //                               newInteraction(accountId, convUid, interactionId, interaction);
+    //                           });
 
-    interactionStatusUpdatedConnection_ = QObject::connect(
-        currentConversationModel,
-        &lrc::api::ConversationModel::interactionStatusUpdated,
-        [this](const QString& convUid,
-               uint64_t interactionId,
-               const lrc::api::interaction::Info& interaction) {
-            auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
-            currentConversationModel->clearUnreadInteractions(convUid);
-            updateInteraction(*currentConversationModel, interactionId, interaction);
-        });
+    //   interactionStatusUpdatedConnection_ = QObject::connect(
+    //       currentConversationModel,
+    //       &lrc::api::ConversationModel::interactionStatusUpdated,
+    //       [this](const QString& convUid,
+    //              uint64_t interactionId,
+    //              const lrc::api::interaction::Info& interaction) {
+    //           auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
+    //           currentConversationModel->clearUnreadInteractions(convUid);
+    //           updateInteraction(*currentConversationModel, interactionId, interaction);
+    //       });
 
-    interactionRemovedConnection_
-        = QObject::connect(currentConversationModel,
-                           &lrc::api::ConversationModel::interactionRemoved,
-                           [this](const QString& convUid, uint64_t interactionId) {
-                               Q_UNUSED(convUid);
-                               removeInteraction(interactionId);
-                           });
+    //    interactionRemovedConnection_
+    //        = QObject::connect(currentConversationModel,
+    //                           &lrc::api::ConversationModel::interactionRemoved,
+    //                           [this](const QString& convUid, uint64_t interactionId) {
+    //                               Q_UNUSED(convUid);
+    //                               removeInteraction(interactionId);
+    //                           });
 }
 
 void
@@ -173,7 +173,7 @@ MessagesAdapter::updateConversationForAddedContact()
 
     clear();
     setConversationProfileData(convInfo);
-    printHistory(*convModel, convInfo.interactions);
+    //    printHistory(*convModel, convInfo.interactions);
 }
 
 void
@@ -208,7 +208,7 @@ MessagesAdapter::slotMessagesCleared()
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(
         lrcInstance_->get_selectedConvUid());
 
-    printHistory(*convModel, convInfo.interactions);
+    //    printHistory(*convModel, convInfo.interactions);
 
     Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
 
@@ -308,8 +308,8 @@ MessagesAdapter::retryInteraction(const QString& arg)
     bool ok;
     uint64_t interactionUid = arg.toULongLong(&ok);
     if (ok) {
-        lrcInstance_->getCurrentConversationModel()
-            ->retryInteraction(lrcInstance_->get_selectedConvUid(), interactionUid);
+        //        lrcInstance_->getCurrentConversationModel()
+        //            ->retryInteraction(lrcInstance_->get_selectedConvUid(), interactionUid);
     } else {
         qDebug() << "retryInteraction - invalid arg" << arg;
     }
@@ -335,8 +335,9 @@ MessagesAdapter::deleteInteraction(const QString& arg)
     bool ok;
     uint64_t interactionUid = arg.toULongLong(&ok);
     if (ok) {
-        lrcInstance_->getCurrentConversationModel()
-            ->clearInteractionFromConversation(lrcInstance_->get_selectedConvUid(), interactionUid);
+        //        lrcInstance_->getCurrentConversationModel()
+        //            ->clearInteractionFromConversation(lrcInstance_->get_selectedConvUid(),
+        //            interactionUid);
     } else {
         qDebug() << "DeleteInteraction - invalid arg" << arg;
     }
@@ -365,7 +366,7 @@ MessagesAdapter::acceptFile(const QString& arg)
     try {
         auto interactionUid = arg.toLongLong();
         auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->acceptTransfer(convUid, interactionUid);
+        //        lrcInstance_->getCurrentConversationModel()->acceptTransfer(convUid, interactionUid);
     } catch (...) {
         qDebug() << "JS bridging - exception during acceptFile: " << arg;
     }
@@ -377,7 +378,7 @@ MessagesAdapter::refuseFile(const QString& arg)
     try {
         auto interactionUid = arg.toLongLong();
         const auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->cancelTransfer(convUid, interactionUid);
+        //        lrcInstance_->getCurrentConversationModel()->cancelTransfer(convUid, interactionUid);
     } catch (...) {
         qDebug() << "JS bridging - exception during refuseFile:" << arg;
     }

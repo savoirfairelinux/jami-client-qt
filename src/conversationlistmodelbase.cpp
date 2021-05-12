@@ -90,8 +90,9 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     }
     case Role::LastInteractionDate: {
         if (!item.interactions.empty()) {
-            auto& date = item.interactions.at(item.lastMessageUid).timestamp;
-            return QVariant(Utils::formatTimeString(date));
+            return QVariant("");
+            //     auto& date = item.interactions.at(item.lastMessageUid).timestamp;
+            //     return QVariant(Utils::formatTimeString(date));
         }
         break;
     }

@@ -250,7 +250,7 @@ MainApplication::init()
     }
 
     auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
-    lrcInstance_->dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
+    // lrcInstance_->dataTransferModel().downloadDirectory = downloadPath.toString() + "/";
 
     initQmlLayer();
     initSystray();

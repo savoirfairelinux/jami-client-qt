@@ -38,21 +38,22 @@ SettingsAdapter::getDir_Document()
 QString
 SettingsAdapter::getDir_Download()
 {
-    QString downloadPath = QDir::toNativeSeparators(
-        lrcInstance_->dataTransferModel().downloadDirectory);
-    if (downloadPath.isEmpty()) {
-        downloadPath = lrc::api::DataTransferModel::createDefaultDirectory();
-        setDownloadPath(downloadPath);
-        lrcInstance_->dataTransferModel().downloadDirectory = downloadPath;
-    }
+    // QString downloadPath = QDir::toNativeSeparators(
+    //     lrcInstance_->dataTransferModel().downloadDirectory);
+    // if (downloadPath.isEmpty()) {
+    //     downloadPath = lrc::api::DataTransferModel::createDefaultDirectory();
+    //     setDownloadPath(downloadPath);
+    //  lrcInstance_->dataTransferModel().downloadDirectory = downloadPath;
+    //  }
 #ifdef Q_OS_WIN
-    int pos = downloadPath.lastIndexOf(QChar('\\'));
+    // int pos = downloadPath.lastIndexOf(QChar('\\'));
 #else
-    int pos = downloadPath.lastIndexOf(QChar('/'));
+    //  int pos = downloadPath.lastIndexOf(QChar('/'));
 #endif
-    if (pos == downloadPath.length() - 1)
-        downloadPath.truncate(pos);
-    return downloadPath;
+    // if (pos == downloadPath.length() - 1)
+    //     downloadPath.truncate(pos);
+    // return downloadPath;
+    return {};
 }
 
 QVariant
@@ -83,7 +84,7 @@ void
 SettingsAdapter::setDownloadPath(QString dir)
 {
     setAppValue(Settings::Key::DownloadPath, dir);
-    lrcInstance_->dataTransferModel().downloadDirectory = dir + "/";
+    // lrcInstance_->dataTransferModel().downloadDirectory = dir + "/";
 }
 
 lrc::api::video::ResRateList
