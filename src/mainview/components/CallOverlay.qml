@@ -38,6 +38,7 @@ Rectangle {
 
     property string timeText: "00:00"
     property string remoteRecordingLabel: ""
+    property bool isVideoMuted: true
 
     property var participantOverlays: []
     property var participantComponent: Qt.createComponent("ParticipantOverlay.qml")
@@ -52,6 +53,7 @@ Rectangle {
 
     function updateButtonStatus(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
                                 isRecording, isSIP, isConferenceCall) {
+        root.isVideoMuted = isVideoMuted
         callViewContextMenu.isSIP = isSIP
         callViewContextMenu.isPaused = isPaused
         callViewContextMenu.isAudioOnly = isAudioOnly
@@ -144,7 +146,7 @@ Rectangle {
         participantOverlays = participantOverlays.filter(part => !deletedUris.includes(part.uri))
 
         if (infos.length === 0) { // Return to normal call
-            previewRenderer.visible = true
+            previewRenderer.visible = !root.isVideoMuted
             for (var part in participantOverlays) {
                 if (participantOverlays[part]) {
                         participantOverlays[part].destroy()
