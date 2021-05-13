@@ -60,6 +60,8 @@ Item {
 
     ParticipantsLayer {
         id: __participantsLayer
+        isAudioOnly: root.isAudioOnly
+        isVideoMuted: root.isVideoMuted
         anchors.fill: parent
     }
 
