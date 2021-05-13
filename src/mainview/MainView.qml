@@ -199,7 +199,7 @@ Rectangle {
                 else
                     callStackView.showVideoCallPage()
             } else {
-                callStackView.showInitialCallPage(item.callState)
+                callStackView.showInitialCallPage(item.callState, item.isAudioOnly)
             }
             pushCallStackView()
 
