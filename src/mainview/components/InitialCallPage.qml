@@ -36,6 +36,7 @@ Rectangle {
     property var accountConvPair: ["",""]
     property int callStatus: 0
     property string bestName: ""
+    property bool isAudioOnly: false
 
     signal callCanceled
     signal callAccepted
@@ -45,7 +46,8 @@ Rectangle {
     ListModel {
         id: incomingControlsModel
         ListElement { type: "refuse"; image: "qrc:/images/icons/round-close-24px.svg"}
-        ListElement { type: "accept"; image: "qrc:/images/icons/check-24px.svg"}
+        ListElement { type: "cam"; image: "qrc:/images/icons/videocam-24px.svg"}
+        ListElement { type: "mic"; image: "qrc:/images/icons/place_audiocall-24px.svg"}
     }
     ListModel {
         id: outgoingControlsModel
@@ -56,6 +58,14 @@ Rectangle {
         if (accountConvPair[1]) {
             contactImg.updateImage(accountConvPair[1])
             root.bestName = UtilsAdapter.getBestName(accountConvPair[0], accountConvPair[1])
+        }
+    }
+
+    onIsAudioOnlyChanged: {
+        if (isAudioOnly && incomeControlsModel.count === 3) {
+            incomeControlsModel.remove(1)
+        } else if (!isAudioOnly && incomeControlsModel.count === 2) {
+            incomeControlsModel.insert(1, { "type": "cam", "image": "qrc:/images/icons/videocam-24px.svg"})
         }
     }
 
@@ -130,17 +140,17 @@ Rectangle {
                         Layout.preferredHeight: JamiTheme.callButtonPreferredSize
 
                         pressedColor: {
-                            if (type === "accept" )
+                            if ( type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonPressedGreen
                             return JamiTheme.declineButtonPressedRed
                         }
                         hoveredColor: {
-                            if (type === "accept" )
+                            if ( type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonHoverGreen
                             return JamiTheme.declineButtonHoverRed
                         }
                         normalColor: {
-                            if (type === "accept" )
+                            if ( type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonGreen
                             return JamiTheme.declineButtonRed
                         }
@@ -148,11 +158,18 @@ Rectangle {
                         source: image
                         imageColor: JamiTheme.whiteColor
 
-                        onClicked: {
-                            if (type === "accept")
+                        onClicked: { 
+                            if ( type === "cam" || type === "mic") {
+                                var acceptVideoMedia = true
+                                if (type === "cam")
+                                    acceptVideoMedia = true
+                                else if ( type === "mic" )
+                                    acceptVideoMedia = false
+                                CallAdapter.setCallMedia(responsibleAccountId, responsibleConvUid, acceptVideoMedia)
                                 callAccepted()
-                            else
+                            } else {
                                 callCanceled()
+                            }
                         }
                     }
 
@@ -167,8 +184,10 @@ Rectangle {
                         text: {
                             if (type === "refuse")
                                 return JamiStrings.refuse
-                            else if (type === "accept")
-                                return JamiStrings.accept
+                            else if (type === "cam")
+                                return JamiStrings.acceptVideo
+                            else if (type === "mic")
+                                return JamiStrings.acceptAudio
                             else if (type === "cancel")
                                 return JamiStrings.endCall
                             return ""
