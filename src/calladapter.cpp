@@ -159,11 +159,33 @@ CallAdapter::hangUpACall(const QString& accountId, const QString& convUid)
 }
 
 void
+CallAdapter::setCallMedia(const QString& accountId, const QString& convUid, bool video)
+{
+    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
+    if (!convInfo.uid.isEmpty()) {
+        try {
+            auto callInfos = lrcInstance_->getAccountInfo(accountId).callModel->getCall(
+                convInfo.callId);
+            for (auto it = callInfos.mediaList.begin(); it != callInfos.mediaList.end(); it++) {
+                if ((*it)["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO" && !video) {
+                    (*it)["ENABLED"] = "false";
+                    (*it)["MUTED"] = "true";
+                    callInfos.videoMuted = !video;
+                }
+            }
+            lrcInstance_->getAccountInfo(accountId).callModel->setCallInfos(convInfo.callId,
+                                                                            callInfos);
+        } catch (...) {
+        }
+    }
+}
+
+void
 CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
     if (!convInfo.uid.isEmpty()) {
-        lrcInstance_->getAccountInfo(accountId).callModel->accept(convInfo.callId);
+        lrcInstance_->getAccountInfo(accountId).callModel->acceptWithMedia(convInfo.callId);
         auto& accInfo = lrcInstance_->getAccountInfo(convInfo.accountId);
         accInfo.callModel->setCurrentCall(convInfo.callId);
 
