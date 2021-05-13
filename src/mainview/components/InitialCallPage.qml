@@ -37,6 +37,7 @@ Rectangle {
     property var accountPeerPair: ["",""]
     property int callStatus: 0
     property string bestName: "Best Name"
+    property bool isAudioOnly: false
 
     signal callCancelButtonIsClicked
     signal callAcceptButtonIsClicked
@@ -46,7 +47,8 @@ Rectangle {
     ListModel {
         id: incomeControlsModel
         ListElement { type: "refuse"; image: "qrc:/images/icons/round-close-24px.svg"}
-        ListElement { type: "accept"; image: "qrc:/images/icons/check-24px.svg"}
+        ListElement { type: "cam"; image: "qrc:/images/icons/videocam-24px.svg"}
+        ListElement { type: "mic"; image: "qrc:/images/icons/place_audiocall-24px.svg"}
     }
     ListModel {
         id: outcomeControlsModel
@@ -57,6 +59,14 @@ Rectangle {
         if (accountPeerPair[1]) {
             contactImg.updateImage(accountPeerPair[1])
             root.bestName = UtilsAdapter.getBestName(accountPeerPair[0], accountPeerPair[1])
+        }
+    }
+
+    onIsAudioOnlyChanged: {
+        if (isAudioOnly && incomeControlsModel.count === 3) {
+            incomeControlsModel.remove(1)
+        } else if (!isAudioOnly && incomeControlsModel.count === 2) {
+            incomeControlsModel.insert(1, { "type": "cam", "image": "qrc:/images/icons/videocam-24px.svg"})
         }
     }
 
@@ -131,17 +141,17 @@ Rectangle {
                         Layout.preferredHeight: buttonPreferredSize
 
                         pressedColor: {
-                            if (type === "accept" )
+                            if ( type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonPressedGreen
                             return JamiTheme.declineButtonPressedRed
                         }
                         hoveredColor: {
-                            if (type === "accept" )
+                            if ( type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonHoverGreen
                             return JamiTheme.declineButtonHoverRed
                         }
                         normalColor: {
-                            if (type === "accept" )
+                            if ( type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonGreen
                             return JamiTheme.declineButtonRed
                         }
@@ -149,11 +159,18 @@ Rectangle {
                         source: image
                         imageColor: JamiTheme.whiteColor
 
-                        onClicked: {
-                            if (type === "accept")
+                        onClicked: { 
+                            if ( type === "cam" || type === "mic") {
+                                var acceptVideoMedia = true
+                                if (type === "cam")
+                                    acceptVideoMedia = true
+                                else if ( type === "mic" )
+                                    acceptVideoMedia = false
+                                CallAdapter.setCallMedia(responsibleAccountId, responsibleConvUid, acceptVideoMedia)
                                 callAcceptButtonIsClicked()
-                            else
+                            } else {
                                 callCancelButtonIsClicked()
+                            }
                         }
                     }
 
@@ -168,8 +185,10 @@ Rectangle {
                         text: {
                             if (type === "refuse")
                                 return JamiStrings.refuse
-                            else if (type === "accept")
-                                return JamiStrings.accept
+                            else if (type === "cam")
+                                return JamiStrings.acceptVideo
+                            else if (type === "mic")
+                                return JamiStrings.acceptAudio
                             else if (type === "cancel")
                                 return JamiStrings.endCall
                             return ""
