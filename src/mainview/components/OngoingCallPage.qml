@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ *         Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ *         Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,29 +31,31 @@ import net.jami.Constants 1.0
 import "../../commoncomponents"
 
 Rectangle {
-    id: videoCallPageRect
+    id: root
 
-    property string bestName: "Best Name"
+    property var accountPeerPair: ["", ""]
+    property alias bestName: callOverlay.bestName
     property string bestId: "Best Id"
     property variant clickPos: "1,1"
     property int previewMargin: 15
     property int previewMarginY: previewMargin + 56
     property int previewToX: 0
     property int previewToY: 0
-
+    property bool isAudioOnly: false
+    property alias callId: distantRenderer.rendererId
     property var linkedWebview: null
 
-    function updateUI(accountId, convUid) {
-        videoCallOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+    onAccountPeerPairChanged: {
+        if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
+            return;
+        contactImage.updateImage(accountPeerPair[1])
+        callOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
 
-        bestName = UtilsAdapter.getBestName(accountId, convUid)
-
-        var id = UtilsAdapter.getBestId(accountId, convUid)
+        bestName = UtilsAdapter.getBestName(accountPeerPair[0], accountPeerPair[1])
+        var id = UtilsAdapter.getBestId(accountPeerPair[0], accountPeerPair[1])
         bestId = (bestName !== id) ? id : ""
-    }
 
-    function setDistantRendererId(id) {
-        distantRenderer.setRendererId(id)
+        root.callId = UtilsAdapter.getCallId(accountPeerPair[0], accountPeerPair[1])
     }
 
     function setLinkedWebview(webViewId) {
@@ -64,17 +67,17 @@ Rectangle {
     }
 
     function closeInCallConversation() {
-        if (inVideoCallMessageWebViewStack.visible) {
+        if (inCallMessageWebViewStack.visible) {
             linkedWebview.resetMessagingHeaderBackButtonSource(
                         true)
             linkedWebview.setMessagingHeaderButtonsVisible(true)
-            inVideoCallMessageWebViewStack.visible = false
-            inVideoCallMessageWebViewStack.clear()
+            inCallMessageWebViewStack.visible = false
+            inCallMessageWebViewStack.clear()
         }
     }
 
     function closeContextMenuAndRelatedWindows() {
-        videoCallOverlay.closePotentialContactPicker()
+        callOverlay.closePotentialContactPicker()
     }
 
     function handleParticipantsInfo(infos) {
@@ -84,7 +87,7 @@ Rectangle {
         } else {
             bestName = ""
         }
-        videoCallOverlay.handleParticipantsInfo(infos)
+        callOverlay.handleParticipantsInfo(infos)
     }
 
     function previewMagneticSnap() {
@@ -100,15 +103,15 @@ Rectangle {
             if (previewRendererCenter.y >= distantRendererCenter.y) {
                 // Bottom right.
                 previewToX = Qt.binding(function () {
-                    return videoCallPageMainRect.width - previewRenderer.width - previewMargin
+                    return callPageMainRect.width - previewRenderer.width - previewMargin
                 })
                 previewToY = Qt.binding(function () {
-                    return videoCallPageMainRect.height - previewRenderer.height - previewMarginY
+                    return callPageMainRect.height - previewRenderer.height - previewMarginY
                 })
             } else {
                 // Top right.
                 previewToX = Qt.binding(function () {
-                    return videoCallPageMainRect.width - previewRenderer.width - previewMargin
+                    return callPageMainRect.width - previewRenderer.width - previewMargin
                 })
                 previewToY = previewMarginY
             }
@@ -117,7 +120,7 @@ Rectangle {
                 // Bottom left.
                 previewToX = previewMargin
                 previewToY = Qt.binding(function () {
-                    return videoCallPageMainRect.height - previewRenderer.height - previewMarginY
+                    return callPageMainRect.height - previewRenderer.height - previewMarginY
                 })
             } else {
                 // Top left.
@@ -128,8 +131,6 @@ Rectangle {
         previewRenderer.state = "geoChanging"
     }
 
-    anchors.fill: parent
-
     SplitView {
         id: mainColumnLayout
 
@@ -138,7 +139,7 @@ Rectangle {
         orientation: Qt.Vertical
 
         handle: Rectangle {
-            implicitWidth: videoCallPageRect.width
+            implicitWidth: root.width
             implicitHeight: JamiTheme.splitViewHandlePreferredWidth
             color: SplitHandle.pressed ? JamiTheme.pressColor :
                                          (SplitHandle.hovered ? JamiTheme.hoverColor :
@@ -146,9 +147,9 @@ Rectangle {
         }
 
         Rectangle {
-            id: videoCallPageMainRect
-            SplitView.preferredHeight: (videoCallPageRect.height / 3) * 2
-            SplitView.minimumHeight: videoCallPageRect.height / 2 + 20
+            id: callPageMainRect
+            SplitView.preferredHeight: (root.height / 3) * 2
+            SplitView.minimumHeight: root.height / 2 + 20
             SplitView.fillWidth: true
 
             MouseArea {
@@ -166,11 +167,11 @@ Rectangle {
 
                 onClicked: {
                     if (mouse.button === Qt.RightButton)
-                        videoCallOverlay.openCallViewContextMenuInPos(mouse.x, mouse.y)
+                        callOverlay.openCallViewContextMenuInPos(mouse.x, mouse.y)
                 }
 
                 CallOverlay {
-                    id: videoCallOverlay
+                    id: callOverlay
 
                     anchors.fill: parent
 
@@ -179,41 +180,43 @@ Rectangle {
 
                         function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
                                                  isRecording, isSIP, isConferenceCall, bestName) {
-                            videoCallOverlay.showOnHoldImage(isPaused)
-                            videoCallOverlay.updateButtonStatus(isPaused,
+                            callOverlay.showOnHoldImage(isPaused)
+                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
+                            callOverlay.updateButtonStatus(isPaused,
                                                                 isAudioOnly,
                                                                 isAudioMuted,
                                                                 isVideoMuted,
                                                                 isRecording, isSIP,
                                                                 isConferenceCall)
-                            videoCallPageRect.bestName = bestName
-                            videoCallOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+                            root.bestName = bestName
+                            callOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
                         }
 
                         function onShowOnHoldLabel(isPaused) {
-                            videoCallOverlay.showOnHoldImage(isPaused)
+                            callOverlay.showOnHoldImage(isPaused)
+                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
                         }
 
                         function onRemoteRecordingChanged(label, state) {
-                            videoCallOverlay.showRemoteRecording(label, state)
+                            callOverlay.showRemoteRecording(label, state)
                         }
                     }
 
                     onOverlayChatButtonClicked: {
-                        if (inVideoCallMessageWebViewStack.visible) {
+                        if (inCallMessageWebViewStack.visible) {
                             linkedWebview.resetMessagingHeaderBackButtonSource(
                                         true)
                             linkedWebview.setMessagingHeaderButtonsVisible(
                                         true)
-                            inVideoCallMessageWebViewStack.visible = false
-                            inVideoCallMessageWebViewStack.clear()
+                            inCallMessageWebViewStack.visible = false
+                            inCallMessageWebViewStack.clear()
                         } else {
                             linkedWebview.resetMessagingHeaderBackButtonSource(
                                         false)
                             linkedWebview.setMessagingHeaderButtonsVisible(
                                         false)
-                            inVideoCallMessageWebViewStack.visible = true
-                            inVideoCallMessageWebViewStack.push(
+                            inCallMessageWebViewStack.visible = true
+                            inCallMessageWebViewStack.push(
                                         linkedWebview)
                         }
                     }
@@ -223,15 +226,14 @@ Rectangle {
                     id: distantRenderer
 
                     anchors.centerIn: parent
+                    anchors.fill: parent
                     z: -1
 
-                    width: videoCallPageMainRect.width
-                    height: videoCallPageMainRect.height
-
                     lrcInstance: LRCInstance
+                    visible: !root.isAudioOnly
 
                     onOffsetChanged: {
-                        videoCallOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+                        callOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
                     }
                 }
 
@@ -239,6 +241,7 @@ Rectangle {
                     id: previewRenderer
 
                     lrcInstance: LRCInstance
+                    visible: !root.isAudioOnly
 
                     Connections {
                         target: CallAdapter
@@ -256,9 +259,9 @@ Rectangle {
                         }
                     }
 
-                    width: Math.max(videoCallPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
-                    x: videoCallPageMainRect.width - previewRenderer.width - previewMargin
-                    y: videoCallPageMainRect.height - previewRenderer.height - previewMargin - 56 // Avoid overlay
+                    width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
+                    x: callPageMainRect.width - previewRenderer.width - previewMargin
+                    y: callPageMainRect.height - previewRenderer.height - previewMargin - 56 // Avoid overlay
 
                     states: [
                         State {
@@ -305,11 +308,11 @@ Rectangle {
                             var deltaH = previewRenderer.y + delta.y + previewRenderer.height
 
 
-                            // Check if the previewRenderer exceeds the border of videoCallPageMainRect.
-                            if (deltaW < videoCallPageMainRect.width
+                            // Check if the previewRenderer exceeds the border of callPageMainRect.
+                            if (deltaW < callPageMainRect.width
                                     && previewRenderer.x + delta.x > 1)
                                 previewRenderer.x += delta.x
-                            if (deltaH < videoCallPageMainRect.height
+                            if (deltaH < callPageMainRect.height
                                     && previewRenderer.y + delta.y > 1)
                                 previewRenderer.y += delta.y
                         }
@@ -331,15 +334,66 @@ Rectangle {
                         previewRenderer.height = previewRenderer.width * previewImageScalingFactor
                     }
                 }
+
+                ColumnLayout {
+                    id: audioCallPageRectCentralRect
+                    anchors.centerIn: parent
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    visible: root.isAudioOnly
+
+                    AvatarImage {
+                        id: contactImage
+
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.preferredWidth: JamiTheme.avatarSizeInCall
+                        Layout.preferredHeight: JamiTheme.avatarSizeInCall
+
+                        mode: AvatarImage.Mode.FromConvUid
+                        showPresenceIndicator: false
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.topMargin: JamiTheme.preferredMarginSize
+
+                        Layout.preferredWidth: root.width
+
+                        font.pointSize: JamiTheme.titleFontSize
+
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+
+                        text: root.bestName
+                        elide: Text.ElideMiddle
+                        color: "white"
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        Layout.topMargin: JamiTheme.preferredMarginSize
+                        Layout.preferredWidth: root.width
+
+                        font.pointSize: JamiTheme.textFontSize
+
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+
+                        text: root.bestId
+                        elide: Text.ElideMiddle
+                        color: "white"
+                    }
+                }
             }
 
             color: "transparent"
         }
 
         StackView {
-            id: inVideoCallMessageWebViewStack
+            id: inCallMessageWebViewStack
 
-            SplitView.preferredHeight: videoCallPageRect.height / 3
+            SplitView.preferredHeight: root.height / 3
             SplitView.fillWidth: true
 
             visible: false
