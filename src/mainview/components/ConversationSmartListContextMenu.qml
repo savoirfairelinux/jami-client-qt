@@ -32,6 +32,7 @@ Item {
 
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
+    property bool isSwarm: false
     property int contactType: Profile.Type.INVALID
 
     function isOpen() { return ContextMenuGenerator.getMenu().visible }
@@ -55,13 +56,15 @@ Item {
                                                  communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
                                              })
 
-            ContextMenuGenerator.addMenuItem(qsTr("Clear conversation"),
-                                             "qrc:/images/icons/ic_clear_24px.svg",
-                                             function (){
-                                                 MessagesAdapter.clearConversationHistory(
-                                                             responsibleAccountId,
-                                                             responsibleConvUid)
-                                             })
+            if (!isSwarm) {
+                ContextMenuGenerator.addMenuItem(qsTr("Clear conversation"),
+                                                "qrc:/images/icons/ic_clear_24px.svg",
+                                                function (){
+                                                    MessagesAdapter.clearConversationHistory(
+                                                                responsibleAccountId,
+                                                                responsibleConvUid)
+                                                })
+            }
 
             if (contactType === Profile.Type.JAMI || contactType === Profile.Type.SIP)  {
                 ContextMenuGenerator.addMenuItem(qsTr("Remove contact"),
