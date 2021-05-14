@@ -38,6 +38,8 @@ Rectangle {
 
     property string timeText: "00:00"
     property string remoteRecordingLabel: ""
+    property bool isAudioOnly: false
+    property string bestName: ""
 
     property var participantOverlays: []
     property var participantComponent: Qt.createComponent("ParticipantOverlay.qml")
@@ -88,10 +90,12 @@ Rectangle {
     }
 
     function handleParticipantsInfo(infos) {
+        if (root.isAudioOnly)
+            return;
         // TODO: in the future the conference layout should be entirely managed by the client
         // Hack: truncate and ceil participant's overlay position and size to correct
         // when they are not exacts
-        videoCallOverlay.updateMenu()
+        callOverlay.updateMenu()
         var showMax = false
         var showMin = false
 
@@ -286,9 +290,9 @@ Rectangle {
                     id: textMetricsjamiBestNameText
                     font: jamiBestNameText.font
                     text: {
-                        if (videoCallPageRect) {
+                        if (!root.isAudioOnly) {
                             if (remoteRecordingLabel === "") {
-                                return videoCallPageRect.bestName
+                                return root.bestName
                             } else {
                                 return remoteRecordingLabel
                             }
