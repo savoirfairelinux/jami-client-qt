@@ -28,15 +28,14 @@ import net.jami.Constants 1.0
 
 import "../../commoncomponents"
 
-import "../js/incomingcallpagecreation.js" as IncomingCallPageCreation
-
 Rectangle {
     id: callStackViewWindow
 
+    property bool isAudioOnly: false
+
     enum StackNumber {
         InitialPageStack,
-        AudioPageStack,
-        VideoPageStack
+        OngoingPageStack
     }
 
     anchors.fill: parent
@@ -57,21 +56,12 @@ Rectangle {
         // Close potential window, context menu releated windows.
         if (!callStackMainView.currentItem)
             return
-        if (callStackMainView.currentItem.stackNumber === CallStackView.AudioPageStack) {
-            audioCallPage.closeInCallConversation()
-            audioCallPage.closeContextMenuAndRelatedWindows()
-        } else if (callStackMainView.currentItem.stackNumber === CallStackView.VideoPageStack) {
-            videoCallPage.closeInCallConversation()
-            videoCallPage.closeContextMenuAndRelatedWindows()
-        }
+        ongoingCallPage.closeInCallConversation()
+        ongoingCallPage.closeContextMenuAndRelatedWindows()
     }
 
     function setLinkedWebview(webViewId) {
-        if (callStackMainView.currentItem.stackNumber === CallStackView.AudioPageStack) {
-            audioCallPage.setLinkedWebview(webViewId)
-        } else if (callStackMainView.currentItem.stackNumber === CallStackView.VideoPageStack) {
-            videoCallPage.setLinkedWebview(webViewId)
-        }
+        ongoingCallPage.setLinkedWebview(webViewId)
     }
 
     function getItemFromStack(itemNumber) {
@@ -80,7 +70,7 @@ Rectangle {
         })
     }
 
-    function showInitialCallPage(callState, isAudioOnly) {
+    function showInitialCallPage(callState) {
         var itemToFind = getItemFromStack(CallStackView.InitialPageStack)
         if (!itemToFind) {
             callStackMainView.push(initialCallPage, StackView.Immediate)
@@ -89,34 +79,20 @@ Rectangle {
         }
         initialCallPage.accountPeerPair = [responsibleAccountId, responsibleConvUid]
         initialCallPage.callStatus = callState
-        initialCallPage.isAudioOnly = isAudioOnly
         if (initialCallPage.callStatus === Call.Status.INCOMING_RINGING)
             initialCallPage.isIncoming = true
         else
             initialCallPage.isIncoming = false
     }
 
-    function showAudioCallPage() {
-        var itemToFind = getItemFromStack(CallStackView.AudioPageStack)
+    function showOngoingCallPage() {
+        var itemToFind = getItemFromStack(CallStackView.OngoingPageStack)
         if (!itemToFind) {
-            callStackMainView.push(audioCallPage, StackView.Immediate)
+            callStackMainView.push(ongoingCallPage, StackView.Immediate)
         } else {
             callStackMainView.pop(itemToFind, StackView.Immediate)
         }
-        audioCallPage.updateUI(responsibleAccountId, responsibleConvUid)
-    }
-
-    function showVideoCallPage() {
-        var itemToFind = getItemFromStack(CallStackView.VideoPageStack)
-        if (!itemToFind) {
-            callStackMainView.push(videoCallPage, StackView.Immediate)
-        } else {
-            callStackMainView.pop(itemToFind, StackView.Immediate)
-        }
-        videoCallPage.updateUI(responsibleAccountId, responsibleConvUid)
-        var callId = UtilsAdapter.getCallId(responsibleAccountId,
-                                            responsibleConvUid)
-        videoCallPage.setDistantRendererId(callId)
+        ongoingCallPage.accountPeerPair = [responsibleAccountId, responsibleConvUid]
     }
 
     function toggleFullScreen() {
@@ -135,8 +111,8 @@ Rectangle {
         callPage.parent = JamiQmlUtils.callIsFullscreen ?
                     appContainer :
                     callStackMainView
-        if (callPage.stackNumber === CallStackView.VideoPageStack) {
-            videoCallPage.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+        if (!root.isAudioOnly) {
+            ongoingCallPage.handleParticipantsInfo(CallAdapter.getConferencesInfos())
         }
     }
 
@@ -161,27 +137,22 @@ Rectangle {
         }
 
         function onUpdateParticipantsInfos(infos, accountId, callId) {
-            if (callStackMainView.currentItem.stackNumber === CallStackView.VideoPageStack) {
+            if (callStackMainView.currentItem.stackNumber === CallStackView.OngoingPageStack && !root.isAudioOnly) {
                 var responsibleCallId = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid)
                 if (responsibleCallId === callId) {
-                    videoCallPage.handleParticipantsInfo(infos)
+                    ongoingCallPage.handleParticipantsInfo(infos)
                 }
             }
         }
     }
 
-    AudioCallPage {
-        id: audioCallPage
+    OngoingCallPage {
+        id: ongoingCallPage
+        
+        anchors.fill: parent
+        property int stackNumber: CallStackView.OngoingPageStack
 
-        property int stackNumber: CallStackView.AudioPageStack
-
-        visible: callStackMainView.currentItem.stackNumber === stackNumber
-    }
-
-    VideoCallPage {
-        id: videoCallPage
-
-        property int stackNumber: CallStackView.VideoPageStack
+        isAudioOnly: callStackViewWindow.isAudioOnly
 
         visible: callStackMainView.currentItem.stackNumber === stackNumber
     }
@@ -189,7 +160,10 @@ Rectangle {
     InitialCallPage {
         id: initialCallPage
 
+        anchors.fill: parent
         property int stackNumber: CallStackView.InitialPageStack
+
+        isAudioOnly: callStackViewWindow.isAudioOnly
 
         onCallAcceptButtonIsClicked: {
             CallAdapter.acceptACall(responsibleAccountId, responsibleConvUid)
