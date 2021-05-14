@@ -49,7 +49,7 @@ Rectangle {
         if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
             return;
         contactImage.updateImage(accountPeerPair[1])
-        callOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
 
         bestName = UtilsAdapter.getBestName(accountPeerPair[0], accountPeerPair[1])
         var id = UtilsAdapter.getBestId(accountPeerPair[0], accountPeerPair[1])
@@ -95,7 +95,7 @@ Rectangle {
         } else {
             bestName = ""
         }
-        callOverlay.handleParticipantsInfo(infos)
+        callOverlay.participantsLayer.update(infos)
     }
 
     function previewMagneticSnap() {
@@ -197,7 +197,7 @@ Rectangle {
                                                                 isRecording, isSIP,
                                                                 isConferenceCall)
                             root.bestName = bestName
-                            callOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+                            callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
                         }
 
                         function onShowOnHoldLabel(isPaused) {
@@ -228,7 +228,7 @@ Rectangle {
                     visible: !root.isAudioOnly
 
                     onOffsetChanged: {
-                        callOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+                        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
                     }
                 }
 

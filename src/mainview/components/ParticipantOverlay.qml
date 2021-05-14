@@ -38,8 +38,10 @@ Rectangle {
     property int shapeHeight: 16
     property int shapeRadius: 6
     property string pathShape: "M0,0 h%1 q%2,0 %2,%2 v%3 h-%4 z"
-    .arg(shapeWidth-shapeRadius).arg(shapeRadius).arg(shapeHeight-shapeRadius).
-    arg(shapeWidth)
+        .arg(shapeWidth-shapeRadius)
+        .arg(shapeRadius)
+        .arg(shapeHeight-shapeRadius)
+        .arg(shapeWidth)
 
     property string uri: overlayMenu.uri
     property bool participantIsActive: false
@@ -48,6 +50,9 @@ Rectangle {
     property bool participantIsMuted: false
     property bool participantIsModeratorMuted: false
     property bool participantMenuActive: false
+
+    color: "transparent"
+    z: 1
 
     function setAvatar(show, avatar, uri, local, isContact) {
         if (!show)
@@ -97,9 +102,6 @@ Rectangle {
         overlayMenu.showMinimize = isModerator && participantIsActive
         overlayMenu.showHangup = isModerator && !isLocal && !participantIsHost
     }
-
-    color: "transparent"
-    z: 1
 
     // Participant header with host, moderator and mute indicators
     Rectangle {
