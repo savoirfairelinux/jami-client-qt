@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "32640944_8c4dabfb",
+        "filename": "src/commoncomponents/SpinningAnimation.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-14T15:12:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50a67818_3e27fee3",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "837d4ec94c85614dff1ef981cd2e5d0d390b213a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a8576c7_89050a52",
         "filename": "src/mainview/components/CallStackView.qml",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d336932d_ec4bc84c",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-14T15:12:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a8576c7_89050a52",
+      "range": {
+        "startLine": 200,
+        "startChar": 39,
+        "endLine": 203,
+        "endChar": 39
+      },
+      "revId": "837d4ec94c85614dff1ef981cd2e5d0d390b213a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a37fc03_943cacf6",
         "filename": "src/mainview/components/InitialCallPage.qml",
         "patchSetId": 2
@@ -68,6 +116,30 @@
       "revId": "837d4ec94c85614dff1ef981cd2e5d0d390b213a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bad26170_cc8633c8",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-14T15:12:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a37fc03_943cacf6",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 24
+      },
+      "revId": "837d4ec94c85614dff1ef981cd2e5d0d390b213a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
