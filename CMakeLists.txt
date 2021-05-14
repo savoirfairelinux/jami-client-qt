@@ -126,7 +126,8 @@ set(COMMON_HEADERS
     ${SRC_DIR}/selectablelistproxymodel.h
     ${SRC_DIR}/conversationlistmodelbase.h
     ${SRC_DIR}/conversationlistmodel.h
-    ${SRC_DIR}/searchresultslistmodel.h)
+    ${SRC_DIR}/searchresultslistmodel.h
+    ${SRC_DIR}/calloverlaymodel.h)
 
 set(QML_LIBS
     Qt5::Quick
