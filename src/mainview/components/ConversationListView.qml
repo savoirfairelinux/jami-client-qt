@@ -139,6 +139,7 @@ ListView {
 
             responsibleAccountId = AccountAdapter.currentAccountId
             responsibleConvUid = item.convId
+            isSwarm = item.isSwarm
             contactType = item.contactType
 
             userProfile.responsibleConvUid = item.convId
