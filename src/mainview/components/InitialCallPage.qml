@@ -70,7 +70,7 @@ Rectangle {
         }
     }
 
-    // Prevent right click propagate to VideoCallPage.
+    // Prevent right click propagate to OngoingCallPage.
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: false

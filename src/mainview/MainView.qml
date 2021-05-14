@@ -189,17 +189,15 @@ Rectangle {
             callStackView.setLinkedWebview(communicationPageMessageWebView)
             callStackView.responsibleAccountId = LRCInstance.currentAccountId
             callStackView.responsibleConvUid = convId
+            callStackView.isAudioOnly = item.isAudioOnly
             currentConvUID = convId
 
             if (item.callState === Call.Status.IN_PROGRESS ||
                     item.callState === Call.Status.PAUSED) {
                 CallAdapter.updateCall(convId, LRCInstance.currentAccountId)
-                if (item.isAudioOnly)
-                    callStackView.showAudioCallPage()
-                else
-                    callStackView.showVideoCallPage()
+                callStackView.showOngoingCallPage()
             } else {
-                callStackView.showInitialCallPage(item.callState, item.isAudioOnly)
+                callStackView.showInitialCallPage(item.callState)
             }
             pushCallStackView()
 
