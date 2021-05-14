@@ -56,6 +56,13 @@ DistantRenderer::setRendererId(const QString& id)
     distantRenderId_ = id;
     // Note: Force a paint to update frame as we change the renderer
     update(QRect(0, 0, width(), height()));
+    qDebug() << "renderer id set";
+}
+
+QString
+DistantRenderer::rendererId()
+{
+    return distantRenderId_;
 }
 
 int
