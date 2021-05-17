@@ -24,43 +24,14 @@ import net.jami.Models 1.0
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
-import "../../commoncomponents"
-
-ModalPopup {
+ListView {
     id: root
 
-    modal: true
+    delegate: ParticipantCallInStatusDelegate {}
 
-    //Content height + margin.
-    //property int size: userQrImage.height + 30
-    width: 5
-    height: 5
+    clip: true
+    maximumFlickVelocity: 1024
+    ScrollIndicator.vertical: ScrollIndicator {}
 
-    Item {
-        anchors.fill: parent
-
-        /*Image {
-            id: userQrImage
-
-            anchors.centerIn: parent
-
-            width: 256
-            height: 256
-            smooth: false
-
-            fillMode: Image.PreserveAspectFit
-            source: {
-                if (LRCInstance.currentAccountId &&
-                        LRCInstance.currentAccountType === Profile.Type.RING)
-                    return "image://qrImage/account_" + LRCInstance.currentAccountId
-                return ""
-            }
-        }*/
-        ParticipantCallInStatusView {
-            anchors.centerIn: parent
-
-            width: JamiTheme.participantCallInStatusViewWidth + 10
-            height: 300
-        }
-    }
+    model: 5
 }

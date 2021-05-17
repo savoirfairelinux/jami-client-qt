@@ -34,7 +34,7 @@ Rectangle {
 
     property int buttonPreferredSize: 50
     property bool isIncoming: false
-    property var accountPeerPair: ["",""]
+    property var accountPeerPair: ["", ""]
     property int callStatus: 0
     property string bestName: "Best Name"
     property bool isAudioOnly: false
@@ -46,19 +46,32 @@ Rectangle {
 
     ListModel {
         id: incomeControlsModel
-        ListElement { type: "refuse"; image: "qrc:/images/icons/round-close-24px.svg"}
-        ListElement { type: "cam"; image: "qrc:/images/icons/videocam-24px.svg"}
-        ListElement { type: "mic"; image: "qrc:/images/icons/place_audiocall-24px.svg"}
+        ListElement {
+            type: "refuse"
+            image: "qrc:/images/icons/round-close-24px.svg"
+        }
+        ListElement {
+            type: "cam"
+            image: "qrc:/images/icons/videocam-24px.svg"
+        }
+        ListElement {
+            type: "mic"
+            image: "qrc:/images/icons/place_audiocall-24px.svg"
+        }
     }
     ListModel {
         id: outcomeControlsModel
-        ListElement { type: "cancel"; image: "qrc:/images/icons/round-close-24px.svg"}
+        ListElement {
+            type: "cancel"
+            image: "qrc:/images/icons/round-close-24px.svg"
+        }
     }
 
     onAccountPeerPairChanged: {
         if (accountPeerPair[1]) {
             contactImg.updateImage(accountPeerPair[1])
-            root.bestName = UtilsAdapter.getBestName(accountPeerPair[0], accountPeerPair[1])
+            root.bestName = UtilsAdapter.getBestName(accountPeerPair[0],
+                                                     accountPeerPair[1])
         }
     }
 
@@ -66,7 +79,10 @@ Rectangle {
         if (isAudioOnly && incomeControlsModel.count === 3) {
             incomeControlsModel.remove(1)
         } else if (!isAudioOnly && incomeControlsModel.count === 2) {
-            incomeControlsModel.insert(1, { "type": "cam", "image": "qrc:/images/icons/videocam-24px.svg"})
+            incomeControlsModel.insert(1, {
+                                           "type": "cam",
+                                           "image": "qrc:/images/icons/videocam-24px.svg"
+                                       })
         }
     }
 
@@ -86,12 +102,12 @@ Rectangle {
             id: contactImg
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: JamiTheme.avatarSizeInCall
-            Layout.preferredHeight: JamiTheme.avatarSizeInCall
+            Layout.preferredWidth: JamiTheme.avatarSizeInCall + spinningAnimationWidth
+            Layout.preferredHeight: JamiTheme.avatarSizeInCall + spinningAnimationWidth
 
-            mode: AvatarImage.Mode.FromConvUid
+            avatarMode: AvatarImage.AvatarMode.FromConvUid
             showPresenceIndicator: false
-            showSpinningAnimation: true
+            spinningAnimationMode: SpinningAnimation.SpinningAnimationMode.NORMAL
         }
 
         Text {
@@ -104,7 +120,8 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: root.isIncoming ? JamiStrings.incomingCallFrom + " " + root.bestName : root.bestName
+            text: root.isIncoming ? JamiStrings.incomingCallFrom + " "
+                                    + root.bestName : root.bestName
             wrapMode: Text.WordWrap
             color: "white"
         }
@@ -141,17 +158,17 @@ Rectangle {
                         Layout.preferredHeight: buttonPreferredSize
 
                         pressedColor: {
-                            if ( type === "cam" || type === "mic")
+                            if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonPressedGreen
                             return JamiTheme.declineButtonPressedRed
                         }
                         hoveredColor: {
-                            if ( type === "cam" || type === "mic")
+                            if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonHoverGreen
                             return JamiTheme.declineButtonHoverRed
                         }
                         normalColor: {
-                            if ( type === "cam" || type === "mic")
+                            if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonGreen
                             return JamiTheme.declineButtonRed
                         }
@@ -159,14 +176,16 @@ Rectangle {
                         source: image
                         imageColor: JamiTheme.whiteColor
 
-                        onClicked: { 
-                            if ( type === "cam" || type === "mic") {
+                        onClicked: {
+                            if (type === "cam" || type === "mic") {
                                 var acceptVideoMedia = true
                                 if (type === "cam")
                                     acceptVideoMedia = true
-                                else if ( type === "mic" )
+                                else if (type === "mic")
                                     acceptVideoMedia = false
-                                CallAdapter.setCallMedia(responsibleAccountId, responsibleConvUid, acceptVideoMedia)
+                                CallAdapter.setCallMedia(responsibleAccountId,
+                                                         responsibleConvUid,
+                                                         acceptVideoMedia)
                                 callAcceptButtonIsClicked()
                             } else {
                                 callCancelButtonIsClicked()
@@ -208,7 +227,8 @@ Rectangle {
         onActivated: {
             CallAdapter.acceptACall(root.accountPeerPair[0],
                                     root.accountPeerPair[1])
-            communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
+            communicationPageMessageWebView.setSendContactRequestButtonVisible(
+                        false)
         }
     }
 

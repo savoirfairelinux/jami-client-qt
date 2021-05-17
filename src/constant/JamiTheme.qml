@@ -120,6 +120,10 @@ Item {
     // Plugin Preferences View
     property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
 
+    // ParticipantCallInStatusView
+    property color participantCallInStatusTextColor: whiteColor
+    property color participantCallInHangupButtonColor: "#cc0022"
+
     // Chatview
     property color jamiLightBlue: darkTheme ? "#003b4e" : Qt.rgba(59, 193, 211, 0.3)
     property color jamiDarkBlue: darkTheme ? "#28b1ed" : "#003b4e"
@@ -183,6 +187,13 @@ Item {
     property real smartListAvatarSize: 52
     property real smartListTransitionDuration: 120
     property real avatarSizeInCall: 130
+    property int participantCallInStatusViewWidth: 220
+    property int participantCallInStatusDelegateHeight: 100
+    property int participantCallInStatusDelegateRadius: 5
+    property real participantCallInStatusOpacity: 0.77
+    property int participantCallInAvatarSize: 75
+    property int participantCallInNameFontSize: 11
+    property int participantCallInStatusFontSize: 9
 
     property real maximumWidthSettingsView: 600
     property real settingsHeaderpreferredHeight: 64
