@@ -857,7 +857,7 @@ SettingsAdapter::negotiationTimeoutSpinBoxValueChanged(int value)
 }
 
 void
-SettingsAdapter::registrationTimeoutSpinBoxValueChanged(int value)
+SettingsAdapter::registrationExpirationTimeSpinBoxValueChanged(int value)
 {
     auto confProps = lrcInstance_->accountModel().getAccountConfig(lrcInstance_->getCurrAccId());
     confProps.Registration.expire = value;
