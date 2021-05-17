@@ -392,6 +392,15 @@ Rectangle {
         source: "qrc:/images/icons/ic_pause_white_100px.svg"
     }
 
+    ParticipantCallInStatusView {
+        id: participantCallInStatusView
+
+        anchors.right: root.right
+        anchors.rightMargin: 10
+        anchors.bottom: callOverlayButtonGroup.top
+        anchors.bottomMargin: 20
+    }
+
     CallOverlayButtonGroup {
         id: callOverlayButtonGroup
 
