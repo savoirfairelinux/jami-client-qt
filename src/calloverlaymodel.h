@@ -34,6 +34,12 @@
     X(QObject*, MenuAction) \
     X(QString, Name)
 
+#define PC_ROLES \
+    X(PrimaryName) \
+    X(PendingConferenceeCallId) \
+    X(CallStatus) \
+    X(ContactUri)
+
 namespace CallControl {
 Q_NAMESPACE
 enum Role {
@@ -51,6 +57,17 @@ struct Item
 #undef X
 };
 } // namespace CallControl
+
+namespace PendingConferences {
+Q_NAMESPACE
+enum Role {
+    DummyRole = Qt::UserRole + 1,
+#define X(role) role,
+    PC_ROLES
+#undef X
+};
+Q_ENUM_NS(Role)
+} // namespace PendingConferences
 
 class CallControlListModel : public QAbstractListModel
 {
@@ -85,6 +102,28 @@ private:
     int max_ {-1};
 };
 
+class PendingConferenceesListModel : public QAbstractListModel
+{
+    Q_OBJECT
+public:
+    PendingConferenceesListModel(LRCInstance* instance, QObject* parent = nullptr);
+
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
+
+    void connectSignals();
+
+private:
+    LRCInstance* lrcInstance_ {nullptr};
+
+    QMetaObject::Connection callsStatusChanged_;
+    QMetaObject::Connection beginInsertPendingConferencesRows_;
+    QMetaObject::Connection endInsertPendingConferencesRows_;
+    QMetaObject::Connection beginRemovePendingConferencesRows_;
+    QMetaObject::Connection endRemovePendingConferencesRows_;
+};
+
 class CallOverlayModel : public QObject
 {
     Q_OBJECT
@@ -102,6 +141,7 @@ public:
     Q_INVOKABLE QVariant overflowModel();
     Q_INVOKABLE QVariant overflowVisibleModel();
     Q_INVOKABLE QVariant overflowHiddenModel();
+    Q_INVOKABLE QVariant pendingConferenceesModel();
 
 private Q_SLOTS:
     void setControlRanges();
@@ -114,4 +154,5 @@ private:
     IndexRangeFilterProxyModel* overflowModel_;
     IndexRangeFilterProxyModel* overflowVisibleModel_;
     IndexRangeFilterProxyModel* overflowHiddenModel_;
+    PendingConferenceesListModel* pendingConferenceesModel_;
 };
