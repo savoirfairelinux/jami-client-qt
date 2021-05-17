@@ -351,7 +351,7 @@ Rectangle  {
                         Layout.preferredWidth: JamiTheme.avatarSizeInCall
                         Layout.preferredHeight: JamiTheme.avatarSizeInCall
 
-                        mode: AvatarImage.Mode.FromConvUid
+                        avatarMode: AvatarImage.AvatarMode.FromConvUid
                         showPresenceIndicator: false
                     }
 
