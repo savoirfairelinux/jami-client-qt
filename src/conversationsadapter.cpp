@@ -184,7 +184,7 @@ ConversationsAdapter::backToWelcomePage()
 void
 ConversationsAdapter::onCurrentAccountIdChanged()
 {
-    lrcInstance_->deselectConversation();
+    //lrcInstance_->deselectConversation();
 
     connectConversationModel();
 
