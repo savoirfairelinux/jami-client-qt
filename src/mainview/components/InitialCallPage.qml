@@ -33,7 +33,7 @@ Rectangle {
     id: root
 
     property bool isIncoming: false
-    property var accountConvPair: ["",""]
+    property var accountPeerPair: ["", ""]
     property int callStatus: 0
     property string bestName: ""
     property bool isAudioOnly: false
@@ -85,12 +85,12 @@ Rectangle {
             id: contactImg
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.preferredWidth: JamiTheme.avatarSizeInCall
-            Layout.preferredHeight: JamiTheme.avatarSizeInCall
+            Layout.preferredWidth: JamiTheme.avatarSizeInCall + spinningAnimationWidth
+            Layout.preferredHeight: JamiTheme.avatarSizeInCall + spinningAnimationWidth
 
-            mode: AvatarImage.Mode.FromConvUid
+            avatarMode: AvatarImage.AvatarMode.FromConvUid
             showPresenceIndicator: false
-            showSpinningAnimation: true
+            spinningAnimationMode: SpinningAnimation.SpinningAnimationMode.NORMAL
         }
 
         Text {
@@ -103,7 +103,8 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            text: root.isIncoming ? JamiStrings.incomingCallFrom + " " + root.bestName : root.bestName
+            text: root.isIncoming ? JamiStrings.incomingCallFrom + " "
+                                    + root.bestName : root.bestName
             wrapMode: Text.WordWrap
             color: "white"
         }
@@ -140,17 +141,17 @@ Rectangle {
                         Layout.preferredHeight: JamiTheme.callButtonPreferredSize
 
                         pressedColor: {
-                            if ( type === "cam" || type === "mic")
+                            if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonPressedGreen
                             return JamiTheme.declineButtonPressedRed
                         }
                         hoveredColor: {
-                            if ( type === "cam" || type === "mic")
+                            if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonHoverGreen
                             return JamiTheme.declineButtonHoverRed
                         }
                         normalColor: {
-                            if ( type === "cam" || type === "mic")
+                            if (type === "cam" || type === "mic")
                                 return JamiTheme.acceptButtonGreen
                             return JamiTheme.declineButtonRed
                         }
@@ -158,12 +159,12 @@ Rectangle {
                         source: image
                         imageColor: JamiTheme.whiteColor
 
-                        onClicked: { 
-                            if ( type === "cam" || type === "mic") {
+                        onClicked: {
+                            if (type === "cam" || type === "mic") {
                                 var acceptVideoMedia = true
                                 if (type === "cam")
                                     acceptVideoMedia = true
-                                else if ( type === "mic" )
+                                else if (type === "mic")
                                     acceptVideoMedia = false
                                 CallAdapter.setCallMedia(responsibleAccountId, responsibleConvUid, acceptVideoMedia)
                                 callAccepted()
