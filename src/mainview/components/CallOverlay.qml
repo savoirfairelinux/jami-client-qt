@@ -272,6 +272,17 @@ Item {
             }
         }
 
+        ParticipantCallInStatusView {
+            id: participantCallInStatusView
+
+            anchors.right: mainOverlay.right
+            anchors.rightMargin: 10
+            anchors.bottom: callOverlayButtonGroup.top
+            anchors.bottomMargin: 20
+
+            z: 2
+        }
+
         CallOverlayButtonGroup {
             id: callOverlayButtonGroup
 
