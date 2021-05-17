@@ -88,7 +88,9 @@ MessagesAdapter::setupChatView(const QString& convUid)
 
     QMetaObject::invokeMethod(qmlObj_,
                               "setSendContactRequestButtonVisible",
-                              Q_ARG(QVariant, isPending));
+                              Q_ARG(QVariant,
+                                    convInfo.mode == lrc::api::conversation::Mode::NON_SWARM
+                                        && isPending));
     QMetaObject::invokeMethod(qmlObj_,
                               "setMessagingHeaderButtonsVisible",
                               Q_ARG(QVariant,
