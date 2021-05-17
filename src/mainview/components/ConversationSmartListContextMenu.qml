@@ -57,18 +57,6 @@ ContextMenuAutoLoader {
             }
         },
         GeneralMenuItem {
-            id: clearConversation
-
-            canTrigger: !isSwarm
-            itemName: JamiStrings.clearConversation
-            iconSource: "qrc:/images/icons/place_audiocall-24px.svg"
-            onClicked: {
-                MessagesAdapter.clearConversationHistory(
-                            responsibleAccountId,
-                            responsibleConvUid)
-            }
-        },
-        GeneralMenuItem {
             id: startAudioCall
 
             canTrigger: !hasCall
@@ -85,12 +73,13 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: clearConversation
 
-            canTrigger: !hasCall
+            canTrigger: !isSwarm && !hasCall
             itemName: JamiStrings.clearConversation
-            iconSource: "qrc:/images/icons/ic_clear_24px.svg"
+            iconSource: "qrc:/images/icons/place_audiocall-24px.svg"
             onClicked: {
-                MessagesAdapter.clearConversationHistory(responsibleAccountId,
-                                                         responsibleConvUid)
+                MessagesAdapter.clearConversationHistory(
+                            responsibleAccountId,
+                            responsibleConvUid)
             }
         },
         GeneralMenuItem {
