@@ -108,6 +108,83 @@ IndexRangeFilterProxyModel::setRange(int min, int max)
     invalidateFilter();
 }
 
+PendingConferencesListModel::PendingConferencesListModel(LRCInstance* instance, QObject* parent)
+    : QAbstractListModel(parent)
+    , lrcInstance_(instance)
+{
+    connectSignals();
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() { connectSignals(); });
+}
+
+int
+PendingConferencesListModel::rowCount(const QModelIndex& parent) const
+{
+    if (parent.isValid())
+        return 0;
+    return lrcInstance_->getCurrentCallModel()->getPendingConferences().size();
+}
+
+QVariant
+PendingConferencesListModel::data(const QModelIndex& index, int role) const
+{
+    return QVariant();
+}
+
+QHash<int, QByteArray>
+PendingConferencesListModel::roleNames() const
+{
+    using namespace PendingConferences;
+    QHash<int, QByteArray> roles;
+#define X(role) roles[role] = #role;
+    PC_ROLES
+#undef X
+    return roles;
+}
+
+void
+PendingConferencesListModel::connectSignals()
+{
+    disconnect(beginInsertPendingConferencesRows_);
+    disconnect(endInsertPendingConferencesRows_);
+    disconnect(beginRemovePendingConferencesRows_);
+    disconnect(endRemovePendingConferencesRows_);
+
+    beginInsertPendingConferencesRows_ = connect(
+        lrcInstance_->getCurrentCallModel(),
+        &NewCallModel::beginInsertPendingConferencesRows,
+        this,
+        [this](int position, int rows) {
+            qDebug() << position << "ssssssssssssssss";
+            beginInsertRows(QModelIndex(), position, position + (rows - 1));
+        },
+        Qt::DirectConnection);
+
+    endInsertPendingConferencesRows_ = connect(
+        lrcInstance_->getCurrentCallModel(),
+        &NewCallModel::endInsertPendingConferencesRows,
+        this,
+        [this]() { endInsertRows(); },
+        Qt::DirectConnection);
+
+    beginRemovePendingConferencesRows_ = connect(
+        lrcInstance_->getCurrentCallModel(),
+        &NewCallModel::beginRemovePendingConferencesRows,
+        this,
+        [this](int position, int rows) {
+            qDebug() << position << "ssssssssssssssss";
+            beginRemoveRows(QModelIndex(), position, position + (rows - 1));
+        },
+        Qt::DirectConnection);
+
+    endRemovePendingConferencesRows_ = connect(
+        lrcInstance_->getCurrentCallModel(),
+        &NewCallModel::endRemovePendingConferencesRows,
+        this,
+        [this]() { endRemoveRows(); },
+
+        Qt::DirectConnection);
+}
+
 CallOverlayModel::CallOverlayModel(LRCInstance* instance, QObject* parent)
     : QObject(parent)
     , lrcInstance_(instance)
@@ -116,6 +193,7 @@ CallOverlayModel::CallOverlayModel(LRCInstance* instance, QObject* parent)
     , overflowModel_(new IndexRangeFilterProxyModel(secondaryModel_))
     , overflowVisibleModel_(new IndexRangeFilterProxyModel(secondaryModel_))
     , overflowHiddenModel_(new IndexRangeFilterProxyModel(secondaryModel_))
+    , pendingConferencesModel_(new PendingConferencesListModel(instance, this))
 {
     connect(this,
             &CallOverlayModel::overflowIndexChanged,
@@ -181,6 +259,12 @@ QVariant
 CallOverlayModel::overflowHiddenModel()
 {
     return QVariant::fromValue(overflowHiddenModel_);
+}
+
+QVariant
+CallOverlayModel::pendingConferencesModel()
+{
+    return QVariant::fromValue(pendingConferencesModel_);
 }
 
 void
