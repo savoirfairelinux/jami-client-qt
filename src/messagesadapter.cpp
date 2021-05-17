@@ -88,7 +88,9 @@ MessagesAdapter::setupChatView(const QString& convUid)
 
     QMetaObject::invokeMethod(qmlObj_,
                               "setSendContactRequestButtonVisible",
-                              Q_ARG(QVariant, isPending));
+                              Q_ARG(QVariant,
+                                    convInfo.mode == lrc::api::conversation::Mode::NON_SWARM
+                                        && isPending));
     QMetaObject::invokeMethod(qmlObj_,
                               "setMessagingHeaderButtonsVisible",
                               Q_ARG(QVariant,
@@ -137,6 +139,7 @@ MessagesAdapter::connectConversationModel()
     QObject::disconnect(newInteractionConnection_);
     QObject::disconnect(interactionRemovedConnection_);
     QObject::disconnect(interactionStatusUpdatedConnection_);
+    QObject::disconnect(conversationUpdatedConnection_);
 
     newInteractionConnection_
         = QObject::connect(currentConversationModel,
@@ -184,6 +187,22 @@ MessagesAdapter::connectConversationModel()
                                                      SIGNAL(messagesLoaded()),
                                                      this,
                                                      SLOT(slotMessagesLoaded()));
+                           });
+
+    conversationUpdatedConnection_
+        = QObject::connect(currentConversationModel,
+                           &ConversationModel::newMessagesAvailable,
+                           [this](const QString& accountId, const QString& conversationId) {
+                               auto* convModel = lrcInstance_->accountModel()
+                                                     .getAccountInfo(accountId)
+                                                     .conversationModel.get();
+                               if (conversationId != lrcInstance_->get_selectedConvUid())
+                                   return;
+                               auto optConv = convModel->getConversationForUid(conversationId);
+                               if (!optConv)
+                                   return;
+                               if (!optConv->get().isRequest)
+                                   setInvitation(false);
                            });
 }
 
@@ -576,7 +595,10 @@ void
 MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
                               MessagesList interactions)
 {
-    auto interactionsStr = interactionsToJsonArrayObject(conversationModel, interactions).toUtf8();
+    auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
+                                                         lrcInstance_->get_selectedConvUid(),
+                                                         interactions)
+                               .toUtf8();
     QString s = QString::fromLatin1("printHistory(%1);").arg(interactionsStr.constData());
     QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
 }
@@ -586,7 +608,10 @@ MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
                                MessagesList interactions,
                                bool allLoaded)
 {
-    auto interactionsStr = interactionsToJsonArrayObject(conversationModel, interactions).toUtf8();
+    auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
+                                                         lrcInstance_->get_selectedConvUid(),
+                                                         interactions)
+                               .toUtf8();
     QString s = QString::fromLatin1("updateHistory(%1, %2);")
                     .arg(interactionsStr.constData())
                     .arg(allLoaded);
@@ -612,8 +637,11 @@ MessagesAdapter::printNewInteraction(lrc::api::ConversationModel& conversationMo
                                      const QString& msgId,
                                      const lrc::api::interaction::Info& interaction)
 {
-    auto interactionObject
-        = interactionToJsonInteractionObject(conversationModel, msgId, interaction).toUtf8();
+    auto interactionObject = interactionToJsonInteractionObject(conversationModel,
+                                                                lrcInstance_->get_selectedConvUid(),
+                                                                msgId,
+                                                                interaction)
+                                 .toUtf8();
     if (interactionObject.isEmpty()) {
         return;
     }
@@ -626,8 +654,11 @@ MessagesAdapter::updateInteraction(lrc::api::ConversationModel& conversationMode
                                    const QString& msgId,
                                    const lrc::api::interaction::Info& interaction)
 {
-    auto interactionObject
-        = interactionToJsonInteractionObject(conversationModel, msgId, interaction).toUtf8();
+    auto interactionObject = interactionToJsonInteractionObject(conversationModel,
+                                                                lrcInstance_->get_selectedConvUid(),
+                                                                msgId,
+                                                                interaction)
+                                 .toUtf8();
     if (interactionObject.isEmpty()) {
         return;
     }
