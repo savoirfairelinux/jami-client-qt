@@ -424,7 +424,7 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             {"bestId", contactModel->bestIdForContact(peerUri)},
             {"bestName", contactModel->bestNameForContact(peerUri)},
             {"uri", peerUri},
-            {"isSwarm", convInfo.mode != lrc::api::conversation::Mode::NON_SWARM},
+            {"isSwarm", !convInfo.isNotASwarm()},
             {"contactType", static_cast<int>(contact.profileInfo.type)},
             {"isAudioOnly", isAudioOnly},
             {"callState", static_cast<int>(callState)},
