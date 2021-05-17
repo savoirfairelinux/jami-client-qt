@@ -62,10 +62,10 @@ Rectangle {
     }
 
     onIsAudioOnlyChanged: {
-        if (isAudioOnly && incomeControlsModel.count === 3) {
-            incomeControlsModel.remove(1)
-        } else if (!isAudioOnly && incomeControlsModel.count === 2) {
-            incomeControlsModel.insert(1, { "type": "cam", "image": "qrc:/images/icons/videocam-24px.svg"})
+        if (isAudioOnly && incomingControlsModel.count === 3) {
+            incomingControlsModel.remove(1)
+        } else if (!isAudioOnly && incomingControlsModel.count === 2) {
+            incomingControlsModel.insert(1, { "type": "cam", "image": "qrc:/images/icons/videocam-24px.svg"})
         }
     }
 
