@@ -183,6 +183,15 @@ Item {
         }
     }
 
+    ParticipantCallInStatusView {
+        id: participantCallInStatusView
+
+        anchors.right: root.right
+        anchors.rightMargin: 10
+        anchors.bottom: __callActionBar.top
+        anchors.bottomMargin: 20
+    }
+
     CallActionBar {
         id: __callActionBar
 
