@@ -50,11 +50,11 @@ Rectangle {
                              isSIP, isConferenceCall) {
         root.isModerator = CallAdapter.isCurrentModerator()
         root.isSip = isSIP
-        noVideoButton.visible = !isAudioOnly
+        noVideoButton.visible = true//!isAudioOnly
         addToConferenceButton.visible = !root.isSIP && root.isModerator
 
         noMicButton.checked = isAudioMuted
-        noVideoButton.checked = isVideoMuted
+        noVideoButton.checked = isAudioOnly ? true : isVideoMuted
     }
 
     color: "transparent"
