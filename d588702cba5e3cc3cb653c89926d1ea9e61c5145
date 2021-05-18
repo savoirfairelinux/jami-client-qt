@@ -22,6 +22,30 @@
       "revId": "d588702cba5e3cc3cb653c89926d1ea9e61c5145",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b290923_03a43439",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-18T15:23:52Z",
+      "side": 1,
+      "message": "Capitalized removed\nStrings are like in sketch",
+      "parentUuid": "30d88608_df029fd6",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 56
+      },
+      "revId": "d588702cba5e3cc3cb653c89926d1ea9e61c5145",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }

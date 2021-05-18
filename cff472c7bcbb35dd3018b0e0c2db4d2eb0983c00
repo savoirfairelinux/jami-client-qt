@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "34d4630a_264b6b4a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-18T15:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90b848d0_62a7d204",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "cff472c7bcbb35dd3018b0e0c2db4d2eb0983c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d449a868_001de69f",
         "filename": "src/calladapter.cpp",
         "patchSetId": 14
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "c94b86c1_d344ba76",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-18T15:23:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d449a868_001de69f",
+      "range": {
+        "startLine": 163,
+        "startChar": 4,
+        "endLine": 163,
+        "endChar": 34
+      },
+      "revId": "cff472c7bcbb35dd3018b0e0c2db4d2eb0983c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "81192c74_08561251",
         "filename": "src/calladapter.cpp",
         "patchSetId": 14
@@ -59,6 +107,30 @@
       "writtenOn": "2021-05-18T14:59:15Z",
       "side": 1,
       "message": "these keys are not exposed as constants in the interface I\u0027m guessing?",
+      "range": {
+        "startLine": 168,
+        "startChar": 26,
+        "endLine": 168,
+        "endChar": 38
+      },
+      "revId": "cff472c7bcbb35dd3018b0e0c2db4d2eb0983c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc0ecaa2_87f698cd",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-18T15:23:52Z",
+      "side": 1,
+      "message": "no",
+      "parentUuid": "81192c74_08561251",
       "range": {
         "startLine": 168,
         "startChar": 26,
