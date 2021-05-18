@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90b848d0_62a7d204",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T14:59:15Z",
+      "side": 1,
+      "message": "add accept only audio to incoming call page  ??",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "cff472c7bcbb35dd3018b0e0c2db4d2eb0983c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d449a868_001de69f",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T14:59:15Z",
+      "side": 1,
+      "message": "return early ?",
+      "range": {
+        "startLine": 163,
+        "startChar": 4,
+        "endLine": 163,
+        "endChar": 34
+      },
+      "revId": "cff472c7bcbb35dd3018b0e0c2db4d2eb0983c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81192c74_08561251",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T14:59:15Z",
+      "side": 1,
+      "message": "these keys are not exposed as constants in the interface I\u0027m guessing?",
+      "range": {
+        "startLine": 168,
+        "startChar": 26,
+        "endLine": 168,
+        "endChar": 38
+      },
+      "revId": "cff472c7bcbb35dd3018b0e0c2db4d2eb0983c00",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}

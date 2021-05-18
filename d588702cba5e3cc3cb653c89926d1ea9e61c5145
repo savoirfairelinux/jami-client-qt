@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30d88608_df029fd6",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T14:59:15Z",
+      "side": 1,
+      "message": "there\u0027s something funny about these strings\n- audio/video shouldn\u0027t be capitalized\n- I think it can be made more clear like: Accept audio call, Accept video call",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 56
+      },
+      "revId": "d588702cba5e3cc3cb653c89926d1ea9e61c5145",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
