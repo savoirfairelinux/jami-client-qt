@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bed489e5_c1a9b104",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T13:54:51Z",
+      "side": 1,
+      "message": "I think this isn\u0027t used here",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 30
+      },
+      "revId": "41a915e3b4a7d7e1edff3294223adc6dcac214dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfff0afb_dbe45196",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T13:54:51Z",
+      "side": 1,
+      "message": "this seems like a theme constant to me; if not, make it readonly",
+      "range": {
+        "startLine": 35,
+        "startChar": 17,
+        "endLine": 35,
+        "endChar": 36
+      },
+      "revId": "41a915e3b4a7d7e1edff3294223adc6dcac214dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0a0e3ce_b57ad0a4",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T13:54:51Z",
+      "side": 1,
+      "message": "cool idea, this could be useful app-wide, maybe for accountId-convId ??",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 32
+      },
+      "revId": "41a915e3b4a7d7e1edff3294223adc6dcac214dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b5abcab8_18eca7d0",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T13:54:51Z",
+      "side": 1,
+      "message": "debugger\u0027s placeholders can be removed; \"Best Name\" should never be shown if the property is not set; required property with no default value would be ideal but it\u0027s not available in our Qt minver.",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 41
+      },
+      "revId": "41a915e3b4a7d7e1edff3294223adc6dcac214dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "77958679_5c2beba2",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T13:54:51Z",
+      "side": 1,
+      "message": "a good time to clarify and simplify the naming here; this page represents a form that can be accepted or cancelled, it\u0027s implied that the action pertains to a call, and the fact that a button was clicked to achieve the action is irrelevant, in furthermore, possibly misleading, thus accepted/cancelled (granted the root component type doesn\u0027t use these signals already)",
+      "range": {
+        "startLine": 42,
+        "startChar": 11,
+        "endLine": 42,
+        "endChar": 36
+      },
+      "revId": "41a915e3b4a7d7e1edff3294223adc6dcac214dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c168361c_81e4ec40",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T13:54:51Z",
+      "side": 1,
+      "message": "income -\u003e incoming :)",
+      "range": {
+        "startLine": 47,
+        "startChar": 12,
+        "endLine": 47,
+        "endChar": 31
+      },
+      "revId": "41a915e3b4a7d7e1edff3294223adc6dcac214dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8c53475_1b82c317",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-18T13:54:51Z",
+      "side": 1,
+      "message": "outcome -\u003e outgoing",
+      "range": {
+        "startLine": 52,
+        "startChar": 12,
+        "endLine": 52,
+        "endChar": 32
+      },
+      "revId": "41a915e3b4a7d7e1edff3294223adc6dcac214dc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
