@@ -35,7 +35,7 @@ Item {
     // AboutPopUp
     property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (BETA)" : "")
     property string companyDeclarationYear: "© 2015-2021 Savoir-faire Linux Inc."
-    property string slogan: "Maloya"
+    property string slogan: "Together"
     property string declaration: qsTr("Jami is a free software for universal communication which respects the freedom and privacy of its users.")
     property string credits: qsTr("Credits")
 
@@ -179,7 +179,6 @@ Item {
     property string isRecording: qsTr("is recording")
     property string areRecording: qsTr("are recording")
     property string peerStoppedRecording: qsTr("Peer stopped recording")
-    property string isCallingYou: qsTr("is calling you")
 
     // CallOverlayButtonGroup
     property string mute: qsTr("Mute")
@@ -252,7 +251,7 @@ Item {
     property string setAPassword: qsTr("Set password")
     property string changeCurrentPassword: qsTr("Change current password")
     property string tipBackupAccount: qsTr("Backup account to a .gz file")
-    property string tipAdvancedSettingsDisplay: qsTr("Display or hide advanced settings") 
+    property string tipAdvancedSettingsDisplay: qsTr("Display or hide advanced settings")
     property string enableAccount: qsTr("Enable account")
 
     // NameRegistrationDialog
@@ -313,8 +312,25 @@ Item {
     property string networkDisconnected: qsTr("Network disconnected")
     property string genericError: qsTr("Something went wrong")
 
+    //Troubleshoot Settings
+    property string troubleshootTitle: qsTr("Troubleshoot")
+    property string troubleshootButton: qsTr("Open logs")
+    property string troubleshootText: qsTr("Get logs")
+
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")
+
+    // View Logs
+    property string logsViewTitle: qsTr("Debug")
+    property string logsViewShowStats: qsTr("Show Stats")
+    property string logsViewStart: qsTr("Start")
+    property string logsViewStop: qsTr("Stop")
+    property string logsViewCopy: qsTr("Copy")
+    property string logsViewReport: qsTr("Report Bug")
+    property string logsViewClear: qsTr("Clear")
+    property string logsViewCancel: qsTr("Cancel")
+    property string logsViewCopied: qsTr("Copied to clipboard!")
+    property string logsViewDisplay: qsTr("Receive Logs")
 
     // ImportFromBackupPage
     property string archive: qsTr("Archive")
