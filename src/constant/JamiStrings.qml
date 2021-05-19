@@ -312,6 +312,11 @@ Item {
     property string networkDisconnected: qsTr("Network disconnected")
     property string genericError: qsTr("Something went wrong")
 
+    //Troubleshoot Settings
+    property string troubleshootTitle: qsTr("Troubleshoot")
+    property string troubleshootButton: qsTr("Record")
+    property string troubleshootText: qsTr("Record logs from daemon")
+
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")
 
