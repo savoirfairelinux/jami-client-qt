@@ -1100,3 +1100,14 @@ SettingsAdapter::isAllModeratorsEnabled(const QString& accountId)
 {
     return lrcInstance_->accountModel().isAllModerators(accountId);
 }
+
+void
+SettingsAdapter::monitorAndReceiveLogs(const bool& continuous)
+{
+    lrcInstance_->monitor(continuous);
+    QObject::connect(&lrcInstance_->behaviorController(),
+                     &lrc::api::BehaviorController::debugMessageReceived,
+                     this,
+                     &SettingsAdapter::debugMessageReceived,
+                     Qt::ConnectionType::UniqueConnection);
+}
