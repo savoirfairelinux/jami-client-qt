@@ -329,7 +329,7 @@ Rectangle  {
                         }
                     }
 
-                    onOverlayChatButtonClicked: {
+                    onChatButtonClicked: {
                         inCallMessageWebViewStack.visible ?
                                     closeInCallConversation() :
                                     openInCallConversation()
