@@ -137,5 +137,9 @@
         <file>src/mainview/components/SmartListItemDelegate.qml</file>
         <file>src/mainview/components/BadgeNotifier.qml</file>
         <file>src/mainview/components/ParticipantsLayer.qml</file>
+        <file>src/mainview/components/MainOverlay.qml</file>
+        <file>src/mainview/components/CallButtonDelegate.qml</file>
+        <file>src/mainview/components/CallActionBar.qml</file>
+        <file>src/commoncomponents/RoundedRectangle.qml</file>
     </qresource>
 </RCC>
