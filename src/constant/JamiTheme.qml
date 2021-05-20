@@ -160,8 +160,8 @@ Item {
     property color bgDarkMode_: rgb256(32, 32, 32)
 
     property int shortFadeDuration: 150
-    property int overlayFadeDelay: 2000
-    property int overlayFadeDuration: 500
+    property int overlayFadeDelay: 4000
+    property int overlayFadeDuration: 250
     property int smartListTransitionDuration: 120
 
     // Sizes
