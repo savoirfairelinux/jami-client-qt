@@ -33,7 +33,7 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
                          bool muteDring)
-    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
+    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, true))
     , renderer_(std::make_unique<RenderManager>(lrc_->getAVModel()))
     , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
 {
