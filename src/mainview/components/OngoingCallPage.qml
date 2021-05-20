@@ -296,6 +296,12 @@ Item {
 
                     anchors.fill: parent
 
+                    function toggleConversation() {
+                        inCallMessageWebViewStack.visible ?
+                                    closeInCallConversation() :
+                                    openInCallConversation()
+                    }
+
                     Connections {
                         target: CallAdapter
 
@@ -324,6 +330,15 @@ Item {
 
                         function onEraseRemoteRecording() {
                             callOverlay.resetRemoteRecording()
+                        }
+                    }
+
+                    Connections {
+                        target: MessagesAdapter
+
+                        function onNewInteraction() {
+                            if (!inCallMessageWebViewStack.visible)
+                                openInCallConversation()
                         }
                     }
 
