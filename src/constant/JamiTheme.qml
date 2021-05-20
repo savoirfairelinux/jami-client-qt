@@ -159,7 +159,10 @@ Item {
     property color bgSideBarDarkMode_: rgb256(24, 24, 24)
     property color bgDarkMode_: rgb256(32, 32, 32)
 
-    property int fadeDuration: 150
+    property int shortFadeDuration: 150
+    property int overlayFadeDelay: 2000
+    property int overlayFadeDuration: 500
+    property int smartListTransitionDuration: 120
 
     // Sizes
     property real splitViewHandlePreferredWidth: 4
@@ -181,7 +184,6 @@ Item {
     property real accountListAvatarSize: 40
     property real smartListItemHeight: 64
     property real smartListAvatarSize: 52
-    property real smartListTransitionDuration: 120
     property real avatarSizeInCall: 130
     property real callButtonPreferredSize: 50
 
