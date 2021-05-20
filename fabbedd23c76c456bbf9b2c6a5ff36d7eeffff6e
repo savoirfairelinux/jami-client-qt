@@ -22,6 +22,29 @@
       "revId": "fabbedd23c76c456bbf9b2c6a5ff36d7eeffff6e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "873e6885_8a9cdeaa",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-20T13:35:04Z",
+      "side": 1,
+      "message": "this appears much too small imo\nwas the pixel font size from Sketch converted to a pointsize??",
+      "range": {
+        "startLine": 163,
+        "startChar": 24,
+        "endLine": 163,
+        "endChar": 67
+      },
+      "revId": "fabbedd23c76c456bbf9b2c6a5ff36d7eeffff6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
