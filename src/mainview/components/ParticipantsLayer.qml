@@ -99,7 +99,7 @@ Item {
             for (var infoVariant in infos) {
                 // Only create overlay for new participants
                 if (!currentUris.includes(infos[infoVariant].uri)) {
-                    var hover = participantComponent.createObject(callOverlayRectMouseArea, {
+                    var hover = participantComponent.createObject(root, {
                                                                       x: Math.trunc(distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth()),
                                                                       y: Math.trunc(distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight()),
                                                                       width: Math.ceil(infos[infoVariant].w * distantRenderer.getScaledWidth()),
