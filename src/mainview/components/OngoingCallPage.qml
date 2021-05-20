@@ -30,7 +30,7 @@ import net.jami.Constants 1.0
 
 import "../../commoncomponents"
 
-Rectangle {
+Item {
     id: root
 
     property var accountPeerPair: ["", ""]
@@ -178,45 +178,6 @@ Rectangle {
                         callOverlay.openCallViewContextMenuInPos(mouse.x, mouse.y)
                 }
 
-                CallOverlay {
-                    id: callOverlay
-
-                    anchors.fill: parent
-
-                    Connections {
-                        target: CallAdapter
-
-                        function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
-                                                 isRecording, isSIP, isConferenceCall, bestName) {
-                            callOverlay.showOnHoldImage(isPaused)
-                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
-                            callOverlay.updateButtonStatus(isPaused,
-                                                                isAudioOnly,
-                                                                isAudioMuted,
-                                                                isVideoMuted,
-                                                                isRecording, isSIP,
-                                                                isConferenceCall)
-                            root.bestName = bestName
-                            callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
-                        }
-
-                        function onShowOnHoldLabel(isPaused) {
-                            callOverlay.showOnHoldImage(isPaused)
-                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
-                        }
-
-                        function onRemoteRecordingChanged(label, state) {
-                            callOverlay.showRemoteRecording(label, state)
-                        }
-                    }
-
-                    onOverlayChatButtonClicked: {
-                        inCallMessageWebViewStack.visible ?
-                                    closeInCallConversation() :
-                                    openInCallConversation()
-                    }
-                }
-
                 DistantRenderer {
                     id: distantRenderer
 
@@ -330,6 +291,45 @@ Rectangle {
                     }
                 }
 
+                CallOverlay {
+                    id: callOverlay
+
+                    anchors.fill: parent
+
+                    Connections {
+                        target: CallAdapter
+
+                        function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
+                                                 isRecording, isSIP, isConferenceCall, bestName) {
+                            callOverlay.showOnHoldImage(isPaused)
+                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
+                            callOverlay.updateButtonStatus(isPaused,
+                                                                isAudioOnly,
+                                                                isAudioMuted,
+                                                                isVideoMuted,
+                                                                isRecording, isSIP,
+                                                                isConferenceCall)
+                            root.bestName = bestName
+                            callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
+                        }
+
+                        function onShowOnHoldLabel(isPaused) {
+                            callOverlay.showOnHoldImage(isPaused)
+                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
+                        }
+
+                        function onRemoteRecordingChanged(label, state) {
+                            callOverlay.showRemoteRecording(label, state)
+                        }
+                    }
+
+                    onOverlayChatButtonClicked: {
+                        inCallMessageWebViewStack.visible ?
+                                    closeInCallConversation() :
+                                    openInCallConversation()
+                    }
+                }
+
                 ColumnLayout {
                     id: audioCallPageRectCentralRect
                     anchors.centerIn: parent
@@ -396,6 +396,4 @@ Rectangle {
             clip: true
         }
     }
-
-    color: "black"
 }

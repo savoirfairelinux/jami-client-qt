@@ -47,8 +47,6 @@ Item {
 
     onVisibleChanged: if (!visible) callViewContextMenu.close()
 
-    anchors.fill: parent
-
     ParticipantsLayer {
         id: __participantsLayer
         anchors.fill: parent
@@ -126,158 +124,6 @@ Item {
         y: root.height / 2 - sipInputPanel.height / 2
     }
 
-    // Timer to decide when overlay fade out.
-    Timer {
-        id: callOverlayTimer
-        interval: 5000
-        onTriggered: {
-            if (overlayUpperPartRect.state !== 'freezed') {
-                overlayUpperPartRect.state = 'freezed'
-                resetLabelsTimer.restart()
-            }
-            if (callOverlayButtonGroup.state !== 'freezed') {
-                callOverlayButtonGroup.state = 'freezed'
-                resetLabelsTimer.restart()
-            }
-        }
-    }
-
-    // Timer to reset recording label and call duration time
-    Timer {
-        id: resetLabelsTimer
-
-        interval: 1000
-        running: root.visible
-        repeat: true
-        onTriggered: {
-            timeText = CallAdapter.getCallDurationTime(LRCInstance.currentAccountId,
-                                                       LRCInstance.selectedConvUid)
-            if (callOverlayButtonGroup.state === 'freezed'
-                    && !callViewContextMenu.peerIsRecording)
-                remoteRecordingLabel = ""
-        }
-    }
-
-    Rectangle {
-        id: overlayUpperPartRect
-
-        anchors.top: root.top
-
-        width: root.width
-        height: 50
-        opacity: 0
-
-        RowLayout {
-            id: overlayUpperPartRectRowLayout
-
-            anchors.fill: parent
-
-            Text {
-                id: jamiBestNameText
-
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                Layout.preferredWidth: overlayUpperPartRect.width / 3
-                Layout.preferredHeight: 50
-                leftPadding: 16
-
-                font.pointSize: JamiTheme.textFontSize
-
-                horizontalAlignment: Text.AlignLeft
-                verticalAlignment: Text.AlignVCenter
-
-                text: textMetricsjamiBestNameText.elidedText
-                color: "white"
-
-                TextMetrics {
-                    id: textMetricsjamiBestNameText
-                    font: jamiBestNameText.font
-                    text: {
-                        if (!root.isAudioOnly) {
-                            if (remoteRecordingLabel === "") {
-                                return root.bestName
-                            } else {
-                                return remoteRecordingLabel
-                            }
-                        }
-                        return ""
-                    }
-                    elideWidth: overlayUpperPartRect.width / 3
-                    elide: Qt.ElideRight
-                }
-            }
-
-            Text {
-                id: callTimerText
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                Layout.preferredWidth: 64
-                Layout.minimumWidth: 64
-                Layout.preferredHeight: 48
-                Layout.rightMargin: recordingRect.visible?
-                                        0 : JamiTheme.preferredMarginSize
-                font.pointSize: JamiTheme.textFontSize
-                horizontalAlignment: Text.AlignRight
-                verticalAlignment: Text.AlignVCenter
-                text: textMetricscallTimerText.elidedText
-                color: "white"
-                TextMetrics {
-                    id: textMetricscallTimerText
-                    font: callTimerText.font
-                    text: timeText
-                    elideWidth: overlayUpperPartRect.width / 4
-                    elide: Qt.ElideRight
-                }
-            }
-
-            Rectangle {
-                id: recordingRect
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                Layout.rightMargin: JamiTheme.preferredMarginSize
-                height: 16
-                width: 16
-                radius: height / 2
-                color: "red"
-
-                SequentialAnimation on color {
-                    loops: Animation.Infinite
-                    running: true
-                    ColorAnimation { from: "red"; to: "transparent";  duration: 500 }
-                    ColorAnimation { from: "transparent"; to: "red"; duration: 500 }
-                }
-            }
-        }
-
-        color: "transparent"
-
-
-        // Rect states: "entered" state should make overlay fade in,
-        //              "freezed" state should make overlay fade out.
-        // Combine with PropertyAnimation of opacity.
-        states: [
-            State {
-                name: "entered"
-                PropertyChanges {
-                    target: overlayUpperPartRect
-                    opacity: 1
-                }
-            },
-            State {
-                name: "freezed"
-                PropertyChanges {
-                    target: overlayUpperPartRect
-                    opacity: 0
-                }
-            }
-        ]
-
-        transitions: Transition {
-            PropertyAnimation {
-                target: overlayUpperPartRect
-                property: "opacity"
-                duration: 1000
-            }
-        }
-    }
-
     ResponsiveImage {
         id: onHoldImage
 
@@ -292,132 +138,166 @@ Item {
         source: "qrc:/images/icons/ic_pause_white_100px.svg"
     }
 
-    CallOverlayButtonGroup {
-        id: callOverlayButtonGroup
+    Item {
+        id: mainOverlay
 
-        anchors.bottom: root.bottom
-        anchors.bottomMargin: 10
-        anchors.horizontalCenter: root.horizontalCenter
-
-        height: 56
-        width: root.width
+        anchors.fill: parent
         opacity: 0
 
-        onChatButtonClicked: {
-            root.overlayChatButtonClicked()
-        }
+        // (un)subscribe to an app-wide mouse move event trap filtered
+        // for the overlays geometry
+        onVisibleChanged: visible ?
+                              CallOverlayModel.registerFilter(appWindow, this) :
+                              CallOverlayModel.unregisterFilter(appWindow, this)
 
-        onAddToConferenceButtonClicked: {
-            // Create contact picker - conference.
-            ContactPickerCreation.createContactPickerObjects(
-                        ContactList.CONFERENCE,
-                        root)
-            ContactPickerCreation.openContactPicker()
-        }
+        Connections {
+            target: CallOverlayModel
 
-        states: [
-            State {
-                name: "entered"
-                PropertyChanges {
-                    target: callOverlayButtonGroup
-                    opacity: 1
-                }
-            },
-            State {
-                name: "freezed"
-                PropertyChanges {
-                    target: callOverlayButtonGroup
-                    opacity: 0
+            function onMouseMoved(item) {
+                if (item === mainOverlay) {
+                    mainOverlay.opacity = 1
+                    fadeOutTimer.restart()
                 }
             }
-        ]
+        }
 
-        transitions: Transition {
-            PropertyAnimation {
-                target: callOverlayButtonGroup
-                property: "opacity"
-                duration: 1000
+        // control overlay fade out.
+        Timer {
+            id: fadeOutTimer
+            interval: JamiTheme.overlayFadeDelay
+            onTriggered: {
+                if (callOverlayButtonGroup.hovered)
+                    return
+                mainOverlay.opacity = 0
+                resetLabelsTimer.restart()
             }
         }
-    }
 
-    // MouseAreas to make sure that overlay states are correctly set.
-    MouseArea {
-        id: callOverlayButtonGroupLeftSideMouseArea
-
-        anchors.bottom: root.bottom
-        anchors.left: root.left
-
-        width: root.width / 6
-        height: 60
-
-        hoverEnabled: true
-        propagateComposedEvents: true
-        acceptedButtons: Qt.NoButton
-
-        onEntered: {
-            callOverlayRectMouseArea.entered()
-        }
-
-        onMouseXChanged: {
-            callOverlayRectMouseArea.entered()
-        }
-    }
-
-    MouseArea {
-        id: callOverlayButtonGroupRightSideMouseArea
-
-        anchors.bottom: root.bottom
-        anchors.right: root.right
-
-        width: root.width / 6
-        height: 60
-
-        hoverEnabled: true
-        propagateComposedEvents: true
-        acceptedButtons: Qt.NoButton
-
-        onEntered: {
-            callOverlayRectMouseArea.entered()
-        }
-
-        onMouseXChanged: {
-            callOverlayRectMouseArea.entered()
-        }
-    }
-
-    MouseArea {
-        id: callOverlayRectMouseArea
-
-        anchors.top: root.top
-
-        width: root.width
-        height: root.height
-
-        hoverEnabled: true
-        propagateComposedEvents: true
-        acceptedButtons: Qt.LeftButton
-
-        function resetStates() {
-            if (overlayUpperPartRect.state !== 'entered') {
-                overlayUpperPartRect.state = 'entered'
+        // Timer to reset recording label and call duration time
+        Timer {
+            id: resetLabelsTimer
+            interval: 1000
+            running: root.visible
+            repeat: true
+            onTriggered: {
+                timeText = CallAdapter.getCallDurationTime(LRCInstance.currentAccountId,
+                                                           LRCInstance.selectedConvUid)
+                if (callOverlayButtonGroup.state === 'freezed'
+                        && !callViewContextMenu.peerIsRecording)
+                    remoteRecordingLabel = ""
             }
-            if (callOverlayButtonGroup.state !== 'entered') {
-                callOverlayButtonGroup.state = 'entered'
+        }
+
+        Item {
+            id: overlayUpperPartRect
+
+            anchors.top: parent.top
+
+            width: parent.width
+            height: 50
+
+            RowLayout {
+                anchors.fill: parent
+
+                Text {
+                    id: jamiBestNameText
+
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                    Layout.preferredWidth: overlayUpperPartRect.width / 3
+                    Layout.preferredHeight: 50
+                    leftPadding: 16
+
+                    font.pointSize: JamiTheme.textFontSize
+
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+
+                    text: textMetricsjamiBestNameText.elidedText
+                    color: "white"
+
+                    TextMetrics {
+                        id: textMetricsjamiBestNameText
+                        font: jamiBestNameText.font
+                        text: {
+                            if (!root.isAudioOnly) {
+                                if (remoteRecordingLabel === "") {
+                                    return root.bestName
+                                } else {
+                                    return remoteRecordingLabel
+                                }
+                            }
+                            return ""
+                        }
+                        elideWidth: overlayUpperPartRect.width / 3
+                        elide: Qt.ElideRight
+                    }
+                }
+
+                Text {
+                    id: callTimerText
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    Layout.preferredWidth: 64
+                    Layout.minimumWidth: 64
+                    Layout.preferredHeight: 48
+                    Layout.rightMargin: recordingRect.visible?
+                                            0 : JamiTheme.preferredMarginSize
+                    font.pointSize: JamiTheme.textFontSize
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                    text: textMetricscallTimerText.elidedText
+                    color: "white"
+                    TextMetrics {
+                        id: textMetricscallTimerText
+                        font: callTimerText.font
+                        text: timeText
+                        elideWidth: overlayUpperPartRect.width / 4
+                        elide: Qt.ElideRight
+                    }
+                }
+
+                Rectangle {
+                    id: recordingRect
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+                    Layout.rightMargin: JamiTheme.preferredMarginSize
+                    height: 16
+                    width: 16
+                    radius: height / 2
+                    color: "red"
+
+                    SequentialAnimation on color {
+                        loops: Animation.Infinite
+                        running: true
+                        ColorAnimation { from: "red"; to: "transparent";  duration: 500 }
+                        ColorAnimation { from: "transparent"; to: "red"; duration: 500 }
+                    }
+                }
             }
-            callOverlayTimer.restart()
         }
 
-        onReleased: {
-            resetStates()
-        }
-        onEntered: {
-            resetStates()
+        CallOverlayButtonGroup {
+            id: callOverlayButtonGroup
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            height: 56
+            width: root.width
+
+            onChatButtonClicked: {
+                root.overlayChatButtonClicked()
+            }
+
+            onAddToConferenceButtonClicked: {
+                // Create contact picker - conference.
+                ContactPickerCreation.createContactPickerObjects(
+                            ContactList.CONFERENCE,
+                            root)
+                ContactPickerCreation.openContactPicker()
+            }
         }
 
-        onMouseXChanged: {
-            resetStates()
-        }
+        Behavior on opacity { NumberAnimation { duration: JamiTheme.overlayFadeDuration }}
     }
 
     CallViewContextMenu {
