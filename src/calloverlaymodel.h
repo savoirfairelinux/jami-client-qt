@@ -29,10 +29,8 @@
 
 #define CC_ROLES \
     X(QObject*, ItemAction) \
-    X(int, BadgeCount) \
-    X(bool, HasBackground) \
     X(QObject*, MenuAction) \
-    X(QString, Name)
+    X(int, BadgeCount)
 
 namespace CallControl {
 Q_NAMESPACE
@@ -64,6 +62,7 @@ public:
 
     void setBadgeCount(int row, int count);
     void addItem(const CallControl::Item& item);
+    void clearData();
 
 private:
     QList<CallControl::Item> data_;
@@ -96,6 +95,7 @@ public:
     Q_INVOKABLE void addPrimaryControl(const QVariantMap& props);
     Q_INVOKABLE void addSecondaryControl(const QVariantMap& props);
     Q_INVOKABLE void setBadgeCount(int row, int count);
+    Q_INVOKABLE void clearControls();
 
     Q_INVOKABLE QVariant primaryModel();
     Q_INVOKABLE QVariant secondaryModel();
