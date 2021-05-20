@@ -29,10 +29,8 @@
 
 #define CC_ROLES \
     X(QObject*, ItemAction) \
-    X(int, BadgeCount) \
-    X(bool, HasBackground) \
     X(QObject*, MenuAction) \
-    X(QString, Name)
+    X(int, BadgeCount)
 
 namespace CallControl {
 Q_NAMESPACE
