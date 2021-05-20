@@ -86,6 +86,12 @@ CallControlListModel::addItem(const CallControl::Item& item)
     endResetModel();
 }
 
+void
+CallControlListModel::clearData()
+{
+    data_.clear();
+}
+
 IndexRangeFilterProxyModel::IndexRangeFilterProxyModel(QAbstractListModel* parent)
     : QSortFilterProxyModel(parent)
 {
@@ -185,6 +191,13 @@ QVariant
 CallOverlayModel::overflowHiddenModel()
 {
     return QVariant::fromValue(overflowHiddenModel_);
+}
+
+void
+CallOverlayModel::clearControls()
+{
+    primaryModel_->clearData();
+    secondaryModel_->clearData();
 }
 
 void
