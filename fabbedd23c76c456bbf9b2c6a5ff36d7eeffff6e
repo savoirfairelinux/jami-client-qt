@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62045808_d8fd5f77",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-20T13:28:40Z",
+      "side": 1,
+      "message": "should be formatted with {} in fact, \"Incoming call from {}\" as the string contains the username and the translation may want to change the order of the words",
+      "range": {
+        "startLine": 33,
+        "startChar": 38,
+        "endLine": 33,
+        "endChar": 64
+      },
+      "revId": "fabbedd23c76c456bbf9b2c6a5ff36d7eeffff6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
