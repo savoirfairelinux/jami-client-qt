@@ -47,8 +47,6 @@ Rectangle {
 
     signal overlayChatButtonClicked
 
-    onVisibleChanged: if (!visible) callViewContextMenu.close()
-
     function setRecording(localIsRecording) {
         callViewContextMenu.localIsRecording = localIsRecording
         recordingRect.visible = localIsRecording
@@ -163,7 +161,7 @@ Rectangle {
             for (var infoVariant in infos) {
                 // Only create overlay for new participants
                 if (!currentUris.includes(infos[infoVariant].uri)) {
-                    var hover = participantComponent.createObject(callOverlayRectMouseArea, {
+                    var hover = participantComponent.createObject(rootMouseArea, {
                         x: Math.trunc(distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth()),
                         y: Math.trunc(distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight()),
                         width: Math.ceil(infos[infoVariant].w * distantRenderer.getScaledWidth()),
@@ -215,7 +213,13 @@ Rectangle {
         callViewContextMenu.peerIsRecording = state
         recordingRect.visible = callViewContextMenu.localIsRecording
                 || callViewContextMenu.peerIsRecording
-        callOverlayRectMouseArea.entered()
+        rootMouseArea.entered()
+    }
+
+    function resetRemoteRecording() {
+        remoteRecordingLabel = ""
+        callViewContextMenu.peerIsRecording = false
+        recordingRect.visible = callViewContextMenu.localIsRecording
     }
 
     anchors.fill: parent
@@ -234,25 +238,20 @@ Rectangle {
         onTriggered: {
             if (overlayUpperPartRect.state !== 'freezed') {
                 overlayUpperPartRect.state = 'freezed'
-                resetLabelsTimer.restart()
+                resetRecordingLabelTimer.restart()
             }
             if (callOverlayButtonGroup.state !== 'freezed') {
                 callOverlayButtonGroup.state = 'freezed'
-                resetLabelsTimer.restart()
+                resetRecordingLabelTimer.restart()
             }
         }
     }
 
-    // Timer to reset recording label and call duration time
+    // Timer to reset recording label text
     Timer {
-        id: resetLabelsTimer
-
+        id: resetRecordingLabelTimer
         interval: 1000
-        running: root.visible
-        repeat: true
         onTriggered: {
-            timeText = CallAdapter.getCallDurationTime(LRCInstance.currentAccountId,
-                                                       LRCInstance.selectedConvUid)
             if (callOverlayButtonGroup.state === 'freezed'
                     && !callViewContextMenu.peerIsRecording)
                 remoteRecordingLabel = ""
@@ -457,11 +456,11 @@ Rectangle {
         acceptedButtons: Qt.NoButton
 
         onEntered: {
-            callOverlayRectMouseArea.entered()
+            rootMouseArea.entered()
         }
 
         onMouseXChanged: {
-            callOverlayRectMouseArea.entered()
+            rootMouseArea.entered()
         }
     }
 
@@ -479,16 +478,16 @@ Rectangle {
         acceptedButtons: Qt.NoButton
 
         onEntered: {
-            callOverlayRectMouseArea.entered()
+            rootMouseArea.entered()
         }
 
         onMouseXChanged: {
-            callOverlayRectMouseArea.entered()
+            rootMouseArea.entered()
         }
     }
 
     MouseArea {
-        id: callOverlayRectMouseArea
+        id: rootMouseArea
 
         anchors.top: root.top
 
