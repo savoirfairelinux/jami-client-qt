@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89bd44e9_c175113c",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-21T18:53:12Z",
+      "side": 1,
+      "message": "trailing space",
+      "revId": "19c1031912555a25154d19ddda2a166ba60295b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eec2f725_1e85df18",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-21T18:53:12Z",
+      "side": 1,
+      "message": "Take snapshot was a better name",
+      "range": {
+        "startLine": 327,
+        "startChar": 45,
+        "endLine": 327,
+        "endChar": 55
+      },
+      "revId": "19c1031912555a25154d19ddda2a166ba60295b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f817f12f_22e74df8",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-21T18:53:12Z",
+      "side": 1,
+      "message": "Missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 7
+      },
+      "revId": "19c1031912555a25154d19ddda2a166ba60295b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e501996_d03b82e3",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-21T18:53:12Z",
+      "side": 1,
+      "message": "root",
+      "range": {
+        "startLine": 18,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "19c1031912555a25154d19ddda2a166ba60295b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78bd0f6c_e33bca3f",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-21T18:53:12Z",
+      "side": 1,
+      "message": "lot of space there",
+      "revId": "19c1031912555a25154d19ddda2a166ba60295b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85a39019_43d9d582",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-21T18:53:12Z",
+      "side": 1,
+      "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 6,
+        "endLine": 1,
+        "endChar": 19
+      },
+      "revId": "19c1031912555a25154d19ddda2a166ba60295b5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
