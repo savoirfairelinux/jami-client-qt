@@ -269,7 +269,7 @@ Dialog {
 
     Connections{
         target: SettingsAdapter
-        function onDebugMessageReceived(message){
+        function onDebugLogged(message){
             var initialPosition = scroll.position
             var oldContent = flickable.contentY
 

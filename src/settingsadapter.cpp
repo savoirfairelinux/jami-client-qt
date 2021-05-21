@@ -1060,8 +1060,8 @@ SettingsAdapter::monitorAndReceiveLogs(const bool& continuous)
 {
     lrcInstance_->monitor(continuous);
     QObject::connect(&lrcInstance_->behaviorController(),
-                     &lrc::api::BehaviorController::debugMessageReceived,
+                     &lrc::api::BehaviorController::debugLogged,
                      this,
-                     &SettingsAdapter::debugMessageReceived,
+                     &SettingsAdapter::debugLogged,
                      Qt::ConnectionType::UniqueConnection);
 }

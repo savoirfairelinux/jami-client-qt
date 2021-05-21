@@ -231,7 +231,7 @@ public:
     Q_INVOKABLE void monitorAndReceiveLogs(const bool& continuous);
 
 Q_SIGNALS:
-    void debugMessageReceived(const QString& message);
+    void debugLogged(const QString& message);
 
 private:
     AppSettingsManager* settingsManager_;

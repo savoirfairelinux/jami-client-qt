@@ -135,7 +135,7 @@ MainApplication::vsConsoleDebug()
      * Print debug to output window if using VS.
      */
     QObject::connect(&lrcInstance_->behaviorController(),
-                     &lrc::api::BehaviorController::debugMessageReceived,
+                     &lrc::api::BehaviorController::debugLogged,
                      [](const QString& message) {
                          OutputDebugStringA((message + "\n").toStdString().c_str());
                      });
@@ -146,7 +146,7 @@ void
 MainApplication::fileDebug(QFile* debugFile)
 {
     QObject::connect(&lrcInstance_->behaviorController(),
-                     &lrc::api::BehaviorController::debugMessageReceived,
+                     &lrc::api::BehaviorController::debugLogged,
                      [debugFile](const QString& message) {
                          if (debugFile->open(QIODevice::WriteOnly | QIODevice::Append)) {
                              auto msg = (message + "\n").toStdString().c_str();
