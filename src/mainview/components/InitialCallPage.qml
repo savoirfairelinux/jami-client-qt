@@ -50,7 +50,7 @@ Rectangle {
     }
     ListModel {
         id: outgoingControlsModel
-        ListElement { type: "cancel"; image: "qrc:/images/icons/round-close-24px.svg"}
+        ListElement { type: "cancel"; image: "qrc:/images/icons/ic_call_end_white_24px.svg"}
     }
 
     onAccountConvPairChanged: {
@@ -130,7 +130,9 @@ Rectangle {
                 model: root.isIncoming ? incomingControlsModel : outgoingControlsModel
 
                 delegate: ColumnLayout {
+                    property alias actionButtonChecked: actionButton.checked
                     PushButton {
+                        id: actionButton
                         Layout.leftMargin: 10
                         Layout.rightMargin: 10
                         Layout.alignment: Qt.AlignHCenter
@@ -165,13 +167,24 @@ Rectangle {
                     }
 
                     Label {
+                        id: buttonLabel
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredWidth: JamiTheme.callButtonPreferredSize
                         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                         font.pointSize: JamiTheme.smartlistItemInfoFontSize
                         font.kerning: true
-                        color: JamiTheme.whiteColor
+                        color: actionButtonChecked ? JamiTheme.whiteColor : JamiTheme.whiteColorTransparent
+                        states: [
+                            State {
+                                name: "hovered"; when: actionButton.hovered
+                                PropertyChanges { target: buttonLabel; color: JamiTheme.whiteColor }
+                            },
+                            State {
+                                name: "normal"; when: !actionButton.hovered
+                                PropertyChanges { target: buttonLabel; color: JamiTheme.whiteColorTransparent }
+                            }
+                        ]
 
                         text: {
                             if (type === "refuse")
