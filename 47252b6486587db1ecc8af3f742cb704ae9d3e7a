@@ -111,6 +111,29 @@
     },
     {
       "key": {
+        "uuid": "74744199_44459fe0",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-25T14:22:28Z",
+      "side": 1,
+      "message": "Connections and functions should be in the beggining of the component",
+      "range": {
+        "startLine": 245,
+        "startChar": 4,
+        "endLine": 281,
+        "endChar": 5
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07cc6ad4_1516a74b",
         "filename": "src/settingsview/components/TroubleshootSettings.qml",
         "patchSetId": 19
