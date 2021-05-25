@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "754ae2bf_552b05aa",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-25T20:18:07Z",
+      "side": 1,
+      "message": "revert + try catch",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 35
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4deb351_7ae82424",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-25T20:18:07Z",
+      "side": 1,
+      "message": "revert + try catch",
+      "range": {
+        "startLine": 162,
+        "startChar": 40,
+        "endLine": 163,
+        "endChar": 35
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1d9d30ed_103bd31a",
         "filename": "src/calloverlaymodel.cpp",
         "patchSetId": 12
