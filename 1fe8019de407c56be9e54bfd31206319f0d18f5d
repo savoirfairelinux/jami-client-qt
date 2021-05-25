@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df19e0d3_5743268c",
+        "filename": "src/calloverlaymodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-25T20:40:57Z",
+      "side": 1,
+      "message": "guess we can remove this",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 196,
+        "endChar": 41
+      },
+      "revId": "1fe8019de407c56be9e54bfd31206319f0d18f5d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b34eee21_20047bde",
+        "filename": "src/calloverlaymodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-25T20:40:57Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 43
+      },
+      "revId": "1fe8019de407c56be9e54bfd31206319f0d18f5d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
