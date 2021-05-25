@@ -91,6 +91,7 @@ Item {
     property color acceptGreenTransparency: rgba256(11, 130, 113, 56)
     property color refuseRed: rgba256(204, 0, 34, 100)
     property color refuseRedTransparent: rgba256(204, 0, 34, 56)
+    property color whiteColorTransparent: rgba256(255, 255, 255, 50)
 
     property color closeButtonLighterBlack: "#4c4c4c"
 
