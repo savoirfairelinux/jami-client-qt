@@ -479,11 +479,12 @@ MainApplication::initSystray()
 
     QMenu* systrayMenu = new QMenu();
 
-    QAction* exitAction = new QAction(tr("Exit"), this);
-    connect(exitAction, &QAction::triggered, [this] {
+    QAction* quitAction = new QAction(tr("&Quit"), this);
+    connect(quitAction, &QAction::triggered, [this] {
         engine_->quit();
         cleanup();
     });
+
     connect(systemTray_.get(),
             &QSystemTrayIcon::activated,
             [this](QSystemTrayIcon::ActivationReason reason) {
@@ -491,7 +492,7 @@ MainApplication::initSystray()
                     restoreApp();
             });
 
-    systrayMenu->addAction(exitAction);
+    systrayMenu->addAction(quitAction);
     systemTray_->setContextMenu(systrayMenu);
     systemTray_->show();
 }
