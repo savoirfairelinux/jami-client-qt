@@ -50,6 +50,7 @@ Item {
     property bool participantIsMuted: false
     property bool participantIsModeratorMuted: false
     property bool participantMenuActive: false
+    property string callId: ""
 
     z: -1
 
@@ -75,7 +76,8 @@ Item {
     }
 
     function setMenu(newUri, bestName, isLocal, isActive, showMax) {
-
+        console.log("!!!!!!!!CALLID: ", root.callId)
+        console.log("!!!!!!!!URI: ", newUri)
         overlayMenu.uri = newUri
         overlayMenu.bestName = bestName
 
@@ -212,6 +214,22 @@ Item {
         }
         layer.mipmap: false
         layer.smooth: true
+    }
+
+    DistantRenderer {
+        id: distantRendererSingle
+
+        anchors.centerIn: parent
+        anchors.fill: parent
+        z: -1
+
+        lrcInstance: LRCInstance
+        visible: !contactImage.visible
+        rendererId: root.callId + root.uri + "@ring.dht"
+
+        // onOffsetChanged: {
+        //     callOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+        // }
     }
 
     // Participant background and buttons for moderation

@@ -50,6 +50,7 @@ Item {
             if (participantOverlays[p]) {
                 var participant = infos.find(e => e.uri === participantOverlays[p].uri);
                 if (participant) {
+                    participant.callId = callId
                     // Update participant's information
                     var newX = Math.trunc(distantRenderer.getXOffset()
                                           + participant.x * distantRenderer.getScaledWidth())
@@ -125,6 +126,7 @@ Item {
                         hover.setAvatar(true, infos[infoVariant].avatar, infos[infoVariant].uri, infos[infoVariant].isLocal, infos[infoVariant].isContact)
                     else
                         hover.setAvatar(false)
+                    hover.callId = callId
                     participantOverlays.push(hover)
                 }
             }

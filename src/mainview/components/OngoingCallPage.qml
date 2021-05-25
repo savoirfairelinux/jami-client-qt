@@ -43,7 +43,7 @@ Rectangle {
     property int previewToX: 0
     property int previewToY: 0
     property bool isAudioOnly: false
-    property alias callId: distantRenderer.rendererId
+    property alias callId: callOverlay.callId
     property var linkedWebview: null
 
     color: "black"
@@ -191,7 +191,8 @@ Rectangle {
                     z: -1
 
                     lrcInstance: LRCInstance
-                    visible: !root.isAudioOnly
+                    visible: false
+                    rendererId: root.callId
 
                     onOffsetChanged: {
                         callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
