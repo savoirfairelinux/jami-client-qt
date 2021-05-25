@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d9d30ed_103bd31a",
+        "filename": "src/calloverlaymodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 921
+      },
+      "writtenOn": "2021-05-25T19:55:18Z",
+      "side": 1,
+      "message": "why does this one need a _ prefix?",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 18
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34e6eed2_6653474a",
+        "filename": "src/calloverlaymodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 921
+      },
+      "writtenOn": "2021-05-25T19:55:18Z",
+      "side": 1,
+      "message": "Should make a converting constructor that accepts a QVariantMap instead of sprinkling this X macro around multiple functions.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 6
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66c925e8_ae76deaa",
+        "filename": "src/calloverlaymodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 921
+      },
+      "writtenOn": "2021-05-25T19:55:18Z",
+      "side": 1,
+      "message": "reuse the converting constructor here.",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 6
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8a2fde1_95cab0b2",
+        "filename": "src/calloverlaymodel.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 921
+      },
+      "writtenOn": "2021-05-25T19:55:18Z",
+      "side": 1,
+      "message": "\"role##_\" would make things clearer IMO",
+      "range": {
+        "startLine": 49,
+        "startChar": 21,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
