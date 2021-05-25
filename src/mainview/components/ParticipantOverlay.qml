@@ -48,6 +48,7 @@ Rectangle {
     property bool participantIsMuted: false
     property bool participantIsModeratorMuted: false
     property bool participantMenuActive: false
+    property string callId: ""
 
     function setAvatar(show, avatar, uri, local, isContact) {
         if (!show)
@@ -71,7 +72,8 @@ Rectangle {
     }
 
     function setMenu(newUri, bestName, isLocal, isActive, showMax) {
-
+        console.log("!!!!!!!!CALLID: ", root.callId)
+        console.log("!!!!!!!!URI: ", newUri)
         overlayMenu.uri = newUri
         overlayMenu.bestName = bestName
 
@@ -211,6 +213,22 @@ Rectangle {
         }
         layer.mipmap: false
         layer.smooth: true
+    }
+
+    DistantRenderer {
+        id: distantRendererSingle
+
+        anchors.centerIn: parent
+        anchors.fill: parent
+        z: -1
+
+        lrcInstance: LRCInstance
+        visible: !contactImage.visible
+        rendererId: root.callId + root.uri + "@ring.dht"
+
+        // onOffsetChanged: {
+        //     callOverlay.handleParticipantsInfo(CallAdapter.getConferencesInfos())
+        // }
     }
 
     // Participant background, mousearea, hover and buttons for moderation

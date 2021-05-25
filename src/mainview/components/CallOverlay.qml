@@ -41,6 +41,7 @@ Rectangle {
     property bool isVideoMuted: true
     property bool isAudioOnly: false
     property string bestName: ""
+    property string callId: ""
 
     property var participantOverlays: []
     property var participantComponent: Qt.createComponent("ParticipantOverlay.qml")
@@ -108,6 +109,7 @@ Rectangle {
             if (participantOverlays[p]) {
                 var participant = infos.find(e => e.uri === participantOverlays[p].uri);
                 if (participant) {
+                    participant.callId = root.callId
                     // Update participant's information
                     var newX = Math.trunc(distantRenderer.getXOffset()
                             + participant.x * distantRenderer.getScaledWidth())
@@ -183,6 +185,7 @@ Rectangle {
                         hover.setAvatar(true, infos[infoVariant].avatar, infos[infoVariant].uri, infos[infoVariant].isLocal, infos[infoVariant].isContact)
                     else
                         hover.setAvatar(false)
+                    hover.callId = root.callId
                     participantOverlays.push(hover)
                 }
             }
