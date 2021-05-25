@@ -48,12 +48,21 @@ DistantRenderer::DistantRenderer(QQuickItem* parent)
     });
 }
 
-DistantRenderer::~DistantRenderer() {}
+DistantRenderer::~DistantRenderer()
+{
+    if (distantRenderId_.isEmpty())
+        return;
+    qDebug() << "DESTROYING RENDERER!";
+    //    lrcInstance_->renderer()->removeDistantRenderer(distantRenderId_);
+}
 
 void
 DistantRenderer::setRendererId(const QString& id)
 {
+    if (id.isEmpty())
+        return;
     distantRenderId_ = id;
+    lrcInstance_->renderer()->addDistantRenderer(distantRenderId_);
     // Note: Force a paint to update frame as we change the renderer
     update(QRect(0, 0, width(), height()));
 }
