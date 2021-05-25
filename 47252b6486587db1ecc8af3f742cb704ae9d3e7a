@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "517f74c1_b24f12b8",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "remove whitespace and extra lines",
+      "range": {
+        "startLine": 335,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 4
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5911267f_cf8ecc15",
+        "filename": "src/lrcinstance.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "space before the function definition; stay consistent with surrounding style conventions",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 1
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31b4977e_3d92edf8",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "functions should generally do one thing, and the word `and` shouldn\u0027t appear in the name",
+      "range": {
+        "startLine": 1105,
+        "startChar": 17,
+        "endLine": 1105,
+        "endChar": 38
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3a63447_44fc590a",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "this connection can be made in the constructor, making the function name: `monitor` (yet another)",
+      "range": {
+        "startLine": 1108,
+        "startChar": 4,
+        "endLine": 1112,
+        "endChar": 59
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0072ed49_7721c5bc",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "observe other qml for coding guidelines files and check https://git.jami.net/savoirfairelinux/ring-project/-/wikis/guidelines/Qt-and-QML-coding-guidelines\n\n- aerate the code\n- don\u0027t abbrev when not absolutely necessary\n- use non-generic sensible ids\n- it seems like a lot of the dimensioning is hard-coded and interdependent; try to set dimensions at a more parent level and have the children inset as functions of parent dimensions\n- don\u0027t abuse Rectangle components as children when a background property can be set; Rectangles are drawing tools and shouldn\u0027t be used as layout objects",
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07cc6ad4_1516a74b",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "good to put an endline after a copyright/license/info header",
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecdc8200_6c620bde",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "not used",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d05dff59_2f41bb14",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "is this used??",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0e58ff6_3054ec48",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "internally registered modules should be line-separated, and I don\u0027t think you\u0027ll need adapters/models in this component",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 31
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e1db65a_58fa6906",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-25T14:03:47Z",
+      "side": 1,
+      "message": "I see this is called from within LogsView; just directly reference SettingsAdapter.monitorAndReceiveLogs(continuous) in that component/file",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
