@@ -115,7 +115,7 @@ Item {
             ContextMenuGenerator.addMenuSeparator()
 
             ContextMenuGenerator.addMenuItem(JamiStrings.shareScreen,
-                                             "qrc:/images/icons/screen_share-24px.svg",
+                                             "qrc:/images/icons/share_screen_black_24dp.svg",
                                              function (){
                                                  if (Qt.application.screens.length === 1) {
                                                      AvAdapter.shareEntireScreen(0)
@@ -125,7 +125,7 @@ Item {
                                                  }
                                              })
             ContextMenuGenerator.addMenuItem(JamiStrings.shareScreenArea,
-                                             "qrc:/images/icons/screen_share-24px.svg",
+                                             "qrc:/images/icons/share_screen_black_24dp.svg",
                                              function (){
                                                  if (Qt.platform.os !== "windows") {
                                                      AvAdapter.shareScreenArea(0, 0, 0, 0)
