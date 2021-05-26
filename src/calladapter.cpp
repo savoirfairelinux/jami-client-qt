@@ -629,6 +629,8 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
     bool isAudioMuted = call->audioMuted && (call->status != lrc::api::call::Status::PAUSED);
     bool isVideoMuted = call->videoMuted && !isPaused && !call->isAudioOnly;
     bool isRecording = isRecordingThisCall();
+    bool isConferenceCall = call->participantsInfos.size() > 2;
+    bool isGrid = call->layout == lrc::api::call::Layout::GRID;
     auto bestName = convInfo.participants.isEmpty()
                         ? QString()
                         : accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
@@ -639,6 +641,8 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                          isVideoMuted,
                          isRecording,
                          accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
+                         isConferenceCall,
+                         isGrid,
                          bestName);
 }
 
@@ -710,6 +714,20 @@ CallAdapter::minimizeParticipant(const QString& uri)
         }
     } catch (...) {
     }
+}
+
+void
+CallAdapter::showGridConferenceLayout()
+{
+    auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
+    const auto& convInfo
+        = lrcInstance_->getConversationFromConvUid(lrcInstance_->get_selectedConvUid(), accountId_);
+
+    auto confId = convInfo.confId;
+    if (confId.isEmpty())
+        confId = convInfo.callId;
+
+    callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
 }
 
 void
