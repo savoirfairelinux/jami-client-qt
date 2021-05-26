@@ -37,6 +37,7 @@ Control {
     signal addToConferenceClicked
     signal transferClicked // TODO: bind this
     signal shareScreenClicked
+    signal stopSharingScreenClicked
     signal shareScreenAreaClicked // TODO: bind this
     signal pluginsClicked
 
@@ -85,7 +86,7 @@ Control {
                 lrcInstance: LRCInstance
             }
             function accept(index) {
-                if(listModel.deviceCount() < 1)
+                if (listModel.deviceCount() < 1)
                     return
                 try {
                     var deviceId = listModel.data(
@@ -94,7 +95,7 @@ Control {
                     var deviceName = listModel.data(
                                 listModel.index(index, 0),
                                 VideoInputDeviceModel.DeviceName)
-                    if(deviceId.length === 0) {
+                    if (deviceId.length === 0) {
                         console.warn("Couldn't find device: " + deviceName)
                         return
                     }
@@ -103,7 +104,9 @@ Control {
                         AVModel.setDefaultDevice(deviceId)
                     }
                     AvAdapter.selectVideoInputDeviceById(deviceId)
-                } catch(err){ console.warn(err.message) }
+                } catch (err) {
+                    console.warn(err.message)
+                }
             }
         }
     ]
@@ -185,10 +188,16 @@ Control {
         },
         Action {
             id: shareAction
-            onTriggered: root.shareScreenClicked()
-            icon.source: "qrc:/images/icons/share_screen_black_24dp.svg"
+            onTriggered: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY ?
+                             root.stopSharingScreenClicked() :
+                             root.shareScreenClicked()
+            icon.source: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY ?
+                             "qrc:/images/icons/share_stop_black_24dp.svg" :
+                             "qrc:/images/icons/share_screen_black_24dp.svg"
             icon.color: "white"
-            text: JamiStrings.shareScreen
+            text: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY ?
+                      JamiStrings.stopSharingScreen :
+                      JamiStrings.shareScreen
             property real size: 34
         },
         Action {
@@ -214,7 +223,7 @@ Control {
     property var overflowItemCount
     Component.onCompleted: reset()
     function reset() {
-        CallOverlayModel.clearControls();
+        CallOverlayModel.clearControls()
 
         // centered controls
         CallOverlayModel.addPrimaryControl(muteAudioAction)
@@ -279,7 +288,8 @@ Control {
                 spacing: itemSpacing
 
                 property int overflowIndex: {
-                    var maxItems = Math.floor((overflowRect.remainingSpace - 24) / root.height) - 1
+                    var maxItems = Math.floor(
+                                (overflowRect.remainingSpace - 24) / root.height) - 1
                     return Math.min(overflowItemCount, maxItems)
                 }
                 property int nOverflowItems: overflowItemCount - overflowIndex
@@ -341,8 +351,18 @@ Control {
                         ScrollIndicator.vertical: ScrollIndicator {}
 
                         add: Transition {
-                            NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 80 }
-                            NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 80 }
+                            NumberAnimation {
+                                property: "opacity"
+                                from: 0
+                                to: 1.0
+                                duration: 80
+                            }
+                            NumberAnimation {
+                                property: "scale"
+                                from: 0
+                                to: 1.0
+                                duration: 80
+                            }
                         }
                     }
                 }
@@ -357,12 +377,9 @@ Control {
                         id: overflowListView
                         spacing: itemSpacing
                         implicitHeight: contentHeight
-                        model: overflowButton.popup.visible ?
-                                   overflowButton.delegateModel :
-                                   null
+                        model: overflowButton.popup.visible ? overflowButton.delegateModel : null
 
                         ScrollIndicator.vertical: ScrollIndicator {}
-
                     }
 
                     background: Rectangle {
