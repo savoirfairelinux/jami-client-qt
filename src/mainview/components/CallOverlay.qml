@@ -47,12 +47,16 @@ Item {
     property bool isRecording
     property bool isSIP
     property bool isModerator
+    property bool isConferenceCall
 
     property string bestName: ""
 
     signal chatButtonClicked
 
-    onVisibleChanged: if (!visible) callViewContextMenu.close()
+    onVisibleChanged: {
+        if (!visible)
+            callViewContextMenu.close()
+    }
 
     ParticipantsLayer {
         id: __participantsLayer
@@ -65,14 +69,15 @@ Item {
                 || callViewContextMenu.peerIsRecording
     }
 
-    function update(isPaused, isAudioOnly, isAudioMuted,
-                    isVideoMuted, isRecording, isSIP) {
+    function update(isPaused, isAudioOnly, isAudioMuted, isVideoMuted, isRecording, isSIP,
+                    isConferenceCall) {
         root.isPaused = isPaused
         root.isAudioOnly = isAudioOnly
         root.isAudioMuted = isAudioMuted
         root.isVideoMuted = isVideoMuted
         root.isRecording = isRecording
         root.isSIP = isSIP
+        root.isConferenceCall = isConferenceCall
         root.isModerator = CallAdapter.isCurrentModerator()
 
         mainOverlay.callActionBar.reset()
@@ -110,13 +115,10 @@ Item {
                     label += ", "
                 i += 1
             }
-            label += " " + ((peers.length > 1)? JamiStrings.areRecording
-                                              : JamiStrings.isRecording)
+            label += " " + ((peers.length > 1) ? JamiStrings.areRecording : JamiStrings.isRecording)
         }
 
-        mainOverlay.remoteRecordingLabel = state ?
-                    label :
-                    JamiStrings.peerStoppedRecording
+        mainOverlay.remoteRecordingLabel = state ? label : JamiStrings.peerStoppedRecording
         callViewContextMenu.peerIsRecording = state
         mainOverlay.recordingVisible = callViewContextMenu.localIsRecording
                 || callViewContextMenu.peerIsRecording

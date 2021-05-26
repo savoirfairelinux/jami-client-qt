@@ -639,6 +639,7 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                          isVideoMuted,
                          isRecording,
                          accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
+                         !convInfo.confId.isEmpty(),
                          bestName);
 }
 
@@ -710,6 +711,20 @@ CallAdapter::minimizeParticipant(const QString& uri)
         }
     } catch (...) {
     }
+}
+
+void
+CallAdapter::showGridConferenceLayout()
+{
+    auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
+    const auto& convInfo
+        = lrcInstance_->getConversationFromConvUid(lrcInstance_->get_selectedConvUid(), accountId_);
+
+    auto confId = convInfo.confId;
+    if (confId.isEmpty())
+        confId = convInfo.callId;
+
+    callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
 }
 
 void
