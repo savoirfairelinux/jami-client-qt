@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "73f41e38_59bb0bc9",
+        "filename": "src/calloverlaymodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-26T19:49:31Z",
+      "side": 1,
+      "message": "no reason other than visual distinction from the parameter",
+      "parentUuid": "1d9d30ed_103bd31a",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 18
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "34e6eed2_6653474a",
         "filename": "src/calloverlaymodel.cpp",
         "patchSetId": 12
@@ -91,6 +115,30 @@
       "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "671088a2_05e48207",
+        "filename": "src/calloverlaymodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-26T19:49:31Z",
+      "side": 1,
+      "message": "Done. but in https://review.jami.net/c/jami-client-qt/+/18060",
+      "parentUuid": "34e6eed2_6653474a",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 6
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "6a0e785a_c3c50df9",
+        "filename": "src/calloverlaymodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-26T19:49:31Z",
+      "side": 1,
+      "message": "Done. but in https://review.jami.net/c/jami-client-qt/+/18060",
+      "parentUuid": "66c925e8_ae76deaa",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 6
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f8a2fde1_95cab0b2",
         "filename": "src/calloverlaymodel.h",
         "patchSetId": 12
@@ -137,6 +209,30 @@
       "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ebd0d64_bbcede2b",
+        "filename": "src/calloverlaymodel.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-26T19:49:31Z",
+      "side": 1,
+      "message": "removed in https://review.jami.net/c/jami-client-qt/+/18060",
+      "parentUuid": "f8a2fde1_95cab0b2",
+      "range": {
+        "startLine": 49,
+        "startChar": 21,
+        "endLine": 49,
+        "endChar": 25
+      },
+      "revId": "6e4d6a83cd2d044a743e7dc08b1b28727a14ff50",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
