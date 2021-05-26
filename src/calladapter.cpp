@@ -714,6 +714,20 @@ CallAdapter::minimizeParticipant(const QString& uri)
 }
 
 void
+CallAdapter::showGridConferenceLayout()
+{
+    auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
+    const auto& convInfo
+        = lrcInstance_->getConversationFromConvUid(lrcInstance_->get_selectedConvUid(), accountId_);
+
+    auto confId = convInfo.confId;
+    if (confId.isEmpty())
+        confId = convInfo.callId;
+
+    callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
+}
+
+void
 CallAdapter::hangUpThisCall()
 {
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid_, accountId_);
