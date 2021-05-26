@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "253092bc_779d8856",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "517f74c1_b24f12b8",
+      "range": {
+        "startLine": 335,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 4
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5911267f_cf8ecc15",
         "filename": "src/lrcinstance.cpp",
         "patchSetId": 19
@@ -45,6 +69,30 @@
       "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "102153d9_4afe278f",
+        "filename": "src/lrcinstance.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5911267f_cf8ecc15",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 1
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a32b3ae7_eb7e7cd7",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31b4977e_3d92edf8",
+      "range": {
+        "startLine": 1105,
+        "startChar": 17,
+        "endLine": 1105,
+        "endChar": 38
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3a63447_44fc590a",
         "filename": "src/settingsadapter.cpp",
         "patchSetId": 19
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "dcfd8939_d99b321c",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3a63447_44fc590a",
+      "range": {
+        "startLine": 1108,
+        "startChar": 4,
+        "endLine": 1112,
+        "endChar": 59
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0072ed49_7721c5bc",
         "filename": "src/settingsview/components/LogsView.qml",
         "patchSetId": 19
@@ -105,6 +201,24 @@
       "writtenOn": "2021-05-25T14:03:47Z",
       "side": 1,
       "message": "observe other qml for coding guidelines files and check https://git.jami.net/savoirfairelinux/ring-project/-/wikis/guidelines/Qt-and-QML-coding-guidelines\n\n- aerate the code\n- don\u0027t abbrev when not absolutely necessary\n- use non-generic sensible ids\n- it seems like a lot of the dimensioning is hard-coded and interdependent; try to set dimensions at a more parent level and have the children inset as functions of parent dimensions\n- don\u0027t abuse Rectangle components as children when a background property can be set; Rectangles are drawing tools and shouldn\u0027t be used as layout objects",
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16dccb9d_d1dc1fd7",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "The rectangle component was mainly used as a tool to add a color background to items as I could not find a simpler way.\n\nI fixed most of the hard coding. The rest I believe is necessary but of course I may be wrong.\n\nThe rest of the comments should be resolved.",
+      "parentUuid": "0072ed49_7721c5bc",
       "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "a44c6065_eabef335",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74744199_44459fe0",
+      "range": {
+        "startLine": 245,
+        "startChar": 4,
+        "endLine": 281,
+        "endChar": 5
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07cc6ad4_1516a74b",
         "filename": "src/settingsview/components/TroubleshootSettings.qml",
         "patchSetId": 19
@@ -148,6 +286,24 @@
       "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e54310f4_41009c9b",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07cc6ad4_1516a74b",
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -174,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "d5d0b330_e5f75c90",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ecdc8200_6c620bde",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d05dff59_2f41bb14",
         "filename": "src/settingsview/components/TroubleshootSettings.qml",
         "patchSetId": 19
@@ -194,6 +374,30 @@
       "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6358520c_89023240",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d05dff59_2f41bb14",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -220,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "7f9f34d1_53841f85",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0e58ff6_3054ec48",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 31
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5e1db65a_58fa6906",
         "filename": "src/settingsview/components/TroubleshootSettings.qml",
         "patchSetId": 19
@@ -240,6 +468,30 @@
       "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a82cfe22_a8944260",
+        "filename": "src/settingsview/components/TroubleshootSettings.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e1db65a_58fa6906",
+      "range": {
+        "startLine": 32,
+        "startChar": 13,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "47252b6486587db1ecc8af3f742cb704ae9d3e7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }

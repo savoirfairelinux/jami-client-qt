@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d9621a97_d6995fae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c00a81a_a9e00567",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 65
+      },
+      "revId": "c89a6b3082d35621d90076e2e3bc69f40f4f0aac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5248b976_8accb80f",
         "filename": "src/constant/JamiStrings.qml",
         "patchSetId": 5
@@ -45,6 +69,30 @@
       "revId": "c89a6b3082d35621d90076e2e3bc69f40f4f0aac",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "641b7e25_933c45b1",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5248b976_8accb80f",
+      "range": {
+        "startLine": 319,
+        "startChar": 44,
+        "endLine": 319,
+        "endChar": 66
+      },
+      "revId": "c89a6b3082d35621d90076e2e3bc69f40f4f0aac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ff63a92d_e8bea801",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "095e627b_a894a22a",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 18
+      },
+      "revId": "c89a6b3082d35621d90076e2e3bc69f40f4f0aac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2de1750d_c7899df2",
         "filename": "src/settingsview/components/LogsView.qml",
         "patchSetId": 5
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "577618fd_816b4eef",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2de1750d_c7899df2",
+      "range": {
+        "startLine": 59,
+        "startChar": 26,
+        "endLine": 59,
+        "endChar": 32
+      },
+      "revId": "c89a6b3082d35621d90076e2e3bc69f40f4f0aac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e024e362_3fa4fe71",
         "filename": "src/settingsview/components/LogsView.qml",
         "patchSetId": 5
@@ -114,6 +210,30 @@
       "revId": "c89a6b3082d35621d90076e2e3bc69f40f4f0aac",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "547d8e65_2eb4d8b3",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 920
+      },
+      "writtenOn": "2021-05-26T15:44:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e024e362_3fa4fe71",
+      "range": {
+        "startLine": 184,
+        "startChar": 28,
+        "endLine": 192,
+        "endChar": 53
+      },
+      "revId": "c89a6b3082d35621d90076e2e3bc69f40f4f0aac",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
