@@ -30,7 +30,7 @@ import net.jami.Constants 1.0
 
 import "../../commoncomponents"
 
-Rectangle  {
+Rectangle {
     id: root
 
     property var accountPeerPair: ["", ""]
@@ -49,15 +49,17 @@ Rectangle  {
 
     onAccountPeerPairChanged: {
         if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
-            return;
+            return
         contactImage.updateImage(accountPeerPair[1])
         callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
 
-        bestName = UtilsAdapter.getBestName(accountPeerPair[0], accountPeerPair[1])
+        bestName = UtilsAdapter.getBestName(accountPeerPair[0],
+                                            accountPeerPair[1])
         var id = UtilsAdapter.getBestId(accountPeerPair[0], accountPeerPair[1])
         bestId = (bestName !== id) ? id : ""
 
-        root.callId = UtilsAdapter.getCallId(accountPeerPair[0], accountPeerPair[1])
+        root.callId = UtilsAdapter.getCallId(accountPeerPair[0],
+                                             accountPeerPair[1])
     }
 
     function setLinkedWebview(webViewId) {
@@ -219,7 +221,8 @@ Rectangle  {
 
                     width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                     x: callPageMainRect.width - previewRenderer.width - previewMargin
-                    y: callPageMainRect.height - previewRenderer.height - previewMargin - 56 // Avoid overlay
+                    y: callPageMainRect.height - previewRenderer.height
+                       - previewMargin - 56 // Avoid overlay
 
                     states: [
                         State {
@@ -261,10 +264,9 @@ Rectangle  {
                         onPositionChanged: {
                             // Calculate mouse position relative change.
                             var delta = Qt.point(mouse.x - clickPos.x,
-                                                mouse.y - clickPos.y)
+                                                 mouse.y - clickPos.y)
                             var deltaW = previewRenderer.x + delta.x + previewRenderer.width
                             var deltaH = previewRenderer.y + delta.y + previewRenderer.height
-
 
                             // Check if the previewRenderer exceeds the border of callPageMainRect.
                             if (deltaW < callPageMainRect.width
@@ -302,11 +304,13 @@ Rectangle  {
                         target: CallAdapter
 
                         function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
-                                                 isRecording, isSIP, bestName) {
+                                                 isRecording, isSIP, isConferenceCall, bestName) {
                             callOverlay.showOnHoldImage(isPaused)
                             audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
-                            callOverlay.update(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
-                                               isRecording, isSIP)
+                            callOverlay.update(isPaused, isAudioOnly,
+                                               isAudioMuted, isVideoMuted,
+                                               isRecording, isSIP,
+                                               isConferenceCall)
                             root.bestName = bestName
                             callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
                         }
