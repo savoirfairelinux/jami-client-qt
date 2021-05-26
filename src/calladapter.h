@@ -59,6 +59,7 @@ public:
     Q_INVOKABLE void hangUpCall(const QString& callId);
     Q_INVOKABLE void maximizeParticipant(const QString& uri);
     Q_INVOKABLE void minimizeParticipant(const QString& uri);
+    Q_INVOKABLE void showGridConferenceLayout();
     Q_INVOKABLE void hangUpThisCall();
     Q_INVOKABLE bool isCurrentHost() const;
     Q_INVOKABLE bool participantIsHost(const QString& uri) const;
