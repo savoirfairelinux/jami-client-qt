@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a8a8758e_2b3057c7",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-27T16:53:19Z",
+      "side": 1,
+      "message": "alias isAudioOnly: __participants...\nalias isVideoMuted: __participants...",
+      "revId": "3cca2e70789b6b0740208fe5d1090cfd4c710a30",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff229590_7f7ae0d4",
+        "filename": "src/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-27T16:53:19Z",
+      "side": 1,
+      "message": "isAudioOnly\nisVideoMuted",
+      "revId": "3cca2e70789b6b0740208fe5d1090cfd4c710a30",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c42ce422_c6978b64",
+        "filename": "src/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-05-27T16:53:19Z",
+      "side": 1,
+      "message": "\"Error: Cannot assign [undefined] to bool\"",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "3cca2e70789b6b0740208fe5d1090cfd4c710a30",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
