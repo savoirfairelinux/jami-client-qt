@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82015065_4da73f9e",
+        "filename": "src/mainview/components/CallActionBar.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-05-27T20:15:19Z",
+      "side": 1,
+      "message": "perfect, just make it red when AvAdapter.currentRenderingDeviceType \u003d\u003d\u003d Video.DeviceType.DISPLAY\nas per the design",
+      "range": {
+        "startLine": 197,
+        "startChar": 12,
+        "endLine": 197,
+        "endChar": 31
+      },
+      "revId": "6b3001677c6e8f1b1c37311df7604325b78ab519",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
