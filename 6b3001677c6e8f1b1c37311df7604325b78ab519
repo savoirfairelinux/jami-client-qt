@@ -22,6 +22,30 @@
       "revId": "6b3001677c6e8f1b1c37311df7604325b78ab519",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b600790a_afd25943",
+        "filename": "src/mainview/components/CallActionBar.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-27T20:30:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "82015065_4da73f9e",
+      "range": {
+        "startLine": 197,
+        "startChar": 12,
+        "endLine": 197,
+        "endChar": 31
+      },
+      "revId": "6b3001677c6e8f1b1c37311df7604325b78ab519",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
