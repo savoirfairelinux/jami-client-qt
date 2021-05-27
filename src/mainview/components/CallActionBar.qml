@@ -224,8 +224,7 @@ Control {
         // centered controls
         CallOverlayModel.addPrimaryControl(muteAudioAction)
         CallOverlayModel.addPrimaryControl(hangupAction)
-        if (!isAudioOnly)
-            CallOverlayModel.addPrimaryControl(muteVideoAction)
+        CallOverlayModel.addPrimaryControl(muteVideoAction)
 
         // overflow controls
         CallOverlayModel.addSecondaryControl(audioOutputAction)
@@ -240,7 +239,7 @@ Control {
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
 
         muteAudioAction.checked = isAudioMuted
-        muteVideoAction.checked = isVideoMuted
+        muteVideoAction.checked = isAudioOnly ? true : isVideoMuted
     }
 
     Item {
