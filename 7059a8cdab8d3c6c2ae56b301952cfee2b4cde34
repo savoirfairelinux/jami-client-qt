@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c5152a0_172fb937",
+        "filename": "src/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-27T20:43:31Z",
+      "side": 1,
+      "message": "magic numbers",
+      "range": {
+        "startLine": 41,
+        "startChar": 52,
+        "endLine": 41,
+        "endChar": 54
+      },
+      "revId": "7059a8cdab8d3c6c2ae56b301952cfee2b4cde34",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
