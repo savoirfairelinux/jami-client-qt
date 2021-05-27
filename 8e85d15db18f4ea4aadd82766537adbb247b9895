@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3ac8d7fb_7cdae48e",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-27T20:11:04Z",
+      "side": 1,
+      "message": "not sure what you mean?",
+      "parentUuid": "c73057bc_6d9322b9",
+      "range": {
+        "startLine": 723,
+        "startChar": 0,
+        "endLine": 726,
+        "endChar": 33
+      },
+      "revId": "8e85d15db18f4ea4aadd82766537adbb247b9895",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd2fa711_45f60ff5",
         "filename": "src/mainview/components/MainOverlay.qml",
         "patchSetId": 11
@@ -45,6 +69,30 @@
       "revId": "8e85d15db18f4ea4aadd82766537adbb247b9895",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef537983_3bcbd228",
+        "filename": "src/mainview/components/MainOverlay.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-05-27T20:11:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd2fa711_45f60ff5",
+      "range": {
+        "startLine": 141,
+        "startChar": 43,
+        "endLine": 143,
+        "endChar": 1
+      },
+      "revId": "8e85d15db18f4ea4aadd82766537adbb247b9895",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
