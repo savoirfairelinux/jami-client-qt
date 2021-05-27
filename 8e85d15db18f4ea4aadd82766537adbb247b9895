@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "78c67e36_99b8a056",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-05-27T20:15:58Z",
+      "side": 1,
+      "message": "that you can replace these 3 lines by auto confId \u003d convInfo.getCallId()",
+      "parentUuid": "3ac8d7fb_7cdae48e",
+      "range": {
+        "startLine": 723,
+        "startChar": 0,
+        "endLine": 726,
+        "endChar": 33
+      },
+      "revId": "8e85d15db18f4ea4aadd82766537adbb247b9895",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd2fa711_45f60ff5",
         "filename": "src/mainview/components/MainOverlay.qml",
         "patchSetId": 11
