@@ -313,6 +313,7 @@ Rectangle {
                                                  isRecording, isSIP, isConferenceCall, isGrid,
                                                  bestName) {
                             callOverlay.showOnHoldImage(isPaused)
+                            root.isAudioOnly = isAudioOnly
                             audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
                             callOverlay.updateUI(isPaused, isAudioOnly,
                                                  isAudioMuted, isVideoMuted,
