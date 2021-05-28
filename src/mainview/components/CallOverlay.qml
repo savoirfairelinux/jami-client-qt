@@ -49,6 +49,7 @@ Item {
     property bool isModerator
     property bool isConferenceCall
     property bool isGrid
+    property bool peerMultiStream
 
     property string bestName: ""
 
@@ -74,7 +75,7 @@ Item {
 
     function updateUI(isPaused, isAudioOnly, isAudioMuted,
                       isVideoMuted, isRecording, isSIP,
-                      isConferenceCall, isGrid) {
+                      isConferenceCall, isGrid, isPeerMultiStream) {
         if (isPaused !== undefined) {
             root.isPaused = isPaused
             root.isAudioOnly = isAudioOnly
@@ -84,6 +85,7 @@ Item {
             root.isSIP = isSIP
             root.isConferenceCall = isConferenceCall
             root.isGrid = isGrid
+            root.peerMultiStream = isPeerMultiStream
             mainOverlay.recordingVisible = isRecording
         }
         root.isModerator = CallAdapter.isCurrentModerator()

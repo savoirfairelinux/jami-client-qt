@@ -311,13 +311,13 @@ Rectangle {
 
                         function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
                                                  isRecording, isSIP, isConferenceCall, isGrid,
-                                                 bestName) {
+                                                 bestName, isPeerMultiStream) {
                             callOverlay.showOnHoldImage(isPaused)
                             audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
                             callOverlay.updateUI(isPaused, isAudioOnly,
                                                  isAudioMuted, isVideoMuted,
                                                  isRecording, isSIP,
-                                                 isConferenceCall, isGrid)
+                                                 isConferenceCall, isGrid, isPeerMultiStream)
                             root.bestName = bestName
                             callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
                         }

@@ -129,6 +129,14 @@ Rectangle {
     Connections {
         target: CallAdapter
 
+        function onCallInfosChanged(audioOnly, accountId, convUid) {
+//            console.log(a)
+            if (callStackMainView.currentItem.stackNumber === CallStackView.OngoingPageStack
+                    && responsibleConvUid === convUid && responsibleAccountId === accountId) {
+                ongoingCallPage.isAudioOnly = audioOnly
+            }
+        }
+
         function onCallStatusChanged(status, accountId, convUid) {
             if (callStackMainView.currentItem.stackNumber === CallStackView.InitialPageStack
                     && responsibleConvUid === convUid && responsibleAccountId === accountId) {
