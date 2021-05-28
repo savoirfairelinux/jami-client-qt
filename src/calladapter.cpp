@@ -249,6 +249,26 @@ CallAdapter::onCallStatusChanged(const QString& callId, int code)
 }
 
 void
+CallAdapter::onCallInfosChanged(const QString& accountId, const QString& callId)
+{
+    auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    auto& callModel = accInfo.callModel;
+
+    try {
+        const auto call = callModel->getCall(callId);
+        /*
+         * Change status label text.
+         */
+        const auto& convInfo = lrcInstance_->getConversationFromCallId(callId);
+        if (!convInfo.uid.isEmpty()) {
+            Q_EMIT callInfosChanged(call.isAudioOnly, accountId, convInfo.uid);
+            updateCallOverlay(convInfo);
+        }
+    } catch (...) {
+    }
+}
+
+void
 CallAdapter::onRemoteRecordingChanged(const QString& callId,
                                       const QSet<QString>& peerRec,
                                       bool state)
@@ -604,6 +624,11 @@ CallAdapter::connectCallModel(const QString& accountId)
             this,
             &CallAdapter::onCallAddedToConference,
             Qt::UniqueConnection);
+
+    connect(accInfo.callModel.get(),
+            &NewCallModel::callInfosChanged,
+            this,
+            QOverload<const QString&, const QString&>::of(&CallAdapter::onCallInfosChanged));
 }
 
 void
