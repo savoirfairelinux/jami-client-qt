@@ -22,6 +22,7 @@ Item {
     id: root
 
     enum Type {
+        Bypass,
         None,
         Top,
         Left,
@@ -39,17 +40,19 @@ Item {
         id: rect
 
         property bool horizontal: type === HalfPill.Left ||
-                                  type == HalfPill.Right
+                                  type === HalfPill.Right
         property bool direction: type === HalfPill.Right ||
-                                 type == HalfPill.Bottom
+                                 type === HalfPill.Bottom
+
+        property bool bp: type === HalfPill.Bypass
 
         radius: root.radius * (type !== HalfPill.None)
-        width: root.size + radius
-        height: root.size + radius
+        width: root.size + radius * bp
+        height: root.size + radius * bp
         anchors.fill: root
-        anchors.leftMargin: horizontal * direction * -radius
-        anchors.rightMargin: horizontal * !direction * -radius
-        anchors.topMargin: !horizontal * direction * -radius
-        anchors.bottomMargin: !horizontal * !direction * -radius
+        anchors.leftMargin: horizontal * direction * -radius * !bp
+        anchors.rightMargin: horizontal * !direction * -radius * !bp
+        anchors.topMargin: !horizontal * direction * -radius * !bp
+        anchors.bottomMargin: !horizontal * !direction * -radius * !bp
     }
 }
