@@ -84,6 +84,7 @@ Rectangle {
             Layout.rightMargin: JamiTheme.preferredMarginSize
             Layout.bottomMargin: JamiTheme.preferredMarginSize
             itemWidth: preferredColumnWidth
+            visible: Qt.platform.os == "windows"? false : true
         }
 
         // update setting panel
