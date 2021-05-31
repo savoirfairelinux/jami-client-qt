@@ -34,6 +34,7 @@ Item {
 
     // General
     property color blackColor: "#000000"
+    property color redColor: "red"
     property color whiteColor: "#ffffff"
     property color darkGreyColor: "#272727"
     property color darkGreyColorOpacity: "#be272727" // 77%
@@ -213,6 +214,11 @@ Item {
     property int mosaicButtonTextPointSize: 8
     property int mosaicButtonPreferredWidth: 70
     property int mosaicButtonMaxWidth: 100
+
+    property int menuItemsPreferredWidth: 220
+    property int menuItemsPreferredHeight: 48
+    property int menuItemsCommonBorderWidth: 1
+    property int menuBorderPreferredHeight: 8
 
     property real maximumWidthSettingsView: 600
     property real settingsHeaderpreferredHeight: 64
