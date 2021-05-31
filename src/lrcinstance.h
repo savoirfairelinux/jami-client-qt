@@ -121,8 +121,6 @@ public:
     void setContentDraft(const QString& convUid, const QString& accountId, const QString& content);
 
     bool hasActiveCall(bool withVideo = false);
-    void pushlastConference(const QString& confId, const QString& callId);
-    QString poplastConference(const QString& confId);
     VectorString getConferenceSubcalls(const QString& callId);
 
 Q_SIGNALS:
