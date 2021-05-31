@@ -18,22 +18,43 @@
 
 import QtQuick 2.14
 import QtQuick.Controls 2.14
+import QtGraphicalEffects 1.14
 
+import net.jami.Models 1.0
+import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
-MenuSeparator {
-    id: menuSeparator
+import "../../commoncomponents"
+import "../../commoncomponents/contextmenu"
 
-    property int preferredWidth: 10
-    property int preferredHeight: 1
-    property string separatorColor: JamiTheme.tabbarBorderColor
+Loader {
+    id: root
 
-    padding: 0
-    topPadding: 1
-    bottomPadding: 1
-    contentItem: Rectangle {
-        implicitWidth: preferredWidth
-        implicitHeight: preferredHeight
-        color: separatorColor
+    // Cannot have menuItemsToLoad directly assigned as list<GeneralMenuItem>
+    // https://stackoverflow.com/questions/26733011/how-to-declare-list-property-in-qml
+    property var menuItemsToLoad
+
+    function openMenu() {
+        root.active = true
+        root.sourceComponent = menuComponent
+    }
+
+
+    Connections {
+        target: root.item
+        enabled: root.status === Loader.Ready
+        function onClosed() {
+            root.active = false
+        }
+    }
+
+    Component {
+        id: menuComponent
+
+        BaseContextMenu {
+            id: contextMenu
+
+            Component.onCompleted: contextMenu.loadMenuItems(menuItemsToLoad)
+        }
     }
 }
