@@ -84,7 +84,6 @@ Rectangle {
             Layout.rightMargin: JamiTheme.preferredMarginSize
             Layout.bottomMargin: JamiTheme.preferredMarginSize
             itemWidth: preferredColumnWidth
-            visible: Qt.platform.os == "windows" ? false : true
         }
 
         // update setting panel
@@ -93,7 +92,7 @@ Rectangle {
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
             Layout.bottomMargin: JamiTheme.preferredMarginSize
-            visible: Qt.platform.os == "windows" ? true : false
+            visible: Qt.platform.os == "windows"? true : false
         }
     }
 }
