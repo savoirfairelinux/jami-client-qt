@@ -23,6 +23,8 @@ import QtGraphicalEffects 1.14
 
 import net.jami.Constants 1.0
 
+import "../../commoncomponents"
+
 // General menu item.
 // Can control top, bottom, left, right border width.
 // Use onClicked slot to simulate item click event.
@@ -31,13 +33,16 @@ MenuItem {
     id: menuItem
 
     property string itemName: ""
-    property string iconSource: ""
+    property alias iconSource: contextMenuItemImage.source
     property string iconColor: ""
-    property int preferredWidth: 220
-    property int preferredHeight: 48
+    property bool canTrigger: true
+    property bool addMenuSeparatorAfter: false
+    property BaseContextMenu parentMenu
 
-    property int leftBorderWidth: 0
-    property int rightBorderWidth: 0
+    property int preferredWidth: JamiTheme.menuItemsPreferredWidth
+    property int preferredHeight: JamiTheme.menuItemsPreferredHeight
+    property int leftBorderWidth: JamiTheme.menuItemsCommonBorderWidth
+    property int rightBorderWidth: JamiTheme.menuItemsCommonBorderWidth
 
     signal clicked
 
@@ -61,11 +66,11 @@ MenuItem {
             anchors.leftMargin: (visible ? 24 : 0)
             anchors.verticalCenter: menuItemContentRect.verticalCenter
 
-            width: (visible ? 24 : 0)
-            height: (visible ? 24 : 0)
-            color: iconColor !== ""? iconColor : JamiTheme.textColor
+            containerWidth: (visible ? 24 : 0)
+            containerHeight: (visible ? 24 : 0)
+            color: iconColor !== "" ? iconColor : JamiTheme.textColor
 
-            visible: false
+            visible: source ? true : false
             opacity: 0.7
         }
 
@@ -89,7 +94,10 @@ MenuItem {
             verticalAlignment: Text.AlignVCenter
         }
 
-        onReleased: menuItem.clicked()
+        onReleased: {
+            menuItem.clicked()
+            parentMenu.close()
+        }
 
         states: [
             State {
@@ -101,13 +109,6 @@ MenuItem {
                 PropertyChanges { target: background; color: JamiTheme.backgroundColor }
             }
         ]
-    }
-
-    onIconSourceChanged: {
-        if (iconSource !== "") {
-            contextMenuItemImage.source = iconSource
-            contextMenuItemImage.visible = true
-        }
     }
 
     highlighted: true
