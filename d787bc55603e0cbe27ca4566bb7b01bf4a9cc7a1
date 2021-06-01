@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a6a97095_640bdf80",
+        "filename": "src/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-01T21:30:02Z",
+      "side": 1,
+      "message": "what\u0027s this for?",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "d787bc55603e0cbe27ca4566bb7b01bf4a9cc7a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7af71855_bda01f4c",
+        "filename": "src/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-01T21:30:02Z",
+      "side": 1,
+      "message": "remove this. maybe put a right margin for contextMenuItemText?",
+      "range": {
+        "startLine": 115,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 13
+      },
+      "revId": "d787bc55603e0cbe27ca4566bb7b01bf4a9cc7a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
