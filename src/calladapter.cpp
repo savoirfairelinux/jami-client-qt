@@ -468,35 +468,35 @@ CallAdapter::shouldShowPreview(bool force)
 }
 
 QJsonObject
-CallAdapter::fillParticipantData(QMap<QString, QString> participant)
+CallAdapter::fillParticipantData(const lrc::api::call::ParticipantInfo& participant)
 {
     QJsonObject data;
-    data["x"] = participant["x"].toInt();
-    data["y"] = participant["y"].toInt();
-    data["w"] = participant["w"].toInt();
-    data["h"] = participant["h"].toInt();
-    data["uri"] = participant["uri"];
-    data["active"] = participant["active"] == "true";
-    data["videoMuted"] = participant["videoMuted"] == "true";
-    data["audioLocalMuted"] = participant["audioLocalMuted"] == "true";
-    data["audioModeratorMuted"] = participant["audioModeratorMuted"] == "true";
-    data["isContact"] = false;
+    data["x"] = participant.x;
+    data["y"] = participant.y;
+    data["w"] = participant.width;
+    data["h"] = participant.height;
+    data["uri"] = participant.uri;
+    data["active"] = participant.active;
+    data["videoMuted"] = participant.videoMuted;
+    data["audioLocalMuted"] = participant.audioLocalMuted;
+    data["audioModeratorMuted"] = participant.audioModeratorMuted;
+    data["isContact"] = participant.isContact;
 
-    auto bestName = participant["uri"];
+    auto bestName = participant.uri;
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
     data["isLocal"] = false;
     if (bestName == accInfo.profileInfo.uri) {
         bestName = tr("me");
         data["isLocal"] = true;
-        if (participant["videoMuted"] == "true")
+        if (participant.videoMuted)
             data["avatar"] = accInfo.profileInfo.avatar;
     } else {
         try {
             auto& contact = lrcInstance_->getCurrentAccountInfo().contactModel->getContact(
-                participant["uri"]);
+                participant.uri);
             bestName = lrcInstance_->getCurrentAccountInfo().contactModel->bestNameForContact(
-                participant["uri"]);
-            if (participant["videoMuted"] == "true")
+                participant.uri);
+            if (participant.videoMuted)
                 data["avatar"] = contact.profileInfo.avatar;
             data["isContact"] = true;
         } catch (...) {
@@ -695,12 +695,12 @@ CallAdapter::maximizeParticipant(const QString& uri)
         auto call = callModel->getCall(confId);
         if (call.participantsInfos.size() > 0) {
             for (const auto& participant : call.participantsInfos) {
-                if (participant["uri"] == uri) {
-                    if (participant["active"] == "false") {
+                if (participant.uri == uri) {
+                    if (participant.active) {
                         callModel->setActiveParticipant(confId, uri);
                         callModel->setConferenceLayout(confId,
                                                        lrc::api::call::Layout::ONE_WITH_SMALL);
-                    } else if (participant["y"].toInt() != 0) {
+                    } else if (participant.y != 0) {
                         callModel->setActiveParticipant(confId, uri);
                         callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE);
                     } else {
@@ -728,9 +728,9 @@ CallAdapter::minimizeParticipant(const QString& uri)
         auto call = callModel->getCall(confId);
         if (call.participantsInfos.size() > 0) {
             for (const auto& participant : call.participantsInfos) {
-                if (participant["uri"] == uri) {
-                    if (participant["active"] == "true") {
-                        if (participant["y"].toInt() == 0) {
+                if (participant.uri == uri) {
+                    if (participant.active) {
+                        if (participant.y == 0) {
                             callModel->setConferenceLayout(confId,
                                                            lrc::api::call::Layout::ONE_WITH_SMALL);
                         } else {
@@ -854,8 +854,8 @@ CallAdapter::isCurrentModerator() const
             } else {
                 auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
                 for (const auto& participant : call.participantsInfos) {
-                    if (participant["uri"] == accInfo.profileInfo.uri)
-                        return participant["isModerator"] == "true";
+                    if (participant.uri == accInfo.profileInfo.uri)
+                        return participant.isModerator;
                 }
             }
             return false;
@@ -907,14 +907,14 @@ CallAdapter::getMuteState(const QString& uri) const
             return MuteStates::UNMUTED;
         } else {
             for (const auto& participant : call.participantsInfos) {
-                if (participant["uri"] == uri) {
-                    if (participant["audioLocalMuted"] == "true") {
-                        if (participant["audioModeratorMuted"] == "true") {
+                if (participant.uri == uri) {
+                    if (participant.audioLocalMuted) {
+                        if (participant.audioModeratorMuted) {
                             return MuteStates::BOTH_MUTED;
                         } else {
                             return MuteStates::LOCAL_MUTED;
                         }
-                    } else if (participant["audioModeratorMuted"] == "true") {
+                    } else if (participant.audioModeratorMuted) {
                         return MuteStates::MODERATOR_MUTED;
                     }
                     return MuteStates::UNMUTED;
