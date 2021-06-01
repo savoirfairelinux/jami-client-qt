@@ -117,7 +117,7 @@ private:
     void updateRecordingPeers(bool eraseLabelOnEmpty = false);
     bool shouldShowPreview(bool force);
     void showNotification(const QString& accountId, const QString& convUid);
-    QJsonObject fillParticipantData(QMap<QString, QString> participant);
+    QJsonObject fillParticipantData(const lrc::api::call::ParticipantInfo& participant);
     void preventScreenSaver(bool state);
     void updateCallOverlay(const lrc::api::conversation::Info& convInfo);
     void saveConferenceSubcalls();
