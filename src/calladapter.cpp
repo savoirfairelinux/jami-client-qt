@@ -36,6 +36,8 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
 {
+    participantsModel_.reset(new CallParticipantsModel(lrcInstance_, this));
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, participantsModel_.get(), "CallParticipantsModel");
     overlayModel_.reset(new CallOverlayModel(lrcInstance_, this));
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, overlayModel_.get(), "CallOverlayModel");
 
@@ -692,6 +694,8 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                         ? QString()
                         : accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
 
+    if (isConferenceCall)
+        updateCallParticipants(getConferencesInfos());
     Q_EMIT updateOverlay(isPaused,
                          isAudioOnly,
                          isAudioMuted,
@@ -701,6 +705,16 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                          isConferenceCall,
                          isGrid,
                          bestName);
+}
+
+/*
+ * For Call Renderers
+ */
+void
+CallAdapter::updateCallParticipants(const QVariantList& participantsInfo)
+{
+    participantsModel_->setParticipants(participantsInfo);
+    Q_EMIT updateParticipants(participantsInfo);
 }
 
 void
