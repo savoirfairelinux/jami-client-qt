@@ -115,13 +115,15 @@ ItemDelegate {
 
         anchors.centerIn: parent
         horizontalAlignment: Text.AlignHCenter
-        source: ItemAction.icon.source
-        color: ItemAction.icon.color
+        source: ItemAction ? ItemAction.icon.source : ""
+        color: ItemAction ? ItemAction.icon.color : null
 
         SequentialAnimation on opacity {
             loops: Animation.Infinite
-            running: ItemAction.blinksWhenChecked !== undefined &&
+            running: ItemAction !== undefined &&
+                     ItemAction.blinksWhenChecked !== undefined &&
                      ItemAction.blinksWhenChecked && checked
+            onStopped: icon.opacity = 1
             NumberAnimation { from: 1; to: 0; duration: JamiTheme.recordBlinkDuration }
             NumberAnimation { from: 0; to: 1; duration: JamiTheme.recordBlinkDuration }
         }
@@ -142,7 +144,9 @@ ItemDelegate {
             id: toolTip
             parent: parent
             visible: text.length > 0 && (wrapper.hovered || menu.hovered)
-            text: menu.hovered ? menuAction.text : ItemAction.text
+            text: menu.hovered ?
+                      menuAction.text :
+                      (ItemAction !== undefined ? ItemAction.text : null)
             verticalPadding: 1
             font.pointSize: 9
         }
@@ -256,6 +260,7 @@ ItemDelegate {
                 property real menuItemWidth: 0
                 property real menuItemHeight: 39
 
+                pixelAligned: true
                 orientation: ListView.Vertical
                 implicitWidth: menuItemWidth
                 implicitHeight: Math.min(contentHeight,
@@ -306,6 +311,7 @@ ItemDelegate {
     BadgeNotifier {
         id: badge
 
+        visible: count > 0
         count: BadgeCount
         anchors.horizontalCenter: parent.horizontalCenter
         width: 18
