@@ -24,6 +24,7 @@
 #include "qmladapterbase.h"
 #include "screensaver.h"
 #include "calloverlaymodel.h"
+#include "callparticipantsmodel.h"
 
 #include <QObject>
 #include <QString>
@@ -102,6 +103,7 @@ Q_SIGNALS:
                        bool isConferenceCall,
                        bool isGrid,
                        const QString& bestName);
+    void updateParticipants(const QVariantList& participantsInfo);
     void remoteRecordingChanged(const QStringList& peers, bool state);
     void eraseRemoteRecording();
 
@@ -123,6 +125,7 @@ private:
     QJsonObject fillParticipantData(const lrc::api::call::ParticipantInfo& participant);
     void preventScreenSaver(bool state);
     void updateCallOverlay(const lrc::api::conversation::Info& convInfo);
+    void updateCallParticipants(const QVariantList& participantsInfo);
     void saveConferenceSubcalls();
 
     QString accountId_;
@@ -131,5 +134,6 @@ private:
     ScreenSaver screenSaver;
     SystemTray* systemTray_;
     QScopedPointer<CallOverlayModel> overlayModel_;
+    QScopedPointer<CallParticipantsModel> participantsModel_;
     VectorString currentConfSubcalls_;
 };
