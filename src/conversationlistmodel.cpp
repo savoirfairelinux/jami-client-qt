@@ -107,6 +107,9 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     auto registeredName = index.data(ConversationList::Role::RegisteredName).toString();
     auto itemProfileType = index.data(ConversationList::Role::ContactType).toInt();
     auto typeFilter = static_cast<profile::Type>(itemProfileType) == currentTypeFilter_;
+    if (currentTypeFilter_ == profile::Type::PENDING) {
+        typeFilter |= index.data(ConversationList::Role::IsRequest).toBool();
+    }
     bool match {false};
     if (index.data(ConversationList::Role::IsBanned).toBool()) {
         match = !rx.isEmpty()
