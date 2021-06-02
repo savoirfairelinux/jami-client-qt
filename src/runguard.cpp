@@ -77,16 +77,16 @@ RunGuard::isAnotherRunning()
 bool
 RunGuard::tryToRun()
 {
-#ifdef Q_OS_WIN
     if (isAnotherRunning()) {
         /*
          * This is a secondary instance,
          * connect to the primary instance to trigger a restore
          * then fail.
          */
-        if (socket_ == nullptr) {
+        if (!socket_)
             socket_ = new QLocalSocket();
-        }
+        if (!socket_)
+            return false;
         if (socket_->state() == QLocalSocket::UnconnectedState
             || socket_->state() == QLocalSocket::ClosingState) {
             socket_->connectToServer(key_);
@@ -117,7 +117,6 @@ RunGuard::tryToRun()
                      &QLocalServer::newConnection,
                      this,
                      &RunGuard::tryRestorePrimaryInstance);
-#endif
 
     return true;
 }
