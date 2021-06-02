@@ -19,20 +19,29 @@
 import QtQuick 2.14
 import QtQml 2.14
 
+import net.jami.Adapters 1.0
+
 Item {
     id: root
 
-    property bool isVideoMuted
     property var participantOverlays: []
     property var participantComponent: Qt.createComponent("ParticipantOverlay.qml")
+
+    Connections {
+        target: CallAdapter
+
+        function onUpdateParticipants(infos) {
+            update(infos)
+        }
+    }
 
     // returns true if participant is not fully maximized
     function showMaximize(pX, pY, pW, pH) {
         // Hack: -1 offset added to avoid problems with odd sizes
         return (pX - distantRenderer.getXOffset() !== 0
                 || pY - distantRenderer.getYOffset() !== 0
-                || pW < (distantRenderer.width - distantRenderer.getXOffset() * 2 - 1)
-                || pH < (distantRenderer.height - distantRenderer.getYOffset() * 2 - 1))
+                || pW < (parent.width - distantRenderer.getXOffset() * 2 - 1)
+                || pH < (parent.height - distantRenderer.getYOffset() * 2 - 1))
     }
 
     function update(infos) {
@@ -92,7 +101,7 @@ Item {
         participantOverlays = participantOverlays.filter(part => !deletedUris.includes(part.uri))
 
         if (infos.length === 0) { // Return to normal call
-            previewRenderer.visible = !isVideoMuted
+            previewRenderer.visible = !callOverlay.isVideoMuted
             for (var part in participantOverlays) {
                 if (participantOverlays[part]) {
                     participantOverlays[part].destroy()
