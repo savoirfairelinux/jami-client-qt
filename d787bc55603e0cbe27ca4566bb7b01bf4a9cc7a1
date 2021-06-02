@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6dfedb5c_840aae3e",
+        "filename": "src/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-06-02T13:06:55Z",
+      "side": 1,
+      "message": "Was to replicate anchors, but yeah, this is not needed anymore",
+      "parentUuid": "a6a97095_640bdf80",
+      "range": {
+        "startLine": 71,
+        "startChar": 16,
+        "endLine": 76,
+        "endChar": 17
+      },
+      "revId": "d787bc55603e0cbe27ca4566bb7b01bf4a9cc7a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7af71855_bda01f4c",
         "filename": "src/commoncomponents/contextmenu/GeneralMenuItem.qml",
         "patchSetId": 1
@@ -45,6 +69,30 @@
       "revId": "d787bc55603e0cbe27ca4566bb7b01bf4a9cc7a1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ed7375a0_a2e0c80f",
+        "filename": "src/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-06-02T13:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7af71855_bda01f4c",
+      "range": {
+        "startLine": 115,
+        "startChar": 12,
+        "endLine": 117,
+        "endChar": 13
+      },
+      "revId": "d787bc55603e0cbe27ca4566bb7b01bf4a9cc7a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
