@@ -30,12 +30,7 @@
 CallParticipantsModel::CallParticipantsModel(LRCInstance* instance, QObject* parent)
     : QAbstractListModel(parent)
     , lrcInstance_(instance)
-{
-    // connect(this,
-    //         &CallOverlayModel::overflowIndexChanged,
-    //         this,
-    //         &CallOverlayModel::setControlRanges);
-}
+{}
 
 int
 CallParticipantsModel::rowCount(const QModelIndex& parent) const

@@ -38,8 +38,6 @@ import "../../commoncomponents"
 Item {
     id: root
 
-    property alias participantsLayer: __participantsLayer
-
     property bool isPaused
     property bool isAudioOnly
     property bool isAudioMuted
@@ -53,12 +51,6 @@ Item {
     property string bestName: ""
 
     signal chatButtonClicked
-
-    ParticipantsLayer {
-        id: __participantsLayer
-        visible: !root.isAudioOnly
-        anchors.fill: parent
-    }
 
     function setRecording(localIsRecording) {
         callViewContextMenu.localIsRecording = localIsRecording
