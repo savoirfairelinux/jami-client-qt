@@ -285,7 +285,7 @@ Control {
             icon.source: "qrc:/images/icons/plugins-24px.svg"
             icon.color: "white"
             text: JamiStrings.viewPlugin
-            enabled: UtilsAdapter.checkShowPluginsButton(true)
+            enabled: PluginAdapter.callMediaHandlersListCount
         }
     ]
 
@@ -320,8 +320,7 @@ Control {
         if (!isAudioOnly && !isSIP)
             CallOverlayModel.addSecondaryControl(shareAction)
         CallOverlayModel.addSecondaryControl(recordAction)
-        if (UtilsAdapter.checkShowPluginsButton(true))
-            CallOverlayModel.addSecondaryControl(pluginsAction)
+        CallOverlayModel.addSecondaryControl(pluginsAction)
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
 
         muteAudioAction.checked = isAudioMuted
