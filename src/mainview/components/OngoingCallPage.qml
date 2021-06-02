@@ -43,6 +43,7 @@ Rectangle {
     property int previewToX: 0
     property int previewToY: 0
     property bool isAudioOnly: false
+    property bool isConferenceCall: false // TODO REMOVE THIS AFTER PARTICIPANTS LAYER CAN GET NO CONF INFOS!
     property alias callId: distantRenderer.rendererId
     property var linkedWebview: null
 
@@ -52,7 +53,7 @@ Rectangle {
         if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
             return
         contactImage.updateImage(accountPeerPair[1])
-        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
+        participantsLayer.update(CallAdapter.getConferencesInfos())
 
         bestName = UtilsAdapter.getBestName(accountPeerPair[0],
                                             accountPeerPair[1])
@@ -100,7 +101,7 @@ Rectangle {
         } else {
             bestName = ""
         }
-        callOverlay.participantsLayer.update(infos)
+        participantsLayer.update(infos)
     }
 
     function previewMagneticSnap() {
@@ -108,12 +109,12 @@ Rectangle {
         var previewRendererCenter = Qt.point(
                     previewRenderer.x + previewRenderer.width / 2,
                     previewRenderer.y + previewRenderer.height / 2)
-        var distantRendererCenter = Qt.point(
-                    distantRenderer.x + distantRenderer.width / 2,
-                    distantRenderer.y + distantRenderer.height / 2)
+        var parentCenter = Qt.point(
+                    parent.x + parent.width / 2,
+                    parent.y + parent.height / 2)
 
-        if (previewRendererCenter.x >= distantRendererCenter.x) {
-            if (previewRendererCenter.y >= distantRendererCenter.y) {
+        if (previewRendererCenter.x >= parentCenter.x) {
+            if (previewRendererCenter.y >= parentCenter.y) {
                 // Bottom right.
                 previewToX = Qt.binding(function () {
                     return callPageMainRect.width - previewRenderer.width - previewMargin
@@ -129,7 +130,7 @@ Rectangle {
                 previewToY = previewMarginYTop
             }
         } else {
-            if (previewRendererCenter.y >= distantRendererCenter.y) {
+            if (previewRendererCenter.y >= parentCenter.y) {
                 // Bottom left.
                 previewToX = previewMargin
                 previewToY = Qt.binding(function () {
@@ -194,8 +195,15 @@ Rectangle {
                     visible: !root.isAudioOnly
 
                     onOffsetChanged: {
-                        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
+                        participantsLayer.update(CallAdapter.getConferencesInfos())
                     }
+                }
+
+                ParticipantsLayer {
+                    id: participantsLayer
+                    anchors.fill: parent
+                    anchors.centerIn: parent
+                    visible: root.isConferenceCall
                 }
 
                 VideoCallPreviewRenderer {
@@ -319,7 +327,7 @@ Rectangle {
                                                  isRecording, isSIP,
                                                  isConferenceCall, isGrid)
                             root.bestName = bestName
-                            callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
+                            root.isConferenceCall = isConferenceCall
                         }
 
                         function onShowOnHoldLabel(isPaused) {

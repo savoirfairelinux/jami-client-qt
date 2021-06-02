@@ -708,8 +708,9 @@ CallAdapter::maximizeParticipant(const QString& uri)
     try {
         auto call = callModel->getCall(confId);
         if (call.participantsInfos.size() > 0) {
-            for (const auto& participant : call.participantsInfos) {
+            for (auto& participant : call.participantsInfos) {
                 if (participant.uri == uri) {
+                    participant.active = !participant.active;
                     if (participant.active) {
                         callModel->setActiveParticipant(confId, uri);
                         callModel->setConferenceLayout(confId,
@@ -741,9 +742,10 @@ CallAdapter::minimizeParticipant(const QString& uri)
     try {
         auto call = callModel->getCall(confId);
         if (call.participantsInfos.size() > 0) {
-            for (const auto& participant : call.participantsInfos) {
+            for (auto& participant : call.participantsInfos) {
                 if (participant.uri == uri) {
                     if (participant.active) {
+                        participant.active = !participant.active;
                         if (participant.y == 0) {
                             callModel->setConferenceLayout(confId,
                                                            lrc::api::call::Layout::ONE_WITH_SMALL);
