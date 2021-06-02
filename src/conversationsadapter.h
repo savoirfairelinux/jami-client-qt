@@ -33,7 +33,7 @@ class SystemTray;
 class ConversationsAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
-    QML_PROPERTY(lrc::api::profile::Type, currentTypeFilter)
+    QML_PROPERTY(bool, currentTypeFilter)
     QML_PROPERTY(int, totalUnreadMessageCount)
     QML_PROPERTY(int, pendingRequestCount)
 
@@ -49,7 +49,7 @@ protected:
 public:
     Q_INVOKABLE bool connectConversationModel(bool updateFilter = true);
     Q_INVOKABLE void setFilter(const QString& filterString);
-    Q_INVOKABLE void setTypeFilter(const profile::Type& typeFilter);
+    Q_INVOKABLE void setTypeFilter(bool typeFilter);
     Q_INVOKABLE QVariantMap getConvInfoMap(const QString& convId);
 
 Q_SIGNALS:

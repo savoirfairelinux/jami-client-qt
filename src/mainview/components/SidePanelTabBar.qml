@@ -31,7 +31,7 @@ import "../../commoncomponents"
 TabBar {
     id: tabBar
 
-    property int currentTypeFilter: ConversationsAdapter.currentTypeFilter
+    property bool currentTypeFilter: ConversationsAdapter.currentTypeFilter
 
     currentIndex: 0
 
@@ -41,16 +41,13 @@ TabBar {
     }
 
     function selectTab(tabIndex) {
-        ConversationsAdapter.currentTypeFilter =
-                (tabIndex === SidePanelTabBar.Conversations) ?
-                    LRCInstance.currentAccountType :
-                    Profile.Type.PENDING
+        ConversationsAdapter.currentTypeFilter = (tabIndex !== SidePanelTabBar.Conversations)
     }
 
     FilterTabButton {
         id: conversationsTabButton
 
-        down: currentTypeFilter !==  Profile.Type.PENDING
+        down: !currentTypeFilter
         tabBar: parent
         labelText: JamiStrings.conversations
         onSelected: selectTab(SidePanelTabBar.Conversations)
