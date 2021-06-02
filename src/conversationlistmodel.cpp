@@ -106,10 +106,7 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     auto alias = index.data(ConversationList::Role::Alias).toString();
     auto registeredName = index.data(ConversationList::Role::RegisteredName).toString();
     auto itemProfileType = index.data(ConversationList::Role::ContactType).toInt();
-    auto typeFilter = static_cast<profile::Type>(itemProfileType) == currentTypeFilter_;
-    if (currentTypeFilter_ == profile::Type::PENDING) {
-        typeFilter |= index.data(ConversationList::Role::IsRequest).toBool();
-    }
+    auto typeFilter = currentTypeFilter_ == index.data(ConversationList::Role::IsRequest).toBool();
     bool match {false};
     if (index.data(ConversationList::Role::IsBanned).toBool()) {
         match = !rx.isEmpty()
@@ -131,7 +128,7 @@ ConversationListProxyModel::lessThan(const QModelIndex& left, const QModelIndex&
 }
 
 void
-ConversationListProxyModel::setTypeFilter(const profile::Type& typeFilter)
+ConversationListProxyModel::setTypeFilter(bool typeFilter)
 {
     beginResetModel();
     currentTypeFilter_ = typeFilter;

@@ -48,8 +48,8 @@ public:
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
-    Q_INVOKABLE void setTypeFilter(const profile::Type& typeFilter);
+    Q_INVOKABLE void setTypeFilter(bool typeFilter);
 
 private:
-    profile::Type currentTypeFilter_;
+    bool currentTypeFilter_;
 };
