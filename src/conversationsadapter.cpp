@@ -33,7 +33,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            LRCInstance* instance,
                                            QObject* parent)
     : QmlAdapterBase(instance, parent)
-    , currentTypeFilter_(profile::Type::JAMI)
+    , currentTypeFilter_(false)
     , systemTray_(systemTray)
     , convSrcModel_(new ConversationListModel(lrcInstance_))
     , convModel_(new ConversationListProxyModel(convSrcModel_.get()))
@@ -66,16 +66,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
             accInfo.conversationModel->selectConversation(convInfo.uid);
             accInfo.conversationModel->clearUnreadInteractions(convInfo.uid);
 
-            try {
-                // Set contact filter (for conversation tab selection)
-                // WARNING: not swarm ready
-                auto& contact = accInfo.contactModel->getContact(convInfo.participants.front());
-                if (contact.profileInfo.type != profile::Type::INVALID
-                    && contact.profileInfo.type != profile::Type::TEMPORARY)
-                    set_currentTypeFilter(contact.profileInfo.type);
-            } catch (const std::out_of_range& e) {
-                qWarning() << e.what();
-            }
+            set_currentTypeFilter(convInfo.isRequest);
 
             // reposition index in case of programmatic selection
             // currently, this may only occur for the conversation list
@@ -171,7 +162,7 @@ ConversationsAdapter::safeInit()
 
     connectConversationModel();
 
-    set_currentTypeFilter(lrcInstance_->getCurrentAccountInfo().profileInfo.type);
+    set_currentTypeFilter(false);
 }
 
 void
@@ -188,7 +179,7 @@ ConversationsAdapter::onCurrentAccountIdChanged()
 
     connectConversationModel();
 
-    set_currentTypeFilter(lrcInstance_->getCurrentAccountInfo().profileInfo.type);
+    set_currentTypeFilter(false);
 }
 
 void
@@ -364,8 +355,8 @@ ConversationsAdapter::updateConversationFilterData()
     }
     set_totalUnreadMessageCount(totalUnreadMessages);
     set_pendingRequestCount(accountInfo.conversationModel->pendingRequestCount());
-    if (pendingRequestCount_ == 0 && currentTypeFilter_ == profile::Type::PENDING) {
-        set_currentTypeFilter(profile::Type::JAMI);
+    if (pendingRequestCount_ == 0 && currentTypeFilter_) {
+        set_currentTypeFilter(false);
     }
 }
 
@@ -377,7 +368,7 @@ ConversationsAdapter::setFilter(const QString& filterString)
 }
 
 void
-ConversationsAdapter::setTypeFilter(const profile::Type& typeFilter)
+ConversationsAdapter::setTypeFilter(bool typeFilter)
 {
     convModel_->setTypeFilter(typeFilter);
 }
@@ -491,7 +482,7 @@ ConversationsAdapter::connectConversationModel(bool updateFilter)
                      Qt::UniqueConnection);
 
     if (updateFilter) {
-        currentTypeFilter_ = profile::Type::INVALID;
+        currentTypeFilter_ = false;
     }
 
     convSrcModel_.reset(new ConversationListModel(lrcInstance_));
