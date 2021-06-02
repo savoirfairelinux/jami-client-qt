@@ -341,13 +341,8 @@ CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
         if (contactUri.isEmpty()) {
             return;
         }
-        try {
-            auto& contact = accInfo.contactModel->getContact(contactUri);
-            if (contact.profileInfo.type == lrc::api::profile::Type::PENDING) {
-                lrcInstance_->getCurrentConversationModel()->makePermanent(convInfo.uid);
-            }
-        } catch (...) {
-        }
+        if (convInfo.isRequest)
+            lrcInstance_->getCurrentConversationModel()->makePermanent(convInfo.uid);
     }
 }
 
