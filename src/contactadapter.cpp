@@ -95,7 +95,7 @@ ContactAdapter::setSearchFilter(const QString& filter)
         selectableProxyModel_->setPredicate(
             [this, filter](const QModelIndex& index, const QRegExp&) {
                 return (!defaultModerators_.contains(index.data(Role::URI).toString())
-                        && index.data(Role::BestName).toString().contains(filter));
+                        && index.data(Role::Title).toString().contains(filter));
             });
     }
     selectableProxyModel_->setFilterRegExp(
