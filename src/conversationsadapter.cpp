@@ -396,7 +396,6 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
         contactModel = accountInfo.contactModel.get();
         contact = contactModel->getContact(peerUri);
     } catch (...) {
-        return {};
     }
     bool isAudioOnly {false};
     if (!convInfo.uid.isEmpty()) {
