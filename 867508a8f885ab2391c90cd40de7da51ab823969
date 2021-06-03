@@ -70,6 +70,30 @@
       "revId": "867508a8f885ab2391c90cd40de7da51ab823969",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "537f3f16_f53b3118",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2021-06-03T15:53:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "46bda497_d7033490",
+      "range": {
+        "startLine": 492,
+        "startChar": 8,
+        "endLine": 492,
+        "endChar": 20
+      },
+      "revId": "867508a8f885ab2391c90cd40de7da51ab823969",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
