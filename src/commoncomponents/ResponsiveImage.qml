@@ -52,9 +52,10 @@ Image {
     antialiasing: false
     asynchronous: true
 
-    layer {
-        enabled: true
-        effect: ColorOverlay { color: root.color }
+    ColorOverlay {
+        anchors.fill: root
+        source: root
+        color: root.color
     }
 
     function setSourceSize() {
