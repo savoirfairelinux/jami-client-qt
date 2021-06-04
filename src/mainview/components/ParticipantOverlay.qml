@@ -49,6 +49,9 @@ Item {
     property bool participantIsModerator: false
     property bool participantIsMuted: false
     property bool participantIsModeratorMuted: false
+    property bool participantMenuActive: false
+    property string callId: ""
+    property string sinkId: ""
 
     z: 1
 
@@ -74,7 +77,6 @@ Item {
     }
 
     function setMenu(newUri, bestName, isLocal, isActive, showMax) {
-
         overlayMenu.uri = newUri
         overlayMenu.bestName = bestName
 
@@ -176,6 +178,8 @@ Item {
     AvatarImage {
         id: contactImage
 
+        z: -1
+
         anchors.centerIn: parent
         height:  Math.min(parent.width / 2, parent.height / 2)
         width:  Math.min(parent.width / 2, parent.height / 2)
@@ -201,6 +205,17 @@ Item {
         layer.mipmap: false
         layer.smooth: true
     }
+
+    DistantRenderer {
+        id: distantRendererSingle
+        anchors.fill: parent
+        anchors.centerIn: parent
+        z: -1
+
+        lrcInstance: LRCInstance
+        visible: !contactImage.visible && root.sinkId !== ""
+        rendererId: root.sinkId ? root.sinkId : ""
+     }
 
     // Participant background and buttons for moderation
     MouseArea {

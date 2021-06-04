@@ -513,6 +513,7 @@ CallAdapter::fillParticipantData(const lrc::api::call::ParticipantInfo& particip
     data["h"] = participant.height;
     data["uri"] = participant.uri;
     data["active"] = participant.active;
+    data["sinkId"] = participant.sinkId;
     data["videoMuted"] = participant.videoMuted;
     data["audioLocalMuted"] = participant.audioLocalMuted;
     data["audioModeratorMuted"] = participant.audioModeratorMuted;
@@ -715,7 +716,6 @@ void
 CallAdapter::updateCallParticipants(const QVariantList& participantsInfo)
 {
     participantsModel_->setParticipants(participantsInfo);
-    Q_EMIT updateParticipants(participantsInfo);
 }
 
 void

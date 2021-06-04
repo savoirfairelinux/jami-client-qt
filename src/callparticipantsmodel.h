@@ -33,13 +33,14 @@
     X(Device) \
     X(SinkId) \
     X(BestName) \
+    X(Avatar) \
     X(Active) \
     X(XPosition) \
     X(YPosition) \
     X(Width) \
     X(Height) \
     X(AudioLocalMuted) \
-    X(AUdioModeratorMuted) \
+    X(AudioModeratorMuted) \
     X(VideoMuted) \
     X(IsModerator) \
     X(IsLocal) \
@@ -80,6 +81,9 @@ public:
     void removeParticipant(const CallParticipant::Item& item);
     void clearParticipants();
     void setParticipants(const QVariantList& participants);
+
+Q_SIGNALS:
+    void updateParticipants();
 
 private:
     LRCInstance* lrcInstance_ {nullptr};
