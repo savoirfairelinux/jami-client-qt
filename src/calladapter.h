@@ -103,7 +103,6 @@ Q_SIGNALS:
                        bool isConferenceCall,
                        bool isGrid,
                        const QString& bestName);
-    void updateParticipants(const QVariantList& participantsInfo);
     void remoteRecordingChanged(const QStringList& peers, bool state);
     void eraseRemoteRecording();
 

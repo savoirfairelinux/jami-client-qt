@@ -49,6 +49,7 @@ Item {
     property bool isGrid
 
     property string bestName: ""
+    property string callId: ""
 
     signal chatButtonClicked
 
