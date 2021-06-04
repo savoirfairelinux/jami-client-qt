@@ -159,13 +159,19 @@ Rectangle {
 
             Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
             Layout.bottomMargin: JamiTheme.preferredMarginSize
-            Layout.preferredWidth: 150
-            Layout.preferredHeight: 30
+            Layout.preferredWidth: JamiTheme.aboutButtonPreferredWidth
+            Layout.preferredHeight: preferredHeight
 
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
             outlined: true
+
+            onTextActualWidthChanged: {
+                if (textActualWidth > btnAboutPopUp.Layout.preferredWidth)
+                    btnAboutPopUp.Layout.preferredWidth =
+                            textActualWidth + JamiTheme.preferredMarginSize * 2
+            }
 
             text: JamiStrings.aboutJami
 
