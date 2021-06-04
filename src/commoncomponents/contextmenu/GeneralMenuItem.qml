@@ -84,25 +84,31 @@ MenuItem {
                 Layout.leftMargin: contextMenuItemImage.status === Image.Ready ? 20 : 10
                 Layout.rightMargin: contextMenuItemImage.status === Image.Ready ? 20 : 10
                 Layout.preferredHeight: itemPreferredHeight
-                Layout.preferredWidth: JamiTheme.contextMenuItemTextPreferredWidth
+                Layout.fillWidth: true
 
                 text: itemName
                 color: JamiTheme.textColor
                 font.pointSize: JamiTheme.textFontSize
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
 
-                onWidthChanged: {
-                    if (autoTextSizeAdjustment
-                            && width > contextMenuItemText.Layout.preferredWidth) {
-                        if (width > JamiTheme.contextMenuItemTextMaxWidth)
-                            contextMenuItemText.Layout.preferredWidth
-                                    = JamiTheme.contextMenuItemTextMaxWidth
-                        else
-                            contextMenuItemText.Layout.preferredWidth = width
-                        itemPreferredWidth += contextMenuItemText.Layout.preferredWidth
-                                - JamiTheme.contextMenuItemTextPreferredWidth
+                TextMetrics {
+                    id: contextMenuItemTextMetrics
+
+                    font: contextMenuItemText.font
+                    text: contextMenuItemText.text
+
+                    onBoundingRectChanged: {
+                        if (autoTextSizeAdjustment
+                                && boundingRect.width > itemPreferredWidth) {
+                            if (boundingRect.width > JamiTheme.contextMenuItemTextMaxWidth) {
+                                itemPreferredWidth += JamiTheme.contextMenuItemTextMaxWidth
+                                        - JamiTheme.contextMenuItemTextPreferredWidth
+                                contextMenuItemText.elide = Text.ElideRight
+                            } else
+                                itemPreferredWidth += boundingRect.width
+                                        - JamiTheme.contextMenuItemTextPreferredWidth
+                        }
                     }
                 }
             }
