@@ -52,6 +52,26 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
     switch (role) {
     case Role::Uri:
         return QVariant::fromValue(participant.item.value("uri"));
+    case Role::BestName:
+        return QVariant::fromValue(participant.item.value("bestName"));
+    case Role::Active:
+        return QVariant::fromValue(participant.item.value("active"));
+    case Role::AudioLocalMuted:
+        return QVariant::fromValue(participant.item.value("audioLocalMuted"));
+    case Role::AudioModeratorMuted:
+        return QVariant::fromValue(participant.item.value("audioModeratorMuted"));
+    case Role::VideoMuted:
+        return QVariant::fromValue(participant.item.value("videoMuted"));
+    case Role::IsModerator:
+        return QVariant::fromValue(participant.item.value("isModerator"));
+    case Role::IsLocal:
+        return QVariant::fromValue(participant.item.value("isLocal"));
+    case Role::IsContact:
+        return QVariant::fromValue(participant.item.value("isContact"));
+    case Role::Avatar:
+        return QVariant::fromValue(participant.item.value("avatar"));
+    case Role::SinkId:
+        return QVariant::fromValue(participant.item.value("sinkId"));
     }
     return QVariant();
 }
@@ -71,27 +91,23 @@ void
 CallParticipantsModel::addParticipant(const CallParticipant::Item& item)
 {
     auto peerId = item.item.value("uri").toString();
-    beginResetModel();
     auto it = participants_.find(peerId);
     if (it == participants_.end() && item.item.value("w").toInt() != 0
         && item.item.value("h").toInt() != 0) {
+        lrcInstance_->renderer()->addDistantRenderer(item.item["sinkId"].toString());
         participants_.insert(peerId, item);
     } else {
         if (item.item.value("w").toInt() == 0 || item.item.value("h").toInt() == 0) {
             removeParticipant(item);
-        } else {
-            it->item = item.item;
         }
     }
-    endResetModel();
 }
 
 void
 CallParticipantsModel::removeParticipant(const CallParticipant::Item& item)
 {
-    beginResetModel();
+    lrcInstance_->renderer()->removeDistantRenderer(item.item["sinkId"].toString());
     participants_.remove(item.item.value("uri").toString());
-    endResetModel();
 }
 
 void
@@ -103,7 +119,11 @@ CallParticipantsModel::clearParticipants()
 void
 CallParticipantsModel::setParticipants(const QVariantList& participants)
 {
+    beginResetModel();
+    clearParticipants();
     for (const auto& part : participants) {
         addParticipant(CallParticipant::Item {part.toJsonObject()});
     }
+    endResetModel();
+    Q_EMIT updateParticipants();
 }
