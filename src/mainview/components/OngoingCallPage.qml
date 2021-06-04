@@ -44,7 +44,7 @@ Rectangle {
     property int previewToY: 0
     property bool isAudioOnly: false
     property bool isConferenceCall: false // TODO: remove this after participantsInfos are feed for normal and ms calls
-    property alias callId: distantRenderer.rendererId
+    property alias callId: callOverlay.callId
     property var linkedWebview: null
 
     color: "black"
@@ -192,7 +192,7 @@ Rectangle {
                     z: -1
 
                     lrcInstance: LRCInstance
-                    visible: !root.isAudioOnly
+                    visible: !root.isAudioOnly && !root.isConferenceCall
                 }
 
                 ParticipantsLayer {
