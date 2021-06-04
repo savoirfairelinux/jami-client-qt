@@ -31,28 +31,35 @@ DistantRenderer::DistantRenderer(QQuickItem* parent)
 
     connect(this, &DistantRenderer::lrcInstanceChanged, [this] {
         if (lrcInstance_) {
-            connect(lrcInstance_->renderer(),
-                    &RenderManager::distantFrameUpdated,
-                    [this](const QString& id) {
-                        if (distantRenderId_ == id)
-                            update(QRect(0, 0, width(), height()));
-                    });
+            frameUpdatedConnection_ = connect(lrcInstance_->renderer(),
+                                              &RenderManager::distantFrameUpdated,
+                                              [this](const QString& id) {
+                                                  if (distantRenderId_ == id)
+                                                      update(QRect(0, 0, width(), height()));
+                                              });
 
-            connect(lrcInstance_->renderer(),
-                    &RenderManager::distantRenderingStopped,
-                    [this](const QString& id) {
-                        if (distantRenderId_ == id)
-                            update(QRect(0, 0, width(), height()));
-                    });
+            distantRendererStoppedConnection_ = connect(lrcInstance_->renderer(),
+                                                        &RenderManager::distantRenderingStopped,
+                                                        [this](const QString& id) {
+                                                            if (distantRenderId_ == id)
+                                                                update(
+                                                                    QRect(0, 0, width(), height()));
+                                                        });
         }
     });
 }
 
-DistantRenderer::~DistantRenderer() {}
+DistantRenderer::~DistantRenderer()
+{
+    disconnect(frameUpdatedConnection_);
+    disconnect(distantRendererStoppedConnection_);
+}
 
 void
 DistantRenderer::setRendererId(const QString& id)
 {
+    if (id.isEmpty())
+        return;
     distantRenderId_ = id;
     // Note: Force a paint to update frame as we change the renderer
     update(QRect(0, 0, width(), height()));
@@ -88,6 +95,18 @@ DistantRenderer::getScaledHeight() const
     return scaledHeight_;
 }
 
+double
+DistantRenderer::getWidgetWidth() const
+{
+    return width_;
+}
+
+double
+DistantRenderer::getWidgetHeight() const
+{
+    return height_;
+}
+
 void
 DistantRenderer::paint(QPainter* painter)
 {
@@ -109,6 +128,8 @@ DistantRenderer::paint(QPainter* painter)
                             / static_cast<double>(distantImage->height());
             xOffset_ = (width() - scaledDistant.width()) / 2;
             yOffset_ = (height() - scaledDistant.height()) / 2;
+            width_ = scaledDistant.width();
+            height_ = scaledDistant.height();
             if (tempXOffset != xOffset_ or tempYOffset != yOffset_
                 or static_cast<int>(scaledWidth_ * 1000) != tempScaledWidth
                 or static_cast<int>(scaledHeight_ * 1000) != tempScaledHeight) {
