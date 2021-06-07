@@ -22,6 +22,30 @@
       "revId": "6642665e0a6cfb6ef5ee02e04617f84511b17f8d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ce3627b_1670c077",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-06-07T19:04:42Z",
+      "side": 1,
+      "message": "The return of this function will be used to feed CallParticipantsModel (implemented in later patch) for multiple distant renderers in conferences and multistream. What can be better  done here is to have a QJsonObject from lrc.",
+      "parentUuid": "95e2ff51_c4dd7cac",
+      "range": {
+        "startLine": 482,
+        "startChar": 50,
+        "endLine": 483,
+        "endChar": 46
+      },
+      "revId": "6642665e0a6cfb6ef5ee02e04617f84511b17f8d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
