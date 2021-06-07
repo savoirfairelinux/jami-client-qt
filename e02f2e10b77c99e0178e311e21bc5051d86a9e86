@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6a92238_877e3373",
+        "filename": "src/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-06-07T20:17:19Z",
+      "side": 1,
+      "message": "do we need these two?\n\nI do not see usage in this and next patch though",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "revId": "e02f2e10b77c99e0178e311e21bc5051d86a9e86",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
