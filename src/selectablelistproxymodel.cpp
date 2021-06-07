@@ -117,7 +117,7 @@ SelectableListProxyModel::updateSelection()
     auto filteredIndex = mapFromSource(selectedSourceIndex_);
 
     // if the source model is empty, invalidate the selection
-    if (sourceModel()->rowCount() == 0) {
+    if (rowCount() == 0) {
         set_currentFilteredRow(-1);
         Q_EMIT validSelectionChanged();
         return;
