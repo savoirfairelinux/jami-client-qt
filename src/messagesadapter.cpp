@@ -669,7 +669,6 @@ MessagesAdapter::refuseInvitation(const QString& convUid)
     setInvitation(false);
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
-    Q_EMIT navigateToWelcomePageRequested();
 }
 
 void
@@ -681,7 +680,6 @@ MessagesAdapter::blockConversation(const QString& convUid)
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
     Q_EMIT contactBanned();
-    Q_EMIT navigateToWelcomePageRequested();
 }
 
 void
