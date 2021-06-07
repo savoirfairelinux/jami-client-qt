@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "95e2ff51_c4dd7cac",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-07T18:27:52Z",
+      "side": 1,
+      "message": "In fact, maybe it would be better if ParticipantInfo can be used as a Qt Object directly? Then directly observed?",
+      "range": {
+        "startLine": 482,
+        "startChar": 50,
+        "endLine": 483,
+        "endChar": 46
+      },
+      "revId": "6642665e0a6cfb6ef5ee02e04617f84511b17f8d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
