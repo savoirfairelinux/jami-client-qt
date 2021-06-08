@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a483cade_9356de3d",
+        "filename": "src/selectablelistproxymodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-08T15:15:49Z",
+      "side": 0,
+      "message": "this is needed to keep a valid selection when the selected item is filtered out",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 38
+      },
+      "revId": "70c520e867a19937854e5695d786857b7e7b0e20",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
