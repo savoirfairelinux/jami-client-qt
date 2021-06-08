@@ -22,6 +22,30 @@
       "revId": "e02f2e10b77c99e0178e311e21bc5051d86a9e86",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "654ac5c9_35ec2685",
+        "filename": "src/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 27
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2021-06-08T14:37:37Z",
+      "side": 1,
+      "message": "I agree, if we can get rid of them in this patch we should do it.a\nBut we need to keep them in LRC until we migrate all clients to new API",
+      "parentUuid": "b6a92238_877e3373",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 30
+      },
+      "revId": "e02f2e10b77c99e0178e311e21bc5051d86a9e86",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
