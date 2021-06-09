@@ -308,8 +308,8 @@ def run_tests(mute_jamid, output_to_files):
     test_exe_command_list = [qml_test_exe, unit_test_exe]
 
     if mute_jamid:
-        test_exe_command_list[0] += ' -mutejamid'
-        test_exe_command_list[1] += ' -mutejamid'
+        test_exe_command_list[0] += ' -mutejami'
+        test_exe_command_list[1] += ' -mutejami'
     if output_to_files:
         test_exe_command_list[0] += ' -o ' + this_dir + '\\x64\\test\\qml_tests.txt'
         test_exe_command_list[1] += ' > ' + this_dir + '\\x64\\test\\unittests.txt'
@@ -367,7 +367,7 @@ def parse_args():
 
     run_test = subparser.add_parser('runtests')
     run_test.add_argument(
-        '-md', '--mutejamid', action='store_true', default=False,
+        '-md', '--mutejami', action='store_true', default=False,
         help='Avoid jamid logs')
     run_test.add_argument(
         '-o', '--outputtofiles', action='store_true', default=False,
