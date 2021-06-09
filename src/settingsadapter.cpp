@@ -82,7 +82,7 @@ void
 SettingsAdapter::setDownloadPath(QString dir)
 {
     setAppValue(Settings::Key::DownloadPath, dir);
-    lrcInstance_->accountModel().downloadDirectory = dir + "/";
+    lrcInstance_->accountModel().downloadDirectory = dir;
 }
 
 lrc::api::video::ResRateList
