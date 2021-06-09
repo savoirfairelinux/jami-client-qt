@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c351d9b_36c35af6",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 29
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-06-09T15:55:21Z",
+      "side": 1,
+      "message": "here",
+      "range": {
+        "startLine": 169,
+        "startChar": 36,
+        "endLine": 169,
+        "endChar": 37
+      },
+      "revId": "df4fe2684b501c95145afb409151d4f088b82273",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
