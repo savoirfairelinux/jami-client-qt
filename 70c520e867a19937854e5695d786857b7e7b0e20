@@ -22,6 +22,30 @@
       "revId": "70c520e867a19937854e5695d786857b7e7b0e20",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ebb76a5_baa68a18",
+        "filename": "src/selectablelistproxymodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-06-09T13:30:00Z",
+      "side": 0,
+      "message": "What do you think od the new change?",
+      "parentUuid": "a483cade_9356de3d",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 38
+      },
+      "revId": "70c520e867a19937854e5695d786857b7e7b0e20",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
