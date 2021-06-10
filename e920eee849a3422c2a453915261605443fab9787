@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2bcd778f_bfe9470c",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-10T19:28:05Z",
+      "side": 1,
+      "message": "this should be always true. participantsInfos is never empty if confId is not empty.",
+      "range": {
+        "startLine": 499,
+        "startChar": 32,
+        "endLine": 499,
+        "endChar": 51
+      },
+      "revId": "e920eee849a3422c2a453915261605443fab9787",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
