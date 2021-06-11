@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6079bf52_709a3907",
+        "filename": "src/mainview/components/InitialCallPage.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-11T16:05:12Z",
+      "side": 1,
+      "message": "breaks DRY and I think this order specific list manipulation can be avoided by putting some visibility/width conditions on the ColumnLayout in the delegate below:\nvisible: !isAudioOnly || (type !\u003d\u003d \"cam\" \u0026\u0026 isAudioOnly); width: childrenRect.width * visible",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 5
+      },
+      "revId": "401244ab8c7eb04eae1951f6292bee29cce33a64",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
