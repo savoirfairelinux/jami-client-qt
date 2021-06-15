@@ -53,8 +53,6 @@ Item {
     property string callId: ""
     property string sinkId: ""
 
-    z: 1
-
     function setAvatar(show, avatar, uri, local, isContact) {
         if (!show)
             contactImage.visible = false
@@ -176,14 +174,24 @@ Item {
         }
     }
 
-    AvatarImage {
-        id: contactImage
-
-        z: -1
+    Rectangle {
+        id: activePeerMargin
 
         anchors.centerIn: parent
-        height:  Math.min(parent.width / 2, parent.height / 2)
-        width:  Math.min(parent.width / 2, parent.height / 2)
+        z: -1
+
+        color: "transparent"
+        border.color: "yellow"
+        border.width: root.participantIsActive ? 3 : 0
+    }
+
+    AvatarImage {
+        id: contactImage
+        
+        anchors.centerIn: parent
+        height:  Math.min(root.width / 2, root.height / 2)
+        width:  Math.min(root.width / 2, root.height / 2)
+        z: -2
 
         fillMode: Image.PreserveAspectFit
         imageId: ""
@@ -205,13 +213,23 @@ Item {
         }
         layer.mipmap: false
         layer.smooth: true
+
+        onVisibleChanged: {
+            if (visible) {
+                participantRect.height = contactImage.height * 2
+                participantRect.width = contactImage.height * 2
+                activePeerMargin.height = contactImage.height * 2 + 3
+                activePeerMargin.width = contactImage.height * 2 + 3
+            }
+        }
     }
 
     DistantRenderer {
         id: distantRendererSingle
+        
         anchors.fill: parent
         anchors.centerIn: parent
-        z: -1
+        z: -2
 
         lrcInstance: LRCInstance
         visible: !contactImage.visible && root.sinkId !== ""
@@ -219,16 +237,19 @@ Item {
 
         onOffsetChanged: {
             participantRect.height = distantRendererSingle.getWidgetHeight()
+            participantRect.width = distantRendererSingle.getWidgetWidth()
+            activePeerMargin.height = participantRect.height + 3
+            activePeerMargin.width = participantRect.width + 3
         }
-     }
+    }
 
     // Participant background and buttons for moderation
     MouseArea {
         id: participantRect
 
         anchors.centerIn: parent
-        height: parent.height
-        width: parent.width
+        height: contactImage.visible ? contactImage.height * 2 : distantRendererSingle.getWidgetHeight()
+        width: contactImage.visible ? contactImage.width * 2 : distantRendererSingle.getWidgetWidth()
         opacity: 0
         z: 1
 
