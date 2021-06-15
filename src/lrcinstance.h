@@ -125,7 +125,6 @@ public:
     VectorString getConferenceSubcalls(const QString& callId);
 
 Q_SIGNALS:
-    void accountListChanged();
     void restoreAppRequested();
     void notificationClicked();
     void quitEngineRequested();
