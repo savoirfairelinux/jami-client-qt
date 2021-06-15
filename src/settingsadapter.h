@@ -229,6 +229,8 @@ public:
     Q_INVOKABLE bool isAllModeratorsEnabled(const QString& accountId);
 
     Q_INVOKABLE void monitor(const bool& continuous);
+    Q_INVOKABLE QString getLogs();
+    Q_INVOKABLE int getSizeOfLogs();
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
@@ -237,5 +239,7 @@ private:
     AppSettingsManager* settingsManager_;
 
     QMetaObject::Connection debugMessageReceivedConnection_;
+
+    QStringList logList_;
 };
 Q_DECLARE_METATYPE(SettingsAdapter*)

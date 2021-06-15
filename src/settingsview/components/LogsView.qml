@@ -35,21 +35,16 @@ Dialog {
     property bool cancelPressed: false
     property bool startedLogs: false
     property bool isStopped: false
+    property bool hasOpened: false
+
     property int itemWidth: Math.min(root.width / 2 - 50, 350) * 1.5
     property int widthDivisor: 4
     property int selectBeginning
     property int selectEnd
 
+    property var lineSize: []
+    property var lineCounter: 0
 
-    function findNthIndexInText(substring, n){
-        var i;
-        var t = logsText.text
-        var index = t.indexOf(substring)
-        for (i = 0; i < n - 1; i++){
-            index = t.indexOf(substring, index + 1)
-        }
-        return index
-    }
 
     function monitor(continuous){
         SettingsAdapter.monitor(continuous)
@@ -58,41 +53,56 @@ Dialog {
     Connections{
         target: SettingsAdapter
         function onDebugMessageReceived(message){
-            var initialPosition = scroll.position
-            var oldContent = flickable.contentY
-            if (!root.cancelPressed){
-                logsText.append(message);
-            }
-            if (logsText.lineCount >= 10000){
-                var index = findNthIndexInText("\n", 10)
-                logsText.remove(0, index)
-            }
-            var approximateBottom = (1.0 - flickable.visibleArea.heightRatio);
-            if (!isStopped){
 
-                if (initialPosition < 0){
-                    flickable.flick(0, -(100))
+            if (root.visible){
+                lineCounter += 1
+                lineSize.push(message.length)
+
+                var initialPosition = scroll.position
+                var oldContent = flickable.contentY
+                if (!root.cancelPressed){
+                    logsText.append(message);
                 }
-                else if (initialPosition >= approximateBottom * .8){
-                    flickable.contentY = flickable.contentHeight - flickable.height
-                    flickable.flick(0, -(flickable.maximumFlickVelocity))
+                if (lineCounter >= 10000){
+                    lineCounter -= 1
+                    logsText.remove(0, lineSize[0])
+                    lineSize.shift()
                 }
-                else{
-                    flickable.contentY = oldContent
+                var approximateBottom = (1.0 - flickable.visibleArea.heightRatio);
+                if (!isStopped){
+
+                    if (initialPosition < 0){
+                        flickable.flick(0, -(50))
+                    }
+                    else if (initialPosition >= approximateBottom * .8){
+                        flickable.contentY = flickable.contentHeight - flickable.height
+                        flickable.flick(0, -(flickable.maximumFlickVelocity))
+                    }
+                    else{
+                        flickable.contentY = oldContent
+                    }
                 }
             }
         }
     }
 
+
     onVisibleChanged: {
-        logsText.clear()
-        copiedToolTip.close()
-        if (startStopToggle.checked){
-            startStopToggle.checked = false
-            startedLogs = false
+
+        if (visible && startStopToggle.checked){
+            if (hasOpened && lineCounter == 0){
+                logsText.append(SettingsAdapter.getLogs())
+                lineCounter = SettingsAdapter.getSizeOfLogs()
+                lineSize.push(100)
+            }
         }
-        root.cancelPressed = true
-        monitor(false)
+        else{
+            logsText.clear()
+            copiedToolTip.close()
+            lineCounter = 0
+            lineSize = []
+        }
+        hasOpened = true
     }
 
     title: JamiStrings.logsViewTitle
@@ -227,15 +237,13 @@ Dialog {
 
                         height: JamiTheme.preferredFieldHeight
                         TextArea{
-                        text: JamiStrings.logsViewCopied
+                            text: JamiStrings.logsViewCopied
                             color: JamiTheme.textColor
                         }
-
-
                         background: Rectangle{
                             color: JamiTheme.primaryBackgroundColor
                         }
-                   }
+                    }
                 }
 
                 MaterialButton{
@@ -322,5 +330,6 @@ Dialog {
         }
     }
 
-
 }
+
+

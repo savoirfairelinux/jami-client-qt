@@ -1100,17 +1100,33 @@ SettingsAdapter::isAllModeratorsEnabled(const QString& accountId)
     return lrcInstance_->accountModel().isAllModerators(accountId);
 }
 
+QString
+SettingsAdapter::getLogs()
+{
+    return logList_.join("\n");
+}
+
+int
+SettingsAdapter::getSizeOfLogs()
+{
+    return logList_.size();
+}
+
 void
 SettingsAdapter::monitor(const bool& continuous)
 {
+    disconnect(debugMessageReceivedConnection_);
     if (continuous)
         debugMessageReceivedConnection_
             = QObject::connect(&lrcInstance_->behaviorController(),
                                &lrc::api::BehaviorController::debugMessageReceived,
-                               this,
-                               &SettingsAdapter::debugMessageReceived,
-                               Qt::ConnectionType::UniqueConnection);
-    else
-        disconnect(debugMessageReceivedConnection_);
+                               [this](const QString data){
+                                   logList_.append(data);
+                                   if (logList_.size() > 10000){
+                                        logList_.removeFirst();
+                                   }
+                                Q_EMIT SettingsAdapter::debugMessageReceived(data);
+                               });
+
     lrcInstance_->monitor(continuous);
 }
