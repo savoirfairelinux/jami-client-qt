@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f552e666_c77bb6d9",
+        "filename": "src/accountadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-15T18:28:45Z",
+      "side": 0,
+      "message": "not related, should be moved in another patch. But except this looks good to me (however, I didn\u0027t run the test)",
+      "range": {
+        "startLine": 230,
+        "startChar": 32,
+        "endLine": 230,
+        "endChar": 46
+      },
+      "revId": "ba61d924fc8bf009f7ac7180641e939eb9e05aa8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
