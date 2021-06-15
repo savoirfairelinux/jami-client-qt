@@ -22,9 +22,7 @@
 #include <QApplication>
 #include <QStandardPaths>
 
-#include <gtest/gtest.h>
-
-bool muteDring;
+TestEnvironment globalEnv;
 
 int
 main(int argc, char* argv[])
@@ -36,7 +34,7 @@ main(int argc, char* argv[])
     });
 
     if (end != argv + argc) {
-        muteDring = true;
+        globalEnv.muteDring = true;
 
         // Adjust the argument count.
         argc = std::distance(argv, end);
@@ -46,6 +44,8 @@ main(int argc, char* argv[])
 
     QApplication a(argc, argv);
     a.processEvents();
+
     ::testing::InitGoogleTest(&argc, argv);
+    globalEnv.SetUp();
     return RUN_ALL_TESTS();
 }

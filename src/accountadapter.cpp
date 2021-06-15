@@ -117,7 +117,6 @@ AccountAdapter::createJamiAccount(QString registeredName,
                               [this, showBackup, addedAccountId = accountId](
                                   const QString& accountId) {
                                   if (addedAccountId == accountId) {
-                                      Q_EMIT lrcInstance_->accountListChanged();
                                       Q_EMIT accountAdded(accountId,
                                                           showBackup,
                                                           lrcInstance_->accountModel()
@@ -131,7 +130,6 @@ AccountAdapter::createJamiAccount(QString registeredName,
                                                           settings["password"].toString(),
                                                           registeredName);
             } else {
-                Q_EMIT lrcInstance_->accountListChanged();
                 Q_EMIT accountAdded(accountId,
                                     showBackup,
                                     lrcInstance_->accountModel().getAccountList().indexOf(
@@ -169,7 +167,6 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
 #endif
                               lrcInstance_->accountModel().setAccountConfig(accountId, confProps);
 
-                              Q_EMIT lrcInstance_->accountListChanged();
                               Q_EMIT accountAdded(accountId,
                                                   false,
                                                   lrcInstance_->accountModel()
@@ -211,7 +208,6 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
                                                   lrcInstance_->accountModel()
                                                       .getAccountList()
                                                       .indexOf(accountId));
-                              Q_EMIT lrcInstance_->accountListChanged();
                           });
 
     connectFailure();
@@ -227,7 +223,6 @@ void
 AccountAdapter::deleteCurrentAccount()
 {
     lrcInstance_->accountModel().removeAccount(lrcInstance_->getCurrentAccountId());
-    Q_EMIT lrcInstance_->accountListChanged();
 }
 
 bool
