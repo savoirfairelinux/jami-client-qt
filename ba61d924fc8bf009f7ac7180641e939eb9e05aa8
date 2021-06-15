@@ -22,6 +22,30 @@
       "revId": "ba61d924fc8bf009f7ac7180641e939eb9e05aa8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a262b9af_cea0089e",
+        "filename": "src/accountadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-06-15T20:00:16Z",
+      "side": 0,
+      "message": "Ok, no worries, the test will be done the this job\n\nhttps://jenkins.jami.net/job/client-qt-msvc-tests/",
+      "parentUuid": "f552e666_c77bb6d9",
+      "range": {
+        "startLine": 230,
+        "startChar": 32,
+        "endLine": 230,
+        "endChar": 46
+      },
+      "revId": "ba61d924fc8bf009f7ac7180641e939eb9e05aa8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
