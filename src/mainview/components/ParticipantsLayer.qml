@@ -40,6 +40,7 @@ Item {
     Flow {
         id: participantsFLow
         anchors.fill: parent
+        anchors.margins: 3
         anchors.centerIn: parent
         spacing: 8
         property int columns: Math.ceil(Math.sqrt(participantincall.count))
@@ -56,6 +57,7 @@ Item {
 
                 width: Math.ceil(participantsFLow.width / participantsFLow.columns) - participantsFLow.columnsSpacing
                 height: Math.ceil(participantsFLow.height / participantsFLow.rows) - participantsFLow.rowsSpacing
+                z: 1
                 visible: !isAudioOnly
                 sinkId: SinkId
 
