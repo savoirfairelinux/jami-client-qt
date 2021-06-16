@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "21606719_9412e672",
+        "filename": "src/smartlistmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-16T21:25:44Z",
+      "side": 1,
+      "message": "overload in lrc ??",
+      "range": {
+        "startLine": 66,
+        "startChar": 30,
+        "endLine": 66,
+        "endChar": 54
+      },
+      "revId": "ae00fd5a4fc204b318aa7c965f62e36b2c7c4315",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
