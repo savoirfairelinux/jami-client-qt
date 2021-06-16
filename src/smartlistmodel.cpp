@@ -50,8 +50,20 @@ SmartListModel::rowCount(const QModelIndex& parent) const
             lrcInstance_->getCurrentAccountId());
         auto& convModel = accInfo.conversationModel;
         if (listModelType_ == Type::TRANSFER) {
-            //            auto filterType = accInfo.profileInfo.type;
-            //            return convModel->getFilteredConversations(filterType).size();
+            auto profileType = accInfo.profileInfo.type;
+            lrc::api::FilterType filterType;
+            switch (profileType) {
+            case lrc::api::profile::Type::JAMI:
+                filterType = lrc::api::FilterType::JAMI;
+                break;
+            case lrc::api::profile::Type::SIP:
+                filterType = lrc::api::FilterType::SIP;
+                break;
+            default:
+                return {};
+            }
+
+            return convModel->getFilteredConversations(filterType).size();
         } else if (listModelType_ == Type::CONFERENCE) {
             auto calls = conferenceables_[ConferenceableItem::CALL];
             auto contacts = conferenceables_[ConferenceableItem::CONTACT];
@@ -80,10 +92,21 @@ SmartListModel::data(const QModelIndex& index, int role) const
             auto& currentAccountInfo = lrcInstance_->accountModel().getAccountInfo(
                 lrcInstance_->getCurrentAccountId());
             auto& convModel = currentAccountInfo.conversationModel;
-            auto filterType = currentAccountInfo.profileInfo.type;
-            return {};
-            // auto& item = convModel->getFilteredConversations(filterType).at(index.row());
-            // return dataForItem(item, role);
+            auto profileType = currentAccountInfo.profileInfo.type;
+            lrc::api::FilterType filterType;
+            switch (profileType) {
+            case lrc::api::profile::Type::JAMI:
+                filterType = lrc::api::FilterType::JAMI;
+                break;
+            case lrc::api::profile::Type::SIP:
+                filterType = lrc::api::FilterType::SIP;
+                break;
+            default:
+                return {};
+            }
+
+            auto& item = convModel->getFilteredConversations(filterType).at(index.row());
+            return dataForItem(item, role);
         } catch (const std::exception& e) {
             qWarning() << e.what();
         }
