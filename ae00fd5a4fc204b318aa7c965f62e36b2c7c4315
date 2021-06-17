@@ -22,6 +22,30 @@
       "revId": "ae00fd5a4fc204b318aa7c965f62e36b2c7c4315",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f0af80e_4777869b",
+        "filename": "src/smartlistmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-06-17T15:53:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21606719_9412e672",
+      "range": {
+        "startLine": 66,
+        "startChar": 30,
+        "endLine": 66,
+        "endChar": 54
+      },
+      "revId": "ae00fd5a4fc204b318aa7c965f62e36b2c7c4315",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
