@@ -29,45 +29,37 @@ Item {
     Connections {
         target: CallParticipantsModel
 
-        function onUpdateParticipants() {
-            participantincall.model = CallParticipantsModel
-            participantsFLow.columns = Math.ceil(Math.sqrt(participantincall.count))
-            participantsFLow.rows = Math.ceil(participantincall.count/participantsFLow.columns)
+        function onUpdateParticipantsLayout() {
+            participantsFlow.columns = Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
+            participantsFlow.rows = Math.max(1, Math.ceil(participantincall.count/participantsFlow.columns))
         }
     }
 
-
     Flow {
-        id: participantsFLow
+        id: participantsFlow
         anchors.fill: parent
-        anchors.margins: 3
         anchors.centerIn: parent
         spacing: 8
-        property int columns: Math.ceil(Math.sqrt(participantincall.count))
-        property int rows: Math.ceil(participantincall.count/columns)
-        property int columnsSpacing: columns > 1 ? 5 : 0
-        property int rowsSpacing: rows > 1 ? 5 : 0
+        property int columns: Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
+        property int rows: Math.max(1, Math.ceil(participantincall.count/columns))
+        property int columnsSpacing: 5 * (columns - 1)
+        property int rowsSpacing: 5 * (rows - 1)
 
         Repeater {
             id: participantincall
+            anchors.fill: parent
+            anchors.centerIn: parent
 
             model: CallParticipantsModel
-            ParticipantOverlay {
-                id: peeeeeeeeeerDel
-
-                width: Math.ceil(participantsFLow.width / participantsFLow.columns) - participantsFLow.columnsSpacing
-                height: Math.ceil(participantsFLow.height / participantsFLow.rows) - participantsFLow.rowsSpacing
+            delegate: ParticipantOverlay {
+                width: Math.ceil(participantsFlow.width / participantsFlow.columns) - participantsFlow.columnsSpacing
+                height: Math.ceil(participantsFlow.height / participantsFlow.rows) - participantsFlow.rowsSpacing
                 z: 1
-                visible: !isAudioOnly
                 sinkId: SinkId
 
-                callId: callId
                 Component.onCompleted: {
                     setMenu(Uri, BestName, IsLocal, Active, true)
-                    if (VideoMuted)
-                        setAvatar(true, Avatar, Uri, IsLocal, IsContact)
-                    else
-                        setAvatar(false)
+                    setAvatar(VideoMuted, Avatar, Uri, IsLocal, IsContact)
                 }
             }
         }
