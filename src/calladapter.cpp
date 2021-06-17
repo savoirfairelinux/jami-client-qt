@@ -148,15 +148,12 @@ CallAdapter::onParticipantsChanged(const QString& confId)
     try {
         auto call = callModel->getCall(confId);
         const auto& convInfo = lrcInstance_->getConversationFromCallId(confId);
-        if (!convInfo.uid.isEmpty()) {
-            QVariantList map;
-            for (const auto& participant : call.participantsInfos) {
-                QJsonObject data = fillParticipantData(participant);
-                map.push_back(QVariant(data));
-                updateCallOverlay(convInfo);
-            }
-            Q_EMIT updateParticipantsInfos(map, accountId_, confId);
+        if (convInfo.uid != convUid_) {
+            qDebug() << "trying to update not current conf";
+            return;
         }
+        if (!convInfo.uid.isEmpty())
+            updateCallOverlay(convInfo);
     } catch (...) {
     }
 }
@@ -187,6 +184,7 @@ CallAdapter::onCallStatusChanged(const QString& callId, int code)
         case lrc::api::call::Status::PEER_BUSY:
         case lrc::api::call::Status::TIMEOUT:
         case lrc::api::call::Status::TERMINATING: {
+            participantsModel_->setParticipants({});
             lrcInstance_->renderer()->removeDistantRenderer(callId);
             const auto& convInfo = lrcInstance_->getConversationFromCallId(callId);
             if (convInfo.uid.isEmpty()) {
@@ -669,8 +667,6 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                         ? QString()
                         : accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
 
-    if (isConferenceCall)
-        updateCallParticipants(getConferencesInfos());
     Q_EMIT updateOverlay(isPaused,
                          isAudioOnly,
                          isAudioMuted,
@@ -680,6 +676,8 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                          isConferenceCall,
                          isGrid,
                          bestName);
+    if (isConferenceCall && call->status == lrc::api::call::Status::IN_PROGRESS)
+        updateCallParticipants(getConferencesInfos());
 }
 
 /*
