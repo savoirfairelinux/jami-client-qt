@@ -36,7 +36,7 @@ Rectangle {
     property var accountPeerPair: ["", ""]
     property alias bestName: callOverlay.bestName
     property string bestId: "Best Id"
-    property variant clickPos: "1,1"
+    property string clickPos: "1,1"
     property int previewMargin: 15
     property int previewMarginYTop: previewMargin + 42
     property int previewMarginYBottom: previewMargin + 84
@@ -44,7 +44,6 @@ Rectangle {
     property int previewToY: 0
     property bool isAudioOnly: false
     property bool isConferenceCall: false // TODO: remove this after participantsInfos are feed for normal and ms calls
-    property alias callId: callOverlay.callId
     property var linkedWebview: null
 
     color: "black"
@@ -53,15 +52,14 @@ Rectangle {
         if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
             return
         contactImage.updateImage(accountPeerPair[1])
-        participantsLayer.update(CallAdapter.getConferencesInfos())
 
         bestName = UtilsAdapter.getBestName(accountPeerPair[0],
                                             accountPeerPair[1])
         var id = UtilsAdapter.getBestId(accountPeerPair[0], accountPeerPair[1])
         bestId = (bestName !== id) ? id : ""
 
-        root.callId = UtilsAdapter.getCallId(accountPeerPair[0],
-                                             accountPeerPair[1])
+        distantRenderer.rendererId = UtilsAdapter.getCallId(accountPeerPair[0],
+                                                            accountPeerPair[1])
     }
 
     function setLinkedWebview(webViewId) {
@@ -92,16 +90,6 @@ Rectangle {
 
     function closeContextMenuAndRelatedWindows() {
         callOverlay.closePotentialContactPicker()
-    }
-
-    function handleParticipantsInfo(infos) {
-        if (infos.length === 0) {
-            bestName = UtilsAdapter.getBestName(LRCInstance.currentAccountId,
-                                                UtilsAdapter.getCurrConvId())
-        } else {
-            bestName = ""
-        }
-        participantsLayer.update(infos)
     }
 
     function previewMagneticSnap() {
@@ -192,7 +180,6 @@ Rectangle {
                     z: -1
 
                     lrcInstance: LRCInstance
-                    rendererId: callId
                     visible: !root.isConferenceCall && !root.isAudioOnly
                 }
 
@@ -200,6 +187,7 @@ Rectangle {
                     id: participantsLayer
                     anchors.fill: parent
                     anchors.centerIn: parent
+                    anchors.margins: 3
                     visible: root.isConferenceCall && !root.isAudioOnly
                 }
 
@@ -317,15 +305,15 @@ Rectangle {
                         function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
                                                  isRecording, isSIP, isConferenceCall, isGrid,
                                                  bestName) {
-                            callOverlay.showOnHoldImage(isPaused)
+                            root.isConferenceCall = isConferenceCall
                             root.isAudioOnly = isAudioOnly
+                            callOverlay.showOnHoldImage(isPaused)
                             audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
                             callOverlay.updateUI(isPaused, isAudioOnly,
                                                  isAudioMuted, isVideoMuted,
                                                  isRecording, isSIP,
                                                  isConferenceCall, isGrid)
                             root.bestName = bestName
-                            root.isConferenceCall = isConferenceCall
                         }
 
                         function onShowOnHoldLabel(isPaused) {
