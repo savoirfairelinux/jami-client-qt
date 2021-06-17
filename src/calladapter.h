@@ -86,9 +86,6 @@ public:
 Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
     void callInfosChanged(const QVariant& infos, const QString& accountId, const QString& convUid);
-    void updateParticipantsInfos(const QVariantList& infos,
-                                 const QString& accountId,
-                                 const QString& callId);
     void previewVisibilityNeedToChange(bool visible);
 
     // For Call Overlay

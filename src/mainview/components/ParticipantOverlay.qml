@@ -44,19 +44,29 @@ Item {
         .arg(shapeWidth)
 
     property string uri: overlayMenu.uri
+    property alias sinkId:  mediaDistRender.rendererId
     property bool participantIsActive: false
     property bool participantIsHost: false
     property bool participantIsModerator: false
     property bool participantIsMuted: false
     property bool participantIsModeratorMuted: false
-    property bool participantMenuActive: false
-    property string callId: ""
-    property string sinkId: ""
+
+    Connections {
+        target: CallParticipantsModel
+
+        function onUpdateParticipant(participantInfos) {
+            if (participantInfos.uri === overlayMenu.uri) {
+                root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
+                setMenu(participantInfos.uri, participantInfos.bestName, participantInfos.isLocal, participantInfos.active, true)
+                setAvatar(participantInfos.videoMuted, participantInfos.avatar, participantInfos.uri, participantInfos.isLocal, participantInfos.isContact)
+            }
+        }
+    }
 
     function setAvatar(show, avatar, uri, local, isContact) {
-        if (!show)
+        if (!show) {
             contactImage.visible = false
-        else {
+        } else {
             if (avatar) {
                 contactImage.avatarMode = AvatarImage.AvatarMode.FromBase64
                 contactImage.updateImage(avatar)
@@ -70,13 +80,12 @@ Item {
                 contactImage.avatarMode = AvatarImage.AvatarMode.FromTemporaryName
                 contactImage.updateImage(uri)
             }
-            participantRect.height = contactImage.height * 2
             contactImage.visible = true
         }
     }
 
-    function setMenu(newUri, bestName, isLocal, isActive, showMax) {
-        overlayMenu.uri = newUri
+    function setMenu(uri, bestName, isLocal, isActive, showMax) {
+        overlayMenu.uri = uri
         overlayMenu.bestName = bestName
 
         var isHost = CallAdapter.isCurrentHost()
@@ -97,92 +106,138 @@ Item {
 
         overlayMenu.showModeratorMute = isModerator && !isModeratorMuted
         overlayMenu.showModeratorUnmute = isModerator && isModeratorMuted
-        overlayMenu.showMaximize = isModerator && showMax
+        overlayMenu.showMaximize = isModerator
         overlayMenu.showMinimize = isModerator && participantIsActive
         overlayMenu.showHangup = isModerator && !isLocal && !participantIsHost
     }
 
-    // Participant header with host, moderator and mute indicators
     Rectangle {
-        id: participantIndicators
-        width: indicatorsRowLayout.width
-        height: shapeHeight
-        visible: participantIsHost || participantIsModerator || participantIsMuted
-        color: "transparent"
-        anchors.bottom: parent.bottom
-
-        Shape {
-            id: backgroundShape
-            ShapePath {
-                id: backgroundShapePath
-                strokeColor: "transparent"
-                fillColor: JamiTheme.darkGreyColorOpacity
-                capStyle: ShapePath.RoundCap
-                PathSvg { path: pathShape }
-            }
-        }
-
-        RowLayout {
-            id: indicatorsRowLayout
-            height: parent.height
-            anchors.verticalCenter: parent.verticalCenter
-
-            ResponsiveImage {
-                id: isHostIndicator
-
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 6
-
-                containerHeight: 12
-                containerWidth: 12
-
-                visible: participantIsHost
-
-                source: "qrc:/images/icons/star_outline-24px.svg"
-                color: JamiTheme.whiteColor
-            }
-
-            ResponsiveImage {
-                id: isModeratorIndicator
-
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 6
-
-                containerHeight: 12
-                containerWidth: 12
-
-                visible: participantIsModerator
-
-                source: "qrc:/images/icons/moderator.svg"
-                color: JamiTheme.whiteColor
-            }
-
-            ResponsiveImage {
-                id: isMutedIndicator
-
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 6
-
-                containerHeight: 12
-                containerWidth: 12
-
-                visible: participantIsMuted
-
-                source: "qrc:/images/icons/mic_off-24px.svg"
-                color: JamiTheme.whiteColor
-            }
-        }
-    }
-
-    Rectangle {
-        id: activePeerMargin
+        id: peerOverlay
 
         anchors.centerIn: parent
-        z: -1
+        z: 1
 
         color: "transparent"
         border.color: "yellow"
         border.width: root.participantIsActive ? 3 : 0
+        visible: true
+
+        // Participant header with host, moderator and mute indicators
+        Rectangle {
+            id: participantIndicators
+            width: indicatorsRowLayout.width
+            height: shapeHeight
+            visible: participantIsHost || participantIsModerator || participantIsMuted
+            color: "transparent"
+            anchors.bottom: parent.bottom
+
+            Shape {
+                id: backgroundShape
+                ShapePath {
+                    id: backgroundShapePath
+                    strokeColor: "transparent"
+                    fillColor: JamiTheme.darkGreyColorOpacity
+                    capStyle: ShapePath.RoundCap
+                    PathSvg { path: pathShape }
+                }
+            }
+
+            RowLayout {
+                id: indicatorsRowLayout
+                height: parent.height
+                anchors.verticalCenter: parent.verticalCenter
+
+                ResponsiveImage {
+                    id: isHostIndicator
+
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.leftMargin: 6
+
+                    containerHeight: 12
+                    containerWidth: 12
+
+                    visible: participantIsHost
+
+                    source: "qrc:/images/icons/star_outline-24px.svg"
+                    color: JamiTheme.whiteColor
+                }
+
+                ResponsiveImage {
+                    id: isModeratorIndicator
+
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.leftMargin: 6
+
+                    containerHeight: 12
+                    containerWidth: 12
+
+                    visible: participantIsModerator
+
+                    source: "qrc:/images/icons/moderator.svg"
+                    color: JamiTheme.whiteColor
+                }
+
+                ResponsiveImage {
+                    id: isMutedIndicator
+
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.leftMargin: 6
+
+                    containerHeight: 12
+                    containerWidth: 12
+
+                    visible: participantIsMuted
+
+                    source: "qrc:/images/icons/mic_off-24px.svg"
+                    color: JamiTheme.whiteColor
+                }
+            }
+        }
+
+        // Participant background and buttons for moderation
+        MouseArea {
+            id: participantMouseArea
+
+            anchors.centerIn: parent
+            opacity: 0
+
+            propagateComposedEvents: true
+            hoverEnabled: true
+            onPositionChanged: {
+                participantMouseArea.opacity = 1
+                fadeOutTimer.restart()
+                // Here we could call: root.parent.positionChanged(mouse)
+                // to relay the event to a main overlay mouse area, either
+                // as a parent object or some property passed in. But, this
+                // will still fail when hovering over menus, etc.
+            }
+            onExited: {
+                root.z = 1
+                participantMouseArea.opacity = 0
+            }
+            onEntered: {
+                root.z = 2
+                participantMouseArea.opacity = 1
+            }
+
+            // Timer to decide when ParticipantOverlay fade out
+            Timer {
+                id: fadeOutTimer
+                interval: JamiTheme.overlayFadeDelay
+                onTriggered: {
+                    if (overlayMenu.hovered)
+                        return
+                    participantMouseArea.opacity = 0
+                }
+            }
+
+            ParticipantOverlayMenu {
+                id: overlayMenu
+                anchors.fill: parent
+            }
+
+            Behavior on opacity { NumberAnimation { duration: JamiTheme.shortFadeDuration }}
+        }
     }
 
     AvatarImage {
@@ -191,11 +246,10 @@ Item {
         anchors.centerIn: parent
         height:  Math.min(root.width / 2, root.height / 2)
         width:  Math.min(root.width / 2, root.height / 2)
-        z: -2
+        z: 0
 
         fillMode: Image.PreserveAspectFit
         imageId: ""
-        visible: false
         avatarMode: AvatarImage.AvatarMode.Default
         showPresenceIndicator: false
 
@@ -213,78 +267,30 @@ Item {
         }
         layer.mipmap: false
         layer.smooth: true
-
         onVisibleChanged: {
             if (visible) {
-                participantRect.height = contactImage.height * 2
-                participantRect.width = contactImage.height * 2
-                activePeerMargin.height = contactImage.height * 2 + 3
-                activePeerMargin.width = contactImage.height * 2 + 3
+                participantMouseArea.height = contactImage.height * 2
+                participantMouseArea.width = contactImage.height * 2
+                peerOverlay.height = participantMouseArea.height + 3
+                peerOverlay.width = participantMouseArea.width + 3
             }
         }
     }
 
     DistantRenderer {
-        id: distantRendererSingle
-        
+        id: mediaDistRender
+
         anchors.fill: parent
         anchors.centerIn: parent
-        z: -2
+        z: -1
 
         lrcInstance: LRCInstance
-        visible: !contactImage.visible && root.sinkId !== ""
-        rendererId: root.sinkId ? root.sinkId : ""
 
         onOffsetChanged: {
-            participantRect.height = distantRendererSingle.getWidgetHeight()
-            participantRect.width = distantRendererSingle.getWidgetWidth()
-            activePeerMargin.height = participantRect.height + 3
-            activePeerMargin.width = participantRect.width + 3
+            participantMouseArea.height = mediaDistRender.getWidgetHeight() !== 0 ? mediaDistRender.getWidgetHeight() : mediaDistRender.height
+            participantMouseArea.width = mediaDistRender.getWidgetWidth() !== 0 ? mediaDistRender.getWidgetWidth() : mediaDistRender.width
+            peerOverlay.height = participantMouseArea.height + 3
+            peerOverlay.width = participantMouseArea.width + 3
         }
-    }
-
-    // Participant background and buttons for moderation
-    MouseArea {
-        id: participantRect
-
-        anchors.centerIn: parent
-        height: contactImage.visible ? contactImage.height * 2 : distantRendererSingle.getWidgetHeight()
-        width: contactImage.visible ? contactImage.width * 2 : distantRendererSingle.getWidgetWidth()
-        opacity: 0
-        z: 1
-
-        propagateComposedEvents: true
-        hoverEnabled: true
-        onPositionChanged: {
-            participantRect.opacity = 1
-            fadeOutTimer.restart()
-            // Here we could call: root.parent.positionChanged(mouse)
-            // to relay the event to a main overlay mouse area, either
-            // as a parent object or some property passed in. But, this
-            // will still fail when hovering over menus, etc.
-        }
-        onExited: {
-            root.z = 1
-            participantRect.opacity = 0
-        }
-        onEntered: {
-            root.z = 2
-            participantRect.opacity = 1
-        }
-
-        // Timer to decide when ParticipantOverlay fade out
-        Timer {
-            id: fadeOutTimer
-            interval: JamiTheme.overlayFadeDelay
-            onTriggered: {
-                if (overlayMenu.hovered)
-                    return
-                participantRect.opacity = 0
-            }
-        }
-
-        ParticipantOverlayMenu { id: overlayMenu }
-
-        Behavior on opacity { NumberAnimation { duration: JamiTheme.shortFadeDuration }}
     }
 }
