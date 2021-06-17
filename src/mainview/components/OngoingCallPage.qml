@@ -36,7 +36,7 @@ Rectangle {
     property var accountPeerPair: ["", ""]
     property alias bestName: callOverlay.bestName
     property string bestId: "Best Id"
-    property variant clickPos: "1,1"
+    property string clickPos: "1,1"
     property int previewMargin: 15
     property int previewMarginYTop: previewMargin + 42
     property int previewMarginYBottom: previewMargin + 84
@@ -53,7 +53,6 @@ Rectangle {
         if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
             return
         contactImage.updateImage(accountPeerPair[1])
-        participantsLayer.update(CallAdapter.getConferencesInfos())
 
         bestName = UtilsAdapter.getBestName(accountPeerPair[0],
                                             accountPeerPair[1])
@@ -92,16 +91,6 @@ Rectangle {
 
     function closeContextMenuAndRelatedWindows() {
         callOverlay.closePotentialContactPicker()
-    }
-
-    function handleParticipantsInfo(infos) {
-        if (infos.length === 0) {
-            bestName = UtilsAdapter.getBestName(LRCInstance.currentAccountId,
-                                                UtilsAdapter.getCurrConvId())
-        } else {
-            bestName = ""
-        }
-        participantsLayer.update(infos)
     }
 
     function previewMagneticSnap() {
@@ -200,6 +189,7 @@ Rectangle {
                     id: participantsLayer
                     anchors.fill: parent
                     anchors.centerIn: parent
+                    anchors.margins: 3
                     visible: root.isConferenceCall && !root.isAudioOnly
                 }
 
