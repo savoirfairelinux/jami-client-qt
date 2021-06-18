@@ -113,6 +113,7 @@ Item {
     property string stunAdress: qsTr("STUN address")
 
     // AdvancedPublicAddressSettings
+    property string allowIPAutoRewrite: qsTr("Allow IP Auto Rewrite")
     property string publicAddress: qsTr("Public address")
     property string useCustomAddress: qsTr("Use custom address and port")
     property string address: qsTr("Address")
