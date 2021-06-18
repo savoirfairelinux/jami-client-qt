@@ -1,4 +1,5 @@
 /*
+/*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
  *
@@ -150,6 +151,7 @@ public:
     Q_INVOKABLE bool getAccountConfig_PublishedSameAsLocal();
     Q_INVOKABLE QString getAccountConfig_PublishedAddress();
     Q_INVOKABLE int getAccountConfig_PublishedPort();
+    Q_INVOKABLE bool getAccountConfig_AllowIPAutoRewrite();
 
     Q_INVOKABLE QString getAccountConfig_Mailbox();
 
@@ -178,6 +180,7 @@ public:
     Q_INVOKABLE void setVerifyCertificatesClient(bool state);
     Q_INVOKABLE void setRequireCertificatesIncomingTLS(bool state);
     Q_INVOKABLE void setUseCustomAddressAndPort(bool state);
+    Q_INVOKABLE void setAllowIPAutoRewrite(bool state);
 
     Q_INVOKABLE void setNameServer(QString text);
     Q_INVOKABLE void setProxyAddress(QString text);
