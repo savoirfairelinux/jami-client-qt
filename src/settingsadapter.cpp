@@ -537,7 +537,7 @@ SettingsAdapter::getAccountConfig_Localport()
 bool
 SettingsAdapter::getAccountConfig_PublishedSameAsLocal()
 {
-    return getAccountConfig().publishedSameAsLocal;
+    return !getAccountConfig().publishedSameAsLocal;
 }
 
 QString
@@ -758,7 +758,7 @@ SettingsAdapter::setUseCustomAddressAndPort(bool state)
 {
     auto confProps = lrcInstance_->accountModel().getAccountConfig(
         lrcInstance_->getCurrentAccountId());
-    confProps.publishedSameAsLocal = state;
+    confProps.publishedSameAsLocal = !state;
     lrcInstance_->accountModel().setAccountConfig(lrcInstance_->getCurrentAccountId(), confProps);
 }
 
