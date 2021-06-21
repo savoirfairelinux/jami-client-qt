@@ -184,7 +184,7 @@ CallAdapter::onCallStatusChanged(const QString& callId, int code)
         case lrc::api::call::Status::PEER_BUSY:
         case lrc::api::call::Status::TIMEOUT:
         case lrc::api::call::Status::TERMINATING: {
-            participantsModel_->setParticipants({});
+            participantsModel_->setParticipants(callId, {});
             lrcInstance_->renderer()->removeDistantRenderer(callId);
             const auto& convInfo = lrcInstance_->getConversationFromCallId(callId);
             if (convInfo.uid.isEmpty()) {
@@ -462,7 +462,6 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
 
     updateCallOverlay(convInfo);
     updateRecordingPeers(true);
-    Q_EMIT previewVisibilityNeedToChange(shouldShowPreview(forceCallOnly));
 }
 
 bool
@@ -684,17 +683,10 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                          isConferenceCall,
                          isGrid,
                          bestName);
-    if (isConferenceCall && call->status == lrc::api::call::Status::IN_PROGRESS)
-        updateCallParticipants(getConferencesInfos());
-}
-
-/*
- * For Call Renderers
- */
-void
-CallAdapter::updateCallParticipants(const QVariantList& participantsInfo)
-{
-    participantsModel_->setParticipants(participantsInfo);
+    if (isConferenceCall && call->status == lrc::api::call::Status::IN_PROGRESS) {
+        auto callId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
+        participantsModel_->setParticipants(callId, getConferencesInfos());
+    }
 }
 
 void
@@ -1030,7 +1022,6 @@ CallAdapter::videoPauseThisCallToggle()
         // media label should come from qml
         // also thi function can me emrged with "muteThisCallToggle"
     }
-    Q_EMIT previewVisibilityNeedToChange(shouldShowPreview(false));
 }
 
 QString
