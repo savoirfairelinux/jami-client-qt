@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73589bf0_32016a21",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "clang-format this",
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "621f877b_bab9fb8a",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "-\u003e const QString\u0026",
+      "range": {
+        "startLine": 1123,
+        "startChar": 38,
+        "endLine": 1123,
+        "endChar": 51
+      },
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "267dfe34_bccf0023",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1125,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "optional - best to give this a name",
+      "range": {
+        "startLine": 1125,
+        "startChar": 57,
+        "endLine": 1125,
+        "endChar": 62
+      },
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e19c3951_c2c14e8a",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "more succinctly, -\u003e logging",
+      "range": {
+        "startLine": 36,
+        "startChar": 18,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60ce1cb8_097f2409",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "- return if false\n- spaces before scope open brackets",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 30
+      },
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "143c3576_242d8ad6",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "off-by-one with the settingsadapter",
+      "range": {
+        "startLine": 66,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 40
+      },
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "115c44a9_67d15d03",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "use a ScrollView instead of Flickable and something like:\nscrollView.ScrollBar.vertical.position \u003d 1.0 - scrollView.ScrollBar.vertical.size\nto scroll to the bottom, no need to synthesize flick events here",
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bfa4f687_1168fe56",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "unfornately, as there is no qml linter in place, you\u0027re responsible to adhere to the coding style that appears in the rest of the project\n\n} else {",
+      "range": {
+        "startLine": 76,
+        "startChar": 20,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d92039f9_d8c644c5",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-21T19:20:46Z",
+      "side": 1,
+      "message": "why 100?\nto do this correctly you\u0027d need to get a list of the corresponding line sizes\nbest to a lighter version of findNthIndexInText(just find the first line ending)",
+      "range": {
+        "startLine": 96,
+        "startChar": 16,
+        "endLine": 96,
+        "endChar": 34
+      },
+      "revId": "f5f0d16097e6c59a39028a1465096093bf8a42bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
