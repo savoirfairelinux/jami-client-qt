@@ -97,7 +97,7 @@ CallParticipantsModel::addParticipant(const CallParticipant::Item& item)
         beginInsertRows(QModelIndex(), idx_, idx_);
         endInsertRows();
         lrcInstance_->renderer()->addDistantRenderer(item.item["sinkId"].toString());
-        renderers_.append(item.item["sinkId"].toString());
+        renderers_[callId_].append(item.item["sinkId"].toString());
     } else {
         if (item.item["uri"] == it->item["uri"] && item.item["sinkId"] == it->item["sinkId"] &&
             item.item["active"] == it->item["active"] &&
@@ -146,17 +146,24 @@ CallParticipantsModel::removeParticipant(int pos)
 }
 
 void
-CallParticipantsModel::clearParticipantsRenderes()
+CallParticipantsModel::clearParticipantsRenderes(const QString& callId)
 {
-    for (auto& item : renderers_) {
+    for (auto& item : renderers_[callId]) {
         lrcInstance_->renderer()->removeDistantRenderer(item);
     }
-    renderers_.clear();
+    renderers_.remove(callId);
 }
 
 void
-CallParticipantsModel::setParticipants(const QVariantList& participants)
+CallParticipantsModel::setParticipants(const QString& callId, const QVariantList& participants)
 {
+    if (!participants.isEmpty() && callId_ != callId) {
+        callId_ = callId;
+        participants_.clear();
+        beginResetModel();
+        endResetModel();
+    }
+
     validUris_.clear();
     filterParticipants(participants);
     validUris_.sort();
@@ -176,7 +183,7 @@ CallParticipantsModel::setParticipants(const QVariantList& participants)
     }
 
     if (participants_.isEmpty()) {
-        clearParticipantsRenderes();
+        clearParticipantsRenderes(callId);
         return;
     }
     Q_EMIT updateParticipantsLayout();

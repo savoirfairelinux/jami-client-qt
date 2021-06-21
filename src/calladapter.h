@@ -86,7 +86,6 @@ public:
 Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
     void callInfosChanged(const QVariant& infos, const QString& accountId, const QString& convUid);
-    void previewVisibilityNeedToChange(bool visible);
 
     // For Call Overlay
     void updateTimeText(const QString& time);
@@ -121,7 +120,6 @@ private:
     QJsonObject fillParticipantData(const lrc::api::call::ParticipantInfo& participant);
     void preventScreenSaver(bool state);
     void updateCallOverlay(const lrc::api::conversation::Info& convInfo);
-    void updateCallParticipants(const QVariantList& participantsInfo);
     void saveConferenceSubcalls();
 
     QString accountId_;

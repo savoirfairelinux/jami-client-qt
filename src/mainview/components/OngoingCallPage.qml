@@ -36,7 +36,7 @@ Rectangle {
     property var accountPeerPair: ["", ""]
     property alias bestName: callOverlay.bestName
     property string bestId: "Best Id"
-    property string clickPos: "1,1"
+    property variant clickPos: "1,1"
     property int previewMargin: 15
     property int previewMarginYTop: previewMargin + 42
     property int previewMarginYBottom: previewMargin + 84
@@ -195,23 +195,7 @@ Rectangle {
                     id: previewRenderer
 
                     lrcInstance: LRCInstance
-                    visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused
-
-                    Connections {
-                        target: CallAdapter
-
-                        function onPreviewVisibilityNeedToChange(visible) {
-                            previewRenderer.visible = visible
-                        }
-                    }
-
-                    Connections {
-                        target: AvAdapter
-
-                        function onVideoDeviceListChanged(inputs) {
-                            previewRenderer.visible = (inputs !== 0)
-                        }
-                    }
+                    visible: !callOverlay.isAudioOnly && !participantsLayer.visible && !callOverlay.isVideoMuted && !callOverlay.isPaused
 
                     width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                     x: callPageMainRect.width - previewRenderer.width - previewMargin

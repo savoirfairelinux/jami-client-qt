@@ -80,8 +80,8 @@ public:
     void filterParticipants(const QVariantList& participants);
     void addParticipant(const CallParticipant::Item& item);
     void removeParticipant(int pos);
-    void clearParticipantsRenderes();
-    void setParticipants(const QVariantList& participants);
+    void clearParticipantsRenderes(const QString& callId);
+    void setParticipants(const QString& callId, const QVariantList& participants);
 
 Q_SIGNALS:
     void updateParticipantsLayout();
@@ -92,7 +92,7 @@ private:
 
     QMap<QString, CallParticipant::Item> participantsCandidates_ {};
     QMap<QString, CallParticipant::Item> participants_ {};
-    QStringList renderers_ {};
+    QMap<QString, QStringList> renderers_ {};
     int idx_ {0};
     QStringList validUris_ {};
     QString callId_ {};

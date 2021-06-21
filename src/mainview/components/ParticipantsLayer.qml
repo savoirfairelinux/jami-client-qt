@@ -35,6 +35,23 @@ Item {
         }
     }
 
+
+    Component {
+       id: callVideoMedia
+
+       ParticipantOverlay {
+           anchors.fill: parent
+           anchors.centerIn: parent
+
+           sinkId: sinkId_
+
+            Component.onCompleted: {
+                setMenu(uri_, bestName_, isLocal_, active_, true)
+                setAvatar(videoMuted_, avatar_, uri_, isLocal_, isContact_)
+            }
+       }
+    }
+
     Flow {
         id: participantsFlow
         anchors.fill: parent
@@ -51,16 +68,19 @@ Item {
             anchors.centerIn: parent
 
             model: CallParticipantsModel
-            delegate: ParticipantOverlay {
+            delegate: Loader {
+                sourceComponent: callVideoMedia
                 width: Math.ceil(participantsFlow.width / participantsFlow.columns) - participantsFlow.columnsSpacing
                 height: Math.ceil(participantsFlow.height / participantsFlow.rows) - participantsFlow.rowsSpacing
-                z: 1
-                sinkId: SinkId
-
-                Component.onCompleted: {
-                    setMenu(Uri, BestName, IsLocal, Active, true)
-                    setAvatar(VideoMuted, Avatar, Uri, IsLocal, IsContact)
-                }
+                
+                property string uri_: Uri
+                property string bestName_: BestName
+                property string avatar_: Avatar ? Avatar : ""
+                property string sinkId_: SinkId ? SinkId : ""
+                property bool isLocal_: IsLocal
+                property bool active_: Active
+                property bool videoMuted_: VideoMuted
+                property bool isContact_: IsContact
             }
         }
     }
