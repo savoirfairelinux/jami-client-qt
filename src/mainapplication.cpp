@@ -73,6 +73,7 @@ constexpr static const char DEBUG[] = "DEBUG";
 constexpr static const char DEBUGCONSOLE[] = "DEBUGCONSOLE";
 constexpr static const char DEBUGFILE[] = "DEBUGFILE";
 constexpr static const char UPDATEURL[] = "UPDATEURL";
+constexpr static const char MUTEDRING[] = "MUTEDRING";
 } // namespace opts
 
 static void
@@ -203,7 +204,9 @@ MainApplication::init()
     gnutls_global_init();
 #endif
 
-    initLrc(results[opts::UPDATEURL].toString(), connectivityMonitor_.get());
+    initLrc(results[opts::UPDATEURL].toString(),
+            connectivityMonitor_.get(),
+            results[opts::MUTEDRING].toBool());
 
 #ifdef Q_OS_UNIX
     GlobalInstances::setDBusErrorHandler(std::make_unique<Interfaces::DBusErrorHandler>());
@@ -326,7 +329,7 @@ MainApplication::loadTranslations()
 }
 
 void
-MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm)
+MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool muteDring)
 {
     /*
      * Init mainwindow and finish splash when mainwindow shows up.
@@ -349,7 +352,8 @@ MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm)
             isMigrating = false;
         },
         downloadUrl,
-        cm));
+        cm,
+        muteDring));
     lrcInstance_->subscribeToDebugReceived();
 }
 
@@ -398,6 +402,11 @@ MainApplication::parseArguments()
     parser.addOption(updateUrlOption);
 #endif
 
+    QCommandLineOption muteDringOption(QStringList() << "q"
+                                                     << "quiet",
+                                       "Mute dring logging.");
+    parser.addOption(muteDringOption);
+
     parser.process(*this);
 
     results[opts::STARTMINIMIZED] = parser.isSet(minimizedOption);
@@ -407,6 +416,7 @@ MainApplication::parseArguments()
     results[opts::DEBUGFILE] = parser.isSet(debugFileOption);
     results[opts::UPDATEURL] = parser.value(updateUrlOption);
 #endif
+    results[opts::MUTEDRING] = parser.isSet(muteDringOption);
     return results;
 }
 
