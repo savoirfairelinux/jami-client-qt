@@ -16,6 +16,24 @@
       "revId": "c00964b2fb5973ca58cfad5df6f34065f49c693c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf2950db_2cf6c2ce",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-06-22T13:24:01Z",
+      "side": 1,
+      "message": "No, it is just that the namw for this setting is \u0027Use custom address and port\u0027\n\nso, it is reversed",
+      "parentUuid": "1e691a63_c80828ae",
+      "revId": "c00964b2fb5973ca58cfad5df6f34065f49c693c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
