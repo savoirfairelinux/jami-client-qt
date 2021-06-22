@@ -419,7 +419,7 @@ Rectangle {
         Connections {
             target: MessagesAdapter
 
-            function onInvitationAccepted() {
+            function onWillAcceptRequest() {
                 mainViewSidePanel.selectTab(SidePanelTabBar.Conversations)
             }
         }

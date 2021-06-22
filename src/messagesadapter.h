@@ -101,7 +101,7 @@ protected:
 
 Q_SIGNALS:
     void contactBanned();
-    void invitationAccepted();
+    void willAcceptRequest();
     void newInteraction(int type);
 
 public Q_SLOTS:

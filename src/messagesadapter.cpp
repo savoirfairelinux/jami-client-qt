@@ -273,6 +273,9 @@ MessagesAdapter::sendMessage(const QString& message)
 {
     try {
         const auto convUid = lrcInstance_->get_selectedConvUid();
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid);
+        if (!convInfo.uid.isEmpty() && convInfo.isRequest)
+            Q_EMIT willAcceptRequest();
         lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message);
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
@@ -734,10 +737,10 @@ void
 MessagesAdapter::acceptInvitation(const QString& convUid)
 {
     const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
+    Q_EMIT willAcceptRequest();
     lrcInstance_->getCurrentConversationModel()->makePermanent(currentConvUid);
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
-    Q_EMIT invitationAccepted();
 }
 
 void
