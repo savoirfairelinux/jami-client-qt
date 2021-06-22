@@ -34,6 +34,24 @@
       "revId": "c00964b2fb5973ca58cfad5df6f34065f49c693c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8d411d25_2317ed8f",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2021-06-22T13:31:47Z",
+      "side": 1,
+      "message": "In this case, isn\u0027t better to make the conversion where \u0027Use custom address and port\u0027 is checked  to avoid confusion?",
+      "parentUuid": "bf2950db_2cf6c2ce",
+      "revId": "c00964b2fb5973ca58cfad5df6f34065f49c693c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
