@@ -48,7 +48,6 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
     connect(this, &ConversationsAdapter::profileTypeFilterChanged, [this]() {
         convModel_->setProfileTypeFilter(profileTypeFilter_);
     });
-    set_profileTypeFilter(profile::Type::JAMI);
 
     // this will trigger when the invite filter tab is selected
     connect(this, &ConversationsAdapter::filterRequestsChanged, [this]() {
@@ -184,6 +183,7 @@ ConversationsAdapter::onCurrentAccountIdChanged()
     connectConversationModel();
 
     set_profileTypeFilter(lrcInstance_->getCurrentAccountInfo().profileInfo.type);
+    set_filterRequests(false);
 }
 
 void
