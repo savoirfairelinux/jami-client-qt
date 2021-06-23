@@ -22,6 +22,30 @@
       "revId": "9eb3c7273357b61dd6b00f1bd3dd222c30f025fa",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ebdfd30_f6ee2d99",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-23T20:56:31Z",
+      "side": 1,
+      "message": "conversation ready seems to work well for this, and new conversation is useless now for the client-qt(pretty sure)",
+      "parentUuid": "ea4823c8_41d1720f",
+      "range": {
+        "startLine": 278,
+        "startChar": 20,
+        "endLine": 278,
+        "endChar": 30
+      },
+      "revId": "9eb3c7273357b61dd6b00f1bd3dd222c30f025fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
