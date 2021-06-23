@@ -102,6 +102,8 @@ public:
 
     Q_INVOKABLE void selectConversation(const QString& convId, const QString& accountId = {});
     Q_INVOKABLE void deselectConversation();
+    Q_INVOKABLE void makeConversationPermanent(const QString& convId = {},
+                                               const QString& accountId = {});
 
     const QString& getCurrentAccountId();
     void setCurrentAccountId(const QString& accountId = {});
@@ -134,6 +136,7 @@ Q_SIGNALS:
     void contactBanned(const QString& uri);
     void currentAccountIdChanged(const QString& accountId);
     void currentAccountTypeChanged(profile::Type type);
+    void willMakeConversationPermanent();
 
 private:
     std::unique_ptr<Lrc> lrc_;

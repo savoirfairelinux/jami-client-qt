@@ -36,19 +36,15 @@ Rectangle {
     anchors.fill: parent
 
     Connections {
-        target: AccountAdapter
-
-        function onSelectedContactAdded(convId) {
-            clearContactSearchBar()
-            LRCInstance.selectConversation(convId)
-        }
-    }
-
-    Connections {
         target: LRCInstance
 
         function onCurrentAccountIdChanged() {
             clearContactSearchBar()
+        }
+
+        function onWillMakeConversationPermanent() {
+            clearContactSearchBar()
+            selectTab(SidePanelTabBar.Conversations)
         }
     }
 

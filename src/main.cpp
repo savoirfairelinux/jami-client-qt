@@ -87,9 +87,9 @@ main(int argc, char* argv[])
     appData.addData(QApplication::applicationName().toUtf8());
     appData.addData(QApplication::organizationDomain().toUtf8());
     RunGuard guard(appData.result(), &app);
-    if (!guard.tryToRun()) {
-        return 0;
-    }
+    //    if (!guard.tryToRun()) {
+    //        return 0;
+    //    }
 
     if (!app.init()) {
         guard.release();

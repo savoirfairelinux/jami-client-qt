@@ -115,8 +115,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                 auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerUri, accountId);
                 if (convInfo.uid.isEmpty())
                     return;
-                lrcInstance_->getAccountInfo(accountId).conversationModel->makePermanent(
-                    convInfo.uid);
+                lrcInstance_->makeConversationPermanent(convInfo.uid, accountId);
             });
     connect(systemTray_,
             &SystemTray::refusePendingActivated,
