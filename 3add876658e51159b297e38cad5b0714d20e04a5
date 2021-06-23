@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f1d33b85_d20cd399",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-23T13:40:33Z",
+      "side": 1,
+      "message": "please, install the clang format hook for indets\n\nalso: return logList_.isEmpty()? 0 : (logList_.first()).length();",
+      "range": {
+        "startLine": 1118,
+        "startChar": 6,
+        "endLine": 1119,
+        "endChar": 18
+      },
+      "revId": "3add876658e51159b297e38cad5b0714d20e04a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b4713b8_8236f5e6",
+        "filename": "src/settingsadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-23T13:40:33Z",
+      "side": 1,
+      "message": "const methods?",
+      "range": {
+        "startLine": 235,
+        "startChar": 31,
+        "endLine": 237,
+        "endChar": 40
+      },
+      "revId": "3add876658e51159b297e38cad5b0714d20e04a5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
