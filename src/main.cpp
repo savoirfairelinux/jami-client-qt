@@ -25,32 +25,24 @@
 #include <QCryptographicHash>
 #include <QApplication>
 #include <QtWebEngine>
+#include <QStringList>
 
 #include <clocale>
 
 #ifndef ENABLE_TESTS
 
-static char**
-parseInputArgument(int& argc, char* argv[], char* argToParse)
-{
-    /*
-     * Forcefully append argToParse.
-     */
-    int oldArgc = argc;
-    argc = argc + 1 + 1;
-    char** newArgv = new char*[argc];
-    for (int i = 0; i < oldArgc; i++) {
-        newArgv[i] = argv[i];
-    }
-    newArgv[oldArgc] = argToParse;
-    newArgv[oldArgc + 1] = nullptr;
-    return newArgv;
-}
+// Qt WebEngine Chromium Flags
+static constexpr char noSandbox[] {"--no-sandbox"};
+static constexpr char disableWebSecurity[] {"--disable-web-security"};
+static constexpr char singleProcess[] {"--single-process"};
 
 int
 main(int argc, char* argv[])
 {
     setlocale(LC_ALL, "en_US.utf8");
+
+    QStringList qtWebEngineChromiumFlags;
+
 #ifdef Q_OS_LINUX
     setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
 #ifdef __GLIBC__
@@ -59,9 +51,15 @@ main(int argc, char* argv[])
     // As I prefer to not use custom patched Qt, just wait for a
     // new version with this bug fixed
     if (__GLIBC__ > 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 33))
-        setenv("QTWEBENGINE_CHROMIUM_FLAGS", "--no-sandbox", true);
+        qtWebEngineChromiumFlags << noSandbox;
 #endif
 #endif
+    qtWebEngineChromiumFlags << disableWebSecurity;
+    qtWebEngineChromiumFlags << singleProcess;
+
+    if (!qputenv("QTWEBENGINE_CHROMIUM_FLAGS", qtWebEngineChromiumFlags.join(" ").toUtf8()))
+        qWarning("QTWEBENGINE_CHROMIUM_FLAGS cannnot be set");
+
     QApplication::setApplicationName("Jami");
     QApplication::setOrganizationDomain("jami.net");
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
@@ -75,9 +73,7 @@ main(int argc, char* argv[])
 #endif
     QtWebEngine::initialize();
 
-    char ARG_DISABLE_WEB_SECURITY[] = "--disable-web-security";
-    auto newArgv = parseInputArgument(argc, argv, ARG_DISABLE_WEB_SECURITY);
-    MainApplication app(argc, newArgv);
+    MainApplication app(argc, argv);
 
     /*
      * Runguard to make sure that only one instance runs at a time.
