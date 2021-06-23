@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ea4823c8_41d1720f",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-23T14:04:39Z",
+      "side": 1,
+      "message": "this works for text messages, but still not for sending files.\n\nI\u0027m wondering if it\u0027s the best approach. Why not do this when a new contact or conversation is added? this will avoid to have \"willacceptrequest\" which seems a logic handled by the client and error prone",
+      "range": {
+        "startLine": 278,
+        "startChar": 20,
+        "endLine": 278,
+        "endChar": 30
+      },
+      "revId": "9eb3c7273357b61dd6b00f1bd3dd222c30f025fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
