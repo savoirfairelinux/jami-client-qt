@@ -109,14 +109,6 @@ Rectangle {
         }
     }
 
-    Connections {
-        target: AccountAdapter
-
-        function onSelectedContactAdded(convId) {
-            MessagesAdapter.updateConversationForAddedContact()
-        }
-    }
-
     JamiFileDialog {
         id: jamiFileDialog
 
