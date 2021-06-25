@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4b66fab_cc3f8eba",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-25T19:05:43Z",
+      "side": 1,
+      "message": "on another patch (for composing) I add a signal there",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 30
+      },
+      "revId": "c329e0886cd36b25c81b17a37496ef38d140ae51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
