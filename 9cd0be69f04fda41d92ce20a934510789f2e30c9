@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "950d1e22_b0eaed82",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-25T21:16:21Z",
+      "side": 1,
+      "message": "not related but we still need to change the info in the notification to avoid to have the peerUri here but directly the conversation (this will fix open conversation too)",
+      "range": {
+        "startLine": 116,
+        "startChar": 44,
+        "endLine": 118,
+        "endChar": 27
+      },
+      "revId": "9cd0be69f04fda41d92ce20a934510789f2e30c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
