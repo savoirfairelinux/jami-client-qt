@@ -116,7 +116,7 @@ public Q_SLOTS:
 private:
     void updateRecordingPeers(bool eraseLabelOnEmpty = false);
     void showNotification(const QString& accountId, const QString& convUid);
-    QJsonObject fillParticipantData(const lrc::api::call::ParticipantInfo& participant);
+    void fillParticipantData(QJsonObject& participant);
     void preventScreenSaver(bool state);
     void updateCallOverlay(const lrc::api::conversation::Info& convInfo);
     void saveConferenceSubcalls();

@@ -32,6 +32,8 @@
 #include <QTimer>
 #include <QJsonObject>
 
+#include <api/callparticipantsmodel.h>
+
 CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
@@ -456,45 +458,29 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
     updateRecordingPeers(true);
 }
 
-QJsonObject
-CallAdapter::fillParticipantData(const lrc::api::call::ParticipantInfo& participant)
+void
+CallAdapter::fillParticipantData(QJsonObject& participant)
 {
-    QJsonObject data;
-    data["x"] = participant.x;
-    data["y"] = participant.y;
-    data["w"] = participant.width;
-    data["h"] = participant.height;
-    data["uri"] = participant.uri;
-    data["active"] = participant.active;
-    data["sinkId"] = participant.sinkId;
-    data["videoMuted"] = participant.videoMuted;
-    data["audioLocalMuted"] = participant.audioLocalMuted;
-    data["audioModeratorMuted"] = participant.audioModeratorMuted;
-    data["isContact"] = participant.isContact;
-
-    auto bestName = participant.uri;
+    participant["bestName"] = participant["uri"];
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-    data["isLocal"] = false;
-    if (bestName == accInfo.profileInfo.uri) {
-        bestName = tr("me");
-        data["isLocal"] = true;
-        if (participant.videoMuted)
-            data["avatar"] = accInfo.profileInfo.avatar;
+    participant["isLocal"] = false;
+    if (participant["bestName"] == accInfo.profileInfo.uri) {
+        participant["bestName"] = tr("me");
+        participant["isLocal"] = true;
+        if (participant["videoMuted"].toBool())
+            participant["avatar"] = accInfo.profileInfo.avatar;
     } else {
         try {
             auto& contact = lrcInstance_->getCurrentAccountInfo().contactModel->getContact(
-                participant.uri);
-            bestName = lrcInstance_->getCurrentAccountInfo().contactModel->bestNameForContact(
-                participant.uri);
-            if (participant.videoMuted)
-                data["avatar"] = contact.profileInfo.avatar;
-            data["isContact"] = true;
+                participant["uri"].toString());
+            participant["bestName"] = lrcInstance_->getCurrentAccountInfo().contactModel->bestNameForContact(
+                participant["uri"].toString());
+            if (participant["videoMuted"].toBool())
+                participant["avatar"] = contact.profileInfo.avatar;
+            participant["isContact"] = true;
         } catch (...) {
         }
     }
-    data["bestName"] = bestName;
-
-    return data;
 }
 
 QVariantList
@@ -507,10 +493,12 @@ CallAdapter::getConferencesInfos()
     auto callId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
     if (!callId.isEmpty()) {
         try {
-            auto participants = lrcInstance_->accountModel().getAccountInfo(accountId_).callModel.get()->getParticipantsInfos(callId);
-            for (const auto& participant : participants) {
-                QJsonObject data = fillParticipantData(participant);
-                map.push_back(QVariant(data));
+            auto& participantsModel = lrcInstance_->accountModel().getAccountInfo(accountId_).callModel.get()->getParticipantsInfos(callId);
+            int index = 0;
+            for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
+                auto participant = participantsModel.toQJsonObject(index);
+                fillParticipantData(participant);
+                map.push_back(QVariant(participant));
             }
             return map;
         } catch (...) {
@@ -638,13 +626,15 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
         return;
     }
 
+    auto confId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
+    auto& participantsModel = callModel->getParticipantsInfos(confId);
     bool isPaused = call->status == lrc::api::call::Status::PAUSED;
     bool isAudioOnly = call->isAudioOnly && !isPaused;
     bool isAudioMuted = call->audioMuted && (call->status != lrc::api::call::Status::PAUSED);
     bool isVideoMuted = call->videoMuted && !isPaused && !call->isAudioOnly;
     bool isRecording = isRecordingThisCall();
     bool isConferenceCall = !convInfo.confId.isEmpty()
-                            || (convInfo.confId.isEmpty() && call->participantsInfos.size() != 0);
+                            || (convInfo.confId.isEmpty() && call->isConference);
     bool isGrid = call->layout == lrc::api::call::Layout::GRID;
     auto bestName = convInfo.participants.isEmpty()
                         ? QString()
@@ -661,6 +651,7 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                          bestName);
     if (isConferenceCall && call->status == lrc::api::call::Status::IN_PROGRESS) {
         auto callId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
+        qDebug() << getConferencesInfos();
         participantsModel_->setParticipants(callId, getConferencesInfos());
     }
 }
@@ -692,8 +683,8 @@ CallAdapter::maximizeParticipant(const QString& uri)
     if (confId.isEmpty())
         confId = convInfo.callId;
     try {
-        auto participants = callModel->getParticipantsInfos(confId);
-            for (auto& participant : participants) {
+        auto& participantsModel = callModel->getParticipantsInfos(confId);
+            for (auto& participant : participantsModel.getParticipants()) {
             if (participant.uri == uri) {
                 participant.active = !participant.active;
                 if (participant.active) {
@@ -724,8 +715,8 @@ CallAdapter::minimizeParticipant(const QString& uri)
     if (confId.isEmpty())
         confId = convInfo.callId;
     try {
-        auto participants = callModel->getParticipantsInfos(confId);
-        for (auto& participant : participants) {
+        auto& participantsModel = callModel->getParticipantsInfos(confId);
+        for (auto& participant : participantsModel.getParticipants()) {
             if (participant.uri == uri) {
                 if (participant.active) {
                     participant.active = !participant.active;
@@ -790,7 +781,7 @@ CallAdapter::isCurrentHost() const
             auto confId = convInfo.confId;
             if (confId.isEmpty())
                 confId = convInfo.callId;
-            if (callModel->getParticipantsInfos(confId).size() == 0) {
+            if (callModel->getParticipantsInfos(confId).getParticipants().size() == 0) {
                 return true;
             } else {
                 return !convInfo.confId.isEmpty() && callModel->hasCall(convInfo.confId);
@@ -846,12 +837,12 @@ CallAdapter::isCurrentModerator() const
         auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
         try {
             auto confId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
-            auto participants = callModel->getParticipantsInfos(confId);
-            if (participants.size() == 0) {
+            auto& participantsModel = callModel->getParticipantsInfos(confId);
+            if (participantsModel.getParticipants().size() == 0) {
                 return true;
             } else {
                 auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-                for (const auto& participant : participants) {
+                for (const auto& participant : participantsModel.getParticipants()) {
                     if (participant.uri == accInfo.profileInfo.uri)
                         return participant.isModerator;
                 }
@@ -900,11 +891,11 @@ CallAdapter::getMuteState(const QString& uri) const
     auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
     auto confId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
     try {
-        auto participants = callModel->getParticipantsInfos(confId);
-        if (participants.size() == 0) {
+        auto& participantsModel = callModel->getParticipantsInfos(confId);
+        if (participantsModel.getParticipants().size() == 0) {
             return MuteStates::UNMUTED;
         } else {
-            for (const auto& participant : participants) {
+            for (const auto& participant : participantsModel.getParticipants()) {
                 if (participant.uri == uri) {
                     if (participant.audioLocalMuted) {
                         if (participant.audioModeratorMuted) {
