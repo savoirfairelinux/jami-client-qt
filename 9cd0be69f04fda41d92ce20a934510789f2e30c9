@@ -22,6 +22,30 @@
       "revId": "9cd0be69f04fda41d92ce20a934510789f2e30c9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "607c8f11_d1a064f5",
+        "filename": "src/conversationsadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-25T21:20:03Z",
+      "side": 1,
+      "message": "agreed, I believe we will need to change the behaviourController first, TBD",
+      "parentUuid": "950d1e22_b0eaed82",
+      "range": {
+        "startLine": 116,
+        "startChar": 44,
+        "endLine": 118,
+        "endChar": 27
+      },
+      "revId": "9cd0be69f04fda41d92ce20a934510789f2e30c9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
