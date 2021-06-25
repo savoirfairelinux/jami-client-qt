@@ -99,6 +99,7 @@ CallParticipantsModel::addParticipant(const CallParticipant::Item& item)
         lrcInstance_->renderer()->addDistantRenderer(item.item["sinkId"].toString());
         renderers_[callId_].append(item.item["sinkId"].toString());
     } else {
+        it = participants_.begin() + idx_;
         if (item.item["uri"] == it->item["uri"] && item.item["sinkId"] == it->item["sinkId"] &&
             item.item["active"] == it->item["active"] &&
             item.item["audioLocalMuted"] == it->item["audioLocalMuted"]
@@ -110,7 +111,6 @@ CallParticipantsModel::addParticipant(const CallParticipant::Item& item)
         (*it) = item;
         Q_EMIT updateParticipant(item.item.toVariantMap());
     }
-    idx_++;
 }
 
 
@@ -123,8 +123,8 @@ CallParticipantsModel::filterParticipants(const QVariantList& participants)
 
         auto peerId = candidate.item.value("uri").toString();
         auto it = participantsCandidates_.find(peerId);
-        if (candidate.item.value("w").toInt() != 0
-            && candidate.item.value("h").toInt() != 0) {
+        if (candidate.item.value("width").toInt() != 0
+            && candidate.item.value("height").toInt() != 0) {
             validUris_.append(peerId);
             if (it == participantsCandidates_.end()) {
                 participantsCandidates_.insert(peerId, candidate);
@@ -169,8 +169,10 @@ CallParticipantsModel::setParticipants(const QString& callId, const QVariantList
     validUris_.sort();
 
     idx_ = 0;
-    for (const auto& partUri : validUris_)
+    for (const auto& partUri : validUris_) {
         addParticipant(participantsCandidates_[partUri]);
+        idx_++;
+    }
 
     idx_ = 0;
     auto keys = participants_.keys();
