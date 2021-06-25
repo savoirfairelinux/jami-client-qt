@@ -26,8 +26,10 @@ import net.jami.Models 1.0
 Item {
     id: root
 
+    property alias count: participantincall.count
+
     Connections {
-        target: CallParticipantsModel
+        target: CallAdapter
 
         function onUpdateParticipantsLayout() {
             participantsFlow.columns = Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))

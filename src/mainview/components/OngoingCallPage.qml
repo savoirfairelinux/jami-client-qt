@@ -43,7 +43,6 @@ Rectangle {
     property int previewToX: 0
     property int previewToY: 0
     property bool isAudioOnly: false
-    property bool isConferenceCall: false // TODO: remove this after participantsInfos are feed for normal and ms calls
     property var linkedWebview: null
 
     color: "black"
@@ -180,7 +179,7 @@ Rectangle {
                     z: -1
 
                     lrcInstance: LRCInstance
-                    visible: !root.isConferenceCall && !root.isAudioOnly
+                    visible: participantsLayer.count == 0 && !root.isAudioOnly
                 }
 
                 ParticipantsLayer {
@@ -188,14 +187,14 @@ Rectangle {
                     anchors.fill: parent
                     anchors.centerIn: parent
                     anchors.margins: 3
-                    visible: root.isConferenceCall && !root.isAudioOnly
+                    visible: !root.isAudioOnly
                 }
 
                 VideoCallPreviewRenderer {
                     id: previewRenderer
 
                     lrcInstance: LRCInstance
-                    visible: !callOverlay.isAudioOnly && !participantsLayer.visible && !callOverlay.isVideoMuted && !callOverlay.isPaused
+                    visible: !callOverlay.isAudioOnly && participantsLayer.count == 0 && !callOverlay.isVideoMuted && !callOverlay.isPaused
 
                     width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                     x: callPageMainRect.width - previewRenderer.width - previewMargin
@@ -276,6 +275,7 @@ Rectangle {
                     id: callOverlay
 
                     anchors.fill: parent
+                    isConference: participantsLayer.count >= 0
 
                     function toggleConversation() {
                         inCallMessageWebViewStack.visible ?
@@ -287,16 +287,15 @@ Rectangle {
                         target: CallAdapter
 
                         function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
-                                                 isRecording, isSIP, isConferenceCall, isGrid,
+                                                 isRecording, isSIP, isGrid,
                                                  bestName) {
-                            root.isConferenceCall = isConferenceCall
                             root.isAudioOnly = isAudioOnly
                             callOverlay.showOnHoldImage(isPaused)
                             audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
                             callOverlay.updateUI(isPaused, isAudioOnly,
                                                  isAudioMuted, isVideoMuted,
                                                  isRecording, isSIP,
-                                                 isConferenceCall, isGrid)
+                                                 isGrid)
                             root.bestName = bestName
                         }
 

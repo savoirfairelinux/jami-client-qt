@@ -96,11 +96,11 @@ Q_SIGNALS:
                        bool isVideoMuted,
                        bool isRecording,
                        bool isSIP,
-                       bool isConferenceCall,
                        bool isGrid,
                        const QString& bestName);
     void remoteRecordingChanged(const QStringList& peers, bool state);
     void eraseRemoteRecording();
+    void updateParticipantsLayout();
 
 public Q_SLOTS:
     void onShowIncomingCallView(const QString& accountId, const QString& convUid);
@@ -108,15 +108,17 @@ public Q_SLOTS:
     void onAccountChanged();
     void onCallStatusChanged(const QString& accountId, const QString& callId);
     void onCallInfosChanged(const QString& accountId, const QString& callId);
-    void onParticipantsChanged(const QString& confId);
     void onCallStatusChanged(const QString& callId, int code);
     void onRemoteRecordingChanged(const QString& callId, const QSet<QString>& peerRec, bool state);
     void onCallAddedToConference(const QString& callId, const QString& confId);
+    void onParticipantAdded(const QString& callId, int index);
+    void onParticipantRemoved(const QString& callId, int index);
+    void onParticipantUpdated(const QString& callId, int index);
 
 private:
     void updateRecordingPeers(bool eraseLabelOnEmpty = false);
     void showNotification(const QString& accountId, const QString& convUid);
-    QJsonObject fillParticipantData(const lrc::api::call::ParticipantInfo& participant);
+    void fillParticipantData(QJsonObject& participant);
     void preventScreenSaver(bool state);
     void updateCallOverlay(const lrc::api::conversation::Info& convInfo);
     void saveConferenceSubcalls();
