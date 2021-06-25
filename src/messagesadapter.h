@@ -50,7 +50,7 @@ protected:
     Q_INVOKABLE void clearConversationHistory(const QString& accountId, const QString& convUid);
 
     // JS Q_INVOKABLE.
-    Q_INVOKABLE void acceptInvitation(const QString& convUid = "");
+    Q_INVOKABLE void acceptInvitation(const QString& convId = {});
     Q_INVOKABLE void refuseInvitation(const QString& convUid = "");
     Q_INVOKABLE void blockConversation(const QString& convUid = "");
     Q_INVOKABLE void setNewMessagesContent(const QString& path);
@@ -102,11 +102,20 @@ Q_SIGNALS:
     void contactBanned();
     void newInteraction(int type);
 
-public Q_SLOTS:
+private Q_SLOTS:
     void slotSendMessageContentSaved(const QString& content);
     void slotUpdateDraft(const QString& content);
     void slotMessagesCleared();
     void slotMessagesLoaded();
+    void onNewInteraction(const QString& convUid,
+                          const QString& interactionId,
+                          const interaction::Info& interaction);
+    void onInteractionStatusUpdated(const QString& convUid,
+                                    const QString& interactionId,
+                                    const interaction::Info& interaction);
+    void onInteractionRemoved(const QString& convUid, const QString& interactionId);
+    void onNewMessagesAvailable(const QString& accountId, const QString& conversationId);
+    void updateConversation(const QString& conversationId);
 
 private:
     void setConversationProfileData(const lrc::api::conversation::Info& convInfo);
@@ -119,13 +128,6 @@ private:
     QString currentConvUid_;
 
     const QVariantMap chatviewTranslatedStrings_ {lrc::api::chatview::getTranslatedStrings()};
-
-    // Interaction connections.
-    QMetaObject::Connection newInteractionConnection_;
-    QMetaObject::Connection interactionStatusUpdatedConnection_;
-    QMetaObject::Connection interactionRemovedConnection_;
-    QMetaObject::Connection newMessagesAvailableConnection_;
-    QMetaObject::Connection conversationUpdatedConnection_;
 
     AppSettingsManager* settingsManager_;
 };
