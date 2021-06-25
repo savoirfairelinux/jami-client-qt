@@ -22,6 +22,30 @@
       "revId": "3bf036871de1749a7aeca25c196f13d9ed6dae24",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abe7cda3_8ffc1095",
+        "filename": "src/lrcinstance.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-25T14:34:30Z",
+      "side": 1,
+      "message": "logical for the apis when an accountId is always supplied, but most of the functions in the client have accountId at the end and default to empty which denotes the current account, so it is homogeneous within the client code base",
+      "parentUuid": "80d47564_00b6a662",
+      "range": {
+        "startLine": 437,
+        "startChar": 38,
+        "endLine": 437,
+        "endChar": 87
+      },
+      "revId": "3bf036871de1749a7aeca25c196f13d9ed6dae24",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
