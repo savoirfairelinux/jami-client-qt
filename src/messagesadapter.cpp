@@ -369,6 +369,13 @@ MessagesAdapter::retryInteraction(const QString& interactionId)
 }
 
 void
+MessagesAdapter::saveFile(const QString& interactionId)
+{
+    qWarning() << "@@@ TODO save " << interactionId;
+}
+
+
+void
 MessagesAdapter::setNewMessagesContent(const QString& path)
 {
     if (path.length() == 0)
