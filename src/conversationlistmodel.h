@@ -55,7 +55,7 @@ private:
     // With swarm in place, this filter should only ever be set to profile::Type::JAMI
     // and profile::Type::SIP as profile::Type::PENDING should no longer be used to
     // filter for invites, and instead use the isRequest property of a conversation.
-    profile::Type profileTypeFilter_;
+    profile::Type profileTypeFilter_ {profile::Type::INVALID};
 
     // This flag can be toggled when switching tabs to show the current account's
     // conversation invites.

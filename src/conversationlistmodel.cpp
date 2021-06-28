@@ -106,6 +106,7 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     using namespace ConversationList;
 
     // name/id
+    auto title = index.data(Role::Title).toString();
     auto uri = index.data(Role::URI).toString();
     auto alias = index.data(Role::Alias).toString();
     auto registeredName = index.data(Role::RegisteredName).toString();
@@ -122,6 +123,8 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     // requests
     auto isRequest = index.data(Role::IsRequest).toBool();
     bool requestFilter = filterRequests_ ? isRequest : !isRequest;
+
+    qDebug() << "ITEM" << uri << alias << registeredName << isRequest;
 
     bool match {false};
 
