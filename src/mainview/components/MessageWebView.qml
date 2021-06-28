@@ -227,6 +227,10 @@ Rectangle {
             messageWebViewRect.messagesLoaded()
         }
 
+        function copyToDownloads(interactionId) {
+            MessagesAdapter.copyToDownloads(interactionId)
+        }
+
         function emitPasteKeyDetected() {
             MessagesAdapter.pasteKeyDetected()
         }
