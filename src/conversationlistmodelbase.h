@@ -45,7 +45,9 @@
     X(AccountId) \
     X(PictureUid) \
     X(Draft) \
-    X(IsRequest)
+    X(IsRequest) \
+    X(Mode) \
+    X(UriList)
 
 namespace ConversationList {
 Q_NAMESPACE
