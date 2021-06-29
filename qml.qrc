@@ -155,5 +155,7 @@
         <file>src/mainview/components/PendingFilesToSendDelegate.qml</file>
         <file>src/mainview/components/MessageBar.qml</file>
         <file>src/mainview/components/PendingFilesTransferContainer.qml</file>
+        <file>src/commoncomponents/Avatar.qml</file>
+        <file>src/mainview/components/ConversationAvatar.qml</file>
     </qresource>
 </RCC>
