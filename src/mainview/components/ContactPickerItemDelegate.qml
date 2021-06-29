@@ -29,10 +29,10 @@ import "../../commoncomponents"
 ItemDelegate {
     id: contactPickerItemDelegate
 
-    property alias showPresenceIndicator: contactPickerContactImage.showPresenceIndicator
+    property alias showPresenceIndicator: avatar.showPresenceIndicator
 
-    AvatarImage {
-        id: contactPickerContactImage
+    Avatar {
+        id: avatar
 
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
@@ -41,18 +41,18 @@ ItemDelegate {
         width: 40
         height: 40
 
-        avatarMode: AvatarImage.AvatarMode.FromContactUri
         imageId: URI
+        mode: Avatar.Mode.Conversation
     }
 
     Rectangle {
         id: contactPickerContactInfoRect
 
-        anchors.left: contactPickerContactImage.right
+        anchors.left: avatar.right
         anchors.leftMargin: 10
         anchors.top: parent.top
 
-        width: parent.width - contactPickerContactImage.width - 20
+        width: parent.width - avatar.width - 20
         height: parent.height
 
         color: "transparent"
@@ -108,7 +108,7 @@ ItemDelegate {
         implicitHeight: Math.max(
                             contactPickerContactName.height
                             + textMetricsContactPickerContactId.height + 10,
-                            contactPickerContactImage.height + 10)
+                            avatar.height + 10)
         border.width: 0
     }
 

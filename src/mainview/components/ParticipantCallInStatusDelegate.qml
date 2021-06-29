@@ -49,7 +49,7 @@ SpinningAnimation {
         opacity: JamiTheme.participantCallInStatusOpacity
         radius: JamiTheme.participantCallInStatusDelegateRadius
 
-        AvatarImage {
+        Avatar {
             id: avatar
 
             anchors.left: contentRect.left
@@ -60,8 +60,8 @@ SpinningAnimation {
             height: JamiTheme.participantCallInAvatarSize
 
             showPresenceIndicator: false
-            avatarMode: AvatarImage.AvatarMode.FromContactUri
             imageId: ContactUri
+            mode: Avatar.Mode.Conversation
         }
 
         ColumnLayout {

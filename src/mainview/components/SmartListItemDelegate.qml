@@ -37,39 +37,43 @@ ItemDelegate {
         return UID
     }
 
-    Component.onCompleted: {
-        if (ContactType === Profile.Type.TEMPORARY)
-            root.ListView.view.model.updateContactAvatarUid(URI)
-        avatar.updateImage(URI, PictureUid)
-    }
-
     RowLayout {
         anchors.fill: parent
         anchors.leftMargin: 15
         anchors.rightMargin: 15
         spacing: 10
 
-        AvatarImage {
+//        AvatarImage {
+//            id: avatar
+
+//            Connections {
+//                target: root.ListView.view.model
+//                function onDataChanged(idx) {
+//                    // TODO: currently the avatar dispaly mechanism requires
+//                    // that each dataChanged signal is caught by and induces an
+//                    // updateImage call per smartlist item. Once this is fixed
+//                    // we can filter for the current delegate's index like:
+//                    // if (idx.row !== index) return
+//                    avatar.updateImage(URI, PictureUid)
+//                }
+//            }
+
+//            Layout.preferredWidth: JamiTheme.smartListAvatarSize
+//            Layout.preferredHeight: JamiTheme.smartListAvatarSize
+
+//            avatarMode: AvatarImage.AvatarMode.FromContactUri
+//            showPresenceIndicator: Presence === undefined ? false : Presence
+//            transitionDuration: 0
+//        }
+
+        Avatar {
             id: avatar
 
-            Connections {
-                target: root.ListView.view.model
-                function onDataChanged(idx) {
-                    // TODO: currently the avatar dispaly mechanism requires
-                    // that each dataChanged signal is caught by and induces an
-                    // updateImage call per smartlist item. Once this is fixed
-                    // we can filter for the current delegate's index like:
-                    // if (idx.row !== index) return
-                    avatar.updateImage(URI, PictureUid)
-                }
-            }
+            imageId: UID
+            mode: Avatar.Mode.Conversation
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
-
-            avatarMode: AvatarImage.AvatarMode.FromContactUri
-            showPresenceIndicator: Presence === undefined ? false : Presence
-            transitionDuration: 0
         }
 
         ColumnLayout {
