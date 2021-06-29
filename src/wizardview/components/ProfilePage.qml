@@ -38,7 +38,6 @@ Rectangle {
     signal saveProfile
 
     function initializeOnShowUp() {
-        setAvatarWidget.initUI()
         clearAllTextFields()
         saveProfileBtn.spinnerTriggered = true
     }
@@ -100,9 +99,9 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: size
-            Layout.preferredHeight: size
+            Layout.fillHeight: true
 
-            boothWidth: 200
+            size: 200
         }
 
         MaterialLineEdit {
