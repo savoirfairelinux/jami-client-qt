@@ -88,6 +88,7 @@ SpinningAnimation {
     }
 
     function updateImage(updatedId, oneTimeForceUpdateUrl) {
+        print("updateImage", updatedId, oneTimeForceUpdateUrl)
         imageId = updatedId
         if (oneTimeForceUpdateUrl === undefined)
             forceUpdateUrl = Date.now()

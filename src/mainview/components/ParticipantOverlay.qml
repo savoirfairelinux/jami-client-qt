@@ -52,13 +52,13 @@ Item {
 
     z: 1
 
-    function setAvatar(show, avatar, uri, local, isContact) {
+    function setAvatar(show, base64, uri, local, isContact) {
         if (!show)
             contactImage.visible = false
         else {
-            if (avatar) {
+            if (base64) {
                 contactImage.avatarMode = AvatarImage.AvatarMode.FromBase64
-                contactImage.updateImage(avatar)
+                contactImage.updateImage(base64)
             } else if (local) {
                 contactImage.avatarMode = AvatarImage.AvatarMode.FromAccount
                 contactImage.updateImage(LRCInstance.currentAccountId)
