@@ -95,7 +95,7 @@ ColumnLayout {
 
     spacing: 0
 
-    JamiFileDialog{
+    JamiFileDialog {
         id: importFromFileToAvatar_Dialog
 
         mode: JamiFileDialog.OpenFile
