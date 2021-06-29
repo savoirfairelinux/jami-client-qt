@@ -126,6 +126,10 @@ public:
     bool hasActiveCall(bool withVideo = false);
     VectorString getConferenceSubcalls(const QString& callId);
 
+    //    // wrappers for avatarregistry
+    //    void loadAllImages();
+    //    void addOrUpdateImage(const QString& uid, AvatarRegistry::Type type);
+
 Q_SIGNALS:
     void accountListChanged();
     void restoreAppRequested();

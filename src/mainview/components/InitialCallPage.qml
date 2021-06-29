@@ -73,16 +73,15 @@ Rectangle {
         anchors.horizontalCenter: root.horizontalCenter
         anchors.verticalCenter: root.verticalCenter
 
-        AvatarImage {
+        ConversationAvatar {
             id: contactImg
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: JamiTheme.avatarSizeInCall + spinningAnimationWidth
             Layout.preferredHeight: JamiTheme.avatarSizeInCall + spinningAnimationWidth
 
-            avatarMode: AvatarImage.AvatarMode.FromConvUid
             showPresenceIndicator: false
-            spinningAnimationMode: SpinningAnimation.SpinningAnimationMode.NORMAL
+            mode: SpinningAnimation.Mode.Radial
         }
 
         Text {

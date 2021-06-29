@@ -272,7 +272,7 @@ ConversationsAdapter::onProfileUpdated(const QString& contactUri)
     auto row = lrcInstance_->indexOf(convInfo.uid);
     const auto index = convSrcModel_->index(row, 0);
 
-    convSrcModel_->updateContactAvatarUid(contactUri);
+    // TODO: update avatarregistry
     Q_EMIT convSrcModel_->dataChanged(index, index);
 }
 
@@ -304,13 +304,6 @@ void
 ConversationsAdapter::onSearchStatusChanged(const QString& status)
 {
     Q_EMIT showSearchStatus(status);
-}
-
-void
-ConversationsAdapter::onSearchResultUpdated()
-{
-    // smartlist search results
-    searchSrcModel_->onSearchResultsUpdated();
 }
 
 void
@@ -438,12 +431,6 @@ ConversationsAdapter::connectConversationModel()
                      &ConversationModel::searchStatusChanged,
                      this,
                      &ConversationsAdapter::onSearchStatusChanged,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::searchResultUpdated,
-                     this,
-                     &ConversationsAdapter::onSearchResultUpdated,
                      Qt::UniqueConnection);
 
     QObject::connect(currentConversationModel,
