@@ -74,8 +74,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignCenter
 
-        saveToConfig: true
-        boothWidth: 180
+        size: 180
     }
 
     MaterialLineEdit {

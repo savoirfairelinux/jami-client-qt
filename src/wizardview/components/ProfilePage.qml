@@ -102,7 +102,7 @@ Rectangle {
             Layout.preferredWidth: size
             Layout.preferredHeight: size
 
-            boothWidth: 200
+            size: 200
         }
 
         MaterialLineEdit {
