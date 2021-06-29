@@ -38,7 +38,6 @@ Rectangle {
     signal saveProfile
 
     function initializeOnShowUp() {
-        setAvatarWidget.initUI()
         clearAllTextFields()
         saveProfileBtn.spinnerTriggered = true
     }
@@ -102,7 +101,7 @@ Rectangle {
             Layout.preferredWidth: size
             Layout.preferredHeight: size
 
-            boothWidth: 200
+            size: 200
         }
 
         MaterialLineEdit {

@@ -61,6 +61,12 @@ LRCInstance::getConferenceSubcalls(const QString& callId)
     return lrc_->getConferenceSubcalls(callId);
 }
 
+// void
+// LRCInstance::updateAvatarUid(const QString& uid)
+//{
+//    avatarUidMap_[uid] = Utils::generateUid();
+//}
+
 RenderManager*
 LRCInstance::renderer()
 {
@@ -261,34 +267,6 @@ LRCInstance::getCurrentAccountIndex()
         }
     }
     return -1;
-}
-
-void
-LRCInstance::setAvatarForAccount(const QPixmap& avatarPixmap, const QString& accountID)
-{
-    QByteArray ba;
-    QBuffer bu(&ba);
-    bu.open(QIODevice::WriteOnly);
-    avatarPixmap.save(&bu, "PNG");
-    auto str = QString::fromLocal8Bit(ba.toBase64());
-    accountModel().setAvatar(accountID, str);
-}
-
-void
-LRCInstance::setCurrAccAvatar(const QPixmap& avatarPixmap)
-{
-    QByteArray ba;
-    QBuffer bu(&ba);
-    bu.open(QIODevice::WriteOnly);
-    avatarPixmap.save(&bu, "PNG");
-    auto str = QString::fromLocal8Bit(ba.toBase64());
-    accountModel().setAvatar(get_currentAccountId(), str);
-}
-
-void
-LRCInstance::setCurrAccAvatar(const QString& avatar)
-{
-    accountModel().setAvatar(get_currentAccountId(), avatar);
 }
 
 void

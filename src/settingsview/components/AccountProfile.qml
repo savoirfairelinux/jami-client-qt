@@ -44,11 +44,6 @@ ColumnLayout {
         displayNameLineEdit.text = SettingsAdapter.getCurrentAccount_Profile_Info_Alias()
     }
 
-    function initPhotoBooth() {
-        currentAccountAvatar.initUI(false)
-        currentAccountAvatar.setAvatarImage()
-    }
-
     function stopBooth() {
         currentAccountAvatar.stopBooth()
     }
@@ -74,8 +69,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignCenter
 
-        saveToConfig: true
-        boothWidth: 180
+        size: 180
     }
 
     MaterialLineEdit {
