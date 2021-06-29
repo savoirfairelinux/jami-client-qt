@@ -54,14 +54,10 @@ ItemDelegate {
 
             Connections {
                 target: root.ListView.view.model
-                function onDataChanged(index) {
-                    var model = root.ListView.view.model
-                    avatar.updateImage(URI === undefined ?
-                                           model.data(index, ConversationList.URI):
-                                           URI,
-                                       PictureUid === undefined ?
-                                           model.data(index, ConversationList.PictureUid):
-                                           PictureUid)
+                function onDataChanged(idx) {
+                    if (idx.row !== index)
+                        return
+                    avatar.updateImage(URI, PictureUid)
                 }
             }
 
