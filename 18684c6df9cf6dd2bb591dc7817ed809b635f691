@@ -22,6 +22,30 @@
       "revId": "18684c6df9cf6dd2bb591dc7817ed809b635f691",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1770761_ff628b8f",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-29T13:11:16Z",
+      "side": 1,
+      "message": "it should, it\u0027s installed in my hooks and automatically called",
+      "parentUuid": "d3ba3e63_82910f72",
+      "range": {
+        "startLine": 378,
+        "startChar": 8,
+        "endLine": 378,
+        "endChar": 145
+      },
+      "revId": "18684c6df9cf6dd2bb591dc7817ed809b635f691",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
     }
   ]
 }
