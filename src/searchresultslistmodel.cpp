@@ -47,11 +47,3 @@ SearchResultsListModel::setFilter(const QString& filterString)
 {
     model_->setFilter(filterString);
 }
-
-void
-SearchResultsListModel::onSearchResultsUpdated()
-{
-    beginResetModel();
-    fillContactAvatarUidMap(lrcInstance_->getCurrentAccountInfo().contactModel->getAllContacts());
-    endResetModel();
-}

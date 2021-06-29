@@ -80,7 +80,6 @@ private Q_SLOTS:
     void onFilterChanged();
     void onConversationCleared(const QString&);
     void onSearchStatusChanged(const QString&);
-    void onSearchResultUpdated();
     void updateConversation(const QString&);
 
     void updateConversationFilterData();
