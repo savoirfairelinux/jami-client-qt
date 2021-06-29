@@ -146,5 +146,6 @@
         <file>src/commoncomponents/contextmenu/GeneralMenuSeparator.qml</file>
         <file>src/mainview/components/ParticipantOverlayButton.qml</file>
         <file>src/mainview/components/ParticipantControlLayout.qml</file>
+        <file>src/commoncomponents/Avatar.qml</file>
     </qresource>
 </RCC>

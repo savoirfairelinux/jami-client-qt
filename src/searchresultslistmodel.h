@@ -33,9 +33,6 @@ public:
     virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
     Q_INVOKABLE void setFilter(const QString& filterString);
-
-public Q_SLOTS:
-    void onSearchResultsUpdated();
 };
 
 // The top level pre sorted and filtered model to be consumed by QML ListViews

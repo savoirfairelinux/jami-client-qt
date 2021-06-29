@@ -363,14 +363,14 @@ Rectangle {
 
                     visible: root.isAudioOnly
 
-                    AvatarImage {
+                    Avatar {
                         id: contactImage
 
                         Layout.alignment: Qt.AlignCenter
                         Layout.preferredWidth: JamiTheme.avatarSizeInCall
                         Layout.preferredHeight: JamiTheme.avatarSizeInCall
 
-                        avatarMode: AvatarImage.AvatarMode.FromConvUid
+                        //avatarMode: AvatarImage.AvatarMode.FromConvUid
                         showPresenceIndicator: false
                     }
 
