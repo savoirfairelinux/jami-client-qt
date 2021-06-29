@@ -46,6 +46,8 @@ public:
     {
         Q_UNUSED(size)
 
+        qDebug() << "requestImage" << id << size << requestedSize;
+
         auto idInfo = id.split("_");
         // Id type -> account_
         auto idType = idInfo[1];
