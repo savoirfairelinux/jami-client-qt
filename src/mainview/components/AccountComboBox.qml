@@ -112,9 +112,7 @@ Label {
         target: AccountListModel
 
         function onModelReset() {
-            avatar.updateImage(LRCInstance.currentAccountId,
-                               AccountListModel.data(AccountListModel.index(0, 0),
-                                                     AccountList.PictureUid))
+            avatar.avatarId = LRCInstance.currentAccountId
             avatar.presenceStatus = AccountListModel.data(AccountListModel.index(0, 0),
                                                           AccountList.Status)
             userAliasText.text = AccountListModel.data(AccountListModel.index(0,0),
@@ -130,17 +128,14 @@ Label {
         anchors.rightMargin: 15
         spacing: 10
 
-        AvatarImage {
+        Avatar {
             id: avatar
 
             Layout.preferredWidth: JamiTheme.accountListAvatarSize
             Layout.preferredHeight: JamiTheme.accountListAvatarSize
             Layout.alignment: Qt.AlignVCenter
 
-            imageId: LRCInstance.currentAccountId
-
-            presenceStatus: AccountListModel.data(AccountListModel.index(0, 0),
-                                                  AccountList.Status)
+            avatarId: LRCInstance.currentAccountId
         }
 
         ColumnLayout {

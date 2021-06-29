@@ -46,6 +46,12 @@ LRCInstance::getConferenceSubcalls(const QString& callId)
     return lrc_->getConferenceSubcalls(callId);
 }
 
+// void
+// LRCInstance::updateAvatarUid(const QString& uid)
+//{
+//    avatarUidMap_[uid] = Utils::generateUid();
+//}
+
 RenderManager*
 LRCInstance::renderer()
 {
