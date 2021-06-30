@@ -28,6 +28,7 @@
 #include "deviceitemlistmodel.h"
 #include "smartlistmodel.h"
 #include "conversationlistmodelbase.h"
+#include "pendingfilestosendlistmodel.h"
 
 #include "appsettingsmanager.h"
 #include "distantrenderer.h"
@@ -104,6 +105,7 @@ registerTypes()
     QML_REGISTERTYPE(NS_MODELS, VideoFormatResolutionModel);
     QML_REGISTERTYPE(NS_MODELS, VideoFormatFpsModel);
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
+    QML_REGISTERTYPE(NS_MODELS, PendingFilesToSendListModel);
     QML_REGISTERTYPE(NS_MODELS, SmartListModel);
 
     // Roles & type enums for models
