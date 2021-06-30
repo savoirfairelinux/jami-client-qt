@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "332811cf_14ba9a36",
+        "filename": "src/conversationlistmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-30T17:24:41Z",
+      "side": 1,
+      "message": "yes good, and ideally we can minimize the coredialog specific roles",
+      "parentUuid": "3f16fc73_470bee91",
+      "range": {
+        "startLine": 112,
+        "startChar": 55,
+        "endLine": 115,
+        "endChar": 54
+      },
+      "revId": "6d62797e3e0b4d58deefa9e300b28fd3b9fec57f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36fa9f61_b6b63a8b",
         "filename": "src/conversationlistmodelbase.cpp",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "6d62797e3e0b4d58deefa9e300b28fd3b9fec57f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d8a6194_0fc0e26d",
+        "filename": "src/conversationlistmodelbase.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-06-30T17:24:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36fa9f61_b6b63a8b",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 76
+      },
+      "revId": "6d62797e3e0b4d58deefa9e300b28fd3b9fec57f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": false
     }
   ]
 }
