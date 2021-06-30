@@ -30,7 +30,7 @@ import "../../commoncomponents"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
 Rectangle {
-    id: messageWebViewRect
+    id: root
 
     color: JamiTheme.backgroundColor
 
@@ -124,22 +124,21 @@ Rectangle {
     }
 
     MessageWebViewHeader {
+        id: messageWebViewHeader
+
+        anchors.top: root.top
+        anchors.left: root.left
+
+        width: root.width
+        height: messageWebViewHeaderPreferredHeight
+
+        userAliasLabelText: headerUserAliasLabelText
+        userUserNameLabelText: headerUserUserNameLabelText
 
         DropArea{
             anchors.fill: parent
             onDropped: setFilePathsToSend(drop.urls)
         }
-
-        id: messageWebViewHeader
-
-        anchors.top: messageWebViewRect.top
-        anchors.left: messageWebViewRect.left
-
-        width: messageWebViewRect.width
-        height: messageWebViewHeaderPreferredHeight
-
-        userAliasLabelText: headerUserAliasLabelText
-        userUserNameLabelText: headerUserUserNameLabelText
 
         onBackClicked: {
             MessagesAdapter.updateDraft()
@@ -147,14 +146,13 @@ Rectangle {
         }
 
         onNeedToHideConversationInCall: {
-            messageWebViewRect.needToHideConversationInCall()
+            root.needToHideConversationInCall()
         }
 
         onPluginSelector : {
             // Create plugin handler picker - PLUGINS
-            PluginHandlerPickerCreation.createPluginHandlerPickerObjects(messageWebViewRect, false)
-            PluginHandlerPickerCreation.calculateCurrentGeo(
-                        messageWebViewRect.width / 2, messageWebViewRect.height / 2)
+            PluginHandlerPickerCreation.createPluginHandlerPickerObjects(root, false)
+            PluginHandlerPickerCreation.calculateCurrentGeo(root.width / 2, root.height / 2)
             PluginHandlerPickerCreation.openPluginHandlerPicker()
         }
     }
@@ -220,11 +218,11 @@ Rectangle {
         }
 
         function emitMessagesCleared() {
-            messageWebViewRect.messagesCleared()
+            root.messagesCleared()
         }
 
         function emitMessagesLoaded() {
-            messageWebViewRect.messagesLoaded()
+            root.messagesLoaded()
         }
 
         function copyToDownloads(interactionId, displayName) {
@@ -244,7 +242,7 @@ Rectangle {
         }
 
         function saveSendMessageContent(arg) {
-            messageWebViewRect.sendMessageContentSaved(arg)
+            root.sendMessageContentSaved(arg)
         }
 
         function onComposing(isComposing) {
@@ -264,11 +262,11 @@ Rectangle {
         id: messageWebView
 
         anchors.top: messageWebViewHeader.bottom
-        anchors.topMargin: 1
-        anchors.left: messageWebViewRect.left
+        anchors.topMargin: messageWebViewHeader.hairLineSize
+        anchors.bottom: messageWebViewFooter.top
+        anchors.bottomMargin: messageWebViewFooter.hairLineSize
 
-        width: messageWebViewRect.width
-        height: messageWebViewRect.height - messageWebViewHeaderPreferredHeight
+        width: root.width
 
         backgroundColor: "transparent"
 
@@ -331,6 +329,7 @@ Rectangle {
                                 MessagesAdapter.setDisplayLinks()
                                 updateChatviewTheme()
                                 messageWebView.runJavaScript("displayNavbar(false);")
+                                messageWebView.runJavaScript("hideMessageBar(true);")
                                 jsLoaded = true
                             })
             }
@@ -353,6 +352,15 @@ Rectangle {
                                         ":/chatview.html"), ":/chatview.html")
             messageWebView.url = "qrc:/chatview.html"
         }
+    }
+
+    MessageWebViewFooter {
+        id: messageWebViewFooter
+
+        anchors.bottom: root.bottom
+
+        width: root.width
+        height: 80
     }
 
     // Provide WebChannel by registering jsBridgeObject.
