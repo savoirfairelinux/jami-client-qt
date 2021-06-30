@@ -245,6 +245,10 @@ Item {
     property real lineEditContextMenuItemsWidth: 100
     property real lineEditContextMenuSeparatorsHeight: 2
 
+    // Modal Popup
+    property real modalPopupRadius: 4
+    property real modalPopupDropShadowSamples: 16
+
     // main application spec
     property real mainViewMinWidth: 300
     property real mainViewMinHeight: 400

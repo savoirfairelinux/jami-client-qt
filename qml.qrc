@@ -146,5 +146,11 @@
         <file>src/commoncomponents/contextmenu/GeneralMenuSeparator.qml</file>
         <file>src/mainview/components/ParticipantOverlayButton.qml</file>
         <file>src/mainview/components/ParticipantControlLayout.qml</file>
+        <file>src/mainview/components/MessageWebViewFooter.qml</file>
+        <file>src/commoncomponents/emojipicker/EmojiPicker.qml</file>
+        <file>src/commoncomponents/emojipicker/emojiPickerLoader.js</file>
+        <file>src/commoncomponents/emojipicker/emojiPickerLoader.html</file>
+        <file>src/commoncomponents/emojipicker/emoji.js</file>
+        <file>src/commoncomponents/JamiTextArea.qml</file>
     </qresource>
 </RCC>
