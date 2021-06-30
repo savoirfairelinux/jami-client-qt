@@ -615,7 +615,7 @@ MessagesAdapter::setDisplayLinks()
 
 void
 MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
-                              MessagesList interactions)
+                              MessageListModel interactions)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
                                                          lrcInstance_->get_selectedConvUid(),
@@ -627,7 +627,7 @@ MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
 
 void
 MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
-                               MessagesList interactions,
+                               MessageListModel interactions,
                                bool allLoaded)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel,

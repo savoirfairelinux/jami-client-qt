@@ -2,23 +2,24 @@
 #include <QDebug>
 #include "messagelistmodel.h"
 
-MessageListModel::MessageListModel (LRCInstance* instance, QObject* parent)
+MessageListModel::MessageListModel(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {
     lrcInstance_ = instance;
     model_ = lrcInstance_->getCurrentConversationModel();
 
-    if (!model_) return;
+    if (!model_)
+        return;
 
     connect(
-            model_,
-            &ConversationModel::beginInsertInteractionRows,
-            this,
-            [this](const QString& conversationId, int size, int rowsAdded) {
-//         if (instance->selectedConvUid_ != convId) return;
-                beginInsertRows(QModelIndex(), size, size + rowsAdded - 1);
-           },
-           Qt::DirectConnection);
+        model_,
+        &ConversationModel::beginInsertInteractionRows,
+        this,
+        [this](const QString& conversationId, int size, int rowsAdded) {
+            //         if (instance->selectedConvUid_ != convId) return;
+            beginInsertRows(QModelIndex(), size, size + rowsAdded - 1);
+        },
+        Qt::DirectConnection);
     connect(model_,
             &ConversationModel::endInsertInteractionRows,
             this,
@@ -27,7 +28,10 @@ MessageListModel::MessageListModel (LRCInstance* instance, QObject* parent)
 }
 
 int
-MessageListModel::rowCount(const QModelIndex &parent)const{ return 0; /* data_.size();*/ }
+MessageListModel::rowCount(const QModelIndex& parent) const
+{
+    return 0; /* data_.size();*/
+}
 
 QHash<int, QByteArray>
 MessageListModel::roleNames() const
@@ -38,38 +42,34 @@ MessageListModel::roleNames() const
 }
 
 void
-MessageListModel::removeLine(){
+MessageListModel::removeLine()
+{
     beginRemoveRows(QModelIndex(), 0, 0);
-   // data_.removeFirst();
+    // data_.removeFirst();
     endRemoveRows();
 }
 
 void
-MessageListModel::insertMessage(const QString &line)
+MessageListModel::insertMessage(const QString& line)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
-    //data_.append(line);
+    // data_.append(line);
     endInsertRows();
-    if (rowCount() >= 10000){
+    if (rowCount() >= 10000) {
         removeLine();
     }
 }
 void
 MessageListModel::clearModel()
 {
-   // data_.clear();
+    // data_.clear();
 }
 
-
-
 QVariant
-MessageListModel::data(const QModelIndex &index, int role) const
+MessageListModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= rowCount())
         return QVariant();
-    //return data_.at(index.row());
+    // return data_.at(index.row());
     return QVariant();
 }
-
-
-
