@@ -81,9 +81,9 @@ protected:
                        bool needsSyncing = false);
     void setIsSwarm(bool isSwarm);
     void clearChatView();
-    void printHistory(ConversationModel& conversationModel, MessagesList interactions);
+    void printHistory(ConversationModel& conversationModel, MessageListModel interactions);
     void updateHistory(ConversationModel& conversationModel,
-                       MessagesList interactions,
+                       MessageListModel interactions,
                        bool allLoaded);
     void setSenderImage(const QString& sender, const QString& senderImage);
     void printNewInteraction(lrc::api::ConversationModel& conversationModel,

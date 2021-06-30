@@ -257,91 +257,91 @@ Rectangle {
     }
 
     WebEngineView {
-        id: messageWebView
+        // id: messageWebView
 
-        anchors.top: messageWebViewHeader.bottom
-        anchors.topMargin: 1
-        anchors.left: messageWebViewRect.left
+        // anchors.top: messageWebViewHeader.bottom
+        // anchors.topMargin: 1
+        // anchors.left: messageWebViewRect.left
 
-        width: messageWebViewRect.width
-        height: messageWebViewRect.height - messageWebViewHeaderPreferredHeight
+        // width: messageWebViewRect.width
+        // height: messageWebViewRect.height - messageWebViewHeaderPreferredHeight
 
-        backgroundColor: "transparent"
+        // backgroundColor: "transparent"
 
-        settings.javascriptEnabled: true
-        settings.javascriptCanOpenWindows: true
-        settings.javascriptCanAccessClipboard: true
-        settings.javascriptCanPaste: true
-        settings.fullScreenSupportEnabled: true
-        settings.allowRunningInsecureContent: true
-        settings.localContentCanAccessRemoteUrls: true
-        settings.localContentCanAccessFileUrls: true
-        settings.errorPageEnabled: false
-        settings.pluginsEnabled: false
-        settings.screenCaptureEnabled: false
-        settings.linksIncludedInFocusChain: false
-        settings.localStorageEnabled: true
+        // settings.javascriptEnabled: true
+        // settings.javascriptCanOpenWindows: true
+        // settings.javascriptCanAccessClipboard: true
+        // settings.javascriptCanPaste: true
+        // settings.fullScreenSupportEnabled: true
+        // settings.allowRunningInsecureContent: true
+        // settings.localContentCanAccessRemoteUrls: true
+        // settings.localContentCanAccessFileUrls: true
+        // settings.errorPageEnabled: false
+        // settings.pluginsEnabled: false
+        // settings.screenCaptureEnabled: false
+        // settings.linksIncludedInFocusChain: false
+        // settings.localStorageEnabled: true
 
-        webChannel: messageWebViewChannel
-        profile: messageWebViewProfile
+        // webChannel: messageWebViewChannel
+        // profile: messageWebViewProfile
 
-        DropArea{
-            anchors.fill: parent
-            onDropped: setFilePathsToSend(drop.urls)
-        }
+        // DropArea{
+        //     anchors.fill: parent
+        //     onDropped: setFilePathsToSend(drop.urls)
+        // }
 
-        onNavigationRequested: {
-            if(request.navigationType === WebEngineView.LinkClickedNavigation) {
-                MessagesAdapter.openUrl(request.url)
-                request.action = WebEngineView.IgnoreRequest
-            }
-        }
+        // onNavigationRequested: {
+        //     if(request.navigationType === WebEngineView.LinkClickedNavigation) {
+        //         MessagesAdapter.openUrl(request.url)
+        //         request.action = WebEngineView.IgnoreRequest
+        //     }
+        // }
 
-        onLoadingChanged: {
-            if (loadRequest.status == WebEngineView.LoadSucceededStatus) {
-                messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
-                                                 "chatcss",
-                                                 UtilsAdapter.qStringFromFile(
-                                                     ":/chatview.css")))
-                messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
-                                                 "chatwin",
-                                                 UtilsAdapter.qStringFromFile(
-                                                     ":/chatview-qt.css")))
-                messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                 ":/linkify.js"))
-                messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                 ":/linkify-html.js"))
-                messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                 ":/linkify-string.js"))
-                messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                 ":/qwebchannel.js"))
-                messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                 ":/emoji.js"))
-                messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                 ":/previewInfo.js"))
-                messageWebView.runJavaScript(
-                            UtilsAdapter.qStringFromFile(":/chatview.js"),
-                            function() {
-                                messageWebView.runJavaScript("init_i18n();")
-                                MessagesAdapter.setDisplayLinks()
-                                updateChatviewTheme()
-                                messageWebView.runJavaScript("displayNavbar(false);")
-                                jsLoaded = true
-                            })
-            }
-        }
+        // onLoadingChanged: {
+        //     if (loadRequest.status == WebEngineView.LoadSucceededStatus) {
+        //         messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
+        //                                          "chatcss",
+        //                                          UtilsAdapter.qStringFromFile(
+        //                                              ":/chatview.css")))
+        //         messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
+        //                                          "chatwin",
+        //                                          UtilsAdapter.qStringFromFile(
+        //                                              ":/chatview-qt.css")))
+        //         messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                          ":/linkify.js"))
+        //         messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                          ":/linkify-html.js"))
+        //         messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                          ":/linkify-string.js"))
+        //         messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                          ":/qwebchannel.js"))
+        //         messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                          ":/emoji.js"))
+        //         messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                          ":/previewInfo.js"))
+        //         messageWebView.runJavaScript(
+        //                     UtilsAdapter.qStringFromFile(":/chatview.js"),
+        //                     function() {
+        //                         messageWebView.runJavaScript("init_i18n();")
+        //                         MessagesAdapter.setDisplayLinks()
+        //                         updateChatviewTheme()
+        //                         messageWebView.runJavaScript("displayNavbar(false);")
+        //                         jsLoaded = true
+        //                     })
+        //     }
+        // }
 
-        onContextMenuRequested: {
-            var needContextMenu = request.selectedText.length || request.isContentEditable
-            if (!needContextMenu)
-                request.accepted = true
-        }
+        // onContextMenuRequested: {
+        //     var needContextMenu = request.selectedText.length || request.isContentEditable
+        //     if (!needContextMenu)
+        //         request.accepted = true
+        // }
 
-        Component.onCompleted: {
-            messageWebView.loadHtml(UtilsAdapter.qStringFromFile(
-                                        ":/chatview.html"), ":/chatview.html")
-            messageWebView.url = "qrc:/chatview.html"
-        }
+        // Component.onCompleted: {
+        //     messageWebView.loadHtml(UtilsAdapter.qStringFromFile(
+        //                                 ":/chatview.html"), ":/chatview.html")
+        //     messageWebView.url = "qrc:/chatview.html"
+        // }
     }
 
     // Provide WebEngineProfile.

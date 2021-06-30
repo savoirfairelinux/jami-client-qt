@@ -142,7 +142,7 @@ interactionToJsonInteractionObject(lrc::api::ConversationModel& conversationMode
 QString
 interactionsToJsonArrayObject(lrc::api::ConversationModel& conversationModel,
                               const QString& convId,
-                              MessagesList interactions)
+                              MessageListModel interactions)
 {
     QJsonArray array;
     for (const auto& interaction : interactions) {
