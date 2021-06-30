@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f16fc73_470bee91",
+        "filename": "src/conversationlistmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-30T13:40:59Z",
+      "side": 1,
+      "message": "imho for filtering we may not want to do any difference.\n\nIf we say that a conversation title()\u003dalias or title ; members() (todo) \u003d [registered names], we can just filter via title and members for All conversations. No client complex logic",
+      "range": {
+        "startLine": 112,
+        "startChar": 55,
+        "endLine": 115,
+        "endChar": 54
+      },
+      "revId": "6d62797e3e0b4d58deefa9e300b28fd3b9fec57f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36fa9f61_b6b63a8b",
+        "filename": "src/conversationlistmodelbase.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-06-30T13:40:59Z",
+      "side": 1,
+      "message": "if this come a lot we may want to group this in a condition.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 76
+      },
+      "revId": "6d62797e3e0b4d58deefa9e300b28fd3b9fec57f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
+      "unresolved": true
+    }
+  ]
+}
