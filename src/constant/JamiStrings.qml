@@ -487,4 +487,8 @@ Item {
     property string isSwarm: qsTr("Is swarm:")
     property string trueStr: qsTr("True")
     property string falseStr: qsTr("False")
+
+    // Message view
+    property string addEmoji: qsTr("Add emoji")
+    property string sendFile: qsTr("Send file")
 }
