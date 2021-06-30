@@ -245,7 +245,18 @@ Item {
     property real lineEditContextMenuItemsWidth: 100
     property real lineEditContextMenuSeparatorsHeight: 2
 
-    // main application spec
+    // Modal Popup
+    property real modalPopupRadius: 4
+    property real modalPopupDropShadowSamples: 16
+
+    // MessageWebView
+    property real messageWebViewHeaderPreferredHeight: 64
+    property real messageWebViewFooterPreferredHeight: 50
+    property real messageWebViewFooterMaximumHeight: 230
+    property real messageWebViewFooterFileContainerPreferredHeight: 150
+    property real messageWebViewFooterTextAreaMaximumHeight: 80
+
+    // Main application spec
     property real mainViewMinWidth: 300
     property real mainViewMinHeight: 400
 
