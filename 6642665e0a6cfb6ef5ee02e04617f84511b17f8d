@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "95e2ff51_c4dd7cac",
         "filename": "src/calladapter.cpp",
@@ -20,10 +21,10 @@
         "endChar": 46
       },
       "revId": "6642665e0a6cfb6ef5ee02e04617f84511b17f8d",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "0ce3627b_1670c077",
         "filename": "src/calladapter.cpp",
@@ -44,8 +45,31 @@
         "endChar": 46
       },
       "revId": "6642665e0a6cfb6ef5ee02e04617f84511b17f8d",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0faa818_0a9ee162",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-07-02T17:20:25Z",
+      "side": 1,
+      "message": "done in top patch",
+      "parentUuid": "0ce3627b_1670c077",
+      "range": {
+        "startLine": 482,
+        "startChar": 50,
+        "endLine": 483,
+        "endChar": 46
+      },
+      "revId": "6642665e0a6cfb6ef5ee02e04617f84511b17f8d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
