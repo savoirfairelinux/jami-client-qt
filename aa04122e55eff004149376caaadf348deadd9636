@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "3de8cadb_ab109b31",
         "filename": "src/callparticipantsmodel.cpp",
@@ -20,8 +21,31 @@
         "endChar": 39
       },
       "revId": "aa04122e55eff004149376caaadf348deadd9636",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50fc4ff6_ebda6921",
+        "filename": "src/callparticipantsmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-07-02T17:18:33Z",
+      "side": 1,
+      "message": "fixed on next patch",
+      "parentUuid": "3de8cadb_ab109b31",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "aa04122e55eff004149376caaadf348deadd9636",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
