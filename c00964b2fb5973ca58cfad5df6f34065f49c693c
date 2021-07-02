@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "1e691a63_c80828ae",
         "filename": "src/settingsadapter.cpp",
@@ -14,10 +15,10 @@
       "side": 1,
       "message": "Why ? Does it mean that the semantic of this flag varies depending on where we are in the code?",
       "revId": "c00964b2fb5973ca58cfad5df6f34065f49c693c",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "bf2950db_2cf6c2ce",
         "filename": "src/settingsadapter.cpp",
@@ -32,10 +33,10 @@
       "message": "No, it is just that the namw for this setting is \u0027Use custom address and port\u0027\n\nso, it is reversed",
       "parentUuid": "1e691a63_c80828ae",
       "revId": "c00964b2fb5973ca58cfad5df6f34065f49c693c",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "8d411d25_2317ed8f",
         "filename": "src/settingsadapter.cpp",
@@ -50,8 +51,25 @@
       "message": "In this case, isn\u0027t better to make the conversion where \u0027Use custom address and port\u0027 is checked  to avoid confusion?",
       "parentUuid": "bf2950db_2cf6c2ce",
       "revId": "c00964b2fb5973ca58cfad5df6f34065f49c693c",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41611177_17d9c6b5",
+        "filename": "src/settingsadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-02T14:07:11Z",
+      "side": 1,
+      "message": "Yeah, I will change the desp",
+      "parentUuid": "8d411d25_2317ed8f",
+      "revId": "c00964b2fb5973ca58cfad5df6f34065f49c693c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
