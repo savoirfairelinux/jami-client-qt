@@ -47,7 +47,7 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
         return QVariant();
 
     using namespace CallParticipant;
-    auto participant = participants_.values().at(index.row());
+    auto participant = participants_.at(index.row());
 
     switch (role) {
     case Role::Uri:
@@ -88,60 +88,40 @@ CallParticipantsModel::roleNames() const
 }
 
 void
-CallParticipantsModel::addParticipant(const CallParticipant::Item& item)
+CallParticipantsModel::addParticipant(int index, const QVariant& infos)
 {
-    auto peerId = item.item.value("uri").toString();
-    auto it = participants_.find(peerId);
-    if (it == participants_.end()) {
-        participants_.insert(participants_.begin() + idx_, peerId, item);
-        beginInsertRows(QModelIndex(), idx_, idx_);
-        endInsertRows();
-        lrcInstance_->renderer()->addDistantRenderer(item.item["sinkId"].toString());
-        renderers_[callId_].append(item.item["sinkId"].toString());
-    } else {
-        if (item.item["uri"] == it->item["uri"] && item.item["sinkId"] == it->item["sinkId"] &&
-            item.item["active"] == it->item["active"] &&
-            item.item["audioLocalMuted"] == it->item["audioLocalMuted"]
-            && item.item["audioModeratorMuted"] == it->item["audioModeratorMuted"] &&
-            item.item["avatar"] == it->item["avatar"] && item.item["bestName"] == it->item["bestName"]
-                && item.item["isContact"] == it->item["isContact"] && item.item["isLocal"] == it->item["isLocal"]
-                && item.item["videoMuted"] == it->item["videoMuted"])
-            return;
-        (*it) = item;
-        Q_EMIT updateParticipant(item.item.toVariantMap());
-    }
-    idx_++;
-}
+    auto it = participants_.begin() + index;
+    participants_.insert(it, CallParticipant::Item {infos.toJsonObject()});
 
+    beginInsertRows(QModelIndex(), index, index);
+    endInsertRows();
 
-
-void
-CallParticipantsModel::filterParticipants(const QVariantList& participants)
-{
-    for (const auto& part : participants) {
-        auto candidate = CallParticipant::Item {part.toJsonObject()};
-
-        auto peerId = candidate.item.value("uri").toString();
-        auto it = participantsCandidates_.find(peerId);
-        if (candidate.item.value("w").toInt() != 0
-            && candidate.item.value("h").toInt() != 0) {
-            validUris_.append(peerId);
-            if (it == participantsCandidates_.end()) {
-                participantsCandidates_.insert(peerId, candidate);
-            } else {
-                (*it) = candidate;
-            }
-        }
-    }
+    callId_ = participants_[index].item["callId"].toString();
+    lrcInstance_->renderer()->addDistantRenderer(participants_[index].item["sinkId"].toString());
+    renderers_[participants_[index].item["callId"].toString()].append(participants_[index].item["sinkId"].toString());
 }
 
 void
-CallParticipantsModel::removeParticipant(int pos)
+CallParticipantsModel::updateParticipant(int index, const QVariant& infos)
 {
-    auto it = participants_.begin() + pos;
-    auto sinkId = it->item["sinkId"].toString();
+    if (participants_.size() <= index)
+        return;
+    auto it = participants_.begin() + index;
+    (*it) =  CallParticipant::Item {infos.toJsonObject()};
+
+    callId_ = participants_[index].item["callId"].toString();
+    Q_EMIT updateParticipant(it->item.toVariantMap());
+}
+
+void
+CallParticipantsModel::removeParticipant(int index)
+{
+    callId_ = participants_[index].item["callId"].toString();
+
+    auto it = participants_.begin() + index;
     participants_.erase(it);
-    beginRemoveRows(QModelIndex(), pos, pos);
+
+    beginRemoveRows(QModelIndex(), index, index);
     endRemoveRows();
 }
 
@@ -157,34 +137,31 @@ CallParticipantsModel::clearParticipantsRenderes(const QString& callId)
 void
 CallParticipantsModel::setParticipants(const QString& callId, const QVariantList& participants)
 {
-    if (!participants.isEmpty() && callId_ != callId) {
-        callId_ = callId;
-        participants_.clear();
-        beginResetModel();
-        endResetModel();
-    }
-
-    validUris_.clear();
-    filterParticipants(participants);
-    validUris_.sort();
-
-    idx_ = 0;
-    for (const auto& partUri : validUris_)
-        addParticipant(participantsCandidates_[partUri]);
-
-    idx_ = 0;
-    auto keys = participants_.keys();
-    for (const auto& key : keys) {
-        auto keyIdx = validUris_.indexOf(key);
-        if (keyIdx < 0 || keyIdx >= validUris_.size())
-            removeParticipant(idx_);
-        else
-            idx_++;
-    }
-
-    if (participants_.isEmpty()) {
-        clearParticipantsRenderes(callId);
+    if (callId_ == callId)
         return;
+
+    callId_ = callId;
+
+    participants_.clear();
+    beginResetModel();
+    endResetModel();
+
+    if (participants.isEmpty())
+        clearParticipantsRenderes(callId);
+    else {
+        int idx = 0;
+        for (const auto& participant : participants) {
+            addParticipant(idx, participant);
+            idx++;
+        }
     }
-    Q_EMIT updateParticipantsLayout();
+}
+
+void
+CallParticipantsModel::resetParticipants(const QString& callId, const QVariantList& participants)
+{
+    if (callId == callId_)
+        setParticipants(callId, participants);
+    else if (participants.isEmpty())
+        clearParticipantsRenderes(callId);
 }
