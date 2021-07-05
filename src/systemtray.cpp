@@ -138,6 +138,16 @@ SystemTray::~SystemTray()
 }
 
 #ifdef Q_OS_LINUX
+void
+SystemTray::setCount(int count)
+{
+    if (count == 0) {
+        setIcon(QIcon(":images/jami.png"));
+    } else {
+        setIcon(QIcon(":images/jami_notif.png"));
+    }
+}
+
 bool
 SystemTray::hideNotification(const QString& id)
 {
