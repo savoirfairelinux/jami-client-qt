@@ -77,23 +77,20 @@ public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    void filterParticipants(const QVariantList& participants);
-    void addParticipant(const CallParticipant::Item& item);
-    void removeParticipant(int pos);
+    void updateParticipant(int index, const QVariant& infos);
+    void addParticipant(int index, const QVariant& infos);
+    void removeParticipant(int index);
     void clearParticipantsRenderes(const QString& callId);
     void setParticipants(const QString& callId, const QVariantList& participants);
+    void resetParticipants(const QString& callId, const QVariantList& participants);
 
 Q_SIGNALS:
-    void updateParticipantsLayout();
     void updateParticipant(QVariant participantInfos);
 
 private:
     LRCInstance* lrcInstance_ {nullptr};
 
-    QMap<QString, CallParticipant::Item> participantsCandidates_ {};
-    QMap<QString, CallParticipant::Item> participants_ {};
+    QList<CallParticipant::Item> participants_ {};
     QMap<QString, QStringList> renderers_ {};
-    int idx_ {0};
-    QStringList validUris_ {};
-    QString callId_ {};
+    QString callId_;
 };
