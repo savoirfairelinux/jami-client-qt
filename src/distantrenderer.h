@@ -63,4 +63,7 @@ private:
     int yOffset_ {0};
     double scaledWidth_ {0};
     double scaledHeight_ {0};
+
+    QMetaObject::Connection frameUpdatedConnection_;
+    QMetaObject::Connection distantRendererStoppedConnection_;
 };
