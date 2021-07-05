@@ -43,7 +43,6 @@ Rectangle {
     property int previewToX: 0
     property int previewToY: 0
     property bool isAudioOnly: false
-    property alias callId: distantRenderer.rendererId
     property var linkedWebview: null
 
     color: "black"
@@ -52,15 +51,14 @@ Rectangle {
         if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
             return
         contactImage.imageId = accountPeerPair[1]
-        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
 
         bestName = UtilsAdapter.getBestName(accountPeerPair[0],
                                             accountPeerPair[1])
         var id = UtilsAdapter.getBestId(accountPeerPair[0], accountPeerPair[1])
         bestId = (bestName !== id) ? id : ""
 
-        root.callId = UtilsAdapter.getCallId(accountPeerPair[0],
-                                             accountPeerPair[1])
+        distantRenderer.rendererId = UtilsAdapter.getCallId(accountPeerPair[0],
+                                                            accountPeerPair[1])
     }
 
     function setLinkedWebview(webViewId) {
@@ -93,27 +91,17 @@ Rectangle {
         callOverlay.closePotentialContactPicker()
     }
 
-    function handleParticipantsInfo(infos) {
-        if (infos.length === 0) {
-            bestName = UtilsAdapter.getBestName(LRCInstance.currentAccountId,
-                                                UtilsAdapter.getCurrConvId())
-        } else {
-            bestName = ""
-        }
-        callOverlay.participantsLayer.update(infos)
-    }
-
     function previewMagneticSnap() {
         // Calculate the position where the previewRenderer should attach to.
         var previewRendererCenter = Qt.point(
                     previewRenderer.x + previewRenderer.width / 2,
                     previewRenderer.y + previewRenderer.height / 2)
-        var distantRendererCenter = Qt.point(
-                    distantRenderer.x + distantRenderer.width / 2,
-                    distantRenderer.y + distantRenderer.height / 2)
+        var parentCenter = Qt.point(
+                    parent.x + parent.width / 2,
+                    parent.y + parent.height / 2)
 
-        if (previewRendererCenter.x >= distantRendererCenter.x) {
-            if (previewRendererCenter.y >= distantRendererCenter.y) {
+        if (previewRendererCenter.x >= parentCenter.x) {
+            if (previewRendererCenter.y >= parentCenter.y) {
                 // Bottom right.
                 previewToX = Qt.binding(function () {
                     return callPageMainRect.width - previewRenderer.width - previewMargin
@@ -129,7 +117,7 @@ Rectangle {
                 previewToY = previewMarginYTop
             }
         } else {
-            if (previewRendererCenter.y >= distantRendererCenter.y) {
+            if (previewRendererCenter.y >= parentCenter.y) {
                 // Bottom left.
                 previewToX = previewMargin
                 previewToY = Qt.binding(function () {
@@ -191,34 +179,22 @@ Rectangle {
                     z: -1
 
                     lrcInstance: LRCInstance
-                    visible: !root.isAudioOnly
+                    visible: participantsLayer.count == 0 && !root.isAudioOnly
+                }
 
-                    onOffsetChanged: {
-                        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
-                    }
+                ParticipantsLayer {
+                    id: participantsLayer
+                    anchors.fill: parent
+                    anchors.centerIn: parent
+                    anchors.margins: 3
+                    visible: !root.isAudioOnly
                 }
 
                 VideoCallPreviewRenderer {
                     id: previewRenderer
 
                     lrcInstance: LRCInstance
-                    visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused
-
-                    Connections {
-                        target: CallAdapter
-
-                        function onPreviewVisibilityNeedToChange(visible) {
-                            previewRenderer.visible = visible
-                        }
-                    }
-
-                    Connections {
-                        target: AvAdapter
-
-                        function onVideoDeviceListChanged(inputs) {
-                            previewRenderer.visible = (inputs !== 0)
-                        }
-                    }
+                    visible: !callOverlay.isAudioOnly && participantsLayer.count == 0 && !callOverlay.isVideoMuted && !callOverlay.isPaused
 
                     width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                     x: callPageMainRect.width - previewRenderer.width - previewMargin
@@ -299,6 +275,7 @@ Rectangle {
                     id: callOverlay
 
                     anchors.fill: parent
+                    isConference: participantsLayer.count >= 0
 
                     function toggleConversation() {
                         inCallMessageWebViewStack.visible ?
@@ -310,17 +287,16 @@ Rectangle {
                         target: CallAdapter
 
                         function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
-                                                 isRecording, isSIP, isConferenceCall, isGrid,
+                                                 isRecording, isSIP, isGrid,
                                                  bestName) {
-                            callOverlay.showOnHoldImage(isPaused)
                             root.isAudioOnly = isAudioOnly
+                            callOverlay.showOnHoldImage(isPaused)
                             audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
                             callOverlay.updateUI(isPaused, isAudioOnly,
                                                  isAudioMuted, isVideoMuted,
                                                  isRecording, isSIP,
-                                                 isConferenceCall, isGrid)
+                                                 isGrid)
                             root.bestName = bestName
-                            callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
                         }
 
                         function onShowOnHoldLabel(isPaused) {

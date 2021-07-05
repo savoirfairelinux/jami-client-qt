@@ -43,6 +43,8 @@ public:
     Q_INVOKABLE int getYOffset() const;
     Q_INVOKABLE double getScaledWidth() const;
     Q_INVOKABLE double getScaledHeight() const;
+    Q_INVOKABLE double getWidgetWidth() const;
+    Q_INVOKABLE double getWidgetHeight() const;
 
 Q_SIGNALS:
     void offsetChanged();
@@ -63,6 +65,8 @@ private:
     int yOffset_ {0};
     double scaledWidth_ {0};
     double scaledHeight_ {0};
+    double width_ {0};
+    double height_ {0};
 
     QMetaObject::Connection frameUpdatedConnection_;
     QMetaObject::Connection distantRendererStoppedConnection_;
