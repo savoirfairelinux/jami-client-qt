@@ -358,6 +358,7 @@ ConversationsAdapter::updateConversationFilterData()
     if (pendingRequestCount_ == 0 && profileTypeFilter_ == profile::Type::PENDING) {
         set_profileTypeFilter(profile::Type::JAMI);
     }
+    systemTray_->setCount(lrcInstance_->notificationsCount());
 }
 
 void

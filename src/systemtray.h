@@ -38,6 +38,7 @@ public:
     ~SystemTray();
 
 #ifdef Q_OS_LINUX
+    void setCount(int count);
     bool hideNotification(const QString& id);
     void showNotification(const QString& id,
                           const QString& title,
