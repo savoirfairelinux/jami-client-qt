@@ -31,24 +31,29 @@ DistantRenderer::DistantRenderer(QQuickItem* parent)
 
     connect(this, &DistantRenderer::lrcInstanceChanged, [this] {
         if (lrcInstance_) {
-            connect(lrcInstance_->renderer(),
-                    &RenderManager::distantFrameUpdated,
-                    [this](const QString& id) {
-                        if (rendererId_ == id)
-                            update(QRect(0, 0, width(), height()));
-                    });
+            frameUpdatedConnection_ = connect(lrcInstance_->renderer(),
+                                              &RenderManager::distantFrameUpdated,
+                                              [this](const QString& id) {
+                                                  if (rendererId_ == id)
+                                                      update(QRect(0, 0, width(), height()));
+                                              });
 
-            connect(lrcInstance_->renderer(),
-                    &RenderManager::distantRenderingStopped,
-                    [this](const QString& id) {
-                        if (rendererId_ == id)
-                            update(QRect(0, 0, width(), height()));
-                    });
+            distantRendererStoppedConnection_ = connect(lrcInstance_->renderer(),
+                                                        &RenderManager::distantRenderingStopped,
+                                                        [this](const QString& id) {
+                                                            if (rendererId_ == id)
+                                                                update(
+                                                                    QRect(0, 0, width(), height()));
+                                                        });
         }
     });
 }
 
-DistantRenderer::~DistantRenderer() {}
+DistantRenderer::~DistantRenderer()
+{
+    disconnect(frameUpdatedConnection_);
+    disconnect(distantRendererStoppedConnection_);
+}
 
 void
 DistantRenderer::setRendererId(const QString& id)
