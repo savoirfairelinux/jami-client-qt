@@ -355,6 +355,8 @@ Rectangle {
         }
     }
 
+
+
     // Provide WebChannel by registering jsBridgeObject.
     WebChannel {
         id: messageWebViewChannel
