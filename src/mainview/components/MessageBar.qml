@@ -21,6 +21,7 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 
 import net.jami.Adapters 1.0
+import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
@@ -31,10 +32,20 @@ RowLayout {
     property var textAreaObj: textArea
     property real marginSize: 10
 
+    signal sendMessageButtonClicked
     signal sendFileButtonClicked
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
     signal emojiButtonClicked
+
+    function showSendMessageButton() {
+        sendMessageButton.visible = true
+        sendMessageButton.state = "buttonFadeOut"
+    }
+
+    function hideSendMessageButton() {
+        sendMessageButton.state = "buttonFadeIn"
+    }
 
     spacing: JamiTheme.messageWebViewFooterRowSpacing
 
@@ -77,6 +88,8 @@ RowLayout {
         imageColor: JamiTheme.messageWebViewFooterButtonImageColor
 
         onClicked: root.audioRecordMessageButtonClicked()
+
+        Component.onCompleted: JamiQmlUtils.audioRecordMessageButtonObj = audioRecordMessageButton
     }
 
     PushButton {
@@ -97,9 +110,11 @@ RowLayout {
         imageColor: JamiTheme.messageWebViewFooterButtonImageColor
 
         onClicked: root.videoRecordMessageButtonClicked()
+
+        Component.onCompleted: JamiQmlUtils.videoRecordMessageButtonObj = videoRecordMessageButton
     }
 
-    JamiTextArea {
+    MessageBarTextArea {
         id: textArea
 
         Layout.alignment: Qt.AlignVCenter
@@ -113,12 +128,13 @@ RowLayout {
                               - marginSize / 2
 
         onTextChanged: {
-            if (text) {
-                sendMessageButton.visible = true
-                sendMessageButton.state = "buttonFadeOut"
-            } else
-                sendMessageButton.state = "buttonFadeIn"
+            if (text)
+                showSendMessageButton()
+            else
+                hideSendMessageButton()
         }
+
+        onSendMessagesRequired: root.sendMessageButtonClicked()
     }
 
     PushButton {
@@ -191,8 +207,8 @@ RowLayout {
                 visible = false
         }
 
-        onClicked: {
-
-        }
+        onClicked: root.sendMessageButtonClicked()
     }
+
+    Component.onCompleted: JamiQmlUtils.messageBarButtonsRowObj = root
 }
