@@ -82,9 +82,9 @@ protected:
                        bool needsSyncing = false);
     void setIsSwarm(bool isSwarm);
     void clearChatView();
-    void printHistory(ConversationModel& conversationModel, MessagesList interactions);
+    void printHistory(ConversationModel& conversationModel, MessageListModel interactions);
     void updateHistory(ConversationModel& conversationModel,
-                       MessagesList interactions,
+                       MessageListModel interactions,
                        bool allLoaded);
     void setSenderImage(const QString& sender, const QString& senderImage);
     void printNewInteraction(lrc::api::ConversationModel& conversationModel,
@@ -102,6 +102,7 @@ protected:
 Q_SIGNALS:
     void contactBanned();
     void newInteraction(int type);
+    void interactionAboutToStart(const QModelIndex parent, int start, int end);
 
 private Q_SLOTS:
     void slotSendMessageContentSaved(const QString& content);
