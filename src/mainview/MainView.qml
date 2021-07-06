@@ -165,13 +165,6 @@ Rectangle {
     }
 
     function setMainView(convId) {
-        if (!(communicationPageMessageWebView.jsLoaded)) {
-            communicationPageMessageWebView.jsLoadedChanged.connect(
-                        function(convId) {
-                            return function() { setMainView(convId) }
-                        }(convId))
-            return
-        }
         var item = ConversationsAdapter.getConvInfoMap(convId)
         if (item.convId === undefined)
             return
@@ -202,13 +195,13 @@ Rectangle {
                 callStackView.needToCloseInCallConversationAndPotentialWindow()
                 MessagesAdapter.setupChatView(item)
                 pushCommunicationMessageWebView()
-                communicationPageMessageWebView.focusMessageWebView()
+                communicationPageMessageWebView.focusChatView()
                 currentConvUID = convId
             } else if (isPageInStack("callStackViewObject", sidePanelViewStack)
                        || isPageInStack("callStackViewObject", mainViewStack)) {
                 callStackView.needToCloseInCallConversationAndPotentialWindow()
                 pushCommunicationMessageWebView()
-                communicationPageMessageWebView.focusMessageWebView()
+                communicationPageMessageWebView.focusChatView()
             }
         }
     }
@@ -401,10 +394,6 @@ Rectangle {
         id: communicationPageMessageWebView
 
         objectName: "communicationPageMessageWebView"
-
-        signal toSendMessageContentSaved(string arg)
-        signal toMessagesCleared
-        signal toMessagesLoaded
 
         visible: false
 
