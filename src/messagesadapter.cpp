@@ -55,6 +55,12 @@ MessagesAdapter::safeInit()
         connectConversationModel();
     });
     connectConversationModel();
+
+    QObject::connect(this,
+                     &MessageListModel::rowsAboutToBeInserted,
+                     [this](QModelIndex sourceParent, int start, int last) {
+                         Q_EMIT interactionAboutToStart(sourceParent, start, last);
+                     });
 }
 
 void
@@ -143,7 +149,7 @@ MessagesAdapter::onNewMessagesAvailable(const QString& accountId, const QString&
     auto optConv = convModel->getConversationForUid(conversationId);
     if (!optConv)
         return;
-    updateHistory(*convModel, optConv->get().interactions, optConv->get().allMessagesLoaded);
+    updateHistory(*convModel, *(optConv->get().interactions), optConv->get().allMessagesLoaded);
     Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
 }
 
@@ -260,7 +266,7 @@ MessagesAdapter::slotMessagesCleared()
     if (!convOpt->get().isNotASwarm() && !convOpt->get().allMessagesLoaded) {
         convModel->loadConversationMessages(convOpt->get().uid, 20);
     } else {
-        printHistory(*convModel, convOpt->get().interactions);
+        printHistory(*convModel, *(convOpt->get().interactions));
         Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
     }
     setConversationProfileData(convOpt->get());
@@ -620,7 +626,7 @@ MessagesAdapter::setDisplayLinks()
 
 void
 MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
-                              MessagesList interactions)
+                              MessageListModel interactions)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
                                                          lrcInstance_->get_selectedConvUid(),
@@ -632,7 +638,7 @@ MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
 
 void
 MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
-                               MessagesList interactions,
+                               MessageListModel interactions,
                                bool allLoaded)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
