@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -19,8 +19,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
-import QtWebEngine 1.10
-import QtWebChannel 1.15
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -34,117 +32,18 @@ Rectangle {
 
     property string headerUserAliasLabelText: ""
     property string headerUserUserNameLabelText: ""
-    property bool jsLoaded: false
+
+    property bool allMessagesLoaded
 
     signal needToHideConversationInCall
     signal messagesCleared
     signal messagesLoaded
 
-    function setSendMessageContent(content) {
-        jsBridgeObject.setSendMessageContentRequest(content)
-    }
-
-    function focusMessageWebView() {
+    function focusChatView() {
         messageWebViewFooter.textInput.forceActiveFocus()
     }
 
-    function webViewRunJavaScript(arg) {
-        messageWebView.runJavaScript(arg)
-    }
-
-    function updateChatviewTheme() {
-        var theme = 'setTheme("\
-            --svg-invert-percentage:' + JamiTheme.invertPercentageInDecimal + ';\
-            --jami-light-blue:' + JamiTheme.jamiLightBlue + ';\
-            --jami-dark-blue: ' + JamiTheme.jamiDarkBlue + ';\
-            --text-color: ' + JamiTheme.chatviewTextColor + ';\
-            --timestamp-color:' + JamiTheme.timestampColor + ';\
-            --message-out-bg:' + JamiTheme.messageOutBgColor + ';\
-            --message-out-txt:' + JamiTheme.messageOutTxtColor + ';\
-            --message-in-bg:' + JamiTheme.messageInBgColor + ';\
-            --message-in-txt:' + JamiTheme.messageInTxtColor + ';\
-            --file-in-timestamp-color:' + JamiTheme.fileOutTimestampColor + ';\
-            --file-out-timestamp-color:' + JamiTheme.fileInTimestampColor + ';\
-            --bg-color:' + JamiTheme.chatviewBgColor + ';\
-            --action-icon-color:' + JamiTheme.chatviewButtonColor + ';\
-            --action-icon-hover-color:' + JamiTheme.hoveredButtonColor + ';\
-            --action-icon-press-color:' + JamiTheme.pressedButtonColor + ';\
-            --placeholder-text-color:' + JamiTheme.placeholderTextColor + ';\
-            --invite-hover-color:' + JamiTheme.inviteHoverColor + ';\
-            --bg-text-input:' + JamiTheme.bgTextInput + ';\
-            --bg-invitation-rect:' + JamiTheme.bgInvitationRectColor + ';\
-            --preview-text-container-color:' + JamiTheme.previewTextContainerColor + ';\
-            --preview-title-color:' + JamiTheme.previewTitleColor + ';\
-            --preview-subtitle-color:' + JamiTheme.previewSubtitleColor + ';\
-            --preview-image-background-color:' + JamiTheme.previewImageBackgroundColor + ';\
-            --preview-card-container-color:' + JamiTheme.previewCardContainerColor + ';\
-            --preview-url-color:' + JamiTheme.previewUrlColor + ';")'
-        messageWebView.runJavaScript("init_picker(" + JamiTheme.darkTheme + ");")
-        messageWebView.runJavaScript(theme);
-    }
-
     color: JamiTheme.primaryBackgroundColor
-
-    Connections {
-        target: JamiTheme
-
-        function onDarkThemeChanged() {
-            updateChatviewTheme()
-        }
-    }
-
-    QtObject {
-        id: jsBridgeObject
-
-        // ID, under which this object will be known at chatview.js side.
-        WebChannel.id: "jsbridge"
-
-        // signals to trigger functions in chatview.js
-        // mainly used to avoid input arg string escape
-        signal setSendMessageContentRequest(string content)
-
-        // Functions that are exposed, return code can be derived from js side
-        // by setting callback function.
-        function deleteInteraction(arg) {
-            MessagesAdapter.deleteInteraction(arg)
-        }
-
-        function retryInteraction(arg) {
-            MessagesAdapter.retryInteraction(arg)
-        }
-
-        function openFile(arg) {
-            MessagesAdapter.openFile(arg)
-        }
-
-        function acceptFile(arg) {
-            MessagesAdapter.acceptFile(arg)
-        }
-
-        function refuseFile(arg) {
-            MessagesAdapter.refuseFile(arg)
-        }
-
-        function emitMessagesCleared() {
-            root.messagesCleared()
-        }
-
-        function emitMessagesLoaded() {
-            root.messagesLoaded()
-        }
-
-        function copyToDownloads(interactionId, displayName) {
-            MessagesAdapter.copyToDownloads(interactionId, displayName)
-        }
-
-        function parseI18nData() {
-            return MessagesAdapter.chatviewTranslatedStrings
-        }
-
-        function loadMessages(n) {
-            return MessagesAdapter.loadMessages(n)
-        }
-    }
 
     ColumnLayout {
         anchors.fill: root
@@ -194,57 +93,122 @@ Rectangle {
             Layout.topMargin: JamiTheme.messageWebViewHairLineSize
             Layout.bottomMargin: JamiTheme.messageWebViewHairLineSize
 
-            currentIndex: CurrentConversation.isRequest || CurrentConversation.needsSyncing
+            currentIndex: CurrentConversation.isRequest ||
+                          CurrentConversation.needsSyncing
 
-            GeneralWebEngineView {
-                id: messageWebView
+            Loader {
+                active: CurrentConversation.id !== ""
+                sourceComponent: ListView {
+                    id: chatView
 
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                    topMargin: 12
+                    bottomMargin: 6
+                    spacing: 2
+                    width: messageWebViewStack.width
+                    displayMarginBeginning: 256
+                    displayMarginEnd: 256
+                    verticalLayoutDirection: ListView.BottomToTop
+                    clip: true
+                    boundsBehavior: Flickable.StopAtBounds
 
-                onCompletedLoadHtml: ":/chatview.html"
+                    ScrollBar.vertical: ScrollBar {}
 
-                webChannel.registeredObjects: [jsBridgeObject]
+                    model: MessagesAdapter.messageListModel
 
-                DropArea {
-                    anchors.fill: parent
-                    onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
-                }
+                    delegate: MessageDelegate {
+                        function computeSequencing() {
+                            if (isGenerated)
+                                seq = MsgSeq.single
+                            var pItem = chatView.itemAtIndex(index + 1)
+                            var nItem = chatView.itemAtIndex(index - 1)
+                            if (pItem !== null && nItem !== null) {
+                                // TODO: added in between
+                            } else if (pItem !== null) {
+                                // added to bottom
+                                print("inserted at 0")
+                                if (pItem.isGenerated) {
+                                    seq = MsgSeq.single
+                                } else {
+                                    if (author !== pItem.author) {
+                                        seq = MsgSeq.single
+                                    } else if (!isGenerated) {
+                                        seq = MsgSeq.last
+                                        if (pItem.seq === MsgSeq.single) {
+                                            pItem.seq = MsgSeq.first
+                                        } else {
+                                            pItem.seq = MsgSeq.middle
+                                        }
+                                    }
+                                }
+                            } else if (nItem !== null) {
+                                // added to top
+                                print("appended")
+                                if (nItem.isGenerated) {
+                                    seq = MsgSeq.single
+                                } else {
+                                    if (author !== nItem.author) {
+                                        seq = MsgSeq.single
+                                    } else if (!isGenerated) {
+                                        seq = MsgSeq.first
+                                        if (nItem.seq === MsgSeq.single) {
+                                            nItem.seq = MsgSeq.last
+                                        } else {
+                                            nItem.seq = MsgSeq.middle
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        ListView.onAdd: {
+                            if (index === 0 && chatView.count) {
+                                computeSequencing()
+                            }
+                        }
+                        Component.onCompleted: {
+                            if (index === 0 && chatView.count) {
+                                return
+                            }
+                            computeSequencing()
+                        }
+                    }
 
-                onLoadingChanged: {
-                    if (loadRequest.status == WebEngineView.LoadSucceededStatus) {
-                        messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
-                                                         "chatcss",
-                                                         UtilsAdapter.qStringFromFile(
-                                                             ":/chatview.css")))
-                        messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
-                                                         "chatwin",
-                                                         UtilsAdapter.qStringFromFile(
-                                                             ":/chatview-qt.css")))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/linkify.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/linkify-html.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/linkify-string.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/qwebchannel.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/jed.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/emoji.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/previewInfo.js"))
-                        messageWebView.runJavaScript(
-                                    UtilsAdapter.qStringFromFile(":/chatview.js"),
-                                    function() {
-                                        messageWebView.runJavaScript("init_i18n();")
-                                        MessagesAdapter.setDisplayLinks()
-                                        updateChatviewTheme()
-                                        messageWebView.runJavaScript("displayNavbar(false);")
-                                        messageWebView.runJavaScript("hideMessageBar(true);")
-                                        jsLoaded = true
-                                    })
+                    function getDistanceToBottom() {
+                        const scrollDiff = ScrollBar.vertical.position -
+                                         (1.0 - ScrollBar.vertical.size)
+                        return Math.abs(scrollDiff) * contentHeight
+                    }
+
+                    onAtYBeginningChanged: loadMoreMsgsIfNeeded()
+
+                    function loadMoreMsgsIfNeeded() {
+                       if (atYBeginning && !CurrentConversation.allMessagesLoaded)
+                            MessagesAdapter.loadMoreMessages()
+                    }
+
+                    Connections {
+                        target: MessagesAdapter
+
+                        function onNewInteraction() {
+                            print("sdasdsadasdas",
+                                  chatView.getDistanceToBottom(),
+                                  chatView.atYEnd)
+                            if (chatView.getDistanceToBottom() < 80 && !chatView.atYEnd) {
+
+                                Qt.callLater(chatView.positionViewAtBeginning)
+                            }
+                        }
+
+                        function onMoreMessagesLoaded() {
+                            print("onMoreMessagesLoaded")
+                            if (chatView.contentHeight < chatView.height) {
+                                loadMoreMsgsIfNeeded()
+                            }
+                        }
+                    }
+
+                    DropArea {
+                        anchors.fill: parent
+                        onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
                     }
                 }
             }
