@@ -19,23 +19,39 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 
+import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
-import "../commoncomponents/contextmenu"
+import "../../commoncomponents"
 
 Flickable {
     id: root
 
     property alias text: textArea.text
+    property alias placeholderText: textArea.placeholderText
 
     function insertText(text) {
         textArea.insert(textArea.cursorPosition, text)
+    }
+
+    function clearText() {
+        textArea.clear()
+    }
+
+    function pasteText() {
+        textArea.paste()
     }
 
     LineEditContextMenu {
         id: textAreaContextMenu
 
         lineEditObj: textArea
+        customizePaste: true
+
+        onContextMenuRequirePaste: {
+            // Intercept paste event to use C++ QMimeData
+            MessagesAdapter.pasteKeyDetected()
+        }
     }
 
     ScrollBar.vertical: ScrollBar {
@@ -103,6 +119,14 @@ Flickable {
         onReleased: {
             if (event.button == Qt.RightButton)
                 textAreaContextMenu.openMenuAt(event)
+        }
+
+        // Intercept paste event to use C++ QMimeData
+        Keys.onPressed: function(keyEvent) {
+            if (keyEvent.matches(StandardKey.Paste)){
+                MessagesAdapter.pasteKeyDetected()
+                keyEvent.accepted = true
+            }
         }
 
         onCursorRectangleChanged: root.ensureVisible(cursorRectangle)
