@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -19,8 +19,6 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
-import QtWebEngine 1.10
-import QtWebChannel 1.14
 
 import net.jami.Models 1.0
 import net.jami.Adapters 1.0
@@ -40,111 +38,12 @@ Rectangle {
     signal messagesCleared
     signal messagesLoaded
 
-    function setSendMessageContent(content) {
-        jsBridgeObject.setSendMessageContentRequest(content)
-    }
-
-    function focusMessageWebView() {
-        messageWebView.forceActiveFocus()
-    }
-
-    function webViewRunJavaScript(arg) {
-        messageWebView.runJavaScript(arg)
-    }
-
-    function updateChatviewTheme() {
-        var theme = 'setTheme("\
-            --svg-invert-percentage:' + JamiTheme.invertPercentageInDecimal + ';\
-            --jami-light-blue:' + JamiTheme.jamiLightBlue + ';\
-            --jami-dark-blue: ' + JamiTheme.jamiDarkBlue + ';\
-            --text-color: ' + JamiTheme.chatviewTextColor + ';\
-            --timestamp-color:' + JamiTheme.timestampColor + ';\
-            --message-out-bg:' + JamiTheme.messageOutBgColor + ';\
-            --message-out-txt:' + JamiTheme.messageOutTxtColor + ';\
-            --message-in-bg:' + JamiTheme.messageInBgColor + ';\
-            --message-in-txt:' + JamiTheme.messageInTxtColor + ';\
-            --file-in-timestamp-color:' + JamiTheme.fileOutTimestampColor + ';\
-            --file-out-timestamp-color:' + JamiTheme.fileInTimestampColor + ';\
-            --bg-color:' + JamiTheme.chatviewBgColor + ';\
-            --action-icon-color:' + JamiTheme.chatviewButtonColor + ';\
-            --action-icon-hover-color:' + JamiTheme.hoveredButtonColor + ';\
-            --action-icon-press-color:' + JamiTheme.pressedButtonColor + ';\
-            --placeholder-text-color:' + JamiTheme.placeholderTextColor + ';\
-            --invite-hover-color:' + JamiTheme.inviteHoverColor + ';\
-            --bg-text-input:' + JamiTheme.bgTextInput + ';\
-            --bg-invitation-rect:' + JamiTheme.bgInvitationRectColor + ';\
-            --preview-text-container-color:' + JamiTheme.previewTextContainerColor + ';\
-            --preview-title-color:' + JamiTheme.previewTitleColor + ';\
-            --preview-subtitle-color:' + JamiTheme.previewSubtitleColor + ';\
-            --preview-image-background-color:' + JamiTheme.previewImageBackgroundColor + ';\
-            --preview-card-container-color:' + JamiTheme.previewCardContainerColor + ';\
-            --preview-url-color:' + JamiTheme.previewUrlColor + ';")'
-        messageWebView.runJavaScript("init_picker(" + JamiTheme.darkTheme + ");")
-        messageWebView.runJavaScript(theme);
+    // TODO: fix me
+    function focusChatView() {
+        chatView.forceActiveFocus()
     }
 
     color: JamiTheme.primaryBackgroundColor
-
-    Connections {
-        target: JamiTheme
-
-        function onDarkThemeChanged() {
-            updateChatviewTheme()
-        }
-    }
-
-    QtObject {
-        id: jsBridgeObject
-
-        // ID, under which this object will be known at chatview.js side.
-        WebChannel.id: "jsbridge"
-
-        // signals to trigger functions in chatview.js
-        // mainly used to avoid input arg string escape
-        signal setSendMessageContentRequest(string content)
-
-        // Functions that are exposed, return code can be derived from js side
-        // by setting callback function.
-        function deleteInteraction(arg) {
-            MessagesAdapter.deleteInteraction(arg)
-        }
-
-        function retryInteraction(arg) {
-            MessagesAdapter.retryInteraction(arg)
-        }
-
-        function openFile(arg) {
-            MessagesAdapter.openFile(arg)
-        }
-
-        function acceptFile(arg) {
-            MessagesAdapter.acceptFile(arg)
-        }
-
-        function refuseFile(arg) {
-            MessagesAdapter.refuseFile(arg)
-        }
-
-        function emitMessagesCleared() {
-            root.messagesCleared()
-        }
-
-        function emitMessagesLoaded() {
-            root.messagesLoaded()
-        }
-
-        function copyToDownloads(interactionId, displayName) {
-            MessagesAdapter.copyToDownloads(interactionId, displayName)
-        }
-
-        function parseI18nData() {
-            return MessagesAdapter.chatviewTranslatedStrings
-        }
-
-        function loadMessages(n) {
-            return MessagesAdapter.loadMessages(n)
-        }
-    }
 
     ColumnLayout {
         anchors.fill: root
@@ -196,56 +95,46 @@ Rectangle {
 
             currentIndex: CurrentConversation.isRequest || CurrentConversation.needsSyncing
 
-            GeneralWebEngineView {
-                id: messageWebView
+            ListView {
+                id: chatView
+
+                model: MessagesAdapter.messageListModel
+
+                displayMarginBeginning: height * 2
+                displayMarginEnd: height * 2
+
+                // TODO: remove this
+                Component.onCompleted: {
+                    jsLoaded = true
+                }
 
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredHeight: contentHeight
+                Layout.maximumHeight: messageWebViewStack.height
+                Layout.alignment: Qt.AlignBottom
 
-                onCompletedLoadHtml: ":/chatview.html"
+                clip: true
+                verticalLayoutDirection: ListView.TopToBottom
 
-                webChannel.registeredObjects: [jsBridgeObject]
+                ScrollBar.vertical: ScrollBar {}
+
+                delegate: MessageDelegate {
+                }
+
+                Connections {
+                    target: MessagesAdapter
+
+                    function onNewInteraction(interaction_type){
+                        // was not going all the way down so i added listview.flick
+                        chatView.ScrollBar.vertical.position = 1.0 - chatView.ScrollBar.vertical.size
+                        chatView.flick(0, -1000)
+                        //MessagesAdapter.beginBuildPreview(1, "https://youtube.com");
+                    }
+                }
 
                 DropArea {
                     anchors.fill: parent
                     onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
-                }
-
-                onLoadingChanged: {
-                    if (loadRequest.status == WebEngineView.LoadSucceededStatus) {
-                        messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
-                                                         "chatcss",
-                                                         UtilsAdapter.qStringFromFile(
-                                                             ":/chatview.css")))
-                        messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
-                                                         "chatwin",
-                                                         UtilsAdapter.qStringFromFile(
-                                                             ":/chatview-qt.css")))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/linkify.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/linkify-html.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/linkify-string.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/qwebchannel.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/jed.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/emoji.js"))
-                        messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                         ":/previewInfo.js"))
-                        messageWebView.runJavaScript(
-                                    UtilsAdapter.qStringFromFile(":/chatview.js"),
-                                    function() {
-                                        messageWebView.runJavaScript("init_i18n();")
-                                        MessagesAdapter.setDisplayLinks()
-                                        updateChatviewTheme()
-                                        messageWebView.runJavaScript("displayNavbar(false);")
-                                        messageWebView.runJavaScript("hideMessageBar(true);")
-                                        jsLoaded = true
-                                    })
-                    }
                 }
             }
 

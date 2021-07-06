@@ -161,5 +161,8 @@
         <file>src/commoncomponents/BubbleLabel.qml</file>
         <file>src/commoncomponents/BackButton.qml</file>
         <file>src/commoncomponents/JamiSwitch.qml</file>
+        <file>src/mainview/components/previewCSS.css</file>
+        <file>src/mainview/components/RegularMessage.qml</file>
+        <file>src/commoncomponents/MessageDelegate.qml</file>
     </qresource>
 </RCC>
