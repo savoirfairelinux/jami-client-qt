@@ -162,5 +162,6 @@
         <file>src/commoncomponents/BackButton.qml</file>
         <file>src/commoncomponents/JamiSwitch.qml</file>
         <file>src/mainview/components/ReadOnlyFooter.qml</file>
+        <file>src/commoncomponents/MessageDelegate.qml</file>
     </qresource>
 </RCC>
