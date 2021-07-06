@@ -26,7 +26,8 @@
 #include "appsettingsmanager.h"
 #include "qtutils.h"
 #include "utils.h"
-#include "webchathelpers.h"
+
+#include <regex>
 
 #include <api/datatransfermodel.h>
 
@@ -45,7 +46,19 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-{}
+    , previewEngine_(new PreviewEngine(this))
+{
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+        const QString& convId = lrcInstance_->get_selectedConvUid();
+        auto& conversation
+            = lrcInstance_->getConversationFromConvUid(convId, lrcInstance_->get_currentAccountId());
+        QVariant v;
+        v.setValue(&(*(conversation.interactions)));
+        set_messageListModel(v);
+    });
+
+    connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
+}
 
 void
 MessagesAdapter::safeInit()
@@ -59,70 +72,33 @@ MessagesAdapter::safeInit()
 void
 MessagesAdapter::setupChatView(const QVariantMap& convInfo)
 {
-    Utils::oneShotConnect(qmlObj_, SIGNAL(messagesCleared()), this, SLOT(slotMessagesCleared()));
-    setMessagesVisibility(false);
-    clearChatView();
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
+    auto optConv = convModel->getConversationForUid(lrcInstance_->get_selectedConvUid());
+    if (!optConv)
+        return;
 
+    loadMessages(optConv->get());
+
+    // TODO: current conv observe
     Q_EMIT newMessageBarPlaceholderText(convInfo["title"].toString());
+}
+
+void
+MessagesAdapter::loadMessages(const conversation::Info& convInfo)
+{
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
+    if (convInfo.isSwarm() && !convInfo.allMessagesLoaded) {
+        convModel->loadConversationMessages(convInfo.uid, 20);
+    }
 }
 
 void
 MessagesAdapter::onNewInteraction(const QString& convUid,
                                   const QString& interactionId,
-                                  const lrc::api::interaction::Info& interaction)
+                                  const interaction::Info& interaction)
 {
     auto accountId = lrcInstance_->get_currentAccountId();
     newInteraction(accountId, convUid, interactionId, interaction);
-}
-
-void
-MessagesAdapter::onInteractionStatusUpdated(const QString& convUid,
-                                            const QString& interactionId,
-                                            const lrc::api::interaction::Info& interaction)
-{
-    auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
-    updateInteraction(*currentConversationModel, interactionId, interaction);
-}
-
-void
-MessagesAdapter::onInteractionRemoved(const QString& convUid, const QString& interactionId)
-{
-    Q_UNUSED(convUid);
-    removeInteraction(interactionId);
-}
-
-void
-MessagesAdapter::onNewMessagesAvailable(const QString& accountId, const QString& conversationId)
-{
-    auto* convModel = lrcInstance_->accountModel().getAccountInfo(accountId).conversationModel.get();
-    auto optConv = convModel->getConversationForUid(conversationId);
-    if (!optConv)
-        return;
-    updateHistory(*convModel, optConv->get().interactions, optConv->get().allMessagesLoaded);
-    Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
-}
-
-void
-MessagesAdapter::updateConversation(const QString& conversationId)
-{
-    if (conversationId != lrcInstance_->get_selectedConvUid())
-        return;
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    if (auto optConv = convModel->getConversationForUid(conversationId))
-        setConversationProfileData(optConv->get());
-}
-
-void
-MessagesAdapter::onComposingStatusChanged(const QString& convId,
-                                          const QString& contactUri,
-                                          bool isComposing)
-{
-    if (convId != lrcInstance_->get_selectedConvUid())
-        return;
-    if (!settingsManager_->getValue(Settings::Key::EnableTypingIndicator).toBool()) {
-        return;
-    }
-    contactIsComposing(contactUri, isComposing);
 }
 
 void
@@ -137,33 +113,9 @@ MessagesAdapter::connectConversationModel()
                      Qt::UniqueConnection);
 
     QObject::connect(currentConversationModel,
-                     &ConversationModel::interactionStatusUpdated,
-                     this,
-                     &MessagesAdapter::onInteractionStatusUpdated,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::interactionRemoved,
-                     this,
-                     &MessagesAdapter::onInteractionRemoved,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
                      &ConversationModel::newMessagesAvailable,
                      this,
                      &MessagesAdapter::onNewMessagesAvailable,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::conversationReady,
-                     this,
-                     &MessagesAdapter::updateConversation,
-                     Qt::UniqueConnection);
-
-    QObject::connect(currentConversationModel,
-                     &ConversationModel::composingStatusChanged,
-                     this,
-                     &MessagesAdapter::onComposingStatusChanged,
                      Qt::UniqueConnection);
 }
 
@@ -171,29 +123,6 @@ void
 MessagesAdapter::sendConversationRequest()
 {
     lrcInstance_->makeConversationPermanent();
-}
-
-void
-MessagesAdapter::slotMessagesCleared()
-{
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-
-    auto optConv = convModel->getConversationForUid(lrcInstance_->get_selectedConvUid());
-    if (!optConv)
-        return;
-    if (optConv->get().isSwarm() && !optConv->get().allMessagesLoaded) {
-        convModel->loadConversationMessages(optConv->get().uid, 20);
-    } else {
-        updateHistory(*convModel, optConv->get().interactions, optConv->get().allMessagesLoaded);
-        Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
-    }
-    setConversationProfileData(optConv->get());
-}
-
-void
-MessagesAdapter::slotMessagesLoaded()
-{
-    setMessagesVisibility(true);
 }
 
 void
@@ -278,7 +207,7 @@ MessagesAdapter::refuseFile(const QString& interactionId)
 }
 
 void
-MessagesAdapter::pasteKeyDetected()
+MessagesAdapter::onPaste()
 {
     const QMimeData* mimeData = QApplication::clipboard()->mimeData();
 
@@ -327,24 +256,6 @@ MessagesAdapter::userIsComposing(bool isComposing)
 }
 
 void
-MessagesAdapter::setConversationProfileData(const conversation::Info& convInfo)
-{
-    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    if (convInfo.participants.isEmpty()) {
-        return;
-    }
-
-    auto title = accInfo.conversationModel->title(convInfo.uid);
-
-    // make the conversation avatar available within the web view
-    auto avatar = Utils::conversationAvatar(lrcInstance_, convInfo.uid);
-    QByteArray ba;
-    QBuffer bu(&ba);
-    avatar.save(&bu, "PNG");
-    setSenderImage(title, QString::fromLocal8Bit(ba.toBase64()));
-}
-
-void
 MessagesAdapter::newInteraction(const QString& accountId,
                                 const QString& convUid,
                                 const QString& interactionId,
@@ -358,151 +269,8 @@ MessagesAdapter::newInteraction(const QString& accountId,
         auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
         auto& convModel = accountInfo.conversationModel;
         convModel->clearUnreadInteractions(convUid);
-        printNewInteraction(*convModel, interactionId, interaction);
         Q_EMIT newInteraction(static_cast<int>(interaction.type));
     } catch (...) {
-    }
-}
-
-/*
- * JS invoke.
- */
-void
-MessagesAdapter::setMessagesVisibility(bool visible)
-{
-    QString s = QString::fromLatin1(visible ? "showMessagesDiv();" : "hideMessagesDiv();");
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-}
-
-void
-MessagesAdapter::clearChatView()
-{
-    QString s = QString::fromLatin1("clearMessages();");
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-}
-
-void
-MessagesAdapter::setDisplayLinks()
-{
-    QString s
-        = QString::fromLatin1("setDisplayLinks(%1);")
-              .arg(settingsManager_->getValue(Settings::Key::DisplayHyperlinkPreviews).toBool());
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-}
-
-void
-MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
-                               MessagesList interactions,
-                               bool allLoaded)
-{
-    auto conversationId = lrcInstance_->get_selectedConvUid();
-    auto interactionsStr
-        = interactionsToJsonArrayObject(conversationModel, conversationId, interactions).toUtf8();
-    QString s = QString::fromLatin1("updateHistory(%1, %2);")
-                    .arg(interactionsStr.constData())
-                    .arg(allLoaded);
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-    conversationModel.clearUnreadInteractions(conversationId);
-}
-
-void
-MessagesAdapter::setSenderImage(const QString& sender, const QString& senderImage)
-{
-    QJsonObject setSenderImageObject = QJsonObject();
-    setSenderImageObject.insert("sender_contact_method", QJsonValue(sender));
-    setSenderImageObject.insert("sender_image", QJsonValue(senderImage));
-
-    auto setSenderImageObjectString = QString(
-        QJsonDocument(setSenderImageObject).toJson(QJsonDocument::Compact));
-    QString s = QString::fromLatin1("setSenderImage(%1);")
-                    .arg(setSenderImageObjectString.toUtf8().constData());
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-}
-
-void
-MessagesAdapter::printNewInteraction(lrc::api::ConversationModel& conversationModel,
-                                     const QString& msgId,
-                                     const lrc::api::interaction::Info& interaction)
-{
-    auto interactionObject = interactionToJsonInteractionObject(conversationModel,
-                                                                lrcInstance_->get_selectedConvUid(),
-                                                                msgId,
-                                                                interaction)
-                                 .toUtf8();
-    if (interactionObject.isEmpty()) {
-        return;
-    }
-    QString s = QString::fromLatin1("addMessage(%1);").arg(interactionObject.constData());
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-}
-
-void
-MessagesAdapter::updateInteraction(lrc::api::ConversationModel& conversationModel,
-                                   const QString& msgId,
-                                   const lrc::api::interaction::Info& interaction)
-{
-    auto interactionObject = interactionToJsonInteractionObject(conversationModel,
-                                                                lrcInstance_->get_selectedConvUid(),
-                                                                msgId,
-                                                                interaction)
-                                 .toUtf8();
-    if (interactionObject.isEmpty()) {
-        return;
-    }
-    QString s = QString::fromLatin1("updateMessage(%1);").arg(interactionObject.constData());
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-}
-
-void
-MessagesAdapter::setMessagesImageContent(const QString& path, bool isBased64)
-{
-    if (isBased64) {
-        QString param = QString("addImage_base64('%1')").arg(path);
-        QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, param));
-    } else {
-        QString param = QString("addImage_path('file://%1')").arg(path);
-        QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, param));
-    }
-}
-
-void
-MessagesAdapter::setMessagesFileContent(const QString& path)
-{
-    qint64 fileSize = QFileInfo(path).size();
-    QString fileName = QFileInfo(path).fileName();
-
-    QString param = QString("addFile_path('%1','%2','%3')")
-                        .arg(path, fileName, Utils::humanFileSize(fileSize));
-
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, param));
-}
-
-void
-MessagesAdapter::removeInteraction(const QString& interactionId)
-{
-    QString s = QString::fromLatin1("removeInteraction(%1);").arg(interactionId);
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-}
-
-void
-MessagesAdapter::setSendMessageContent(const QString& content)
-{
-    QMetaObject::invokeMethod(qmlObj_, "setSendMessageContent", Q_ARG(QVariant, content));
-}
-
-void
-MessagesAdapter::contactIsComposing(const QString& contactUri, bool isComposing)
-{
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convInfo = convModel->getConversationForUid(lrcInstance_->get_selectedConvUid());
-    if (!convInfo)
-        return;
-    auto& conv = convInfo->get();
-    bool showIsComposing = conv.participants.first() == contactUri;
-    if (showIsComposing) {
-        QString s
-            = QString::fromLatin1("showTypingIndicator(`%1`, %2);").arg(contactUri).arg(isComposing);
-        QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
     }
 }
 
@@ -552,12 +320,22 @@ MessagesAdapter::removeConversation(const QString& accountId,
 }
 
 void
-MessagesAdapter::loadMessages(int n)
+MessagesAdapter::onPreviewInfoReady(QString messageId, QVariantMap info)
 {
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convOpt = convModel->getConversationForUid(lrcInstance_->get_selectedConvUid());
-    if (!convOpt)
-        return;
-    if (convOpt->get().isSwarm() && !convOpt->get().allMessagesLoaded)
-        convModel->loadConversationMessages(convOpt->get().uid, n);
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    const QString& accId = lrcInstance_->get_currentAccountId();
+    auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
+    conversation.interactions->addHyperlinkInfo(messageId, info);
+}
+
+void
+MessagesAdapter::onNewMessagesAvailable(const QString& accountId, const QString& conversationId)
+{
+    // TODO: implement this slot
+}
+
+void
+MessagesAdapter::beginBuildPreview(QString messageId, QString url)
+{
+    previewEngine_->getPreviewInfo(messageId, url);
 }
