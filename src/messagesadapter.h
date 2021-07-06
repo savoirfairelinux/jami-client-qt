@@ -31,6 +31,7 @@ class MessagesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     Q_PROPERTY(QVariantMap chatviewTranslatedStrings MEMBER chatviewTranslatedStrings_ CONSTANT)
+    QML_PROPERTY(QVariant, messageListModel)
 
 public:
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
@@ -66,14 +67,19 @@ protected:
     Q_INVOKABLE void userIsComposing(bool isComposing);
     Q_INVOKABLE void loadMessages(int n);
     Q_INVOKABLE void copyToDownloads(const QString& interactionId, const QString& displayName);
+    Q_INVOKABLE QString getAccountAvatar(const QString& accountUri) const;
+    Q_INVOKABLE QString getAccountAlias(const QString& accountUri) const;
+    Q_INVOKABLE bool displayTimeStamp(int index);
+    Q_INVOKABLE bool isUrl(QString urlInputted);
+    Q_INVOKABLE QString messageHasUrl(QString message);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesVisibility(bool visible);
     void setIsSwarm(bool isSwarm);
     void clearChatView();
-    void printHistory(ConversationModel& conversationModel, MessagesList interactions);
+    void printHistory(ConversationModel& conversationModel, const MessageListModel& interactions);
     void updateHistory(ConversationModel& conversationModel,
-                       MessagesList interactions,
+                       const MessageListModel& interactions,
                        bool allLoaded);
     void setSenderImage(const QString& sender, const QString& senderImage);
     void printNewInteraction(lrc::api::ConversationModel& conversationModel,
