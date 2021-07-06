@@ -30,6 +30,7 @@ import "../../commoncomponents/emojipicker"
 Rectangle {
     id: root
 
+    property string previousConvId: ""
     property real hairLineSize: 1
 
     function setFilePathsToSend(filePaths) {
@@ -42,6 +43,42 @@ Rectangle {
     implicitHeight: footerColumnLayout.implicitHeight
 
     color: JamiTheme.primaryBackgroundColor
+
+    Connections {
+        target: LRCInstance
+
+        function onSelectedConvUidChanged() {
+            // Handle Draft
+            if (previousConvId !== "") {
+                LRCInstance.setContentDraft(previousConvId, LRCInstance.currentAccountId,
+                                            messageBar.textAreaObj.text);
+            }
+
+            messageBar.textAreaObj.clearText()
+            previousConvId = LRCInstance.selectedConvUid
+
+            var restoredContent = LRCInstance.getContentDraft(LRCInstance.selectedConvUid,
+                                                              LRCInstance.currentAccountId);
+            if (restoredContent)
+                messageBar.textAreaObj.insertText(restoredContent)
+        }
+    }
+
+    Connections {
+        target: MessagesAdapter
+
+        function onNewMessageBarPlaceholderText(placeholderText) {
+            messageBar.textAreaObj.placeholderText = JamiStrings.writeTo + " " + placeholderText
+        }
+
+        function onNewFilePasted(filePath) {
+            dataTransferSendContainer.pendingFilesToSendListModel.addToPending(filePath)
+        }
+
+        function onNewTextPasted() {
+            messageBar.textAreaObj.pasteText()
+        }
+    }
 
     EmojiPicker {
         id: emojiPicker
@@ -73,8 +110,70 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: implicitHeight
 
-            onEmojiButtonClicked: emojiPicker.openEmojiPicker()
+            onEmojiButtonClicked: {
+                JamiQmlUtils.updateMessageBarButtonsPoints()
+
+                emojiPicker.parent = JamiQmlUtils.mainViewRectObj
+
+                emojiPicker.x = Qt.binding(function() {
+                    var mainViewRightX = JamiQmlUtils.mainViewRectObj.width
+                    return mainViewRightX - emojiPicker.width
+                })
+                emojiPicker.y = Qt.binding(function() {
+                    var buttonY = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.y
+                    return buttonY - emojiPicker.height - messageBar.marginSize - root.hairLineSize
+                })
+
+                emojiPicker.openEmojiPicker()
+            }
             onSendFileButtonClicked: jamiFileDialog.open()
+            onSendMessageButtonClicked: {
+                // Send text message
+                if (messageBar.textAreaObj.text)
+                    MessagesAdapter.sendMessage(messageBar.textAreaObj.text)
+                messageBar.textAreaObj.clearText()
+
+                // Send file messages
+                var fileCounts = dataTransferSendContainer.pendingFilesToSendListModel.rowCount()
+                for (var i = 0; i < fileCounts; i++) {
+                    var currentIndex = dataTransferSendContainer.pendingFilesToSendListModel.index(
+                                i, 0)
+                    var filePath = dataTransferSendContainer.pendingFilesToSendListModel.data(
+                                currentIndex, PendingFiles.FilePath)
+                    MessagesAdapter.sendFile(filePath)
+                }
+                dataTransferSendContainer.pendingFilesToSendListModel.flush()
+            }
+            onVideoRecordMessageButtonClicked: {
+                JamiQmlUtils.updateMessageBarButtonsPoints()
+
+                recordBox.x = Qt.binding(function() {
+                    var buttonCenterX = JamiQmlUtils.videoRecordMessageButtonInMainViewPoint.x +
+                            JamiQmlUtils.videoRecordMessageButtonObj.width / 2
+                    return buttonCenterX - recordBox.width / 2
+                })
+                recordBox.y = Qt.binding(function() {
+                    var buttonY = JamiQmlUtils.videoRecordMessageButtonInMainViewPoint.y
+                    return buttonY - recordBox.height - recordBox.spikeHeight
+                })
+
+                recordBox.openRecorder(true)
+            }
+            onAudioRecordMessageButtonClicked: {
+                JamiQmlUtils.updateMessageBarButtonsPoints()
+
+                recordBox.x = Qt.binding(function() {
+                    var buttonCenterX = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.x +
+                            JamiQmlUtils.audioRecordMessageButtonObj.width / 2
+                    return buttonCenterX - recordBox.width / 2
+                })
+                recordBox.y = Qt.binding(function() {
+                    var buttonY = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.y
+                    return buttonY - recordBox.height - recordBox.spikeHeight
+                })
+
+                recordBox.openRecorder(false)
+            }
         }
 
         PendingFilesTransferContainer {
@@ -84,6 +183,13 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: pendingFilesCount ?
                                         JamiTheme.messageWebViewFooterFileContainerPreferredHeight : 0
+
+            onPendingFilesCountChanged: {
+                if (pendingFilesCount !== 0)
+                    messageBar.showSendMessageButton()
+                else
+                    messageBar.hideSendMessageButton()
+            }
         }
     }
 
