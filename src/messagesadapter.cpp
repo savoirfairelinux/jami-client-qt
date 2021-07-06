@@ -45,7 +45,16 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-{}
+{
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+        const QString& convId = lrcInstance_->get_selectedConvUid();
+        auto& conversation
+            = lrcInstance_->getConversationFromConvUid(convId, lrcInstance_->getCurrentAccountId());
+        QVariant v;
+        v.setValue((conversation.interactions).get());
+        set_messageListModel(v);
+    });
+}
 
 void
 MessagesAdapter::safeInit()
@@ -143,7 +152,7 @@ MessagesAdapter::onNewMessagesAvailable(const QString& accountId, const QString&
     auto optConv = convModel->getConversationForUid(conversationId);
     if (!optConv)
         return;
-    updateHistory(*convModel, optConv->get().interactions, optConv->get().allMessagesLoaded);
+    updateHistory(*convModel, *optConv->get().interactions.get(), optConv->get().allMessagesLoaded);
     Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
 }
 
@@ -260,7 +269,7 @@ MessagesAdapter::slotMessagesCleared()
     if (convOpt->get().isSwarm() && !convOpt->get().allMessagesLoaded) {
         convModel->loadConversationMessages(convOpt->get().uid, 20);
     } else {
-        printHistory(*convModel, convOpt->get().interactions);
+        printHistory(*convModel, *convOpt->get().interactions.get());
         Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
     }
     setConversationProfileData(convOpt->get());
@@ -620,7 +629,7 @@ MessagesAdapter::setDisplayLinks()
 
 void
 MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
-                              MessagesList interactions)
+                              const MessageListModel& interactions)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
                                                          lrcInstance_->get_selectedConvUid(),
@@ -632,7 +641,7 @@ MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
 
 void
 MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
-                               MessagesList interactions,
+                               const MessageListModel& interactions,
                                bool allLoaded)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
