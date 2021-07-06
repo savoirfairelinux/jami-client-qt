@@ -115,14 +115,13 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     // this is workaround for profile::Type including both account types and extended types
     // - PENDING is implicitly also JAMI
     // - TEMPORARY should never be in this list
-    if (itemProfileType == profile::Type::PENDING)
+    auto isRequest = index.data(Role::IsRequest).toBool();
+    if (isRequest)
         itemProfileType = profile::Type::JAMI;
     auto typeFilter = itemProfileType == profileTypeFilter_;
 
     // requests
-    auto isRequest = index.data(Role::IsRequest).toBool();
     bool requestFilter = filterRequests_ ? isRequest : !isRequest;
-
     bool match {false};
 
     // banned contacts require exact match
