@@ -417,21 +417,6 @@ Rectangle {
         visible: false
 
         Component.onCompleted: {
-            recordBox.x = Qt.binding(function() {
-                var i = ((mainViewStack.visible && mainViewStack.width > 1000) ?
-                             Math.round((mainViewStack.width-1000)*0.5) :
-                             0)
-                return mainViewStack.visible ?
-                            sidePanelViewStack.width + recordBox.x_offset + i :
-                            recordBox.x_offset + i
-
-            })
-
-            recordBox.y = Qt.binding(function() {
-                return mainViewStack.visible ? mainViewStack.height + recordBox.y_offset :
-                                               sidePanelViewStack.height + recordBox.y_offset
-            })
-
             // Set qml MessageWebView object pointer to c++.
             MessagesAdapter.setQmlObject(this)
         }
@@ -481,6 +466,14 @@ Rectangle {
         }
 
         previousWidth = mainView.width
+
+        JamiQmlUtils.updateMessageBarButtonsPoints()
+    }
+
+    onHeightChanged: JamiQmlUtils.updateMessageBarButtonsPoints()
+
+    Component.onCompleted: {
+        JamiQmlUtils.mainViewRectObj = mainView
     }
 
     AboutPopUp {
