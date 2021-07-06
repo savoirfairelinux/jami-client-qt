@@ -155,5 +155,6 @@
         <file>src/mainview/components/FilesToSendDelegate.qml</file>
         <file>src/mainview/components/MessageBar.qml</file>
         <file>src/mainview/components/FilesToSendContainer.qml</file>
+        <file>src/mainview/components/previewCSS.css</file>
     </qresource>
 </RCC>
