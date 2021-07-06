@@ -45,245 +45,269 @@ Dialog {
     property var lineSize: []
     property var lineCounter: 0
 
-
-    function monitor(continuous) {
-        SettingsAdapter.monitor(continuous)
-    }
-
-    Connections{
-        target: SettingsAdapter
-        function onDebugMessageReceived(message) {
-            if (!root.visible) {
-                return;
-            }
-            var initialPosition = scrollView.ScrollBar.vertical.position
-            lineCounter += 1
-            lineSize.push(message.length)
-            if (!root.cancelPressed) {
-                logsText.append(message);
-            }
-            if (lineCounter >= 10000){
-                lineCounter -= 1
-                logsText.remove(0, lineSize[0])
-                lineSize.shift()
-            }
-            scrollView.ScrollBar.vertical.position = initialPosition > (.8*(1.0 - scrollView.ScrollBar.vertical.size)) ? 1.0 - scrollView.ScrollBar.vertical.size : initialPosition
-        }
-    }
-
-    onVisibleChanged: {
-        if (visible && startStopToggle.checked) {
-            if (hasOpened && lineCounter == 0) {
-                logsText.append(SettingsAdapter.getLogs())
-                lineCounter = SettingsAdapter.getSizeOfLogs()
-                lineSize.push(SettingsAdapter.getFirstLogLength())
-            }
-        } else {
-            logsText.clear()
-            copiedToolTip.close()
-            lineCounter = 0
-            lineSize = []
-        }
-        hasOpened = true
-    }
-
     title: JamiStrings.logsViewTitle
     modality: Qt.NonModal
     width: 800
     height: 700
     standardButtons: StandardButton.NoButton
 
-    ColumnLayout {
+    ListView{
+        id: listView
+        model: MessagesAdapter.messageListModel
 
-        Layout.alignment: Qt.AlignHCenter
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        anchors.centerIn: parent
-        height: root.height
-        width: root.width
+        height: 300
+        width: 400
 
-        Rectangle {
-            id: buttonRectangleBackground
-
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.alignment: Qt.AlignHCenter
-
-            color: JamiTheme.backgroundColor
-
-            border.color: color
-            border.width: 0
-            height: JamiTheme.preferredFieldHeight*2
-
-            RowLayout {
-                id: buttons
-
-                Layout.alignment: Qt.AlignTop| Qt.AlignHCenter
-                anchors.centerIn: parent
-
-                ToggleSwitch {
-                    id: startStopToggle
-
-                    Layout.fillWidth: true
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
-                    Layout.rightMargin: JamiTheme.preferredMarginSize
-
-                    checked: false
-                    labelText: JamiStrings.logsViewDisplay
-                    fontPointSize: JamiTheme.settingsFontSize
-
-                    onSwitchToggled: {
-                        logging = !logging
-                        if (logging){
-                            isStopped = false
-                            root.cancelPressed = false
-                            monitor(true)
-                        } else {
-                            isStopped = true
-                            root.cancelPressed = true
-                            monitor(false)
-                        }
-                    }
-                }
-
-                MaterialButton {
-                    id: clearButton
-
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itemWidth / widthDivisor
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-                    Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-                    outlined: true
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    text: JamiStrings.logsViewClear
-
-                    onClicked: {
-                        logsText.clear()
-                        logging = false
-                        startStopToggle.checked = false
-                        root.cancelPressed = true
-                        SettingsAdapter.clearLogs()
-                        monitor(false)
-                    }
-                }
-
-                MaterialButton {
-                    id: copyButton
-
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.preferredWidth: itemWidth/widthDivisor
-
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-
-                    outlined: true
-                    text: JamiStrings.logsViewCopy
-
-                    onClicked:{
-                        logsText.selectAll()
-                        logsText.copy()
-                        logsText.deselect()
-                        copiedToolTip.open()
-                    }
-
-                    ToolTip {
-                        id: copiedToolTip
-
-                        height: JamiTheme.preferredFieldHeight
-                        TextArea{
-                            text: JamiStrings.logsViewCopied
-                            color: JamiTheme.textColor
-                        }
-                        background: Rectangle{
-                            color: JamiTheme.primaryBackgroundColor
-                        }
-                    }
-                }
-
-                MaterialButton {
-                    id: reportButton
-
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.preferredWidth: itemWidth/widthDivisor
-                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
-                    Layout.topMargin: JamiTheme.preferredMarginSize
-                    Layout.bottomMargin: JamiTheme.preferredMarginSize
-                    Layout.rightMargin: JamiTheme.preferredMarginSize
-
-                    color: JamiTheme.buttonTintedBlack
-                    hoveredColor: JamiTheme.buttonTintedBlackHovered
-                    pressedColor: JamiTheme.buttonTintedBlackPressed
-                    text: JamiStrings.logsViewReport
-                    outlined: true
-
-                    onClicked: Qt.openUrlExternally("https://jami.net/bugs-and-improvements/")
-                }
-            }
+        delegate: TextArea{
+            height: 40
+            width:  listView.width
+            text: MessageBody + " " + MessageId + " " + index
         }
 
-        Rectangle {
-            id: flickableRectangleBackground
-            property alias text: logsText.text
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            color:  JamiTheme.primaryBackgroundColor
-            border.color: color
-            border.width: 6
-            height: root.height - buttonRectangleBackground.height
-
-
-            ScrollView{
-                id: scrollView
-
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                anchors.fill: flickableRectangleBackground
-
-                TextArea{
-                    id: logsText
-
-                    readOnly: true
-                    text: ""
-                    color: JamiTheme.textColor
-                    wrapMode: TextArea.Wrap
-                    selectByMouse: true
-
-                    MouseArea {
-                        anchors.fill: logsText
-                        acceptedButtons: Qt.RightButton
-                        hoverEnabled: true
-
-                        onClicked: {
-                            selectBeginning = logsText.selectionStart
-                            selectEnd = logsText.selectionEnd
-                            rightClickMenu.open()
-                            logsText.select(selectBeginning, selectEnd)
-                        }
-
-                        Menu {
-                            id: rightClickMenu
-
-                            MenuItem {
-                                text: JamiStrings.logsViewCopy
-                                onTriggered: {
-                                    logsText.copy()
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        onCountChanged: {
+            console.log(listView.count)
         }
     }
+
+
+//    function monitor(continuous) {
+//        SettingsAdapter.monitor(continuous)
+//    }
+
+//    Connections{
+//        target: SettingsAdapter
+//        function onDebugMessageReceived(message) {
+//            if (!root.visible) {
+//                return;
+//            }
+//            var initialPosition = scrollView.ScrollBar.vertical.position
+//            lineCounter += 1
+//            lineSize.push(message.length)
+//            if (!root.cancelPressed) {
+//                logsText.append(message);
+//            }
+//            if (lineCounter >= 10000){
+//                lineCounter -= 1
+//                logsText.remove(0, lineSize[0])
+//                lineSize.shift()
+//            }
+//            scrollView.ScrollBar.vertical.position = initialPosition > (.8*(1.0 - scrollView.ScrollBar.vertical.size)) ? 1.0 - scrollView.ScrollBar.vertical.size : initialPosition
+//        }
+//    }
+
+//    onVisibleChanged: {
+//        if (visible && startStopToggle.checked) {
+//            if (hasOpened && lineCounter == 0) {
+//                logsText.append(SettingsAdapter.getLogs())
+//                lineCounter = SettingsAdapter.getSizeOfLogs()
+//                lineSize.push(SettingsAdapter.getFirstLogLength())
+//            }
+//        } else {
+//            logsText.clear()
+//            copiedToolTip.close()
+//            lineCounter = 0
+//            lineSize = []
+//        }
+//        hasOpened = true
+//    }
+
+//    title: JamiStrings.logsViewTitle
+//    modality: Qt.NonModal
+//    width: 800
+//    height: 700
+//    standardButtons: StandardButton.NoButton
+
+//    ColumnLayout {
+
+//        Layout.alignment: Qt.AlignHCenter
+//        Layout.fillWidth: true
+//        Layout.fillHeight: true
+//        anchors.centerIn: parent
+//        height: root.height
+//        width: root.width
+
+//        Rectangle {
+//            id: buttonRectangleBackground
+
+//            Layout.fillWidth: true
+//            Layout.fillHeight: true
+//            Layout.alignment: Qt.AlignHCenter
+
+//            color: JamiTheme.backgroundColor
+
+//            border.color: color
+//            border.width: 0
+//            height: JamiTheme.preferredFieldHeight*2
+
+//            RowLayout {
+//                id: buttons
+
+//                Layout.alignment: Qt.AlignTop| Qt.AlignHCenter
+//                anchors.centerIn: parent
+
+//                ToggleSwitch {
+//                    id: startStopToggle
+
+//                    Layout.fillWidth: true
+//                    Layout.leftMargin: JamiTheme.preferredMarginSize
+//                    Layout.rightMargin: JamiTheme.preferredMarginSize
+
+//                    checked: false
+//                    labelText: JamiStrings.logsViewDisplay
+//                    fontPointSize: JamiTheme.settingsFontSize
+
+//                    onSwitchToggled: {
+//                        logging = !logging
+//                        if (logging){
+//                            isStopped = false
+//                            root.cancelPressed = false
+//                            monitor(true)
+//                        } else {
+//                            isStopped = true
+//                            root.cancelPressed = true
+//                            monitor(false)
+//                        }
+//                    }
+//                }
+
+//                MaterialButton {
+//                    id: clearButton
+
+//                    Layout.alignment: Qt.AlignHCenter
+//                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
+//                    Layout.preferredWidth: itemWidth / widthDivisor
+//                    Layout.topMargin: JamiTheme.preferredMarginSize
+//                    Layout.bottomMargin: JamiTheme.preferredMarginSize
+
+//                    outlined: true
+//                    color: JamiTheme.buttonTintedBlack
+//                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+//                    pressedColor: JamiTheme.buttonTintedBlackPressed
+//                    text: JamiStrings.logsViewClear
+
+//                    onClicked: {
+//                        logsText.clear()
+//                        logging = false
+//                        startStopToggle.checked = false
+//                        root.cancelPressed = true
+//                        SettingsAdapter.clearLogs()
+//                        monitor(false)
+//                    }
+//                }
+
+//                MaterialButton {
+//                    id: copyButton
+
+//                    Layout.alignment: Qt.AlignHCenter
+//                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
+//                    Layout.preferredWidth: itemWidth/widthDivisor
+
+//                    color: JamiTheme.buttonTintedBlack
+//                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+//                    pressedColor: JamiTheme.buttonTintedBlackPressed
+
+//                    outlined: true
+//                    text: JamiStrings.logsViewCopy
+
+//                    onClicked:{
+//                        logsText.selectAll()
+//                        logsText.copy()
+//                        logsText.deselect()
+//                        copiedToolTip.open()
+//                    }
+
+//                    ToolTip {
+//                        id: copiedToolTip
+
+//                        height: JamiTheme.preferredFieldHeight
+//                        TextArea{
+//                            text: JamiStrings.logsViewCopied
+//                            color: JamiTheme.textColor
+//                        }
+//                        background: Rectangle{
+//                            color: JamiTheme.primaryBackgroundColor
+//                        }
+//                    }
+//                }
+
+//                MaterialButton {
+//                    id: reportButton
+
+//                    Layout.alignment: Qt.AlignHCenter
+//                    Layout.preferredWidth: itemWidth/widthDivisor
+//                    Layout.preferredHeight: JamiTheme.preferredFieldHeight
+//                    Layout.topMargin: JamiTheme.preferredMarginSize
+//                    Layout.bottomMargin: JamiTheme.preferredMarginSize
+//                    Layout.rightMargin: JamiTheme.preferredMarginSize
+
+//                    color: JamiTheme.buttonTintedBlack
+//                    hoveredColor: JamiTheme.buttonTintedBlackHovered
+//                    pressedColor: JamiTheme.buttonTintedBlackPressed
+//                    text: JamiStrings.logsViewReport
+//                    outlined: true
+
+//                    onClicked: Qt.openUrlExternally("https://jami.net/bugs-and-improvements/")
+//                }
+//            }
+//        }
+
+//        Rectangle {
+//            id: flickableRectangleBackground
+//            property alias text: logsText.text
+
+//            Layout.alignment: Qt.AlignHCenter
+//            Layout.fillWidth: true
+//            Layout.fillHeight: true
+
+//            color:  JamiTheme.primaryBackgroundColor
+//            border.color: color
+//            border.width: 6
+//            height: root.height - buttonRectangleBackground.height
+
+
+//            ScrollView{
+//                id: scrollView
+
+//                Layout.fillHeight: true
+//                Layout.fillWidth: true
+//                anchors.fill: flickableRectangleBackground
+
+//                TextArea{
+//                    id: logsText
+
+//                    readOnly: true
+//                    text: ""
+//                    color: JamiTheme.textColor
+//                    wrapMode: TextArea.Wrap
+//                    selectByMouse: true
+
+//                    MouseArea {
+//                        anchors.fill: logsText
+//                        acceptedButtons: Qt.RightButton
+//                        hoverEnabled: true
+
+//                        onClicked: {
+//                            selectBeginning = logsText.selectionStart
+//                            selectEnd = logsText.selectionEnd
+//                            rightClickMenu.open()
+//                            logsText.select(selectBeginning, selectEnd)
+//                        }
+
+//                        Menu {
+//                            id: rightClickMenu
+
+//                            MenuItem {
+//                                text: JamiStrings.logsViewCopy
+//                                onTriggered: {
+//                                    logsText.copy()
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 

@@ -48,6 +48,8 @@
 #include "api/pluginmodel.h"
 #include "api/conversation.h"
 
+//#include "messagelistmodel.h"
+
 #include <QMetaType>
 #include <QQmlEngine>
 
@@ -108,6 +110,7 @@ registerTypes()
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, PendingFilesToSendListModel);
     QML_REGISTERTYPE(NS_MODELS, SmartListModel);
+    QML_REGISTERTYPE(NS_MODELS, MessageListModel);
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
