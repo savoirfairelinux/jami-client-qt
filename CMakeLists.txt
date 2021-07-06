@@ -87,7 +87,8 @@ set(COMMON_SOURCES
     ${SRC_DIR}/calloverlaymodel.cpp
     ${SRC_DIR}/filestosendlistmodel.cpp
     ${SRC_DIR}/wizardviewstepmodel.cpp
-    ${SRC_DIR}/avatarregistry.cpp)
+    ${SRC_DIR}/avatarregistry.cpp
+    ${SRC_DIR}/previewengine.cpp)
 
 set(COMMON_HEADERS
     ${SRC_DIR}/avatarimageprovider.h
@@ -144,8 +145,13 @@ set(COMMON_HEADERS
     ${SRC_DIR}/searchresultslistmodel.h
     ${SRC_DIR}/calloverlaymodel.h
     ${SRC_DIR}/filestosendlistmodel.h
+<<<<<<< HEAD
     ${SRC_DIR}/wizardviewstepmodel.h
     ${SRC_DIR}/avatarregistry.h)
+=======
+    ${SRC_DIR}/avatarregistry.h
+    ${SRC_DIR}/previewengine.h)
+>>>>>>> 6172520 (messagelistmodel signals: add in client-qt)
 
 set(QML_LIBS
     Qt5::Quick
@@ -156,7 +162,8 @@ set(QML_LIBS
     Qt5::Concurrent
     Qt5::QuickControls2
     Qt5::WebEngine
-    Qt5::Core)
+    Qt5::Core
+    Qt5::WebEngineWidgets)
 
 set(QML_LIBS_LIST
     Core
@@ -167,7 +174,8 @@ set(QML_LIBS_LIST
     Svg
     Sql
     QuickControls2
-    WebEngine)
+    WebEngine
+    WebEngineWidgets)
 
 set(WINDOWS_SYS_LIBS Shell32.lib
                      Ole32.lib
