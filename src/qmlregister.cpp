@@ -46,6 +46,8 @@
 #include "api/datatransfermodel.h"
 #include "api/pluginmodel.h"
 
+//#include "messagelistmodel.h"
+
 #include <QMetaType>
 #include <QQmlEngine>
 
@@ -105,6 +107,7 @@ registerTypes()
     QML_REGISTERTYPE(NS_MODELS, VideoFormatFpsModel);
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
     QML_REGISTERTYPE(NS_MODELS, SmartListModel);
+    QML_REGISTERTYPE(NS_MODELS, MessageListModel);
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");

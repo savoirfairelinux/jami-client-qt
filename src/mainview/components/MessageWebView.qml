@@ -45,6 +45,14 @@ Rectangle {
     signal messagesCleared
     signal messagesLoaded
 
+    Connections{
+        target: SettingsAdapter
+        function onInteractionAboutToStart(parent, start, last) {
+            console.log("start")
+            console.log(start)
+        }
+    }
+
     function setSendMessageContent(content) {
         jsBridgeObject.setSendMessageContentRequest(content)
     }
