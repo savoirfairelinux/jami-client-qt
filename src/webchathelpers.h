@@ -39,4 +39,4 @@ QString interactionToJsonInteractionObject(lrc::api::ConversationModel& conversa
                                            const lrc::api::interaction::Info& interaction);
 QString interactionsToJsonArrayObject(lrc::api::ConversationModel& conversationModel,
                                       const QString& convId,
-                                      MessagesList interactions);
+                                      const MessageListModel& interactions);
