@@ -27,6 +27,7 @@ import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
+import "../../../images"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
 Rectangle {
@@ -36,21 +37,23 @@ Rectangle {
     property string headerUserUserNameLabelText: ""
     property bool jsLoaded: false
 
+
+
     signal needToHideConversationInCall
     signal messagesCleared
     signal messagesLoaded
 
-    function setSendMessageContent(content) {
-        jsBridgeObject.setSendMessageContentRequest(content)
-    }
+    // function setSendMessageContent(content) {
+    //     jsBridgeObject.setSendMessageContentRequest(content)
+    // }
 
     function focusMessageWebView() {
-        messageWebView.forceActiveFocus()
+        listView.forceActiveFocus()
     }
 
-    function webViewRunJavaScript(arg) {
-        messageWebView.runJavaScript(arg)
-    }
+    // function webViewRunJavaScript(arg) {
+    //     messageWebView.runJavaScript(arg)
+    // }
 
     function setSendContactRequestButtonVisible(visible) {
         messageWebViewHeader.sendContactRequestButtonVisible = visible
@@ -64,36 +67,36 @@ Rectangle {
         messageWebViewHeader.resetBackToWelcomeViewButtonSource(reset)
     }
 
-    function updateChatviewTheme() {
-        var theme = 'setTheme("\
-            --svg-invert-percentage:' + JamiTheme.invertPercentageInDecimal + ';\
-            --jami-light-blue:' + JamiTheme.jamiLightBlue + ';\
-            --jami-dark-blue: ' + JamiTheme.jamiDarkBlue + ';\
-            --text-color: ' + JamiTheme.chatviewTextColor + ';\
-            --timestamp-color:' + JamiTheme.timestampColor + ';\
-            --message-out-bg:' + JamiTheme.messageOutBgColor + ';\
-            --message-out-txt:' + JamiTheme.messageOutTxtColor + ';\
-            --message-in-bg:' + JamiTheme.messageInBgColor + ';\
-            --message-in-txt:' + JamiTheme.messageInTxtColor + ';\
-            --file-in-timestamp-color:' + JamiTheme.fileOutTimestampColor + ';\
-            --file-out-timestamp-color:' + JamiTheme.fileInTimestampColor + ';\
-            --bg-color:' + JamiTheme.chatviewBgColor + ';\
-            --action-icon-color:' + JamiTheme.chatviewButtonColor + ';\
-            --action-icon-hover-color:' + JamiTheme.hoveredButtonColor + ';\
-            --action-icon-press-color:' + JamiTheme.pressedButtonColor + ';\
-            --placeholder-text-color:' + JamiTheme.placeholderTextColor + ';\
-            --invite-hover-color:' + JamiTheme.inviteHoverColor + ';\
-            --bg-text-input:' + JamiTheme.bgTextInput + ';\
-            --bg-invitation-rect:' + JamiTheme.bgInvitationRectColor + ';\
-            --preview-text-container-color:' + JamiTheme.previewTextContainerColor + ';\
-            --preview-title-color:' + JamiTheme.previewTitleColor + ';\
-            --preview-subtitle-color:' + JamiTheme.previewSubtitleColor + ';\
-            --preview-image-background-color:' + JamiTheme.previewImageBackgroundColor + ';\
-            --preview-card-container-color:' + JamiTheme.previewCardContainerColor + ';\
-            --preview-url-color:' + JamiTheme.previewUrlColor + ';")'
-        messageWebView.runJavaScript("init_picker(" + JamiTheme.darkTheme + ");")
-        messageWebView.runJavaScript(theme);
-    }
+    // function updateChatviewTheme() {
+    //     var theme = 'setTheme("\
+    //         --svg-invert-percentage:' + JamiTheme.invertPercentageInDecimal + ';\
+    //         --jami-light-blue:' + JamiTheme.jamiLightBlue + ';\
+    //         --jami-dark-blue: ' + JamiTheme.jamiDarkBlue + ';\
+    //         --text-color: ' + JamiTheme.chatviewTextColor + ';\
+    //         --timestamp-color:' + JamiTheme.timestampColor + ';\
+    //         --message-out-bg:' + JamiTheme.messageOutBgColor + ';\
+    //         --message-out-txt:' + JamiTheme.messageOutTxtColor + ';\
+    //         --message-in-bg:' + JamiTheme.messageInBgColor + ';\
+    //         --message-in-txt:' + JamiTheme.messageInTxtColor + ';\
+    //         --file-in-timestamp-color:' + JamiTheme.fileOutTimestampColor + ';\
+    //         --file-out-timestamp-color:' + JamiTheme.fileInTimestampColor + ';\
+    //         --bg-color:' + JamiTheme.chatviewBgColor + ';\
+    //         --action-icon-color:' + JamiTheme.chatviewButtonColor + ';\
+    //         --action-icon-hover-color:' + JamiTheme.hoveredButtonColor + ';\
+    //         --action-icon-press-color:' + JamiTheme.pressedButtonColor + ';\
+    //         --placeholder-text-color:' + JamiTheme.placeholderTextColor + ';\
+    //         --invite-hover-color:' + JamiTheme.inviteHoverColor + ';\
+    //         --bg-text-input:' + JamiTheme.bgTextInput + ';\
+    //         --bg-invitation-rect:' + JamiTheme.bgInvitationRectColor + ';\
+    //         --preview-text-container-color:' + JamiTheme.previewTextContainerColor + ';\
+    //         --preview-title-color:' + JamiTheme.previewTitleColor + ';\
+    //         --preview-subtitle-color:' + JamiTheme.previewSubtitleColor + ';\
+    //         --preview-image-background-color:' + JamiTheme.previewImageBackgroundColor + ';\
+    //         --preview-card-container-color:' + JamiTheme.previewCardContainerColor + ';\
+    //         --preview-url-color:' + JamiTheme.previewUrlColor + ';")'
+    //     messageWebView.runJavaScript("init_picker(" + JamiTheme.darkTheme + ");")
+    //     messageWebView.runJavaScript(theme);
+    // }
 
     color: JamiTheme.primaryBackgroundColor
 
@@ -170,11 +173,11 @@ Rectangle {
         }
     }
 
-    // Provide WebChannel by registering jsBridgeObject.
-    WebChannel {
-        id: messageWebViewChannel
-        registeredObjects: [jsBridgeObject]
-    }
+    // // Provide WebChannel by registering jsBridgeObject.
+    // WebChannel {
+    //     id: messageWebViewChannel
+    //     registeredObjects: [jsBridgeObject]
+    // }
 
     ColumnLayout {
         anchors.fill: root
@@ -215,100 +218,175 @@ Rectangle {
             }
         }
 
-        WebEngineView {
-            id: messageWebView
 
+        ListView{
+            id: listView
+            model: MessagesAdapter.messageListModel
+
+            Component.onCompleted:{
+                jsLoaded = true
+            }
+
+            height: root.height - messageWebViewHeader.height - messageWebViewFooter.height - 50
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.topMargin: JamiTheme.messageWebViewHairLineSize
-            Layout.bottomMargin: JamiTheme.messageWebViewHairLineSize
-
-            backgroundColor: "transparent"
-
-            settings.javascriptEnabled: true
-            settings.javascriptCanOpenWindows: true
-            settings.javascriptCanAccessClipboard: true
-            settings.javascriptCanPaste: true
-            settings.fullScreenSupportEnabled: true
-            settings.allowRunningInsecureContent: true
-            settings.localContentCanAccessRemoteUrls: true
-            settings.localContentCanAccessFileUrls: true
-            settings.errorPageEnabled: false
-            settings.pluginsEnabled: false
-            settings.screenCaptureEnabled: false
-            settings.linksIncludedInFocusChain: false
-            settings.localStorageEnabled: true
-
-            webChannel: messageWebViewChannel
-
-            DropArea {
-                anchors.fill: parent
-                onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
+            ScrollBar.vertical: ScrollBar {
+                id: scrollBar
             }
 
-            onNavigationRequested: {
-                if (request.navigationType === WebEngineView.LinkClickedNavigation) {
-                    MessagesAdapter.openUrl(request.url)
-                    request.action = WebEngineView.IgnoreRequest
+
+
+            delegate:
+
+
+                Column{
+
+                readonly property bool sentByMe: model.Author === ""
+
+                readonly property bool isMessage: model.Type === 1
+                id: column
+
+                bottomPadding: 10
+                Layout.fillWidth: true
+                 anchors.right: sentByMe ? listView.contentItem.right : undefined
+                Row{
+                    id: row
+                    spacing: 5
+                    Layout.fillWidth: true
+                    anchors.right: sentByMe ? parent.right : undefined
+
+                    Image{
+                        source: sentByMe ? "" : "../../../images/jami.png"
+                        width: 30
+                        height: 30
+                    }
+
+
+                    Rectangle {
+                        id: textBackground
+                        height: messageText.implicitHeight + 24
+                        radius: 20
+
+                        width:  Math.min(messageText.implicitWidth + 24,
+                                                         listView.width - (!sentByMe ? 20 : 0))
+
+                        color: sentByMe ? "cyan" : "lightgrey"
+                        Label {
+                            id: messageText
+                            text: MessageBody
+                            width: 300
+
+                            anchors.fill: parent
+                            anchors.margins: 12
+                            wrapMode: Label.WrapAnywhere
+                            color: sentByMe ? "black" : "black"
+
+                        }
+                    }
                 }
-            }
-
-            onLoadingChanged: {
-                if (loadRequest.status == WebEngineView.LoadSucceededStatus) {
-                    messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
-                                                     "chatcss",
-                                                     UtilsAdapter.qStringFromFile(
-                                                         ":/chatview.css")))
-                    messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
-                                                     "chatwin",
-                                                     UtilsAdapter.qStringFromFile(
-                                                         ":/chatview-qt.css")))
-                    messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":/linkify.js"))
-                    messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":/linkify-html.js"))
-                    messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":/linkify-string.js"))
-                    messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":/qwebchannel.js"))
-                    messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":/jed.js"))
-                    messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":/emoji.js"))
-                    messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":/previewInfo.js"))
-                    messageWebView.runJavaScript(
-                                UtilsAdapter.qStringFromFile(":/chatview.js"),
-                                function() {
-                                    messageWebView.runJavaScript("init_i18n();")
-                                    MessagesAdapter.setDisplayLinks()
-                                    updateChatviewTheme()
-                                    messageWebView.runJavaScript("displayNavbar(false);")
-                                    messageWebView.runJavaScript("hideMessageBar(true);")
-                                    jsLoaded = true
-                                })
+                Label {
+                    id: timestampText
+                    text: Timestamp
+                    color: "lightgrey"
+                    anchors.right: sentByMe ? parent.right : undefined
                 }
-            }
-
-            onContextMenuRequested: {
-                var needContextMenu = request.selectedText.length || request.isContentEditable
-                if (!needContextMenu)
-                    request.accepted = true
-            }
-
-            Component.onCompleted: {
-                profile.cachePath = UtilsAdapter.getCachePath()
-                profile.persistentStoragePath = UtilsAdapter.getCachePath()
-                profile.persistentCookiesPolicy = WebEngineProfile.NoPersistentCookies
-                profile.httpCacheType = WebEngineProfile.NoCache
-                profile.httpUserAgent = JamiStrings.httpUserAgentName
-
-                messageWebView.loadHtml(UtilsAdapter.qStringFromFile(
-                                            ":/chatview.html"), ":/chatview.html")
-                messageWebView.url = "qrc:/chatview.html"
             }
         }
+
+        // WebEngineView {
+        //     id: messageWebView
+
+        //     Layout.alignment: Qt.AlignHCenter
+        //     Layout.fillWidth: true
+        //     Layout.fillHeight: true
+        //     Layout.topMargin: JamiTheme.messageWebViewHairLineSize
+        //     Layout.bottomMargin: JamiTheme.messageWebViewHairLineSize
+
+        //     backgroundColor: "transparent"
+
+        //     // settings.javascriptEnabled: true
+        //     // settings.javascriptCanOpenWindows: true
+        //     // settings.javascriptCanAccessClipboard: true
+        //     // settings.javascriptCanPaste: true
+        //     // settings.fullScreenSupportEnabled: true
+        //     // settings.allowRunningInsecureContent: true
+        //     // settings.localContentCanAccessRemoteUrls: true
+        //     // settings.localContentCanAccessFileUrls: true
+        //     // settings.errorPageEnabled: false
+        //     // settings.pluginsEnabled: false
+        //     // settings.screenCaptureEnabled: false
+        //     // settings.linksIncludedInFocusChain: false
+        //     // settings.localStorageEnabled: true
+
+        //     webChannel: messageWebViewChannel
+
+        //     DropArea {
+        //         anchors.fill: parent
+        //         onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
+        //     }
+
+        //     onNavigationRequested: {
+        //         if (request.navigationType === WebEngineView.LinkClickedNavigation) {
+        //             MessagesAdapter.openUrl(request.url)
+        //             request.action = WebEngineView.IgnoreRequest
+        //         }
+        //     }
+
+        //     onLoadingChanged: {
+        //         if (loadRequest.status == WebEngineView.LoadSucceededStatus) {
+        //             messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
+        //                                              "chatcss",
+        //                                              UtilsAdapter.qStringFromFile(
+        //                                                  ":/chatview.css")))
+        //             messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
+        //                                              "chatwin",
+        //                                              UtilsAdapter.qStringFromFile(
+        //                                                  ":/chatview-qt.css")))
+        //             messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                              ":/linkify.js"))
+        //             messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                              ":/linkify-html.js"))
+        //             messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                              ":/linkify-string.js"))
+        //             messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                              ":/qwebchannel.js"))
+        //             messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                              ":/jed.js"))
+        //             messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                              ":/emoji.js"))
+        //             messageWebView.runJavaScript(UtilsAdapter.qStringFromFile(
+        //                                              ":/previewInfo.js"))
+        //             messageWebView.runJavaScript(
+        //                         UtilsAdapter.qStringFromFile(":/chatview.js"),
+        //                         function() {
+        //                             messageWebView.runJavaScript("init_i18n();")
+        //                             MessagesAdapter.setDisplayLinks()
+        //                             updateChatviewTheme()
+        //                             messageWebView.runJavaScript("displayNavbar(false);")
+        //                             messageWebView.runJavaScript("hideMessageBar(true);")
+        //
+        //                         })
+        //         }
+        //     }
+
+        //     onContextMenuRequested: {
+        //         var needContextMenu = request.selectedText.length || request.isContentEditable
+        //         if (!needContextMenu)
+        //             request.accepted = true
+        //     }
+
+        //     Component.onCompleted: {
+        //         profile.cachePath = UtilsAdapter.getCachePath()
+        //         profile.persistentStoragePath = UtilsAdapter.getCachePath()
+        //         profile.persistentCookiesPolicy = WebEngineProfile.NoPersistentCookies
+        //         profile.httpCacheType = WebEngineProfile.NoCache
+        //         profile.httpUserAgent = JamiStrings.httpUserAgentName
+
+        //         messageWebView.loadHtml(UtilsAdapter.qStringFromFile(
+        //                                     ":/chatview.html"), ":/chatview.html")
+        //         messageWebView.url = "qrc:/chatview.html"
+        //     }
+        // }
 
         MessageWebViewFooter {
             id: messageWebViewFooter
