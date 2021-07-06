@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "c4b66fab_cc3f8eba",
         "filename": "src/messagesadapter.cpp",
@@ -20,8 +21,31 @@
         "endChar": 30
       },
       "revId": "c329e0886cd36b25c81b17a37496ef38d140ae51",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ec0377_c3a32a1d",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-06T16:31:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4b66fab_cc3f8eba",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 30
+      },
+      "revId": "c329e0886cd36b25c81b17a37496ef38d140ae51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
