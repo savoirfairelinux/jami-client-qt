@@ -21,15 +21,20 @@ import QtQuick.Controls 2.14
 
 import net.jami.Constants 1.0
 
-import "../commoncomponents/contextmenu"
+import "../../commoncomponents"
 
 Flickable {
     id: root
 
     property alias text: textArea.text
+    property alias placeholderText: textArea.placeholderText
 
     function insertText(text) {
         textArea.insert(textArea.cursorPosition, text)
+    }
+
+    function clearText() {
+        textArea.clear()
     }
 
     LineEditContextMenu {

@@ -37,8 +37,6 @@ Rectangle {
     property bool jsLoaded: false
 
     signal needToHideConversationInCall
-
-    signal sendMessageContentSaved(string arg)
     signal messagesCleared
     signal messagesLoaded
 
@@ -179,18 +177,6 @@ Rectangle {
             MessagesAdapter.pasteKeyDetected()
         }
 
-        function openAudioRecorder(spikePosX, spikePosY) {
-            recordBox.openRecorder(spikePosX, spikePosY, false)
-        }
-
-        function openVideoRecorder(spikePosX, spikePosY) {
-            recordBox.openRecorder(spikePosX, spikePosY, true)
-        }
-
-        function saveSendMessageContent(arg) {
-            root.sendMessageContentSaved(arg)
-        }
-
         function onComposing(isComposing) {
             MessagesAdapter.onComposing(isComposing)
         }
@@ -232,7 +218,6 @@ Rectangle {
             }
 
             onBackClicked: {
-                MessagesAdapter.updateDraft()
                 mainView.showWelcomeView()
             }
 

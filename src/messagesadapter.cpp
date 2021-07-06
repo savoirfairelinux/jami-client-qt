@@ -51,7 +51,6 @@ void
 MessagesAdapter::safeInit()
 {
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() {
-        currentConvUid_.clear();
         connectConversationModel();
     });
     connectConversationModel();
@@ -64,9 +63,6 @@ MessagesAdapter::setupChatView(const QString& convUid)
     if (convModel == nullptr) {
         return;
     }
-
-    if (currentConvUid_ == convUid)
-        return;
 
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid);
     if (convInfo.uid.isEmpty() || convInfo.participants.isEmpty()) {
@@ -95,19 +91,10 @@ MessagesAdapter::setupChatView(const QString& convUid)
                   !convInfo.isNotASwarm(),
                   convInfo.needsSyncing);
 
-    // Draft and message content set up.
-    Utils::oneShotConnect(qmlObj_,
-                          SIGNAL(sendMessageContentSaved(const QString&)),
-                          this,
-                          SLOT(slotSendMessageContentSaved(const QString&)));
+    Utils::oneShotConnect(qmlObj_, SIGNAL(messagesCleared()), this, SLOT(slotMessagesCleared()));
+    clearChatView();
 
-    requestSendMessageContent();
-
-    currentConvUid_ = convUid;
-
-    QString s = QString::fromLatin1("reset_message_bar_input(`%1`);")
-                    .arg(accountInfo.contactModel->bestNameForContact(contactURI));
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
+    Q_EMIT newMessageBarPlaceholderText(accountInfo.contactModel->bestNameForContact(contactURI));
 }
 
 void
@@ -222,31 +209,6 @@ void
 MessagesAdapter::sendConversationRequest()
 {
     lrcInstance_->makeConversationPermanent();
-}
-
-void
-MessagesAdapter::slotSendMessageContentSaved(const QString& content)
-{
-    if (!LastConvUid_.isEmpty()) {
-        lrcInstance_->setContentDraft(LastConvUid_, lrcInstance_->getCurrentAccountId(), content);
-    }
-    LastConvUid_ = lrcInstance_->get_selectedConvUid();
-
-    Utils::oneShotConnect(qmlObj_, SIGNAL(messagesCleared()), this, SLOT(slotMessagesCleared()));
-
-    setInvitation(false);
-    clearChatView();
-    auto restoredContent = lrcInstance_->getContentDraft(lrcInstance_->get_selectedConvUid(),
-                                                         lrcInstance_->getCurrentAccountId());
-    setSendMessageContent(restoredContent);
-}
-
-void
-MessagesAdapter::slotUpdateDraft(const QString& content)
-{
-    if (!LastConvUid_.isEmpty()) {
-        lrcInstance_->setContentDraft(LastConvUid_, lrcInstance_->getCurrentAccountId(), content);
-    }
 }
 
 void
@@ -552,19 +514,6 @@ MessagesAdapter::newInteraction(const QString& accountId,
     }
 }
 
-void
-MessagesAdapter::updateDraft()
-{
-    currentConvUid_.clear();
-
-    Utils::oneShotConnect(qmlObj_,
-                          SIGNAL(sendMessageContentSaved(const QString&)),
-                          this,
-                          SLOT(slotUpdateDraft(const QString&)));
-
-    requestSendMessageContent();
-}
-
 /*
  * JS invoke.
  */
@@ -572,13 +521,6 @@ void
 MessagesAdapter::setMessagesVisibility(bool visible)
 {
     QString s = QString::fromLatin1(visible ? "showMessagesDiv();" : "hideMessagesDiv();");
-    QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
-}
-
-void
-MessagesAdapter::requestSendMessageContent()
-{
-    QString s = QString::fromLatin1("requestSendMessageContent();");
     QMetaObject::invokeMethod(qmlObj_, "webViewRunJavaScript", Q_ARG(QVariant, s));
 }
 
@@ -752,8 +694,6 @@ MessagesAdapter::acceptInvitation(const QString& convId)
     auto conversationId = convId.isEmpty() ? lrcInstance_->get_selectedConvUid() : convId;
     auto* convModel = lrcInstance_->getCurrentConversationModel();
     convModel->acceptConversationRequest(conversationId);
-    if (conversationId == currentConvUid_)
-        currentConvUid_.clear();
 }
 
 void
@@ -762,8 +702,6 @@ MessagesAdapter::refuseInvitation(const QString& convUid)
     const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
     lrcInstance_->getCurrentConversationModel()->removeConversation(currentConvUid, false);
     setInvitation(false);
-    if (convUid == currentConvUid_)
-        currentConvUid_.clear();
 }
 
 void
@@ -772,8 +710,6 @@ MessagesAdapter::blockConversation(const QString& convUid)
     const auto currentConvUid = convUid.isEmpty() ? lrcInstance_->get_selectedConvUid() : convUid;
     lrcInstance_->getCurrentConversationModel()->removeConversation(currentConvUid, true);
     setInvitation(false);
-    if (convUid == currentConvUid_)
-        currentConvUid_.clear();
     Q_EMIT contactBanned();
 }
 
@@ -781,8 +717,6 @@ void
 MessagesAdapter::clearConversationHistory(const QString& accountId, const QString& convUid)
 {
     lrcInstance_->getAccountInfo(accountId).conversationModel->clearHistory(convUid);
-    if (convUid == currentConvUid_)
-        currentConvUid_.clear();
 }
 
 void
@@ -800,15 +734,13 @@ MessagesAdapter::removeConversation(const QString& accountId,
 
     lrcInstance_->getAccountInfo(accountId).conversationModel->removeConversation(convUid,
                                                                                   banContact);
-    if (convUid == currentConvUid_)
-        currentConvUid_.clear();
 }
 
 void
 MessagesAdapter::loadMessages(int n)
 {
     auto* convModel = lrcInstance_->getCurrentConversationModel();
-    auto convOpt = convModel->getConversationForUid(currentConvUid_);
+    auto convOpt = convModel->getConversationForUid(lrcInstance_->get_selectedConvUid());
     if (!convOpt)
         return;
     if (!convOpt->get().isNotASwarm() && !convOpt->get().allMessagesLoaded)
