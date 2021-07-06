@@ -201,7 +201,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
-            Layout.maximumWidth: JamiTheme.messageWebViewFooterContentMaximumWidth
+            Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
             Layout.preferredHeight: filesToSendCount ?
                                         JamiTheme.messageWebViewFooterFileContainerPreferredHeight : 0
         }
