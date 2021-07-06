@@ -28,6 +28,8 @@
 #include "utils.h"
 #include "webchathelpers.h"
 
+#include <regex>
+
 #include <api/datatransfermodel.h>
 
 #include <QApplication>
@@ -45,7 +47,26 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-{}
+  //  , previewEngine_(new PreviewEngine((QWidget*) this))
+{
+
+   // previewEngine_ = new PreviewEngine((QWidget*)this);
+    previewEngine_ = new PreviewEngine;
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+        const QString& convId = lrcInstance_->get_selectedConvUid();
+        auto& conversation
+            = lrcInstance_->getConversationFromConvUid(convId, lrcInstance_->get_currentAccountId());
+        QVariant v;
+        v.setValue(&(*(conversation.interactions)));
+        set_messageListModel(v);
+    });
+
+    connect(previewEngine_, &PreviewEngine::previewIsReady, [this](int messageId, QVariantList previewInformation){
+       Q_EMIT MessagesAdapter::previewInformationToQML(messageId, previewInformation);
+    });
+
+
+}
 
 void
 MessagesAdapter::safeInit()
@@ -117,7 +138,7 @@ MessagesAdapter::onNewMessagesAvailable(const QString& accountId, const QString&
     auto optConv = convModel->getConversationForUid(conversationId);
     if (!optConv)
         return;
-    updateHistory(*convModel, optConv->get().interactions, optConv->get().allMessagesLoaded);
+    updateHistory(*convModel, *optConv->get().interactions.get(), optConv->get().allMessagesLoaded);
     Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
 }
 
@@ -209,7 +230,7 @@ MessagesAdapter::slotMessagesCleared()
     if (convOpt->get().isSwarm() && !convOpt->get().allMessagesLoaded) {
         convModel->loadConversationMessages(convOpt->get().uid, 20);
     } else {
-        printHistory(*convModel, convOpt->get().interactions);
+        printHistory(*convModel, *convOpt->get().interactions.get());
         Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
     }
     setConversationProfileData(convOpt->get());
@@ -454,7 +475,7 @@ MessagesAdapter::setDisplayLinks()
 
 void
 MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
-                              MessagesList interactions)
+                              const MessageListModel& interactions)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
                                                          lrcInstance_->get_selectedConvUid(),
@@ -466,7 +487,7 @@ MessagesAdapter::printHistory(lrc::api::ConversationModel& conversationModel,
 
 void
 MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
-                               MessagesList interactions,
+                               const MessageListModel& interactions,
                                bool allLoaded)
 {
     auto interactionsStr = interactionsToJsonArrayObject(conversationModel,
@@ -637,3 +658,63 @@ MessagesAdapter::loadMessages(int n)
     if (convOpt->get().isSwarm() && !convOpt->get().allMessagesLoaded)
         convModel->loadConversationMessages(convOpt->get().uid, n);
 }
+
+QString
+MessagesAdapter::getAccountAvatar(const QString& accountUri) const
+{
+    if (QString::compare(accountUri, "", Qt::CaseInsensitive) == 0)
+        return "";
+    return lrcInstance_->getAccountInfo(accountUri).profileInfo.avatar;
+}
+
+QString
+MessagesAdapter::getAccountAlias(const QString& accountUri) const
+{
+    return lrcInstance_->getAccountInfo(accountUri).profileInfo.alias;
+}
+
+bool
+MessagesAdapter::displayTimeStamp(int index)
+{
+    return true;
+}
+
+bool
+MessagesAdapter::isUrl(QString urlInputted)
+{
+    std::string url = urlInputted.toStdString();
+    return std::regex_match(url,
+                            std::regex(
+                                "^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$"));
+}
+
+QString
+MessagesAdapter::messageHasUrl(QString message)
+{
+    QStringList words = message.split(" ");
+    for (auto& word : words) {
+        if (isUrl(word)) {
+            return word;
+        }
+    }
+    return "";
+}
+
+void
+MessagesAdapter::sendPreviewInfo(int messageIndex, QVariantList urlInMessage)
+{
+    Q_EMIT previewInformationToQML(messageIndex, urlInMessage);
+}
+
+void
+MessagesAdapter::beginBuildPreview(int messageId, QString url)
+{
+    previewEngine_->beginPreviewProcess(messageId, url);
+
+}
+
+
+// add to interactions in lrc
+// add preview data in html layer
+// find row using QList of messagelistmoedl
+
