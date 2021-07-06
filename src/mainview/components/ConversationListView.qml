@@ -133,7 +133,7 @@ ListView {
                 "displayId": model.dataForRow(row, ConversationList.BestId),
                 "displayName": model.dataForRow(row, ConversationList.Title),
                 "uri": model.dataForRow(row, ConversationList.URI),
-                "contactType": model.dataForRow(row, ConversationList.ContactType),
+                "": model.dataForRow(row, ConversationList.ContactType),
                 "isSwarm": model.dataForRow(row, ConversationList.IsSwarm),
             }
 

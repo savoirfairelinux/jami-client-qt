@@ -159,5 +159,7 @@
         <file>src/mainview/components/ConversationAvatar.qml</file>
         <file>src/mainview/components/InvitationView.qml</file>
         <file>src/commoncomponents/GeneralWebEngineView.qml</file>
+        <file>src/mainview/components/previewCSS.css</file>
+        <file>src/mainview/components/RegularMessage.qml</file>
     </qresource>
 </RCC>
