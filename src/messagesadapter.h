@@ -69,12 +69,8 @@ protected:
     Q_INVOKABLE void loadMessages(int n);
     Q_INVOKABLE void copyToDownloads(const QString& interactionId, const QString& displayName);
 
-    // Manually update draft when hiding message web view (Back to welcome page).
-    Q_INVOKABLE void updateDraft();
-
     // Run corrsponding js functions, c++ to qml.
     void setMessagesVisibility(bool visible);
-    void requestSendMessageContent();
     void setInvitation(bool show,
                        const QString& contactUri = {},
                        const QString& contactId = {},
@@ -102,10 +98,9 @@ protected:
 Q_SIGNALS:
     void contactBanned();
     void newInteraction(int type);
+    void newMessageBarPlaceholderText(QString placeholderText);
 
 private Q_SLOTS:
-    void slotSendMessageContentSaved(const QString& content);
-    void slotUpdateDraft(const QString& content);
     void slotMessagesCleared();
     void slotMessagesLoaded();
     void onNewInteraction(const QString& convUid,
@@ -125,9 +120,6 @@ private:
                         const QString& convUid,
                         const QString& interactionId,
                         const interaction::Info& interaction);
-
-    QString LastConvUid_;
-    QString currentConvUid_;
 
     const QVariantMap chatviewTranslatedStrings_ {lrc::api::chatview::getTranslatedStrings()};
 

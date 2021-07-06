@@ -21,6 +21,7 @@ import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.14
 
 import net.jami.Adapters 1.0
+import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
@@ -77,6 +78,8 @@ RowLayout {
         imageColor: JamiTheme.messageWebViewFooterButtonImageColor
 
         onClicked: root.audioRecordMessageButtonClicked()
+
+        Component.onCompleted: JamiQmlUtils.audioRecordMessageButtonObj = audioRecordMessageButton
     }
 
     PushButton {
@@ -97,9 +100,11 @@ RowLayout {
         imageColor: JamiTheme.messageWebViewFooterButtonImageColor
 
         onClicked: root.videoRecordMessageButtonClicked()
+
+        Component.onCompleted: JamiQmlUtils.videoRecordMessageButtonObj = videoRecordMessageButton
     }
 
-    JamiTextArea {
+    MessageBarTextArea {
         id: textArea
 
         Layout.alignment: Qt.AlignVCenter
@@ -195,4 +200,6 @@ RowLayout {
 
         }
     }
+
+    Component.onCompleted: JamiQmlUtils.messageBarButtonsRowObj = root
 }
