@@ -46,6 +46,13 @@ Dialog {
     property var lineCounter: 0
 
 
+
+    title: JamiStrings.logsViewTitle
+    modality: Qt.NonModal
+    width: 800
+    height: 700
+    standardButtons: StandardButton.NoButton
+
     function monitor(continuous) {
         SettingsAdapter.monitor(continuous)
     }
@@ -86,12 +93,6 @@ Dialog {
         }
         hasOpened = true
     }
-
-    title: JamiStrings.logsViewTitle
-    modality: Qt.NonModal
-    width: 800
-    height: 700
-    standardButtons: StandardButton.NoButton
 
     ColumnLayout {
 
@@ -289,3 +290,4 @@ Dialog {
 
 
 
+}
