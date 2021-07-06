@@ -28,6 +28,8 @@
 #include "utils.h"
 #include "webchathelpers.h"
 
+#include <regex>
+
 #include <api/datatransfermodel.h>
 
 #include <QApplication>
@@ -45,7 +47,24 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-{}
+    , previewEngine_(new PreviewEngine(this))
+{
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+        const QString& convId = lrcInstance_->get_selectedConvUid();
+        auto& conversation
+            = lrcInstance_->getConversationFromConvUid(convId, lrcInstance_->get_currentAccountId());
+        QVariant v;
+        v.setValue(&(*(conversation.interactions)));
+        set_messageListModel(v);
+    });
+
+    connect(previewEngine_,
+            &PreviewEngine::previewIsReady,
+            [this](QString messageId, QVariantMap previewInformation) {
+                qDebug() << "MESSAGE ADAPTER " << previewInformation;
+                sendPreviewInfo(messageId, previewInformation);
+            });
+}
 
 void
 MessagesAdapter::safeInit()
@@ -119,7 +138,7 @@ MessagesAdapter::onNewMessagesAvailable(const QString& accountId, const QString&
     auto optConv = convModel->getConversationForUid(conversationId);
     if (!optConv)
         return;
-    updateHistory(*convModel, optConv->get().interactions, optConv->get().allMessagesLoaded);
+    updateHistory(*convModel, *optConv->get().interactions.get(), optConv->get().allMessagesLoaded);
     Utils::oneShotConnect(qmlObj_, SIGNAL(messagesLoaded()), this, SLOT(slotMessagesLoaded()));
 }
 
@@ -458,7 +477,7 @@ MessagesAdapter::setDisplayLinks()
 
 void
 MessagesAdapter::updateHistory(lrc::api::ConversationModel& conversationModel,
-                               MessagesList interactions,
+                               const MessageListModel& interactions,
                                bool allLoaded)
 {
     auto conversationId = lrcInstance_->get_selectedConvUid();
@@ -632,3 +651,41 @@ MessagesAdapter::loadMessages(int n)
     if (convOpt->get().isSwarm() && !convOpt->get().allMessagesLoaded)
         convModel->loadConversationMessages(convOpt->get().uid, n);
 }
+
+QString
+MessagesAdapter::getAccountAvatar(const QString& accountUri) const
+{
+    if (QString::compare(accountUri, "", Qt::CaseInsensitive) == 0)
+        return "";
+    return lrcInstance_->getAccountInfo(accountUri).profileInfo.avatar;
+}
+
+QString
+MessagesAdapter::getAccountAlias(const QString& accountUri) const
+{
+    return lrcInstance_->getAccountInfo(accountUri).profileInfo.alias;
+}
+
+bool
+MessagesAdapter::displayTimeStamp(int index)
+{
+    return true;
+}
+
+void
+MessagesAdapter::sendPreviewInfo(QString messageIndex, QVariantMap urlInMessage)
+{
+
+
+    const QString& convId = lrcInstance_->get_selectedConvUid();
+    auto& conversation
+        = lrcInstance_->getConversationFromConvUid(convId, lrcInstance_->get_currentAccountId());
+    conversation.interactions->addHyperlinkInfo(messageIndex, urlInMessage);
+}
+
+void
+MessagesAdapter::beginBuildPreview(QString messageId, QString url)
+{
+    previewEngine_->beginPreviewProcess(messageId, url);
+}
+
