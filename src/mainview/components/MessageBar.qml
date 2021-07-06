@@ -50,7 +50,7 @@ ColumnLayout {
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         Layout.preferredHeight: JamiTheme.messageWebViewHairLineSize
         Layout.fillWidth: true
-        Layout.maximumWidth: JamiTheme.messageWebViewFooterContentMaximumWidth
+        Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
 
         color: JamiTheme.tabbarBorderColor
     }
@@ -60,7 +60,7 @@ ColumnLayout {
 
         Layout.alignment: Qt.AlignCenter
         Layout.fillWidth: true
-        Layout.maximumWidth: JamiTheme.messageWebViewFooterContentMaximumWidth
+        Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
 
         spacing: JamiTheme.messageWebViewFooterRowSpacing
 
