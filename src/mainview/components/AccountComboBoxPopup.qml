@@ -61,9 +61,11 @@ Popup {
                 width: root.width
                 onClicked: {
                     root.close()
-                    var sourceRow = CurrentAccountFilterModel.mapToSource(
-                                CurrentAccountFilterModel.index(index, 0)).row
-                    AccountAdapter.changeAccount(sourceRow)
+                    print("clicked", ID, Alias, Username)
+                    LRCInstance.currentAccountId = ID
+//                    var sourceRow = CurrentAccountFilterModel.mapToSource(
+//                                CurrentAccountFilterModel.index(index, 0)).row
+//                    AccountAdapter.changeAccount(sourceRow)
                 }
             }
 

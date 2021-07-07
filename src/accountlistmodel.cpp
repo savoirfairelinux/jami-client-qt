@@ -34,31 +34,13 @@ AccountListModel::AccountListModel(LRCInstance* instance, QObject* parent)
     lrcInstance_ = instance;
 }
 
-AccountListModel::~AccountListModel() {}
-
 int
 AccountListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid() && lrcInstance_) {
-        /*
-         * Count.
-         */
         return lrcInstance_->accountModel().getAccountList().size();
     }
-    /*
-     * A valid QModelIndex returns 0 as no entry has sub-elements.
-     */
     return 0;
-}
-
-int
-AccountListModel::columnCount(const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    /*
-     * Only need one column.
-     */
-    return 1;
 }
 
 QVariant
@@ -105,6 +87,7 @@ AccountListModel::roleNames() const
 void
 AccountListModel::reset()
 {
+    qDebug() << "AccountListModel::reset";
     beginResetModel();
     fillAvatarUidMap(lrcInstance_->accountModel().getAccountList());
     endResetModel();
