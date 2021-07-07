@@ -100,7 +100,6 @@ protected:
     void contactIsComposing(const QString& contactUri, bool isComposing);
 
 Q_SIGNALS:
-    void contactBanned();
     void newInteraction(int type);
 
 private Q_SLOTS:
