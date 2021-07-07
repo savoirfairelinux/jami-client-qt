@@ -38,6 +38,20 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
     , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
 {
     lrc_->holdConferences = false;
+
+    connect(this, &LRCInstance::currentAccountIdChanged, [this] {
+        // save to config
+        accountModel().setTopAccount(currentAccountId_);
+
+        // update type
+        set_currentAccountType(getCurrentAccountInfo().profileInfo.type);
+    });
+
+    // set the current account if any
+    auto accountList = accountModel().getAccountList();
+    if (accountList.size()) {
+        set_currentAccountId(accountList.at(0));
+    }
 };
 
 VectorString
@@ -110,19 +124,6 @@ const account::Info&
 LRCInstance::getCurrentAccountInfo()
 {
     return getAccountInfo(getCurrentAccountId());
-}
-
-profile::Type
-LRCInstance::getCurrentAccountType()
-{
-    if (currentAccountType_ == profile::Type::INVALID) {
-        try {
-            currentAccountType_ = getCurrentAccountInfo().profileInfo.type;
-        } catch (...) {
-            qDebug() << "Cannot find current account info";
-        }
-    }
-    return currentAccountType_;
 }
 
 bool
@@ -253,33 +254,7 @@ LRCInstance::getCurrentContactModel()
 const QString&
 LRCInstance::getCurrentAccountId()
 {
-    if (currentAccountId_.isEmpty()) {
-        auto accountList = accountModel().getAccountList();
-        if (accountList.size())
-            currentAccountId_ = accountList.at(0);
-    }
     return currentAccountId_;
-}
-
-void
-LRCInstance::setCurrentAccountId(const QString& accountId)
-{
-    if (accountId == currentAccountId_)
-        return; // No need to select current selected account
-
-    auto newAccountType = getAccountInfo(accountId).profileInfo.type;
-    bool accountTypeChanged = getCurrentAccountType() != newAccountType;
-
-    currentAccountId_ = accountId;
-
-    // Last selected account should be set as preferred.
-    accountModel().setTopAccount(accountId);
-
-    if (accountTypeChanged) {
-        currentAccountType_ = newAccountType;
-        Q_EMIT currentAccountTypeChanged(newAccountType);
-    }
-    Q_EMIT currentAccountIdChanged(accountId);
 }
 
 int
@@ -427,7 +402,7 @@ LRCInstance::selectConversation(const QString& convId, const QString& accountId)
         Utils::oneShotConnect(this, &LRCInstance::currentAccountIdChanged, [this, convId] {
             set_selectedConvUid(convId);
         });
-        setCurrentAccountId(accountId);
+        set_currentAccountId(accountId);
         return;
     }
     set_selectedConvUid(convId);

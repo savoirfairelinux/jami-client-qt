@@ -69,7 +69,7 @@ AccountAdapter::changeAccount(int row)
 {
     auto accountList = lrcInstance_->accountModel().getAccountList();
     if (accountList.size() > row) {
-        lrcInstance_->setCurrentAccountId(accountList.at(row));
+        lrcInstance_->set_currentAccountId(accountList.at(row));
     }
 }
 
