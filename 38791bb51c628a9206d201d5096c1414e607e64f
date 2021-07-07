@@ -33,6 +33,29 @@
       "message": "the bar stay really small for multi-line too",
       "revId": "38791bb51c628a9206d201d5096c1414e607e64f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a0aa05c_8923c3b8",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-07T19:15:27Z",
+      "side": 1,
+      "message": "imho what should be translated is \"Write to {}\". Because for the translations {} can be on another pos",
+      "range": {
+        "startLine": 499,
+        "startChar": 35,
+        "endLine": 499,
+        "endChar": 45
+      },
+      "revId": "38791bb51c628a9206d201d5096c1414e607e64f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
