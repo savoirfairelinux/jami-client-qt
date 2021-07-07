@@ -75,7 +75,7 @@ MessagesAdapter::setupChatView(const QString& convUid)
 
     QString contactURI = convInfo.participants.at(0);
 
-    auto selectedAccountId = lrcInstance_->getCurrentAccountId();
+    auto selectedAccountId = lrcInstance_->get_currentAccountId();
     auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(selectedAccountId);
 
     QMetaObject::invokeMethod(qmlObj_,
@@ -115,7 +115,7 @@ MessagesAdapter::onNewInteraction(const QString& convUid,
                                   const QString& interactionId,
                                   const lrc::api::interaction::Info& interaction)
 {
-    auto accountId = lrcInstance_->getCurrentAccountId();
+    auto accountId = lrcInstance_->get_currentAccountId();
     newInteraction(accountId, convUid, interactionId, interaction);
 }
 
@@ -228,7 +228,7 @@ void
 MessagesAdapter::slotSendMessageContentSaved(const QString& content)
 {
     if (!LastConvUid_.isEmpty()) {
-        lrcInstance_->setContentDraft(LastConvUid_, lrcInstance_->getCurrentAccountId(), content);
+        lrcInstance_->setContentDraft(LastConvUid_, lrcInstance_->get_currentAccountId(), content);
     }
     LastConvUid_ = lrcInstance_->get_selectedConvUid();
 
@@ -237,7 +237,7 @@ MessagesAdapter::slotSendMessageContentSaved(const QString& content)
     setInvitation(false);
     clearChatView();
     auto restoredContent = lrcInstance_->getContentDraft(lrcInstance_->get_selectedConvUid(),
-                                                         lrcInstance_->getCurrentAccountId());
+                                                         lrcInstance_->get_currentAccountId());
     setSendMessageContent(restoredContent);
 }
 
@@ -245,7 +245,7 @@ void
 MessagesAdapter::slotUpdateDraft(const QString& content)
 {
     if (!LastConvUid_.isEmpty()) {
-        lrcInstance_->setContentDraft(LastConvUid_, lrcInstance_->getCurrentAccountId(), content);
+        lrcInstance_->setContentDraft(LastConvUid_, lrcInstance_->get_currentAccountId(), content);
     }
 }
 
@@ -365,7 +365,7 @@ MessagesAdapter::copyToDownloads(const QString& interactionId, const QString& di
 {
     auto downloadDir = lrcInstance_->accountModel().downloadDirectory;
     if (auto accInfo = &lrcInstance_->getCurrentAccountInfo())
-        accInfo->dataTransferModel->copyTo(lrcInstance_->getCurrentAccountId(),
+        accInfo->dataTransferModel->copyTo(lrcInstance_->get_currentAccountId(),
                                            lrcInstance_->get_selectedConvUid(),
                                            interactionId,
                                            downloadDir,
@@ -774,7 +774,6 @@ MessagesAdapter::blockConversation(const QString& convUid)
     setInvitation(false);
     if (convUid == currentConvUid_)
         currentConvUid_.clear();
-    Q_EMIT contactBanned();
 }
 
 void
