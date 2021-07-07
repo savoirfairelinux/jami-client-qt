@@ -16,6 +16,23 @@
       "message": "the margin (where the text view is centered when the resolution is big) doesn\u0027t exists anymore.\n\nThis includes some design changes, is it planned?\n\nDark theme changed.\n\nsmall bug (already on master): opening the video messages, then click on settings, the box is still there",
       "revId": "38791bb51c628a9206d201d5096c1414e607e64f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4717e8bb_f055c02e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-07T19:13:08Z",
+      "side": 1,
+      "message": "the bar stay really small for multi-line too",
+      "revId": "38791bb51c628a9206d201d5096c1414e607e64f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
