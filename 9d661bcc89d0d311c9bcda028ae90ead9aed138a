@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e24206e_feea4266",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-08T16:40:02Z",
+      "side": 1,
+      "message": "We should note that there is a discrepancy in the clang-format column count",
+      "revId": "9d661bcc89d0d311c9bcda028ae90ead9aed138a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
