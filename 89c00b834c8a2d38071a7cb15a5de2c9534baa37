@@ -16,6 +16,24 @@
       "message": "i think Pending is made redundant by the ToSend part and is long\nwhat about\n- FilesToSendListModel\n- AnteTransferListModel\n?",
       "revId": "89c00b834c8a2d38071a7cb15a5de2c9534baa37",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3453ae1a_506f150c",
+        "filename": "src/pendingfilestosendlistmodel.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-08T20:08:09Z",
+      "side": 1,
+      "message": "Yeah, FilesToSendListModel",
+      "parentUuid": "16436454_583273cd",
+      "revId": "89c00b834c8a2d38071a7cb15a5de2c9534baa37",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
