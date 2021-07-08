@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b0c4ac5_6771b4b9",
+        "filename": "src/accountadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-08T16:17:04Z",
+      "side": 1,
+      "message": "Remove?",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 59
+      },
+      "revId": "bf60c1e4e064e9030ddd38d299e641990f0b68df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb68c33f_7b919694",
+        "filename": "src/lrcinstance.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-08T16:17:04Z",
+      "side": 1,
+      "message": "I think when I did this, I worrying about the manual change for currentAccountType\n\nDo you think it is safe to do this?",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 61
+      },
+      "revId": "bf60c1e4e064e9030ddd38d299e641990f0b68df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
