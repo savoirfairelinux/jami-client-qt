@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20ef16d1_2bc243cd",
+        "filename": "src/accountadapter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-08T17:21:31Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4b0c4ac5_6771b4b9",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 59
+      },
+      "revId": "bf60c1e4e064e9030ddd38d299e641990f0b68df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb68c33f_7b919694",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-07-08T16:17:04Z",
       "side": 1,
       "message": "I think when I did this, I worrying about the manual change for currentAccountType\n\nDo you think it is safe to do this?",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 61
+      },
+      "revId": "bf60c1e4e064e9030ddd38d299e641990f0b68df",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c788cb1_2d5d38aa",
+        "filename": "src/lrcinstance.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-08T17:21:31Z",
+      "side": 1,
+      "message": "- getCurrentAccountType was setting the account type and not emitting\n- emission was manual only within the account Id changed callback\n- from qml, you could emit currentAccountTypeChanged without changing the property\n- currently, there are no listeners to currentAccountTypeChanged without changing the property\n\nso I think to reduce strange behavior, we should either emit property changed signals manually but truthfully which is error prone, or use a standard property setter\n\nwhat do you think?",
+      "parentUuid": "cb68c33f_7b919694",
       "range": {
         "startLine": 59,
         "startChar": 4,
