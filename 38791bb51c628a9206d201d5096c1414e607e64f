@@ -35,6 +35,42 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2c56ac2_06c56c97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-08T15:58:04Z",
+      "side": 1,
+      "message": "Finished, \n\nI will fix \"opening the video messages, then click on settings, the box is still there\" in another patch",
+      "parentUuid": "8510fb8d_bc06276d",
+      "revId": "38791bb51c628a9206d201d5096c1414e607e64f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3937587a_09d1a819",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-08T15:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4717e8bb_f055c02e",
+      "revId": "38791bb51c628a9206d201d5096c1414e607e64f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a0aa05c_8923c3b8",
@@ -48,6 +84,30 @@
       "writtenOn": "2021-07-07T19:15:27Z",
       "side": 1,
       "message": "imho what should be translated is \"Write to {}\". Because for the translations {} can be on another pos",
+      "range": {
+        "startLine": 499,
+        "startChar": 35,
+        "endLine": 499,
+        "endChar": 45
+      },
+      "revId": "38791bb51c628a9206d201d5096c1414e607e64f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bd17d50_6d0836af",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-08T15:58:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a0aa05c_8923c3b8",
       "range": {
         "startLine": 499,
         "startChar": 35,
