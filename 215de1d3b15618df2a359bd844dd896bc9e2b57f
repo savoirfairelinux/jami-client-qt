@@ -16,6 +16,24 @@
       "message": "invitation chatview widget missing body for some reason",
       "revId": "215de1d3b15618df2a359bd844dd896bc9e2b57f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f87e70ba_2fa266ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T15:08:43Z",
+      "side": 1,
+      "message": "As discussed",
+      "parentUuid": "4b99c0c3_d0d79892",
+      "revId": "215de1d3b15618df2a359bd844dd896bc9e2b57f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
