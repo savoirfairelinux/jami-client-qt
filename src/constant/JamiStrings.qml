@@ -495,4 +495,8 @@ Item {
     property string send: qsTr("Send")
     property string remove: qsTr("Remove")
     property string writeTo: qsTr("Write to %1")
+
+    // Invitation View
+    property string invitationViewTopPhrase: qsTr("%1 has sent you a request for a conversation.")
+    property string invitationViewMiddlePhrase: qsTr("Hello, Would you like to join the conversation?")
 }
