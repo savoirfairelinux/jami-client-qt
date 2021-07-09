@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3925f13_719ee8bb",
+        "filename": "src/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T20:34:38Z",
+      "side": 0,
+      "message": "All layers are removed, is it because all images loaded are for sure rounded?",
+      "range": {
+        "startLine": 152,
+        "startChar": 16,
+        "endLine": 163,
+        "endChar": 17
+      },
+      "revId": "285316dd3273df5fbcf0c5bd536beedd4c1c510f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

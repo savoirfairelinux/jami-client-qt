@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8fe2331_1d52986c",
+        "filename": "src/avatarregistry.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T20:34:38Z",
+      "side": 1,
+      "message": "What do you think if we just keep the uid for just one account?\n\nSo that the animation will be account-based,\n\nNow it is like when you go to the same account the second time, there is no animation.",
+      "range": {
+        "startLine": 62,
+        "startChar": 34,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "a90064944be557f08d1ecb6fd59fe9c0adfd68d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d4c9276_0933283a",
+        "filename": "src/commoncomponents/Avatar.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T20:34:38Z",
+      "side": 1,
+      "message": "Do you think we can do it in updateSource() directly?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 22
+      },
+      "revId": "a90064944be557f08d1ecb6fd59fe9c0adfd68d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31ebdb5a_a88b089b",
+        "filename": "src/commoncomponents/Avatar.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T20:34:38Z",
+      "side": 1,
+      "message": "I think this might be too short for PhotoBooth",
+      "range": {
+        "startLine": 101,
+        "startChar": 26,
+        "endLine": 101,
+        "endChar": 53
+      },
+      "revId": "a90064944be557f08d1ecb6fd59fe9c0adfd68d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e08f6cf5_31771b97",
+        "filename": "src/commoncomponents/Avatar.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T20:34:38Z",
+      "side": 1,
+      "message": "guess we can keep it in JamiTheme",
+      "range": {
+        "startLine": 114,
+        "startChar": 25,
+        "endLine": 114,
+        "endChar": 31
+      },
+      "revId": "a90064944be557f08d1ecb6fd59fe9c0adfd68d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98da6008_294dda71",
+        "filename": "src/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T20:34:38Z",
+      "side": 1,
+      "message": "I wonder if the photo generation time is long, will we have flash animation first and then photo loaded?\n\ncause we just do \n\nflashAnimation.start()\n\nthen \n\npreview.takePhoto(size))",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 40
+      },
+      "revId": "a90064944be557f08d1ecb6fd59fe9c0adfd68d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2bc37a9_4b8cdfa2",
+        "filename": "src/mainview/components/ParticipantCallInStatusDelegate.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T20:34:38Z",
+      "side": 1,
+      "message": "Avatar here seems gone",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 28
+      },
+      "revId": "a90064944be557f08d1ecb6fd59fe9c0adfd68d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f95b243e_7b59ffc6",
+        "filename": "src/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-09T20:34:38Z",
+      "side": 1,
+      "message": "Contact Picker Avatar seems gone",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "a90064944be557f08d1ecb6fd59fe9c0adfd68d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
