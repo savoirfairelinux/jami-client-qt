@@ -155,5 +155,7 @@
         <file>src/mainview/components/FilesToSendDelegate.qml</file>
         <file>src/mainview/components/MessageBar.qml</file>
         <file>src/mainview/components/FilesToSendContainer.qml</file>
+        <file>src/mainview/components/InvitationView.qml</file>
+        <file>src/commoncomponents/GeneralWebEngineView.qml</file>
     </qresource>
 </RCC>
