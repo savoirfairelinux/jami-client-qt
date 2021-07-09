@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b77e933b_b168f4c5",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-09T19:32:39Z",
+      "side": 1,
+      "message": "signal\nsame as others in this function",
+      "range": {
+        "startLine": 347,
+        "startChar": 12,
+        "endLine": 347,
+        "endChar": 25
+      },
+      "revId": "17440d899d38a88785e975ebe3ced2da8d7af90d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
