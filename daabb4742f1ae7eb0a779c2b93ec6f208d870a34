@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f2b7738_b30515a7",
+        "filename": "src/avatarimageprovider.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-09T17:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c00592ee_ddf2f4be",
+      "revId": "daabb4742f1ae7eb0a779c2b93ec6f208d870a34",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "130957f7_3db11af5",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-07-09T15:24:32Z",
       "side": 1,
       "message": "note, this flash with last selected account when creating a new account",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 36
+      },
+      "revId": "daabb4742f1ae7eb0a779c2b93ec6f208d870a34",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63ff8742_eea57a55",
+        "filename": "src/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-09T17:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "130957f7_3db11af5",
       "range": {
         "startLine": 32,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c30271cf_34e7df8c",
+        "filename": "src/lrcinstance.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-09T17:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caf565ee_363e3a8a",
+      "range": {
+        "startLine": 65,
+        "startChar": 35,
+        "endLine": 68,
+        "endChar": 3
+      },
+      "revId": "daabb4742f1ae7eb0a779c2b93ec6f208d870a34",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b13ce2a4_ba32f3a5",
@@ -77,6 +143,30 @@
       "writtenOn": "2021-07-09T16:03:33Z",
       "side": 1,
       "message": "searching new contacts seems broken",
+      "range": {
+        "startLine": 157,
+        "startChar": 23,
+        "endLine": 157,
+        "endChar": 26
+      },
+      "revId": "daabb4742f1ae7eb0a779c2b93ec6f208d870a34",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "701cce84_067f2306",
+        "filename": "src/smartlistmodel.cpp",
+        "patchSetId": 19
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-09T17:39:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b13ce2a4_ba32f3a5",
       "range": {
         "startLine": 157,
         "startChar": 23,
