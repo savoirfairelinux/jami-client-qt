@@ -22,6 +22,30 @@
       },
       "revId": "285316dd3273df5fbcf0c5bd536beedd4c1c510f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "409b2c48_d08f49df",
+        "filename": "src/commoncomponents/PhotoboothView.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-12T20:42:01Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "e3925f13_719ee8bb",
+      "range": {
+        "startLine": 152,
+        "startChar": 16,
+        "endLine": 163,
+        "endChar": 17
+      },
+      "revId": "285316dd3273df5fbcf0c5bd536beedd4c1c510f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
