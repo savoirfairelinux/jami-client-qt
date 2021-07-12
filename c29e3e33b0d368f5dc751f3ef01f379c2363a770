@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06e9826f_136e2618",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-12T21:12:04Z",
+      "side": 1,
+      "message": "I think these strings should have highlights from the phrases being represented.",
+      "revId": "c29e3e33b0d368f5dc751f3ef01f379c2363a770",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1023fe31_3b7dc86a",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-12T21:12:04Z",
+      "side": 1,
+      "message": "invitationViewSentRequest",
+      "range": {
+        "startLine": 500,
+        "startChar": 20,
+        "endLine": 500,
+        "endChar": 43
+      },
+      "revId": "c29e3e33b0d368f5dc751f3ef01f379c2363a770",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b07234cc_5d32cd82",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-12T21:12:04Z",
+      "side": 1,
+      "message": "invitationViewJoinConversation",
+      "range": {
+        "startLine": 501,
+        "startChar": 20,
+        "endLine": 501,
+        "endChar": 50
+      },
+      "revId": "c29e3e33b0d368f5dc751f3ef01f379c2363a770",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7920cc6_d26a2e3e",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-12T21:12:04Z",
+      "side": 1,
+      "message": "invitationViewAcceptedConversation",
+      "range": {
+        "startLine": 502,
+        "startChar": 20,
+        "endLine": 502,
+        "endChar": 54
+      },
+      "revId": "c29e3e33b0d368f5dc751f3ef01f379c2363a770",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dc6fa63_cb5054c5",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-12T21:12:04Z",
+      "side": 1,
+      "message": "this phrase doesn\u0027t make sense grammatically and needs to be reworked,\nwho is \"We\"? the developers? or is the user assumed to have multiple personalities?\n\nsuggestion:\n\"Waiting until %1\\nconnects to synchronize the conversation.\"\nor\n\"Waiting for %1\\n to connect to synchronize the conversation.\"",
+      "range": {
+        "startLine": 503,
+        "startChar": 54,
+        "endLine": 503,
+        "endChar": 118
+      },
+      "revId": "c29e3e33b0d368f5dc751f3ef01f379c2363a770",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5373996_fff00855",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-12T21:12:04Z",
+      "side": 1,
+      "message": "invitationViewWaitingForSync",
+      "range": {
+        "startLine": 503,
+        "startChar": 20,
+        "endLine": 503,
+        "endChar": 46
+      },
+      "revId": "c29e3e33b0d368f5dc751f3ef01f379c2363a770",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
