@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "232eee3a_8cb9b9c8",
+        "filename": "src/avatarregistry.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-12T21:02:04Z",
+      "side": 1,
+      "message": "QObject::connect(lrc::api::ContactModel, AvatarRegistry): invalid nullptr parameter\n\nIf there is no account initially",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 34
+      },
+      "revId": "200488889090ddd71e18ed07da6c4fff5d14c4b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dea5616f_65719b1c",
+        "filename": "src/mainview/components/AccountComboBox.qml",
+        "patchSetId": 24
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-12T21:02:04Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 51
+      },
+      "revId": "200488889090ddd71e18ed07da6c4fff5d14c4b7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
