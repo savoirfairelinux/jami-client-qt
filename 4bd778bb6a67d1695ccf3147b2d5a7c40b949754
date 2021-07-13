@@ -375,6 +375,30 @@
       },
       "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b925c5fb_94469640",
+        "filename": "src/settingsview/components/FileTransferSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-13T22:00:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c2ed8b99_093aeaf8",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 19
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
