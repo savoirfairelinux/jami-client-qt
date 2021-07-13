@@ -26,6 +26,7 @@
 #include "qrimageprovider.h"
 #include "tintedbuttonimageprovider.h"
 #include "avatarimageprovider.h"
+#include "avatarregistry.h"
 
 #include "accountadapter.h"
 #include "avadapter.h"
@@ -43,6 +44,7 @@
 #include <QtQuickTest/quicktest.h>
 #include <QQmlEngine>
 #include <QQmlContext>
+#include <QtWebEngine>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -67,11 +69,12 @@ public:
         settingsManager_.reset(new AppSettingsManager(this));
         systemTray_.reset(new SystemTray(settingsManager_.get(), this));
 
+        QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
+
 #if defined _MSC_VER && !COMPILE_ONLY
         gnutls_global_init();
 #endif
 
-        std::atomic_bool isMigrating(false);
         lrcInstance_.reset(
             new LRCInstance(nullptr, nullptr, "", connectivityMonitor_.get(), muteDring_));
         lrcInstance_->subscribeToDebugReceived();
@@ -84,9 +87,7 @@ public:
     {
         // setup the adapters (their lifetimes are that of MainApplication)
         auto callAdapter = new CallAdapter(systemTray_.get(), lrcInstance_.data(), this);
-        auto messagesAdapter = new MessagesAdapter(settingsManager_.get(),
-                                                   lrcInstance_.data(),
-                                                   this);
+        auto messagesAdapter = new MessagesAdapter(settingsManager_.get(), lrcInstance_.data(), this);
         auto conversationsAdapter = new ConversationsAdapter(systemTray_.get(),
                                                              lrcInstance_.data(),
                                                              this);
@@ -94,9 +95,7 @@ public:
         auto contactAdapter = new ContactAdapter(lrcInstance_.data(), this);
         auto accountAdapter = new AccountAdapter(settingsManager_.get(), lrcInstance_.data(), this);
         auto utilsAdapter = new UtilsAdapter(systemTray_.get(), lrcInstance_.data(), this);
-        auto settingsAdapter = new SettingsAdapter(settingsManager_.get(),
-                                                   lrcInstance_.data(),
-                                                   this);
+        auto settingsAdapter = new SettingsAdapter(settingsManager_.get(), lrcInstance_.data(), this);
         auto pluginAdapter = new PluginAdapter(lrcInstance_.data(), this);
 
         // qml adapter registration
@@ -110,6 +109,9 @@ public:
         QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, settingsAdapter, "SettingsAdapter");
         QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, pluginAdapter, "PluginAdapter");
 
+        auto avatarRegistry = new AvatarRegistry(lrcInstance_.data(), this);
+        QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, avatarRegistry, "AvatarRegistry");
+
         // TODO: remove these
         QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance_->avModel())
         QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, PluginModel, &lrcInstance_->pluginModel())
@@ -120,9 +122,9 @@ public:
 
         engine->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance_.get()));
         engine->addImageProvider(QLatin1String("tintedPixmap"),
-                                 new TintedButtonImageProvider(lrcInstance_.get()));
+                                  new TintedButtonImageProvider(lrcInstance_.get()));
         engine->addImageProvider(QLatin1String("avatarImage"),
-                                 new AvatarImageProvider(lrcInstance_.get()));
+                                  new AvatarImageProvider(lrcInstance_.get()));
 
         engine->rootContext()->setContextProperty("ScreenInfo", &screenInfo_);
         engine->rootContext()->setContextProperty("LRCInstance", lrcInstance_.get());
@@ -156,7 +158,6 @@ public Q_SLOTS:
      */
     void qmlEngineAvailable(QQmlEngine* engine)
     {
-        engine->addImportPath("qrc:/tests/qml");
         qmlEngineRegistration(engine);
     }
 
@@ -196,6 +197,7 @@ main(int argc, char** argv)
     }
 
     QStandardPaths::setTestModeEnabled(true);
+    QtWebEngine::initialize();
 
     QTEST_SET_MAIN_SOURCE_PATH
     Setup setup(muteDring);

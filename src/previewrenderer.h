@@ -21,7 +21,7 @@
 
 #include <QtQuick>
 
-class LRCInstance;
+#include "lrcinstance.h"
 
 /*
  * Use QQuickPaintedItem so that QPainter apis can be used.
