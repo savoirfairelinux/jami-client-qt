@@ -47,6 +47,54 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee677cc9_bd99f3ca",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-13T14:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f51a932_61bb3f95",
+      "range": {
+        "startLine": 328,
+        "startChar": 73,
+        "endLine": 328,
+        "endChar": 75
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "616db614_8929d64b",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-13T14:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93ae0930_3d5ee841",
+      "range": {
+        "startLine": 328,
+        "startChar": 69,
+        "endLine": 328,
+        "endChar": 91
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8870da91_13eef127",
@@ -60,6 +108,30 @@
       "writtenOn": "2021-07-12T22:18:19Z",
       "side": 1,
       "message": "2021",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d33b6c0f_9d3f823d",
+        "filename": "src/settingsview/components/FileTransferSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-13T14:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8870da91_13eef127",
       "range": {
         "startLine": 2,
         "startChar": 17,
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83d6a78c_b9e19978",
+        "filename": "src/settingsview/components/FileTransferSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-13T14:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c69a7cfd_a7a6c6eb",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 38
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e39a0e47_517eb5dd",
@@ -106,6 +202,30 @@
       "writtenOn": "2021-07-12T22:18:19Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc282281_dc5fe947",
+        "filename": "src/settingsview/components/FileTransferSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-13T14:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e39a0e47_517eb5dd",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -139,6 +259,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abd7b68b_c71f7386",
+        "filename": "src/settingsview/components/FileTransferSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-13T14:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1a0f2a4_362dc96f",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "192b320c_ee4814ab",
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca00f544_29e7919a",
+        "filename": "src/settingsview/components/FileTransferSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-13T14:29:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "192b320c_ee4814ab",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 31
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b16bd83_1e51ac28",
@@ -175,6 +343,30 @@
       "writtenOn": "2021-07-12T22:18:19Z",
       "side": 1,
       "message": "I just realized these spinboxes, are not actually spinboxes 😢",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 19
+      },
+      "revId": "4bd778bb6a67d1695ccf3147b2d5a7c40b949754",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2ed8b99_093aeaf8",
+        "filename": "src/settingsview/components/FileTransferSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-13T14:29:26Z",
+      "side": 1,
+      "message": "yup indeed. I was thinking the same. I think a rename should be done in another patch",
+      "parentUuid": "8b16bd83_1e51ac28",
       "range": {
         "startLine": 86,
         "startChar": 4,
