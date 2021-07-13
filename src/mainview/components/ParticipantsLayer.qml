@@ -77,7 +77,7 @@ Item {
                     participantOverlays[p].setMenu(participant.uri, participant.bestName,
                                                    participant.isLocal, participant.active, showMax)
                     if (participant.videoMuted)
-                        participantOverlays[p].setAvatar(true, participant.avatar, participant.uri, participant.isLocal, participant.isContact)
+                        participantOverlays[p].setAvatar(true, participant.uri, participant.isLocal)
                     else
                         participantOverlays[p].setAvatar(false)
                     currentUris.push(participantOverlays[p].uri)
