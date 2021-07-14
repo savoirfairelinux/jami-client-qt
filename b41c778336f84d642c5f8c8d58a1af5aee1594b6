@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11102503_2f6082f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-14T17:03:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d996ed31_e9d0e617",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 6
+      },
+      "revId": "b41c778336f84d642c5f8c8d58a1af5aee1594b6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29f5fe9c_4a6713f6",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-07-14T14:13:31Z",
       "side": 1,
       "message": "do we really need ring:? jami or avoid? 😭",
+      "range": {
+        "startLine": 380,
+        "startChar": 31,
+        "endLine": 380,
+        "endChar": 37
+      },
+      "revId": "b41c778336f84d642c5f8c8d58a1af5aee1594b6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e49878fa_14723ff2",
+        "filename": "src/utils.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-14T17:03:39Z",
+      "side": 1,
+      "message": "agreed, and a follow-up patch for other prefixes like this",
+      "parentUuid": "29f5fe9c_4a6713f6",
       "range": {
         "startLine": 380,
         "startChar": 31,
