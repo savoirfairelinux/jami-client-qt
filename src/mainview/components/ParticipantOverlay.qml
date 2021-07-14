@@ -54,16 +54,11 @@ Item {
 
     function setAvatar(show, uri, isLocal) {
         if (!show)
-            avatar.visible = false
+            avatar.active = false
         else {
-            if (isLocal) {
-                avatar.mode = Avatar.Mode.Account
-                avatar.imageId = LRCInstance.currentAccountId
-            } else {
-                avatar.mode = Avatar.Mode.Contact
-                avatar.imageId = uri
-            }
-            avatar.visible = true
+            avatar.mode_ = isLocal ? Avatar.Mode.Account : Avatar.Mode.Contact
+            avatar.imageId_ = isLocal ? LRCInstance.currentAccountId : uri
+            avatar.active = true
         }
     }
 
@@ -167,21 +162,30 @@ Item {
         }
     }
 
-    Avatar {
+    Loader {
         id: avatar
 
         anchors.centerIn: parent
 
-        property real size: Math.min(parent.width / 2, parent.height / 2)
-        height:  size
-        width:  size
+        active: false
 
-        // round the avatar source size up to some nearest multiple
-        property real imageSize: Math.floor((size + 96 - 1) / 96) * 96
-        sourceSize: Qt.size(imageSize, imageSize)
+        property real size_: Math.min(parent.width / 2, parent.height / 2)
+        height:  size_
+        width:  size_
 
-        visible: false
-        showPresenceIndicator: false
+        property int mode_
+        property string imageId_
+
+        sourceComponent: Component {
+            Avatar {
+                // round the avatar source size up to some nearest multiple
+                property real size: Math.floor((size_ + 96 - 1) / 96) * 96
+                sourceSize: Qt.size(size, size)
+                mode: mode_
+                imageId: size_ !== 0 ? imageId_ : ""
+                showPresenceIndicator: false
+            }
+        }
     }
 
     // Participant background and buttons for moderation
