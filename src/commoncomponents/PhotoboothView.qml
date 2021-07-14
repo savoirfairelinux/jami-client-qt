@@ -32,8 +32,11 @@ ColumnLayout {
     enum Mode { Static, Previewing }
     property int mode: PhotoboothView.Mode.Static
     property alias imageId: avatar.imageId
+    property alias avatarMode: avatar.mode
 
     property int size: 224
+
+    signal avatarSet
 
     function startBooth() {
         AccountAdapter.startPreviewing(false)
@@ -72,6 +75,7 @@ ColumnLayout {
         onAccepted: {
             var filePath = UtilsAdapter.getAbsPath(file)
             AccountAdapter.setCurrentAccountAvatarFile(filePath)
+            avatarSet()
         }
     }
 
@@ -165,6 +169,7 @@ ColumnLayout {
                     flashAnimation.start()
                     AccountAdapter.setCurrentAccountAvatarBase64(
                                 preview.takePhoto(size))
+                    avatarSet()
                     stopBooth()
                     return
                 }

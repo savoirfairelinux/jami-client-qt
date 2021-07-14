@@ -22,12 +22,13 @@ import QtQuick.Controls 2.14
 
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
+import net.jami.Helpers 1.0
 import net.jami.Models 1.0
 
 Item {
     id: root
 
-    enum Mode { Account, Contact, Conversation }
+    enum Mode { Account, Contact, Conversation, Fallback }
     property int mode: Avatar.Mode.Account
     property alias sourceSize: image.sourceSize
 
@@ -40,6 +41,7 @@ Item {
         case Avatar.Mode.Account: return 'account'
         case Avatar.Mode.Contact: return 'contact'
         case Avatar.Mode.Conversation: return 'conversation'
+        case Avatar.Mode.Fallback: return 'fallback'
         }
     }
 
