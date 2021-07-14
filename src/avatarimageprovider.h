@@ -66,6 +66,10 @@ public:
             return Utils::accountPhoto(lrcInstance_, imageId, requestedSize);
         else if (type == "contact")
             return Utils::contactPhoto(lrcInstance_, imageId, requestedSize);
+        else if (type == "fallback") {
+            // this is only used for account creation displayname edit feedback
+            return Utils::tempAccountPhoto(lrcInstance_, imageId, requestedSize);
+        }
 
         qWarning() << Q_FUNC_INFO << "Missing valid prefix in the image url";
         return {};
