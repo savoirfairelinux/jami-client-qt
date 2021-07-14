@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4db931a_91d3edb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2021-07-14T16:57:37Z",
+      "side": 1,
+      "message": "Seems to be working okay for the most part.  But one scenario that needs work: when I first launch the client and send a message to another account, the icon won\u0027t change until I switch to that other account at least once.  Then it works fine for future messages.\n\nAlso, I took the liberty to swap out the new png icon in favour of an svg icon, and also changed the default icon from png to svg as well.  It works fine on my i3 setup on GNU/Linux but probably needs testing in other GNU/Linux desktop environments as well as Windows and macOS (if applicable) to make sure they can handle an svg tray icon just fine.",
+      "revId": "4ea9119dede38f42c83d171b2d33b7ca669693fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
