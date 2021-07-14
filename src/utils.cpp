@@ -347,6 +347,21 @@ Utils::accountPhoto(LRCInstance* instance, const QString& accountId, const QSize
 }
 
 QImage
+Utils::tempAccountPhoto(LRCInstance* instance, const QString& name, const QSize& size)
+{
+    QImage photo;
+    try {
+        auto& accInfo = instance->getCurrentAccountInfo();
+        QString prefix = accInfo.profileInfo.type == profile::Type::JAMI ? "ring:" : "sip:";
+        photo = fallbackAvatar(prefix + accInfo.profileInfo.uri, name, size);
+    } catch (const std::exception& e) {
+        qDebug() << e.what() << "; Using default avatar";
+        photo = fallbackAvatar(QString(), name, size);
+    }
+    return Utils::scaleAndFrame(photo, size);
+}
+
+QImage
 Utils::contactPhoto(LRCInstance* instance,
                     const QString& contactUri,
                     const QSize& size,

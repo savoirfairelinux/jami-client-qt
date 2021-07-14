@@ -86,6 +86,9 @@ QImage imageFromBase64Data(const QByteArray& data, bool circleCrop = true);
 QImage accountPhoto(LRCInstance* instance,
                     const QString& accountId,
                     const QSize& size = defaultAvatarSize);
+QImage tempAccountPhoto(LRCInstance* instance,
+                        const QString& name,
+                        const QSize& size = defaultAvatarSize);
 QImage contactPhoto(LRCInstance* instance,
                     const QString& contactUri,
                     const QSize& size = defaultAvatarSize,

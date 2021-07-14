@@ -20,7 +20,9 @@ import QtQuick 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls 2.14
 
+import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
+import net.jami.Helpers 1.0
 
 import "../../commoncomponents"
 
@@ -34,6 +36,7 @@ Rectangle {
     property alias displayName: aliasEdit.text
     property bool isRdv: false
     property alias avatarBooth: setAvatarWidget
+    property bool avatarSet
 
     signal leavePage
     signal saveProfile
@@ -42,6 +45,8 @@ Rectangle {
         createdAccountId = "dummy"
         clearAllTextFields()
         saveProfileBtn.spinnerTriggered = true
+        avatarSet = false
+        setAvatarWidget.enableFallbackMode(false)
     }
 
     function clearAllTextFields() {
@@ -98,15 +103,28 @@ Rectangle {
             Layout.preferredWidth: size
             Layout.fillHeight: true
 
-            imageId: createdAccountId
+            onAvatarSet: {
+                root.avatarSet = true
+                setAvatarWidget.imageId = createdAccountId
+                AvatarRegistry.addOrUpdateImage(setAvatarWidget.imageId)
+            }
+
+            function enableFallbackMode(state) {
+                if (state) {
+                    setAvatarWidget.avatarMode = Avatar.Mode.Fallback
+                    setAvatarWidget.imageId = aliasEdit.text.charAt(0)
+                } else {
+                    setAvatarWidget.avatarMode = Avatar.Mode.Account
+                    setAvatarWidget.imageId = createdAccountId
+                }
+                AvatarRegistry.addOrUpdateImage(setAvatarWidget.imageId)
+            }
 
             size: 200
         }
 
         MaterialLineEdit {
             id: aliasEdit
-
-            property string lastInitialCharacter: ""
 
             Layout.preferredHeight: fieldLayoutHeight
             Layout.preferredWidth: fieldLayoutWidth
@@ -121,20 +139,13 @@ Rectangle {
 
             fieldLayoutWidth: saveProfileBtn.width
 
-            onTextEdited: {
-                if (!(setAvatarWidget.avatarSet)) {
-                    if (text.length === 0) {
-                        setAvatarWidget.setAvatarImage(AvatarImage.AvatarMode.FromAccount,
-                                                       createdAccountId)
-                        return
-                    }
-
-                    if (text.length == 1 && text.charAt(0) !== lastInitialCharacter) {
-                        lastInitialCharacter = text.charAt(0)
-                        setAvatarWidget.setAvatarImage(AvatarImage.AvatarMode.FromTemporaryName,
-                                                       text)
-                    }
-                }
+            onTextChanged: {
+                if (root.avatarSet)
+                    return
+                if (text.length === 0)
+                    setAvatarWidget.enableFallbackMode(false)
+                else if (text.length == 1 && text.charAt(0) !== setAvatarWidget.imageId)
+                    setAvatarWidget.enableFallbackMode(true)
             }
         }
 
@@ -164,6 +175,7 @@ Rectangle {
             outlined: true
 
             onClicked: {
+                AccountAdapter.setCurrentAccountAvatarBase64()
                 leavePage()
             }
         }
