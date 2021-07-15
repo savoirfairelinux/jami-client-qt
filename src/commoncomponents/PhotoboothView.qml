@@ -178,6 +178,27 @@ ColumnLayout {
         }
 
         PushButton {
+            id: clearButton
+
+            visible: LRCInstance.currentAccountAvatarSet
+
+            Layout.preferredWidth: JamiTheme.preferredFieldHeight
+            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+            Layout.alignment: Qt.AlignHCenter
+
+            radius: JamiTheme.primaryRadius
+            source: "qrc:/images/icons/round-close-24px.svg"
+
+            toolTipText: JamiStrings.importFromFile
+            imageColor: JamiTheme.textColor
+
+            onClicked: {
+                stopBooth()
+                AccountAdapter.setCurrentAccountAvatarBase64()
+            }
+        }
+
+        PushButton {
             id: importButton
 
             Layout.preferredWidth: JamiTheme.preferredFieldHeight

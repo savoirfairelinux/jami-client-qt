@@ -32,7 +32,7 @@ Rectangle {
     // trigger a default avatar prior to account generation
     property string createdAccountId: "dummy"
     property int preferredHeight: profilePageColumnLayout.implicitHeight
-    property var showBottom: false
+    property bool showBottom: false
     property alias displayName: aliasEdit.text
     property bool isRdv: false
     property alias avatarBooth: setAvatarWidget
