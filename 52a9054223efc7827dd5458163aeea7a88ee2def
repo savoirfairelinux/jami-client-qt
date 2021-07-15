@@ -22,6 +22,30 @@
       },
       "revId": "52a9054223efc7827dd5458163aeea7a88ee2def",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a6dfc26_e3cb1bf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2021-07-15T15:31:48Z",
+      "side": 1,
+      "message": "Yeah, sorry, I think it\u0027s a remnant of something that was already merged as a7e7105cda8c52bdb61895978a7e125c22827dfb. I\u0027ll adjust its commit message accordingly.",
+      "parentUuid": "20c93a5f_59af07d8",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "52a9054223efc7827dd5458163aeea7a88ee2def",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
