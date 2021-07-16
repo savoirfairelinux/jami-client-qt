@@ -28,13 +28,10 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property alias text_pinFromDeviceAlias: pinFromDevice.text
-    property alias text_passwordFromDeviceAlias: passwordFromDevice.text
     property string errorText: ""
     property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight
 
-    signal leavePage
-    signal importAccount
+    signal showThisPage
 
     function initializeOnShowUp() {
         clearAllTextFields()
@@ -51,6 +48,17 @@ Rectangle {
         connectBtn.spinnerTriggered = false
     }
 
+    Connections {
+        target: WizardViewStepModel
+
+        function onMainStepChanged() {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
+                    WizardViewStepModel.accountCreationOption ===
+                    WizardViewStepModel.AccountCreationOption.ImportFromDevice)
+                root.showThisPage()
+        }
+    }
+
     color: JamiTheme.backgroundColor
 
     onVisibleChanged: {
@@ -61,7 +69,7 @@ Rectangle {
     ColumnLayout {
         id: importFromDevicePageColumnLayout
 
-        spacing: layoutSpacing
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         // Prevent possible anchor loop detected on centerIn.
         anchors.horizontalCenter: parent.horizontalCenter
@@ -69,7 +77,7 @@ Rectangle {
 
         Text {
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: backButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
 
             text: JamiStrings.mainAccountPassword
             color: JamiTheme.textColor
@@ -95,7 +103,8 @@ Rectangle {
         }
 
         Text {
-            property int preferredHeight: layoutSpacing
+            property int preferredHeight: JamiTheme.wizardViewPageLayoutSpacing
+
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: connectBtn.width
@@ -133,7 +142,7 @@ Rectangle {
             id: connectBtn
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: errorLabel.visible ? 0 : backButtonMargins
+            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -144,7 +153,13 @@ Rectangle {
 
             onClicked: {
                 spinnerTriggered = true
-                importAccount()
+
+                JamiQmlUtils.accountCreationInputParaObject = {}
+                Object.assign(JamiQmlUtils.accountCreationInputParaObject,
+                              {archivePin : pinFromDevice.text,
+                               password : passwordFromDevice.text})
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.accountCreationInputParaObject
+                WizardViewStepModel.nextStep()
             }
         }
 
@@ -152,7 +167,7 @@ Rectangle {
             id: errorLabel
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: backButtonMargins
+            Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
             visible: errorText.length !== 0
 
@@ -179,6 +194,6 @@ Rectangle {
         source: JamiResources.ic_arrow_back_24dp_svg
         toolTipText: qsTr("Back to welcome page")
 
-        onClicked: leavePage()
+        onClicked: WizardViewStepModel.previousStep()
     }
 }

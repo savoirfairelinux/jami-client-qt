@@ -20,6 +20,7 @@ import QtQuick 2.14
 import QtQuick.Layouts 1.14
 import QtQuick.Controls 2.14
 
+import net.jami.Models 1.0
 import net.jami.Constants 1.0
 
 import "../../commoncomponents"
@@ -27,18 +28,9 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property alias text_sipServernameEditAlias: sipServernameEdit.text
-    property alias text_sipProxyEditAlias: sipProxyEdit.text
-    property alias text_sipUsernameEditAlias: sipUsernameEdit.text
-    property alias text_sipPasswordEditAlias: sipPasswordEdit.text
     property int preferredHeight: createSIPAccountPageColumnLayout.implicitHeight
 
-    signal createAccount
-    signal leavePage
-
-    function initializeOnShowUp() {
-        clearAllTextFields()
-    }
+    signal showThisPage
 
     function clearAllTextFields() {
         sipUsernameEdit.clear()
@@ -46,6 +38,19 @@ Rectangle {
         sipServernameEdit.clear()
         sipProxyEdit.clear()
         sipUsernameEdit.clear()
+    }
+
+    Connections {
+        target: WizardViewStepModel
+
+        function onMainStepChanged() {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
+                    WizardViewStepModel.accountCreationOption ===
+                    WizardViewStepModel.AccountCreationOption.CreateSipAccount) {
+                clearAllTextFields()
+                root.showThisPage()
+            }
+        }
     }
 
     color: JamiTheme.backgroundColor
@@ -58,15 +63,15 @@ Rectangle {
     ColumnLayout {
         id: createSIPAccountPageColumnLayout
 
-        spacing: layoutSpacing
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         anchors.centerIn: parent
 
         RowLayout {
-            spacing: layoutSpacing
+            spacing: JamiTheme.wizardViewPageLayoutSpacing
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: backButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: createAccountButton.width
 
             Label {
@@ -147,7 +152,7 @@ Rectangle {
             id: createAccountButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: backButtonMargins
+            Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -157,7 +162,14 @@ Rectangle {
             pressedColor: JamiTheme.buttonTintedBluePressed
 
             onClicked: {
-                createAccount()
+                JamiQmlUtils.accountCreationInputParaObject = {}
+                Object.assign(JamiQmlUtils.accountCreationInputParaObject,
+                              {hostname : sipServernameEdit.text,
+                               username : sipUsernameEdit.text,
+                               password : sipPasswordEdit.text,
+                               proxy : sipProxyEdit.text})
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.accountCreationInputParaObject
+                WizardViewStepModel.nextStep()
             }
         }
     }
@@ -178,6 +190,6 @@ Rectangle {
         source: JamiResources.ic_arrow_back_24dp_svg
         toolTipText: JamiStrings.backToWelcome
 
-        onClicked: leavePage()
+        onClicked: WizardViewStepModel.previousStep()
     }
 }

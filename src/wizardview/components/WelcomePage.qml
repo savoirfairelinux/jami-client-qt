@@ -33,24 +33,32 @@ Rectangle {
 
     property int preferredHeight: welcomePageColumnLayout.implicitHeight
 
-    signal welcomePageRedirectPage(int toPageIndex)
-    signal leavePage
     signal scrollToBottom
+    signal showThisPage
 
     color: "transparent"
+
+    Connections {
+        target: WizardViewStepModel
+
+        function onMainStepChanged() {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.Initial)
+                root.showThisPage()
+        }
+    }
 
     ColumnLayout {
         id: welcomePageColumnLayout
 
         anchors.centerIn: parent
 
-        spacing: layoutSpacing
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         Text {
             id: welcomeLabel
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: backButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredHeight: contentHeight
 
             text: qsTr("Welcome to")
@@ -58,7 +66,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            font.pointSize: 30
+            font.pointSize: JamiTheme.welcomeLabelPointSize
             font.kerning: true
         }
 
@@ -66,8 +74,8 @@ Rectangle {
             id: welcomeLogo
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 330
-            Layout.preferredHeight: 110
+            Layout.preferredWidth: JamiTheme.welcomeLogoWidth
+            Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
             source: JamiTheme.darkTheme ?
                         JamiResources.logo_jami_standard_coul_white_svg :
@@ -89,9 +97,8 @@ Rectangle {
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(1)
-            }
+            onClicked: WizardViewStepModel.startAccountCreationFlow(
+                           WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
         }
 
         MaterialButton {
@@ -109,9 +116,8 @@ Rectangle {
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(8)
-            }
+            onClicked: WizardViewStepModel.startAccountCreationFlow(
+                           WizardViewStepModel.AccountCreationOption.CreateRendezVous)
         }
 
         MaterialButton {
@@ -129,9 +135,8 @@ Rectangle {
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(5)
-            }
+            onClicked: WizardViewStepModel.startAccountCreationFlow(
+                           WizardViewStepModel.AccountCreationOption.ImportFromDevice)
         }
 
         MaterialButton {
@@ -149,16 +154,16 @@ Rectangle {
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(3)
-            }
+            onClicked: WizardViewStepModel.startAccountCreationFlow(
+                           WizardViewStepModel.AccountCreationOption.ImportFromBackup)
         }
 
         MaterialButton {
             id: showAdvancedButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: newSIPAccountButton.visible ? 0 : backButtonMargins
+            Layout.bottomMargin: newSIPAccountButton.visible ?
+                                     0 : JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -199,16 +204,15 @@ Rectangle {
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(6)
-            }
+            onClicked: WizardViewStepModel.startAccountCreationFlow(
+                           WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
         }
 
         MaterialButton {
             id: newSIPAccountButton
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: backButtonMargins
+            Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -222,9 +226,8 @@ Rectangle {
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
 
-            onClicked: {
-                welcomePageRedirectPage(2)
-            }
+            onClicked: WizardViewStepModel.startAccountCreationFlow(
+                           WizardViewStepModel.AccountCreationOption.CreateSipAccount)
         }
 
         onHeightChanged: scrollToBottom()
@@ -235,7 +238,7 @@ Rectangle {
 
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.margins: backButtonMargins
+        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
         Connections {
             target: LRCInstance
@@ -245,8 +248,7 @@ Rectangle {
             }
         }
 
-        width: 35
-        height: 35
+        preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
         visible: UtilsAdapter.getAccountListSize()
 
@@ -256,6 +258,6 @@ Rectangle {
         source: JamiResources.ic_arrow_back_24dp_svg
         toolTipText: JamiStrings.back
 
-        onClicked: leavePage()
+        onClicked: WizardViewStepModel.previousStep()
     }
 }
