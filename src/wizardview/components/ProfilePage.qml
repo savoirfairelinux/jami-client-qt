@@ -23,6 +23,7 @@ import QtQuick.Controls 2.14
 import net.jami.Adapters 1.0
 import net.jami.Constants 1.0
 import net.jami.Helpers 1.0
+import net.jami.Models 1.0
 
 import "../../commoncomponents"
 
@@ -32,14 +33,9 @@ Rectangle {
     // trigger a default avatar prior to account generation
     property string createdAccountId: "dummy"
     property int preferredHeight: profilePageColumnLayout.implicitHeight
-    property var showBottom: false
-    property alias displayName: aliasEdit.text
-    property bool isRdv: false
-    property alias avatarBooth: setAvatarWidget
-    property bool avatarSet
+    property bool avatarSet: false
 
-    signal leavePage
-    signal saveProfile
+    signal showThisPage
 
     function initializeOnShowUp() {
         createdAccountId = "dummy"
@@ -58,19 +54,30 @@ Rectangle {
 
     color: JamiTheme.backgroundColor
 
+    Connections {
+        target: WizardViewStepModel
+
+        function onMainStepChanged() {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.Profile) {
+                initializeOnShowUp()
+                root.showThisPage()
+            }
+        }
+    }
+
     ColumnLayout {
         id: profilePageColumnLayout
 
-        spacing: layoutSpacing
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         width: parent.width
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
 
         RowLayout {
-            spacing: layoutSpacing
+            spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-            Layout.topMargin: backButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: saveProfileBtn.width
             Layout.alignment: Qt.AlignCenter
 
@@ -118,7 +125,13 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             selectByMouse: true
-            placeholderText: isRdv ? JamiStrings.enterRVName : qsTr("Enter your name")
+            placeholderText: {
+                if (WizardViewStepModel.accountCreationOption ===
+                        WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
+                    return qsTr("Enter your name")
+                else
+                    return JamiStrings.enterRVName
+            }
             font.pointSize: 9
             font.kerning: true
 
@@ -148,8 +161,18 @@ Rectangle {
 
             enabled: !spinnerTriggered
             normalText: JamiStrings.saveProfile
-            spinnerTriggeredtext: root.isRdv ? JamiStrings.generatingRV : qsTr("Generating account…")
-            onClicked: saveProfile()
+            spinnerTriggeredtext: {
+                if (WizardViewStepModel.accountCreationOption ===
+                        WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
+                    return qsTr("Generating account…")
+                else
+                    return JamiStrings.generatingRV
+            }
+
+            onClicked: {
+                AccountAdapter.setCurrAccDisplayName(aliasEdit.text)
+                WizardViewStepModel.nextStep()
+            }
         }
 
         MaterialButton {
@@ -167,18 +190,8 @@ Rectangle {
             onClicked: {
                 AccountAdapter.setCurrentAccountAvatarBase64()
                 aliasEdit.clear()
-                saveProfile()
+                WizardViewStepModel.nextStep()
             }
-        }
-
-        AccountCreationStepIndicator {
-            Layout.topMargin: backButtonMargins
-            Layout.bottomMargin: backButtonMargins
-            Layout.alignment: Qt.AlignHCenter
-
-            spacing: layoutSpacing
-            steps: 3
-            currentStep: 3
         }
     }
 }
