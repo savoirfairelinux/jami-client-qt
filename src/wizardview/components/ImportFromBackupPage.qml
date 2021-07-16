@@ -30,15 +30,13 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property alias text_passwordFromBackupEditAlias: passwordFromBackupEdit.text
-    property string fileImportBtnText: JamiStrings.archive
     property int preferredHeight: importFromBackupPageColumnLayout.implicitHeight
 
+    property string fileImportBtnText: JamiStrings.archive
     property string filePath: ""
     property string errorText: ""
 
-    signal leavePage
-    signal importAccount
+    signal showThisPage
 
     function clearAllTextFields() {
         connectBtn.spinnerTriggered = false
@@ -52,16 +50,29 @@ Rectangle {
         connectBtn.spinnerTriggered = false
     }
 
+    Connections {
+        target: WizardViewStepModel
+
+        function onMainStepChanged() {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
+                    WizardViewStepModel.accountCreationOption ===
+                    WizardViewStepModel.AccountCreationOption.ImportFromBackup) {
+                clearAllTextFields()
+                root.showThisPage()
+            }
+        }
+    }
+
     color: JamiTheme.backgroundColor
 
     JamiFileDialog {
-        id: importFromFile_Dialog
+        id: importFromFileDialog
 
         mode: JamiFileDialog.OpenFile
         title: JamiStrings.openFile
         folder: StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop"
 
-        nameFilters: [qsTr("Jami archive files") + " (*.gz)", qsTr("All files") + " (*)"]
+        nameFilters: [JamiStrings.jamiArchiveFiles + " (*.gz)", JamiStrings.allFiles + " (*)"]
 
         onAccepted: {
             filePath = file
@@ -76,16 +87,16 @@ Rectangle {
     ColumnLayout {
         id: importFromBackupPageColumnLayout
 
-        spacing: layoutSpacing
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
 
         Text {
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: backButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
 
-            text: qsTr("Import from backup")
+            text: JamiStrings.importFromBackup
             color: JamiTheme.textColor
             font.pointSize: JamiTheme.menuFontSize
         }
@@ -106,14 +117,14 @@ Rectangle {
 
             onClicked: {
                 errorText = ""
-                importFromFile_Dialog.open()
+                importFromFileDialog.open()
             }
         }
 
         Text {
             // For multiline text, recursive rearrange warning will show up when
             // directly assigning contentHeight to Layout.preferredHeight
-            property int preferredHeight: layoutSpacing
+            property int preferredHeight: JamiTheme.wizardViewPageLayoutSpacing
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: fileImportBtn.width
@@ -137,9 +148,11 @@ Rectangle {
             Layout.preferredWidth: connectBtn.width
             Layout.alignment: Qt.AlignCenter
 
+            focus: visible
+
             selectByMouse: true
-            placeholderText: qsTr("Password")
-            font.pointSize: 9
+            placeholderText: JamiStrings.password
+            font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
             echoMode: TextInput.Password
@@ -152,11 +165,11 @@ Rectangle {
             id: connectBtn
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: errorLabel.visible ? 0 : backButtonMargins
+            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
-            spinnerTriggeredtext: qsTr("Generating account…")
+            spinnerTriggeredtext: JamiStrings.generatingAccount
             normalText: JamiStrings.connectFromBackup
 
             enabled: {
@@ -169,7 +182,13 @@ Rectangle {
 
             onClicked: {
                 spinnerTriggered = true
-                importAccount()
+
+                JamiQmlUtils.accountCreationInputParaObject = {}
+                Object.assign(JamiQmlUtils.accountCreationInputParaObject,
+                              {archivePath : UtilsAdapter.getAbsPath(filePath),
+                               password : passwordFromBackupEdit.text})
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.accountCreationInputParaObject
+                WizardViewStepModel.nextStep()
             }
         }
 
@@ -177,32 +196,25 @@ Rectangle {
             id: errorLabel
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: backButtonMargins
+            Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
             visible: errorText.length !== 0
 
             text: errorText
             font.pointSize: JamiTheme.textFontSize
-            color: "red"
+            color: JamiTheme.redColor
         }
     }
 
-    PushButton {
+    BackButton {
         id: backButton
 
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: 20
 
-        width: 35
-        height: 35
+        preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
-        normalColor: root.color
-        imageColor: JamiTheme.primaryForegroundColor
-
-        source: JamiResources.ic_arrow_back_24dp_svg
-        toolTipText: qsTr("Back to welcome page")
-
-        onClicked: leavePage()
+        onClicked: WizardViewStepModel.previousStep()
     }
 }

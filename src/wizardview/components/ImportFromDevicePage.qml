@@ -28,13 +28,10 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property alias text_pinFromDeviceAlias: pinFromDevice.text
-    property alias text_passwordFromDeviceAlias: passwordFromDevice.text
     property string errorText: ""
     property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight
 
-    signal leavePage
-    signal importAccount
+    signal showThisPage
 
     function initializeOnShowUp() {
         clearAllTextFields()
@@ -51,17 +48,23 @@ Rectangle {
         connectBtn.spinnerTriggered = false
     }
 
-    color: JamiTheme.backgroundColor
+    Connections {
+        target: WizardViewStepModel
 
-    onVisibleChanged: {
-        if (visible)
-            pinFromDevice.focus = true
+        function onMainStepChanged() {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
+                    WizardViewStepModel.accountCreationOption ===
+                    WizardViewStepModel.AccountCreationOption.ImportFromDevice)
+                root.showThisPage()
+        }
     }
+
+    color: JamiTheme.backgroundColor
 
     ColumnLayout {
         id: importFromDevicePageColumnLayout
 
-        spacing: layoutSpacing
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         // Prevent possible anchor loop detected on centerIn.
         anchors.horizontalCenter: parent.horizontalCenter
@@ -69,7 +72,7 @@ Rectangle {
 
         Text {
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: backButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
 
             text: JamiStrings.mainAccountPassword
             color: JamiTheme.textColor
@@ -84,8 +87,8 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             selectByMouse: true
-            placeholderText: qsTr("Password")
-            font.pointSize: 9
+            placeholderText: JamiStrings.password
+            font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
             echoMode: TextInput.Password
@@ -95,7 +98,8 @@ Rectangle {
         }
 
         Text {
-            property int preferredHeight: layoutSpacing
+            property int preferredHeight: JamiTheme.wizardViewPageLayoutSpacing
+
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: connectBtn.width
@@ -119,9 +123,11 @@ Rectangle {
             Layout.preferredWidth: connectBtn.width
             Layout.alignment: Qt.AlignCenter
 
+            focus: visible
+
             selectByMouse: true
-            placeholderText: qsTr("PIN")
-            font.pointSize: 9
+            placeholderText: JamiStrings.pin
+            font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
             borderColorMode: MaterialLineEdit.NORMAL
@@ -133,18 +139,24 @@ Rectangle {
             id: connectBtn
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: errorLabel.visible ? 0 : backButtonMargins
+            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
-            spinnerTriggeredtext: qsTr("Generating account…")
+            spinnerTriggeredtext: JamiStrings.generatingAccount
             normalText: JamiStrings.connectFromAnotherDevice
 
             enabled: pinFromDevice.text.length !== 0 && !spinnerTriggered
 
             onClicked: {
                 spinnerTriggered = true
-                importAccount()
+
+                JamiQmlUtils.accountCreationInputParaObject = {}
+                Object.assign(JamiQmlUtils.accountCreationInputParaObject,
+                              {archivePin : pinFromDevice.text,
+                               password : passwordFromDevice.text})
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.accountCreationInputParaObject
+                WizardViewStepModel.nextStep()
             }
         }
 
@@ -152,33 +164,26 @@ Rectangle {
             id: errorLabel
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: backButtonMargins
+            Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
             visible: errorText.length !== 0
 
             text: errorText
 
             font.pointSize: JamiTheme.textFontSize
-            color: "red"
+            color: JamiTheme.redColor
         }
     }
 
-    PushButton {
+    BackButton {
         id: backButton
 
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.margins: 20
 
-        width: 35
-        height: 35
+        preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
-        normalColor: root.color
-        imageColor: JamiTheme.primaryForegroundColor
-
-        source: JamiResources.ic_arrow_back_24dp_svg
-        toolTipText: qsTr("Back to welcome page")
-
-        onClicked: leavePage()
+        onClicked: WizardViewStepModel.previousStep()
     }
 }
