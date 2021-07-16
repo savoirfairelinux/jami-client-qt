@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35bc63b2_135edd3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-16T15:36:14Z",
+      "side": 1,
+      "message": "In the wizard view, when opening the profile page, the cross is here during a few secs",
+      "revId": "2c0ae42f3441c8b6addf9e4ee613c01deff4816f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
