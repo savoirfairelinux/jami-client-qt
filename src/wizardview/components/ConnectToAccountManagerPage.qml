@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
  * Author: Yang Wang <yang.wang@savoirfairelinux.com>
+ * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,18 +29,10 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property alias text_usernameManagerEditAlias: usernameManagerEdit.text
-    property alias text_passwordManagerEditAlias: passwordManagerEdit.text
-    property alias text_accountManagerEditAlias: accountManagerEdit.text
-    property string errorText: ""
     property int preferredHeight: connectToAccountManagerPageColumnLayout.implicitHeight
+    property string errorText: ""
 
-    signal leavePage
-    signal createAccount
-
-    function initializeOnShowUp() {
-        clearAllTextFields()
-    }
+    signal showThisPage
 
     function clearAllTextFields() {
         connectBtn.spinnerTriggered = false
@@ -54,6 +47,19 @@ Rectangle {
         errorText = errorMessage
     }
 
+    Connections {
+        target: WizardViewStepModel
+
+        function onMainStepChanged() {
+            if (WizardViewStepModel.mainStep === WizardViewStepModel.MainSteps.AccountCreation &&
+                    WizardViewStepModel.accountCreationOption ===
+                    WizardViewStepModel.AccountCreationOption.ConnectToAccountManager) {
+                clearAllTextFields()
+                root.showThisPage()
+            }
+        }
+    }
+
     color: JamiTheme.backgroundColor
 
     onVisibleChanged: {
@@ -64,16 +70,16 @@ Rectangle {
     ColumnLayout {
         id: connectToAccountManagerPageColumnLayout
 
-        spacing: layoutSpacing
+        spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
 
         RowLayout {
-            spacing: layoutSpacing
+            spacing: JamiTheme.wizardViewPageLayoutSpacing
 
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: backButtonMargins
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: implicitWidth
 
             Label {
@@ -165,7 +171,7 @@ Rectangle {
             id: connectBtn
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: errorLabel.visible ? 0 : backButtonMargins
+            Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
 
@@ -179,7 +185,14 @@ Rectangle {
 
             onClicked: {
                 spinnerTriggered = true
-                createAccount()
+
+                JamiQmlUtils.accountCreationInputParaObject = {}
+                Object.assign(JamiQmlUtils.accountCreationInputParaObject,
+                              {username : usernameManagerEdit.text,
+                               password : passwordManagerEdit.text,
+                               manager : accountManagerEdit.text})
+                WizardViewStepModel.accountCreationInfo = JamiQmlUtils.accountCreationInputParaObject
+                WizardViewStepModel.nextStep()
             }
         }
 
@@ -187,7 +200,7 @@ Rectangle {
             id: errorLabel
 
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: backButtonMargins
+            Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
             visible: errorText.length !== 0
             text: errorText
@@ -213,6 +226,6 @@ Rectangle {
         source: JamiResources.ic_arrow_back_24dp_svg
         toolTipText: JamiStrings.backToWelcome
 
-        onClicked: leavePage()
+        onClicked: WizardViewStepModel.previousStep()
     }
 }

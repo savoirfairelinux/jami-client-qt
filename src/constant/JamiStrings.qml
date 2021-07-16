@@ -259,7 +259,14 @@ Item {
     property string confirmPassword: qsTr("Confirm password")
     property string notePasswordRecovery: qsTr("Choose a password to encrypt your account on this device. Note that the password cannot be recovered.")
     property string optional: qsTr("Optional")
-    property string chooseNameRV: qsTr("Choose a name for your rendezvous point")
+    property string chooseUsernameForAccount: qsTr("Choose a username for your account")
+    property string chooseUsernameForRV: qsTr("Choose a name for your rendezvous point")
+    property string chooseAName: qsTr("Choose a name")
+    property string chooseYourUserName: qsTr("Choose your username")
+    property string invalidName: qsTr("Invalid name")
+    property string invalidUsername: qsTr("Invalid username")
+    property string nameAlreadyTaken: qsTr("Name already taken")
+    property string usernameAlreadyTaken: qsTr("Username already taken")
 
     // CreateSIPAccountPage
     property string proxy: qsTr("Proxy")
