@@ -39,6 +39,30 @@
       },
       "revId": "98fd44ab1f0898c9b9026b2d996b12d87eabf952",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72600112_e6c8ff3e",
+        "filename": "src/mainview/components/AccountComboBox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-07-19T18:09:10Z",
+      "side": 1,
+      "message": "no. You forget SIP accounts without server (ip to ip). The username in this case will be empty :)",
+      "parentUuid": "e814f86d_1b734d49",
+      "range": {
+        "startLine": 161,
+        "startChar": 25,
+        "endLine": 161,
+        "endChar": 36
+      },
+      "revId": "98fd44ab1f0898c9b9026b2d996b12d87eabf952",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
