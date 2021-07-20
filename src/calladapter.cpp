@@ -148,7 +148,8 @@ CallAdapter::onParticipantAdded(const QString& callId, int index)
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
     auto& callModel = accInfo.callModel;
     try {
-        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(convUid_);
+        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(
+            convUid_);
         if (callId != currentConvInfo->get().callId && callId != currentConvInfo->get().confId) {
             qDebug() << "trying to update not current conf";
             return;
@@ -166,7 +167,8 @@ CallAdapter::onParticipantRemoved(const QString& callId, int index)
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
     auto& callModel = accInfo.callModel;
     try {
-        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(convUid_);
+        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(
+            convUid_);
         if (callId != currentConvInfo->get().callId && callId != currentConvInfo->get().confId) {
             qDebug() << "trying to update not current conf";
             return;
@@ -183,7 +185,8 @@ CallAdapter::onParticipantUpdated(const QString& callId, int index)
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
     auto& callModel = accInfo.callModel;
     try {
-        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(convUid_);
+        const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(
+            convUid_);
         if (callId != currentConvInfo->get().callId && callId != currentConvInfo->get().confId) {
             qDebug() << "trying to update not current conf";
             return;
@@ -297,7 +300,10 @@ CallAdapter::onCallInfosChanged(const QString& accountId, const QString& callId)
          */
         const auto& convInfo = lrcInstance_->getConversationFromCallId(callId);
         if (!convInfo.uid.isEmpty()) {
-            Q_EMIT callInfosChanged(call.isAudioOnly, accountId, convInfo.uid);
+            QVariantList var {};
+            var.push_back(call.isAudioOnly);
+            Q_EMIT callInfosChanged(var, accountId, convInfo.uid);
+            participantsModel_->setConferenceLayout(call.layout, callId);
             updateCallOverlay(convInfo);
         }
     } catch (...) {
@@ -491,6 +497,7 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
     updateCallOverlay(convInfo);
     updateRecordingPeers(true);
     participantsModel_->setParticipants(call->id, getConferencesInfos());
+    participantsModel_->setConferenceLayout(call->layout, call->id);
 }
 
 void
@@ -504,8 +511,9 @@ CallAdapter::fillParticipantData(QJsonObject& participant) const
         participant["isLocal"] = true;
     } else {
         try {
-            participant["bestName"] = lrcInstance_->getCurrentAccountInfo().contactModel->bestNameForContact(
-                participant["uri"].toString());
+            participant["bestName"] = lrcInstance_->getCurrentAccountInfo()
+                                          .contactModel->bestNameForContact(
+                                              participant["uri"].toString());
         } catch (...) {
         }
     }
@@ -521,7 +529,10 @@ CallAdapter::getConferencesInfos() const
     auto callId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
     if (!callId.isEmpty()) {
         try {
-            auto& participantsModel = lrcInstance_->accountModel().getAccountInfo(accountId_).callModel.get()->getParticipantsInfos(callId);
+            auto& participantsModel = lrcInstance_->accountModel()
+                                          .getAccountInfo(accountId_)
+                                          .callModel.get()
+                                          ->getParticipantsInfos(callId);
             int index = 0;
             for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
                 auto participant = participantsModel.toQJsonObject(index);
@@ -714,14 +725,13 @@ CallAdapter::maximizeParticipant(const QString& uri)
         confId = convInfo.callId;
     try {
         auto participants = getConferencesInfos();
-            for (auto part : participants) {
-                auto participant = part.toJsonObject();
+        for (auto part : participants) {
+            auto participant = part.toJsonObject();
             if (participant["uri"].toString() == uri) {
                 participant["active"] = !participant["active"].toBool();
                 if (participant["active"].toBool()) {
                     callModel->setActiveParticipant(confId, uri);
-                    callModel->setConferenceLayout(confId,
-                                                    lrc::api::call::Layout::ONE_WITH_SMALL);
+                    callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE_WITH_SMALL);
                 } else if (participant["y"].toInt() != 0) {
                     callModel->setActiveParticipant(confId, uri);
                     callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE);
@@ -754,7 +764,7 @@ CallAdapter::minimizeParticipant(const QString& uri)
                     participant["active"] = !participant["active"].toBool();
                     if (participant["y"].toInt() == 0) {
                         callModel->setConferenceLayout(confId,
-                                                        lrc::api::call::Layout::ONE_WITH_SMALL);
+                                                       lrc::api::call::Layout::ONE_WITH_SMALL);
                     } else {
                         callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
                     }
@@ -876,7 +886,7 @@ CallAdapter::isCurrentModerator() const
                 auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
                 for (const auto& part : participants) {
                     auto participant = part.toJsonObject();
-                    if (participant["uri"].toString() == accInfo.profileInfo.uri){
+                    if (participant["uri"].toString() == accInfo.profileInfo.uri) {
                         return participant["isModerator"].toBool();
                     }
                 }

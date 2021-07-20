@@ -173,6 +173,40 @@ Control {
                     console.warn(err.message)
                 }
             }
+        },
+        Action {
+            id: conferenceLayoutMenuAction
+            text: JamiStrings.selectConferenceLayout
+            Component.onCompleted: enabled = 1
+            property int popupMode: CallActionBar.ActionPopupMode.ListElement
+            property var listModel: ListModel {
+                id: layoutModel
+
+                Component.onCompleted: {
+                    layoutModel.append({"Name": "Host",
+                                       "IconSource": JamiResources.mosaic_black_24dp_svg,
+                                       "LayoutType": CallParticipantsModel.HOST})
+                    layoutModel.append({"Name": "test",
+                                       "IconSource": JamiResources.mosaic_black_24dp_svg,
+                                       "LayoutType": CallParticipantsModel.DEFAULT})
+                }
+            }
+            function accept(index) {
+                console.log(CallParticipantsModel.conferenceLayout)
+                switch(layoutModel.get(index).LayoutType) {
+                  case CallParticipantsModel.HOST: {
+                      CallParticipantsModel.conferenceLayout = CallParticipantsModel.HOST
+                      console.log("host")
+                      break
+                  }
+                  case CallParticipantsModel.DEFAULT: {
+                      CallParticipantsModel.conferenceLayout = CallParticipantsModel.DEFAULT
+                      console.log("default")
+                      break
+                  }
+                }
+                console.log(CallParticipantsModel.conferenceLayout)
+            }
         }
     ]
 
@@ -297,6 +331,16 @@ Control {
             icon.color: "white"
             text: JamiStrings.viewPlugin
             enabled: PluginAdapter.callMediaHandlersListCount
+        },
+        Action {
+            id: layoutAction
+            property bool openPopupWhenClicked: true
+            checkable: !openPopupWhenClicked
+            icon.source: JamiResources.mosaic_black_24dp_svg
+            icon.color: "white"
+            text: JamiStrings.selectConferenceLayout
+            property var menuAction: conferenceLayoutMenuAction
+            enabled: isConference
         }
     ]
 
@@ -335,6 +379,7 @@ Control {
             CallOverlayModel.addSecondaryControl(shareAction)
         CallOverlayModel.addSecondaryControl(recordAction)
         CallOverlayModel.addSecondaryControl(pluginsAction)
+        CallOverlayModel.addSecondaryControl(layoutAction)
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
 
         muteAudioAction.checked = isAudioMuted

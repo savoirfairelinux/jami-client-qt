@@ -37,6 +37,13 @@ Item {
         }
     }
 
+    Connections {
+        target: CallParticipantsModel
+
+        function onLayoutChanged() {
+            console.log("NEW LAYOUT")
+        }
+    }
 
     Component {
        id: callVideoMedia

@@ -98,7 +98,8 @@ CallParticipantsModel::addParticipant(int index, const QVariant& infos)
 
     callId_ = participants_[index].item["callId"].toString();
     lrcInstance_->renderer()->addDistantRenderer(participants_[index].item["sinkId"].toString());
-    renderers_[participants_[index].item["callId"].toString()].append(participants_[index].item["sinkId"].toString());
+    renderers_[participants_[index].item["callId"].toString()].append(
+        participants_[index].item["sinkId"].toString());
 }
 
 void
@@ -107,7 +108,7 @@ CallParticipantsModel::updateParticipant(int index, const QVariant& infos)
     if (participants_.size() <= index)
         return;
     auto it = participants_.begin() + index;
-    (*it) =  CallParticipant::Item {infos.toJsonObject()};
+    (*it) = CallParticipant::Item {infos.toJsonObject()};
 
     callId_ = participants_[index].item["callId"].toString();
     Q_EMIT updateParticipant(it->item.toVariantMap());
@@ -160,8 +161,6 @@ CallParticipantsModel::setParticipants(const QString& callId, const QVariantList
 void
 CallParticipantsModel::resetParticipants(const QString& callId, const QVariantList& participants)
 {
-    if (callId == callId_)
-        setParticipants(callId, participants);
-    else if (participants.isEmpty())
+    if (callId != callId_ && participants.isEmpty())
         clearParticipantsRenderes(callId);
 }

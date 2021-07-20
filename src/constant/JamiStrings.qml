@@ -201,6 +201,7 @@ Item {
     property string chat: qsTr("Chat")
     property string moreOptions: qsTr("More options")
     property string mosaic: qsTr("Mosaic")
+    property string selectConferenceLayout: qsTr("Select conference layout")
 
     // LineEditContextMenu
     property string copy: qsTr("Copy")

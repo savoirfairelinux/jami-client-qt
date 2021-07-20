@@ -70,8 +70,13 @@ struct Item
 class CallParticipantsModel : public QAbstractListModel
 {
     Q_OBJECT
+
+    Q_PROPERTY(lrc::api::call::Layout conferenceLayout READ conferenceLayout NOTIFY layoutChanged)
 public:
     CallParticipantsModel(LRCInstance* instance, QObject* parent = nullptr);
+
+    // typedef enum { GRID, ONE_WITH_SMALL, ONE } LayoutType;
+    Q_ENUM(lrc::api::call::Layout);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
@@ -83,9 +88,24 @@ public:
     void clearParticipantsRenderes(const QString& callId);
     void setParticipants(const QString& callId, const QVariantList& participants);
     void resetParticipants(const QString& callId, const QVariantList& participants);
+    void setConferenceLayout(const lrc::api::call::Layout& layout, const QString& callId)
+    {
+        if (callId != callId_)
+            return;
+        if (layout != layout_) {
+            layout_ = layout;
+            Q_EMIT layoutChanged();
+            qDebug("EMITED!");
+        }
+    }
+    lrc::api::call::Layout conferenceLayout()
+    {
+        return layout_;
+    }
 
 Q_SIGNALS:
     void updateParticipant(QVariant participantInfos);
+    void layoutChanged();
 
 private:
     LRCInstance* lrcInstance_ {nullptr};
@@ -93,4 +113,5 @@ private:
     QList<CallParticipant::Item> participants_ {};
     QMap<QString, QStringList> renderers_ {};
     QString callId_;
+    lrc::api::call::Layout layout_;
 };
