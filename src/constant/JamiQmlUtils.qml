@@ -35,6 +35,8 @@ Item {
     property bool callIsFullscreen: false
     signal fullScreenCallEnded
 
+    property var accountCreationInputParaObject: ({})
+
     // MessageBar buttons in mainview points
     property var mainViewRectObj
     property var messageBarButtonsRowObj

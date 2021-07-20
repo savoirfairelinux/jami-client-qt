@@ -74,6 +74,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/searchresultslistmodel.cpp
     ${SRC_DIR}/calloverlaymodel.cpp
     ${SRC_DIR}/filestosendlistmodel.cpp
+    ${SRC_DIR}/wizardstatemachine.cpp
     ${SRC_DIR}/avatarregistry.cpp)
 
 set(COMMON_HEADERS
@@ -132,6 +133,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/searchresultslistmodel.h
     ${SRC_DIR}/calloverlaymodel.h
     ${SRC_DIR}/filestosendlistmodel.h
+    ${SRC_DIR}/wizardstatemachine.h
     ${SRC_DIR}/avatarregistry.h)
 
 set(QML_LIBS
