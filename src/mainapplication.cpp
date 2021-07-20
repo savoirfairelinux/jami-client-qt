@@ -27,7 +27,6 @@
 #include "systemtray.h"
 #include "namedirectory.h"
 #include "qrimageprovider.h"
-#include "tintedbuttonimageprovider.h"
 #include "avatarimageprovider.h"
 #include "avatarregistry.h"
 
@@ -180,7 +179,7 @@ MainApplication::~MainApplication()
 bool
 MainApplication::init()
 {
-    setWindowIcon(QIcon(":images/jami.ico"));
+    setWindowIcon(QIcon(":/images/jami.ico"));
 
     // Lrc web resources
     QResource::registerResource(QCoreApplication::applicationDirPath() + QDir::separator()
@@ -426,10 +425,8 @@ MainApplication::parseArguments()
 void
 MainApplication::setApplicationFont()
 {
-    QFont font;
-    font.setFamily("Segoe UI");
-    setFont(font);
-    QFontDatabase::addApplicationFont(":/images/FontAwesome.otf");
+    setFont(QFont("Segoe UI"));
+    QFontDatabase::addApplicationFont(":/fonts/FontAwesome.otf");
 }
 
 void
@@ -471,8 +468,6 @@ MainApplication::initQmlLayer()
     Utils::registerTypes();
 
     engine_->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance_.get()));
-    engine_->addImageProvider(QLatin1String("tintedPixmap"),
-                              new TintedButtonImageProvider(lrcInstance_.get()));
     engine_->addImageProvider(QLatin1String("avatarImage"),
                               new AvatarImageProvider(lrcInstance_.get()));
 
@@ -491,7 +486,7 @@ MainApplication::initQmlLayer()
 void
 MainApplication::initSystray()
 {
-    systemTray_->setIcon(QIcon(":images/jami.svg"));
+    systemTray_->setIcon(QIcon(":/images/jami.svg"));
 
     QMenu* systrayMenu = new QMenu();
 
