@@ -94,7 +94,6 @@ set(COMMON_HEADERS
     ${SRC_DIR}/qrimageprovider.h
     ${SRC_DIR}/messagesadapter.h
     ${SRC_DIR}/accountadapter.h
-    ${SRC_DIR}/tintedbuttonimageprovider.h
     ${SRC_DIR}/calladapter.h
     ${SRC_DIR}/conversationsadapter.h
     ${SRC_DIR}/distantrenderer.h

@@ -27,7 +27,6 @@
 #include "systemtray.h"
 #include "namedirectory.h"
 #include "qrimageprovider.h"
-#include "tintedbuttonimageprovider.h"
 #include "avatarimageprovider.h"
 #include "avatarregistry.h"
 
@@ -471,8 +470,6 @@ MainApplication::initQmlLayer()
     Utils::registerTypes();
 
     engine_->addImageProvider(QLatin1String("qrImage"), new QrImageProvider(lrcInstance_.get()));
-    engine_->addImageProvider(QLatin1String("tintedPixmap"),
-                              new TintedButtonImageProvider(lrcInstance_.get()));
     engine_->addImageProvider(QLatin1String("avatarImage"),
                               new AvatarImageProvider(lrcInstance_.get()));
 
