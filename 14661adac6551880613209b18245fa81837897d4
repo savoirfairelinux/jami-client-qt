@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c7325d5_a313f818",
+        "filename": "src/commoncomponents/ResponsiveImage.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-21T14:53:28Z",
+      "side": 1,
+      "message": "ScreenInfo is in net.jami.Helpers, do we need this?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "14661adac6551880613209b18245fa81837897d4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4424a6e_638389ab",
+        "filename": "src/mainview/components/WelcomePageQrDialog.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-21T14:53:28Z",
+      "side": 1,
+      "message": "does this help the tests pass?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "14661adac6551880613209b18245fa81837897d4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
