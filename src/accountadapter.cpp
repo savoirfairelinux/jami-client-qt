@@ -36,11 +36,7 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
 {
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accSrcModel_.get(), "AccountListModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accModel_.get(), "CurrentAccountFilterModel");
-}
 
-void
-AccountAdapter::safeInit()
-{
     connect(&lrcInstance_->accountModel(),
             &NewAccountModel::accountStatusChanged,
             this,
@@ -51,6 +47,10 @@ AccountAdapter::safeInit()
             this,
             &AccountAdapter::accountStatusChanged);
 }
+
+void
+AccountAdapter::safeInit()
+{}
 
 NewAccountModel*
 AccountAdapter::getModel()
@@ -219,6 +219,14 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
 void
 AccountAdapter::deleteCurrentAccount()
 {
+    Utils::oneShotConnect(&lrcInstance_->accountModel(),
+                          &lrc::api::NewAccountModel::accountRemoved,
+                          [this](const QString& accountId) {
+                              Q_UNUSED(accountId);
+                              // For testing purpose
+                              Q_EMIT accountRemoved();
+                          });
+
     lrcInstance_->accountModel().removeAccount(lrcInstance_->get_currentAccountId());
     Q_EMIT lrcInstance_->accountListChanged();
 }
