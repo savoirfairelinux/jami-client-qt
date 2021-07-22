@@ -109,10 +109,10 @@ Rectangle {
     function resetPlugin() {
         if (isLoaded) {
             PluginModel.unloadPlugin(pluginId)
-            PluginModel.resetPluginPreferencesValues(pluginId)
+            PluginModel.resetPluginPreferencesValues(pluginId, "")
             PluginModel.loadPlugin(pluginId)
         } else {
-            PluginModel.resetPluginPreferencesValues(pluginId)
+            PluginModel.resetPluginPreferencesValues(pluginId, "")
         }
         pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.generalCategory)
         pluginPreferenceViewCategory.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.category)
@@ -138,10 +138,10 @@ Rectangle {
     {
         if (isLoaded) {
             PluginModel.unloadPlugin(pluginId)
-            PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
+            PluginModel.setPluginPreference("", pluginId, preferenceKey, preferenceNewValue)
             PluginModel.loadPlugin(pluginId)
         } else
-            PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
+            PluginModel.setPluginPreference("", pluginId, preferenceKey, preferenceNewValue)
         PluginAdapter.pluginHandlersUpdateStatus()
     }
 
