@@ -24,7 +24,14 @@
 
 PluginListPreferenceModel::PluginListPreferenceModel(QObject* parent)
     : AbstractListModelBase(parent)
-{}
+{
+    if (lrcInstance_) {
+        connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this]() {
+            // accountId_ = lrcInstance_->get_currentAccountId();
+            // reset();
+        });
+    }
+}
 
 PluginListPreferenceModel::~PluginListPreferenceModel() {}
 
