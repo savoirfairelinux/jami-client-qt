@@ -35,6 +35,13 @@ PreferenceItemListModel::PreferenceItemListModel(QObject* parent, LRCInstance* i
     : AbstractListModelBase(parent)
 {
     lrcInstance_ = instance;
+
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this]() {
+        // accountId_ = lrcInstance_->get_currentAccountId();
+        // qDebug() << "accountId_: " << accountId_;
+        // preferenceList_.clear();
+        // preferencesCount();
+    });
 }
 
 PreferenceItemListModel::~PreferenceItemListModel() {}
@@ -72,8 +79,8 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     bool checkImage = false;
 
     auto details = preferenceList_.at(index.row());
-    preferenceCurrent = lrcInstance_->pluginModel().getPluginPreferencesValues(
-        pluginId_)[details["key"]];
+    preferenceCurrent = lrcInstance_->pluginModel()
+                            .getPluginPreferencesValues(pluginId_, accountId_)[details["key"]];
     auto it = mapType.find(details["type"]);
     if (it != mapType.end()) {
         type = mapType[details["type"]];
@@ -91,7 +98,9 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     }
     const auto dependsOn = details["dependsOn"].split(",");
     const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
-    const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_);
+    const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
+                                                                                   accountId_);
+    // qDebug() << "prefValues: " << accountId_ << prefValues;
     bool enabled = true;
     for (auto& preference : preferences) {
         auto key = preference["key"];
