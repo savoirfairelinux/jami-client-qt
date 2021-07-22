@@ -101,4 +101,7 @@ TEST_F(ContactFixture, AddSIPContactTest)
 
     QVERIFY(accountRemovedSpy.wait());
     QCOMPARE(accountRemovedSpy.count(), 1);
+
+    auto accountListSize = globalEnv.lrcInstance->accountModel().getAccountList().size();
+    ASSERT_EQ(accountListSize, 0);
 }
