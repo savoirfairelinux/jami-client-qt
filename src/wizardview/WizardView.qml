@@ -85,12 +85,16 @@ Rectangle {
         StackLayout {
             id: controlPanelStackView
 
+            objectName: "controlPanelStackView"
+
             anchors.centerIn: parent
 
             width: wizardViewScrollView.width
 
             WelcomePage {
                 id: welcomePage
+
+                objectName: "welcomePage"
 
                 property int stackLayoutIndex: 0
 
@@ -105,6 +109,8 @@ Rectangle {
             CreateAccountPage {
                 id: createAccountPage
 
+                objectName: "createAccountPage"
+
                 property int stackLayoutIndex: 1
 
                 onShowThisPage: controlPanelStackView.currentIndex = stackLayoutIndex
@@ -112,6 +118,8 @@ Rectangle {
 
             ProfilePage {
                 id: profilePage
+
+                objectName: "profilePage"
 
                 property int stackLayoutIndex: 2
 
@@ -121,6 +129,8 @@ Rectangle {
             BackupKeyPage {
                 id: backupKeysPage
 
+                objectName: "backupKeysPage"
+
                 property int stackLayoutIndex: 3
 
                 onShowThisPage: controlPanelStackView.currentIndex = stackLayoutIndex
@@ -128,6 +138,8 @@ Rectangle {
 
             ImportFromDevicePage {
                 id: importFromDevicePage
+
+                objectName: "importFromDevicePage"
 
                 property int stackLayoutIndex: 4
 
@@ -137,6 +149,8 @@ Rectangle {
             ImportFromBackupPage {
                 id: importFromBackupPage
 
+                objectName: "importFromBackupPage"
+
                 property int stackLayoutIndex: 5
 
                 onShowThisPage: controlPanelStackView.currentIndex = stackLayoutIndex
@@ -145,6 +159,8 @@ Rectangle {
             ConnectToAccountManagerPage {
                 id: connectToAccountManagerPage
 
+                objectName: "connectToAccountManagerPage"
+
                 property int stackLayoutIndex: 6
 
                 onShowThisPage: controlPanelStackView.currentIndex = stackLayoutIndex
@@ -152,6 +168,8 @@ Rectangle {
 
             CreateSIPAccountPage {
                 id: createSIPAccountPage
+
+                objectName: "createSIPAccountPage"
 
                 property int stackLayoutIndex: 7
 
