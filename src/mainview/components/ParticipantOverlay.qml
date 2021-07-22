@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
- * Author: Albert Babí <albert.babi@savoirfairelinux.com>
+ * Authors: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ *          Albert Babí <albert.babi@savoirfairelinux.com>
+ *          Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,6 +60,10 @@ Item {
                 root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
                 setMenu(participantInfos.uri, participantInfos.bestName, participantInfos.isLocal, participantInfos.active, true)
                 setAvatar(participantInfos.videoMuted, participantInfos.uri, participantInfos.isLocal)
+                if (CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL) {
+                    ActiveParticipantsFilterModel.reset()
+                    GenericParticipantsFilterModel.reset()
+                }
             }
         }
     }
@@ -108,7 +113,7 @@ Item {
 
         color: "transparent"
         border.color: "yellow"
-        border.width: root.participantIsActive ? 3 : 0
+        border.width: 0
         visible: true
 
         // Participant header with host, moderator and mute indicators
