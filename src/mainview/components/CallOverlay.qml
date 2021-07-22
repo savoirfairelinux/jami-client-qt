@@ -66,7 +66,7 @@ Item {
             root.isGrid = isGrid
             mainOverlay.recordingVisible = isRecording
         }
-        root.isModerator = CallAdapter.isCurrentModerator()
+        root.isModerator = CallAdapter.isModerator()
     }
 
     function showOnHoldImage(visible) {
