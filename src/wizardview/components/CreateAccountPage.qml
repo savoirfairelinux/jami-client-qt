@@ -76,6 +76,8 @@ Rectangle {
     StackLayout {
         id: createAccountStack
 
+        objectName: "createAccountStack"
+
         anchors.fill: parent
 
         Rectangle {
@@ -117,6 +119,8 @@ Rectangle {
 
                 UsernameLineEdit {
                     id: usernameEdit
+
+                    objectName: "usernameEdit"
 
                     Layout.topMargin: 15
                     Layout.preferredHeight: fieldLayoutHeight
@@ -234,6 +238,8 @@ Rectangle {
                     Switch {
                         id: passwordSwitch
 
+                        objectName: "passwordSwitch"
+
                         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                         Layout.leftMargin: -JamiTheme.wizardViewPageLayoutSpacing
                         Layout.topMargin: 5
@@ -249,6 +255,8 @@ Rectangle {
 
                 MaterialLineEdit {
                     id: passwordEdit
+
+                    objectName: "passwordEdit"
 
                     Layout.preferredHeight: fieldLayoutHeight
                     Layout.preferredWidth: createAccountButton.width
@@ -266,6 +274,8 @@ Rectangle {
 
                 MaterialLineEdit {
                     id: passwordConfirmEdit
+
+                    objectName: "passwordConfirmEdit"
 
                     Layout.preferredHeight: fieldLayoutHeight
                     Layout.preferredWidth: createAccountButton.width
@@ -293,6 +303,8 @@ Rectangle {
 
                 MaterialButton {
                     id: createAccountButton
+
+                    objectName: "createAccountButton"
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: preferredWidth

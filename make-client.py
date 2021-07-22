@@ -37,6 +37,8 @@ test_data_dir = temp_path + '\\jami_test\\jami'
 test_config_dir = temp_path + '\\jami_test\\.config'
 test_cache_dir = temp_path + '\\jami_test\\.cache'
 
+windows_font_dir = 'C:\\Windows\\Fonts'
+
 class TestBuilding(Enum):
     NoTests = 0
     WithTests = 1
@@ -319,6 +321,9 @@ def run_tests(mute_jamid, output_to_files):
     # make sure that the tests are rendered offscreen
     os.environ["QT_QPA_PLATFORM"] = 'offscreen'
     os.environ["QT_QUICK_BACKEND"] = 'software'
+
+    # provide font dir
+    os.environ["QT_QPA_FONTDIR"] = windows_font_dir
 
     # set test env variables
     os.environ["JAMI_DATA_HOME"] = test_data_dir
