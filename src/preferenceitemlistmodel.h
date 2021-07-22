@@ -88,4 +88,5 @@ private:
     QString mediaHandlerName_ = "";
     VectorMapStringString preferenceList_;
     QString category_ = "all";
+    QString accountId_ = "";
 };
