@@ -39,9 +39,6 @@ class CallAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, hasCall)
 
 public:
-    enum MuteStates { UNMUTED, LOCAL_MUTED, MODERATOR_MUTED, BOTH_MUTED };
-    Q_ENUM(MuteStates)
-
     explicit CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent = nullptr);
     ~CallAdapter() = default;
 
@@ -68,7 +65,6 @@ public:
     Q_INVOKABLE bool participantIsHost(const QString& uri) const;
     Q_INVOKABLE void setModerator(const QString& uri, const bool state);
     Q_INVOKABLE bool isModerator(const QString& uri = {}) const;
-    Q_INVOKABLE bool isCurrentModerator() const;
     Q_INVOKABLE void holdThisCallToggle();
     Q_INVOKABLE void muteThisCallToggle();
     Q_INVOKABLE void recordThisCallToggle();
@@ -76,7 +72,6 @@ public:
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE QVariantList getConferencesInfos() const;
     Q_INVOKABLE void muteParticipant(const QString& uri, const bool state);
-    Q_INVOKABLE MuteStates getMuteState(const QString& uri) const;
     Q_INVOKABLE void hangupParticipant(const QString& uri);
     Q_INVOKABLE void updateCall(const QString& convUid = {},
                                 const QString& accountId = {},
@@ -99,7 +94,6 @@ Q_SIGNALS:
                        bool isGrid);
     void remoteRecordingChanged(const QStringList& peers, bool state);
     void eraseRemoteRecording();
-    void updateParticipantsLayout();
 
 public Q_SLOTS:
     void onShowIncomingCallView(const QString& accountId, const QString& convUid);
@@ -129,5 +123,7 @@ private:
     SystemTray* systemTray_;
     QScopedPointer<CallOverlayModel> overlayModel_;
     QScopedPointer<CallParticipantsModel> participantsModel_;
+    QScopedPointer<GenericParticipantsFilterModel> participantsModelFiltered_;
+    QScopedPointer<ActiveParticipantsFilterModel> activeParticipantsModel_;
     VectorString currentConfSubcalls_;
 };

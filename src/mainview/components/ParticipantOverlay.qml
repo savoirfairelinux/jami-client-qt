@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
- * Author: Albert Babí <albert.babi@savoirfairelinux.com>
+ * Authors: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ *          Albert Babí <albert.babi@savoirfairelinux.com>
+ *          Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
  */
 
 import QtQuick 2.15
+import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.15
 import QtQuick.Shapes 1.15
 
@@ -33,69 +35,26 @@ Item {
     // svg path for the participant indicators background shape
     property int shapeWidth: indicatorsRowLayout.width + 8
     property int shapeHeight: 16
-    property int shapeRadius: 6
+    property int shapeRadius: 5
     property string pathShape: "M0,0 h%1 q%2,0 %2,%2 v%3 h-%4 z"
         .arg(shapeWidth - shapeRadius)
         .arg(shapeRadius)
         .arg(shapeHeight - shapeRadius)
         .arg(shapeWidth)
 
-    property string uri: overlayMenu.uri
-    property alias sinkId:  mediaDistRender.rendererId
-    property bool participantIsActive: false
-    property bool participantIsHost: false
+    property bool isModerator: CallAdapter.isModerator()
+    property bool isLocal: false
+    property string uri: ""
     property bool participantIsModerator: false
-    property bool participantIsMuted: false
-    property bool participantIsModeratorMuted: false
-
-    Connections {
-        target: CallParticipantsModel
-
-        function onUpdateParticipant(participantInfos) {
-            if (participantInfos.uri === overlayMenu.uri) {
-                root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
-                setMenu(participantInfos.uri, participantInfos.bestName, participantInfos.isLocal, participantInfos.active, true)
-                setAvatar(participantInfos.videoMuted, participantInfos.uri, participantInfos.isLocal)
-            }
-        }
-    }
-
-    function setAvatar(show, uri, isLocal) {
-        if (!show)
-            avatar.active = false
-        else {
-            avatar.mode_ = isLocal ? Avatar.Mode.Account : Avatar.Mode.Contact
-            avatar.imageId_ = isLocal ? LRCInstance.currentAccountId : uri
-            avatar.active = true
-        }
-    }
-
-    function setMenu(uri, bestName, isLocal, isActive, showMax) {
-        overlayMenu.uri = uri
-        overlayMenu.bestName = bestName
-
-        var isHost = CallAdapter.isCurrentHost()
-        var isModerator = CallAdapter.isCurrentModerator()
-        participantIsHost = CallAdapter.participantIsHost(overlayMenu.uri)
-        participantIsModerator = CallAdapter.isModerator(overlayMenu.uri)
-        participantIsActive = isActive
-        overlayMenu.showSetModerator = isHost && !isLocal && !participantIsModerator
-        overlayMenu.showUnsetModerator = isHost && !isLocal && participantIsModerator
-
-        var muteState = CallAdapter.getMuteState(overlayMenu.uri)
-        overlayMenu.isLocalMuted = muteState === CallAdapter.LOCAL_MUTED
-                || muteState === CallAdapter.BOTH_MUTED
-        var isModeratorMuted = muteState === CallAdapter.MODERATOR_MUTED
-                || muteState === CallAdapter.BOTH_MUTED
-
-        participantIsMuted = overlayMenu.isLocalMuted || isModeratorMuted
-
-        overlayMenu.showModeratorMute = isModerator && !isModeratorMuted
-        overlayMenu.showModeratorUnmute = isModerator && isModeratorMuted
-        overlayMenu.showMaximize = isModerator
-        overlayMenu.showMinimize = isModerator && participantIsActive
-        overlayMenu.showHangup = isModerator && !isLocal && !participantIsHost
-    }
+    property bool participantIsHost: CallAdapter.participantIsHost(uri)
+    property string bestName: ""
+    property bool videoMuted: true
+    property string sinkId: ""
+    property bool participantIsActive: false
+    property bool isHost: CallAdapter.isCurrentHost()
+    property bool isLocalMuted: false
+    property bool isModeratorMuted: false
+    property bool participantIsMuted: isLocalMuted || isModeratorMuted
 
     Rectangle {
         id: peerOverlay
@@ -105,7 +64,7 @@ Item {
 
         color: "transparent"
         border.color: "yellow"
-        border.width: root.participantIsActive ? 3 : 0
+        border.width: 0
         visible: true
 
         // Participant header with host, moderator and mute indicators
@@ -113,7 +72,7 @@ Item {
             id: participantIndicators
             width: indicatorsRowLayout.width
             height: shapeHeight
-            visible: participantIsHost || participantIsModerator || participantIsMuted
+            visible: root.participantIsHost || root.participantIsModerator || participantIsMuted
             color: "transparent"
             anchors.bottom: parent.bottom
 
@@ -142,7 +101,7 @@ Item {
                     containerHeight: 12
                     containerWidth: 12
 
-                    visible: participantIsHost
+                    visible: root.participantIsHost
 
                     source: JamiResources.star_outline_24dp_svg
                     color: JamiTheme.whiteColor
@@ -157,7 +116,7 @@ Item {
                     containerHeight: 12
                     containerWidth: 12
 
-                    visible: participantIsModerator
+                    visible: root.participantIsModerator
 
                     source: JamiResources.moderator_svg
                     color: JamiTheme.whiteColor
@@ -220,6 +179,14 @@ Item {
             ParticipantOverlayMenu {
                 id: overlayMenu
                 anchors.fill: parent
+
+                showSetModerator: root.isHost && !root.isLocal && !root.participantIsModerator
+                showUnsetModerator: root.isHost && !root.isLocal && root.participantIsModerator
+                showModeratorMute: root.isModerator && !root.isModeratorMuted
+                showModeratorUnmute: root.isModerator && root.isModeratorMuted
+                showMaximize: root.isModerator && CallParticipantsModel.conferenceLayout !== CallParticipantsModel.ONE
+                showMinimize: root.isModerator && root.participantIsActive
+                showHangup: root.isModerator && !root.isLocal && !root.participantIsHost
             }
 
             Behavior on opacity { NumberAnimation { duration: JamiTheme.shortFadeDuration }}
@@ -231,7 +198,9 @@ Item {
 
         anchors.centerIn: parent
 
-        active: false
+        active: root.videoMuted
+        mode_: root.isLocal ? Avatar.Mode.Account : Avatar.Mode.Contact
+        imageId_: root.isLocal ? LRCInstance.currentAccountId : root.uri
 
         property real size_: Math.min(parent.width / 2, parent.height / 2)
         height:  size_
@@ -258,8 +227,8 @@ Item {
         id: mediaDistRender
 
         anchors.fill: parent
-        anchors.centerIn: parent
-        z: -1
+        rendererId: root.sinkId
+        visible: !root.videoMuted
 
         lrcInstance: LRCInstance
 
@@ -268,6 +237,20 @@ Item {
             participantMouseArea.width = mediaDistRender.getWidgetWidth() !== 0 ? mediaDistRender.getWidgetWidth() : mediaDistRender.width
             peerOverlay.height = participantMouseArea.height + 3
             peerOverlay.width = participantMouseArea.width + 3
+        }
+
+        layer.enabled: !root.videoMuted
+        layer.effect: OpacityMask {
+            maskSource: Item {
+                width: mediaDistRender.width
+                height: mediaDistRender.height
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: peerOverlay.width
+                    height: peerOverlay.height
+                    radius: 10
+                }
+            }
         }
     }
 }

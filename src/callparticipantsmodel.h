@@ -67,11 +67,86 @@ struct Item
 };
 } // namespace CallParticipant
 
+/*
+ * The CurrentAccountFilterModel class
+ * is for the sole purpose of filtering out current account.
+ */
+class GenericParticipantsFilterModel final : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+public:
+    explicit GenericParticipantsFilterModel(LRCInstance* lrcInstance,
+                                            QAbstractListModel* parent = nullptr)
+        : QSortFilterProxyModel(parent)
+        , lrcInstance_(lrcInstance)
+    {
+        setSourceModel(parent);
+        setFilterRole(CallParticipant::Role::Active);
+    }
+
+    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
+    {
+        // Accept all participants in participants list filtered with active status.
+        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
+        return !sourceModel()->data(index, CallParticipant::Role::Active).toBool();
+    }
+
+    Q_INVOKABLE void reset()
+    {
+        beginResetModel();
+        endResetModel();
+    }
+
+protected:
+    LRCInstance* lrcInstance_ {nullptr};
+};
+
+/*
+ * The ActiveParticipantsFilterModel class
+ * is for the sole purpose of filtering out current account.
+ */
+class ActiveParticipantsFilterModel final : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+public:
+    explicit ActiveParticipantsFilterModel(LRCInstance* lrcInstance,
+                                           QAbstractListModel* parent = nullptr)
+        : QSortFilterProxyModel(parent)
+        , lrcInstance_(lrcInstance)
+    {
+        setSourceModel(parent);
+        setFilterRole(CallParticipant::Role::Active);
+    }
+
+    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
+    {
+        // Accept all participants in participants list filtered with active status.
+        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
+        return sourceModel()->data(index, CallParticipant::Role::Active).toBool();
+    }
+
+    Q_INVOKABLE void reset()
+    {
+        beginResetModel();
+        endResetModel();
+    }
+
+protected:
+    LRCInstance* lrcInstance_ {nullptr};
+};
+
 class CallParticipantsModel : public QAbstractListModel
 {
     Q_OBJECT
+
+    Q_PROPERTY(LayoutType conferenceLayout READ conferenceLayout NOTIFY layoutChanged)
 public:
     CallParticipantsModel(LRCInstance* instance, QObject* parent = nullptr);
+
+    typedef enum { GRID = 0, ONE_WITH_SMALL, ONE } LayoutType;
+    Q_ENUM(LayoutType);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
@@ -83,9 +158,23 @@ public:
     void clearParticipantsRenderes(const QString& callId);
     void setParticipants(const QString& callId, const QVariantList& participants);
     void resetParticipants(const QString& callId, const QVariantList& participants);
+    Q_INVOKABLE void reset();
+    void setConferenceLayout(int layout, const QString& callId)
+    {
+        auto newLayout = static_cast<LayoutType>(layout);
+        if (callId == callId_ && newLayout != layout_) {
+            layout_ = newLayout;
+            Q_EMIT layoutChanged();
+        }
+    }
+    const LayoutType conferenceLayout()
+    {
+        return layout_;
+    }
 
 Q_SIGNALS:
     void updateParticipant(QVariant participantInfos);
+    void layoutChanged();
 
 private:
     LRCInstance* lrcInstance_ {nullptr};
@@ -93,4 +182,5 @@ private:
     QList<CallParticipant::Item> participants_ {};
     QMap<QString, QStringList> renderers_ {};
     QString callId_;
+    LayoutType layout_;
 };
