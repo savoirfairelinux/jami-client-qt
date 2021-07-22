@@ -1,6 +1,7 @@
 /*
- * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ * Copyright (C) 2020-2021 by Savoir-faire Linux
+ * Authors: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ *          Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,70 +20,172 @@
 import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Layouts 1.14
+import QtQuick.Controls 2.15
 
 import net.jami.Adapters 1.0
 import net.jami.Models 1.0
+import net.jami.Constants 1.0
 
 Item {
     id: root
 
-    property alias count: participantincall.count
+    property int count: commonParticipants.count + activeParticipants.count
+    property bool inLine: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL
 
     Connections {
-        target: CallAdapter
+        target: CallParticipantsModel
 
-        function onUpdateParticipantsLayout() {
-            participantsFlow.columns = Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
-            participantsFlow.rows = Math.max(1, Math.ceil(participantincall.count/participantsFlow.columns))
+        function onLayoutChanged() {
+            ActiveParticipantsFilterModel.reset()
+            GenericParticipantsFilterModel.reset()
         }
     }
 
-
     Component {
-       id: callVideoMedia
+        id: callVideoMedia
 
-       ParticipantOverlay {
-           anchors.fill: parent
-           anchors.centerIn: parent
-
-           sinkId: sinkId_
-
+        ParticipantOverlay {
+            anchors.fill: parent
+            anchors.centerIn: parent
+        
+            sinkId: sinkId_
+        
             Component.onCompleted: {
                 setMenu(uri_, bestName_, isLocal_, active_, true)
                 setAvatar(videoMuted_, uri_, isLocal_)
             }
-       }
+        }
     }
 
-    Flow {
-        id: participantsFlow
+    SplitView {
         anchors.fill: parent
-        anchors.centerIn: parent
-        spacing: 8
-        property int columns: Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
-        property int rows: Math.max(1, Math.ceil(participantincall.count/columns))
-        property int columnsSpacing: 5 * (columns - 1)
-        property int rowsSpacing: 5 * (rows - 1)
 
-        Repeater {
-            id: participantincall
-            anchors.fill: parent
-            anchors.centerIn: parent
+        orientation: Qt.Vertical
+        handle: Rectangle {
+            implicitWidth: root.width
+            implicitHeight: 11
+            color: "transparent"
+            Rectangle {
+                anchors.centerIn: parent
+                height: 1
+                width: parent.implicitWidth - 40
+                color: JamiTheme.darkGreyColor
+            }
 
-            model: CallParticipantsModel
-            delegate: Loader {
-                sourceComponent: callVideoMedia
-                width: Math.ceil(participantsFlow.width / participantsFlow.columns) - participantsFlow.columnsSpacing
-                height: Math.ceil(participantsFlow.height / participantsFlow.rows) - participantsFlow.rowsSpacing
-                
-                property string uri_: Uri
-                property string bestName_: BestName
-                property string avatar_: Avatar ? Avatar : ""
-                property string sinkId_: SinkId ? SinkId : ""
-                property bool isLocal_: IsLocal
-                property bool active_: Active
-                property bool videoMuted_: VideoMuted
-                property bool isContact_: IsContact
+            Rectangle {
+                width: 45
+                anchors.centerIn: parent
+                height: 1
+                color: "black"
+            }
+
+            ColumnLayout {
+                anchors.centerIn: parent
+                height: 11
+                width: 45
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 10
+                    Layout.rightMargin: 10
+                    height: 2
+                    color: JamiTheme.darkGreyColor
+                }
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.leftMargin: 10
+                    Layout.rightMargin: 10
+                    height: 2
+                    color: JamiTheme.darkGreyColor
+                }
+            }
+        }
+
+        Rectangle {
+            id: genericParticipantsRect
+
+            SplitView.preferredHeight: (parent.height / 5)
+            SplitView.minimumHeight: (parent.height / 5)
+            SplitView.maximumHeight: inLine ? (parent.height / 5) : parent.height
+
+            visible: inLine || CallParticipantsModel.conferenceLayout === CallParticipantsModel.GRID
+            color: "transparent"
+
+            Rectangle {
+                anchors.centerIn: parent
+                width: commonParticipantsFlow.componentWidth * commonParticipantsFlow.columns + commonParticipantsFlow.columns - 1
+                implicitHeight: parent.height + commonParticipantsFlow.rows - 1
+                color: "transparent"
+
+                // GENERIC
+                Flow {
+                    id: commonParticipantsFlow
+                    anchors.centerIn: parent
+                    anchors.fill: parent
+
+                    spacing: 1
+                    property int columns: inLine ? commonParticipants.count : Math.max(1, Math.ceil(Math.sqrt(commonParticipants.count)))
+                    property int rows: Math.max(1, Math.ceil(commonParticipants.count/columns))
+                    property int componentWidth: inLine ? height : Math.floor(genericParticipantsRect.width / commonParticipantsFlow.columns) - 1
+
+                    Repeater {
+                        id: commonParticipants
+
+                        model: GenericParticipantsFilterModel
+                        delegate: Loader {
+                            sourceComponent: callVideoMedia
+                            width: commonParticipantsFlow.componentWidth
+                            height: inLine ? commonParticipantsFlow.componentWidth : Math.floor(genericParticipantsRect.height / commonParticipantsFlow.rows) - 1
+                            
+                            property string uri_: Uri
+                            property string bestName_: BestName
+                            property string avatar_: Avatar ? Avatar : ""
+                            property string sinkId_: SinkId ? SinkId : ""
+                            property bool isLocal_: IsLocal
+                            property bool active_: Active
+                            property bool videoMuted_: VideoMuted
+                            property bool isContact_: IsContact
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        // ACTIVE
+        Flow {
+            id: activeParticipantsFlow
+
+            SplitView.minimumHeight: (parent.height / 4)
+            SplitView.fillHeight: true
+
+            spacing: 8
+            property int columns: Math.max(1, Math.ceil(Math.sqrt(activeParticipants.count)))
+            property int rows: Math.max(1, Math.ceil(activeParticipants.count/columns))
+            property int columnsSpacing: 5 * (columns - 1)
+            property int rowsSpacing: 5 * (rows - 1)
+
+            visible: inLine || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE
+
+            Repeater {
+                id: activeParticipants
+                anchors.fill: parent
+                anchors.centerIn: parent
+
+                model: ActiveParticipantsFilterModel
+                delegate: Loader {
+                    sourceComponent: callVideoMedia
+                    width: Math.ceil(activeParticipantsFlow.width / activeParticipantsFlow.columns) - activeParticipantsFlow.columnsSpacing
+                    height: Math.ceil(activeParticipantsFlow.height / activeParticipantsFlow.rows) - activeParticipantsFlow.rowsSpacing
+
+                    property string uri_: Uri
+                    property string bestName_: BestName
+                    property string avatar_: Avatar ? Avatar : ""
+                    property string sinkId_: SinkId ? SinkId : ""
+                    property bool isLocal_: IsLocal
+                    property bool active_: Active
+                    property bool videoMuted_: VideoMuted
+                    property bool isContact_: IsContact
+                }
             }
         }
     }
