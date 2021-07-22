@@ -59,6 +59,10 @@ Item {
                 root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
                 setMenu(participantInfos.uri, participantInfos.bestName, participantInfos.isLocal, participantInfos.active, true)
                 setAvatar(participantInfos.videoMuted, participantInfos.uri, participantInfos.isLocal)
+                if (CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL) {
+                    ActiveParticipantsFilterModel.reset()
+                    GenericParticipantsFilterModel.reset()
+                }
             }
         }
     }
@@ -108,7 +112,7 @@ Item {
 
         color: "transparent"
         border.color: "yellow"
-        border.width: root.participantIsActive ? 3 : 0
+        border.width: 0
         visible: true
 
         // Participant header with host, moderator and mute indicators

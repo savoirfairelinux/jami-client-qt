@@ -19,6 +19,7 @@
 import QtQuick 2.14
 import QtQml 2.14
 import QtQuick.Layouts 1.14
+import QtQuick.Controls 2.15
 
 import net.jami.Adapters 1.0
 import net.jami.Models 1.0
@@ -26,17 +27,16 @@ import net.jami.Models 1.0
 Item {
     id: root
 
-    property alias count: participantincall.count
+    property int count: commonParticipants.count + activeParticipants.count
 
     Connections {
-        target: CallAdapter
+        target: CallParticipantsModel
 
-        function onUpdateParticipantsLayout() {
-            participantsFlow.columns = Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
-            participantsFlow.rows = Math.max(1, Math.ceil(participantincall.count/participantsFlow.columns))
+        function onLayoutChanged() {
+            ActiveParticipantsFilterModel.reset()
+            GenericParticipantsFilterModel.reset()
         }
     }
-
 
     Component {
        id: callVideoMedia
@@ -54,35 +54,83 @@ Item {
        }
     }
 
-    Flow {
-        id: participantsFlow
+    SplitView {
         anchors.fill: parent
-        anchors.centerIn: parent
-        spacing: 8
-        property int columns: Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
-        property int rows: Math.max(1, Math.ceil(participantincall.count/columns))
-        property int columnsSpacing: 5 * (columns - 1)
-        property int rowsSpacing: 5 * (rows - 1)
 
-        Repeater {
-            id: participantincall
-            anchors.fill: parent
-            anchors.centerIn: parent
+        orientation: Qt.Vertical
 
-            model: CallParticipantsModel
-            delegate: Loader {
-                sourceComponent: callVideoMedia
-                width: Math.ceil(participantsFlow.width / participantsFlow.columns) - participantsFlow.columnsSpacing
-                height: Math.ceil(participantsFlow.height / participantsFlow.rows) - participantsFlow.rowsSpacing
-                
-                property string uri_: Uri
-                property string bestName_: BestName
-                property string avatar_: Avatar ? Avatar : ""
-                property string sinkId_: SinkId ? SinkId : ""
-                property bool isLocal_: IsLocal
-                property bool active_: Active
-                property bool videoMuted_: VideoMuted
-                property bool isContact_: IsContact
+        // GENERIC
+        Flow {
+            id: commonParticipantsFlow
+
+            SplitView.preferredHeight: (parent.height / 6)
+            SplitView.minimumHeight: (parent.height / 6)
+
+            spacing: 8
+            property int columns: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL ? commonParticipants.count : Math.max(1, Math.ceil(Math.sqrt(commonParticipants.count)))
+            property int rows: Math.max(1, Math.ceil(commonParticipants.count/columns))
+            property int columnsSpacing: 5 * (columns - 1)
+            property int rowsSpacing: 5 * (rows - 1)
+
+            visible: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL || CallParticipantsModel.conferenceLayout === CallParticipantsModel.GRID
+            Repeater {
+                id: commonParticipants
+                anchors.fill: parent
+                anchors.centerIn: parent
+
+                model: GenericParticipantsFilterModel
+                delegate: Loader {
+                    sourceComponent: callVideoMedia
+                    width: Math.ceil(commonParticipantsFlow.width / commonParticipantsFlow.columns) - commonParticipantsFlow.columnsSpacing
+                    height: Math.ceil(commonParticipantsFlow.height / commonParticipantsFlow.rows) - commonParticipantsFlow.rowsSpacing
+                    
+                    property string uri_: Uri
+                    property string bestName_: BestName
+                    property string avatar_: Avatar ? Avatar : ""
+                    property string sinkId_: SinkId ? SinkId : ""
+                    property bool isLocal_: IsLocal
+                    property bool active_: Active
+                    property bool videoMuted_: VideoMuted
+                    property bool isContact_: IsContact
+                }
+            }
+        }
+
+        // ACTIVE
+        Flow {
+            id: activeParticipantsFlow
+
+            SplitView.minimumHeight: (parent.height / 4)
+            SplitView.fillHeight: true
+
+            spacing: 8
+            property int columns: Math.max(1, Math.ceil(Math.sqrt(activeParticipants.count)))
+            property int rows: Math.max(1, Math.ceil(activeParticipants.count/columns))
+            property int columnsSpacing: 5 * (columns - 1)
+            property int rowsSpacing: 5 * (rows - 1)
+
+            visible: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE
+
+            Repeater {
+                id: activeParticipants
+                anchors.fill: parent
+                anchors.centerIn: parent
+
+                model: ActiveParticipantsFilterModel
+                delegate: Loader {
+                    sourceComponent: callVideoMedia
+                    width: Math.ceil(activeParticipantsFlow.width / activeParticipantsFlow.columns) - activeParticipantsFlow.columnsSpacing
+                    height: Math.ceil(activeParticipantsFlow.height / activeParticipantsFlow.rows) - activeParticipantsFlow.rowsSpacing
+                    
+                    property string uri_: Uri
+                    property string bestName_: BestName
+                    property string avatar_: Avatar ? Avatar : ""
+                    property string sinkId_: SinkId ? SinkId : ""
+                    property bool isLocal_: IsLocal
+                    property bool active_: Active
+                    property bool videoMuted_: VideoMuted
+                    property bool isContact_: IsContact
+                }
             }
         }
     }
