@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
- * Author: Albert Babí <albert.babi@savoirfairelinux.com>
+ * Authors: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ *          Albert Babí <albert.babi@savoirfairelinux.com>
+ *          Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +37,7 @@ Item {
     // svg path for the participant indicators background shape
     property int shapeWidth: indicatorsRowLayout.width + 8
     property int shapeHeight: 16
-    property int shapeRadius: 6
+    property int shapeRadius: 5
     property string pathShape: "M0,0 h%1 q%2,0 %2,%2 v%3 h-%4 z"
         .arg(shapeWidth - shapeRadius)
         .arg(shapeRadius)
@@ -56,9 +57,14 @@ Item {
 
         function onUpdateParticipant(participantInfos) {
             if (participantInfos.uri === overlayMenu.uri) {
-                root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
+                if (participantInfos.videoMuted || root.sinkId !== participantInfos.sinkId)
+                    root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
                 setMenu(participantInfos.uri, participantInfos.bestName, participantInfos.isLocal, participantInfos.active, true)
                 setAvatar(participantInfos.videoMuted, participantInfos.uri, participantInfos.isLocal)
+                if (CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL) {
+                    ActiveParticipantsFilterModel.reset()
+                    GenericParticipantsFilterModel.reset()
+                }
             }
         }
     }
@@ -78,7 +84,7 @@ Item {
         overlayMenu.bestName = bestName
 
         var isHost = CallAdapter.isCurrentHost()
-        var isModerator = CallAdapter.isCurrentModerator()
+        var isModerator = CallAdapter.isModerator()
         participantIsHost = CallAdapter.participantIsHost(overlayMenu.uri)
         participantIsModerator = CallAdapter.isModerator(overlayMenu.uri)
         participantIsActive = isActive
@@ -95,7 +101,7 @@ Item {
 
         overlayMenu.showModeratorMute = isModerator && !isModeratorMuted
         overlayMenu.showModeratorUnmute = isModerator && isModeratorMuted
-        overlayMenu.showMaximize = isModerator
+        overlayMenu.showMaximize = isModerator && CallParticipantsModel.conferenceLayout !== CallParticipantsModel.ONE
         overlayMenu.showMinimize = isModerator && participantIsActive
         overlayMenu.showHangup = isModerator && !isLocal && !participantIsHost
     }
@@ -108,7 +114,7 @@ Item {
 
         color: "transparent"
         border.color: "yellow"
-        border.width: root.participantIsActive ? 3 : 0
+        border.width: 0
         visible: true
 
         // Participant header with host, moderator and mute indicators
@@ -261,8 +267,6 @@ Item {
         id: mediaDistRender
 
         anchors.fill: parent
-        anchors.centerIn: parent
-        z: -1
 
         lrcInstance: LRCInstance
 
@@ -271,6 +275,20 @@ Item {
             participantMouseArea.width = mediaDistRender.getWidgetWidth() !== 0 ? mediaDistRender.getWidgetWidth() : mediaDistRender.width
             peerOverlay.height = participantMouseArea.height + 3
             peerOverlay.width = participantMouseArea.width + 3
+        }
+
+        layer.enabled: true
+        layer.effect: OpacityMask {
+            maskSource: Item {
+                width: mediaDistRender.width
+                height: mediaDistRender.height
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: peerOverlay.width
+                    height: peerOverlay.height
+                    radius: 10
+                }
+            }
         }
     }
 }

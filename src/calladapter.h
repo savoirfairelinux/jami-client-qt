@@ -68,7 +68,6 @@ public:
     Q_INVOKABLE bool participantIsHost(const QString& uri) const;
     Q_INVOKABLE void setModerator(const QString& uri, const bool state);
     Q_INVOKABLE bool isModerator(const QString& uri = {}) const;
-    Q_INVOKABLE bool isCurrentModerator() const;
     Q_INVOKABLE void holdThisCallToggle();
     Q_INVOKABLE void muteThisCallToggle();
     Q_INVOKABLE void recordThisCallToggle();
@@ -100,7 +99,6 @@ Q_SIGNALS:
                        const QString& bestName);
     void remoteRecordingChanged(const QStringList& peers, bool state);
     void eraseRemoteRecording();
-    void updateParticipantsLayout();
 
 public Q_SLOTS:
     void onShowIncomingCallView(const QString& accountId, const QString& convUid);
@@ -130,5 +128,7 @@ private:
     SystemTray* systemTray_;
     QScopedPointer<CallOverlayModel> overlayModel_;
     QScopedPointer<CallParticipantsModel> participantsModel_;
+    QScopedPointer<GenericParticipantsFilterModel> participantsModelFiltered_;
+    QScopedPointer<ActiveParticipantsFilterModel> activeParticipantsModel_;
     VectorString currentConfSubcalls_;
 };
