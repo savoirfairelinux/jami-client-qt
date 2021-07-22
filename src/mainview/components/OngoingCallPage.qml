@@ -180,6 +180,10 @@ Rectangle {
                     anchors.centerIn: parent
                     anchors.margins: 3
                     visible: !root.isAudioOnly
+
+                    onCountChanged: {
+                        callOverlay.isConference = participantsLayer.count > 0
+                    }
                 }
 
                 VideoCallPreviewRenderer {
@@ -267,7 +271,7 @@ Rectangle {
                     id: callOverlay
 
                     anchors.fill: parent
-                    isConference: participantsLayer.count >= 0
+                    isConference: participantsLayer.count > 0
 
                     function toggleConversation() {
                         inCallMessageWebViewStack.visible ?
