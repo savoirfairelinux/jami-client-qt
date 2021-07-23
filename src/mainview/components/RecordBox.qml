@@ -370,7 +370,7 @@ Rectangle {
 
         normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
 
-        source: JamiResources.send_24dp_svg
+        source: JamiResources.send_black_24dp_svg
         imageColor: isVideo ? JamiTheme.whiteColor : JamiTheme.textColor
 
         onClicked: {
