@@ -39,6 +39,30 @@
       },
       "revId": "86a8f95163bddcae07e57c01c2540c9ecbf68ac8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "951166e7_9d7b4ae3",
+        "filename": "src/commoncomponents/BackButton.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-27T19:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30022239_64a82491",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 2
+      },
+      "revId": "86a8f95163bddcae07e57c01c2540c9ecbf68ac8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
