@@ -178,6 +178,8 @@ Rectangle {
         var item = ConversationsAdapter.getConvInfoMap(convId)
         if (item.convId === undefined)
             return
+
+        print ("**********", JSON.stringify(item))
         communicationPageMessageWebView.headerUserAliasLabelText = item.title
         communicationPageMessageWebView.headerUserUserNameLabelText = item.bestId
         if (item.callStackViewShouldShow) {

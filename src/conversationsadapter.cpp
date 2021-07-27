@@ -274,8 +274,10 @@ ConversationsAdapter::onProfileUpdated(const QString& contactUri)
 }
 
 void
-ConversationsAdapter::onConversationUpdated(const QString&)
+ConversationsAdapter::onConversationUpdated(const QString& convId)
 {
+    auto accountId = lrcInstance_->getConversationFromConvUid(convId).accountId;
+    Q_EMIT lrcInstance_->conversationUpdated(convId, accountId);
     updateConversationFilterData();
 }
 
@@ -428,9 +430,10 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
                                       || (call.isOutgoing && call.status != call::Status::ENDED));
         callState = call.status;
     }
+    auto title = lrcInstance_->getCurrentConversationModel()->title(convId);
     return {{"convId", convId},
             {"bestId", bestId},
-            {"title", lrcInstance_->getCurrentConversationModel()->title(convId)},
+            {"title", title},
             {"uri", peerUri},
             {"isSwarm", convInfo.isSwarm()},
             {"isRequest", convInfo.isRequest},
