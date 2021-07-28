@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6717e2f7_31c27221",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-28T20:15:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55e07d19_406430a9",
+      "range": {
+        "startLine": 95,
+        "startChar": 16,
+        "endLine": 95,
+        "endChar": 48
+      },
+      "revId": "a57f0a507f2436b2c7798587ef980ed7b8b9fd86",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "624260dc_32631b45",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-07-28T18:07:31Z",
       "side": 1,
       "message": "optional future-proofing, could avoid manual page numbering by calling a parent func:\nfunction setPage(obj) {\n    for (var i in this.children)\n        if (this.children[i] \u003d\u003d\u003d obj) {\n            currentIndex \u003d childIndex(obj)\n            return\n        }\n    }\n}",
+      "range": {
+        "startLine": 97,
+        "startChar": 32,
+        "endLine": 97,
+        "endChar": 85
+      },
+      "revId": "a57f0a507f2436b2c7798587ef980ed7b8b9fd86",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37443985_02647974",
+        "filename": "src/wizardview/WizardView.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-07-28T20:15:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "624260dc_32631b45",
       "range": {
         "startLine": 97,
         "startChar": 32,
