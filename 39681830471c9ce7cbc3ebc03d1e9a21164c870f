@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57653f61_538fa99b",
+        "filename": "cmake/windows_daemon_deploy.cmake",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-28T18:48:06Z",
+      "side": 1,
+      "message": "does cmake need these weak quoted?",
+      "range": {
+        "startLine": 19,
+        "startChar": 32,
+        "endLine": 19,
+        "endChar": 62
+      },
+      "revId": "39681830471c9ce7cbc3ebc03d1e9a21164c870f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fde9025_9b9baa96",
+        "filename": "cmake/windows_daemon_deploy.cmake",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-28T18:48:06Z",
+      "side": 1,
+      "message": "this needs a full path",
+      "range": {
+        "startLine": 26,
+        "startChar": 21,
+        "endLine": 26,
+        "endChar": 42
+      },
+      "revId": "39681830471c9ce7cbc3ebc03d1e9a21164c870f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b96c8c67_83ad812f",
+        "filename": "cmake/windows_daemon_deploy.cmake",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-28T18:48:06Z",
+      "side": 1,
+      "message": "unfortunately this doesn\u0027t fallback to hardlinking, so it needs to be removed",
+      "range": {
+        "startLine": 28,
+        "startChar": 9,
+        "endLine": 28,
+        "endChar": 17
+      },
+      "revId": "39681830471c9ce7cbc3ebc03d1e9a21164c870f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
