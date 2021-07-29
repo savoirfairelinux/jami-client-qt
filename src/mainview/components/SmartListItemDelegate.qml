@@ -107,8 +107,13 @@ ItemDelegate {
             }
         }
 
+        ResponsiveImage {
+            visible: ReadOnly
+            source: JamiResources.lock_black_24dp_svg
+        }
+
         ColumnLayout {
-            visible: InCall || UnreadMessagesCount
+            visible: (InCall || UnreadMessagesCount) && !ReadOnly
             Layout.preferredWidth: childrenRect.width
             Layout.fillHeight: true
             spacing: 2
@@ -153,9 +158,11 @@ ItemDelegate {
         ListView.view.model.select(index)
         if (LRCInstance.currentAccountType === Profile.Type.SIP)
             CallAdapter.placeAudioOnlyCall()
-        else
-            CallAdapter.placeCall()
-
+        else {
+            if (!ConversationsAdapter.currentConvIsReadOnly) {
+                CallAdapter.placeCall()
+            }
+        }
         // TODO: factor this out (visible should be observing)
         communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
     }
