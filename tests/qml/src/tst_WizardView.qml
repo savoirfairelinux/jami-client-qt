@@ -79,6 +79,12 @@ WizardView {
         signalName: "closeWizardView"
     }
 
+    SignalSpy {
+        id: spyBackButtonVisible
+
+        signalName: "visibleChanged"
+    }
+
     TestCase {
         name: "WelcomePage to different account creation page and return back"
         when: windowShown
@@ -484,6 +490,7 @@ WizardView {
             var passwordFromBackupEdit = findChild(importFromBackupPage, "passwordFromBackupEdit")
             var connectBtn = findChild(importFromBackupPage, "connectBtn")
             var errorLabel = findChild(importFromBackupPage, "errorLabel")
+            var backButton = findChild(importFromBackupPage, "importFromBackupPageBackButton")
 
             // WelcomePage initially
             compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
@@ -492,6 +499,9 @@ WizardView {
             // Go to importFromBackup page
             WizardViewStepModel.startAccountCreationFlow(
                         WizardViewStepModel.AccountCreationOption.ImportFromBackup)
+
+            spyBackButtonVisible.target = backButton
+
             compare(passwordFromBackupEdit.focus, true)
 
             var fileName = "gz_test.gz"
@@ -505,6 +515,9 @@ WizardView {
             connectBtn.clicked()
             spyReportFailure.wait()
             verify(spyReportFailure.count >= 1)
+            spyBackButtonVisible.wait()
+            verify(spyBackButtonVisible.count >= 2)
+            spyBackButtonVisible.clear()
 
             compare(importFromBackupPage.errorText, JamiStrings.errorCreateAccount)
             compare(errorLabel.visible, true)
