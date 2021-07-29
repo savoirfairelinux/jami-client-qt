@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38fca4af_d6a9d5af",
+        "filename": "tests/qml/main.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-07-29T18:04:13Z",
+      "side": 1,
+      "message": "non-zero return here no?",
+      "range": {
+        "startLine": 137,
+        "startChar": 15,
+        "endLine": 137,
+        "endChar": 21
+      },
+      "revId": "0fceb3ce3a32bceae660216f4a804892120c7ce1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
