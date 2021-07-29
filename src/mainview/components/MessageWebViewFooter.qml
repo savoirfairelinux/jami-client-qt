@@ -83,7 +83,7 @@ Rectangle {
             messageBar.textAreaObj.pasteText()
         }
 
-        function onChangeInvitationViewRequest(show, isSwarm) {
+        function onSetupChatView(show, isSwarm) {
             var footerVisibility = show ? !isSwarm : !show
             messageBar.visible = footerVisibility
             dataTransferSendContainer.visible = footerVisibility

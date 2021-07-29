@@ -93,11 +93,11 @@ Q_SIGNALS:
     void newMessageBarPlaceholderText(QString placeholderText);
     void newFilePasted(QString filePath);
     void newTextPasted();
-    void changeInvitationViewRequest(bool show,
-                                     bool isSwarm = false,
-                                     bool needsSyncing = false,
-                                     QString contactTitle = {},
-                                     QString contactUri = {});
+    void setupChatView(bool show,
+                       bool isSwarm = false,
+                       bool needsSyncing = false,
+                       QString contactTitle = {},
+                       QString contactUri = {});
 
 private Q_SLOTS:
     void slotMessagesCleared();
