@@ -107,11 +107,22 @@ ItemDelegate {
             }
         }
 
+        ResponsiveImage {
+            visible: ReadOnly
+            source: JamiResources.lock_black_24dp_svg
+        }
+
         ColumnLayout {
-            visible: InCall || UnreadMessagesCount
+            visible: (InCall || UnreadMessagesCount) && !ReadOnly
             Layout.preferredWidth: childrenRect.width
             Layout.fillHeight: true
             spacing: 2
+
+            ResponsiveImage {
+                containerHeight: 20
+                containerWidth: 20
+                source: JamiResources.lock_black_24dp_svg
+            }
 
             // call status
             Text {

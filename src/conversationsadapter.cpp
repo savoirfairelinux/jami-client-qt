@@ -437,7 +437,8 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             {"needsSyncing", convInfo.needsSyncing},
             {"isAudioOnly", isAudioOnly},
             {"callState", static_cast<int>(callState)},
-            {"callStackViewShouldShow", callStackViewShouldShow}};
+            {"callStackViewShouldShow", callStackViewShouldShow},
+            {"readOnly", convInfo.readOnly}};
 }
 
 bool

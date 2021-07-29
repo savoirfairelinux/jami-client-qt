@@ -114,9 +114,11 @@ Rectangle {
     Connections {
         target: MessagesAdapter
 
-        function onChangeInvitationViewRequest(show, isSwarm, needsSyncing,
-                                               title, convId) {
-            if (show)
+        function onSetChatViewMode(showInvitationPage,
+                                   isSwarm, needsSyncing,
+                                   title, convId, readOnly) {
+            print("onSetupChatView")
+            if (showInvitationPage)
                 root.mode = MessageWebView.Mode.Invitation
             else {
                 root.mode = MessageWebView.Mode.Chat
