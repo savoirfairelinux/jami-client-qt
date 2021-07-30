@@ -39,6 +39,7 @@ ColumnLayout {
 
     function updateAdvancedAccountInfos() {
         advancedCallSettings.updateCallSettingsInfos()
+        advancedChatSettings.updateSettings()
         advancedVoiceMailSettings.updateVoiceMailSettingsInfos()
         advancedSIPSecuritySettings.updateSecurityAccountInfos()
         advancedNameServerSettings.updateNameServerInfos()
@@ -105,6 +106,15 @@ ColumnLayout {
             Layout.fillWidth: true
 
             isSIP: root.isSIP
+            itemWidth: root.itemWidth
+        }
+
+        AdvancedChatSettings {
+            id: advancedChatSettings
+
+            Layout.fillWidth: true
+
+            visible: !root.isSIP
             itemWidth: root.itemWidth
         }
 
