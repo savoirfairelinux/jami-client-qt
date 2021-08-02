@@ -337,7 +337,7 @@ Item {
     property string fileTransfer: qsTr("File transfer")
     property string allowFromUntrusted: qsTr("Allow incoming files from unknown contacts")
     property string autoAcceptFiles: qsTr("Automatically accept incoming files")
-    property string acceptTransferBelow: qsTr("Accept transfer limit")
+    property string acceptTransferBelow: qsTr("Automatic accept file size limit")
     property string acceptTransferTooltip: qsTr("in MB, 0 = unlimited")
 
     // Updates
