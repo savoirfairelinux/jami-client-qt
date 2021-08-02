@@ -96,6 +96,8 @@ Rectangle {
         MaterialButton {
             id: newAccountButton
 
+            objectName: "newAccountButton"
+
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
@@ -122,6 +124,8 @@ Rectangle {
         MaterialButton {
             id: newRdvButton
 
+            objectName: "newRdvButton"
+
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
@@ -144,6 +148,8 @@ Rectangle {
 
         MaterialButton {
             id: fromDeviceButton
+
+            objectName: "fromDeviceButton"
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: preferredWidth
@@ -168,6 +174,8 @@ Rectangle {
         MaterialButton {
             id: fromBackupButton
 
+            objectName: "fromBackupButton"
+
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
@@ -190,6 +198,8 @@ Rectangle {
 
         MaterialButton {
             id: showAdvancedButton
+
+            objectName: "showAdvancedButton"
 
             property bool showAdvanced: false
 
@@ -226,6 +236,8 @@ Rectangle {
         MaterialButton {
             id: connectAccountManagerButton
 
+            objectName: "connectAccountManagerButton"
+
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: preferredWidth
             Layout.preferredHeight: preferredHeight
@@ -250,6 +262,8 @@ Rectangle {
 
         MaterialButton {
             id: newSIPAccountButton
+
+            objectName: "newSIPAccountButton"
 
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
@@ -279,6 +293,8 @@ Rectangle {
 
     BackButton {
         id: backButton
+
+        objectName: "welcomePageBackButton"
 
         anchors.left: parent.left
         anchors.top: parent.top
