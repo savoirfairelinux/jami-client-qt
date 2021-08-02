@@ -133,6 +133,22 @@ Rectangle {
 
             borderColorMode: MaterialLineEdit.NORMAL
 
+            KeyNavigation.tab: {
+                if (connectBtn.enabled)
+                    return connectBtn
+                else if (connectBtn.spinnerTriggered)
+                    return passwordFromDevice
+                return backButton
+            }
+            KeyNavigation.up: passwordFromDevice
+            KeyNavigation.down: {
+                if (connectBtn.enabled)
+                    return connectBtn
+                else if (connectBtn.spinnerTriggered)
+                    return passwordFromDevice
+                return backButton
+            }
+
             onTextChanged: errorText = ""
         }
 
@@ -148,6 +164,10 @@ Rectangle {
             normalText: JamiStrings.connectFromAnotherDevice
 
             enabled: pinFromDevice.text.length !== 0 && !spinnerTriggered
+
+            KeyNavigation.tab: backButton
+            KeyNavigation.up: pinFromDevice
+            KeyNavigation.down: backButton
 
             onClicked: {
                 spinnerTriggered = true
@@ -185,6 +205,10 @@ Rectangle {
         anchors.margins: 20
 
         visible: !connectBtn.spinnerTriggered
+
+        KeyNavigation.tab: passwordFromDevice
+        KeyNavigation.up: connectBtn
+        KeyNavigation.down: passwordFromDevice
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
