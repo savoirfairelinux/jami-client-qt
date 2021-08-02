@@ -131,6 +131,12 @@ Rectangle {
 
                     focus: visible
 
+                    KeyNavigation.tab: chooseUsernameButton.enabled ? chooseUsernameButton :
+                                                                      skipButton
+                    KeyNavigation.up: backButton
+                    KeyNavigation.down: chooseUsernameButton.enabled ? chooseUsernameButton :
+                                                                       skipButton
+
                     placeholderText: isRendezVous ? JamiStrings.chooseAName :
                                                     JamiStrings.chooseYourUserName
                 }
@@ -174,6 +180,10 @@ Rectangle {
                     hoveredColor: JamiTheme.buttonTintedBlueHovered
                     pressedColor: JamiTheme.buttonTintedBluePressed
 
+                    KeyNavigation.tab: skipButton
+                    KeyNavigation.up: usernameEdit
+                    KeyNavigation.down: skipButton
+
                     onClicked: WizardViewStepModel.nextStep()
                 }
 
@@ -189,6 +199,11 @@ Rectangle {
                     hoveredColor: JamiTheme.buttonTintedGreyHovered
                     pressedColor: JamiTheme.buttonTintedGreyPressed
                     outlined: true
+
+                    KeyNavigation.tab: backButton
+                    KeyNavigation.up: chooseUsernameButton.enabled ? chooseUsernameButton :
+                                                                     usernameEdit
+                    KeyNavigation.down: backButton
 
                     onClicked: {
                         usernameEdit.clear()
@@ -215,7 +230,13 @@ Rectangle {
 
             property int stackIndex: 1
 
+            focus: visible
+
             color: JamiTheme.backgroundColor
+
+            KeyNavigation.tab: passwordSwitch
+            KeyNavigation.up: passwordSwitch
+            KeyNavigation.down: passwordSwitch
 
             ColumnLayout {
                 id: passwordColumnLayout
@@ -239,7 +260,7 @@ Rectangle {
                         font.pointSize: JamiTheme.textFontSize + 3
                     }
 
-                    Switch {
+                    JamiSwitch {
                         id: passwordSwitch
 
                         objectName: "passwordSwitch"
@@ -247,6 +268,10 @@ Rectangle {
                         Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                         Layout.leftMargin: -JamiTheme.wizardViewPageLayoutSpacing
                         Layout.topMargin: 5
+
+                        KeyNavigation.tab: checked ? passwordEdit : createAccountButton
+                        KeyNavigation.up: backButton
+                        KeyNavigation.down: checked ? passwordEdit : createAccountButton
                     }
 
                     BubbleLabel {
@@ -274,6 +299,10 @@ Rectangle {
                     placeholderText: JamiStrings.password
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
+
+                    KeyNavigation.tab: passwordConfirmEdit
+                    KeyNavigation.up: passwordSwitch
+                    KeyNavigation.down: passwordConfirmEdit
                 }
 
                 MaterialLineEdit {
@@ -292,6 +321,12 @@ Rectangle {
                     placeholderText: JamiStrings.confirmPassword
                     font.pointSize: JamiTheme.textFontSize
                     font.kerning: true
+
+                    KeyNavigation.tab: createAccountButton.enabled ? createAccountButton :
+                                                                     backButton
+                    KeyNavigation.up: passwordEdit
+                    KeyNavigation.down: createAccountButton.enabled ? createAccountButton :
+                                                                      backButton
                 }
 
                 Label {
@@ -328,6 +363,10 @@ Rectangle {
                     hoveredColor: JamiTheme.buttonTintedBlueHovered
                     pressedColor: JamiTheme.buttonTintedBluePressed
 
+                    KeyNavigation.tab: backButton
+                    KeyNavigation.up: passwordSwitch.checked ? passwordConfirmEdit : passwordSwitch
+                    KeyNavigation.down: backButton
+
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo =
                                 JamiQmlUtils.setUpAccountCreationInputPara(
@@ -360,6 +399,25 @@ Rectangle {
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
+
+        KeyNavigation.tab: {
+            if (createAccountStack.currentIndex === nameRegistrationPage.stackIndex)
+                return usernameEdit
+            else
+                return passwordSwitch
+        }
+        KeyNavigation.up: {
+            if (createAccountStack.currentIndex === nameRegistrationPage.stackIndex)
+                return skipButton
+            else
+                return createAccountButton.enabled ? createAccountButton : passwordConfirmEdit
+        }
+        KeyNavigation.down: {
+            if (createAccountStack.currentIndex === nameRegistrationPage.stackIndex)
+                return usernameEdit
+            else
+                return passwordSwitch
+        }
 
         onClicked: WizardViewStepModel.previousStep()
     }
