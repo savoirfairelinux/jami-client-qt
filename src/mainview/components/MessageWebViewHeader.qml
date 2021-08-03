@@ -31,22 +31,16 @@ Rectangle {
 
     property string userAliasLabelText
     property string userUserNameLabelText
-    property string backToWelcomeViewButtonSource: JamiResources.back_24dp_svg
-    property alias sendContactRequestButtonVisible: sendContactRequestButton.visible
 
     signal backClicked
     signal needToHideConversationInCall
     signal pluginSelector
 
-    function resetBackToWelcomeViewButtonSource(reset) {
-        backToWelcomeViewButtonSource = reset ?
-                    JamiResources.back_24dp_svg :
-                    JamiResources.round_close_24dp_svg
-    }
-
-    function toggleMessagingHeaderButtonsVisible(visible) {
-        startAAudioCallButton.visible = visible
-        startAVideoCallButton.visible = visible
+    property bool callButtonsVisibility: {
+        return !CurrentConversation.inCall &&
+                !CurrentConversation.readOnly &&
+                !(CurrentConversation.isSwarm &&
+                  (CurrentConversation.isRequest || CurrentConversation.needsSyncing))
     }
 
     color: JamiTheme.chatviewBgColor
@@ -64,18 +58,17 @@ Rectangle {
 
             preferredSize: 24
 
-            source: backToWelcomeViewButtonSource
+            source: CurrentConversation.inCall ?
+                        JamiResources.round_close_24dp_svg :
+                        JamiResources.back_24dp_svg
             toolTipText: JamiStrings.hideChatView
 
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
 
-            onClicked: {
-                if (backToWelcomeViewButtonSource === JamiResources.back_24dp_svg)
-                    root.backClicked()
-                else
-                    root.needToHideConversationInCall()
-            }
+            onClicked: CurrentConversation.inCall ?
+                           root.needToHideConversationInCall() :
+                           root.backClicked()
         }
 
         Rectangle {
@@ -132,7 +125,7 @@ Rectangle {
             }
         }
 
-        Rectangle {
+        Item {
             id: buttonGroup
 
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
@@ -140,10 +133,10 @@ Rectangle {
             Layout.preferredHeight: childrenRect.height
             Layout.rightMargin: 8
 
-            color: "transparent"
-
             PushButton {
                 id: startAAudioCallButton
+
+                visible: callButtonsVisibility
 
                 anchors.right: startAVideoCallButton.left
                 anchors.rightMargin: 8
@@ -155,17 +148,15 @@ Rectangle {
                 normalColor: JamiTheme.chatviewBgColor
                 imageColor: JamiTheme.chatviewButtonColor
 
-                onClicked: {
-                    MessagesAdapter.sendConversationRequest()
-                    CallAdapter.placeAudioOnlyCall()
-                    communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
-                }
+                onClicked: CallAdapter.placeAudioOnlyCall()
             }
 
             PushButton {
                 id: startAVideoCallButton
 
-                anchors.right:  selectPluginButton.visible ? selectPluginButton.left :
+                visible: callButtonsVisibility
+
+                anchors.right: selectPluginButton.visible ? selectPluginButton.left :
                                    sendContactRequestButton.visible ?
                                    sendContactRequestButton.left :
                                    buttonGroup.right
@@ -178,11 +169,7 @@ Rectangle {
                 normalColor: JamiTheme.chatviewBgColor
                 imageColor: JamiTheme.chatviewButtonColor
 
-                onClicked: {
-                    MessagesAdapter.sendConversationRequest()
-                    CallAdapter.placeCall()
-                    communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
-                }
+                onClicked: CallAdapter.placeCall()
             }
 
             PushButton {
@@ -208,6 +195,8 @@ Rectangle {
             PushButton {
                 id: sendContactRequestButton
 
+                visible: CurrentConversation.isTemporary
+
                 anchors.right: buttonGroup.right
                 anchors.rightMargin: 8
                 anchors.verticalCenter: buttonGroup.verticalCenter
@@ -218,10 +207,7 @@ Rectangle {
                 normalColor: JamiTheme.chatviewBgColor
                 imageColor: JamiTheme.chatviewButtonColor
 
-                onClicked: {
-                    MessagesAdapter.sendConversationRequest()
-                    visible = false
-                }
+                onClicked: MessagesAdapter.sendConversationRequest()
             }
         }
     }

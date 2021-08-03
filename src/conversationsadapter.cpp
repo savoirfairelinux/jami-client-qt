@@ -280,7 +280,6 @@ ConversationsAdapter::onConversationUpdated(const QString& convId)
     auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
     if (convInfo.uid.isEmpty())
         return;
-    set_currentConvIsReadOnly(convInfo.readOnly);
 
     updateConversationFilterData();
 }
