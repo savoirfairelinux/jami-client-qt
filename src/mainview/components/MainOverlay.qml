@@ -137,7 +137,7 @@ Item {
                 Layout.preferredHeight: 30
                 Layout.rightMargin: 5
 
-                visible: isConferenceCall && !isGrid
+                visible: isConference && !isGrid
 
                 preferredMargin: JamiTheme.mosaicButtonPreferredMargin
                 radius: JamiTheme.mosaicButtonRadius

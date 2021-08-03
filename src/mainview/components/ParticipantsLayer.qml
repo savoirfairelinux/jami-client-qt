@@ -18,112 +18,70 @@
 
 import QtQuick 2.15
 
+import QtQuick.Layouts 1.15
+import net.jami.Adapters 1.1
+import net.jami.Models 1.1
+
 Item {
     id: root
 
-    property var participantOverlays: []
-    property var participantComponent: Qt.createComponent("ParticipantOverlay.qml")
+    property alias count: participantincall.count
 
-    // returns true if participant is not fully maximized
-    function showMaximize(pX, pY, pW, pH) {
-        // Hack: -1 offset added to avoid problems with odd sizes
-        return (pX - distantRenderer.getXOffset() !== 0
-                || pY - distantRenderer.getYOffset() !== 0
-                || pW < (distantRenderer.width - distantRenderer.getXOffset() * 2 - 1)
-                || pH < (distantRenderer.height - distantRenderer.getYOffset() * 2 - 1))
+    Connections {
+        target: CallAdapter
+
+        function onUpdateParticipantsLayout() {
+            participantsFlow.columns = Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
+            participantsFlow.rows = Math.max(1, Math.ceil(participantincall.count/participantsFlow.columns))
+        }
     }
 
-    function update(infos) {
-        // TODO: in the future the conference layout should be entirely managed by the client
-        // Hack: truncate and ceil participant's overlay position and size to correct
-        // when they are not exacts
-        callOverlay.updateUI()
-        var showMax = false
-        var showMin = false
 
-        var deletedUris = []
-        var currentUris = []
-        for (var p in participantOverlays) {
-            if (participantOverlays[p]) {
-                var participant = infos.find(e => e.uri === participantOverlays[p].uri);
-                if (participant) {
-                    // Update participant's information
-                    var newX = Math.trunc(distantRenderer.getXOffset()
-                                          + participant.x * distantRenderer.getScaledWidth())
-                    var newY = Math.trunc(distantRenderer.getYOffset()
-                                          + participant.y * distantRenderer.getScaledHeight())
+    Component {
+       id: callVideoMedia
 
-                    var newWidth = Math.ceil(participant.w * distantRenderer.getScaledWidth())
-                    var newHeight = Math.ceil(participant.h * distantRenderer.getScaledHeight())
+       ParticipantOverlay {
+           anchors.fill: parent
+           anchors.centerIn: parent
 
-                    var newVisible = participant.w !== 0 && participant.h !== 0
-                    if (participantOverlays[p].x !== newX)
-                        participantOverlays[p].x = newX
-                    if (participantOverlays[p].y !== newY)
-                        participantOverlays[p].y = newY
-                    if (participantOverlays[p].width !== newWidth)
-                        participantOverlays[p].width = newWidth
-                    if (participantOverlays[p].height !== newHeight)
-                        participantOverlays[p].height = newHeight
-                    if (participantOverlays[p].visible !== newVisible)
-                        participantOverlays[p].visible = newVisible
+           sinkId: sinkId_
 
-                    showMax = showMaximize(participantOverlays[p].x,
-                                           participantOverlays[p].y,
-                                           participantOverlays[p].width,
-                                           participantOverlays[p].height)
-
-                    participantOverlays[p].setMenu(participant.uri, participant.bestName,
-                                                   participant.isLocal, participant.active, showMax)
-                    if (participant.videoMuted)
-                        participantOverlays[p].setAvatar(true, participant.uri, participant.isLocal)
-                    else
-                        participantOverlays[p].setAvatar(false)
-                    currentUris.push(participantOverlays[p].uri)
-                } else {
-                    // Participant is no longer in conference
-                    deletedUris.push(participantOverlays[p].uri)
-                    participantOverlays[p].destroy()
-                }
+            Component.onCompleted: {
+                setMenu(uri_, bestName_, isLocal_, active_, true)
+                setAvatar(videoMuted_, uri_, isLocal_)
             }
-        }
-        participantOverlays = participantOverlays.filter(part => !deletedUris.includes(part.uri))
+       }
+    }
 
-        if (infos.length === 0) { // Return to normal call
-            previewRenderer.visible = !isAudioOnly && !isVideoMuted && !isConferenceCall && !isPaused
-            for (var part in participantOverlays) {
-                if (participantOverlays[part]) {
-                    participantOverlays[part].destroy()
-                }
-            }
-            participantOverlays = []
-        } else {
-            previewRenderer.visible = false
-            for (var infoVariant in infos) {
-                // Only create overlay for new participants
-                if (!currentUris.includes(infos[infoVariant].uri)) {
-                    var hover = participantComponent.createObject(root, {
-                                                                      x: Math.trunc(distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth()),
-                                                                      y: Math.trunc(distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight()),
-                                                                      width: Math.ceil(infos[infoVariant].w * distantRenderer.getScaledWidth()),
-                                                                      height: Math.ceil(infos[infoVariant].h * distantRenderer.getScaledHeight()),
-                                                                      visible: infos[infoVariant].w !== 0 && infos[infoVariant].h !== 0
-                                                                  })
-                    if (!hover) {
-                        console.log("Error when creating the hover")
-                        return
-                    }
+    Flow {
+        id: participantsFlow
+        anchors.fill: parent
+        anchors.centerIn: parent
+        spacing: 8
+        property int columns: Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
+        property int rows: Math.max(1, Math.ceil(participantincall.count/columns))
+        property int columnsSpacing: 5 * (columns - 1)
+        property int rowsSpacing: 5 * (rows - 1)
 
-                    showMax = showMaximize(hover.x, hover.y, hover.width, hover.height)
+        Repeater {
+            id: participantincall
+            anchors.fill: parent
+            anchors.centerIn: parent
 
-                    hover.setMenu(infos[infoVariant].uri, infos[infoVariant].bestName,
-                                  infos[infoVariant].isLocal, infos[infoVariant].active, showMax)
-                    if (infos[infoVariant].videoMuted)
-                        hover.setAvatar(true, infos[infoVariant].uri, infos[infoVariant].isLocal)
-                    else
-                        hover.setAvatar(false)
-                    participantOverlays.push(hover)
-                }
+            model: CallParticipantsModel
+            delegate: Loader {
+                sourceComponent: callVideoMedia
+                width: Math.ceil(participantsFlow.width / participantsFlow.columns) - participantsFlow.columnsSpacing
+                height: Math.ceil(participantsFlow.height / participantsFlow.rows) - participantsFlow.rowsSpacing
+
+                property string uri_: Uri
+                property string bestName_: BestName
+                property string avatar_: Avatar ? Avatar : ""
+                property string sinkId_: SinkId ? SinkId : ""
+                property bool isLocal_: IsLocal
+                property bool active_: Active
+                property bool videoMuted_: VideoMuted
+                property bool isContact_: IsContact
             }
         }
     }

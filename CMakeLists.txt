@@ -86,7 +86,8 @@ set(COMMON_SOURCES
     ${SRC_DIR}/avatarregistry.cpp
     ${SRC_DIR}/currentconversation.cpp
     ${SRC_DIR}/currentaccount.cpp
-    ${SRC_DIR}/videodevices.cpp)
+    ${SRC_DIR}/videodevices.cpp
+    ${SRC_DIR}/callparticipantsmodel.cpp)
 
 set(COMMON_HEADERS
     ${SRC_DIR}/avatarimageprovider.h
@@ -143,7 +144,8 @@ set(COMMON_HEADERS
     ${SRC_DIR}/avatarregistry.h
     ${SRC_DIR}/currentconversation.h
     ${SRC_DIR}/currentaccount.h
-    ${SRC_DIR}/videodevices.h)
+    ${SRC_DIR}/videodevices.h
+    ${SRC_DIR}/callparticipantsmodel.h)
 
 set(QML_LIBS
     Qt5::Quick
