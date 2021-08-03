@@ -38,8 +38,6 @@ import "../../commoncomponents"
 Item {
     id: root
 
-    property alias participantsLayer: __participantsLayer
-
     property bool isPaused
     property bool isAudioOnly
     property bool isAudioMuted
@@ -47,18 +45,13 @@ Item {
     property bool isRecording
     property bool isSIP
     property bool isModerator
-    property bool isConferenceCall
+    property bool isConference
     property bool isGrid
 
     property string bestName: ""
+    property string callId: ""
 
     signal chatButtonClicked
-
-    ParticipantsLayer {
-        id: __participantsLayer
-        visible: !root.isAudioOnly
-        anchors.fill: parent
-    }
 
     function setRecording(localIsRecording) {
         callViewContextMenu.localIsRecording = localIsRecording
@@ -68,7 +61,7 @@ Item {
 
     function updateUI(isPaused, isAudioOnly, isAudioMuted,
                       isVideoMuted, isRecording, isSIP,
-                      isConferenceCall, isGrid) {
+                      isGrid) {
         if (isPaused !== undefined) {
             root.isPaused = isPaused
             root.isAudioOnly = isAudioOnly
@@ -76,7 +69,6 @@ Item {
             root.isVideoMuted = isVideoMuted
             root.isRecording = isRecording
             root.isSIP = isSIP
-            root.isConferenceCall = isConferenceCall
             root.isGrid = isGrid
             mainOverlay.recordingVisible = isRecording
         }
