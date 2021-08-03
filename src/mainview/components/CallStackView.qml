@@ -127,9 +127,6 @@ Rectangle {
         callPage.parent = JamiQmlUtils.callIsFullscreen ?
                     appContainer :
                     callStackMainView
-        if (!root.isAudioOnly) {
-            ongoingCallPage.handleParticipantsInfo(CallAdapter.getConferencesInfos())
-        }
     }
 
     Connections {
@@ -156,15 +153,6 @@ Rectangle {
             if (callStackMainView.currentItem.stackNumber === CallStackView.InitialPageStack
                     && responsibleConvUid === convUid && responsibleAccountId === accountId) {
                 initialCallPage.callStatus = status
-            }
-        }
-
-        function onUpdateParticipantsInfos(infos, accountId, callId) {
-            if (callStackMainView.currentItem.stackNumber === CallStackView.OngoingPageStack && !root.isAudioOnly) {
-                var responsibleCallId = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid)
-                if (responsibleCallId === callId) {
-                    ongoingCallPage.handleParticipantsInfo(infos)
-                }
             }
         }
     }
