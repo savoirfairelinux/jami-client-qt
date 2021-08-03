@@ -38,6 +38,20 @@ Rectangle {
     signal needToHideConversationInCall
     signal pluginSelector
 
+    property bool callButtonsVisibility: {
+
+        const show = !CurrentConversation.readOnly &&
+                   !(CurrentConversation.isLegacy &&
+                     (CurrentConversation.isRequest || CurrentConversation.needsSyncing))
+        print("LPOPOPPSOD",
+              CurrentConversation.isLegacy,
+              CurrentConversation.isRequest,
+              CurrentConversation.needsSyncing,
+              CurrentConversation.readOnly,
+              show)
+        return show
+    }
+
     function resetBackToWelcomeViewButtonSource(reset) {
         backToWelcomeViewButtonSource = reset ?
                     JamiResources.back_24dp_svg :
@@ -45,8 +59,8 @@ Rectangle {
     }
 
     function toggleMessagingHeaderButtonsVisible(visible) {
-        startAAudioCallButton.visible = visible
-        startAVideoCallButton.visible = visible
+//        startAAudioCallButton.visible = visible
+//        startAVideoCallButton.visible = visible
     }
 
     color: JamiTheme.chatviewBgColor
@@ -145,6 +159,8 @@ Rectangle {
             PushButton {
                 id: startAAudioCallButton
 
+                visible: callButtonsVisibility
+
                 anchors.right: startAVideoCallButton.left
                 anchors.rightMargin: 8
                 anchors.verticalCenter: buttonGroup.verticalCenter
@@ -164,6 +180,8 @@ Rectangle {
 
             PushButton {
                 id: startAVideoCallButton
+
+                visible: callButtonsVisibility
 
                 anchors.right:  selectPluginButton.visible ? selectPluginButton.left :
                                    sendContactRequestButton.visible ?
