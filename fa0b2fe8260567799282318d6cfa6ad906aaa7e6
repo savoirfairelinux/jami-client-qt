@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92dde707_09efb818",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-08-03T20:46:12Z",
+      "side": 1,
+      "message": "tests leftovers",
+      "parentUuid": "8b2ebf48_427013ba",
+      "range": {
+        "startLine": 305,
+        "startChar": 25,
+        "endLine": 306,
+        "endChar": 44
+      },
+      "revId": "fa0b2fe8260567799282318d6cfa6ad906aaa7e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e70dd85b_b3c28b66",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-08-03T13:21:30Z",
       "side": 1,
       "message": "qt question, is this necessary, seems to do nothing",
+      "range": {
+        "startLine": 96,
+        "startChar": 11,
+        "endLine": 97,
+        "endChar": 24
+      },
+      "revId": "fa0b2fe8260567799282318d6cfa6ad906aaa7e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00942e88_b21f1835",
+        "filename": "src/callparticipantsmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-08-03T20:46:12Z",
+      "side": 1,
+      "message": "We need to call those two functions to force full model update",
+      "parentUuid": "e70dd85b_b3c28b66",
       "range": {
         "startLine": 96,
         "startChar": 11,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9413e2d0_582a9444",
+        "filename": "src/callparticipantsmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-08-03T20:46:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b1fb107_a8aa1bc0",
+      "range": {
+        "startLine": 163,
+        "startChar": 17,
+        "endLine": 165,
+        "endChar": 35
+      },
+      "revId": "fa0b2fe8260567799282318d6cfa6ad906aaa7e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c03d573_d8f56d10",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3618be49_18508e84",
+        "filename": "src/callparticipantsmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-08-03T20:46:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c03d573_d8f56d10",
+      "range": {
+        "startLine": 170,
+        "startChar": 22,
+        "endLine": 170,
+        "endChar": 33
+      },
+      "revId": "fa0b2fe8260567799282318d6cfa6ad906aaa7e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3cf3d171_c7db45cc",
@@ -106,6 +202,30 @@
       "writtenOn": "2021-08-03T13:21:30Z",
       "side": 1,
       "message": "infos[0] may not exists",
+      "range": {
+        "startLine": 149,
+        "startChar": 49,
+        "endLine": 149,
+        "endChar": 54
+      },
+      "revId": "fa0b2fe8260567799282318d6cfa6ad906aaa7e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ef05e68_df5fc3ff",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-08-03T20:46:12Z",
+      "side": 1,
+      "message": "tests leftovers",
+      "parentUuid": "3cf3d171_c7db45cc",
       "range": {
         "startLine": 149,
         "startChar": 49,
