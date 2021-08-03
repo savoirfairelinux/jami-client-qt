@@ -36,7 +36,6 @@ class ConversationsAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, filterRequests)
     QML_PROPERTY(int, totalUnreadMessageCount)
     QML_PROPERTY(int, pendingRequestCount)
-    QML_PROPERTY(bool, currentConvIsReadOnly)
 
 public:
     explicit ConversationsAdapter(SystemTray* systemTray,
