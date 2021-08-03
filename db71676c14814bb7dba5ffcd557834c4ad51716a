@@ -1,6 +1,7 @@
 {
   "comments": [
     {
+      "unresolved": true,
       "key": {
         "uuid": "117aa61e_e8ca29be",
         "filename": ".vscode/settings.json",
@@ -20,10 +21,10 @@
         "endChar": 24
       },
       "revId": "db71676c14814bb7dba5ffcd557834c4ad51716a",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": true,
       "key": {
         "uuid": "52ef9735_b188758c",
         "filename": ".vscode/settings.json",
@@ -44,8 +45,31 @@
         "endChar": 24
       },
       "revId": "db71676c14814bb7dba5ffcd557834c4ad51716a",
-      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a",
-      "unresolved": true
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e636f9b1_2e47af33",
+        "filename": ".vscode/settings.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-03T13:17:10Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "52ef9735_b188758c",
+      "range": {
+        "startLine": 5,
+        "startChar": 24,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "db71676c14814bb7dba5ffcd557834c4ad51716a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
