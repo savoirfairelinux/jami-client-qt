@@ -410,6 +410,12 @@ LRCInstance::makeConversationPermanent(const QString& convId, const QString& acc
         qWarning() << Q_FUNC_INFO << "no conversation to make permanent";
         return;
     }
+    //    // if this is an existing contact then create a new conversation
+    //    if (auto optConv = accInfo.conversationModel->getConversationForUid(cId)) {
+    //        auto& convInfo = optConv->get();
+    //        accInfo.conversationModel.get()->makePermanent(cId);
+    //    }
+    // if this is an existing contact then create a new conversation
     accInfo.conversationModel.get()->makePermanent(cId);
 }
 

@@ -165,8 +165,6 @@ ItemDelegate {
                 CallAdapter.placeCall()
             }
         }
-        // TODO: factor this out (visible should be observing)
-        communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
     }
     onPressAndHold: ListView.view.openContextMenuAt(pressX, pressY, root)
 

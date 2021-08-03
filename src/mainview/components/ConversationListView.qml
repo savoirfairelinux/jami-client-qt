@@ -157,20 +157,14 @@ ListView {
         sequence: "Ctrl+Shift+X"
         context: Qt.ApplicationShortcut
         enabled: root.visible
-        onActivated: {
-            CallAdapter.placeCall()
-            communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
-        }
+        onActivated: CallAdapter.placeCall()
     }
 
     Shortcut {
         sequence: "Ctrl+Shift+C"
         context: Qt.ApplicationShortcut
         enabled: root.visible
-        onActivated: {
-            CallAdapter.placeAudioOnlyCall()
-            communicationPageMessageWebView.setSendContactRequestButtonVisible(false)
-        }
+        onActivated: CallAdapter.placeAudioOnlyCall()
     }
 
     Shortcut {
