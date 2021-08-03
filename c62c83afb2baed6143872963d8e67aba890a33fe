@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b3a53fa_93dc4328",
+        "filename": "src/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-03T13:23:40Z",
+      "side": 1,
+      "message": "trailing",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 1
+      },
+      "revId": "c62c83afb2baed6143872963d8e67aba890a33fe",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
