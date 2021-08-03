@@ -201,8 +201,6 @@ Item {
     property string areRecording: qsTr("are recording")
     property string peerStoppedRecording: qsTr("Peer stopped recording")
     property string isCallingYou: qsTr("is calling you")
-
-    // CallOverlay
     property string mute: qsTr("Mute")
     property string unmute: qsTr("Unmute")
     property string hangup: qsTr("End call")

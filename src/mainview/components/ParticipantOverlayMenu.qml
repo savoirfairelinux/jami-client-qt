@@ -52,8 +52,6 @@ Item {
 
     property bool hovered: false
 
-    anchors.fill: parent
-
     Loader { sourceComponent: isBarLayout ? barComponent : rectComponent }
 
     TextMetrics {
