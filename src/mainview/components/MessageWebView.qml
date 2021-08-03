@@ -58,18 +58,6 @@ Rectangle {
         messageWebView.runJavaScript(arg)
     }
 
-    function setSendContactRequestButtonVisible(visible) {
-        messageWebViewHeader.sendContactRequestButtonVisible = visible
-    }
-
-    function setMessagingHeaderButtonsVisible(visible) {
-        messageWebViewHeader.toggleMessagingHeaderButtonsVisible(visible)
-    }
-
-    function resetMessagingHeaderBackButtonSource(reset) {
-        messageWebViewHeader.resetBackToWelcomeViewButtonSource(reset)
-    }
-
     function updateChatviewTheme() {
         var theme = 'setTheme("\
             --svg-invert-percentage:' + JamiTheme.invertPercentageInDecimal + ';\
@@ -135,7 +123,6 @@ Rectangle {
 
         function onCurrentConvIsReadOnlyChanged() {
             var isVisible = !ConversationsAdapter.currentConvIsReadOnly
-            setMessagingHeaderButtonsVisible(isVisible)
             messageWebViewFooter.visible = isVisible
         }
     }
