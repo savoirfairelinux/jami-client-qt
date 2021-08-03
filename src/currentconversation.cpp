@@ -60,10 +60,14 @@ CurrentConversation::updateData()
             set_isSip(accInfo.profileInfo.type == profile::Type::SIP);
             set_callId(optConv->get().getCallId());
             if (accInfo.callModel->hasCall(callId_)) {
-                set_callState(accInfo.callModel->getCall(callId_).status);
+                auto call = accInfo.callModel->getCall(callId_);
+                set_callState(call.status);
             } else {
                 set_callState(call::Status::INVALID);
             }
+            set_inCall(callState_ == call::Status::CONNECTED
+                       || callState_ == call::Status::IN_PROGRESS
+                       || callState_ == call::Status::PAUSED);
         }
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;

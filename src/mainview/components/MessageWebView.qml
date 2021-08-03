@@ -62,10 +62,6 @@ Rectangle {
         messageWebViewHeader.sendContactRequestButtonVisible = visible
     }
 
-    function setMessagingHeaderButtonsVisible(visible) {
-        messageWebViewHeader.toggleMessagingHeaderButtonsVisible(visible)
-    }
-
     function resetMessagingHeaderBackButtonSource(reset) {
         messageWebViewHeader.resetBackToWelcomeViewButtonSource(reset)
     }
@@ -135,7 +131,6 @@ Rectangle {
 
         function onCurrentConvIsReadOnlyChanged() {
             var isVisible = !ConversationsAdapter.currentConvIsReadOnly
-            setMessagingHeaderButtonsVisible(isVisible)
             messageWebViewFooter.visible = isVisible
         }
     }
