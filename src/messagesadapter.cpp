@@ -354,53 +354,52 @@ MessagesAdapter::userIsComposing(bool isComposing)
 }
 
 void
-MessagesAdapter::setConversationProfileData(const lrc::api::conversation::Info& convInfo)
+MessagesAdapter::setConversationProfileData(const conversation::Info& convInfo)
 {
-    auto accInfo = &lrcInstance_->getCurrentAccountInfo();
-
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
     if (convInfo.participants.isEmpty()) {
         return;
     }
 
-    auto contactUri = convInfo.participants.front();
-    if (contactUri.isEmpty()) {
-        return;
-    }
-    try {
-        auto title = accInfo->conversationModel->title(convInfo.uid);
-        QMetaObject::invokeMethod(qmlObj_,
-                                  "setMessagingHeaderButtonsVisible",
-                                  Q_ARG(QVariant,
-                                        !convInfo.readOnly
-                                            && !(convInfo.isSwarm()
-                                                 && (convInfo.isRequest || convInfo.needsSyncing))));
-
-        Q_EMIT setChatViewMode(convInfo.isRequest || convInfo.needsSyncing,
-                               convInfo.isSwarm(),
-                               convInfo.needsSyncing,
-                               title,
-                               convInfo.uid,
-                               convInfo.readOnly);
-        if (convInfo.isSwarm())
-            return;
-
-        // TODO: swarmify me
-        auto& contact = accInfo->contactModel->getContact(contactUri);
-        bool isPending = contact.profileInfo.type == profile::Type::TEMPORARY;
-        QMetaObject::invokeMethod(qmlObj_,
-                                  "setSendContactRequestButtonVisible",
-                                  Q_ARG(QVariant, isPending));
-        if (!contact.profileInfo.avatar.isEmpty()) {
-            setSenderImage(contactUri, contact.profileInfo.avatar);
-        } else {
-            auto avatar = Utils::contactPhoto(lrcInstance_, convInfo.participants[0]);
-            QByteArray ba;
-            QBuffer bu(&ba);
-            avatar.save(&bu, "PNG");
-            setSenderImage(contactUri, QString::fromLocal8Bit(ba.toBase64()));
+    // should we show the add contact/conversation button?
+    if (convInfo.isCoreDialog()) {
+        auto contactUri = convInfo.participants.front();
+        try {
+            auto& contact = accInfo.contactModel->getContact(contactUri);
+            QMetaObject::invokeMethod(qmlObj_,
+                                      "setSendContactRequestButtonVisible",
+                                      Q_ARG(QVariant,
+                                            contact.profileInfo.type == profile::Type::TEMPORARY));
+        } catch (...) {
+            qDebug() << "Can't find contact";
+            QMetaObject::invokeMethod(qmlObj_,
+                                      "setSendContactRequestButtonVisible",
+                                      Q_ARG(QVariant, convInfo.uid == contactUri));
         }
-    } catch (...) {
     }
+
+    // setup button visibility based on the conversation state(e.g. read-only, syncing, etc.)
+    auto title = accInfo.conversationModel->title(convInfo.uid);
+    QMetaObject::invokeMethod(qmlObj_,
+                              "setMessagingHeaderButtonsVisible",
+                              Q_ARG(QVariant,
+                                    !convInfo.readOnly
+                                        && !(convInfo.isSwarm()
+                                             && (convInfo.isRequest || convInfo.needsSyncing))));
+
+    Q_EMIT setChatViewMode(convInfo.isRequest || convInfo.needsSyncing,
+                           convInfo.isSwarm(),
+                           convInfo.needsSyncing,
+                           title,
+                           convInfo.uid,
+                           convInfo.readOnly);
+
+    // make the conversation avatar available within the web view
+    auto avatar = Utils::conversationAvatar(lrcInstance_, convInfo.uid);
+    QByteArray ba;
+    QBuffer bu(&ba);
+    avatar.save(&bu, "PNG");
+    setSenderImage(title, QString::fromLocal8Bit(ba.toBase64()));
 }
 
 void
