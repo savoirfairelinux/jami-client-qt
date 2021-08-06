@@ -84,8 +84,7 @@ ContextMenuAutoLoader {
                                      || contactType === Profile.Type.SIP)
             itemName: JamiStrings.removeContact
             iconSource: JamiResources.ic_hangup_participant_24dp_svg
-            onClicked: MessagesAdapter.removeConversation(responsibleAccountId,
-                                                          responsibleConvUid)
+            onClicked: MessagesAdapter.removeContact(responsibleConvUid)
         },
         GeneralMenuItem {
             id: hangup
