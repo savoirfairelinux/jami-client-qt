@@ -257,6 +257,64 @@ Rectangle {
             }
         }
 
+        Rectangle {
+            visible: CurrentConversation.readOnly
+            Layout.preferredHeight: childrenRect.height
+            Layout.fillWidth: true
+
+            color: JamiTheme.primaryBackgroundColor
+
+            Rectangle {
+                anchors.top: parent.top
+                height: JamiTheme.messageWebViewHairLineSize
+                width: parent.width
+                color: JamiTheme.tabbarBorderColor
+            }
+
+            ColumnLayout {
+                anchors {
+                    margins: 12
+                    left: parent.left
+                    right: parent.right
+                }
+                spacing: 12
+
+                Text {
+                    Layout.topMargin: 12
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    Layout.fillWidth: true
+                    font.pointSize: JamiTheme.textFontSize + 2
+                    color: JamiTheme.textColor
+                    wrapMode: Text.Wrap
+                    horizontalAlignment: Text.AlignHCenter
+                    text: JamiStrings.contactLeft
+                }
+
+                RowLayout {
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    Layout.fillWidth: true
+                    Layout.bottomMargin: 12
+                    spacing: 12
+
+                    MaterialButton {
+                        text: JamiStrings.removeContact
+                        font.pointSize: JamiTheme.textFontSize + 2
+                        onClicked: MessagesAdapter.removeContact(
+                                       LRCInstance.selectedConvUid)
+                    }
+
+                    MaterialButton {
+                        text: JamiStrings.newConversation
+                        font.pointSize: JamiTheme.textFontSize + 2
+                        onClicked: {
+                            ConversationsAdapter.restartConversation(
+                                        LRCInstance.selectedConvUid)
+                        }
+                    }
+                }
+            }
+        }
+
         MessageWebViewFooter {
             id: messageWebViewFooter
 
