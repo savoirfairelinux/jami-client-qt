@@ -40,6 +40,8 @@ Item {
     property string contactSearchInvitations: qsTr("Search your invitations")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is free software for universal communication which respects the freedoms and the privacy of its users.")
+    property string contactLeft: qsTr("You are viewing a conversation where all participants other than you have left. New interactions will not be possible.")
+    property string newConversation: qsTr("Start new conversation")
 
     // AboutPopUp
     property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (BETA)" : "")

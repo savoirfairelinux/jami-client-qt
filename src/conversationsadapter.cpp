@@ -433,6 +433,15 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             {"readOnly", convInfo.readOnly}};
 }
 
+void
+ConversationsAdapter::restartConversation(const QString& convId)
+{
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    const auto contactUri = accInfo.conversationModel->peersForConversation(convId).at(0);
+    accInfo.contactModel->removeContact(contactUri);
+    accInfo.contactModel->addToContacts(contactUri);
+}
+
 bool
 ConversationsAdapter::connectConversationModel()
 {
