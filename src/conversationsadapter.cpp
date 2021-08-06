@@ -433,6 +433,13 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             {"readOnly", convInfo.readOnly}};
 }
 
+void
+ConversationsAdapter::restartConversation(const QString& convId)
+{
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    accInfo.conversationModel->restartConversation(convId);
+}
+
 bool
 ConversationsAdapter::connectConversationModel()
 {
