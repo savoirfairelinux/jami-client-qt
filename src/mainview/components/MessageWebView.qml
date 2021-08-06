@@ -257,6 +257,60 @@ Rectangle {
             }
         }
 
+        Rectangle {
+            visible: CurrentConversation.readOnly
+            Layout.preferredHeight: childrenRect.height
+            Layout.fillWidth: true
+
+            color: JamiTheme.primaryBackgroundColor
+
+            Rectangle {
+                anchors.top: parent.top
+                height: JamiTheme.messageWebViewHairLineSize
+                width: parent.width
+                color: JamiTheme.tabbarBorderColor
+            }
+
+            ColumnLayout {
+                anchors {
+                    margins: 12
+                    left: parent.left
+                    right: parent.right
+                    //horizontalCenter: parent.horizontalCenter
+                }
+                spacing: 12
+
+                Text {
+                    Layout.topMargin: 12
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    Layout.fillWidth: true
+                    font.pointSize: JamiTheme.textFontSize + 2
+                    wrapMode: Text.Wrap
+                    horizontalAlignment: Text.AlignHCenter
+                    text: qsTr("You are viewing a conversation where all participants other than you have left. New interactions will not be possible.")
+                }
+
+                RowLayout {
+                    Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                    Layout.fillWidth: true
+                    Layout.bottomMargin: 12
+                    spacing: 12
+
+                    MaterialButton {
+                        text: "Remove contact"
+                        font.pointSize: JamiTheme.textFontSize + 2
+                        onClicked: MessagesAdapter.removeContact(
+                                       LRCInstance.selectedConvUid)
+                    }
+
+                    MaterialButton {
+                        text: "Start new conversation"
+                        font.pointSize: JamiTheme.textFontSize + 2
+                    }
+                }
+            }
+        }
+
         MessageWebViewFooter {
             id: messageWebViewFooter
 
