@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3286deaf_5dc8ad33",
+        "filename": "src/settingsview/components/AdvancedChatSettings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-06T20:10:11Z",
+      "side": 1,
+      "message": "Done. Yeah still not using QtCreator so don\u0027t get those warnings",
+      "parentUuid": "4cede99c_22969de8",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "abed55b5db759b547bfc96692b772678bbf5580e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f95b3b13_213d91af",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-08-06T20:03:47Z",
       "side": 1,
       "message": "Same here",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "abed55b5db759b547bfc96692b772678bbf5580e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6167d12c_1d766d78",
+        "filename": "src/settingsview/components/AdvancedChatSettings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-06T20:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f95b3b13_213d91af",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "16662908_9caba6e3",
+        "filename": "src/settingsview/components/AdvancedChatSettings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-06T20:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5797e75b_d7a05836",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 76
+      },
+      "revId": "abed55b5db759b547bfc96692b772678bbf5580e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "deb987aa_fe383836",
@@ -93,6 +165,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36088067_d35f650a",
+        "filename": "src/settingsview/components/AdvancedChatSettings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-06T20:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "deb987aa_fe383836",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 32
+      },
+      "revId": "abed55b5db759b547bfc96692b772678bbf5580e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62241fd7_98ed863e",
@@ -106,6 +202,30 @@
       "writtenOn": "2021-08-06T20:03:47Z",
       "side": 1,
       "message": "Just a note, now we can use the observable property from lrcinstance (currentAccountType)\n\nThese can be removed once we refactor the settings",
+      "range": {
+        "startLine": 117,
+        "startChar": 22,
+        "endLine": 117,
+        "endChar": 32
+      },
+      "revId": "abed55b5db759b547bfc96692b772678bbf5580e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2edaacbd_3ff4e1a4",
+        "filename": "src/settingsview/components/AdvancedSettings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-06T20:10:11Z",
+      "side": 1,
+      "message": "Ok So I changed the rest of the file with this property. Anyway will be refacto as you said",
+      "parentUuid": "62241fd7_98ed863e",
       "range": {
         "startLine": 117,
         "startChar": 22,
