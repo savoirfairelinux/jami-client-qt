@@ -22,6 +22,30 @@
       },
       "revId": "6b3bf5149fcd35b3e881151faa92ad9c57cc85cb",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82ea8216_7d9c0a02",
+        "filename": "src/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-08-06T22:36:25Z",
+      "side": 0,
+      "message": "hehe srsly",
+      "parentUuid": "9f21b327_b4fd0e46",
+      "range": {
+        "startLine": 69,
+        "startChar": 48,
+        "endLine": 69,
+        "endChar": 82
+      },
+      "revId": "6b3bf5149fcd35b3e881151faa92ad9c57cc85cb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
