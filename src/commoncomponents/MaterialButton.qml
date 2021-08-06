@@ -59,6 +59,7 @@ Button {
         delay: Qt.styleHints.mousePressAndHoldInterval
     }
 
+    // TODO: fix this contentItem, it has no dimensions
     contentItem: Item {
         Rectangle {
             anchors.fill: parent
