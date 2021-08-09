@@ -16,6 +16,24 @@
       "message": "It seems there is a problem with button without icon (cf About Jami, or Close. text is not centered.)",
       "revId": "a49e1530199ff4a3ff33b7707a602b12db0f8193",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "835489e6_2098119a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-08-09T20:54:16Z",
+      "side": 1,
+      "message": "Yeah, I think https://review.jami.net/c/jami-client-qt/+/18987/2..3 should fix it.",
+      "parentUuid": "311f415d_68fbad69",
+      "revId": "a49e1530199ff4a3ff33b7707a602b12db0f8193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
