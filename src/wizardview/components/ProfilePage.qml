@@ -169,6 +169,11 @@ Rectangle {
                     AccountAdapter.setCurrAccDisplayName(lastFirstChar)
                 }
             }
+
+            onAccepted: {
+                if (saveProfileBtn.enabled)
+                    saveProfileBtn.clicked()
+            }
         }
 
         SpinnerButton {
