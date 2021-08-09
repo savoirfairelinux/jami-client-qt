@@ -160,5 +160,6 @@
         <file>src/commoncomponents/BubbleLabel.qml</file>
         <file>src/commoncomponents/BackButton.qml</file>
         <file>src/commoncomponents/JamiSwitch.qml</file>
+        <file>src/commoncomponents/MaterialButtonEx.qml</file>
     </qresource>
 </RCC>

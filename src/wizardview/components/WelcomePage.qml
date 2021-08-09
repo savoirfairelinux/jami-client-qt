@@ -93,22 +93,19 @@ Rectangle {
                         JamiResources.logo_jami_standard_coul_svg
         }
 
-        MaterialButton {
+        MaterialButtonEx {
             id: newAccountButton
 
             objectName: "newAccountButton"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+
+            preferredWidth: 400
 
             text: JamiStrings.createAJamiAccount
-            fontCapitalization: Font.AllUppercase
+            font.capitalization: Font.AllUppercase
             toolTipText: JamiStrings.createNewJamiAccount
-            source: JamiResources.default_avatar_overlay_svg
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+            iconSource: JamiResources.default_avatar_overlay_svg
 
             KeyNavigation.tab: newRdvButton
             KeyNavigation.up: backButton.visible ? backButton :
@@ -121,22 +118,19 @@ Rectangle {
                            WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
         }
 
-        MaterialButton {
+        MaterialButtonEx {
             id: newRdvButton
 
             objectName: "newRdvButton"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: preferredWidth
-            Layout.preferredHeight: preferredHeight
+
+            preferredWidth: 400
 
             text: JamiStrings.createRV
-            fontCapitalization: Font.AllUppercase
+            font.capitalization: Font.AllUppercase
             toolTipText: JamiStrings.createNewRV
-            source: JamiResources.groups_24dp_svg
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+            iconSource: JamiResources.groups_24dp_svg
 
             KeyNavigation.tab: fromDeviceButton
             KeyNavigation.up: newAccountButton
