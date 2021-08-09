@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d10651bc_521deb55",
+        "filename": "src/commoncomponents/BackButton.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-09T19:49:36Z",
+      "side": 1,
+      "message": "the avantage of StandardKey is that it\u0027s standard and can be changed per platform. For our use case it should not change anything, but still, I think it\u0027s ok to use standardkey and don\u0027t think it\u0027s unclear",
+      "range": {
+        "startLine": 34,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 46
+      },
+      "revId": "8b65d16cfe1254eaa90f58d26e4e78843dd03650",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
