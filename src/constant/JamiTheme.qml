@@ -309,6 +309,14 @@ Item {
     property real welcomeLogoWidth: 330
     property real welcomeLogoHeight: 110
 
+    // MaterialLineEdit
+    property real materialLineEditPointSize: 10
+    property real materialLineEditPadding: 16
+
+    // UsernameLineEdit
+    property real usernameLineEditPointSize: 9
+    property real usernameLineEditlookupInterval: 200
+
     // Main application spec
     property real mainViewMinWidth: 300
     property real mainViewMinHeight: 500
