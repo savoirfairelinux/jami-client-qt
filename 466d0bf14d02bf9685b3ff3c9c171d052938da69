@@ -22,6 +22,30 @@
       },
       "revId": "466d0bf14d02bf9685b3ff3c9c171d052938da69",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0c4e1ff_85f10a39",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-08-09T21:08:14Z",
+      "side": 1,
+      "message": "fixed plus the one in CurrentAccountSettings.qml",
+      "parentUuid": "ec7ec0dd_53f3222f",
+      "range": {
+        "startLine": 152,
+        "startChar": 41,
+        "endLine": 152,
+        "endChar": 73
+      },
+      "revId": "466d0bf14d02bf9685b3ff3c9c171d052938da69",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
