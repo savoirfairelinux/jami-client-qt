@@ -95,7 +95,6 @@ Rectangle {
             font.kerning: true
 
             echoMode: TextInput.Password
-            borderColorMode: MaterialLineEdit.NORMAL
 
             KeyNavigation.tab: pinFromDevice
             KeyNavigation.up: {
@@ -143,8 +142,6 @@ Rectangle {
             placeholderText: JamiStrings.pin
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
-
-            borderColorMode: MaterialLineEdit.NORMAL
 
             KeyNavigation.tab: {
                 if (connectBtn.enabled)
