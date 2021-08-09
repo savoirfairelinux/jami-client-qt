@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7ec0dd_53f3222f",
+        "filename": "src/settingsview/components/LogsView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-09T21:01:00Z",
+      "side": 1,
+      "message": "trailing",
+      "range": {
+        "startLine": 152,
+        "startChar": 41,
+        "endLine": 152,
+        "endChar": 73
+      },
+      "revId": "466d0bf14d02bf9685b3ff3c9c171d052938da69",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
