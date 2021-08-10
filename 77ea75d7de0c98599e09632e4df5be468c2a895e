@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6191c73e_c54202ec",
+        "filename": "src/mainview/components/MessageWebView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-08-10T16:03:33Z",
+      "side": 1,
+      "message": "Add text color here",
+      "range": {
+        "startLine": 287,
+        "startChar": 20,
+        "endLine": 287,
+        "endChar": 39
+      },
+      "revId": "77ea75d7de0c98599e09632e4df5be468c2a895e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
