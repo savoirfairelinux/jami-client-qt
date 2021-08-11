@@ -22,6 +22,30 @@
       },
       "revId": "8b65d16cfe1254eaa90f58d26e4e78843dd03650",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "209c5e1e_a6ed9465",
+        "filename": "src/commoncomponents/BackButton.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-08-11T14:52:37Z",
+      "side": 1,
+      "message": "It is just thst the name is unclear,\n\nAndreas said that InsertParagraphSeparator can be confusing to us if we need to modify these code,\n\nAlso, in the doc, InsertParagraphSeparator does not include Return key\n\nbut it works if you press return\n\nwhich is confusing too",
+      "parentUuid": "d10651bc_521deb55",
+      "range": {
+        "startLine": 34,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 46
+      },
+      "revId": "8b65d16cfe1254eaa90f58d26e4e78843dd03650",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
