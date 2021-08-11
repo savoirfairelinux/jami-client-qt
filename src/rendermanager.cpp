@@ -155,11 +155,11 @@ FrameWrapper::slotFrameUpdated(const QString& id)
          * If the frame is empty or not the expected size,
          * do nothing and keep the last rendered QImage.
          */
-        if (size != 0 && size == width * height * 4) {
+        if (size != 0 && (size == width * height * 4 || size == width * height * 4 + 8)) {
 #ifndef Q_OS_LINUX
             buffer_ = std::move(frame_.storage);
 #else
-            buffer_.reserve(size);
+            buffer_.resize(size);
             std::move(frame_.ptr, frame_.ptr + size, buffer_.begin());
 #endif
             image_.reset(new QImage((uchar*) buffer_.data(), width, height, imageFormat));

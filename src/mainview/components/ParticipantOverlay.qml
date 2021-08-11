@@ -246,8 +246,8 @@ Item {
                 height: mediaDistRender.height
                 Rectangle {
                     anchors.centerIn: parent
-                    width: peerOverlay.width
-                    height: peerOverlay.height
+                    width: participantMouseArea.width
+                    height: participantMouseArea.height
                     radius: 10
                 }
             }
