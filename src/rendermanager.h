@@ -77,6 +77,8 @@ public:
      */
     bool isRendering();
 
+    void resumeRendering();
+
     bool frameMutexTryLock();
 
     void frameMutexUnlock();
@@ -216,6 +218,9 @@ public:
      * @return the rendered preview image
      */
     QImage* getPreviewFrame();
+
+    void resumeRendering(const QString& id);
+    void pauseRendering(const QString& id);
 
 Q_SIGNALS:
 

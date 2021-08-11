@@ -58,6 +58,10 @@ Item {
     property bool isModeratorMuted: false
     property bool participantIsMuted: isLocalMuted || isModeratorMuted
 
+    onVisibleChanged: {
+        mediaDistRender.setVisibility(visible)
+    }
+
     Rectangle {
         id: peerOverlay
 
@@ -248,8 +252,8 @@ Item {
                 height: mediaDistRender.height
                 Rectangle {
                     anchors.centerIn: parent
-                    width: peerOverlay.width
-                    height: peerOverlay.height
+                    width: participantMouseArea.width
+                    height: participantMouseArea.height
                     radius: 10
                 }
             }

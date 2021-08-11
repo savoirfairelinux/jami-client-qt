@@ -59,6 +59,7 @@ void
 DistantRenderer::setRendererId(const QString& id)
 {
     distantRenderId_ = id;
+    setVisibility(true);
     // Note: Force a paint to update frame as we change the renderer
     update(QRect(0, 0, width(), height()));
 }
@@ -103,6 +104,17 @@ double
 DistantRenderer::getWidgetHeight() const
 {
     return height_;
+}
+void
+DistantRenderer::setVisibility(bool visible)
+{
+    if (!lrcInstance_ || distantRenderId_.isEmpty())
+        return;
+    if (visible) {
+        lrcInstance_->renderer()->resumeRendering(distantRenderId_);
+    } else {
+        lrcInstance_->renderer()->pauseRendering(distantRenderId_);
+    }
 }
 
 void

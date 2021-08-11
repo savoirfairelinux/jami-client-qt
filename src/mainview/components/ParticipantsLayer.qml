@@ -48,6 +48,9 @@ Item {
             participantIsActive: active_
             isLocalMuted: audioLocalMuted_
             isModeratorMuted: audioModeratorMuted_
+            Component.onCompleted:{
+                onVisibleChanged()
+            }
         }
     }
 

@@ -45,6 +45,7 @@ public:
     Q_INVOKABLE double getScaledHeight() const;
     Q_INVOKABLE double getWidgetWidth() const;
     Q_INVOKABLE double getWidgetHeight() const;
+    Q_INVOKABLE void setVisibility(bool visible);
 
 Q_SIGNALS:
     void offsetChanged();
