@@ -145,7 +145,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_ENUMS, dummy::staticMetaObject, "");
 
     // QAbstractListModels
-    QML_REGISTERTYPE(NS_MODELS, DeviceItemListModel);
+    QML_REGISTERTYPE(NS_MODELS, DeviceItemProxyModel);
     QML_REGISTERTYPE(NS_MODELS, BannedListModel);
     QML_REGISTERTYPE(NS_MODELS, ModeratorListModel);
     QML_REGISTERTYPE(NS_MODELS, MediaCodecListModel);
