@@ -33,8 +33,9 @@ BaseDialog {
     function openLinkDeviceDialog() {
         infoLabel.text = JamiStrings.pinTimerInfos
         passwordEdit.clear()
+
         if(AccountAdapter.hasPassword()) {
-            stackedWidget.currentIndex = 0
+            stackedWidget.currentIndex = enterPasswordPage.pageIndex
         } else {
             setGeneratingPage()
         }
@@ -66,7 +67,6 @@ BaseDialog {
     }
 
     function setExportPage(status, pin) {
-
         if (status === NameDirectory.ExportOnRingStatus.SUCCESS) {
             infoLabel.success = true
             yourPinLabel.visible = true
@@ -122,17 +122,19 @@ BaseDialog {
             anchors.margins: JamiTheme.preferredMarginSize
 
             // Index = 0
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                color: JamiTheme.secondaryBackgroundColor
+            Item {
+                id: enterPasswordPage
+
+                readonly property int pageIndex: 0
 
                 ColumnLayout {
-                    anchors.centerIn: parent
+                    anchors.fill: parent
+
                     spacing: 16
 
                     Label {
                         Layout.alignment: Qt.AlignHCenter
+
                         text: JamiStrings.enterAccountPassword
                         color: JamiTheme.textColor
                         font.pointSize: JamiTheme.textFontSize
@@ -177,11 +179,9 @@ BaseDialog {
                             outlined: true
                             enabled: false
 
-                            text: qsTr("Register")
+                            text: JamiStrings.register
 
-                            onClicked: {
-                                setGeneratingPage()
-                            }
+                            onClicked: setGeneratingPage()
                         }
 
                         MaterialButton {
@@ -197,11 +197,9 @@ BaseDialog {
                             outlined: true
                             enabled: true
 
-                            text: qsTr("Cancel")
+                            text: JamiStrings.optionCancel
 
-                            onClicked: {
-                                close()
-                            }
+                            onClicked: close()
                         }
                     }
                 }

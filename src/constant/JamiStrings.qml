@@ -348,6 +348,12 @@ Item {
     property string acceptTransferBelow: qsTr("Accept transfer limit")
     property string acceptTransferTooltip: qsTr("in MB, 0 = unlimited")
 
+    // JamiUserIdentity settings
+    property string register: qsTr("Register")
+    property string incorrectPassword: qsTr("Incorrect password")
+    property string networkError: qsTr("Network error")
+    property string somethingWentWrong: qsTr("Something went wrong")
+
     // Updates
     property string betaInstall: qsTr("Install beta version")
     property string checkForUpdates: qsTr("Check for updates now")

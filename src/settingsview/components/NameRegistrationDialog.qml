@@ -36,10 +36,11 @@ BaseDialog {
 
     function openNameRegistrationDialog(registerNameIn) {
         registerdName = registerNameIn
-        lblRegistrationError.text = qsTr("Something went wrong")
+        lblRegistrationError.text = JamiStrings.somethingWentWrong
         passwordEdit.clear()
+
         if(AccountAdapter.hasPassword()){
-            stackedWidget.currentIndex = 0
+            stackedWidget.currentIndex = nameRegisterEnterPasswordPage.pageIndex
         } else {
             startRegistration()
         }
@@ -47,20 +48,10 @@ BaseDialog {
     }
 
     function startRegistration() {
-        startSpinner()
+        stackedWidget.currentIndex = nameRegisterSpinnerPage.pageIndex
+        spinnerMovie.visible = true
+
         timerForStartRegistration.restart()
-    }
-
-    function slotStartNameRegistration() {
-        var password = passwordEdit.text
-        AccountAdapter.model.registerName(LRCInstance.currentAccountId,
-                                          password, registerdName)
-    }
-
-    function startSpinner() {
-        stackedWidget.currentIndex = 1
-        spinnerLabel.visible = true
-        spinnerMovie.playing = true
     }
 
     Timer {
@@ -70,7 +61,8 @@ BaseDialog {
         repeat: false
 
         onTriggered: {
-            slotStartNameRegistration()
+            AccountAdapter.model.registerName(LRCInstance.currentAccountId,
+                                              passwordEdit.text, registerdName)
         }
     }
 
@@ -84,15 +76,16 @@ BaseDialog {
                 close()
                 return
             case NameDirectory.RegisterNameStatus.WRONG_PASSWORD:
-                lblRegistrationError.text = qsTr("Incorrect password")
+                lblRegistrationError.text = JamiStrings.incorrectPassword
                 break
             case NameDirectory.RegisterNameStatus.NETWORK_ERROR:
-                lblRegistrationError.text = qsTr("Network error")
+                lblRegistrationError.text = JamiStrings.networkError
                 break
             default:
                 break
             }
-            stackedWidget.currentIndex = 2
+
+            stackedWidget.currentIndex = nameRegisterErrorPage.pageIndex
         }
     }
 
@@ -104,27 +97,30 @@ BaseDialog {
         implicitWidth: JamiTheme.preferredDialogWidth
         implicitHeight: JamiTheme.preferredDialogHeight
 
-        color: "transparent"
+        color: JamiTheme.primaryBackgroundColor
 
         StackLayout {
             id: stackedWidget
 
-            anchors.centerIn: parent
             anchors.fill: parent
             anchors.margins: JamiTheme.preferredMarginSize
 
             // Index = 0
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            Item {
+                id: nameRegisterEnterPasswordPage
+
+                readonly property int pageIndex: 0
 
                 ColumnLayout {
-                    anchors.centerIn: parent
+                    anchors.fill: parent
+
                     spacing: 16
 
                     Label {
                         Layout.alignment: Qt.AlignCenter
+
                         text: JamiStrings.enterAccountPassword
+                        color: JamiTheme.textColor
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
                         horizontalAlignment: Text.AlignHCenter
@@ -140,7 +136,7 @@ BaseDialog {
 
                         echoMode: TextInput.Password
 
-                        placeholderText: qsTr("Password")
+                        placeholderText: JamiStrings.password
 
                         onTextChanged: btnRegister.enabled = (text.length > 0)
                     }
@@ -163,11 +159,9 @@ BaseDialog {
                             outlined: true
                             enabled: false
 
-                            text: qsTr("Register")
+                            text: JamiStrings.register
 
-                            onClicked: {
-                                startRegistration()
-                            }
+                            onClicked: startRegistration()
                         }
 
                         MaterialButton {
@@ -182,61 +176,58 @@ BaseDialog {
                             pressedColor: JamiTheme.buttonTintedBlackPressed
                             outlined: true
 
-                            text: qsTr("Cancel")
+                            text: JamiStrings.optionCancel
 
-                            onClicked: {
-                                close()
-                            }
+                            onClicked: close()
                         }
                     }
                 }
             }
 
             // Index = 1
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            Item {
+                id: nameRegisterSpinnerPage
+
+                readonly property int pageIndex: 1
 
                 ColumnLayout {
-                    anchors.centerIn: parent
+                    anchors.fill: parent
+
                     spacing: 16
 
                     Label {
                         Layout.alignment: Qt.AlignCenter
+
                         text: JamiStrings.registeringName
+                        color: JamiTheme.textColor
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
 
-                    Label {
-                        id: spinnerLabel
+                    AnimatedImage {
+                        id: spinnerMovie
 
-                        Layout.alignment: Qt.AlignHCenter
+                        Layout.alignment: Qt.AlignCenter
 
-                        Layout.preferredWidth: 96
-                        Layout.preferredHeight: 96
+                        Layout.preferredWidth: 30
+                        Layout.preferredHeight: 30
 
-                        background: Rectangle {
-                            AnimatedImage {
-                                id: spinnerMovie
-                                anchors.fill: parent
-                                source: JamiResources.jami_eclipse_spinner_gif
-                                playing: spinnerLabel.visible
-                                paused: false
-                                fillMode: Image.PreserveAspectFit
-                                mipmap: true
-                            }
-                        }
+                        source: JamiResources.jami_rolling_spinner_gif
+                        playing: visible
+                        paused: false
+                        fillMode: Image.PreserveAspectFit
+                        mipmap: true
                     }
                 }
             }
 
             // Index = 2
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+            Item {
+                id: nameRegisterErrorPage
+
+                readonly property int pageIndex: 2
 
                 ColumnLayout {
                     anchors.centerIn: parent
@@ -246,10 +237,10 @@ BaseDialog {
                         id: lblRegistrationError
 
                         Layout.alignment: Qt.AlignCenter
-                        text: qsTr("Something went wrong")
+                        text: JamiStrings.somethingWentWrong
                         font.pointSize: JamiTheme.textFontSize
                         font.kerning: true
-                        color: "red"
+                        color: JamiTheme.redColor
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
@@ -268,9 +259,7 @@ BaseDialog {
 
                         text: JamiStrings.close
 
-                        onClicked: {
-                            close()
-                        }
+                        onClicked: close()
                     }
                 }
             }
