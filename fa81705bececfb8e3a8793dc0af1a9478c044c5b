@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9779dc2b_fbfc9ad7",
+        "filename": "src/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-08-12T21:12:28Z",
+      "side": 1,
+      "message": "isSwarm",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 32
+      },
+      "revId": "fa81705bececfb8e3a8793dc0af1a9478c044c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
