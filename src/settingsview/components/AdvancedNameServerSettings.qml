@@ -35,7 +35,7 @@ ColumnLayout {
     property int itemWidth
 
     function updateNameServerInfos() {
-        lineEditNameServer.setText(SettingsAdapter.getAccountConfig_RingNS_Uri())
+        lineEditNameServer.textField = SettingsAdapter.getAccountConfig_RingNS_Uri()
     }
 
     Text {
