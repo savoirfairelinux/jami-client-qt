@@ -35,7 +35,7 @@ ColumnLayout {
     property int itemWidth
 
     function updateVoiceMailSettingsInfos() {
-        lineEditVoiceMailDialCode.setText(SettingsAdapter.getAccountConfig_Mailbox())
+        lineEditVoiceMailDialCode.textField = SettingsAdapter.getAccountConfig_Mailbox()
     }
 
     ElidedTextLabel {
