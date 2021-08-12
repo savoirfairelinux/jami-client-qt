@@ -86,6 +86,8 @@ ColumnLayout {
         verticalAlignment: Text.AlignVCenter
         padding: 8
 
+        loseFocusWhenEnterPressed: true
+
         onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
     }
 }
