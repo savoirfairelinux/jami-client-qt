@@ -32,22 +32,18 @@ import "../../commoncomponents"
 RowLayout {
     id: root
 
-    property string titleField: ""
-    property string textField: ""
+    property alias titleField: title.text
+    property alias textField: button.text
+    property alias enabled: button.enabled
+
     property string source
     property int itemWidth
 
     signal click
 
-    function setEnabled(status) {
-        button.enabled = status
-    }
-    function setText(text) {
-        root.textField = text
-        button.text = text
-    }
-
     Text {
+        id: title
+
         Layout.fillWidth: true
         Layout.rightMargin: JamiTheme.preferredMarginSize / 2
 
@@ -57,7 +53,6 @@ RowLayout {
         horizontalAlignment: Text.AlignLeft
         verticalAlignment: Text.AlignVCenter
 
-        text: root.titleField
         color: JamiTheme.textColor
         elide: Text.ElideRight
     }
@@ -68,15 +63,11 @@ RowLayout {
         Layout.fillHeight: true
         preferredWidth: root.itemWidth
 
-        text: root.textField
         iconSource: root.source
         color: JamiTheme.buttonTintedGrey
         hoveredColor: JamiTheme.buttonTintedGreyHovered
         pressedColor: JamiTheme.buttonTintedGreyPressed
 
-        onClicked: {
-            root.textField = text
-            click()
-        }
+        onClicked: click()
     }
 }

@@ -30,16 +30,17 @@ import "../../commoncomponents"
 RowLayout {
     id: root
 
-    property string labelText: ""
-    property var comboModel
-    property int fontPointSize: JamiTheme.headerFontSize
+    property alias labelText: label.eText
+    property alias comboModel: comboBoxOfLayout.model
+    property alias tipText: comboBoxOfLayout.tooltipText
+    property alias role: comboBoxOfLayout.textRole
+    property alias placeholderText: comboBoxOfLayout.placeholderText
+    property alias enabled: comboBoxOfLayout.enabled
+    property alias fontPointSize: comboBoxOfLayout.font.pointSize
+
     property int heightOfLayout: 30
     property int widthOfComboBox: 50
     property int modelIndex
-    property string tipText: ""
-    property string role: ""
-
-    property alias placeholderText: comboBoxOfLayout.placeholderText
 
     signal indexChanged
 
@@ -50,11 +51,6 @@ RowLayout {
             indexChanged()
     }
 
-    function setEnabled(status) {
-        comboBoxOfLayout.enabled = status
-        label.enabled = status
-    }
-
     ElidedTextLabel {
         id: label
 
@@ -62,7 +58,6 @@ RowLayout {
         Layout.preferredHeight: heightOfLayout
         Layout.rightMargin: JamiTheme.preferredMarginSize / 2
 
-        eText: qsTr(labelText)
         fontSize: JamiTheme.settingsFontSize
         maxWidth: widthOfComboBox
     }
