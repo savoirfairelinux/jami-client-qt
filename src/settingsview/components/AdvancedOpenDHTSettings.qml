@@ -37,8 +37,8 @@ ColumnLayout {
     function updateOpenDHTSettingsInfos() {
         checkAutoConnectOnLocalNetwork.checked = SettingsAdapter.getAccountConfig_PeerDiscovery()
         checkBoxEnableProxy.checked = SettingsAdapter.getAccountConfig_ProxyEnabled()
-        lineEditProxy.setText(SettingsAdapter.getAccountConfig_ProxyServer())
-        lineEditBootstrap.setText(SettingsAdapter.getAccountConfig_Hostname())
+        lineEditProxy.textField = SettingsAdapter.getAccountConfig_ProxyServer()
+        lineEditBootstrap.textField = SettingsAdapter.getAccountConfig_Hostname()
     }
 
     Text {
@@ -82,7 +82,7 @@ ColumnLayout {
 
             onSwitchToggled: {
                 SettingsAdapter.setEnableProxy(checked)
-                lineEditProxy.setEnabled(checked)
+                lineEditProxy.enabled = checked
             }
         }
 
