@@ -22,6 +22,29 @@
       },
       "revId": "fa81705bececfb8e3a8793dc0af1a9478c044c5b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ebef5b8_b1f233d2",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 17
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-13T13:53:02Z",
+      "side": 1,
+      "message": "yes",
+      "range": {
+        "startLine": 557,
+        "startChar": 26,
+        "endLine": 562,
+        "endChar": 27
+      },
+      "revId": "fa81705bececfb8e3a8793dc0af1a9478c044c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
