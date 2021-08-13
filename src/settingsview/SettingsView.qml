@@ -60,7 +60,6 @@ Rectangle {
                 break
             case SettingsView.Plugin:
                 selectedMenu = sel
-                pluginSettings.populatePluginSettings()
                 break
         }
     }

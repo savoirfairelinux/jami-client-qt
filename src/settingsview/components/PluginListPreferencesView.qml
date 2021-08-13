@@ -29,122 +29,35 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    enum Type {
-        LIST,
-        PATH,
-        EDITTEXT,
-        DEFAULT
+    property int effectiveHeight: visible ? implicitHeight : 0
+    implicitHeight: childrenRect.height
+    onVisibleChanged: {
+        if (visible) {
+            preferencesPerCategoryModel.reset()
+            generalPreferencesModel.reset()
+        }
     }
 
-    property string pluginName: ""
-    property string pluginIcon: ""
-    property string pluginId: ""
-    property bool isLoaded: false
-    property string category: ""
-    property var categories: ["all"]
-    property string generalCategory: ""
+    property string category: categories.length > 0 ? categories[0] : category ? category : ""
+    property var categories: PluginAdapter.getPluginPreferencesCategories(pluginId)
+    property string generalCategory: categories.length <= 1 ? "all" : ""
 
     visible: false
-    color: "transparent"
-
-    signal uninstalled
-    signal updatePluginPrefListView
-
-    function updateProperties(name, icon, path, status) {
-        root.pluginName = name
-        root.pluginIcon = icon
-        root.pluginId = path
-        root.isLoaded = status
-        root.categories = PluginAdapter.getPluginPreferencesCategories(path)
-        if (root.category === "" && root.categories.length > 0)
-            root.category = root.categories[0]
-        resetModels()
-    }
-
-    function resetModels() {
-        updatePluginPrefListView()
-        root.categories = PluginAdapter.getPluginPreferencesCategories(root.pluginId)
-        if (root.categories.length <= 1) {
-            root.generalCategory = "all"
-            categoriesGrid.visible = false
-            prefsByCategory.visible = false
-        }
-        else {
-            gridModel.model = root.categories
-            if (root.categories.length % 2 == 1) {
-                gridModel.model = PluginAdapter.getPluginPreferencesCategories(pluginId, true)
-                oddCategoryButton.text = root.categories[root.categories.length - 1]
-                oddCategoryButton.highlighted = root.category == oddCategoryButton.text
-            }
-            oddCategoryButton.visible = root.categories.length % 2 == 1
-            root.generalCategory = ""
-        }
-        pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.generalCategory)
-        pluginPreferenceViewCategory.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.category)
-        updatePluginPrefListView()
-    }
-
-    Connections {
-        target: PluginAdapter
-
-        function onPreferenceChanged(pluginId) {
-            if (root.pluginId === pluginId)
-                resetModels()
-        }
-    }
-
-    function resetPluginSlot() {
-        msgDialog.buttonCallBacks = [function () {
-            resetPlugin()
-        }]
-        msgDialog.openWithParameters(qsTr("Reset preferences"),
-                                     qsTr("Are you sure you wish to reset "+ pluginName +
-                                          " preferences?"))
-    }
-
-    function resetPlugin() {
-        if (isLoaded) {
-            PluginModel.unloadPlugin(pluginId)
-            PluginModel.resetPluginPreferencesValues(pluginId)
-            PluginModel.loadPlugin(pluginId)
-        } else {
-            PluginModel.resetPluginPreferencesValues(pluginId)
-        }
-        pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.generalCategory)
-        pluginPreferenceViewCategory.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.category)
-        PluginAdapter.pluginHandlersUpdateStatus()
-    }
-
-    function uninstallPluginSlot() {
-        msgDialog.buttonCallBacks = [function () {
-            uninstallPlugin()
-        }]
-        msgDialog.openWithParameters(qsTr("Uninstall plugin"),
-                                     qsTr("Are you sure you wish to uninstall " + pluginName + " ?"))
-    }
-
-    function uninstallPlugin() {
-        PluginModel.uninstallPlugin(root.pluginId)
-        PluginAdapter.pluginUninstalled()
-        PluginAdapter.pluginHandlersUpdateStatus()
-        root.visible = false
-    }
 
     function setPreference(pluginId, preferenceKey, preferenceNewValue)
     {
         if (isLoaded) {
             PluginModel.unloadPlugin(pluginId)
-            PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
+            PluginModel.setPluginPreference(pluginId, "", preferenceKey, preferenceNewValue)
             PluginModel.loadPlugin(pluginId)
         } else
-            PluginModel.setPluginPreference(pluginId, preferenceKey, preferenceNewValue)
-        PluginAdapter.pluginHandlersUpdateStatus()
+            PluginModel.setPluginPreference(pluginId, "", preferenceKey, preferenceNewValue)
     }
 
     SimpleMessageDialog {
         id: msgDialog
 
-        buttonTitles: [qsTr("Ok"), qsTr("Cancel")]
+        buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel]
         buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
                        SimpleMessageDialog.ButtonStyle.TintedBlack]
     }
@@ -175,7 +88,7 @@ Rectangle {
             Layout.topMargin: 24
             height: JamiTheme.preferredFieldHeight
 
-            text: qsTr(pluginName + "\nPreferences")
+            text: JamiStrings.pluginPreferences.arg(pluginName)
             font.pointSize: JamiTheme.headerFontSize
             font.kerning: true
             color: JamiTheme.textColor
@@ -186,6 +99,9 @@ Rectangle {
 
         Rectangle {
             id: prefsByCategory
+
+            visible: categories.length > 1
+
             Layout.topMargin: 24
             Layout.fillWidth: true
             implicitHeight: childrenRect.height
@@ -197,15 +113,16 @@ Rectangle {
 
                 GridLayout {
                     id: categoriesGrid
+
                     Layout.fillWidth: true
-                    implicitHeight: childrenRect.height
+                    implicitHeight: gridModel.count * JamiTheme.preferredFieldHeight
                     columns: 2
                     columnSpacing: 0
                     rowSpacing: 0
 
                     Repeater {
                         id: gridModel
-                        model: root.categories
+                        model: categories.length % 2 === 1 ? PluginAdapter.getPluginPreferencesCategories(pluginId, true) : root.categories
                         Button {
                             id: repDelegate
                             Layout.fillWidth: true
@@ -215,7 +132,6 @@ Rectangle {
                             flat: true
                             onClicked: {
                                 root.category = modelData
-                                PluginAdapter.preferenceChanged(root.pluginId)
                             }
                             background: Rectangle {
                                 anchors.fill: parent
@@ -241,10 +157,13 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: JamiTheme.preferredFieldHeight
                     flat: true
-                    visible: false
+                    visible: categories.length % 2 === 1
+
+                    text: categories[categories.length - 1]
+                    highlighted: category === text
+
                     onClicked: {
                         root.category = oddCategoryButton.text
-                        PluginAdapter.preferenceChanged(root.pluginId)
                     }
                     background: Rectangle {
                         anchors.fill: parent
@@ -268,11 +187,18 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.minimumHeight: 1
                     Layout.preferredHeight: childrenRect.height
-                    implicitHeight: childrenRect.height
 
-                    model: PluginAdapter.getPluginPreferencesModel(root.pluginId, root.category)
+                    model: PreferenceItemListModel {
+                        id: preferencesPerCategoryModel
+                        lrcInstance: LRCInstance
+                        category_: category
+                        pluginId_: pluginId
+
+                        onCategory_Changed: {
+                            this.reset()
+                        }
+                    }
                     interactive: false
-                    maximumFlickVelocity: 1024
 
                     delegate: PreferenceItemDelegate {
                         id: preferenceItemDelegateCategory
@@ -300,7 +226,7 @@ Rectangle {
 
                         onBtnPreferenceClicked: {
                             setPreference(pluginId, preferenceKey, preferenceNewValue)
-                            pluginPreferenceViewCategory.model = PluginAdapter.getPluginPreferencesModel(pluginId, root.category)
+                            preferencesPerCategoryModel.reset()
                         }
 
                         background: Rectangle {
@@ -314,15 +240,22 @@ Rectangle {
 
         ListView {
             id: pluginPreferenceView
+
             Layout.fillWidth: true
             Layout.minimumHeight: 1
-
-            implicitHeight: childrenRect.height
             Layout.preferredHeight: childrenRect.height
 
-            model: PluginAdapter.getPluginPreferencesModel(root.pluginId)
+            model: PreferenceItemListModel {
+                id: generalPreferencesModel
+                lrcInstance: LRCInstance
+                category_: generalCategory
+                pluginId_: pluginId
+
+                onCategory_Changed: {
+                    this.reset()
+                }
+            }
             interactive: false
-            maximumFlickVelocity: 1024
 
             delegate: PreferenceItemDelegate {
                 id: preferenceItemDelegate
@@ -350,12 +283,7 @@ Rectangle {
 
                 onBtnPreferenceClicked: {
                     setPreference(pluginId, preferenceKey, preferenceNewValue)
-                    pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(pluginId, generalCategory)
-                }
-
-                background: Rectangle {
-                    anchors.fill: parent
-                    color: "transparent"
+                    generalPreferencesModel.reset()
                 }
             }
         }
@@ -381,7 +309,21 @@ Rectangle {
 
                 text: JamiStrings.reset
 
-                onClicked: resetPluginSlot()
+                onClicked: {
+                    msgDialog.buttonCallBacks = [function () {
+                        if (isLoaded) {
+                            PluginModel.unloadPlugin(pluginId)
+                            PluginModel.resetPluginPreferencesValues(pluginId, "")
+                            PluginModel.loadPlugin(pluginId)
+                        } else {
+                            PluginModel.resetPluginPreferencesValues(pluginId, "")
+                        }
+                        preferencesPerCategoryModel.reset()
+                        generalPreferencesModel.reset()
+                    }]
+                    msgDialog.openWithParameters(JamiStrings.resetPreferences,
+                                                 JamiStrings.pluginResetConfirmation.arg(pluginName))
+                }
             }
 
             MaterialButton {
@@ -397,14 +339,20 @@ Rectangle {
 
                 iconSource: JamiResources.delete_24dp_svg
 
-                text: qsTr("Uninstall")
+                text: JamiStrings.uninstall
 
-                onClicked: uninstallPluginSlot()
+                onClicked: {
+                    msgDialog.buttonCallBacks = [function () {
+                        PluginModel.uninstallPlugin(pluginId)
+                        installedPluginsModel.removePlugin(index)
+                    }]
+                    msgDialog.openWithParameters(JamiStrings.uninstallPlugin,
+                                                 JamiStrings.pluginUninstallConfirmation.arg(pluginName))
+                }
             }
         }
 
         Rectangle {
-            id: endline
             Layout.bottomMargin: 10
             height: 2
             Layout.fillWidth: true

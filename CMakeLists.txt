@@ -67,8 +67,8 @@ set(COMMON_SOURCES
     ${SRC_DIR}/contactadapter.cpp
     ${SRC_DIR}/pluginadapter.cpp
     ${SRC_DIR}/deviceitemlistmodel.cpp
-    ${SRC_DIR}/pluginitemlistmodel.cpp
-    ${SRC_DIR}/pluginhandleritemlistmodel.cpp
+    ${SRC_DIR}/pluginlistmodel.cpp
+    ${SRC_DIR}/pluginhandlerlistmodel.cpp
     ${SRC_DIR}/preferenceitemlistmodel.cpp
     ${SRC_DIR}/mediacodeclistmodel.cpp
     ${SRC_DIR}/accountstomigratelistmodel.cpp
@@ -121,8 +121,8 @@ set(COMMON_HEADERS
     ${SRC_DIR}/contactadapter.h
     ${SRC_DIR}/pluginadapter.h
     ${SRC_DIR}/deviceitemlistmodel.h
-    ${SRC_DIR}/pluginitemlistmodel.h
-    ${SRC_DIR}/pluginhandleritemlistmodel.h
+    ${SRC_DIR}/pluginlistmodel.h
+    ${SRC_DIR}/pluginhandlerlistmodel.h
     ${SRC_DIR}/preferenceitemlistmodel.h
     ${SRC_DIR}/mediacodeclistmodel.h
     ${SRC_DIR}/accountstomigratelistmodel.h

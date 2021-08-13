@@ -1,6 +1,6 @@
 /**
- * Copyright (C) 2019-2020 by Savoir-faire Linux
- * Author: Aline Gondim Santos   <aline.gondimsantos@savoirfairelinux.com>
+ * Copyright (C) 2020 by Savoir-faire Linux
+ * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,17 +22,23 @@
 
 class LRCInstance;
 
-class PluginItemListModel : public AbstractListModelBase
+class PluginHandlerListModel : public AbstractListModelBase
 {
     Q_OBJECT
-    Q_PROPERTY(int pluginsCount READ pluginsCount)
 
+    QML_PROPERTY(QString, callId)
+    QML_PROPERTY(QString, peerId)
+    QML_PROPERTY(QString, accountId)
 public:
-    enum Role { PluginName = Qt::UserRole + 1, PluginId, PluginIcon, IsLoaded };
+    enum Role { HandlerName = Qt::UserRole + 1, HandlerId, HandlerIcon, IsLoaded, PluginId };
     Q_ENUM(Role)
 
-    explicit PluginItemListModel(QObject* parent = nullptr, LRCInstance* instance = nullptr);
-    ~PluginItemListModel();
+    explicit PluginHandlerListModel(
+        QObject* parent = nullptr,
+        const QString& accountId = QString(""),
+        const QString& peerId = QString(""),
+        LRCInstance* instance = nullptr); // for calls, accountId is the callId and peerId is null
+    ~PluginHandlerListModel();
 
     /*
      * QAbstractListModel override.
@@ -44,13 +50,12 @@ public:
      * Override role name as access point in qml.
      */
     QHash<int, QByteArray> roleNames() const override;
-    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& child) const;
-    Qt::ItemFlags flags(const QModelIndex& index) const;
 
-    int pluginsCount();
     /*
      * This function is to reset the model when there's new account added.
      */
     Q_INVOKABLE void reset();
+
+private:
+    bool isMediaHandler_;
 };
