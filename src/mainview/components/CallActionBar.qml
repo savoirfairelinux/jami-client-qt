@@ -293,7 +293,7 @@ Control {
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
             text: JamiStrings.viewPlugin
-            enabled: PluginAdapter.callMediaHandlersListCount
+            enabled: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
         }
     ]
 

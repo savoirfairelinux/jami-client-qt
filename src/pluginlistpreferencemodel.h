@@ -87,7 +87,8 @@ public:
     }
     QString preferenceCurrentValue()
     {
-        return lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_)[preferenceKey_];
+        return lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
+                                                                      accountId_)[preferenceKey_];
     }
 
     QString preferenceNewValue()
@@ -115,4 +116,5 @@ private:
     QStringList preferenceValuesList_;
     QStringList preferenceList_;
     int idx_ = 0;
+    QString accountId_ = "";
 };

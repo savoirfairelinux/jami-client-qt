@@ -19,8 +19,8 @@
 #pragma once
 
 #include "qmladapterbase.h"
-#include "pluginitemlistmodel.h"
-#include "pluginhandleritemlistmodel.h"
+#include "pluginlistmodel.h"
+#include "pluginhandlerlistmodel.h"
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 
@@ -33,6 +33,7 @@ class PluginAdapter final : public QmlAdapterBase
     Q_OBJECT
     QML_PROPERTY(int, callMediaHandlersListCount)
     QML_PROPERTY(int, chatHandlersListCount)
+    QML_PROPERTY(bool, isEnabled)
 
 public:
     explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
@@ -44,23 +45,13 @@ protected:
     Q_INVOKABLE QVariant getMediaHandlerSelectableModel(const QString& callId);
     Q_INVOKABLE QVariant getChatHandlerSelectableModel(const QString& accountId,
                                                        const QString& peerId);
-    Q_INVOKABLE QVariant getPluginSelectableModel();
-    Q_INVOKABLE QVariant getPluginPreferencesModel(const QString& pluginId,
-                                                   const QString& category = "all");
-    Q_INVOKABLE QVariant getHandlerPreferencesModel(const QString& pluginId,
-                                                    const QString& mediaHandlerName = "");
     Q_INVOKABLE QVariant getPluginPreferencesCategories(const QString& pluginId,
                                                         bool removeLast = false);
-
-Q_SIGNALS:
-    void pluginHandlersUpdateStatus();
-    void preferenceChanged(QString pluginId);
-    void pluginUninstalled();
 
 private:
     void updateHandlersListCount();
 
-    std::unique_ptr<PluginHandlerItemListModel> pluginHandlerListModel_;
-    std::unique_ptr<PreferenceItemListModel> preferenceItemListModel_;
-    std::unique_ptr<PluginItemListModel> pluginItemListModel_;
+    std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
+
+    std::mutex mtx_;
 };

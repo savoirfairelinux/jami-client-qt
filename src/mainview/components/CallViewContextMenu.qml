@@ -160,7 +160,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: viewPlugin
 
-            canTrigger: PluginAdapter.callMediaHandlersListCount
+            canTrigger: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
             itemName: JamiStrings.viewPlugin
             iconSource: JamiResources.extension_24dp_svg
             onClicked: {

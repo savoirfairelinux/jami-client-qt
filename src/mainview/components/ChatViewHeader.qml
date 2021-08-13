@@ -170,7 +170,7 @@ Rectangle {
             PushButton {
                 id: selectPluginButton
 
-                visible: PluginAdapter.chatHandlersListCount &&
+                visible: PluginAdapter.isEnabled && PluginAdapter.chatHandlersListCount &&
                          interactionButtonsVisibility
 
                 source: JamiResources.plugins_24dp_svg
