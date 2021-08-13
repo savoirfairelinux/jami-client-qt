@@ -29,14 +29,6 @@ import "../commoncomponents"
 ItemDelegate {
     id: root
 
-    enum Type {
-        LIST,
-        PATH,
-        EDITTEXT,
-        SWITCH,
-        DEFAULT
-    }
-
     property string preferenceName: ""
     property string preferenceSummary: ""
     property string preferenceKey: ""
@@ -53,12 +45,12 @@ ItemDelegate {
 
     function getNewPreferenceValueSlot(index) {
         switch (preferenceType) {
-            case PreferenceItemDelegate.LIST:
+            case PreferenceItemListModel.LIST:
                 pluginListPreferenceModel.idx = index
                 preferenceNewValue = pluginListPreferenceModel.preferenceNewValue
                 btnPreferenceClicked()
                 break
-            case PreferenceItemDelegate.PATH:
+            case PreferenceItemListModel.PATH:
                 if (index === 0) {
                     preferenceFilePathDialog.title = qsTr("Select An Image to " + preferenceName)
                     preferenceFilePathDialog.nameFilters = fileFilters
@@ -68,11 +60,11 @@ ItemDelegate {
                 else
                     btnPreferenceClicked()
                 break
-            case PreferenceItemDelegate.EDITTEXT:
+            case PreferenceItemListModel.EDITTEXT:
                 preferenceNewValue = editTextPreference.text
                 btnPreferenceClicked()
                 break
-            case PreferenceItemDelegate.SWITCH:
+            case PreferenceItemListModel.SWITCH:
                 preferenceNewValue = index ? "1" : "0"
                 btnPreferenceClicked()
                 break
@@ -115,7 +107,7 @@ ItemDelegate {
         PushButton {
             id: btnPreferenceDefault
 
-            visible: preferenceType === PreferenceItemDelegate.DEFAULT
+            visible: preferenceType === PreferenceItemListModel.DEFAULT
             normalColor: JamiTheme.primaryBackgroundColor
 
             Layout.alignment: Qt.AlignRight | Qt.AlingVCenter
@@ -133,7 +125,7 @@ ItemDelegate {
         Switch {
             id: btnPreferenceSwitch
 
-            visible: preferenceType === PreferenceItemDelegate.SWITCH
+            visible: preferenceType === PreferenceItemListModel.SWITCH
             Layout.alignment: Qt.AlignRight | Qt.AlingVCenter
             Layout.rightMargin: 16
             Layout.preferredHeight: 30
@@ -147,7 +139,7 @@ ItemDelegate {
         SettingParaCombobox {
             id: listPreferenceComboBox
 
-            visible: preferenceType === PreferenceItemDelegate.LIST
+            visible: preferenceType === PreferenceItemListModel.LIST
             Layout.preferredWidth: root.width / 2 - 8
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: 4
@@ -167,7 +159,7 @@ ItemDelegate {
         MaterialButton {
             id: pathPreferenceButton
 
-            visible: preferenceType === PreferenceItemDelegate.PATH
+            visible: preferenceType === PreferenceItemListModel.PATH
 
             preferredWidth: root.width / 2 - 8
             preferredHeight: 30
@@ -194,7 +186,7 @@ ItemDelegate {
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.rightMargin: 4
 
-            visible: preferenceType === PreferenceItemDelegate.EDITTEXT
+            visible: preferenceType === PreferenceItemListModel.EDITTEXT
             width: root.width / 2 - 8
             padding: 8
 

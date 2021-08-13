@@ -31,18 +31,9 @@ std::map<QString, int> mapType {{QString("List"), PreferenceItemListModel::Type:
                                 {QString("EditText"), PreferenceItemListModel::Type::EDITTEXT},
                                 {QString("Switch"), PreferenceItemListModel::Type::SWITCH}};
 
-PreferenceItemListModel::PreferenceItemListModel(QObject* parent, LRCInstance* instance)
+PreferenceItemListModel::PreferenceItemListModel(QObject* parent)
     : AbstractListModelBase(parent)
-{
-    lrcInstance_ = instance;
-
-    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this]() {
-        // accountId_ = lrcInstance_->get_currentAccountId();
-        // qDebug() << "accountId_: " << accountId_;
-        // preferenceList_.clear();
-        // preferencesCount();
-    });
-}
+{}
 
 PreferenceItemListModel::~PreferenceItemListModel() {}
 
@@ -80,7 +71,7 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
 
     auto details = preferenceList_.at(index.row());
     preferenceCurrent = lrcInstance_->pluginModel()
-                            .getPluginPreferencesValues(pluginId_, accountId_)[details["key"]];
+                            .getPluginPreferencesValues(pluginId__, accountId__)[details["key"]];
     auto it = mapType.find(details["type"]);
     if (it != mapType.end()) {
         type = mapType[details["type"]];
@@ -97,10 +88,10 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
         }
     }
     const auto dependsOn = details["dependsOn"].split(",");
-    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
-    const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
-                                                                                   accountId_);
-    // qDebug() << "prefValues: " << accountId_ << prefValues;
+    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__);
+    const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId__,
+                                                                                   accountId__);
+    // qDebug() << "prefValues: " << accountId__ << prefValues;
     bool enabled = true;
     for (auto& preference : preferences) {
         auto key = preference["key"];
@@ -128,7 +119,7 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
     case Role::PreferenceType:
         return QVariant(type);
     case Role::PluginId:
-        return QVariant(pluginId_);
+        return QVariant(pluginId__);
     case Role::PreferenceCurrentValue:
         return QVariant(preferenceCurrent);
     case Role::CurrentPath:
@@ -196,44 +187,25 @@ void
 PreferenceItemListModel::reset()
 {
     beginResetModel();
+    preferenceList_.clear();
+    preferencesCount();
     endResetModel();
 }
 
 QString
-PreferenceItemListModel::pluginId() const
+PreferenceItemListModel::pluginId_() const
 {
-    return pluginId_;
+    return pluginId__;
 }
 
 void
 PreferenceItemListModel::setPluginId(const QString& pluginId)
 {
-    pluginId_ = pluginId;
+    beginResetModel();
+    pluginId__ = pluginId;
+    preferenceList_.clear();
     preferencesCount();
-}
-
-QString
-PreferenceItemListModel::mediaHandlerName() const
-{
-    return mediaHandlerName_;
-}
-
-void
-PreferenceItemListModel::setMediaHandlerName(const QString mediaHandlerName)
-{
-    mediaHandlerName_ = mediaHandlerName;
-}
-
-QString
-PreferenceItemListModel::category() const
-{
-    return category_;
-}
-
-void
-PreferenceItemListModel::setCategory(const QString category)
-{
-    category_ = category;
+    endResetModel();
 }
 
 int
@@ -241,21 +213,21 @@ PreferenceItemListModel::preferencesCount()
 {
     if (!preferenceList_.isEmpty())
         return preferenceList_.size();
-    if (mediaHandlerName_.isEmpty()) {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
-        if (category_ != "all")
+    if (mediaHandlerName__.isEmpty()) {
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__);
+        if (category__ != "all")
             for (auto& preference : preferences) {
-                if (preference["category"] == category_)
+                if (preference["category"] == category__)
                     preferenceList_.push_back(preference);
             }
         else
             preferenceList_ = preferences;
         return preferenceList_.size();
     } else {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__);
         for (auto& preference : preferences) {
             QStringList scopeList = preference["scope"].split(",");
-            if (scopeList.contains(mediaHandlerName_))
+            if (scopeList.contains(mediaHandlerName__))
                 preferenceList_.push_back(preference);
         }
         return preferenceList_.size();
