@@ -29,21 +29,21 @@
 class CurrentConversation final : public QObject
 {
     Q_OBJECT
-    QML_PROPERTY(QString, id)
-    QML_PROPERTY(QString, title)
-    QML_PROPERTY(QStringList, uris)
-    QML_PROPERTY(bool, isSwarm)
-    QML_PROPERTY(bool, isLegacy)
-    QML_PROPERTY(bool, isCoreDialog)
-    QML_PROPERTY(bool, isRequest)
-    QML_PROPERTY(bool, readOnly)
-    QML_PROPERTY(bool, needsSyncing)
-    QML_PROPERTY(bool, isSip)
-    QML_PROPERTY(QString, callId)
-    QML_PROPERTY(call::Status, callState)
-    QML_PROPERTY(bool, inCall)
-    QML_PROPERTY(bool, isTemporary)
-    QML_PROPERTY(bool, isContact)
+    QML_RO_PROPERTY(QString, id)
+    QML_RO_PROPERTY(QString, title)
+    QML_RO_PROPERTY(QStringList, uris)
+    QML_RO_PROPERTY(bool, isSwarm)
+    QML_RO_PROPERTY(bool, isLegacy)
+    QML_RO_PROPERTY(bool, isCoreDialog)
+    QML_RO_PROPERTY(bool, isRequest)
+    QML_RO_PROPERTY(bool, readOnly)
+    QML_RO_PROPERTY(bool, needsSyncing)
+    QML_RO_PROPERTY(bool, isSip)
+    QML_RO_PROPERTY(QString, callId)
+    QML_RO_PROPERTY(call::Status, callState)
+    QML_RO_PROPERTY(bool, inCall)
+    QML_RO_PROPERTY(bool, isTemporary)
+    QML_RO_PROPERTY(bool, isContact)
 
 public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
