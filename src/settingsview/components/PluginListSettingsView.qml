@@ -30,31 +30,8 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    Connections {
-        target: PluginAdapter
-
-        function onPluginUninstalled() {
-            pluginListView.model = PluginAdapter.getPluginSelectableModel()
-        }
-    }
-
     visible: false
     color: JamiTheme.secondaryBackgroundColor
-
-    function openPluginFileSlot() {
-        pluginPathDialog.open()
-    }
-
-    function loadPluginSlot(pluginId, isLoaded) {
-        var loaded = false
-        if (isLoaded)
-            PluginModel.unloadPlugin(pluginId)
-        else
-            loaded = PluginModel.loadPlugin(pluginId)
-        pluginListView.model = PluginAdapter.getPluginSelectableModel()
-        PluginAdapter.pluginHandlersUpdateStatus()
-        return loaded
-    }
 
     JamiFileDialog {
         id: pluginPathDialog
@@ -69,8 +46,7 @@ Rectangle {
         onAccepted: {
             var url = UtilsAdapter.getAbsPath(file.toString())
             PluginModel.installPlugin(url, true)
-            pluginListView.model = PluginAdapter.getPluginSelectableModel()
-            PluginAdapter.pluginHandlersUpdateStatus()
+            installedPluginsModel.addPlugin()
         }
     }
 
@@ -111,7 +87,7 @@ Rectangle {
 
             text: JamiStrings.installPlugin
 
-            onClicked: openPluginFileSlot()
+            onClicked: pluginPathDialog.open()
         }
 
         ListView {
@@ -122,24 +98,27 @@ Rectangle {
             Layout.preferredHeight: childrenRect.height
             Layout.bottomMargin: 10
 
-            model: PluginAdapter.getPluginSelectableModel()
+            model: PluginListModel {
+                id: installedPluginsModel
+
+                lrcInstance: LRCInstance
+                onLrcInstanceChanged: {
+                    this.reset()
+                }
+            }
+
             maximumFlickVelocity: 1024
 
             delegate: PluginItemDelegate {
                 id: pluginItemDelegate
 
                 width: pluginListView.width
-                rowHeight: 40
                 implicitHeight: 40
 
                 pluginName: PluginName
                 pluginId: PluginId
                 pluginIcon: PluginIcon
                 isLoaded: IsLoaded
-
-                onBtnLoadPluginToggled: {
-                    isLoaded = loadPluginSlot(pluginId, isLoaded)
-                }
 
                 background: Rectangle {
                     anchors.fill: parent
