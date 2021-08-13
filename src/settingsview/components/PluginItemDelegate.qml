@@ -33,31 +33,14 @@ ItemDelegate {
     property string pluginId: ""
     property string pluginIcon: ""
     property bool isLoaded: false
-    property int rowHeight: implicitHeight
-
-    signal btnLoadPluginToggled
-
-    function btnPreferencesPluginClicked() {
-        pluginListPreferencesView.visible = !pluginListPreferencesView.visible
-        pluginListPreferencesView.updateProperties(root.pluginName, root.pluginIcon, root.pluginId, root.isLoaded)
-    }
-
-    Connections {
-        target: enabledplugin
-
-        function onHidePreferences() {
-            pluginListPreferencesView.visible = false
-            pluginListPreferencesView.updatePluginPrefListView()
-        }
-    }
+    height: pluginListPreferencesView.visible ? implicitHeight + pluginListPreferencesView.effectiveHeight : implicitHeight
 
     ColumnLayout {
         anchors.fill: parent
-        implicitHeight: childrenRect.height
 
         RowLayout {
             Layout.fillWidth: true
-            Layout.preferredHeight: root.rowHeight
+            Layout.preferredHeight: implicitHeight
 
             Label {
                 id: pluginImage
@@ -107,8 +90,11 @@ ItemDelegate {
 
                 checked: isLoaded
                 onClicked: {
-                    btnLoadPluginToggled()
-                    pluginListPreferencesView.isLoaded = root.isLoaded
+                    if (isLoaded)
+                        PluginModel.unloadPlugin(pluginId)
+                    else
+                        PluginModel.loadPlugin(pluginId)
+                    installedPluginsModel.pluginChanged(index)
                 }
 
                 background: Rectangle {
@@ -143,7 +129,7 @@ ItemDelegate {
                 imageColor: JamiTheme.textColor
                 toolTipText: JamiStrings.showHidePrefs
 
-                onClicked: btnPreferencesPluginClicked()
+                onClicked: pluginListPreferencesView.visible = !pluginListPreferencesView.visible
             }
         }
 
@@ -153,15 +139,7 @@ ItemDelegate {
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-            Layout.minimumHeight: 1
-            Layout.preferredHeight: childrenRect.height
-
-            onUpdatePluginPrefListView: {
-                if (pluginListPreferencesView.visible)
-                    root.implicitHeight = root.rowHeight + pluginListPreferencesView.childrenRect.height
-                else
-                    root.implicitHeight = root.rowHeight
-            }
+            Layout.preferredHeight: effectiveHeight
         }
     }
 }
