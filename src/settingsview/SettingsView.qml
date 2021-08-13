@@ -72,7 +72,6 @@ Rectangle {
             case SettingsView.Plugin:
                 AccountAdapter.stopPreviewing()
                 selectedMenu = sel
-                pluginSettings.populatePluginSettings()
                 break
         }
     }

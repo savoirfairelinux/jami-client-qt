@@ -33,7 +33,6 @@ Popup {
     property bool isCall
     property string pluginId: ""
     property string handlerName: ""
-    signal updateProperties
 
     width: JamiTheme.preferredDialogWidth
     height: JamiTheme.pluginHandlersPopupViewHeight + JamiTheme.pluginHandlersPopupViewDelegateHeight
@@ -58,29 +57,23 @@ Popup {
                 target: root
 
                 function onAboutToShow(visible) {
+                    // Reset the model on each show.
                     if (isCall) {
-                        // Reset the model on each show.
-                        var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
-                                                            callStackViewWindow.responsibleConvUid)
-                        pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
+                        pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentConversation.callId)
                     } else {
-                        // Reset the model on each show.
-                        var accountId = LRCInstance.currentAccountId
-                        var peerId = UtilsAdapter.getPeerUri(accountId, LRCInstance.selectedConvUid)
-                        pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
+                        var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
+                        pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
                     }
                 }
             }
 
             function toggleHandlerSlot(handlerId, isLoaded) {
                 if (isCall) {
-                    var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
-                                                    callStackViewWindow.responsibleConvUid)
-                    PluginModel.toggleCallMediaHandler(handlerId, callId, !isLoaded)
-                    pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
+                    PluginModel.toggleCallMediaHandler(handlerId, CurrentConversation.callId, !isLoaded)
+                    pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(CurrentConversation.callId)
                 } else {
                     var accountId = LRCInstance.currentAccountId
-                    var peerId = UtilsAdapter.getPeerUri(accountId, LRCInstance.selectedConvUid)
+                    var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
                     PluginModel.toggleChatHandler(handlerId, accountId, peerId, !isLoaded)
                     pluginhandlerPickerListView.model = PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
                 }
@@ -134,13 +127,10 @@ Popup {
 
                     model: {
                         if (isCall) {
-                            var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
-                                                                callStackViewWindow.responsibleConvUid)
-                            return PluginAdapter.getMediaHandlerSelectableModel(callId)
+                            return PluginAdapter.getMediaHandlerSelectableModel(CurrentConversation.callId)
                         } else {
-                            var accountId = LRCInstance.currentAccountId
-                            var peerId = UtilsAdapter.getPeerUri(accountId, LRCInstance.selectedConvUid)
-                            return PluginAdapter.getChatHandlerSelectableModel(accountId, peerId)
+                            var peerId = CurrentConversation.isSwarm ? CurrentConversation.id : CurrentConversation.uris[0]
+                            return PluginAdapter.getChatHandlerSelectableModel(LRCInstance.currentAccountId, peerId)
                         }
                     }
 
@@ -163,14 +153,11 @@ Popup {
                         }
 
                         onOpenPreferences: {
-                            root.pluginId = pluginId
                             root.handlerName = handlerName
+                            root.pluginId = pluginId
                             stack.push(pluginhandlerPreferenceStack2, StackView.Immediate)
-                            updateProperties()
                         }
                     }
-
-                    ScrollBar.vertical: ScrollBar { }
                 }
             }
         }
@@ -183,16 +170,6 @@ Popup {
             color: JamiTheme.backgroundColor
             radius: 10
             anchors.fill: parent
-
-            Connections {
-                target: root
-
-                function onUpdateProperties() {
-                    pluginhandlerPreferencePickerListView.pluginId = root.pluginId
-                    pluginhandlerPreferencePickerListView.handlerName = root.handlerName
-                    pluginhandlerPreferencePickerListView.model = PluginAdapter.getHandlerPreferencesModel(root.pluginId, root.handlerName)
-                }
-            }
 
             ColumnLayout {
                 anchors.fill: parent
@@ -249,10 +226,12 @@ Popup {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
 
-                    property string pluginId: ""
-                    property string handlerName: ""
-
-                    model: PluginAdapter.getHandlerPreferencesModel(pluginId, handlerName)
+                    model: PreferenceItemListModel {
+                        id: handlerPickerPrefsModel
+                        lrcInstance: LRCInstance
+                        mediaHandlerName_: handlerName
+                        pluginId_: pluginId
+                    }
                     border.width: 0
 
                     clip: true
@@ -284,8 +263,7 @@ Popup {
 
                         onBtnPreferenceClicked: {
                             PluginModel.setPluginPreference("", pluginId, preferenceKey, preferenceNewValue)
-                            PluginAdapter.preferenceChanged(pluginId)
-                            pluginhandlerPreferencePickerListView.model = PluginAdapter.getHandlerPreferencesModel(pluginId, pluginhandlerPreferencePickerListView.handlerName)
+                            handlerPickerPrefsModel.reset()
                         }
                     }
                 }

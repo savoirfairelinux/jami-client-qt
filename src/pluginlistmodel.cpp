@@ -16,33 +16,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "pluginitemlistmodel.h"
+#include "pluginlistmodel.h"
 
 #include "lrcinstance.h"
 
 #include "api/pluginmodel.h"
 
-PluginItemListModel::PluginItemListModel(QObject* parent, LRCInstance* instance)
+PluginListModel::PluginListModel(QObject* parent)
     : AbstractListModelBase(parent)
-{
-    lrcInstance_ = instance;
-}
+{}
 
-PluginItemListModel::~PluginItemListModel() {}
+PluginListModel::~PluginListModel() {}
 
 int
-PluginItemListModel::rowCount(const QModelIndex& parent) const
+PluginListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid() && lrcInstance_) {
         /// Count
-        return lrcInstance_->pluginModel().getInstalledPlugins().size();
+        return installedPlugins_.size();
     }
     /// A valid QModelIndex returns 0 as no entry has sub-elements.
     return 0;
 }
 
 int
-PluginItemListModel::columnCount(const QModelIndex& parent) const
+PluginListModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     /// Only need one column.
@@ -50,20 +48,19 @@ PluginItemListModel::columnCount(const QModelIndex& parent) const
 }
 
 QVariant
-PluginItemListModel::data(const QModelIndex& index, int role) const
+PluginListModel::data(const QModelIndex& index, int role) const
 {
-    auto pluginList = lrcInstance_->pluginModel().getInstalledPlugins();
-    if (!index.isValid() || pluginList.size() <= index.row()) {
+    if (!index.isValid() || installedPlugins_.size() <= index.row()) {
         return QVariant();
     }
 
-    auto details = lrcInstance_->pluginModel().getPluginDetails(pluginList.at(index.row()));
+    auto details = lrcInstance_->pluginModel().getPluginDetails(installedPlugins_.at(index.row()));
 
     switch (role) {
     case Role::PluginName:
         return QVariant(details.name);
     case Role::PluginId:
-        return QVariant(pluginList.at(index.row()));
+        return QVariant(installedPlugins_.at(index.row()));
     case Role::PluginIcon:
         return QVariant(details.iconPath);
     case Role::IsLoaded:
@@ -73,7 +70,7 @@ PluginItemListModel::data(const QModelIndex& index, int role) const
 }
 
 QHash<int, QByteArray>
-PluginItemListModel::roleNames() const
+PluginListModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[PluginName] = "PluginName";
@@ -85,7 +82,7 @@ PluginItemListModel::roleNames() const
 }
 
 QModelIndex
-PluginItemListModel::index(int row, int column, const QModelIndex& parent) const
+PluginListModel::index(int row, int column, const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     if (column != 0) {
@@ -99,14 +96,14 @@ PluginItemListModel::index(int row, int column, const QModelIndex& parent) const
 }
 
 QModelIndex
-PluginItemListModel::parent(const QModelIndex& child) const
+PluginListModel::parent(const QModelIndex& child) const
 {
     Q_UNUSED(child);
     return QModelIndex();
 }
 
 Qt::ItemFlags
-PluginItemListModel::flags(const QModelIndex& index) const
+PluginListModel::flags(const QModelIndex& index) const
 {
     auto flags = QAbstractItemModel::flags(index) | Qt::ItemNeverHasChildren | Qt::ItemIsSelectable;
     if (!index.isValid()) {
@@ -116,14 +113,43 @@ PluginItemListModel::flags(const QModelIndex& index) const
 }
 
 void
-PluginItemListModel::reset()
+PluginListModel::reset()
 {
     beginResetModel();
+    installedPlugins_.clear();
+    installedPlugins_ = lrcInstance_->pluginModel().getInstalledPlugins();
     endResetModel();
 }
 
-int
-PluginItemListModel::pluginsCount()
+void
+PluginListModel::removePlugin(int index)
 {
-    return lrcInstance_->pluginModel().getInstalledPlugins().size();
+    beginRemoveRows(QModelIndex(), index, index);
+    installedPlugins_.removeAt(index);
+    endRemoveRows();
+}
+
+void
+PluginListModel::pluginChanged(int index)
+{
+    Q_EMIT dataChanged(createIndex(index, 0), createIndex(index, 0));
+}
+
+void
+PluginListModel::addPlugin()
+{
+    auto newList = lrcInstance_->pluginModel().getInstalledPlugins();
+    if (newList.size() <= installedPlugins_.size())
+        return;
+
+    int index = 0;
+    for (auto item : newList) {
+        if (installedPlugins_.indexOf(item) == -1)
+            break;
+        index++;
+    }
+
+    beginInsertRows(QModelIndex(), index, index);
+    installedPlugins_ = lrcInstance_->pluginModel().getInstalledPlugins();
+    endInsertRows();
 }

@@ -1,6 +1,6 @@
 /**
- * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
+ * Copyright (C) 2019-2020 by Savoir-faire Linux
+ * Author: Aline Gondim Santos   <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,20 +22,16 @@
 
 class LRCInstance;
 
-class PluginHandlerItemListModel : public AbstractListModelBase
+class PluginListModel : public AbstractListModelBase
 {
     Q_OBJECT
 
 public:
-    enum Role { HandlerName = Qt::UserRole + 1, HandlerId, HandlerIcon, IsLoaded, PluginId };
+    enum Role { PluginName = Qt::UserRole + 1, PluginId, PluginIcon, IsLoaded };
     Q_ENUM(Role)
 
-    explicit PluginHandlerItemListModel(
-        QObject* parent = nullptr,
-        const QString& accountId = QString(""),
-        const QString& peerId = QString(""),
-        LRCInstance* instance = nullptr); // for calls, accountId is the callId and peerId is null
-    ~PluginHandlerItemListModel();
+    explicit PluginListModel(QObject* parent = nullptr);
+    ~PluginListModel();
 
     /*
      * QAbstractListModel override.
@@ -55,17 +51,10 @@ public:
      * This function is to reset the model when there's new account added.
      */
     Q_INVOKABLE void reset();
-
-    QString callId();
-    void setCallId(QString callId);
-    QString accountId();
-    void setAccountId(QString accountId);
-    QString peerId();
-    void setPeerId(QString peerId);
+    Q_INVOKABLE void removePlugin(int index);
+    Q_INVOKABLE void pluginChanged(int index);
+    Q_INVOKABLE void addPlugin();
 
 private:
-    QString callId_ = QString("");
-    QString accountId_ = QString("");
-    QString peerId_ = QString("");
-    bool isMediaHandler_;
+    VectorString installedPlugins_ {};
 };
