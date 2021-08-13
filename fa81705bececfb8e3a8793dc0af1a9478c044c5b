@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "fcfb5f0a_8fc63c32",
+        "filename": "src/mainview/components/ConversationSmartListContextMenu.qml",
+        "patchSetId": 17
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-08-13T15:09:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9779dc2b_fbfc9ad7",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 32
+      },
+      "revId": "fa81705bececfb8e3a8793dc0af1a9478c044c5b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9ebef5b8_b1f233d2",
         "filename": "src/messagesadapter.cpp",
         "patchSetId": 17
