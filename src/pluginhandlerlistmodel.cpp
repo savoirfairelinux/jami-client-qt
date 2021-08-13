@@ -16,34 +16,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "pluginhandleritemlistmodel.h"
+#include "pluginhandlerlistmodel.h"
 
 #include "lrcinstance.h"
 
 #include "api/pluginmodel.h"
 
-PluginHandlerItemListModel::PluginHandlerItemListModel(QObject* parent,
-                                                       const QString& accountId,
-                                                       const QString& peerId,
-                                                       LRCInstance* instance)
+PluginHandlerListModel::PluginHandlerListModel(QObject* parent,
+                                               const QString& accountId,
+                                               const QString& peerId,
+                                               LRCInstance* instance)
     : AbstractListModelBase(parent)
 {
     lrcInstance_ = instance;
 
     if (!peerId.isEmpty()) {
-        accountId_ = accountId;
-        peerId_ = peerId;
+        set_accountId(accountId);
+        set_peerId(peerId);
         isMediaHandler_ = false;
     } else {
-        callId_ = accountId;
+        set_callId(accountId);
         isMediaHandler_ = true;
     }
 }
 
-PluginHandlerItemListModel::~PluginHandlerItemListModel() {}
+PluginHandlerListModel::~PluginHandlerListModel() {}
 
 int
-PluginHandlerItemListModel::rowCount(const QModelIndex& parent) const
+PluginHandlerListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid() && lrcInstance_) {
         /*
@@ -61,7 +61,7 @@ PluginHandlerItemListModel::rowCount(const QModelIndex& parent) const
 }
 
 int
-PluginHandlerItemListModel::columnCount(const QModelIndex& parent) const
+PluginHandlerListModel::columnCount(const QModelIndex& parent) const
 {
     Q_UNUSED(parent);
     /*
@@ -71,7 +71,7 @@ PluginHandlerItemListModel::columnCount(const QModelIndex& parent) const
 }
 
 QVariant
-PluginHandlerItemListModel::data(const QModelIndex& index, int role) const
+PluginHandlerListModel::data(const QModelIndex& index, int role) const
 {
     QString name {""};
     QString id {""};
@@ -138,7 +138,7 @@ PluginHandlerItemListModel::data(const QModelIndex& index, int role) const
 }
 
 QHash<int, QByteArray>
-PluginHandlerItemListModel::roleNames() const
+PluginHandlerListModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[HandlerName] = "HandlerName";
@@ -150,76 +150,9 @@ PluginHandlerItemListModel::roleNames() const
     return roles;
 }
 
-QModelIndex
-PluginHandlerItemListModel::index(int row, int column, const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    if (column != 0) {
-        return QModelIndex();
-    }
-
-    if (row >= 0 && row < rowCount()) {
-        return createIndex(row, column);
-    }
-    return QModelIndex();
-}
-
-QModelIndex
-PluginHandlerItemListModel::parent(const QModelIndex& child) const
-{
-    Q_UNUSED(child);
-    return QModelIndex();
-}
-
-Qt::ItemFlags
-PluginHandlerItemListModel::flags(const QModelIndex& index) const
-{
-    auto flags = QAbstractItemModel::flags(index) | Qt::ItemNeverHasChildren | Qt::ItemIsSelectable;
-    if (!index.isValid()) {
-        return QAbstractItemModel::flags(index);
-    }
-    return flags;
-}
-
 void
-PluginHandlerItemListModel::reset()
+PluginHandlerListModel::reset()
 {
     beginResetModel();
     endResetModel();
-}
-
-QString
-PluginHandlerItemListModel::callId()
-{
-    return callId_;
-}
-
-void
-PluginHandlerItemListModel::setCallId(QString callId)
-{
-    callId_ = callId;
-}
-
-QString
-PluginHandlerItemListModel::accountId()
-{
-    return accountId_;
-}
-
-void
-PluginHandlerItemListModel::setAccountId(QString accountId)
-{
-    accountId_ = accountId;
-}
-
-QString
-PluginHandlerItemListModel::peerId()
-{
-    return peerId_;
-}
-
-void
-PluginHandlerItemListModel::setPeerId(QString peerId)
-{
-    peerId_ = peerId;
 }

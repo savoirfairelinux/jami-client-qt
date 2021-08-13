@@ -23,54 +23,28 @@
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
 {
+    set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
             &lrc::api::PluginModel::modelUpdated,
             this,
             &PluginAdapter::updateHandlersListCount);
+    connect(this, &PluginAdapter::isEnabledChanged, this, &PluginAdapter::updateHandlersListCount);
 }
 
 QVariant
 PluginAdapter::getMediaHandlerSelectableModel(const QString& callId)
 {
     pluginHandlerListModel_.reset(
-        new PluginHandlerItemListModel(this, callId, QString(""), lrcInstance_));
+        new PluginHandlerListModel(this, callId, QString(""), lrcInstance_));
     return QVariant::fromValue(pluginHandlerListModel_.get());
 }
 
 QVariant
 PluginAdapter::getChatHandlerSelectableModel(const QString& accountId, const QString& peerId)
 {
-    pluginHandlerListModel_.reset(
-        new PluginHandlerItemListModel(this, accountId, peerId, lrcInstance_));
+    pluginHandlerListModel_.reset(new PluginHandlerListModel(this, accountId, peerId, lrcInstance_));
     return QVariant::fromValue(pluginHandlerListModel_.get());
-}
-
-QVariant
-PluginAdapter::getPluginSelectableModel()
-{
-    pluginItemListModel_.reset(new PluginItemListModel(this, lrcInstance_));
-    return QVariant::fromValue(pluginItemListModel_.get());
-}
-
-QVariant
-PluginAdapter::getPluginPreferencesModel(const QString& pluginId, const QString& category)
-{
-    preferenceItemListModel_.reset(new PreferenceItemListModel(this, lrcInstance_));
-    preferenceItemListModel_->setCategory(category);
-    preferenceItemListModel_->setPluginId(pluginId);
-
-    return QVariant::fromValue(preferenceItemListModel_.get());
-}
-
-QVariant
-PluginAdapter::getHandlerPreferencesModel(const QString& pluginId, const QString& mediaHandlerName)
-{
-    preferenceItemListModel_.reset(new PreferenceItemListModel(this, lrcInstance_));
-    preferenceItemListModel_->setMediaHandlerName(mediaHandlerName);
-    preferenceItemListModel_->setPluginId(pluginId);
-
-    return QVariant::fromValue(preferenceItemListModel_.get());
 }
 
 QVariant

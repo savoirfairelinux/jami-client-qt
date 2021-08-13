@@ -26,9 +26,11 @@ class PreferenceItemListModel : public AbstractListModelBase
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId)
-    Q_PROPERTY(QString mediaHandlerName READ mediaHandlerName WRITE setMediaHandlerName)
-    Q_PROPERTY(int preferencesCount READ preferencesCount)
+    QML_PROPERTY(QString, pluginId_)
+    QML_PROPERTY(QString, category_)
+    QML_PROPERTY(QString, mediaHandlerName_)
+    QML_PROPERTY(QString, accountId_)
+    QML_RO_PROPERTY(int, preferencesCount_)
 public:
     enum Role {
         PreferenceKey = Qt::UserRole + 1,
@@ -52,8 +54,9 @@ public:
     } Type;
 
     Q_ENUM(Role)
+    Q_ENUM(Type)
 
-    explicit PreferenceItemListModel(QObject* parent = nullptr, LRCInstance* instance = nullptr);
+    explicit PreferenceItemListModel(QObject* parent = nullptr);
     ~PreferenceItemListModel();
 
     /*
@@ -66,26 +69,17 @@ public:
      * Override role name as access point in qml.
      */
     QHash<int, QByteArray> roleNames() const override;
-    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& child) const;
-    Qt::ItemFlags flags(const QModelIndex& index) const;
 
     /*
      * This function is to reset the model when there's new plugin added or modified.
      */
     Q_INVOKABLE void reset();
 
-    QString pluginId() const;
+    QString pluginId_() const;
     void setPluginId(const QString& pluginId);
-    QString mediaHandlerName() const;
-    void setMediaHandlerName(const QString mediaHandlerName);
-    QString category() const;
-    void setCategory(const QString category);
-    int preferencesCount();
 
 private:
-    QString pluginId_;
-    QString mediaHandlerName_ = "";
+    int preferencesCount();
+
     VectorMapStringString preferenceList_;
-    QString category_ = "all";
 };

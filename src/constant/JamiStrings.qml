@@ -443,9 +443,15 @@ Item {
     property string enable: qsTr("Enable")
 
     // PluginListPreferencesView
+    property string pluginPreferences: qsTr("%1\nPreferences")
     property string reset: qsTr("Reset")
+    property string uninstall: qsTr("Uninstall")
+    property string resetPreferences: qsTr("Reset Preferences")
     property string selectPluginInstall: qsTr("Select a plugin to install")
     property string installPlugin: qsTr("Install plugin")
+    property string uninstallPlugin: qsTr("Uninstall plugin")
+    property string pluginResetConfirmation: qsTr("Are you sure you wish to reset %1 preferences?")
+    property string pluginUninstallConfirmation: qsTr("Are you sure you wish to uninstall %1?")
 
     // PluginItemDelegate
     property string showHidePrefs: qsTr("Display or hide preferences")
