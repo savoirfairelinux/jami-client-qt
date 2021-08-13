@@ -54,7 +54,6 @@ Rectangle {
         else
             loaded = PluginModel.loadPlugin(pluginId)
         pluginListView.model = PluginAdapter.getPluginSelectableModel()
-        PluginAdapter.pluginHandlersUpdateStatus()
         return loaded
     }
 
@@ -72,7 +71,6 @@ Rectangle {
             var url = UtilsAdapter.getAbsPath(file.toString())
             PluginModel.installPlugin(url, true)
             pluginListView.model = PluginAdapter.getPluginSelectableModel()
-            PluginAdapter.pluginHandlersUpdateStatus()
         }
     }
 

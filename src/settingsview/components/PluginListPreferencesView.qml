@@ -116,7 +116,6 @@ Rectangle {
         }
         pluginPreferenceView.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.generalCategory)
         pluginPreferenceViewCategory.model = PluginAdapter.getPluginPreferencesModel(root.pluginId, root.category)
-        PluginAdapter.pluginHandlersUpdateStatus()
     }
 
     function uninstallPluginSlot() {
@@ -130,7 +129,6 @@ Rectangle {
     function uninstallPlugin() {
         PluginModel.uninstallPlugin(root.pluginId)
         PluginAdapter.pluginUninstalled()
-        PluginAdapter.pluginHandlersUpdateStatus()
         root.visible = false
     }
 
@@ -142,7 +140,6 @@ Rectangle {
             PluginModel.loadPlugin(pluginId)
         } else
             PluginModel.setPluginPreference("", pluginId, preferenceKey, preferenceNewValue)
-        PluginAdapter.pluginHandlersUpdateStatus()
     }
 
     SimpleMessageDialog {

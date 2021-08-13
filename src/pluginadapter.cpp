@@ -23,6 +23,8 @@
 PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
 {
+    isEnabled_ = lrcInstance_->pluginModel().getPluginsEnabled();
+    isEnabledChanged();
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
             &lrc::api::PluginModel::modelUpdated,

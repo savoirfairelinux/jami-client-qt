@@ -33,6 +33,7 @@ class PluginAdapter final : public QmlAdapterBase
     Q_OBJECT
     QML_PROPERTY(int, callMediaHandlersListCount)
     QML_PROPERTY(int, chatHandlersListCount)
+    QML_PROPERTY(bool, isEnabled)
 
 public:
     explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
@@ -53,7 +54,6 @@ protected:
                                                         bool removeLast = false);
 
 Q_SIGNALS:
-    void pluginHandlersUpdateStatus();
     void preferenceChanged(QString pluginId);
     void pluginUninstalled();
 

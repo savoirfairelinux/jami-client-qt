@@ -35,16 +35,6 @@ Rectangle {
     property int contentWidth: pluginSettingsColumnLayout.width
     property int preferredHeight: pluginSettingsColumnLayout.implicitHeight
 
-    function populatePluginSettings() {
-        enabledplugin.checked = PluginModel.getPluginsEnabled()
-        pluginListSettingsView.visible = enabledplugin.checked
-    }
-
-    function slotSetPluginEnabled(state) {
-        PluginModel.setPluginsEnabled(state)
-        PluginAdapter.pluginHandlersUpdateStatus()
-    }
-
     color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout {
@@ -58,6 +48,7 @@ Rectangle {
             id: enabledplugin
 
             signal hidePreferences
+            checked: PluginAdapter.isEnabled
 
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.fillWidth: true
@@ -69,7 +60,9 @@ Rectangle {
             fontPointSize: JamiTheme.headerFontSize
 
             onSwitchToggled: {
-                slotSetPluginEnabled(checked)
+                console.log (PluginAdapter.isEnabled, checked)
+                PluginAdapter.isEnabled = checked
+                console.log (PluginAdapter.isEnabled, checked)
 
                 pluginListSettingsView.visible = checked
                 if (!pluginListSettingsView.visible) {
@@ -80,6 +73,8 @@ Rectangle {
 
         PluginListSettingsView {
             id: pluginListSettingsView
+
+            visible: PluginAdapter.isEnabled
 
             Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
             Layout.fillWidth: true

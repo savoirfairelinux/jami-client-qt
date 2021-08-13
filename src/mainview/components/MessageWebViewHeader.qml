@@ -181,7 +181,7 @@ Rectangle {
             PushButton {
                 id: selectPluginButton
 
-                visible: PluginAdapter.chatHandlersListCount
+                visible: PluginAdapter.isEnabled && PluginAdapter.chatHandlersListCount
 
                 anchors.right: sendContactRequestButton.visible ?
                                    sendContactRequestButton.left :
