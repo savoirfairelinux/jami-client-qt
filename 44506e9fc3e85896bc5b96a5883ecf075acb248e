@@ -22,6 +22,30 @@
       },
       "revId": "44506e9fc3e85896bc5b96a5883ecf075acb248e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef2c9031_00303903",
+        "filename": "src/settingsview/components/VideoSettings.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-08-17T13:14:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "743e44b9_4e598b06",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 36
+      },
+      "revId": "44506e9fc3e85896bc5b96a5883ecf075acb248e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
