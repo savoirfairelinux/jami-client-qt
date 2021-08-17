@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "743e44b9_4e598b06",
+        "filename": "src/settingsview/components/VideoSettings.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-17T13:12:24Z",
+      "side": 1,
+      "message": "double space",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 36
+      },
+      "revId": "44506e9fc3e85896bc5b96a5883ecf075acb248e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
