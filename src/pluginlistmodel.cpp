@@ -118,6 +118,7 @@ PluginListModel::reset()
     beginResetModel();
     installedPlugins_.clear();
     installedPlugins_ = lrcInstance_->pluginModel().getInstalledPlugins();
+    filterPlugins(installedPlugins_);
     endResetModel();
 }
 
@@ -139,6 +140,7 @@ void
 PluginListModel::addPlugin()
 {
     auto newList = lrcInstance_->pluginModel().getInstalledPlugins();
+    filterPlugins(newList);
     if (newList.size() <= installedPlugins_.size())
         return;
 
@@ -150,6 +152,24 @@ PluginListModel::addPlugin()
     }
 
     beginInsertRows(QModelIndex(), index, index);
-    installedPlugins_ = lrcInstance_->pluginModel().getInstalledPlugins();
+    installedPlugins_ = newList;
     endInsertRows();
+}
+
+void
+PluginListModel::filterPlugins(VectorString& list)
+{
+    if (!lrcInstance_ || !filterAccount_)
+        return;
+
+    VectorString copyList = list;
+
+    for (auto it = list.begin(); it != list.end();) {
+        auto prefs = lrcInstance_->pluginModel()
+                         .getPluginPreferences(*it, lrcInstance_->get_currentAccountId());
+        if (prefs.empty()) {
+            it = list.erase(it);
+        } else
+            it++;
+    }
 }
