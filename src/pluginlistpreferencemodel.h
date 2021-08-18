@@ -30,6 +30,7 @@ class PluginListPreferenceModel : public AbstractListModelBase
     Q_PROPERTY(QString preferenceNewValue READ preferenceNewValue WRITE setPreferenceNewValue)
     Q_PROPERTY(int idx READ idx WRITE setIdx)
     Q_PROPERTY(int optSize READ optSize)
+    QML_PROPERTY(QString, accountId_)
 public:
     enum Role { PreferenceValue = Qt::UserRole + 1, PreferenceEntryValue };
     Q_ENUM(Role)
@@ -88,7 +89,7 @@ public:
     QString preferenceCurrentValue()
     {
         return lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
-                                                                      accountId_)[preferenceKey_];
+                                                                      accountId__)[preferenceKey_];
     }
 
     QString preferenceNewValue()
@@ -116,5 +117,4 @@ private:
     QStringList preferenceValuesList_;
     QStringList preferenceList_;
     int idx_ = 0;
-    QString accountId_ = "";
 };
