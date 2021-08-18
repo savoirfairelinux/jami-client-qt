@@ -42,8 +42,21 @@ Rectangle {
         }
     }
 
+    color: "transparent"
+
+    Connections {
+        target: LRCInstance
+
+        function onCurrentAccountIdChanged() {
+            if (accountId) {
+                preferencesPerCategoryModel.reset()
+                generalPreferencesModel.reset()
+            }
+        }
+    }
+
     property string category: categories.length > 0 ? categories[0] : category ? category : ""
-    property var categories: PluginAdapter.getPluginPreferencesCategories(pluginId)
+    property var categories: PluginAdapter.getPluginPreferencesCategories(pluginId, accountId)
     property string generalCategory: categories.length <= 1 ? "all" : ""
 
     visible: false
@@ -52,10 +65,10 @@ Rectangle {
     {
         if (isLoaded) {
             PluginModel.unloadPlugin(pluginId)
-            PluginModel.setPluginPreference("", pluginId, preferenceKey, preferenceNewValue)
+            PluginModel.setPluginPreference(accountId, pluginId, preferenceKey, preferenceNewValue)
             PluginModel.loadPlugin(pluginId)
         } else
-            PluginModel.setPluginPreference("", pluginId, preferenceKey, preferenceNewValue)
+            PluginModel.setPluginPreference(accountId, pluginId, preferenceKey, preferenceNewValue)
     }
 
     SimpleMessageDialog {
@@ -126,7 +139,7 @@ Rectangle {
 
                     Repeater {
                         id: gridModel
-                        model: categories.length % 2 === 1 ? PluginAdapter.getPluginPreferencesCategories(pluginId, true) : root.categories
+                        model: categories.length % 2 === 1 ? PluginAdapter.getPluginPreferencesCategories(pluginId, accountId, true) : root.categories
                         Button {
                             id: repDelegate
                             Layout.fillWidth: true
@@ -196,6 +209,7 @@ Rectangle {
                         id: preferencesPerCategoryModel
                         lrcInstance: LRCInstance
                         category_: category
+                        accountId_: accountId ? accountId : ""
                         pluginId_: pluginId
 
                         onCategory_Changed: {
@@ -225,6 +239,7 @@ Rectangle {
 
                             lrcInstance: LRCInstance
                             preferenceKey : PreferenceKey
+                            accountId_: accountId ? accountId : ""
                             pluginId: PluginId
                         }
 
@@ -253,6 +268,7 @@ Rectangle {
                 id: generalPreferencesModel
                 lrcInstance: LRCInstance
                 category_: generalCategory
+                accountId_: accountId ? accountId : ""
                 pluginId_: pluginId
 
                 onCategory_Changed: {
@@ -282,6 +298,7 @@ Rectangle {
 
                     lrcInstance: LRCInstance
                     preferenceKey : PreferenceKey
+                    accountId_: accountId ? accountId : ""
                     pluginId: PluginId
                 }
 
@@ -317,10 +334,10 @@ Rectangle {
                     msgDialog.buttonCallBacks = [function () {
                         if (isLoaded) {
                             PluginModel.unloadPlugin(pluginId)
-                            PluginModel.resetPluginPreferencesValues(pluginId, "")
+                            PluginModel.resetPluginPreferencesValues(pluginId, accountId)
                             PluginModel.loadPlugin(pluginId)
                         } else {
-                            PluginModel.resetPluginPreferencesValues(pluginId, "")
+                            PluginModel.resetPluginPreferencesValues(pluginId, accountId)
                         }
                         preferencesPerCategoryModel.reset()
                         generalPreferencesModel.reset()
@@ -341,6 +358,7 @@ Rectangle {
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
                 pressedColor: JamiTheme.buttonTintedBlackPressed
                 outlined: true
+                visible: accountId ? false : true
 
                 iconSource: JamiResources.delete_24dp_svg
 

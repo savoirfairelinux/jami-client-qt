@@ -54,6 +54,7 @@
         <file>src/settingsview/components/LinkedDevices.qml</file>
         <file>src/settingsview/components/BannedContacts.qml</file>
         <file>src/settingsview/components/AdvancedSettings.qml</file>
+        <file>src/settingsview/components/AccountPluginSettings.qml</file>
         <file>src/settingsview/components/AdvancedJamiSecuritySettings.qml</file>
         <file>src/settingsview/components/AdvancedSIPSecuritySettings.qml</file>
         <file>src/settingsview/components/AdvancedMediaSettings.qml</file>

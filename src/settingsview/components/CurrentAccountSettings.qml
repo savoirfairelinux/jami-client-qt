@@ -42,6 +42,7 @@ Rectangle {
     signal navigateToMainView
     signal navigateToNewWizardView
     signal advancedSettingsToggled(bool settingsVisible)
+    signal accountPluginSettingsToggled(bool settingsVisible)
 
     function updateAccountInfoDisplayed() {
         accountEnableCheckBox.checked = SettingsAdapter.get_CurrentAccountInfo_Enabled()
@@ -84,6 +85,10 @@ Rectangle {
 
     function getAdvancedSettingsScrollPosition() {
         return advancedSettings.y
+    }
+
+    function getAccountPluginSettingsScrollPosition() {
+        return accountPluginSettings.y
     }
 
     function setPasswordButtonText() {
@@ -316,6 +321,22 @@ Rectangle {
 
             onShowAdvancedSettingsRequest: {
                 advancedSettingsToggled(settingsVisible)
+            }
+        }
+
+        AccountPluginSettings {
+            id: accountPluginSettings
+
+            Layout.fillWidth: true
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+            Layout.bottomMargin: 8
+            visible: PluginAdapter.isEnabled
+
+            itemWidth: preferredColumnWidth
+
+            onShowAccountPluginSettingsRequest: {
+                accountPluginSettingsToggled(settingsVisible)
             }
         }
     }

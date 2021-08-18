@@ -58,7 +58,10 @@ Rectangle {
             labelText: JamiStrings.enable
             fontPointSize: JamiTheme.headerFontSize
 
-            onSwitchToggled: PluginAdapter.isEnabled = checked
+            onSwitchToggled: {
+                PluginModel.setPluginsEnabled(checked)
+				PluginAdapter.isEnabled = checked
+            }
         }
 
         PluginListSettingsView {
