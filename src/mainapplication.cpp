@@ -197,19 +197,7 @@ MainApplication::init()
 #ifdef Q_OS_UNIX
     GlobalInstances::setDBusErrorHandler(std::make_unique<Interfaces::DBusErrorHandler>());
     auto dBusErrorHandlerQObject = dynamic_cast<QObject*>(&GlobalInstances::dBusErrorHandler());
-    qmlRegisterSingletonType<Interfaces::DBusErrorHandler>("net.jami.Models",
-                                                           1,
-                                                           0,
-                                                           "DBusErrorHandler",
-                                                           [dBusErrorHandlerQObject](QQmlEngine* e,
-                                                                                     QJSEngine* se)
-                                                               -> QObject* {
-                                                               Q_UNUSED(e)
-                                                               Q_UNUSED(se)
-                                                               return dBusErrorHandlerQObject;
-                                                           });
-    engine_->setObjectOwnership(dBusErrorHandlerQObject, QQmlEngine::CppOwnership);
-
+    QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, DBusErrorHandler, dBusErrorHandlerQObject);
     if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
         engine_->load(QUrl(QStringLiteral("qrc:/src/DaemonReconnectWindow.qml")));
         exec();
