@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63d6395f_cfb5eed4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-26T13:47:25Z",
+      "side": 1,
+      "message": "For removeContact + removeConversation we must have a confirmation dialog\n\nAlso, if there is one swarm, we may want to re-add the contact in the list",
+      "revId": "748bb98e8aa6f84ff47410471df8408f4e7d469f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
