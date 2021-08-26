@@ -59,9 +59,9 @@ Control {
             spacing: 12
 
             MaterialButton {
-                text: JamiStrings.removeContact
+                text: JamiStrings.removeConversation
                 font.pointSize: JamiTheme.textFontSize + 2
-                onClicked: MessagesAdapter.removeContact(
+                onClicked: MessagesAdapter.removeConversation(
                                LRCInstance.selectedConvUid)
             }
 

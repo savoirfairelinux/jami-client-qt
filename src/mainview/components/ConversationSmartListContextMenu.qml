@@ -40,6 +40,18 @@ ContextMenuAutoLoader {
     }
     property bool readOnly
 
+    SimpleMessageDialog {
+        id: removeConversationDialog
+
+        title: JamiStrings.removeConversation
+        infoText: JamiStrings.removeConversationInfo
+
+        buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel]
+        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
+                       SimpleMessageDialog.ButtonStyle.TintedBlack]
+        buttonCallBacks: [function() {MessagesAdapter.removeConversation(responsibleConvUid)}]
+    }
+
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: startVideoCallItem
@@ -76,13 +88,13 @@ ContextMenuAutoLoader {
                            responsibleConvUid)
         },
         GeneralMenuItem {
-            id: removeContact
+            id: removeConversation
 
             canTrigger: !hasCall && (contactType === Profile.Type.JAMI
                                      || contactType === Profile.Type.SIP)
-            itemName: JamiStrings.removeContact
+            itemName: JamiStrings.removeConversation
             iconSource: JamiResources.ic_hangup_participant_24dp_svg
-            onClicked: MessagesAdapter.removeContact(responsibleConvUid)
+            onClicked: removeConversationDialog.open()
         },
         GeneralMenuItem {
             id: hangup
