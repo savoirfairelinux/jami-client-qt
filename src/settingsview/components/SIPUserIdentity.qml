@@ -30,22 +30,18 @@ ColumnLayout {
 
     property int itemWidth
 
-    function updateAccountInfo() {
-        usernameSIP.textField = SettingsAdapter.getAccountConfig_Username()
-        hostnameSIP.textField = SettingsAdapter.getAccountConfig_Hostname()
-        passSIPlineEdit.textField = SettingsAdapter.getAccountConfig_Password()
-        proxySIP.textField = SettingsAdapter.getAccountConfig_RouteSet()
-    }
-
     SettingsMaterialLineEdit {
         id: usernameSIP
 
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
+        textField: CurrentAccount.username
+
         titleField: JamiStrings.username
         itemWidth: root.itemWidth
-        onEditFinished: SettingsAdapter.setAccountConfig_Username(textField)
+
+        onEditFinished: CurrentAccount.username = textField
     }
 
     SettingsMaterialLineEdit {
@@ -54,31 +50,41 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
+        textField: CurrentAccount.hostname
+
         titleField: JamiStrings.server
         itemWidth: root.itemWidth
-        onEditFinished: SettingsAdapter.setAccountConfig_Hostname(textField)
+
+        onEditFinished: CurrentAccount.hostname = textField
     }
 
     SettingsMaterialLineEdit {
         id: proxySIP
+
+        textField: CurrentAccount.routeset
 
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         titleField: JamiStrings.proxy
         itemWidth: root.itemWidth
-        onEditFinished: SettingsAdapter.setAccountConfig_RouteSet(textField)
+
+        onEditFinished: CurrentAccount.routeset = titleField
     }
 
     SettingsMaterialLineEdit {
         id: passSIPlineEdit
 
+        textField: CurrentAccount.password
+
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
         titleField: JamiStrings.password
+
         itemWidth: root.itemWidth
-        onEditFinished: SettingsAdapter.setAccountConfig_Password(textField)
         echoMode: TextInput.Password
+
+        onEditFinished:nCurrentAccount.password = textField
     }
 }
