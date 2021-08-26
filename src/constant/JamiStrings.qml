@@ -225,7 +225,7 @@ Item {
     property string startAudioCall: qsTr("Start audio call")
     property string clearConversation: qsTr("Clear conversation")
     property string removeConversation: qsTr("Remove conversation")
-    property string removeContact: qsTr("Remove contact")
+    property string removeConversationInfo: qsTr("Are you sure you wish to remove this conversation?")
     property string blockContact: qsTr("Block contact")
     property string contactDetails: qsTr("Contact details")
 

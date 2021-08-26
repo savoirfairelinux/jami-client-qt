@@ -188,6 +188,14 @@ ListView {
     }
 
     Shortcut {
+        sequence: "Ctrl+Shift+Delete"
+        context: Qt.ApplicationShortcut
+        enabled: root.visible
+        onActivated: MessagesAdapter.removeConversation(
+                         LRCInstance.selectedConvUid)
+    }
+
+    Shortcut {
         sequence: "Ctrl+Down"
         context: Qt.ApplicationShortcut
         enabled: root.visible
