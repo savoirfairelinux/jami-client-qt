@@ -24,7 +24,7 @@
 
 #include <QObject>
 
-#define PROPERTY_BASE(type, prop) \
+#define PROPERTY_GETTER_BASE(type, prop) \
     type prop##_ {}; \
 \
 public: \
@@ -32,12 +32,71 @@ public: \
     type get_##prop() \
     { \
         return prop##_; \
-    } \
+    }
+
+#define PROPERTY_SETTER_BASE(type, prop) \
     void set_##prop(const type& x = {}) \
     { \
         if (prop##_ != x) { \
             prop##_ = x; \
             Q_EMIT prop##Changed(); \
+        } \
+    }
+
+#define PROPERTY_BASE(type, prop) \
+    PROPERTY_GETTER_BASE(type, prop) \
+    PROPERTY_SETTER_BASE(type, prop)
+
+#define ACCOUNT_CONFIG_SETTINGS_PROPERTY_BASE(type, prop) \
+    PROPERTY_GETTER_BASE(type, prop) \
+    void set_##prop(const type& x = {}, bool initialize = false) \
+    { \
+        if (prop##_ != x) { \
+            prop##_ = x; \
+            if (!initialize) { \
+                auto confProps = lrcInstance_->getCurrAccConfig(); \
+                confProps.prop = x; \
+                lrcInstance_->accountModel().setAccountConfig(lrcInstance_->get_currentAccountId(), \
+                                                              confProps); \
+            } \
+            Q_EMIT prop##Changed(); \
+        } \
+    }
+
+#define NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY_BASE(type, prop, appSettingName) \
+    PROPERTY_GETTER_BASE(type, prop) \
+    void set_##prop(const type& x = {}, bool initialize = false) \
+    { \
+        if (prop##_ != x) { \
+            prop##_ = x; \
+            lrcInstance_->accountModel().prop = x; \
+            if (!initialize) { \
+                settingsManager_->setValue(Settings::Key::appSettingName, x); \
+            } \
+            Q_EMIT prop##Changed(); \
+        } \
+    }
+
+#define ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY_BASE(type, prop, cate) \
+    type prop##cate##_ {}; \
+\
+public: \
+    Q_SIGNAL void prop##cate##Changed(); \
+    type get_##prop##cate() \
+    { \
+        return prop##cate##_; \
+    } \
+    void set_##prop##cate(const type& x = {}, bool initialize = false) \
+    { \
+        if (prop##cate##_ != x) { \
+            prop##cate##_ = x; \
+            if (!initialize) { \
+                auto confProps = lrcInstance_->getCurrAccConfig(); \
+                confProps.cate.prop = x; \
+                lrcInstance_->accountModel().setAccountConfig(lrcInstance_->get_currentAccountId(), \
+                                                              confProps); \
+            } \
+            Q_EMIT prop##cate##Changed(); \
         } \
     }
 
@@ -50,6 +109,22 @@ private: \
 private: \
     Q_PROPERTY(type prop MEMBER prop##_ NOTIFY prop##Changed); \
     PROPERTY_BASE(type, prop)
+
+#define QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(type, prop) \
+private: \
+    Q_PROPERTY(type prop READ get_##prop WRITE set_##prop NOTIFY prop##Changed); \
+    ACCOUNT_CONFIG_SETTINGS_PROPERTY_BASE(type, prop)
+
+#define QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(type, prop, cate) \
+private: \
+    Q_PROPERTY(type prop##_##cate READ get_##prop##cate WRITE set_##prop##cate NOTIFY \
+                   prop##cate##Changed); \
+    ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY_BASE(type, prop, cate)
+
+#define QML_NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY(type, prop, appSettingName) \
+private: \
+    Q_PROPERTY(type prop READ get_##prop WRITE set_##prop NOTIFY prop##Changed); \
+    NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY_BASE(type, prop, appSettingName)
 
 namespace Utils {
 
