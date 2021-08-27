@@ -58,8 +58,8 @@ Rectangle {
         sidePanelTabBar.selectTab(tabIndex)
     }
 
-    ContactSearchBar {
-        id: contactSearchBar
+    RowLayout {
+        id: startBar
 
         height: 40
         anchors.top: sidePanelRect.top
@@ -69,19 +69,46 @@ Rectangle {
         anchors.right: sidePanelRect.right
         anchors.rightMargin: 15
 
-        onContactSearchBarTextChanged: function (text) {
-            // not calling positionViewAtBeginning will cause
-            // sort animation visual bugs
-            conversationListView.positionViewAtBeginning()
-            ConversationsAdapter.setFilter(text)
+        ContactSearchBar {
+            id: contactSearchBar
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            onContactSearchBarTextChanged: function (text) {
+                // not calling positionViewAtBeginning will cause
+                // sort animation visual bugs
+                conversationListView.positionViewAtBeginning()
+                ConversationsAdapter.setFilter(text)
+            }
+
+            onReturnPressedWhileSearching: {
+                var listView = searchResultsListView.count ?
+                            searchResultsListView :
+                            conversationListView
+                if (listView.count)
+                    listView.model.select(0)
+            }
         }
 
-        onReturnPressedWhileSearching: {
-            var listView = searchResultsListView.count ?
-                        searchResultsListView :
-                        conversationListView
-            if (listView.count)
-                listView.model.select(0)
+        PushButton {
+            id: startConversation
+
+            Layout.alignment: Qt.AlignLeft
+            radius: JamiTheme.primaryRadius
+
+            imageColor: JamiTheme.textColor
+            imagePadding: 8
+            normalColor: JamiTheme.secondaryBackgroundColor
+
+            preferredSize: startBar.height
+
+            source: JamiResources.create_swarm_svg
+            toolTipText: JamiStrings.startASwarm
+
+            onClicked: {
+                ConversationsAdapter.createSwarm()
+            }
         }
     }
 
@@ -90,7 +117,7 @@ Rectangle {
 
         visible: ConversationsAdapter.pendingRequestCount &&
                  !contactSearchBar.textContent
-        anchors.top: contactSearchBar.bottom
+        anchors.top: startBar.bottom
         anchors.topMargin: visible ? 10 : 0
         width: sidePanelRect.width
         height: visible ? 42 : 0
