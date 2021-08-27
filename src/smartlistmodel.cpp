@@ -39,7 +39,7 @@ SmartListModel::SmartListModel(QObject* parent,
 {
     if (listModelType_ == Type::CONFERENCE) {
         setConferenceableFilter();
-    } else if (listModelType_ == Type::CONVERSATION) {
+    } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER) {
         fillConversationsList();
     }
 }
@@ -131,6 +131,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
         auto& item = lrcInstance_->getConversationFromConvUid(itemConvUid, itemAccountId);
         return dataForItem(item, role);
     } break;
+    case Type::ADDCONVMEMBER:
     case Type::CONVERSATION: {
         auto& item = conversations_.at(index.row());
         return dataForItem(item, role);

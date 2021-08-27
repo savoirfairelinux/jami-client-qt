@@ -24,6 +24,7 @@ import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
 import "../../commoncomponents"
+import "../js/contactpickercreation.js" as ContactPickerCreation
 
 Rectangle {
     id: root
@@ -48,7 +49,16 @@ Rectangle {
         return true
     }
 
+    property bool addMemberVisibility: {
+        return !CurrentConversation.isCoreDialog && CurrentConversation.isSwarm
+    }
+
     color: JamiTheme.chatviewBgColor
+
+    function addToConversationClicked() {
+        ContactPickerCreation.createContactPickerObjects(ContactList.ADDCONVMEMBER, root)
+        ContactPickerCreation.openContactPicker()
+    }
 
     RowLayout {
         id: messagingHeaderRectRowLayout
@@ -161,7 +171,8 @@ Rectangle {
 
                 visible: interactionButtonsVisibility
 
-                anchors.right: selectPluginButton.visible ? selectPluginButton.left :
+                anchors.right:  addParticipantsButton.visible ? addParticipantsButton.left :
+                                selectPluginButton.visible ? selectPluginButton.left :
                                    sendContactRequestButton.visible ?
                                    sendContactRequestButton.left :
                                    buttonGroup.right
@@ -175,6 +186,27 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: CallAdapter.placeCall()
+            }
+
+            PushButton {
+                id: addParticipantsButton
+
+                visible: addMemberVisibility
+
+                anchors.right: selectPluginButton.visible ? selectPluginButton.left :
+                                   sendContactRequestButton.visible ?
+                                   sendContactRequestButton.left :
+                                   buttonGroup.right
+                anchors.rightMargin: 8
+                anchors.verticalCenter: buttonGroup.verticalCenter
+
+                source: JamiResources.add_people_24dp_svg
+                toolTipText: JamiStrings.addParticipants
+
+                normalColor: JamiTheme.chatviewBgColor
+                imageColor: JamiTheme.chatviewButtonColor
+
+                onClicked: root.addToConversationClicked()
             }
 
             PushButton {
