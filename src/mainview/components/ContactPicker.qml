@@ -82,6 +82,8 @@ Popup {
                     switch(type) {
                     case ContactList.CONFERENCE:
                         return qsTr("Add to conference")
+                    case ContactList.ADDCONVMEMBER:
+                        return qsTr("Add to conversation")
                     case ContactList.TRANSFER:
                         return qsTr("Transfer this call")
                     default:
