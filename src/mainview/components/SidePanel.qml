@@ -85,12 +85,33 @@ Rectangle {
         }
     }
 
+    MaterialButton {
+        id: startConversation
+
+        Layout.alignment: Qt.AlignLeft
+
+
+        color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
+        hoveredColor: JamiTheme.buttonTintedBlackHovered
+        pressedColor: JamiTheme.buttonTintedBlackPressed
+        outlined: true
+
+        height: visible ? 42 : 0
+        width: sidePanelRect.width
+        anchors.top: contactSearchBar.bottom
+        text: JamiStrings.startASwarm
+
+        onClicked: {
+            ConversationsAdapter.createSwarm()
+        }
+    }
+
     SidePanelTabBar {
         id: sidePanelTabBar
 
         visible: ConversationsAdapter.pendingRequestCount &&
                  !contactSearchBar.textContent
-        anchors.top: contactSearchBar.bottom
+        anchors.top: startConversation.bottom
         anchors.topMargin: visible ? 10 : 0
         width: sidePanelRect.width
         height: visible ? 42 : 0
