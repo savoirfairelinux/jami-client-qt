@@ -24,7 +24,7 @@
 
 namespace ContactList {
 Q_NAMESPACE
-enum Type { CONVERSATION, CONFERENCE, TRANSFER, COUNT__ };
+enum Type { CONVERSATION, CONFERENCE, TRANSFER, ADDCONVMEMBER, COUNT__ };
 Q_ENUM_NS(Type)
 } // namespace ContactList
 
