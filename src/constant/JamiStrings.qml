@@ -37,6 +37,7 @@ Item {
     property string incomingAudioCallFrom: qsTr("Incoming audio call from {}")
     property string incomingVideoCallFrom: qsTr("Incoming video call from {}")
     property string contactSearchConversation: qsTr("Find a user or search for a conversation")
+    property string startASwarm: qsTr("Start a swarm")
     property string contactSearchInvitations: qsTr("Search your invitations")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is free software for universal communication which respects the freedoms and the privacy of its users.")
