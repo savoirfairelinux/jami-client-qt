@@ -549,3 +549,10 @@ ConversationsAdapter::connectConversationModel()
 
     return true;
 }
+
+void
+ConversationsAdapter::createSwarm()
+{
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    convModel->createConversation({}, "");
+}
