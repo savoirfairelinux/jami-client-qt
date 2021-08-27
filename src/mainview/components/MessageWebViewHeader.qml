@@ -24,6 +24,7 @@ import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
 import "../../commoncomponents"
+import "../js/contactpickercreation.js" as ContactPickerCreation
 
 Rectangle {
     id: root
@@ -49,6 +50,11 @@ Rectangle {
     }
 
     color: JamiTheme.chatviewBgColor
+
+    function addToConversationClicked() {
+        ContactPickerCreation.createContactPickerObjects(ContactList.CONFERENCE, root)
+        ContactPickerCreation.openContactPicker()
+    }
 
     RowLayout {
         id: messagingHeaderRectRowLayout
@@ -161,7 +167,7 @@ Rectangle {
 
                 visible: interactionButtonsVisibility
 
-                anchors.right: selectPluginButton.visible ? selectPluginButton.left :
+                anchors.right: addParticipantsButton.visible ? addParticipantsButton.left :
                                    sendContactRequestButton.visible ?
                                    sendContactRequestButton.left :
                                    buttonGroup.right
@@ -175,6 +181,27 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: CallAdapter.placeCall()
+            }
+
+            PushButton {
+                id: addParticipantsButton
+
+                visible: interactionButtonsVisibility // TODO
+
+                anchors.right: selectPluginButton.visible ? selectPluginButton.left :
+                                   sendContactRequestButton.visible ?
+                                   sendContactRequestButton.left :
+                                   buttonGroup.right
+                anchors.rightMargin: 8
+                anchors.verticalCenter: buttonGroup.verticalCenter
+
+                source: JamiResources.videocam_24dp_svg
+                toolTipText: JamiStrings.addParticipants
+
+                normalColor: JamiTheme.chatviewBgColor
+                imageColor: JamiTheme.chatviewButtonColor
+
+                onClicked: root.addToConversationClicked()
             }
 
             PushButton {
