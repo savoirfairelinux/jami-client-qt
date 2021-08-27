@@ -53,7 +53,11 @@ ContactAdapter::getContactSelectableModel(int type)
             return !defaultModerators_.contains(index.data(Role::URI).toString());
         });
         break;
-
+    case SmartListModel::Type::ADDCONVMEMBER:
+        selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegExp&) {
+            return index.data(Role::IsCoreDialog).toBool();
+        });
+        break;
     case SmartListModel::Type::CONFERENCE:
         selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegExp&) {
             return index.data(Role::Presence).toBool();
@@ -99,6 +103,16 @@ ContactAdapter::setSearchFilter(const QString& filter)
                 return (!defaultModerators_.contains(index.data(Role::URI).toString())
                         && index.data(Role::Title).toString().contains(filter));
             });
+    } else if (listModeltype_ == SmartListModel::Type::ADDCONVMEMBER) {
+        selectableProxyModel_->setPredicate(
+            [this, filter](const QModelIndex& index, const QRegExp&) {
+                return (index.data(Role::Title).toString().contains(filter, Qt::CaseInsensitive)
+                        || index.data(Role::RegisteredName)
+                               .toString()
+                               .contains(filter, Qt::CaseInsensitive)
+                        || index.data(Role::URI).toString().contains(filter, Qt::CaseInsensitive))
+                       && index.data(Role::IsCoreDialog).toBool();
+            });
     }
     selectableProxyModel_->setFilterRegExp(
         QRegExp(filter, Qt::CaseInsensitive, QRegExp::FixedString));
@@ -109,10 +123,16 @@ ContactAdapter::contactSelected(int index)
 {
     auto contactIndex = selectableProxyModel_->index(index, 0);
     auto* callModel = lrcInstance_->getCurrentCallModel();
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(
         lrcInstance_->get_selectedConvUid());
     if (contactIndex.isValid()) {
         switch (listModeltype_) {
+        case SmartListModel::Type::ADDCONVMEMBER: {
+            const auto uri = contactIndex.data(Role::URI).value<QString>();
+            convModel->addConversationMember(lrcInstance_->get_selectedConvUid(), uri);
+            break;
+        }
         case SmartListModel::Type::CONFERENCE: {
             // Conference.
             const auto sectionName = contactIndex.data(Role::SectionName).value<QString>();
