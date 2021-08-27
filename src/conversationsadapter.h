@@ -48,6 +48,7 @@ protected:
 
 public:
     Q_INVOKABLE bool connectConversationModel();
+    Q_INVOKABLE void createSwarm();
     Q_INVOKABLE void setFilter(const QString& filterString);
     Q_INVOKABLE QVariantMap getConvInfoMap(const QString& convId);
     Q_INVOKABLE void restartConversation(const QString& convId);
