@@ -229,6 +229,15 @@ MessagesAdapter::retryInteraction(const QString& interactionId)
 }
 
 void
+MessagesAdapter::joinCall(const QString& confId, const QString& uri, const QString& deviceId)
+{
+    lrcInstance_->getCurrentConversationModel()->joinCall(lrcInstance_->get_selectedConvUid(),
+                                                          confId,
+                                                          uri,
+                                                          deviceId);
+}
+
+void
 MessagesAdapter::copyToDownloads(const QString& interactionId, const QString& displayName)
 {
     auto downloadDir = lrcInstance_->accountModel().downloadDirectory;

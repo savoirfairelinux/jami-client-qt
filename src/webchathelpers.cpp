@@ -59,6 +59,9 @@ buildInteractionJson(lrc::api::ConversationModel& conversationModel,
         break;
     case lrc::api::interaction::Type::CALL:
         interactionObject.insert("type", QJsonValue("call"));
+        interactionObject.insert("confId", QJsonValue(inter.commit["confId"]));
+        interactionObject.insert("uri", QJsonValue(inter.commit["uri"]));
+        interactionObject.insert("deviceId", QJsonValue(inter.commit["device"]));
         break;
     case lrc::api::interaction::Type::CONTACT:
         interactionObject.insert("type", QJsonValue("contact"));

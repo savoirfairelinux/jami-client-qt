@@ -55,6 +55,7 @@ protected:
     Q_INVOKABLE void sendMessage(const QString& message);
     Q_INVOKABLE void sendFile(const QString& message);
     Q_INVOKABLE void retryInteraction(const QString& interactionId);
+    Q_INVOKABLE void joinCall(const QString& confId, const QString& uri, const QString& deviceId);
     Q_INVOKABLE void deleteInteraction(const QString& interactionId);
     Q_INVOKABLE void openUrl(const QString& url);
     Q_INVOKABLE void openFile(const QString& arg);

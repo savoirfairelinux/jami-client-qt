@@ -113,6 +113,10 @@ Rectangle {
             MessagesAdapter.retryInteraction(arg)
         }
 
+        function joinCall(confId, uri, deviceId) {
+            MessagesAdapter.joinCall(confId, uri, deviceId)
+        }
+
         function openFile(arg) {
             MessagesAdapter.openFile(arg)
         }
