@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29611f7b_b8159315",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-08-30T20:45:58Z",
+      "side": 1,
+      "message": "Seems a bit dangerous to send data without confirmation. Imho it should modify the send bar, not directly send",
+      "revId": "11608a642519462c7ddb8acbb608bddd68c53a90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
