@@ -480,6 +480,36 @@ ConversationsAdapter::restartConversation(const QString& convId)
     accInfo.contactModel->removeContact(peerUri);
 }
 
+void
+ConversationsAdapter::sendMessage(const QString& msg, const QString& convId)
+{
+    try {
+        auto cId(convId);
+        if (cId.isEmpty())
+            cId = lrcInstance_->get_selectedConvUid();
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        convModel->sendMessage(cId, msg);
+    } catch (const std::exception& e) {
+        qWarning() << "Exception during sendMessage" << e.what();
+    }
+}
+
+void
+ConversationsAdapter::sendFile(const QString& file, const QString& convId)
+{
+    try {
+        auto cId(convId);
+        if (cId.isEmpty())
+            cId = lrcInstance_->get_selectedConvUid();
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        QUrl uri(file);
+        QFileInfo fi(uri.toLocalFile());
+        convModel->sendFile(cId, fi.absoluteFilePath(), fi.fileName());
+    } catch (const std::exception& e) {
+        qWarning() << "Exception during sendFile" << e.what();
+    }
+}
+
 bool
 ConversationsAdapter::connectConversationModel()
 {

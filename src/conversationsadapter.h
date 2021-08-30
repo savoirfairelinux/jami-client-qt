@@ -51,6 +51,8 @@ public:
     Q_INVOKABLE void setFilter(const QString& filterString);
     Q_INVOKABLE QVariantMap getConvInfoMap(const QString& convId);
     Q_INVOKABLE void restartConversation(const QString& convId);
+    Q_INVOKABLE void sendMessage(const QString& msg, const QString& convId = {});
+    Q_INVOKABLE void sendFile(const QString& file, const QString& convId = {});
 
 Q_SIGNALS:
     void showConversation(const QString& accountId, const QString& convUid);
