@@ -37,6 +37,19 @@ ItemDelegate {
         return UID
     }
 
+    DropArea {
+        anchors.fill: parent
+        onDropped: {
+            if (drop.hasUrls) {
+                for (var i = 0; i < drop.urls.length; ++i) {
+                    ConversationsAdapter.sendFile(drop.urls[i], UID)
+                }
+            } else if (drop.hasText) {
+                ConversationsAdapter.sendMessage(drop.text, UID)
+            }
+        }
+    }
+
     RowLayout {
         anchors.fill: parent
         anchors.leftMargin: 15
