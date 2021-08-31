@@ -41,13 +41,6 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
     deviceListSize_ = avModel.getDevices().size();
     connect(&avModel, &lrc::api::AVModel::audioDeviceEvent, this, &AvAdapter::onAudioDeviceEvent);
     connect(&avModel, &lrc::api::AVModel::deviceEvent, this, &AvAdapter::onVideoDeviceEvent);
-    connect(lrcInstance_->renderer(), &RenderManager::previewFrameStarted, [this]() {
-        // TODO: listen to the correct signals that are needed to be added in daemon or lrc
-        auto callId = getCurrentCallId();
-        if (!callId.isEmpty())
-            set_currentRenderingDeviceType(
-                lrcInstance_->avModel().getCurrentRenderedDevice(callId).type);
-    });
 }
 
 void

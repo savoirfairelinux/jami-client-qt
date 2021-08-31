@@ -29,8 +29,6 @@
 class AvAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
-    QML_PROPERTY(lrc::api::video::DeviceType, currentRenderingDeviceType)
-
 public:
     explicit AvAdapter(LRCInstance* instance, QObject* parent = nullptr);
     ~AvAdapter() = default;
