@@ -34,19 +34,18 @@ Rectangle {
 
     function populateAVSettings() {
         audioSettings.populateAudioSettings()
-        videoSettings.populateVideoSettings()
     }
 
     color: JamiTheme.secondaryBackgroundColor
 
-    Connections {
-        target: AvAdapter
+//    Connections {
+//        target: AvAdapter
 
-        function onVideoDeviceAvailable() {
-            if (root.visible)
-                videoSettings.startPreviewing()
-        }
-    }
+//        function onVideoDeviceAvailable() {
+//            if (root.visible)
+//                videoSettings.startPreviewing()
+//        }
+//    }
 
     ColumnLayout {
         id: avSettingsColumnLayout
