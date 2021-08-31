@@ -42,7 +42,7 @@ Rectangle {
         if(visible){
             setSelected(selectedMenu,true)
         } else {
-            AccountAdapter.stopPreviewing()
+            AvAdapter.stopPreviewing()
         }
     }
 
@@ -50,12 +50,12 @@ Rectangle {
         if(selectedMenu === sel && (!recovery)) { return }
         switch(sel) {
             case SettingsView.Account:
-                AccountAdapter.stopPreviewing()
+                AvAdapter.stopPreviewing()
                 selectedMenu = sel
                 pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
                 break
             case SettingsView.General:
-                AccountAdapter.stopPreviewing()
+                AvAdapter.stopPreviewing()
                 selectedMenu = sel
                 break
             case SettingsView.Media:
@@ -63,7 +63,7 @@ Rectangle {
                 avSettings.populateAVSettings()
                 break
             case SettingsView.Plugin:
-                AccountAdapter.stopPreviewing()
+                AvAdapter.stopPreviewing()
                 selectedMenu = sel
                 pluginSettings.populatePluginSettings()
                 break
@@ -81,7 +81,7 @@ Rectangle {
 
     // slots
     function leaveSettingsSlot(showMainView) {
-        AccountAdapter.stopPreviewing()
+        AvAdapter.stopPreviewing()
         settingsViewRect.stopBooth()
         if (showMainView)
             settingsViewNeedToShowMainView()

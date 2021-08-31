@@ -35,79 +35,70 @@ ColumnLayout {
     property bool previewAvailable: false
     property int itemWidth
 
-    Connections {
-        target: AvAdapter
-
-        function onVideoDeviceListChanged() {
-            populateVideoSettings()
-        }
-    }
-
     function startPreviewing(force = false) {
         if (root.visible) {
-            AccountAdapter.startPreviewing(force)
+            AvAdapter.startPreviewing(force)
             previewAvailable = true
         }
     }
 
-    function populateVideoSettings() {
-        deviceComboBoxSetting.comboModel.reset()
-
-        var count = deviceComboBoxSetting.comboModel.deviceCount()
-
-        previewWidget.visible = count > 0
-        deviceComboBoxSetting.enabled = count > 0
-        resolutionComboBoxSetting.enabled = count > 0
-        fpsComboBoxSetting.enabled = count > 0
-
-        if (count === 0) {
-            resolutionComboBoxSetting.reset()
-            fpsComboBoxSetting.reset()
-        } else {
-            deviceComboBoxSetting.modelIndex =
-                    deviceComboBoxSetting.comboModel.getCurrentIndex()
-        }
-        hardwareAccelControl.checked = AVModel.getHardwareAcceleration()
-    }
-
-    function slotDeviceBoxCurrentIndexChanged(index) {
-        if (deviceComboBoxSetting.comboModel.deviceCount() <= 0)
-            return
-
-        try {
-            var deviceId = deviceComboBoxSetting.comboModel.data(
-                        deviceComboBoxSetting.comboModel.index(index, 0),
-                        VideoInputDeviceModel.DeviceId)
-            var deviceName = deviceComboBoxSetting.comboModel.data(
-                        deviceComboBoxSetting.comboModel.index(index, 0),
-                        VideoInputDeviceModel.DeviceName)
-            if(deviceId.length === 0) {
-                console.warn("Couldn't find device: " + deviceName)
-                return
+    function updatePreviewRatio() {
+        var resolution = CurrentDevice.videoDefaultDeviceRes
+        if (resolution.length !== 0) {
+            var resVec = resolution.split("x")
+            var ratio = resVec[1] / resVec[0]
+            if (ratio) {
+                aspectRatio = ratio
+            } else {
+                console.error("Could not scale recording video preview")
             }
-
-            if (AVModel.getCurrentVideoCaptureDevice() !== deviceId) {
-                AVModel.setCurrentVideoCaptureDevice(deviceId)
-                AVModel.setDefaultDevice(deviceId)
-            }
-
-            resolutionComboBoxSetting.reset()
-        } catch(err){ console.warn(err.message) }
-    }
-
-    function updatePreviewRatio(resolution) {
-        var res = resolution.split("x")
-        var ratio = res[1] / res[0]
-        if (ratio) {
-            aspectRatio = ratio
-        } else {
-            console.error("Could not scale recording video preview")
         }
+
     }
 
     onVisibleChanged: {
-        if (visible)
-            startPreviewing(true)
+        if (visible) {
+            hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration()
+            updatePreviewRatio()
+            if (previewWidget.visible)
+                startPreviewing(true)
+        }
+    }
+
+    Connections {
+        target: CurrentDevice
+
+        function onVideoDefaultDeviceResChanged() {
+            updatePreviewRatio()
+        }
+
+        function onVideoDeviceAvailable() {
+            startPreviewing()
+        }
+
+        function onVideoDeviceListChanged() {
+            var deviceModel = deviceComboBoxSetting.comboModel
+            var resModel = resolutionComboBoxSetting.comboModel
+            var fpsModel = fpsComboBoxSetting.comboModel
+
+            var resultList = deviceModel.match(deviceModel.index(0, 0),
+                                               VideoInputDeviceModel.DeviceId,
+                                               CurrentDevice.videoDefaultDeviceId)
+            deviceComboBoxSetting.modelIndex = resultList.length > 0 ?
+                        resultList[0].row : deviceModel.rowCount() ? 0 : -1
+
+            resultList = resModel.match(resModel.index(0, 0),
+                                        VideoFormatResolutionModel.Resolution,
+                                        CurrentDevice.videoDefaultDeviceRes)
+            resolutionComboBoxSetting.modelIndex = resultList.length > 0 ?
+                        resultList[0].row : deviceModel.rowCount() ? 0 : -1
+
+            resultList = fpsModel.match(fpsModel.index(0, 0),
+                                        VideoFormatFpsModel.FPS,
+                                        CurrentDevice.videoDefaultDeviceFps)
+            fpsComboBoxSetting.modelIndex = resultList.length > 0 ?
+                        resultList[0].row : deviceModel.rowCount() ? 0 : -1
+        }
     }
 
     ElidedTextLabel {
@@ -126,98 +117,66 @@ ColumnLayout {
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        labelText: JamiStrings.device
+        enabled: CurrentDevice.videoDeviceListSize !== 0
+
         fontPointSize: JamiTheme.settingsFontSize
-        comboModel: VideoInputDeviceModel {
-            lrcInstance: LRCInstance
-        }
         widthOfComboBox: itemWidth
+
+        labelText: JamiStrings.device
         tipText: JamiStrings.selectVideoDevice
-        role: "DeviceName_UTF8"
-
-        onModelIndexChanged: slotDeviceBoxCurrentIndexChanged(modelIndex)
-
         placeholderText: JamiStrings.noVideoDevice
+        currentSelectionText: CurrentDevice.videoDefaultDeviceName
+        comboModel: CurrentDevice.videoDeviceFilterModel()
+        role: "DeviceName"
+
+        onActivated: {
+            // TODO: start and stop preview logic in here should be in LRC
+            AvAdapter.stopPreviewing()
+            CurrentDevice.setVideoDefaultDevice(modelIndex)
+            startPreviewing()
+        }
     }
 
     SettingsComboBox {
         id: resolutionComboBoxSetting
 
-        function reset() {
-            modelIndex = -1
-            comboModel.reset()
-            modelIndex = 0
-        }
-
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        labelText: JamiStrings.resolution
-        fontPointSize: JamiTheme.settingsFontSize
-        comboModel: VideoFormatResolutionModel {
-            lrcInstance: LRCInstance
-        }
+        enabled: CurrentDevice.videoDeviceListSize !== 0
+
         widthOfComboBox: itemWidth
+        fontPointSize: JamiTheme.settingsFontSize
+
+        labelText: JamiStrings.resolution
+        currentSelectionText: CurrentDevice.videoDefaultDeviceRes
         tipText: JamiStrings.selectVideoResolution
-        role: "Resolution_UTF8"
+        comboModel: CurrentDevice.videoResFilterModel()
+        role: "Resolution"
 
-        modelIndex: -1
-
-        onModelIndexChanged: {
-            if (modelIndex === -1)
-                return
-            var resolution = comboModel.data(comboModel.index(modelIndex, 0),
-                                             VideoFormatResolutionModel.Resolution)
-            fpsComboBoxSetting.comboModel.currentResolution = resolution
-            fpsComboBoxSetting.modelIndex = 0
-
-            var rate = fpsComboBoxSetting.comboModel.data(
-                        fpsComboBoxSetting.comboModel.index(0, 0),
-                        VideoFormatFpsModel.FPS)
-
-            AvAdapter.setCurrentVideoDeviceRateAndResolution(rate, resolution)
-            updatePreviewRatio(resolution)
-        }
+        onActivated: CurrentDevice.setVideoDefaultDeviceRes(modelIndex)
     }
 
     SettingsComboBox {
         id: fpsComboBoxSetting
 
-        function reset() {
-            modelIndex = -1
-            comboModel.reset()
-            modelIndex = 0
-        }
-
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        labelText: JamiStrings.fps
-        fontPointSize: JamiTheme.settingsFontSize
-        comboModel: VideoFormatFpsModel {
-            lrcInstance: LRCInstance
-        }
+        enabled: CurrentDevice.videoDeviceListSize !== 0
+
         widthOfComboBox: itemWidth
+        fontPointSize: JamiTheme.settingsFontSize
+
         tipText: JamiStrings.selectFPS
-        role: "FPS_ToDisplay_UTF8"
+        labelText: JamiStrings.fps
+        currentSelectionText: CurrentDevice.videoDefaultDeviceFps.toString()
+        comboModel: CurrentDevice.videoFpsFilterModel()
+        role: "FPS"
 
-        modelIndex: -1
-
-        onModelIndexChanged: {
-            if (modelIndex === -1)
-                return
-            var resolution = resolutionComboBoxSetting.comboModel.data(
-                        resolutionComboBoxSetting.comboModel.index(
-                            resolutionComboBoxSetting.modelIndex, 0),
-                        VideoFormatResolutionModel.Resolution)
-
-            var rate = comboModel.data(comboModel.index(modelIndex, 0),
-                                       VideoFormatFpsModel.FPS)
-
-            AvAdapter.setCurrentVideoDeviceRateAndResolution(rate, resolution)
-        }
+        onActivated: CurrentDevice.setVideoDefaultDeviceFps(modelIndex)
     }
 
     ToggleSwitch {
@@ -230,7 +189,7 @@ ColumnLayout {
         fontPointSize: JamiTheme.settingsFontSize
 
         onSwitchToggled: {
-            AVModel.setHardwareAcceleration(checked)
+            AvAdapter.setHardwareAcceleration(checked)
             startPreviewing(true)
         }
     }
@@ -247,8 +206,7 @@ ColumnLayout {
         Layout.preferredWidth: itemWidth * 2
         Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-        color: "white"
-        radius: 5
+        color: JamiTheme.primaryForegroundColor
 
         PreviewRenderer {
             id: previewWidget
@@ -257,6 +215,7 @@ ColumnLayout {
 
             lrcInstance: LRCInstance
 
+            visible: CurrentDevice.videoDeviceListSize !== 0
             layer.enabled: true
             layer.effect: OpacityMask {
                 maskSource: rectBox
@@ -265,6 +224,7 @@ ColumnLayout {
     }
 
     Label {
+        // TODO: proper use of previewAvailable
         visible: !previewAvailable
 
         Layout.fillWidth: true
