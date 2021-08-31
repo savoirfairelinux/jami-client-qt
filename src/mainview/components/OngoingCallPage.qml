@@ -189,13 +189,13 @@ Rectangle {
                         }
                     }
 
-                    Connections {
-                        target: AvAdapter
+//                    Connections {
+//                        target: AvAdapter
 
-                        function onVideoDeviceListChanged(inputs) {
-                            previewRenderer.visible = (inputs !== 0)
-                        }
-                    }
+//                        function onVideoDeviceListChanged(inputs) {
+//                            previewRenderer.visible = (inputs !== 0)
+//                        }
+//                    }
 
                     width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                     x: callPageMainRect.width - previewRenderer.width - previewMargin
