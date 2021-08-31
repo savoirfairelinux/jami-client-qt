@@ -141,39 +141,39 @@ Control {
                       break
                 }
             }
-        },
-        Action {
-            id: videoInputMenuAction
-            text: JamiStrings.selectVideoDevice
-            Component.onCompleted: enabled = videoInputDeviceListModel.rowCount()
-            property var listModel: VideoInputDeviceModel {
-                id: videoInputDeviceListModel
-                lrcInstance: LRCInstance
-            }
-            function accept(index) {
-                if (listModel.deviceCount() < 1)
-                    return
-                try {
-                    var deviceId = listModel.data(
-                                listModel.index(index, 0),
-                                VideoInputDeviceModel.DeviceId)
-                    var deviceName = listModel.data(
-                                listModel.index(index, 0),
-                                VideoInputDeviceModel.DeviceName)
-                    if (deviceId.length === 0) {
-                        console.warn("Couldn't find device: " + deviceName)
-                        return
-                    }
-                    if (AVModel.getCurrentVideoCaptureDevice() !== deviceId) {
-                        AVModel.setCurrentVideoCaptureDevice(deviceId)
-                        AVModel.setDefaultDevice(deviceId)
-                    }
-                    AvAdapter.selectVideoInputDeviceById(deviceId)
-                } catch (err) {
-                    console.warn(err.message)
-                }
-            }
-        }
+        }//,
+//        Action {
+//            id: videoInputMenuAction
+//            text: JamiStrings.selectVideoDevice
+//            Component.onCompleted: enabled = videoInputDeviceListModel.rowCount()
+//            property var listModel: VideoInputDeviceModel {
+//                id: videoInputDeviceListModel
+//                lrcInstance: LRCInstance
+//            }
+//            function accept(index) {
+//                if (listModel.deviceCount() < 1)
+//                    return
+//                try {
+//                    var deviceId = listModel.data(
+//                                listModel.index(index, 0),
+//                                VideoInputDeviceModel.DeviceId)
+//                    var deviceName = listModel.data(
+//                                listModel.index(index, 0),
+//                                VideoInputDeviceModel.DeviceName)
+//                    if (deviceId.length === 0) {
+//                        console.warn("Couldn't find device: " + deviceName)
+//                        return
+//                    }
+//                    if (AVModel.getCurrentVideoCaptureDevice() !== deviceId) {
+//                        AVModel.setCurrentVideoCaptureDevice(deviceId)
+//                        AVModel.setDefaultDevice(deviceId)
+//                    }
+//                    AvAdapter.selectVideoInputDeviceById(deviceId)
+//                } catch (err) {
+//                    console.warn(err.message)
+//                }
+//            }
+//        }
     ]
 
     property list<Action> primaryActions: [

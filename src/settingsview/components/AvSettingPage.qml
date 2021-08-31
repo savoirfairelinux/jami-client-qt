@@ -34,7 +34,6 @@ Rectangle {
 
     function populateAVSettings() {
         audioSettings.populateAudioSettings()
-        videoSettings.populateVideoSettings()
     }
 
     color: JamiTheme.secondaryBackgroundColor

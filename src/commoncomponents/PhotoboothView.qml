@@ -39,13 +39,13 @@ Item {
     height: boothLayout.height
 
     function startBooth() {
-        AccountAdapter.startPreviewing(false)
+        AvAdapter.startPreviewing(false)
         isPreviewing = true
     }
 
     function stopBooth(){
         if (!AccountAdapter.hasVideoCall()) {
-            AccountAdapter.stopPreviewing()
+            AvAdapter.stopPreviewing()
         }
         isPreviewing = false
     }
