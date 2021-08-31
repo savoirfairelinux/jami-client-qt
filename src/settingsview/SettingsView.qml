@@ -42,7 +42,7 @@ Rectangle {
         if(visible){
             setSelected(selectedMenu,true)
         } else {
-            AccountAdapter.stopPreviewing()
+            AvAdapter.stopPreviewing()
         }
     }
 
@@ -50,12 +50,12 @@ Rectangle {
         if(selectedMenu === sel && (!recovery)) { return }
         switch(sel) {
             case SettingsView.Account:
-                AccountAdapter.stopPreviewing()
+                AvAdapter.stopPreviewing()
                 selectedMenu = sel
                 pageIdCurrentAccountSettings.updateAccountInfoDisplayed()
                 break
             case SettingsView.General:
-                AccountAdapter.stopPreviewing()
+                AvAdapter.stopPreviewing()
                 selectedMenu = sel
                 break
             case SettingsView.Media:
@@ -63,40 +63,21 @@ Rectangle {
                 avSettings.populateAVSettings()
                 break
             case SettingsView.Plugin:
-                AccountAdapter.stopPreviewing()
+                AvAdapter.stopPreviewing()
                 selectedMenu = sel
                 pluginSettings.populatePluginSettings()
                 break
         }
     }
 
-    Connections {
-        id: accountListChangedConnection
-        target: LRCInstance
-
-        function onAccountListChanged() {
-            accountListChanged()
-        }
-    }
-
     // slots
     function leaveSettingsSlot(showMainView) {
-        AccountAdapter.stopPreviewing()
+        AvAdapter.stopPreviewing()
         settingsViewRect.stopBooth()
         if (showMainView)
             settingsViewNeedToShowMainView()
         else
             settingsViewNeedToShowNewWizardWindow()
-    }
-
-    function accountListChanged() {
-        var accountList = AccountAdapter.model.getAccountList()
-        if(accountList.length === 0)
-            return
-        var device = AVModel.getDefaultDevice()
-        if(device.length === 0) {
-            AVModel.setCurrentVideoCaptureDevice(device)
-        }
     }
 
     property int selectedMenu: SettingsView.Account
