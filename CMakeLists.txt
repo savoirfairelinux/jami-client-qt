@@ -38,6 +38,14 @@ execute_process(
 # library compatibility (boost, libnotify, etc.)
 add_definitions(-DQT_NO_KEYWORDS)
 
+# Here we let find_package(<PackageName>...) try to find Qt 6,
+# If it is found, find_package will succeed, and the CMake variable
+# QT_VERSION_MAJOR will be defined 6.
+find_package(QT NAMES Qt6 COMPONENTS Core REQUIRED)
+if (${QT_VERSION_MAJOR} STRLESS 6)
+   message(FATAL_ERROR "We currently only support Qt6" )
+endif()
+
 set(COMMON_SOURCES
     ${SRC_DIR}/bannedlistmodel.cpp
     ${SRC_DIR}/accountlistmodel.cpp
@@ -146,26 +154,34 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentdevice.h)
 
 set(QML_LIBS
-    Qt5::Quick
-    Qt5::QuickWidgets
-    Qt5::Network
-    Qt5::Svg
-    Qt5::Sql
-    Qt5::Concurrent
-    Qt5::QuickControls2
-    Qt5::WebEngine
-    Qt5::Core)
+    Qt::Quick
+    Qt::QuickWidgets
+    Qt::Network
+    Qt::NetworkAuth
+    Qt::Svg
+    Qt::Sql
+    Qt::Concurrent
+    Qt::QuickControls2
+    Qt::Core
+    Qt::Core5Compat
+    Qt::WebEngineCore
+    Qt::WebEngineQuick
+    Qt::WebChannel)
 
 set(QML_LIBS_LIST
     Core
+    Core5Compat
     Concurrent
     Quick
     QuickWidgets
     Network
+    NetworkAuth
     Svg
     Sql
     QuickControls2
-    WebEngine)
+    WebEngineCore
+    WebEngineQuick
+    WebChannel)
 
 set(WINDOWS_SYS_LIBS Shell32.lib
                      Ole32.lib
@@ -231,7 +247,7 @@ else()
     list(APPEND COMMON_HEADERS
                 ${SRC_DIR}/dbuserrorhandler.h
                 ${SRC_DIR}/xrectsel.h)
-    list(APPEND QML_LIBS Qt5::DBus)
+    list(APPEND QML_LIBS Qt::DBus)
     list(APPEND QML_LIBS_LIST DBus)
 
     find_package(PkgConfig REQUIRED)
@@ -309,21 +325,16 @@ else()
 endif()
 
 # Qt find package
-if(QT5_VER AND QT5_PATH)
-    string(REPLACE "." ";" VERSION_LIST ${QT5_VER})
-    list(GET VERSION_LIST 0 QT5_VER_MAJOR)
-    list(GET VERSION_LIST 1 QT5_VER_MINOR)
-    list(GET VERSION_LIST 2 QT5_VER_PATCH)
-
-    if((${QT5_VER_MAJOR} GREATER_EQUAL 5) AND (${QT5_VER_MINOR} GREATER_EQUAL 14))
-        message(STATUS "Using custom Qt version")
-        find_package(Qt5 ${QT5_VER} REQUIRED COMPONENTS ${QML_LIBS_LIST}
-                     PATHS ${QT5_PATH} NO_DEFAULT_PATH)
-        find_package(Qt5LinguistTools ${QT5_VER} PATHS ${QT5_PATH} NO_DEFAULT_PATH)
-    endif()
+if(QT6_VER AND QT6_PATH)
+    message(STATUS "Using custom Qt version")
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QML_LIBS_LIST}
+                 PATHS ${QT6_PATH} NO_DEFAULT_PATH)
+    # Linguist tools is not required.
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS LinguistTools
+                 PATHS ${QT6_PATH} NO_DEFAULT_PATH)
 else()
-    find_package(Qt5 REQUIRED COMPONENTS ${QML_LIBS_LIST})
-    find_package(Qt5LinguistTools)
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QML_LIBS_LIST})
+    find_package(Qt${QT_VERSION_MAJOR}LinguistTools)
 endif()
 
 # common include
@@ -331,19 +342,19 @@ include_directories(${PROJECT_SOURCE_DIR}
                     ${SRC_DIR})
 
 # common executable sources
-add_executable(${PROJECT_NAME}
-               ${SRC_DIR}/main.cpp
-               ${COMMON_HEADERS}
-               ${COMMON_SOURCES}
-               ${QML_RESOURCES}
-               ${QML_RESOURCES_QML}
-               ${LRC_SRC_PATH}/webresource.qrc)
+qt_add_executable(${PROJECT_NAME}
+                  ${SRC_DIR}/main.cpp
+                  ${COMMON_HEADERS}
+                  ${COMMON_SOURCES}
+                  ${QML_RESOURCES}
+                  ${QML_RESOURCES_QML}
+                  ${LRC_SRC_PATH}/webresource.qrc)
 
 if(MSVC)
     # Makes it a GUI executable instead of a console application
     set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
 
-    target_link_libraries(${PROJECT_NAME}
+    target_link_libraries(${PROJECT_NAME} PRIVATE
                           ${QML_LIBS}
                           ${QRENCODE_LIB}
                           ${WINDOWS_SYS_LIBS})
@@ -358,14 +369,14 @@ if(MSVC)
         # executable icon
         target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/ico.rc)
 
-        target_link_libraries(${PROJECT_NAME}
+        target_link_libraries(${PROJECT_NAME} PRIVATE
                               ${RINGCLIENT_STATIC_LIB}
                               ${QTWRAPPER_LIB}
                               ${DRING_LIB}
                               ${GNUTLS_LIB})
 
         # translations
-        if(Qt5LinguistTools_FOUND)
+        if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
             message("Releasing and copying translation files")
             file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/ring/translations/")
             file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/libringclient/translations/")
@@ -375,8 +386,9 @@ if(MSVC)
                                         "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/ring/translations")
             set_source_files_properties(${TS_LRC_FILES} PROPERTIES OUTPUT_LOCATION
                                         "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/libringclient/translations")
-            qt5_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
-            qt5_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
+
+            qt_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
+            qt_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
             target_sources(${PROJECT_NAME} PRIVATE ${QM_CLIENT_FILES})
             target_sources(${PROJECT_NAME} PRIVATE ${QM_LRC_FILES})
         endif()
@@ -417,7 +429,7 @@ if(MSVC)
     # executable name
     set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Jami")
 else()
-    target_link_libraries(${PROJECT_NAME}
+    target_link_libraries(${PROJECT_NAME} PRIVATE
                           ${QML_LIBS}
                           ${LRC_LIB_NAME}
                           ${qrencode}
@@ -507,12 +519,13 @@ else()
     endif()
 
     # translations
-    if(Qt5LinguistTools_FOUND)
+    if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
         message("Releasing and copying translation files")
         file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/")
         file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
         set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION "share/ring/translations")
-        qt5_add_translation(QM_FILES ${TS_FILES})
+
+        qt_add_translation(QM_FILES ${TS_FILES})
         add_custom_target(translations ALL DEPENDS ${QM_FILES})
         install(DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/"
                 DESTINATION ${CMAKE_INSTALL_PREFIX}/share/ring/translations)
