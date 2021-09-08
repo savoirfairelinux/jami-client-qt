@@ -328,7 +328,7 @@ LRCInstance::startAudioMeter(bool async)
         avModel().setAudioMeterState(true);
     };
     if (async) {
-        QtConcurrent::run(f);
+        auto futureResult = QtConcurrent::run(f);
     } else {
         f();
     }
@@ -344,7 +344,7 @@ LRCInstance::stopAudioMeter(bool async)
         avModel().setAudioMeterState(false);
     };
     if (async) {
-        QtConcurrent::run(f);
+        auto futureResult = QtConcurrent::run(f);
     } else {
         f();
     }
