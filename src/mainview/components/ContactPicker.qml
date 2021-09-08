@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
@@ -106,7 +106,7 @@ Popup {
                 }
             }
 
-            ListViewJami {
+            JamiListView {
                 id: contactPickerListView
 
                 Layout.alignment: Qt.AlignCenter
@@ -114,8 +114,6 @@ Popup {
                 Layout.preferredHeight: 200
 
                 model: ContactAdapter.getContactSelectableModel(type)
-
-                clip: true
 
                 delegate: ContactPickerItemDelegate {
                     id: contactPickerItemDelegate
