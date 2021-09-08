@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 import net.jami.Constants 1.1
 
@@ -42,6 +42,15 @@ Rectangle {
         clip: true
         maximumFlickVelocity: 1024
 
-        ScrollBar.vertical: ScrollBar { }
+        ScrollBar.vertical: JamiScrollBar {
+            id: verticalScrollBar
+
+            parent: listView.parent
+            attachedFlickableMoving: listView.moving
+            anchors.right: listView.right
+            anchors.top: listView.top
+            anchors.bottom: listView.bottom
+            anchors.margins: 2
+        }
     }
 }

@@ -19,21 +19,20 @@
 import QtQuick
 import QtQuick.Controls
 
-import net.jami.Constants 1.1
+Flickable {
+    id: root
 
-MenuSeparator {
-    id: menuSeparator
+    maximumFlickVelocity: 1024
+    clip: true
 
-    property int separatorPreferredWidth: JamiTheme.menuItemsPreferredWidth
-    property int separatorPreferredHeight: 1
-    property string separatorColor: JamiTheme.tabbarBorderColor
+    ScrollBar.vertical: JamiScrollBar {
+        id: verticalScrollBar
 
-    padding: 0
-    topPadding: 1
-    bottomPadding: 1
-    contentItem: Rectangle {
-        implicitWidth: separatorPreferredWidth
-        implicitHeight: separatorPreferredHeight
-        color: separatorColor
+        parent: root.parent
+        attachedFlickableMoving: root.moving
+        anchors.right: root.right
+        anchors.top: root.top
+        anchors.bottom: parent.bottom
+        anchors.margins: 2
     }
 }

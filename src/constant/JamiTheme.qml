@@ -19,7 +19,7 @@
 // JamiTheme as a singleton is to provide global theme property entry.
 pragma Singleton
 
-import QtQuick 2.15
+import QtQuick
 
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -172,6 +172,9 @@ Item {
     // Files To Send Container
     property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
 
+    // JamiScrollBar
+    property color scrollBarHandleColor: "#cecece"
+
     // Font.
     property color faddedFontColor: darkTheme? "#c0c0c0" : "#a0a0a0"
     property color faddedLastInteractionFontColor: darkTheme ? "#c0c0c0" : "#505050"
@@ -189,6 +192,7 @@ Item {
     property color bgDarkMode_: rgba256(32, 32, 32, 100)
 
     property int shortFadeDuration: 150
+    property int longFadeDuration: 1000
     property int recordBlinkDuration: 500
     property int overlayFadeDelay: 4000
     property int overlayFadeDuration: 250
@@ -268,7 +272,6 @@ Item {
 
     // Modal Popup
     property real modalPopupRadius: 4
-    property real modalPopupDropShadowSamples: 16
 
     // MessageWebView
     property real messageWebViewHairLineSize: 1
