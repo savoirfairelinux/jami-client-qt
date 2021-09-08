@@ -16,9 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -458,7 +458,7 @@ Control {
                     anchors.bottom: parent.top
                     anchors.bottomMargin: itemSpacing
                     visible: !overflowButton.popup.visible
-                    ListView {
+                    JamiListView {
                         id: urgentOverflowListView
 
                         spacing: itemSpacing
@@ -468,7 +468,6 @@ Control {
                                    null
 
                         delegate: buttonDelegate
-                        ScrollBar.vertical: ScrollBar { }
 
                         add: Transition {
                             NumberAnimation {
@@ -489,7 +488,7 @@ Control {
                     implicitHeight: contentItem.implicitHeight
                     padding: 0
 
-                    contentItem: ListView {
+                    contentItem: JamiListView {
                         id: overflowHiddenListView
                         spacing: itemSpacing
                         implicitHeight: contentHeight
@@ -497,8 +496,6 @@ Control {
                         model: overflowButton.popup.visible ?
                                    overflowButton.delegateModel :
                                    null
-
-                        ScrollBar.vertical: ScrollBar { }
                     }
 
                     background: Rectangle {
