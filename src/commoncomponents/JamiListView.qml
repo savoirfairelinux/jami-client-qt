@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2019-2020 by Savoir-faire Linux
  * Author: Yang Wang   <yang.wang@savoirfairelinux.com>
+ * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,32 +17,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 import net.jami.Constants 1.1
 
-Rectangle {
-    id: listViewBackground
+ListView {
+    id: root
 
-    property alias model: listView.model
-    property alias delegate: listView.delegate
-    property alias currentIndex: listView.currentIndex
+    layer.mipmap: false
+    clip: true
+    maximumFlickVelocity: 1024
 
-    border.width: 0
+    ScrollBar.vertical: JamiScrollBar {
+        id: verticalScrollBar
 
-    color: JamiTheme.backgroundColor
-
-    ListView {
-        id: listView
-
-        anchors.fill: parent
-
-        visible: listViewBackground.visible
-        layer.mipmap: false
-        clip: true
-        maximumFlickVelocity: 1024
-
-        ScrollBar.vertical: ScrollBar { }
+        attachedFlickableMoving: root.moving
     }
+
+    Keys.onUpPressed: verticalScrollBar.decrease()
+    Keys.onDownPressed: verticalScrollBar.increase()
 }
