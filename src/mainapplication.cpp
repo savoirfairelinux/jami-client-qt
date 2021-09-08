@@ -275,11 +275,10 @@ MainApplication::loadTranslations()
     QTranslator* qtTranslator_name = new QTranslator(this);
     if (locale_name != locale_lang) {
         if (qtTranslator_lang->load("qt_" + locale_lang,
-                                    QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+                                    QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
             installTranslator(qtTranslator_lang);
     }
-    qtTranslator_name->load("qt_" + locale_name,
-                            QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qtTranslator_name->load("qt_" + locale_name, QLibraryInfo::path(QLibraryInfo::TranslationsPath));
     installTranslator(qtTranslator_name);
 
     QTranslator* lrcTranslator_lang = new QTranslator(this);

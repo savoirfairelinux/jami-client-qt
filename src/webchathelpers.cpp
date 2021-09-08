@@ -27,7 +27,7 @@ buildInteractionJson(lrc::api::ConversationModel& conversationModel,
                      const QString msgId,
                      const lrc::api::interaction::Info& inter)
 {
-    QRegExp reg(".(jpeg|jpg|gif|png)$");
+    QRegularExpression reg(".(jpeg|jpg|gif|png)$");
     auto interaction = inter;
     if (interaction.type == lrc::api::interaction::Type::DATA_TRANSFER) {
         if (interaction.body.isEmpty())

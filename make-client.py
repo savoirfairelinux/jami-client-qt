@@ -213,22 +213,27 @@ def build(arch, toolset, sdk_version, config_str, project_path_under_current_pat
 
     qt_dir = 'C:\\Qt\\' + qtver
     cmake_gen = getCMakeGenerator(getLatestVSVersion())
-    qt_minor_version = getQtVersionNumber(qtver, QtVerison.Minor)
-    msvc_folder = '\\msvc2017_64' if int(qt_minor_version) <= 14 else '\\msvc2019_64'
+    qt_major_version = getQtVersionNumber(qtver, QtVerison.Major)
+    qt_general_macro = 'Qt' + qt_major_version
+    msvc_folder = '\\msvc2019_64'
 
     qt_cmake_dir = qt_dir + msvc_folder + '\\lib\\cmake\\'
     cmake_prefix_path = qt_dir + msvc_folder
 
     cmake_options = [
         '-DCMAKE_PREFIX_PATH=' + cmake_prefix_path,
-        '-DQt5_DIR=' + qt_cmake_dir + 'Qt5',
-        '-DQt5Core_DIR=' + qt_cmake_dir + 'Qt5Core',
-        '-DQt5Sql_DIR=' + qt_cmake_dir + 'Qt5Sql',
-        '-DQt5LinguistTools_DIR=' + qt_cmake_dir + 'Qt5LinguistTools',
-        '-DQt5Concurrent_DIR=' + qt_cmake_dir + 'Qt5Concurrent',
-        '-DQt5Gui_DIR=' + qt_cmake_dir + 'Qt5Gui',
-        '-DQt5Test_DIR=' + qt_cmake_dir + 'Qt5Test',
-        '-DQt5QuickTest_DIR=' + qt_cmake_dir + 'Qt5QuickTest',
+        '-DQT_DIR=' + qt_cmake_dir + qt_general_macro,
+        '-D' + qt_general_macro + '_DIR=' + qt_cmake_dir + qt_general_macro,
+        '-D' + qt_general_macro + 'Core_DIR=' + qt_cmake_dir + qt_general_macro + 'Core',
+        '-D' + qt_general_macro + 'WebEngineCore_DIR=' + qt_cmake_dir + qt_general_macro + 'WebEngineCore',
+        '-D' + qt_general_macro + 'WebEngineQuick_DIR=' + qt_cmake_dir + qt_general_macro + 'WebEngineQuick',
+        '-D' + qt_general_macro + 'WebChannel_DIR=' + qt_cmake_dir + qt_general_macro + 'WebChannel',
+        '-D' + qt_general_macro + 'Sql_DIR=' + qt_cmake_dir + qt_general_macro + 'Sql',
+        '-D' + qt_general_macro + 'LinguistTools_DIR=' + qt_cmake_dir + qt_general_macro + 'LinguistTools',
+        '-D' + qt_general_macro + 'Concurrent_DIR=' + qt_cmake_dir + qt_general_macro + 'Concurrent',
+        '-D' + qt_general_macro + 'Gui_DIR=' + qt_cmake_dir + qt_general_macro + 'Gui',
+        '-D' + qt_general_macro + 'Test_DIR=' + qt_cmake_dir + qt_general_macro + 'Test',
+        '-D' + qt_general_macro + 'QuickTest_DIR=' + qt_cmake_dir + qt_general_macro + 'QuickTest',
         '-DENABLE_TESTS=' + (str("ENABLE_TESTS") if test_building_type != TestBuilding.NoTests else ''),
         '-DCMAKE_SYSTEM_VERSION=' + sdk_version
     ]

@@ -38,6 +38,11 @@ execute_process(
 # library compatibility (boost, libnotify, etc.)
 add_definitions(-DQT_NO_KEYWORDS)
 
+# Here we let find_package(<PackageName>...) try to find first Qt 6,
+# and if that fails Qt 5, under the name QT. If either of them is found,
+# find_package will succeed, and the CMake variable QT_VERSION_MAJOR will be defined to either 5 or 6.
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
+
 set(COMMON_SOURCES
     ${SRC_DIR}/bannedlistmodel.cpp
     ${SRC_DIR}/accountlistmodel.cpp
@@ -146,15 +151,22 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentdevice.h)
 
 set(QML_LIBS
-    Qt5::Quick
-    Qt5::QuickWidgets
-    Qt5::Network
-    Qt5::Svg
-    Qt5::Sql
-    Qt5::Concurrent
-    Qt5::QuickControls2
-    Qt5::WebEngine
-    Qt5::Core)
+    Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::QuickWidgets
+    Qt${QT_VERSION_MAJOR}::Network
+    Qt${QT_VERSION_MAJOR}::Svg
+    Qt${QT_VERSION_MAJOR}::Sql
+    Qt${QT_VERSION_MAJOR}::Concurrent
+    Qt${QT_VERSION_MAJOR}::QuickControls2
+    Qt${QT_VERSION_MAJOR}::Core)
+
+if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    list(APPEND QML_LIBS Qt${QT_VERSION_MAJOR}::WebEngineCore
+                         Qt${QT_VERSION_MAJOR}::WebEngineQuick
+                         Qt${QT_VERSION_MAJOR}::WebChannel)
+else()
+    list(APPEND QML_LIBS Qt${QT_VERSION_MAJOR}::WebEngine)
+endif()
 
 set(QML_LIBS_LIST
     Core
@@ -164,8 +176,15 @@ set(QML_LIBS_LIST
     Network
     Svg
     Sql
-    QuickControls2
-    WebEngine)
+    QuickControls2)
+
+if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+    list(APPEND QML_LIBS_LIST WebEngineCore
+                              WebEngineQuick
+                              WebChannel)
+else()
+    list(APPEND QML_LIBS_LIST WebEngine)
+endif()
 
 set(WINDOWS_SYS_LIBS Shell32.lib
                      Ole32.lib
@@ -231,7 +250,7 @@ else()
     list(APPEND COMMON_HEADERS
                 ${SRC_DIR}/dbuserrorhandler.h
                 ${SRC_DIR}/xrectsel.h)
-    list(APPEND QML_LIBS Qt5::DBus)
+    list(APPEND QML_LIBS Qt${QT_VERSION_MAJOR}::DBus)
     list(APPEND QML_LIBS_LIST DBus)
 
     find_package(PkgConfig REQUIRED)
@@ -310,20 +329,20 @@ endif()
 
 # Qt find package
 if(QT5_VER AND QT5_PATH)
-    string(REPLACE "." ";" VERSION_LIST ${QT5_VER})
-    list(GET VERSION_LIST 0 QT5_VER_MAJOR)
-    list(GET VERSION_LIST 1 QT5_VER_MINOR)
-    list(GET VERSION_LIST 2 QT5_VER_PATCH)
-
-    if((${QT5_VER_MAJOR} GREATER_EQUAL 5) AND (${QT5_VER_MINOR} GREATER_EQUAL 14))
-        message(STATUS "Using custom Qt version")
-        find_package(Qt5 ${QT5_VER} REQUIRED COMPONENTS ${QML_LIBS_LIST}
-                     PATHS ${QT5_PATH} NO_DEFAULT_PATH)
-        find_package(Qt5LinguistTools ${QT5_VER} PATHS ${QT5_PATH} NO_DEFAULT_PATH)
-    endif()
+    message(STATUS "Using custom Qt version")
+    find_package(Qt5 ${QT5_VER} REQUIRED COMPONENTS ${QML_LIBS_LIST}
+                    PATHS ${QT5_PATH} NO_DEFAULT_PATH)
+    find_package(Qt5LinguistTools ${QT5_VER} PATHS ${QT5_PATH} NO_DEFAULT_PATH)
+elseif(QT6_VER AND QT6_PATH)
+    message(STATUS "Using custom Qt version")
+    find_package(Qt6 REQUIRED COMPONENTS ${QML_LIBS_LIST}
+                   PATHS ${QT6_PATH} NO_DEFAULT_PATH)
+    # Linguist tools is not required.
+    find_package(Qt6 COMPONENTS LinguistTools
+                   PATHS ${QT6_PATH} NO_DEFAULT_PATH)
 else()
-    find_package(Qt5 REQUIRED COMPONENTS ${QML_LIBS_LIST})
-    find_package(Qt5LinguistTools)
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QML_LIBS_LIST})
+    find_package(Qt${QT_VERSION_MAJOR}LinguistTools)
 endif()
 
 # common include
@@ -365,7 +384,7 @@ if(MSVC)
                               ${GNUTLS_LIB})
 
         # translations
-        if(Qt5LinguistTools_FOUND)
+        if(Qt5LinguistTools_FOUND OR Qt6LinguistTools_FOUND)
             message("Releasing and copying translation files")
             file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/ring/translations/")
             file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/libringclient/translations/")
@@ -375,8 +394,13 @@ if(MSVC)
                                         "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/ring/translations")
             set_source_files_properties(${TS_LRC_FILES} PROPERTIES OUTPUT_LOCATION
                                         "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/libringclient/translations")
-            qt5_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
-            qt5_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
+            if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+                qt6_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
+                qt6_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
+            else()
+                qt5_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
+                qt5_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
+            endif()
             target_sources(${PROJECT_NAME} PRIVATE ${QM_CLIENT_FILES})
             target_sources(${PROJECT_NAME} PRIVATE ${QM_LRC_FILES})
         endif()
@@ -507,12 +531,16 @@ else()
     endif()
 
     # translations
-    if(Qt5LinguistTools_FOUND)
+    if(Qt5LinguistTools_FOUND OR Qt6LinguistTools_FOUND)
         message("Releasing and copying translation files")
         file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/")
         file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
         set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION "share/ring/translations")
-        qt5_add_translation(QM_FILES ${TS_FILES})
+        if (${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+            qt6_add_translation(QM_FILES ${TS_FILES})
+        else()
+            qt5_add_translation(QM_FILES ${TS_FILES})
+        endif()
         add_custom_target(translations ALL DEPENDS ${QM_FILES})
         install(DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/"
                 DESTINATION ${CMAKE_INSTALL_PREFIX}/share/ring/translations)

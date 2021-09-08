@@ -24,7 +24,12 @@
 
 #include <QCryptographicHash>
 #include <QApplication>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 2, 0)
+#include <QtWebEngineCore>
+#include <QtWebEngineQuick>
+#else
 #include <QtWebEngine>
+#endif
 
 #include <clocale>
 
@@ -78,19 +83,22 @@ main(int argc, char* argv[])
     // To be recovered in Qt 6.2 and above
     // https://bugs.chromium.org/p/chromium/issues/detail?id=1060099#c6*/
     qtWebEngineChromiumFlags << singleProcess;
-#endif
-    QApplication::setApplicationName("Jami");
-    QApplication::setOrganizationDomain("jami.net");
+
+    QtWebEngineQuick::initialize();
+#else
+    QtWebEngine::initialize();
+
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
+
+    QApplication::setApplicationName("Jami");
+    QApplication::setOrganizationDomain("jami.net");
     QApplication::setQuitOnLastWindowClosed(false);
     QCoreApplication::setAttribute(Qt::AA_UseOpenGLES);
     QCoreApplication::setApplicationVersion(QString(VERSION_STRING));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
-#endif
-    QtWebEngine::initialize();
 
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
 
