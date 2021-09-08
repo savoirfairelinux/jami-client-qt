@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Window
+import QtQuick.Controls
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
@@ -58,8 +58,6 @@ Window {
 
     screen: JamiQmlUtils.mainApplicationScreen
 
-    modality: Qt.ApplicationModal
-
     Rectangle {
         id: selectScreenWindowRect
 
@@ -80,7 +78,7 @@ Window {
             color: JamiTheme.textColor
         }
 
-        ScrollView {
+        JamiFlickable {
             id: screenSelectionScrollView
 
             anchors.top: screenListText.bottom
@@ -91,10 +89,7 @@ Window {
             height: selectScreenWindowRect.height -
                     (screenListText.height + selectButton.height + JamiTheme.preferredMarginSize * 4)
 
-            clip: true
-
-            ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-            ScrollBar.vertical.policy: ScrollBar.AlwaysOn
+            contentHeight: screenSelectionScrollViewColumn.implicitHeight
 
             // Column of rows repeater (two screen captures in a row).
             Column {
