@@ -16,10 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
-import QtGraphicalEffects 1.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -300,7 +300,6 @@ ItemDelegate {
             horizontalOffset: 0
             verticalOffset: 0
             radius: 8.0
-            samples: 16
             color: "#80000000"
         }
     }

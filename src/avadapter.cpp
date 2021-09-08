@@ -102,7 +102,7 @@ AvAdapter::shareAllScreens()
 void
 AvAdapter::captureScreen(int screenNumber)
 {
-    QtConcurrent::run([this, screenNumber]() {
+    auto futureResult = QtConcurrent::run([this, screenNumber]() {
         QScreen* screen = QGuiApplication::screens().at(screenNumber);
         if (!screen)
             return;
@@ -122,7 +122,7 @@ AvAdapter::captureScreen(int screenNumber)
 void
 AvAdapter::captureAllScreens()
 {
-    QtConcurrent::run([this]() {
+    auto futureResult = QtConcurrent::run([this]() {
         auto screens = QGuiApplication::screens();
 
         QList<QPixmap> scrs;

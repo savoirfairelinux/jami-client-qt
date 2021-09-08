@@ -32,6 +32,7 @@ static constexpr bool isBeta = false;
 #endif
 
 static constexpr int updatePeriod = 1000 * 60 * 60 * 24; // one day in millis
+static constexpr char downloadUrl[] = "https://dl.jami.net/windows";
 
 UpdateManager::UpdateManager(const QString& url,
                              ConnectivityMonitor* cm,
@@ -39,7 +40,8 @@ UpdateManager::UpdateManager(const QString& url,
                              QObject* parent)
     : NetWorkManager(cm, parent)
     , lrcInstance_(instance)
-    , baseUrl_(url.isEmpty() ? "https://dl.jami.net/windows" : url.toLatin1())
+    , baseUrl_(url.isEmpty() ? QByteArray::fromRawData(downloadUrl, sizeof(downloadUrl))
+                             : url.toLatin1())
     , tempPath_(Utils::WinGetEnv("TEMP"))
     , updateTimer_(new QTimer(this))
 {
