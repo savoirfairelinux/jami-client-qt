@@ -19,7 +19,7 @@
 // JamiTheme as a singleton is to provide global theme property entry.
 pragma Singleton
 
-import QtQuick 2.15
+import QtQuick
 
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -268,7 +268,6 @@ Item {
 
     // Modal Popup
     property real modalPopupRadius: 4
-    property real modalPopupDropShadowSamples: 16
 
     // MessageWebView
     property real messageWebViewHairLineSize: 1
