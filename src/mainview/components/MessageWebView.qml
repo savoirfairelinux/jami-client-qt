@@ -16,11 +16,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
-import QtWebEngine 1.10
-import QtWebChannel 1.15
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtWebEngine
+import QtWebChannel
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -211,8 +211,8 @@ Rectangle {
                     onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
                 }
 
-                onLoadingChanged: {
-                    if (loadRequest.status == WebEngineView.LoadSucceededStatus) {
+                onLoadingChanged: function (loadingInfo) {
+                    if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
                         messageWebView.runJavaScript(UtilsAdapter.getStyleSheet(
                                                          "chatcss",
                                                          UtilsAdapter.qStringFromFile(
