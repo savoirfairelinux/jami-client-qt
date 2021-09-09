@@ -95,6 +95,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecc5fdfc_db0ee664",
+        "filename": "src/callparticipantsmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-09-09T16:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00942e88_b21f1835",
+      "range": {
+        "startLine": 96,
+        "startChar": 11,
+        "endLine": 97,
+        "endChar": 24
+      },
+      "revId": "fa0b2fe8260567799282318d6cfa6ad906aaa7e6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b1fb107_a8aa1bc0",
