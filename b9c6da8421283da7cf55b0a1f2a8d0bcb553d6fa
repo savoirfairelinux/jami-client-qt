@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19831585_4d178999",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-13T18:11:07Z",
+      "side": 1,
+      "message": "Why will it crash?",
+      "parentUuid": "4ce5811d_58333f58",
+      "range": {
+        "startLine": 268,
+        "startChar": 5,
+        "endLine": 268,
+        "endChar": 28
+      },
+      "revId": "b9c6da8421283da7cf55b0a1f2a8d0bcb553d6fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8134cad2_5d10763b",
         "filename": "src/currentdevice.h",
         "patchSetId": 14
@@ -54,6 +78,30 @@
       "writtenOn": "2021-09-13T15:45:02Z",
       "side": 1,
       "message": "should be a const, as it should not change nor invalidated while the model exists (same for other models)",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 18
+      },
+      "revId": "b9c6da8421283da7cf55b0a1f2a8d0bcb553d6fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "433f894b_a9b56f3f",
+        "filename": "src/currentdevice.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-13T18:11:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8134cad2_5d10763b",
       "range": {
         "startLine": 86,
         "startChar": 4,
