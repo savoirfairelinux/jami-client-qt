@@ -63,6 +63,30 @@
       },
       "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5f84bae_edae776a",
+        "filename": "src/currentaccount.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-09-13T18:23:46Z",
+      "side": 1,
+      "message": "I mean isLocalModeratorsEnabled_ should be changed via a signal to be sure the value is synced with the real state. if !init, we can have isLocalModeratorsEnabled_\u003dtrue in the client, false in the daemon (cause not chaned)",
+      "parentUuid": "ce935c8d_b707e2a7",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 44
+      },
+      "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
