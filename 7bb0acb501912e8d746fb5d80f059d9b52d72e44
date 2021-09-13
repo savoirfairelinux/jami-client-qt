@@ -39,6 +39,30 @@
       },
       "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce935c8d_b707e2a7",
+        "filename": "src/currentaccount.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-13T18:22:02Z",
+      "side": 1,
+      "message": "You mean check initial value in daemon?",
+      "parentUuid": "4fafef4b_dccd51ca",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 44
+      },
+      "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
