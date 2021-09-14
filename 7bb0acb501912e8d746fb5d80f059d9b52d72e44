@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51c2133b_339acb61",
+        "filename": "src/avadapter.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-14T15:28:22Z",
+      "side": 1,
+      "message": "yes, like 1024x960",
+      "parentUuid": "278c48f7_d2c4b6dd",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fafef4b_dccd51ca",
@@ -173,6 +197,24 @@
       "writtenOn": "2021-09-14T14:27:24Z",
       "side": 1,
       "message": "I suggest putting any macros used only by currentaccount into the currentaccount header, or some other file more specific to it\u0027s use",
+      "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e70af539_c5810536",
+        "filename": "src/qtutils.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-14T15:28:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69ba187c_360b2925",
       "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
