@@ -87,6 +87,30 @@
       },
       "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89b05f26_90ef7926",
+        "filename": "src/currentaccount.cpp",
+        "patchSetId": 13
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-14T13:22:19Z",
+      "side": 1,
+      "message": "Em, so when initialize is false, it will set enableLocalModerators for example,\n\nand by design, qml layer will have no access to this function, so initialize should be true only when the client starts and load data from daemon (in updateData)\n\nand any change in qml layer (actual change) will have it false\n\nbut yeah, ultimately there should be signals coming from daemon to show the real state, (if that is what you mean)\n\nnow it will only saveConfig but no telling in daemon that it changes\n\nit is the same situation as the device settings and default that we talked about in the meeting",
+      "parentUuid": "b5f84bae_edae776a",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 44
+      },
+      "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
