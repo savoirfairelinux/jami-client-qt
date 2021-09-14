@@ -65,6 +65,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c108ea55_78880114",
+        "filename": "src/avadapter.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-09-14T18:16:32Z",
+      "side": 1,
+      "message": "\u003e yes, like 1024x960\n\nyeah I see the alternating use \"size\" and \"resolution\". kinda frustrating, but it\u0027s throughout the code already",
+      "parentUuid": "51c2133b_339acb61",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "7bb0acb501912e8d746fb5d80f059d9b52d72e44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fafef4b_dccd51ca",
