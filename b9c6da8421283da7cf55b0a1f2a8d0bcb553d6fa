@@ -89,6 +89,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6adb1775_0643e3b0",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-14T21:17:51Z",
+      "side": 1,
+      "message": "I think it will never gonna be null\n\nbecause of the creation order\n\nlrc will always be created first right?",
+      "parentUuid": "0594edc2_557d389e",
+      "range": {
+        "startLine": 268,
+        "startChar": 5,
+        "endLine": 268,
+        "endChar": 28
+      },
+      "revId": "b9c6da8421283da7cf55b0a1f2a8d0bcb553d6fa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8134cad2_5d10763b",
