@@ -16,6 +16,24 @@
       "message": "Hmm, this seems to fail on Ubuntu 18.04.  Arg.\nhttps://jenkins.jami.net/view/packaging/job/packaging-gnu-linux/644/execution/node/180/log/",
       "revId": "1316c123d2d36e6ebdfe6f2056df6935a4479da5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b64ef743_9339904c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2021-09-16T20:48:41Z",
+      "side": 1,
+      "message": "It\u0027s a CMake bug resolved in 3.12.  See this commit, which installs CMake 3.12 on Ubuntu 18.04: https://review.jami.net/c/ring-project/+/19293",
+      "parentUuid": "6a3274df_09bd5a0d",
+      "revId": "1316c123d2d36e6ebdfe6f2056df6935a4479da5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
