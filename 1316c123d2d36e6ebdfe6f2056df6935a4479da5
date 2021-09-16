@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a3274df_09bd5a0d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2021-09-16T20:17:15Z",
+      "side": 1,
+      "message": "Hmm, this seems to fail on Ubuntu 18.04.  Arg.\nhttps://jenkins.jami.net/view/packaging/job/packaging-gnu-linux/644/execution/node/180/log/",
+      "revId": "1316c123d2d36e6ebdfe6f2056df6935a4479da5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
