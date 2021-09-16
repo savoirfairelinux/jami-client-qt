@@ -175,10 +175,10 @@ Rectangle {
                     }
                 }
 
-                VideoCallPreviewRenderer {
+                Item {
                     id: previewRenderer
 
-                    lrcInstance: LRCInstance
+                    //lrcInstance: LRCInstance
                     visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused
 
                     Connections {
@@ -268,9 +268,9 @@ Rectangle {
                     onWidthChanged: {
                         previewRenderer.height = previewRenderer.width * previewImageScalingFactor
                     }
-                    onPreviewImageScalingFactorChanged: {
-                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
-                    }
+//                    onPreviewImageScalingFactorChanged: {
+//                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
+//                    }
                 }
 
                 CallOverlay {

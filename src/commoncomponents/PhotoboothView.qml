@@ -129,28 +129,28 @@ Item {
                 showPresenceIndicator: false
             }
 
-            PhotoboothPreviewRender {
+            Item {
                 id: preview
 
                 anchors.fill: parent
                 anchors.margins: 1
 
                 visible: isPreviewing
-                lrcInstance: LRCInstance
+//                lrcInstance: LRCInstance
 
-                layer.enabled: true
-                layer.effect: OpacityMask {
-                    maskSource: Rectangle {
-                        width: avatarSize
-                        height: avatarSize
-                        radius: avatarSize / 2
-                    }
-                }
+//                layer.enabled: true
+//                layer.effect: OpacityMask {
+//                    maskSource: Rectangle {
+//                        width: avatarSize
+//                        height: avatarSize
+//                        radius: avatarSize / 2
+//                    }
+//                }
 
-                onRenderingStopped: {
-                    if (root.visible)
-                        stopBooth()
-                }
+//                onRenderingStopped: {
+//                    if (root.visible)
+//                        stopBooth()
+//                }
             }
 
             Rectangle {

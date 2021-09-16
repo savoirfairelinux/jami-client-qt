@@ -343,5 +343,12 @@ RenderManager::drawFrame(const QString& id, DrawFrameCallback cb)
 QImage*
 RenderManager::getPreviewFrame()
 {
-    return previewFrameWrapper_->getFrame();
+    if (previewFrameWrapper_->frameMutexTryLock()) {
+        if (previewFrameWrapper_->getFrame()) {
+            cache_ = previewFrameWrapper_->getFrame()->copy();
+        }
+        previewFrameWrapper_->frameMutexUnlock();
+    }
+
+    return &cache_;
 }

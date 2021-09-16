@@ -260,4 +260,6 @@ private:
      * Convenience ref to avmodel.
      */
     AVModel& avModel_;
+
+    QImage cache_;
 };

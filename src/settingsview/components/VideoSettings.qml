@@ -197,18 +197,14 @@ ColumnLayout {
     }
 
     // video Preview
-    Rectangle {
+    Item {
         id: rectBox
 
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredHeight: width * aspectRatio
 
-        Layout.minimumWidth: 200
-        Layout.maximumWidth: 400
         Layout.preferredWidth: itemWidth * 2
         Layout.bottomMargin: JamiTheme.preferredMarginSize
-
-        color: JamiTheme.primaryForegroundColor
 
         PreviewRenderer {
             id: previewWidget
@@ -218,10 +214,6 @@ ColumnLayout {
             lrcInstance: LRCInstance
 
             visible: VideoDevices.listSize !== 0
-            layer.enabled: true
-            layer.effect: OpacityMask {
-                maskSource: rectBox
-            }
         }
     }
 

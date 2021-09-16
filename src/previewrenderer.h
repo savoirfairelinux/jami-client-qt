@@ -27,7 +27,7 @@ class LRCInstance;
  * Use QQuickPaintedItem so that QPainter apis can be used.
  * Note: Old video pipeline.
  */
-class PreviewRenderer : public QQuickPaintedItem
+class PreviewRenderer : public QQuickItem
 {
     Q_OBJECT
     Q_PROPERTY(LRCInstance* lrcInstance MEMBER lrcInstance_ NOTIFY lrcInstanceChanged)
@@ -40,17 +40,18 @@ Q_SIGNALS:
     void lrcInstanceChanged();
 
 protected:
-    void paint(QPainter* painter) override;
-    void paintBackground(QPainter* painter);
+    QSGNode* updatePaintNode(QSGNode* oldNode, UpdatePaintNodeData* updatePaintNodeData) override;
 
     // LRCInstance pointer (set in qml)
     LRCInstance* lrcInstance_ {nullptr};
+
+    QImage cache_;
 
 private:
     QMetaObject::Connection previewFrameUpdatedConnection_;
 };
 
-class VideoCallPreviewRenderer : public PreviewRenderer
+class VideoCallPreviewRenderer : public QQuickPaintedItem
 {
     Q_OBJECT
     Q_PROPERTY(qreal previewImageScalingFactor MEMBER previewImageScalingFactor_ NOTIFY
@@ -68,7 +69,7 @@ private:
     qreal previewImageScalingFactor_;
 };
 
-class PhotoboothPreviewRender : public PreviewRenderer
+class PhotoboothPreviewRender : public QQuickPaintedItem
 {
     Q_OBJECT
 public:

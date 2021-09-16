@@ -77,7 +77,10 @@ main(int argc, char* argv[])
     qtWebEngineChromiumFlags << disableWebSecurity;
     qtWebEngineChromiumFlags << singleProcess;
 
+    // QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     QtWebEngineQuick::initialize();
+    // QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
+    // QQuickWindow::setGraphicsApi(QSGRendererInterface::Direct3D11);
 
     QApplication::setApplicationName("Jami");
     QApplication::setOrganizationDomain("jami.net");
