@@ -29,9 +29,9 @@
 #include "currentconversation.h"
 #include "currentaccount.h"
 #include "videodevices.h"
+#include "currentaccounttomigrate.h"
 
 #include "accountlistmodel.h"
-#include "accountstomigratelistmodel.h"
 #include "mediacodeclistmodel.h"
 #include "audiodevicemodel.h"
 #include "audiomanagerlistmodel.h"
@@ -115,6 +115,7 @@ registerTypes(QQmlEngine* engine,
     auto currentConversation = new CurrentConversation(lrcInstance, parent);
     auto currentAccount = new CurrentAccount(lrcInstance, appSettingsManager, parent);
     auto videoDevices = new VideoDevices(lrcInstance, parent);
+    auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
 
     // qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
@@ -128,6 +129,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentConversation, "CurrentConversation");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount, "CurrentAccount");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices, "VideoDevices");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccountToMigrate, "CurrentAccountToMigrate")
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
@@ -149,7 +151,6 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, BannedListModel);
     QML_REGISTERTYPE(NS_MODELS, ModeratorListModel);
     QML_REGISTERTYPE(NS_MODELS, MediaCodecListModel);
-    QML_REGISTERTYPE(NS_MODELS, AccountsToMigrateListModel);
     QML_REGISTERTYPE(NS_MODELS, AudioDeviceModel);
     QML_REGISTERTYPE(NS_MODELS, AudioManagerListModel);
     QML_REGISTERTYPE(NS_MODELS, PluginListPreferenceModel);
