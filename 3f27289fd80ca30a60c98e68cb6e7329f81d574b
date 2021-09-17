@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1efa0e8b_63312c4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-09-17T13:00:58Z",
+      "side": 1,
+      "message": "all good otherwise",
+      "revId": "3f27289fd80ca30a60c98e68cb6e7329f81d574b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "795743ce_36ff869b",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-09-17T13:00:58Z",
+      "side": 1,
+      "message": "clang format?",
+      "range": {
+        "startLine": 405,
+        "startChar": 59,
+        "endLine": 405,
+        "endChar": 69
+      },
+      "revId": "3f27289fd80ca30a60c98e68cb6e7329f81d574b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
