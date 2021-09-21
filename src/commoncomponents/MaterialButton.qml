@@ -25,7 +25,7 @@ import net.jami.Constants 1.1
 // TODO: this component suffers from excessive responsibility
 // and should have fixed width and content width defined variations
 // as well as better handling for the animated icon
-Button {
+AbstractButton {
     id: root
 
     property bool outlined: false
@@ -134,7 +134,7 @@ Button {
 
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: hasIcon ?
-                                       JamiTheme.preferredMarginSize / 2 :
+                                       JamiTheme.preferredMarginSize :
                                        undefined
                 sourceComponent: animatedSource_.length !== 0 ?
                                      animatedIconComponent :
@@ -164,7 +164,6 @@ Button {
     }
 
     background: Rectangle {
-        anchors.fill: parent
         color: {
             if (root.outlined)
                 return "transparent"
