@@ -23,7 +23,7 @@ import QtQuick.Layouts
 import net.jami.Constants 1.1
 import net.jami.Models 1.1
 
-ModalPopup {
+BaseModalDialog {
     id: root
 
     property bool connectionFailed: false
