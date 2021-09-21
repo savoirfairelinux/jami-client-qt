@@ -23,7 +23,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 // PasswordDialog for changing password and exporting account
-BaseDialog {
+BaseModalDialog {
     id: root
 
     enum PasswordEnteringPurpose {

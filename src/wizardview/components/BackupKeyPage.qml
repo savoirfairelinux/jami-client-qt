@@ -37,6 +37,13 @@ Rectangle {
 
     signal showThisPage
 
+    function showBackupStatusDialog(success) {
+        var title = success ? JamiStrings.success : JamiStrings.error
+        var info = success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed
+
+        msgDialog.openWithParameters(title, info)
+    }
+
     Connections {
         target: WizardViewStepModel
 
@@ -46,19 +53,26 @@ Rectangle {
         }
     }
 
+    SimpleMessageDialog {
+        id: msgDialog
+
+        buttonTitles: [JamiStrings.optionOk]
+        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
+
+        onClosed: {
+            if (title === JamiStrings.success)
+                WizardViewStepModel.nextStep()
+        }
+    }
+
     PasswordDialog {
         id: passwordDialog
 
         visible: false
         purpose: PasswordDialog.ExportAccount
 
-        onDoneSignal: {
-            var title = success ? JamiStrings.success : JamiStrings.error
-            var info = success ? JamiStrings.backupSuccessful : JamiStrings.backupFailed
-
-            AccountAdapter.passwordSetStatusMessageBox(success, title, info)
-            if (success)
-                loaderSourceChangeRequested(MainApplicationWindow.LoadedSource.MainView)
+        onDoneSignal: function (success) {
+            showBackupStatusDialog(success)
         }
     }
 
@@ -76,18 +90,14 @@ Rectangle {
         onAccepted: {
             // Is there password? If so, go to password dialog, else, go to following directly
             if (AccountAdapter.hasPassword()) {
-                passwordDialog.path = UtilsAdapter.getAbsPath(folder)
+                passwordDialog.path = UtilsAdapter.getAbsPath(file)
                 passwordDialog.open()
-                return
             } else {
-                if (folder.length > 0) {
-                    AccountAdapter.exportToFile(
-                                LRCInstance.currentAccountId,
-                                UtilsAdapter.getAbsPath(folder))
-                }
+                if (file.toString().length > 0)
+                    showBackupStatusDialog(AccountAdapter.exportToFile(
+                                               LRCInstance.currentAccountId,
+                                               UtilsAdapter.getAbsPath(file)))
             }
-
-            WizardViewStepModel.nextStep()
         }
 
         onVisibleChanged: {

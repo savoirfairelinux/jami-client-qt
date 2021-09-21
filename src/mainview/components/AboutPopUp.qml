@@ -26,7 +26,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-ModalPopup {
+BaseModalDialog {
     id: root
 
     property alias preferredHeight: aboutPopUpContentRectColumnLayout.implicitHeight
