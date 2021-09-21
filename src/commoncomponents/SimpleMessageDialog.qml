@@ -23,7 +23,7 @@ import QtQuick.Layouts
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
-BaseDialog {
+BaseModalDialog {
     id: root
 
     // TODO: make MaterialButton ButtonStyle

@@ -26,7 +26,7 @@ import net.jami.Constants 1.1
 
 import "../commoncomponents"
 
-BaseDialog {
+BaseModalDialog {
     id: root
 
     property bool isSIP: {
