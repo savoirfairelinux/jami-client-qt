@@ -28,6 +28,7 @@ Popup {
     // convient access to closePolicy
     property bool autoClose: true
     property alias backgroundColor: container.color
+    property alias title: titleText.text
 
     parent: Overlay.overlay
 
@@ -43,14 +44,30 @@ Popup {
                       (Popup.CloseOnEscape | Popup.CloseOnPressOutside) :
                       Popup.NoAutoClose
 
-    padding: 0
+    topPadding: titleText.length === 0 ? 0 :
+                                         titleText.contentHeight +
+                                         titleText.anchors.margins * 2
+    bottomPadding: 0
+    horizontalPadding: 0
 
     background: Rectangle {
         id: container
 
+        Text {
+            id: titleText
+
+            anchors.top: container.top
+            anchors.left: container.left
+            anchors.margins: 10
+
+            font.pointSize: 12
+            color: JamiTheme.textColor
+        }
+
         radius: JamiTheme.modalPopupRadius
         width: root.width
         height: root.height
+        color: contentItem.color ? contentItem.color : JamiTheme.transparentColor
     }
 
     DropShadow {

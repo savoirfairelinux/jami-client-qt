@@ -22,7 +22,7 @@ import net.jami.Adapters 1.1
 
 import "../../commoncomponents"
 
-ModalPopup {
+BaseModalDialog {
     id: root
 
     modal: true
