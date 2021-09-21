@@ -351,13 +351,3 @@ AccountAdapter::setArchivePasswordAsync(const QString& accountID, const QString&
         lrcInstance_->accountModel().setAccountConfig(accountID, config);
     });
 }
-
-void
-AccountAdapter::passwordSetStatusMessageBox(bool success, QString title, QString infoToDisplay)
-{
-    if (success) {
-        QMessageBox::information(0, title, infoToDisplay);
-    } else {
-        QMessageBox::critical(0, title, infoToDisplay);
-    }
-}
