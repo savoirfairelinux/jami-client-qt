@@ -74,6 +74,10 @@ Rectangle {
                 root.needToHideConversationInCall()
             }
 
+            onShowDetailsClicked: {
+                swarmDetailsPanel.visible = !swarmDetailsPanel.visible
+            }
+
             onPluginSelector: {
                 // Create plugin handler picker - PLUGINS
                 PluginHandlerPickerCreation.createPluginHandlerPickerObjects(
@@ -84,251 +88,269 @@ Rectangle {
             }
         }
 
-        StackLayout {
-            id: messageWebViewStack
-
-            Layout.alignment: Qt.AlignHCenter
+        RowLayout {
+            id: chatViewMainRow
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.topMargin: JamiTheme.messageWebViewHairLineSize
-            Layout.bottomMargin: JamiTheme.messageWebViewHairLineSize
 
-            currentIndex: CurrentConversation.isRequest ||
-                          CurrentConversation.needsSyncing
+            ColumnLayout {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
-            Loader {
-                active: CurrentConversation.id !== ""
-                sourceComponent: Item {
-                    ListView {
-                        id: chatView
+                StackLayout {
+                    id: messageWebViewStack
 
-                        // fade-in mechanism
-                        Component.onCompleted: fadeAnimation.start()
-                        Rectangle {
-                            id: overlay
-                            anchors.fill: parent
-                            color: root.color
-                            visible: opacity !== 0
-                            SequentialAnimation {
-                                id: fadeAnimation
-                                NumberAnimation {
-                                    target: overlay; property: "opacity"
-                                    to: 1; duration: 0
-                                }
-                                NumberAnimation {
-                                    target: overlay; property: "opacity"
-                                    to: 0; duration: 240
-                                }
-                            }
-                        }
-                        Connections {
-                            target: CurrentConversation
-                            function onIdChanged() { fadeAnimation.start() }
-                        }
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.topMargin: JamiTheme.messageWebViewHairLineSize
+                    Layout.bottomMargin: JamiTheme.messageWebViewHairLineSize
 
-                        topMargin: 12
-                        bottomMargin: 6
-                        spacing: 2
-                        anchors.centerIn: parent
-                        height: parent.height
-                        width: Math.min(messageWebViewStack.width, JamiTheme.chatViewMaximumWidth)
-                        displayMarginBeginning: 2048
-                        displayMarginEnd: 2048
-                        maximumFlickVelocity: 2048
-                        verticalLayoutDirection: ListView.BottomToTop
-                        clip: true
-                        boundsBehavior: Flickable.StopAtBounds
-                        currentIndex: -1
+                    currentIndex: CurrentConversation.isRequest ||
+                                CurrentConversation.needsSyncing
 
-                        ScrollBar.vertical: ScrollBar {}
+                    Loader {
+                        active: CurrentConversation.id !== ""
+                        sourceComponent: Item {
+                            ListView {
+                                id: chatView
 
-                        model: MessagesAdapter.messageListModel
-
-                        delegate: MessageDelegate {
-                            id: item
-
-                            // sequencing/timestamps (2-sided style)
-                            function computeTimestampVisibility() {
-                                if (chatView === undefined)
-                                    return
-                                var nItem = chatView.itemAtIndex(index - 1)
-                                if (nItem && index !== chatView.count - 1) {
-                                    showTime = (nItem.timestamp - timestamp) > 60 &&
-                                            nItem.formattedTime !== formattedTime
-                                } else {
-                                    showTime = true
-                                    var pItem = chatView.itemAtIndex(index + 1)
-                                    if (pItem) {
-                                        pItem.showTime = (timestamp - pItem.timestamp) > 60 &&
-                                                pItem.formattedTime !== formattedTime
+                                // fade-in mechanism
+                                Component.onCompleted: fadeAnimation.start()
+                                Rectangle {
+                                    id: overlay
+                                    anchors.fill: parent
+                                    color: root.color
+                                    visible: opacity !== 0
+                                    SequentialAnimation {
+                                        id: fadeAnimation
+                                        NumberAnimation {
+                                            target: overlay; property: "opacity"
+                                            to: 1; duration: 0
+                                        }
+                                        NumberAnimation {
+                                            target: overlay; property: "opacity"
+                                            to: 0; duration: 240
+                                        }
                                     }
                                 }
-                            }
-                            function computeSequencing() {
-                                if (chatView === undefined)
-                                    return
-                                var cItem = {
-                                    'author': author,
-                                    'isGenerated': isGenerated,
-                                    'showTime': showTime
-                                }
-                                var pItem = chatView.itemAtIndex(index + 1)
-                                var nItem = chatView.itemAtIndex(index - 1)
-
-                                let isSeq = (item0, item1) =>
-                                    item0.author === item1.author &&
-                                    !(item0.isGenerated || item1.isGenerated) &&
-                                    !item0.showTime
-
-                                let setSeq = function (newSeq, item) {
-                                    if (item === undefined)
-                                        seq = isGenerated ? MsgSeq.single : newSeq
-                                    else
-                                        item.seq = item.isGenerated ? MsgSeq.single : newSeq
+                                Connections {
+                                    target: CurrentConversation
+                                    function onIdChanged() { fadeAnimation.start() }
                                 }
 
-                                let rAdjustSeq = function (item) {
-                                    if (item.seq === MsgSeq.last)
-                                        item.seq = MsgSeq.middle
-                                    else if (item.seq === MsgSeq.single)
-                                        setSeq(MsgSeq.first, item)
-                                }
+                                topMargin: 12
+                                bottomMargin: 6
+                                spacing: 2
+                                anchors.centerIn: parent
+                                height: parent.height
+                                width: Math.min(messageWebViewStack.width, JamiTheme.chatViewMaximumWidth)
+                                displayMarginBeginning: 2048
+                                displayMarginEnd: 2048
+                                maximumFlickVelocity: 2048
+                                verticalLayoutDirection: ListView.BottomToTop
+                                clip: true
+                                boundsBehavior: Flickable.StopAtBounds
+                                currentIndex: -1
 
-                                let adjustSeq = function (item) {
-                                    if (item.seq === MsgSeq.first)
-                                        item.seq = MsgSeq.middle
-                                    else if (item.seq === MsgSeq.single)
-                                        setSeq(MsgSeq.last, item)
-                                }
+                                ScrollBar.vertical: ScrollBar {}
 
-                                if (pItem && !nItem) {
-                                    if (!isSeq(pItem, cItem)) {
-                                        seq = MsgSeq.single
-                                    } else {
-                                        seq = MsgSeq.last
-                                        rAdjustSeq(pItem)
-                                    }
-                                } else if (nItem && !pItem) {
-                                    if (!isSeq(cItem, nItem)) {
-                                        seq = MsgSeq.single
-                                    } else {
-                                        setSeq(MsgSeq.first)
-                                        adjustSeq(nItem)
-                                    }
-                                } else if (!nItem && !pItem) {
-                                    seq = MsgSeq.single
-                                } else {
-                                    if (isSeq(pItem, nItem)) {
-                                        if (isSeq(pItem, cItem)) {
-                                            seq = MsgSeq.middle
+                                model: MessagesAdapter.messageListModel
+
+                                delegate: MessageDelegate {
+                                    id: item
+
+                                    // sequencing/timestamps (2-sided style)
+                                    function computeTimestampVisibility() {
+                                        if (chatView === undefined)
+                                            return
+                                        var nItem = chatView.itemAtIndex(index - 1)
+                                        if (nItem && index !== chatView.count - 1) {
+                                            showTime = (nItem.timestamp - timestamp) > 60 &&
+                                                    nItem.formattedTime !== formattedTime
                                         } else {
+                                            showTime = true
+                                            var pItem = chatView.itemAtIndex(index + 1)
+                                            if (pItem) {
+                                                pItem.showTime = (timestamp - pItem.timestamp) > 60 &&
+                                                        pItem.formattedTime !== formattedTime
+                                            }
+                                        }
+                                    }
+                                    function computeSequencing() {
+                                        if (chatView === undefined)
+                                            return
+                                        var cItem = {
+                                            'author': author,
+                                            'isGenerated': isGenerated,
+                                            'showTime': showTime
+                                        }
+                                        var pItem = chatView.itemAtIndex(index + 1)
+                                        var nItem = chatView.itemAtIndex(index - 1)
+
+                                        let isSeq = (item0, item1) =>
+                                            item0.author === item1.author &&
+                                            !(item0.isGenerated || item1.isGenerated) &&
+                                            !item0.showTime
+
+                                        let setSeq = function (newSeq, item) {
+                                            if (item === undefined)
+                                                seq = isGenerated ? MsgSeq.single : newSeq
+                                            else
+                                                item.seq = item.isGenerated ? MsgSeq.single : newSeq
+                                        }
+
+                                        let rAdjustSeq = function (item) {
+                                            if (item.seq === MsgSeq.last)
+                                                item.seq = MsgSeq.middle
+                                            else if (item.seq === MsgSeq.single)
+                                                setSeq(MsgSeq.first, item)
+                                        }
+
+                                        let adjustSeq = function (item) {
+                                            if (item.seq === MsgSeq.first)
+                                                item.seq = MsgSeq.middle
+                                            else if (item.seq === MsgSeq.single)
+                                                setSeq(MsgSeq.last, item)
+                                        }
+
+                                        if (pItem && !nItem) {
+                                            if (!isSeq(pItem, cItem)) {
+                                                seq = MsgSeq.single
+                                            } else {
+                                                seq = MsgSeq.last
+                                                rAdjustSeq(pItem)
+                                            }
+                                        } else if (nItem && !pItem) {
+                                            if (!isSeq(cItem, nItem)) {
+                                                seq = MsgSeq.single
+                                            } else {
+                                                setSeq(MsgSeq.first)
+                                                adjustSeq(nItem)
+                                            }
+                                        } else if (!nItem && !pItem) {
                                             seq = MsgSeq.single
-
-                                            if (pItem.seq === MsgSeq.first)
-                                                pItem.seq = MsgSeq.single
-                                            else if (item.seq === MsgSeq.middle)
-                                                pItem.seq = MsgSeq.last
-
-                                            if (nItem.seq === MsgSeq.last)
-                                                nItem.seq = MsgSeq.single
-                                            else if (nItem.seq === MsgSeq.middle)
-                                                nItem.seq = MsgSeq.first
-                                        }
-                                    } else {
-                                        if (!isSeq(pItem, cItem)) {
-                                            seq = MsgSeq.first
-                                            adjustSeq(pItem)
                                         } else {
-                                            seq = MsgSeq.last
-                                            rAdjustSeq(nItem)
+                                            if (isSeq(pItem, nItem)) {
+                                                if (isSeq(pItem, cItem)) {
+                                                    seq = MsgSeq.middle
+                                                } else {
+                                                    seq = MsgSeq.single
+
+                                                    if (pItem.seq === MsgSeq.first)
+                                                        pItem.seq = MsgSeq.single
+                                                    else if (item.seq === MsgSeq.middle)
+                                                        pItem.seq = MsgSeq.last
+
+                                                    if (nItem.seq === MsgSeq.last)
+                                                        nItem.seq = MsgSeq.single
+                                                    else if (nItem.seq === MsgSeq.middle)
+                                                        nItem.seq = MsgSeq.first
+                                                }
+                                            } else {
+                                                if (!isSeq(pItem, cItem)) {
+                                                    seq = MsgSeq.first
+                                                    adjustSeq(pItem)
+                                                } else {
+                                                    seq = MsgSeq.last
+                                                    rAdjustSeq(nItem)
+                                                }
+                                            }
+                                        }
+
+                                        if (seq === MsgSeq.last) {
+                                            showTime = true
+                                        }
+                                    }
+                                    Component.onCompleted: {
+                                        if (index) {
+                                            computeTimestampVisibility()
+                                            computeSequencing()
+                                        } else {
+                                            Qt.callLater(computeTimestampVisibility)
+                                            Qt.callLater(computeSequencing)
                                         }
                                     }
                                 }
 
-                                if (seq === MsgSeq.last) {
-                                    showTime = true
+                                function getDistanceToBottom() {
+                                    const scrollDiff = ScrollBar.vertical.position -
+                                                    (1.0 - ScrollBar.vertical.size)
+                                    return Math.abs(scrollDiff) * contentHeight
                                 }
-                            }
-                            Component.onCompleted: {
-                                if (index) {
-                                    computeTimestampVisibility()
-                                    computeSequencing()
-                                } else {
-                                    Qt.callLater(computeTimestampVisibility)
-                                    Qt.callLater(computeSequencing)
+
+                                onAtYBeginningChanged: loadMoreMsgsIfNeeded()
+
+                                function loadMoreMsgsIfNeeded() {
+                                if (atYBeginning && !CurrentConversation.allMessagesLoaded)
+                                        MessagesAdapter.loadMoreMessages()
                                 }
-                            }
-                        }
 
-                        function getDistanceToBottom() {
-                            const scrollDiff = ScrollBar.vertical.position -
-                                             (1.0 - ScrollBar.vertical.size)
-                            return Math.abs(scrollDiff) * contentHeight
-                        }
+                                Connections {
+                                    target: MessagesAdapter
 
-                        onAtYBeginningChanged: loadMoreMsgsIfNeeded()
+                                    function onNewInteraction() {
+                                        if (chatView.getDistanceToBottom() < 80 && !chatView.atYEnd) {
+                                            Qt.callLater(chatView.positionViewAtBeginning)
+                                        }
+                                    }
 
-                        function loadMoreMsgsIfNeeded() {
-                           if (atYBeginning && !CurrentConversation.allMessagesLoaded)
-                                MessagesAdapter.loadMoreMessages()
-                        }
-
-                        Connections {
-                            target: MessagesAdapter
-
-                            function onNewInteraction() {
-                                if (chatView.getDistanceToBottom() < 80 && !chatView.atYEnd) {
-                                    Qt.callLater(chatView.positionViewAtBeginning)
+                                    function onMoreMessagesLoaded() {
+                                        if (chatView.contentHeight < chatView.height) {
+                                            chatView.loadMoreMsgsIfNeeded()
+                                        }
+                                    }
                                 }
-                            }
 
-                            function onMoreMessagesLoaded() {
-                                if (chatView.contentHeight < chatView.height) {
-                                    chatView.loadMoreMsgsIfNeeded()
+                                DropArea {
+                                    anchors.fill: parent
+                                    onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
                                 }
                             }
                         }
+                    }
 
-                        DropArea {
-                            anchors.fill: parent
-                            onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
-                        }
+                    InvitationView {
+                        id: invitationView
+
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+                }
+
+                ReadOnlyFooter {
+                    visible: CurrentConversation.readOnly
+                    Layout.fillWidth: true
+                }
+
+                MessageWebViewFooter {
+                    id: messageWebViewFooter
+
+                    visible: {
+                        if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
+                            return false
+                        else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
+                            return false
+                        return true
+                    }
+
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: implicitHeight
+                    Layout.maximumHeight: JamiTheme.messageWebViewFooterMaximumHeight
+
+                    DropArea {
+                        anchors.fill: parent
+                        onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
                     }
                 }
             }
 
-            InvitationView {
-                id: invitationView
-
-                Layout.fillWidth: true
+            SwarmDetailsPanel {
+                id: swarmDetailsPanel
+                visible: false
                 Layout.fillHeight: true
-            }
-        }
-
-        ReadOnlyFooter {
-            visible: CurrentConversation.readOnly
-            Layout.fillWidth: true
-        }
-
-        MessageWebViewFooter {
-            id: messageWebViewFooter
-
-            visible: {
-                if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
-                    return false
-                else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
-                    return false
-                return true
-            }
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: implicitHeight
-            Layout.maximumHeight: JamiTheme.messageWebViewFooterMaximumHeight
-
-            DropArea {
-                anchors.fill: parent
-                onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
+                Layout.fillWidth: true
             }
         }
     }
