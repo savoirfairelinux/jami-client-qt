@@ -51,6 +51,7 @@ CurrentConversation::updateData()
         if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
             set_title(accInfo.conversationModel->title(convId));
+            set_description(accInfo.conversationModel->description(convId));
             set_uris(accInfo.conversationModel->peersForConversation(convId).toList());
             set_isSwarm(convInfo.isSwarm());
             set_isLegacy(convInfo.isLegacy());

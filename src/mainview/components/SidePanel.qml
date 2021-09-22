@@ -33,6 +33,8 @@ Rectangle {
 
     anchors.fill: parent
 
+    signal createSwarmClicked
+
     Connections {
         target: LRCInstance
 
@@ -106,8 +108,8 @@ Rectangle {
             source: JamiResources.create_swarm_svg
             toolTipText: JamiStrings.startASwarm
 
-            onClicked: {
-                ConversationsAdapter.createSwarm()
+            onClicked: { 
+                createSwarmClicked()
             }
         }
     }

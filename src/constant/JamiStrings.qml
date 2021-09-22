@@ -220,6 +220,7 @@ Item {
     property string pauseVideo: qsTr("Pause video")
     property string resumeVideo: qsTr("Resume video")
     property string addParticipants: qsTr("Add participants")
+    property string details: qsTr("Details")
     property string chat: qsTr("Chat")
     property string moreOptions: qsTr("More options")
     property string mosaic: qsTr("Mosaic")
@@ -598,4 +599,13 @@ Item {
     property string invitationViewJoinConversation: qsTr("Hello,\nWould you like to join the conversation?")
     property string invitationViewAcceptedConversation: qsTr("You have accepted\nthe conversation request")
     property string invitationViewWaitingForSync: qsTr("Waiting until %1\nconnects to synchronize the conversation.")
+
+    // SwarmDetailsPanel
+    property string about: qsTr("About")
+    property string members: qsTr("Members")
+    property string documents: qsTr("Documents")
+
+    // NewSwarmPage
+
+    property string createTheSwarm: qsTr("Create the swarm")
 }
