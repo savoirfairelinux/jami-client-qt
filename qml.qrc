@@ -91,6 +91,7 @@
         <file>src/mainview/components/SidePanel.qml</file>
         <file>src/mainview/components/WelcomePage.qml</file>
         <file>src/mainview/components/ChatView.qml</file>
+        <file>src/mainview/components/NewSwarmPage.qml</file>
         <file>src/mainview/components/ChatViewHeader.qml</file>
         <file>src/mainview/components/AccountComboBox.qml</file>
         <file>src/mainview/components/CallStackView.qml</file>
@@ -106,6 +107,7 @@
         <file>src/mainview/components/ConversationSmartListContextMenu.qml</file>
         <file>src/mainview/components/CallViewContextMenu.qml</file>
         <file>src/mainview/components/UserProfile.qml</file>
+        <file>src/mainview/components/SwarmDetailsPanel.qml</file>
         <file>src/mainview/components/SelectScreen.qml</file>
         <file>src/mainview/components/ScreenRubberBand.qml</file>
         <file>src/mainview/components/ContactPicker.qml</file>

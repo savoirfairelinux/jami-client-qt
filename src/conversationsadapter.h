@@ -52,6 +52,9 @@ public:
     Q_INVOKABLE void setFilter(const QString& filterString);
     Q_INVOKABLE QVariantMap getConvInfoMap(const QString& convId);
     Q_INVOKABLE void restartConversation(const QString& convId);
+    Q_INVOKABLE void updateConversationTitle(const QString& convId, const QString& newTitle);
+    Q_INVOKABLE void updateConversationDescription(const QString& convId,
+                                                   const QString& newDescription);
 
 Q_SIGNALS:
     void showConversation(const QString& accountId, const QString& convUid);
