@@ -95,6 +95,7 @@ QImage conversationAvatar(LRCInstance* instance,
                           const QSize& size = defaultAvatarSize,
                           const QString& accountId = {});
 QImage getCirclePhoto(const QImage original, int sizePhoto);
+QImage halfCrop(const QImage original, bool leftSide);
 QColor getAvatarColor(const QString& canonicalUri);
 QImage fallbackAvatar(const QString& canonicalUriStr,
                       const QString& letterStr = {},
