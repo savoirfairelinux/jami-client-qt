@@ -82,167 +82,216 @@ Rectangle {
                                                                 root.height / 2)
                 PluginHandlerPickerCreation.openPluginHandlerPicker()
             }
+
+            onShowDetailsClicked: {
+                swarmDetailsPanel.visible = !swarmDetailsPanel.visible
+            }
         }
 
-        StackLayout {
-            id: messageWebViewStack
-
-            Layout.alignment: Qt.AlignHCenter
+        RowLayout {
+            id: chatViewMainRow
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.topMargin: JamiTheme.messageWebViewHairLineSize
-            Layout.bottomMargin: JamiTheme.messageWebViewHairLineSize
 
-            currentIndex: CurrentConversation.isRequest ||
-                          CurrentConversation.needsSyncing
+            ColumnLayout {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
-            Loader {
-                active: CurrentConversation.id !== ""
-                sourceComponent: ListView {
-                    id: chatView
+                StackLayout {
+                    id: messageWebViewStack
 
-                    topMargin: 12
-                    bottomMargin: 6
-                    spacing: 2
-                    width: messageWebViewStack.width
-                    displayMarginBeginning: 256
-                    displayMarginEnd: 256
-                    verticalLayoutDirection: ListView.BottomToTop
-                    clip: true
-                    boundsBehavior: Flickable.StopAtBounds
-                    currentIndex: -1
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.topMargin: JamiTheme.messageWebViewHairLineSize
+                    Layout.bottomMargin: JamiTheme.messageWebViewHairLineSize
 
-                    ScrollBar.vertical: ScrollBar {}
+                    currentIndex: CurrentConversation.isRequest ||
+                                CurrentConversation.needsSyncing
 
-                    model: MessagesAdapter.messageListModel
+                    Loader {
+                        active: CurrentConversation.id !== ""
+                        sourceComponent: ListView {
+                            id: chatView
 
-                    delegate: MessageDelegate {
-                        id: item
+                            topMargin: 12
+                            bottomMargin: 6
+                            spacing: 2
+                            width: messageWebViewStack.width
+                            displayMarginBeginning: 256
+                            displayMarginEnd: 256
+                            verticalLayoutDirection: ListView.BottomToTop
+                            clip: true
+                            boundsBehavior: Flickable.StopAtBounds
+                            currentIndex: -1
 
-                        function computeSequencing() {
-                            var cItem = {'author': author, 'isGenerated': isGenerated }
-                            var pItem = chatView.itemAtIndex(index + 1)
-                            var nItem = chatView.itemAtIndex(index - 1)
+                            ScrollBar.vertical: ScrollBar {}
 
-                            let shouldBeAlone = function (item) {
-                                if (item === undefined) {
-                                    return isGenerated
-                                }
-                                return item.isGenerated
-                            }
+                            model: MessagesAdapter.messageListModel
 
-                            let isSeq = (item0, item1) =>
-                                item0.author === item1.author &&
-                                !(shouldBeAlone(item0) || shouldBeAlone(item1))
+                            delegate: MessageDelegate {
+                                id: item
 
-                            let setSeq = function (newSeq, item) {
-                                if (item === undefined) {
-                                    seq = shouldBeAlone() ?
-                                                MsgSeq.single :
-                                                newSeq
-                                } else {
-                                    item.seq = shouldBeAlone(item) ?
-                                                MsgSeq.single :
-                                                newSeq
-                                }
-                            }
+                                function computeSequencing() {
+                                    var cItem = {'author': author, 'isGenerated': isGenerated }
+                                    var pItem = chatView.itemAtIndex(index + 1)
+                                    var nItem = chatView.itemAtIndex(index - 1)
 
-                            let rAdjustSeq = function (item) {
-                                if (item.seq === MsgSeq.last)
-                                    item.seq = MsgSeq.middle
-                                else if (item.seq === MsgSeq.single)
-                                    setSeq(MsgSeq.first, item)
-                            }
+                                    let shouldBeAlone = function (item) {
+                                        if (item === undefined) {
+                                            return isGenerated
+                                        }
+                                        return item.isGenerated
+                                    }
 
-                            let adjustSeq = function (item) {
-                                if (item.seq === MsgSeq.first)
-                                    item.seq = MsgSeq.middle
-                                else if (item.seq === MsgSeq.single)
-                                    setSeq(MsgSeq.last, item)
-                            }
+                                    let isSeq = (item0, item1) =>
+                                        item0.author === item1.author &&
+                                        !(shouldBeAlone(item0) || shouldBeAlone(item1))
 
-                            if (pItem && !nItem) {
-                                if (!isSeq(pItem, cItem)) {
-                                    seq = MsgSeq.single
-                                } else {
-                                    seq = MsgSeq.last
-                                    rAdjustSeq(pItem)
-                                }
-                            } else if (nItem && !pItem) {
-                                if (!isSeq(cItem, nItem)) {
-                                    seq = MsgSeq.single
-                                } else {
-                                    setSeq(MsgSeq.first)
-                                    adjustSeq(nItem)
-                                }
-                            } else if (!nItem && !pItem) {
-                                seq = MsgSeq.single
-                            } else {
-                                if (isSeq(pItem, nItem)) {
-                                    if (isSeq(pItem, cItem)) {
-                                        seq = MsgSeq.middle
-                                    } else {
+                                    let setSeq = function (newSeq, item) {
+                                        if (item === undefined) {
+                                            seq = shouldBeAlone() ?
+                                                        MsgSeq.single :
+                                                        newSeq
+                                        } else {
+                                            item.seq = shouldBeAlone(item) ?
+                                                        MsgSeq.single :
+                                                        newSeq
+                                        }
+                                    }
+
+                                    let rAdjustSeq = function (item) {
+                                        if (item.seq === MsgSeq.last)
+                                            item.seq = MsgSeq.middle
+                                        else if (item.seq === MsgSeq.single)
+                                            setSeq(MsgSeq.first, item)
+                                    }
+
+                                    let adjustSeq = function (item) {
+                                        if (item.seq === MsgSeq.first)
+                                            item.seq = MsgSeq.middle
+                                        else if (item.seq === MsgSeq.single)
+                                            setSeq(MsgSeq.last, item)
+                                    }
+
+                                    if (pItem && !nItem) {
+                                        if (!isSeq(pItem, cItem)) {
+                                            seq = MsgSeq.single
+                                        } else {
+                                            seq = MsgSeq.last
+                                            rAdjustSeq(pItem)
+                                        }
+                                    } else if (nItem && !pItem) {
+                                        if (!isSeq(cItem, nItem)) {
+                                            seq = MsgSeq.single
+                                        } else {
+                                            setSeq(MsgSeq.first)
+                                            adjustSeq(nItem)
+                                        }
+                                    } else if (!nItem && !pItem) {
                                         seq = MsgSeq.single
-
-                                        if (pItem.seq === MsgSeq.first)
-                                            pItem.seq = MsgSeq.single
-                                        else if (item.seq === MsgSeq.middle)
-                                            pItem.seq = MsgSeq.last
-
-                                        if (nItem.seq === MsgSeq.last)
-                                            nItem.seq = MsgSeq.single
-                                        else if (nItem.seq === MsgSeq.middle)
-                                            nItem.seq = MsgSeq.first
-                                    }
-                                } else {
-                                    if (!isSeq(pItem, cItem)) {
-                                        seq = MsgSeq.first
-                                        adjustSeq(pItem)
                                     } else {
-                                        seq = MsgSeq.last
-                                        rAdjustSeq(nItem)
+                                        if (isSeq(pItem, nItem)) {
+                                            if (isSeq(pItem, cItem)) {
+                                                seq = MsgSeq.middle
+                                            } else {
+                                                seq = MsgSeq.single
+
+                                                if (pItem.seq === MsgSeq.first)
+                                                    pItem.seq = MsgSeq.single
+                                                else if (item.seq === MsgSeq.middle)
+                                                    pItem.seq = MsgSeq.last
+
+                                                if (nItem.seq === MsgSeq.last)
+                                                    nItem.seq = MsgSeq.single
+                                                else if (nItem.seq === MsgSeq.middle)
+                                                    nItem.seq = MsgSeq.first
+                                            }
+                                        } else {
+                                            if (!isSeq(pItem, cItem)) {
+                                                seq = MsgSeq.first
+                                                adjustSeq(pItem)
+                                            } else {
+                                                seq = MsgSeq.last
+                                                rAdjustSeq(nItem)
+                                            }
+                                        }
+                                    }
+                                }
+
+                                Component.onCompleted: {
+                                    if (index !== 0)
+                                        computeSequencing()
+                                    else
+                                        Qt.callLater(computeSequencing)
+
+                                }
+                            }
+
+                            function getDistanceToBottom() {
+                                const scrollDiff = ScrollBar.vertical.position -
+                                                (1.0 - ScrollBar.vertical.size)
+                                return Math.abs(scrollDiff) * contentHeight
+                            }
+
+                            onAtYBeginningChanged: loadMoreMsgsIfNeeded()
+
+                            function loadMoreMsgsIfNeeded() {
+                            if (atYBeginning && !CurrentConversation.allMessagesLoaded)
+                                    MessagesAdapter.loadMoreMessages()
+                            }
+
+                            Connections {
+                                target: MessagesAdapter
+
+                                function onNewInteraction() {
+                                    if (chatView.getDistanceToBottom() < 80 && !chatView.atYEnd) {
+                                        Qt.callLater(chatView.positionViewAtBeginning)
+                                    }
+                                }
+
+                                function onMoreMessagesLoaded() {
+                                    if (chatView.contentHeight < chatView.height) {
+                                        loadMoreMsgsIfNeeded()
                                     }
                                 }
                             }
-                        }
 
-                        Component.onCompleted: {
-                            if (index !== 0)
-                                computeSequencing()
-                            else
-                                Qt.callLater(computeSequencing)
-
-                        }
-                    }
-
-                    function getDistanceToBottom() {
-                        const scrollDiff = ScrollBar.vertical.position -
-                                         (1.0 - ScrollBar.vertical.size)
-                        return Math.abs(scrollDiff) * contentHeight
-                    }
-
-                    onAtYBeginningChanged: loadMoreMsgsIfNeeded()
-
-                    function loadMoreMsgsIfNeeded() {
-                       if (atYBeginning && !CurrentConversation.allMessagesLoaded)
-                            MessagesAdapter.loadMoreMessages()
-                    }
-
-                    Connections {
-                        target: MessagesAdapter
-
-                        function onNewInteraction() {
-                            if (chatView.getDistanceToBottom() < 80 && !chatView.atYEnd) {
-                                Qt.callLater(chatView.positionViewAtBeginning)
-                            }
-                        }
-
-                        function onMoreMessagesLoaded() {
-                            if (chatView.contentHeight < chatView.height) {
-                                loadMoreMsgsIfNeeded()
+                            DropArea {
+                                anchors.fill: parent
+                                onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
                             }
                         }
                     }
+
+                    InvitationView {
+                        id: invitationView
+
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+                }
+
+                ReadOnlyFooter {
+                    visible: CurrentConversation.readOnly
+                    Layout.fillWidth: true
+                }
+
+                MessageWebViewFooter {
+                    id: messageWebViewFooter
+
+                    visible: {
+                        if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
+                            return false
+                        else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
+                            return false
+                        return true
+                    }
+
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: implicitHeight
+                    Layout.maximumHeight: JamiTheme.messageWebViewFooterMaximumHeight
 
                     DropArea {
                         anchors.fill: parent
@@ -251,39 +300,14 @@ Rectangle {
                 }
             }
 
-            InvitationView {
-                id: invitationView
+            SwarmDetailsPanel {
+                id: swarmDetailsPanel
+                visible: false
 
-                Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.fillWidth: true
             }
         }
 
-        ReadOnlyFooter {
-            visible: CurrentConversation.readOnly
-            Layout.fillWidth: true
-        }
-
-        MessageWebViewFooter {
-            id: messageWebViewFooter
-
-            visible: {
-                if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
-                    return false
-                else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
-                    return false
-                return true
-            }
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: implicitHeight
-            Layout.maximumHeight: JamiTheme.messageWebViewFooterMaximumHeight
-
-            DropArea {
-                anchors.fill: parent
-                onDropped: messageWebViewFooter.setFilePathsToSend(drop.urls)
-            }
-        }
     }
 }
