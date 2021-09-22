@@ -36,6 +36,7 @@ Rectangle {
     signal backClicked
     signal needToHideConversationInCall
     signal pluginSelector
+    signal showDetailsClicked
 
     property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
@@ -51,6 +52,10 @@ Rectangle {
     }
 
     property bool addMemberVisibility: {
+        return swarmDetailsVisibility && !CurrentConversation.isRequest
+    }
+
+    property bool swarmDetailsVisibility: {
         return !CurrentConversation.isCoreDialog && CurrentConversation.isSwarm
     }
 
@@ -146,6 +151,7 @@ Rectangle {
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             Layout.fillWidth: true
             Layout.rightMargin: 8
+            spacing: 16
 
             PushButton {
                 id: startAAudioCallButton
@@ -217,6 +223,20 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: MessagesAdapter.sendConversationRequest()
+            }
+
+            PushButton {
+                id: detailsButton
+
+                visible: swarmDetailsVisibility
+
+                source: JamiResources.swarm_details_panel_svg
+                toolTipText: JamiStrings.details
+
+                normalColor: JamiTheme.chatviewBgColor
+                imageColor: JamiTheme.chatviewButtonColor
+
+                onClicked: showDetailsClicked()
             }
         }
     }

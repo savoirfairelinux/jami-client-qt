@@ -80,6 +80,8 @@ Rectangle {
         if (isPageInStack("callStackViewObject", sidePanelViewStack) ||
                 isPageInStack("chatView", sidePanelViewStack) ||
                 isPageInStack("chatView", mainViewStack) ||
+                isPageInStack("newSwarmPage", sidePanelViewStack) ||
+                isPageInStack("newSwarmPage", mainViewStack) ||
                 isPageInStack("callStackViewObject", mainViewStack)) {
             sidePanelViewStack.pop(StackView.Immediate)
             mainViewStack.pop(welcomePage, StackView.Immediate)
@@ -104,6 +106,16 @@ Rectangle {
         } else {
             mainViewStack.pop(welcomePage, StackView.Immediate)
             mainViewStack.push(chatView, StackView.Immediate)
+        }
+    }
+
+    function pushNewSwarmPage() {
+        if (sidePanelOnly) {
+            sidePanelViewStack.pop(StackView.Immediate)
+            sidePanelViewStack.push(newSwarmPage, StackView.Immediate)
+        } else {
+            mainViewStack.pop(welcomePage, StackView.Immediate)
+            mainViewStack.push(newSwarmPage, StackView.Immediate)
         }
     }
 
@@ -353,6 +365,11 @@ Rectangle {
             function onNavigateToWelcomePageRequested() {
                 backToMainView()
             }
+
+        }
+
+        onCreateSwarmClicked: {
+            pushNewSwarmPage()
         }
     }
 
@@ -392,6 +409,18 @@ Rectangle {
         objectName: "chatView"
         visible: false
         Component.onCompleted: MessagesAdapter.setQmlObject(this)
+    }
+
+    NewSwarmPage {
+        id: newSwarmPage
+
+        objectName: "newSwarmPage"
+        visible: false
+
+        onCreateSwarmClicked: {
+            console.warn("@@@")
+            backToMainView()
+        }
     }
 
     onWidthChanged: {
