@@ -36,6 +36,7 @@ Rectangle {
     signal backClicked
     signal needToHideConversationInCall
     signal pluginSelector
+    signal showDetailsClicked
 
     property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
@@ -217,6 +218,20 @@ Rectangle {
                 imageColor: JamiTheme.chatviewButtonColor
 
                 onClicked: MessagesAdapter.sendConversationRequest()
+            }
+
+            PushButton {
+                id: detailsButton
+
+                visible: addMemberVisibility
+
+                source: JamiResources.swarm_details_panel_svg
+                toolTipText: JamiStrings.details
+
+                normalColor: JamiTheme.chatviewBgColor
+                imageColor: JamiTheme.chatviewButtonColor
+
+                onClicked: showDetailsClicked()
             }
         }
     }
