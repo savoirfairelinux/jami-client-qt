@@ -31,6 +31,8 @@ Rectangle {
 
     color: JamiTheme.backgroundColor
 
+    signal createSwarmClicked
+
     Connections {
         target: LRCInstance
 
@@ -105,7 +107,7 @@ Rectangle {
             toolTipText: JamiStrings.startASwarm
 
             onClicked: {
-                ConversationsAdapter.createSwarm()
+                createSwarmClicked()
             }
         }
     }

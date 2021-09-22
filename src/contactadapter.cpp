@@ -55,7 +55,7 @@ ContactAdapter::getContactSelectableModel(int type)
             });
         break;
     case SmartListModel::Type::ADDCONVMEMBER:
-        selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegExp&) {
+        selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegularExpression&) {
             return index.data(Role::IsCoreDialog).toBool();
         });
         break;
@@ -108,7 +108,7 @@ ContactAdapter::setSearchFilter(const QString& filter)
             });
     } else if (listModeltype_ == SmartListModel::Type::ADDCONVMEMBER) {
         selectableProxyModel_->setPredicate(
-            [this, filter](const QModelIndex& index, const QRegExp&) {
+            [this, filter](const QModelIndex& index, const QRegularExpression&) {
                 return (index.data(Role::Title).toString().contains(filter, Qt::CaseInsensitive)
                         || index.data(Role::RegisteredName)
                                .toString()
