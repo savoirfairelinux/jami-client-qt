@@ -480,6 +480,25 @@ ConversationsAdapter::restartConversation(const QString& convId)
     accInfo.contactModel->removeContact(peerUri);
 }
 
+void
+ConversationsAdapter::updateConversationTitle(const QString& convId, const QString& newTitle)
+{
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    QMap<QString, QString> details;
+    details["title"] = newTitle;
+    convModel->updateConversationInfo(convId, details);
+}
+
+void
+ConversationsAdapter::updateConversationDescription(const QString& convId,
+                                                    const QString& newDescription)
+{
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    QMap<QString, QString> details;
+    details["description"] = newDescription;
+    convModel->updateConversationInfo(convId, details);
+}
+
 bool
 ConversationsAdapter::connectConversationModel()
 {
