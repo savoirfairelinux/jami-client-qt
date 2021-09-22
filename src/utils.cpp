@@ -396,10 +396,23 @@ Utils::conversationAvatar(LRCInstance* instance,
         auto& accInfo = instance->accountModel().getAccountInfo(
             accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
         auto* convModel = accInfo.conversationModel.get();
-        Q_FOREACH (const auto peerUri, convModel->peersForConversation(convId)) {
-            auto peerAvatar = Utils::contactPhoto(instance, peerUri, size);
+        auto members = convModel->peersForConversation(convId);
+        if (members.size() < 1)
+            return avatar;
+        if (members.size() == 1) {
+            // Only member in the swarm or 1:1, draw only peer's avatar
+            auto peerAvatar = Utils::contactPhoto(instance, members[0], size);
             painter.drawImage(avatar.rect(), peerAvatar);
+            return avatar;
         }
+        // Else, combine avatars
+        auto idx = 0;
+        auto peerAAvatar = Utils::contactPhoto(instance, members[0], size);
+        auto peerBAvatar = Utils::contactPhoto(instance, members[1], size);
+        peerAAvatar = Utils::halfCrop(peerAAvatar, true);
+        peerBAvatar = Utils::halfCrop(peerBAvatar, false);
+        painter.drawImage(avatar.rect(), peerAAvatar);
+        painter.drawImage(avatar.rect(), peerBAvatar);
     } catch (const std::exception& e) {
         qDebug() << Q_FUNC_INFO << e.what();
     }
@@ -450,6 +463,23 @@ Utils::getCirclePhoto(const QImage original, int sizePhoto)
     painter.drawEllipse(0, 0, sizePhoto, sizePhoto);
     painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
     painter.drawImage(0, 0, scaledPhoto, margin, 0);
+    return target;
+}
+
+QImage
+Utils::halfCrop(const QImage original, bool leftSide)
+{
+    auto width = original.size().width();
+    auto height = original.size().height();
+    QImage target(width, height, QImage::Format_ARGB32_Premultiplied);
+    target.fill(Qt::transparent);
+
+    QPainter painter(&target);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    painter.setBrush(QBrush(Qt::white));
+    painter.drawRect(leftSide ? 0 : width / 2, 0, width / 2, height);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+    painter.drawImage(0, 0, original, 0, 0);
     return target;
 }
 
