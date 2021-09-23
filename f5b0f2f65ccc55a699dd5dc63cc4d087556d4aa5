@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ffacc02_07b2813d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:12:43Z",
+      "side": 1,
+      "message": "I think for this patch, it can be merged into the following patch directly as it is small and some changes are removed in the following patch.",
+      "revId": "f5b0f2f65ccc55a699dd5dc63cc4d087556d4aa5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adc27cbd_c88d6b3d",
+        "filename": "src/pluginlistpreferencemodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:12:43Z",
+      "side": 1,
+      "message": "like this will be removed right?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 5
+      },
+      "revId": "f5b0f2f65ccc55a699dd5dc63cc4d087556d4aa5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2544683a_e757eb80",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:12:43Z",
+      "side": 1,
+      "message": "this",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "f5b0f2f65ccc55a699dd5dc63cc4d087556d4aa5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63ef646a_842fb298",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:12:43Z",
+      "side": 1,
+      "message": "and this",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 62
+      },
+      "revId": "f5b0f2f65ccc55a699dd5dc63cc4d087556d4aa5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
