@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fe81545_44026946",
+        "filename": "src/pluginadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "use set_enabled() -\u003e check QML_PROPERTY definition",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 23
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c692bf85_cf188363",
+        "filename": "src/pluginhandlerlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "Actually these are not needed anymore",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 56
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ee242c0_40243457",
+        "filename": "src/pluginhandlerlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "change to QML_PROPERTY?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41580ed_846cbd8f",
+        "filename": "src/pluginlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 56
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60495fe0_50e6337c",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "QML_PROPERTY as well?",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 66
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0402543_2c199dfa",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "I am not sure why we need to add an extra \"_\" for each property\n\nnormally, the convention would be just pure word.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 43
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8607094a_b46b64c1",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "not needed anymore",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f32511f8_9ac1bd9a",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "this is?",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 27
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3031baa_d6a2f836",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "JamiStrings",
+      "range": {
+        "startLine": 324,
+        "startChar": 49,
+        "endLine": 324,
+        "endChar": 74
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f54d9f01_7d44ff5f",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T14:59:26Z",
+      "side": 1,
+      "message": "JamiStrings",
+      "range": {
+        "startLine": 350,
+        "startChar": 49,
+        "endLine": 350,
+        "endChar": 73
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
