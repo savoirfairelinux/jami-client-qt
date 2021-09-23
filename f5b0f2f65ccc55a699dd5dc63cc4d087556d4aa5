@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e8ffa9_24898280",
+        "filename": "src/pluginlistpreferencemodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:55Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "adc27cbd_c88d6b3d",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 5
+      },
+      "revId": "f5b0f2f65ccc55a699dd5dc63cc4d087556d4aa5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2544683a_e757eb80",
@@ -64,6 +88,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0804fa0_35d9ed91",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:55Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "2544683a_e757eb80",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "f5b0f2f65ccc55a699dd5dc63cc4d087556d4aa5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63ef646a_842fb298",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-09-23T14:12:43Z",
       "side": 1,
       "message": "and this",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 103,
+        "endChar": 62
+      },
+      "revId": "f5b0f2f65ccc55a699dd5dc63cc4d087556d4aa5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b3ac089_36e86d21",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:55Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "63ef646a_842fb298",
       "range": {
         "startLine": 103,
         "startChar": 4,
