@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "396b4244_80648b2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "squashed with https://review.jami.net/c/jami-client-qt/+/19003\nabandoned",
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fe81545_44026946",
@@ -14,6 +31,30 @@
       "writtenOn": "2021-09-23T14:59:26Z",
       "side": 1,
       "message": "use set_enabled() -\u003e check QML_PROPERTY definition",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 23
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df560bff_c028b4b5",
+        "filename": "src/pluginadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fe81545_44026946",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -47,6 +88,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe9489e3_09a9fea2",
+        "filename": "src/pluginhandlerlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c692bf85_cf188363",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 56
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ee242c0_40243457",
@@ -60,6 +125,30 @@
       "writtenOn": "2021-09-23T14:59:26Z",
       "side": 1,
       "message": "change to QML_PROPERTY?",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 34
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d86f004_c32226e4",
+        "filename": "src/pluginhandlerlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ee242c0_40243457",
       "range": {
         "startLine": 59,
         "startChar": 0,
@@ -93,6 +182,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e8becf5_4002533a",
+        "filename": "src/pluginlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c41580ed_846cbd8f",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 56
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60495fe0_50e6337c",
@@ -106,6 +219,30 @@
       "writtenOn": "2021-09-23T14:59:26Z",
       "side": 1,
       "message": "QML_PROPERTY as well?",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 66
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15ebef69_77485751",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60495fe0_50e6337c",
       "range": {
         "startLine": 29,
         "startChar": 4,
@@ -141,6 +278,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "787dd470_be636fa7",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "In qml, I needed to discriminate between cpp properties and root properties",
+      "parentUuid": "e0402543_2c199dfa",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 43
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8607094a_b46b64c1",
         "filename": "src/preferenceitemlistmodel.h",
         "patchSetId": 4
@@ -152,6 +313,30 @@
       "writtenOn": "2021-09-23T14:59:26Z",
       "side": 1,
       "message": "not needed anymore",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 56
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b33259f_c5c4713f",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8607094a_b46b64c1",
       "range": {
         "startLine": 72,
         "startChar": 0,
@@ -185,6 +370,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a874a726_306c71f3",
+        "filename": "src/preferenceitemlistmodel.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "it is used!",
+      "parentUuid": "f32511f8_9ac1bd9a",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 27
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3031baa_d6a2f836",
@@ -208,6 +417,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74539eb4_77147d87",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3031baa_d6a2f836",
+      "range": {
+        "startLine": 324,
+        "startChar": 49,
+        "endLine": 324,
+        "endChar": 74
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f54d9f01_7d44ff5f",
@@ -221,6 +454,30 @@
       "writtenOn": "2021-09-23T14:59:26Z",
       "side": 1,
       "message": "JamiStrings",
+      "range": {
+        "startLine": 350,
+        "startChar": 49,
+        "endLine": 350,
+        "endChar": 73
+      },
+      "revId": "5f708e003373c1bd349efebb973018cee65fdf25",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fac94ca9_2420385a",
+        "filename": "src/settingsview/components/PluginListPreferencesView.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-09-23T17:20:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f54d9f01_7d44ff5f",
       "range": {
         "startLine": 350,
         "startChar": 49,
