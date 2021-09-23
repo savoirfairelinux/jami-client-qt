@@ -44,8 +44,9 @@
         <file>src/settingsview/components/KeyBoardShortcutTable.qml</file>
         <file>src/settingsview/components/KeyBoardShortcutKey.qml</file>
         <file>src/settingsview/components/PluginSettingsPage.qml</file>
-        <file>src/settingsview/components/PluginListSettingsView.qml</file>
-        <file>src/settingsview/components/PluginListPreferencesView.qml</file>
+        <file>src/settingsview/components/PluginListView.qml</file>
+        <file>src/settingsview/components/PluginPreferencesView.qml</file>
+        <file>src/settingsview/components/PluginPreferencesListView.qml</file>
         <file>src/settingsview/components/CurrentAccountSettings.qml</file>
         <file>src/settingsview/components/UserIdentity.qml</file>
         <file>src/settingsview/components/JamiUserIdentity.qml</file>

@@ -25,11 +25,11 @@
 class PluginListPreferenceModel : public AbstractListModelBase
 {
     Q_OBJECT
-    Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId)
-    Q_PROPERTY(QString preferenceKey READ preferenceKey WRITE setPreferenceKey)
     Q_PROPERTY(QString preferenceNewValue READ preferenceNewValue WRITE setPreferenceNewValue)
-    Q_PROPERTY(int idx READ idx WRITE setIdx)
-    Q_PROPERTY(int optSize READ optSize)
+    Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId)
+    QML_PROPERTY(QString, preferenceKey)
+    QML_PROPERTY(int, idx)
+    QML_PROPERTY(QString, accountId_)
 public:
     enum Role { PreferenceValue = Qt::UserRole + 1, PreferenceEntryValue };
     Q_ENUM(Role)
@@ -47,10 +47,7 @@ public:
      * Override role name as access point in qml.
      */
     QHash<int, QByteArray> roleNames() const override;
-    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& child) const;
-    Qt::ItemFlags flags(const QModelIndex& index) const;
-
+    
     /*
      * This function is to reset the model when there's new account added.
      */
@@ -66,29 +63,17 @@ public:
     {
         preferenceNewValue_ = preferenceNewValue;
     }
-    void setPreferenceKey(const QString preferenceKey)
-    {
-        preferenceKey_ = preferenceKey;
-    }
+
     void setPluginId(const QString pluginId)
     {
         pluginId_ = pluginId;
         populateLists();
     }
 
-    void setIdx(const int index)
-    {
-        idx_ = index;
-    }
-
-    int idx()
-    {
-        return idx_;
-    }
     QString preferenceCurrentValue()
     {
         return lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_,
-                                                                      accountId_)[preferenceKey_];
+                                                                      accountId__)[preferenceKey_];
     }
 
     QString preferenceNewValue()
@@ -96,25 +81,15 @@ public:
         preferenceNewValue_ = preferenceValuesList_[idx_];
         return preferenceNewValue_;
     }
-    QString preferenceKey()
-    {
-        return preferenceKey_;
-    }
+
     QString pluginId()
     {
         return pluginId_;
     }
-    int optSize()
-    {
-        return preferenceValuesList_.size();
-    }
 
 private:
     QString pluginId_ = "";
-    QString preferenceKey_ = "";
     QString preferenceNewValue_ = "";
     QStringList preferenceValuesList_;
     QStringList preferenceList_;
-    int idx_ = 0;
-    QString accountId_ = "";
 };
