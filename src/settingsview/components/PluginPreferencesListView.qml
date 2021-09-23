@@ -29,7 +29,9 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property int effectiveHeight: visible ? implicitHeight : 0
+    property string accountId: ""
+    property int count: pluginPreferenceView.count + pluginPreferenceViewCategory.count
+
     implicitHeight: childrenRect.height
     onVisibleChanged: {
         if (visible) {
@@ -38,8 +40,21 @@ Rectangle {
         }
     }
 
+    color: "transparent"
+
+    Connections {
+        target: LRCInstance
+
+        function onCurrentAccountIdChanged() {
+            if (accountId) {
+                preferencesPerCategoryModel.reset()
+                generalPreferencesModel.reset()
+            }
+        }
+    }
+
     property string category: categories.length > 0 ? categories[0] : category ? category : ""
-    property var categories: PluginAdapter.getPluginPreferencesCategories(pluginId)
+    property var categories: PluginAdapter.getPluginPreferencesCategories(pluginId, accountId)
     property string generalCategory: categories.length <= 1 ? "all" : ""
 
     visible: false
@@ -48,54 +63,15 @@ Rectangle {
     {
         if (isLoaded) {
             PluginModel.unloadPlugin(pluginId)
-            PluginModel.setPluginPreference(pluginId, "", preferenceKey, preferenceNewValue)
+            PluginModel.setPluginPreference(pluginId, accountId, preferenceKey, preferenceNewValue)
             PluginModel.loadPlugin(pluginId)
         } else
-            PluginModel.setPluginPreference(pluginId, "", preferenceKey, preferenceNewValue)
-    }
-
-    SimpleMessageDialog {
-        id: msgDialog
-
-        buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel]
-        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
-                       SimpleMessageDialog.ButtonStyle.TintedBlack]
+            PluginModel.setPluginPreference(pluginId, accountId, preferenceKey, preferenceNewValue)
     }
 
     ColumnLayout {
         anchors.left: root.left
         anchors.right: root.right
-        anchors.bottomMargin: 10
-
-        Label{
-            Layout.topMargin: 34
-            Layout.alignment: Qt.AlignHCenter
-            height: 64
-            background: Rectangle {
-                Image {
-                    anchors.centerIn: parent
-                    source: pluginIcon === "" ? "" : "file:" + pluginIcon
-                    sourceSize: Qt.size(256, 256)
-                    height: 64
-                    width: 64
-                    mipmap: true
-                }
-            }
-        }
-
-        Label {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 24
-            height: JamiTheme.preferredFieldHeight
-
-            text: JamiStrings.pluginPreferences.arg(pluginName)
-            font.pointSize: JamiTheme.headerFontSize
-            font.kerning: true
-            color: JamiTheme.textColor
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-        }
 
         Rectangle {
             id: prefsByCategory
@@ -122,7 +98,7 @@ Rectangle {
 
                     Repeater {
                         id: gridModel
-                        model: categories.length % 2 === 1 ? PluginAdapter.getPluginPreferencesCategories(pluginId, true) : root.categories
+                        model: categories.length % 2 === 1 ? PluginAdapter.getPluginPreferencesCategories(pluginId, accountId, true) : root.categories
                         Button {
                             id: repDelegate
                             Layout.fillWidth: true
@@ -192,6 +168,7 @@ Rectangle {
                         id: preferencesPerCategoryModel
                         lrcInstance: LRCInstance
                         category_: category
+                        accountId_: accountId
                         pluginId_: pluginId
 
                         onCategory_Changed: {
@@ -221,6 +198,7 @@ Rectangle {
 
                             lrcInstance: LRCInstance
                             preferenceKey : PreferenceKey
+                            accountId_: accountId
                             pluginId: PluginId
                         }
 
@@ -249,6 +227,7 @@ Rectangle {
                 id: generalPreferencesModel
                 lrcInstance: LRCInstance
                 category_: generalCategory
+                accountId_: accountId
                 pluginId_: pluginId
 
                 onCategory_Changed: {
@@ -278,6 +257,7 @@ Rectangle {
 
                     lrcInstance: LRCInstance
                     preferenceKey : PreferenceKey
+                    accountId_: accountId
                     pluginId: PluginId
                 }
 
@@ -288,77 +268,38 @@ Rectangle {
             }
         }
 
-        RowLayout {
-            Layout.topMargin: 10
-            Layout.bottomMargin: 10
-            Layout.preferredHeight: 30
-            Layout.fillWidth: true
+        MaterialButton {
+            id: resetButton
 
-            MaterialButton {
-                id: resetButton
+            Layout.alignment: Qt.AlignCenter
 
-                Layout.fillWidth: true
-                preferredHeight: JamiTheme.preferredFieldHeight
+            preferredWidth: JamiTheme.preferredFieldWidth
+            preferredHeight: JamiTheme.preferredFieldHeight
 
-                color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                outlined: true
+            color: JamiTheme.buttonTintedBlack
+            hoveredColor: JamiTheme.buttonTintedBlackHovered
+            pressedColor: JamiTheme.buttonTintedBlackPressed
+            outlined: true
 
-                iconSource: JamiResources.settings_backup_restore_24dp_svg
+            iconSource: JamiResources.settings_backup_restore_24dp_svg
 
-                text: JamiStrings.reset
+            text: JamiStrings.reset
 
-                onClicked: {
-                    msgDialog.buttonCallBacks = [function () {
-                        if (isLoaded) {
-                            PluginModel.unloadPlugin(pluginId)
-                            PluginModel.resetPluginPreferencesValues(pluginId, "")
-                            PluginModel.loadPlugin(pluginId)
-                        } else {
-                            PluginModel.resetPluginPreferencesValues(pluginId, "")
-                        }
-                        preferencesPerCategoryModel.reset()
-                        generalPreferencesModel.reset()
-                    }]
-                    msgDialog.openWithParameters(JamiStrings.resetPreferences,
-                                                 JamiStrings.pluginResetConfirmation.arg(pluginName))
-                }
+            onClicked: {
+                msgDialog.buttonCallBacks = [function () {
+                    if (isLoaded) {
+                        PluginModel.unloadPlugin(pluginId)
+                        PluginModel.resetPluginPreferencesValues(pluginId, accountId)
+                        PluginModel.loadPlugin(pluginId)
+                    } else {
+                        PluginModel.resetPluginPreferencesValues(pluginId, accountId)
+                    }
+                    preferencesPerCategoryModel.reset()
+                    generalPreferencesModel.reset()
+                }]
+                msgDialog.openWithParameters(JamiStrings.resetPreferences,
+                                             JamiStrings.pluginResetConfirmation.arg(pluginName))
             }
-
-            MaterialButton {
-                id: uninstallButton
-
-                Layout.fillWidth: true
-                preferredHeight: JamiTheme.preferredFieldHeight
-
-                color: JamiTheme.buttonTintedBlack
-                hoveredColor: JamiTheme.buttonTintedBlackHovered
-                pressedColor: JamiTheme.buttonTintedBlackPressed
-                outlined: true
-
-                iconSource: JamiResources.delete_24dp_svg
-
-                text: JamiStrings.uninstall
-
-                onClicked: {
-                    msgDialog.buttonCallBacks = [function () {
-                        PluginModel.uninstallPlugin(pluginId)
-                        installedPluginsModel.removePlugin(index)
-                    }]
-                    msgDialog.openWithParameters(JamiStrings.uninstallPlugin,
-                                                 JamiStrings.pluginUninstallConfirmation.arg(pluginName))
-                }
-            }
-        }
-
-        Rectangle {
-            Layout.bottomMargin: 10
-            height: 2
-            Layout.fillWidth: true
-            color: "transparent"
-            border.width: 1
-            border.color: JamiTheme.separationLine
         }
     }
 }

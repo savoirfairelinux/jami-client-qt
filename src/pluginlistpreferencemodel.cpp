@@ -35,7 +35,9 @@ PluginListPreferenceModel::populateLists()
     preferenceList_.clear();
     if (pluginId_.isEmpty())
         return;
-    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
+    auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, "");
+    if (!accountId__.isEmpty())
+        preferences.append(lrcInstance_->pluginModel().getPluginPreferences(pluginId_, accountId__));
     for (const auto& preference : preferences) {
         if (preference["key"] == preferenceKey_) {
             if (preference.find("entries") != preference.end()
@@ -90,37 +92,6 @@ PluginListPreferenceModel::roleNames() const
     roles[PreferenceValue] = "PreferenceValue";
     roles[PreferenceEntryValue] = "PreferenceEntryValue";
     return roles;
-}
-
-QModelIndex
-PluginListPreferenceModel::index(int row, int column, const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    if (column != 0) {
-        return QModelIndex();
-    }
-
-    if (row >= 0 && row < rowCount()) {
-        return createIndex(row, column);
-    }
-    return QModelIndex();
-}
-
-QModelIndex
-PluginListPreferenceModel::parent(const QModelIndex& child) const
-{
-    Q_UNUSED(child);
-    return QModelIndex();
-}
-
-Qt::ItemFlags
-PluginListPreferenceModel::flags(const QModelIndex& index) const
-{
-    auto flags = QAbstractItemModel::flags(index) | Qt::ItemNeverHasChildren | Qt::ItemIsSelectable;
-    if (!index.isValid()) {
-        return QAbstractItemModel::flags(index);
-    }
-    return flags;
 }
 
 void

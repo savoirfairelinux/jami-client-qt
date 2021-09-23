@@ -46,6 +46,7 @@ protected:
     Q_INVOKABLE QVariant getChatHandlerSelectableModel(const QString& accountId,
                                                        const QString& peerId);
     Q_INVOKABLE QVariant getPluginPreferencesCategories(const QString& pluginId,
+                                                        const QString& accountId,
                                                         bool removeLast = false);
 
 private:
