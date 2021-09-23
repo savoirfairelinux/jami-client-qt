@@ -25,7 +25,7 @@ class LRCInstance;
 class PluginListModel : public AbstractListModelBase
 {
     Q_OBJECT
-
+    QML_PROPERTY(bool, filterAccount)
 public:
     enum Role { PluginName = Qt::UserRole + 1, PluginId, PluginIcon, IsLoaded };
     Q_ENUM(Role)
@@ -53,5 +53,6 @@ public:
     Q_INVOKABLE void addPlugin();
 
 private:
+    void filterPlugins(VectorString& list);
     VectorString installedPlugins_ {};
 };

@@ -88,7 +88,8 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
         }
     }
     const auto dependsOn = details["dependsOn"].split(",");
-    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__);
+    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__,
+                                                                              accountId__);
     const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId__,
                                                                                    accountId__);
     bool enabled = true;
@@ -182,7 +183,7 @@ PreferenceItemListModel::preferencesCount()
     if (!preferenceList_.isEmpty())
         return preferenceList_.size();
     if (mediaHandlerName__.isEmpty()) {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__);
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__, accountId__);
         if (category__ != "all")
             for (auto& preference : preferences) {
                 if (preference["category"] == category__)
@@ -192,7 +193,9 @@ PreferenceItemListModel::preferencesCount()
             preferenceList_ = preferences;
         return preferenceList_.size();
     } else {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__);
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__, "");
+        preferences.append(
+            lrcInstance_->pluginModel().getPluginPreferences(pluginId__, accountId__));
         for (auto& preference : preferences) {
             QStringList scopeList = preference["scope"].split(",");
             if (scopeList.contains(mediaHandlerName__))
