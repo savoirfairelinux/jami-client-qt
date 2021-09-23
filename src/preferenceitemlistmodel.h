@@ -30,7 +30,6 @@ class PreferenceItemListModel : public AbstractListModelBase
     QML_PROPERTY(QString, category_)
     QML_PROPERTY(QString, mediaHandlerName_)
     QML_PROPERTY(QString, accountId_)
-    QML_RO_PROPERTY(int, preferencesCount_)
 public:
     enum Role {
         PreferenceKey = Qt::UserRole + 1,
