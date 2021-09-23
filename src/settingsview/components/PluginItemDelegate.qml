@@ -29,14 +29,29 @@ import "../../commoncomponents"
 ItemDelegate {
     id: root
 
-    property string pluginName : ""
+    property string pluginName: ""
     property string pluginId: ""
     property string pluginIcon: ""
     property bool isLoaded: false
-    height: pluginListPreferencesView.visible ? implicitHeight + pluginListPreferencesView.effectiveHeight : implicitHeight
+    property string activeId: ""
+    height: pluginPreferencesView.visible ? implicitHeight + pluginPreferencesView.childrenRect.height : implicitHeight
+
+    signal settingsClicked
+
+    onActiveIdChanged: {
+        pluginPreferencesView.visible = activeId != pluginId ? false : !pluginPreferencesView.visible
+    }
+
+    SimpleMessageDialog {
+        id: msgDialog
+
+        buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel]
+        buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
+                       SimpleMessageDialog.ButtonStyle.TintedBlack]
+    }
 
     ColumnLayout {
-        anchors.fill: parent
+        width: parent.width
 
         RowLayout {
             Layout.fillWidth: true
@@ -64,7 +79,6 @@ ItemDelegate {
             }
 
             Label {
-                id: labelDeviceId
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.topMargin: 8
@@ -85,8 +99,7 @@ ItemDelegate {
                 Layout.rightMargin: 8
                 width: 20
 
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Load/Unload")
+                tooltipText: JamiStrings.loadUnload
 
                 checked: isLoaded
                 onSwitchToggled: {
@@ -110,17 +123,17 @@ ItemDelegate {
                 imageColor: JamiTheme.textColor
                 toolTipText: JamiStrings.showHidePrefs
 
-                onClicked: pluginListPreferencesView.visible = !pluginListPreferencesView.visible
+                onClicked: settingsClicked()
             }
         }
 
-        PluginListPreferencesView {
-            id: pluginListPreferencesView
+        PluginPreferencesView {
+            id: pluginPreferencesView
 
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-            Layout.preferredHeight: effectiveHeight
+            Layout.preferredHeight: pluginPreferencesView.childrenRect.height
         }
     }
 }

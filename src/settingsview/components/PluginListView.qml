@@ -30,6 +30,8 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
+    property string activePlugin: ""
+
     visible: false
     color: JamiTheme.secondaryBackgroundColor
 
@@ -40,8 +42,7 @@ Rectangle {
         title: JamiStrings.selectPluginInstall
         folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation)
 
-        nameFilters: [qsTr("Plugin Files") + " (*.jpl)", qsTr(
-                "All files") + " (*)"]
+        nameFilters: [JamiStrings.pluginFiles + " (*.jpl)", JamiStrings.allFiles + " (*)"]
 
         onAccepted: {
             var url = UtilsAdapter.getAbsPath(file.toString())
@@ -51,15 +52,15 @@ Rectangle {
     }
 
     ColumnLayout {
-        id: pluginListViewLayout
         anchors.left: root.left
         anchors.right: root.right
+        anchors.bottomMargin: 20
 
         Label {
             Layout.fillWidth: true
             Layout.preferredHeight: 25
 
-            text: qsTr("Installed plugins")
+            text: JamiStrings.installedPlugins
             font.pointSize: JamiTheme.headerFontSize
             font.kerning: true
             color: JamiTheme.textColor
@@ -91,12 +92,13 @@ Rectangle {
         }
 
         ListView {
-            id: pluginListView
+            id: pluginList
 
             Layout.fillWidth: true
             Layout.minimumHeight: 0
-            Layout.preferredHeight: childrenRect.height
             Layout.bottomMargin: 10
+            Layout.preferredHeight: childrenRect.height
+            clip: true
 
             model: PluginListModel {
                 id: installedPluginsModel
@@ -107,22 +109,25 @@ Rectangle {
                 }
             }
 
-            maximumFlickVelocity: 1024
-
             delegate: PluginItemDelegate {
                 id: pluginItemDelegate
 
-                width: pluginListView.width
-                implicitHeight: 40
+                width: pluginList.width
+                implicitHeight: 50
 
                 pluginName: PluginName
                 pluginId: PluginId
                 pluginIcon: PluginIcon
                 isLoaded: IsLoaded
+                activeId: root.activePlugin
 
                 background: Rectangle {
                     anchors.fill: parent
                     color: "transparent"
+                }
+
+                onSettingsClicked: {
+                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId
                 }
             }
         }

@@ -59,7 +59,6 @@ ItemDelegate {
         }
 
         Label {
-            id: labelDeviceId
             Layout.leftMargin: 8
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignVCenter
