@@ -30,6 +30,8 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
+    property string activePlugin: ""
+
     visible: false
     color: JamiTheme.secondaryBackgroundColor
 
@@ -51,9 +53,9 @@ Rectangle {
     }
 
     ColumnLayout {
-        id: pluginListViewLayout
         anchors.left: root.left
         anchors.right: root.right
+        anchors.bottomMargin: 20
 
         Label {
             Layout.fillWidth: true
@@ -91,12 +93,12 @@ Rectangle {
         }
 
         ListView {
-            id: pluginListView
+            id: pluginList
 
             Layout.fillWidth: true
             Layout.minimumHeight: 0
-            Layout.preferredHeight: childrenRect.height
             Layout.bottomMargin: 10
+            Layout.preferredHeight: childrenRect.height
 
             model: PluginListModel {
                 id: installedPluginsModel
@@ -107,22 +109,25 @@ Rectangle {
                 }
             }
 
-            maximumFlickVelocity: 1024
-
             delegate: PluginItemDelegate {
                 id: pluginItemDelegate
 
-                width: pluginListView.width
+                width: pluginList.width
                 implicitHeight: 40
 
                 pluginName: PluginName
                 pluginId: PluginId
                 pluginIcon: PluginIcon
                 isLoaded: IsLoaded
+                activeId: root.activePlugin
 
                 background: Rectangle {
                     anchors.fill: parent
                     color: "transparent"
+                }
+
+                onSettingsClicked: {
+                    root.activePlugin = root.activePlugin === pluginId ? "" : pluginId
                 }
             }
         }
