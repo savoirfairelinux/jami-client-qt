@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b19e24c4_d9df5f36",
+        "filename": "src/pluginlistmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T15:17:19Z",
+      "side": 1,
+      "message": "is it used?",
+      "range": {
+        "startLine": 165,
+        "startChar": 4,
+        "endLine": 165,
+        "endChar": 33
+      },
+      "revId": "04087e46118af62c483846cff87e6e16d8ef83ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a940eae_0453b3f2",
+        "filename": "src/pluginlistpreferencemodel.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T15:17:19Z",
+      "side": 1,
+      "message": "do we really need this many accountId?\n\ncan\u0027t we use lrcInstance currentAccountId?",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 37
+      },
+      "revId": "04087e46118af62c483846cff87e6e16d8ef83ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a48e09b7_6f54ee2b",
+        "filename": "src/settingsview/components/AccountPluginSettings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T15:17:19Z",
+      "side": 1,
+      "message": "Now we can always use ListViewJami\n\nAnd I actually renamed it to JamiListView in 6.2 migration,\n\nbut now just ListViewJami\n\nsince it has default background and scroll bar",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 13
+      },
+      "revId": "04087e46118af62c483846cff87e6e16d8ef83ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de6358e0_d7f35eff",
+        "filename": "src/settingsview/components/AccountPluginSettings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T15:17:19Z",
+      "side": 1,
+      "message": "space here",
+      "range": {
+        "startLine": 92,
+        "startChar": 22,
+        "endLine": 92,
+        "endChar": 23
+      },
+      "revId": "04087e46118af62c483846cff87e6e16d8ef83ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62a92555_441818c3",
+        "filename": "src/settingsview/components/PluginItemDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T15:17:19Z",
+      "side": 1,
+      "message": "As I mentioned, I think get currentAccountId from lrcInstance should be enough?",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "04087e46118af62c483846cff87e6e16d8ef83ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcb634e6_8a352413",
+        "filename": "src/settingsview/components/PluginSettingsPage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T15:17:19Z",
+      "side": 1,
+      "message": "tabs",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 4
+      },
+      "revId": "04087e46118af62c483846cff87e6e16d8ef83ec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e08744b_b5f1633e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-09-23T15:17:19Z",
+      "side": 1,
+      "message": "And one thing I am not sure about is that we have Account Plugins Settings in the account settings. (per account)\n\nBut we also have plugin settings outside.\n\nWe can edit plugin preferences in both and are these two different from each other or they are doing the same job?",
+      "revId": "0ee76609df22ba1a004d7725fbba3bdb11ca4bfa",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
