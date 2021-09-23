@@ -115,13 +115,17 @@ ItemDelegate {
         }
 
         ColumnLayout {
-            visible: (InCall || UnreadMessagesCount) && !ReadOnly
-            Layout.preferredWidth: childrenRect.width
+            Layout.preferredWidth: {
+                return (InCall || UnreadMessagesCount) && !ReadOnly ?
+                            callStatusText.contentWidth : 0
+            }
             Layout.fillHeight: true
             spacing: 2
 
             // call status
             Text {
+                id: callStatusText
+
                 Layout.preferredHeight: 20
                 Layout.alignment: Qt.AlignRight
                 text: InCall ? UtilsAdapter.getCallStatusStr(CallState) : ""
