@@ -76,14 +76,14 @@ Rectangle {
         onAccepted: {
             // Is there password? If so, go to password dialog, else, go to following directly
             if (AccountAdapter.hasPassword()) {
-                passwordDialog.path = UtilsAdapter.getAbsPath(folder)
+                passwordDialog.path = UtilsAdapter.getAbsPath(file)
                 passwordDialog.open()
                 return
             } else {
-                if (folder.length > 0) {
+                if (file !== "") {
                     AccountAdapter.exportToFile(
                                 LRCInstance.currentAccountId,
-                                UtilsAdapter.getAbsPath(folder))
+                                UtilsAdapter.getAbsPath(file))
                 }
             }
 
