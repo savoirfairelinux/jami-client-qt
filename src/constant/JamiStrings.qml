@@ -462,11 +462,9 @@ Item {
     property string clearAvatar: qsTr("Clear avatar image")
     property string takePhoto: qsTr("Take photo")
 
-    // PluginSettingsPage
+    // Plugins
     property string enable: qsTr("Enable")
-
-    // PluginListPreferencesView
-    property string pluginPreferences: qsTr("%1\nPreferences")
+    property string pluginPreferences: qsTr("Preferences")
     property string reset: qsTr("Reset")
     property string uninstall: qsTr("Uninstall")
     property string resetPreferences: qsTr("Reset Preferences")
@@ -475,18 +473,14 @@ Item {
     property string uninstallPlugin: qsTr("Uninstall plugin")
     property string pluginResetConfirmation: qsTr("Are you sure you wish to reset %1 preferences?")
     property string pluginUninstallConfirmation: qsTr("Are you sure you wish to uninstall %1?")
-
-    // PluginItemDelegate
     property string showHidePrefs: qsTr("Display or hide preferences")
-
-    // PluginListSettingsView
     property string addNewPlugin: qsTr("Add new plugin")
     property string goBackToPluginsList: qsTr("Go back to plugins list")
-
-    // PreferenceItemDelegate
     property string selectFile: qsTr("Select a file")
     property string select: qsTr("Select")
     property string chooseImageFile: qsTr("Choose image file")
+    property string tipGeneralPluginSettingsDisplay: qsTr("Display or hide General plugin settings")
+    property string tipAccountPluginSettingsDisplay: qsTr("Display or hide Account plugin settings")
 
     // ProfilePage
     property string profileSharedWithContacts: qsTr("Profile is only shared with contacts")

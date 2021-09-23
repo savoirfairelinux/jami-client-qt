@@ -228,6 +228,7 @@ Popup {
                     model: PreferenceItemListModel {
                         id: handlerPickerPrefsModel
                         lrcInstance: LRCInstance
+                        accountId_: LRCInstance.currentAccountId
                         mediaHandlerName_: handlerName
                         pluginId_: pluginId
                     }
@@ -254,13 +255,14 @@ Popup {
 
                             lrcInstance: LRCInstance
                             preferenceKey : PreferenceKey
+                            accountId_: LRCInstance.currentAccountId
                             pluginId: PluginId
                         }
 
                         onClicked:  pluginhandlerPreferencePickerListView.currentIndex = index
 
                         onBtnPreferenceClicked: {
-                            PluginModel.setPluginPreference(pluginId, "", preferenceKey, preferenceNewValue)
+                            PluginModel.setPluginPreference(pluginId, LRCInstance.currentAccountId, preferenceKey, preferenceNewValue)
                             handlerPickerPrefsModel.reset()
                         }
                     }

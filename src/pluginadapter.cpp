@@ -48,10 +48,12 @@ PluginAdapter::getChatHandlerSelectableModel(const QString& accountId, const QSt
 }
 
 QVariant
-PluginAdapter::getPluginPreferencesCategories(const QString& pluginId, bool removeLast)
+PluginAdapter::getPluginPreferencesCategories(const QString& pluginId,
+                                              const QString& accountId,
+                                              bool removeLast)
 {
     QStringList categories;
-    auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId);
+    auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId, accountId);
     for (auto& preference : preferences) {
         if (!preference["category"].isEmpty())
             categories.push_back(preference["category"]);
@@ -65,7 +67,7 @@ PluginAdapter::getPluginPreferencesCategories(const QString& pluginId, bool remo
 void
 PluginAdapter::updateHandlersListCount()
 {
-    if (lrcInstance_->pluginModel().getPluginsEnabled()) {
+    if (isEnabled_) {
         set_callMediaHandlersListCount(lrcInstance_->pluginModel().getCallMediaHandlers().size());
         set_chatHandlersListCount(lrcInstance_->pluginModel().getChatHandlers().size());
     } else {
