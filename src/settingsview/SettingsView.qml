@@ -202,6 +202,13 @@ Rectangle {
                         else
                             settingsViewScrollView.contentY = 0
                     }
+
+                    onAccountPluginSettingsToggled: {
+                        if (settingsVisible)
+                            settingsViewScrollView.contentY = getAccountPluginSettingsScrollPosition()
+                        else
+                            settingsViewScrollView.contentY = 0
+                    }
                 }
 
                 // general setting page, index 1

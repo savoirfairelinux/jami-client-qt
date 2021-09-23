@@ -107,8 +107,6 @@ Rectangle {
                 }
             }
 
-            maximumFlickVelocity: 1024
-
             delegate: PluginItemDelegate {
                 id: pluginItemDelegate
 

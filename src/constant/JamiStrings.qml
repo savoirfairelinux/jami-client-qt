@@ -301,6 +301,7 @@ Item {
     property string changeCurrentPassword: qsTr("Change current password")
     property string tipBackupAccount: qsTr("Backup account to a .gz file")
     property string tipAdvancedSettingsDisplay: qsTr("Display or hide advanced settings")
+    property string tipAccountPluginSettingsDisplay: qsTr("Display or hide plugin settings")
     property string enableAccount: qsTr("Enable account")
 
     // NameRegistrationDialog

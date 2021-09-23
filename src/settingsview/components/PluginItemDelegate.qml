@@ -29,6 +29,7 @@ import "../../commoncomponents"
 ItemDelegate {
     id: root
 
+    property string accountId: ""
     property string pluginName : ""
     property string pluginId: ""
     property string pluginIcon: ""
@@ -64,7 +65,6 @@ ItemDelegate {
             }
 
             Label {
-                id: labelDeviceId
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.topMargin: 8
@@ -84,6 +84,7 @@ ItemDelegate {
                 Layout.topMargin: 8
                 Layout.rightMargin: 8
                 width: 20
+                visible: accountId ? false : true
 
                 ToolTip.visible: hovered
                 ToolTip.text: qsTr("Load/Unload")
