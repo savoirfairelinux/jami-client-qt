@@ -54,7 +54,7 @@ RowLayout {
         color: JamiTheme.textColor
     }
 
-    Switch {
+    JamiSwitch {
         id: switchOfLayout
         Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
@@ -62,12 +62,8 @@ RowLayout {
         Layout.preferredHeight: heightOfSwitch
 
         hoverEnabled: true
-        ToolTip.delay: Qt.styleHints.mousePressAndHoldInterval
-        ToolTip.visible: hovered && (tooltipText.length > 0)
-        ToolTip.text: tooltipText
+        toolTipText: tooltipText
 
-        onToggled: {
-            switchToggled()
-        }
+        onToggled: switchToggled()
     }
 }
