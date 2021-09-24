@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "815c77a3_92ddcd7e",
+        "filename": "src/rendermanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-09-24T14:40:18Z",
+      "side": 1,
+      "message": "what is this condition Oo. Why the +8? Why *4?",
+      "range": {
+        "startLine": 158,
+        "startChar": 26,
+        "endLine": 158,
+        "endChar": 86
+      },
+      "revId": "9ce9b14a021678217ce8861e4aa59fb1c7697104",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
