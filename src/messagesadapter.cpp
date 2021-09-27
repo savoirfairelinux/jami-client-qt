@@ -371,18 +371,22 @@ MessagesAdapter::onMessageLinkified(const QString& messageId, const QString& lin
 }
 
 bool
-MessagesAdapter::isImage(const QString& message)
+MessagesAdapter::isLocalImage(const QString& message)
 {
-    QRegularExpression pattern("[^\\s]+(.*?)\\.(jpg|jpeg|png)$",
-                               QRegularExpression::CaseInsensitiveOption);
-    QRegularExpressionMatch match = pattern.match(message);
-    return match.hasMatch();
+    QImageReader reader;
+    reader.setDecideFormatFromContent(true);
+    reader.setFileName(message);
+    return !reader.read().isNull();
+    //    QRegularExpression pattern("[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|webp)$",
+    //                               QRegularExpression::CaseInsensitiveOption);
+    //    QRegularExpressionMatch match = pattern.match(message);
+    //    return match.hasMatch();
 }
 
 bool
-MessagesAdapter::isAnimatedImage(const QString& msg)
+MessagesAdapter::isRemoteImage(const QString& msg)
 {
-    QRegularExpression pattern("[^\\s]+(.*?)\\.(gif|apng|webp|avif|flif)$",
+    QRegularExpression pattern("[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|apng|webp|avif|flif)$",
                                QRegularExpression::CaseInsensitiveOption);
     QRegularExpressionMatch match = pattern.match(msg);
     return match.hasMatch();
