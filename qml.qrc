@@ -164,5 +164,7 @@
         <file>src/commoncomponents/MessageDelegate.qml</file>
         <file>src/commoncomponents/HyperlinkPreview.qml</file>
         <file>src/mainview/components/MessageListView.qml</file>
+        <file>src/commoncomponents/MessageBubble.qml</file>
+        <file>src/constant/MsgSeq.qml</file>
     </qresource>
 </RCC>
