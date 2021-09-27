@@ -1561,7 +1561,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="349"/>
         <source>Display hyperlink previews in the chatview</source>
-        <translation>Previzualizează legăturile web în discuție</translation>
+        <translation>Arată adresele web în discuții</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="352"/>

@@ -861,12 +861,12 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="134"/>
         <source>Video Codecs</source>
-        <translation type="unfinished"/>
+        <translation>Codecs de vídeo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="135"/>
         <source>Audio Codecs</source>
-        <translation type="unfinished"/>
+        <translation>Codecs de audio</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="138"/>

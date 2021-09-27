@@ -861,12 +861,12 @@ Jami ora si chiuderà.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="134"/>
         <source>Video Codecs</source>
-        <translation type="unfinished"/>
+        <translation>Codec video</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="135"/>
         <source>Audio Codecs</source>
-        <translation type="unfinished"/>
+        <translation>Codec audio</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="138"/>
@@ -1561,7 +1561,7 @@ Per favore riprova più tardi.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="349"/>
         <source>Display hyperlink previews in the chatview</source>
-        <translation>Visualizza le anteprime dei collegamenti ipertestuali nella vista chat</translation>
+        <translation>Visualizza le anteprime dei link nella vista chat</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="352"/>
