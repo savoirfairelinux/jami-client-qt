@@ -99,8 +99,8 @@ protected:
     Q_INVOKABLE void deleteInteraction(const QString& interactionId);
     Q_INVOKABLE void copyToDownloads(const QString& interactionId, const QString& displayName);
     Q_INVOKABLE void userIsComposing(bool isComposing);
-    Q_INVOKABLE bool isImage(const QString& msg);
-    Q_INVOKABLE bool isAnimatedImage(const QString& msg);
+    Q_INVOKABLE bool isLocalImage(const QString& msg);
+    Q_INVOKABLE bool isRemoteImage(const QString& msg);
     Q_INVOKABLE QString getFormattedTime(const quint64 timestamp);
     Q_INVOKABLE void parseMessageUrls(const QString& messageId, const QString& msg);
     Q_INVOKABLE void onPaste();
