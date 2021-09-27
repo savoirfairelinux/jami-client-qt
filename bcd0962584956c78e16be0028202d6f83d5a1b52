@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "411e5d9c_b37fe8a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-09-27T19:34:23Z",
+      "side": 1,
+      "message": "Please link https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/540 this avoid duplicating work..",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "bcd0962584956c78e16be0028202d6f83d5a1b52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
