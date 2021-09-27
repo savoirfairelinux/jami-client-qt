@@ -489,7 +489,7 @@ Rectangle {
             if (!inSettingsView) {
                 toggleSettingsView()
             }
-            settingsMenu.btnMediaSettings.clicked()
+            settingsMenu.buttonSelectedManually(SettingsView.Media)
         }
     }
 
@@ -500,7 +500,7 @@ Rectangle {
             if (!inSettingsView) {
                 toggleSettingsView()
             }
-            settingsMenu.btnGeneralSettings.clicked()
+            settingsMenu.buttonSelectedManually(SettingsView.General)
         }
     }
 
@@ -511,7 +511,7 @@ Rectangle {
             if (!inSettingsView) {
                 toggleSettingsView()
             }
-            settingsMenu.btnAccountSettings.clicked()
+            settingsMenu.buttonSelectedManually(SettingsView.Account)
         }
     }
 
@@ -522,7 +522,7 @@ Rectangle {
             if (!inSettingsView) {
                 toggleSettingsView()
             }
-            settingsMenu.btnPluginSettings.clicked()
+            settingsMenu.buttonSelectedManually(SettingsView.Plugin)
         }
     }
 
