@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73b069d4_41593e38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-10-01T19:23:50Z",
+      "side": 1,
+      "message": "keep the sequencing for all types",
+      "revId": "f0151a3e10d3898764bb1ec590d83c4042e2a0d4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07a27dc9_2534f50e",
+        "filename": "src/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-10-01T19:23:50Z",
+      "side": 1,
+      "message": "maybe move to margins in ColumnLayout below? or rename as paddings",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 24
+      },
+      "revId": "f0151a3e10d3898764bb1ec590d83c4042e2a0d4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
