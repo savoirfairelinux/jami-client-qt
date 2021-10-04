@@ -28,7 +28,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-ListView {
+JamiListView {
     id: root
 
     function getDistanceToBottom() {
@@ -179,11 +179,8 @@ ListView {
     displayMarginEnd: 4096
     maximumFlickVelocity: 2048
     verticalLayoutDirection: ListView.BottomToTop
-    clip: true
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
-
-    ScrollBar.vertical: ScrollBar {}
 
     model: MessagesAdapter.messageListModel
 
@@ -292,45 +289,69 @@ ListView {
             anchors.verticalCenter: typeIndicatorContainer.verticalCenter
         }
 
+        Connections {
+            target: MessagesAdapter
+
+            function onCurrentConvComposingListChanged () {
+                var typeIndicatorNameTextString = ""
+                var nameList = MessagesAdapter.currentConvComposingList
+
+                if (nameList.length > 4) {
+                    typeIndicatorNameText.text = ""
+                    typeIndicatorEndingText.text = JamiStrings.typeIndicatorMax
+                    typeIndicatorNameText.calculateWidth()
+                    return
+                }
+                if (nameList.length === 1) {
+                    typeIndicatorNameText.text = nameList[0]
+                    typeIndicatorEndingText.text =
+                            JamiStrings.typeIndicatorSingle.replace("{}", "")
+                    typeIndicatorNameText.calculateWidth()
+                    return
+                }
+
+                for (var i = 0; i < nameList.length; i++) {
+                    typeIndicatorNameTextString += nameList[i]
+
+                    if (i === nameList.length - 2)
+                        typeIndicatorNameTextString += JamiStrings.typeIndicatorAnd
+                    else if (i !== nameList.length - 1)
+                        typeIndicatorNameTextString += ", "
+                }
+                typeIndicatorNameText.text = typeIndicatorNameTextString
+                typeIndicatorEndingText.text =
+                        JamiStrings.typeIndicatorPlural.replace("{}", "")
+                typeIndicatorNameText.calculateWidth()
+            }
+        }
+
         Text {
             id: typeIndicatorNameText
+
+            property int textWidth: 0
+
+            function calculateWidth () {
+                if (!text)
+                    return 0
+                else {
+                    var textSize = JamiQmlUtils.getTextBoundingRect(font, text).width
+                    var typingContentWidth = typingDots.width + typingDots.anchors.leftMargin
+                                           + typeIndicatorNameText.anchors.leftMargin
+                                           + typeIndicatorEndingText.contentWidth
+                    typeIndicatorNameText.width =
+                            Math.min(typeIndicatorContainer.width - 5 - typingContentWidth,
+                                     textSize)
+                }
+            }
 
             anchors.left: typingDots.right
             anchors.leftMargin: 5
             anchors.verticalCenter: typeIndicatorContainer.verticalCenter
 
-            width: {
-                var textSize = text ? JamiQmlUtils.getTextBoundingRect(font, text).width : 0
-                var typingContentWidth = typingDots.width + typingDots.anchors.leftMargin
-                                       + typeIndicatorNameText.anchors.leftMargin
-                                       + typeIndicatorEndingText.contentWidth
-                return Math.min(typeIndicatorContainer.width - 5 - typingContentWidth, textSize)
-            }
-
             font.pointSize: 8
             font.bold: Font.DemiBold
             elide: Text.ElideRight
             color: JamiTheme.textColor
-            text: {
-                var finalText = ""
-                var nameList = MessagesAdapter.currentConvComposingList
-
-                if (nameList.length > 4)
-                    return ""
-                if (nameList.length === 1)
-                    return nameList[0]
-
-                for (var i = 0; i < nameList.length; i++) {
-                    finalText += nameList[i]
-
-                    if (i === nameList.length - 2)
-                        finalText += JamiStrings.typeIndicatorAnd
-                    else if (i !== nameList.length - 1)
-                        finalText += ", "
-                }
-
-                return finalText
-            }
         }
 
         Text {
@@ -341,16 +362,6 @@ ListView {
 
             font.pointSize: 8
             color: JamiTheme.textColor
-            text: {
-                var nameList = MessagesAdapter.currentConvComposingList
-
-                if (nameList.length > 4)
-                    return JamiStrings.typeIndicatorMax
-                if (nameList.length === 1)
-                    return JamiStrings.typeIndicatorSingle.replace("{}", "")
-
-                return JamiStrings.typeIndicatorPlural.replace("{}", "")
-            }
         }
     }
 }
