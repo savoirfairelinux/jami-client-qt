@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf4d5933_f06d5ced",
+        "filename": "src/commoncomponents/MessageDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-10-04T20:26:35Z",
+      "side": 1,
+      "message": "maybe we can disable the OpacityMask in Full Screen mode?\n\nSo no rounded corner",
+      "range": {
+        "startLine": 495,
+        "startChar": 44,
+        "endLine": 495,
+        "endChar": 53
+      },
+      "revId": "eea417d2bd64ac9517f1b4d6d0ca890134c9be35",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dab15f02_ad60f62a",
+        "filename": "src/commoncomponents/MessageDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-10-04T20:26:35Z",
+      "side": 1,
+      "message": "appWindow.toggleFullScreen()?",
+      "range": {
+        "startLine": 506,
+        "startChar": 36,
+        "endLine": 506,
+        "endChar": 58
+      },
+      "revId": "eea417d2bd64ac9517f1b4d6d0ca890134c9be35",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
