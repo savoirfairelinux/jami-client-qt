@@ -28,7 +28,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-ListView {
+JamiListView {
     id: root
 
     function getDistanceToBottom() {
@@ -179,11 +179,8 @@ ListView {
     displayMarginEnd: 4096
     maximumFlickVelocity: 2048
     verticalLayoutDirection: ListView.BottomToTop
-    clip: true
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
-
-    ScrollBar.vertical: ScrollBar {}
 
     model: MessagesAdapter.messageListModel
 
