@@ -119,10 +119,12 @@ Control {
         layer {
             enabled: true
             effect: DropShadow {
+                z: -1
                 horizontalOffset: 3.0
                 verticalOffset: 3.0
                 radius: 8.0
                 color: JamiTheme.shadowColor
+                transparentBorder: true
             }
         }
     }
