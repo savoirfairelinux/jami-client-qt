@@ -28,7 +28,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-ListView {
+JamiListView {
     id: root
 
     function getDistanceToBottom() {
@@ -179,11 +179,8 @@ ListView {
     displayMarginEnd: 4096
     maximumFlickVelocity: 2048
     verticalLayoutDirection: ListView.BottomToTop
-    clip: true
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
-
-    ScrollBar.vertical: ScrollBar {}
 
     model: MessagesAdapter.messageListModel
 
@@ -295,12 +292,14 @@ ListView {
         Text {
             id: typeIndicatorNameText
 
+            property int textWidth: 0
+
             anchors.left: typingDots.right
             anchors.leftMargin: 5
             anchors.verticalCenter: typeIndicatorContainer.verticalCenter
 
             width: {
-                var textSize = text ? JamiQmlUtils.getTextBoundingRect(font, text).width : 0
+                var textSize = text ? JamiQmlUtils.getTextBoundingRect(font, text).width : textWidth
                 var typingContentWidth = typingDots.width + typingDots.anchors.leftMargin
                                        + typeIndicatorNameText.anchors.leftMargin
                                        + typeIndicatorEndingText.contentWidth
@@ -315,10 +314,15 @@ ListView {
                 var finalText = ""
                 var nameList = MessagesAdapter.currentConvComposingList
 
-                if (nameList.length > 4)
+                if (nameList.length > 4) {
+                    textWidth = 0
                     return ""
-                if (nameList.length === 1)
+                }
+                if (nameList.length === 1) {
+                    textWidth = JamiQmlUtils.getTextBoundingRect(typeIndicatorNameText.font,
+                                                                 nameList[0]).width
                     return nameList[0]
+                }
 
                 for (var i = 0; i < nameList.length; i++) {
                     finalText += nameList[i]
@@ -328,6 +332,9 @@ ListView {
                     else if (i !== nameList.length - 1)
                         finalText += ", "
                 }
+
+                textWidth = JamiQmlUtils.getTextBoundingRect(typeIndicatorNameText.font,
+                                                             finalText).width
 
                 return finalText
             }
