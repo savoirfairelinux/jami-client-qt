@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21fe4c6a_1cac4690",
+        "filename": "src/commoncomponents/MessageDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-10-05T16:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf4d5933_f06d5ced",
+      "range": {
+        "startLine": 495,
+        "startChar": 44,
+        "endLine": 495,
+        "endChar": 53
+      },
+      "revId": "eea417d2bd64ac9517f1b4d6d0ca890134c9be35",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dab15f02_ad60f62a",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-10-04T20:26:35Z",
       "side": 1,
       "message": "appWindow.toggleFullScreen()?",
+      "range": {
+        "startLine": 506,
+        "startChar": 36,
+        "endLine": 506,
+        "endChar": 58
+      },
+      "revId": "eea417d2bd64ac9517f1b4d6d0ca890134c9be35",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52b926e9_5264a05d",
+        "filename": "src/commoncomponents/MessageDelegate.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 633
+      },
+      "writtenOn": "2021-10-05T16:06:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dab15f02_ad60f62a",
       "range": {
         "startLine": 506,
         "startChar": 36,
