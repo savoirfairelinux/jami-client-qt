@@ -127,6 +127,7 @@ CurrentAccount::updateData()
         set_sendReadReceipt(accConfig.sendReadReceipt, true);
         set_isRendezVous(accConfig.isRendezVous, true);
         set_autoAnswer(accConfig.autoAnswer, true);
+        set_receiveCallWhenBusy(accConfig.receiveCallWhenBusy, true);
         set_proxyEnabled(accConfig.proxyEnabled, true);
         set_upnpEnabled(accConfig.upnpEnabled, true);
         set_publishedSameAsLocal(accConfig.publishedSameAsLocal, true);

@@ -102,6 +102,17 @@ ColumnLayout {
         }
 
         ToggleSwitch {
+            id: checkBoxReceiveCallWhenBusy
+
+            labelText: JamiStrings.receiveCallWhenBusy
+            fontPointSize: JamiTheme.settingsFontSize
+
+            checked: CurrentAccount.receiveCallWhenBusy
+
+            onSwitchToggled: CurrentAccount.receiveCallWhenBusy = checked
+        }
+
+        ToggleSwitch {
             id: checkBoxCustomRingtone
 
             labelText: JamiStrings.enableCustomRingtone
