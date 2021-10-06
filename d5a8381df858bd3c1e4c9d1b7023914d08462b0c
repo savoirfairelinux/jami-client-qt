@@ -16,6 +16,23 @@
       "message": "!build",
       "revId": "d5a8381df858bd3c1e4c9d1b7023914d08462b0c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a3db32_60c7c782",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2021-10-06T19:49:56Z",
+      "side": 1,
+      "message": "the fix seems effective:\nhttps://jenkins.jami.net/blue/organizations/jenkins/packaging-gnu-linux/detail/packaging-gnu-linux/693/pipeline",
+      "revId": "d5a8381df858bd3c1e4c9d1b7023914d08462b0c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
