@@ -60,6 +60,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e5e1a42e_d1364470",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2021-10-07T15:49:07Z",
+      "side": 1,
+      "message": "ah yes.  thanks for catching, fixed.",
+      "parentUuid": "546aced1_f3106b1a",
+      "range": {
+        "startLine": 32,
+        "startChar": 20,
+        "endLine": 32,
+        "endChar": 35
+      },
+      "revId": "d5a8381df858bd3c1e4c9d1b7023914d08462b0c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "97acd206_d6219952",
         "filename": "CMakeLists.txt",
         "patchSetId": 1
@@ -71,6 +95,30 @@
       "writtenOn": "2021-10-07T15:43:11Z",
       "side": 1,
       "message": "Won\u0027t warn if Python 2 is found rather than Python 3.  Seems there\u0027s nothing older CMake can do about it, short of writing a custom macro.  Seems reasonable.",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 29
+      },
+      "revId": "d5a8381df858bd3c1e4c9d1b7023914d08462b0c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e94625ac_0ddbf125",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2021-10-07T15:49:07Z",
+      "side": 1,
+      "message": "indeed; that was my conclusion as well.  for older CMake, it\u0027s no worse than what we already had; but for newer ones \u003e\u003d 3.12.0 we do better of course.",
+      "parentUuid": "97acd206_d6219952",
       "range": {
         "startLine": 36,
         "startChar": 4,
