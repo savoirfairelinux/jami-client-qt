@@ -16,6 +16,24 @@
       "message": "See the note on https://cmake.org/cmake/help/latest/module/FindPythonInterp.html\n\nUnless anyone has a better yet still reasonable solution in mind,\nI propose we revert this, and check for cmake version, and if we have\ncmake 3.12.0 or later, use the FindPython3 module:\nhttps://cmake.org/cmake/help/latest/module/FindPython3.html#module:FindPython3",
       "revId": "297fae98387e62c343394486565a7e037f6371af",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83de4bb2_90d62adb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2021-10-07T14:28:21Z",
+      "side": 1,
+      "message": "From that note: \" In this case no attempt is made to avoid python executables from other versions. Use FindPython3, FindPython2 or FindPython instead.\"  So ISTM we should use FindPython3 instead of reverting (the check is still useful otherwise the build fails in a cryptic way).\n\nAnother possibility would be to *not* use Python for the trivial gen-resoures.py script that was added recently; then we wouldn\u0027t need Python at all for this build.",
+      "parentUuid": "8df6cd18_cfd9dd87",
+      "revId": "297fae98387e62c343394486565a7e037f6371af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
