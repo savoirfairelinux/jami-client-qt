@@ -129,7 +129,7 @@ private:
     /*
      * A local copy of the renderer's current frame.
      */
-    video::Frame frame_;
+    video::Frame* frame_;
 
     /*
      * A the frame's storage data used to set the image.
