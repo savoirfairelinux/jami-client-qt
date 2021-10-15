@@ -42,6 +42,15 @@ Rectangle {
     property bool isAudioOnly: false
     property alias callId: distantRenderer.rendererId
     property var linkedWebview: null
+    property string callPreviewId: ""
+
+    onCallPreviewIdChanged: {
+        testLog("\n\n CHANGING CALLPREVIEWID" + root.callPreviewId + " " + previewRenderer.rendererId + " \n\n")
+    }
+
+    function testLog(txt) {
+        console.log(this, txt)
+    }
 
     color: "black"
 
@@ -179,22 +188,21 @@ Rectangle {
                     id: previewRenderer
 
                     lrcInstance: LRCInstance
-                    visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused
+                    visible: VideoDevices.listSize && !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused
+
+                    rendererId: root.callPreviewId
+
+                    onVisibleChanged: {
+                        if (!visible) {
+                            VideoDevices.stopDevice(rendererId, true)
+                        }
+                    }
 
                     Connections {
                         target: CallAdapter
 
                         function onPreviewVisibilityNeedToChange(visible) {
                             previewRenderer.visible = visible
-                        }
-                    }
-
-                    Connections {
-                        target: VideoDevices
-
-                        // TODO: previewRenderer visible should be listening to a property
-                        function onDeviceListChanged() {
-                            previewRenderer.visible = VideoDevices.listSize !== 0
                         }
                     }
 
@@ -289,7 +297,15 @@ Rectangle {
                         target: CallAdapter
 
                         function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
-                                                 isRecording, isSIP, isConferenceCall, isGrid) {
+                                                 isRecording, isSIP, isConferenceCall, isGrid, previewId) {
+                            if (previewId != "") {
+                                if (root.callPreviewId != previewId)
+                                    VideoDevices.stopDevice(root.callPreviewId, true)
+                                VideoDevices.startDevice(previewId)
+                            } else {
+                                VideoDevices.stopDevice(root.callPreviewId, true)
+                            }
+                            root.callPreviewId = previewId
                             callOverlay.showOnHoldImage(isPaused)
                             root.isAudioOnly = isAudioOnly
                             audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
