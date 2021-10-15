@@ -36,14 +36,6 @@
 AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
 {
-    connect(lrcInstance_->renderer(), &RenderManager::previewFrameStarted, [this]() {
-        // TODO: listen to the correct signals that are needed to be added in daemon or lrc
-        auto callId = lrcInstance_->getCurrentCallId();
-        if (!callId.isEmpty())
-            set_currentRenderingDeviceType(
-                lrcInstance_->avModel().getCurrentRenderedDevice(callId).type);
-    });
-
     connect(&lrcInstance_->avModel(),
             &lrc::api::AVModel::audioDeviceEvent,
             this,
@@ -282,24 +274,4 @@ void
 AvAdapter::setHardwareAcceleration(bool accelerate)
 {
     lrcInstance_->avModel().setHardwareAcceleration(accelerate);
-}
-
-void
-AvAdapter::startPreviewing(bool force)
-{
-    lrcInstance_->renderer()->startPreviewing(force);
-}
-
-void
-AvAdapter::stopPreviewing()
-{
-    if (!lrcInstance_->hasActiveCall(true)) {
-        lrcInstance_->renderer()->stopPreviewing();
-    }
-}
-
-bool
-AvAdapter::isPreviewing()
-{
-    return lrcInstance_->renderer()->isPreviewing();
 }
