@@ -168,6 +168,9 @@ public:
     Q_INVOKABLE QVariant fpsSourceModel();
 
     Q_INVOKABLE void setDefaultDevice(int index, bool useSourceModel = false);
+    Q_INVOKABLE const QString getDefaultDevice();
+    Q_INVOKABLE QString startDevice(const QString& deviceId, bool force = false);
+    Q_INVOKABLE void stopDevice(const QString& deviceId);
     Q_INVOKABLE void setDefaultDeviceRes(int index);
     Q_INVOKABLE void setDefaultDeviceFps(int index);
 
@@ -202,4 +205,6 @@ private:
 
     lrc::api::video::ResRateList defaultResRateList_;
     lrc::api::video::FrameratesList defaultFpsList_;
+
+    bool deviceOpen_ {false};
 };

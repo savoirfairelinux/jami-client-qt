@@ -31,10 +31,13 @@ class PreviewRenderer : public QQuickPaintedItem
 {
     Q_OBJECT
     Q_PROPERTY(LRCInstance* lrcInstance MEMBER lrcInstance_ NOTIFY lrcInstanceChanged)
+    Q_PROPERTY(QString rendererId READ rendererId WRITE setRendererId)
 
 public:
     explicit PreviewRenderer(QQuickItem* parent = nullptr);
     virtual ~PreviewRenderer();
+    Q_INVOKABLE void setRendererId(const QString& id);
+    Q_INVOKABLE QString rendererId();
 
 Q_SIGNALS:
     void lrcInstanceChanged();
@@ -45,6 +48,8 @@ protected:
 
     // LRCInstance pointer (set in qml)
     LRCInstance* lrcInstance_ {nullptr};
+
+    QString rendererId_ = "local";
 
 private:
     QMetaObject::Connection previewFrameUpdatedConnection_;
@@ -78,7 +83,7 @@ public:
     Q_INVOKABLE QString takePhoto(int size);
 
 Q_SIGNALS:
-    void renderingStopped();
+    void renderingStopped(const QString id);
 
 private:
     void paint(QPainter* painter) override final;

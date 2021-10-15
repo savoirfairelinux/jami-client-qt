@@ -270,6 +270,35 @@ VideoDevices::setDefaultDevice(int index, bool useSourceModel)
     updateData();
 }
 
+const QString
+VideoDevices::getDefaultDevice()
+{
+    auto idx = devicesSourceModel_->getCurrentIndex();
+    auto rendererId = QString("camera://") + devicesSourceModel_
+                          ->data(devicesSourceModel_->index(idx, 0),
+                                 VideoInputDeviceModel::DeviceId)
+                          .toString();
+    return rendererId;
+}
+
+QString
+VideoDevices::startDevice(const QString& deviceId, bool force)
+{
+    lrcInstance_->renderer()->addDistantRenderer(deviceId);
+    deviceOpen_ = true;
+    return lrcInstance_->renderer()->startPreviewing(deviceId, force);
+}
+
+void
+VideoDevices::stopDevice(const QString& deviceId)
+{
+    if (!lrcInstance_->hasActiveCall(true)) {
+        lrcInstance_->renderer()->stopPreviewing(deviceId);
+        lrcInstance_->renderer()->removeDistantRenderer(deviceId);
+        deviceOpen_ = false;
+    }
+}
+
 void
 VideoDevices::setDefaultDeviceRes(int index)
 {
@@ -381,7 +410,7 @@ VideoDevices::onVideoDeviceEvent()
         auto& avModel = lrcInstance_->avModel();
         if (currentDeviceListSize == 0) {
             avModel.switchInputTo({}, callId);
-            avModel.stopPreview();
+            avModel.stopPreview(this->getDefaultDevice());
         } else if (deviceEvent == DeviceEvent::Removed) {
             avModel.switchInputTo(defaultDevice, callId);
         }
@@ -403,15 +432,18 @@ VideoDevices::onVideoDeviceEvent()
         }
 
         Q_EMIT deviceListChanged(currentDeviceListSize);
-    } else if (lrcInstance_->renderer()->isPreviewing()) {
+    } else if (deviceOpen_) {
         updateData();
 
         // Use QueuedConnection to make sure that it happens at the event loop of current device
         Utils::oneShotConnect(
             lrcInstance_->renderer(),
-            &RenderManager::previewRenderingStopped,
+            &RenderManager::distantRenderingStopped,
             this,
-            [cb] { cb(); },
+            [this, cb](const QString& id) { 
+                if (this->getDefaultDevice() == id)
+                    cb();
+                },
             Qt::QueuedConnection);
     } else {
         cb();
