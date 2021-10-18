@@ -184,7 +184,7 @@ ApplicationWindow {
 
     Connections {
         target: {
-            if (Qt.platform.os !== "windows")
+            if (Qt.platform.os !== "windows" && Qt.platform.os !== "osx")
                 return DBusErrorHandler
             return null
         }
@@ -214,7 +214,7 @@ ApplicationWindow {
 
         JamiQmlUtils.mainApplicationScreen = root.screen
 
-        if (Qt.platform.os !== "windows")
+        if (Qt.platform.os !== "windows" && Qt.platform.os !== "osx")
             DBusErrorHandler.setActive(true)
     }
 }
