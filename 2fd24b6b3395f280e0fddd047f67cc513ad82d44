@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b77e8ae4_e9563639",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-19T15:53:27Z",
+      "side": 1,
+      "message": "Some details, but seems ok for me and swarm ready!",
+      "revId": "2fd24b6b3395f280e0fddd047f67cc513ad82d44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33361a01_97c2be9c",
+        "filename": "src/commoncomponents/TypingDots.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-19T15:53:27Z",
+      "side": 1,
+      "message": "just 2021",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "2fd24b6b3395f280e0fddd047f67cc513ad82d44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dc300d4_8f048931",
+        "filename": "src/commoncomponents/TypingDots.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-19T15:53:27Z",
+      "side": 1,
+      "message": "first id should not be root?",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "2fd24b6b3395f280e0fddd047f67cc513ad82d44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6abbb658_da6a7101",
+        "filename": "src/mainview/components/MessageListView.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-19T15:53:27Z",
+      "side": 1,
+      "message": "a bit complex to read",
+      "range": {
+        "startLine": 302,
+        "startChar": 44,
+        "endLine": 307,
+        "endChar": 37
+      },
+      "revId": "2fd24b6b3395f280e0fddd047f67cc513ad82d44",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
