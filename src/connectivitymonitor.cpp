@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#if !defined(_WIN32) && !defined(__APPLE__)
+#ifndef _WIN32
 #include <glib.h>
 #include <gio/gio.h>
 #ifdef USE_LIBNM
@@ -211,14 +211,7 @@ nmClientCallback(G_GNUC_UNUSED GObject* source_object, GAsyncResult* result, Con
         g_clear_error(&error);
     }
 }
-#elif defined(__APPLE__)
-ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
-    : QObject(parent)
-{}
 
-#endif
-
-#if !defined(__APPLE__)
 ConnectivityMonitor::ConnectivityMonitor(QObject* parent)
     : QObject(parent)
 {
