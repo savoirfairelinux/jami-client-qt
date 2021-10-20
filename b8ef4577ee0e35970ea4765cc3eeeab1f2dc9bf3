@@ -22,6 +22,30 @@
       },
       "revId": "b8ef4577ee0e35970ea4765cc3eeeab1f2dc9bf3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a47dca60_bab7f7d3",
+        "filename": "src/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-10-20T21:27:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d761ed51_58188607",
+      "range": {
+        "startLine": 161,
+        "startChar": 78,
+        "endLine": 161,
+        "endChar": 86
+      },
+      "revId": "b8ef4577ee0e35970ea4765cc3eeeab1f2dc9bf3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
