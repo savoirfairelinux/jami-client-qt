@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d761ed51_58188607",
+        "filename": "src/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-20T15:32:08Z",
+      "side": 1,
+      "message": "For me this patch is ok. Just one thing. Whenv disabling video, h264 and vp8 should be greyed out and not activable (like android/client-gnome) to be perfect",
+      "range": {
+        "startLine": 161,
+        "startChar": 78,
+        "endLine": 161,
+        "endChar": 86
+      },
+      "revId": "b8ef4577ee0e35970ea4765cc3eeeab1f2dc9bf3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
