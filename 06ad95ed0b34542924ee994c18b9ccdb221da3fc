@@ -16,6 +16,24 @@
       "message": "I see 3 things:\n\n+ 1. When clicking on file sharing, the UI freeze and no file selector is shown\n+ 2. When sharing a screen, the first frame seesm to be black, so if nothing moves, the video stays black (until a window is moved, or a keyframe sent)\n+ 3. It\u0027s more a behaviour thing: When stopping the screen sharing, it should go in the state from before the screen sharing imho (like if no camera, if the user starts a screen share, and then stop, it should not start the camera)",
       "revId": "06ad95ed0b34542924ee994c18b9ccdb221da3fc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e03cba_ee32227a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-10-20T16:25:12Z",
+      "side": 1,
+      "message": "1- I already experienced that on any file selector opening on the client, but it happens rarely and is not related to this patch.\n2 - Doesn\u0027t happen in windows, will test on linux.\n3 - I had that in mind.- to be added in this patch.",
+      "parentUuid": "1f042d26_baf06672",
+      "revId": "06ad95ed0b34542924ee994c18b9ccdb221da3fc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
