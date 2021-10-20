@@ -240,4 +240,40 @@ ColumnLayout {
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
+
+    ElidedTextLabel {
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+        eText: JamiStrings.screenSharing
+        fontSize: JamiTheme.headerFontSize
+        maxWidth: itemWidth * 2
+    }
+
+    SettingsComboBox {
+        id: screenSharingFPSComboBoxSetting
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+        Layout.bottomMargin: JamiTheme.preferredMarginSize
+
+        widthOfComboBox: itemWidth
+        fontPointSize: JamiTheme.settingsFontSize
+
+        tipText: JamiStrings.selectScreenSharingFPS
+        labelText: JamiStrings.fps
+        currentSelectionText: VideoDevices.screenSharingDefaultFps.toString()
+        placeholderText: VideoDevices.screenSharingDefaultFps.toString()
+        comboModel: ListModel { id: screenSharingFpsModel }
+        role: "FPS"
+        Component.onCompleted: {
+            var elements = VideoDevices.getScreenSharingFpsModel()
+            for (var item in elements) {
+                screenSharingFpsModel.append({"FPS": elements[item]})
+            }
+        }
+
+        onActivated: VideoDevices.setDisplayFPS(screenSharingFpsModel.get(modelIndex).FPS)
+    }
 }
