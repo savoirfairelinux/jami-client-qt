@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18767513_f2110fa4",
+        "filename": "src/videodevices.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-21T15:08:28Z",
+      "side": 1,
+      "message": "can be a constexpr. Also may crash if \"default\" or 0 not present",
+      "range": {
+        "startLine": 211,
+        "startChar": 56,
+        "endLine": 211,
+        "endChar": 65
+      },
+      "revId": "58b6e6b68fd2f821b6231a090b82c663fc3f7b67",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
