@@ -196,6 +196,19 @@ MessagesAdapter::openUrl(const QString& url)
 }
 
 void
+MessagesAdapter::openDirectory(const QString& path)
+{
+    QFileInfo f(path);
+    if (f.exists()) {
+        if (f.isDir())
+            openUrl(path);
+        else
+            openUrl(f.dir().absolutePath());
+    }
+}
+
+
+void
 MessagesAdapter::acceptFile(const QString& interactionId)
 {
     auto convUid = lrcInstance_->get_selectedConvUid();
