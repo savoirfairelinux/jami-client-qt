@@ -22,6 +22,30 @@
       },
       "revId": "68fa23c786e08e02e749f3de8380d2e3b50cc0a9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33107415_bd860079",
+        "filename": "src/settingsview/components/AdvancedMediaSettings.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-10-26T17:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6788a93d_5998ebef",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 16
+      },
+      "revId": "68fa23c786e08e02e749f3de8380d2e3b50cc0a9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
