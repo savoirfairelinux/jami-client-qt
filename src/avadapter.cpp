@@ -83,12 +83,12 @@ AvAdapter::shareEntireScreen(int screenNumber)
         return;
     QRect rect = screen->geometry();
 
-    lrcInstance_->avModel().setDisplay(getScreenNumber(),
-                                       rect.x(),
-                                       rect.y(),
-                                       rect.width() * screen->devicePixelRatio(),
-                                       rect.height() * screen->devicePixelRatio(),
-                                       lrcInstance_->getCurrentCallId());
+    lrcInstance_->getCurrentCallModel()->setDisplay(getScreenNumber(),
+                                                    rect.x(),
+                                                    rect.y(),
+                                                    rect.width() * screen->devicePixelRatio(),
+                                                    rect.height() * screen->devicePixelRatio(),
+                                                    lrcInstance_->getCurrentCallId());
 }
 
 void
@@ -96,12 +96,12 @@ AvAdapter::shareAllScreens()
 {
     const auto arrangementRect = getAllScreensBoundingRect();
 
-    lrcInstance_->avModel().setDisplay(getScreenNumber(),
-                                       arrangementRect.x(),
-                                       arrangementRect.y(),
-                                       arrangementRect.width(),
-                                       arrangementRect.height(),
-                                       lrcInstance_->getCurrentCallId());
+    lrcInstance_->getCurrentCallModel()->setDisplay(getScreenNumber(),
+                                                    arrangementRect.x(),
+                                                    arrangementRect.y(),
+                                                    arrangementRect.width(),
+                                                    arrangementRect.height(),
+                                                    lrcInstance_->getCurrentCallId());
 }
 
 void
@@ -161,7 +161,7 @@ AvAdapter::captureAllScreens()
 void
 AvAdapter::shareFile(const QString& filePath)
 {
-    lrcInstance_->avModel().setInputFile(filePath, lrcInstance_->getCurrentCallId());
+    lrcInstance_->getCurrentCallModel()->setInputFile(filePath, lrcInstance_->getCurrentCallId());
 }
 
 void
@@ -175,20 +175,20 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
         x = y = width = height = 0;
         xrectsel(&x, &y, &width, &height);
 
-        lrcInstance_->avModel().setDisplay(getScreenNumber(),
-                                           x,
-                                           y,
-                                           width < 128 ? 128 : width,
-                                           height < 128 ? 128 : height,
-                                           lrcInstance_->getCurrentCallId());
+        lrcInstance_->getCurrentCallModel()->setDisplay(getScreenNumber(),
+                                                        x,
+                                                        y,
+                                                        width < 128 ? 128 : width,
+                                                        height < 128 ? 128 : height,
+                                                        lrcInstance_->getCurrentCallId());
     });
 #else
-    lrcInstance_->avModel().setDisplay(getScreenNumber(),
-                                       x,
-                                       y,
-                                       width < 128 ? 128 : width,
-                                       height < 128 ? 128 : height,
-                                       lrcInstance_->getCurrentCallId());
+    lrcInstance_->getCurrentCallModel()->setDisplay(getScreenNumber(),
+                                                    x,
+                                                    y,
+                                                    width < 128 ? 128 : width,
+                                                    height < 128 ? 128 : height,
+                                                    lrcInstance_->getCurrentCallId());
 #endif
 }
 
@@ -197,8 +197,8 @@ AvAdapter::stopSharing()
 {
     auto callId = lrcInstance_->getCurrentCallId();
     if (!callId.isEmpty())
-        lrcInstance_->avModel().switchInputTo(lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
-                                              callId);
+        lrcInstance_->getCurrentCallModel()
+            ->switchInputTo(lrcInstance_->avModel().getCurrentVideoCaptureDevice(), callId);
 }
 
 void
