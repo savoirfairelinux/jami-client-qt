@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dcaf2a97_a585e343",
+        "filename": "src/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2021-10-27T20:30:52Z",
+      "side": 1,
+      "message": "we use function (mouse) in thos files",
+      "parentUuid": "49f04bb3_3f57df7f",
+      "revId": "efd1edb4eba7d0581ac780a88863a619e8172224",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55cfa4c8_1d7c83da",
         "filename": "src/constant/JamiStrings.qml",
         "patchSetId": 2
