@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd1fe210_a560e2ca",
+        "filename": "resources/icons/hand_black_24dp.svg",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-10-27T20:57:20Z",
+      "side": 1,
+      "message": "Changed",
+      "parentUuid": "9b2e656c_8948f7f2",
+      "range": {
+        "startLine": 2,
+        "startChar": 34,
+        "endLine": 3,
+        "endChar": 125
+      },
+      "revId": "13c01624f52f782729bf57824f53bddef0f93d55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0b77df7_364a12e1",
         "filename": "src/calladapter.h",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2021-10-26T19:20:52Z",
       "side": 1,
       "message": "no need for const",
+      "range": {
+        "startLine": 71,
+        "startChar": 55,
+        "endLine": 71,
+        "endChar": 60
+      },
+      "revId": "13c01624f52f782729bf57824f53bddef0f93d55",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f44b6deb_604e52c0",
+        "filename": "src/calladapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-10-27T20:57:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0b77df7_364a12e1",
       "range": {
         "startLine": 71,
         "startChar": 55,
