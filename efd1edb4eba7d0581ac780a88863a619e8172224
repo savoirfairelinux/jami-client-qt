@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "49f04bb3_3f57df7f",
+        "filename": "src/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-27T20:24:57Z",
+      "side": 1,
+      "message": "Nope, cf SmartListItemDelegate or OngoingCallPage",
+      "parentUuid": "bcee7cad_ce903962",
+      "revId": "efd1edb4eba7d0581ac780a88863a619e8172224",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55cfa4c8_1d7c83da",
         "filename": "src/constant/JamiStrings.qml",
         "patchSetId": 2
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "I think Save file is clear",
       "parentUuid": "a22021e3_cd98b0ab",
+      "revId": "efd1edb4eba7d0581ac780a88863a619e8172224",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bfa3c6d_48d839b9",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 372,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-27T20:24:57Z",
+      "side": 1,
+      "message": "I agree and it homogeneizes with android. Done",
+      "parentUuid": "6293eea0_8629b31c",
       "revId": "efd1edb4eba7d0581ac780a88863a619e8172224",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
