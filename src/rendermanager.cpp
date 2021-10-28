@@ -144,24 +144,14 @@ FrameWrapper::slotFrameUpdated(const QString& id)
 
         unsigned int width = renderer_->size().width();
         unsigned int height = renderer_->size().height();
-#ifndef Q_OS_LINUX
         unsigned int size = frame_.storage.size();
         auto imageFormat = QImage::Format_ARGB32_Premultiplied;
-#else
-        unsigned int size = frame_.size;
-        auto imageFormat = QImage::Format_ARGB32;
-#endif
         /*
          * If the frame is empty or not the expected size,
          * do nothing and keep the last rendered QImage.
          */
         if (size != 0 && size == width * height * 4) {
-#ifndef Q_OS_LINUX
             buffer_ = std::move(frame_.storage);
-#else
-            buffer_.reserve(size);
-            std::move(frame_.ptr, frame_.ptr + size, buffer_.begin());
-#endif
             image_.reset(new QImage((uchar*) buffer_.data(), width, height, imageFormat));
         }
     }
