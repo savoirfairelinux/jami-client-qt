@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b75002a_bd73d2fe",
+        "filename": "src/avadapter.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-10-29T15:58:45Z",
+      "side": 0,
+      "message": "Removing this breaks screen sharing (we can\u0027t stop screen sharing as current rendered is now incorrect)",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 45,
+        "endChar": 7
+      },
+      "revId": "eacdd8af61965a0021420df5ce796943a12c069a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
