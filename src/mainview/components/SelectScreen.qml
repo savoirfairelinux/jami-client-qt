@@ -31,17 +31,26 @@ import "../../commoncomponents"
 // is to make user aware of which screen they want to share,
 // during the video call, if the context menu item is selected.
 Window {
-    id: selectScreenWindow
+    id: root
 
     property int minWidth: 650
     property int minHeight: 500
 
     property int selectedScreenNumber: -1
     property bool selectAllScreens: false
+    property var screens
 
     // How many rows the ScrollView should have.
     function calculateRepeaterModel() {
-        var numberOfScreens = Qt.application.screens.length
+        screens = []
+        for (var idx in Qt.application.screens) {
+            screens.push(qsTr("Screen") + " " + idx)
+        }
+        var screenList = AVModel.getWindowsList()
+        for (var idx in screenList) {
+            screens.push(screenList[idx])
+        }
+        var numberOfScreens = screens.length
 
         return Math.ceil(numberOfScreens / 2)
     }
@@ -168,8 +177,14 @@ Window {
                                 fillMode: Image.PreserveAspectFit
                                 mipmap: true
 
-                                Component.onCompleted: AvAdapter.captureScreen(
-                                                           calculateScreenNumber(index, false) - 1)
+                                Component.onCompleted: {
+                                    if (index < Qt.application.screens.length)
+                                        AvAdapter.captureScreen(
+                                                                calculateScreenNumber(index, false) - 1)
+                                    else {
+                                        visible = false
+                                    }
+                                }
                             }
 
                             Text {
@@ -178,9 +193,12 @@ Window {
                                 anchors.top: screenShotOdd.bottom
                                 anchors.topMargin: 10
                                 anchors.horizontalCenter: screenSelectionRectOdd.horizontalCenter
+                                width: parent.width
 
                                 font.pointSize: JamiTheme.textFontSize - 2
-                                text: qsTr("Screen") + " " + calculateScreenNumber(index, false)
+                                text: screens[calculateScreenNumber(index, false) - 1]
+                                elide: Text.ElideMiddle
+                                horizontalAlignment: Text.AlignHCenter
                                 color: JamiTheme.textColor
                             }
 
@@ -215,8 +233,8 @@ Window {
 
                             visible: {
                                 if (calculateScreenNumber(index, true) >=
-                                        Qt.application.screens.length)
-                                    return (Qt.application.screens.length) % 2 != 1
+                                        screens.length)
+                                    return (screens.length) % 2 != 1
                                 return true
                             }
 
@@ -232,11 +250,10 @@ Window {
 
                                 fillMode: Image.PreserveAspectFit
                                 mipmap: true
-
                                 Component.onCompleted: {
-                                    if (screenSelectionRectEven.visible)
-                                        AvAdapter.captureScreen(
-                                                    calculateScreenNumber(index, true) - 1)
+                                    if (index >= Qt.application.screens.length) {
+                                        visible = false
+                                    }
                                 }
                             }
 
@@ -246,9 +263,12 @@ Window {
                                 anchors.top: screenShotEven.bottom
                                 anchors.topMargin: 10
                                 anchors.horizontalCenter: screenSelectionRectEven.horizontalCenter
+                                width: parent.width
 
                                 font.pointSize: JamiTheme.textFontSize - 2
-                                text: qsTr("Screen") + " " + (calculateScreenNumber(index, true))
+                                text: screens[calculateScreenNumber(index, true) - 1]
+                                elide: Text.ElideMiddle
+                                horizontalAlignment: Text.AlignHCenter
                                 color: JamiTheme.textColor
                             }
 
@@ -360,9 +380,14 @@ Window {
         onClicked: {
             if (selectAllScreens)
                 AvAdapter.shareAllScreens()
-            else
-                AvAdapter.shareEntireScreen(selectedScreenNumber - 1)
-            selectScreenWindow.close()
+            else {
+                if (selectedScreenNumber < )
+                    AvAdapter.shareEntireScreen(selectedScreenNumber - 1)
+                else {
+                    // share specific window
+                }
+            }
+            root.close()
         }
     }
 }

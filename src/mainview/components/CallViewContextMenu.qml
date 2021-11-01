@@ -119,7 +119,8 @@ ContextMenuAutoLoader {
                 if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
                     AvAdapter.muteCamera = root.isVideoMuted
                 }
-                if (Qt.application.screens.length === 1) {
+                var screensSize = Qt.application.screens.length + AVModel.getWindowsList().length
+                if (screensSize === 1) {
                     AvAdapter.shareEntireScreen(0)
                 } else {
                     SelectScreenWindowCreation.createSelectScreenWindowObject()
