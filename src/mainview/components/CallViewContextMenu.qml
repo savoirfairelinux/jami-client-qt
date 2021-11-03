@@ -101,14 +101,12 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: stopSharing
 
-            canTrigger: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY
+            canTrigger: (AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE)
                         && !isSIP
             itemName: JamiStrings.stopSharing
             iconSource: JamiResources.share_stop_black_24dp_svg
             iconColor: JamiTheme.redColor
-            onClicked: {
-                AvAdapter.stopSharing()
-            }
+            onClicked: AvAdapter.stopSharing()
         },
         GeneralMenuItem {
             id: shareScreen
@@ -118,6 +116,9 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.shareScreen
             iconSource: JamiResources.share_screen_black_24dp_svg
             onClicked: {
+                if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
+                    AvAdapter.muteCamera = root.isVideoMuted
+                }
                 if (Qt.application.screens.length === 1) {
                     AvAdapter.shareEntireScreen(0)
                 } else {
@@ -134,6 +135,9 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.shareScreenArea
             iconSource: JamiResources.share_screen_black_24dp_svg
             onClicked: {
+                if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
+                    AvAdapter.muteCamera = root.isVideoMuted
+                }
                 if (Qt.platform.os !== "windows") {
                     AvAdapter.shareScreenArea(0, 0, 0, 0)
                 } else {
