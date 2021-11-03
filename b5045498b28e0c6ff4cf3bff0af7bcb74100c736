@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3c87186_ae26f82b",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-11-03T19:20:47Z",
+      "side": 1,
+      "message": "question. why isVideoMuted is not the only thing necessary now?\n\nIn what case do we absolutely needs isAudioOnly.",
+      "range": {
+        "startLine": 142,
+        "startChar": 40,
+        "endLine": 142,
+        "endChar": 76
+      },
+      "revId": "b5045498b28e0c6ff4cf3bff0af7bcb74100c736",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
