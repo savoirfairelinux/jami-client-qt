@@ -54,6 +54,7 @@ FrameWrapper::startRendering()
 
     try {
         renderer_ = const_cast<video::Renderer*>(&avModel_.getRenderer(id_));
+        renderer_->show();
     } catch (std::out_of_range& e) {
         qWarning() << e.what();
         return false;
@@ -291,7 +292,9 @@ RenderManager::addDistantRenderer(const QString& id)
             /*
              * If the renderer has already started, then start the slot.
              */
-            if (avModel_.getRenderer(id).isRendering())
+            auto* renderer = const_cast<video::Renderer*>(&avModel_.getRenderer(id));
+            renderer->show();
+            if (renderer->isRendering())
                 dfw->slotRenderingStarted(id);
         } catch (...) {
         }
