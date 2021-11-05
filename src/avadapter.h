@@ -44,6 +44,9 @@ Q_SIGNALS:
 protected:
     void safeInit() override {};
 
+    // Share a specific windows by its id.
+    Q_INVOKABLE void shareSpecificWindow(const QString& windowId);
+
     // Share the screen specificed by screen number.
     Q_INVOKABLE void shareEntireScreen(int screenNumber);
 

@@ -84,18 +84,14 @@ AvAdapter::getAllScreensBoundingRect()
 }
 
 void
-AvAdapter::shareSpecificWindow(int windowId)
+AvAdapter::shareSpecificWindow(const QString& windowId)
 {
-    QScreen* screen = QGuiApplication::screens().at(screenNumber);
-    if (!screen)
-        return;
-    QRect rect = screen->geometry();
-
-    auto resource = lrcInstance_->avModel().getDisplay(getScreenNumber(),
-                                       rect.x(),
-                                       rect.y(),
-                                       rect.width() * screen->devicePixelRatio(),
-                                       rect.height() * screen->devicePixelRatio());
+    auto rect = getAllScreensBoundingRect();
+    auto resource = lrcInstance_->avModel().getDisplay(windowId,
+                                                       rect.left(),
+                                                       rect.top(),
+                                                       rect.right(),
+                                                       rect.bottom());
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()->requestMediaChange(callId,
                                                             "video_0",

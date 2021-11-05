@@ -124,7 +124,7 @@ Window {
                         spacing: screenSelectionScrollViewColumn.spacing
 
                         Connections {
-                            target: selectScreenWindow
+                            target: root
 
                             function onSelectedScreenNumberChanged() {
                                 // Recover from green state.
@@ -305,7 +305,7 @@ Window {
                     border.color: borderColor
 
                     Connections {
-                        target: selectScreenWindow
+                        target: root
 
                         function onSelectedScreenNumberChanged() {
                             // Recover from green state.
@@ -381,10 +381,11 @@ Window {
             if (selectAllScreens)
                 AvAdapter.shareAllScreens()
             else {
-                if (selectedScreenNumber < )
+                if (selectedScreenNumber <= Qt.application.screens.length)
                     AvAdapter.shareEntireScreen(selectedScreenNumber - 1)
                 else {
                     // share specific window
+                    AvAdapter.shareSpecificWindow(screens[selectedScreenNumber - 1])
                 }
             }
             root.close()
