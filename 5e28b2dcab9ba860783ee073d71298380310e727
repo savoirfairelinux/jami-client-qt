@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cee23d84_876a9340",
+        "filename": "src/videodevices.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-11-05T20:12:55Z",
+      "side": 1,
+      "message": "no need because we check the contains after this. I guess only \"!desktopfpsSource[CHANNEL_DEFAULT].empty()\" is enough if desktopfpsSource[CHANNEL_DEFAULT] reutnr \"\"",
+      "range": {
+        "startLine": 212,
+        "startChar": 8,
+        "endLine": 212,
+        "endChar": 35
+      },
+      "revId": "5e28b2dcab9ba860783ee073d71298380310e727",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
