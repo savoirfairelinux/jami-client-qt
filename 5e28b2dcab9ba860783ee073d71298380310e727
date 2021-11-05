@@ -22,6 +22,30 @@
       },
       "revId": "5e28b2dcab9ba860783ee073d71298380310e727",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36669488_22e5a8a0",
+        "filename": "src/videodevices.cpp",
+        "patchSetId": 9
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-11-05T20:18:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cee23d84_876a9340",
+      "range": {
+        "startLine": 212,
+        "startChar": 8,
+        "endLine": 212,
+        "endChar": 35
+      },
+      "revId": "5e28b2dcab9ba860783ee073d71298380310e727",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
