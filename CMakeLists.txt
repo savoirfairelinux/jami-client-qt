@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(jami-qt)
+project(Jami)
 
 if(MSVC)
     cmake_minimum_required(VERSION 3.15)
@@ -410,14 +410,19 @@ endif()
 include_directories(${PROJECT_SOURCE_DIR}
                     ${SRC_DIR})
 
-# common executable sources
+# common executable sources\
+SET(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+  set_source_files_properties(${myApp_ICON} PROPERTIES
+       MACOSX_PACKAGE_LOCATION "Resources")
 qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
                   ${SRC_DIR}/main.cpp
                   ${COMMON_HEADERS}
                   ${COMMON_SOURCES}
+                  ${myApp_ICON}
                   ${QML_RESOURCES}
                   ${QML_RESOURCES_QML}
                   ${LRC_SRC_PATH}/webresource.qrc)
+
 
 if(MSVC)
     # Makes it a GUI executable instead of a console application
@@ -615,6 +620,7 @@ else()
                           ${SYSTEM_CONFIGURATUION}
                           qrencode)
 
+
      # translations
      if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
          message("Releasing and copying translation files")
@@ -636,8 +642,10 @@ else()
          install(DIRECTORY "${CMAKE_BINARY_DIR}/share/libringclient/translations/"
                             DESTINATION ${CMAKE_INSTALL_PREFIX}/share/libringclient/translations)
       endif()
+      set_target_properties(${PROJECT_NAME} PROPERTIES
+          MACOSX_BUNDLE TRUE
+          MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Info.plist)
 endif()
-
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>English</string>
+    <key>CFBundleIdentifier</key>
+    <string>cx.ring</string>
+    <key>NSHighResolutionCapable</key>
+    <string>True</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Jami requires to access your camera to make calls and record video</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Jami requires to access your microphone to make calls and record audio</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Jami requires to access your photo library to show image on profile and send via chat</string>
+</dict>
+</plist>
