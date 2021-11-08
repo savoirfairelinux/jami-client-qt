@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(jami-qt)
+project(Jami)
 
 if(MSVC)
     cmake_minimum_required(VERSION 3.15)
@@ -391,6 +391,9 @@ else()
 
     find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
     find_library(SYSTEM_CONFIGURATUION SystemConfiguration)
+    SET(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+    SET_SOURCE_FILES_PROPERTIES(${myApp_ICON} PROPERTIES
+           MACOSX_PACKAGE_LOCATION Resources)
 endif()
 
 # Qt find package
@@ -410,7 +413,7 @@ endif()
 include_directories(${PROJECT_SOURCE_DIR}
                     ${SRC_DIR})
 
-# common executable sources
+# common executable sources\
 qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
                   ${SRC_DIR}/main.cpp
                   ${COMMON_HEADERS}
@@ -418,6 +421,7 @@ qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
                   ${QML_RESOURCES}
                   ${QML_RESOURCES_QML}
                   ${LRC_SRC_PATH}/webresource.qrc)
+
 
 if(MSVC)
     # Makes it a GUI executable instead of a console application
@@ -609,6 +613,7 @@ elseif (NOT APPLE)
     add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 else()
+    target_sources(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
     target_link_libraries(${PROJECT_NAME} PRIVATE
                           ${QML_LIBS}
                           ${LRC_LIB_NAME}
@@ -636,8 +641,22 @@ else()
          install(DIRECTORY "${CMAKE_BINARY_DIR}/share/libringclient/translations/"
                             DESTINATION ${CMAKE_INSTALL_PREFIX}/share/libringclient/translations)
       endif()
+      set_target_properties(${PROJECT_NAME} PROPERTIES
+          MACOSX_BUNDLE TRUE
+          MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Info.plist
+          MACOSX_BUNDLE_GUI_IDENTIFIER "cx.ring"
+          MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION_NAME}"
+          MACOSX_BUNDLE_LONG_VERSION_STRING "${PROJ_NAME} ${JAMI_VERSION_NAME}"
+          MACOSX_BUNDLE_BUNDLE_VERSION ${JAMI_VERSION}
+          MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}"
+          MACOSX_BUNDLE_INFO_STRING "Build of ${PROJ_NAME}, version ${JAMI_VERSION}"
+          MACOSX_BUNDLE_BUNDLE_NAME ${PROJ_NAME}
+          MACOSX_BUNDLE_ICON_FILE "jami.icns")
+      add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                         COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
+                                 -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
+                                 -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
 endif()
-
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
