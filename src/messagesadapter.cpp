@@ -54,7 +54,10 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
         set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
-        set_currentConvComposingList({});
+        if (!conversation.typers.empty())
+            set_currentConvComposingList(conversation.typers.values());
+        else
+            set_currentConvComposingList({});
     });
 
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
@@ -435,11 +438,13 @@ MessagesAdapter::onComposingStatusChanged(const QString& convId,
                                           bool isComposing)
 {
     if (lrcInstance_->get_selectedConvUid() == convId) {
-        auto name = lrcInstance_->getCurrentContactModel()->bestNameForContact(contactUri);
-        if (isComposing)
+        const QString& accId = lrcInstance_->get_currentAccountId();
+        auto& conversation = lrcInstance_->getConversationFromConvUid(convId, accId);
+        currentConvComposingList_.clear();
+        for (const auto& id : conversation.typers) {
+            auto name = lrcInstance_->getCurrentContactModel()->bestNameForContact(contactUri);
             currentConvComposingList_.append(name);
-        else
-            currentConvComposingList_.removeOne(name);
+        }
 
         Q_EMIT currentConvComposingListChanged();
     }
