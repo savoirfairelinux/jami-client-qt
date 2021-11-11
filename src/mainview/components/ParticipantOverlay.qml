@@ -31,8 +31,8 @@ Item {
     id: root
 
     // svg path for the participant indicators background shape
-    property int shapeWidth: indicatorsRowLayout.width + 8
-    property int shapeHeight: 16
+    property int shapeWidth: participantFootInfo.width + 8
+    property int shapeHeight: 30
     property int shapeRadius: 6
     property string pathShape: "M0,0 h%1 q%2,0 %2,%2 v%3 h-%4 z"
         .arg(shapeWidth - shapeRadius)
@@ -41,6 +41,7 @@ Item {
         .arg(shapeWidth)
 
     property string uri: overlayMenu.uri
+    property string bestName: ""
     property bool participantIsActive: false
     property bool participantIsHost: false
     property bool participantIsModerator: false
@@ -63,7 +64,7 @@ Item {
     function setMenu(newUri, bestName, isLocal, isActive, showMax) {
 
         overlayMenu.uri = newUri
-        overlayMenu.bestName = bestName
+        root.bestName = bestName
 
         var isHost = CallAdapter.isCurrentHost()
         var isModerator = CallAdapter.isCurrentModerator()
@@ -87,94 +88,12 @@ Item {
         overlayMenu.showMaximize = isModerator && showMax
         overlayMenu.showMinimize = isModerator && participantIsActive
         overlayMenu.showHangup = isModerator && !isLocal && !participantIsHost
-        overlayMenu.showLowerHand = isModerator && participantHandIsRaised
     }
 
-    // Participant header with host, moderator and mute indicators
-    Rectangle {
-        id: participantIndicators
-        width: indicatorsRowLayout.width
-        height: shapeHeight
-        visible: participantIsHost || participantIsModerator || participantIsMuted
-        color: "transparent"
-        anchors.bottom: parent.bottom
-
-        Shape {
-            id: backgroundShape
-            ShapePath {
-                id: backgroundShapePath
-                strokeColor: "transparent"
-                fillColor: JamiTheme.darkGreyColorOpacity
-                capStyle: ShapePath.RoundCap
-                PathSvg { path: pathShape }
-            }
-        }
-
-        RowLayout {
-            id: indicatorsRowLayout
-            height: parent.height
-            anchors.verticalCenter: parent.verticalCenter
-
-            ResponsiveImage {
-                id: isHostIndicator
-
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 6
-
-                containerHeight: 12
-                containerWidth: 12
-
-                visible: participantIsHost
-
-                source: JamiResources.star_outline_24dp_svg
-                color: JamiTheme.whiteColor
-            }
-
-            ResponsiveImage {
-                id: isModeratorIndicator
-
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 6
-
-                containerHeight: 12
-                containerWidth: 12
-
-                visible: participantIsModerator
-
-                source: JamiResources.moderator_svg
-                color: JamiTheme.whiteColor
-            }
-
-            ResponsiveImage {
-                id: isMutedIndicator
-
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 6
-
-                containerHeight: 12
-                containerWidth: 12
-
-                visible: participantIsMuted
-
-                source: JamiResources.micro_off_black_24dp_svg
-                color: JamiTheme.whiteColor
-            }
-
-            ResponsiveImage {
-                id: isHandRaisedIndicator
-
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 6
-
-                containerHeight: 12
-                containerWidth: 12
-
-                visible: participantHandIsRaised
-
-                source: JamiResources.hand_black_24dp_svg
-                color: JamiTheme.whiteColor
-            }
-        }
+    TextMetrics {
+        id: nameTextMetrics
+        text: bestName
+        font.pointSize: JamiTheme.participantFontSize
     }
 
     Loader {
@@ -242,8 +161,136 @@ Item {
             }
         }
 
-        ParticipantOverlayMenu { id: overlayMenu }
+        // Participant header with host, moderator and mute indicators
+        Rectangle {
+            id: participantIndicators
+            width: participantRect.width
+            height: shapeHeight
+            visible: participantIsHost || participantIsModerator || participantIsMuted
+            color: "transparent"
+            anchors.bottom: parent.bottom
+
+            Shape {
+                id: backgroundShape
+                ShapePath {
+                    id: backgroundShapePath
+                    strokeColor: "transparent"
+                    fillColor: JamiTheme.darkGreyColorOpacity
+                    capStyle: ShapePath.RoundCap
+                    PathSvg { path: pathShape }
+                }
+            }
+
+            RowLayout {
+                id: participantFootInfo
+                height: parent.height
+                anchors.verticalCenter: parent.verticalCenter
+                Text {
+                    id: bestNameLabel
+
+                    Layout.leftMargin: 8
+                    Layout.preferredWidth: Math.min(nameTextMetrics.boundingRect.width + 8,
+                                                    participantIndicators.width - indicatorsRowLayout.width - 16)
+                    Layout.preferredHeight: shapeHeight
+
+                    text: bestName
+                    elide: Text.ElideRight
+                    color: JamiTheme.whiteColor
+                    font.pointSize: JamiTheme.participantFontSize
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                }
+
+                RowLayout {
+                    id: indicatorsRowLayout
+                    height: parent.height
+                    Layout.alignment: Qt.AlignVCenter
+
+                    ResponsiveImage {
+                        id: isHostIndicator
+
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 6
+
+                        containerHeight: 12
+                        containerWidth: 12
+
+                        visible: participantIsHost
+
+                        source: JamiResources.star_outline_24dp_svg
+                        color: JamiTheme.whiteColor
+                    }
+
+                    ResponsiveImage {
+                        id: isModeratorIndicator
+
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 6
+
+                        containerHeight: 12
+                        containerWidth: 12
+
+                        visible: participantIsModerator
+
+                        source: JamiResources.moderator_svg
+                        color: JamiTheme.whiteColor
+                    }
+
+                    ResponsiveImage {
+                        id: isMutedIndicator
+
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 6
+
+                        containerHeight: 12
+                        containerWidth: 12
+
+                        visible: participantIsMuted
+
+                        source: JamiResources.micro_off_black_24dp_svg
+                        color: "red"
+                    }
+
+                    ResponsiveImage {
+                        id: isHandRaisedIndicator
+
+                        Layout.alignment: Qt.AlignVCenter
+                        Layout.leftMargin: 6
+
+                        containerHeight: 12
+                        containerWidth: 12
+
+                        visible: root.participantHandIsRaised
+
+                        source: JamiResources.hand_black_24dp_svg
+                        color: JamiTheme.whiteColor
+                    }
+                }
+            }
+        }
+
+        ParticipantOverlayMenu {
+            id: overlayMenu
+            visible: participantIsModerator
+        }
 
         Behavior on opacity { NumberAnimation { duration: JamiTheme.shortFadeDuration }}
+    }
+
+    PushButton {
+        id: isRaiseHandIndicator
+        source: JamiResources.hand_black_24dp_svg
+        imageColor: JamiTheme.whiteColor
+        preferredSize: shapeHeight
+        visible: root.participantHandIsRaised
+        anchors.right: parent.right
+        checkable: root.participantIsModerator
+        pressedColor: JamiTheme.raiseHandColor
+        hoveredColor: JamiTheme.raiseHandColor
+        normalColor: JamiTheme.raiseHandColor
+        z: participantRect.z + 1
+        toolTipText: root.participantIsModerator ? JamiStrings.lowerHand : ""
+        onClicked: CallAdapter.setHandRaised(uri, false)
+        radius: 5
     }
 }
