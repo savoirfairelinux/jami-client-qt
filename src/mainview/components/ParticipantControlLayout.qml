@@ -55,7 +55,13 @@ RowLayout {
         source: showModeratorMute ?
                     JamiResources.micro_black_24dp_svg :
                     JamiResources.micro_off_black_24dp_svg
-        onClicked: CallAdapter.muteParticipant(uri, showModeratorMute)
+        onClicked: {
+            if (showModeratorUnmute && isLocalMuted) {
+                muteAlertMessage = JamiStrings.participantMicIsStillMuted
+                muteAlertActive = true
+            }
+            CallAdapter.muteParticipant(uri, showModeratorMute)
+        }
         toolTipText: showModeratorMute? JamiStrings.muteParticipant
                                       : JamiStrings.unmuteParticipant
     }
@@ -82,18 +88,6 @@ RowLayout {
         source: JamiResources.close_fullscreen_24dp_svg
         onClicked: CallAdapter.minimizeParticipant(uri)
         toolTipText: JamiStrings.minimizeParticipant
-    }
-
-    ParticipantOverlayButton {
-        id: lowerHandParticipant
-
-        visible: showLowerHand
-        preferredSize: iconButtonPreferredSize
-        Layout.preferredHeight: buttonPreferredSize
-        Layout.preferredWidth: buttonPreferredSize
-        source: JamiResources.hand_black_24dp_svg
-        onClicked: CallAdapter.setHandRaised(uri, false)
-        toolTipText: JamiStrings.lowerHand
     }
 
     ParticipantOverlayButton {

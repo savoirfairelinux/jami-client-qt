@@ -156,7 +156,16 @@ Control {
     property list<Action> primaryActions: [
         Action {
             id: muteAudioAction
-            onTriggered: CallAdapter.muteThisCallToggle(!isAudioMuted)
+            onTriggered: {
+                var muteState = CallAdapter.getMuteState(CurrentAccount.uri)
+                var modMuted = muteState === CallAdapter.MODERATOR_MUTED
+                    || muteState === CallAdapter.BOTH_MUTED
+                if (isAudioMuted && modMuted) {
+                    muteAlertActive = true
+                    muteAlertMessage = JamiStrings.participantModIsStillMuted
+                }
+                CallAdapter.muteThisCallToggle(!isAudioMuted)
+            }
             checkable: true
             icon.source: checked ?
                              JamiResources.micro_off_black_24dp_svg :

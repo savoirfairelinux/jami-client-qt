@@ -205,8 +205,6 @@ Item {
     property string areRecording: qsTr("are recording")
     property string peerStoppedRecording: qsTr("Peer stopped recording")
     property string isCallingYou: qsTr("is calling you")
-
-    // CallOverlay
     property string mute: qsTr("Mute")
     property string unmute: qsTr("Unmute")
     property string hangup: qsTr("End call")
@@ -218,6 +216,8 @@ Item {
     property string chat: qsTr("Chat")
     property string moreOptions: qsTr("More options")
     property string mosaic: qsTr("Mosaic")
+    property string participantMicIsStillMuted: qsTr("Participant is still muted on his local machine")
+    property string participantModIsStillMuted: qsTr("You are still muted by moderator")
 
     // LineEditContextMenu
     property string copy: qsTr("Copy")
