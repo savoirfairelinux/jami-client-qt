@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3d7194a0_5a6f2a17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-11-12T23:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c00680bf_7617bf9d",
+      "range": {
+        "startLine": 14,
+        "startChar": 20,
+        "endLine": 14,
+        "endChar": 93
+      },
+      "revId": "1207b2d82b8bdfacf69606e416764a97533a48e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "caee6170_ab5fe24f",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -64,6 +88,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "545557d4_bcd58427",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-11-12T23:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b16ad98_460c7011",
+      "range": {
+        "startLine": 219,
+        "startChar": 71,
+        "endLine": 219,
+        "endChar": 103
+      },
+      "revId": "1207b2d82b8bdfacf69606e416764a97533a48e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0db04546_bfdcb6f0",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-11-12T20:43:50Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 220,
+        "startChar": 20,
+        "endLine": 220,
+        "endChar": 31
+      },
+      "revId": "1207b2d82b8bdfacf69606e416764a97533a48e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6370f551_d477e745",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-11-12T23:35:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0db04546_bfdcb6f0",
       "range": {
         "startLine": 220,
         "startChar": 20,
