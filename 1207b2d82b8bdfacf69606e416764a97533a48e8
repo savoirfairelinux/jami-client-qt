@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c00680bf_7617bf9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-11-12T20:43:50Z",
+      "side": 1,
+      "message": "you can remove this",
+      "range": {
+        "startLine": 14,
+        "startChar": 20,
+        "endLine": 14,
+        "endChar": 93
+      },
+      "revId": "1207b2d82b8bdfacf69606e416764a97533a48e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "caee6170_ab5fe24f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-11-12T20:43:50Z",
+      "side": 1,
+      "message": "This is dope. Just a few little things",
+      "revId": "1207b2d82b8bdfacf69606e416764a97533a48e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b16ad98_460c7011",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-11-12T20:43:50Z",
+      "side": 1,
+      "message": "missing margin at the left/right of this message.",
+      "range": {
+        "startLine": 219,
+        "startChar": 71,
+        "endLine": 219,
+        "endChar": 103
+      },
+      "revId": "1207b2d82b8bdfacf69606e416764a97533a48e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db04546_bfdcb6f0",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-11-12T20:43:50Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 220,
+        "startChar": 20,
+        "endLine": 220,
+        "endChar": 31
+      },
+      "revId": "1207b2d82b8bdfacf69606e416764a97533a48e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
