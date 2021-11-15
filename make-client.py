@@ -24,6 +24,7 @@ build_dir = os.path.join(this_dir, 'build')
 temp_path = os.environ['TEMP']
 
 # project path
+installer_project = os.path.join(this_dir, 'JamiInstaller', 'JamiInstaller.wixproj')
 jami_qt_project = os.path.join(build_dir, 'jami-qt.vcxproj')
 unit_test_project = os.path.join(build_dir, 'tests', 'unittests.vcxproj')
 qml_test_project = os.path.join(build_dir, 'tests', 'qml_tests.vcxproj')
@@ -99,7 +100,7 @@ def findMSBuild():
         if filename in files:
             return os.path.join(root, filename)
 
-def getMSBuildArgs(arch, config_str, toolset, configuration_type=''):
+def getMSBuildArgs(arch, config_str, toolset='', configuration_type=''):
     msbuild_args = [
         '/nologo',
         '/verbosity:minimal',
@@ -321,6 +322,18 @@ def run_tests(mute_jamid, output_to_files):
             test_result_code = 1
     sys.exit(test_result_code)
 
+def generate_msi_installer():
+    print('Generating application installer...')
+
+    vs_env_vars = {}
+    vs_env_vars.update(getVSEnv())
+    msbuild = findMSBuild()
+    if not os.path.isfile(msbuild):
+        raise IOError('msbuild.exe not found. path=' + msbuild)
+    msbuild_args = getMSBuildArgs('x64', 'Release')
+
+    build_project(msbuild, msbuild_args, installer_project, vs_env_vars)
+
 def parse_args():
     ap = argparse.ArgumentParser(description="Client qt build tool")
     subparser = ap.add_subparsers(dest="subparser_name")
@@ -363,6 +376,8 @@ def parse_args():
     run_test.add_argument(
         '-o', '--outputtofiles', action='store_true', default=False,
         help='Output tests log into files')
+
+    subparser.add_parser('generateinstaller')
 
     parsed_args = ap.parse_args()
 
@@ -409,6 +424,9 @@ def main():
     if parsed_args.releasecompile:
         build(parsed_args.arch, parsed_args.toolset, parsed_args.sdk,
               'ReleaseCompile', jami_qt_project, parsed_args.qtver, test_building_type)
+
+    if parsed_args.subparser_name == 'generateinstaller':
+        generate_msi_installer()
 
 
 if __name__ == '__main__':
