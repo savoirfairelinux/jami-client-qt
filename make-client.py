@@ -29,6 +29,7 @@ qt_kit_path = 'msvc2019_64'
 qt_root_path = os.getenv('QT_ROOT_DIRECTORY', qt_path)
 
 # project path
+installer_project = os.path.join(this_dir, 'JamiInstaller', 'JamiInstaller.wixproj')
 unit_test_project = os.path.join(build_dir, 'tests', 'unittests.vcxproj')
 qml_test_project = os.path.join(build_dir, 'tests', 'qml_tests.vcxproj')
 
@@ -261,6 +262,17 @@ def run_tests(mute_jamid, output_to_files):
             test_result_code = 1
     sys.exit(test_result_code)
 
+def generate_msi_installer():
+    print('Generating application installer...')
+
+    vs_env_vars = {}
+    vs_env_vars.update(getVSEnv())
+    msbuild = findMSBuild()
+    if not os.path.isfile(msbuild):
+        raise IOError('msbuild.exe not found. path=' + msbuild)
+    msbuild_args = getMSBuildArgs('x64', 'Release')
+
+    build_project(msbuild, msbuild_args, installer_project, vs_env_vars)
 
 def parse_args():
     ap = argparse.ArgumentParser(description="Client qt build tool")
@@ -286,6 +298,8 @@ def parse_args():
     run_test.add_argument(
         '-l', '--logtests', action='store_true', default=False,
         help='Output tests log to files')
+
+    subparser.add_parser('msi')
 
     parsed_args = ap.parse_args()
 
@@ -314,6 +328,9 @@ def main():
         build(config, qt_version_default, parsed_args.runtests)
         if parsed_args.runtests:
             run_tests(parsed_args.mutejamid, parsed_args.outputtofiles)
+
+    if parsed_args.subparser_name == 'msi':
+        generate_msi_installer()
 
 
 if __name__ == '__main__':
