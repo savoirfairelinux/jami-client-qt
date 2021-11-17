@@ -2,6 +2,8 @@
 Name=Jami
 GenericName=Jami
 Comment=Jami is a secured and distributed communication software
+Comment[hu]=Adatvédelem-orientált hang-, video-, csevegés- és konferenciaplatform
+Comment[ru]=Jami — приложение для защищённой связи с распределённой архитектурой
 Exec=jami-qt
 Icon=jami
 StartupNotify=true
