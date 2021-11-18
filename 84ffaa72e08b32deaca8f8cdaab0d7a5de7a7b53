@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86319ff2_e56ca642",
+        "filename": "src/avadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2021-11-18T19:51:38Z",
+      "side": 1,
+      "message": "Should the comment be:\n\n// Select window to display (from all windows).\n\n?",
+      "range": {
+        "startLine": 65,
+        "startChar": 7,
+        "endLine": 65,
+        "endChar": 56
+      },
+      "revId": "84ffaa72e08b32deaca8f8cdaab0d7a5de7a7b53",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
