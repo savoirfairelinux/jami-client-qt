@@ -46,6 +46,30 @@
       },
       "revId": "8a816e962db170dcfcd988f5a57b215147ab3baf",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0669a55c_063bbd8a",
+        "filename": "jami-qt.appdata.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2021-11-18T19:43:21Z",
+      "side": 1,
+      "message": "https://flathub.org/apps/details/com.github.IsmaelMartinez.teams_for_linux shows up in Office",
+      "parentUuid": "7ad899a4_9afd75ce",
+      "range": {
+        "startLine": 118,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 18
+      },
+      "revId": "8a816e962db170dcfcd988f5a57b215147ab3baf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
