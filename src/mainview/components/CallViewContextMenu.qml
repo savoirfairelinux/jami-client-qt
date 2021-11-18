@@ -119,11 +119,11 @@ ContextMenuAutoLoader {
                 if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
                     AvAdapter.muteCamera = root.isVideoMuted
                 }
-                if (Qt.application.screens.length === 1) {
+                if (Qt.application.screens.length + AvAdapter.getListWindowsNames().length === 1) {
                     AvAdapter.shareEntireScreen(0)
                 } else {
                     SelectScreenWindowCreation.createSelectScreenWindowObject()
-                    SelectScreenWindowCreation.showSelectScreenWindow()
+                    SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId)
                 }
             }
         },
