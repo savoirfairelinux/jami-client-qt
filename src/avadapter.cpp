@@ -240,6 +240,27 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
 }
 
 void
+AvAdapter::shareWindow(const QString& key)
+{
+    auto windowId = lrcInstance_->avModel().getListWindows().value(key).toString();
+    auto resource = lrcInstance_->avModel().getDisplay(windowId);
+    auto callId = lrcInstance_->getCurrentCallId();
+    lrcInstance_->getCurrentCallModel()
+        ->requestMediaChange(callId,
+                             "video_0",
+                             resource,
+                             lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
+                             false);
+    set_currentRenderingDeviceType(lrcInstance_->avModel().getCurrentRenderedDevice(callId).type);
+}
+
+QStringList
+AvAdapter::getListWindowsNames()
+{
+    return lrcInstance_->avModel().getListWindows().keys();
+}
+
+void
 AvAdapter::stopSharing()
 {
     auto callId = lrcInstance_->getCurrentCallId();
