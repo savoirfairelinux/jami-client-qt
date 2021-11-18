@@ -16,6 +16,23 @@
       "message": "Sorry, don\u0027t know why it is failing?\n\nhttps://jenkins.jami.net/job/client-qt-msvc-tests/1323/",
       "revId": "0a7aaa59475106ac57293e9123f60ef72ed4beec",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4627047c_77465370",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-11-18T20:16:15Z",
+      "side": 1,
+      "message": "No worries, the windows buildmachine was just offline",
+      "revId": "0a7aaa59475106ac57293e9123f60ef72ed4beec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
