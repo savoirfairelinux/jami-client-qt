@@ -62,6 +62,11 @@ protected:
     // Select screen area to display (from all screens).
     Q_INVOKABLE void shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height);
 
+    // Select screen area to display (from all screens).
+    Q_INVOKABLE void shareWindow(const QString& key);
+
+    Q_INVOKABLE QStringList getListWindowsNames();
+
     // Stop sharing the screen or file
     Q_INVOKABLE void stopSharing();
 
