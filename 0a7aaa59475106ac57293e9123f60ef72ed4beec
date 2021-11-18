@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f6beee3_17edfe99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2021-11-18T19:46:27Z",
+      "side": 1,
+      "message": "Sorry, don\u0027t know why it is failing?\n\nhttps://jenkins.jami.net/job/client-qt-msvc-tests/1323/",
+      "revId": "0a7aaa59475106ac57293e9123f60ef72ed4beec",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
