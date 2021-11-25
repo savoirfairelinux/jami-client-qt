@@ -245,7 +245,8 @@ UtilsAdapter::getStringUTF8(QString string)
 QString
 UtilsAdapter::getRecordQualityString(int value)
 {
-    return value ? QString::number(static_cast<float>(value) / 100, 'f', 1) + " Mbps" : "Default";
+    auto value = QString::number(static_cast<float>(value) / 100, 'f', 1);
+    return value ? tr("%1 Mbps").arg(value) : tr("Default");
 }
 
 QString
