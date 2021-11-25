@@ -57,6 +57,7 @@ namespace opts {
 // Keys used to store command-line options.
 constexpr static const char STARTMINIMIZED[] = "STARTMINIMIZED";
 constexpr static const char DEBUG[] = "DEBUG";
+constexpr static const char PLACECALL[] = "PLACECALL";
 constexpr static const char DEBUGCONSOLE[] = "DEBUGCONSOLE";
 constexpr static const char DEBUGFILE[] = "DEBUGFILE";
 constexpr static const char UPDATEURL[] = "UPDATEURL";
@@ -242,6 +243,13 @@ MainApplication::init()
     lrcInstance_->accountModel().autoTransferFromTrusted = allowTransferFromTrusted;
     lrcInstance_->accountModel().autoTransferSizeThreshold = acceptTransferBelow;
 
+    auto callUri = results[opts::PLACECALL].toString();
+    qWarning() << callUri;
+    if (!callUri.isEmpty()) {
+        if (auto cm = lrcInstance_->getCurrentCallModel())
+            cm->createCall(callUri);
+    }
+
     initQmlLayer();
     initSystray();
 
@@ -364,6 +372,9 @@ MainApplication::parseArguments()
     QCommandLineOption debugOption({"d", "debug"}, "Debug out.");
     parser.addOption(debugOption);
 
+    QCommandLineOption placeCallOption("call", "<uri> Call a contact with first account", "uri");
+    parser.addOption(placeCallOption);
+
 #ifdef Q_OS_WINDOWS
     QCommandLineOption debugConsoleOption({"c", "console"}, "Debug out to IDE console.");
     parser.addOption(debugConsoleOption);
@@ -382,6 +393,7 @@ MainApplication::parseArguments()
 
     results[opts::STARTMINIMIZED] = parser.isSet(minimizedOption);
     results[opts::DEBUG] = parser.isSet(debugOption);
+    results[opts::PLACECALL] = parser.value(placeCallOption);
 #ifdef Q_OS_WINDOWS
     results[opts::DEBUGCONSOLE] = parser.isSet(debugConsoleOption);
     results[opts::DEBUGFILE] = parser.isSet(debugFileOption);
