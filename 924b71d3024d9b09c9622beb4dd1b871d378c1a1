@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f006e821_2c0fcddf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 31
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-11-25T21:02:13Z",
+      "side": 1,
+      "message": "Notification\u0027s badge is misplaced",
+      "revId": "924b71d3024d9b09c9622beb4dd1b871d378c1a1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
