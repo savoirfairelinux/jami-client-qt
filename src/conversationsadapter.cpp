@@ -168,7 +168,7 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             || convUid != lrcInstance_->get_selectedConvUid())) {
         auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
         auto from = accountInfo.contactModel->bestNameForContact(interaction.authorUri);
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
         auto contactPhoto = Utils::contactPhoto(lrcInstance_,
                                                 interaction.authorUri,
                                                 QSize(50, 50),

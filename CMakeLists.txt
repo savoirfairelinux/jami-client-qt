@@ -6,6 +6,7 @@ if(MSVC)
     cmake_minimum_required(VERSION 3.15)
 endif()
 
+
 # todo: show error if Qt version < 5.14
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -90,7 +91,6 @@ set(COMMON_SOURCES
     ${SRC_DIR}/utilsadapter.cpp
     ${SRC_DIR}/moderatorlistmodel.cpp
     ${SRC_DIR}/screensaver.cpp
-    ${SRC_DIR}/systemtray.cpp
     ${SRC_DIR}/appsettingsmanager.cpp
     ${SRC_DIR}/lrcinstance.cpp
     ${SRC_DIR}/selectablelistproxymodel.cpp
@@ -218,7 +218,8 @@ endif()
 
 if(MSVC)
     list(APPEND COMMON_SOURCES
-                ${SRC_DIR}/connectivitymonitor.cpp)
+                ${SRC_DIR}/connectivitymonitor.cpp
+                ${SRC_DIR}/systemtray.cpp)
     # preprocessor defines
     add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
 
@@ -270,7 +271,8 @@ elseif (NOT APPLE)
     list(APPEND COMMON_SOURCES
                 ${SRC_DIR}/xrectsel.c
                 ${SRC_DIR}/dbuserrorhandler.cpp
-                ${SRC_DIR}/connectivitymonitor.cpp)
+                ${SRC_DIR}/connectivitymonitor.cpp
+                ${SRC_DIR}/systemtray.cpp)
     list(APPEND COMMON_HEADERS
                 ${SRC_DIR}/dbuserrorhandler.h
                 ${SRC_DIR}/xrectsel.h)
@@ -351,7 +353,8 @@ elseif (NOT APPLE)
     find_library(X11 X11)
 else()
     list(APPEND COMMON_SOURCES
-                ${SRC_DIR}/connectivitymonitor.mm)
+                ${SRC_DIR}/connectivitymonitor.mm
+                 ${SRC_DIR}/systemtray.mm)
     find_package(PkgConfig REQUIRED)
     if(NOT DEFINED LRC)
         if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
@@ -613,12 +616,16 @@ elseif (NOT APPLE)
     add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 else()
+    find_library(usernotification_lib UserNotifications REQUIRED)
+    find_library(iokit_lib IOKit REQUIRED)
     target_sources(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
     target_link_libraries(${PROJECT_NAME} PRIVATE
                           ${QML_LIBS}
                           ${LRC_LIB_NAME}
                           ${SYSTEM_CONFIGURATUION}
-                          qrencode)
+                          qrencode
+                          ${iokit_lib}
+                          ${usernotification_lib})
 
      # translations
      if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
@@ -645,17 +652,18 @@ else()
           MACOSX_BUNDLE TRUE
           MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Info.plist
           MACOSX_BUNDLE_GUI_IDENTIFIER "cx.ring"
+          XCODE_ATTRIBUTE_PRODUCT_NAME "${PROJ_NAME}"
           MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION_NAME}"
           MACOSX_BUNDLE_LONG_VERSION_STRING "${PROJ_NAME} ${JAMI_VERSION_NAME}"
-          MACOSX_BUNDLE_BUNDLE_VERSION ${JAMI_VERSION}
+          MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_VERSION}"
           MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}"
           MACOSX_BUNDLE_INFO_STRING "Build of ${PROJ_NAME}, version ${JAMI_VERSION}"
-          MACOSX_BUNDLE_BUNDLE_NAME ${PROJ_NAME}
+          MACOSX_BUNDLE_BUNDLE_NAME "${PROJ_NAME}"
           MACOSX_BUNDLE_ICON_FILE "jami.icns")
-      add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                         COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
-                                 -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
-                                 -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
+     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                        COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
+                                -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
+                                -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/macos_qt_deploy.cmake)
 endif()
 
 qt_import_qml_plugins(${PROJECT_NAME})
