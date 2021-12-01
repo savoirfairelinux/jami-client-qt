@@ -70,4 +70,8 @@ RowLayout {
             switchToggled()
         }
     }
+
+    Accessible.role: Accessible.Button
+    Accessible.name: labelText
+    Accessible.description: tooltipText
 }
