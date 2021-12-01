@@ -22,7 +22,7 @@
 
 #include <functional>
 
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 enum class NotificationType { INVALID, CALL, REQUEST, CHAT };
 Q_ENUMS(NotificationType)
 #endif // Q_OS_LINUX
@@ -38,7 +38,7 @@ public:
     ~SystemTray();
 
     void setCount(int count);
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     bool hideNotification(const QString& id);
     void showNotification(const QString& id,
                           const QString& title,
@@ -59,7 +59,7 @@ Q_SIGNALS:
 
     template<typename Func>
     void setOnClickedCallback(Func&& onClickedCb);
-#endif // Q_OS_LINUX
+#endif // Q_OS_LINUX || Q_OS_MAC
 
 private:
     QMetaObject::Connection messageClicked_;

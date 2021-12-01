@@ -58,8 +58,8 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
             this,
             &CallAdapter::onAccountChanged);
 
-#ifdef Q_OS_LINUX
-    // notification responses (gnu/linux currently)
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
+    // notification responses (gnu/linux and macos currently)
     connect(systemTray_,
             &SystemTray::answerCallActivated,
             [this](const QString& accountId, const QString& convUid) {
@@ -545,7 +545,7 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
             from = accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
     }
 
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     auto contactPhoto = Utils::contactPhoto(lrcInstance_,
                                             convInfo.participants[0],
                                             QSize(50, 50),
