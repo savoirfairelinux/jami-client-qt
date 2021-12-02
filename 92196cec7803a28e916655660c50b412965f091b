@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ccc8483_82b5ac5e",
+        "filename": "src/mainview/components/RecordBox.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-02T16:59:07Z",
+      "side": 1,
+      "message": "color: JamiTheme.primaryForegroundColor",
+      "range": {
+        "startLine": 275,
+        "startChar": 26,
+        "endLine": 276,
+        "endChar": 26
+      },
+      "revId": "92196cec7803a28e916655660c50b412965f091b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "331c3306_70b761c8",
+        "filename": "src/settingsview/components/AudioSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-02T16:59:07Z",
+      "side": 1,
+      "message": "trailing",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 4
+      },
+      "revId": "92196cec7803a28e916655660c50b412965f091b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
