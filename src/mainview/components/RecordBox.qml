@@ -271,7 +271,7 @@ Rectangle {
 
         visible: (isVideo && !previewAvailable)
 
-        text: qsTr("Preview unavailable")
+        text: JamiStrings.previewUnavailable
         font.pointSize: 10
         font.kerning: true
     }
