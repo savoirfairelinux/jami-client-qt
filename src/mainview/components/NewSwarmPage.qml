@@ -33,17 +33,46 @@ Rectangle {
 
     signal createSwarmClicked
 
-    RowLayout {
+    ColumnLayout {
         id: mainLayout
 
-        anchors.fill: parent
+        anchors.centerIn: root
+
+        EditableLineEdit {
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize
+
+            font.pointSize: JamiTheme.titleFontSize
+
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            placeholderText: JamiStrings.editTitle
+            tooltipText: JamiStrings.editTitle
+            backgroundColor: root.color
+            color: "white"
+        }
+
+        EditableLineEdit {
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize
+
+            font.pointSize: JamiTheme.titleFontSize
+
+            placeholderText: JamiStrings.editDescription
+            tooltipText: JamiStrings.editDescription
+            backgroundColor: root.color
+            color: "white"
+        }
 
         MaterialButton {
             id: btnCreateSwarm
 
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize
+
             preferredWidth: JamiTheme.aboutButtonPreferredWidth
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
             color: JamiTheme.buttonTintedBlue
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
