@@ -32,6 +32,7 @@ TextField {
     property var borderColor: JamiTheme.greyBorderColor
 
     property bool loseFocusWhenEnterPressed: false
+    property bool underlined: false
 
     padding: JamiTheme.materialLineEditPadding
     horizontalAlignment: Text.AlignLeft
@@ -57,11 +58,29 @@ TextField {
     }
 
     background: Rectangle {
-        anchors.fill: parent
-
+        anchors.fill: root
         radius: JamiTheme.primaryRadius
-        border.color: readOnly? "transparent" : borderColor
-        color: readOnly? "transparent" : backgroundColor
+
+        border.color: readOnly || underlined? "transparent" : borderColor
+        color: {
+            if (readOnly)
+                return "transparent"
+            if (underlined)
+                return borderColor
+            return backgroundColor
+        }
+
+        Rectangle {
+            visible: !readOnly && underlined
+            anchors {
+                fill: parent
+                topMargin: 0
+                rightMargin: 0
+                bottomMargin: 3
+                leftMargin: 0
+            }
+            color: backgroundColor
+        }
     }
 
     onReleased: function (event) {

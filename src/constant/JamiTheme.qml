@@ -163,6 +163,7 @@ Item {
     property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
     property color bgInvitationRectColor: darkTheme ? "#222222" : whiteColor
     property color placeholderTextColor: darkTheme ? "#7a7a7a" : "#767676"
+    property color placeholderTextColorWhite: "#cccccc"
     property color inviteHoverColor: darkTheme ? blackColor : whiteColor
     property color chatviewButtonColor: darkTheme ? whiteColor : blackColor
     property color bgTextInput: darkTheme ? "#060608" : whiteColor
