@@ -8,6 +8,7 @@
         <file>src/commoncomponents/SettingParaCombobox.qml</file>
         <file>src/commoncomponents/PreferenceItemDelegate.qml</file>
         <file>src/commoncomponents/PasswordDialog.qml</file>
+        <file>src/commoncomponents/EditableLineEdit.qml</file>
         <file>src/commoncomponents/MaterialLineEdit.qml</file>
         <file>src/commoncomponents/PhotoboothView.qml</file>
         <file>src/commoncomponents/JamiListView.qml</file>
