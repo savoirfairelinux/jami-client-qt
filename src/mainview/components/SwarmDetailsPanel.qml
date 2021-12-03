@@ -48,11 +48,10 @@ Rectangle {
             showPresenceIndicator: false
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
+            id: titleLine
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
-
-            Layout.preferredWidth: root.width
 
             font.pointSize: JamiTheme.titleFontSize
 
@@ -60,29 +59,33 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
 
             text: CurrentConversation.title
+            placeholderText: JamiStrings.editTitle
+            placeholderTextColor: JamiTheme.placeholderTextColorWhite
+            tooltipText: JamiStrings.editTitle
+            backgroundColor: root.color
             color: "white"
 
             onEditingFinished: {
-                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, this.text)
+                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
             }
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
+            id: descriptionLine
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
 
-            Layout.preferredWidth: root.width
-
             font.pointSize: JamiTheme.titleFontSize
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
             text: CurrentConversation.description
+            placeholderText: JamiStrings.editDescription
+            placeholderTextColor: JamiTheme.placeholderTextColorWhite
+            tooltipText: JamiStrings.editDescription
+            backgroundColor: root.color
             color: "white"
 
             onEditingFinished: {
-                ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, this.text)
+                ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
             }
         }
 
