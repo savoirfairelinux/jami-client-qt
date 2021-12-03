@@ -48,11 +48,9 @@ Rectangle {
             showPresenceIndicator: false
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
-
-            Layout.preferredWidth: root.width
 
             font.pointSize: JamiTheme.titleFontSize
 
@@ -60,6 +58,9 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
 
             text: CurrentConversation.title
+            placeholderText: JamiStrings.editTitle
+            tooltipText: JamiStrings.editTitle
+            backgroundColor: root.color
             color: "white"
 
             onEditingFinished: {
@@ -67,18 +68,16 @@ Rectangle {
             }
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
 
-            Layout.preferredWidth: root.width
-
             font.pointSize: JamiTheme.titleFontSize
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
             text: CurrentConversation.description
+            placeholderText: JamiStrings.editDescription
+            tooltipText: JamiStrings.editDescription
+            backgroundColor: root.color
             color: "white"
 
             onEditingFinished: {

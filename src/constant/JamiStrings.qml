@@ -604,6 +604,8 @@ Item {
     property string about: qsTr("About")
     property string members: qsTr("Members")
     property string documents: qsTr("Documents")
+    property string editTitle: qsTr("Edit title")
+    property string editDescription: qsTr("Edit description")
 
     // NewSwarmPage
 
