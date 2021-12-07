@@ -31,21 +31,32 @@ TabButton {
     property alias labelText: label.text
     property alias acceleratorSequence: accelerator.sequence
     property alias badgeCount: badge.count
+
+    property var backgroundColor: JamiTheme.backgroundColor
+    property var hoverColor: JamiTheme.backgroundColor
+    property var textColor: JamiTheme.textColor
+    property var textColorHovered: JamiTheme.textColorHovered
+    property var borderWidth: 2
+    property var bottomMargin: 1
+    property var underlineContentOnly: false
+    property var fontSize: JamiTheme.filterItemFontSize
+
     signal selected
 
     hoverEnabled: true
     onClicked: selected()
 
-     Rectangle {
+    Rectangle {
         id: contentRect
 
         anchors.fill: root
 
         color: root.hovered ?
-                   JamiTheme.hoverColor :
-                   JamiTheme.backgroundColor
+                   root.hoverColor :
+                   root.backgroundColor
 
         RowLayout {
+            id: informations
             anchors.horizontalCenter: contentRect.horizontalCenter
             anchors.verticalCenter: contentRect.verticalCenter
 
@@ -53,10 +64,14 @@ TabButton {
                 id: label
 
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                Layout.bottomMargin: 1
+                Layout.bottomMargin: root.bottomMargin
 
-                font.pointSize: JamiTheme.filterItemFontSize
-                color: JamiTheme.textColor
+                font.pointSize: fontSize
+                color: {
+                    if (!root.down && root.hovered)
+                        return root.textColorHovered
+                    return root.textColor
+                }
                 opacity: root.down ? 1.0 : 0.5
             }
 
@@ -69,10 +84,17 @@ TabButton {
     }
 
     Rectangle {
-        width: contentRect.width
+        width: underlineContentOnly ? informations.width + JamiTheme.menuBorderPreferredHeight : contentRect.width
+        anchors.horizontalCenter: contentRect.horizontalCenter
         anchors.bottom: contentRect.bottom
-        height: 2
-        color: root.down ? JamiTheme.textColor : "transparent"
+        height: borderWidth
+        color: {
+            if (!root.down && root.hovered)
+                return root.textColorHovered
+            if (!root.down)
+                return "transparent"
+            return root.textColor
+        }
     }
 
     Shortcut {
