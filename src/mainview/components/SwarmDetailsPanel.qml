@@ -33,96 +33,181 @@ Rectangle {
 
     ColumnLayout {
         id: swarmProfileDetails
-        Layout.fillWidth: true
         Layout.fillHeight: true
+        Layout.fillWidth: true
+        spacing: 0
 
-        ConversationAvatar {
-            id: conversationAvatar
+        ColumnLayout {
+            id: header
+            Layout.fillWidth: true
+            spacing: 0
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: JamiTheme.avatarSizeInCall
-            Layout.preferredHeight: JamiTheme.avatarSizeInCall
+            ConversationAvatar {
+                id: conversationAvatar
 
-            imageId: LRCInstance.selectedConvUid
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: JamiTheme.avatarSizeInCall
+                Layout.preferredHeight: JamiTheme.avatarSizeInCall
 
-            showPresenceIndicator: false
-        }
+                imageId: LRCInstance.selectedConvUid
 
-        EditableLineEdit {
-            id: titleLine
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
+                showPresenceIndicator: false
+            }
 
-            font.pointSize: JamiTheme.titleFontSize
+            EditableLineEdit {
+                id: titleLine
+                Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
 
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+                font.pointSize: JamiTheme.titleFontSize
 
-            text: CurrentConversation.title
-            placeholderText: JamiStrings.editTitle
-            placeholderTextColor: JamiTheme.placeholderTextColorWhite
-            tooltipText: JamiStrings.editTitle
-            backgroundColor: root.color
-            color: "white"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
 
-            onEditingFinished: {
-                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
+                text: CurrentConversation.title
+                placeholderText: JamiStrings.editTitle
+                placeholderTextColor: JamiTheme.placeholderTextColorWhite
+                tooltipText: JamiStrings.editTitle
+                backgroundColor: root.color
+                color: "white"
+
+                onEditingFinished: {
+                    ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
+                }
+            }
+
+            EditableLineEdit {
+                id: descriptionLine
+                Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
+
+                font.pointSize: JamiTheme.titleFontSize
+
+                text: CurrentConversation.description
+                placeholderText: JamiStrings.editDescription
+                placeholderTextColor: JamiTheme.placeholderTextColorWhite
+                tooltipText: JamiStrings.editDescription
+                backgroundColor: root.color
+                color: "white"
+
+                onEditingFinished: {
+                    ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
+                }
+            }
+
+            TabBar {
+                id: tabBar
+
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.preferredWidth: root.width
+                Layout.preferredHeight: membersTabButton.height 
+
+                /*FilterTabButton {
+                    id: aboutTabButton
+                    backgroundColor: JamiTheme.buttonTintedBlue
+                    hoverColor: JamiTheme.buttonTintedBlue
+                    borderWidth: 4
+                    bottomMargin: JamiTheme.preferredMarginSize
+                    fontSize: JamiTheme.titleFontSize
+                    underlineContentOnly: true
+
+                    down: tabBar.currentIndex === 0
+                    labelText: JamiStrings.about
+                }*/
+
+                FilterTabButton {
+                    id: membersTabButton
+                    backgroundColor: JamiTheme.buttonTintedBlue
+                    hoverColor: JamiTheme.buttonTintedBlue
+                    borderWidth: 4
+                    bottomMargin: JamiTheme.preferredMarginSize
+                    fontSize: JamiTheme.titleFontSize
+                    underlineContentOnly: true
+
+                    down: true//tabBar.currentIndex === 1
+                    labelText: {
+                        var membersNb = CurrentConversation.uris.length;
+                        if (membersNb > 1)
+                            return JamiStrings.members.arg(membersNb)
+                        return JamiStrings.member
+                    }
+                }
+
+                /*FilterTabButton {
+                    id: documentsTabButton
+                    backgroundColor: JamiTheme.buttonTintedBlue
+                    hoverColor: JamiTheme.buttonTintedBlue
+                    borderWidth: 4
+                    bottomMargin: JamiTheme.preferredMarginSize
+                    fontSize: JamiTheme.titleFontSize
+                    underlineContentOnly: true
+
+                    down: tabBar.currentIndex === 2
+                    labelText: JamiStrings.documents
+                }*/
             }
         }
-
-        EditableLineEdit {
-            id: descriptionLine
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
-
-            font.pointSize: JamiTheme.titleFontSize
-
-            text: CurrentConversation.description
-            placeholderText: JamiStrings.editDescription
-            placeholderTextColor: JamiTheme.placeholderTextColorWhite
-            tooltipText: JamiStrings.editDescription
-            backgroundColor: root.color
-            color: "white"
-
-            onEditingFinished: {
-                ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
-            }
-        }
-
-        TabBar {
-            id: tabBar
-
-            currentIndex: 1
-            Layout.preferredWidth: root.width
-
-            FilterTabButton {
-                id: aboutTabButton
-
-                down: tabBar.currentIndex === 0
-                labelText: JamiStrings.about
-            }
-
-            FilterTabButton {
-                id: membersTabButton
-
-                down: tabBar.currentIndex === 1
-                labelText: JamiStrings.members
-            }
-
-            FilterTabButton {
-                id: documentsTabButton
-
-                down: tabBar.currentIndex === 2
-                labelText: JamiStrings.documents
-            }
-        }
-
     
         Rectangle {
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: root.width
-            Layout.preferredHeight: root.height
+            id: details
+            Layout.fillWidth: true
+            Layout.preferredHeight: root.height - header.height
             color: JamiTheme.secondaryBackgroundColor
+
+            JamiListView {
+                id: members
+                anchors.fill: parent
+                spacing: JamiTheme.preferredMarginSize
+                anchors.topMargin: JamiTheme.preferredMarginSize
+
+                model: CurrentConversation.uris
+                delegate: RowLayout {
+                    spacing: 10
+
+                    Avatar {
+                        width: JamiTheme.smartListAvatarSize
+                        height: JamiTheme.smartListAvatarSize
+                        z: -index
+
+                        imageId: CurrentAccount.uri == modelData ? CurrentAccount.id : modelData
+                        showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, modelData)
+                        mode: CurrentAccount.uri == modelData ? Avatar.Mode.Account : Avatar.Mode.Contact
+                    }
+
+                    ElidedTextLabel {
+                        id: bestName
+
+                        Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+                        eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
+                        maxWidth: JamiTheme.preferredFieldWidth
+
+                        font.pointSize: JamiTheme.participantFontSize
+                        color: JamiTheme.primaryForegroundColor
+                        font.kerning: true
+
+                        verticalAlignment: Text.AlignVCenter
+                    }
+
+                    ElidedTextLabel {
+                        id: role
+
+                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+                        eText: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                        maxWidth: JamiTheme.preferredFieldWidth
+
+                        font.pointSize: JamiTheme.participantFontSize
+                        color: JamiTheme.textColorHovered
+                        font.kerning: true
+
+                        horizontalAlignment: Text.AlignRight
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                } 
+            }
         }
     }
 }
