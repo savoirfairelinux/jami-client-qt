@@ -423,7 +423,6 @@ Rectangle {
         visible: false
 
         onCreateSwarmClicked: {
-            console.warn("@@@")
             backToMainView()
         }
     }
