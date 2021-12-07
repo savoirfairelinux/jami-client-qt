@@ -33,96 +33,142 @@ Rectangle {
 
     ColumnLayout {
         id: swarmProfileDetails
-        Layout.fillWidth: true
-        Layout.fillHeight: true
+        Layout.preferredWidth: root.width
+        Layout.preferredHeight: root.height
+        spacing: 0
 
-        ConversationAvatar {
-            id: conversationAvatar
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: JamiTheme.avatarSizeInCall
-            Layout.preferredHeight: JamiTheme.avatarSizeInCall
-
-            imageId: LRCInstance.selectedConvUid
-
-            showPresenceIndicator: false
-        }
-
-        EditableLineEdit {
-            id: titleLine
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
-
-            font.pointSize: JamiTheme.titleFontSize
-
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
-            text: CurrentConversation.title
-            placeholderText: JamiStrings.editTitle
-            placeholderTextColor: JamiTheme.placeholderTextColorWhite
-            tooltipText: JamiStrings.editTitle
-            backgroundColor: root.color
-            color: "white"
-
-            onEditingFinished: {
-                ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
-            }
-        }
-
-        EditableLineEdit {
-            id: descriptionLine
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.preferredMarginSize
-
-            font.pointSize: JamiTheme.titleFontSize
-
-            text: CurrentConversation.description
-            placeholderText: JamiStrings.editDescription
-            placeholderTextColor: JamiTheme.placeholderTextColorWhite
-            tooltipText: JamiStrings.editDescription
-            backgroundColor: root.color
-            color: "white"
-
-            onEditingFinished: {
-                ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
-            }
-        }
-
-        TabBar {
-            id: tabBar
-
-            currentIndex: 1
+        ColumnLayout {
+            id: header
             Layout.preferredWidth: root.width
+            spacing: 0
 
-            FilterTabButton {
-                id: aboutTabButton
+            ConversationAvatar {
+                id: conversationAvatar
 
-                down: tabBar.currentIndex === 0
-                labelText: JamiStrings.about
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: JamiTheme.avatarSizeInCall
+                Layout.preferredHeight: JamiTheme.avatarSizeInCall
+
+                imageId: LRCInstance.selectedConvUid
+
+                showPresenceIndicator: false
             }
 
-            FilterTabButton {
-                id: membersTabButton
+            EditableLineEdit {
+                id: titleLine
+                Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
 
-                down: tabBar.currentIndex === 1
-                labelText: JamiStrings.members
+                font.pointSize: JamiTheme.titleFontSize
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+
+                text: CurrentConversation.title
+                placeholderText: JamiStrings.editTitle
+                placeholderTextColor: JamiTheme.placeholderTextColorWhite
+                tooltipText: JamiStrings.editTitle
+                backgroundColor: root.color
+                color: "white"
+
+                onEditingFinished: {
+                    ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
+                }
             }
 
-            FilterTabButton {
-                id: documentsTabButton
+            EditableLineEdit {
+                id: descriptionLine
+                Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-                down: tabBar.currentIndex === 2
-                labelText: JamiStrings.documents
+                font.pointSize: JamiTheme.titleFontSize
+
+                text: CurrentConversation.description
+                placeholderText: JamiStrings.editDescription
+                placeholderTextColor: JamiTheme.placeholderTextColorWhite
+                tooltipText: JamiStrings.editDescription
+                backgroundColor: root.color
+                color: "white"
+
+                onEditingFinished: {
+                    ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
+                }
+            }
+
+            TabBar {
+                id: tabBar
+
+                Layout.topMargin: JamiTheme.preferredMarginSize
+                Layout.preferredWidth: root.width
+                Layout.preferredHeight: aboutTabButton.height 
+
+                FilterTabButton {
+                    id: aboutTabButton
+                    backgroundColor: JamiTheme.buttonTintedBlue
+                    hoverColor: JamiTheme.buttonTintedBlue
+                    borderWidth: 4
+                    bottomMargin: JamiTheme.preferredMarginSize
+                    fontSize: JamiTheme.titleFontSize
+                    underlineContentOnly: true
+
+                    down: tabBar.currentIndex === 0
+                    labelText: JamiStrings.about
+                }
+
+                FilterTabButton {
+                    id: membersTabButton
+                    backgroundColor: JamiTheme.buttonTintedBlue
+                    hoverColor: JamiTheme.buttonTintedBlue
+                    borderWidth: 4
+                    bottomMargin: JamiTheme.preferredMarginSize
+                    fontSize: JamiTheme.titleFontSize
+                    underlineContentOnly: true
+
+                    down: tabBar.currentIndex === 1
+                    labelText: JamiStrings.members
+                }
+
+                FilterTabButton {
+                    id: documentsTabButton
+                    backgroundColor: JamiTheme.buttonTintedBlue
+                    hoverColor: JamiTheme.buttonTintedBlue
+                    borderWidth: 4
+                    bottomMargin: JamiTheme.preferredMarginSize
+                    fontSize: JamiTheme.titleFontSize
+                    underlineContentOnly: true
+
+                    down: tabBar.currentIndex === 2
+                    labelText: JamiStrings.documents
+                }
             }
         }
-
     
         Rectangle {
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: root.width
-            Layout.preferredHeight: root.height
+            id: details
+            Layout.preferredWidth: swarmProfileDetails.width
+            Layout.preferredHeight: root.height - header.height
             color: JamiTheme.secondaryBackgroundColor
+
+            ListView {
+                id: members
+                anchors.fill: parent
+
+                model: CurrentConversation.uris
+                delegate: RowLayout {
+                    Layout.fillWidth: true
+
+                    Avatar {
+                        width: JamiTheme.accountListAvatarSize
+                        height: JamiTheme.accountListAvatarSize
+                        z: -index
+
+                        imageId: modelData
+                        showPresenceIndicator: false
+                        mode: Avatar.Mode.Contact
+                    }
+                } 
+            }
         }
     }
 }
