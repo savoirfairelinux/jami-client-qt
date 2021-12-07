@@ -31,19 +31,24 @@ TabButton {
     property alias labelText: label.text
     property alias acceleratorSequence: accelerator.sequence
     property alias badgeCount: badge.count
+
+    property var backgroundColor: JamiTheme.backgroundColor
+    property var hoverColor: JamiTheme.backgroundColor
+    property var textColor: JamiTheme.textColor
+
     signal selected
 
     hoverEnabled: true
     onClicked: selected()
 
-     Rectangle {
+    Rectangle {
         id: contentRect
 
         anchors.fill: root
 
         color: root.hovered ?
-                   JamiTheme.hoverColor :
-                   JamiTheme.backgroundColor
+                   root.hoverColor :
+                   root.backgroundColor
 
         RowLayout {
             anchors.horizontalCenter: contentRect.horizontalCenter
@@ -56,7 +61,7 @@ TabButton {
                 Layout.bottomMargin: 1
 
                 font.pointSize: JamiTheme.filterItemFontSize
-                color: JamiTheme.textColor
+                color: root.textColor
                 opacity: root.down ? 1.0 : 0.5
             }
 
@@ -72,7 +77,7 @@ TabButton {
         width: contentRect.width
         anchors.bottom: contentRect.bottom
         height: 2
-        color: root.down ? JamiTheme.textColor : "transparent"
+        color: root.down ? root.textColor : "transparent"
     }
 
     Shortcut {

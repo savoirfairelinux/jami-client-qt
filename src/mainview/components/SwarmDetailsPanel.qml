@@ -94,9 +94,11 @@ Rectangle {
 
             currentIndex: 1
             Layout.preferredWidth: root.width
+            Layout.preferredHeight: aboutTabButton.height            
 
             FilterTabButton {
                 id: aboutTabButton
+                backgroundColor: JamiTheme.buttonTintedBlue
 
                 down: tabBar.currentIndex === 0
                 labelText: JamiStrings.about
@@ -104,6 +106,7 @@ Rectangle {
 
             FilterTabButton {
                 id: membersTabButton
+                backgroundColor: JamiTheme.buttonTintedBlue
 
                 down: tabBar.currentIndex === 1
                 labelText: JamiStrings.members
@@ -111,6 +114,7 @@ Rectangle {
 
             FilterTabButton {
                 id: documentsTabButton
+                backgroundColor: JamiTheme.buttonTintedBlue
 
                 down: tabBar.currentIndex === 2
                 labelText: JamiStrings.documents
@@ -121,7 +125,7 @@ Rectangle {
         Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: root.width
-            Layout.preferredHeight: root.height
+            Layout.preferredHeight: 1000
             color: JamiTheme.secondaryBackgroundColor
         }
     }
