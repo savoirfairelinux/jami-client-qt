@@ -92,6 +92,13 @@ public:
     Q_INVOKABLE void clearInteractionsCache(const QString& accountId, const QString& convUid);
     Q_INVOKABLE QVariantMap supportedLang();
 
+    // For Swarm details page
+    Q_INVOKABLE bool getContactPresence(const QString& accountId, const QString& uri);
+    Q_INVOKABLE QString getContactBestName(const QString& accountId, const QString& uri);
+    Q_INVOKABLE QString getParticipantRole(const QString& accountId,
+                                           const QString& convId,
+                                           const QString& uri);
+
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
 

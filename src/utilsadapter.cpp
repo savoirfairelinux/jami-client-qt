@@ -455,3 +455,36 @@ UtilsAdapter::supportedLang()
     }
     return result;
 }
+
+bool
+UtilsAdapter::getContactPresence(const QString& accountId, const QString& uri)
+{
+    try {
+        if (lrcInstance_->getAccountInfo(accountId).profileInfo.uri == uri)
+            return true; // It's the same account
+        auto info = lrcInstance_->getAccountInfo(accountId).contactModel->getContact(uri);
+        return info.isPresent;
+    } catch (...) {
+    }
+    return false;
+}
+
+QString
+UtilsAdapter::getContactBestName(const QString& accountId, const QString& uri)
+{
+    try {
+        if (lrcInstance_->getAccountInfo(accountId).profileInfo.uri == uri)
+            return lrcInstance_->accountModel().bestNameForAccount(
+                accountId); // It's the same account
+        return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(uri);
+    } catch (...) {
+    }
+    return {};
+}
+
+QString
+UtilsAdapter::getParticipantRole(const QString& accountId, const QString& convId, const QString& uri)
+{
+    // TODO get role
+    return {};
+}
