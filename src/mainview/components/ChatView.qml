@@ -43,6 +43,7 @@ Rectangle {
 
     function focusChatView() {
         chatViewFooter.textInput.forceActiveFocus()
+        swarmDetailsPanel.visible = false
     }
 
     color: JamiTheme.chatviewBgColor

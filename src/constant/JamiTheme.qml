@@ -53,6 +53,7 @@ Item {
     property color selectedColor: darkTheme ? "#0e81c5" : "#e0e0e0"
     property color editBackgroundColor: darkTheme ? "#373737" : lightGrey_
     property color textColor: primaryForegroundColor
+    property color textColorHovered: darkTheme? "#cccccc" : "#333333"
     property color tabbarBorderColor: darkTheme ? blackColor : "#e3e3e3"
     property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) :
                                                   Qt.rgba(0, 0, 0, 0.33)
