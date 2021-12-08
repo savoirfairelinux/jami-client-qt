@@ -84,6 +84,9 @@ Rectangle {
 
                 font.pointSize: JamiTheme.titleFontSize
 
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+
                 text: CurrentConversation.description
                 placeholderText: JamiStrings.editDescription
                 placeholderTextColor: JamiTheme.placeholderTextColorWhite
