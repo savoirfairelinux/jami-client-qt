@@ -82,7 +82,10 @@ Rectangle {
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
 
-                font.pointSize: JamiTheme.titleFontSize
+                font.pointSize: JamiTheme.menuFontSize
+
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
 
                 text: CurrentConversation.description
                 placeholderText: JamiStrings.editDescription
@@ -108,8 +111,8 @@ Rectangle {
                     backgroundColor: JamiTheme.buttonTintedBlue
                     hoverColor: JamiTheme.buttonTintedBlue
                     borderWidth: 4
-                    bottomMargin: JamiTheme.preferredMarginSize
-                    fontSize: JamiTheme.titleFontSize
+                    bottomMargin: JamiTheme.settingsMarginSize
+                    fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
                     down: tabBar.currentIndex === 0
@@ -121,8 +124,8 @@ Rectangle {
                     backgroundColor: JamiTheme.buttonTintedBlue
                     hoverColor: JamiTheme.buttonTintedBlue
                     borderWidth: 4
-                    bottomMargin: JamiTheme.preferredMarginSize
-                    fontSize: JamiTheme.titleFontSize
+                    bottomMargin: JamiTheme.settingsMarginSize
+                    fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
                     down: true//tabBar.currentIndex === 1
@@ -139,8 +142,8 @@ Rectangle {
                     backgroundColor: JamiTheme.buttonTintedBlue
                     hoverColor: JamiTheme.buttonTintedBlue
                     borderWidth: 4
-                    bottomMargin: JamiTheme.preferredMarginSize
-                    fontSize: JamiTheme.titleFontSize
+                    bottomMargin: JamiTheme.settingsMarginSize
+                    fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
                     down: tabBar.currentIndex === 2

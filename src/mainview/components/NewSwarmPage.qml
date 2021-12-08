@@ -40,6 +40,7 @@ Rectangle {
         anchors.centerIn: root
 
         EditableLineEdit {
+            id: title
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
 
@@ -55,6 +56,7 @@ Rectangle {
         }
 
         EditableLineEdit {
+            id: description
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
 
@@ -81,7 +83,7 @@ Rectangle {
             text: JamiStrings.createTheSwarm
 
             onClicked: {
-                ConversationsAdapter.createSwarm()
+                ConversationsAdapter.createSwarm(title.text, description.text, "", [])
                 createSwarmClicked()
             }
         }
