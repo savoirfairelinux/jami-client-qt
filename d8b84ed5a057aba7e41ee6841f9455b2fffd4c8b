@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46f7ba85_5b52617d",
+        "filename": "src/pluginlistpreferencemodel.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-12-09T16:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c5a16a8_ecf604f5",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 4
+      },
+      "revId": "d8b84ed5a057aba7e41ee6841f9455b2fffd4c8b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b487361c_b312fbb2",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-08T16:39:30Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 113,
+        "startChar": 30,
+        "endLine": 113,
+        "endChar": 46
+      },
+      "revId": "d8b84ed5a057aba7e41ee6841f9455b2fffd4c8b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5beceec1_8ea558d5",
+        "filename": "src/settingsview/components/PluginPreferencesView.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-12-09T16:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b487361c_b312fbb2",
       "range": {
         "startLine": 113,
         "startChar": 30,
