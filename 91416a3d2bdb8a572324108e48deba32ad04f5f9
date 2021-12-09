@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0c80f197_98d62ecf",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-12-09T16:47:49Z",
+      "side": 1,
+      "message": "Done in next patch",
+      "parentUuid": "be4bf630_2d0ab797",
+      "range": {
+        "startLine": 469,
+        "startChar": 45,
+        "endLine": 469,
+        "endChar": 55
+      },
+      "revId": "91416a3d2bdb8a572324108e48deba32ad04f5f9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f4f63c61_c19773a0",
         "filename": "src/mainview/components/PluginHandlerPicker.qml",
         "patchSetId": 10
