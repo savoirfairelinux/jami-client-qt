@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c610a7_f6c1262e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-13T21:49:38Z",
+      "side": 1,
+      "message": "This breaks jami-qt if build with libqt-jami on linux",
+      "revId": "087a67a9d7971f680d6a4b7e42b811c30e604d0c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
