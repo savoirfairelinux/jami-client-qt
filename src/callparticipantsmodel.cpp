@@ -137,7 +137,7 @@ CallParticipantsModel::setParticipants(const QString& callId, const QVariantList
     beginResetModel();
     endResetModel();
 
-    if (!participants.isEmpty())
+    if (!participants.isEmpty()) {
         int idx = 0;
         for (const auto& participant : participants) {
             addParticipant(idx, participant);
@@ -147,8 +147,8 @@ CallParticipantsModel::setParticipants(const QString& callId, const QVariantList
 }
 
 void
-CallParticipantsModel::resetParticipants(const QString& callId, const QVariantList& participants)
+CallParticipantsModel::reset()
 {
-    if (callId == callId_)
-        setParticipants(callId, participants);
+    beginResetModel();
+    endResetModel();
 }

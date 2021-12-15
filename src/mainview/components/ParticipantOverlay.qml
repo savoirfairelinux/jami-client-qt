@@ -18,6 +18,7 @@
  */
 
 import QtQuick
+import Qt5Compat.GraphicalEffects
 import QtQuick.Layouts
 import QtQuick.Shapes
 
@@ -42,6 +43,7 @@ Item {
 
     property string uri: overlayMenu.uri
     property string bestName: ""
+    property alias sinkId:  mediaDistRender.rendererId
     property bool participantIsActive: false
     property bool participantIsHost: false
     property bool participantIsModerator: false
@@ -61,6 +63,18 @@ Item {
         }
     }
 
+    Connections {
+        target: CallParticipantsModel
+
+        function onUpdateParticipant(participantInfos) {
+            if (participantInfos.uri === overlayMenu.uri) {
+                root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
+                setMenu(participantInfos.uri, participantInfos.bestName, participantInfos.isLocal, participantInfos.active)
+                setAvatar(participantInfos.videoMuted, participantInfos.uri, participantInfos.isLocal)
+            }
+        }
+    }
+
     function setAvatar(show, uri, isLocal) {
         if (!show)
             avatar.active = false
@@ -71,7 +85,7 @@ Item {
         }
     }
 
-    function setMenu(newUri, bestName, isLocal, isActive, showMax) {
+    function setMenu(newUri, bestName, isLocal, isActive) {
 
         overlayMenu.uri = newUri
         root.bestName = bestName
@@ -96,7 +110,7 @@ Item {
 
         overlayMenu.showModeratorMute = meModerator && !participantIsModeratorMuted
         overlayMenu.showModeratorUnmute = (meModerator || isMe) && participantIsModeratorMuted
-        overlayMenu.showMaximize = meModerator && showMax
+        overlayMenu.showMaximize = meModerator
         overlayMenu.showMinimize = meModerator && participantIsActive
         overlayMenu.showHangup = meModerator && !isLocal && !participantIsHost
     }
@@ -117,6 +131,7 @@ Item {
         property real size_: Math.min(parent.width / 2, parent.height / 2)
         height:  size_
         width:  size_
+        z: 0
 
         property int mode_
         property string imageId_
@@ -134,22 +149,6 @@ Item {
         }
     }
 
-    HoverHandler {
-        onPointChanged: {
-            participantRect.opacity = 1
-            fadeOutTimer.restart()
-        }
-
-        onHoveredChanged: {
-            if (overlayMenu.hovered) {
-                participantRect.opacity = 1
-                fadeOutTimer.restart()
-                return
-            }
-            participantRect.opacity = hovered ? 1 : 0
-        }
-    }
-
     // Timer to decide when ParticipantOverlay fade out
     Timer {
         id: fadeOutTimer
@@ -163,18 +162,67 @@ Item {
         }
     }
 
-    // Participant background and buttons for moderation
+    VideoView {
+        id: mediaDistRender
+        width: parent.width
+        height: width * invAspectRatio
+        anchors.centerIn: parent
+        rendererId: root.sinkId
+        visible: !root.videoMuted
+
+        // Update overlays if the internal or visual geometry changes.
+        property real area: width * height
+
+        Item {
+            anchors.fill: parent
+
+            HoverHandler {
+                onPointChanged: {
+                    participantRect.opacity = 1
+                    fadeOutTimer.restart()
+                }
+
+                onHoveredChanged: {
+                    if (overlayMenu.hovered) {
+                        participantRect.opacity = 1
+                        fadeOutTimer.restart()
+                        return
+                    }
+                    participantRect.opacity = hovered ? 1 : 0
+                }
+            }
+        }
+
+        layer.enabled: !root.videoMuted
+        layer.effect: OpacityMask {
+            maskSource: Item {
+                width: mediaDistRender.width
+                height: mediaDistRender.height
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: participantRect.width
+                    height: participantRect.height
+                    radius: 10
+                }
+            }
+        }
+    }
+
+    // Participant background
     Rectangle {
         id: participantRect
 
-        width: parent.width
-        height: parent.height
+        width: mediaDistRender.width
+        height: mediaDistRender.height
+        anchors.centerIn: parent
         color: "transparent"
         opacity: 0
 
+        // Participant background and buttons for moderation
         ParticipantOverlayMenu {
             id: overlayMenu
             visible: isMe || meModerator
+            anchors.fill: parent
 
             onHoveredChanged: {
                 if (hovered) {
@@ -322,7 +370,8 @@ Item {
         imageColor: JamiTheme.whiteColor
         preferredSize: shapeHeight
         visible: root.participantHandIsRaised
-        anchors.right: parent.right
+        anchors.right: participantRect.right
+        anchors.top: participantRect.top
         checkable: root.meModerator
         pressedColor: JamiTheme.raiseHandColor
         hoveredColor: JamiTheme.raiseHandColor
@@ -355,7 +404,6 @@ Item {
             verticalAlignment: Text.AlignVCenter
         }
 
-        // Timer to decide when ParticipantOverlay fade out
         Timer {
             id: alertTimer
             interval: JamiTheme.overlayFadeDelay
