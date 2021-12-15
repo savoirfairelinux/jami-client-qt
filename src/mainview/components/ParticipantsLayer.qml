@@ -18,101 +18,72 @@
 
 import QtQuick
 
+import QtQuick.Layouts 1.15
+import net.jami.Adapters 1.1
+import net.jami.Models 1.1
+
 Item {
     id: root
 
-    property var participantOverlays: []
-    property var participantComponent: Qt.createComponent("ParticipantOverlay.qml")
+    property alias count: participantincall.count
 
-    // returns true if participant is not fully maximized
-    function showMaximize(pX, pY, pW, pH) {
-        // Hack: -1 offset added to avoid problems with odd sizes
-        return (pX - distantRenderer.contentRect.x !== 0
-                || pY - distantRenderer.contentRect.y !== 0
-                || pW < (distantRenderer.width - distantRenderer.contentRect.x * 2 -  1)
-                || pH < (distantRenderer.height - distantRenderer.contentRect.y * 2 - 1))
+    Connections {
+        target: CallAdapter
+
+        function onUpdateParticipantsLayout() {
+            participantsFlow.columns = Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
+            participantsFlow.rows = Math.max(1, Math.ceil(participantincall.count/participantsFlow.columns))
+        }
     }
 
-    function update(infos) {
-        // TODO: in the future the conference layout should be entirely managed by the client
-        // Hack: truncate and ceil participant's overlay position and size to correct
-        // when they are not exacts
-        callOverlay.updateUI()
-        var showMax = false
-        var showMin = false
 
-        var deletedUris = []
-        var currentUris = []
-        for (var p in participantOverlays) {
-            if (participantOverlays[p]) {
-                var participant = infos.find(e => e.uri === participantOverlays[p].uri);
-                if (participant) {
-                    // Update participant's information
-                    participantOverlays[p].x = Math.trunc(distantRenderer.contentRect.x
-                                                          + participant.x * distantRenderer.xScale)
-                    participantOverlays[p].y = Math.trunc(distantRenderer.contentRect.y
-                                                          + participant.y * distantRenderer.yScale)
-                    participantOverlays[p].width = Math.ceil(participant.w * distantRenderer.xScale)
-                    participantOverlays[p].height = Math.ceil(participant.h * distantRenderer.yScale)
-                    participantOverlays[p].visible = participant.w !== 0 && participant.h !== 0
+    Component {
+        id: callVideoMedia
 
-                    showMax = showMaximize(participantOverlays[p].x,
-                                           participantOverlays[p].y,
-                                           participantOverlays[p].width,
-                                           participantOverlays[p].height)
+        ParticipantOverlay {
+            anchors.fill: parent
+            anchors.centerIn: parent
 
-                    participantOverlays[p].setMenu(participant.uri, participant.bestName,
-                                                   participant.isLocal, participant.active, showMax)
-                    if (participant.videoMuted)
-                        participantOverlays[p].setAvatar(true, participant.uri, participant.isLocal)
-                    else
-                        participantOverlays[p].setAvatar(false)
-                    currentUris.push(participantOverlays[p].uri)
-                } else {
-                    // Participant is no longer in conference
-                    deletedUris.push(participantOverlays[p].uri)
-                    participantOverlays[p].destroy()
-                }
+            sinkId: sinkId_
+
+            Component.onCompleted: {
+                setMenu(uri_, bestName_, isLocal_, active_)
+                setAvatar(videoMuted_, uri_, isLocal_)
+                VideoDevices.startDevice(sinkId)
             }
         }
-        participantOverlays = participantOverlays.filter(part => !deletedUris.includes(part.uri))
+    }
 
-        if (infos.length === 0) { // Return to normal call
-            for (var part in participantOverlays) {
-                if (participantOverlays[part]) {
-                    participantOverlays[part].destroy()
-                }
-            }
-            participantOverlays = []
-        } else {
-            for (var infoVariant in infos) {
-                // Only create overlay for new participants
-                if (!currentUris.includes(infos[infoVariant].uri)) {
-                    const infoObj = {
-                        x: Math.trunc(distantRenderer.contentRect.x
-                                      + infos[infoVariant].x * distantRenderer.xScale),
-                        y: Math.trunc(distantRenderer.contentRect.y
-                                      + infos[infoVariant].y * distantRenderer.yScale),
-                        width: Math.ceil(infos[infoVariant].w * distantRenderer.xScale),
-                        height: Math.ceil(infos[infoVariant].h * distantRenderer.yScale),
-                        visible: infos[infoVariant].w !== 0 && infos[infoVariant].h !== 0
-                    }
-                    var hover = participantComponent.createObject(root, infoObj)
-                    if (!hover) {
-                        console.log("Error when creating the hover")
-                        return
-                    }
+    Flow {
+        id: participantsFlow
+        anchors.fill: parent
+        anchors.centerIn: parent
+        spacing: 8
+        property int columns: Math.max(1, Math.ceil(Math.sqrt(participantincall.count)))
+        property int rows: Math.max(1, Math.ceil(participantincall.count/columns))
+        property int columnsSpacing: 5 * (columns - 1)
+        property int rowsSpacing: 5 * (rows - 1)
 
-                    showMax = showMaximize(hover.x, hover.y, hover.width, hover.height)
+        Repeater {
+            id: participantincall
+            anchors.fill: parent
+            anchors.centerIn: parent
 
-                    hover.setMenu(infos[infoVariant].uri, infos[infoVariant].bestName,
-                                  infos[infoVariant].isLocal, infos[infoVariant].active, showMax)
-                    if (infos[infoVariant].videoMuted)
-                        hover.setAvatar(true, infos[infoVariant].uri, infos[infoVariant].isLocal)
-                    else
-                        hover.setAvatar(false)
-                    participantOverlays.push(hover)
-                }
+            model: CallParticipantsModel
+            delegate: Loader {
+                sourceComponent: callVideoMedia
+                width: Math.ceil(participantsFlow.width / participantsFlow.columns) - participantsFlow.columnsSpacing
+                height: Math.ceil(participantsFlow.height / participantsFlow.rows) - participantsFlow.rowsSpacing
+
+                property string uri_: Uri
+                property string bestName_: BestName
+                property string avatar_: Avatar ? Avatar : ""
+                property string sinkId_: SinkId ? SinkId : ""
+                property bool isLocal_: IsLocal
+                property bool active_: Active
+                property bool videoMuted_: VideoMuted
+                property bool isContact_: IsContact
+                property bool isHandRaised_: HandRaised
             }
         }
     }
