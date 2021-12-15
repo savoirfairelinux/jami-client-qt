@@ -82,7 +82,7 @@ public:
     void addParticipant(int index, const QVariant& infos);
     void removeParticipant(int index);
     void setParticipants(const QString& callId, const QVariantList& participants);
-    void resetParticipants(const QString& callId, const QVariantList& participants);
+    Q_INVOKABLE void reset();
 
 Q_SIGNALS:
     void updateParticipant(QVariant participantInfos);

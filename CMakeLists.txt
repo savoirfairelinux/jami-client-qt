@@ -139,6 +139,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/videodevices.cpp
     ${SRC_DIR}/previewengine.cpp
     ${SRC_DIR}/videoprovider.cpp
+    ${SRC_DIR}/callparticipantsmodel.cpp
 )
 
 set(COMMON_HEADERS
@@ -195,6 +196,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/videodevices.h
     ${SRC_DIR}/previewengine.h
     ${SRC_DIR}/videoprovider.h
+    ${SRC_DIR}/callparticipantsmodel.h
 )
 
 # For avframe dependency on Windows/macOS.
