@@ -145,15 +145,6 @@ Rectangle {
                 initialCallPage.callStatus = status
             }
         }
-
-        function onUpdateParticipantsInfos(infos, accountId, callId) {
-            if (callStackMainView.currentItem.stackNumber === CallStackView.OngoingPageStack && !root.isAudioOnly) {
-                var responsibleCallId = UtilsAdapter.getCallId(responsibleAccountId, responsibleConvUid)
-                if (responsibleCallId === callId) {
-                    ongoingCallPage.handleParticipantsInfo(infos)
-                }
-            }
-        }
     }
 
     OngoingCallPage {

@@ -51,8 +51,6 @@ Item {
 
     property alias hovered: hover.hovered
 
-    anchors.fill: parent
-
     HoverHandler { id: hover }
 
     Loader { sourceComponent: isBarLayout ? barComponent : rectComponent }
