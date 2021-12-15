@@ -309,7 +309,7 @@ Control {
         function onIsVideoMutedChanged() { reset() }
         function onIsRecordingChanged() { reset() }
         function onLocalHandRaisedChanged() { reset() }
-        function onIsConferenceCallChanged() { reset() }
+        function onIsConferenceChanged() { reset() }
     }
     Connections {
         target: CurrentAccount
@@ -329,7 +329,7 @@ Control {
 
         // overflow controls
         CallOverlayModel.addSecondaryControl(audioOutputAction)
-        if (isConferenceCall) {
+        if (isConference) {
             CallOverlayModel.addSecondaryControl(raiseHandAction)
             raiseHandAction.checked = CallAdapter.isHandRaised()
         }

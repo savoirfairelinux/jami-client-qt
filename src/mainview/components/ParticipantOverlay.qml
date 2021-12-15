@@ -42,6 +42,7 @@ Item {
 
     property string uri: overlayMenu.uri
     property string bestName: ""
+    property alias sinkId:  mediaDistRender.rendererId
     property bool participantIsActive: false
     property bool participantIsHost: false
     property bool participantIsModerator: false
@@ -61,7 +62,17 @@ Item {
         }
     }
 
-    z: 1
+    Connections {
+        target: CallParticipantsModel
+
+        function onUpdateParticipant(participantInfos) {
+            if (participantInfos.uri === overlayMenu.uri) {
+                root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
+                setMenu(participantInfos.uri, participantInfos.bestName, participantInfos.isLocal, participantInfos.active)
+                setAvatar(participantInfos.videoMuted, participantInfos.uri, participantInfos.isLocal)
+            }
+        }
+    }
 
     function setAvatar(show, uri, isLocal) {
         if (!show)
@@ -73,7 +84,7 @@ Item {
         }
     }
 
-    function setMenu(newUri, bestName, isLocal, isActive, showMax) {
+    function setMenu(newUri, bestName, isLocal, isActive) {
 
         overlayMenu.uri = newUri
         root.bestName = bestName
@@ -98,7 +109,7 @@ Item {
 
         overlayMenu.showModeratorMute = meModerator && !participantIsModeratorMuted
         overlayMenu.showModeratorUnmute = (meModerator || isMe) && participantIsModeratorMuted
-        overlayMenu.showMaximize = meModerator && showMax
+        overlayMenu.showMaximize = meModerator
         overlayMenu.showMinimize = meModerator && participantIsActive
         overlayMenu.showHangup = meModerator && !isLocal && !participantIsHost
     }
@@ -119,6 +130,7 @@ Item {
         property real size_: Math.min(parent.width / 2, parent.height / 2)
         height:  size_
         width:  size_
+        z: 0
 
         property int mode_
         property string imageId_
@@ -136,9 +148,29 @@ Item {
         }
     }
 
+    DistantRenderer {
+        id: mediaDistRender
+        anchors.fill: parent
+        anchors.centerIn: parent
+        z: -1
+        lrcInstance: LRCInstance
+        onOffsetChanged: {
+            participantMouseArea.height = mediaDistRender.getWidgetHeight() !== 0 ? mediaDistRender.getWidgetHeight() : mediaDistRender.height
+            participantMouseArea.width = mediaDistRender.getWidgetWidth() !== 0 ? mediaDistRender.getWidgetWidth() : mediaDistRender.width
+        }
+        onVisibleChanged: {
+            if (visible) {
+                if (sinkId)
+                    VideoDevices.startDevice(sinkId)
+            } else {
+                VideoDevices.stopDevice(sinkId)
+            } 
+        }
+    }
+
     // Participant background and buttons for moderation
     MouseArea {
-        id: participantRect
+        id: participantMouseArea
 
         anchors.fill: parent
         opacity: 0
@@ -147,7 +179,7 @@ Item {
         propagateComposedEvents: true
         hoverEnabled: true
         onPositionChanged: {
-            participantRect.opacity = 1
+            participantMouseArea.opacity = 1
             fadeOutTimer.restart()
             // Here we could call: root.parent.positionChanged(mouse)
             // to relay the event to a main overlay mouse area, either
@@ -156,11 +188,11 @@ Item {
         }
         onExited: {
             root.z = 1
-            participantRect.opacity = 0
+            participantMouseArea.opacity = 0
         }
         onEntered: {
             root.z = 2
-            participantRect.opacity = 1
+            participantMouseArea.opacity = 1
         }
 
         // Timer to decide when ParticipantOverlay fade out
@@ -170,13 +202,14 @@ Item {
             onTriggered: {
                 if (overlayMenu.hovered)
                     return
-                participantRect.opacity = 0
+                participantMouseArea.opacity = 0
             }
         }
 
         ParticipantOverlayMenu {
             id: overlayMenu
             visible: isMe || meModerator
+            anchors.fill: parent
         }
 
         // Participant footer with host, moderator and mute indicators
@@ -186,7 +219,7 @@ Item {
         // - In my video, the mute state is isLocalMuted
         Rectangle {
             id: participantIndicators
-            width: participantRect.width
+            width: participantMouseArea.width
             height: shapeHeight
             color: "transparent"
             anchors.bottom: parent.bottom
@@ -320,7 +353,7 @@ Item {
         pressedColor: JamiTheme.raiseHandColor
         hoveredColor: JamiTheme.raiseHandColor
         normalColor: JamiTheme.raiseHandColor
-        z: participantRect.z + 1
+        z: participantMouseArea.z + 1
         toolTipText: root.meModerator ? JamiStrings.lowerHand : ""
         onClicked: CallAdapter.setHandRaised(uri, false)
         radius: 5
@@ -340,7 +373,7 @@ Item {
             id: alertMessageTxt
             text: root.muteAlertMessage
             anchors.centerIn: parent
-            width: Math.min(participantRect.width, contentWidth)
+            width: Math.min(participantMouseArea.width, contentWidth)
             color: JamiTheme.whiteColor
             font.pointSize: JamiTheme.textFontSize
             wrapMode: Text.Wrap

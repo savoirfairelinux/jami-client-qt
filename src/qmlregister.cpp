@@ -62,6 +62,7 @@
 #include "api/datatransfermodel.h"
 #include "api/pluginmodel.h"
 #include "api/conversation.h"
+#include "api/callparticipantsmodel.h"
 
 #include <QMetaType>
 #include <QQmlEngine>
@@ -209,6 +210,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(ContactModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(ConversationModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewCallModel, lrc::api);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(CallParticipants, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewDeviceModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewCodecModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(PeerDiscoveryModel, lrc::api);

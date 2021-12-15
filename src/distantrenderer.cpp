@@ -102,6 +102,18 @@ DistantRenderer::getScaledHeight() const
     return scaledHeight_;
 }
 
+double
+DistantRenderer::getWidgetWidth() const
+{
+    return width_;
+}
+
+double
+DistantRenderer::getWidgetHeight() const
+{
+    return height_;
+}
+
 void
 DistantRenderer::paint(QPainter* painter)
 {
@@ -123,6 +135,8 @@ DistantRenderer::paint(QPainter* painter)
                             / static_cast<double>(distantImage->height());
             xOffset_ = (width() - scaledDistant.width()) / 2;
             yOffset_ = (height() - scaledDistant.height()) / 2;
+            width_ = scaledDistant.width();
+            height_ = scaledDistant.height();
             if (tempXOffset != xOffset_ or tempYOffset != yOffset_
                 or static_cast<int>(scaledWidth_ * 1000) != tempScaledWidth
                 or static_cast<int>(scaledHeight_ * 1000) != tempScaledHeight) {
