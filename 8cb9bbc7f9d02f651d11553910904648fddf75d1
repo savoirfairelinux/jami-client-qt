@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d78e67_bea7e71d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-16T19:33:46Z",
+      "side": 1,
+      "message": "Seems good but please update the doc (INSTALL.md)",
+      "revId": "8cb9bbc7f9d02f651d11553910904648fddf75d1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
