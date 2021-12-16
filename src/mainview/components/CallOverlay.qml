@@ -71,7 +71,7 @@ Item {
             root.localHandRaised = CallAdapter.isHandRaised()
         }
         root.isRecording = CallAdapter.isRecordingThisCall()
-        root.isModerator = CallAdapter.isCurrentModerator()
+        root.isModerator = CallAdapter.isModerator()
     }
 
     function showOnHoldImage(visible) {
