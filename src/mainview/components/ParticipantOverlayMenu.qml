@@ -30,8 +30,6 @@ import "../../commoncomponents"
 Item {
     id: root
 
-    property string uri: ""
-    property bool isLocalMuted: true
     property bool showSetModerator: false
     property bool showUnsetModerator: false
     property bool showModeratorMute: false
@@ -41,12 +39,12 @@ Item {
     property bool showHangup: false
 
     property int shapeHeight: 30
-    property int shapeRadius: 8
+    property int shapeRadius: 10
 
     property bool isBarLayout: root.width > 220
     property int isSmall: !isBarLayout && (root.height < 100 || root.width < 160)
 
-    property int buttonPreferredSize: 24
+    property int buttonPreferredSize: 20
     property int iconButtonPreferredSize: 16
 
     property alias hovered: hover.hovered
