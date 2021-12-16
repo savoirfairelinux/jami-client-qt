@@ -68,7 +68,9 @@ bool
 ConnectivityMonitor::isOnline()
 {
     SCNetworkReachabilityFlags flags;
-    auto valid = SCNetworkReachabilityGetFlags(currentReachability, &flags);
+    SCNetworkReachabilityRef reachabilityRef = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, "test");
+    auto valid = SCNetworkReachabilityGetFlags(reachabilityRef, &flags);
     bool isConnected = (flags & kSCNetworkFlagsReachable) && !(flags & kSCNetworkFlagsConnectionRequired);
+    CFRelease(reachabilityRef);
     return valid && isConnected;
 }

@@ -32,11 +32,17 @@ static constexpr bool isBeta = false;
 #endif
 
 static constexpr int updatePeriod = 1000 * 60 * 60 * 24; // one day in millis
+#ifdef Q_OS_MAC
+static constexpr char downloadUrl[] = "https://dl.jami.net/mac_osx/qt-client";
+static constexpr char binSubUrl[] = "/jami.dmg";
+static constexpr char betaBinSubUrl[] = "/beta/jami-beta.dmg";
+#else
 static constexpr char downloadUrl[] = "https://dl.jami.net/windows";
+static constexpr char binSubUrl[] = "/jami.release.x64.msi";
+static constexpr char betaBinSubUrl[] = "/beta/jami.beta.x64.msi";
+#endif
 static constexpr char versionSubUrl[] = "/version";
 static constexpr char betaVersionSubUrl[] = "/beta/version";
-static constexpr char msiSubUrl[] = "/jami.release.x64.msi";
-static constexpr char betaMsiSubUrl[] = "/beta/jami.beta.x64.msi";
 
 UpdateManager::UpdateManager(const QString& url,
                              ConnectivityMonitor* cm,
@@ -83,17 +89,20 @@ UpdateManager::checkForUpdates(bool quiet)
     cleanUpdateFiles();
     QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
                             : QUrl::fromUserInput(baseUrlString_ + versionSubUrl)};
-    get(versionUrl, [this, quiet](const QString& latestVersionString) {
-        if (latestVersionString.isEmpty()) {
+    auto localVersion = QString(VERSION_STRING).toULongLong();
+    qDebug() << "$$$4 " << versionUrl;
+    qDebug() << "$$$4 " << localVersion;
+    get(versionUrl, [this, quiet](const QString& remoteVersionString) {
+        if (remoteVersionString.isEmpty()) {
             qWarning() << "Error checking version";
             if (!quiet)
                 Q_EMIT updateCheckReplyReceived(false);
             return;
         }
-        auto currentVersion = QString(VERSION_STRING).toULongLong();
-        auto latestVersion = latestVersionString.toULongLong();
-        qDebug() << "latest: " << latestVersion << " current: " << currentVersion;
-        if (latestVersion > currentVersion) {
+        auto localVersion = QString(VERSION_STRING).toULongLong();
+        auto latestVersion = remoteVersionString.toULongLong();
+        qDebug() << "latest: " << latestVersion << " current: " << localVersion;
+        if (latestVersion > localVersion) {
             qDebug() << "New version found";
             Q_EMIT updateCheckReplyReceived(true, true);
         } else {
@@ -126,8 +135,8 @@ UpdateManager::applyUpdates(bool beta)
         }
     });
 
-    QUrl downloadUrl {(beta || isBeta) ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
-                                       : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
+    QUrl downloadUrl {(beta || isBeta) ? QUrl::fromUserInput(baseUrlString_ + betaBinSubUrl)
+                                       : QUrl::fromUserInput(baseUrlString_ + binSubUrl)};
 
     get(
         downloadUrl,

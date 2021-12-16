@@ -392,6 +392,10 @@ else()
     include_directories(${LRC_SRC_PATH})
 
     set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
+    #if(BETA)
+        message("Beta config enabled")
+        add_definitions(-DBETA)
+    #endif()
 
     find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
     find_library(SYSTEM_CONFIGURATUION SystemConfiguration)
