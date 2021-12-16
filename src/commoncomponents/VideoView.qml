@@ -26,6 +26,7 @@ Item {
     property string rendererId
     property alias videoSink: videoOutput.videoSink
     property alias underlayItems: rootUnderlayItem.children
+    property alias overlayItems: rootOverlayItem.children
     property real invAspectRatio: (videoOutput.sourceRect.height
                                    / videoOutput.sourceRect.width) ||
                                   0.5625 // 16:9 default
@@ -78,5 +79,10 @@ Item {
             anchors.fill: root
             radius: (1. - opacity) * 100
         }
+    }
+
+    Item {
+        id: rootOverlayItem
+        anchors.fill: parent
     }
 }
