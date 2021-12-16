@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2020 by Savoir-faire Linux
- * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
- * Author: Albert Babí <albert.babi@savoirfairelinux.com>
+ * Authors: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+ *          Albert Babí <albert.babi@savoirfairelinux.com>
+ *          Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
  */
 
 import QtQuick 2.15
+import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.15
 import QtQuick.Shapes 1.15
 
@@ -33,24 +35,27 @@ Item {
     // svg path for the participant indicators background shape
     property int shapeWidth: participantFootInfo.width + 8
     property int shapeHeight: 30
-    property int shapeRadius: 6
+    property int shapeRadius: 5
     property string pathShape: "M0,0 h%1 q%2,0 %2,%2 v%3 h-%4 z"
         .arg(shapeWidth - shapeRadius)
         .arg(shapeRadius)
         .arg(shapeHeight - shapeRadius)
         .arg(shapeWidth)
 
-    property string uri: overlayMenu.uri
+    property string uri: ""
     property string bestName: ""
-    property alias sinkId:  mediaDistRender.rendererId
+    property string sinkId: ""
     property bool participantIsActive: false
-    property bool participantIsHost: false
+    property bool participantIsHost: CallAdapter.participantIsHost(uri)
     property bool participantIsModerator: false
-    property bool participantIsMuted: false
+    property bool participantIsMuted: isLocalMuted || participantIsModeratorMuted
     property bool participantIsModeratorMuted: false
     property bool participantHandIsRaised: false
+    property bool videoMuted: true
+    property bool isLocalMuted: true
 
-    property bool meModerator: false
+    property bool meHost: CallAdapter.isCurrentHost()
+    property bool meModerator: CallAdapter.isModerator()
     property bool isMe: false
 
     property string muteAlertMessage: ""
@@ -60,58 +65,6 @@ Item {
         if (muteAlertActive) {
             alertTimer.restart()
         }
-    }
-
-    Connections {
-        target: CallParticipantsModel
-
-        function onUpdateParticipant(participantInfos) {
-            if (participantInfos.uri === overlayMenu.uri) {
-                root.sinkId = participantInfos.videoMuted ? "" : participantInfos.sinkId
-                setMenu(participantInfos.uri, participantInfos.bestName, participantInfos.isLocal, participantInfos.active)
-                setAvatar(participantInfos.videoMuted, participantInfos.uri, participantInfos.isLocal)
-            }
-        }
-    }
-
-    function setAvatar(show, uri, isLocal) {
-        if (!show)
-            avatar.active = false
-        else {
-            avatar.mode_ = isLocal ? Avatar.Mode.Account : Avatar.Mode.Contact
-            avatar.imageId_ = isLocal ? LRCInstance.currentAccountId : uri
-            avatar.active = true
-        }
-    }
-
-    function setMenu(newUri, bestName, isLocal, isActive) {
-
-        overlayMenu.uri = newUri
-        root.bestName = bestName
-        isMe = overlayMenu.uri === CurrentAccount.uri
-
-        var isHost = CallAdapter.isCurrentHost()
-        meModerator = CallAdapter.isCurrentModerator()
-        participantIsHost = CallAdapter.participantIsHost(overlayMenu.uri)
-        participantIsModerator = CallAdapter.isModerator(overlayMenu.uri)
-        participantIsActive = isActive
-        participantHandIsRaised = CallAdapter.isHandRaised(overlayMenu.uri)
-        overlayMenu.showSetModerator = isHost && !isLocal && !participantIsModerator
-        overlayMenu.showUnsetModerator = isHost && !isLocal && participantIsModerator
-
-        var muteState = CallAdapter.getMuteState(overlayMenu.uri)
-        overlayMenu.isLocalMuted = muteState === CallAdapter.LOCAL_MUTED
-                || muteState === CallAdapter.BOTH_MUTED
-        participantIsModeratorMuted = muteState === CallAdapter.MODERATOR_MUTED
-                || muteState === CallAdapter.BOTH_MUTED
-
-        participantIsMuted = overlayMenu.isLocalMuted || participantIsModeratorMuted
-
-        overlayMenu.showModeratorMute = meModerator && !participantIsModeratorMuted
-        overlayMenu.showModeratorUnmute = (meModerator || isMe) && participantIsModeratorMuted
-        overlayMenu.showMaximize = meModerator
-        overlayMenu.showMinimize = meModerator && participantIsActive
-        overlayMenu.showHangup = meModerator && !isLocal && !participantIsHost
     }
 
     TextMetrics {
@@ -125,7 +78,9 @@ Item {
 
         anchors.centerIn: parent
 
-        active: false
+        active: root.videoMuted
+        mode_: root.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
+        imageId_: root.isMe ? LRCInstance.currentAccountId : root.uri
 
         property real size_: Math.min(parent.width / 2, parent.height / 2)
         height:  size_
@@ -151,13 +106,30 @@ Item {
     DistantRenderer {
         id: mediaDistRender
         anchors.fill: parent
-        anchors.centerIn: parent
-        z: -1
+        rendererId: root.sinkId
+        visible: !root.videoMuted
+
         lrcInstance: LRCInstance
+
         onOffsetChanged: {
             participantMouseArea.height = mediaDistRender.getWidgetHeight() !== 0 ? mediaDistRender.getWidgetHeight() : mediaDistRender.height
             participantMouseArea.width = mediaDistRender.getWidgetWidth() !== 0 ? mediaDistRender.getWidgetWidth() : mediaDistRender.width
         }
+
+        layer.enabled: !root.videoMuted
+        layer.effect: OpacityMask {
+            maskSource: Item {
+                width: mediaDistRender.width
+                height: mediaDistRender.height
+                Rectangle {
+                    anchors.centerIn: parent
+                    width: participantMouseArea.width
+                    height: participantMouseArea.height
+                    radius: 10
+                }
+            }
+        }
+
         onVisibleChanged: {
             if (visible) {
                 if (sinkId)
@@ -171,8 +143,8 @@ Item {
     // Participant background and buttons for moderation
     MouseArea {
         id: participantMouseArea
+        anchors.centerIn: parent
 
-        anchors.fill: parent
         opacity: 0
         z: 1
 
@@ -210,6 +182,15 @@ Item {
             id: overlayMenu
             visible: isMe || meModerator
             anchors.fill: parent
+            anchors.centerIn: parent
+
+            showSetModerator: root.meHost && !root.isMe && !root.participantIsModerator
+            showUnsetModerator: root.meHost && !root.isMe && root.participantIsModerator
+            showModeratorMute: root.meModerator && !root.participantIsModeratorMuted
+            showModeratorUnmute: (root.meModerator || root.isMe) && root.participantIsModeratorMuted
+            showMaximize: root.meModerator && CallParticipantsModel.conferenceLayout !== CallParticipantsModel.ONE
+            showMinimize: root.meModerator && root.participantIsActive
+            showHangup: root.meModerator && !root.isMe && !root.participantIsHost
         }
 
         // Participant footer with host, moderator and mute indicators
@@ -274,7 +255,7 @@ Item {
                         containerHeight: 12
                         containerWidth: 12
 
-                        visible: participantIsHost
+                        visible: root.participantIsHost
 
                         source: JamiResources.star_outline_24dp_svg
                         color: JamiTheme.whiteColor
@@ -295,7 +276,7 @@ Item {
                         containerHeight: 12
                         containerWidth: 12
 
-                        visible: !participantIsHost && participantIsModerator
+                        visible: !root.participantIsHost && root.participantIsModerator
 
                         source: JamiResources.moderator_svg
                         color: JamiTheme.whiteColor
@@ -316,7 +297,7 @@ Item {
                         containerHeight: 12
                         containerWidth: 12
 
-                        visible: (!isMe && !meModerator) ? participantIsMuted : overlayMenu.isLocalMuted
+                        visible: (!root.isMe && !root.meModerator) ? root.participantIsMuted : root.isLocalMuted
 
                         source: JamiResources.micro_off_black_24dp_svg
                         color: "red"
@@ -325,11 +306,11 @@ Item {
                         MaterialToolTip {
                             visible: hoverMicrophone.hovered
                             text: {
-                                if (!isMe && !meModerator && participantIsModeratorMuted && overlayMenu.isLocalMuted)
+                                if (!root.isMe && !root.meModerator && root.participantIsModeratorMuted && root.isLocalMuted)
                                     return JamiStrings.bothMuted
-                                if (overlayMenu.isLocalMuted)
+                                if (root.isLocalMuted)
                                     return JamiStrings.localMuted
-                                if (!isMe && !meModerator && participantIsModeratorMuted)
+                                if (!root.isMe && !root.meModerator && root.participantIsModeratorMuted)
                                     return JamiStrings.moderatorMuted
                                 return JamiStrings.notMuted
                             }
@@ -348,7 +329,8 @@ Item {
         imageColor: JamiTheme.whiteColor
         preferredSize: shapeHeight
         visible: root.participantHandIsRaised
-        anchors.right: parent.right
+        anchors.right: participantMouseArea.right
+        anchors.top: participantMouseArea.top
         checkable: root.meModerator
         pressedColor: JamiTheme.raiseHandColor
         hoveredColor: JamiTheme.raiseHandColor

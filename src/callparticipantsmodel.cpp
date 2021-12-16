@@ -92,10 +92,13 @@ CallParticipantsModel::roleNames() const
 void
 CallParticipantsModel::addParticipant(int index, const QVariant& infos)
 {
+    if (index > participants_.size())
+        return;
+    beginInsertRows(QModelIndex(), index, index);
+
     auto it = participants_.begin() + index;
     participants_.insert(it, CallParticipant::Item {infos.toJsonObject()});
 
-    beginInsertRows(QModelIndex(), index, index);
     endInsertRows();
 
     callId_ = participants_[index].item["callId"].toString();
@@ -113,18 +116,21 @@ CallParticipantsModel::updateParticipant(int index, const QVariant& infos)
     (*it) = CallParticipant::Item {infos.toJsonObject()};
 
     callId_ = participants_[index].item["callId"].toString();
-    Q_EMIT updateParticipant(it->item.toVariantMap());
+    Q_EMIT dataChanged(createIndex(index, 0), createIndex(index, 0));
 }
 
 void
 CallParticipantsModel::removeParticipant(int index)
 {
+    if (participants_.size() <= index)
+        return;
     callId_ = participants_[index].item["callId"].toString();
+
+    beginRemoveRows(QModelIndex(), index, index);
 
     auto it = participants_.begin() + index;
     participants_.erase(it);
 
-    beginRemoveRows(QModelIndex(), index, index);
     endRemoveRows();
 }
 
@@ -146,8 +152,7 @@ CallParticipantsModel::setParticipants(const QString& callId, const QVariantList
     callId_ = callId;
 
     participants_.clear();
-    beginResetModel();
-    endResetModel();
+    reset();
 
     if (participants.isEmpty())
         clearParticipantsRenderes(callId);
@@ -163,8 +168,13 @@ CallParticipantsModel::setParticipants(const QString& callId, const QVariantList
 void
 CallParticipantsModel::resetParticipants(const QString& callId, const QVariantList& participants)
 {
-    if (callId == callId_)
-        setParticipants(callId, participants);
-    else if (participants.isEmpty())
+    if (callId != callId_ && participants.isEmpty())
         clearParticipantsRenderes(callId);
+}
+
+void
+CallParticipantsModel::reset()
+{
+    beginResetModel();
+    endResetModel();
 }
