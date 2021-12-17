@@ -30,6 +30,7 @@ Column {
 
     property bool showTime: false
     property int seq: MsgSeq.single
+    property alias font: textLabel.font
 
     width: ListView.view ? ListView.view.width : 0
 
@@ -38,6 +39,7 @@ Column {
     bottomPadding: 12
 
     Label {
+        id: textLabel
         width: parent.width
         text: Body
         horizontalAlignment: Qt.AlignHCenter
