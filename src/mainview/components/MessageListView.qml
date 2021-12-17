@@ -224,6 +224,18 @@ JamiListView {
             }
         }
         DelegateChoice {
+            roleValue: Interaction.Type.INITIAL
+            GeneratedMessageDelegate {
+                font.bold: true
+                Component.onCompleted: {
+                    if (index)
+                        computeTimestampVisibility(this, index)
+                    else
+                        Qt.callLater(computeTimestampVisibility, this, index)
+                }
+            }
+        }
+        DelegateChoice {
             roleValue: Interaction.Type.DATA_TRANSFER
             DataTransferMessageDelegate {
                 Component.onCompleted: {
