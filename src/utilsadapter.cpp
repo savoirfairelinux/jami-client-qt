@@ -114,7 +114,7 @@ UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
     const auto& conv = lrcInstance_->getConversationFromConvUid(uid);
     if (!conv.participants.isEmpty())
         return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(
-            conv.participants[0]);
+            conv.participants[0].uri);
     return QString();
 }
 
@@ -124,7 +124,7 @@ UtilsAdapter::getPeerUri(const QString& accountId, const QString& uid)
     try {
         auto* convModel = lrcInstance_->getAccountInfo(accountId).conversationModel.get();
         const auto& convInfo = convModel->getConversationForUid(uid).value();
-        return convInfo.get().participants.front();
+        return convInfo.get().participants.front().uri;
     } catch (const std::out_of_range& e) {
         qDebug() << e.what();
         return "";
@@ -145,7 +145,7 @@ UtilsAdapter::getBestId(const QString& accountId, const QString& uid)
     const auto& conv = lrcInstance_->getConversationFromConvUid(uid);
     if (!conv.participants.isEmpty())
         return lrcInstance_->getAccountInfo(accountId).contactModel->bestIdForContact(
-            conv.participants[0]);
+            conv.participants[0].uri);
     return QString();
 }
 
@@ -429,9 +429,12 @@ UtilsAdapter::getContactBestName(const QString& accountId, const QString& uri)
     return {};
 }
 
-QString
+lrc::api::member::Role
 UtilsAdapter::getParticipantRole(const QString& accountId, const QString& convId, const QString& uri)
 {
-    // TODO get role
-    return {};
+    try {
+        return lrcInstance_->getAccountInfo(accountId).conversationModel->memberRole(convId, uri);
+    } catch (...) {
+    }
+    return lrc::api::member::Role::MEMBER;
 }

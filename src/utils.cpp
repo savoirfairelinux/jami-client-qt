@@ -570,7 +570,7 @@ Utils::profileType(const lrc::api::conversation::Info& conv,
                    const lrc::api::ConversationModel& model)
 {
     try {
-        auto contact = model.owner.contactModel->getContact(conv.participants[0]);
+        auto contact = model.owner.contactModel->getContact(conv.participants[0].uri);
         return contact.profileInfo.type;
     } catch (const std::out_of_range& e) {
         qDebug() << e.what();

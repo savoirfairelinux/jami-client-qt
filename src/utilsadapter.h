@@ -93,9 +93,9 @@ public:
     // For Swarm details page
     Q_INVOKABLE bool getContactPresence(const QString& accountId, const QString& uri);
     Q_INVOKABLE QString getContactBestName(const QString& accountId, const QString& uri);
-    Q_INVOKABLE QString getParticipantRole(const QString& accountId,
-                                           const QString& convId,
-                                           const QString& uri);
+    Q_INVOKABLE lrc::api::member::Role getParticipantRole(const QString& accountId,
+                                                          const QString& convId,
+                                                          const QString& uri);
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);

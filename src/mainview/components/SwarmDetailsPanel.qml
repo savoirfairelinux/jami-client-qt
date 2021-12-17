@@ -210,7 +210,6 @@ Rectangle {
                         ElidedTextLabel {
                             id: bestName
 
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
@@ -228,7 +227,12 @@ Rectangle {
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-                            eText: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                            eText: {
+                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                if (role === Member.Role.ADMIN)
+                                    return JamiStrings.administrator
+                                return ""
+                            }
                             maxWidth: JamiTheme.preferredFieldWidth
 
                             font.pointSize: JamiTheme.participantFontSize

@@ -74,7 +74,8 @@ ContactAdapter::getContactSelectableModel(int type)
             if (!conv.participants.isEmpty()) {
                 QString calleeDisplayId = lrcInstance_
                                               ->getAccountInfo(lrcInstance_->get_currentAccountId())
-                                              .contactModel->bestIdForContact(conv.participants[0]);
+                                              .contactModel->bestIdForContact(
+                                                  conv.participants[0].uri);
 
                 QRegularExpression matchExcept = QRegularExpression(
                     QString("\\b(?!" + calleeDisplayId + "\\b)\\w+"));
