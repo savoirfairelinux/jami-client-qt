@@ -136,6 +136,7 @@ ContextMenuAutoLoader {
             id: contactDetails
 
             canTrigger: contactType !== Profile.Type.SIP
+                        && !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM)
             itemName: JamiStrings.contactDetails
             iconSource: JamiResources.person_24dp_svg
             onClicked: userProfile.open()
