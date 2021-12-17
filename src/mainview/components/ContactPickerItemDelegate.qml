@@ -28,7 +28,9 @@ import "../../commoncomponents"
 ItemDelegate {
     id: contactPickerItemDelegate
 
-    property alias showPresenceIndicator: avatar.showPresenceIndicator
+    property var showPresenceIndicator: false
+
+    signal contactClicked
 
     ConversationAvatar {
         id: avatar
@@ -41,6 +43,8 @@ ItemDelegate {
         height: 40
 
         imageId: UID
+
+        showPresenceIndicator: contactPickerItemDelegate.showPresenceIndicator && Presence
     }
 
     Rectangle {
@@ -102,7 +106,7 @@ ItemDelegate {
         color: JamiTheme.backgroundColor
 
 
-        implicitWidth: contactPickerPopupRect.width
+        implicitWidth: root.width
         implicitHeight: Math.max(
                             contactPickerContactName.height
                             + textMetricsContactPickerContactId.height + 10,
@@ -125,7 +129,10 @@ ItemDelegate {
             itemSmartListBackground.color = JamiTheme.normalButtonColor
 
             ContactAdapter.contactSelected(index)
-            contactPickerPopup.close()
+            root.contactClicked()
+            // TODO remove from there
+            if (contactPickerPopup)
+                contactPickerPopup.close()
         }
 
         onEntered: {
