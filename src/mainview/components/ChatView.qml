@@ -91,14 +91,26 @@ Rectangle {
             }
         }
 
-        RowLayout {
+        SplitView {
             id: chatViewMainRow
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            handle: Rectangle {
+                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
+                implicitHeight: splitView.height
+                color: JamiTheme.primaryBackgroundColor
+                Rectangle {
+                    implicitWidth: 1
+                    implicitHeight: splitView.height
+                    color: JamiTheme.tabbarBorderColor
+                }
+            }
+
             ColumnLayout {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+                SplitView.maximumWidth: splitView.width
+                SplitView.preferredWidth: 2 * splitView.width / 3
+                SplitView.fillHeight: true
 
                 StackLayout {
                     id: chatViewStack
@@ -160,6 +172,11 @@ Rectangle {
             }
 
             SwarmDetailsPanel {
+                SplitView.maximumWidth: splitView.width
+                SplitView.preferredWidth: splitView.width / 3
+                SplitView.minimumWidth: 300
+                SplitView.fillHeight: true
+
                 id: swarmDetailsPanel
                 visible: false
                 Layout.fillHeight: true
