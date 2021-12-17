@@ -32,6 +32,18 @@ ContactAdapter::ContactAdapter(LRCInstance* instance, QObject* parent)
     }
 }
 
+bool
+ContactAdapter::hasDifferentMembers(const VectorString& currentMembers,
+                                    const VectorString& convMembers) const
+{
+    for (const auto& uri : convMembers) {
+        if (uri != lrcInstance_->getCurrentAccountInfo().profileInfo.uri
+            && !currentMembers.contains(uri))
+            return true;
+    }
+    return false;
+}
+
 QVariant
 ContactAdapter::getContactSelectableModel(int type)
 {
@@ -54,11 +66,16 @@ ContactAdapter::getContactSelectableModel(int type)
                 return !defaultModerators_.contains(index.data(Role::URI).toString());
             });
         break;
-    case SmartListModel::Type::ADDCONVMEMBER:
-        selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegularExpression&) {
-            return index.data(Role::IsCoreDialog).toBool();
-        });
+    case SmartListModel::Type::ADDCONVMEMBER: {
+        auto currentConvID = lrcInstance_->get_selectedConvUid();
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        auto members = convModel->peersForConversation(currentConvID);
+        selectableProxyModel_->setPredicate(
+            [this, members](const QModelIndex& index, const QRegularExpression&) {
+                return hasDifferentMembers(members, index.data(Role::Uris).toStringList());
+            });
         break;
+    }
     case SmartListModel::Type::CONFERENCE:
         selectableProxyModel_->setPredicate([](const QModelIndex& index, const QRegularExpression&) {
             return index.data(Role::Presence).toBool();
@@ -107,14 +124,17 @@ ContactAdapter::setSearchFilter(const QString& filter)
                         && index.data(Role::Title).toString().contains(filter));
             });
     } else if (listModeltype_ == SmartListModel::Type::ADDCONVMEMBER) {
+        auto currentConvID = lrcInstance_->get_selectedConvUid();
+        auto* convModel = lrcInstance_->getCurrentConversationModel();
+        auto members = convModel->peersForConversation(currentConvID);
         selectableProxyModel_->setPredicate(
-            [this, filter](const QModelIndex& index, const QRegularExpression&) {
-                return (index.data(Role::Title).toString().contains(filter, Qt::CaseInsensitive)
+            [this, filter, members](const QModelIndex& index, const QRegularExpression&) {
+                return hasDifferentMembers(members, index.data(Role::Uris).toStringList())
+                    && (index.data(Role::Title).toString().contains(filter, Qt::CaseInsensitive)
                         || index.data(Role::RegisteredName)
                                .toString()
                                .contains(filter, Qt::CaseInsensitive)
-                        || index.data(Role::URI).toString().contains(filter, Qt::CaseInsensitive))
-                       && index.data(Role::IsCoreDialog).toBool();
+                        || index.data(Role::Uris).toString().contains(filter, Qt::CaseInsensitive));
             });
     }
     selectableProxyModel_->setFilterRegularExpression(
@@ -132,8 +152,12 @@ ContactAdapter::contactSelected(int index)
     if (contactIndex.isValid()) {
         switch (listModeltype_) {
         case SmartListModel::Type::ADDCONVMEMBER: {
-            const auto uri = contactIndex.data(Role::URI).value<QString>();
-            convModel->addConversationMember(lrcInstance_->get_selectedConvUid(), uri);
+            auto members = convModel->peersForConversation(lrcInstance_->get_selectedConvUid());
+            const auto uris = contactIndex.data(Role::Uris).toStringList();
+            for (const auto& uri: uris) {
+                if (!members.contains(uri))
+                    convModel->addConversationMember(lrcInstance_->get_selectedConvUid(), uri);
+            }
             break;
         }
         case SmartListModel::Type::CONFERENCE: {

@@ -44,6 +44,7 @@ Rectangle {
     function focusChatView() {
         chatViewFooter.textInput.forceActiveFocus()
         swarmDetailsPanel.visible = false
+        addMemberPanel.visible = false
     }
 
     color: JamiTheme.chatviewBgColor
@@ -78,7 +79,13 @@ Rectangle {
             }
 
             onShowDetailsClicked: {
+                addMemberPanel.visible = false
                 swarmDetailsPanel.visible = !swarmDetailsPanel.visible
+            }
+
+            onAddToConversationClicked: {
+                swarmDetailsPanel.visible = false
+                addMemberPanel.visible = !addMemberPanel.visible
             }
 
             onPluginSelector: {
@@ -91,14 +98,27 @@ Rectangle {
             }
         }
 
-        RowLayout {
+        SplitView {
             id: chatViewMainRow
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            handle: Rectangle {
+                implicitWidth: JamiTheme.splitViewHandlePreferredWidth
+                implicitHeight: splitView.height
+                color: JamiTheme.primaryBackgroundColor
+                Rectangle {
+                    implicitWidth: 1
+                    implicitHeight: splitView.height
+                    color: JamiTheme.tabbarBorderColor
+                }
+            }
+
             ColumnLayout {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+                SplitView.maximumWidth: splitView.width
+                // Note, without JamiTheme.detailsPageMinWidth, sometimes the details page is hidden at the right
+                SplitView.preferredWidth: Math.max(0, 2 * splitView.width / 3 - JamiTheme.detailsPageMinWidth)
+                SplitView.fillHeight: true
 
                 StackLayout {
                     id: chatViewStack
@@ -162,6 +182,23 @@ Rectangle {
             SwarmDetailsPanel {
                 id: swarmDetailsPanel
                 visible: false
+
+                SplitView.maximumWidth: splitView.width
+                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
+                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
+                SplitView.fillHeight: true
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+            }
+
+            AddMemberPanel {
+                id: addMemberPanel
+                visible: false
+
+                SplitView.maximumWidth: splitView.width
+                SplitView.preferredWidth: Math.max(JamiTheme.detailsPageMinWidth, splitView.width / 3)
+                SplitView.minimumWidth: JamiTheme.detailsPageMinWidth
+                SplitView.fillHeight: true
                 Layout.fillHeight: true
                 Layout.fillWidth: true
             }
