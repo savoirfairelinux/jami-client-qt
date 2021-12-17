@@ -247,6 +247,7 @@ Item {
     property string removeConversation: qsTr("Remove conversation")
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
+    property string blockSwarm: qsTr("Block swarm")
     property string contactDetails: qsTr("Contact details")
 
     // CallViewContextMenu
