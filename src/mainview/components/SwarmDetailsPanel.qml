@@ -48,6 +48,8 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: JamiTheme.avatarSizeInCall
                 Layout.preferredHeight: JamiTheme.avatarSizeInCall
+                Layout.topMargin: JamiTheme.swarmDetailsPageTopMargin
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
 
                 imageId: LRCInstance.selectedConvUid
 
@@ -104,7 +106,7 @@ Rectangle {
 
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: root.width
-                Layout.preferredHeight: membersTabButton.height 
+                Layout.preferredHeight: membersTabButton.height
 
                 /*FilterTabButton {
                     id: aboutTabButton
@@ -151,7 +153,7 @@ Rectangle {
                 }*/
             }
         }
-    
+
         Rectangle {
             id: details
             Layout.fillWidth: true
@@ -164,52 +166,99 @@ Rectangle {
                 spacing: JamiTheme.preferredMarginSize
                 anchors.topMargin: JamiTheme.preferredMarginSize
 
+                SwarmParticipantContextMenu {
+                    id: contextMenu
+
+                    function openMenuAt(x, y, participantUri) {
+                        contextMenu.x = x
+                        contextMenu.y = y
+                        contextMenu.conversationId = CurrentConversation.id
+                        contextMenu.participantUri = participantUri
+
+                        openMenu()
+                    }
+                }
+
                 model: CurrentConversation.uris
-                delegate: RowLayout {
-                    spacing: 10
+                delegate: Item {
 
-                    Avatar {
-                        width: JamiTheme.smartListAvatarSize
-                        height: JamiTheme.smartListAvatarSize
-                        z: -index
+                    width: members.width
+                    height: JamiTheme.smartListItemHeight
 
-                        imageId: CurrentAccount.uri == modelData ? CurrentAccount.id : modelData
-                        showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, modelData)
-                        mode: CurrentAccount.uri == modelData ? Avatar.Mode.Account : Avatar.Mode.Contact
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.RightButton
+                        onClicked: function (mouse) {
+                            contextMenu.openMenuAt(x + mouse.x, y + mouse.y, modelData)
+                        }
                     }
 
-                    ElidedTextLabel {
-                        id: bestName
+                    RowLayout {
+                        spacing: 10
 
-                        Layout.preferredWidth: JamiTheme.preferredFieldWidth
-                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                        Avatar {
+                            width: JamiTheme.smartListAvatarSize
+                            height: JamiTheme.smartListAvatarSize
+                            Layout.leftMargin: JamiTheme.preferredMarginSize
+                            z: -index
+                            opacity: {
+                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                return role === Member.Role.INVITED ? 0.5 : 1
+                            }
 
-                        eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
-                        maxWidth: JamiTheme.preferredFieldWidth
+                            imageId: CurrentAccount.uri == modelData ? CurrentAccount.id : modelData
+                            showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, modelData)
+                            mode: CurrentAccount.uri == modelData ? Avatar.Mode.Account : Avatar.Mode.Contact
+                        }
 
-                        font.pointSize: JamiTheme.participantFontSize
-                        color: JamiTheme.primaryForegroundColor
-                        font.kerning: true
+                        ElidedTextLabel {
+                            id: bestName
 
-                        verticalAlignment: Text.AlignVCenter
+                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+                            eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
+                            maxWidth: JamiTheme.preferredFieldWidth
+
+                            font.pointSize: JamiTheme.participantFontSize
+                            color: JamiTheme.primaryForegroundColor
+                            opacity: {
+                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                return role === Member.Role.INVITED ? 0.5 : 1
+                            }
+                            font.kerning: true
+
+                            verticalAlignment: Text.AlignVCenter
+                        }
+
+                        ElidedTextLabel {
+                            id: role
+
+                            Layout.preferredHeight: JamiTheme.preferredFieldHeight
+
+                            eText: {
+                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                if (role === Member.Role.ADMIN)
+                                    return JamiStrings.administrator
+                                if (role === Member.Role.INVITED)
+                                    return JamiStrings.invited
+                                return ""
+                            }
+                            maxWidth: JamiTheme.preferredFieldWidth
+
+                            font.pointSize: JamiTheme.participantFontSize
+                            color: JamiTheme.textColorHovered
+                            opacity: {
+                                var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
+                                return role === Member.Role.INVITED ? 0.5 : 1
+                            }
+                            font.kerning: true
+
+                            horizontalAlignment: Text.AlignRight
+                            verticalAlignment: Text.AlignVCenter
+                        }
                     }
-
-                    ElidedTextLabel {
-                        id: role
-
-                        Layout.preferredHeight: JamiTheme.preferredFieldHeight
-
-                        eText: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
-                        maxWidth: JamiTheme.preferredFieldWidth
-
-                        font.pointSize: JamiTheme.participantFontSize
-                        color: JamiTheme.textColorHovered
-                        font.kerning: true
-
-                        horizontalAlignment: Text.AlignRight
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                } 
+                }
             }
         }
     }
