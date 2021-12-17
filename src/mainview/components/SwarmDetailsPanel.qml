@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 by Savoir-faire Linux
+ * Copyright (C) 2022 by Savoir-faire Linux
  * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify

@@ -104,6 +104,8 @@ private:
 
     QStringList defaultModerators_;
 
+    bool hasDifferentMembers(const VectorString& currentMembers, const VectorString& convMembers) const;
+
 Q_SIGNALS:
     void defaultModeratorsUpdated();
 };
