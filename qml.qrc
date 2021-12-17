@@ -106,6 +106,7 @@
         <file>src/mainview/components/SidePanelTabBar.qml</file>
         <file>src/mainview/components/WelcomePageQrDialog.qml</file>
         <file>src/mainview/components/ConversationSmartListContextMenu.qml</file>
+        <file>src/mainview/components/SwarmParticipantContextMenu.qml</file>
         <file>src/mainview/components/CallViewContextMenu.qml</file>
         <file>src/mainview/components/UserProfile.qml</file>
         <file>src/mainview/components/SwarmDetailsPanel.qml</file>

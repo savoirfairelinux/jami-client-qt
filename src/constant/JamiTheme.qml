@@ -266,6 +266,7 @@ Item {
     property real preferredFieldWidth: 256
     property real preferredFieldHeight: 32
     property real preferredMarginSize: 16
+    property real swarmDetailsPageTopMargin: 64
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
     property real minimumPreviewWidth: 120

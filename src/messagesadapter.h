@@ -85,6 +85,7 @@ protected:
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();
     Q_INVOKABLE void removeConversation(const QString& convUid);
+    Q_INVOKABLE void removeConversationMember(const QString& convUid, const QString& participantUri);
     Q_INVOKABLE void removeContact(const QString& convUid, bool banContact = false);
     Q_INVOKABLE void clearConversationHistory(const QString& accountId, const QString& convUid);
     Q_INVOKABLE void acceptInvitation(const QString& convId = {});
