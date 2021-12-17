@@ -38,7 +38,7 @@ Rectangle {
 
     objectName: "mainView"
 
-    property int sidePanelViewStackMinimumWidth: 300
+    property int sidePanelViewStackCurrentWidth: 300
     property int mainViewStackPreferredWidth: 425
     property int settingsViewPreferredWidth: 460
     property int onWidthChangedTriggerDistance: 5
@@ -166,7 +166,7 @@ Rectangle {
                 sidePanelViewStack.push(settingsMenu, StackView.Immediate)
 
                 var windowCurrentMinimizedSize = settingsViewPreferredWidth
-                        + sidePanelViewStackMinimumWidth + onWidthChangedTriggerDistance
+                        + sidePanelViewStackCurrentWidth + onWidthChangedTriggerDistance
                 if (appWindow.width < windowCurrentMinimizedSize)
                     appWindow.width = windowCurrentMinimizedSize
             }
@@ -274,10 +274,8 @@ Rectangle {
             Rectangle {
                 id: mainViewSidePanelRect
 
-                SplitView.minimumWidth: sidePanelViewStackMinimumWidth
-                SplitView.maximumWidth: (sidePanelOnly ?
-                                             splitView.width :
-                                             splitView.width - sidePanelViewStackMinimumWidth)
+                SplitView.maximumWidth: splitView.width
+                SplitView.preferredWidth: sidePanelViewStackCurrentWidth
                 SplitView.fillHeight: true
                 color: JamiTheme.backgroundColor
 
@@ -320,11 +318,8 @@ Rectangle {
 
                 initialItem: welcomePage
 
-                SplitView.maximumWidth: sidePanelOnly ?
-                                            splitView.width :
-                                            splitView.width - sidePanelViewStackMinimumWidth
+                SplitView.maximumWidth: splitView.width
                 SplitView.preferredWidth: mainViewStackPreferredWidth
-                SplitView.minimumWidth: sidePanelViewStackMinimumWidth
                 SplitView.fillHeight: true
 
                 clip: true
@@ -430,9 +425,8 @@ Rectangle {
     onWidthChanged: {
         // Hide unnecessary stackview when width is changed.
         var widthToCompare = previousWidth < mainView.width ?
-                    sidePanelViewStackMinimumWidth :
-                    (sidePanelViewStackMinimumWidth +
-                     (inSettingsView ? settingsViewPreferredWidth : mainViewStackPreferredWidth))
+                    0 :
+                    (inSettingsView ? settingsViewPreferredWidth : mainViewStackPreferredWidth)
 
         if (mainView.width < widthToCompare - onWidthChangedTriggerDistance
                 && mainViewStack.visible) {
