@@ -623,4 +623,9 @@ Item {
     // NewSwarmPage
 
     property string createTheSwarm: qsTr("Create the swarm")
+    property string goToConversation: qsTr("Go to conversation")
+    property string promoteAdministrator: qsTr("Promote to administrator")
+    property string kickMember: qsTr("Kick member")
+    property string administrator: qsTr("Administrator")
+    property string invited: qsTr("Invited")
 }
