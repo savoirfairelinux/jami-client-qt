@@ -363,6 +363,9 @@ Item {
     property real mainViewPreferredWidth: 725
     property real mainViewPreferredHeight: 600
 
+    // Details page
+    property real detailsPageMinWidth: 300
+
     function setTheme(dark) {
         darkTheme = dark
     }
