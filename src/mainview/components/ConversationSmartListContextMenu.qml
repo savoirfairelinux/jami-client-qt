@@ -127,7 +127,7 @@ ContextMenuAutoLoader {
             id: blockContact
 
             canTrigger: !hasCall && contactType !== Profile.Type.SIP
-            itemName: JamiStrings.blockContact
+            itemName: !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM) ? JamiStrings.blockContact : JamiStrings.blockSwarm
             iconSource: JamiResources.block_black_24dp_svg
             addMenuSeparatorAfter: contactType !== Profile.Type.SIP
             onClicked: MessagesAdapter.blockConversation(responsibleConvUid)
@@ -136,6 +136,7 @@ ContextMenuAutoLoader {
             id: contactDetails
 
             canTrigger: contactType !== Profile.Type.SIP
+                        && !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM)
             itemName: JamiStrings.contactDetails
             iconSource: JamiResources.person_24dp_svg
             onClicked: userProfile.open()
