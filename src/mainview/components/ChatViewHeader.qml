@@ -25,7 +25,6 @@ import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
 import "../../commoncomponents"
-import "../js/contactpickercreation.js" as ContactPickerCreation
 
 Rectangle {
     id: root
@@ -35,6 +34,7 @@ Rectangle {
 
     signal backClicked
     signal needToHideConversationInCall
+    signal addToConversationClicked
     signal pluginSelector
     signal showDetailsClicked
 
@@ -56,11 +56,6 @@ Rectangle {
     }
 
     color: JamiTheme.chatviewBgColor
-
-    function addToConversationClicked() {
-        ContactPickerCreation.createContactPickerObjects(ContactList.ADDCONVMEMBER, root)
-        ContactPickerCreation.openContactPicker()
-    }
 
     RowLayout {
         id: messagingHeaderRectRowLayout
@@ -181,15 +176,15 @@ Rectangle {
             PushButton {
                 id: addParticipantsButton
 
-                visible: addMemberVisibility
-
                 source: JamiResources.add_people_24dp_svg
                 toolTipText: JamiStrings.addParticipants
 
                 normalColor: JamiTheme.chatviewBgColor
                 imageColor: JamiTheme.chatviewButtonColor
 
-                onClicked: root.addToConversationClicked()
+                visible: CurrentConversation.uris.length < 8 && addMemberVisibility
+
+                onClicked: addToConversationClicked()
             }
 
             PushButton {
