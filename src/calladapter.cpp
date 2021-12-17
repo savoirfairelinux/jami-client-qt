@@ -117,13 +117,13 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
         if (systemTray_->hideNotification(QString("%1;%2").arg(accountId).arg(convInfo.uid))
             && call.startTime.time_since_epoch().count() == 0) {
             // This was a missed call; show a missed call notification
-            // TODO: swarmify(avoid using convInfo.participants[0])
+            // TODO: swarmify(avoid using convInfo.participants[0].uri)
             auto contactPhoto = Utils::contactPhoto(lrcInstance_,
-                                                    convInfo.participants[0],
+                                                    convInfo.participants[0].uri,
                                                     QSize(50, 50),
                                                     accountId);
             auto& accInfo = lrcInstance_->getAccountInfo(accountId);
-            auto from = accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
+            auto from = accInfo.contactModel->bestNameForContact(convInfo.participants[0].uri);
             auto notifId = QString("%1;%2").arg(accountId).arg(convInfo.uid);
             systemTray_->showNotification(notifId,
                                           tr("Missed call"),
@@ -542,12 +542,12 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
     if (!accountId.isEmpty() && !convInfo.uid.isEmpty()) {
         auto& accInfo = lrcInstance_->getAccountInfo(accountId);
         if (!convInfo.participants.isEmpty())
-            from = accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
+            from = accInfo.contactModel->bestNameForContact(convInfo.participants[0].uri);
     }
 
 #ifdef Q_OS_LINUX
     auto contactPhoto = Utils::contactPhoto(lrcInstance_,
-                                            convInfo.participants[0],
+                                            convInfo.participants[0].uri,
                                             QSize(50, 50),
                                             accountId);
     auto notifId = QString("%1;%2").arg(accountId).arg(convUid);

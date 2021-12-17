@@ -214,7 +214,6 @@ Rectangle {
                         ElidedTextLabel {
                             id: bestName
 
-                            Layout.preferredWidth: JamiTheme.preferredFieldWidth
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
