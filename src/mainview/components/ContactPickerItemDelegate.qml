@@ -102,7 +102,7 @@ ItemDelegate {
         color: JamiTheme.backgroundColor
 
 
-        implicitWidth: contactPickerPopupRect.width
+        implicitWidth: root.width
         implicitHeight: Math.max(
                             contactPickerContactName.height
                             + textMetricsContactPickerContactId.height + 10,
