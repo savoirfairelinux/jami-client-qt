@@ -54,6 +54,7 @@ ContextMenuAutoLoader {
         },
         GeneralMenuItem {
             id: promoteAdministrator
+            canTrigger: false // No API yet
             itemName: JamiStrings.promoteAdministrator
         },
         GeneralMenuItem {
