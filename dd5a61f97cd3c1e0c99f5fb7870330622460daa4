@@ -45,6 +45,54 @@
       },
       "revId": "dd5a61f97cd3c1e0c99f5fb7870330622460daa4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbd84812_6d59b922",
+        "filename": "src/utilsadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-20T17:05:31Z",
+      "side": 1,
+      "message": "it\u0027s not, it was something I did because I think it\u0027s a good option to have, but I removed it.",
+      "parentUuid": "c1273c85_25302376",
+      "range": {
+        "startLine": 92,
+        "startChar": 93,
+        "endLine": 92,
+        "endChar": 111
+      },
+      "revId": "dd5a61f97cd3c1e0c99f5fb7870330622460daa4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d22cfd7_dbc5268c",
+        "filename": "src/utilsadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-20T17:05:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78721693_c0c37c7c",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 42
+      },
+      "revId": "dd5a61f97cd3c1e0c99f5fb7870330622460daa4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
