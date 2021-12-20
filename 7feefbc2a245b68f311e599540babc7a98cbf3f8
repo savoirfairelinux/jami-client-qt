@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de6dd5ea_f0f6e3fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-12-20T17:46:17Z",
+      "side": 1,
+      "message": "I also had a couple use-after-frees on quit when accessing convModel inside Utils::clearInteractionsCache. not sure why",
+      "revId": "7feefbc2a245b68f311e599540babc7a98cbf3f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67fd9399_ab3aa408",
+        "filename": "src/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-12-20T17:46:17Z",
+      "side": 1,
+      "message": "should be string",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "7feefbc2a245b68f311e599540babc7a98cbf3f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23e84335_a13f8177",
