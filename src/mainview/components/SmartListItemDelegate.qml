@@ -33,8 +33,23 @@ ItemDelegate {
     width: ListView.view.width
     height: JamiTheme.smartListItemHeight
 
-    function convUid() {
-        return UID
+    property var accountId : ""
+    property var convId : ""
+
+    onVisibleChanged: {
+        if (visible)
+            return
+        UtilsAdapter.clearInteractionCache(root.accountId, root.convId)
+    }
+
+    Component.onCompleted: {
+        // Store to avoid undefined at the end
+        root.accountId = CurrentAccount.id
+        root.convId = UID
+    }
+
+    Component.onDestruction: {
+        UtilsAdapter.clearInteractionCache(root.accountId, root.convId)
     }
 
     RowLayout {
