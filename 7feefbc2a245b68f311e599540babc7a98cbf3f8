@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc9dcf53_58d8c6d1",
+        "filename": "src/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-20T18:43:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67fd9399_ab3aa408",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 36,
+        "endChar": 17
+      },
+      "revId": "7feefbc2a245b68f311e599540babc7a98cbf3f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23e84335_a13f8177",
@@ -64,6 +88,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee8b870e_b8d006b7",
+        "filename": "src/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-20T18:43:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23e84335_a13f8177",
+      "range": {
+        "startLine": 42,
+        "startChar": 21,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "7feefbc2a245b68f311e599540babc7a98cbf3f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aaf6cbb8_ad457024",
@@ -77,6 +125,30 @@
       "writtenOn": "2021-12-20T17:41:57Z",
       "side": 1,
       "message": "clearInteractionsCache",
+      "range": {
+        "startLine": 52,
+        "startChar": 21,
+        "endLine": 52,
+        "endChar": 42
+      },
+      "revId": "7feefbc2a245b68f311e599540babc7a98cbf3f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1acff8c3_337f6a99",
+        "filename": "src/mainview/components/SmartListItemDelegate.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-20T18:43:31Z",
+      "side": 1,
+      "message": "did the change too fast: /",
+      "parentUuid": "aaf6cbb8_ad457024",
       "range": {
         "startLine": 52,
         "startChar": 21,
