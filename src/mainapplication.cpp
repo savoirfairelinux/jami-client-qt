@@ -309,6 +309,7 @@ MainApplication::loadTranslations()
 void
 MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool muteDaemon)
 {
+    lrc::api::Lrc::cacheAvatars.store(false);
     /*
      * Init mainwindow and finish splash when mainwindow shows up.
      */
