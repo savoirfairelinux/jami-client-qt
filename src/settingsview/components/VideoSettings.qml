@@ -71,6 +71,8 @@ ColumnLayout {
 
         function onDefaultResChanged() {
             updatePreviewRatio()
+            if (previewWidget.visible)
+                startPreviewing(true)
         }
 
         function onDeviceAvailable() {
