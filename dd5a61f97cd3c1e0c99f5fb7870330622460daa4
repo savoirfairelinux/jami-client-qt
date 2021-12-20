@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78721693_c0c37c7c",
+        "filename": "src/utilsadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-12-20T16:52:00Z",
+      "side": 1,
+      "message": "this introduces a method called clearInteractionCache that calls clearInteractionsCache. The one-letter-off name could be confusing",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 42
+      },
+      "revId": "dd5a61f97cd3c1e0c99f5fb7870330622460daa4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1273c85_25302376",
+        "filename": "src/utilsadapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-12-20T16:52:00Z",
+      "side": 1,
+      "message": "I don\u0027t see this parameter in use.",
+      "range": {
+        "startLine": 92,
+        "startChar": 93,
+        "endLine": 92,
+        "endChar": 111
+      },
+      "revId": "dd5a61f97cd3c1e0c99f5fb7870330622460daa4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
