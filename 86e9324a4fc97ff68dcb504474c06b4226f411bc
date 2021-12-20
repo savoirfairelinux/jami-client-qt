@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "843b05ac_2ecfa46c",
+        "filename": "src/settingsview/components/VideoSettings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2021-12-20T14:14:08Z",
+      "side": 1,
+      "message": "To use the same pattern as to ha, isn\u0027t it better to open device here?",
+      "range": {
+        "startLine": 185,
+        "startChar": 21,
+        "endLine": 185,
+        "endChar": 65
+      },
+      "revId": "86e9324a4fc97ff68dcb504474c06b4226f411bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
