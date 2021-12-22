@@ -31,6 +31,7 @@ import "../../commoncomponents"
 
 ColumnLayout {
     id: root
+    visible: UpdateManager.isUpdaterEnabled()
 
     Label {
         Layout.fillWidth: true
@@ -50,7 +51,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        checked: UtilsAdapter.getAppValue(Settings.Key.AutoUpdate)
+        checked: (Qt.platform.os == "windows") ? UtilsAdapter.getAppValue(Settings.Key.AutoUpdate) : UpdateManager.isAutoUpdaterEnabled()
 
         labelText: JamiStrings.update
         tooltipText: JamiStrings.enableAutoUpdates
@@ -84,7 +85,7 @@ ColumnLayout {
     MaterialButton {
         id: installBetaButton
 
-        visible: !UpdateManager.isCurrentVersionBeta()
+        visible: (!UpdateManager.isCurrentVersionBeta() && Qt.platform.os == "windows")
 
         Layout.alignment: Qt.AlignHCenter
 

@@ -31,12 +31,20 @@ static constexpr bool isBeta = true;
 static constexpr bool isBeta = false;
 #endif
 
+#if defined(Q_OS_MACOS) && defined(ENABLE_SPARKLE)
+#include "sparkleUpdater.h"
+#endif
+
 static constexpr int updatePeriod = 1000 * 60 * 60 * 24; // one day in millis
 static constexpr char downloadUrl[] = "https://dl.jami.net/windows";
 static constexpr char versionSubUrl[] = "/version";
 static constexpr char betaVersionSubUrl[] = "/beta/version";
 static constexpr char msiSubUrl[] = "/jami.release.x64.msi";
 static constexpr char betaMsiSubUrl[] = "/beta/jami.beta.x64.msi";
+
+#if defined(Q_OS_MACOS) && defined(ENABLE_SPARKLE)
+SparkleUpdater* updater;
+#endif
 
 UpdateManager::UpdateManager(const QString& url,
                              ConnectivityMonitor* cm,
@@ -48,21 +56,33 @@ UpdateManager::UpdateManager(const QString& url,
     , tempPath_(Utils::WinGetEnv("TEMP"))
     , updateTimer_(new QTimer(this))
 {
+#ifdef Q_OS_MACOS
+#ifdef ENABLE_SPARKLE
+    updater = new SparkleUpdater();
+#endif
+#else
     connect(updateTimer_, &QTimer::timeout, [this] {
         // Quiet period update check.
         checkForUpdates(true);
     });
+#endif
 }
 
 void
 UpdateManager::setAutoUpdateCheck(bool state)
 {
+#ifdef Q_OS_MACOS
+#ifdef ENABLE_SPARKLE
+    updater->automaticallyCheckForUpdates(state);
+#endif
+#else
     // Quiet check for updates periodically, if set to.
     if (!state) {
         updateTimer_->stop();
         return;
     }
     updateTimer_->start(updatePeriod);
+#endif
 }
 
 bool
@@ -71,9 +91,32 @@ UpdateManager::isCurrentVersionBeta()
     return isBeta;
 }
 
+bool
+UpdateManager::isUpdaterEnabled()
+{
+#if defined(Q_OS_WIN) || (defined(Q_OS_MACOS) && defined(ENABLE_SPARKLE))
+    return true;
+#else
+    return false;
+#endif
+}
+
+bool
+UpdateManager::isAutoUpdaterEnabled()
+{
+#if (defined(Q_OS_MACOS) && defined(ENABLE_SPARKLE))
+    return updater->isAutoUpdaterEnabled();
+#endif
+}
+
 void
 UpdateManager::checkForUpdates(bool quiet)
 {
+#ifdef Q_OS_MACOS
+#ifdef ENABLE_SPARKLE
+    updater->checkForUpdates();
+#endif
+#else
     disconnect();
 
     // Fail without UI if this is a programmatic check.
@@ -102,6 +145,7 @@ UpdateManager::checkForUpdates(bool quiet)
                 Q_EMIT updateCheckReplyReceived(true, false);
         }
     });
+#endif
 }
 
 void
