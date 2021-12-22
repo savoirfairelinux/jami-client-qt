@@ -82,7 +82,7 @@ Rectangle {
 
     signal settingsBackArrowClicked
 
-    visible: true
+    visible: (Qt.platform.os == "windows" || Qt.platform.os == "macos") ? true : false
 
     Rectangle {
         id: settingsViewRect

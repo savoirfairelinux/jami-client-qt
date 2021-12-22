@@ -2,3 +2,7 @@
     path = libqrencode
     url = https://github.com/fukuchi/libqrencode.git
     ignore = dirty
+[submodule "sparkle/Sparkle"]
+    path = sparkle/Sparkle
+    url = https://github.com/sparkle-project/Sparkle.git
+    ignore = dirty
