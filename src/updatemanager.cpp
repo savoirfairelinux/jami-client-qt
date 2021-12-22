@@ -31,12 +31,20 @@ static constexpr bool isBeta = true;
 static constexpr bool isBeta = false;
 #endif
 
+#ifdef Q_OS_MACOS
+#include "sparkleUpdater.h"
+#endif
+
 static constexpr int updatePeriod = 1000 * 60 * 60 * 24; // one day in millis
 static constexpr char downloadUrl[] = "https://dl.jami.net/windows";
 static constexpr char versionSubUrl[] = "/version";
 static constexpr char betaVersionSubUrl[] = "/beta/version";
 static constexpr char msiSubUrl[] = "/jami.release.x64.msi";
 static constexpr char betaMsiSubUrl[] = "/beta/jami.beta.x64.msi";
+
+#ifdef Q_OS_MACOS
+SparkleUpdater* updater;
+#endif
 
 UpdateManager::UpdateManager(const QString& url,
                              ConnectivityMonitor* cm,
@@ -48,10 +56,14 @@ UpdateManager::UpdateManager(const QString& url,
     , tempPath_(Utils::WinGetEnv("TEMP"))
     , updateTimer_(new QTimer(this))
 {
+#ifdef Q_OS_MACOS
+    updater = new SparkleUpdater("https://dl.jami.net/mac_osx/beta/sparkle-ring.xml");
+#else
     connect(updateTimer_, &QTimer::timeout, [this] {
         // Quiet period update check.
         checkForUpdates(true);
     });
+#endif
 }
 
 void
@@ -74,6 +86,9 @@ UpdateManager::isCurrentVersionBeta()
 void
 UpdateManager::checkForUpdates(bool quiet)
 {
+#ifdef Q_OS_MACOS
+    updater->checkForUpdates();
+#else
     disconnect();
 
     // Fail without UI if this is a programmatic check.
@@ -102,6 +117,7 @@ UpdateManager::checkForUpdates(bool quiet)
                 Q_EMIT updateCheckReplyReceived(true, false);
         }
     });
+#endif
 }
 
 void

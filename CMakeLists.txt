@@ -105,6 +105,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/currentconversation.cpp
     ${SRC_DIR}/currentaccount.cpp
     ${SRC_DIR}/videodevices.cpp
+    ${SRC_DIR}/sparkleUpdater.mm
     ${SRC_DIR}/previewengine.cpp)
 
 set(COMMON_HEADERS
@@ -162,6 +163,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentconversation.h
     ${SRC_DIR}/currentaccount.h
     ${SRC_DIR}/videodevices.h
+    ${SRC_DIR}/sparkleUpdater.h
     ${SRC_DIR}/previewengine.h)
 
 set(QML_LIBS
@@ -349,6 +351,7 @@ elseif (NOT APPLE)
     find_library(X11 X11)
 else()
     find_package(PkgConfig REQUIRED)
+    add_definitions(-DBETA)
     if(NOT DEFINED LRC)
         if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
             set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
@@ -386,6 +389,37 @@ else()
     set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
     find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
+    find_library(SYSTEM_CONFIGURATUION SystemConfiguration)
+    SET(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+    SET_SOURCE_FILES_PROPERTIES(${myApp_ICON} PROPERTIES
+           MACOSX_PACKAGE_LOCATION Resources)
+       MESSAGE("Sparkle auto-update enabled")
+
+          # find_library searches in /Library/Frameworks by default
+          # We add an hint to our custom location
+
+          FIND_LIBRARY(SPARKLE_FRAMEWORK
+                       NAMES Sparkle
+                       HINTS ${CMAKE_CURRENT_SOURCE_DIR}/sparkle)
+          IF(EXISTS ${SPARKLE_FRAMEWORK})
+             SET(ENABLE_SPARKLE 1 CACHE BOOLEAN "Enable Sparkle")
+             ADD_DEFINITIONS(-DENABLE_SPARKLE=1)
+             MESSAGE("Sparkle is here:" ${SPARKLE_FRAMEWORK})
+             FIND_PATH(SPARKLE_INCLUDE_DIR Sparkle.h HINTS ${SPARKLE_FRAMEWORK}/Headers)
+             # we need to copy the public key to check the updates
+             SET(PUBLIC_KEY_PATH "${CMAKE_CURRENT_SOURCE_DIR}/sparkle/dsa_pub.pem")
+             IF(EXISTS ${PUBLIC_KEY_PATH})
+                MESSAGE(STATUS "Looking for Public Key - found")
+                SET_SOURCE_FILES_PROPERTIES(${PUBLIC_KEY_PATH} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+                SET(PUBLIC_KEY ${PUBLIC_KEY_PATH})
+             ELSE(EXISTS ${PUBLIC_KEY_PATH})
+                MESSAGE(WARNING "Looking for Public Key - not found")
+                MESSAGE(WARNING "${PUBLIC_KEY_PATH} not found Sparkle Framework will NOT work and may even prevent application from launching. Please consider disabling Sparkle Framework, creating a keypair for testing purposes")
+             ENDIF(EXISTS ${PUBLIC_KEY_PATH})
+          ELSE()
+             MESSAGE(WARNING "Sparkle framework not found, disabling it... to build it see README")
+             SET(ENABLE_SPARKLE 0 CACHE BOOLEAN "Enable Sparkle")
+          ENDIF(EXISTS ${SPARKLE_FRAMEWORK})
 endif()
 
 # Qt find package
@@ -607,6 +641,8 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
                           ${QML_LIBS}
                           ${LRC_LIB_NAME}
+                          ${SYSTEM_CONFIGURATUION}
+                          ${SPARKLE_FRAMEWORK}
                           qrencode)
 
      # translations
