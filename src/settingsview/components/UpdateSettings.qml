@@ -31,6 +31,7 @@ import "../../commoncomponents"
 
 ColumnLayout {
     id: root
+    visible: UpdateManager.isUpdaterEnabled()
 
     Label {
         Layout.fillWidth: true
@@ -84,7 +85,7 @@ ColumnLayout {
     MaterialButton {
         id: installBetaButton
 
-        visible: !UpdateManager.isCurrentVersionBeta()
+        visible: (!UpdateManager.isCurrentVersionBeta() && Qt.platform.os == "windows")
 
         Layout.alignment: Qt.AlignHCenter
 
