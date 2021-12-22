@@ -151,9 +151,11 @@ ApplicationWindow {
 
         onLoaded: {
             // Quiet check for updates on start if set to.
-            if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
-                UpdateManager.checkForUpdates(true)
-                UpdateManager.setAutoUpdateCheck(true)
+            if (Qt.platform.os !== "osx") {
+                if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
+                    UpdateManager.checkForUpdates(true)
+                    UpdateManager.setAutoUpdateCheck(true)
+                }
             }
         }
     }
@@ -184,7 +186,7 @@ ApplicationWindow {
 
     Connections {
         target: {
-            if (Qt.platform.os !== "windows" && Qt.platform.os !== "macos")
+            if (Qt.platform.os !== "windows" && Qt.platform.os !== "osx")
                 return DBusErrorHandler
             return null
         }
@@ -214,7 +216,7 @@ ApplicationWindow {
 
         JamiQmlUtils.mainApplicationScreen = root.screen
 
-        if (Qt.platform.os !== "windows" && Qt.platform.os !== "macos")
+        if (Qt.platform.os !== "windows" && Qt.platform.os !== "osx")
             DBusErrorHandler.setActive(true)
     }
 }
