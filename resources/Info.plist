@@ -28,6 +28,10 @@
     <true/>
     <key>NSHumanReadableCopyright</key>
     <string>${MACOSX_BUNDLE_COPYRIGHT}</string>
+    <key>SUPublicDSAKeyFile</key>
+    <string>dsa_pub.pem</string>q
+    <key>SUFeedURL</key>
+    <string>${SPARKLE_URL}</string>
     <key>NSHighResolutionCapable</key>
     <string>True</string>
     <key>NSCameraUsageDescription</key>

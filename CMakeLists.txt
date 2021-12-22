@@ -350,8 +350,10 @@ elseif (NOT APPLE)
     find_library(X11 X11)
 else()
     list(APPEND COMMON_SOURCES
-                ${SRC_DIR}/connectivitymonitor.mm)
-    find_package(PkgConfig REQUIRED)
+                ${SRC_DIR}/connectivitymonitor.mm
+                ${SRC_DIR}/sparkleupdater.mm)
+    list(APPEND COMMON_HEADERS
+                ${SRC_DIR}/sparkleupdater.h)
     if(NOT DEFINED LRC)
         if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
             set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
@@ -391,6 +393,15 @@ else()
     SET(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
     SET_SOURCE_FILES_PROPERTIES(${myApp_ICON} PROPERTIES
            MACOSX_PACKAGE_LOCATION Resources)
+    if(ENABLE_SPARKLE)
+        message("Sparkle auto-update enabled")
+        find_library(sparkle_framework
+                     NAMES Sparkle
+                     HINTS ${CMAKE_CURRENT_SOURCE_DIR}/sparkle)
+        add_definitions(-DENABLE_SPARKLE=1)
+        message("Sparkle is here:" ${sparkle_framework})
+        set(PUBLIC_KEY "${CMAKE_CURRENT_SOURCE_DIR}/sparkle/dsa_pub.pem")
+     endif()
 endif()
 
 # Qt find package
@@ -607,11 +618,16 @@ elseif (NOT APPLE)
     add_custom_target(uninstall
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 else()
-    target_sources(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+    set(resources ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+    if(ENABLE_SPARKLE)
+        set( resources ${resources} ${PUBLIC_KEY} ${sparkle_framework})
+    endif(ENABLE_SPARKLE)
+    target_sources(${PROJECT_NAME} PRIVATE ${resources})
     target_link_libraries(${PROJECT_NAME} PRIVATE
                           ${QT_LIBS}
                           ${LRC_LIB_NAME}
                           ${SYSTEM_CONFIGURATUION}
+                          ${sparkle_framework}
                           qrencode)
 
      # translations
@@ -636,17 +652,18 @@ else()
                             DESTINATION ${CMAKE_INSTALL_PREFIX}/share/libringclient/translations)
       endif()
       set_target_properties(${PROJECT_NAME} PROPERTIES
-                            MACOSX_BUNDLE TRUE
-                            MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/Info.plist"
-                            MACOSX_BUNDLE_EXECUTABLE_NAME "${PROJ_NAME}"
-                            MACOSX_BUNDLE_ICON_FILE "jami.icns"
-                            MACOSX_BUNDLE_GUI_IDENTIFIER "${BUNDLE_ID}"
-                            MACOSX_BUNDLE_BUNDLE_NAME "${PROJ_NAME}"
-                            MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION}"
-                            MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_BUILD}"
-                            MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}"
-                            XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
-                            XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
+          MACOSX_BUNDLE TRUE
+          MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/Info.plist"
+          MACOSX_BUNDLE_EXECUTABLE_NAME "${PROJ_NAME}"
+          MACOSX_BUNDLE_ICON_FILE "jami.icns"
+          MACOSX_BUNDLE_GUI_IDENTIFIER "${BUNDLE_ID}"
+          MACOSX_BUNDLE_BUNDLE_NAME "${PROJ_NAME}"
+          MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION}"
+          MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_BUILD}"
+          MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}"
+          SPARKLE_URL "${SPARKLE_URL}"
+          XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
+          XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
       add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                          COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
                          -DMAC_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
