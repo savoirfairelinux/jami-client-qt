@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "254ea598_2a5178eb",
+        "filename": "make-client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-23T16:19:14Z",
+      "side": 0,
+      "message": "no more tests?",
+      "range": {
+        "startLine": 241,
+        "startChar": 26,
+        "endLine": 243,
+        "endChar": 26
+      },
+      "revId": "49399de342b5c9e196758f54ece5e5393229cd52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

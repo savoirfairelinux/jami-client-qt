@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41df6d61_c8bab811",
+        "filename": "make-client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-23T16:19:14Z",
+      "side": 1,
+      "message": "we drop other arch?",
+      "range": {
+        "startLine": 193,
+        "startChar": 35,
+        "endLine": 193,
+        "endChar": 38
+      },
+      "revId": "86b7bb34cc325f78739eca04f12a9ed0314adea6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5163955e_4839a2d9",
+        "filename": "make-client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-23T16:19:14Z",
+      "side": 1,
+      "message": "…",
+      "range": {
+        "startLine": 228,
+        "startChar": 19,
+        "endLine": 228,
+        "endChar": 24
+      },
+      "revId": "86b7bb34cc325f78739eca04f12a9ed0314adea6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
