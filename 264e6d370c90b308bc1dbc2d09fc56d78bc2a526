@@ -16,6 +16,24 @@
       "message": "this should be able to work with full geometry, at least this was the method used on the QtWidgets client https://doc.qt.io/qt-5/restoring-geometry.html",
       "revId": "264e6d370c90b308bc1dbc2d09fc56d78bc2a526",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbe7c1f3_3e84fba9",
+        "filename": "src/appsettingsmanager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-12-23T20:28:27Z",
+      "side": 1,
+      "message": "also I think save-on-close is a better approach. saving at every change is only beneficial if we assume the client will crash",
+      "parentUuid": "0017733f_6921a0ac",
+      "revId": "264e6d370c90b308bc1dbc2d09fc56d78bc2a526",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
