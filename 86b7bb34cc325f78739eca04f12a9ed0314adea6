@@ -69,6 +69,30 @@
       },
       "revId": "86b7bb34cc325f78739eca04f12a9ed0314adea6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "782c892d_d40c493e",
+        "filename": "make-client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-12-23T20:07:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5163955e_4839a2d9",
+      "range": {
+        "startLine": 228,
+        "startChar": 19,
+        "endLine": 228,
+        "endChar": 24
+      },
+      "revId": "86b7bb34cc325f78739eca04f12a9ed0314adea6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
