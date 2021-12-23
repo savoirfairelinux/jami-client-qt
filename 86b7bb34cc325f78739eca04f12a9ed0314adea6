@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "092a9522_d32c27fd",
+        "filename": "make-client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-12-23T16:27:58Z",
+      "side": 1,
+      "message": "there is no plan to support 32-bit windows builds. it\u0027s just a mess of mixed parameters + hardcoded x64 paths",
+      "parentUuid": "41df6d61_c8bab811",
+      "range": {
+        "startLine": 193,
+        "startChar": 35,
+        "endLine": 193,
+        "endChar": 38
+      },
+      "revId": "86b7bb34cc325f78739eca04f12a9ed0314adea6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5163955e_4839a2d9",
