@@ -34,6 +34,24 @@
       "parentUuid": "0017733f_6921a0ac",
       "revId": "264e6d370c90b308bc1dbc2d09fc56d78bc2a526",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d010c4f0_95a13b31",
+        "filename": "src/appsettingsmanager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2021-12-23T20:39:15Z",
+      "side": 1,
+      "message": "For qml? seems to not use geometry/state but visibility/x/y",
+      "parentUuid": "0017733f_6921a0ac",
+      "revId": "264e6d370c90b308bc1dbc2d09fc56d78bc2a526",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
