@@ -94,12 +94,14 @@ ApplicationWindow {
     width: {
         if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
             return JamiTheme.wizardViewMinWidth
-        return JamiTheme.mainViewPreferredWidth
+        var previousState = UtilsAdapter.getAppValue(Settings.Width)
+        return previousState > 0? previousState : JamiTheme.mainViewPreferredWidth
     }
     height: {
         if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
             return JamiTheme.wizardViewMinHeight
-        return JamiTheme.mainViewPreferredHeight
+        var previousState = UtilsAdapter.getAppValue(Settings.Height)
+        return previousState > 0? previousState : JamiTheme.mainViewPreferredHeight
     }
     minimumWidth: {
         if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
@@ -110,6 +112,14 @@ ApplicationWindow {
         if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
             return JamiTheme.wizardViewMinHeight
         return JamiTheme.mainViewMinHeight
+    }
+
+    onWidthChanged: {
+        UtilsAdapter.setAppValue(Settings.Width, width)
+    }
+
+    onHeightChanged: {
+        UtilsAdapter.setAppValue(Settings.Height, height)
     }
 
     visible: mainApplicationLoader.status === Loader.Ready
