@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0017733f_6921a0ac",
+        "filename": "src/appsettingsmanager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2021-12-23T20:25:02Z",
+      "side": 1,
+      "message": "this should be able to work with full geometry, at least this was the method used on the QtWidgets client https://doc.qt.io/qt-5/restoring-geometry.html",
+      "revId": "264e6d370c90b308bc1dbc2d09fc56d78bc2a526",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
