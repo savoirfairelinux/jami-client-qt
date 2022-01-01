@@ -178,6 +178,23 @@ private:
     };
 };
 
+#ifdef Q_OS_MACOS
+InstanceManager::InstanceManager(MainApplication* mainApp)
+    : QObject(mainApp)
+{}
+
+InstanceManager::~InstanceManager() {}
+
+bool
+InstanceManager::tryToRun(const QByteArray& startUri)
+{
+    return true;
+}
+
+void
+InstanceManager::tryToKill()
+{}
+#else
 InstanceManager::InstanceManager(MainApplication* mainApp)
     : QObject(mainApp)
 {
@@ -203,6 +220,7 @@ InstanceManager::tryToKill()
 {
     pimpl_->tryToKill();
 }
+#endif
 
 #include "moc_instancemanager.cpp"
 #include "instancemanager.moc"
