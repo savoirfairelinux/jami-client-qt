@@ -101,6 +101,14 @@ main(int argc, char* argv[])
     QCryptographicHash appData(QCryptographicHash::Sha256);
     appData.addData(QApplication::applicationName().toUtf8());
     appData.addData(QApplication::organizationDomain().toUtf8());
+#if defined(Q_OS_MACOS)
+    if (!app.init()) {
+        return 0;
+    }
+    auto ret = app.exec();
+
+    return ret;
+#else
     RunGuard guard(appData.result(), &app);
     if (!guard.tryToRun()) {
         return 0;
@@ -118,5 +126,6 @@ main(int argc, char* argv[])
 
     guard.release();
     return ret;
+#endif
 }
 #endif
