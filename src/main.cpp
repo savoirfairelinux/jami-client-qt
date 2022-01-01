@@ -113,11 +113,9 @@ main(int argc, char* argv[])
             return 0;
         }
     }
-
     if (!app.init()) {
         return 0;
     }
-
     return app.exec();
 }
 #endif
