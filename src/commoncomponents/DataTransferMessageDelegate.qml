@@ -35,6 +35,7 @@ Loader {
     property bool showTime: false
     property int seq: MsgSeq.single
     property string author: Author
+    property bool changeWindowVisibility: false
 
     width: ListView.view ? ListView.view.width : 0
 
@@ -278,7 +279,7 @@ Loader {
                             settings.fullScreenSupportEnabled: mediaInfo.isVideo
                             settings.javascriptCanOpenWindows: false
                             Component.onCompleted: loadHtml(mediaInfo.html, 'file://')
-                            layer.enabled: parent !== appContainer && !appWindow.isFullScreen
+                            layer.enabled: parent !== appContainer && appWindow.visibility !== Window.FullScreen
                             layer.effect: OpacityMask {
                                 maskSource: MessageBubble {
                                     out: isOutgoing
@@ -291,12 +292,18 @@ Loader {
                             onFullScreenRequested: function(request) {
                                 if (JamiQmlUtils.callIsFullscreen)
                                     return
-                                if (request.toggleOn && !appWindow.isFullScreen) {
+                                if (request.toggleOn) {
                                     parent = appContainer
-                                    appWindow.toggleFullScreen()
-                                } else if (!request.toggleOn && appWindow.isFullScreen) {
+                                    if (appWindow.visibility !== Window.FullScreen) {
+                                        root.changeWindowVisibility = true
+                                        appWindow.showFullScreen()
+                                    }
+                                } else if (!request.toggleOn && appWindow.visibility === Window.FullScreen) {
                                     parent = localMediaCompLoader
-                                    appWindow.toggleFullScreen()
+                                    if (root.changeWindowVisibility) {
+                                        root.changeWindowVisibility = false
+                                        appWindow.showNormal()
+                                    }
                                 }
                                 request.accept()
                             }
