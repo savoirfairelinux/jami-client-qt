@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3de8d40_79085d22",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-06T22:16:53Z",
+      "side": 1,
+      "message": "I don\u0027t think we should be adding this flag in multiple components. There\u0027s got to be a better way. Also changeWindowVisibility is verb; makes the intention unclear when reading the code.",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 40
+      },
+      "revId": "a14cce7e14c8005131ed816a4a8a21b0c5baee93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa155fbc_17686570",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-06T22:16:53Z",
+      "side": 1,
+      "message": "this should be stuffed into the reborn property `appWindow.isFullScreen`",
+      "range": {
+        "startLine": 141,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 58
+      },
+      "revId": "a14cce7e14c8005131ed816a4a8a21b0c5baee93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
