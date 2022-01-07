@@ -117,6 +117,30 @@
       },
       "revId": "a14cce7e14c8005131ed816a4a8a21b0c5baee93",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571d95aa_537cc1e3",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-07T20:22:12Z",
+      "side": 1,
+      "message": "if you want I did an alias",
+      "parentUuid": "8547d292_a3d8549f",
+      "range": {
+        "startLine": 141,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 58
+      },
+      "revId": "a14cce7e14c8005131ed816a4a8a21b0c5baee93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
