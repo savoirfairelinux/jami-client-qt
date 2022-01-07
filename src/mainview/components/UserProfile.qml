@@ -67,7 +67,7 @@ BaseModalDialog {
                 showPresenceIndicator: false
             }
 
-            // Visible when user alias is not empty or equals to id.
+            // Visible when user alias is not empty and not equal to id.
             MaterialLineEdit {
                 id: contactAlias
 
@@ -115,11 +115,11 @@ BaseModalDialog {
                 Layout.alignment: Qt.AlignRight
                 font.pointSize: JamiTheme.textFontSize
                 text: JamiStrings.username
-                visible: registeredNameText ? (registeredNameText === idText ? false : true) : false
+                visible: contactDisplayName.visible
                 color: JamiTheme.faddedFontColor
             }
 
-            // Visible when user name is not empty or equals to alias.
+            // Visible when user name is not empty or equals to id.
             MaterialLineEdit {
                 id: contactDisplayName
 
