@@ -140,7 +140,7 @@ ItemDelegate {
 
     // custom anchor for the tooltips
     Item {
-        anchors.top: !isVertical ? parent.bottom : undefined
+        anchors.bottom: !isVertical ? parent.top : undefined
         anchors.topMargin: 25
         anchors.horizontalCenter: !isVertical ? parent.horizontalCenter : undefined
 
