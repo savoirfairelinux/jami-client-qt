@@ -86,8 +86,14 @@ main(int argc, char* argv[])
 
 #if defined(Q_OS_MACOS)
     QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
-#elif defined(Q_OS_WIN)
-    QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
+#else
+    if (strlen(getenv("WAYLAND_DISPLAY")) == 0) {
+        // https://bugreports.qt.io/browse/QTBUG-99684 - Vulkan on
+        // Wayland is not really supported as window decorations are
+        // removed. So we need to re-implement this (custom controls)
+        // or wait for a future version
+        QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
+    }
 #endif
 
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
