@@ -72,6 +72,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0813a11_03f5c862",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-11T14:50:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2255a7af_91461151",
+      "range": {
+        "startLine": 32,
+        "startChar": 18,
+        "endLine": 32,
+        "endChar": 40
+      },
+      "revId": "a14cce7e14c8005131ed816a4a8a21b0c5baee93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa155fbc_17686570",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "if you want I did an alias",
       "parentUuid": "8547d292_a3d8549f",
+      "range": {
+        "startLine": 141,
+        "startChar": 16,
+        "endLine": 141,
+        "endChar": 58
+      },
+      "revId": "a14cce7e14c8005131ed816a4a8a21b0c5baee93",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ce24e65_7b1b4ab0",
+        "filename": "src/mainview/components/CallStackView.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-11T14:50:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "571d95aa_537cc1e3",
       "range": {
         "startLine": 141,
         "startChar": 16,
