@@ -22,6 +22,30 @@
       },
       "revId": "db0df80254559d742a5c5d03d1ee67388f1fb463",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a247383_f6d07b05",
+        "filename": "src/mainview/components/UserProfile.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-11T16:41:45Z",
+      "side": 1,
+      "message": "classic inverted :/",
+      "parentUuid": "75da48c4_1ab3cdf1",
+      "range": {
+        "startLine": 122,
+        "startChar": 51,
+        "endLine": 122,
+        "endChar": 60
+      },
+      "revId": "db0df80254559d742a5c5d03d1ee67388f1fb463",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
