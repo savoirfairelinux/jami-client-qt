@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
@@ -26,9 +26,9 @@
 #include <QObject>
 #include <QString>
 #include <QStandardPaths>
+#include <QWindow> // for QWindow::AutomaticVisibility
 
-const QString defaultDownloadPath = QStandardPaths::writableLocation(
-    QStandardPaths::DownloadLocation);
+extern const QString defaultDownloadPath;
 
 // clang-format off
 #define KEYS \
@@ -44,11 +44,13 @@ const QString defaultDownloadPath = QStandardPaths::writableLocation(
     X(EnableDarkTheme, false) \
     X(AutoUpdate, true) \
     X(StartMinimized, false) \
-    X(NeverShowMeAgain, false)
+    X(NeverShowMeAgain, false) \
+    X(WindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
+    X(WindowState, QWindow::AutomaticVisibility)
 
 /*
  * A class to expose settings keys in both c++ and QML.
- * Note: this using a non-constructable class instead of a
+ * Note: this is using a non-constructable class instead of a
  * namespace allows for QML enum auto-completion in QtCreator.
  * This works well when there is only one enum class. Otherwise,
  * to prevent element name collision when defining multiple enums,

@@ -65,6 +65,9 @@ public:
     bool init();
     void restoreApp();
 
+Q_SIGNALS:
+    void closeRequested();
+
 private:
     void vsConsoleDebug();
     void fileDebug(QFile* debugFile);
