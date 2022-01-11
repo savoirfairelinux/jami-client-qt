@@ -35,6 +35,7 @@ class LRCInstance;
 class AppSettingsManager;
 class PreviewEngine;
 class ScreenInfo;
+class MainApplication;
 
 // Hack for QtCreator autocomplete (part 1)
 // https://bugreports.qt.io/browse/QTCREATORBUG-20569
@@ -66,5 +67,5 @@ void registerTypes(QQmlEngine* engine,
                    AppSettingsManager* appSettingsManager,
                    PreviewEngine* previewEngine,
                    ScreenInfo* screenInfo,
-                   QObject* parent);
+                   MainApplication* parent);
 }

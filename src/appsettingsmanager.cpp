@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2021-2022 Savoir-faire Linux Inc.
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
@@ -19,6 +19,9 @@
  */
 
 #include "appsettingsmanager.h"
+
+const QString defaultDownloadPath = QStandardPaths::writableLocation(
+    QStandardPaths::DownloadLocation);
 
 AppSettingsManager::AppSettingsManager(QObject* parent)
     : QObject(parent)

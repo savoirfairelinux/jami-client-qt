@@ -25,7 +25,6 @@
 #include <QObject>
 #include <QPixmap>
 #include <QRegularExpression>
-#include <QSettings>
 #include <QtConcurrent/QtConcurrent>
 
 LRCInstance::LRCInstance(migrateCallback willMigrateCb,
