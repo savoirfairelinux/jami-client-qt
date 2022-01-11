@@ -52,6 +52,8 @@ ApplicationWindow {
         appContainer: appContainer
     }
 
+    property bool windowSettingsLoaded: false
+
     function checkLoadedSource() {
         var sourceString = mainApplicationLoader.source.toString()
 
@@ -80,35 +82,20 @@ ApplicationWindow {
         // is set, then we can quit
         if (force || !UtilsAdapter.getAppValue(Settings.MinimizeOnClose) ||
                 !UtilsAdapter.getAccountListSize()) {
+            // Save the window geometry and state before quitting.
+            var geometry = Qt.rect(appWindow.x, appWindow.y,
+                                   appWindow.width, appWindow.height)
+            AppSettingsManager.setValue(Settings.WindowGeometry, geometry)
+            AppSettingsManager.setValue(Settings.WindowState, appWindow.visibility)
             Qt.quit()
-        } else
+        } else {
             hide()
+        }
     }
 
     title: JamiStrings.appTitle
 
-    width: {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
-            return JamiTheme.wizardViewMinWidth
-        return JamiTheme.mainViewPreferredWidth
-    }
-    height: {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
-            return JamiTheme.wizardViewMinHeight
-        return JamiTheme.mainViewPreferredHeight
-    }
-    minimumWidth: {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
-            return JamiTheme.wizardViewMinWidth
-        return JamiTheme.mainViewMinWidth
-    }
-    minimumHeight: {
-        if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView)
-            return JamiTheme.wizardViewMinHeight
-        return JamiTheme.mainViewMinHeight
-    }
-
-    visible: mainApplicationLoader.status === Loader.Ready
+    visible: mainApplicationLoader.status === Loader.Ready && windowSettingsLoaded
 
     // To facilitate reparenting of the callview during
     // fullscreen mode, we need QQuickItem based object.
@@ -143,10 +130,46 @@ ApplicationWindow {
             }
         }
 
+        // Set `visible = false` when loading a new QML file.
+        onSourceChanged: windowSettingsLoaded = false
+
         onLoaded: {
             if (UtilsAdapter.getAppValue(Settings.StartMinimized)) {
                 showMinimized()
+            } else {
+                if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView) {
+                    appWindow.width = JamiTheme.wizardViewMinWidth
+                    appWindow.height = JamiTheme.wizardViewMinHeight
+                    appWindow.minimumWidth = JamiTheme.wizardViewMinWidth
+                    appWindow.minimumHeight = JamiTheme.wizardViewMinHeight
+                } else {
+                    // Main window, load settings if possible.
+                    var geometry = AppSettingsManager.getValue(Settings.WindowGeometry)
+
+                    // Position.
+                    if (geometry.x !== -2147483648 && geometry.y !== -2147483648) {
+                        appWindow.x = geometry.x
+                        appWindow.y = geometry.y
+                    }
+
+                    // Dimensions.
+                    appWindow.width = geometry.width ?
+                                geometry.width :
+                                JamiTheme.mainViewPreferredWidth
+                    appWindow.height = geometry.height ?
+                                geometry.height :
+                                JamiTheme.mainViewPreferredHeight
+                    appWindow.minimumWidth = JamiTheme.mainViewMinWidth
+                    appWindow.minimumHeight = JamiTheme.mainViewMinHeight
+
+                    // State.
+                    appWindow.visibility = AppSettingsManager.getValue(Settings.WindowState)
+                }
             }
+
+            // This will trigger `visible = true`.
+            windowSettingsLoaded = true
+
             // Quiet check for updates on start if set to.
             if (UtilsAdapter.getAppValue(Settings.AutoUpdate)) {
                 UpdateManager.checkForUpdates(true)
@@ -167,6 +190,14 @@ ApplicationWindow {
             requestActivate()
             raise()
             layoutManager.restoreApp()
+        }
+    }
+
+    Connections {
+        target: MainApplication
+
+        function onCloseRequested() {
+            close(true)
         }
     }
 

@@ -103,7 +103,7 @@ registerTypes(QQmlEngine* engine,
               AppSettingsManager* settingsManager,
               PreviewEngine* previewEngine,
               ScreenInfo* screenInfo,
-              QObject* parent)
+              MainApplication* parent)
 {
     // setup the adapters (their lifetimes are that of MainApplication)
     auto callAdapter = new CallAdapter(systemTray, lrcInstance, parent);
@@ -180,6 +180,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/constant/JamiResources.qml", JamiResources);
     QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/constant/MsgSeq.qml", MsgSeq);
 
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, parent, "MainApplication")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, lrcInstance, "LRCInstance")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, settingsManager, "AppSettingsManager")

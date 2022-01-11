@@ -248,7 +248,8 @@ MainApplication::init()
 
     initQmlLayer();
 
-    settingsManager_->setValue(Settings::Key::StartMinimized, results[opts::STARTMINIMIZED].toBool());
+    settingsManager_->setValue(Settings::Key::StartMinimized,
+                               results[opts::STARTMINIMIZED].toBool());
 
     initSystray();
 
@@ -441,13 +442,14 @@ MainApplication::initSystray()
 #endif
 
     QAction* quitAction = new QAction(quitString, this);
-    connect(quitAction, &QAction::triggered, this, &MainApplication::cleanup);
+    connect(quitAction, &QAction::triggered, this, &MainApplication::closeRequested);
 
     QAction* restoreAction = new QAction(tr("&Show Jami"), this);
     connect(restoreAction, &QAction::triggered, this, &MainApplication::restoreApp);
 
     connect(systemTray_.get(),
             &QSystemTrayIcon::activated,
+            this,
             [this](QSystemTrayIcon::ActivationReason reason) {
                 if (reason != QSystemTrayIcon::ActivationReason::Context) {
 #ifdef Q_OS_WINDOWS
