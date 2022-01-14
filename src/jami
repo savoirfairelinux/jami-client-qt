@@ -38,6 +38,15 @@ fi
 
 # client-qt always top priority
 if [ $HAS_QT == "1" ]; then
+  # Some distros (like Zorin OS) set QT_STYLE_OVERRIDE to force a
+  # particular Qt style.  This has been fine with Qt5 even when using
+  # our own Qt package which may not have that style/theme available.
+  # However, with Qt6, attempting to override to a nonexistent style
+  # seems to result in the main window simply not showing.  So here
+  # we unset this variable also because jami-qt currently has the
+  # Material style hard-coded anyway.
+  # https://bugreports.qt.io/browse/QTBUG-99889
+  unset QT_STYLE_OVERRIDE
   jami-qt $*
   exit $?
 fi
