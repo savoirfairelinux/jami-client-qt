@@ -50,6 +50,7 @@ Control {
     signal shareFileClicked
     signal pluginsClicked
     signal recordCallClicked
+    signal fullScreenClicked
 
     Component {
         id: buttonDelegate
@@ -221,6 +222,17 @@ Control {
             text: JamiStrings.chat
         },
         Action {
+            id: fullScreenAction
+            icon.source: layoutManager.isCallFullscreen ?
+                            JamiResources.close_fullscreen_24dp_svg :
+                            JamiResources.open_in_full_24dp_svg
+            icon.color: "white"
+            onTriggered: root.fullScreenClicked()
+            text: layoutManager.isCallFullscreen ?
+                          JamiStrings.exitFullScreen :
+                          JamiStrings.fullScreen
+        },
+        Action {
             id: resumePauseCallAction
             onTriggered: root.resumePauseCallClicked()
             icon.source: isPaused ?
@@ -345,6 +357,7 @@ Control {
             CallOverlayModel.addSecondaryControl(shareAction)
         CallOverlayModel.addSecondaryControl(recordAction)
         CallOverlayModel.addSecondaryControl(pluginsAction)
+        CallOverlayModel.addSecondaryControl(fullScreenAction)
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
 
         muteAudioAction.checked = isAudioMuted
