@@ -666,13 +666,15 @@ else()
           SPARKLE_URL "${SPARKLE_URL}"
           XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
           XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
-      add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                         COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
-                         -DMAC_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
-                         -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
-                         -DSPARKLE_PATH=${SPARKLE_FRAMEWORK}
-                         -DENABLE_SPARKLE=${ENABLE_SPARKLE}
-                         -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/macos_qt_deploy.cmake)
+      if(DEPLOY)
+          add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                             COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
+                             -DMAC_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
+                             -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
+                             -DSPARKLE_PATH=${SPARKLE_FRAMEWORK}
+                             -DENABLE_SPARKLE=${ENABLE_SPARKLE}
+                             -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/macos_qt_deploy.cmake)
+      endif()
 endif()
 
 qt_import_qml_plugins(${PROJECT_NAME})
