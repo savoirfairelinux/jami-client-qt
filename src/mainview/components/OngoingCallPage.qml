@@ -25,6 +25,7 @@ import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
+import net.jami.Enums 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
@@ -64,6 +65,7 @@ Rectangle {
     }
 
     function openInCallConversation() {
+        mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
         inCallMessageWebViewStack.visible = true
         inCallMessageWebViewStack.push(linkedWebview)
     }
@@ -127,11 +129,12 @@ Rectangle {
 
         anchors.fill: parent
 
-        orientation: Qt.Vertical
+        property bool isHorizontal: false // Calculated when showing the stack view
+        orientation: isHorizontal ? Qt.Horizontal : Qt.Vertical
 
         handle: Rectangle {
-            implicitWidth: root.width
-            implicitHeight: JamiTheme.splitViewHandlePreferredWidth
+            implicitWidth: isHorizontal ? JamiTheme.splitViewHandlePreferredWidth : root.width
+            implicitHeight: isHorizontal ? root.height : JamiTheme.splitViewHandlePreferredWidth
             color: SplitHandle.pressed ? JamiTheme.pressColor :
                                          (SplitHandle.hovered ? JamiTheme.hoverColor :
                                                                 JamiTheme.tabbarBorderColor)
@@ -139,9 +142,11 @@ Rectangle {
 
         Rectangle {
             id: callPageMainRect
-            SplitView.preferredHeight: (root.height / 3) * 2
+            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : (root.height / 3) * 2
+            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? (root.width / 3) * 2 : root.width
             SplitView.minimumHeight: root.height / 2 + 20
-            SplitView.fillWidth: true
+            SplitView.minimumWidth: root.width / 2 + 20
+            SplitView.fillWidth: !mainColumnLayout.isHorizontal
 
             MouseArea {
                 anchors.fill: parent
@@ -375,8 +380,9 @@ Rectangle {
         StackView {
             id: inCallMessageWebViewStack
 
-            SplitView.preferredHeight: root.height / 3
-            SplitView.fillWidth: true
+            SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : root.height / 3
+            SplitView.preferredWidth: mainColumnLayout.isHorizontal ? root.width / 3 : root.width
+            SplitView.fillWidth: false
 
             visible: false
 

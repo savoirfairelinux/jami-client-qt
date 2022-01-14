@@ -44,7 +44,8 @@ const QString defaultDownloadPath = QStandardPaths::writableLocation(
     X(EnableDarkTheme, false) \
     X(AutoUpdate, true) \
     X(StartMinimized, false) \
-    X(NeverShowMeAgain, false)
+    X(NeverShowMeAgain, false) \
+    X(ShowChatviewHorizontally, false)
 
 /*
  * A class to expose settings keys in both c++ and QML.
