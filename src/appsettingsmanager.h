@@ -44,6 +44,7 @@ extern const QString defaultDownloadPath;
     X(EnableDarkTheme, false) \
     X(AutoUpdate, true) \
     X(StartMinimized, false) \
+    X(ShowChatviewHorizontally, true) \
     X(NeverShowMeAgain, false) \
     X(WindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
     X(WindowState, QWindow::AutomaticVisibility)

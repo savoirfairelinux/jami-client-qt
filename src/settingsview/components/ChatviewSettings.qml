@@ -77,4 +77,32 @@ ColumnLayout {
             UtilsAdapter.setAppValue(Settings.Key.DisplayHyperlinkPreviews, checked)
         }
     }
+
+    SettingsComboBox {
+        id: outputComboBoxSetting
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+
+        labelText: JamiStrings.chatviewPositionInCall
+        fontPointSize: JamiTheme.settingsFontSize
+        comboModel: ListModel {
+            Component.onCompleted: {
+                append({ textDisplay: JamiStrings.bottomOpt })
+                append({ textDisplay: JamiStrings.rightOpt })
+            }
+        }
+        widthOfComboBox: itemWidth
+        role: "textDisplay"
+
+        modelIndex: UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally) ? 1 : 0
+
+        onActivated: {
+            UtilsAdapter.setAppValue(
+                Settings.Key.ShowChatviewHorizontally,
+                comboModel.get(modelIndex).textDisplay === JamiStrings.rightOpt
+            )
+        }
+    }
 }
