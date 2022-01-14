@@ -49,6 +49,7 @@ Item {
     property bool localHandRaised
 
     signal chatButtonClicked
+    signal fullScreenClicked
 
     ParticipantsLayer {
         id: __participantsLayer
@@ -210,6 +211,7 @@ Item {
             function onRecordCallClicked() { recordClicked() }
             function onShareFileClicked() { jamiFileDialog.open() }
             function onPluginsClicked() { openPluginsMenu() }
+            function onFullScreenClicked() { root.fullScreenClicked() }
         }
     }
 

@@ -336,6 +336,10 @@ Rectangle {
                                     closeInCallConversation() :
                                     openInCallConversation()
                     }
+
+                    onFullScreenClicked: {
+                        callStackView.toggleFullScreen()
+                    }
                 }
 
                 ColumnLayout {
