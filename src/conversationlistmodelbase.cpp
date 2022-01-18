@@ -90,15 +90,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return {};
     }
     case Role::Draft: {
-        if (!item.uid.isEmpty()) {
-            const auto draft = lrcInstance_->getContentDraft(item.uid, item.accountId);
-            if (!draft.isEmpty()) {
-                // Pencil Emoji
-                uint cp = 0x270F;
-                auto emojiString = QString::fromUcs4(reinterpret_cast<char32_t*>(&cp), 1);
-                return emojiString + draft;
-            }
-        }
+        if (!item.uid.isEmpty())
+            return lrcInstance_->getContentDraft(item.uid, item.accountId);
         return {};
     }
     case Role::IsRequest:
