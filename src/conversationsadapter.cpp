@@ -141,6 +141,9 @@ ConversationsAdapter::safeInit()
             Qt::UniqueConnection);
 
     connectConversationModel();
+
+    // Select the first conversation, more useful than the welcome view
+    convModel_->select(0);
 }
 
 void
@@ -155,6 +158,9 @@ ConversationsAdapter::onCurrentAccountIdChanged()
     // case of programmatic selection(incoming call, notification
     // activation, etc.).
     set_filterRequests(false);
+
+    // Select the first conversation, more useful than the welcome view
+    convModel_->select(0);
 }
 
 void
