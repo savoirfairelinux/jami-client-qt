@@ -36,6 +36,8 @@ ItemDelegate {
     property string accountId: ""
     property string convId: ""
 
+    highlighted: ListView.isCurrentItem
+
     onVisibleChanged: {
         if (visible)
             return
@@ -126,6 +128,13 @@ ItemDelegate {
         ResponsiveImage {
             visible: ReadOnly
             source: JamiResources.lock_black_24dp_svg
+            color: JamiTheme.primaryForegroundColor
+        }
+
+        // Draft indicator
+        ResponsiveImage {
+            visible: Draft && !root.highlighted
+            source: JamiResources.round_edit_24dp_svg
             color: JamiTheme.primaryForegroundColor
         }
 
