@@ -18,6 +18,23 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1dd01aa_4e7f6845",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-01-19T17:11:36Z",
+      "side": 1,
+      "message": "yup, missing runtime dep (mesa-vulkan-drivers) on my end; nvm what i wrote earlier",
+      "revId": "2bff434b4000f68a7648fe4834498b8ff236afc5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b85e5e37_ad43fc11",
