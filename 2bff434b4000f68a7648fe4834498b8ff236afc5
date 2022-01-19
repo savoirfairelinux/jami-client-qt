@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b85e5e37_ad43fc11",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-01-19T14:35:02Z",
+      "side": 1,
+      "message": "Could it be simplified to \nif (!getenv(\"WAYLAND_DISPLAY\")) ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 46
+      },
+      "revId": "2bff434b4000f68a7648fe4834498b8ff236afc5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
