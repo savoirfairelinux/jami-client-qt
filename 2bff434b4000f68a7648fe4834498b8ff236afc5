@@ -56,6 +56,30 @@
       },
       "revId": "2bff434b4000f68a7648fe4834498b8ff236afc5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d14348_3a9bee19",
+        "filename": "src/main.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-01-19T17:15:57Z",
+      "side": 1,
+      "message": "yeah; in fact the \u003d\u003d 0 approach segfaults for me on gnu/linux",
+      "parentUuid": "b85e5e37_ad43fc11",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 46
+      },
+      "revId": "2bff434b4000f68a7648fe4834498b8ff236afc5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
