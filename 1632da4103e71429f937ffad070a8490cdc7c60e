@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a64a8653_1a8b902b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-01-19T21:31:49Z",
+      "side": 1,
+      "message": "some todos and impressions:\n\n1. we should look into the msvc issue with getenv on windows\n2. we should test this on older harder that don\u0027t have vulkan and make sure things continue to work there too\n3. i was testing this now and was in a call, and after a while client-qt crashed, outputting these messages:\n\nUpdates can only be scheduled from GUI thread or from QQuickItem::updatePaintNode()\nUpdates can only be scheduled from GUI thread or from QQuickItem::updatePaintNode()\nCannot remove renderer.  \"camera://CN045G28LOG0079LB2F8A01_Integrated_Webcam_HD\" not found\n*** stack smashing detected ***: terminated\nAborted",
+      "revId": "1632da4103e71429f937ffad070a8490cdc7c60e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
