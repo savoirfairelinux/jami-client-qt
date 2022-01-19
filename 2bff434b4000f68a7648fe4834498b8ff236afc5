@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "23457836_6a7315aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-01-19T16:54:33Z",
+      "side": 1,
+      "message": "i just tried with this, and client-qt segfaults when i try launch it.\ndoes it work for others?\n\ni\u0027ll double-check the deps, try a clean rebuild, and will try to get a bt from gdb",
+      "revId": "2bff434b4000f68a7648fe4834498b8ff236afc5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b85e5e37_ad43fc11",
