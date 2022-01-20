@@ -51,7 +51,6 @@ parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
 }
 
 // Qt WebEngine Chromium Flags
-static char noSandbox[] {"--no-sandbox"};
 static char disableWebSecurity[] {"--disable-web-security"};
 static char singleProcess[] {"--single-process"};
 
@@ -77,14 +76,6 @@ main(int argc, char* argv[])
      * https://bugreports.qt.io/browse/QTBUG-99889
      */
     unsetenv("QT_STYLE_OVERRIDE");
-#ifdef __GLIBC__
-    // Current glibc is causing some bugs with font loading
-    // See https://bugreports.qt.io/browse/QTBUG-92969
-    // As I prefer to not use custom patched Qt, just wait for a
-    // new version with this bug fixed
-    if (__GLIBC__ > 2 || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 33))
-        qtWebEngineChromiumFlags << noSandbox;
-#endif
 #endif
     qtWebEngineChromiumFlags << disableWebSecurity;
     qtWebEngineChromiumFlags << singleProcess;
