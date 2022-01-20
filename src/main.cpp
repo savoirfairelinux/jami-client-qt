@@ -29,6 +29,13 @@
 
 #include <clocale>
 
+#ifdef __linux__
+#include <unistd.h>
+#include <sys/syscall.h>
+#else
+#include <thread>
+#endif // __linux__
+
 #ifndef ENABLE_TESTS
 
 static char**
@@ -54,6 +61,54 @@ parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
 static char noSandbox[] {"--no-sandbox"};
 static char disableWebSecurity[] {"--disable-web-security"};
 static char singleProcess[] {"--single-process"};
+static char TIMESTAMP_FORMAT[] {"hh:mm:ss.zzz"};
+
+QString
+messageLevel(QtMsgType type)
+{
+    if (type == QtDebugMsg)
+        return QString("D");
+    if (type == QtInfoMsg)
+        return QString("I");
+    if (type == QtWarningMsg)
+        return QString("W");
+    if (type == QtCriticalMsg)
+        return QString("E");
+    if (type == QtFatalMsg)
+        return QString("F");
+    return QString("Unknown message type");
+}
+
+#ifdef __linux__
+long
+getCurrentTid()
+{
+    return syscall(__NR_gettid) & 0xffff;
+}
+#else
+thread::id
+getCurrentTid()
+{
+    return std::this_thread::get_id();
+}
+#endif // __linux__
+
+void
+messageHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg)
+{
+    QTextStream strm(stdout);
+    strm << "[";
+    strm << QDateTime::currentDateTime().toString(TIMESTAMP_FORMAT);
+    strm << "|";
+    strm << getCurrentTid();
+    strm << "|";
+    strm << messageLevel(type);
+    strm << "|";
+    strm << basename(__FILE__) << ":" << context.line;
+    strm << "] ";
+    strm << msg;
+    strm << Qt::endl;
+}
 
 int
 main(int argc, char* argv[])
@@ -65,6 +120,12 @@ main(int argc, char* argv[])
 #ifdef Q_OS_LINUX
     setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
     setenv("QML_DISABLE_DISK_CACHE", "1", true);
+
+    // Set the default logging handler. Do not override if the
+    // user defines its own format.
+    if (getenv("QT_MESSAGE_PATTERN") == nullptr) {
+        qInstallMessageHandler(messageHandler);
+    }
 
     /*
      * Some GNU/Linux distros, like Zorin OS, set QT_STYLE_OVERRIDE
