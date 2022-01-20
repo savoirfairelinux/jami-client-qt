@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ca16b7a_edda9712",
+        "filename": "src/MainApplicationWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-20T21:24:13Z",
+      "side": 1,
+      "message": "okay, must be an implicit conversion to the lhs value type on windows. lovely",
+      "parentUuid": "7ac358ec_9b365732",
+      "range": {
+        "startLine": 165,
+        "startChar": 29,
+        "endLine": 166,
+        "endChar": 92
+      },
+      "revId": "fac3eec85f3c56d901b9856eeb3afdc953393bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff84c2af_fa8eae8d",
         "filename": "src/appsettingsmanager.h",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-12T14:54:41Z",
       "side": 1,
       "message": "why those values?",
+      "range": {
+        "startLine": 48,
+        "startChar": 29,
+        "endLine": 48,
+        "endChar": 39
+      },
+      "revId": "fac3eec85f3c56d901b9856eeb3afdc953393bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4990b4a1_c2a32dc9",
+        "filename": "src/appsettingsmanager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-20T21:24:13Z",
+      "side": 1,
+      "message": "experimental impossible values. I\u0027ll try NaN instead",
+      "parentUuid": "ff84c2af_fa8eae8d",
       "range": {
         "startLine": 48,
         "startChar": 29,
