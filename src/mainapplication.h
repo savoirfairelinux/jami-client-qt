@@ -57,6 +57,7 @@ private:
 class MainApplication : public QApplication
 {
     Q_OBJECT
+    Q_DISABLE_COPY(MainApplication)
 
 public:
     explicit MainApplication(int& argc, char** argv);
@@ -65,21 +66,36 @@ public:
     bool init();
     void restoreApp();
 
+    enum class Option {
+        StartMinimized = 0,
+        Debug,
+        DebugToConsole,
+        DebugToFile,
+        UpdateUrl,
+        MuteJamid,
+        TerminationRequested
+    };
+    QVariant getOpt(const Option opt)
+    {
+        return runOptions_[opt];
+    };
+
 Q_SIGNALS:
     void closeRequested();
 
 private:
     void vsConsoleDebug();
     void fileDebug(QFile* debugFile);
-
     void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon);
-    const QVariantMap parseArguments();
+    void parseArguments();
     void setApplicationFont();
     void initQmlLayer();
     void initSystray();
     void cleanup();
 
 private:
+    std::map<Option, QVariant> runOptions_;
+
     QScopedPointer<QFile> debugFile_;
     QScopedPointer<QQmlApplicationEngine> engine_;
     QScopedPointer<LRCInstance> lrcInstance_;
