@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2015-2022 Savoir-faire Linux Inc.
  * Author: Edric Ladent Milaret <edric.ladent-milaret@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -19,7 +19,7 @@
  */
 
 #include "mainapplication.h"
-#include "runguard.h"
+#include "instancemanager.h"
 #include "version.h"
 
 #include <QCryptographicHash>
@@ -97,29 +97,24 @@ main(int argc, char* argv[])
 
     MainApplication app(argc, newArgv);
 
-    /*
-     * Runguard to make sure that only one instance runs at a time.
-     * Note: needs to be after the creation of the application
-     */
-    QCryptographicHash appData(QCryptographicHash::Sha256);
-    appData.addData(QApplication::applicationName().toUtf8());
-    appData.addData(QApplication::organizationDomain().toUtf8());
-    RunGuard guard(appData.result(), &app);
-    if (!guard.tryToRun()) {
+    // InstanceManager prevents multiple instances, and will handle
+    // IPC termination requests to and from secondary instances, which
+    // is used to gracefully terminate the app from an installer script
+    // during an update.
+    InstanceManager im(&app);
+    if (app.getOpt(MainApplication::Option::TerminationRequested).toBool()) {
+        qWarning() << "Attempting to terminate other instances.";
+        im.tryToKill();
+        return 0;
+    } else if (!im.tryToRun()) {
+        qWarning() << "Another instance is running.";
         return 0;
     }
 
     if (!app.init()) {
-        guard.release();
         return 0;
     }
 
-    /*
-     * Exec the application.
-     */
-    auto ret = app.exec();
-
-    guard.release();
-    return ret;
+    return app.exec();
 }
 #endif
