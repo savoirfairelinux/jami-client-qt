@@ -6,6 +6,8 @@
     <?define Name="Jami (BETA)" ?>
     <?endif ?>
 
+	<?define ExeName="Jami"?>
+
     <?if $(var.Configuration) = Release ?>
     <?define ReleaseDir="..\x64\Release"?>
     <?else?>

@@ -52,12 +52,19 @@
                   HideTarget="no"
                   Impersonate="no"/>
 
-    <Property Id="QtExecCmdLine" Value='"[WindowsFolder]\System32\taskkill.exe" /F /IM QtWebEngineProcess.exe /IM Jami.exe'/>
-    <CustomAction Id="JamiProcesses.TaskKill"
+    <Property Id="killWebEngineProcesses" Value='"[WindowsFolder]\System32\taskkill.exe" /F /IM QtWebEngineProcess.exe'/>
+    <CustomAction Id="WebEngineProcesses.TaskKill"
                   BinaryKey="WixCA"
                   DllEntry="CAQuietExec"
                   Execute="immediate"
                   Return="ignore"/>
+
+    <Property Id="killAppProcess" Value='"[APPLICATIONFOLDER]/$(var.ExeName).exe" --term'/>
+		<CustomAction Id="AppProcess.TaskKill"
+					BinaryKey="WixCA"
+					DllEntry="CAQuietExec"
+					Execute="immediate"
+					Return="ignore"/>
   </Product>
 
   <Fragment Id="DirectoryStructure">
@@ -123,7 +130,8 @@
       </InstallUISequence>
     </UI>
     <InstallExecuteSequence>
-      <Custom Action='JamiProcesses.TaskKill' Before='InstallValidate'/>
+      <Custom Action='AppProcess.TaskKill' Before='InstallValidate'/>
+	  <Custom Action='WebEngineProcesses.TaskKill' Before='InstallValidate'/>
       <Custom Action="removeOldJamiFiles" After="RemoveFiles" />
       <Custom Action="LaunchApplication_nonUI" After="InstallFinalize"> WIXNONUILAUNCH </Custom>
       <Custom Action="Overwrite_WixSetDefaultPerMachineFolder" After="WixSetDefaultPerMachineFolder" />
