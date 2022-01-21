@@ -97,7 +97,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/bannedlistmodel.cpp
     ${SRC_DIR}/accountlistmodel.cpp
     ${SRC_DIR}/networkmanager.cpp
-    ${SRC_DIR}/runguard.cpp
+    ${SRC_DIR}/instancemanager.cpp
     ${SRC_DIR}/updatemanager.cpp
     ${SRC_DIR}/main.cpp
     ${SRC_DIR}/smartlistmodel.cpp
@@ -152,7 +152,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/bannedlistmodel.h
     ${SRC_DIR}/version.h
     ${SRC_DIR}/accountlistmodel.h
-    ${SRC_DIR}/runguard.h
+    ${SRC_DIR}/instancemanager.h
     ${SRC_DIR}/rendermanager.h
     ${SRC_DIR}/connectivitymonitor.h
     ${SRC_DIR}/jamiavatartheme.h

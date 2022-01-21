@@ -79,7 +79,7 @@
                 <File Id="filD6887AD9110E4A8D49143C9A8F0B5843" KeyPath="yes" Source="$(var.UcrtDir)\ucrtbase.dll" />
             </Component>
             <Component Id="cmp9CFEE34E3A162AB05264E8B756EC1DEC" Directory="APPLICATIONFOLDER" Guid="*">
-                <File Id="fileMain.exe" KeyPath="yes" Source="$(var.ReleaseDir)\Jami.exe" />
+                <File Id="fileMain.exe" KeyPath="yes" Source="$(var.ReleaseDir)\$(var.ExeName).exe" />
             </Component>
         </ComponentGroup>
     </Fragment>

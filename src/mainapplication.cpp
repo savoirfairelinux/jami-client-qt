@@ -53,16 +53,6 @@
 #include <gnutls/gnutls.h>
 #endif
 
-namespace opts {
-// Keys used to store command-line options.
-constexpr static const char STARTMINIMIZED[] = "STARTMINIMIZED";
-constexpr static const char DEBUG[] = "DEBUG";
-constexpr static const char DEBUGCONSOLE[] = "DEBUGCONSOLE";
-constexpr static const char DEBUGFILE[] = "DEBUGFILE";
-constexpr static const char UPDATEURL[] = "UPDATEURL";
-constexpr static const char MUTEDAEMON[] = "MUTEDAEMON";
-} // namespace opts
-
 static void
 consoleDebug()
 {
@@ -152,6 +142,7 @@ MainApplication::MainApplication(int& argc, char** argv)
     , systemTray_(new SystemTray(settingsManager_.get(), this))
     , previewEngine_(new PreviewEngine(this))
 {
+    parseArguments();
     QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
 }
 
@@ -175,9 +166,7 @@ MainApplication::init()
         setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
 #endif
 
-    auto results = parseArguments();
-
-    if (results[opts::DEBUG].toBool()) {
+    if (runOptions_[Option::Debug].toBool()) {
         consoleDebug();
     }
 
@@ -189,9 +178,9 @@ MainApplication::init()
     gnutls_global_init();
 #endif
 
-    initLrc(results[opts::UPDATEURL].toString(),
+    initLrc(runOptions_[Option::UpdateUrl].toString(),
             connectivityMonitor_.get(),
-            results[opts::DEBUG].toBool() && !results[opts::MUTEDAEMON].toBool());
+            runOptions_[Option::Debug].toBool() && !runOptions_[Option::MuteJamid].toBool());
 
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     using namespace Interfaces;
@@ -202,10 +191,12 @@ MainApplication::init()
         engine_->load(QUrl(QStringLiteral("qrc:/src/DaemonReconnectWindow.qml")));
         exec();
 
-        if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid()))
+        if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
+            qWarning() << "Can't connect to the daemon via D-Bus.";
             return false;
-        else
+        } else {
             engine_.reset(new QQmlApplicationEngine());
+        }
     }
 #endif
 
@@ -224,14 +215,14 @@ MainApplication::init()
         [this] { engine_->quit(); },
         Qt::DirectConnection);
 
-    if (results[opts::DEBUGFILE].toBool()) {
+    if (runOptions_[Option::DebugToFile].toBool()) {
         debugFile_.reset(new QFile(getDebugFilePath()));
         debugFile_->open(QIODevice::WriteOnly | QIODevice::Truncate);
         debugFile_->close();
         fileDebug(debugFile_.get());
     }
 
-    if (results[opts::DEBUGCONSOLE].toBool()) {
+    if (runOptions_[Option::DebugToConsole].toBool()) {
         vsConsoleDebug();
     }
 
@@ -249,7 +240,7 @@ MainApplication::init()
     initQmlLayer();
 
     settingsManager_->setValue(Settings::Key::StartMinimized,
-                               results[opts::STARTMINIMIZED].toBool());
+                               runOptions_[Option::StartMinimized].toBool());
 
     initSystray();
 
@@ -281,7 +272,6 @@ MainApplication::loadTranslations()
                                     QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
             installTranslator(qtTranslator_lang);
     }
-
     if (qtTranslator_name->load("qt_" + locale_name,
                                 QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
         installTranslator(qtTranslator_name);
@@ -346,10 +336,9 @@ MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bo
     lrcInstance_->subscribeToDebugReceived();
 }
 
-const QVariantMap
+void
 MainApplication::parseArguments()
 {
-    QVariantMap results;
     QCommandLineParser parser;
     parser.addHelpOption();
     parser.addVersionOption();
@@ -375,15 +364,18 @@ MainApplication::parseArguments()
     QCommandLineOption debugOption({"d", "debug"}, "Debug out.");
     parser.addOption(debugOption);
 
+    QCommandLineOption debugFileOption({"f", "file"}, "Debug to file.");
+    parser.addOption(debugFileOption);
+
 #ifdef Q_OS_WINDOWS
     QCommandLineOption debugConsoleOption({"c", "console"}, "Debug out to IDE console.");
     parser.addOption(debugConsoleOption);
 
-    QCommandLineOption debugFileOption({"f", "file"}, "Debug to file.");
-    parser.addOption(debugFileOption);
-
     QCommandLineOption updateUrlOption({"u", "url"}, "<url> for debugging version queries.", "url");
     parser.addOption(updateUrlOption);
+
+    QCommandLineOption terminateOption({"t", "term"}, "Terminate all instances.");
+    parser.addOption(terminateOption);
 #endif
 
     QCommandLineOption muteDaemonOption({"q", "quiet"}, "Mute daemon logging. (only if debug)");
@@ -391,16 +383,15 @@ MainApplication::parseArguments()
 
     parser.process(*this);
 
-    results[opts::STARTMINIMIZED] = parser.isSet(minimizedOption);
-    results[opts::DEBUG] = parser.isSet(debugOption);
+    runOptions_[Option::StartMinimized] = parser.isSet(minimizedOption);
+    runOptions_[Option::Debug] = parser.isSet(debugOption);
+    runOptions_[Option::DebugToFile] = parser.isSet(debugFileOption);
 #ifdef Q_OS_WINDOWS
-    results[opts::DEBUGCONSOLE] = parser.isSet(debugConsoleOption);
-    results[opts::DEBUGFILE] = parser.isSet(debugFileOption);
-    results[opts::UPDATEURL] = parser.value(updateUrlOption);
+    runOptions_[Option::DebugToConsole] = parser.isSet(debugConsoleOption);
+    runOptions_[Option::UpdateUrl] = parser.value(updateUrlOption);
+    runOptions_[Option::TerminationRequested] = parser.isSet(terminateOption);
 #endif
-    results[opts::MUTEDAEMON] = parser.isSet(muteDaemonOption);
-
-    return results;
+    runOptions_[Option::MuteJamid] = parser.isSet(muteDaemonOption);
 }
 
 void
