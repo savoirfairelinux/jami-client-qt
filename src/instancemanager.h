@@ -15,45 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-// Based on: https://stackoverflow.com/a/28172162
 
 #pragma once
 
 #include <QObject>
-#include <QSharedMemory>
-#include <QSystemSemaphore>
-#include <QtNetwork/QLocalServer>
-#include <QtNetwork/QLocalSocket>
+
+#include <memory>
 
 class MainApplication;
 
-class RunGuard : public QObject
+class InstanceManager final : public QObject
 {
     Q_OBJECT;
-
+    Q_DISABLE_COPY(InstanceManager)
 public:
-    RunGuard(const QString& key, MainApplication* mainApp = nullptr);
-    ~RunGuard();
+    explicit InstanceManager(MainApplication* mainApp);
+    ~InstanceManager();
 
-    bool isAnotherRunning();
     bool tryToRun();
-    void release();
-
-private Q_SLOTS:
-    void tryRestorePrimaryInstance();
+    void tryToKill();
 
 private:
-    MainApplication* mainAppInstance_;
-
-    const QString key_;
-    const QString memLockKey_;
-    const QString sharedmemKey_;
-
-    QSharedMemory sharedMem_;
-    QSystemSemaphore memLock_;
-
-    QLocalSocket* socket_ {nullptr};
-    QLocalServer* server_ {nullptr};
-
-    Q_DISABLE_COPY(RunGuard)
+    class Impl;
+    std::unique_ptr<Impl> pimpl_;
 };
