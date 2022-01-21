@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8df5a49c_d82c3a8d",
+        "filename": "src/MainApplicationWindow.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-21T16:17:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ca16b7a_edda9712",
+      "range": {
+        "startLine": 165,
+        "startChar": 29,
+        "endLine": 166,
+        "endChar": 92
+      },
+      "revId": "fac3eec85f3c56d901b9856eeb3afdc953393bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff84c2af_fa8eae8d",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "experimental impossible values. I\u0027ll try NaN instead",
       "parentUuid": "ff84c2af_fa8eae8d",
+      "range": {
+        "startLine": 48,
+        "startChar": 29,
+        "endLine": 48,
+        "endChar": 39
+      },
+      "revId": "fac3eec85f3c56d901b9856eeb3afdc953393bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81a9612f_cb5ab06f",
+        "filename": "src/appsettingsmanager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-21T16:17:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4990b4a1_c2a32dc9",
       "range": {
         "startLine": 48,
         "startChar": 29,
