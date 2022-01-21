@@ -16,6 +16,24 @@
       "message": "Seems ok for me, but we need to validate that everything works fine on macosx and windows",
       "revId": "da08f9bbd31cca48e57be6ff35fb5ada3305d8a7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d62a8f75_6549bb9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-21T14:11:00Z",
+      "side": 1,
+      "message": "The flag is only for ifdef __GLIBC__ which doesn\u0027t exists on macOS/Windows (no GNU)",
+      "parentUuid": "411a9246_f5c6a230",
+      "revId": "da08f9bbd31cca48e57be6ff35fb5ada3305d8a7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
