@@ -103,14 +103,18 @@ ScreenInfo::setCurrentFocusWindow(QWindow* window)
         disconnect(currentFocusWindowScreenConnection_);
 
         currentFocusWindowScreenConnection_
-            = connect(currentFocusWindow_, &QWindow::screenChanged, [this] {
+            = connect(currentFocusWindow_, &QWindow::screenChanged, this, [this] {
                   currentFocusWindowScreen_ = currentFocusWindow_->screen();
                   set_devicePixelRatio(currentFocusWindowScreen_->devicePixelRatio());
 
-                  devicePixelRatioConnection_ = connect(
-                      currentFocusWindowScreen_, &QScreen::physicalDotsPerInchChanged, [this] {
-                          set_devicePixelRatio(currentFocusWindowScreen_->devicePixelRatio());
-                      });
+                  devicePixelRatioConnection_
+                      = connect(currentFocusWindowScreen_,
+                                &QScreen::physicalDotsPerInchChanged,
+                                this,
+                                [this] {
+                                    set_devicePixelRatio(
+                                        currentFocusWindowScreen_->devicePixelRatio());
+                                });
               });
     }
 }
@@ -124,6 +128,7 @@ MainApplication::vsConsoleDebug()
      */
     QObject::connect(&lrcInstance_->behaviorController(),
                      &lrc::api::BehaviorController::debugMessageReceived,
+                     this,
                      [](const QString& message) {
                          OutputDebugStringA((message + "\n").toStdString().c_str());
                      });
@@ -135,6 +140,7 @@ MainApplication::fileDebug(QFile* debugFile)
 {
     QObject::connect(&lrcInstance_->behaviorController(),
                      &lrc::api::BehaviorController::debugMessageReceived,
+                     this,
                      [debugFile](const QString& message) {
                          if (debugFile->open(QIODevice::WriteOnly | QIODevice::Append)) {
                              auto msg = (message + "\n").toStdString();
@@ -205,7 +211,7 @@ MainApplication::init()
     }
 #endif
 
-    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [this] {
+    connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, this, [this] {
         lrcInstance_->connectivityChanged();
     });
 
@@ -217,7 +223,7 @@ MainApplication::init()
         lrcInstance_.get(),
         &LRCInstance::quitEngineRequested,
         this,
-        [this] { engine_->quit(); },
+        [this] { Q_EMIT engine_->quit(); },
         Qt::DirectConnection);
 
     if (results[opts::DEBUGFILE].toBool()) {
@@ -267,48 +273,27 @@ MainApplication::loadTranslations()
     QString appDir = qApp->applicationDirPath() + QDir::separator() + "share";
 #endif
 
-    QString locale_name = QLocale::system().name();
-    QString locale_lang = locale_name.split('_')[0];
+    QString locale = QLocale::system().name();
+    QString localeLang = locale.split('_')[0];
 
-    QTranslator* qtTranslator_lang = new QTranslator(this);
-    QTranslator* qtTranslator_name = new QTranslator(this);
-    if (locale_name != locale_lang) {
-        if (qtTranslator_lang->load("qt_" + locale_lang,
-                                    QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
-            installTranslator(qtTranslator_lang);
-    }
+    const auto installTranslator = [this](const QString& file, const QString& dir = {}) {
+        QTranslator* qtTranslator = new QTranslator(this);
+        if (qtTranslator->load(file, dir))
+            this->installTranslator(qtTranslator);
+    };
 
-    if (qtTranslator_name->load("qt_" + locale_name,
-                                QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
-        installTranslator(qtTranslator_name);
-    }
+    installTranslator("qt_" + locale, QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+    installTranslator(appDir + QDir::separator() + "libringclient" + QDir::separator()
+                      + "translations" + QDir::separator() + "lrc_" + locale);
+    installTranslator(appDir + QDir::separator() + "ring" + QDir::separator() + "translations"
+                      + QDir::separator() + "ring_client_windows_" + locale);
 
-    QTranslator* lrcTranslator_lang = new QTranslator(this);
-    QTranslator* lrcTranslator_name = new QTranslator(this);
-    if (locale_name != locale_lang) {
-        if (lrcTranslator_lang->load(appDir + QDir::separator() + "libringclient" + QDir::separator()
-                                     + "translations" + QDir::separator() + "lrc_" + locale_lang)) {
-            installTranslator(lrcTranslator_lang);
-        }
-    }
-    if (lrcTranslator_name->load(appDir + QDir::separator() + "libringclient" + QDir::separator()
-                                 + "translations" + QDir::separator() + "lrc_" + locale_name)) {
-        installTranslator(lrcTranslator_name);
-    }
-
-    QTranslator* mainTranslator_lang = new QTranslator(this);
-    QTranslator* mainTranslator_name = new QTranslator(this);
-    if (locale_name != locale_lang) {
-        if (mainTranslator_lang->load(appDir + QDir::separator() + "ring" + QDir::separator()
-                                      + "translations" + QDir::separator() + "ring_client_windows_"
-                                      + locale_lang)) {
-            installTranslator(mainTranslator_lang);
-        }
-    }
-    if (mainTranslator_name->load(appDir + QDir::separator() + "ring" + QDir::separator()
-                                  + "translations" + QDir::separator() + "ring_client_windows_"
-                                  + locale_name)) {
-        installTranslator(mainTranslator_name);
+    if (locale != localeLang) {
+        installTranslator("qt_" + localeLang, QLibraryInfo::path(QLibraryInfo::TranslationsPath));
+        installTranslator(appDir + QDir::separator() + "libringclient" + QDir::separator()
+                          + "translations" + QDir::separator() + "lrc_" + localeLang);
+        installTranslator(appDir + QDir::separator() + "ring" + QDir::separator() + "translations"
+                          + QDir::separator() + "ring_client_windows_" + localeLang);
     }
 }
 
