@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0844b6e_c3fb1938",
+        "filename": "src/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-24T20:08:18Z",
+      "side": 1,
+      "message": "and tapHandler fix the focus issue! thx",
+      "parentUuid": "15c0bb87_c8a9c63e",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 23
+      },
+      "revId": "c4473f4eba2fc51972ef7be3f767f74ba2564a4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38f910a4_47e231e9",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-24T19:50:20Z",
       "side": 1,
       "message": "I think\n```\nctxMenu.openMenuAt(mouse)\n```\nwill get the selection cursor positions, and be able to retain the item selection after the menu-open.",
+      "range": {
+        "startLine": 74,
+        "startChar": 20,
+        "endLine": 82,
+        "endChar": 54
+      },
+      "revId": "c4473f4eba2fc51972ef7be3f767f74ba2564a4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "315be214_9b8cfc22",
+        "filename": "src/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-24T20:08:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38f910a4_47e231e9",
       "range": {
         "startLine": 74,
         "startChar": 20,
