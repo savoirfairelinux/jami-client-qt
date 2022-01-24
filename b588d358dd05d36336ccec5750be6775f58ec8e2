@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9fb42a2_852849cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-24T20:20:49Z",
+      "side": 1,
+      "message": "missing gitlab element",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 14
+      },
+      "revId": "b588d358dd05d36336ccec5750be6775f58ec8e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "322bf098_24e94206",
+        "filename": "JamiInstaller/Config.wxi",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-24T20:20:49Z",
+      "side": 1,
+      "message": "indent",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "b588d358dd05d36336ccec5750be6775f58ec8e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b119b47_41c7b0a3",
+        "filename": "src/instancemanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-24T20:20:49Z",
+      "side": 1,
+      "message": "Since some times, I was thinking about this runguard.\nImho the second instance should send the arguments to the first instance.\nThis will allow us to do ./jami-qt --call ring:xxxxx for example and pass it to the first instance.\nMaybe we should take this opportunity to redesign this class and do my point in this patch. Cause for now we loose the informations given by the second launch, you already this this with terminateSeq_",
+      "range": {
+        "startLine": 121,
+        "startChar": 53,
+        "endLine": 121,
+        "endChar": 69
+      },
+      "revId": "b588d358dd05d36336ccec5750be6775f58ec8e2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
