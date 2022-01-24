@@ -48,7 +48,7 @@ UpdateManager::UpdateManager(const QString& url,
     , tempPath_(Utils::WinGetEnv("TEMP"))
     , updateTimer_(new QTimer(this))
 {
-    connect(updateTimer_, &QTimer::timeout, [this] {
+    connect(updateTimer_, &QTimer::timeout, this, [this] {
         // Quiet period update check.
         checkForUpdates(true);
     });
@@ -132,8 +132,6 @@ UpdateManager::applyUpdates(bool beta)
     get(
         downloadUrl,
         [this, downloadUrl](const QString&) {
-            lrcInstance_->finish();
-            Q_EMIT lrcInstance_->quitEngineRequested();
             auto args = QString(" /passive /norestart WIXNONUILAUNCH=1");
             QProcess process;
             process.start("powershell ",
