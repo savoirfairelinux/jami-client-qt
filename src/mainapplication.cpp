@@ -219,13 +219,6 @@ MainApplication::init()
         screenInfo_.setCurrentFocusWindow(this->focusWindow());
     });
 
-    QObject::connect(
-        lrcInstance_.get(),
-        &LRCInstance::quitEngineRequested,
-        this,
-        [this] { Q_EMIT engine_->quit(); },
-        Qt::DirectConnection);
-
     if (results[opts::DEBUGFILE].toBool()) {
         debugFile_.reset(new QFile(getDebugFilePath()));
         debugFile_->open(QIODevice::WriteOnly | QIODevice::Truncate);
