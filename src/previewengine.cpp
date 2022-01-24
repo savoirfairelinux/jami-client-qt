@@ -24,7 +24,7 @@
 #include <QWebEngineSettings>
 
 PreviewEngine::PreviewEngine(QObject* parent)
-    : QWebEngineView(qobject_cast<QWidget*>(parent))
+    : QWebEnginePage(parent)
     , pimpl_(new PreviewEnginePrivate(this))
 {
     QWebEngineProfile* profile = QWebEngineProfile::defaultProfile();
@@ -36,8 +36,6 @@ PreviewEngine::PreviewEngine(QObject* parent)
     profile->setPersistentStoragePath(cachePath);
     profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
     profile->setHttpCacheType(QWebEngineProfile::NoCache);
-
-    setPage(new QWebEnginePage(profile, this));
 
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     settings()->setAttribute(QWebEngineSettings::ScrollAnimatorEnabled, false);
@@ -51,27 +49,23 @@ PreviewEngine::PreviewEngine(QObject* parent)
     settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
     settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
 
-    setContextMenuPolicy(Qt::ContextMenuPolicy::NoContextMenu);
-
     channel_ = new QWebChannel(this);
     channel_->registerObject(QStringLiteral("jsbridge"), pimpl_);
 
-    page()->setWebChannel(channel_);
-    page()->runJavaScript(Utils::QByteArrayFromFile(":/linkify.js"), QWebEngineScript::MainWorld);
-    page()->runJavaScript(Utils::QByteArrayFromFile(":/linkify-string.js"),
-                          QWebEngineScript::MainWorld);
-    page()->runJavaScript(Utils::QByteArrayFromFile(":/qwebchannel.js"),
-                          QWebEngineScript::MainWorld);
-    page()->runJavaScript(Utils::QByteArrayFromFile(":/previewInfo.js"),
-                          QWebEngineScript::MainWorld);
-    page()->runJavaScript(Utils::QByteArrayFromFile(":/misc/previewInterop.js"),
-                          QWebEngineScript::MainWorld);
+    setWebChannel(channel_);
+    runJavaScript(Utils::QByteArrayFromFile(":/linkify.js"), QWebEngineScript::MainWorld);
+    runJavaScript(Utils::QByteArrayFromFile(":/linkify-string.js"), QWebEngineScript::MainWorld);
+    runJavaScript(Utils::QByteArrayFromFile(":/qwebchannel.js"), QWebEngineScript::MainWorld);
+    runJavaScript(Utils::QByteArrayFromFile(":/previewInfo.js"), QWebEngineScript::MainWorld);
+    runJavaScript(Utils::QByteArrayFromFile(":/misc/previewInterop.js"),
+                  QWebEngineScript::MainWorld);
 }
 
 void
 PreviewEngine::parseMessage(const QString& messageId, const QString& msg, bool showPreview)
 {
-    page()->runJavaScript(QString("parseMessage(`%1`, `%2`, %3)").arg(messageId, msg, showPreview ? "true" : "false"));
+    runJavaScript(
+        QString("parseMessage(`%1`, `%2`, %3)").arg(messageId, msg, showPreview ? "true" : "false"));
 }
 
 void
