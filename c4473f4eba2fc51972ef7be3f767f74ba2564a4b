@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f5bbfd_fc68e233",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-24T19:50:20Z",
+      "side": 1,
+      "message": "check to see if TapHandler works",
+      "revId": "c4473f4eba2fc51972ef7be3f767f74ba2564a4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15c0bb87_c8a9c63e",
+        "filename": "src/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-24T19:50:20Z",
+      "side": 1,
+      "message": "This mouse area overrides the hover handling native to the parent component. I think it may be better to use a TapHandler instead like:\n\n```\nTapHandler {\n    acceptedButtons: Qt.RightButton\n    function onTapped(eventPoint) {\n        ctxMenu.openMenuAt(eventPoint.position)\n    }\n}\n```\n\nThat way we keep the cursor shape for urls etc.",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 23
+      },
+      "revId": "c4473f4eba2fc51972ef7be3f767f74ba2564a4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38f910a4_47e231e9",
+        "filename": "src/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-24T19:50:20Z",
+      "side": 1,
+      "message": "I think\n```\nctxMenu.openMenuAt(mouse)\n```\nwill get the selection cursor positions, and be able to retain the item selection after the menu-open.",
+      "range": {
+        "startLine": 74,
+        "startChar": 20,
+        "endLine": 82,
+        "endChar": 54
+      },
+      "revId": "c4473f4eba2fc51972ef7be3f767f74ba2564a4b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
