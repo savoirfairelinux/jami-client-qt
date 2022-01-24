@@ -166,10 +166,6 @@ MainApplication::init()
 {
     setWindowIcon(QIcon(":/images/jami.ico"));
 
-    // Lrc web resources
-    QResource::registerResource(QCoreApplication::applicationDirPath() + QDir::separator()
-                                + "webresource.rcc");
-
 #ifdef Q_OS_LINUX
     if (!getenv("QT_QPA_PLATFORMTHEME"))
         setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
