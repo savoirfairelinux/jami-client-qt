@@ -416,8 +416,7 @@ qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
                   ${COMMON_HEADERS}
                   ${COMMON_SOURCES}
                   ${QML_RESOURCES}
-                  ${QML_RESOURCES_QML}
-                  ${LRC_SRC_PATH}/webresource.qrc)
+                  ${QML_RESOURCES_QML})
 
 if(MSVC)
     # Makes it a GUI executable instead of a console application
