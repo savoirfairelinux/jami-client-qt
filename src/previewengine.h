@@ -22,8 +22,7 @@
 #include "utils.h"
 
 #include <QtWebChannel>
-#include <QtWebEngineCore>
-#include <QWebEngineView>
+#include <QWebEnginePage>
 
 class PreviewEngine;
 
@@ -43,7 +42,7 @@ private:
     PreviewEngine* parent_;
 };
 
-class PreviewEngine : public QWebEngineView
+class PreviewEngine : public QWebEnginePage
 {
     Q_OBJECT
 public:
