@@ -64,6 +64,20 @@ SBSMessageBase {
             color: isOutgoing ?
                        JamiTheme.messageOutTxtColor :
                        JamiTheme.messageInTxtColor
+
+            TapHandler {
+                acceptedButtons: Qt.RightButton
+                onTapped: function onTapped(eventPoint) {
+                    ctxMenu.openMenuAt(eventPoint.position)
+                }
+            }
+
+            LineEditContextMenu {
+                id: ctxMenu
+
+                lineEditObj: parent
+                selectOnly: parent.readOnly
+            }
         },
         Loader {
             id: extraContent
