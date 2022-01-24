@@ -64,6 +64,31 @@ SBSMessageBase {
             color: isOutgoing ?
                        JamiTheme.messageOutTxtColor :
                        JamiTheme.messageInTxtColor
+
+            MouseArea {
+                id: itemMouseArea
+                anchors.fill: parent
+                z: -1
+                acceptedButtons: Qt.RightButton
+                onClicked: function (mouse) {
+                    // Context Menu for Transfers
+                    // keep focus on textEdit during the selection
+                    if (parent.selectedText === "")
+                        return
+                    parent.persistentSelection = true
+                    ctxMenu.x = mouse.x
+                    ctxMenu.y = mouse.y
+                    ctxMenu.openMenu()
+                    parent.persistentSelection = false
+                }
+            }
+
+            LineEditContextMenu {
+                id: ctxMenu
+
+                lineEditObj: parent
+                selectOnly: parent.readOnly
+            }
         },
         Loader {
             id: extraContent
