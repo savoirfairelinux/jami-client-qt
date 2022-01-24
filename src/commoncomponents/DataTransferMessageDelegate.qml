@@ -275,6 +275,9 @@ Loader {
                                             parent.height :
                                             Math.ceil(adjustedWidth / aspectRatio) :
                                         54
+                            onContextMenuRequested: function(request) {
+                                request.accepted = true
+                            }
                             settings.fullScreenSupportEnabled: mediaInfo.isVideo
                             settings.javascriptCanOpenWindows: false
                             Component.onCompleted: loadHtml(mediaInfo.html, 'file://')
