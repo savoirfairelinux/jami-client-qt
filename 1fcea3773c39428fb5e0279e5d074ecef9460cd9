@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "189280a4_d9395312",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-25T18:48:35Z",
+      "side": 1,
+      "message": "Imho we should not. Else I\u0027m afraid some users will \"block\" their jami in a minimized state. I can\u0027t reproduce the scenario I said, but it happened",
+      "parentUuid": "e52eb8f0_d4b80ef8",
+      "range": {
+        "startLine": 13,
+        "startChar": 38,
+        "endLine": 14,
+        "endChar": 66
+      },
+      "revId": "1fcea3773c39428fb5e0279e5d074ecef9460cd9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "62311f52_bd44e4b9",
@@ -41,6 +65,29 @@
         "startLine": 64,
         "startChar": 20,
         "endLine": 64,
+        "endChar": 32
+      },
+      "revId": "1fcea3773c39428fb5e0279e5d074ecef9460cd9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7422ce3_8562ef18",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-25T18:48:35Z",
+      "side": 1,
+      "message": "imho the simple scenario would be to open a conversation with this contact with the first account supporting the protocol (jami: or sip:) (no call, no add, just let the user decide)",
+      "range": {
+        "startLine": 271,
+        "startChar": 23,
+        "endLine": 271,
         "endChar": 32
       },
       "revId": "1fcea3773c39428fb5e0279e5d074ecef9460cd9",
