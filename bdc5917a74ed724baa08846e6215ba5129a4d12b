@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e05c86_9feff68a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-25T18:25:21Z",
+      "side": 1,
+      "message": "is it a known bug referenced on the Qt bugtracker? If not, I guess it should be opened.",
+      "range": {
+        "startLine": 10,
+        "startChar": 82,
+        "endLine": 10,
+        "endChar": 123
+      },
+      "revId": "bdc5917a74ed724baa08846e6215ba5129a4d12b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95017275_f2d77d4e",
+        "filename": "src/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-25T18:25:21Z",
+      "side": 1,
+      "message": "#ifdef Q_OS_MACOS to do like the other ifdef",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 23
+      },
+      "revId": "bdc5917a74ed724baa08846e6215ba5129a4d12b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
