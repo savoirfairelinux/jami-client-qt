@@ -23,6 +23,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 import net.jami.Constants 1.1
+import net.jami.Helpers 1.1
 
 import "../../commoncomponents"
 
@@ -99,7 +100,7 @@ Rectangle {
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
             Layout.bottomMargin: JamiTheme.preferredMarginSize
-            visible: Qt.platform.os == "windows" ? true : false
+            visible: UpdateManager.isUpdaterEnabled()
         }
     }
 }
