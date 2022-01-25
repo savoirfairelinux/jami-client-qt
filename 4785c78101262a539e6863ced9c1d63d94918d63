@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83839bec_2a6d4147",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-25T19:34:56Z",
+      "side": 1,
+      "message": "one typo and for me it will be ok!",
+      "revId": "4785c78101262a539e6863ced9c1d63d94918d63",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f251d8fb_5328273d",
+        "filename": "src/sparkleUpdater.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-25T19:34:56Z",
+      "side": 1,
+      "message": "typo 2022* (useful for auto replace next year)",
+      "range": {
+        "startLine": 2,
+        "startChar": 20,
+        "endLine": 2,
+        "endChar": 23
+      },
+      "revId": "4785c78101262a539e6863ced9c1d63d94918d63",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
