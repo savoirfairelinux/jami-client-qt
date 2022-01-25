@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6e00919_fb012ee9",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-25T02:22:37Z",
+      "side": 1,
+      "message": "the code seems OK, however, this is what I see when passing --term (I don\u0027t see this without option - GNU/Linux):\n\n\n-----------------------------\nRelease of profile requested but WebEnginePage still not deleted. Expect troubles !\n--Type \u003cRET\u003e for more, q to quit, c to continue without paging--\n\nbtThread 1 \"jami-qt\" received signal SIGSEGV, Segmentation fault.\n0x00007ffff0e5a0f3 in QWebEnginePagePrivate::~QWebEnginePagePrivate() ()\n   from /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n(gdb) bt\n#0  0x00007ffff0e5a0f3 in QWebEnginePagePrivate::~QWebEnginePagePrivate() ()\n    at /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n#1  0x00007ffff0e5a1dd in QWebEnginePagePrivate::~QWebEnginePagePrivate() ()\n    at /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n#2  0x00007fffed3dc82c in QWebEnginePagePrivate::releaseProfile() ()\n    at /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n#3  0x00007fffed472716 in QtWebEngineCore::ProfileAdapter::~ProfileAdapter() ()\n    at /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n#4  0x00005555560444e0 in  ()\n#5  0x00005555560444e0 in  ()\n#6  0x0000555555af2c90 in  ()\n#7  0x00007fffffffd630 in  ()\n#8  0x00007fffffffd5a0 in  ()\n#9  0x00007fffed472a66 in QtWebEngineCore::ProfileAdapter::~ProfileAdapter() ()\n    at /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n#10 0x00007fffffffd630 in  ()\n#11 0x00007ffff739de60 in  () at /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n#12 0x00007fffffffd5d0 in  ()\n#13 0x00007fffed4060b6 in  () at /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n#14 0x00007ffff739de60 in  () at /usr/lib/libqt-jami/lib/libQt6WebEngineCore.so.6\n#15 0x0000000000000000 in  ()\n(gdb)",
+      "range": {
+        "startLine": 392,
+        "startChar": 33,
+        "endLine": 392,
+        "endChar": 61
+      },
+      "revId": "4befb0b14e586a94383723ebb0f006af57cb4080",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
