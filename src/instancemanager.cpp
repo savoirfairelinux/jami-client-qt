@@ -52,13 +52,20 @@ public:
     {}
     ~Impl() = default;
 
-    bool tryToRun()
+    bool tryToRun(const QByteArray& startUri)
     {
         if (isAnotherRunning()) {
-            // This is a secondary instance,
-            // connect to the primary instance to trigger a restore
-            // then fail.
+            // This is a secondary instance, connect to the primary
+            // instance to trigger a restore then die.
             if (connectToLocal()) {
+                // Okay we connected. Send the start uri if not empty.
+                if (startUri.size()) {
+                    qDebug() << "Sending start URI to secondary instance." << startUri;
+                    socket_->write(startUri);
+                    socket_->waitForBytesWritten();
+                }
+
+                // Now this instance can die.
                 return false;
             }
             // If not connected, this means that the server doesn't exist
@@ -99,7 +106,7 @@ public:
             return;
         }
 
-        socket_->write(reinterpret_cast<const char*>(terminateSeq_.data()), 4);
+        socket_->write(terminateSeq_);
         socket_->waitForBytesWritten();
     };
 
@@ -139,10 +146,15 @@ private Q_SLOTS:
             if (recievedData == terminateSeq_) {
                 qWarning() << "Received terminate signal.";
                 mainAppInstance_->quit();
+            } else {
+                qDebug() << "Received start URI:" << recievedData;
+                auto startUri = QString::fromLatin1(recievedData);
+                mainAppInstance_->handleUriAction(startUri);
             }
         });
 
         // Restore primary instance
+        qDebug() << "Received wake-up from secondary instance.";
         mainAppInstance_->restoreApp();
     };
 
@@ -193,9 +205,9 @@ InstanceManager::~InstanceManager()
 }
 
 bool
-InstanceManager::tryToRun()
+InstanceManager::tryToRun(const QByteArray& startUri)
 {
-    return pimpl_->tryToRun();
+    return pimpl_->tryToRun(startUri);
 }
 
 void
