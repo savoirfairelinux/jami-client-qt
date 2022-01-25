@@ -237,6 +237,10 @@ MainApplication::init()
     lrcInstance_->accountModel().autoTransferFromTrusted = allowTransferFromTrusted;
     lrcInstance_->accountModel().autoTransferSizeThreshold = acceptTransferBelow;
 
+    auto startMinimizedSetting = settingsManager_->getValue(Settings::Key::StartMinimized).toBool();
+    // The presence of start URI should override the startMinimized setting for this instance.
+    set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
+
     initQmlLayer();
 
     settingsManager_->setValue(Settings::Key::StartMinimized,
@@ -251,6 +255,20 @@ void
 MainApplication::restoreApp()
 {
     Q_EMIT lrcInstance_->restoreAppRequested();
+}
+
+void
+MainApplication::handleUriAction(const QString& arg)
+{
+    QString uri {};
+    if (arg.isEmpty() && !runOptions_[Option::StartUri].isNull()) {
+        uri = runOptions_[Option::StartUri].toString();
+        qDebug() << "URI action invoked by run option" << uri;
+    } else {
+        uri = arg;
+        qDebug() << "URI action invoked by secondary instance" << uri;
+    }
+    // TODO: implement URI protocol handling.
 }
 
 void
@@ -339,6 +357,13 @@ MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bo
 void
 MainApplication::parseArguments()
 {
+    // See if the app is being started with a URI
+    for (const auto& arg : QApplication::arguments()) {
+        if (arg.startsWith("jami:")) {
+            runOptions_[Option::StartUri] = arg;
+        }
+    }
+
     QCommandLineParser parser;
     parser.addHelpOption();
     parser.addVersionOption();

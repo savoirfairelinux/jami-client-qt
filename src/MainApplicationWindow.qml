@@ -53,6 +53,7 @@ ApplicationWindow {
     }
 
     property bool windowSettingsLoaded: false
+    property bool allowVisibleWindow: true
 
     function checkLoadedSource() {
         var sourceString = mainApplicationLoader.source.toString()
@@ -83,19 +84,18 @@ ApplicationWindow {
         if (force || !UtilsAdapter.getAppValue(Settings.MinimizeOnClose) ||
                 !UtilsAdapter.getAccountListSize()) {
             // Save the window geometry and state before quitting.
-            var geometry = Qt.rect(appWindow.x, appWindow.y,
-                                   appWindow.width, appWindow.height)
-            AppSettingsManager.setValue(Settings.WindowGeometry, geometry)
-            AppSettingsManager.setValue(Settings.WindowState, appWindow.visibility)
+            layoutManager.saveWindowSettings()
             Qt.quit()
         } else {
-            hide()
+            layoutManager.closeToTray()
         }
     }
 
     title: JamiStrings.appTitle
 
-    visible: mainApplicationLoader.status === Loader.Ready && windowSettingsLoaded
+    visible: mainApplicationLoader.status === Loader.Ready
+             && windowSettingsLoaded
+             && allowVisibleWindow
 
     // To facilitate reparenting of the callview during
     // fullscreen mode, we need QQuickItem based object.
@@ -134,38 +134,21 @@ ApplicationWindow {
         onSourceChanged: windowSettingsLoaded = false
 
         onLoaded: {
-            if (UtilsAdapter.getAppValue(Settings.StartMinimized)) {
-                showMinimized()
+            if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView) {
+                // Onboarding wizard window, these settings are fixed.
+                // - window screen should default to the primary
+                // - position should default to being centered based on the
+                //   following dimensions
+                // - the window will showNormal once windowSettingsLoaded is
+                //   set to true(then forcing visible to true)
+                appWindow.width = JamiTheme.wizardViewMinWidth
+                appWindow.height = JamiTheme.wizardViewMinHeight
+                appWindow.minimumWidth = JamiTheme.wizardViewMinWidth
+                appWindow.minimumHeight = JamiTheme.wizardViewMinHeight
             } else {
-                if (checkLoadedSource() === MainApplicationWindow.LoadedSource.WizardView) {
-                    appWindow.width = JamiTheme.wizardViewMinWidth
-                    appWindow.height = JamiTheme.wizardViewMinHeight
-                    appWindow.minimumWidth = JamiTheme.wizardViewMinWidth
-                    appWindow.minimumHeight = JamiTheme.wizardViewMinHeight
-                } else {
-                    // Main window, load settings if possible.
-                    var geometry = AppSettingsManager.getValue(Settings.WindowGeometry)
-
-                    // Position.
-                    if (!isNaN(geometry.x) && !isNaN(geometry.y)) {
-                        appWindow.x = geometry.x
-                        appWindow.y = geometry.y
-                    }
-
-                    // Dimensions.
-                    appWindow.width = geometry.width ?
-                                geometry.width :
-                                JamiTheme.mainViewPreferredWidth
-                    appWindow.height = geometry.height ?
-                                geometry.height :
-                                JamiTheme.mainViewPreferredHeight
-                    appWindow.minimumWidth = JamiTheme.mainViewMinWidth
-                    appWindow.minimumHeight = JamiTheme.mainViewMinHeight
-
-                    // State.
-                    const visibilityStr = AppSettingsManager.getValue(Settings.WindowState)
-                    appWindow.visibility = parseInt(visibilityStr)
-                }
+                // Main window, load any valid app settings, and allow the
+                // layoutManager to handle as much as possible.
+                layoutManager.restoreWindowSettings()
             }
 
             // This will trigger `visible = true`.
@@ -176,6 +159,9 @@ ApplicationWindow {
                 UpdateManager.checkForUpdates(true)
                 UpdateManager.setAutoUpdateCheck(true)
             }
+
+            // Handle a start URI if set as start option.
+            MainApplication.handleUriAction();
         }
     }
 
