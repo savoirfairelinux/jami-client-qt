@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c654268_1841fdd8",
+        "filename": "src/settingsview/components/UpdateSettings.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T19:33:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bcb9248_9780ce48",
+      "range": {
+        "startLine": 54,
+        "startChar": 28,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "8d9975a91131661fa78f7b2406ecec2c2ca17c3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39c48a02_a1bdc733",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "448a048e_67aee53f",
+        "filename": "src/settingsview/components/UpdateSettings.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T19:33:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39c48a02_a1bdc733",
+      "range": {
+        "startLine": 88,
+        "startChar": 73,
+        "endLine": 88,
+        "endChar": 77
+      },
+      "revId": "8d9975a91131661fa78f7b2406ecec2c2ca17c3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "424c3999_55dc6f93",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-01-25T18:23:42Z",
       "side": 1,
       "message": "2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "8d9975a91131661fa78f7b2406ecec2c2ca17c3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da536dbc_0386ecc1",
+        "filename": "src/sparkleUpdater.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T19:33:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "424c3999_55dc6f93",
       "range": {
         "startLine": 2,
         "startChar": 17,
@@ -110,6 +182,48 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7664fe33_0b1756d5",
+        "filename": "src/sparkleUpdater.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T19:33:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08c69b7f_38aa5765",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "8d9975a91131661fa78f7b2406ecec2c2ca17c3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "945be7d5_2d0a32d4",
+        "filename": "src/sparkleUpdater.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T19:33:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "581c3603_60c02f0d",
+      "revId": "8d9975a91131661fa78f7b2406ecec2c2ca17c3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1faf7158_d7d984bf",
@@ -133,6 +247,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a460c12b_3bc5448e",
+        "filename": "src/sparkleUpdater.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T19:33:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1faf7158_d7d984bf",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 17
+      },
+      "revId": "8d9975a91131661fa78f7b2406ecec2c2ca17c3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fd606ed_d480c14b",
@@ -146,6 +284,30 @@
       "writtenOn": "2022-01-25T18:23:42Z",
       "side": 1,
       "message": "we need a default implem in the else case to avoid any warning",
+      "range": {
+        "startLine": 108,
+        "startChar": 7,
+        "endLine": 109,
+        "endChar": 6
+      },
+      "revId": "8d9975a91131661fa78f7b2406ecec2c2ca17c3d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c647bff6_23471076",
+        "filename": "src/updatemanager.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T19:33:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fd606ed_d480c14b",
       "range": {
         "startLine": 108,
         "startChar": 7,
