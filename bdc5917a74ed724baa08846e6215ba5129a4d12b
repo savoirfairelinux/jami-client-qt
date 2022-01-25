@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "834a87d8_3f58fcbe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T20:17:21Z",
+      "side": 1,
+      "message": "In fact, I think it is fixed in QT https://codereview.qt-project.org/c/qt/qtbase/+/353864, it just requires a special configuration on the client. But still, we do not need it.",
+      "parentUuid": "83e05c86_9feff68a",
+      "range": {
+        "startLine": 10,
+        "startChar": 82,
+        "endLine": 10,
+        "endChar": 123
+      },
+      "revId": "bdc5917a74ed724baa08846e6215ba5129a4d12b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "95017275_f2d77d4e",
         "filename": "src/main.cpp",
         "patchSetId": 3
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "ideally yes",
       "parentUuid": "d7f9e067_704633ab",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 23
+      },
+      "revId": "bdc5917a74ed724baa08846e6215ba5129a4d12b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d278749_2c6190b5",
+        "filename": "src/main.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T20:17:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e857679_fb3bf3e4",
       "range": {
         "startLine": 106,
         "startChar": 0,
