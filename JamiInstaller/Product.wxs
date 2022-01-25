@@ -24,6 +24,7 @@
       <ComponentRef Id="ApplicationShortcutDesktop" />
       <ComponentRef Id="ApplicationShortcutStartMenu" />
       <ComponentRef Id="RegistryEntries" />
+      <ComponentRef Id="URLProtocolRegistryEntries" />
     </Feature>
 
     <!--Visual C++ Redist merge module-->
@@ -96,6 +97,23 @@
     <DirectoryRef Id="TARGETDIR">
       <Component Id="RegistryEntries" Guid="*" Win64="yes">
         <RegistryValue Root="HKCU" Key="Software\jami.net\$(var.AppName)" Name="hasRun" Type="integer" Value="0" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment Id="URLProtocol">
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="URLProtocolRegistryEntries" Guid="*" Win64="yes">
+        <RegistryKey Root="HKCR" Key="jami" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes">
+          <RegistryValue Type="string" Name="URL Protocol" Value="" />
+          <RegistryValue Type="string" Value="URL:jami"/>
+          <RegistryKey Key="DefaultIcon">
+            <RegistryValue Type="string" Value="[APPLICATIONFOLDER]$(var.ExeName).exe" />
+          </RegistryKey>
+          <RegistryKey Key="shell\open\command">
+            <RegistryValue Type="string" Value='"[APPLICATIONFOLDER]$(var.ExeName).exe" "%1"' />
+          </RegistryKey>
+        </RegistryKey>
       </Component>
     </DirectoryRef>
   </Fragment>
