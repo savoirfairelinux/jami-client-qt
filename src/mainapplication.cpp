@@ -136,11 +136,6 @@ MainApplication::fileDebug(QFile* debugFile)
 
 MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
-    , engine_(new QQmlApplicationEngine())
-    , connectivityMonitor_(new ConnectivityMonitor(this))
-    , settingsManager_(new AppSettingsManager(this))
-    , systemTray_(new SystemTray(settingsManager_.get(), this))
-    , previewEngine_(new PreviewEngine(this))
 {
     parseArguments();
     QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
@@ -155,6 +150,14 @@ MainApplication::~MainApplication()
 bool
 MainApplication::init()
 {
+    // This 2-phase initialisation prevents ephemeral instances from
+    // performing unnecessary tasks, like initializing the webengine.
+    engine_.reset(new QQmlApplicationEngine(this));
+    connectivityMonitor_.reset(new ConnectivityMonitor(this));
+    settingsManager_.reset(new AppSettingsManager(this));
+    systemTray_.reset(new SystemTray(settingsManager_.get(), this));
+    previewEngine_.reset(new PreviewEngine(this));
+
     setWindowIcon(QIcon(":/images/jami.ico"));
 
     // Lrc web resources
