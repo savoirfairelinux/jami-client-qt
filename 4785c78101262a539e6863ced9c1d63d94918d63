@@ -39,6 +39,30 @@
       },
       "revId": "4785c78101262a539e6863ced9c1d63d94918d63",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "882401d3_8a0faf16",
+        "filename": "src/sparkleUpdater.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-25T20:49:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f251d8fb_5328273d",
+      "range": {
+        "startLine": 2,
+        "startChar": 20,
+        "endLine": 2,
+        "endChar": 23
+      },
+      "revId": "4785c78101262a539e6863ced9c1d63d94918d63",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
