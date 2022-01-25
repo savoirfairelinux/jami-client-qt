@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b94444f0_c6867295",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-25T20:19:31Z",
+      "side": 1,
+      "message": "https://bugreports.qt.io/browse/QTBUG-91130 seems ok for 6.2.0",
+      "parentUuid": "834a87d8_3f58fcbe",
+      "range": {
+        "startLine": 10,
+        "startChar": 82,
+        "endLine": 10,
+        "endChar": 123
+      },
+      "revId": "bdc5917a74ed724baa08846e6215ba5129a4d12b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95017275_f2d77d4e",
