@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
@@ -38,31 +38,173 @@ static constexpr char betaVersionSubUrl[] = "/beta/version";
 static constexpr char msiSubUrl[] = "/jami.release.x64.msi";
 static constexpr char betaMsiSubUrl[] = "/beta/jami.beta.x64.msi";
 
+struct UpdateManager::Impl : public QObject
+{
+    Impl(const QString& url, ConnectivityMonitor* cm, LRCInstance* instance, UpdateManager& parent)
+        : QObject(nullptr)
+        , parent_(parent)
+        , lrcInstance_(instance)
+        , baseUrlString_(url.isEmpty() ? downloadUrl : url)
+        , tempPath_(Utils::WinGetEnv("TEMP"))
+        , updateTimer_(new QTimer(this))
+    {
+        connect(updateTimer_, &QTimer::timeout, [this] {
+            // Quiet period update check.
+            parent_.checkForUpdates(true);
+        });
+    };
+    ~Impl() = default;
+
+    void checkForUpdates(bool quiet)
+    {
+        parent_.disconnect();
+        // Fail without UI if this is a programmatic check.
+        if (!quiet)
+            connect(&parent_,
+                    &NetWorkManager::errorOccured,
+                    &parent_,
+                    &UpdateManager::updateCheckErrorOccurred);
+
+        cleanUpdateFiles();
+        QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
+                                : QUrl::fromUserInput(baseUrlString_ + versionSubUrl)};
+        parent_.get(versionUrl, [this, quiet](const QString& latestVersionString) {
+            if (latestVersionString.isEmpty()) {
+                qWarning() << "Error checking version";
+                if (!quiet)
+                    Q_EMIT parent_.updateCheckReplyReceived(false);
+                return;
+            }
+            auto currentVersion = QString(VERSION_STRING).toULongLong();
+            auto latestVersion = latestVersionString.toULongLong();
+            qDebug() << "latest: " << latestVersion << " current: " << currentVersion;
+            if (latestVersion > currentVersion) {
+                qDebug() << "New version found";
+                Q_EMIT parent_.updateCheckReplyReceived(true, true);
+            } else {
+                qDebug() << "No new version found";
+                if (!quiet)
+                    Q_EMIT parent_.updateCheckReplyReceived(true, false);
+            }
+        });
+    };
+
+    void applyUpdates(bool beta = false)
+    {
+        parent_.disconnect();
+        connect(&parent_,
+                &NetWorkManager::errorOccured,
+                &parent_,
+                &UpdateManager::updateDownloadErrorOccurred);
+        connect(&parent_, &NetWorkManager::statusChanged, [this](GetStatus status) {
+            switch (status) {
+            case GetStatus::STARTED:
+                connect(&parent_,
+                        &NetWorkManager::downloadProgressChanged,
+                        &parent_,
+                        &UpdateManager::updateDownloadProgressChanged);
+                Q_EMIT parent_.updateDownloadStarted();
+                break;
+            case GetStatus::FINISHED:
+                Q_EMIT parent_.updateDownloadFinished();
+                break;
+            default:
+                break;
+            }
+        });
+
+        QUrl downloadUrl {(beta || isBeta) ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
+                                           : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
+
+        parent_.get(
+            downloadUrl,
+            [this, downloadUrl](const QString&) {
+                lrcInstance_->finish();
+                Q_EMIT lrcInstance_->quitEngineRequested();
+                auto args = QString(" /passive /norestart WIXNONUILAUNCH=1");
+                QProcess process;
+                process.start("powershell ",
+                              QStringList() << tempPath_ + "\\" + downloadUrl.fileName() << "/L*V"
+                                            << tempPath_ + "\\jami_x64_install.log" + args);
+                process.waitForFinished();
+            },
+            tempPath_);
+    };
+
+    void cancelUpdate()
+    {
+        parent_.cancelRequest();
+    };
+
+    void setAutoUpdateCheck(bool state)
+    {
+        // Quiet check for updates periodically, if set to.
+        if (!state) {
+            updateTimer_->stop();
+            return;
+        }
+        updateTimer_->start(updatePeriod);
+    };
+
+    void cleanUpdateFiles()
+    {
+        // Delete all logs and msi in the %TEMP% directory before launching.
+        QString dir = QString(Utils::WinGetEnv("TEMP"));
+        QDir log_dir(dir, {"jami*.log"});
+        for (const QString& filename : log_dir.entryList()) {
+            log_dir.remove(filename);
+        }
+        QDir msi_dir(dir, {"jami*.msi"});
+        for (const QString& filename : msi_dir.entryList()) {
+            msi_dir.remove(filename);
+        }
+        QDir version_dir(dir, {"version"});
+        for (const QString& filename : version_dir.entryList()) {
+            version_dir.remove(filename);
+        }
+    };
+
+    UpdateManager& parent_;
+
+    LRCInstance* lrcInstance_ {nullptr};
+    QString baseUrlString_;
+    QString tempPath_;
+    QTimer* updateTimer_;
+};
+
 UpdateManager::UpdateManager(const QString& url,
                              ConnectivityMonitor* cm,
                              LRCInstance* instance,
                              QObject* parent)
     : NetWorkManager(cm, parent)
-    , lrcInstance_(instance)
-    , baseUrlString_(url.isEmpty() ? downloadUrl : url)
-    , tempPath_(Utils::WinGetEnv("TEMP"))
-    , updateTimer_(new QTimer(this))
+    , pimpl_(std::make_unique<Impl>())
+{}
+
+UpdateManager::~UpdateManager()
+{}
+
+void
+UpdateManager::checkForUpdates(bool quiet)
 {
-    connect(updateTimer_, &QTimer::timeout, [this] {
-        // Quiet period update check.
-        checkForUpdates(true);
-    });
+    pimpl_->checkForUpdates(quiet);
+}
+
+void
+UpdateManager::applyUpdates(bool beta)
+{
+    pimpl_->applyUpdates(beta);
+}
+
+void
+UpdateManager::cancelUpdate()
+{
+    pimpl_->cancelUpdate();
 }
 
 void
 UpdateManager::setAutoUpdateCheck(bool state)
 {
-    // Quiet check for updates periodically, if set to.
-    if (!state) {
-        updateTimer_->stop();
-        return;
-    }
-    updateTimer_->start(updatePeriod);
+    pimpl_->setAutoUpdateCheck(state);
 }
 
 bool
@@ -71,102 +213,14 @@ UpdateManager::isCurrentVersionBeta()
     return isBeta;
 }
 
-void
-UpdateManager::checkForUpdates(bool quiet)
+bool
+UpdateManager::isUpdaterEnabled()
 {
-    disconnect();
-
-    // Fail without UI if this is a programmatic check.
-    if (!quiet)
-        connect(this, &NetWorkManager::errorOccured, this, &UpdateManager::updateCheckErrorOccurred);
-
-    cleanUpdateFiles();
-    QUrl versionUrl {isBeta ? QUrl::fromUserInput(baseUrlString_ + betaVersionSubUrl)
-                            : QUrl::fromUserInput(baseUrlString_ + versionSubUrl)};
-    get(versionUrl, [this, quiet](const QString& latestVersionString) {
-        if (latestVersionString.isEmpty()) {
-            qWarning() << "Error checking version";
-            if (!quiet)
-                Q_EMIT updateCheckReplyReceived(false);
-            return;
-        }
-        auto currentVersion = QString(VERSION_STRING).toULongLong();
-        auto latestVersion = latestVersionString.toULongLong();
-        qDebug() << "latest: " << latestVersion << " current: " << currentVersion;
-        if (latestVersion > currentVersion) {
-            qDebug() << "New version found";
-            Q_EMIT updateCheckReplyReceived(true, true);
-        } else {
-            qDebug() << "No new version found";
-            if (!quiet)
-                Q_EMIT updateCheckReplyReceived(true, false);
-        }
-    });
+    return true;
 }
 
-void
-UpdateManager::applyUpdates(bool beta)
+bool
+UpdateManager::isAutoUpdaterEnabled()
 {
-    disconnect();
-    connect(this, &NetWorkManager::errorOccured, this, &UpdateManager::updateDownloadErrorOccurred);
-    connect(this, &NetWorkManager::statusChanged, [this](GetStatus status) {
-        switch (status) {
-        case GetStatus::STARTED:
-            connect(this,
-                    &NetWorkManager::downloadProgressChanged,
-                    this,
-                    &UpdateManager::updateDownloadProgressChanged);
-            Q_EMIT updateDownloadStarted();
-            break;
-        case GetStatus::FINISHED:
-            Q_EMIT updateDownloadFinished();
-            break;
-        default:
-            break;
-        }
-    });
-
-    QUrl downloadUrl {(beta || isBeta) ? QUrl::fromUserInput(baseUrlString_ + betaMsiSubUrl)
-                                       : QUrl::fromUserInput(baseUrlString_ + msiSubUrl)};
-
-    get(
-        downloadUrl,
-        [this, downloadUrl](const QString&) {
-            lrcInstance_->finish();
-            Q_EMIT lrcInstance_->quitEngineRequested();
-            auto args = QString(" /passive /norestart WIXNONUILAUNCH=1");
-            QProcess process;
-            process.start("powershell ",
-                          QStringList() << tempPath_ + "\\" + downloadUrl.fileName() << "/L*V"
-                                        << tempPath_ + "\\jami_x64_install.log" + args);
-            process.waitForFinished();
-        },
-        tempPath_);
-}
-
-void
-UpdateManager::cancelUpdate()
-{
-    cancelRequest();
-}
-
-void
-UpdateManager::cleanUpdateFiles()
-{
-    /*
-     * Delete all logs and msi in the %TEMP% directory before launching.
-     */
-    QString dir = QString(Utils::WinGetEnv("TEMP"));
-    QDir log_dir(dir, {"jami*.log"});
-    for (const QString& filename : log_dir.entryList()) {
-        log_dir.remove(filename);
-    }
-    QDir msi_dir(dir, {"jami*.msi"});
-    for (const QString& filename : msi_dir.entryList()) {
-        msi_dir.remove(filename);
-    }
-    QDir version_dir(dir, {"version"});
-    for (const QString& filename : version_dir.entryList()) {
-        version_dir.remove(filename);
-    }
+    return false;
 }

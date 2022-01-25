@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  *
@@ -20,25 +20,29 @@
 
 #include "networkmanager.h"
 
+#include <memory>
+
 class LRCInstance;
 class ConnectivityMonitor;
-class QTimer;
 
 class UpdateManager final : public NetWorkManager
 {
     Q_OBJECT
+    Q_DISABLE_COPY(UpdateManager)
 public:
     explicit UpdateManager(const QString& url,
                            ConnectivityMonitor* cm,
                            LRCInstance* instance = nullptr,
                            QObject* parent = nullptr);
-    ~UpdateManager() = default;
+    ~UpdateManager();
 
     Q_INVOKABLE void checkForUpdates(bool quiet = false);
     Q_INVOKABLE void applyUpdates(bool beta = false);
     Q_INVOKABLE void cancelUpdate();
     Q_INVOKABLE void setAutoUpdateCheck(bool state);
     Q_INVOKABLE bool isCurrentVersionBeta();
+    Q_INVOKABLE bool isUpdaterEnabled();
+    Q_INVOKABLE bool isAutoUpdaterEnabled();
 
 Q_SIGNALS:
     void updateCheckReplyReceived(bool ok, bool found = false);
@@ -50,13 +54,7 @@ Q_SIGNALS:
     void appCloseRequested();
 
 private:
-    // LRCInstance pointer
-    LRCInstance* lrcInstance_ {nullptr};
-
-    QString baseUrlString_;
-    QString tempPath_;
-    QTimer* updateTimer_;
-
-    void cleanUpdateFiles();
+    struct Impl;
+    std::unique_ptr<Impl> pimpl_;
 };
 Q_DECLARE_METATYPE(UpdateManager*)
