@@ -58,13 +58,15 @@ class MainApplication : public QApplication
 {
     Q_OBJECT
     Q_DISABLE_COPY(MainApplication)
-
+    QML_RO_PROPERTY(bool, startMinimized)
 public:
     explicit MainApplication(int& argc, char** argv);
     ~MainApplication();
 
     bool init();
     void restoreApp();
+
+    Q_INVOKABLE void handleUriAction(const QString& uri = {});
 
     enum class Option {
         StartMinimized = 0,
@@ -73,7 +75,8 @@ public:
         DebugToFile,
         UpdateUrl,
         MuteJamid,
-        TerminationRequested
+        TerminationRequested,
+        StartUri
     };
     QVariant getOpt(const Option opt)
     {
