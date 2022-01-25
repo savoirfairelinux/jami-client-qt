@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d36389e5_c1cf8b4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-25T21:23:41Z",
+      "side": 1,
+      "message": "pimpl-ing updatemanager would be ideal",
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bbdc59e_e9537f9d",
+        "filename": "resources/entitlements/Jami.entitlements",
+        "patchSetId": 18
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-25T21:23:41Z",
+      "side": 1,
+      "message": "ideally tabs here i guess",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad8960e_6b902458",
+        "filename": "src/settingsview/components/UpdateSettings.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-25T21:23:41Z",
+      "side": 1,
+      "message": "move to GeneralSettingsPage.qml?",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8823acf0_01383273",
+        "filename": "src/settingsview/components/UpdateSettings.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-25T21:23:41Z",
+      "side": 1,
+      "message": "format",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 136
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7817aace_5035e0f1",
+        "filename": "src/sparkleupdater.mm",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-25T21:23:41Z",
+      "side": 1,
+      "message": "this should probably be a private implementation of updatemanager",
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60338ad2_f4d7b181",
+        "filename": "src/sparkleupdater.mm",
+        "patchSetId": 18
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-25T21:23:41Z",
+      "side": 1,
+      "message": "make this a private member of your class",
+      "range": {
+        "startLine": 23,
+        "startChar": 30,
+        "endLine": 23,
+        "endChar": 47
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7069e326_9605554b",
+        "filename": "src/updatemanager.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-25T21:23:41Z",
+      "side": 1,
+      "message": "compose within updatemanager",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
