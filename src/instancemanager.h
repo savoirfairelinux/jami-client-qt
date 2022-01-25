@@ -32,7 +32,7 @@ public:
     explicit InstanceManager(MainApplication* mainApp);
     ~InstanceManager();
 
-    bool tryToRun();
+    bool tryToRun(const QByteArray& startUri);
     void tryToKill();
 
 private:

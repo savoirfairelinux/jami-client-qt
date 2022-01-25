@@ -106,9 +106,12 @@ main(int argc, char* argv[])
         qWarning() << "Attempting to terminate other instances.";
         im.tryToKill();
         return 0;
-    } else if (!im.tryToRun()) {
-        qWarning() << "Another instance is running.";
-        return 0;
+    } else {
+        auto startUri = app.getOpt(MainApplication::Option::StartUri);
+        if (!im.tryToRun(startUri.toByteArray())) {
+            qWarning() << "Another instance is running.";
+            return 0;
+        }
     }
 
     if (!app.init()) {

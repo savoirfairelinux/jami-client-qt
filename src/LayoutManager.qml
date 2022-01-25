@@ -20,6 +20,8 @@ import QtQuick
 import QtQuick.Controls
 
 import net.jami.Adapters 1.1
+import net.jami.Enums 1.1
+import net.jami.Constants 1.1
 
 import "mainview/components"
 
@@ -48,6 +50,73 @@ QtObject {
                 return
             }
             visibility = priv.windowedVisibility
+        }
+        appWindow.allowVisibleWindow = true
+    }
+
+    // Start in a hidden state.
+    function startMinimized(visibilitySetting) {
+        // Save the loaded setting for when the app is restored.
+        priv.windowedVisibility = visibilitySetting
+        appWindow.allowVisibleWindow = false
+        appWindow.hide();
+    }
+
+    // Close to a hidden state.
+    function closeToTray(visibilitySetting = undefined) {
+        // Save the current visibility.
+        priv.windowedVisibility = visibility
+        appWindow.hide();
+    }
+
+    // Save the window geometry and visibility settings.
+    function saveWindowSettings() {
+        var geometry = Qt.rect(appWindow.x, appWindow.y,
+                               appWindow.width, appWindow.height)
+        AppSettingsManager.setValue(Settings.WindowGeometry, geometry)
+
+        // If closed-to-tray or minimized, save the cached windowedVisibility
+        // value instead.
+        if (isHidden) {
+            AppSettingsManager.setValue(Settings.WindowState, priv.windowedVisibility)
+        } else {
+            AppSettingsManager.setValue(Settings.WindowState, visibility)
+        }
+    }
+
+    // Restore the window geometry and visibility settings.
+    function restoreWindowSettings() {
+        var geometry = AppSettingsManager.getValue(Settings.WindowGeometry)
+
+        // Position.
+        if (!isNaN(geometry.x) && !isNaN(geometry.y)) {
+            appWindow.x = geometry.x
+            appWindow.y = geometry.y
+        }
+
+        // Dimensions.
+        appWindow.width = geometry.width ?
+                    geometry.width :
+                    JamiTheme.mainViewPreferredWidth
+        appWindow.height = geometry.height ?
+                    geometry.height :
+                    JamiTheme.mainViewPreferredHeight
+        appWindow.minimumWidth = JamiTheme.mainViewMinWidth
+        appWindow.minimumHeight = JamiTheme.mainViewMinHeight
+
+        // State.
+        const visibilityStr = AppSettingsManager.getValue(Settings.WindowState)
+        var visibilitySetting = parseInt(visibilityStr)
+
+        // We should never restore a hidden state here. Default to normal
+        // windowed state in such a case. This shouldn't happen.
+        if (visibilitySetting === Window.Hidden) {
+            visibilitySetting = Window.Windowed
+        }
+        if (MainApplication.startMinimized) {
+            startMinimized(visibilitySetting)
+        } else {
+            visibility = visibilitySetting
         }
     }
 
