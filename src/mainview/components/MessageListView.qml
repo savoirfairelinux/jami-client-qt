@@ -174,8 +174,8 @@ JamiListView {
     width: parent.width
     // this offscreen caching is pretty huge
     // displayMarginEnd may be removed
-    displayMarginBeginning: 4096
-    displayMarginEnd: 4096
+    displayMarginBeginning: 2048
+    displayMarginEnd: 2048
     maximumFlickVelocity: 2048
     verticalLayoutDirection: ListView.BottomToTop
     boundsBehavior: Flickable.StopAtBounds
