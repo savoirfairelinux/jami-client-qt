@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0571b7a6_6a58412a",
+        "filename": "resources/entitlements/Jami.entitlements",
+        "patchSetId": 18
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-26T20:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bbdc59e_e9537f9d",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aad8960e_6b902458",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-25T21:23:41Z",
       "side": 1,
       "message": "move to GeneralSettingsPage.qml?",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000d9bd0_831385d4",
+        "filename": "src/settingsview/components/UpdateSettings.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-26T20:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aad8960e_6b902458",
       "range": {
         "startLine": 34,
         "startChar": 4,
@@ -87,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "557b3a90_9cc3df24",
+        "filename": "src/settingsview/components/UpdateSettings.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-26T20:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8823acf0_01383273",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 136
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7817aace_5035e0f1",
@@ -100,6 +172,24 @@
       "writtenOn": "2022-01-25T21:23:41Z",
       "side": 1,
       "message": "this should probably be a private implementation of updatemanager",
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f85eadbb_434c65d6",
+        "filename": "src/sparkleupdater.mm",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-26T20:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7817aace_5035e0f1",
       "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -127,6 +217,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c469f392_cd2217df",
+        "filename": "src/sparkleupdater.mm",
+        "patchSetId": 18
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-26T20:11:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60338ad2_f4d7b181",
+      "range": {
+        "startLine": 23,
+        "startChar": 30,
+        "endLine": 23,
+        "endChar": 47
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7069e326_9605554b",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-01-25T21:23:41Z",
       "side": 1,
       "message": "compose within updatemanager",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be59392c_a8aeb3f8",
+        "filename": "src/updatemanager.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-01-26T20:11:03Z",
+      "side": 1,
+      "message": "not using anymore",
+      "parentUuid": "7069e326_9605554b",
       "range": {
         "startLine": 46,
         "startChar": 0,
