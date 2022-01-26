@@ -255,9 +255,13 @@ Loader {
                     asynchronous: true
                     width: sourceComponent.width
                     height: sourceComponent.height
-                    sourceComponent: mediaInfo.isImage !== undefined ?
-                                         imageComp : mediaInfo.isAnimatedImage !== undefined ? animatedImageComp :
-                                         avComp
+                    sourceComponent: {
+                        if (mediaInfo.isImage)
+                            return imageComp
+                        if (mediaInfo.isAnimatedImage)
+                            return animatedImageComp
+                        return avComp
+                    }
                     Component {
                         id: avComp
                         WebEngineView {
@@ -316,9 +320,11 @@ Loader {
                             fillMode: Image.PreserveAspectCrop
                             mipmap: true
                             antialiasing: true
-                            autoTransform: false
+                            autoTransform: true
                             asynchronous: true
                             source: "file:///" + Body
+                            sourceSize.width: width
+                            sourceSize.height: height
                             property real aspectRatio: implicitWidth / implicitHeight
                             property real adjustedWidth: Math.min(maxSize,
                                                                   Math.max(minSize,
@@ -361,8 +367,10 @@ Loader {
                             fillMode: Image.PreserveAspectCrop
                             mipmap: true
                             antialiasing: true
-                            autoTransform: false
+                            autoTransform: true
                             asynchronous: true
+                            sourceSize.width: width
+                            sourceSize.height: height
                             source: "file:///" + Body
                             property real aspectRatio: implicitWidth / implicitHeight
                             property real adjustedWidth: Math.min(maxSize,
