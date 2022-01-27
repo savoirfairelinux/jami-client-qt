@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f133f2ff_77883e2c",
+        "filename": "src/constant/JamiTheme.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-01-27T19:16:05Z",
+      "side": 1,
+      "message": "why different size from linux or windows?\n\nShould be homogeneous across platform I guess? Charlotte checked this?",
+      "range": {
+        "startLine": 34,
+        "startChar": 37,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "65d3572ee9628543b3cf7c2ff45ae576a1b5c21c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
