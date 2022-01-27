@@ -31,6 +31,8 @@ Item {
     function rgba256(r, g, b, a) {
         return Qt.rgba(r / 255, g / 255, b / 255, a / 100.)
     }
+    property real fontSizeOffset: Qt.platform.os.toString() === "osx" ? 3 : 0;
+    property real fontSizeOffsetSmall: Qt.platform.os.toString() === "osx" ? 1 : 0;
 
     // General
     property color blackColor: "#000000"
@@ -211,17 +213,17 @@ Item {
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
     property real indicatorFontSize: 6
-    property real tinyFontSize: 7
-    property real textFontSize: 9
-    property real settingsFontSize: 9
+    property real tinyFontSize: 7 + fontSizeOffset
+    property real textFontSize: 9 + fontSizeOffset
+    property real settingsFontSize: 9 + fontSizeOffset
     property real buttonFontSize: 9
     property real participantFontSize: 10
-    property real menuFontSize: 12
-    property real headerFontSize: 13
-    property real titleFontSize: 16
+    property real menuFontSize: 12 + fontSizeOffset
+    property real headerFontSize: 13 + fontSizeOffset
+    property real titleFontSize: 16 + fontSizeOffset
     property real primaryRadius: 4
-    property real smartlistItemFontSize: 10.5
-    property real smartlistItemInfoFontSize: 9
+    property real smartlistItemFontSize: 10.5 + fontSizeOffset
+    property real smartlistItemInfoFontSize: 9 + fontSizeOffsetSmall
     property real filterItemFontSize: smartlistItemFontSize
     property real filterBadgeFontSize: 8.25
     property real accountListItemHeight: 64
@@ -248,7 +250,7 @@ Item {
     property real mosaicButtonOpacity: 0.77
     property int mosaicButtonTextPreferredWidth: 40
     property int mosaicButtonTextPreferredHeight: 16
-    property int mosaicButtonTextPointSize: 8
+    property int mosaicButtonTextPointSize: 8 + fontSizeOffsetSmall
     property int mosaicButtonPreferredWidth: 70
     property int mosaicButtonMaxWidth: 100
     property real avatarPresenceRatio: 0.26
@@ -336,11 +338,11 @@ Item {
     property real wizardButtonWidth: 400
 
     // MaterialLineEdit
-    property real materialLineEditPointSize: 10
+    property real materialLineEditPointSize: 10 + fontSizeOffset
     property real materialLineEditPadding: 16
 
     // UsernameLineEdit
-    property real usernameLineEditPointSize: 9
+    property real usernameLineEditPointSize: 9 + fontSizeOffset
     property real usernameLineEditlookupInterval: 200
 
     // JamiScrollBar
