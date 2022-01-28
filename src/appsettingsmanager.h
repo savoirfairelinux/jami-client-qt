@@ -28,6 +28,8 @@
 #include <QStandardPaths>
 #include <QWindow> // for QWindow::AutomaticVisibility
 
+#include <QTranslator>
+
 extern const QString defaultDownloadPath;
 
 // clang-format off
@@ -47,7 +49,8 @@ extern const QString defaultDownloadPath;
     X(ShowChatviewHorizontally, true) \
     X(NeverShowMeAgain, false) \
     X(WindowGeometry, QRectF(qQNaN(), qQNaN(), 0., 0.)) \
-    X(WindowState, QWindow::AutomaticVisibility)
+    X(WindowState, QWindow::AutomaticVisibility) \
+    X(LANG, "SYSTEM")
 
 /*
  * A class to expose settings keys in both c++ and QML.
@@ -102,6 +105,12 @@ public:
     Q_INVOKABLE QVariant getValue(const Settings::Key key);
     Q_INVOKABLE void setValue(const Settings::Key key, const QVariant& value);
 
+    void loadTranslations();
+
+Q_SIGNALS:
+    void retranslate();
+
 private:
     QSettings* settings_;
+    QVector<QTranslator*> installedTr_ {};
 };

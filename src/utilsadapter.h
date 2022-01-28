@@ -90,6 +90,7 @@ public:
     Q_INVOKABLE void setDownloadPath(QString dir);
     Q_INVOKABLE void monitor(const bool& continuous);
     Q_INVOKABLE void clearInteractionsCache(const QString& accountId, const QString& convUid);
+    Q_INVOKABLE QVariantMap supportedLang();
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
