@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 by Savoir-faire Linux
+ * Copyright (C) 2022 by Savoir-faire Linux
  * Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -29,44 +29,55 @@ ContextMenuAutoLoader {
     id: root
     property var conversationId: ""
     property var participantUri: ""
-
-    // TODO get authorization
+    property var role
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
             id: startVideoCallItem
             itemName: JamiStrings.startVideoCall
+            canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
+            iconSource: JamiResources.videocam_24dp_svg
             onClicked: {
+                ConversationsAdapter.openDialogConversationWith(participantUri)
+                CallAdapter.placeCall()
             }
         },
         GeneralMenuItem {
             id: startAudioCall
             itemName: JamiStrings.startAudioCall
+            canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
+            iconSource: JamiResources.place_audiocall_24dp_svg
             onClicked: {
+                ConversationsAdapter.openDialogConversationWith(participantUri)
+                CallAdapter.placeAudioOnlyCall()
             }
         },
         GeneralMenuItem {
             id: goToConversation
 
+            iconSource: JamiResources.gotoconversation_svg
             itemName: JamiStrings.goToConversation
             onClicked: {
+                if (ConversationsAdapter.dialogId(participantUri) !== "")
+                    ConversationsAdapter.openDialogConversationWith(participantUri)
+                else
+                    ConversationsAdapter.setFilter(participantUri)
             }
-        },
-        GeneralMenuItem {
-            id: promoteAdministrator
-            canTrigger: false // No API yet
-            itemName: JamiStrings.promoteAdministrator
         },
         GeneralMenuItem {
             id: blockContact
             itemName: JamiStrings.blockContact
             iconSource: JamiResources.block_black_24dp_svg
+            onClicked: {
+                ContactAdapter.removeContact(participantUri, true)
+            }
         },
         GeneralMenuItem {
             id: kickMember
             itemName: JamiStrings.kickMember
+            iconSource: JamiResources.kick_member_svg
+            canTrigger: role === Member.Role.ADMIN
 
-            // TODO can trigger (enough permission for self and member accepted)
             onClicked: {
                 MessagesAdapter.removeConversationMember(conversationId, participantUri)
             }
