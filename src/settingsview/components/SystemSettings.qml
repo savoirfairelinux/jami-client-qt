@@ -160,4 +160,33 @@ ColumnLayout {
             onClicked: downloadPathDialog.open()
         }
     }
+
+    SettingsComboBox {
+        id: langComboBoxSetting
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+
+        labelText: JamiStrings.language
+        fontPointSize: JamiTheme.settingsFontSize
+        comboModel: ListModel {
+            Component.onCompleted: {
+                var supported = UtilsAdapter.supportedLang();
+                var keys = Object.keys(supported);
+                var currentKey = UtilsAdapter.getAppValue(Settings.Key.LANG);
+                for (var i = 0 ; i < keys.length ; ++i) {
+                    append({ textDisplay: supported[keys[i]], id: keys[i] })
+                    if (keys[i] == currentKey)
+                        langComboBoxSetting.modelIndex = i
+                }
+            }
+        }
+        widthOfComboBox: itemWidth
+        role: "textDisplay"
+
+        onActivated: {
+            UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id)
+        }
+    }
 }

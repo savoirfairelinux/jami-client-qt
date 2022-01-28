@@ -72,13 +72,15 @@ private:
     void vsConsoleDebug();
     void fileDebug(QFile* debugFile);
 
-    void loadTranslations();
     void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon);
     const QVariantMap parseArguments();
     void setApplicationFont();
     void initQmlLayer();
     void initSystray();
     void cleanup();
+
+public Q_SLOTS:
+    void retranslate();
 
 private:
     QScopedPointer<QFile> debugFile_;
