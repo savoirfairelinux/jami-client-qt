@@ -33,6 +33,7 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QFileInfo>
+#include <QRegExp>
 
 UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
                            SystemTray* systemTray,
@@ -338,6 +339,9 @@ void
 UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
 {
     settingsManager_->setValue(key, value);
+    // If we change the lang preference, reload the translations
+    if (key == Settings::Key::LANG)
+        settingsManager_->loadTranslations();
 }
 
 QString
@@ -411,6 +415,39 @@ UtilsAdapter::clearInteractionsCache(const QString& accountId, const QString& co
             auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
             auto& convModel = accInfo.conversationModel;
             convModel->clearInteractionsCache(convId);
-        } catch (...) {}
+        } catch (...) {
+        }
     }
+}
+
+QVariantMap
+UtilsAdapter::supportedLang()
+{
+#if defined(Q_OS_LINUX) && defined(JAMI_INSTALL_PREFIX)
+    QString appDir = JAMI_INSTALL_PREFIX;
+#else
+    QString appDir = qApp->applicationDirPath() + QDir::separator() + "share";
+#endif
+    auto trDir = QDir(appDir + QDir::separator() + "ring" + QDir::separator() + "translations");
+    QStringList trFiles = trDir.entryList(QStringList() << "ring_client_windows_*.qm", QDir::Files);
+    QVariantMap result;
+    result["SYSTEM"] = tr("System");
+    // Get available locales
+    QRegExp regex("ring_client_windows_(.*).qm");
+    QSet<QString> nativeNames;
+    for (const auto& f : trFiles) {
+        auto match = regex.indexIn(f);
+        if (regex.capturedTexts().size() == 2) {
+            const auto& l = regex.capturedTexts()[1];
+            auto nativeName = QLocale(l).nativeLanguageName();
+            if (nativeName.isEmpty()) // If a locale doesn't have any nativeLanguageName, ignore it.
+                continue;
+            // Avoid to show potential duplicates.
+            if (!nativeNames.contains(nativeName)) {
+                result[l] = nativeName;
+                nativeNames.insert(nativeName);
+            }
+        }
+    }
+    return result;
 }

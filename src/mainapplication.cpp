@@ -148,6 +148,10 @@ MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
 {
     QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
+    QObject::connect(settingsManager_.get(),
+                     &AppSettingsManager::retranslate,
+                     this,
+                     &MainApplication::retranslate);
 }
 
 MainApplication::~MainApplication()
@@ -181,7 +185,7 @@ MainApplication::init()
     }
 
     Utils::removeOldVersions();
-    loadTranslations();
+    settingsManager_->loadTranslations();
     setApplicationFont();
 
 #if defined _MSC_VER
@@ -262,57 +266,9 @@ MainApplication::restoreApp()
 }
 
 void
-MainApplication::loadTranslations()
+MainApplication::retranslate()
 {
-#if defined(Q_OS_LINUX) && defined(JAMI_INSTALL_PREFIX)
-    QString appDir = JAMI_INSTALL_PREFIX;
-#else
-    QString appDir = qApp->applicationDirPath() + QDir::separator() + "share";
-#endif
-
-    QString locale_name = QLocale::system().name();
-    QString locale_lang = locale_name.split('_')[0];
-
-    QTranslator* qtTranslator_lang = new QTranslator(this);
-    QTranslator* qtTranslator_name = new QTranslator(this);
-    if (locale_name != locale_lang) {
-        if (qtTranslator_lang->load("qt_" + locale_lang,
-                                    QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
-            installTranslator(qtTranslator_lang);
-    }
-
-    if (qtTranslator_name->load("qt_" + locale_name,
-                                QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
-        installTranslator(qtTranslator_name);
-    }
-
-    QTranslator* lrcTranslator_lang = new QTranslator(this);
-    QTranslator* lrcTranslator_name = new QTranslator(this);
-    if (locale_name != locale_lang) {
-        if (lrcTranslator_lang->load(appDir + QDir::separator() + "libringclient" + QDir::separator()
-                                     + "translations" + QDir::separator() + "lrc_" + locale_lang)) {
-            installTranslator(lrcTranslator_lang);
-        }
-    }
-    if (lrcTranslator_name->load(appDir + QDir::separator() + "libringclient" + QDir::separator()
-                                 + "translations" + QDir::separator() + "lrc_" + locale_name)) {
-        installTranslator(lrcTranslator_name);
-    }
-
-    QTranslator* mainTranslator_lang = new QTranslator(this);
-    QTranslator* mainTranslator_name = new QTranslator(this);
-    if (locale_name != locale_lang) {
-        if (mainTranslator_lang->load(appDir + QDir::separator() + "ring" + QDir::separator()
-                                      + "translations" + QDir::separator() + "ring_client_windows_"
-                                      + locale_lang)) {
-            installTranslator(mainTranslator_lang);
-        }
-    }
-    if (mainTranslator_name->load(appDir + QDir::separator() + "ring" + QDir::separator()
-                                  + "translations" + QDir::separator() + "ring_client_windows_"
-                                  + locale_name)) {
-        installTranslator(mainTranslator_name);
-    }
+    engine_->retranslate();
 }
 
 void
