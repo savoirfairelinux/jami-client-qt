@@ -350,7 +350,8 @@ QImage
 Utils::contactPhoto(LRCInstance* instance,
                     const QString& contactUri,
                     const QSize& size,
-                    const QString& accountId)
+                    const QString& accountId,
+                    bool logIfNotContact)
 {
     QImage photo;
     try {
@@ -376,7 +377,8 @@ Utils::contactPhoto(LRCInstance* instance,
             photo = Utils::fallbackAvatar("jami:" + contactInfo.profileInfo.uri, avatarName);
         }
     } catch (const std::exception& e) {
-        qDebug() << e.what() << "; Using default avatar";
+        if (logIfNotContact)
+            qDebug() << e.what() << "; Using default avatar " << contactUri;
         photo = fallbackAvatar("jami:" + contactUri, QString(), size);
     }
     return Utils::scaleAndFrame(photo, size);
@@ -401,14 +403,14 @@ Utils::conversationAvatar(LRCInstance* instance,
             return avatar;
         if (members.size() == 1) {
             // Only member in the swarm or 1:1, draw only peer's avatar
-            auto peerAvatar = Utils::contactPhoto(instance, members[0], size);
+            auto peerAvatar = Utils::contactPhoto(instance, members[0], size, "", false);
             painter.drawImage(avatar.rect(), peerAvatar);
             return avatar;
         }
         // Else, combine avatars
         auto idx = 0;
-        auto peerAAvatar = Utils::contactPhoto(instance, members[0], size);
-        auto peerBAvatar = Utils::contactPhoto(instance, members[1], size);
+        auto peerAAvatar = Utils::contactPhoto(instance, members[0], size, "", false);
+        auto peerBAvatar = Utils::contactPhoto(instance, members[1], size, "", false);
         peerAAvatar = Utils::halfCrop(peerAAvatar, true);
         peerBAvatar = Utils::halfCrop(peerBAvatar, false);
         painter.drawImage(avatar.rect(), peerAAvatar);
