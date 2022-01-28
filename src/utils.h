@@ -89,7 +89,8 @@ QImage accountPhoto(LRCInstance* instance,
 QImage contactPhoto(LRCInstance* instance,
                     const QString& contactUri,
                     const QSize& size = defaultAvatarSize,
-                    const QString& accountId = {});
+                    const QString& accountId = {},
+                    bool logIfNotContact = true);
 QImage conversationAvatar(LRCInstance* instance,
                           const QString& convId,
                           const QSize& size = defaultAvatarSize,
