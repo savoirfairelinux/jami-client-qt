@@ -500,6 +500,22 @@ ConversationsAdapter::updateConversationDescription(const QString& convId,
 }
 
 bool
+ConversationsAdapter::hasDialogWith(const QString& peerUri)
+{
+    auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerUri);
+    return !convInfo.uid.isEmpty() && convInfo.isCoreDialog();
+}
+
+void
+ConversationsAdapter::openDialogConversationWith(const QString& peerUri)
+{
+    auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerUri);
+    if (convInfo.uid.isEmpty() || !convInfo.isCoreDialog())
+        return;
+    lrcInstance_->selectConversation(convInfo.uid);
+}
+
+bool
 ConversationsAdapter::connectConversationModel()
 {
     // Signal connections

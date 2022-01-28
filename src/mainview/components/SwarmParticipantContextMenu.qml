@@ -48,9 +48,9 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: goToConversation
 
+            canTrigger: ConversationsAdapter.hasDialogWith(participantUri)
             itemName: JamiStrings.goToConversation
-            onClicked: {
-            }
+            onClicked: ConversationsAdapter.openDialogConversationWith(participantUri)
         },
         GeneralMenuItem {
             id: promoteAdministrator
