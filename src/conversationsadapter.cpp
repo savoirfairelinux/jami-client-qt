@@ -381,6 +381,7 @@ ConversationsAdapter::setFilter(const QString& filterString)
 {
     convModel_->setFilter(filterString);
     searchSrcModel_->setFilter(filterString);
+    Q_EMIT textFilterChanged(filterString);
 }
 
 QVariantMap
@@ -497,6 +498,24 @@ ConversationsAdapter::updateConversationDescription(const QString& convId,
     QMap<QString, QString> details;
     details["description"] = newDescription;
     convModel->updateConversationInfo(convId, details);
+}
+
+QString
+ConversationsAdapter::dialogId(const QString& peerUri)
+{
+    auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerUri);
+    if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog())
+        return convInfo.uid;
+    return {};
+}
+
+void
+ConversationsAdapter::openDialogConversationWith(const QString& peerUri)
+{
+    auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerUri);
+    if (convInfo.uid.isEmpty() || !convInfo.isCoreDialog())
+        return;
+    lrcInstance_->selectConversation(convInfo.uid);
 }
 
 bool
