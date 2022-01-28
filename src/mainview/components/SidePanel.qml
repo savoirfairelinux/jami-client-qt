@@ -82,6 +82,8 @@ Rectangle {
                 ConversationsAdapter.setFilter(text)
             }
 
+
+
             onReturnPressedWhileSearching: {
                 var listView = searchResultsListView.count ?
                             searchResultsListView :
@@ -155,6 +157,14 @@ Rectangle {
 
         function onShowSearchStatus(status) {
             searchStatusText.text = status
+        }
+
+        function onTextFilterChanged(text) {
+            // In the swarm details, "Go to conversation" can
+            // change the search bar. Be sure to be synced
+            if (contactSearchBar.textContent != text) {
+                contactSearchBar.textContent = text
+            }
         }
     }
 
