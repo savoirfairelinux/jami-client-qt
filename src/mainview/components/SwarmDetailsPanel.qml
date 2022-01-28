@@ -46,7 +46,7 @@ Rectangle {
                 id: conversationAvatar
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: JamiTheme.avatarSizeInCall 
+                Layout.preferredWidth: JamiTheme.avatarSizeInCall
                 Layout.preferredHeight: JamiTheme.avatarSizeInCall
                 Layout.topMargin: JamiTheme.swarmDetailsPageTopMargin
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
@@ -106,7 +106,7 @@ Rectangle {
 
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: root.width
-                Layout.preferredHeight: membersTabButton.height 
+                Layout.preferredHeight: membersTabButton.height
 
                 /*FilterTabButton {
                     id: aboutTabButton
@@ -153,7 +153,7 @@ Rectangle {
                 }*/
             }
         }
-    
+
         Rectangle {
             id: details
             Layout.fillWidth: true
@@ -168,6 +168,7 @@ Rectangle {
 
                 SwarmParticipantContextMenu {
                     id: contextMenu
+                    role: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
 
                     function openMenuAt(x, y, participantUri) {
                         contextMenu.x = x
@@ -187,6 +188,7 @@ Rectangle {
 
                     MouseArea {
                         anchors.fill: parent
+                        enabled: modelData != CurrentAccount.uri
                         acceptedButtons: Qt.RightButton
                         onClicked: function (mouse) {
                             contextMenu.openMenuAt(x + mouse.x, y + mouse.y, modelData)
@@ -242,7 +244,7 @@ Rectangle {
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
                         }
-                    } 
+                    }
                 }
             }
         }
