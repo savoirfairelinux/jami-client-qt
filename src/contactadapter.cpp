@@ -236,6 +236,13 @@ ContactAdapter::contactSelected(int index)
 }
 
 void
+ContactAdapter::removeContact(const QString& peerUri, bool banContact)
+{
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    accInfo.contactModel->removeContact(peerUri, banContact);
+}
+
+void
 ContactAdapter::connectSignals()
 {
     if (lrcInstance_->getCurrentContactModel())

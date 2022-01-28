@@ -168,6 +168,7 @@ Rectangle {
 
                 SwarmParticipantContextMenu {
                     id: contextMenu
+                    role: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
 
                     function openMenuAt(x, y, participantUri) {
                         contextMenu.x = x
@@ -187,6 +188,7 @@ Rectangle {
 
                     MouseArea {
                         anchors.fill: parent
+                        enabled: modelData != CurrentAccount.uri
                         acceptedButtons: Qt.RightButton
                         onClicked: function (mouse) {
                             contextMenu.openMenuAt(x + mouse.x, y + mouse.y, modelData)
