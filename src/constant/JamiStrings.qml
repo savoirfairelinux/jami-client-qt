@@ -376,6 +376,7 @@ Item {
     property string enableTypingIndicator: qsTr("Enable typing indicators")
     property string displayHyperlinkPreviews: qsTr("Display hyperlink previews in the chatview")
     property string chatviewPositionInCall: qsTr("Chatview's position in calls")
+    property string language: qsTr("User interface language")
     property string bottomOpt: qsTr("Bottom")
     property string rightOpt: qsTr("Right")
 
