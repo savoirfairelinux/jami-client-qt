@@ -59,6 +59,8 @@ public:
     Q_INVOKABLE void updateConversationDescription(const QString& convId,
                                                    const QString& newDescription);
 
+    Q_INVOKABLE QString dialogId(const QString& peerUri);
+    Q_INVOKABLE void openDialogConversationWith(const QString& peerUri);
 Q_SIGNALS:
     void showConversation(const QString& accountId, const QString& convUid);
     void showSearchStatus(const QString& status);

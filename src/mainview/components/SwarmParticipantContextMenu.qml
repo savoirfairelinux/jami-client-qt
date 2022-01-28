@@ -36,19 +36,35 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: startVideoCallItem
             itemName: JamiStrings.startVideoCall
+            canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
+            iconSource: JamiResources.videocam_24dp_svg
             onClicked: {
+                ConversationsAdapter.openDialogConversationWith(participantUri)
+                CallAdapter.placeCall()
             }
         },
         GeneralMenuItem {
             id: startAudioCall
             itemName: JamiStrings.startAudioCall
+            canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
+            iconSource: JamiResources.place_audiocall_24dp_svg
             onClicked: {
+                ConversationsAdapter.openDialogConversationWith(participantUri)
+                CallAdapter.placeAudioOnlyCall()
             }
         },
         GeneralMenuItem {
             id: goToConversation
 
+            canTrigger: ConversationsAdapter.dialogId(participantUri) !== ""
             itemName: JamiStrings.goToConversation
+            onClicked: ConversationsAdapter.openDialogConversationWith(participantUri)
+        },
+        GeneralMenuItem {
+            id: addContact
+
+            canTrigger: ConversationsAdapter.dialogId(participantUri) === ""
+            itemName: JamiStrings.addContact
             onClicked: {
             }
         },

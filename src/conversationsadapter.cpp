@@ -499,6 +499,24 @@ ConversationsAdapter::updateConversationDescription(const QString& convId,
     convModel->updateConversationInfo(convId, details);
 }
 
+QString
+ConversationsAdapter::dialogId(const QString& peerUri)
+{
+    auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerUri);
+    if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog())
+        return convInfo.uid;
+    return {};
+}
+
+void
+ConversationsAdapter::openDialogConversationWith(const QString& peerUri)
+{
+    auto& convInfo = lrcInstance_->getConversationFromPeerUri(peerUri);
+    if (convInfo.uid.isEmpty() || !convInfo.isCoreDialog())
+        return;
+    lrcInstance_->selectConversation(convInfo.uid);
+}
+
 bool
 ConversationsAdapter::connectConversationModel()
 {
