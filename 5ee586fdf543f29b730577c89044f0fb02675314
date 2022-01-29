@@ -46,6 +46,29 @@
       },
       "revId": "5ee586fdf543f29b730577c89044f0fb02675314",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30cbff13_43f2ae52",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-01-29T03:42:18Z",
+      "side": 1,
+      "message": "Should the string be \"Language preference\"?\n\n* Shorter so complete string more likely to show on small screen. If it doesn\u0027t show, can see what it refers to as \"Language...\" may show. Current string would show \"Choose your ...\"\n* Consistent with \"Downloads directory\". Otherwise \"Choose your downloads directory\"\n\nThank you",
+      "range": {
+        "startLine": 379,
+        "startChar": 36,
+        "endLine": 379,
+        "endChar": 66
+      },
+      "revId": "5ee586fdf543f29b730577c89044f0fb02675314",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
