@@ -69,6 +69,30 @@
       },
       "revId": "5ee586fdf543f29b730577c89044f0fb02675314",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7062228_a3375c12",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-01-29T03:53:11Z",
+      "side": 1,
+      "message": "Perhaps the string should be \"User interface language\" or \"Language of user interface\"?\n\nIf there is a spelling/grammar checker implemented in the future for chats, there might be a string for the default language of the spelling/grammar checker (which could be different to the GUI language).\n\nWhat do you think?\n\nThank you once again",
+      "parentUuid": "30cbff13_43f2ae52",
+      "range": {
+        "startLine": 379,
+        "startChar": 36,
+        "endLine": 379,
+        "endChar": 66
+      },
+      "revId": "5ee586fdf543f29b730577c89044f0fb02675314",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
