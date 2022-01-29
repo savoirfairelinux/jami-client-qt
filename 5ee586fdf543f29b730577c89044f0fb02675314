@@ -22,6 +22,30 @@
       },
       "revId": "5ee586fdf543f29b730577c89044f0fb02675314",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d14ed159_39ac9a9f",
+        "filename": "src/appsettingsmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-01-29T00:29:05Z",
+      "side": 1,
+      "message": "right, I see the old list model append in the onCompleted callback to avoid \"ListElement: cannot use script for property value\" errors. I think this is a bug outside the scope of this change. Probably good to get rid of the list model for a simple menu like that in another patch.",
+      "parentUuid": "a084b2a9_6cf18f67",
+      "range": {
+        "startLine": 127,
+        "startChar": 11,
+        "endLine": 127,
+        "endChar": 22
+      },
+      "revId": "5ee586fdf543f29b730577c89044f0fb02675314",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
