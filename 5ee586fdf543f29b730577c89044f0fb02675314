@@ -141,6 +141,30 @@
       },
       "revId": "5ee586fdf543f29b730577c89044f0fb02675314",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1659bbd1_116ba86f",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-01-31T19:38:06Z",
+      "side": 1,
+      "message": "Thank you for updating. Thinking further about this, \"Language of user interface\" seems like a non-optimal solution as there is a superfluous \"of\" and when the screen is small it might show \"Language of ...\" and the language drop-down. A bit like \"Language of ... Language\" which is a double-up of information.\n\n\"User interface language\" seems the better option as it is more concise (no \"of\") and when the screen is small and the string is truncated it might show \"User interface ...\" and then the dropdown with the languages, so no doubling-up of information.\n\nWhat do you think?\n\nSorry for the noise.\n\nThank you",
+      "parentUuid": "e7145b7e_d7c9ffaf",
+      "range": {
+        "startLine": 379,
+        "startChar": 36,
+        "endLine": 379,
+        "endChar": 66
+      },
+      "revId": "5ee586fdf543f29b730577c89044f0fb02675314",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
