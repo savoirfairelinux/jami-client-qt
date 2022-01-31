@@ -140,12 +140,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="184"/>
+        <location filename="../src/conversationsadapter.cpp" line="178"/>
         <source>New message</source>
         <translation>Nouveau message</translation>
     </message>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="238"/>
+        <location filename="../src/conversationsadapter.cpp" line="232"/>
         <source>Trust request</source>
         <translation>Invitation</translation>
     </message>
@@ -1237,11 +1237,6 @@ Notez que le mot de passe ne peut pas être récupéré.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="257"/>
-        <source>Full screen</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
         <translation>Partager votre écran</translation>
@@ -1987,6 +1982,11 @@ connects to synchronize the conversation.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/constant/JamiStrings.qml" line="257"/>
+        <source>View full screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Stop sharing screen or file</source>
         <translation type="unfinished"/>
@@ -2439,17 +2439,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="439"/>
+        <location filename="../src/mainapplication.cpp" line="438"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="441"/>
+        <location filename="../src/mainapplication.cpp" line="440"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="447"/>
+        <location filename="../src/mainapplication.cpp" line="446"/>
         <source>&amp;Show Jami</source>
         <translation type="unfinished"/>
     </message>

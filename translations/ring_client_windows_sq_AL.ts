@@ -140,12 +140,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="184"/>
+        <location filename="../src/conversationsadapter.cpp" line="178"/>
         <source>New message</source>
         <translation>Mesazh i ri</translation>
     </message>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="238"/>
+        <location filename="../src/conversationsadapter.cpp" line="232"/>
         <source>Trust request</source>
         <translation>Kërkesë besueshmërie</translation>
     </message>
@@ -1235,11 +1235,6 @@ Jami tani do të mbyllet.</translation>
         <translation>Dil nga mënyra “Sa krejt ekrani”</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="257"/>
-        <source>Full screen</source>
-        <translation>Sa krejt ekrani</translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
         <translation>Tregojuani ekranin të tjerëve</translation>
@@ -1635,17 +1630,17 @@ Ju lutemi, riprovoni më vonë.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="378"/>
         <source>Chatview&apos;s position in calls</source>
-        <translation type="unfinished"/>
+        <translation>Pozicion dritareje fjalosjeje gjatë thirrjesh</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Bottom</source>
-        <translation type="unfinished"/>
+        <translation>Në Fund</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="380"/>
         <source>Right</source>
-        <translation type="unfinished"/>
+        <translation>Djathtas</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="383"/>
@@ -1988,6 +1983,11 @@ të lidhet, për njëkohësim të bisedës.</translation>
         <location filename="../src/constant/JamiStrings.qml" line="227"/>
         <source>You are still muted on your device</source>
         <translation>Jeni ende i heshtuar në pajisjen tuaj</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="257"/>
+        <source>View full screen</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
@@ -2443,17 +2443,17 @@ Kopjojeni dhe jepuani shokëve!</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="439"/>
+        <location filename="../src/mainapplication.cpp" line="438"/>
         <source>E&amp;xit</source>
         <translation>&amp;Dalje</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="441"/>
+        <location filename="../src/mainapplication.cpp" line="440"/>
         <source>&amp;Quit</source>
         <translation>&amp;Mbylle</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="447"/>
+        <location filename="../src/mainapplication.cpp" line="446"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Shfaq Jami-n</translation>
     </message>

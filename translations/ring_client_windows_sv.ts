@@ -140,12 +140,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="184"/>
+        <location filename="../src/conversationsadapter.cpp" line="178"/>
         <source>New message</source>
         <translation>Nytt meddelande</translation>
     </message>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="238"/>
+        <location filename="../src/conversationsadapter.cpp" line="232"/>
         <source>Trust request</source>
         <translation>Lita på begäran</translation>
     </message>
@@ -1234,11 +1234,6 @@ Jami will now quit.</source>
         <translation>Lämna helskärmsläge</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="257"/>
-        <source>Full screen</source>
-        <translation>Helskärmsläge</translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
         <translation>Dela skärmen</translation>
@@ -1983,6 +1978,11 @@ connects to synchronize the conversation.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <location filename="../src/constant/JamiStrings.qml" line="257"/>
+        <source>View full screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Stop sharing screen or file</source>
         <translation type="unfinished"/>
@@ -2436,17 +2436,17 @@ Kopiera och dela det med dina vänner!</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="439"/>
+        <location filename="../src/mainapplication.cpp" line="438"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="441"/>
+        <location filename="../src/mainapplication.cpp" line="440"/>
         <source>&amp;Quit</source>
         <translation>&amp;Avsluta</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="447"/>
+        <location filename="../src/mainapplication.cpp" line="446"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Visa Jami</translation>
     </message>

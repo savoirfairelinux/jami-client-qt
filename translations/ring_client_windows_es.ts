@@ -140,12 +140,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="184"/>
+        <location filename="../src/conversationsadapter.cpp" line="178"/>
         <source>New message</source>
         <translation>Nuevo mensaje</translation>
     </message>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="238"/>
+        <location filename="../src/conversationsadapter.cpp" line="232"/>
         <source>Trust request</source>
         <translation>Solicitud de confianza</translation>
     </message>
@@ -221,7 +221,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="39"/>
         <source>Find a user or search for a conversation</source>
-        <translation>Encuentra un usuario o busca una conversación</translation>
+        <translation>Buscar usuario o conversación</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="40"/>
@@ -1235,11 +1235,6 @@ Jami se cerrará.</translation>
         <translation>Salir de pantalla completa</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="257"/>
-        <source>Full screen</source>
-        <translation>Pantalla completa</translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
         <translation>Compartir pantalla</translation>
@@ -1635,17 +1630,17 @@ Por favor inténtalo más tarde.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="378"/>
         <source>Chatview&apos;s position in calls</source>
-        <translation type="unfinished"/>
+        <translation>Posición de la conversación durante llamadas</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Bottom</source>
-        <translation type="unfinished"/>
+        <translation>Abajo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="380"/>
         <source>Right</source>
-        <translation type="unfinished"/>
+        <translation>A la derecha</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="383"/>
@@ -1988,6 +1983,11 @@ se conecte para sincronizar la conversación.</translation>
         <location filename="../src/constant/JamiStrings.qml" line="227"/>
         <source>You are still muted on your device</source>
         <translation>Todavía continúas silenciada/o en tu dispositivo</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="257"/>
+        <source>View full screen</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
@@ -2443,17 +2443,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="439"/>
+        <location filename="../src/mainapplication.cpp" line="438"/>
         <source>E&amp;xit</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="441"/>
+        <location filename="../src/mainapplication.cpp" line="440"/>
         <source>&amp;Quit</source>
         <translation>&amp;Salir</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="447"/>
+        <location filename="../src/mainapplication.cpp" line="446"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Mostrar Jami</translation>
     </message>

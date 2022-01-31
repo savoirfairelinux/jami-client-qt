@@ -140,12 +140,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="184"/>
+        <location filename="../src/conversationsadapter.cpp" line="178"/>
         <source>New message</source>
         <translation>Новое сообщение</translation>
     </message>
     <message>
-        <location filename="../src/conversationsadapter.cpp" line="238"/>
+        <location filename="../src/conversationsadapter.cpp" line="232"/>
         <source>Trust request</source>
         <translation>Запрос доверия</translation>
     </message>
@@ -1147,12 +1147,12 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="232"/>
         <source>Local and Moderator muted</source>
-        <translation type="unfinished"/>
+        <translation>Отключён локальный звук и звук модератора</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="233"/>
         <source>Moderator muted</source>
-        <translation type="unfinished"/>
+        <translation>Модератор отключил звук</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="234"/>
@@ -1235,11 +1235,6 @@ Jami сейчас завершит работу.</translation>
         <translation>Выйти из полноэкранного режима</translation>
     </message>
     <message>
-        <location filename="../src/constant/JamiStrings.qml" line="257"/>
-        <source>Full screen</source>
-        <translation>Полноэкранный</translation>
-    </message>
-    <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
         <translation>Транслировать экран</translation>
@@ -1317,17 +1312,17 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>{} is typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} печатает...</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
         <source>{} are typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} печатают...</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="280"/>
         <source>Several people are typing…</source>
-        <translation type="unfinished"/>
+        <translation>Несколько человек печатает...</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="281"/>
@@ -1635,17 +1630,17 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="378"/>
         <source>Chatview&apos;s position in calls</source>
-        <translation type="unfinished"/>
+        <translation>Просмотр чата при вызове</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Bottom</source>
-        <translation type="unfinished"/>
+        <translation>Внизу </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="380"/>
         <source>Right</source>
-        <translation type="unfinished"/>
+        <translation>Справа</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="383"/>
@@ -1883,7 +1878,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="574"/>
         <source>Local muted</source>
-        <translation type="unfinished"/>
+        <translation>Отключён звук локально</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="585"/>
@@ -1981,11 +1976,16 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="226"/>
         <source>Participant is still muted on their device</source>
-        <translation type="unfinished"/>
+        <translation>Участник по-прежнему отключён на своём устройстве</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="227"/>
         <source>You are still muted on your device</source>
+        <translation>Вы все ещё отключены на вашем устройстве</translation>
+    </message>
+    <message>
+        <location filename="../src/constant/JamiStrings.qml" line="257"/>
+        <source>View full screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1996,17 +1996,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="328"/>
         <source>Display advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Отображение расширенных настроек</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="329"/>
         <source>Hide advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Скрыть расширенные настройки</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="351"/>
         <source>Display banned contacts</source>
-        <translation type="unfinished"/>
+        <translation>Отображение запрещенных контактов</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="352"/>
@@ -2016,12 +2016,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="426"/>
         <source>Keyboard Shortcut Table</source>
-        <translation type="unfinished"/>
+        <translation>Таблица сочетаний клавиш</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
         <source>Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Беседа</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="429"/>
@@ -2206,7 +2206,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Окна</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="523"/>
@@ -2411,7 +2411,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="115"/>
         <source>Plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Настройки плагина</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="119"/>
@@ -2421,7 +2421,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="123"/>
         <source>Open keyboard shortcut table</source>
-        <translation type="unfinished"/>
+        <translation>Открыть таблицу сочетаний клавиш</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="132"/>
@@ -2442,17 +2442,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="439"/>
+        <location filename="../src/mainapplication.cpp" line="438"/>
         <source>E&amp;xit</source>
         <translation>В&amp;ыход</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="441"/>
+        <location filename="../src/mainapplication.cpp" line="440"/>
         <source>&amp;Quit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="447"/>
+        <location filename="../src/mainapplication.cpp" line="446"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Показать Jami</translation>
     </message>
@@ -2790,7 +2790,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utilsadapter.cpp" line="249"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 Мбит/с</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="249"/>
