@@ -31,6 +31,7 @@
         <file>src/settingsview/components/ChatviewSettings.qml</file>
         <file>src/settingsview/components/FileTransferSettings.qml</file>
         <file>src/settingsview/components/SettingsMenu.qml</file>
+        <file>src/settingsview/components/SettingsMenuButton.qml</file>
         <file>src/settingsview/components/SettingsHeader.qml</file>
         <file>src/settingsview/components/SystemSettings.qml</file>
         <file>src/settingsview/components/RecordingSettings.qml</file>
