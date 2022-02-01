@@ -79,9 +79,6 @@ private:
     void initSystray();
     void cleanup();
 
-public Q_SLOTS:
-    void retranslate();
-
 private:
     QScopedPointer<QFile> debugFile_;
     QScopedPointer<QQmlApplicationEngine> engine_;
