@@ -22,6 +22,30 @@
       },
       "revId": "65d3572ee9628543b3cf7c2ff45ae576a1b5c21c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f90ac8cf_5bd88cff",
+        "filename": "src/constant/JamiTheme.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-02-01T14:36:02Z",
+      "side": 1,
+      "message": "Because the same font size looks smaller on macOS than on windows. I did not check it with Charlotte because the purpose of this patch is not to introduce a new design but to make an appearance on macOS as close to windows appearance as possible.",
+      "parentUuid": "f133f2ff_77883e2c",
+      "range": {
+        "startLine": 34,
+        "startChar": 37,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "65d3572ee9628543b3cf7c2ff45ae576a1b5c21c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
