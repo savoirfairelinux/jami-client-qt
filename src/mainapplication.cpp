@@ -20,6 +20,7 @@
  */
 
 #include "mainapplication.h"
+#include "frameprovider.h"
 
 #include "qmlregister.h"
 #include "appsettingsmanager.h"
@@ -207,6 +208,9 @@ MainApplication::init()
             engine_.reset(new QQmlApplicationEngine());
     }
 #endif
+    auto frameManager = new FrameManager;
+    QQmlContext* context = engine_->rootContext();
+    context->setContextProperty("frameManager", frameManager);
 
     connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [this] {
         lrcInstance_->connectivityChanged();

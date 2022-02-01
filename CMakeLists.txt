@@ -46,6 +46,7 @@ set(QT_MODULES
     WebEngineQuick
     WebChannel
     WebEngineWidgets
+    Multimedia
 )
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
 foreach(MODULE ${QT_MODULES})
@@ -67,8 +68,16 @@ if (APPLE)
         GIT_TAG v4.1.1
     )
     FetchContent_Populate(libqrencode)
-    add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
-    include_directories(${libqrencode_SOURCE_DIR})
+    set(DRING ${PROJECT_SOURCE_DIR}/../daemon)
+      # set(DRING_INCLUDE ${PROJECT_SOURCE_DIR}/../install/daemon/include/jami)
+      # set(DRING_SRC ${PROJECT_SOURCE_DIR}/../daemon/src)
+       add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
+       include_directories(${libqrencode_SOURCE_DIR}
+           ${DRING}/contrib/x86_64-apple-darwin20.6.0/include
+
+           #${DRING_INCLUDE}
+          # ${DRING_SRC}
+           )
 endif()
 
 # Resource auto-gen
@@ -199,6 +208,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentaccount.h
     ${SRC_DIR}/videodevices.h
     ${SRC_DIR}/previewengine.h
+    ${SRC_DIR}/frameprovider.h
 )
 
 if(MSVC)
@@ -608,10 +618,12 @@ elseif (NOT APPLE)
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 else()
     target_sources(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+    set(DRING_LIB ${PROJECT_SOURCE_DIR}/../install/daemon/lib/libring.0.dylib)
     target_link_libraries(${PROJECT_NAME} PRIVATE
                           ${QT_LIBS}
                           ${LRC_LIB_NAME}
                           ${SYSTEM_CONFIGURATUION}
+                          ${DRING_LIB}
                           qrencode)
 
      # translations

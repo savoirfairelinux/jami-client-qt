@@ -18,6 +18,7 @@
 
 import QtQuick
 import QtQuick.Layouts
+import QtMultimedia
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -55,14 +56,24 @@ Rectangle {
             itemWidth: preferredColumnWidth
         }
 
-        VideoSettings {
+        VideoOutput {
             id: videoSettings
-
+            function startPreviewing(force = false) {}
+            function updatePreviewRatio() {}
             Layout.fillWidth: true
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-
-            itemWidth: preferredColumnWidth
+            Component.onCompleted: frameManager.registerSink(videoSink)
         }
+
+//        VideoSettings {
+//            id: videoSettings
+
+//            Layout.fillWidth: true
+//            Layout.leftMargin: JamiTheme.preferredMarginSize
+//            Layout.rightMargin: JamiTheme.preferredMarginSize
+
+//            itemWidth: preferredColumnWidth
+//        }
     }
 }
