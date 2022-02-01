@@ -148,10 +148,6 @@ MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
 {
     QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
-    QObject::connect(settingsManager_.get(),
-                     &AppSettingsManager::retranslate,
-                     this,
-                     &MainApplication::retranslate);
 }
 
 MainApplication::~MainApplication()
@@ -170,6 +166,11 @@ MainApplication::init()
     settingsManager_.reset(new AppSettingsManager(this));
     systemTray_.reset(new SystemTray(settingsManager_.get(), this));
     previewEngine_.reset(new PreviewEngine(this));
+
+    QObject::connect(settingsManager_.get(),
+                     &AppSettingsManager::retranslate,
+                     engine_.get(),
+                     &QQmlApplicationEngine::retranslate);
 
     setWindowIcon(QIcon(":/images/jami.ico"));
 
@@ -263,12 +264,6 @@ void
 MainApplication::restoreApp()
 {
     Q_EMIT lrcInstance_->restoreAppRequested();
-}
-
-void
-MainApplication::retranslate()
-{
-    engine_->retranslate();
 }
 
 void
