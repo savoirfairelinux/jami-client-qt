@@ -37,6 +37,8 @@ Window {
     property int minWidth: 650
     property int minHeight: 500
 
+    property bool window: false
+
     property int selectedScreenNumber: -1
     property bool selectAllScreens: false
     property string currentPreview: ""
@@ -68,7 +70,7 @@ Window {
         calculateRepeaterModel()
         screenInfo.model = screens.length
         screenInfo2.model = screens.length
-        windowsText.visible = screens.length > Qt.application.screens.length
+        windowsText.visible = root.window
     }
     minimumWidth: minWidth
     minimumHeight: minHeight
@@ -118,6 +120,7 @@ Window {
                     text: JamiStrings.screens
                     verticalAlignment: Text.AlignBottom
                     color: JamiTheme.textColor
+                    visible: !root.window
                 }
 
                 Repeater {
@@ -135,7 +138,7 @@ Window {
                         height: 3 * width / 4
 
                         border.color: selectedScreenNumber === index ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
-                        visible: JamiStrings.selectScreen !== screens[index] && index < Qt.application.screens.length
+                        visible: !root.window && JamiStrings.selectScreen !== screens[index] && index < Qt.application.screens.length
 
                         Text {
                             id: screenName
@@ -210,7 +213,7 @@ Window {
 
                     border.color: selectAllScreens ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
 
-                    visible: Qt.application.screens.length > 1
+                    visible: !root.window && Qt.application.screens.length > 1
 
                     Text {
                         id: screenNameAll
@@ -269,6 +272,7 @@ Window {
                     text: JamiStrings.windows
                     verticalAlignment: Text.AlignBottom
                     color: JamiTheme.textColor
+                    visible: root.window
                 }
 
                 Repeater {
@@ -286,7 +290,7 @@ Window {
                         height: 3 * width / 4
 
                         border.color: selectedScreenNumber === index ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
-                        visible: JamiStrings.selectScreen !== screens[index] && index >= Qt.application.screens.length
+                        visible: root.window && JamiStrings.selectScreen !== screens[index] && index >= Qt.application.screens.length
 
                         Text {
                             id: screenName2
