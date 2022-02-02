@@ -129,7 +129,7 @@ private:
     /*
      * A pointer to the lrc renderer object.
      */
-    video::Renderer* renderer_;
+    video::Renderer* renderer_ {nullptr};
 
     /*
      * A local copy of the renderer's current frame.

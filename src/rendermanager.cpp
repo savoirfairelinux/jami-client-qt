@@ -21,6 +21,8 @@
 
 #include <stdexcept>
 
+#include "libavutil/frame.h"
+
 using namespace lrc::api;
 
 FrameWrapper::FrameWrapper(AVModel& avModel, const QString& id)
@@ -139,32 +141,47 @@ FrameWrapper::slotFrameUpdated(const QString& id)
         QMutexLocker lock(&mutex_);
 
         frame_ = renderer_->currentFrame();
+        if (not frame_.avframe or frame_.avframe->buf[0] == nullptr
+            or frame_.avframe->buf[0]->size <= 0) {
+            qWarning() << QString("Invalid avframe");
+            return;
+        }
 
-        unsigned int width = renderer_->size().width();
-        unsigned int height = renderer_->size().height();
-        unsigned int size;
+        auto size = frame_.avframe->buf[0]->size;
+
+        auto width = renderer_->size().width();
+        auto height = renderer_->size().height();
+
         QImage::Format imageFormat;
         if (renderer_->useDirectRenderer()) {
-            size = frame_.storage.size();
             imageFormat = QImage::Format_ARGB32_Premultiplied;
         } else {
-            size = frame_.size;
             imageFormat = QImage::Format_ARGB32;
         }
-        /*
-         * If the frame is empty or not the expected size,
-         * do nothing and keep the last rendered QImage.
-         */
-        if (size != 0 && size == width * height * 4) {
+
+        qsizetype stride = frame_.avframe->linesize[0];
+        if (size != 0 && size >= stride * height) {
             if (renderer_->useDirectRenderer()) {
-                buffer_ = std::move(frame_.storage);
+                auto& avframe = frame_.avframe;
+                assert(width == avframe->width);
+                assert(height == avframe->height);
+                assert(avframe->data[0] != nullptr);
+                image_.reset(
+                    new QImage((uchar*) avframe->data[0], width, height, stride, imageFormat));
             } else {
+                // TODO. XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                // Remove this.
+                assert(false);
                 // TODO remove this path. storage should work everywhere
                 // https://git.jami.net/savoirfairelinux/jami-libclient/-/issues/492
-                buffer_.resize(size);
-                std::move(frame_.ptr, frame_.ptr + size, buffer_.begin());
+                // buffer_.resize(size);
+                // std::move(avframe.buf[0], favframe.buf[0] + size, buffer_.begin());
+                // image_.reset(new QImage((uchar*) buffer_.data(), width, height, imageFormat));
             }
-            image_.reset(new QImage((uchar*) buffer_.data(), width, height, imageFormat));
+        } else {
+            qWarning() << QString("Invalid buffer size %1, expected %2")
+                              .arg(size)
+                              .arg(width * height * 4);
         }
     }
     Q_EMIT frameUpdated(id);
