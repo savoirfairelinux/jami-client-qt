@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94744cbe_5defbe62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-02T21:52:25Z",
+      "side": 1,
+      "message": "we accept 80 chars",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a99d36e_f18d29e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-02T21:52:25Z",
+      "side": 1,
+      "message": "should not be in backlog if current iteration",
+      "range": {
+        "startLine": 16,
+        "startChar": 54,
+        "endLine": 16,
+        "endChar": 77
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c9b7efb1_3b4de992",
         "filename": "src/constant/JamiStrings.qml",
         "patchSetId": 1
