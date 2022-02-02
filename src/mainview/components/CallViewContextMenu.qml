@@ -119,12 +119,29 @@ ContextMenuAutoLoader {
                 if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
                     AvAdapter.muteCamera = root.isVideoMuted
                 }
-                AvAdapter.getListWindows()
-                if (Qt.application.screens.length + AvAdapter.windowsNames().length === 1) {
+                if (Qt.application.screens.length === 1) {
                     AvAdapter.shareEntireScreen(0)
                 } else {
                     SelectScreenWindowCreation.createSelectScreenWindowObject()
-                    SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId)
+                    SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, false)
+                }
+            }
+        },
+        GeneralMenuItem {
+            id: shareWindow
+
+            canTrigger: Qt.platform.os === "linux" && CurrentAccount.videoEnabled_Video && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
+                        && !isSIP
+            itemName: JamiStrings.shareWindow
+            iconSource: JamiResources.laptop_black_24dp_svg
+            onClicked: {
+                if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
+                    AvAdapter.muteCamera = root.isVideoMuted
+                }
+                AvAdapter.getListWindows()
+                if (AvAdapter.windowsNames.length >= 1) {
+                    SelectScreenWindowCreation.createSelectScreenWindowObject()
+                    SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, true)
                 }
             }
         },

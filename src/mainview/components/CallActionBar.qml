@@ -45,6 +45,7 @@ Control {
     signal resumePauseCallClicked
     signal showInputPanelClicked
     signal shareScreenClicked
+    signal shareWindowClicked
     signal stopSharingClicked
     signal shareScreenAreaClicked
     signal shareFileClicked
@@ -118,6 +119,10 @@ Control {
                 Component.onCompleted: {
                     shareModel.append({"Name": JamiStrings.shareScreen,
                                        "IconSource": JamiResources.laptop_black_24dp_svg})
+                    if (Qt.platform.os == "linux") {
+                        shareModel.append({"Name": JamiStrings.shareWindow,
+                                        "IconSource" : JamiResources.laptop_black_24dp_svg})
+                    }
                     shareModel.append({"Name": JamiStrings.shareScreenArea,
                                        "IconSource" : JamiResources.share_area_black_24dp_svg})
                     shareModel.append({"Name": JamiStrings.shareFile,
@@ -128,6 +133,9 @@ Control {
                 switch(shareModel.get(index).Name) {
                   case JamiStrings.shareScreen:
                       shareScreenClicked()
+                      break
+                  case JamiStrings.shareWindow:
+                      shareWindowClicked()
                       break
                   case JamiStrings.shareScreenArea:
                       shareScreenAreaClicked()

@@ -160,12 +160,22 @@ Item {
         if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
             AvAdapter.muteCamera = root.isVideoMuted
         }
-        AvAdapter.getListWindows()
-        if (Qt.application.screens.length + AvAdapter.windowsNames.length === 1) {
+        if (Qt.application.screens.length === 1) {
             AvAdapter.shareEntireScreen(0)
         } else {
             SelectScreenWindowCreation.createSelectScreenWindowObject()
-            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId)
+            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, false)
+        }
+    }
+
+    function openShareWindow() {
+        if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
+            AvAdapter.muteCamera = root.isVideoMuted
+        }
+        AvAdapter.getListWindows()
+        if (AvAdapter.windowsNames.length >= 1) {
+            SelectScreenWindowCreation.createSelectScreenWindowObject()
+            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, true)
         }
     }
 
@@ -206,6 +216,7 @@ Item {
             function onResumePauseCallClicked() { CallAdapter.holdThisCallToggle() }
             function onShowInputPanelClicked() { sipInputPanel.open() }
             function onShareScreenClicked() { openShareScreen() }
+            function onShareWindowClicked() { openShareWindow() }
             function onStopSharingClicked() { AvAdapter.stopSharing() }
             function onShareScreenAreaClicked() { openShareScreenArea() }
             function onRecordCallClicked() { recordClicked() }
