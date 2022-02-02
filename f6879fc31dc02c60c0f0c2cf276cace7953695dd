@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44edcdee_e894e910",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-02-02T22:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94744cbe_5defbe62",
+      "range": {
+        "startLine": 9,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a99d36e_f18d29e1",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-02T21:52:25Z",
       "side": 1,
       "message": "should not be in backlog if current iteration",
+      "range": {
+        "startLine": 16,
+        "startChar": 54,
+        "endLine": 16,
+        "endChar": 77
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab2cde92_2ca43617",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-02-02T22:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a99d36e_f18d29e1",
       "range": {
         "startLine": 16,
         "startChar": 54,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f68e0b0_091e0191",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-02-02T22:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9b7efb1_3b4de992",
+      "range": {
+        "startLine": 259,
+        "startChar": 45,
+        "endLine": 259,
+        "endChar": 54
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f75e2ed9_32ada809",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-02-02T21:51:41Z",
       "side": 1,
       "message": "alignment",
+      "range": {
+        "startLine": 123,
+        "startChar": 43,
+        "endLine": 124,
+        "endChar": 42
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0734ad1a_e12b5967",
+        "filename": "src/mainview/components/CallActionBar.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-02-02T22:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f75e2ed9_32ada809",
       "range": {
         "startLine": 123,
         "startChar": 43,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3248495_a72876e4",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-02-02T22:43:20Z",
+      "side": 1,
+      "message": "Not related bug fixed.",
+      "parentUuid": "94a11823_f9b3a346",
+      "range": {
+        "startLine": 167,
+        "startChar": 54,
+        "endLine": 168,
+        "endChar": 9
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d157f5d_bd45f48f",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-02-02T21:51:41Z",
       "side": 1,
       "message": "I think we do this check a lot, may be replace by a property? (eg CallActionBar)",
+      "range": {
+        "startLine": 172,
+        "startChar": 42,
+        "endLine": 172,
+        "endChar": 142
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "278e5df1_877ae008",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-02-02T22:43:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d157f5d_bd45f48f",
       "range": {
         "startLine": 172,
         "startChar": 42,
