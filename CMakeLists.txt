@@ -434,7 +434,19 @@ qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
                   ${COMMON_SOURCES}
                   ${QML_RESOURCES}
                   ${QML_RESOURCES_QML}
-                  ${LRC_SRC_PATH}/webresource.qrc)
+                  ${LRC_SRC_PATH}/webresource.qrc
+)
+
+# For avframe dependency on Windows/macOS.
+if(NOT DEFINED LIBAV_INCLUDE_PATH)
+   set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib/")
+   if(WIN32)
+      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include/)
+   elseif(APPLE)
+      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg)
+   endif()
+endif()
+include_directories(${LIBAV_INCLUDE_PATH})
 
 if(MSVC)
     # Makes it a GUI executable instead of a console application
