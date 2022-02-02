@@ -47,6 +47,7 @@ Item {
     property bool isConferenceCall
     property bool isGrid
     property bool localHandRaised
+    property bool sharingActive: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE
 
     signal chatButtonClicked
     signal fullScreenClicked
@@ -130,9 +131,7 @@ Item {
         mode: JamiFileDialog.Mode.OpenFile
 
         onAccepted: {
-            if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
-                AvAdapter.muteCamera = root.isVideoMuted
-            }
+            AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
             AvAdapter.shareFile(jamiFileDialog.file)
         }
     }
@@ -157,22 +156,26 @@ Item {
     }
 
     function openShareScreen() {
-        if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
-            AvAdapter.muteCamera = root.isVideoMuted
-        }
-        AvAdapter.getListWindows()
-        if (Qt.application.screens.length + AvAdapter.windowsNames.length === 1) {
+        AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
+        if (Qt.application.screens.length === 1) {
             AvAdapter.shareEntireScreen(0)
         } else {
             SelectScreenWindowCreation.createSelectScreenWindowObject()
-            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId)
+            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, false)
+        }
+    }
+
+    function openShareWindow() {
+        AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
+        AvAdapter.getListWindows()
+        if (AvAdapter.windowsNames.length >= 1) {
+            SelectScreenWindowCreation.createSelectScreenWindowObject()
+            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, true)
         }
     }
 
     function openShareScreenArea() {
-        if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
-            AvAdapter.muteCamera = root.isVideoMuted
-        }
+        AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
         if (Qt.platform.os !== "windows") {
             AvAdapter.shareScreenArea(0, 0, 0, 0)
         } else {
@@ -206,6 +209,7 @@ Item {
             function onResumePauseCallClicked() { CallAdapter.holdThisCallToggle() }
             function onShowInputPanelClicked() { sipInputPanel.open() }
             function onShareScreenClicked() { openShareScreen() }
+            function onShareWindowClicked() { openShareWindow() }
             function onStopSharingClicked() { AvAdapter.stopSharing() }
             function onShareScreenAreaClicked() { openShareScreenArea() }
             function onRecordCallClicked() { recordClicked() }
@@ -225,5 +229,14 @@ Item {
         onTransferCallButtonClicked: openContactPicker(ContactList.TRANSFER)
         onPluginItemClicked: openPluginsMenu()
         onRecordCallClicked: root.recordClicked()
+        onOpenSelectionWindow: {
+            SelectScreenWindowCreation.createSelectScreenWindowObject()
+            SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, windowSelection)
+        }
+    }
+
+    onVisibleChanged: {
+        if (!visible)
+            SelectScreenWindowCreation.destroySelectScreenWindow()
     }
 }
