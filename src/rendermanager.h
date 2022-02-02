@@ -86,6 +86,10 @@ public:
         return id_;
     }
 
+private:
+    void renderAVFrame();
+    void renderSHM();
+
 Q_SIGNALS:
     /*
      * Emitted once in slotRenderingStarted.
@@ -129,7 +133,7 @@ private:
     /*
      * A pointer to the lrc renderer object.
      */
-    video::Renderer* renderer_;
+    video::Renderer* renderer_ {nullptr};
 
     /*
      * A local copy of the renderer's current frame.

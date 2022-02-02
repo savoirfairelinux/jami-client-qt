@@ -417,7 +417,17 @@ qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
                   ${COMMON_SOURCES}
                   ${QML_RESOURCES}
                   ${QML_RESOURCES_QML}
-                  ${LRC_SRC_PATH}/webresource.qrc)
+                  ${LRC_SRC_PATH}/webresource.qrc
+)
+
+if(WIN32)
+   if(NOT DEFINED LIBAV_INCLUDE_PATH)
+      set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib/build")
+      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/ffmpeg/Build/win32/x64/include/)
+      message(STATUS ${LIBAV_INCLUDE_PATH})
+      target_include_directories(${PROJECT_NAME} PRIVATE ${LIBAV_INCLUDE_PATH})
+   endif()
+endif()
 
 if(MSVC)
     # Makes it a GUI executable instead of a console application
