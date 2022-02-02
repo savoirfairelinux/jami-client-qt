@@ -236,6 +236,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e599599_9c9d9392",
+        "filename": "src/mainview/components/CallOverlay.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-02T22:56:29Z",
+      "side": 1,
+      "message": "it\u0027s related as it\u0027s introduced in this patch :) on master the share screen is closing correctly, here you split and share windows got the correct behavior",
+      "parentUuid": "d3248495_a72876e4",
+      "range": {
+        "startLine": 167,
+        "startChar": 54,
+        "endLine": 168,
+        "endChar": 9
+      },
+      "revId": "f6879fc31dc02c60c0f0c2cf276cace7953695dd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d157f5d_bd45f48f",
