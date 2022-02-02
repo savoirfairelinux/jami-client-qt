@@ -45,6 +45,7 @@ Control {
     signal resumePauseCallClicked
     signal showInputPanelClicked
     signal shareScreenClicked
+    signal shareWindowClicked
     signal stopSharingClicked
     signal shareScreenAreaClicked
     signal shareFileClicked
@@ -118,6 +119,10 @@ Control {
                 Component.onCompleted: {
                     shareModel.append({"Name": JamiStrings.shareScreen,
                                        "IconSource": JamiResources.laptop_black_24dp_svg})
+                    if (Qt.platform.os == "linux") {
+                        shareModel.append({"Name": JamiStrings.shareWindow,
+                                           "IconSource" : JamiResources.window_black_24dp_svg})
+                    }
                     shareModel.append({"Name": JamiStrings.shareScreenArea,
                                        "IconSource" : JamiResources.share_area_black_24dp_svg})
                     shareModel.append({"Name": JamiStrings.shareFile,
@@ -128,6 +133,9 @@ Control {
                 switch(shareModel.get(index).Name) {
                   case JamiStrings.shareScreen:
                       shareScreenClicked()
+                      break
+                  case JamiStrings.shareWindow:
+                      shareWindowClicked()
                       break
                   case JamiStrings.shareScreenArea:
                       shareScreenAreaClicked()
@@ -258,17 +266,17 @@ Control {
         Action {
             id: shareAction
             onTriggered: {
-                if (AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE)
+                if (sharingActive)
                     root.stopSharingClicked()
                 else
                     root.shareScreenClicked()
             }
-            icon.source: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE ?
+            icon.source: sharingActive ?
                              JamiResources.share_stop_black_24dp_svg :
                              JamiResources.share_screen_black_24dp_svg
-            icon.color: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE ?
+            icon.color: sharingActive ?
                             "red" : "white"
-            text: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE ?
+            text: sharingActive ?
                       JamiStrings.stopSharing :
                       JamiStrings.shareScreen
             property real size: 34

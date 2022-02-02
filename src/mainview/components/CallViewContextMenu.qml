@@ -26,7 +26,6 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 import "../../commoncomponents/contextmenu"
-import "../js/selectscreenwindowcreation.js" as SelectScreenWindowCreation
 import "../js/screenrubberbandcreation.js" as ScreenRubberBandCreation
 
 ContextMenuAutoLoader {
@@ -37,9 +36,12 @@ ContextMenuAutoLoader {
     property bool isVideoMuted: false
     property bool isRecording: false
 
+    property bool windowSelection: false
+
     signal pluginItemClicked
     signal transferCallButtonClicked
     signal recordCallClicked
+    signal openSelectionWindow
 
     property list<GeneralMenuItem> menuItems: [
         GeneralMenuItem {
@@ -101,7 +103,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: stopSharing
 
-            canTrigger: (AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE)
+            canTrigger: sharingActive
                         && !isSIP && !isVideoMuted
             itemName: JamiStrings.stopSharing
             iconSource: JamiResources.share_stop_black_24dp_svg
@@ -119,12 +121,29 @@ ContextMenuAutoLoader {
                 if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
                     AvAdapter.muteCamera = root.isVideoMuted
                 }
-                AvAdapter.getListWindows()
-                if (Qt.application.screens.length + AvAdapter.windowsNames().length === 1) {
+                if (Qt.application.screens.length === 1) {
                     AvAdapter.shareEntireScreen(0)
                 } else {
-                    SelectScreenWindowCreation.createSelectScreenWindowObject()
-                    SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId)
+                    windowSelection = false
+                    openSelectionWindow()
+                }
+            }
+        },
+        GeneralMenuItem {
+            id: shareWindow
+
+            canTrigger: Qt.platform.os === "linux" && CurrentAccount.videoEnabled_Video && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
+                        && !isSIP
+            itemName: JamiStrings.shareWindow
+            iconSource: JamiResources.window_black_24dp_svg
+            onClicked: {
+                if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
+                    AvAdapter.muteCamera = root.isVideoMuted
+                }
+                AvAdapter.getListWindows()
+                if (AvAdapter.windowsNames.length >= 1) {
+                    windowSelection = true
+                    openSelectionWindow()
                 }
             }
         },
