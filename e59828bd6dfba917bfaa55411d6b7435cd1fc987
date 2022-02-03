@@ -304,6 +304,30 @@
       },
       "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca71ad67_75d26f9d",
+        "filename": "src/updatemanager.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-02-03T17:57:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be59392c_a8aeb3f8",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 24
+      },
+      "revId": "e59828bd6dfba917bfaa55411d6b7435cd1fc987",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
