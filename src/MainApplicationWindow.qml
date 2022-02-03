@@ -150,6 +150,7 @@ ApplicationWindow {
                 // layoutManager to handle as much as possible.
                 layoutManager.restoreWindowSettings()
             }
+            MainApplication.setEventFilter()
 
             // This will trigger `visible = true`.
             windowSettingsLoaded = true
