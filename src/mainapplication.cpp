@@ -276,6 +276,14 @@ MainApplication::handleUriAction(const QString& arg)
 }
 
 void
+MainApplication::setEventFilter()
+{
+#ifdef Q_OS_MACOS
+    installEventFilter(this);
+#endif
+}
+
+void
 MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon)
 {
     lrc::api::Lrc::cacheAvatars.store(false);

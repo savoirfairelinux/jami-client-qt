@@ -68,6 +68,8 @@ public:
 
     Q_INVOKABLE void handleUriAction(const QString& uri = {});
 
+    Q_INVOKABLE void setEventFilter();
+
     enum class Option {
         StartMinimized = 0,
         Debug,
@@ -82,6 +84,16 @@ public:
     {
         return runOptions_[opt];
     };
+
+    bool eventFilter(QObject* object, QEvent* event)
+    {
+#ifdef Q_OS_MACOS
+        if (event->type() == QEvent::ApplicationActivate) {
+            restoreApp();
+        }
+#endif // Q_OS_MACOS
+        return QApplication::eventFilter(object, event);
+    }
 
 Q_SIGNALS:
     void closeRequested();
