@@ -20,11 +20,12 @@
 var selectScreenWindowComponent
 var selectScreenWindowObject
 
-function createSelectScreenWindowObject() {
+function createSelectScreenWindowObject(providedScreen) {
     if (selectScreenWindowObject)
         return
     selectScreenWindowComponent = Qt.createComponent(
                 "../components/SelectScreen.qml")
+    selectScreenWindowComponent.screen = providedScreen
     if (selectScreenWindowComponent.status === Component.Ready)
         finishCreation()
     else if (selectScreenWindowComponent.status === Component.Error)
@@ -44,12 +45,11 @@ function finishCreation() {
 }
 
 function showSelectScreenWindow(previewId, window) {
-    console.log("previewId", previewId)
     selectScreenWindowObject.currentPreview = previewId
     selectScreenWindowObject.window = window
     selectScreenWindowObject.show()
 
-    var screen = selectScreenWindowObject.screen
+    var screen = selectScreenWindowComponent.screen
     selectScreenWindowObject.x = screen.virtualX +
             (screen.width - selectScreenWindowObject.width) / 2
     selectScreenWindowObject.y = screen.virtualY +

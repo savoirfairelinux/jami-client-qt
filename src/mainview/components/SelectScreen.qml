@@ -78,8 +78,6 @@ Window {
     width: minWidth
     height: minHeight
 
-    screen: JamiQmlUtils.mainApplicationScreen
-
     Rectangle {
         id: selectScreenWindowRect
 
