@@ -74,6 +74,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "088f7ee6_dbf8a211",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-02-03T18:10:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3b0f7e8_2cd008a3",
+      "range": {
+        "startLine": 13,
+        "startChar": 38,
+        "endLine": 14,
+        "endChar": 66
+      },
+      "revId": "1fcea3773c39428fb5e0279e5d074ecef9460cd9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "62311f52_bd44e4b9",
         "filename": "src/instancemanager.cpp",
         "patchSetId": 2
@@ -108,6 +132,30 @@
       "writtenOn": "2022-01-25T18:48:35Z",
       "side": 1,
       "message": "imho the simple scenario would be to open a conversation with this contact with the first account supporting the protocol (jami: or sip:) (no call, no add, just let the user decide)",
+      "range": {
+        "startLine": 271,
+        "startChar": 23,
+        "endLine": 271,
+        "endChar": 32
+      },
+      "revId": "1fcea3773c39428fb5e0279e5d074ecef9460cd9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ff5e53f_59344a6f",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-02-03T18:10:03Z",
+      "side": 1,
+      "message": "Agreed, however, the implementation for selecting a conversation will not work out-of-the-box without managing the contact\u0027s URI scheme. I think this should be done separately and will most likely be coupled with an LRC patch.",
+      "parentUuid": "a7422ce3_8562ef18",
       "range": {
         "startLine": 271,
         "startChar": 23,
