@@ -150,6 +150,9 @@ ApplicationWindow {
                 // layoutManager to handle as much as possible.
                 layoutManager.restoreWindowSettings()
             }
+            if (Qt.platform.os.toString() === "osx") {
+                MainApplication.setEventFilter()
+            }
 
             // This will trigger `visible = true`.
             windowSettingsLoaded = true

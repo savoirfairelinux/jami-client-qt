@@ -445,3 +445,11 @@ MainApplication::cleanup()
 #endif
     QApplication::exit(0);
 }
+
+#ifdef Q_OS_MACOS
+void
+MainApplication::setEventFilter()
+{
+    installEventFilter(this);
+}
+#endif
