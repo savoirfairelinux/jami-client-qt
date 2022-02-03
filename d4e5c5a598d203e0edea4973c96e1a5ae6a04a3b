@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66e60292_5016d388",
+        "filename": "src/mainview/components/CallActionBar.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-02-03T04:50:31Z",
+      "side": 1,
+      "message": "Should different pictures be shown for shareScreen and shareWindow?\n\nPerhaps shareWindow (i.e. sharing an Application) icon could be something in the style of an \u0027A\u0027?\n\nExamples:\n\nhttps://icon-icons.com/icon/app-store-logo/145489\nCC BY 4.0\n\nhttps://iconarchive.com/show/button-ui-system-folders-alt-icons-by-blackvariant/Applications-icon.html\n\nOr perhaps you can find a better solution?\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 124,
+        "startChar": 58,
+        "endLine": 124,
+        "endChar": 93
+      },
+      "revId": "d4e5c5a598d203e0edea4973c96e1a5ae6a04a3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
