@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d739da_f59f46a0",
+        "filename": "src/mainview/components/CallActionBar.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-02-03T15:30:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66e60292_5016d388",
+      "range": {
+        "startLine": 124,
+        "startChar": 58,
+        "endLine": 124,
+        "endChar": 93
+      },
+      "revId": "d4e5c5a598d203e0edea4973c96e1a5ae6a04a3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be93ac80_6cf77f07",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-03T06:26:33Z",
       "side": 1,
       "message": "For multi-monitor systems, will the child window now show on the same monitor as the parent window?\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/656\n\nThank you",
+      "range": {
+        "startLine": 123,
+        "startChar": 20,
+        "endLine": 123,
+        "endChar": 41
+      },
+      "revId": "d4e5c5a598d203e0edea4973c96e1a5ae6a04a3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d268309f_6eeb301d",
+        "filename": "src/mainview/components/SelectScreen.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-02-03T15:30:02Z",
+      "side": 1,
+      "message": "Hi Ovari, i can reproduce your bug, but it should be done in a separate patch.",
+      "parentUuid": "be93ac80_6cf77f07",
       "range": {
         "startLine": 123,
         "startChar": 20,
