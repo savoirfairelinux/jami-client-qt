@@ -46,6 +46,7 @@ static constexpr bool isBeta = false;
 
     void setAutoUpdateCheck(bool state)
     {
+        updaterController_.updater.updateCheckInterval = 3600 * 24;
         updaterController_.updater.automaticallyChecksForUpdates = state;
     };
 
