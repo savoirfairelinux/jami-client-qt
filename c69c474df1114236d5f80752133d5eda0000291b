@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9acbb1fd_a777eac7",
+        "filename": "src/rendermanager.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2022-02-04T14:55:59Z",
+      "side": 1,
+      "message": "This condition is not supposed to happen, but it does and is most likely responsible for some of crashes.\nThis is just an avoidance, and the root cause still need to be fixed.",
+      "revId": "c69c474df1114236d5f80752133d5eda0000291b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
