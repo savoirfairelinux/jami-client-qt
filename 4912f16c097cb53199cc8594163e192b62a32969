@@ -16,6 +16,24 @@
       "message": "Last patchset is breaking the screen sharing for me. As soon as I click on screen share it close the screen sharing window immediately",
       "revId": "4912f16c097cb53199cc8594163e192b62a32969",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b23b1d6_4698b55d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-04T22:01:00Z",
+      "side": 1,
+      "message": "This regression is visible since patchset 2, patchset 1 is ok",
+      "parentUuid": "b09fbe3a_71096c73",
+      "revId": "4912f16c097cb53199cc8594163e192b62a32969",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
