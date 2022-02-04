@@ -43,7 +43,11 @@ UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
     , clipboard_(QApplication::clipboard())
     , systemTray_(systemTray)
     , settingsManager_(settingsManager)
-{}
+{
+    if (lrcInstance_->avModel().getRecordPath().isEmpty()) {
+        lrcInstance_->avModel().setRecordPath(getDefaultRecordPath());
+    }
+}
 
 const QString
 UtilsAdapter::getProjectCredits()
@@ -90,6 +94,16 @@ UtilsAdapter::getCachePath()
     QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
     dataDir.cdUp();
     return dataDir.absolutePath() + "/jami";
+}
+const QString
+UtilsAdapter::getDefaultRecordPath()
+{
+    auto defaultDirectory = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)
+                            + "/Jami";
+    QDir dir(defaultDirectory);
+    if (!dir.exists())
+        dir.mkpath(".");
+    return defaultDirectory;
 }
 bool
 UtilsAdapter::createStartupLink()
