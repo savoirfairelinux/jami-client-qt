@@ -101,5 +101,6 @@ private:
     AppSettingsManager* settingsManager_;
 
     QMetaObject::Connection debugMessageReceivedConnection_;
+    QString getDefaultRecordPath() const;
 };
 Q_DECLARE_METATYPE(UtilsAdapter*)
