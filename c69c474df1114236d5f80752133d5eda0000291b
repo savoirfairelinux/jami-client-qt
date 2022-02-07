@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "31b41683_de8cf547",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2022-02-07T14:24:30Z",
+      "side": 1,
+      "message": "Need to fix the compilation on Windows and macosx (missing ffmpeg/libavutil path)",
+      "revId": "c69c474df1114236d5f80752133d5eda0000291b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "9acbb1fd_a777eac7",
         "filename": "src/rendermanager.cpp",
         "patchSetId": 5
