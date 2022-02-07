@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb8fc505_017806ab",
+        "filename": "src/utilsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-07T14:40:31Z",
+      "side": 1,
+      "message": "what\u0027S the difference with getRecordingPath from LRC? Why not use this one by default?",
+      "range": {
+        "startLine": 99,
+        "startChar": 14,
+        "endLine": 99,
+        "endChar": 34
+      },
+      "revId": "cd994d0b59fd3f717ef3560256a0dce1928bf353",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
