@@ -46,6 +46,30 @@
       },
       "revId": "62e23a4709611f80d4aa09634b14a475a8b7d128",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6144937_c4648823",
+        "filename": "resources/entitlements/Jami.entitlements",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-09T19:38:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba58d426_f98cce75",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 8
+      },
+      "revId": "62e23a4709611f80d4aa09634b14a475a8b7d128",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
