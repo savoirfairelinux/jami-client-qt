@@ -62,6 +62,10 @@ AppSettingsManager::loadTranslations()
 {
 #if defined(Q_OS_LINUX) && defined(JAMI_INSTALL_PREFIX)
     QString appDir = JAMI_INSTALL_PREFIX;
+#elif defined(Q_OS_MACOS)
+    QDir dir(qApp->applicationDirPath());
+    dir.cdUp();
+    QString appDir = dir.absolutePath() + "/Resources/share";
 #else
     QString appDir = qApp->applicationDirPath() + QDir::separator() + "share";
 #endif
