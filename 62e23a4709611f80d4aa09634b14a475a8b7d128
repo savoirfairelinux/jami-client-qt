@@ -22,6 +22,30 @@
       },
       "revId": "62e23a4709611f80d4aa09634b14a475a8b7d128",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba58d426_f98cce75",
+        "filename": "resources/entitlements/Jami.entitlements",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-02-09T19:37:49Z",
+      "side": 1,
+      "message": "Yes, it will be removed. There the issue https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/677",
+      "parentUuid": "1bd6e5c8_819bd28a",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 8
+      },
+      "revId": "62e23a4709611f80d4aa09634b14a475a8b7d128",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
