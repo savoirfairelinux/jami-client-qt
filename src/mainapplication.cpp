@@ -165,11 +165,6 @@ MainApplication::init()
 
     setWindowIcon(QIcon(":/images/jami.ico"));
 
-#ifdef Q_OS_LINUX
-    if (!getenv("QT_QPA_PLATFORMTHEME"))
-        setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
-#endif
-
     if (runOptions_[Option::Debug].toBool()) {
         consoleDebug();
     }
