@@ -635,24 +635,27 @@ else()
 
      # translations
      if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
-         message("Releasing and copying translation files")
-         file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/")
-         file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/share/libringclient/translations/")
+         set(LRC ${PROJECT_SOURCE_DIR}/../lrc)
+         set(APP_CONTAINER "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents")
          file(GLOB TS_CLIENT_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
          file(GLOB TS_LRC_FILES ${LRC}/translations/*.ts)
+
+         # generate lproj folders
+         FOREACH(QM_FILE ${TS_LRC_FILES})
+             # Extract language code from filename
+             GET_FILENAME_COMPONENT(FILENAME ${QM_FILE} NAME_WE)
+             STRING(REGEX REPLACE "^lrc_" "" LANG ${FILENAME})
+             file(MAKE_DIRECTORY ${APP_CONTAINER}/Resources/${LANG}.lproj)
+         ENDFOREACH()
          set_source_files_properties(${TS_CLIENT_FILES} PROPERTIES OUTPUT_LOCATION
-                                     "${CMAKE_BINARY_DIR}/share/ring/translations")
+                                              "${APP_CONTAINER}/Resources/share/ring/translations")
          set_source_files_properties(${TS_LRC_FILES} PROPERTIES OUTPUT_LOCATION
-                                     "${CMAKE_BINARY_DIR}/share/libringclient/translations")
+                                              "${APP_CONTAINER}/Resources/share/libringclient/translations")
 
          qt_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
          qt_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
          target_sources(${PROJECT_NAME} PRIVATE ${QM_CLIENT_FILES})
          target_sources(${PROJECT_NAME} PRIVATE ${QM_LRC_FILES})
-         install(DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/"
-                            DESTINATION ${CMAKE_INSTALL_PREFIX}/share/ring/translations)
-         install(DIRECTORY "${CMAKE_BINARY_DIR}/share/libringclient/translations/"
-                            DESTINATION ${CMAKE_INSTALL_PREFIX}/share/libringclient/translations)
       endif()
       set_target_properties(${PROJECT_NAME} PROPERTIES
           MACOSX_BUNDLE TRUE
