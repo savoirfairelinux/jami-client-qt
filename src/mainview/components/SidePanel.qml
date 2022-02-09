@@ -31,8 +31,6 @@ Rectangle {
 
     color: JamiTheme.backgroundColor
 
-    anchors.fill: parent
-
     Connections {
         target: LRCInstance
 
