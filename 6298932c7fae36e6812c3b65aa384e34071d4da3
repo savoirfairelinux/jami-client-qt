@@ -22,6 +22,30 @@
       },
       "revId": "6298932c7fae36e6812c3b65aa384e34071d4da3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e76e818_3665c499",
+        "filename": "src/appsettingsmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-02-09T22:20:40Z",
+      "side": 1,
+      "message": "app bundle has next structure:\nJami\n - Contents\n    - MacOS(jami binary)\n    - Resources\n    - Frameworks\n    - Plugins\n\napplicationDirPath() points to MacOS folder and translations saved in Resources",
+      "parentUuid": "766e2109_37d0ab5d",
+      "range": {
+        "startLine": 68,
+        "startChar": 25,
+        "endLine": 68,
+        "endChar": 58
+      },
+      "revId": "6298932c7fae36e6812c3b65aa384e34071d4da3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
