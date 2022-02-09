@@ -32,7 +32,6 @@ Rectangle {
     signal itemSelected(int index)
     signal buttonSelectedManually(int index)
 
-    anchors.fill: parent
     color: JamiTheme.backgroundColor
 
     ButtonGroup {
