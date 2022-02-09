@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "766e2109_37d0ab5d",
+        "filename": "src/appsettingsmanager.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-09T20:50:49Z",
+      "side": 1,
+      "message": "out of curiosity, on macOS, translations are not stored in \"jami\"? (dir.cdUp())?",
+      "range": {
+        "startLine": 68,
+        "startChar": 25,
+        "endLine": 68,
+        "endChar": 58
+      },
+      "revId": "6298932c7fae36e6812c3b65aa384e34071d4da3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
