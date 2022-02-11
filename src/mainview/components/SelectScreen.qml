@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- *         Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
+ * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,11 +50,12 @@ Window {
     // How many rows the ScrollView should have.
     function calculateRepeaterModel() {
         screens = []
-        for (var idx in Qt.application.screens) {
+        var idx
+        for (idx in Qt.application.screens) {
             screens.push(qsTr("Screen") + " " + idx)
         }
         AvAdapter.getListWindows()
-        for (var idx in AvAdapter.windowsNames) {
+        for (idx in AvAdapter.windowsNames) {
             screens.push(AvAdapter.windowsNames[idx])
         }
 

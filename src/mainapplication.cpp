@@ -26,6 +26,7 @@
 #include "connectivitymonitor.h"
 #include "systemtray.h"
 #include "previewengine.h"
+#include "videoprovider.h"
 
 #include <QAction>
 #include <QCommandLineParser>
@@ -385,6 +386,10 @@ MainApplication::initQmlLayer()
                          previewEngine_.get(),
                          &screenInfo_,
                          this);
+
+    auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
+    QQmlContext* context = engine_->rootContext();
+    context->setContextProperty("videoProvider", videoProvider);
 
     engine_->load(QUrl(QStringLiteral("qrc:/src/MainApplicationWindow.qml")));
 }
