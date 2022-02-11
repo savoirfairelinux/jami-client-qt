@@ -37,6 +37,7 @@ ItemDelegate {
     property string convId: ""
 
     highlighted: ListView.isCurrentItem
+    property bool interactive: true
 
     onVisibleChanged: {
         if (visible)
@@ -174,7 +175,7 @@ ItemDelegate {
 
     background: Rectangle {
         color: {
-            if (root.pressed)
+            if (root.pressed || root.highlighted)
                 return Qt.darker(JamiTheme.selectedColor, 1.1)
             else if (root.hovered)
                 return Qt.darker(JamiTheme.selectedColor, 1.05)
@@ -183,8 +184,16 @@ ItemDelegate {
         }
     }
 
-    onClicked: ListView.view.model.select(index)
+    onClicked: {
+        if (!interactive) {
+            highlighted = !highlighted
+            return;
+        }
+        ListView.view.model.select(index)
+    }
     onDoubleClicked: {
+        if (!interactive)
+            return;
         ListView.view.model.select(index)
         if (LRCInstance.currentAccountType === Profile.Type.SIP || !CurrentAccount.videoEnabled_Video)
             CallAdapter.placeAudioOnlyCall()
@@ -194,10 +203,15 @@ ItemDelegate {
             }
         }
     }
-    onPressAndHold: ListView.view.openContextMenuAt(pressX, pressY, root)
+    onPressAndHold: {
+        if (!interactive)
+            return;
+        ListView.view.openContextMenuAt(pressX, pressY, root)
+    }
 
     MouseArea {
         anchors.fill: parent
+        enabled: interactive
         acceptedButtons: Qt.RightButton
         onClicked: function (mouse) {
             root.ListView.view.openContextMenuAt(mouse.x, mouse.y, root)
