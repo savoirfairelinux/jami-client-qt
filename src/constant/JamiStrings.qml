@@ -184,6 +184,7 @@ Item {
     property string previewUnavailable: qsTr("Preview unavailable")
     property string screenSharing: qsTr("Screen Sharing")
     property string selectScreenSharingFPS: qsTr("Select screen sharing frame rate (frames per second)")
+    property string noVideo: qsTr("no video")
 
     // BackupKeyPage
     property string  backupAccountInfos: qsTr("Your account only exists on this device. " +
