@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- *         Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
+ * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,11 +50,12 @@ Window {
     // How many rows the ScrollView should have.
     function calculateRepeaterModel() {
         screens = []
-        for (var idx in Qt.application.screens) {
+        var idx
+        for (idx in Qt.application.screens) {
             screens.push(qsTr("Screen") + " " + idx)
         }
         AvAdapter.getListWindows()
-        for (var idx in AvAdapter.windowsNames) {
+        for (idx in AvAdapter.windowsNames) {
             screens.push(AvAdapter.windowsNames[idx])
         }
 
@@ -153,7 +154,7 @@ Window {
                             color: JamiTheme.textColor
                         }
 
-                        PreviewRenderer {
+                        VideoView {
                             id: screenPreview
 
                             anchors.top: screenName.bottom
@@ -162,17 +163,17 @@ Window {
                             height: screenItem.height - 50
                             width: screenItem.width - 50
 
-                            lrcInstance: LRCInstance
-
                             Component.onDestruction: {
-                                if (screenPreview.rendererId !== "" && screenPreview.rendererId !== currentPreview)
-                                    VideoDevices.stopDevice(screenPreview.rendererId, true)
+                                if (rendererId !== "" && rendererId !== currentPreview) {
+                                    VideoDevices.stopDevice(rendererId, true)
+                                }
                             }
                             Component.onCompleted: {
                                 if (visible) {
-                                    var rendId = AvAdapter.getSharingResource(index, "")
-                                    if (rendId !== "")
-                                        screenPreview.rendererId = VideoDevices.startDevice(rendId, true)
+                                    const rId = AvAdapter.getSharingResource(index, "")
+                                    if (rId !== "") {
+                                        rendererId = VideoDevices.startDevice(rId, true)
+                                    }
                                 }
                             }
                         }
@@ -226,7 +227,7 @@ Window {
                         color: JamiTheme.textColor
                     }
 
-                    PreviewRenderer {
+                    VideoView {
                         id: screenShotAll
 
                         anchors.top: screenNameAll.bottom
@@ -235,17 +236,17 @@ Window {
                         height: screenSelectionRectAll.height - 50
                         width: screenSelectionRectAll.width - 50
 
-                        lrcInstance: LRCInstance
-
                         Component.onDestruction: {
-                            if (screenShotAll.rendererId !== "" && screenShotAll.rendererId !== currentPreview)
-                                VideoDevices.stopDevice(screenShotAll.rendererId, true)
+                            if (rendererId !== "" && rendererId !== currentPreview) {
+                                VideoDevices.stopDevice(rendererId, true)
+                            }
                         }
                         Component.onCompleted: {
                             if (visible) {
-                                var rendId = AvAdapter.getSharingResource(-1, "")
-                                if (rendId !== "")
-                                    screenShotAll.rendererId = VideoDevices.startDevice(rendId, true)
+                                const rId = AvAdapter.getSharingResource(-1, "")
+                                if (rId !== "") {
+                                    rendererId = VideoDevices.startDevice(rId, true)
+                                }
                             }
                         }
                     }
@@ -305,7 +306,7 @@ Window {
                             color: JamiTheme.textColor
                         }
 
-                        PreviewRenderer {
+                        VideoView {
                             id: screenPreview2
 
                             anchors.top: screenName2.bottom
@@ -316,17 +317,17 @@ Window {
                             height: screenItem2.height - 60
                             width: screenItem2.width - 50
 
-                            lrcInstance: LRCInstance
-
                             Component.onDestruction: {
-                                if (screenPreview2.rendererId !== "" && screenPreview2.rendererId !== currentPreview)
-                                    VideoDevices.stopDevice(screenPreview2.rendererId, true)
+                                if (rendererId !== "" && rendererId !== currentPreview) {
+                                    VideoDevices.stopDevice(rendererId, true)
+                                }
                             }
                             Component.onCompleted: {
                                 if (visible) {
-                                    var rendId = AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[index - Qt.application.screens.length])
-                                    if (rendId !== "")
-                                        screenPreview2.rendererId = VideoDevices.startDevice(rendId, true)
+                                    const rId = AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[index - Qt.application.screens.length])
+                                    if (rId !== "") {
+                                        rendererId = VideoDevices.startDevice(rId, true)
+                                    }
                                 }
                             }
                         }

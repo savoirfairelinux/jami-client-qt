@@ -40,11 +40,10 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
             &lrc::api::AVModel::audioDeviceEvent,
             this,
             &AvAdapter::onAudioDeviceEvent);
-    connect(&lrcInstance_->avModel(), &lrc::api::AVModel::rendererStarted, [this](const QString&) {
-        auto callId = lrcInstance_->getCurrentCallId();
-        set_currentRenderingDeviceType(
-            lrcInstance_->getCurrentCallModel()->getCurrentRenderedDevice(callId).type);
-    });
+    connect(&lrcInstance_->avModel(),
+            &lrc::api::AVModel::rendererStarted,
+            this,
+            &AvAdapter::onRendererStarted);
 }
 
 // The top left corner of primary screen is (0, 0).
@@ -101,8 +100,6 @@ AvAdapter::shareEntireScreen(int screenNumber)
                              resource,
                              lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                              false);
-    set_currentRenderingDeviceType(
-        lrcInstance_->getCurrentCallModel()->getCurrentRenderedDevice(callId).type);
 }
 
 void
@@ -122,14 +119,12 @@ AvAdapter::shareAllScreens()
                              resource,
                              lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                              false);
-    set_currentRenderingDeviceType(
-        lrcInstance_->getCurrentCallModel()->getCurrentRenderedDevice(callId).type);
 }
 
 void
 AvAdapter::captureScreen(int screenNumber)
 {
-    auto futureResult = QtConcurrent::run([this, screenNumber]() {
+    std::ignore = QtConcurrent::run([this, screenNumber]() {
         QScreen* screen = QGuiApplication::screens().at(screenNumber);
         if (!screen)
             return;
@@ -149,7 +144,7 @@ AvAdapter::captureScreen(int screenNumber)
 void
 AvAdapter::captureAllScreens()
 {
-    auto futureResult = QtConcurrent::run([this]() {
+    std::ignore = QtConcurrent::run([this]() {
         auto screens = QGuiApplication::screens();
 
         QList<QPixmap> scrs;
@@ -191,8 +186,6 @@ AvAdapter::shareFile(const QString& filePath)
                                  filePath,
                                  lrc::api::NewCallModel::MediaRequestType::FILESHARING,
                                  false);
-        set_currentRenderingDeviceType(
-            lrcInstance_->getCurrentCallModel()->getCurrentRenderedDevice(callId).type);
     }
 }
 
@@ -218,8 +211,6 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                  resource,
                                  lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                                  false);
-        set_currentRenderingDeviceType(
-            lrcInstance_->getCurrentCallModel()->getCurrentRenderedDevice(callId).type);
     });
 #else
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
@@ -234,8 +225,6 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                              resource,
                              lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                              false);
-    set_currentRenderingDeviceType(
-        lrcInstance_->getCurrentCallModel()->getCurrentRenderedDevice(callId).type);
 #endif
 }
 
@@ -250,8 +239,6 @@ AvAdapter::shareWindow(const QString& windowId)
                              resource,
                              lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                              false);
-    set_currentRenderingDeviceType(
-        lrcInstance_->getCurrentCallModel()->getCurrentRenderedDevice(callId).type);
 }
 
 QString
@@ -304,7 +291,6 @@ AvAdapter::stopSharing()
                                  lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
                                  lrc::api::NewCallModel::MediaRequestType::CAMERA,
                                  muteCamera_);
-        set_currentRenderingDeviceType(lrc::api::video::DeviceType::CAMERA);
     }
 }
 
@@ -327,6 +313,16 @@ AvAdapter::onAudioDeviceEvent()
     auto inputs = avModel.getAudioInputDevices().size();
     auto outputs = avModel.getAudioOutputDevices().size();
     Q_EMIT audioDeviceListChanged(inputs, outputs);
+}
+
+void
+AvAdapter::onRendererStarted(const QString& id)
+{
+    auto callId = lrcInstance_->getCurrentCallId();
+    auto callModel = lrcInstance_->getCurrentCallModel();
+    auto renderDevice = callModel->getCurrentRenderedDevice(callId);
+    set_currentRenderingDeviceId(id);
+    set_currentRenderingDeviceType(renderDevice.type);
 }
 
 int

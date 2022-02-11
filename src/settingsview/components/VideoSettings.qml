@@ -35,30 +35,16 @@ ColumnLayout {
     property int itemWidth
 
     function startPreviewing(force = false) {
-        if (root.visible) {
-            previewWidget.deviceId = VideoDevices.getDefaultDevice()
-            previewWidget.rendererId = VideoDevices.startDevice(previewWidget.deviceId, force)
+        if (!visible) {
+            return
         }
-    }
-
-    function updatePreviewRatio() {
-        var resolution = VideoDevices.defaultRes
-        if (resolution.length !== 0) {
-            var resVec = resolution.split("x")
-            var ratio = resVec[1] / resVec[0]
-            if (ratio) {
-                aspectRatio = ratio
-            } else {
-                console.error("Could not scale recording video preview")
-            }
-        }
-
+        const deviceId = VideoDevices.getDefaultDevice()
+        previewWidget.startWithId(deviceId, force)
     }
 
     onVisibleChanged: {
         if (visible) {
             hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration()
-            updatePreviewRatio()
             if (previewWidget.visible)
                 startPreviewing(true)
         } else {
@@ -70,14 +56,11 @@ ColumnLayout {
         target: VideoDevices
 
         function onDefaultResChanged() {
-            updatePreviewRatio()
-            if (previewWidget.visible)
-                startPreviewing(true)
+            startPreviewing(true)
         }
 
         function onDefaultFpsChanged() {
-            if (previewWidget.visible)
-                startPreviewing(true)
+            startPreviewing(true)
         }
 
         function onDeviceAvailable() {
@@ -207,12 +190,10 @@ ColumnLayout {
 
     // video Preview
     Rectangle {
-        id: rectBox
-
         visible: VideoDevices.listSize !== 0
 
         Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: width * aspectRatio
+        Layout.preferredHeight: width * previewWidget.invAspectRatio
 
         Layout.minimumWidth: 200
         Layout.maximumWidth: 400
@@ -221,27 +202,18 @@ ColumnLayout {
 
         color: JamiTheme.primaryForegroundColor
 
-        DistantRenderer {
+        LocalVideo {
             id: previewWidget
 
-            anchors.fill: rectBox
-            property string deviceId: VideoDevices.getDefaultDevice()
-            rendererId: VideoDevices.getDefaultDevice()
+            anchors.fill: parent
 
-            lrcInstance: LRCInstance
-
-            layer.enabled: true
-            layer.effect: OpacityMask {
-                maskSource: rectBox
+            underlayItems: Text {
+                anchors.centerIn: parent
+                font.pointSize: 18
+                font.capitalization: Font.AllUppercase
+                color: "white"
+                text: JamiStrings.noVideo
             }
-        }
-
-        onVisibleChanged: {
-            if (visible) {
-                VideoDevices.stopDevice(previewWidget.deviceId)
-                startPreviewing(true)
-            } else
-                VideoDevices.stopDevice(previewWidget.deviceId)
         }
     }
 

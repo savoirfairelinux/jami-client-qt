@@ -29,7 +29,10 @@
 class AvAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
+    // TODO: currentRenderingDeviceType is only used in QML to check if
+    // we're sharing or not, so it should maybe just be a boolean.
     QML_RO_PROPERTY(lrc::api::video::DeviceType, currentRenderingDeviceType)
+    QML_RO_PROPERTY(QString, currentRenderingDeviceId)
     QML_PROPERTY(bool, muteCamera)
     QML_RO_PROPERTY(QStringList, windowsNames)
     QML_RO_PROPERTY(QList<QVariant>, windowsIds)
@@ -90,6 +93,7 @@ protected:
 
 private Q_SLOTS:
     void onAudioDeviceEvent();
+    void onRendererStarted(const QString& id);
 
 private:
     // Get screens arrangement rect relative to primary screen.
