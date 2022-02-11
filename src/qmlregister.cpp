@@ -48,11 +48,9 @@
 #include "avatarregistry.h"
 #include "appsettingsmanager.h"
 #include "mainapplication.h"
-#include "distantrenderer.h"
 #include "namedirectory.h"
 #include "updatemanager.h"
 #include "pluginlistpreferencemodel.h"
-#include "previewrenderer.h"
 #include "version.h"
 #include "wizardviewstepmodel.h"
 
@@ -166,12 +164,6 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, ContactList::staticMetaObject, "ContactList");
     QML_REGISTERNAMESPACE(NS_MODELS, FilesToSend::staticMetaObject, "FilesToSend");
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
-
-    // QQuickItems
-    QML_REGISTERTYPE(NS_MODELS, PreviewRenderer);
-    QML_REGISTERTYPE(NS_MODELS, VideoCallPreviewRenderer);
-    QML_REGISTERTYPE(NS_MODELS, DistantRenderer);
-    QML_REGISTERTYPE(NS_MODELS, PhotoboothPreviewRender)
 
     // Qml singleton components
     QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/constant/JamiTheme.qml", JamiTheme);
