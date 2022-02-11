@@ -166,36 +166,35 @@ Rectangle {
                         callOverlay.openCallViewContextMenuInPos(mouse.x, mouse.y)
                 }
 
-                DistantRenderer {
+                VideoView {
                     id: distantRenderer
 
                     anchors.centerIn: parent
                     anchors.fill: parent
                     z: -1
 
-                    lrcInstance: LRCInstance
                     visible: !root.isAudioOnly
 
-                    onOffsetChanged: {
+                    // Update overlays if the internal or visual geometry changes.
+                    // Use Qt.callLater to combine the events in the queue since these
+                    // signals can be emitted together.
+                    property real area: width * height
+                    function updateParticipantsLayer() {
                         callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
                     }
+                    onAreaChanged: Qt.callLater(updateParticipantsLayer)
+                    onContentRectChanged: Qt.callLater(updateParticipantsLayer)
                 }
 
-                VideoCallPreviewRenderer {
+                LocalVideo {
                     id: previewRenderer
 
-                    lrcInstance: LRCInstance
                     visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused &&
                              ((VideoDevices.listSize !== 0 && AvAdapter.currentRenderingDeviceType === Video.DeviceType.CAMERA) || AvAdapter.currentRenderingDeviceType !== Video.DeviceType.CAMERA )
 
                     rendererId: root.callPreviewId
 
-                    onVisibleChanged: {
-                        if (!visible && !AccountAdapter.hasVideoCall()) {
-                            VideoDevices.stopDevice(rendererId, true)
-                        }
-                    }
-
+                    height: width * invAspectRatio
                     width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                     x: callPageMainRect.width - previewRenderer.width - previewMargin
                     y: previewMarginYTop
@@ -261,13 +260,6 @@ Rectangle {
                             height: previewRenderer.height
                             radius: JamiTheme.primaryRadius
                         }
-                    }
-
-                    onWidthChanged: {
-                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
-                    }
-                    onPreviewImageScalingFactorChanged: {
-                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
                     }
                 }
 

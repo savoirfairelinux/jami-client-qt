@@ -58,8 +58,7 @@ Rectangle {
         updateState(RecordBox.States.INIT)
 
         if (isVideo) {
-            previewWidget.deviceId = VideoDevices.getDefaultDevice()
-            previewWidget.rendererId = VideoDevices.startDevice(previewWidget.deviceId)
+            previewWidget.startWithId(VideoDevices.getDefaultDevice())
         }
     }
 
@@ -245,28 +244,18 @@ Rectangle {
         color: JamiTheme.blackColor
         radius: 5
 
-        PreviewRenderer {
+        LocalVideo {
             id: previewWidget
 
             anchors.fill: rectBox
-            anchors.centerIn: rectBox
-            property string deviceId: VideoDevices.getDefaultDevice()
-            rendererId: VideoDevices.getDefaultDevice()
+            anchors.margins: 1
 
-            lrcInstance: LRCInstance
+            rendererId: VideoDevices.getDefaultDevice()
 
             layer.enabled: true
             layer.effect: OpacityMask {
                 maskSource: rectBox
             }
-        }
-
-        onVisibleChanged: {
-            if (visible) {
-                previewWidget.deviceId = VideoDevices.getDefaultDevice()
-                previewWidget.rendererId = VideoDevices.startDevice(previewWidget.deviceId)
-            } else
-                VideoDevices.stopDevice(previewWidget.deviceId)
         }
     }
 
