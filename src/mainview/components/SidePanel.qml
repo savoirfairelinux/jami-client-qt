@@ -58,6 +58,28 @@ Rectangle {
         sidePanelTabBar.selectTab(tabIndex)
     }
 
+    function getHighlighted() {
+        var result = []
+        for (var member in swarmCurrentConversationList.contentItem.children) {
+            var delegate = swarmCurrentConversationList.contentItem.children[member]
+            if (delegate.highlighted) {
+                var item = ConversationsAdapter.getConvInfoMap(delegate.convId)
+                for (var idx in item.uris) {
+                    var uri = item.uris[idx]
+                    if (!result.indexOf(uri) != -1 && uri != CurrentAccount.uri) {
+                        result.push(uri)
+                    }
+                }
+            }
+        }
+        return result
+    }
+
+    function showSwarmListView(v) {
+        smartListLayout.visible = !v
+        swarmMemberSearchList.visible = v
+    }
+
     RowLayout {
         id: startBar
 
@@ -95,6 +117,7 @@ Rectangle {
 
         PushButton {
             id: startConversation
+            visible: smartListLayout.visible
 
             Layout.alignment: Qt.AlignLeft
             radius: JamiTheme.primaryRadius
@@ -108,9 +131,7 @@ Rectangle {
             source: JamiResources.create_swarm_svg
             toolTipText: JamiStrings.startASwarm
 
-            onClicked: {
-                createSwarmClicked()
-            }
+            onClicked: createSwarmClicked()
         }
     }
 
@@ -118,7 +139,7 @@ Rectangle {
         id: sidePanelTabBar
 
         visible: ConversationsAdapter.pendingRequestCount &&
-                 !contactSearchBar.textContent
+                 !contactSearchBar.textContent && smartListLayout.visible
         anchors.top: startBar.bottom
         anchors.topMargin: visible ? 10 : 0
         width: sidePanelRect.width
@@ -216,6 +237,63 @@ Rectangle {
             model: ConversationListModel
             headerLabel: JamiStrings.conversations
             headerVisible: searchResultsListView.visible
+        }
+    }
+
+    ColumnLayout {
+        id: swarmMemberSearchList
+
+        visible: false
+
+        width: parent.width
+        anchors.top: searchStatusRect.bottom
+        anchors.topMargin: (sidePanelTabBar.visible ||
+                            searchStatusRect.visible) ? 0 : 12
+        anchors.bottom: parent.bottom
+
+        spacing: 4
+
+        JamiListView {
+            id: swarmSearchResultsListView
+
+            visible: count
+            opacity: visible ? 1 : 0
+
+            Layout.topMargin: 10
+            Layout.alignment: Qt.AlignTop
+            Layout.fillWidth: true
+            Layout.preferredHeight: visible ? contentHeight : 0
+            Layout.maximumHeight: {
+                var otherContentHeight = swarmCurrentConversationList.contentHeight + 16
+                if (swarmCurrentConversationList.visible)
+                    if (otherContentHeight < parent.height / 2)
+                        return parent.height - otherContentHeight
+                    else
+                        return parent.height / 2
+                else
+                    return parent.height
+            }
+
+            model: SearchResultsListModel
+            delegate: SmartListItemDelegate {
+                interactive: false
+            }
+            currentIndex: model.currentFilteredRow
+        }
+
+        JamiListView {
+            id: swarmCurrentConversationList
+
+            visible: count
+
+            Layout.preferredWidth: parent.width
+            Layout.fillHeight: true
+
+            model: ConversationListModel
+            delegate: SmartListItemDelegate {
+                interactive: false
+            }
+            currentIndex: model.currentFilteredRow
         }
     }
 }
