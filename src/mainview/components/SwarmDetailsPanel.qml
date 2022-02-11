@@ -42,18 +42,16 @@ Rectangle {
             Layout.fillWidth: true
             spacing: 0
 
-            ConversationAvatar {
-                id: conversationAvatar
+            PhotoboothView {
+                id: currentAccountAvatar
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: JamiTheme.avatarSizeInCall
-                Layout.preferredHeight: JamiTheme.avatarSizeInCall
                 Layout.topMargin: JamiTheme.swarmDetailsPageTopMargin
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
 
+                newConversation: true
                 imageId: LRCInstance.selectedConvUid
-
-                showPresenceIndicator: false
+                avatarSize: JamiTheme.avatarSizeInCall
             }
 
             EditableLineEdit {
