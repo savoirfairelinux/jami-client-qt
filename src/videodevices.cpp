@@ -174,10 +174,8 @@ VideoFormatFpsModel::roleNames() const
 int
 VideoFormatFpsModel::getCurrentIndex() const
 {
-    QString currentDeviceId = videoDevices_->get_defaultId();
     float currentFps = videoDevices_->get_defaultFps();
     auto resultList = match(index(0, 0), FPS, QVariant(currentFps));
-
     return resultList.size() > 0 ? resultList[0].row() : 0;
 }
 
@@ -291,21 +289,26 @@ VideoDevices::getDefaultDevice()
 }
 
 QString
-VideoDevices::startDevice(const QString& deviceId, bool force)
+VideoDevices::startDevice(const QString& id, bool force)
 {
-    if (deviceId.isEmpty())
+    if (id.isEmpty())
         return {};
-    lrcInstance_->renderer()->addDistantRenderer(deviceId);
+    auto& avModel = lrcInstance_->avModel();
+    if (avModel.hasRenderer(id)) {
+        if (!force) {
+            return id;
+        }
+        avModel.stopPreview(id);
+    }
     deviceOpen_ = true;
-    return lrcInstance_->renderer()->startPreviewing(deviceId, force);
+    return avModel.startPreview(id);
 }
 
 void
-VideoDevices::stopDevice(const QString& deviceId, bool force)
+VideoDevices::stopDevice(const QString& id, bool force)
 {
-    if (!deviceId.isEmpty() && (!lrcInstance_->hasActiveCall(true) || force)) {
-        lrcInstance_->renderer()->stopPreviewing(deviceId);
-        lrcInstance_->renderer()->removeDistantRenderer(deviceId);
+    if (!id.isEmpty() && (!lrcInstance_->hasActiveCall(true) || force)) {
+        lrcInstance_->avModel().stopPreview(id);
         deviceOpen_ = false;
     }
 }
@@ -481,17 +484,6 @@ VideoDevices::onVideoDeviceEvent()
         Q_EMIT deviceListChanged(currentDeviceListSize);
     } else if (deviceOpen_) {
         updateData();
-
-        // Use QueuedConnection to make sure that it happens at the event loop of current device
-        Utils::oneShotConnect(
-            lrcInstance_->renderer(),
-            &RenderManager::distantRenderingStopped,
-            this,
-            [this, cb](const QString& id) {
-                if (this->getDefaultDevice() == id)
-                    cb();
-            },
-            Qt::QueuedConnection);
     } else {
         cb();
     }
