@@ -39,8 +39,7 @@ Item {
     height: boothLayout.height
 
     function startBooth() {
-        preview.deviceId = VideoDevices.getDefaultDevice()
-        preview.rendererId = VideoDevices.startDevice(preview.deviceId)
+        preview.startWithId(VideoDevices.getDefaultDevice())
         isPreviewing = true
     }
 
@@ -130,17 +129,19 @@ Item {
                 showPresenceIndicator: false
             }
 
-            PhotoboothPreviewRender {
+            LocalVideo {
                 id: preview
 
                 anchors.fill: parent
                 anchors.margins: 1
 
-                property string deviceId: VideoDevices.getDefaultDevice()
-                rendererId: ""
-
                 visible: isPreviewing
-                lrcInstance: LRCInstance
+
+                deviceId: VideoDevices.getDefaultDevice()
+
+                function takePhoto() {
+                    return videoProvider.captureVideoFrame(videoSink)
+                }
 
                 layer.enabled: true
                 layer.effect: OpacityMask {
@@ -149,11 +150,6 @@ Item {
                         height: avatarSize
                         radius: avatarSize / 2
                     }
-                }
-
-                onRenderingStopped: {
-                    if (root.visible)
-                        stopBooth()
                 }
             }
 

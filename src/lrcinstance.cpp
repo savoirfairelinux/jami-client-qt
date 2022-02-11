@@ -33,7 +33,6 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          ConnectivityMonitor* connectivityMonitor,
                          bool muteDring)
     : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
-    , renderer_(std::make_unique<RenderManager>(lrc_->getAVModel()))
     , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
     , threadPool_(new QThreadPool(this))
 {
@@ -67,12 +66,6 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
         set_currentAccountId(accountList.at(0));
     }
 };
-
-RenderManager*
-LRCInstance::renderer()
-{
-    return renderer_.get();
-}
 
 UpdateManager*
 LRCInstance::getUpdateManager()
@@ -400,7 +393,6 @@ LRCInstance::makeConversationPermanent(const QString& convId, const QString& acc
 void
 LRCInstance::finish()
 {
-    renderer_.reset();
     lrc_.reset();
 }
 
