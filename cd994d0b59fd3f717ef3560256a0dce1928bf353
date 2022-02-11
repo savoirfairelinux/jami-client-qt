@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "680f33eb_2af61acb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-02-11T15:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e39bd5c4_a4ae0d46",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "cd994d0b59fd3f717ef3560256a0dce1928bf353",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f60775e2_5615a999",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-11T14:52:36Z",
       "side": 1,
       "message": "add space",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 4
+      },
+      "revId": "cd994d0b59fd3f717ef3560256a0dce1928bf353",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6f19dec_222ef15a",
+        "filename": "src/utilsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-02-11T15:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f60775e2_5615a999",
       "range": {
         "startLine": 96,
         "startChar": 4,
@@ -141,6 +189,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfc8edc2_10bd5d13",
+        "filename": "src/utilsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-02-11T15:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20f9feca_39c6f555",
+      "range": {
+        "startLine": 101,
+        "startChar": 77,
+        "endLine": 101,
+        "endChar": 94
+      },
+      "revId": "cd994d0b59fd3f717ef3560256a0dce1928bf353",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b216f67_858fdb93",
@@ -154,6 +226,30 @@
       "writtenOn": "2022-02-11T14:52:36Z",
       "side": 1,
       "message": "QString getDefaultRecordPath() const; would be more correct",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 9
+      },
+      "revId": "cd994d0b59fd3f717ef3560256a0dce1928bf353",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfb22e38_fd802504",
+        "filename": "src/utilsadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-02-11T15:11:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b216f67_858fdb93",
       "range": {
         "startLine": 104,
         "startChar": 4,
