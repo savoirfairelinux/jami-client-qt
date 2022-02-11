@@ -33,11 +33,94 @@ Rectangle {
     color: JamiTheme.chatviewBgColor
 
     signal createSwarmClicked(string title, string description, string avatar)
+    signal removeMember(string convId, string member)
+
+    onVisibleChanged: {
+        UtilsAdapter.setSwarmCreationImageFromString()
+    }
+
+    property var members: []
+
+    RowLayout {
+        id: labelsMember
+        anchors.top: root.top
+        anchors.topMargin: 16
+        anchors.leftMargin: 16
+        Layout.preferredWidth: root.width
+        spacing: 16
+
+        Label {
+            text: qsTr("To:")
+            font.bold: true
+            color: JamiTheme.textColor
+        }
+
+        ScrollView {
+            Layout.preferredWidth: root.width
+            Layout.fillWidth: true
+            Layout.preferredHeight: 48
+            Layout.topMargin: 16
+            clip: true
+
+            RowLayout {
+                anchors.fill: parent
+                Repeater {
+                    id: repeater
+
+                    delegate: Rectangle {
+                        id: delegate
+                        radius: (delegate.height + 12) / 2
+                        width: childrenRect.width + 12
+                        height: childrenRect.height + 12
+
+                        RowLayout {
+                            anchors.centerIn: parent
+
+                            Label {
+                                text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
+                                color: JamiTheme.textColor
+                            }
+
+                            PushButton {
+                                id: removeUserBtn
+
+                                Layout.leftMargin: 8
+
+                                preferredSize: 24
+
+                                source: JamiResources.round_close_24dp_svg
+                                toolTipText: JamiStrings.removeMember
+
+                                normalColor: "transparent"
+                                imageColor: "transparent"
+
+                                onClicked: root.removeMember(modelData.convId, modelData.uri)
+                            }
+                        }
+
+                        color: "grey"
+                    }
+                    model: root.members
+                }
+            }
+        }
+
+
+    }
 
     ColumnLayout {
         id: mainLayout
-
         anchors.centerIn: root
+
+        PhotoboothView {
+            id: currentAccountAvatar
+
+            Layout.alignment: Qt.AlignCenter
+
+            newConversation: true
+            imageId: root.visible ? "temp" : ""
+            avatarSize: 180
+        }
 
         EditableLineEdit {
             id: title
@@ -83,7 +166,7 @@ Rectangle {
             text: JamiStrings.createTheSwarm
 
             onClicked: {
-                createSwarmClicked(title.text, description.text, "")
+                createSwarmClicked(title.text, description.text, UtilsAdapter.swarmCreationImage())
             }
         }
     }

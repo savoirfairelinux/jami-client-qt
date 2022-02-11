@@ -395,6 +395,10 @@ Utils::conversationAvatar(LRCInstance* instance,
         auto& accInfo = instance->accountModel().getAccountInfo(
             accountId.isEmpty() ? instance->get_currentAccountId() : accountId);
         auto* convModel = accInfo.conversationModel.get();
+        auto avatarb64 = convModel->avatar(convId);
+        if (!avatarb64.isEmpty())
+            return scaleAndFrame(imageFromBase64String(avatarb64, true), size);
+        // Else, generate an avatar
         auto members = convModel->peersForConversation(convId);
         if (members.size() < 1)
             return avatar;
@@ -416,6 +420,16 @@ Utils::conversationAvatar(LRCInstance* instance,
         qDebug() << Q_FUNC_INFO << e.what();
     }
     return avatar;
+}
+
+QImage
+Utils::tempConversationAvatar(const QSize& size)
+{
+    QString img = QByteArrayFromFile(QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
+                                     + "tmpSwarmImage");
+    if (img.isEmpty())
+        return fallbackAvatar(QString(), QString(), size);
+    return scaleAndFrame(imageFromBase64String(img, true), size);
 }
 
 QImage

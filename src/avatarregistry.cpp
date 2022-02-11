@@ -35,6 +35,10 @@ AvatarRegistry::AvatarRegistry(LRCInstance* instance, QObject* parent)
             &AvatarRegistry::addOrUpdateImage,
             Qt::UniqueConnection);
 
+    connect(lrcInstance_, &LRCInstance::base64SwarmAvatarChanged, this, [&] {
+        addOrUpdateImage("temp");
+    });
+
     if (!lrcInstance_->get_currentAccountId().isEmpty())
         connectAccount();
 }
@@ -61,6 +65,12 @@ AvatarRegistry::connectAccount()
             &ContactModel::profileUpdated,
             this,
             &AvatarRegistry::onProfileUpdated,
+            Qt::UniqueConnection);
+
+    connect(lrcInstance_->getCurrentConversationModel(),
+            &ConversationModel::conversationUpdated,
+            this,
+            &AvatarRegistry::addOrUpdateImage,
             Qt::UniqueConnection);
 }
 
