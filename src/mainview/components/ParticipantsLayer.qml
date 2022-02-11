@@ -27,10 +27,10 @@ Item {
     // returns true if participant is not fully maximized
     function showMaximize(pX, pY, pW, pH) {
         // Hack: -1 offset added to avoid problems with odd sizes
-        return (pX - distantRenderer.getXOffset() !== 0
-                || pY - distantRenderer.getYOffset() !== 0
-                || pW < (distantRenderer.width - distantRenderer.getXOffset() * 2 - 1)
-                || pH < (distantRenderer.height - distantRenderer.getYOffset() * 2 - 1))
+        return (pX - distantRenderer.contentRect.x !== 0
+                || pY - distantRenderer.contentRect.y !== 0
+                || pW < (distantRenderer.width - distantRenderer.contentRect.x * 2 -  1)
+                || pH < (distantRenderer.height - distantRenderer.contentRect.y * 2 - 1))
     }
 
     function update(infos) {
@@ -48,13 +48,13 @@ Item {
                 var participant = infos.find(e => e.uri === participantOverlays[p].uri);
                 if (participant) {
                     // Update participant's information
-                    var newX = Math.trunc(distantRenderer.getXOffset()
-                                          + participant.x * distantRenderer.getScaledWidth())
-                    var newY = Math.trunc(distantRenderer.getYOffset()
-                                          + participant.y * distantRenderer.getScaledHeight())
+                    var newX = Math.trunc(distantRenderer.contentRect.x
+                                          + participant.x * distantRenderer.xScale)
+                    var newY = Math.trunc(distantRenderer.contentRect.y
+                                          + participant.y * distantRenderer.yScale)
 
-                    var newWidth = Math.ceil(participant.w * distantRenderer.getScaledWidth())
-                    var newHeight = Math.ceil(participant.h * distantRenderer.getScaledHeight())
+                    var newWidth = Math.ceil(participant.w * distantRenderer.xScale)
+                    var newHeight = Math.ceil(participant.h * distantRenderer.yScale)
 
                     var newVisible = participant.w !== 0 && participant.h !== 0
                     if (participantOverlays[p].x !== newX)
@@ -100,13 +100,17 @@ Item {
             for (var infoVariant in infos) {
                 // Only create overlay for new participants
                 if (!currentUris.includes(infos[infoVariant].uri)) {
-                    var hover = participantComponent.createObject(root, {
-                                                                      x: Math.trunc(distantRenderer.getXOffset() + infos[infoVariant].x * distantRenderer.getScaledWidth()),
-                                                                      y: Math.trunc(distantRenderer.getYOffset() + infos[infoVariant].y * distantRenderer.getScaledHeight()),
-                                                                      width: Math.ceil(infos[infoVariant].w * distantRenderer.getScaledWidth()),
-                                                                      height: Math.ceil(infos[infoVariant].h * distantRenderer.getScaledHeight()),
-                                                                      visible: infos[infoVariant].w !== 0 && infos[infoVariant].h !== 0
-                                                                  })
+                    const infoObj = {
+                        x: Math.trunc(distantRenderer.contentRect.x
+                                      + infos[infoVariant].x * distantRenderer.xScale),
+                        y: Math.trunc(distantRenderer.contentRect.y
+                                      + infos[infoVariant].y * distantRenderer.yScale),
+                        width: Math.ceil(infos[infoVariant].w * distantRenderer.xScale),
+                        height: Math.ceil(infos[infoVariant].h * distantRenderer.yScale),
+                        visible: infos[infoVariant].w !== 0 && infos[infoVariant].h !== 0
+                    }
+                    print("OOOOOOOOOOOO", infos[infoVariant].uri, JSON.stringify(infoObj))
+                    var hover = participantComponent.createObject(root, infoObj)
                     if (!hover) {
                         console.log("Error when creating the hover")
                         return
