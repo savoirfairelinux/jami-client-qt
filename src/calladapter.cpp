@@ -185,7 +185,7 @@ CallAdapter::onCallStatusChanged(const QString& callId, int code)
         case lrc::api::call::Status::PEER_BUSY:
         case lrc::api::call::Status::TIMEOUT:
         case lrc::api::call::Status::TERMINATING: {
-            lrcInstance_->renderer()->removeDistantRenderer(callId);
+            // lrcInstance_->renderer()->removeDistantRenderer(callId);
             const auto& convInfo = lrcInstance_->getConversationFromCallId(callId);
             if (convInfo.uid.isEmpty()) {
                 return;
@@ -285,7 +285,7 @@ void
 CallAdapter::onCallAddedToConference(const QString& callId, const QString& confId)
 {
     Q_UNUSED(callId)
-    lrcInstance_->renderer()->addDistantRenderer(confId);
+    // lrcInstance_->renderer()->addDistantRenderer(confId);
     saveConferenceSubcalls();
 }
 
@@ -452,7 +452,7 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
         auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
         if (accInfo.profileInfo.type != lrc::api::profile::Type::SIP)
             accInfo.callModel->setCurrentCall(call->id);
-        lrcInstance_->renderer()->addDistantRenderer(call->id);
+        // lrcInstance_->renderer()->addDistantRenderer(call->id);
     }
 
     updateCallOverlay(convInfo);

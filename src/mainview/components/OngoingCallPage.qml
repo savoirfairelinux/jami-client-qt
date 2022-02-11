@@ -41,7 +41,7 @@ Rectangle {
     property int previewToX: 0
     property int previewToY: 0
     property bool isAudioOnly: false
-    property alias callId: distantRenderer.rendererId
+    property string callId//: distantRenderer.rendererId
     property var linkedWebview: null
     property string callPreviewId: ""
 
@@ -166,110 +166,110 @@ Rectangle {
                         callOverlay.openCallViewContextMenuInPos(mouse.x, mouse.y)
                 }
 
-                DistantRenderer {
-                    id: distantRenderer
+//                DistantRenderer {
+//                    id: distantRenderer
 
-                    anchors.centerIn: parent
-                    anchors.fill: parent
-                    z: -1
+//                    anchors.centerIn: parent
+//                    anchors.fill: parent
+//                    z: -1
 
-                    lrcInstance: LRCInstance
-                    visible: !root.isAudioOnly
+//                    lrcInstance: LRCInstance
+//                    visible: !root.isAudioOnly
 
-                    onOffsetChanged: {
-                        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
-                    }
-                }
+//                    onOffsetChanged: {
+//                        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
+//                    }
+//                }
 
-                VideoCallPreviewRenderer {
-                    id: previewRenderer
+//                VideoCallPreviewRenderer {
+//                    id: previewRenderer
 
-                    lrcInstance: LRCInstance
-                    visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused &&
-                             ((VideoDevices.listSize !== 0 && AvAdapter.currentRenderingDeviceType === Video.DeviceType.CAMERA) || AvAdapter.currentRenderingDeviceType !== Video.DeviceType.CAMERA )
+//                    lrcInstance: LRCInstance
+//                    visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused &&
+//                             ((VideoDevices.listSize !== 0 && AvAdapter.currentRenderingDeviceType === Video.DeviceType.CAMERA) || AvAdapter.currentRenderingDeviceType !== Video.DeviceType.CAMERA )
 
-                    rendererId: root.callPreviewId
+//                    rendererId: root.callPreviewId
 
-                    onVisibleChanged: {
-                        if (!visible && !AccountAdapter.hasVideoCall()) {
-                            VideoDevices.stopDevice(rendererId, true)
-                        }
-                    }
+//                    onVisibleChanged: {
+//                        if (!visible && !AccountAdapter.hasVideoCall()) {
+//                            VideoDevices.stopDevice(rendererId, true)
+//                        }
+//                    }
 
-                    width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
-                    x: callPageMainRect.width - previewRenderer.width - previewMargin
-                    y: previewMarginYTop
+//                    width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
+//                    x: callPageMainRect.width - previewRenderer.width - previewMargin
+//                    y: previewMarginYTop
 
-                    states: [
-                        State {
-                            name: "geoChanging"
-                            PropertyChanges {
-                                target: previewRenderer
-                                x: previewToX
-                                y: previewToY
-                            }
-                        }
-                    ]
+//                    states: [
+//                        State {
+//                            name: "geoChanging"
+//                            PropertyChanges {
+//                                target: previewRenderer
+//                                x: previewToX
+//                                y: previewToY
+//                            }
+//                        }
+//                    ]
 
-                    transitions: Transition {
-                        PropertyAnimation {
-                            properties: "x,y"
-                            easing.type: Easing.OutExpo
-                            duration: 250
+//                    transitions: Transition {
+//                        PropertyAnimation {
+//                            properties: "x,y"
+//                            easing.type: Easing.OutExpo
+//                            duration: 250
 
-                            onStopped: {
-                                previewRenderer.state = ""
-                            }
-                        }
-                    }
+//                            onStopped: {
+//                                previewRenderer.state = ""
+//                            }
+//                        }
+//                    }
 
-                    MouseArea {
-                        id: dragMouseArea
+//                    MouseArea {
+//                        id: dragMouseArea
 
-                        anchors.fill: previewRenderer
+//                        anchors.fill: previewRenderer
 
-                        onPressed: function (mouse) {
-                            clickPos = Qt.point(mouse.x, mouse.y)
-                        }
+//                        onPressed: function (mouse) {
+//                            clickPos = Qt.point(mouse.x, mouse.y)
+//                        }
 
-                        onReleased: {
-                            previewRenderer.state = ""
-                            previewMagneticSnap()
-                        }
+//                        onReleased: {
+//                            previewRenderer.state = ""
+//                            previewMagneticSnap()
+//                        }
 
-                        onPositionChanged: function (mouse) {
-                            // Calculate mouse position relative change.
-                            var delta = Qt.point(mouse.x - clickPos.x,
-                                                 mouse.y - clickPos.y)
-                            var deltaW = previewRenderer.x + delta.x + previewRenderer.width
-                            var deltaH = previewRenderer.y + delta.y + previewRenderer.height
+//                        onPositionChanged: function (mouse) {
+//                            // Calculate mouse position relative change.
+//                            var delta = Qt.point(mouse.x - clickPos.x,
+//                                                 mouse.y - clickPos.y)
+//                            var deltaW = previewRenderer.x + delta.x + previewRenderer.width
+//                            var deltaH = previewRenderer.y + delta.y + previewRenderer.height
 
-                            // Check if the previewRenderer exceeds the border of callPageMainRect.
-                            if (deltaW < callPageMainRect.width
-                                    && previewRenderer.x + delta.x > 1)
-                                previewRenderer.x += delta.x
-                            if (deltaH < callPageMainRect.height
-                                    && previewRenderer.y + delta.y > 1)
-                                previewRenderer.y += delta.y
-                        }
-                    }
+//                            // Check if the previewRenderer exceeds the border of callPageMainRect.
+//                            if (deltaW < callPageMainRect.width
+//                                    && previewRenderer.x + delta.x > 1)
+//                                previewRenderer.x += delta.x
+//                            if (deltaH < callPageMainRect.height
+//                                    && previewRenderer.y + delta.y > 1)
+//                                previewRenderer.y += delta.y
+//                        }
+//                    }
 
-                    layer.enabled: true
-                    layer.effect: OpacityMask {
-                        maskSource: Rectangle {
-                            width: previewRenderer.width
-                            height: previewRenderer.height
-                            radius: JamiTheme.primaryRadius
-                        }
-                    }
+//                    layer.enabled: true
+//                    layer.effect: OpacityMask {
+//                        maskSource: Rectangle {
+//                            width: previewRenderer.width
+//                            height: previewRenderer.height
+//                            radius: JamiTheme.primaryRadius
+//                        }
+//                    }
 
-                    onWidthChanged: {
-                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
-                    }
-                    onPreviewImageScalingFactorChanged: {
-                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
-                    }
-                }
+//                    onWidthChanged: {
+//                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
+//                    }
+//                    onPreviewImageScalingFactorChanged: {
+//                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
+//                    }
+//                }
 
                 CallOverlay {
                     id: callOverlay

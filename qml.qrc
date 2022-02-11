@@ -5,6 +5,8 @@
         <file>src/constant/JamiQmlUtils.qml</file>
         <file>src/constant/JamiStrings.qml</file>
         <file>src/constant/JamiTheme.qml</file>
+        <file>src/commoncomponents/LocalVideo.qml</file>
+        <file>src/commoncomponents/RemoteVideo.qml</file>
         <file>src/commoncomponents/SettingParaCombobox.qml</file>
         <file>src/commoncomponents/PreferenceItemDelegate.qml</file>
         <file>src/commoncomponents/PasswordDialog.qml</file>

@@ -291,21 +291,31 @@ VideoDevices::getDefaultDevice()
 }
 
 QString
-VideoDevices::startDevice(const QString& deviceId, bool force)
+VideoDevices::startDevice(const QString& id, bool force)
 {
-    if (deviceId.isEmpty())
+    if (id.isEmpty())
         return {};
-    lrcInstance_->renderer()->addDistantRenderer(deviceId);
+    auto& avModel = lrcInstance_->avModel();
+    try {
+        auto& renderer = avModel.getRenderer(id);
+        if (renderer.isRendering()) {
+            if (!force) {
+                return id;
+            }
+            avModel.stopPreview(id);
+        }
+    } catch (std::out_of_range& e) {
+        qWarning() << e.what();
+    }
     deviceOpen_ = true;
-    return lrcInstance_->renderer()->startPreviewing(deviceId, force);
+    return avModel.startPreview(id);
 }
 
 void
-VideoDevices::stopDevice(const QString& deviceId, bool force)
+VideoDevices::stopDevice(const QString& id, bool force)
 {
-    if (!deviceId.isEmpty() && (!lrcInstance_->hasActiveCall(true) || force)) {
-        lrcInstance_->renderer()->stopPreviewing(deviceId);
-        lrcInstance_->renderer()->removeDistantRenderer(deviceId);
+    if (!id.isEmpty() && (!lrcInstance_->hasActiveCall(true) || force)) {
+        lrcInstance_->avModel().stopPreview(id);
         deviceOpen_ = false;
     }
 }
@@ -482,16 +492,16 @@ VideoDevices::onVideoDeviceEvent()
     } else if (deviceOpen_) {
         updateData();
 
-        // Use QueuedConnection to make sure that it happens at the event loop of current device
-        Utils::oneShotConnect(
-            lrcInstance_->renderer(),
-            &RenderManager::distantRenderingStopped,
-            this,
-            [this, cb](const QString& id) {
-                if (this->getDefaultDevice() == id)
-                    cb();
-            },
-            Qt::QueuedConnection);
+        //        // Use QueuedConnection to make sure that it happens at the event loop of current
+        //        device Utils::oneShotConnect(
+        //            lrcInstance_->renderer(),
+        //            &RenderManager::distantRenderingStopped,
+        //            this,
+        //            [this, cb](const QString& id) {
+        //                if (this->getDefaultDevice() == id)
+        //                    cb();
+        //            },
+        //            Qt::QueuedConnection);
     } else {
         cb();
     }
