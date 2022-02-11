@@ -53,6 +53,7 @@ public:
                                  const QString& avatar,
                                  const VectorString& participants);
     Q_INVOKABLE void setFilter(const QString& filterString);
+    Q_INVOKABLE void ignoreFiltering(const QVariant& hightlighted);
     Q_INVOKABLE QVariantMap getConvInfoMap(const QString& convId);
     Q_INVOKABLE void restartConversation(const QString& convId);
     Q_INVOKABLE void updateConversationTitle(const QString& convId, const QString& newTitle);
