@@ -62,7 +62,9 @@ main(int argc, char* argv[])
     QList<char*> qtWebEngineChromiumFlags;
 
 #ifdef Q_OS_LINUX
-    setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
+    if (!getenv("QT_QPA_PLATFORMTHEME")
+        && !(getenv("XDG_CURRENT_DESKTOP") == "KDE" || getenv("XDG_CURRENT_DESKTOP") == "GNOME"))
+        setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
     setenv("QML_DISABLE_DISK_CACHE", "1", true);
 
     /*
