@@ -25,7 +25,6 @@
 #endif
 
 #include "updatemanager.h"
-#include "rendermanager.h"
 #include "qtutils.h"
 #include "utils.h"
 
@@ -71,7 +70,6 @@ public:
 
     void finish();
 
-    RenderManager* renderer();
     UpdateManager* getUpdateManager();
 
     NewAccountModel& accountModel();
@@ -138,7 +136,6 @@ Q_SIGNALS:
 
 private:
     std::unique_ptr<Lrc> lrc_;
-    std::unique_ptr<RenderManager> renderer_;
     std::unique_ptr<UpdateManager> updateManager_;
 
     QString selectedConvUid_;
