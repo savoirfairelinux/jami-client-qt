@@ -98,6 +98,7 @@ QImage conversationAvatar(LRCInstance* instance,
 QImage getCirclePhoto(const QImage original, int sizePhoto);
 QImage halfCrop(const QImage original, bool leftSide);
 QColor getAvatarColor(const QString& canonicalUri);
+QImage tempConversationAvatar(const QSize& size);
 QImage fallbackAvatar(const QString& canonicalUriStr,
                       const QString& letterStr = {},
                       const QSize& size = defaultAvatarSize);

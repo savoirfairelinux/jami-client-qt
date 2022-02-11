@@ -62,20 +62,66 @@ Rectangle {
     property var highlighted: []
     property var highlightedMembers: []
 
-    function refreshHighlighted() {
-        var result = []
-        for (var idx in highlighted) {
-            var convId = highlighted[idx]
+    function refreshHighlighted(convId, highlightedStatus) {
+        var newH = root.highlighted
+        var newHm = root.highlightedMembers
+
+        if (highlightedStatus) {
             var item = ConversationsAdapter.getConvInfoMap(convId)
+            var added = false
             for (var idx in item.uris) {
                 var uri = item.uris[idx]
-                if (!result.indexOf(uri) != -1 && uri != CurrentAccount.uri) {
-                    result.push(uri)
+                if (!Array.from(newHm).find(r => r.uri === uri) && uri != CurrentAccount.uri) {
+                    newHm.push({"uri": uri, "convId": convId})
+                    added = true
                 }
             }
+            if (!added)
+                return false
+        } else {
+            newH = Array.from(newH).filter(r => r !== convId)
+            newHm = Array.from(newHm).filter(r => r.convId !== convId)
         }
-        highlightedMembers = result
+
+        // We can't have more than 8 participants yet.
+        if (newHm.length > 8) {
+            return false
+        }
+
+        newH.push(convId)
+        root.highlighted = newH
+        root.highlightedMembers = newHm
         ConversationsAdapter.ignoreFiltering(root.highlighted)
+        return true
+    }
+
+    function clearHighlighted() {
+        root.highlighted = []
+        root.highlightedMembers = []
+    }
+
+    function removeMember(convId, member) {
+        var refreshHighlighted = true
+        var newHm = []
+        for (var hm in root.highlightedMembers) {
+            var m = root.highlightedMembers[hm]
+            if (m.convId == convId && m.uri == member) {
+                continue;
+            } else if (m.convId == convId) {
+                refreshHighlighted = false
+            }
+            newHm.push(m)
+        }
+        root.highlightedMembers = newHm
+
+        if (refreshHighlighted) {
+            // Remove highlighted status if necessary
+            for (var d in swarmCurrentConversationList.contentItem.children) {
+                var delegate = swarmCurrentConversationList.contentItem.children[d]
+                if (delegate.convId == convId)
+                    delegate.highlighted = false
+            }
+        }
     }
 
     function showSwarmListView(v) {
@@ -282,22 +328,20 @@ Rectangle {
                 onVisibleChanged: {
                     if (!visible) {
                         highlighted = false
-                        root.refreshHighlighted()
+                        root.clearHighlighted()
                     }
                 }
 
                 onHighlightedChanged: function onHighlightedChanged() {
                     var currentHighlighted = root.highlighted
+                    if (!root.refreshHighlighted(convId, highlighted)) {
+                        highlighted = false
+                        return
+                    }
                     if (highlighted) {
                         root.highlighted.push(convId)
                     } else {
                         root.highlighted = Array.from(root.highlighted).filter(r => r !== convId)
-                    }
-                    root.refreshHighlighted()
-                    // We can't have more than 8 participants yet.
-                    if (root.highlightedMembers.length > 8) {
-                        highlighted = false
-                        root.refreshHighlighted()
                     }
                 }
             }

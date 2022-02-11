@@ -31,6 +31,7 @@
 #include "api/datatransfermodel.h"
 
 #include <QApplication>
+#include <QBuffer>
 #include <QClipboard>
 #include <QFileInfo>
 #include <QRegExp>
@@ -133,6 +134,12 @@ UtilsAdapter::getBestName(const QString& accountId, const QString& uid)
         return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(
             conv.participants[0].uri);
     return QString();
+}
+
+QString
+UtilsAdapter::getBestNameForUri(const QString& accountId, const QString& uri)
+{
+    return lrcInstance_->getAccountInfo(accountId).contactModel->bestNameForContact(uri);
 }
 
 const QString
@@ -470,6 +477,62 @@ UtilsAdapter::supportedLang()
         }
     }
     return result;
+}
+
+QString
+UtilsAdapter::swarmCreationImage(const QString& imageId) const
+{
+    if (imageId == "temp")
+        return Utils::QByteArrayFromFile(
+            QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "tmpSwarmImage");
+    return lrcInstance_->getCurrentConversationModel()->avatar(imageId);
+}
+
+void
+UtilsAdapter::setSwarmCreationImage(const QString& image, const QString& imageId)
+{
+    // Compress the image before saving
+    auto img = Utils::scaleAndFrame(Utils::imageFromBase64String(image, false), QSize(256, 256));
+    QByteArray ba;
+    QBuffer bu(&ba);
+    img.save(&bu, "PNG");
+    // Save the image
+    if (imageId == "temp") {
+        QFile file(QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
+                   + "tmpSwarmImage");
+        file.open(QIODevice::WriteOnly);
+        file.write(ba.toBase64());
+        file.close();
+        Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
+    } else {
+        lrcInstance_->getCurrentConversationModel()->updateConversationInfo(imageId,
+                                                                            {{"avatar",
+                                                                              ba.toBase64()}});
+    }
+}
+
+void
+UtilsAdapter::setSwarmCreationImageFromFile(const QString& path, const QString& imageId)
+{
+    // Compress the image before saving
+    auto image = Utils::QByteArrayFromFile(path);
+    auto img = Utils::scaleAndFrame(Utils::imageFromBase64Data(image, false), QSize(256, 256));
+    QByteArray ba;
+    QBuffer bu(&ba);
+    img.save(&bu, "PNG");
+    // Save the image
+    if (imageId == "temp") {
+        QFile file(QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
+                   + "tmpSwarmImage");
+        file.open(QIODevice::WriteOnly);
+        file.write(ba.toBase64());
+        file.close();
+        Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
+    } else {
+        lrcInstance_->getCurrentConversationModel()->updateConversationInfo(imageId,
+                                                                            {{"avatar",
+                                                                              ba.toBase64()}});
+    }
 }
 
 bool

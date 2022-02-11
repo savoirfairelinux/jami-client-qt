@@ -376,6 +376,10 @@ Rectangle {
                 pushNewSwarmPage()
             }
         }
+
+        onHighlightedMembersChanged: {
+            newSwarmPage.members = mainViewSidePanel.highlightedMembers
+        }
     }
 
     CallStackView {
@@ -424,6 +428,10 @@ Rectangle {
 
         onVisibleChanged: {
             mainViewSidePanel.showSwarmListView(newSwarmPage.visible)
+        }
+
+        onRemoveMember: function(convId, member) {
+            mainViewSidePanel.removeMember(convId, member)
         }
 
         onCreateSwarmClicked: function(title, description, avatar) {
