@@ -33,10 +33,24 @@ Rectangle {
 
     signal createSwarmClicked(string title, string description, string avatar)
 
+    onVisibleChanged: {
+        UtilsAdapter.setSwarmCreationImage()
+    }
+
     ColumnLayout {
         id: mainLayout
 
         anchors.centerIn: root
+
+        PhotoboothView {
+            id: currentAccountAvatar
+
+            Layout.alignment: Qt.AlignCenter
+
+            newConversation: true
+            imageId: root.visible ? "temp" : ""
+            avatarSize: 180
+        }
 
         EditableLineEdit {
             id: title
@@ -82,7 +96,7 @@ Rectangle {
             text: JamiStrings.createTheSwarm
 
             onClicked: {
-                createSwarmClicked(title.text, description.text, "")
+                createSwarmClicked(title.text, description.text, UtilsAdapter.swarmCreationImage())
             }
         }
     }

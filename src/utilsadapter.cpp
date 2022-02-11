@@ -31,6 +31,7 @@
 #include "api/datatransfermodel.h"
 
 #include <QApplication>
+#include <QBuffer>
 #include <QClipboard>
 #include <QFileInfo>
 #include <QRegExp>
@@ -454,6 +455,46 @@ UtilsAdapter::supportedLang()
         }
     }
     return result;
+}
+
+QString
+UtilsAdapter::swarmCreationImage() const
+{
+    return Utils::QByteArrayFromFile(QStandardPaths::writableLocation(QStandardPaths::CacheLocation)
+                                     + "tmpSwarmImage");
+}
+
+void
+UtilsAdapter::setSwarmCreationImage(const QString& image)
+{
+    // Compress the image before saving
+    auto img = Utils::scaleAndFrame(Utils::imageFromBase64String(image, false), QSize(256, 256));
+    QByteArray ba;
+    QBuffer bu(&ba);
+    img.save(&bu, "PNG");
+    // Save the image
+    QFile file(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "tmpSwarmImage");
+    file.open(QIODevice::WriteOnly);
+    file.write(ba.toBase64());
+    file.close();
+    Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
+}
+
+void
+UtilsAdapter::setSwarmCreationImageFromFile(const QString& path)
+{
+    // Compress the image before saving
+    auto image = Utils::QByteArrayFromFile(path);
+    auto img = Utils::scaleAndFrame(Utils::imageFromBase64Data(image, false), QSize(256, 256));
+    QByteArray ba;
+    QBuffer bu(&ba);
+    img.save(&bu, "PNG");
+    // Save the image
+    QFile file(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "tmpSwarmImage");
+    file.open(QIODevice::WriteOnly);
+    file.write(ba.toBase64());
+    file.close();
+    Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
 }
 
 bool

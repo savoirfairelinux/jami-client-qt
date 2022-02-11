@@ -30,6 +30,7 @@ Item {
 
     property bool isPreviewing: false
     property alias imageId: avatar.imageId
+    property bool newConversation: false
     property real avatarSize
 
     signal focusOnPreviousItem
@@ -95,7 +96,10 @@ Item {
             }
 
             var filePath = UtilsAdapter.getAbsPath(file)
-            AccountAdapter.setCurrentAccountAvatarFile(filePath)
+            if (!root.newConversation)
+                AccountAdapter.setCurrentAccountAvatarFile(filePath)
+            else
+                UtilsAdapter.setSwarmCreationImageFromFile(filePath)
         }
 
         onRejected: {
@@ -125,6 +129,8 @@ Item {
                 anchors.margins: 1
 
                 visible: !preview.visible
+
+                mode: newConversation? Avatar.Mode.Conversation : Avatar.Mode.Account
 
                 fillMode: Image.PreserveAspectCrop
                 showPresenceIndicator: false
@@ -224,8 +230,11 @@ Item {
                 onClicked: {
                     if (isPreviewing) {
                         flashAnimation.start()
-                        AccountAdapter.setCurrentAccountAvatarBase64(
-                                    preview.takePhoto(avatarSize))
+                        var photo = preview.takePhoto(avatarSize)
+                        if (!root.newConversation)
+                            AccountAdapter.setCurrentAccountAvatarBase64(photo)
+                        else
+                            UtilsAdapter.setSwarmCreationImage(photo)
                         stopBooth()
                         return
                     }
@@ -269,8 +278,12 @@ Item {
 
                 onClicked: {
                     stopBooth()
-                    if (!isPreviewing)
-                        AccountAdapter.setCurrentAccountAvatarBase64()
+                    if (!isPreviewing) {
+                        if (!root.newConversation)
+                            AccountAdapter.setCurrentAccountAvatarBase64()
+                        else
+                            UtilsAdapter.setSwarmCreationImage()
+                    }
                 }
             }
 

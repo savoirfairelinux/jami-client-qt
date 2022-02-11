@@ -91,6 +91,9 @@ public:
     Q_INVOKABLE void monitor(const bool& continuous);
     Q_INVOKABLE void clearInteractionsCache(const QString& accountId, const QString& convUid);
     Q_INVOKABLE QVariantMap supportedLang();
+    Q_INVOKABLE QString swarmCreationImage() const;
+    Q_INVOKABLE void setSwarmCreationImage(const QString& image = "");
+    Q_INVOKABLE void setSwarmCreationImageFromFile(const QString& path);
 
     // For Swarm details page
     Q_INVOKABLE bool getContactPresence(const QString& accountId, const QString& uri);
