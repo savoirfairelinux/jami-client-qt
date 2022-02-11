@@ -20,6 +20,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+import QtMultimedia
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -35,10 +36,11 @@ ColumnLayout {
     property int itemWidth
 
     function startPreviewing(force = false) {
-        if (root.visible) {
-            previewWidget.deviceId = VideoDevices.getDefaultDevice()
-            previewWidget.rendererId = VideoDevices.startDevice(previewWidget.deviceId, force)
+        if (!visible) {
+            return
         }
+        const deviceId = VideoDevices.getDefaultDevice()
+        previewWidget.startWithId(deviceId, force)
     }
 
     function updatePreviewRatio() {
@@ -221,27 +223,10 @@ ColumnLayout {
 
         color: JamiTheme.primaryForegroundColor
 
-        DistantRenderer {
+        LocalVideo {
             id: previewWidget
 
-            anchors.fill: rectBox
-            property string deviceId: VideoDevices.getDefaultDevice()
-            rendererId: VideoDevices.getDefaultDevice()
-
-            lrcInstance: LRCInstance
-
-            layer.enabled: true
-            layer.effect: OpacityMask {
-                maskSource: rectBox
-            }
-        }
-
-        onVisibleChanged: {
-            if (visible) {
-                VideoDevices.stopDevice(previewWidget.deviceId)
-                startPreviewing(true)
-            } else
-                VideoDevices.stopDevice(previewWidget.deviceId)
+            anchors.fill: parent
         }
     }
 
