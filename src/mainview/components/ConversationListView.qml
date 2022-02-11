@@ -39,10 +39,7 @@ JamiListView {
 
     // highlight selection
     // down and hover states are done within the delegate
-    highlight: Rectangle {
-        width: ListView.view ? ListView.view.width : 0
-        color: JamiTheme.selectedColor
-    }
+
     highlightMoveDuration: 60
 
     headerPositioning: ListView.OverlayHeader

@@ -32,7 +32,7 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
-    signal createSwarmClicked
+    signal createSwarmClicked(string title, string description, string avatar)
 
     ColumnLayout {
         id: mainLayout
@@ -83,8 +83,7 @@ Rectangle {
             text: JamiStrings.createTheSwarm
 
             onClicked: {
-                ConversationsAdapter.createSwarm(title.text, description.text, "", [])
-                createSwarmClicked()
+                createSwarmClicked(title.text, description.text, "")
             }
         }
     }
