@@ -384,6 +384,12 @@ ConversationsAdapter::setFilter(const QString& filterString)
     Q_EMIT textFilterChanged(filterString);
 }
 
+void
+ConversationsAdapter::ignoreFiltering(const QVariant& hightlighted)
+{
+    convModel_->ignoreFiltering(hightlighted.toStringList());
+}
+
 QVariantMap
 ConversationsAdapter::getConvInfoMap(const QString& convId)
 {
@@ -392,9 +398,9 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
         return {};
     QString peerUri {};
     QString bestId {};
+    const auto& accountInfo = lrcInstance_->getAccountInfo(convInfo.accountId);
     if (convInfo.isCoreDialog()) {
         try {
-            const auto& accountInfo = lrcInstance_->getAccountInfo(convInfo.accountId);
             peerUri = accountInfo.conversationModel->peersForConversation(convId).at(0);
             bestId = accountInfo.contactModel->bestIdForContact(peerUri);
         } catch (...) {
@@ -425,6 +431,7 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             {"bestId", bestId},
             {"title", lrcInstance_->getCurrentConversationModel()->title(convId)},
             {"uri", peerUri},
+            {"uris", accountInfo.conversationModel->peersForConversation(convId)},
             {"isSwarm", convInfo.isSwarm()},
             {"isRequest", convInfo.isRequest},
             {"needsSyncing", convInfo.needsSyncing},

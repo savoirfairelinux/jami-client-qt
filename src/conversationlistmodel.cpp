@@ -117,7 +117,9 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     bool match {false};
 
     // banned contacts require exact match
-    if (index.data(Role::IsBanned).toBool()) {
+    if (ignored_.contains(index.data(Role::UID).toString())) {
+        match = true;
+    } else if (index.data(Role::IsBanned).toBool()) {
         if (!rx.isValid()) {
             Q_FOREACH (const auto& filter, toFilter) {
                 auto matchResult = rx.match(filter);
