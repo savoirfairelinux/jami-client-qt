@@ -58,6 +58,7 @@ public:
     Q_INVOKABLE bool checkStartupLink();
     Q_INVOKABLE void setConversationFilter(const QString& filter);
     Q_INVOKABLE const QString getBestName(const QString& accountId, const QString& uid);
+    Q_INVOKABLE QString getBestNameForUri(const QString& accountId, const QString& uri);
     Q_INVOKABLE const QString getPeerUri(const QString& accountId, const QString& uid);
     Q_INVOKABLE QString getBestId(const QString& accountId);
     Q_INVOKABLE const QString getBestId(const QString& accountId, const QString& uid);
@@ -91,6 +92,11 @@ public:
     Q_INVOKABLE void monitor(const bool& continuous);
     Q_INVOKABLE void clearInteractionsCache(const QString& accountId, const QString& convUid);
     Q_INVOKABLE QVariantMap supportedLang();
+    Q_INVOKABLE QString swarmCreationImage(const QString& imageId = "temp") const;
+    Q_INVOKABLE void setSwarmCreationImage(const QString& image = "",
+                                           const QString& imageId = "temp");
+    Q_INVOKABLE void setSwarmCreationImageFromFile(const QString& path,
+                                                   const QString& imageId = "temp");
 
     // For Swarm details page
     Q_INVOKABLE bool getContactPresence(const QString& accountId, const QString& uri);

@@ -376,6 +376,10 @@ Rectangle {
                 pushNewSwarmPage()
             }
         }
+
+        onHighlightedMembersChanged: {
+            newSwarmPage.members = mainViewSidePanel.highlightedMembers
+        }
     }
 
     CallStackView {

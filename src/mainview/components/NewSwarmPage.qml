@@ -33,10 +33,65 @@ Rectangle {
 
     signal createSwarmClicked(string title, string description, string avatar)
 
+    onVisibleChanged: {
+        UtilsAdapter.setSwarmCreationImage()
+    }
+
+    property var members: []
+
+    RowLayout {
+        id: labelsMember
+        anchors.top: root.top
+        anchors.topMargin: 16
+        anchors.leftMargin: 16
+        Layout.preferredWidth: root.width
+        spacing: 16
+
+        Label {
+            text: qsTr("To:")
+            font.bold: true
+            color: JamiTheme.textColor
+        }
+        // TODO flow
+
+        Repeater {
+            id: repeater
+
+            delegate: Rectangle {
+                id: delegate
+                radius: (delegate.height + 12) / 2
+                width: childrenRect.width + 12
+                height: childrenRect.height + 12
+
+                RowLayout {
+                    anchors.centerIn: parent
+
+                    Label {
+                        text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData)
+                        color: JamiTheme.textColor
+                    }
+                    // TODO close button
+                }
+
+                color: "grey"
+            }
+            model: root.members
+        }
+    }
+
     ColumnLayout {
         id: mainLayout
-
         anchors.centerIn: root
+
+        PhotoboothView {
+            id: currentAccountAvatar
+
+            Layout.alignment: Qt.AlignCenter
+
+            newConversation: true
+            imageId: root.visible ? "temp" : ""
+            avatarSize: 180
+        }
 
         EditableLineEdit {
             id: title
@@ -82,7 +137,7 @@ Rectangle {
             text: JamiStrings.createTheSwarm
 
             onClicked: {
-                createSwarmClicked(title.text, description.text, "")
+                createSwarmClicked(title.text, description.text, UtilsAdapter.swarmCreationImage())
             }
         }
     }
