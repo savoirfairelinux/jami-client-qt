@@ -628,4 +628,5 @@ Item {
     property string kickMember: qsTr("Kick member")
     property string administrator: qsTr("Administrator")
     property string invited: qsTr("Invited")
+    property string removeMember: qsTr("Remove member")
 }

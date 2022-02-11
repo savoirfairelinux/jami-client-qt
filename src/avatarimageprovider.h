@@ -60,9 +60,12 @@ public:
         }
 
         auto type = idInfo.at(0);
-        if (type == "conversation")
+        if (type == "conversation") {
+            if (imageId == "temp")
+                return Utils::tempConversationAvatar(requestedSize);
+
             return Utils::conversationAvatar(lrcInstance_, imageId, requestedSize);
-        else if (type == "account")
+        } else if (type == "account")
             return Utils::accountPhoto(lrcInstance_, imageId, requestedSize);
         else if (type == "contact")
             return Utils::contactPhoto(lrcInstance_, imageId, requestedSize);

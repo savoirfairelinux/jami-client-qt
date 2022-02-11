@@ -135,6 +135,7 @@ Q_SIGNALS:
     void quitEngineRequested();
     void conversationUpdated(const QString& convId, const QString& accountId);
     void draftSaved(const QString& convId);
+    void base64SwarmAvatarChanged();
 
 private:
     std::unique_ptr<Lrc> lrc_;
