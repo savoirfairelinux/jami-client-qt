@@ -28,6 +28,38 @@
 
 using namespace lrc::api;
 
+extern "C" {
+#include "libavutil/frame.h"
+}
+
+#include <QVideoSink>
+#include <QVideoFrame>
+#include <QQmlEngine>
+
+class VideoProvider final : public QObject
+{
+    Q_OBJECT
+    QML_ELEMENT
+public:
+    explicit VideoProvider(AVModel& avModel, QObject* parent = nullptr);
+    ~VideoProvider() = default;
+
+    Q_INVOKABLE void registerSink(const QString& id, QVideoSink* obj);
+    Q_INVOKABLE void unregisterSink(QVideoSink* obj);
+
+private Q_SLOTS:
+    void onRendererStarted(const QString& id);
+    void onFrameBufferRequested(const QString& id, AVFrame* avframe);
+    void onFrameUpdated(const QString& id);
+    void onRendererStopped(const QString& id);
+
+private:
+    AVModel& avModel_;
+
+    std::map<QVideoSink*, QString> qVideoSinks_;
+    std::map<QString, QVideoFrame*> qVideoFrames_;
+};
+
 /*
  * This class acts as a QImage rendering sink and manages
  * signal/slot connections to it's underlying (AVModel) renderer

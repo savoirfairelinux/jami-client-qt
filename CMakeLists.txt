@@ -46,6 +46,7 @@ set(QT_MODULES
     WebEngineQuick
     WebChannel
     WebEngineWidgets
+    Multimedia
 )
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
 foreach(MODULE ${QT_MODULES})
@@ -199,6 +200,17 @@ set(COMMON_HEADERS
     ${SRC_DIR}/videodevices.h
     ${SRC_DIR}/previewengine.h
 )
+
+# For avframe dependency on Windows/macOS.
+if(NOT DEFINED LIBAV_INCLUDE_PATH)
+   set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib/")
+   if(WIN32)
+      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include/)
+   elseif(APPLE)
+      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg)
+   endif()
+endif()
+include_directories(${LIBAV_INCLUDE_PATH})
 
 if(MSVC)
     set(WINDOWS_SYS_LIBS

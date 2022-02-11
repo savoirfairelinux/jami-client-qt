@@ -20,6 +20,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+import QtMultimedia
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -35,10 +36,11 @@ ColumnLayout {
     property int itemWidth
 
     function startPreviewing(force = false) {
-        if (root.visible) {
-            previewWidget.deviceId = VideoDevices.getDefaultDevice()
-            previewWidget.rendererId = VideoDevices.startDevice(previewWidget.deviceId, force)
+        if (!visible) {
+            return
         }
+        const deviceId = VideoDevices.getDefaultDevice()
+        previewWidget.startWithId(deviceId, force)
     }
 
     function updatePreviewRatio() {
@@ -221,27 +223,28 @@ ColumnLayout {
 
         color: JamiTheme.primaryForegroundColor
 
-        DistantRenderer {
+        VideoOutput {
             id: previewWidget
 
-            anchors.fill: rectBox
-            property string deviceId: VideoDevices.getDefaultDevice()
-            rendererId: VideoDevices.getDefaultDevice()
+            anchors.fill: parent
 
-            lrcInstance: LRCInstance
+            property string deviceId
 
-            layer.enabled: true
-            layer.effect: OpacityMask {
-                maskSource: rectBox
+            function startWithId(id, force = false) {
+                videoProvider.unregisterSink(videoSink)
+                if (id.length === 0) {
+                    VideoDevices.stopDevice(deviceId)
+                } else {
+                    const rendererId = VideoDevices.startDevice(id, force)
+                    videoProvider.registerSink(rendererId, videoSink)
+                }
+                deviceId = id
             }
-        }
 
-        onVisibleChanged: {
-            if (visible) {
-                VideoDevices.stopDevice(previewWidget.deviceId)
-                startPreviewing(true)
-            } else
-                VideoDevices.stopDevice(previewWidget.deviceId)
+            onVisibleChanged: {
+                const id = visible ? VideoDevices.getDefaultDevice() : ""
+                startWithId(id)
+            }
         }
     }
 
