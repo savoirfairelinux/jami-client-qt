@@ -46,6 +46,7 @@ set(QT_MODULES
     WebEngineQuick
     WebChannel
     WebEngineWidgets
+    Multimedia
 )
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
 foreach(MODULE ${QT_MODULES})
@@ -101,14 +102,11 @@ set(COMMON_SOURCES
     ${SRC_DIR}/main.cpp
     ${SRC_DIR}/smartlistmodel.cpp
     ${SRC_DIR}/utils.cpp
-    ${SRC_DIR}/rendermanager.cpp
     ${SRC_DIR}/mainapplication.cpp
     ${SRC_DIR}/messagesadapter.cpp
     ${SRC_DIR}/accountadapter.cpp
     ${SRC_DIR}/calladapter.cpp
     ${SRC_DIR}/conversationsadapter.cpp
-    ${SRC_DIR}/distantrenderer.cpp
-    ${SRC_DIR}/previewrenderer.cpp
     ${SRC_DIR}/avadapter.cpp
     ${SRC_DIR}/contactadapter.cpp
     ${SRC_DIR}/pluginadapter.cpp
@@ -140,6 +138,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/currentaccount.cpp
     ${SRC_DIR}/videodevices.cpp
     ${SRC_DIR}/previewengine.cpp
+    ${SRC_DIR}/videoprovider.cpp
 )
 
 set(COMMON_HEADERS
@@ -152,7 +151,6 @@ set(COMMON_HEADERS
     ${SRC_DIR}/version.h
     ${SRC_DIR}/accountlistmodel.h
     ${SRC_DIR}/instancemanager.h
-    ${SRC_DIR}/rendermanager.h
     ${SRC_DIR}/connectivitymonitor.h
     ${SRC_DIR}/jamiavatartheme.h
     ${SRC_DIR}/mainapplication.h
@@ -161,8 +159,6 @@ set(COMMON_HEADERS
     ${SRC_DIR}/accountadapter.h
     ${SRC_DIR}/calladapter.h
     ${SRC_DIR}/conversationsadapter.h
-    ${SRC_DIR}/distantrenderer.h
-    ${SRC_DIR}/previewrenderer.h
     ${SRC_DIR}/qmladapterbase.h
     ${SRC_DIR}/avadapter.h
     ${SRC_DIR}/contactadapter.h
@@ -198,7 +194,19 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentaccount.h
     ${SRC_DIR}/videodevices.h
     ${SRC_DIR}/previewengine.h
+    ${SRC_DIR}/videoprovider.h
 )
+
+# For avframe dependency on Windows/macOS.
+if(NOT DEFINED LIBAV_INCLUDE_PATH)
+   set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib/")
+   if(WIN32)
+      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include/)
+   else()
+      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg)
+   endif()
+endif()
+include_directories(${LIBAV_INCLUDE_PATH})
 
 if(MSVC)
     set(WINDOWS_SYS_LIBS
