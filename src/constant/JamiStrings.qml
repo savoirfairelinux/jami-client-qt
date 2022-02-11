@@ -376,10 +376,10 @@ Item {
     property string chatview: qsTr("Chatview")
     property string enableTypingIndicator: qsTr("Enable typing indicators")
     property string displayHyperlinkPreviews: qsTr("Display hyperlink previews in the chatview")
-    property string chatviewPositionInCall: qsTr("Chatview's position in calls")
+    property string layout: qsTr("Layout")
     property string language: qsTr("User interface language")
-    property string bottomOpt: qsTr("Bottom")
-    property string rightOpt: qsTr("Right")
+    property string verticalOpt: qsTr("Vertical view")
+    property string horizontalOpt: qsTr("Horizontal view")
 
     // File transfer settings
     property string fileTransfer: qsTr("File transfer")

@@ -85,12 +85,12 @@ ColumnLayout {
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        labelText: JamiStrings.chatviewPositionInCall
+        labelText: JamiStrings.layout
         fontPointSize: JamiTheme.settingsFontSize
         comboModel: ListModel {
             Component.onCompleted: {
-                append({ textDisplay: JamiStrings.bottomOpt })
-                append({ textDisplay: JamiStrings.rightOpt })
+                append({ textDisplay: JamiStrings.verticalOpt })
+                append({ textDisplay: JamiStrings.horizontalOpt })
             }
         }
         widthOfComboBox: itemWidth
@@ -101,7 +101,7 @@ ColumnLayout {
         onActivated: {
             UtilsAdapter.setAppValue(
                 Settings.Key.ShowChatviewHorizontally,
-                comboModel.get(modelIndex).textDisplay === JamiStrings.rightOpt
+                comboModel.get(modelIndex).textDisplay === JamiStrings.horizontalOpt
             )
         }
     }
