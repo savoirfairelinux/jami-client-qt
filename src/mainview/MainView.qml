@@ -369,7 +369,12 @@ Rectangle {
         }
 
         onCreateSwarmClicked: {
-            pushNewSwarmPage()
+            if (newSwarmPage.visible) {
+                backToMainView()
+                mainViewSidePanel.showSwarmListView(false)
+            } else {
+                pushNewSwarmPage()
+            }
         }
     }
 
@@ -417,7 +422,12 @@ Rectangle {
         objectName: "newSwarmPage"
         visible: false
 
-        onCreateSwarmClicked: {
+        onVisibleChanged: {
+            mainViewSidePanel.showSwarmListView(newSwarmPage.visible)
+        }
+
+        onCreateSwarmClicked: function(title, description, avatar) {
+            ConversationsAdapter.createSwarm(title, description, avatar, mainViewSidePanel.getHighlighted())
             backToMainView()
         }
     }

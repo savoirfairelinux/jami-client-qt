@@ -441,7 +441,7 @@ Item {
     property string logsViewCopy: qsTr("Copy")
     property string logsViewReport: qsTr("Report Bug")
     property string logsViewClear: qsTr("Clear")
-    property string logsViewCancel: qsTr("Cancel")
+    property string cancel: qsTr("Cancel")
     property string logsViewCopied: qsTr("Copied to clipboard!")
     property string logsViewDisplay: qsTr("Receive Logs")
 
