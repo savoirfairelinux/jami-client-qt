@@ -16,6 +16,23 @@
       "message": "🔥 ",
       "revId": "86e0a090a8d75761067461b81f034d602373e925",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b06d6258_7a3f3809",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-02-15T19:21:21Z",
+      "side": 1,
+      "message": "qrencode-win32.patch seems to still be in use:\n\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/blob/master/make-client.py#L171\nhttps://jenkins.jami.net/view/clients/job/client-qt-msvc-tests/1727/console",
+      "revId": "86e0a090a8d75761067461b81f034d602373e925",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
