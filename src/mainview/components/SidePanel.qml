@@ -83,8 +83,8 @@ Rectangle {
             newHm = Array.from(newHm).filter(r => r.convId !== convId)
         }
 
-        // We can't have more than 8 participants yet.
-        if (newHm.length > 8) {
+        // We can't have more than 8 participants yet. (7 + self)
+        if (newHm.length > 7) {
             return false
         }
 
@@ -310,7 +310,7 @@ Rectangle {
             text: {
                 if (highlightedMembers.length === 0)
                     return JamiStrings.youCanAdd8
-                return JamiStrings.youCanAddMore.arg(8 - Math.min(highlightedMembers.length, 8))
+                return JamiStrings.youCanAddMore.arg(7 - Math.min(highlightedMembers.length, 7))
             }
             color: JamiTheme.textColor
         }
