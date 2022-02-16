@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b699b084_4cb9dd43",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-16T16:49:32Z",
+      "side": 1,
+      "message": "Note, this may introduces new dependencies needed in the INSTALL.md",
+      "range": {
+        "startLine": 49,
+        "startChar": 3,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "64a8e69c8cfbf425fc09becfb0de1af93ff3a153",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b46a1f6e_03392d6a",
+        "filename": "src/rendermanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-16T16:49:32Z",
+      "side": 1,
+      "message": "no lock around qVideoSinks_?",
+      "range": {
+        "startLine": 341,
+        "startChar": 14,
+        "endLine": 341,
+        "endChar": 26
+      },
+      "revId": "64a8e69c8cfbf425fc09becfb0de1af93ff3a153",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
