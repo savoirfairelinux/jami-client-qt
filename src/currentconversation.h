@@ -41,6 +41,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, needsSyncing)
     QML_PROPERTY(bool, isSip)
     QML_PROPERTY(QString, callId)
+    QML_PROPERTY(QString, color)
     QML_PROPERTY(call::Status, callState)
     QML_PROPERTY(bool, inCall)
     QML_PROPERTY(bool, isTemporary)

@@ -61,9 +61,14 @@ SBSMessageBase {
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(hoveredLink)
             readOnly: true
-            color: isOutgoing ?
-                       JamiTheme.messageOutTxtColor :
-                       JamiTheme.messageInTxtColor
+            color: {
+                var luma = 0.2126 * bubble.color.r + 0.7152 * bubble.color.g + 0.0722 * bubble.color.b // ITU-R BT.709
+
+                return luma < 0.60 ?
+                       JamiTheme.chatviewTextColorLight :
+                       JamiTheme.chatviewTextColorDark
+
+            }
 
             TapHandler {
                 acceptedButtons: Qt.RightButton
