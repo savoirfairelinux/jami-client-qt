@@ -29,7 +29,7 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    color: JamiTheme.buttonTintedBlue
+    color: CurrentConversation.color
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -108,8 +108,8 @@ Rectangle {
 
                 /*FilterTabButton {
                     id: aboutTabButton
-                    backgroundColor: JamiTheme.buttonTintedBlue
-                    hoverColor: JamiTheme.buttonTintedBlue
+                    backgroundColor: CurrentConversation.color
+                    hoverColor: CurrentConversation.color
                     borderWidth: 4
                     bottomMargin: JamiTheme.settingsMarginSize
                     fontSize: JamiTheme.menuFontSize
@@ -121,8 +121,8 @@ Rectangle {
 
                 FilterTabButton {
                     id: membersTabButton
-                    backgroundColor: JamiTheme.buttonTintedBlue
-                    hoverColor: JamiTheme.buttonTintedBlue
+                    backgroundColor: CurrentConversation.color
+                    hoverColor: CurrentConversation.color
                     borderWidth: 4
                     bottomMargin: JamiTheme.settingsMarginSize
                     fontSize: JamiTheme.menuFontSize
@@ -139,8 +139,8 @@ Rectangle {
 
                 /*FilterTabButton {
                     id: documentsTabButton
-                    backgroundColor: JamiTheme.buttonTintedBlue
-                    hoverColor: JamiTheme.buttonTintedBlue
+                    backgroundColor: CurrentConversation.color
+                    hoverColor: CurrentConversation.color
                     borderWidth: 4
                     bottomMargin: JamiTheme.settingsMarginSize
                     fontSize: JamiTheme.menuFontSize

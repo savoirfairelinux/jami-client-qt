@@ -257,6 +257,7 @@ Item {
     property int mosaicButtonMaxWidth: 100
     property real avatarPresenceRatio: 0.26
     property int avatarReadReceiptSize: 18
+    property int contactMessageAvatarSize: 24
 
     property int menuItemsPreferredWidth: 220
     property int menuItemsPreferredHeight: 48
@@ -369,6 +370,9 @@ Item {
 
     // Details page
     property real detailsPageMinWidth: 300
+
+    // Messages point size
+    property real contactEventPointSize: 10 + fontSizeOffset
 
     function setTheme(dark) {
         darkTheme = dark
