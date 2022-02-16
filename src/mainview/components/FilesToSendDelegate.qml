@@ -34,7 +34,7 @@ Rectangle {
 
     radius: JamiTheme.filesToSendDelegateRadius
 
-    color: JamiTheme.messageInBgColor
+    color: CurrentConversation.color
 
     ColumnLayout {
         id: delegateFileWrapperColumnLayout
