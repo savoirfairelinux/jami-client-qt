@@ -99,7 +99,7 @@ Control {
                     type: seq
                     color: isOutgoing ?
                                JamiTheme.messageOutBgColor :
-                               JamiTheme.messageInBgColor
+                               CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     width: innerContent.childrenRect.width

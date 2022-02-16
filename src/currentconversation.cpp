@@ -59,6 +59,7 @@ CurrentConversation::updateData()
             set_isRequest(convInfo.isRequest);
             set_readOnly(convInfo.readOnly);
             set_needsSyncing(convInfo.needsSyncing);
+            set_color(Utils::getAvatarColor(convId).name());
             set_isSip(accInfo.profileInfo.type == profile::Type::SIP);
             set_callId(convInfo.getCallId());
             set_allMessagesLoaded(convInfo.allMessagesLoaded);
