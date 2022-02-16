@@ -29,7 +29,7 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    color: JamiTheme.buttonTintedBlue
+    color: CurrentConversation.color
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -69,7 +69,14 @@ Rectangle {
                 placeholderTextColor: JamiTheme.placeholderTextColorWhite
                 tooltipText: JamiStrings.editTitle
                 backgroundColor: root.color
-                color: "white"
+                color: {
+                    var luma = 0.2126 * backgroundColor.r + 0.7152 * backgroundColor.g + 0.0722 * backgroundColor.b // ITU-R BT.709
+
+                    return luma < 0.60 ?
+                        JamiTheme.chatviewTextColorLight :
+                        JamiTheme.chatviewTextColorDark
+
+                }
 
                 onEditingFinished: {
                     ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
@@ -92,7 +99,14 @@ Rectangle {
                 placeholderTextColor: JamiTheme.placeholderTextColorWhite
                 tooltipText: JamiStrings.editDescription
                 backgroundColor: root.color
-                color: "white"
+                color: {
+                    var luma = 0.2126 * backgroundColor.r + 0.7152 * backgroundColor.g + 0.0722 * backgroundColor.b // ITU-R BT.709
+
+                    return luma < 0.60 ?
+                        JamiTheme.chatviewTextColorLight :
+                        JamiTheme.chatviewTextColorDark
+
+                }
 
                 onEditingFinished: {
                     ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
@@ -108,12 +122,21 @@ Rectangle {
 
                 /*FilterTabButton {
                     id: aboutTabButton
-                    backgroundColor: JamiTheme.buttonTintedBlue
-                    hoverColor: JamiTheme.buttonTintedBlue
+                    backgroundColor: CurrentConversation.color
+                    hoverColor: CurrentConversation.color
                     borderWidth: 4
                     bottomMargin: JamiTheme.settingsMarginSize
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
+
+                    textColor: {
+                        var luma = 0.2126 * root.color.r + 0.7152 * root.color.g + 0.0722 * root.color.b // ITU-R BT.709
+
+                        return luma < 0.60 ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
+
+                    }
 
                     down: tabBar.currentIndex === 0
                     labelText: JamiStrings.about
@@ -121,12 +144,21 @@ Rectangle {
 
                 FilterTabButton {
                     id: membersTabButton
-                    backgroundColor: JamiTheme.buttonTintedBlue
-                    hoverColor: JamiTheme.buttonTintedBlue
+                    backgroundColor: CurrentConversation.color
+                    hoverColor: CurrentConversation.color
                     borderWidth: 4
                     bottomMargin: JamiTheme.settingsMarginSize
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
+
+                    textColor: {
+                        var luma = 0.2126 * root.color.r + 0.7152 * root.color.g + 0.0722 * root.color.b // ITU-R BT.709
+
+                        return luma < 0.60 ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
+
+                    }
 
                     down: true//tabBar.currentIndex === 1
                     labelText: {
@@ -139,12 +171,21 @@ Rectangle {
 
                 /*FilterTabButton {
                     id: documentsTabButton
-                    backgroundColor: JamiTheme.buttonTintedBlue
-                    hoverColor: JamiTheme.buttonTintedBlue
+                    backgroundColor: CurrentConversation.color
+                    hoverColor: CurrentConversation.color
                     borderWidth: 4
                     bottomMargin: JamiTheme.settingsMarginSize
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
+
+                    textColor: {
+                        var luma = 0.2126 * CurrentConversation.color.r + 0.7152 * CurrentConversation.color.g + 0.0722 * CurrentConversation.color.b // ITU-R BT.709
+
+                        return luma < 0.60 ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
+
+                    }
 
                     down: tabBar.currentIndex === 2
                     labelText: JamiStrings.documents
