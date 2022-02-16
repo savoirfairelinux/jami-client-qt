@@ -40,6 +40,8 @@ MaterialLineEdit {
     font.pointSize: JamiTheme.usernameLineEditPointSize
     font.kerning: true
 
+    validator: RegularExpressionValidator { regularExpression: /[A-z0-9_]{0,32}/ }
+
     Connections {
         id: registeredNameFoundConnection
 
