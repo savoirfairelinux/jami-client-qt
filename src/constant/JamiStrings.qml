@@ -626,4 +626,9 @@ Item {
     property string kickMember: qsTr("Kick member")
     property string administrator: qsTr("Administrator")
     property string invited: qsTr("Invited")
+
+    // Contact messages
+    property string joinSwarm: qsTr("%1 joined the swarm")
+    property string invitedSwarm: qsTr("%1 was invited to join")
+    property string banSwarm: qsTr("%1 was kicked")
 }
