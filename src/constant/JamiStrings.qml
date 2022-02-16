@@ -378,8 +378,8 @@ Item {
     property string displayHyperlinkPreviews: qsTr("Display hyperlink previews in the chatview")
     property string layout: qsTr("Layout")
     property string language: qsTr("User interface language")
-    property string verticalOpt: qsTr("Vertical view")
-    property string horizontalOpt: qsTr("Horizontal view")
+    property string verticalViewOpt: qsTr("Vertical view")
+    property string horizontalViewOpt: qsTr("Horizontal view")
 
     // File transfer settings
     property string fileTransfer: qsTr("File transfer")
