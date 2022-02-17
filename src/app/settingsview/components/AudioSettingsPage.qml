@@ -25,7 +25,7 @@ import "../../commoncomponents"
 SettingsPageBase {
     id: root
 
-    property int itemWidth: 188
+    property int itemWidth: 250
     title: JamiStrings.audio
 
     flickableContent: ColumnLayout {
@@ -45,16 +45,34 @@ SettingsPageBase {
             target: UtilsAdapter
 
             function onChangeLanguage() {
-                inputAudioModel.reset();
-                outputAudioModel.reset();
-                ringtoneAudioModel.reset();
+                rootLayout.resetDeviceModels();
+                rootLayout.resetDeviceIndices();
+            }
+        }
+
+        function resetDeviceModels() {
+            inputAudioModel.reset();
+            outputAudioModel.reset();
+            ringtoneAudioModel.reset();
+        }
+
+        function resetDeviceIndices() {
+            inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex()
+            outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex()
+            ringtoneComboBoxSetting.modelIndex = ringtoneComboBoxSetting.comboModel.getCurrentIndex()
+        }
+
+        Connections {
+            target: AvAdapter
+
+            function onAudioDeviceListChanged(inputs, outputs) {
+                rootLayout.resetDeviceModels();
+                rootLayout.resetDeviceIndices();
             }
         }
 
         function populateAudioSettings() {
-            inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex();
-            outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex();
-            ringtoneComboBoxSetting.modelIndex = ringtoneComboBoxSetting.comboModel.getCurrentIndex();
+            rootLayout.resetDeviceIndices();
             if (audioManagerComboBoxSetting.comboModel.rowCount() > 0) {
                 audioManagerComboBoxSetting.modelIndex = audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex();
             }
