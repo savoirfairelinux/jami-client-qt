@@ -47,6 +47,19 @@ SettingsPageBase {
             }
         }
 
+        Connections {
+            target: AvAdapter
+
+            function onAudioDeviceListChanged(inputs, outputs) {
+                audioInputDeviceListModel.reset();
+                audioOutputDeviceListModel.reset();
+                audioRingtoneDeviceListModel.reset();
+                inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex()
+                outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex()
+                ringtoneComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex()
+            }
+        }
+
         function populateAudioSettings() {
             inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex();
             outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex();
