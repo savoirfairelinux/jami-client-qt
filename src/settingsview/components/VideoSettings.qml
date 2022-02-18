@@ -20,7 +20,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import QtMultimedia
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -43,24 +42,9 @@ ColumnLayout {
         previewWidget.startWithId(deviceId, force)
     }
 
-    function updatePreviewRatio() {
-        var resolution = VideoDevices.defaultRes
-        if (resolution.length !== 0) {
-            var resVec = resolution.split("x")
-            var ratio = resVec[1] / resVec[0]
-            if (ratio) {
-                aspectRatio = ratio
-            } else {
-                console.error("Could not scale recording video preview")
-            }
-        }
-
-    }
-
     onVisibleChanged: {
         if (visible) {
             hardwareAccelControl.checked = AvAdapter.getHardwareAcceleration()
-            updatePreviewRatio()
             if (previewWidget.visible)
                 startPreviewing(true)
         } else {
@@ -72,14 +56,11 @@ ColumnLayout {
         target: VideoDevices
 
         function onDefaultResChanged() {
-            updatePreviewRatio()
-            if (previewWidget.visible)
-                startPreviewing(true)
+            startPreviewing(true)
         }
 
         function onDefaultFpsChanged() {
-            if (previewWidget.visible)
-                startPreviewing(true)
+            startPreviewing(true)
         }
 
         function onDeviceAvailable() {
@@ -209,12 +190,10 @@ ColumnLayout {
 
     // video Preview
     Rectangle {
-        id: rectBox
-
         visible: VideoDevices.listSize !== 0
 
         Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: width * aspectRatio
+        Layout.preferredHeight: width * previewWidget.invAspectRatio
 
         Layout.minimumWidth: 200
         Layout.maximumWidth: 400
@@ -227,6 +206,14 @@ ColumnLayout {
             id: previewWidget
 
             anchors.fill: parent
+
+            underlayItems: Text {
+                anchors.centerIn: parent
+                font.pointSize: 18
+                font.capitalization: Font.AllUppercase
+                color: "white"
+                text: qsTr("no video")
+            }
         }
     }
 

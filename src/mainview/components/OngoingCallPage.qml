@@ -41,7 +41,7 @@ Rectangle {
     property int previewToX: 0
     property int previewToY: 0
     property bool isAudioOnly: false
-    property string callId//: distantRenderer.rendererId
+    property alias callId: distantRenderer.rendererId
     property var linkedWebview: null
     property string callPreviewId: ""
 
@@ -166,110 +166,91 @@ Rectangle {
                         callOverlay.openCallViewContextMenuInPos(mouse.x, mouse.y)
                 }
 
-//                DistantRenderer {
-//                    id: distantRenderer
+                RemoteVideo {
+                    id: distantRenderer
 
-//                    anchors.centerIn: parent
-//                    anchors.fill: parent
-//                    z: -1
+                    anchors.fill: parent
+                    z: -1
 
-//                    lrcInstance: LRCInstance
-//                    visible: !root.isAudioOnly
+                    visible: !root.isAudioOnly
+                }
 
-//                    onOffsetChanged: {
-//                        callOverlay.participantsLayer.update(CallAdapter.getConferencesInfos())
-//                    }
-//                }
+                LocalVideo {
+                    id: previewRenderer
 
-//                VideoCallPreviewRenderer {
-//                    id: previewRenderer
+                    visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused &&
+                             ((VideoDevices.listSize !== 0 && AvAdapter.currentRenderingDeviceType === Video.DeviceType.CAMERA) || AvAdapter.currentRenderingDeviceType !== Video.DeviceType.CAMERA )
 
-//                    lrcInstance: LRCInstance
-//                    visible: !callOverlay.isAudioOnly && !callOverlay.isConferenceCall && !callOverlay.isVideoMuted && !callOverlay.isPaused &&
-//                             ((VideoDevices.listSize !== 0 && AvAdapter.currentRenderingDeviceType === Video.DeviceType.CAMERA) || AvAdapter.currentRenderingDeviceType !== Video.DeviceType.CAMERA )
+                    rendererId: root.callPreviewId
 
-//                    rendererId: root.callPreviewId
+                    height: width * invAspectRatio
+                    width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
+                    x: callPageMainRect.width - previewRenderer.width - previewMargin
+                    y: previewMarginYTop
 
-//                    onVisibleChanged: {
-//                        if (!visible && !AccountAdapter.hasVideoCall()) {
-//                            VideoDevices.stopDevice(rendererId, true)
-//                        }
-//                    }
+                    states: [
+                        State {
+                            name: "geoChanging"
+                            PropertyChanges {
+                                target: previewRenderer
+                                x: previewToX
+                                y: previewToY
+                            }
+                        }
+                    ]
 
-//                    width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
-//                    x: callPageMainRect.width - previewRenderer.width - previewMargin
-//                    y: previewMarginYTop
+                    transitions: Transition {
+                        PropertyAnimation {
+                            properties: "x,y"
+                            easing.type: Easing.OutExpo
+                            duration: 250
 
-//                    states: [
-//                        State {
-//                            name: "geoChanging"
-//                            PropertyChanges {
-//                                target: previewRenderer
-//                                x: previewToX
-//                                y: previewToY
-//                            }
-//                        }
-//                    ]
+                            onStopped: {
+                                previewRenderer.state = ""
+                            }
+                        }
+                    }
 
-//                    transitions: Transition {
-//                        PropertyAnimation {
-//                            properties: "x,y"
-//                            easing.type: Easing.OutExpo
-//                            duration: 250
+                    MouseArea {
+                        id: dragMouseArea
 
-//                            onStopped: {
-//                                previewRenderer.state = ""
-//                            }
-//                        }
-//                    }
+                        anchors.fill: previewRenderer
 
-//                    MouseArea {
-//                        id: dragMouseArea
+                        onPressed: function (mouse) {
+                            clickPos = Qt.point(mouse.x, mouse.y)
+                        }
 
-//                        anchors.fill: previewRenderer
+                        onReleased: {
+                            previewRenderer.state = ""
+                            previewMagneticSnap()
+                        }
 
-//                        onPressed: function (mouse) {
-//                            clickPos = Qt.point(mouse.x, mouse.y)
-//                        }
+                        onPositionChanged: function (mouse) {
+                            // Calculate mouse position relative change.
+                            var delta = Qt.point(mouse.x - clickPos.x,
+                                                 mouse.y - clickPos.y)
+                            var deltaW = previewRenderer.x + delta.x + previewRenderer.width
+                            var deltaH = previewRenderer.y + delta.y + previewRenderer.height
 
-//                        onReleased: {
-//                            previewRenderer.state = ""
-//                            previewMagneticSnap()
-//                        }
+                            // Check if the previewRenderer exceeds the border of callPageMainRect.
+                            if (deltaW < callPageMainRect.width
+                                    && previewRenderer.x + delta.x > 1)
+                                previewRenderer.x += delta.x
+                            if (deltaH < callPageMainRect.height
+                                    && previewRenderer.y + delta.y > 1)
+                                previewRenderer.y += delta.y
+                        }
+                    }
 
-//                        onPositionChanged: function (mouse) {
-//                            // Calculate mouse position relative change.
-//                            var delta = Qt.point(mouse.x - clickPos.x,
-//                                                 mouse.y - clickPos.y)
-//                            var deltaW = previewRenderer.x + delta.x + previewRenderer.width
-//                            var deltaH = previewRenderer.y + delta.y + previewRenderer.height
-
-//                            // Check if the previewRenderer exceeds the border of callPageMainRect.
-//                            if (deltaW < callPageMainRect.width
-//                                    && previewRenderer.x + delta.x > 1)
-//                                previewRenderer.x += delta.x
-//                            if (deltaH < callPageMainRect.height
-//                                    && previewRenderer.y + delta.y > 1)
-//                                previewRenderer.y += delta.y
-//                        }
-//                    }
-
-//                    layer.enabled: true
-//                    layer.effect: OpacityMask {
-//                        maskSource: Rectangle {
-//                            width: previewRenderer.width
-//                            height: previewRenderer.height
-//                            radius: JamiTheme.primaryRadius
-//                        }
-//                    }
-
-//                    onWidthChanged: {
-//                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
-//                    }
-//                    onPreviewImageScalingFactorChanged: {
-//                        previewRenderer.height = previewRenderer.width * previewImageScalingFactor
-//                    }
-//                }
+                    layer.enabled: true
+                    layer.effect: OpacityMask {
+                        maskSource: Rectangle {
+                            width: previewRenderer.width
+                            height: previewRenderer.height
+                            radius: JamiTheme.primaryRadius
+                        }
+                    }
+                }
 
                 CallOverlay {
                     id: callOverlay
