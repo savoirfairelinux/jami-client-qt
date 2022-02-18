@@ -21,33 +21,48 @@ import QtMultimedia
 
 import net.jami.Adapters 1.1
 
-VideoOutput {
+Rectangle {
     id: root
 
-    fillMode: VideoOutput.PreserveAspectCrop
+    color: "black"
 
     property string deviceId
+    property alias videoSink: output.videoSink
+    property alias underlayItems: underlay.children
 
     function startWithId(id, force = false) {
-        videoProvider.unregisterSink(videoSink)
+        videoProvider.unregisterSink(output.videoSink)
         if (id.length === 0) {
             VideoDevices.stopDevice(deviceId)
         } else {
             const rendererId = VideoDevices.startDevice(id, force)
-            videoProvider.registerSink(rendererId, videoSink)
+            videoProvider.registerSink(rendererId, output.videoSink)
         }
         deviceId = id
+    }
+
+    Item {
+        id: underlay
+        anchors.fill: parent
+    }
+
+    VideoOutput {
+        id: output
+
+        anchors.fill: parent
+        opacity: videoProvider.activeRenderers[deviceId] !== undefined
+        visible: opacity != 0
+        fillMode: VideoOutput.PreserveAspectCrop
+
+        Behavior on opacity { NumberAnimation { duration: 100 } }
+
+        Component.onDestruction: videoProvider.unregisterSink(videoSink)
     }
 
     onVisibleChanged: {
         const id = visible ? VideoDevices.getDefaultDevice() : ""
         startWithId(id)
     }
-
-    Component.onCompleted: {
-        if (deviceId.length !== 0) {
-            videoProvider.registerSink(deviceId, videoSink)
-        }
-    }
-    Component.onDestruction: videoProvider.unregisterSink(videoSink)
 }
+
+

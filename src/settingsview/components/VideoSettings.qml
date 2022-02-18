@@ -227,6 +227,14 @@ ColumnLayout {
             id: previewWidget
 
             anchors.fill: parent
+
+            underlayItems: Text {
+                anchors.centerIn: parent
+                font.pointSize: 18
+                font.capitalization: Font.AllUppercase
+                color: "white"
+                text: qsTr("no video")
+            }
         }
     }
 
