@@ -137,7 +137,7 @@ Item {
 
                 visible: isPreviewing
 
-                deviceId: VideoDevices.getDefaultDevice()
+                rendererId: VideoDevices.getDefaultDevice()
 
                 function takePhoto() {
                     return videoProvider.captureVideoFrame(videoSink)

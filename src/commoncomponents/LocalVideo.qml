@@ -18,36 +18,28 @@
 
 import QtQuick
 import QtMultimedia
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Adapters 1.1
 
-VideoOutput {
+VideoView {
     id: root
 
-    fillMode: VideoOutput.PreserveAspectCrop
-
-    property string deviceId
+    crop: true
 
     function startWithId(id, force = false) {
-        videoProvider.unregisterSink(videoSink)
         if (id.length === 0) {
-            VideoDevices.stopDevice(deviceId)
+            VideoDevices.stopDevice(rendererId)
+            rendererId = id
         } else {
-            const rendererId = VideoDevices.startDevice(id, force)
-            videoProvider.registerSink(rendererId, videoSink)
+            rendererId = VideoDevices.startDevice(id, force)
         }
-        deviceId = id
     }
 
     onVisibleChanged: {
         const id = visible ? VideoDevices.getDefaultDevice() : ""
         startWithId(id)
     }
-
-    Component.onCompleted: {
-        if (deviceId.length !== 0) {
-            videoProvider.registerSink(deviceId, videoSink)
-        }
-    }
-    Component.onDestruction: videoProvider.unregisterSink(videoSink)
 }
+
+

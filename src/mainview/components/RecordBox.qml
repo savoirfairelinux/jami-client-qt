@@ -250,7 +250,7 @@ Rectangle {
             anchors.fill: rectBox
             anchors.margins: 1
 
-            deviceId: VideoDevices.getDefaultDevice()
+            rendererId: VideoDevices.getDefaultDevice()
 
             layer.enabled: true
             layer.effect: OpacityMask {

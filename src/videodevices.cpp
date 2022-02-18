@@ -296,16 +296,11 @@ VideoDevices::startDevice(const QString& id, bool force)
     if (id.isEmpty())
         return {};
     auto& avModel = lrcInstance_->avModel();
-    try {
-        auto& renderer = avModel.getRenderer(id);
-        if (renderer.isRendering()) {
-            if (!force) {
-                return id;
-            }
-            avModel.stopPreview(id);
+    if (avModel.hasRenderer(id)) {
+        if (!force) {
+            return id;
         }
-    } catch (std::out_of_range& e) {
-        qWarning() << e.what();
+        avModel.stopPreview(id);
     }
     deviceOpen_ = true;
     return avModel.startPreview(id);
