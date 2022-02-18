@@ -24,8 +24,7 @@ import QtQuick
 import net.jami.Helpers 1.1
 
 Item {
-    readonly property string appTitle: "Jami" + (UpdateManager.isCurrentVersionBeta()
-                                                 ? " (BETA)" : "")
+    readonly property string appTitle: "Jami"
     readonly property string httpUserAgentName: "jami-qt"
 
     // Misc
