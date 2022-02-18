@@ -29,6 +29,7 @@ extern "C" {
 #include <QVideoSink>
 #include <QVideoFrame>
 #include <QQmlEngine>
+#include <QMutex>
 
 using namespace lrc::api;
 
@@ -53,6 +54,22 @@ private Q_SLOTS:
 private:
     AVModel& avModel_;
 
-    std::map<QVideoSink*, QString> qVideoSinks_;
-    std::map<QString, QVideoFrame*> qVideoFrames_;
+    struct FrameObject
+    {
+        std::unique_ptr<QVideoFrame> videoFrame;
+        QMutex mutex;
+        QSet<QVideoSink*> subscribers;
+    };
+    std::map<QString, std::unique_ptr<FrameObject>> framesObjects_;
+    FrameObject* getFrameObject(const QString& id)
+    {
+        auto it = framesObjects_.find(id);
+        if (it != framesObjects_.end()) {
+            return it->second.get();
+        }
+        return nullptr;
+    };
+
+private:
+    void publishFrame(const QString& id, FrameObject& frameObject);
 };
