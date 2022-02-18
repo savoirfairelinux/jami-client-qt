@@ -25,22 +25,33 @@ VideoProvider::VideoProvider(AVModel& avModel, QObject* parent)
     , avModel_(avModel)
 {
     connect(&avModel_, &AVModel::rendererStarted, this, &VideoProvider::onRendererStarted);
-    connect(&avModel_, &AVModel::frameUpdated, this, &VideoProvider::onFrameUpdated);
     connect(&avModel_, &AVModel::rendererStopped, this, &VideoProvider::onRendererStopped);
+    connect(&avModel_, &AVModel::frameBufferRequested, this, &VideoProvider::onFrameBufferRequested);
+    connect(&avModel_, &AVModel::frameUpdated, this, &VideoProvider::onFrameUpdated);
 }
 
 void
 VideoProvider::registerSink(const QString& id, QVideoSink* obj)
 {
-    qVideoSinks_[obj] = id;
+    auto it = framesObjects_.find(id);
+    if (it == framesObjects_.end()) {
+        auto fo = std::make_unique<FrameObject>();
+        fo->subscribers.insert(obj);
+        framesObjects_.emplace(id, std::move(fo));
+        return;
+    }
+    it->second->subscribers.insert(obj);
 }
 
 void
 VideoProvider::unregisterSink(QVideoSink* obj)
 {
-    auto it = qVideoSinks_.find(obj);
-    if (it != qVideoSinks_.end()) {
-        qVideoSinks_.erase(it);
+    for (auto& frameObjIt : qAsConst(framesObjects_)) {
+        auto& subs = frameObjIt.second->subscribers;
+        auto it = subs.constFind(obj);
+        if (it != subs.cend()) {
+            subs.erase(it);
+        }
     }
 }
 
@@ -48,7 +59,6 @@ QString
 VideoProvider::captureVideoFrame(QVideoSink* obj)
 {
     QImage img;
-    obj->videoFrame().map(QVideoFrame::ReadOnly);
     QVideoFrame currentFrame = obj->videoFrame();
     auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
         QVideoFrameFormat::Format_RGBA8888);
@@ -57,7 +67,6 @@ VideoProvider::captureVideoFrame(QVideoSink* obj)
                  currentFrame.height(),
                  currentFrame.bytesPerLine(0),
                  imageFormat);
-    currentFrame.unmap();
     return Utils::byteArrayToBase64String(Utils::QImageToByteArray(img));
 }
 
@@ -65,16 +74,16 @@ void
 VideoProvider::onRendererStarted(const QString& id)
 {
     try {
-        auto& renderer = avModel_.getRenderer(id);
-        auto videoFrame = new QVideoFrame(
-            QVideoFrameFormat(renderer.size(), QVideoFrameFormat::Format_RGBA8888));
-        qVideoFrames_.emplace(id, videoFrame);
-        using namespace video;
-        connect(&renderer,
-                &Renderer::frameBufferRequested,
-                this,
-                &VideoProvider::onFrameBufferRequested,
-                Qt::DirectConnection);
+        auto size = avModel_.getRendererSize(id);
+        auto format = QVideoFrameFormat(size, QVideoFrameFormat::Format_RGBA8888);
+        auto it = framesObjects_.find(id);
+        if (it == framesObjects_.end()) {
+            auto fo = std::make_unique<FrameObject>();
+            fo->videoFrame = std::make_unique<QVideoFrame>(format);
+            framesObjects_.emplace(id, std::move(fo));
+        } else {
+            it->second->videoFrame.reset(new QVideoFrame(format));
+        }
     } catch (std::out_of_range& e) {
         qWarning() << e.what();
         return;
@@ -84,12 +93,16 @@ VideoProvider::onRendererStarted(const QString& id)
 void
 VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
 {
-    auto it = qVideoFrames_.find(id);
-    if (it == qVideoFrames_.end()) {
+    auto it = framesObjects_.find(id);
+    if (it == framesObjects_.end()) {
         return;
     }
-    auto videoFrame = it->second;
-    if (!videoFrame->isValid()
+    QMutexLocker lk(&it->second->mutex);
+    if (it->second->subscribers.empty()) {
+        return;
+    }
+    auto videoFrame = it->second->videoFrame.get();
+    if (!videoFrame || !videoFrame->isValid()
         || (!videoFrame->isMapped() && !videoFrame->map(QVideoFrame::WriteOnly))) {
         qWarning() << "QVideoFrame can't be mapped";
         return;
@@ -104,30 +117,43 @@ VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
 void
 VideoProvider::onFrameUpdated(const QString& id)
 {
-    auto it = qVideoFrames_.find(id);
-    if (it == qVideoFrames_.end()) {
+    auto it = framesObjects_.find(id);
+    if (it == framesObjects_.end()) {
         return;
     }
-    auto videoFrame = it->second;
-    if (videoFrame->isMapped()) {
-        videoFrame->unmap();
+    QMutexLocker lk(&it->second->mutex);
+    if (it->second->subscribers.empty()) {
+        return;
     }
-    for (const auto& it : qVideoSinks_) {
-        if (id == it.second) {
-            auto sink = it.first;
-            sink->setVideoFrame(*videoFrame);
-            Q_EMIT sink->videoFrameChanged(*videoFrame);
-        }
-    }
+    publishFrame(id, *it->second);
 }
 
 void
 VideoProvider::onRendererStopped(const QString& id)
 {
-    // A good time to notify registered sinks that no more
-    // frames will be published.
-    auto it = qVideoFrames_.find(id);
-    if (it != qVideoFrames_.end()) {
-        qVideoFrames_.erase(it);
+    auto it = framesObjects_.find(id);
+    if (it != framesObjects_.end()) {
+        if (it->second->subscribers.empty()) {
+            framesObjects_.erase(it);
+            return;
+        }
+        it->second->videoFrame.reset();
+    }
+}
+
+void
+VideoProvider::publishFrame(const QString& id, FrameObject& frameObject)
+{
+    auto videoFrame = frameObject.videoFrame.get();
+    if (videoFrame == nullptr) {
+        qWarning() << "QVideoFrame has not been initialized.";
+        return;
+    }
+    if (videoFrame->isMapped()) {
+        videoFrame->unmap();
+    }
+    for (const auto& sink : qAsConst(frameObject.subscribers)) {
+        sink->setVideoFrame(*videoFrame);
+        Q_EMIT sink->videoFrameChanged(*videoFrame);
     }
 }
