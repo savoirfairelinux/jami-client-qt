@@ -22,8 +22,12 @@ import QtMultimedia
 VideoOutput {
     id: root
 
-    property string deviceId
+    property string rendererId
 
-    Component.onCompleted: videoProvider.registerSink(deviceId, videoSink)
+    onRendererIdChanged: {
+        videoProvider.unregisterSink(videoSink)
+        videoProvider.registerSink(rendererId, videoSink)
+    }
+
     Component.onDestruction: videoProvider.unregisterSink(videoSink)
 }

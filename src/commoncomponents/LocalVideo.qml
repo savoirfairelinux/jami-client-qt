@@ -18,36 +18,67 @@
 
 import QtQuick
 import QtMultimedia
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Adapters 1.1
 
-VideoOutput {
+Rectangle {
     id: root
 
-    fillMode: VideoOutput.PreserveAspectCrop
+    color: "black"
 
     property string deviceId
+    property alias videoSink: output.videoSink
+    property alias underlayItems: underlay.children
+    property real invAspectRatio: 0.5625 // 16:9 default
 
     function startWithId(id, force = false) {
-        videoProvider.unregisterSink(videoSink)
+        videoProvider.unregisterSink(output.videoSink)
         if (id.length === 0) {
             VideoDevices.stopDevice(deviceId)
         } else {
             const rendererId = VideoDevices.startDevice(id, force)
-            videoProvider.registerSink(rendererId, videoSink)
+            videoProvider.registerSink(rendererId, output.videoSink)
         }
         deviceId = id
+    }
+
+    Item {
+        id: underlay
+        anchors.fill: parent
+    }
+
+    VideoOutput {
+        id: output
+
+        antialiasing: true
+        anchors.fill: parent
+        opacity: videoProvider.activeRenderers[deviceId] !== undefined
+        visible: opacity != 0
+        onVisibleChanged: {
+            const size = videoProvider.activeRenderers[deviceId]
+            if (size !== undefined) {
+                invAspectRatio = size.height / size.width
+            }
+        }
+        fillMode: VideoOutput.PreserveAspectCrop
+
+        Behavior on opacity { NumberAnimation { duration: 150 } }
+
+        Component.onDestruction: videoProvider.unregisterSink(videoSink)
+
+        layer.enabled: opacity != 0
+        layer.effect: FastBlur {
+            source: output
+            anchors.fill: root
+            radius: (1. - opacity) * 100
+        }
     }
 
     onVisibleChanged: {
         const id = visible ? VideoDevices.getDefaultDevice() : ""
         startWithId(id)
     }
-
-    Component.onCompleted: {
-        if (deviceId.length !== 0) {
-            videoProvider.registerSink(deviceId, videoSink)
-        }
-    }
-    Component.onDestruction: videoProvider.unregisterSink(videoSink)
 }
+
+

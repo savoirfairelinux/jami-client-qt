@@ -19,6 +19,7 @@
 #pragma once
 
 #include "utils.h"
+#include "qtutils.h"
 
 #include "api/avmodel.h"
 
@@ -29,6 +30,7 @@ extern "C" {
 #include <QVideoSink>
 #include <QVideoFrame>
 #include <QQmlEngine>
+#include <QMutex>
 
 using namespace lrc::api;
 
@@ -36,6 +38,7 @@ class VideoProvider final : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
+    QML_PROPERTY(QVariantMap, activeRenderers)
 public:
     explicit VideoProvider(AVModel& avModel, QObject* parent = nullptr);
     ~VideoProvider() = default;
@@ -53,6 +56,19 @@ private Q_SLOTS:
 private:
     AVModel& avModel_;
 
-    std::map<QVideoSink*, QString> qVideoSinks_;
-    std::map<QString, QVideoFrame*> qVideoFrames_;
+    struct FrameObject
+    {
+        std::unique_ptr<QVideoFrame> videoFrame;
+        QMutex mutex;
+        QSet<QVideoSink*> subscribers;
+    };
+    std::map<QString, std::unique_ptr<FrameObject>> framesObjects_;
+    FrameObject* getFrameObject(const QString& id)
+    {
+        auto it = framesObjects_.find(id);
+        if (it != framesObjects_.end()) {
+            return it->second.get();
+        }
+        return nullptr;
+    };
 };
