@@ -21,9 +21,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 
 import "../../commoncomponents"
 
@@ -175,10 +176,20 @@ Rectangle {
 
             preferredSize: startBar.height
 
+            visible: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
+
             source: smartListLayout.visible ? JamiResources.create_swarm_svg : JamiResources.round_close_24dp_svg
             toolTipText: smartListLayout.visible ? JamiStrings.startASwarm : JamiStrings.cancel
 
             onClicked: createSwarmClicked()
+
+            Connections {
+                target: UtilsAdapter
+
+                function onShowExperimentalSwarm() {
+                    startConversation.visible = UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
+                }
+            }
         }
     }
 

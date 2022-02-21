@@ -20,9 +20,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 
 import "../../commoncomponents"
 import "../js/logviewwindowcreation.js" as LogViewWindowCreation
@@ -81,6 +82,24 @@ ColumnLayout {
                 LogViewWindowCreation.createlogViewWindowObject()
                 LogViewWindowCreation.showLogViewWindow()
             }
+        }
+    }
+
+    ToggleSwitch {
+        id: checkboxSwarm
+
+        Layout.fillWidth: true
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+
+        checked: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
+
+        labelText: JamiStrings.experimentalSwarm
+        fontPointSize: JamiTheme.settingsFontSize
+
+        tooltipText: JamiStrings.experimentalSwarmTooltip
+
+        onSwitchToggled: {
+            UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked)
         }
     }
 }
