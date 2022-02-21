@@ -622,6 +622,13 @@ Item {
     property string editTitle: qsTr("Edit title")
     property string editDescription: qsTr("Edit description")
 
+    property string ignoreTheSwarm: qsTr("Ignore the swarm")
+    property string ignoreTheSwarmTooltip: qsTr("Ignore all notifications from this conversation")
+    property string chooseAColor: qsTr("Choose a color")
+    property string leaveTheSwarm: qsTr("Leave the swarm")
+    property string leave: qsTr("Leave")
+    property string typeOfSwarm: qsTr("Type of swarm")
+
     // NewSwarmPage
     property string youCanAdd8: qsTr("You can add 8 people in the swarm")
     property string youCanAddMore: qsTr("You can add %1 more people in the swarm")
