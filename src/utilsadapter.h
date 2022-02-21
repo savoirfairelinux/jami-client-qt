@@ -107,6 +107,7 @@ public:
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
+    void showExperimentalSwarm();
 
 private:
     QClipboard* clipboard_;
