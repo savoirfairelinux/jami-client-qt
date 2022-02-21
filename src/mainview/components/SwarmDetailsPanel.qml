@@ -25,6 +25,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
+import "../../settingsview/components"
 
 Rectangle {
     id: root
@@ -102,11 +103,13 @@ Rectangle {
             TabBar {
                 id: tabBar
 
+                currentIndex: 1
+
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: root.width
                 Layout.preferredHeight: membersTabButton.height
 
-                /*FilterTabButton {
+                FilterTabButton {
                     id: aboutTabButton
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
@@ -117,7 +120,7 @@ Rectangle {
 
                     down: tabBar.currentIndex === 0
                     labelText: JamiStrings.about
-                }*/
+                }
 
                 FilterTabButton {
                     id: membersTabButton
@@ -128,7 +131,7 @@ Rectangle {
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
-                    down: true//tabBar.currentIndex === 1
+                    down: tabBar.currentIndex === 1
                     labelText: {
                         var membersNb = CurrentConversation.uris.length;
                         if (membersNb > 1)
@@ -158,11 +161,111 @@ Rectangle {
             Layout.preferredHeight: root.height - header.height
             color: JamiTheme.secondaryBackgroundColor
 
+            ColumnLayout {
+                id: aboutSwarm
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.rightMargin: JamiTheme.settingsMarginSize
+                spacing: JamiTheme.preferredMarginSize
+                visible: tabBar.currentIndex === 0
+                Layout.alignment: Qt.AlignTop
+
+                ToggleSwitch {
+                    id: ignoreSwarm
+
+                    Layout.fillWidth: true
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.topMargin: JamiTheme.preferredMarginSize
+
+                    checked: false // TODO
+
+                    labelText: JamiStrings.ignoreTheSwarm
+                    fontPointSize: JamiTheme.settingsFontSize
+
+                    tooltipText: JamiStrings.ignoreTheSwarmTooltip
+
+                    onSwitchToggled: {
+                        // TODO
+                    }
+                }
+
+                RowLayout {
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+
+                    Text {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 30
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                        text: JamiStrings.leaveTheSwarm
+                        font.pointSize: JamiTheme.settingsFontSize
+                        font.kerning: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        color: JamiTheme.textColor
+                    }
+
+                    MaterialButton {
+                        id: leaveTheSwarmBtn
+
+                        Layout.alignment: Qt.AlignRight
+
+                        preferredWidth: itemWidth / 1.5
+                        preferredHeight: JamiTheme.preferredFieldHeight
+
+                        color: JamiTheme.buttonTintedBlack
+                        hoveredColor: JamiTheme.buttonTintedBlackHovered
+                        pressedColor: JamiTheme.buttonTintedBlackPressed
+                        outlined: true
+
+                        text: JamiStrings.leave
+
+                        onClicked: {
+                            // TODO
+                        }
+                    }
+                }
+
+
+                RowLayout {
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+
+                    Text {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 30
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                        text: JamiStrings.typeOfSwarm
+                        font.pointSize: JamiTheme.settingsFontSize
+                        font.kerning: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        color: JamiTheme.textColor
+                    }
+
+                    Label {
+                        id: typeOfSwarmLabel
+
+                        Layout.alignment: Qt.AlignRight
+
+                        color: JamiTheme.buttonTintedBlack
+
+                        text: qsTr("Private") // For now, it's the only type we support.
+                    }
+                }
+            }
+
             JamiListView {
                 id: members
                 anchors.fill: parent
                 spacing: JamiTheme.preferredMarginSize
                 anchors.topMargin: JamiTheme.preferredMarginSize
+
+                visible: tabBar.currentIndex === 1
 
                 SwarmParticipantContextMenu {
                     id: contextMenu
