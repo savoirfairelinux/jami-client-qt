@@ -89,6 +89,17 @@ CurrentConversation::updateData()
                     qInfo() << "Contact not found: " << e.what();
                 }
             set_isContact(isContact);
+
+            QString modeString;
+            if (convInfo.mode == conversation::Mode::ONE_TO_ONE) {
+                set_modeString(tr("Private"));
+            } else if (convInfo.mode == conversation::Mode::ADMIN_INVITES_ONLY) {
+                set_modeString(tr("Private group (restricted invites)"));
+            } else if (convInfo.mode == conversation::Mode::INVITES_ONLY) {
+                set_modeString(tr("Private group"));
+            } else if (convInfo.mode == conversation::Mode::PUBLIC) {
+                set_modeString(tr("Public group"));
+            }
         }
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
