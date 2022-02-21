@@ -43,6 +43,7 @@ extern const QString defaultDownloadPath;
     X(AcceptTransferBelow, 20) \
     X(AutoAcceptFiles, true) \
     X(DisplayHyperlinkPreviews, true) \
+    X(EnableExperimentalSwarm, false) \
     X(EnableDarkTheme, false) \
     X(AutoUpdate, true) \
     X(StartMinimized, false) \
@@ -109,6 +110,7 @@ public:
 
 Q_SIGNALS:
     void retranslate();
+    void showExperimentalSwarm();
 
 private:
     QSettings* settings_;

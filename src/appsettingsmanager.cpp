@@ -55,6 +55,8 @@ void
 AppSettingsManager::setValue(const Settings::Key key, const QVariant& value)
 {
     settings_->setValue(Settings::toString(key), value);
+    if (key == Settings::Key::EnableExperimentalSwarm)
+        Q_EMIT showExperimentalSwarm();
 }
 
 void
