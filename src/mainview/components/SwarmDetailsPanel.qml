@@ -19,12 +19,14 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt.labs.platform
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
+import "../../settingsview/components"
 
 Rectangle {
     id: root
@@ -108,11 +110,13 @@ Rectangle {
             TabBar {
                 id: tabBar
 
+                currentIndex: 1
+
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: root.width
                 Layout.preferredHeight: membersTabButton.height
 
-                /*FilterTabButton {
+                FilterTabButton {
                     id: aboutTabButton
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
@@ -128,7 +132,7 @@ Rectangle {
 
                     down: tabBar.currentIndex === 0
                     labelText: JamiStrings.about
-                }*/
+                }
 
                 FilterTabButton {
                     id: membersTabButton
@@ -144,7 +148,7 @@ Rectangle {
                             JamiTheme.chatviewTextColorLight :
                             JamiTheme.chatviewTextColorDark
 
-                    down: true//tabBar.currentIndex === 1
+                    down: tabBar.currentIndex === 1
                     labelText: {
                         var membersNb = CurrentConversation.uris.length;
                         if (membersNb > 1)
@@ -173,16 +177,158 @@ Rectangle {
             }
         }
 
+        ColorDialog {
+            id: colorDialog
+            title: JamiTheme.chooseAColor
+            onAccepted: {
+                console.warn("TODO SAVE preference")
+                CurrentConversation.color = colorDialog.color
+            }
+        }
+
         Rectangle {
             id: details
             Layout.fillWidth: true
             Layout.preferredHeight: root.height - header.height
             color: JamiTheme.secondaryBackgroundColor
 
+            ColumnLayout {
+                id: aboutSwarm
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.rightMargin: JamiTheme.settingsMarginSize
+                spacing: JamiTheme.preferredMarginSize
+                visible: tabBar.currentIndex === 0
+                Layout.alignment: Qt.AlignTop
+
+                ToggleSwitch {
+                    id: ignoreSwarm
+
+                    Layout.fillWidth: true
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.topMargin: JamiTheme.preferredMarginSize
+
+                    checked: false // TODO
+
+                    labelText: JamiStrings.ignoreTheSwarm
+                    fontPointSize: JamiTheme.settingsFontSize
+
+                    tooltipText: JamiStrings.ignoreTheSwarmTooltip
+
+                    onSwitchToggled: {
+                        // TODO
+                    }
+                }
+
+                RowLayout {
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+
+                    Text {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 30
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                        text: JamiStrings.leaveTheSwarm
+                        font.pointSize: JamiTheme.settingsFontSize
+                        font.kerning: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        color: JamiTheme.textColor
+                    }
+
+                    PushButton {
+                        id: leaveTheSwarmBtn
+
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: JamiResources.round_close_24dp_svg
+
+                        normalColor: JamiTheme.backgroundColor
+                        imageColor: JamiTheme.textColor
+                        toolTipText: JamiStrings.leave
+
+                        onClicked: {
+                            MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
+                        }
+                    }
+                }
+
+                RowLayout {
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+
+                    Text {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 30
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                        text: JamiStrings.chooseAColor
+                        font.pointSize: JamiTheme.settingsFontSize
+                        font.kerning: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        color: JamiTheme.textColor
+                    }
+
+                    Rectangle {
+                        id: chooseAColorBtn
+
+                        Layout.alignment: Qt.AlignRight
+
+                        width: JamiTheme.aboutBtnSize
+                        height: JamiTheme.aboutBtnSize
+                        radius: JamiTheme.aboutBtnSize / 2
+
+                        color: CurrentConversation.color
+
+                        MouseArea {
+                            id: mouseArea
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onClicked: colorDialog.open()
+                        }
+                    }
+                }
+
+
+                RowLayout {
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+
+                    Text {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 30
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                        text: JamiStrings.typeOfSwarm
+                        font.pointSize: JamiTheme.settingsFontSize
+                        font.kerning: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        color: JamiTheme.textColor
+                    }
+
+                    Label {
+                        id: typeOfSwarmLabel
+
+                        Layout.alignment: Qt.AlignRight
+
+                        color: JamiTheme.buttonTintedBlack
+
+                        text: CurrentConversation.modeString
+                    }
+                }
+            }
+
             JamiListView {
                 id: members
                 anchors.fill: parent
                 anchors.topMargin: JamiTheme.preferredMarginSize
+
+                visible: tabBar.currentIndex === 1
 
                 SwarmParticipantContextMenu {
                     id: contextMenu
