@@ -371,6 +371,7 @@ Item {
 
     // Details page
     property real detailsPageMinWidth: 300
+    property int aboutBtnSize: 24
 
     // Messages point size
     property real contactEventPointSize: 10 + fontSizeOffset
