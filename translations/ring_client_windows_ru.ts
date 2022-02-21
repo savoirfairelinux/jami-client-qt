@@ -1237,17 +1237,17 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation>Транслировать экран</translation>
+        <translation>Демонстрация экрана</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Показать окно</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation>Транслировать область экрана</translation>
+        <translation>Демонстрация области экрана</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2011,17 +2011,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Макет</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Вертикальное представление</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Горизонтальное представление</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>

@@ -1242,7 +1242,7 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Pencereyi paylaş</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
@@ -2009,17 +2009,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Düzen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Dikey görünüm</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Yatay görünüm</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2798,7 +2798,7 @@ Kopyalayın ve arkadaşlarınızla paylaşın!</translation>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 Mb/sn</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>

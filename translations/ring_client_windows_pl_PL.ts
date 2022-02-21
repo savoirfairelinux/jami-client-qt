@@ -1236,17 +1236,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation type="unfinished"/>
+        <translation>Udostępnij ekran</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Udostępnij okno</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation>Podziel się obszar ekranu</translation>
+        <translation>Udostępnij obszar ekranu</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2005,17 +2005,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Układ</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Widok pionowy</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Widok poziomy</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2195,7 +2195,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="519"/>
         <source>Select a screen to share</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz ekran do udostępniania</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
@@ -2794,12 +2794,12 @@ Skopiuj i podziel się nią z przyjaciółmi!</translation>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 Mb/s</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation>Wartość domyślna</translation>
+        <translation>Domyślne</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>

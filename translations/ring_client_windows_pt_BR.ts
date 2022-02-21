@@ -1237,12 +1237,12 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation>Compartilhar a tela</translation>
+        <translation>Compartilhar tela</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Compartilhar janela</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
@@ -2012,17 +2012,17 @@ conectar para sincronizar a conversação.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Layout</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Exibição vertical</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Exibição horizontal</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2806,7 +2806,7 @@ Copie-o e compartilhe com seus amigos!</translation>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation>Padrão</translation>
+        <translation>Predefinição</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>

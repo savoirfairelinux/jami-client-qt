@@ -1241,7 +1241,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Comparteix la finestra</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
@@ -2005,17 +2005,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Disposició</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Visualització vertical</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Visualització horitzontal</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2794,12 +2794,12 @@ Copiï&apos;l i comparteixi&apos;l amb els seus amics!</translation>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 Mbit/s</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Per defecte</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>

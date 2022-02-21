@@ -1236,17 +1236,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation>Ekran Paylaşması</translation>
+        <translation>Ekranı paylaş</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Paylaşım pəncərəsi</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation type="unfinished"/>
+        <translation>Ekran sahəsini paylaşın</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2005,17 +2005,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Düzən</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Şaquli görünüş</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Üfüqi görünüş</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2195,7 +2195,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="519"/>
         <source>Select a screen to share</source>
-        <translation type="unfinished"/>
+        <translation>Paylaşmaq üçün ekran seçin</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
@@ -2793,12 +2793,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 Mbit/s</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Defolt</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>

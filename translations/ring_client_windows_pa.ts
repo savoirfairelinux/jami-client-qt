@@ -1236,17 +1236,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation type="unfinished"/>
+        <translation>ਸਕਰੀਨ ਸਾਂਝੀ ਕਰੋ</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>ਸ਼ੇਅਰ ਵਿੰਡੋ</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation type="unfinished"/>
+        <translation>ਸਕਰੀਨ ਖੇਤਰ ਨੂੰ ਸਾਂਝਾ ਕਰੋ</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2005,17 +2005,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>ਲੇਆਉਟ</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>ਲੰਬਕਾਰੀ ਦ੍ਰਿਸ਼</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>ਹਰੀਜ਼ੱਟਲ ਦ੍ਰਿਸ਼</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2793,12 +2793,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 ਮੈਗਾਬਾਈਟ ਪ੍ਰਤੀ ਸਕਿੰਟ</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>طے شدہ</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>

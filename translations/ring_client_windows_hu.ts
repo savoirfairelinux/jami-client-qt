@@ -1242,12 +1242,12 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Ablak megosztása</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation>Képernyőterület megosztása</translation>
+        <translation>Képernyő részének megosztása</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2011,17 +2011,17 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Elrendezés</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Függőleges nézet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Vízszintes nézet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2800,7 +2800,7 @@ Másolja ki, és ossza meg barátaival!</translation>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation>%1 Mbit/mp</translation>
+        <translation>%1 megabit másodpercenként </translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>

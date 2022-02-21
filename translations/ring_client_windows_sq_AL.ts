@@ -1237,17 +1237,17 @@ Jami tani do të mbyllet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation>Tregojuani ekranin të tjerëve</translation>
+        <translation>Bashkëndaj ekranin</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Ndaje dritaren me të tjerë</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation>Ndani me të tjerët zonën e ekranit</translation>
+        <translation>Bashkëndaj zonën e ekranit</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2012,17 +2012,17 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Strukturë</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Pamje vertikale</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Pamje horizontale</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2202,7 +2202,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="519"/>
         <source>Select a screen to share</source>
-        <translation>Përzgjidhni një skenë për ndarje</translation>
+        <translation>Zgjidhni një ekran për të ndarë</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
@@ -2801,12 +2801,12 @@ Kopjojeni dhe jepuani shokëve!</translation>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation>%1 Mbps</translation>
+        <translation>%1 Mbit/s</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation>Parazgjedhje</translation>
+        <translation>Parazgjedhja</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>

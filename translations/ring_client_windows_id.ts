@@ -75,7 +75,7 @@
     <message>
         <location filename="../src/settingsview/components/AdvancedSettings.qml" line="52"/>
         <source>Advanced Account Settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan Akun Lanjutan</translation>
     </message>
 </context>
 <context>
@@ -124,7 +124,7 @@
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="84"/>
         <source>Add to conference</source>
-        <translation type="unfinished"/>
+        <translation>Tambah ke konferensi</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="86"/>
@@ -255,7 +255,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="54"/>
         <source>Display QR code</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan kode QR</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="55"/>
@@ -551,7 +551,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="297"/>
         <source>Create a rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Buat titik pertemuan</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="300"/>
@@ -969,7 +969,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="178"/>
         <source>Device</source>
-        <translation type="unfinished"/>
+        <translation>Perangkat</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="179"/>
@@ -984,7 +984,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="183"/>
         <source>Enable hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Aktifkan akselerasi hardware</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="184"/>
@@ -1136,7 +1136,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="230"/>
         <source>Moderator</source>
-        <translation type="unfinished"/>
+        <translation>Moderator</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="231"/>
@@ -1236,17 +1236,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation type="unfinished"/>
+        <translation>Bagikan layar</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Bagi jendela</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation type="unfinished"/>
+        <translation>Bagikan area layar</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2005,17 +2005,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Tata letak</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Tampilan vertikal</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Tampilan horizontal</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2195,7 +2195,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="519"/>
         <source>Select a screen to share</source>
-        <translation type="unfinished"/>
+        <translation>Pilih layar untuk dibagikan</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
@@ -2246,7 +2246,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="538"/>
         <source>Connect to a JAMS server</source>
-        <translation type="unfinished"/>
+        <translation>Hubungkan ke server JAMS</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="540"/>
@@ -2793,12 +2793,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation type="unfinished"/>
+        <translation>%1 megabit/detik</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Bawaan</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>

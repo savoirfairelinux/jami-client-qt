@@ -336,7 +336,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="35"/>
         <source>Refuse</source>
-        <translation>Verweigern</translation>
+        <translation>Ablehnen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="37"/>
@@ -1242,12 +1242,12 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Fenster teilen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation>Bildschirmbereich teilen</translation>
+        <translation>Bildschirmausschnitt teilen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2012,17 +2012,17 @@ eine Verbindung herstellt, um die Konversation zu synchronisieren.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Anordnung</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Vertikale ansicht</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Horizontale ansicht</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>

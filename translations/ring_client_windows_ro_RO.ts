@@ -1237,17 +1237,17 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation>Distribuie ecranul</translation>
+        <translation>Partajați ecranul</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation type="unfinished"/>
+        <translation>Partajează fereastra</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation>Distribuie zona ecranului</translation>
+        <translation>Partajați zona ecranului</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2011,17 +2011,17 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation type="unfinished"/>
+        <translation>Aranjare</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation type="unfinished"/>
+        <translation>Vizualizare verticală</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation type="unfinished"/>
+        <translation>Vizualizare orizontală</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2201,7 +2201,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="519"/>
         <source>Select a screen to share</source>
-        <translation>Alege ecranul de distribuit</translation>
+        <translation>Alegeți un ecran pe care să îl partajați</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
@@ -2805,7 +2805,7 @@ Copiază-l și distribuie-l prietenilor!</translation>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation>Prestabilit</translation>
+        <translation>Implicit</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>
