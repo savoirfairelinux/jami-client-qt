@@ -16,6 +16,24 @@
       "message": "having looked at GitLab #603, the logic here seems buggy to me:\ndon\u0027t we want to set QT_QPA_PLATFORM_THEME to gtk3 when on GNOME?\ndid you mean to only negate the KDE case?",
       "revId": "b054a6ffaa649a65fb2c761a7bb0436e3ee8ae18",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2b047eb_5b16e4b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-22T17:24:59Z",
+      "side": 1,
+      "message": "native theme on GNOME is already gtk",
+      "parentUuid": "ce2a37ea_64aa83f5",
+      "revId": "b054a6ffaa649a65fb2c761a7bb0436e3ee8ae18",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
