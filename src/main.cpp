@@ -24,12 +24,44 @@
 
 #include <QCryptographicHash>
 #include <QApplication>
-#include <QtWebEngineCore>
-#include <QtWebEngineQuick>
+#include <QtQuick>
+#include <QtWebView>
+#include <QGuiApplication>
+#include <QWebChannelAbstractTransport>
+#include <QJsonDocument>
+#include <QQmlApplicationEngine>
 
 #include <clocale>
 
 #ifndef ENABLE_TESTS
+
+class WebSocketTransport : public QWebChannelAbstractTransport
+{
+    Q_OBJECT
+public:
+    using QWebChannelAbstractTransport::QWebChannelAbstractTransport;
+    Q_INVOKABLE void sendMessage(const QJsonObject& message) override
+    {
+        QJsonDocument doc(message);
+        Q_EMIT messageChanged(QString::fromUtf8(doc.toJson(QJsonDocument::Compact)));
+    }
+    Q_INVOKABLE void textMessageReceive(const QString& messageData)
+    {
+        QJsonParseError error;
+        QJsonDocument message = QJsonDocument::fromJson(messageData.toUtf8(), &error);
+        if (error.error) {
+            qWarning() << "Failed to parse text message as JSON object:" << messageData
+                       << "Error is:" << error.errorString();
+            return;
+        } else if (!message.isObject()) {
+            qWarning() << "Received JSON message that is not an object: " << messageData;
+            return;
+        }
+        Q_EMIT messageReceived(message.object(), this);
+    }
+Q_SIGNALS:
+    void messageChanged(const QString& message);
+};
 
 static char**
 parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
@@ -50,16 +82,11 @@ parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
     return newArgv;
 }
 
-// Qt WebEngine Chromium Flags
-static char disableWebSecurity[] {"--disable-web-security"};
-static char singleProcess[] {"--single-process"};
-
 int
 main(int argc, char* argv[])
 {
     setlocale(LC_ALL, "en_US.utf8");
-
-    QList<char*> qtWebEngineChromiumFlags;
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
 #ifdef Q_OS_LINUX
     if (!getenv("QT_QPA_PLATFORMTHEME")
@@ -79,8 +106,6 @@ main(int argc, char* argv[])
      */
     unsetenv("QT_STYLE_OVERRIDE");
 #endif
-    qtWebEngineChromiumFlags << disableWebSecurity;
-    qtWebEngineChromiumFlags << singleProcess;
 
     QApplication::setApplicationName("Jami");
     QApplication::setOrganizationDomain("jami.net");
@@ -95,9 +120,9 @@ main(int argc, char* argv[])
     QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
 #endif
 
-    auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
-
-    MainApplication app(argc, newArgv);
+    MainApplication app(argc, argv);
+    qmlRegisterType<WebSocketTransport>("com.websocket.transport", 1, 0, "WebSocketTransport");
+    QtWebView::initialize();
 
     // InstanceManager prevents multiple instances, and will handle
     // IPC termination requests to and from secondary instances, which
@@ -123,3 +148,4 @@ main(int argc, char* argv[])
     return app.exec();
 }
 #endif
+#include "main.moc"

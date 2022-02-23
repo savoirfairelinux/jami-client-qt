@@ -17,7 +17,7 @@
  */
 
 import QtQuick
-import QtWebEngine
+//import QtWebEngine
 import QtWebChannel
 
 import net.jami.Adapters 1.1

@@ -93,7 +93,7 @@ Rectangle {
     EmojiPicker {
         id: emojiPicker
 
-        onEmojiIsPicked: messageBar.textAreaObj.insertText(content)
+        onEmojiIsPicked: function(content) {messageBar.textAreaObj.insertText(content)}
     }
 
     JamiFileDialog {
