@@ -41,12 +41,12 @@
 #include <QtMath>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
-                                 PreviewEngine* previewEngine,
+                                 // PreviewEngine* previewEngine,
                                  LRCInstance* instance,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-    , previewEngine_(previewEngine)
+    // , previewEngine_(previewEngine)
     , filteredMsgListModel_(new FilteredMsgListModel(this))
 {
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
@@ -60,11 +60,11 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
             set_currentConvComposingList({});
     });
 
-    connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
-    connect(previewEngine_,
-            &PreviewEngine::linkifyReady,
-            this,
-            &MessagesAdapter::onMessageLinkified);
+    //    connect(previewEngine_, &PreviewEngine::infoReady, this,
+    //    &MessagesAdapter::onPreviewInfoReady); connect(previewEngine_,
+    //            &PreviewEngine::linkifyReady,
+    //            this,
+    //            &MessagesAdapter::onMessageLinkified);
 }
 
 void
@@ -421,7 +421,7 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t, const QString& convId)
 void
 MessagesAdapter::parseMessageUrls(const QString& messageId, const QString& msg, bool showPreview)
 {
-    previewEngine_->parseMessage(messageId, msg, showPreview);
+    // previewEngine_->parseMessage(messageId, msg, showPreview);
 }
 
 void
@@ -495,6 +495,7 @@ MessagesAdapter::getMediaInfo(const QString& msg)
                                 QRegularExpression::CaseInsensitiveOption);
     QString type = vPattern.match(filePath).captured(2);
     if (!type.isEmpty()) {
+        qDebug() << "!!!!!!!!!!!!!video message path " << filePath;
         return {
             {"isVideo", true},
             {"html", html.arg("video", "100%", filePath, "video/" + type)},
