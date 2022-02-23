@@ -41,12 +41,11 @@
 #include <QtMath>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
-                                 PreviewEngine* previewEngine,
+                                 // PreviewEngine* previewEngine,
                                  LRCInstance* instance,
                                  QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-    , previewEngine_(previewEngine)
     , filteredMsgListModel_(new FilteredMsgListModel(this))
 {
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
@@ -59,12 +58,6 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         else
             set_currentConvComposingList({});
     });
-
-    connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
-    connect(previewEngine_,
-            &PreviewEngine::linkifyReady,
-            this,
-            &MessagesAdapter::onMessageLinkified);
 }
 
 void
@@ -421,7 +414,7 @@ MessagesAdapter::onConversationMessagesLoaded(uint32_t, const QString& convId)
 void
 MessagesAdapter::parseMessageUrls(const QString& messageId, const QString& msg, bool showPreview)
 {
-    previewEngine_->parseMessage(messageId, msg, showPreview);
+    // previewEngine_->parseMessage(messageId, msg, showPreview);
 }
 
 void

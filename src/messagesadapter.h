@@ -20,7 +20,7 @@
 
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
-#include "previewengine.h"
+//#include "previewengine.h"
 
 #include "api/chatview.h"
 
@@ -64,7 +64,6 @@ class MessagesAdapter final : public QmlAdapterBase
 
 public:
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
-                             PreviewEngine* previewEngine,
                              LRCInstance* instance,
                              QObject* parent = nullptr);
     ~MessagesAdapter() = default;
@@ -132,7 +131,6 @@ private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
 
     AppSettingsManager* settingsManager_;
-    PreviewEngine* previewEngine_;
     FilteredMsgListModel* filteredMsgListModel_;
 
     static constexpr const int loadChunkSize_ {20};

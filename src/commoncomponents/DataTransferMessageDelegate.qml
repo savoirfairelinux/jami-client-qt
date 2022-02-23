@@ -22,7 +22,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-import QtWebEngine
+import QtWebView
 
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -264,7 +264,7 @@ Loader {
                     }
                     Component {
                         id: avComp
-                        WebEngineView {
+                        WebView {
                             id: wev
                             anchors.right: isOutgoing ? parent.right : undefined
                             readonly property real minSize: 192
@@ -273,19 +273,12 @@ Loader {
                             readonly property real adjustedWidth: Math.min(maxSize,
                                                                   Math.max(minSize,
                                                                            innerContent.width - senderMargin))
-                            width: isFullScreen ? parent.width : adjustedWidth
-                            height: mediaInfo.isVideo ?
-                                        isFullScreen ?
-                                            parent.height :
-                                            Math.ceil(adjustedWidth / aspectRatio) :
-                                        54
-                            onContextMenuRequested: function(request) {
-                                request.accepted = true
+                            width: adjustedWidth
+                            height: mediaInfo.isVideo ? Math.ceil(adjustedWidth / aspectRatio) : 54
+
+                            Component.onCompleted: {
+                                loadHtml(mediaInfo.html, 'file://')
                             }
-                            settings.fullScreenSupportEnabled: mediaInfo.isVideo
-                            settings.javascriptCanOpenWindows: false
-                            Component.onCompleted: loadHtml(mediaInfo.html, 'file://')
-                            layer.enabled: !isFullScreen
                             layer.effect: OpacityMask {
                                 maskSource: MessageBubble {
                                     out: isOutgoing
@@ -295,20 +288,8 @@ Loader {
                                     radius: msgRadius
                                 }
                             }
-                            onFullScreenRequested: function(request) {
-                                if (request.toggleOn) {
-                                    layoutManager.pushFullScreenItem(
-                                                this,
-                                                localMediaCompLoader,
-                                                null,
-                                                function() { wev.fullScreenCancelled() })
-                                } else if (!request.toggleOn) {
-                                    layoutManager.removeFullScreenItem(this)
-                                }
-                                request.accept()
-                            }
                         }
-                    }
+                   }
                     Component {
                         id: animatedImageComp
                         AnimatedImage {

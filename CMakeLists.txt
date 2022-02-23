@@ -42,10 +42,9 @@ set(QT_MODULES
     Concurrent
     Core
     Core5Compat
-    WebEngineCore
-    WebEngineQuick
+    WebView
     WebChannel
-    WebEngineWidgets
+    WebSockets
 )
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
 foreach(MODULE ${QT_MODULES})
@@ -139,7 +138,6 @@ set(COMMON_SOURCES
     ${SRC_DIR}/currentconversation.cpp
     ${SRC_DIR}/currentaccount.cpp
     ${SRC_DIR}/videodevices.cpp
-    ${SRC_DIR}/previewengine.cpp
 )
 
 set(COMMON_HEADERS
@@ -197,7 +195,6 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentconversation.h
     ${SRC_DIR}/currentaccount.h
     ${SRC_DIR}/videodevices.h
-    ${SRC_DIR}/previewengine.h
 )
 
 if(MSVC)

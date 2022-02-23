@@ -18,11 +18,14 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtWebEngine
+import QtWebView
+//import QtWebEngine
 import QtWebChannel
+import QtWebSockets
 
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
+import com.websocket.transport
 
 import "../"
 
@@ -51,31 +54,44 @@ Rectangle {
 
     QtObject {
         id: jsBridgeObject
+        property string someProperty: "prop"
 
-        // ID, under which this object will be known at chatview.js side.
         WebChannel.id: "jsbridge"
-
-        // Functions that are exposed, return code can be derived from js side
-        // by setting callback function.
         function emojiIsPicked(arg) {
             root.emojiIsPicked(arg)
         }
-
-        // For emojiPicker to properly close
         function emojiPickerHideFinished() {
             root.visible = false
         }
     }
 
-    GeneralWebEngineView {
+    WebChannel {
+        id: channel
+        registeredObjects: [jsBridgeObject]
+    }
+
+
+    WebSocketTransport{
+        id: transport
+    }
+
+    WebSocketServer {
+        listen: true
+        port: 8080
+        onClientConnected: function(webSocket) {
+            if(webSocket.status === WebSocket.Open){
+                channel.connectTo(transport)
+                webSocket.onTextMessageReceived.connect(transport.textMessageReceive)
+                transport.onMessageChanged.connect(webSocket.sendTextMessage)
+            }
+        }
+    }
+
+    WebView {
         id: emojiPickerWebView
 
         anchors.fill: root
-
-        webChannel.registeredObjects: [jsBridgeObject]
-
-        onCompletedLoadHtml: ":/src/commoncomponents/emojipicker/emojiPickerLoader.html"
-
+        url: "qrc:/src/commoncomponents/emojipicker/emojiPickerLoader.html"
         onActiveFocusChanged: {
             if (visible) {
                 closeEmojiPicker()
@@ -83,15 +99,7 @@ Rectangle {
         }
 
         onLoadingChanged: function (loadingInfo) {
-            if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
-                emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(
-                                                     ":qwebchannel.js"))
-                emojiPickerWebView.runJavaScript(
-                            UtilsAdapter.qStringFromFile(
-                                ":/src/commoncomponents/emojipicker/emoji.js"))
-                emojiPickerWebView.runJavaScript(
-                            UtilsAdapter.qStringFromFile(
-                                ":/src/commoncomponents/emojipicker/emojiPickerLoader.js"))
+            if (loadingInfo.status === WebView.LoadSucceededStatus) {
                 emojiPickerWebView.runJavaScript(
                             "init_emoji_picker(" + JamiTheme.darkTheme + ");")
             }
