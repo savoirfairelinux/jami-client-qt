@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c0d9c35_2feb3eb5",
+        "filename": "src/messagesadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-02-23T21:50:42Z",
+      "side": 1,
+      "message": "not related, but seems overkill.",
+      "range": {
+        "startLine": 232,
+        "startChar": 26,
+        "endLine": 234,
+        "endChar": 65
+      },
+      "revId": "c0efafbcfa7d10f1876e251bb1042cf8cda3e9f6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
