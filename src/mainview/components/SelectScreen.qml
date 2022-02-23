@@ -20,6 +20,7 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
+import QtQuick.Layouts
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
@@ -44,7 +45,7 @@ Window {
     property string currentPreview: ""
     property var screens: []
 
-    title: JamiStrings.selectScreen
+    title: window ? JamiStrings.selectWindow : JamiStrings.selectScreen
 
     // How many rows the ScrollView should have.
     function calculateRepeaterModel() {
@@ -348,36 +349,57 @@ Window {
         }
     }
 
-    MaterialButton {
-        id: selectButton
-
+    RowLayout {
         anchors.bottom: selectScreenWindowRect.bottom
         anchors.bottomMargin: JamiTheme.preferredMarginSize
         anchors.horizontalCenter: selectScreenWindowRect.horizontalCenter
 
-        preferredWidth: 200
+        width: childrenRect.width
+        height: childrenRect.height
+        spacing: JamiTheme.preferredMarginSize
 
-        enabled: selectedScreenNumber != -1 || selectAllScreens
-        opacity: enabled ? 1.0 : 0.5
+        MaterialButton {
+            id: selectButton
 
-        color: JamiTheme.buttonTintedBlack
-        hoveredColor: JamiTheme.buttonTintedBlackHovered
-        pressedColor: JamiTheme.buttonTintedBlackPressed
-        outlined: true
+            preferredWidth: 200
 
-        text: JamiStrings.shareScreen
+            enabled: selectedScreenNumber != -1 || selectAllScreens
+            opacity: enabled ? 1.0 : 0.5
 
-        onClicked: {
-            if (selectAllScreens)
-                AvAdapter.shareAllScreens()
-            else {
-                if (selectedScreenNumber < Qt.application.screens.length)
-                    AvAdapter.shareEntireScreen(selectedScreenNumber)
+            color: JamiTheme.buttonTintedBlack
+            hoveredColor: JamiTheme.buttonTintedBlackHovered
+            pressedColor: JamiTheme.buttonTintedBlackPressed
+            outlined: true
+
+            text: window ? JamiStrings.shareWindow : JamiStrings.shareScreen
+
+            onClicked: {
+                if (selectAllScreens)
+                    AvAdapter.shareAllScreens()
                 else {
-                    AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber - Qt.application.screens.length])
+                    if (selectedScreenNumber < Qt.application.screens.length)
+                        AvAdapter.shareEntireScreen(selectedScreenNumber)
+                    else {
+                        AvAdapter.shareWindow(AvAdapter.windowsIds[selectedScreenNumber - Qt.application.screens.length])
+                    }
                 }
+                root.close()
             }
-            root.close()
+        }
+
+        MaterialButton {
+            id: cancelButton
+
+            preferredWidth: 200
+
+            color: JamiTheme.buttonTintedBlack
+            hoveredColor: JamiTheme.buttonTintedBlackHovered
+            pressedColor: JamiTheme.buttonTintedBlackPressed
+            outlined: true
+
+            text: JamiStrings.optionCancel
+
+            onClicked: root.close()
         }
     }
 }
