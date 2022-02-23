@@ -62,7 +62,6 @@ bool CreateStartupLink(const std::wstring& wstrAppName);
 void DeleteStartupLink(const std::wstring& wstrAppName);
 bool CreateLink(LPCWSTR lpszPathObj, LPCWSTR lpszPathLink);
 bool CheckStartupLink(const std::wstring& wstrAppName);
-const char* WinGetEnv(const char* name);
 QString GetRingtonePath();
 QString GenGUID();
 QString GetISODate();
