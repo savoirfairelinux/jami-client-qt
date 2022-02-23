@@ -117,19 +117,18 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
         if (systemTray_->hideNotification(QString("%1;%2").arg(accountId).arg(convInfo.uid))
             && call.startTime.time_since_epoch().count() == 0) {
             // This was a missed call; show a missed call notification
-            // TODO: swarmify(avoid using convInfo.participants[0])
-            auto contactPhoto = Utils::contactPhoto(lrcInstance_,
-                                                    convInfo.participants[0],
-                                                    QSize(50, 50),
-                                                    accountId);
+            auto convAvatar = Utils::conversationAvatar(lrcInstance_,
+                                                        convInfo.uid,
+                                                        QSize(50, 50),
+                                                        accountId);
             auto& accInfo = lrcInstance_->getAccountInfo(accountId);
-            auto from = accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
+            auto from = accInfo.conversationModel->title(convInfo.uid);
             auto notifId = QString("%1;%2").arg(accountId).arg(convInfo.uid);
             systemTray_->showNotification(notifId,
                                           tr("Missed call"),
-                                          tr("Missed call from %1").arg(from),
+                                          tr("Missed call with %1").arg(from),
                                           NotificationType::CHAT,
-                                          Utils::QImageToByteArray(contactPhoto));
+                                          Utils::QImageToByteArray(convAvatar));
         }
     }
 #else
@@ -537,34 +536,26 @@ CallAdapter::getConferencesInfos()
 void
 CallAdapter::showNotification(const QString& accountId, const QString& convUid)
 {
-    QString from {};
-    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
-    if (!accountId.isEmpty() && !convInfo.uid.isEmpty()) {
-        auto& accInfo = lrcInstance_->getAccountInfo(accountId);
-        if (!convInfo.participants.isEmpty())
-            from = accInfo.contactModel->bestNameForContact(convInfo.participants[0]);
-    }
+    auto& accInfo = lrcInstance_->getAccountInfo(accountId);
+    auto title = accInfo.conversationModel->title(convUid);
 
 #ifdef Q_OS_LINUX
-    auto contactPhoto = Utils::contactPhoto(lrcInstance_,
-                                            convInfo.participants[0],
-                                            QSize(50, 50),
-                                            accountId);
+    auto convAvatar = Utils::conversationAvatar(lrcInstance_, convUid, QSize(50, 50), accountId);
     auto notifId = QString("%1;%2").arg(accountId).arg(convUid);
     systemTray_->showNotification(notifId,
                                   tr("Incoming call"),
-                                  tr("%1 is calling you").arg(from),
+                                  tr("%1 is calling you").arg(title),
                                   NotificationType::CALL,
-                                  Utils::QImageToByteArray(contactPhoto));
+                                  Utils::QImageToByteArray(convAvatar));
 #else
-    auto onClicked = [this, accountId, convUid = convInfo.uid]() {
+    auto onClicked = [this, accountId, convUid]() {
         Q_EMIT lrcInstance_->notificationClicked();
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
-        if (convInfo.uid.isEmpty())
+        if (convUid.isEmpty())
             return;
-        lrcInstance_->selectConversation(convInfo.uid, accountId);
+        lrcInstance_->selectConversation(convUid, accountId);
     };
-    systemTray_->showNotification(tr("is calling you"), from, onClicked);
+    systemTray_->showNotification(tr("is calling you"), title, onClicked);
 #endif
 }
 
