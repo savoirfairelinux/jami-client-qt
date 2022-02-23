@@ -213,23 +213,6 @@ Utils::CheckStartupLink(const std::wstring& wstrAppName)
 #endif
 }
 
-const char*
-Utils::WinGetEnv(const char* name)
-{
-#ifdef Q_OS_WIN
-    const DWORD buffSize = 65535;
-    static char buffer[buffSize];
-    if (GetEnvironmentVariableA(name, buffer, buffSize)) {
-        return buffer;
-    } else {
-        return 0;
-    }
-#else
-    Q_UNUSED(name)
-    return 0;
-#endif
-}
-
 void
 Utils::removeOldVersions()
 {

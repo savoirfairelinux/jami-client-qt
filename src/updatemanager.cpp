@@ -19,11 +19,11 @@
 #include "updatemanager.h"
 
 #include "lrcinstance.h"
-#include "utils.h"
 #include "version.h"
 
 #include <QProcess>
 #include <QTimer>
+#include <QDir>
 
 #ifdef BETA
 static constexpr bool isBeta = true;
@@ -45,7 +45,7 @@ struct UpdateManager::Impl : public QObject
         , parent_(parent)
         , lrcInstance_(instance)
         , baseUrlString_(url.isEmpty() ? downloadUrl : url)
-        , tempPath_(Utils::WinGetEnv("TEMP"))
+        , tempPath_(QDir::tempPath())
         , updateTimer_(new QTimer(this))
     {
         connect(updateTimer_, &QTimer::timeout, [this] {
@@ -148,8 +148,8 @@ struct UpdateManager::Impl : public QObject
 
     void cleanUpdateFiles()
     {
-        // Delete all logs and msi in the %TEMP% directory before launching.
-        QString dir = QString(Utils::WinGetEnv("TEMP"));
+        // Delete all logs and msi in the temporary directory before launching.
+        QString dir = QDir::tempPath();
         QDir log_dir(dir, {"jami*.log"});
         for (const QString& filename : log_dir.entryList()) {
             log_dir.remove(filename);
