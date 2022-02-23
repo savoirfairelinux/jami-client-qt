@@ -25,7 +25,6 @@
 
 #include "appsettingsmanager.h"
 #include "qtutils.h"
-#include "utils.h"
 
 #include <api/datatransfermodel.h>
 
@@ -39,6 +38,7 @@
 #include <QMimeData>
 #include <QBuffer>
 #include <QtMath>
+#include <QDir>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -232,8 +232,8 @@ MessagesAdapter::onPaste()
         auto img_name_hash
             = QCryptographicHash::hash(QString::number(pixmap.cacheKey()).toLocal8Bit(),
                                        QCryptographicHash::Sha1);
-        QString fileName = "\\img_" + QString(img_name_hash.toHex()) + ".png";
-        QString path = QString(Utils::WinGetEnv("TEMP")) + fileName;
+        QString fileName = "img_" + QString(img_name_hash.toHex()) + ".png";
+        QString path = QDir::temp().filePath(fileName);
 
         if (!pixmap.save(path, "PNG")) {
             qDebug().noquote() << "Errors during QPixmap save"
