@@ -517,6 +517,7 @@ Item {
 
     // SelectScreen
     property string selectScreen: qsTr("Select a screen to share")
+    property string selectWindow: qsTr("Select a window to share")
     property string allScreens: qsTr("All Screens")
     property string screens: qsTr("Screens")
     property string windows: qsTr("Windows")
