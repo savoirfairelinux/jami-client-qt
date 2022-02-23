@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "287a19e2_039b9339",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-02-23T19:40:14Z",
+      "side": 1,
+      "message": "Can keyboard accelerators be added to the buttons, i.e. `_Cancel` `_Share window`, `_Share screen`?\n\nWhat do you think?\n\nThank you",
+      "revId": "d45fa046febdd5b077894912900522387757f99d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
