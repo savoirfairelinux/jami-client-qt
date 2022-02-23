@@ -65,7 +65,7 @@ void registerTypes(QQmlEngine* engine,
                    SystemTray* systemTray,
                    LRCInstance* lrcInstance,
                    AppSettingsManager* appSettingsManager,
-                   PreviewEngine* previewEngine,
+                   // PreviewEngine* previewEngine,
                    ScreenInfo* screenInfo,
                    MainApplication* parent);
 }

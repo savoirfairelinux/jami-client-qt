@@ -25,7 +25,7 @@
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
-#include "previewengine.h"
+//#include "previewengine.h"
 
 #include <QAction>
 #include <QCommandLineParser>
@@ -156,7 +156,7 @@ MainApplication::init()
     connectivityMonitor_.reset(new ConnectivityMonitor(this));
     settingsManager_.reset(new AppSettingsManager(this));
     systemTray_.reset(new SystemTray(settingsManager_.get(), this));
-    previewEngine_.reset(new PreviewEngine(this));
+    // previewEngine_.reset(new PreviewEngine(this));
 
     QObject::connect(settingsManager_.get(),
                      &AppSettingsManager::retranslate,
@@ -382,7 +382,7 @@ MainApplication::initQmlLayer()
                          systemTray_.get(),
                          lrcInstance_.get(),
                          settingsManager_.get(),
-                         previewEngine_.get(),
+                         // previewEngine_.get(),
                          &screenInfo_,
                          this);
 

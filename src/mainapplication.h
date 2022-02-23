@@ -36,7 +36,7 @@ class ConnectivityMonitor;
 class AppSettingsManager;
 class SystemTray;
 class CallAdapter;
-class PreviewEngine;
+// class PreviewEngine;
 
 // Provides information about the screen the app is displayed on
 class ScreenInfo : public QObject
@@ -118,7 +118,7 @@ private:
     QScopedPointer<ConnectivityMonitor> connectivityMonitor_;
     QScopedPointer<AppSettingsManager> settingsManager_;
     QScopedPointer<SystemTray> systemTray_;
-    QScopedPointer<PreviewEngine> previewEngine_;
+    // QScopedPointer<PreviewEngine> previewEngine_;
 
     ScreenInfo screenInfo_;
 };

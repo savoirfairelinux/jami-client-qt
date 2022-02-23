@@ -5,9 +5,22 @@ var emojiPicker = undefined
 const HIDE_VARIANT_POPUP = 'hideVariantPopup'
 const PICKER_HIDDEN = 'hidden'
 
-new QWebChannel(qt.webChannelTransport, function (channel) {
-    window.jsbridge = channel.objects.jsbridge
-})
+window.onload = function() {
+    var baseUrl = "ws://localhost:8080";
+    var socket = new WebSocket(baseUrl);
+
+    socket.onclose = function() {
+        console.error("web channel closed");
+    };
+    socket.onerror = function(error) {
+        console.error("web channel error: " + error);
+    };
+    socket.onopen = function() {
+        new QWebChannel(socket, function(channel) {
+            window.jsbridge = channel.objects.jsbridge;
+        });
+    }
+}
 
 /* exported init_emoji_picker */
 function init_emoji_picker(dark) {
