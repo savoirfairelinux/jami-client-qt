@@ -117,19 +117,18 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
         if (systemTray_->hideNotification(QString("%1;%2").arg(accountId).arg(convInfo.uid))
             && call.startTime.time_since_epoch().count() == 0) {
             // This was a missed call; show a missed call notification
-            // TODO: swarmify(avoid using convInfo.participants[0].uri)
-            auto contactPhoto = Utils::contactPhoto(lrcInstance_,
-                                                    convInfo.participants[0].uri,
-                                                    QSize(50, 50),
-                                                    accountId);
+            auto convAvatar = Utils::conversationAvatar(lrcInstance_,
+                                                        convInfo.uid,
+                                                        QSize(50, 50),
+                                                        accountId);
             auto& accInfo = lrcInstance_->getAccountInfo(accountId);
-            auto from = accInfo.contactModel->bestNameForContact(convInfo.participants[0].uri);
+            auto from = accInfo.conversationModel->title(convInfo.uid);
             auto notifId = QString("%1;%2").arg(accountId).arg(convInfo.uid);
             systemTray_->showNotification(notifId,
                                           tr("Missed call"),
-                                          tr("Missed call from %1").arg(from),
+                                          tr("Missed call with %1").arg(from),
                                           NotificationType::CHAT,
-                                          Utils::QImageToByteArray(contactPhoto));
+                                          Utils::QImageToByteArray(convAvatar));
         }
     }
 #else
