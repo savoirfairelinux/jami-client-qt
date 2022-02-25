@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2042b3a_cb49178a",
+        "filename": "src/distantrenderer.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-02-25T17:23:14Z",
+      "side": 0,
+      "message": "this doesn\u0027t look healthy",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 75
+      },
+      "revId": "d45fa046febdd5b077894912900522387757f99d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
