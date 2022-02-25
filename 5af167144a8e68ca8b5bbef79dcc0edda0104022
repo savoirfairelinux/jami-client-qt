@@ -16,6 +16,24 @@
       "message": "missing declaration in header",
       "revId": "5af167144a8e68ca8b5bbef79dcc0edda0104022",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26e1438a_01bdc829",
+        "filename": "src/videoprovider.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-02-25T16:24:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "417d9534_485d455f",
+      "revId": "5af167144a8e68ca8b5bbef79dcc0edda0104022",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
