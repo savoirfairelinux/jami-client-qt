@@ -22,6 +22,30 @@
       },
       "revId": "d45fa046febdd5b077894912900522387757f99d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc986263_84358036",
+        "filename": "src/distantrenderer.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-02-25T17:23:30Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "f2042b3a_cb49178a",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 75
+      },
+      "revId": "d45fa046febdd5b077894912900522387757f99d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
