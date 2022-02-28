@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="tt">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="en_IE">
 <context>
     <name>AccountComboBoxPopup</name>
     <message>
@@ -260,7 +260,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="55"/>
         <source>Open settings</source>
-        <translation>Параметрларны ачу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="56"/>
@@ -516,7 +516,7 @@ Jami will now quit.</source>
         <location filename="../src/constant/JamiStrings.qml" line="36"/>
         <location filename="../src/constant/JamiStrings.qml" line="216"/>
         <source>End call</source>
-        <translation>Шалтыратуны тәмамлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="217"/>
@@ -1231,22 +1231,22 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="256"/>
         <source>Exit full screen</source>
-        <translation>Тулы экран рәвешеннән чыгарга</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation>Экранны бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation>Тәрәзәне бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation>Экран өлкәсен бүлешү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -1608,7 +1608,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="371"/>
         <source>Downloads directory</source>
-        <translation>Йөкләүләр папкасы</translation>
+        <translation>Downloads folder</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="372"/>
@@ -1623,17 +1623,17 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="376"/>
         <source>Chatview</source>
-        <translation>Чат</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="378"/>
         <source>Display hyperlink previews in the chatview</source>
-        <translation>Сылтама карап алуларын күрсәтү</translation>
+        <translation>Show link previews</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="380"/>
         <source>User interface language</source>
-        <translation>Кулланучының интерфейс теле</translation>
+        <translation>User interface language</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="385"/>
@@ -1906,7 +1906,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="598"/>
         <source>Send file</source>
-        <translation>Файлларны җибәрү</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="599"/>
@@ -1975,7 +1975,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="257"/>
         <source>View full screen</source>
-        <translation>Тулы экранда карау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="260"/>
@@ -2005,17 +2005,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Layout</source>
-        <translation>Макет</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
         <source>Vertical view</source>
-        <translation>Вертикаль күренеш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Horizontal view</source>
-        <translation>Горизонталь күренеш</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="428"/>
@@ -2195,7 +2195,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="519"/>
         <source>Select a screen to share</source>
-        <translation>Бүлешү өчен экран сайлагыз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
@@ -2369,7 +2369,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="65"/>
         <source>Full screen</source>
-        <translation>Тулы экран</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="74"/>
@@ -2439,7 +2439,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="136"/>
         <source>End call</source>
-        <translation>Шалтыратуны тәмамлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="140"/>
@@ -2744,7 +2744,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/SystemSettings.qml" line="58"/>
         <source>System</source>
-        <translation>Система</translation>
+        <translation>System</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/SystemSettings.qml" line="74"/>
@@ -2754,7 +2754,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/SystemSettings.qml" line="92"/>
         <source>Enable desktop notifications</source>
-        <translation>Белдерүләрне күрсәтү</translation>
+        <translation>Show notifications</translation>
     </message>
 </context>
 <context>
@@ -2798,17 +2798,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>%1 Mbps</source>
-        <translation>%1 Мбит/с</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation>Килешенгәнчә</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>
         <source>System</source>
-        <translation>Система</translation>
+        <translation>System</translation>
     </message>
 </context>
 </TS>
