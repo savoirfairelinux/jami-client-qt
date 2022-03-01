@@ -337,22 +337,35 @@ Rectangle {
                 interactive: false
 
                 onVisibleChanged: {
-                    if (!visible) {
+                    if (!swarmCurrentConversationList.visible) {
                         highlighted = false
                         root.clearHighlighted()
                     }
                 }
 
+                Component.onCompleted: {
+                    // Note: when scrolled down, this delegate will be
+                    // destroyed from the memory. So, re-add the highlighted
+                    // status if necessary
+                    if (Array.from(root.highlighted).find(r => r === UID)) {
+                        highlighted = true
+                    }
+                }
+
                 onHighlightedChanged: function onHighlightedChanged() {
+                    if (highlighted && Array.from(root.highlighted).find(r => r === UID)) {
+                        // Due to scrolling destruction/reconstruction
+                        return
+                    }
                     var currentHighlighted = root.highlighted
-                    if (!root.refreshHighlighted(convId, highlighted)) {
+                    if (!root.refreshHighlighted(UID, highlighted)) {
                         highlighted = false
                         return
                     }
                     if (highlighted) {
-                        root.highlighted.push(convId)
+                        root.highlighted.push(UID)
                     } else {
-                        root.highlighted = Array.from(root.highlighted).filter(r => r !== convId)
+                        root.highlighted = Array.from(root.highlighted).filter(r => r !== UID)
                     }
                 }
             }
