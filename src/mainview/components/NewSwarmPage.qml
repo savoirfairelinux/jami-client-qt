@@ -42,9 +42,7 @@ Rectangle {
 
     RowLayout {
         id: labelsMember
-        anchors.top: root.top
-        anchors.topMargin: 16
-        anchors.leftMargin: 16
+        Layout.topMargin: 16
         Layout.preferredWidth: root.width
         spacing: 16
 
@@ -52,59 +50,55 @@ Rectangle {
             text: qsTr("To:")
             font.bold: true
             color: JamiTheme.textColor
+            Layout.leftMargin: 16
         }
 
-        ScrollView {
+        Flow {
             Layout.preferredWidth: root.width
+            Layout.topMargin: 16
             Layout.fillWidth: true
             Layout.preferredHeight: 48
-            Layout.topMargin: 16
-            clip: true
+            spacing: 8
 
-            RowLayout {
-                anchors.fill: parent
-                Repeater {
-                    id: repeater
+            Repeater {
+                id: repeater
 
-                    delegate: Rectangle {
-                        id: delegate
-                        radius: (delegate.height + 12) / 2
-                        width: childrenRect.width + 12
-                        height: childrenRect.height + 12
+                delegate: Rectangle {
+                    id: delegate
+                    radius: (delegate.height + 12) / 2
+                    width: childrenRect.width + 12
+                    height: childrenRect.height + 12
 
-                        RowLayout {
-                            anchors.centerIn: parent
+                    RowLayout {
+                        anchors.centerIn: parent
 
-                            Label {
-                                text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
-                                color: JamiTheme.textColor
-                            }
-
-                            PushButton {
-                                id: removeUserBtn
-
-                                Layout.leftMargin: 8
-
-                                preferredSize: 24
-
-                                source: JamiResources.round_close_24dp_svg
-                                toolTipText: JamiStrings.removeMember
-
-                                normalColor: "transparent"
-                                imageColor: "transparent"
-
-                                onClicked: root.removeMember(modelData.convId, modelData.uri)
-                            }
+                        Label {
+                            text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
+                            color: JamiTheme.textColor
                         }
 
-                        color: "grey"
+                        PushButton {
+                            id: removeUserBtn
+
+                            Layout.leftMargin: 8
+
+                            preferredSize: 24
+
+                            source: JamiResources.round_close_24dp_svg
+                            toolTipText: JamiStrings.removeMember
+
+                            normalColor: "transparent"
+                            imageColor: "transparent"
+
+                            onClicked: root.removeMember(modelData.convId, modelData.uri)
+                        }
                     }
-                    model: root.members
+
+                    color: "grey"
                 }
+                model: root.members
             }
         }
-
-
     }
 
     ColumnLayout {
