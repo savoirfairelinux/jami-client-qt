@@ -58,6 +58,8 @@ Rectangle {
 
             EditableLineEdit {
                 id: titleLine
+                property var luma: 0.2126 * backgroundColor.r + 0.7152 * backgroundColor.g + 0.0722 * backgroundColor.b // ITU-R BT.709
+
                 Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: JamiTheme.preferredMarginSize
 
@@ -68,17 +70,12 @@ Rectangle {
 
                 text: CurrentConversation.title
                 placeholderText: JamiStrings.editTitle
-                placeholderTextColor: JamiTheme.placeholderTextColorWhite
+                placeholderTextColor: luma < 0.60 ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                 tooltipText: JamiStrings.editTitle
                 backgroundColor: root.color
-                color: {
-                    var luma = 0.2126 * backgroundColor.r + 0.7152 * backgroundColor.g + 0.0722 * backgroundColor.b // ITU-R BT.709
-
-                    return luma < 0.60 ?
+                color: luma < 0.60 ?
                         JamiTheme.chatviewTextColorLight :
                         JamiTheme.chatviewTextColorDark
-
-                }
 
                 onEditingFinished: {
                     ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
@@ -87,6 +84,8 @@ Rectangle {
 
             EditableLineEdit {
                 id: descriptionLine
+                property var luma: 0.2126 * backgroundColor.r + 0.7152 * backgroundColor.g + 0.0722 * backgroundColor.b // ITU-R BT.709
+
                 Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
@@ -98,17 +97,12 @@ Rectangle {
 
                 text: CurrentConversation.description
                 placeholderText: JamiStrings.editDescription
-                placeholderTextColor: JamiTheme.placeholderTextColorWhite
+                placeholderTextColor: luma < 0.60 ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                 tooltipText: JamiStrings.editDescription
                 backgroundColor: root.color
-                color: {
-                    var luma = 0.2126 * backgroundColor.r + 0.7152 * backgroundColor.g + 0.0722 * backgroundColor.b // ITU-R BT.709
-
-                    return luma < 0.60 ?
+                color: luma < 0.60 ?
                         JamiTheme.chatviewTextColorLight :
                         JamiTheme.chatviewTextColorDark
-
-                }
 
                 onEditingFinished: {
                     ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
@@ -126,6 +120,7 @@ Rectangle {
 
                 FilterTabButton {
                     id: aboutTabButton
+                    property var luma: 0.2126 * root.color.r + 0.7152 * root.color.g + 0.0722 * root.color.b // ITU-R BT.709
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
                     borderWidth: 4
@@ -133,14 +128,10 @@ Rectangle {
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
-                    textColor: {
-                        var luma = 0.2126 * root.color.r + 0.7152 * root.color.g + 0.0722 * root.color.b // ITU-R BT.709
-
-                        return luma < 0.60 ?
+                    textColorHovered: luma < 0.60 ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                    textColor: luma < 0.60 ?
                             JamiTheme.chatviewTextColorLight :
                             JamiTheme.chatviewTextColorDark
-
-                    }
 
                     down: tabBar.currentIndex === 0
                     labelText: JamiStrings.about
@@ -148,6 +139,7 @@ Rectangle {
 
                 FilterTabButton {
                     id: membersTabButton
+                    property var luma: 0.2126 * root.color.r + 0.7152 * root.color.g + 0.0722 * root.color.b // ITU-R BT.709
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
                     borderWidth: 4
@@ -155,14 +147,10 @@ Rectangle {
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
-                    textColor: {
-                        var luma = 0.2126 * root.color.r + 0.7152 * root.color.g + 0.0722 * root.color.b // ITU-R BT.709
-
-                        return luma < 0.60 ?
+                    textColorHovered: luma < 0.60 ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                    textColor: luma < 0.60 ?
                             JamiTheme.chatviewTextColorLight :
                             JamiTheme.chatviewTextColorDark
-
-                    }
 
                     down: tabBar.currentIndex === 1
                     labelText: {
@@ -175,6 +163,7 @@ Rectangle {
 
                 /*FilterTabButton {
                     id: documentsTabButton
+                    property var luma: 0.2126 * root.color.r + 0.7152 * root.color.g + 0.0722 * root.color.b // ITU-R BT.709
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
                     borderWidth: 4
@@ -182,14 +171,10 @@ Rectangle {
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
-                    textColor: {
-                        var luma = 0.2126 * CurrentConversation.color.r + 0.7152 * CurrentConversation.color.g + 0.0722 * CurrentConversation.color.b // ITU-R BT.709
-
-                        return luma < 0.60 ?
+                    textColorHovered: luma < 0.60 ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                    textColor: luma < 0.60 ?
                             JamiTheme.chatviewTextColorLight :
                             JamiTheme.chatviewTextColorDark
-
-                    }
 
                     down: tabBar.currentIndex === 2
                     labelText: JamiStrings.documents
@@ -240,14 +225,14 @@ Rectangle {
                     }
                 }
 
-                RowLayout {
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
                     Text {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 30
-                        Layout.rightMargin: JamiTheme.preferredMarginSize
-
+                        anchors.left: parent.left
+                        anchors.top: parent.top
+                        anchors.margins: JamiTheme.preferredMarginSize
                         text: JamiStrings.leaveTheSwarm
                         font.pointSize: JamiTheme.settingsFontSize
                         font.kerning: true
@@ -258,17 +243,20 @@ Rectangle {
                         color: JamiTheme.textColor
                     }
 
-                    PushButton {
-                        id: leaveTheSwarmBtn
+                    color: "transparent"
 
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: JamiResources.round_close_24dp_svg
+                    HoverHandler {
+                        target: parent
+                        enabled: parent.visible
+                        onHoveredChanged: {
+                            parent.color = hovered ? Qt.darker(JamiTheme.selectedColor, 1.05) : "transparent"
+                        }
+                    }
 
-                        normalColor: JamiTheme.backgroundColor
-                        imageColor: JamiTheme.textColor
-                        toolTipText: JamiStrings.leave
-
-                        onClicked: {
+                    TapHandler {
+                        target: parent
+                        enabled: parent.visible
+                        onTapped: function onTapped(eventPoint) {
                             MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
                         }
                     }
@@ -346,7 +334,6 @@ Rectangle {
             JamiListView {
                 id: members
                 anchors.fill: parent
-                spacing: JamiTheme.preferredMarginSize
                 anchors.topMargin: JamiTheme.preferredMarginSize
 
                 visible: tabBar.currentIndex === 1
@@ -366,10 +353,20 @@ Rectangle {
                 }
 
                 model: CurrentConversation.uris
-                delegate: Item {
-
+                delegate: ItemDelegate {
+                    id: member
                     width: members.width
                     height: JamiTheme.smartListItemHeight
+
+                    background: Rectangle {
+                        anchors.fill: parent
+                        color: {
+                            if (member.hovered)
+                                return Qt.darker(JamiTheme.selectedColor, 1.05)
+                            else
+                                return "transparent"
+                        }
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -387,6 +384,7 @@ Rectangle {
                             width: JamiTheme.smartListAvatarSize
                             height: JamiTheme.smartListAvatarSize
                             Layout.leftMargin: JamiTheme.preferredMarginSize
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
                             z: -index
                             opacity: {
                                 var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
@@ -402,6 +400,7 @@ Rectangle {
                             id: bestName
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
                             maxWidth: JamiTheme.preferredFieldWidth
@@ -421,6 +420,7 @@ Rectangle {
                             id: role
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
                             eText: {
                                 var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
