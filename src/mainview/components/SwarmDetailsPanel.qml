@@ -258,19 +258,11 @@ Rectangle {
                         color: JamiTheme.textColor
                     }
 
-                    PushButton {
-                        id: leaveTheSwarmBtn
-
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: JamiResources.round_close_24dp_svg
-
-                        normalColor: JamiTheme.backgroundColor
-                        imageColor: JamiTheme.textColor
-                        toolTipText: JamiStrings.leave
-
-                        onClicked: {
-                            MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
-                        }
+                    MouseArea {
+                        id: mouseAreaLeave
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onClicked: MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
                     }
                 }
 
