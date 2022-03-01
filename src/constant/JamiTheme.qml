@@ -219,7 +219,7 @@ Item {
     property real indicatorFontSize: 6
     property real tinyFontSize: 7 + fontSizeOffset
     property real textFontSize: 9 + fontSizeOffset
-    property real settingsFontSize: 9 + fontSizeOffset
+    property real settingsFontSize: 11 + fontSizeOffset
     property real buttonFontSize: 9
     property real participantFontSize: 10
     property real menuFontSize: 12 + fontSizeOffset
