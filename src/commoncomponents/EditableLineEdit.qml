@@ -46,7 +46,7 @@ RowLayout {
         readOnly: !editable
         underlined: true
 
-        borderColor: JamiTheme.textColor
+        borderColor: root.color
 
         Layout.alignment: Qt.AlignCenter
         Layout.maximumWidth: JamiTheme.preferredFieldWidth
@@ -63,6 +63,10 @@ RowLayout {
                 lineEdit.forceActiveFocus()
             }
         }
+        onAccepted: {
+            editable = !editable
+            root.editingFinished()
+        }
     }
 
     PushButton {
@@ -71,7 +75,7 @@ RowLayout {
         Layout.alignment: Qt.AlignVCenter
 
         opacity: 0.8
-        imageColor: JamiTheme.textColor
+        imageColor: root.color
         normalColor: "transparent"
         hoveredColor: JamiTheme.hoveredButtonColor
 

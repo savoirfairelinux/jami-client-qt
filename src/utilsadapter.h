@@ -104,6 +104,7 @@ public:
     Q_INVOKABLE lrc::api::member::Role getParticipantRole(const QString& accountId,
                                                           const QString& convId,
                                                           const QString& uri);
+    Q_INVOKABLE bool luma(const QColor& color) const;
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);

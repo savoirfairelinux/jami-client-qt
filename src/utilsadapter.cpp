@@ -570,3 +570,9 @@ UtilsAdapter::getParticipantRole(const QString& accountId, const QString& convId
     }
     return lrc::api::member::Role::MEMBER;
 }
+
+bool
+UtilsAdapter::luma(const QColor& color) const
+{
+    return (0.2126 * color.red() + 0.7152 * color.green() + 0.0722 * color.blue()) > .6;
+}
