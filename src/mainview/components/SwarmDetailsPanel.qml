@@ -179,7 +179,7 @@ Rectangle {
 
         ColorDialog {
             id: colorDialog
-            title: JamiTheme.chooseAColor
+            title: JamiStrings.chooseAColor
             onAccepted: {
                 console.warn("TODO SAVE preference")
                 CurrentConversation.color = colorDialog.color
@@ -220,14 +220,14 @@ Rectangle {
                     }
                 }
 
-                RowLayout {
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
                     Text {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 30
-                        Layout.rightMargin: JamiTheme.preferredMarginSize
-
+                        anchors.left: parent.left
+                        anchors.top: parent.top
+                        anchors.margins: JamiTheme.preferredMarginSize
                         text: JamiStrings.leaveTheSwarm
                         font.pointSize: JamiTheme.settingsFontSize
                         font.kerning: true
@@ -238,17 +238,20 @@ Rectangle {
                         color: JamiTheme.textColor
                     }
 
-                    PushButton {
-                        id: leaveTheSwarmBtn
+                    color: "transparent"
 
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: JamiResources.round_close_24dp_svg
+                    HoverHandler {
+                        target: parent
+                        enabled: parent.visible
+                        onHoveredChanged: {
+                            parent.color = hovered ? Qt.darker(JamiTheme.selectedColor, 1.05) : "transparent"
+                        }
+                    }
 
-                        normalColor: JamiTheme.backgroundColor
-                        imageColor: JamiTheme.textColor
-                        toolTipText: JamiStrings.leave
-
-                        onClicked: {
+                    TapHandler {
+                        target: parent
+                        enabled: parent.visible
+                        onTapped: function onTapped(eventPoint) {
                             MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
                         }
                     }
