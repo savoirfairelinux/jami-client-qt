@@ -240,14 +240,14 @@ Rectangle {
                     }
                 }
 
-                RowLayout {
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
                     Text {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 30
-                        Layout.rightMargin: JamiTheme.preferredMarginSize
-
+                        anchors.left: parent.left
+                        anchors.top: parent.top
+                        anchors.margins: JamiTheme.preferredMarginSize
                         text: JamiStrings.leaveTheSwarm
                         font.pointSize: JamiTheme.settingsFontSize
                         font.kerning: true
@@ -258,17 +258,20 @@ Rectangle {
                         color: JamiTheme.textColor
                     }
 
-                    PushButton {
-                        id: leaveTheSwarmBtn
+                    color: "transparent"
 
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: JamiResources.round_close_24dp_svg
+                    HoverHandler {
+                        target: parent
+                        enabled: parent.visible
+                        onHoveredChanged: {
+                            parent.color = hovered ? Qt.darker(JamiTheme.selectedColor, 1.05) : "transparent"
+                        }
+                    }
 
-                        normalColor: JamiTheme.backgroundColor
-                        imageColor: JamiTheme.textColor
-                        toolTipText: JamiStrings.leave
-
-                        onClicked: {
+                    TapHandler {
+                        target: parent
+                        enabled: parent.visible
+                        onTapped: function onTapped(eventPoint) {
                             MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
                         }
                     }
@@ -346,7 +349,6 @@ Rectangle {
             JamiListView {
                 id: members
                 anchors.fill: parent
-                spacing: JamiTheme.preferredMarginSize
                 anchors.topMargin: JamiTheme.preferredMarginSize
 
                 visible: tabBar.currentIndex === 1
@@ -366,10 +368,20 @@ Rectangle {
                 }
 
                 model: CurrentConversation.uris
-                delegate: Item {
-
+                delegate: ItemDelegate {
+                    id: member
                     width: members.width
                     height: JamiTheme.smartListItemHeight
+
+                    background: Rectangle {
+                        anchors.fill: parent
+                        color: {
+                            if (member.hovered)
+                                return Qt.darker(JamiTheme.selectedColor, 1.05)
+                            else
+                                return "transparent"
+                        }
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -387,6 +399,7 @@ Rectangle {
                             width: JamiTheme.smartListAvatarSize
                             height: JamiTheme.smartListAvatarSize
                             Layout.leftMargin: JamiTheme.preferredMarginSize
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
                             z: -index
                             opacity: {
                                 var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
@@ -402,6 +415,7 @@ Rectangle {
                             id: bestName
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
                             maxWidth: JamiTheme.preferredFieldWidth
@@ -421,6 +435,7 @@ Rectangle {
                             id: role
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
                             eText: {
                                 var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)

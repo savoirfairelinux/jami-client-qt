@@ -20,6 +20,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -69,6 +70,32 @@ ItemDelegate {
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
+
+            Rectangle {
+                id: overlayHighlighted
+                visible: highlighted && !interactive
+
+                anchors.fill: parent
+                color: Qt.rgba(0, 0, 0, 0.5)
+                radius: JamiTheme.smartListAvatarSize / 2
+
+                Image {
+                    id: highlightedImage
+
+                    width: JamiTheme.smartListAvatarSize / 2
+                    height: JamiTheme.smartListAvatarSize / 2
+                    anchors.centerIn: parent
+
+                    layer {
+                        enabled: true
+                        effect: ColorOverlay {
+                            color: "white"
+                        }
+                    }
+                    source: JamiResources.check_black_24dp_svg
+                }
+            }
+
         }
 
         ColumnLayout {
