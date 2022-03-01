@@ -56,6 +56,7 @@ Rectangle {
 
             EditableLineEdit {
                 id: titleLine
+
                 Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: JamiTheme.preferredMarginSize
 
@@ -66,10 +67,12 @@ Rectangle {
 
                 text: CurrentConversation.title
                 placeholderText: JamiStrings.editTitle
-                placeholderTextColor: JamiTheme.placeholderTextColorWhite
+                placeholderTextColor: UtilsAdapter.luma(backgroundColor) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                 tooltipText: JamiStrings.editTitle
                 backgroundColor: root.color
-                color: "white"
+                color: UtilsAdapter.luma(backgroundColor) ?
+                        JamiTheme.chatviewTextColorLight :
+                        JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
                     ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
@@ -78,6 +81,7 @@ Rectangle {
 
             EditableLineEdit {
                 id: descriptionLine
+
                 Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
@@ -89,10 +93,12 @@ Rectangle {
 
                 text: CurrentConversation.description
                 placeholderText: JamiStrings.editDescription
-                placeholderTextColor: JamiTheme.placeholderTextColorWhite
+                placeholderTextColor: UtilsAdapter.luma(backgroundColor) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                 tooltipText: JamiStrings.editDescription
                 backgroundColor: root.color
-                color: "white"
+                color: UtilsAdapter.luma(backgroundColor) ?
+                        JamiTheme.chatviewTextColorLight :
+                        JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
                     ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
@@ -115,6 +121,11 @@ Rectangle {
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
+                    textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                    textColor: UtilsAdapter.luma(root.color) ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
+
                     down: tabBar.currentIndex === 0
                     labelText: JamiStrings.about
                 }*/
@@ -127,6 +138,11 @@ Rectangle {
                     bottomMargin: JamiTheme.settingsMarginSize
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
+
+                    textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                    textColor: UtilsAdapter.luma(root.color) ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
 
                     down: true//tabBar.currentIndex === 1
                     labelText: {
@@ -146,6 +162,11 @@ Rectangle {
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
+                    textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                    textColor: UtilsAdapter.luma(root.color) ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
+
                     down: tabBar.currentIndex === 2
                     labelText: JamiStrings.documents
                 }*/
@@ -161,7 +182,6 @@ Rectangle {
             JamiListView {
                 id: members
                 anchors.fill: parent
-                spacing: JamiTheme.preferredMarginSize
                 anchors.topMargin: JamiTheme.preferredMarginSize
 
                 SwarmParticipantContextMenu {
@@ -179,10 +199,20 @@ Rectangle {
                 }
 
                 model: CurrentConversation.uris
-                delegate: Item {
-
+                delegate: ItemDelegate {
+                    id: member
                     width: members.width
                     height: JamiTheme.smartListItemHeight
+
+                    background: Rectangle {
+                        anchors.fill: parent
+                        color: {
+                            if (member.hovered)
+                                return Qt.darker(JamiTheme.selectedColor, 1.05)
+                            else
+                                return "transparent"
+                        }
+                    }
 
                     MouseArea {
                         anchors.fill: parent
@@ -200,6 +230,7 @@ Rectangle {
                             width: JamiTheme.smartListAvatarSize
                             height: JamiTheme.smartListAvatarSize
                             Layout.leftMargin: JamiTheme.preferredMarginSize
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
                             z: -index
                             opacity: {
                                 var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
@@ -215,6 +246,7 @@ Rectangle {
                             id: bestName
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
                             eText: UtilsAdapter.getContactBestName(CurrentAccount.id, modelData)
                             maxWidth: JamiTheme.preferredFieldWidth
@@ -234,6 +266,7 @@ Rectangle {
                             id: role
 
                             Layout.preferredHeight: JamiTheme.preferredFieldHeight
+                            Layout.topMargin: JamiTheme.preferredMarginSize / 2
 
                             eText: {
                                 var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, modelData)
