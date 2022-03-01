@@ -98,7 +98,7 @@ public:
     Q_INVOKABLE void setSwarmCreationImageFromFile(const QString& path,
                                                    const QString& imageId = "temp");
     Q_INVOKABLE void setSwarmCreationImageFromImage(const QImage& image,
-                                                   const QString& imageId = "temp");
+                                                    const QString& imageId = "temp");
 
     // For Swarm details page
     Q_INVOKABLE bool getContactPresence(const QString& accountId, const QString& uri);
@@ -106,6 +106,7 @@ public:
     Q_INVOKABLE lrc::api::member::Role getParticipantRole(const QString& accountId,
                                                           const QString& convId,
                                                           const QString& uri);
+    Q_INVOKABLE bool luma(const QColor& color) const;
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
