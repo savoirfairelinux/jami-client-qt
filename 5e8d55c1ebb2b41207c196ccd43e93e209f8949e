@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d395c35_c63a4209",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-03T21:29:49Z",
+      "side": 1,
+      "message": "\"The root context is automatically created by the QQmlEngine\"",
+      "parentUuid": "74366b65_773e0b78",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8cececbe_fd690aad",
         "filename": "src/videodevices.cpp",
         "patchSetId": 20
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-03T20:37:30Z",
       "side": 1,
       "message": "clean up",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43dfc589_92c7d9e2",
+        "filename": "src/videodevices.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-03T21:29:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cececbe_fd690aad",
       "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
@@ -48,6 +84,24 @@
       "writtenOn": "2022-03-03T20:37:30Z",
       "side": 1,
       "message": "as discussed, the the ownership of avframe will be given to the subscriber (Daemon), but the videoFrame instance will still be owned by the VideoProvider (client)",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd0767c2_811ca18d",
+        "filename": "src/videoprovider.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-03T21:29:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dd203911_1f218619",
       "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
