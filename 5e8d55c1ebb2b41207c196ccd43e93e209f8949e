@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74366b65_773e0b78",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2022-03-03T20:37:30Z",
+      "side": 1,
+      "message": "either check the \u0027context\u0027 pointer before use, or assert if it must not fail.",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cececbe_fd690aad",
+        "filename": "src/videodevices.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2022-03-03T20:37:30Z",
+      "side": 1,
+      "message": "clean up",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd203911_1f218619",
+        "filename": "src/videoprovider.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2022-03-03T20:37:30Z",
+      "side": 1,
+      "message": "as discussed, the the ownership of avframe will be given to the subscriber (Daemon), but the videoFrame instance will still be owned by the VideoProvider (client)",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
