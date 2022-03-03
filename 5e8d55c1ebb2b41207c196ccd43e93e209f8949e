@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4479f9df_ef292eaf",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-03T22:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d395c35_c63a4209",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cececbe_fd690aad",
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "dd203911_1f218619",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "186eeadb_e05657b1",
+        "filename": "src/videoprovider.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-03T22:03:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd0767c2_811ca18d",
       "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
