@@ -91,8 +91,6 @@ main(int argc, char* argv[])
 
 #if defined(Q_OS_MACOS)
     QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
-#elif defined(Q_OS_WIN)
-    QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
 #endif
 
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
