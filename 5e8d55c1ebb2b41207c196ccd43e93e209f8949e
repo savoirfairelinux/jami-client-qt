@@ -54,6 +54,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb27c1e3_2b5918f7",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2022-03-04T14:47:11Z",
+      "side": 1,
+      "message": "I would have put an assert then (assert(engine_-\u003erootContext())), but no big deal.",
+      "parentUuid": "4479f9df_ef292eaf",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cececbe_fd690aad",
@@ -138,6 +156,29 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "cd0767c2_811ca18d",
+      "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "491c34f6_8cb11d1f",
+        "filename": "src/videoprovider.cpp",
+        "patchSetId": 20
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2022-03-04T14:47:11Z",
+      "side": 1,
+      "message": "The upcoming comment is not directly to this patch.\nThe color space is set to RGBA here, and set again in the Daemon.The format should not be hard-coded, but rather configured or negotiated with the Daemon. The color space conversion (as done by sw_scale) would take place only if the formats mismatch.\nBoth ffmpeg and Qt support a large set of color spaces, and the conversion should rarely be needed.",
+      "range": {
+        "startLine": 141,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 38
+      },
       "revId": "5e8d55c1ebb2b41207c196ccd43e93e209f8949e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
