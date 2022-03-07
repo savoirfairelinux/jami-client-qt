@@ -1312,7 +1312,7 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>Ugrás a legújabbra</translation>
+        <translation>Görgetés a beszélgetés végére</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -1731,7 +1731,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Installer download canceled</source>
-        <translation>Telepítő letöltése visszavonva</translation>
+        <translation>Telepítő letöltése megszakítva</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>
@@ -2206,7 +2206,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Ablakmegosztás kijelölése</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="521"/>
@@ -2613,7 +2613,7 @@ Másolja ki, és ossza meg barátaival!</translation>
     <message>
         <location filename="../src/messagesadapter.cpp" line="277"/>
         <source>Canceled</source>
-        <translation>Törölve</translation>
+        <translation>Megszakítva</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="280"/>

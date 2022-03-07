@@ -688,7 +688,7 @@ Jami will now quit.</source>
         <location filename="../src/constant/JamiStrings.qml" line="442"/>
         <location filename="../src/constant/JamiStrings.qml" line="564"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="33"/>
@@ -1311,7 +1311,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation type="unfinished"/>
+        <translation>Bla til slutten av samtalen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -1729,7 +1729,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>Nedlasting av installasjonsprogram kansellert</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>
@@ -1800,7 +1800,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="462"/>
         <source>PIN</source>
-        <translation type="unfinished"/>
+        <translation>PIN-kode</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="483"/>
@@ -2527,7 +2527,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="400"/>
@@ -2606,7 +2606,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="277"/>
         <source>Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Avbrutt</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="280"/>

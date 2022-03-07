@@ -155,7 +155,7 @@
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="84"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation>В порядке</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="105"/>
@@ -205,7 +205,7 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/DaemonReconnectWindow.qml" line="149"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation>В порядке</translation>
     </message>
 </context>
 <context>
@@ -683,7 +683,7 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="563"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation>В порядке</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="442"/>
@@ -1312,7 +1312,7 @@ Jami сейчас завершит работу.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>Перейти к последнему</translation>
+        <translation>Прокрутить до конца беседы</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -2529,7 +2529,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation>В порядке</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>

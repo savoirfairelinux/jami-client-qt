@@ -1311,7 +1311,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation type="unfinished"/>
+        <translation>Faire défiler jusqu&apos;à la fin de la conversation</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>

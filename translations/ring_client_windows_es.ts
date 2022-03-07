@@ -1312,7 +1312,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>Saltar a lo último</translation>
+        <translation>Desplazar hasta el final de la conversación</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -2207,7 +2207,7 @@ se conecte para sincronizar la conversación.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Seleccione una pantalla a compartir</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="521"/>

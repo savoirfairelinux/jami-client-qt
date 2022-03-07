@@ -1312,7 +1312,7 @@ Jami se bo zdaj zaprl.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>Skoči na konec</translation>
+        <translation>Premaknite se na konec pogovora</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>

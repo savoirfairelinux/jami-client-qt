@@ -1312,7 +1312,7 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>En sondakine git</translation>
+        <translation>Görüşmenin sonuna kaydır</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>

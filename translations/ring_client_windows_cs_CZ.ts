@@ -155,7 +155,7 @@
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="84"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation>V pořádku</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="105"/>
@@ -204,7 +204,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/DaemonReconnectWindow.qml" line="149"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation>V pořádku</translation>
     </message>
 </context>
 <context>
@@ -682,7 +682,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="563"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation>V pořádku</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="442"/>
@@ -1311,7 +1311,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation type="unfinished"/>
+        <translation>Posunout se na konec konverzace</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -2525,7 +2525,7 @@ Zkopírujte je a sdílejte je se svými přáteli!</translation>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>
         <source>Ok</source>
-        <translation>OK</translation>
+        <translation>V pořádku</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>

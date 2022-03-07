@@ -155,7 +155,7 @@
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="84"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>확인</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="105"/>
@@ -204,7 +204,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/DaemonReconnectWindow.qml" line="149"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>확인</translation>
     </message>
 </context>
 <context>
@@ -682,13 +682,13 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="563"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>확인</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="442"/>
         <location filename="../src/constant/JamiStrings.qml" line="564"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="33"/>
@@ -1311,7 +1311,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation type="unfinished"/>
+        <translation>대화의 끝으로 스크롤</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -1729,7 +1729,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>설치 프로그램 다운로드 취소됨</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>
@@ -2522,12 +2522,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>
         <source>Ok</source>
-        <translation type="unfinished"/>
+        <translation>확인</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>
         <source>Cancel</source>
-        <translation type="unfinished"/>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="400"/>
@@ -2606,7 +2606,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="277"/>
         <source>Canceled</source>
-        <translation type="unfinished"/>
+        <translation>취소됨</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="280"/>

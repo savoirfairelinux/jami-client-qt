@@ -1729,7 +1729,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>Изтеглянето на инсталатора е отменено</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>

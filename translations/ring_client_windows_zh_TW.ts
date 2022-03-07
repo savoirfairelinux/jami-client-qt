@@ -2207,7 +2207,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>選取要分享的視窗</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="521"/>

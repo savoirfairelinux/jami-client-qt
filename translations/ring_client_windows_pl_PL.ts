@@ -1311,7 +1311,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation type="unfinished"/>
+        <translation>Przewiń do końca konwersacji</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -1729,7 +1729,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>Pobieranie instalatora zostało anulowane</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>
@@ -2607,7 +2607,7 @@ Skopiuj i podziel się nią z przyjaciółmi!</translation>
     <message>
         <location filename="../src/messagesadapter.cpp" line="277"/>
         <source>Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Anulowano</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="280"/>

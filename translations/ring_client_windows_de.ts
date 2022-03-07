@@ -1127,12 +1127,12 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="228"/>
         <source>You are still muted by moderator</source>
-        <translation>Sie sind immer noch vom Moderator stumm geschaltet</translation>
+        <translation>Sie sind immer noch vom Moderator stummgeschaltet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="229"/>
         <source>You are muted by a moderator</source>
-        <translation>Sie werden von einem Moderator stumm geschaltet</translation>
+        <translation>Sie sind von einem Moderator stummgeschaltet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="230"/>
@@ -1197,7 +1197,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="247"/>
         <source>Block contact</source>
-        <translation>Kontakt sperren</translation>
+        <translation>Kontakt blockieren</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="248"/>
@@ -1312,7 +1312,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>Zum letzten springen</translation>
+        <translation>Zum Ende der Unterhaltung scrollen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -1630,7 +1630,7 @@ Bitte versuchen Sie es später erneut.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="378"/>
         <source>Display hyperlink previews in the chatview</source>
-        <translation>Linkvorschauen anzeigen</translation>
+        <translation>Hyperlink-Vorschauen in der Chatansicht anzeigen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="380"/>
@@ -2207,7 +2207,7 @@ eine Verbindung herstellt, um die Konversation zu synchronisieren.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Ein Fenster zur Freigabe auswählen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="521"/>
@@ -2397,7 +2397,7 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="86"/>
         <source>Block contact</source>
-        <translation>Kontakt sperren</translation>
+        <translation>Kontakt blockieren</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="90"/>
@@ -2762,7 +2762,7 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/settingsview/components/SystemSettings.qml" line="92"/>
         <source>Enable desktop notifications</source>
-        <translation>Benachrichtigungen anzeigen</translation>
+        <translation>Desktopbenachrichtigungen aktivieren</translation>
     </message>
 </context>
 <context>

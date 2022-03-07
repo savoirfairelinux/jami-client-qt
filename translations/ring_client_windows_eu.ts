@@ -688,7 +688,7 @@ Jami will now quit.</source>
         <location filename="../src/constant/JamiStrings.qml" line="442"/>
         <location filename="../src/constant/JamiStrings.qml" line="564"/>
         <source>Cancel</source>
-        <translation>Ezeztatu</translation>
+        <translation>Utzi</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="33"/>
@@ -1729,7 +1729,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>Bertan behera utzi da instalatzailearen deskarga</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>
@@ -2527,7 +2527,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>
         <source>Cancel</source>
-        <translation>Ezeztatu</translation>
+        <translation>Utzi</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="400"/>
@@ -2606,7 +2606,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="277"/>
         <source>Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Bertan behera utzita</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="280"/>

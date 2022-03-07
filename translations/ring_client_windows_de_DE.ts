@@ -1312,7 +1312,7 @@ Jami wird nun beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>Zum Neuesten wechseln</translation>
+        <translation>Zum Ende der Unterhaltung scrollen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>

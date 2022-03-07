@@ -1312,7 +1312,7 @@ Jami sulkeutuu nyt.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>Hyppää uusimpaan</translation>
+        <translation>Vieritä keskustelun loppuun</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>

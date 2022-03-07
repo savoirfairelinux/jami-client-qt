@@ -155,7 +155,7 @@
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="84"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="105"/>
@@ -205,7 +205,7 @@ Jami vai pechar.</translation>
     <message>
         <location filename="../src/DaemonReconnectWindow.qml" line="149"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>Aceptar</translation>
     </message>
 </context>
 <context>
@@ -683,7 +683,7 @@ Jami vai pechar.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="563"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="442"/>
@@ -1730,7 +1730,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>Descarga do instalador cancelada</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>
@@ -2525,7 +2525,7 @@ Copiao e compárteo coas túas amizades!</translation>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>Aceptar</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>

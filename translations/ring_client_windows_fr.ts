@@ -1314,7 +1314,7 @@ Notez que le mot de passe ne peut pas être récupéré.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="278"/>
         <source>Jump to latest</source>
-        <translation>Allez à la fin</translation>
+        <translation>Faire défiler jusqu&apos;à la fin de la conversation</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>

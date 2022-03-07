@@ -20,12 +20,12 @@
     <message>
         <location filename="../src/settingsview/components/AdvancedCallSettings.qml" line="58"/>
         <source>Audio Files</source>
-        <translation type="unfinished"/>
+        <translation>Fitxers de so</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/AdvancedCallSettings.qml" line="59"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Tots els fitxers</translation>
     </message>
 </context>
 <context>
@@ -41,12 +41,12 @@
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="63"/>
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="81"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Tots els fitxers</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="80"/>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Fitxer de clau</translation>
     </message>
 </context>
 <context>
@@ -62,12 +62,12 @@
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="64"/>
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="82"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Tots els fitxers</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="81"/>
         <source>Key File</source>
-        <translation type="unfinished"/>
+        <translation>Fitxer de clau</translation>
     </message>
 </context>
 <context>
@@ -91,17 +91,17 @@
     <message>
         <location filename="../src/calladapter.cpp" line="129"/>
         <source>Missed call</source>
-        <translation type="unfinished"/>
+        <translation>Trucada perduda</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="130"/>
         <source>Missed call from %1</source>
-        <translation type="unfinished"/>
+        <translation>Trucada perduda de %1</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="500"/>
         <source>me</source>
-        <translation type="unfinished"/>
+        <translation>jo</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="555"/>
@@ -111,12 +111,12 @@
     <message>
         <location filename="../src/calladapter.cpp" line="556"/>
         <source>%1 is calling you</source>
-        <translation type="unfinished"/>
+        <translation>%1 t&apos;està trucant</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="567"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>t&apos;està trucant</translation>
     </message>
 </context>
 <context>
@@ -124,17 +124,17 @@
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="84"/>
         <source>Add to conference</source>
-        <translation type="unfinished"/>
+        <translation>Afegir a conferència</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="86"/>
         <source>Transfer this call</source>
-        <translation type="unfinished"/>
+        <translation>Transferir aquesta trucada</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="88"/>
         <source>Add default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Afegir moderador per defecte</translation>
     </message>
 </context>
 <context>
@@ -172,12 +172,12 @@
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="133"/>
         <source>Jami archive files</source>
-        <translation type="unfinished"/>
+        <translation>Arxiu de fitxers de Jami</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="133"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Tots els fitxers</translation>
     </message>
 </context>
 <context>
@@ -1044,12 +1044,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="201"/>
         <source>Jami archive files</source>
-        <translation type="unfinished"/>
+        <translation>Arxiu de fitxers de Jami</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="202"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Tots els fitxers</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="205"/>
@@ -1084,7 +1084,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="213"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>t&apos;està trucant</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="214"/>
@@ -1729,7 +1729,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>Descàrrega de l&apos;instal·lador cancel·lada</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="415"/>
@@ -2327,7 +2327,7 @@ Copiï&apos;l i comparteixi&apos;l amb els seus amics!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="584"/>
         <source>Add default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Afegir moderador per defecte</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="585"/>
@@ -2476,7 +2476,7 @@ Copiï&apos;l i comparteixi&apos;l amb els seus amics!</translation>
     <message>
         <location filename="../src/commoncomponents/PhotoboothView.qml" line="82"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Tots els fitxers</translation>
     </message>
 </context>
 <context>
@@ -2546,7 +2546,7 @@ Copiï&apos;l i comparteixi&apos;l amb els seus amics!</translation>
     <message>
         <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="66"/>
         <source>All files</source>
-        <translation type="unfinished"/>
+        <translation>Tots els fitxers</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="86"/>
@@ -2607,7 +2607,7 @@ Copiï&apos;l i comparteixi&apos;l amb els seus amics!</translation>
     <message>
         <location filename="../src/messagesadapter.cpp" line="277"/>
         <source>Canceled</source>
-        <translation type="unfinished"/>
+        <translation>Cancel·lada</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="280"/>

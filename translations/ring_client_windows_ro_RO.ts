@@ -1237,17 +1237,17 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
         <source>Share screen</source>
-        <translation>Partajați ecranul</translation>
+        <translation>Distribuie ecranul</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="259"/>
         <source>Share window</source>
-        <translation>Partajează fereastra</translation>
+        <translation>Distribuie fereastra</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Share screen area</source>
-        <translation>Partajați zona ecranului</translation>
+        <translation>Distribuie zona ecranului</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="262"/>
@@ -2201,12 +2201,12 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="519"/>
         <source>Select a screen to share</source>
-        <translation>Alegeți un ecran pe care să îl partajați</translation>
+        <translation>Alege ecranul de distribuit</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Alege fereastra de distribuit</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="521"/>
