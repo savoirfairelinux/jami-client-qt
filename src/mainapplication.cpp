@@ -80,6 +80,13 @@ ScreenInfo::setCurrentFocusWindow(QWindow* window)
 MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
 {
+    const char* qtVersion = qVersion();
+    qInfo() << "Using Qt runtime version:" << qtVersion << " - "
+            << strnlen(qtVersion, sizeof qtVersion);
+    if (strncmp(qtVersion, QT_VERSION_STR, strnlen(qtVersion, sizeof qtVersion)) != 0) {
+        qFatal(QString("Qt build version mismatch!(%1)").arg(QT_VERSION_STR).toLatin1());
+    }
+
     parseArguments();
     QObject::connect(this, &QApplication::aboutToQuit, [this] { cleanup(); });
 }
