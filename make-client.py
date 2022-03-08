@@ -11,7 +11,7 @@ import multiprocessing
 import fileinput
 from enum import Enum
 
-qt_version_default = '6.2.1'
+qt_version_default = '6.2.3'
 
 vs_where_path = os.path.join(
     os.environ['ProgramFiles(x86)'], 'Microsoft Visual Studio', 'Installer', 'vswhere.exe'
