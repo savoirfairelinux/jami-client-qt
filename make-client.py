@@ -207,7 +207,7 @@ def build(config_str, qtver, tests=False):
 
     cmake_options = [
         '-DCMAKE_PREFIX_PATH=' + qt_dir,
-        '-DCMAKE_BUILD_TYPE=' + config_str
+        '-DCMAKE_BUILD_TYPE=' + 'Release'
     ]
     if tests:
         cmake_options.append('-DENABLE_TESTS=true')
@@ -228,7 +228,7 @@ def build(config_str, qtver, tests=False):
     print('Building…')
     cmd = [
         'cmake', '--build', '.',
-        '--config', config_str,
+        '--config', 'Release',
         '--', '-m'
     ]
     if(execute_cmd(cmd, False, vs_env_vars, build_dir)):
