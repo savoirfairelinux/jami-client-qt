@@ -24,8 +24,12 @@
 
 #include <QCryptographicHash>
 #include <QApplication>
+#ifdef APPSTORE
+#include <QtQuick>
+#else
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
+#endif
 
 #include <clocale>
 
@@ -50,9 +54,11 @@ parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
     return newArgv;
 }
 
+#ifndef APPSTORE
 // Qt WebEngine Chromium Flags
 static char disableWebSecurity[] {"--disable-web-security"};
 static char singleProcess[] {"--single-process"};
+#endif
 
 int
 main(int argc, char* argv[])
@@ -79,8 +85,10 @@ main(int argc, char* argv[])
      */
     unsetenv("QT_STYLE_OVERRIDE");
 #endif
+#ifndef APPSTORE
     qtWebEngineChromiumFlags << disableWebSecurity;
     qtWebEngineChromiumFlags << singleProcess;
+#endif
 
     QApplication::setApplicationName("Jami");
     QApplication::setOrganizationDomain("jami.net");
