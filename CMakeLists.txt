@@ -42,12 +42,16 @@ set(QT_MODULES
     Concurrent
     Core
     Core5Compat
-    WebEngineCore
-    WebEngineQuick
-    WebChannel
-    WebEngineWidgets
     Multimedia
 )
+
+if(USE_WEBENGINE)
+    list(APPEND QT_MODULES WebEngineCore)
+    list(APPEND QT_MODULES WebEngineQuick)
+    list(APPEND QT_MODULES WebChannel)
+    list(APPEND QT_MODULES WebEngineWidgets)
+endif()
+
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
@@ -58,7 +62,11 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
 set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
-set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
+if (USE_WEBENGINE)
+    set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
+else()
+    set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml_appstore.qrc)
+endif()
 
 if (APPLE)
     include(FetchContent)
@@ -137,7 +145,6 @@ set(COMMON_SOURCES
     ${SRC_DIR}/currentconversation.cpp
     ${SRC_DIR}/currentaccount.cpp
     ${SRC_DIR}/videodevices.cpp
-    ${SRC_DIR}/previewengine.cpp
     ${SRC_DIR}/videoprovider.cpp
 )
 
@@ -193,9 +200,18 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentconversation.h
     ${SRC_DIR}/currentaccount.h
     ${SRC_DIR}/videodevices.h
-    ${SRC_DIR}/previewengine.h
     ${SRC_DIR}/videoprovider.h
+    ${SRC_DIR}/previewengine.h
 )
+
+if (USE_WEBENGINE)
+    list(APPEND COMMON_SOURCES
+                ${SRC_DIR}/previewengine.cpp)
+    add_definitions(-DUSEWEBENGINE)
+else()
+    list(APPEND COMMON_SOURCES
+                ${SRC_DIR}/os/macos/previewengine.cpp)
+endif()
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib")
@@ -670,10 +686,17 @@ else()
           MACOSX_BUNDLE_GUI_IDENTIFIER "${BUNDLE_ID}"
           MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION}"
           MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_BUILD}"
-          MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}"
-          SPARKLE_URL "${SPARKLE_URL}"
-          XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
-          XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
+          MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}")
+      if(APPSTORE)
+          message(STATUS "app store version")
+          set_target_properties(${PROJECT_NAME} PROPERTIES
+              XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/appstore/Jami.entitlements")
+      else()
+          set_target_properties(${PROJECT_NAME} PROPERTIES
+              SPARKLE_URL "${SPARKLE_URL}"
+              XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
+              XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
+      endif()
       if(DEPLOY)
           add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                              COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2021-2022 Savoir-faire Linux Inc.
  * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -17,31 +17,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "previewengine.h"
 
-#include "utils.h"
-#include <QObject>
+PreviewEngine::PreviewEngine(QObject* parent) {}
 
-//#include <QtWebChannel>
-//#include <QWebEnginePage>
+PreviewEngine::~PreviewEngine() {}
 
-// class PreviewEngine;
-
-class PreviewEngine : public QObject
-{
-    Q_OBJECT
-    Q_DISABLE_COPY(PreviewEngine)
-public:
-    PreviewEngine(QObject* parent = nullptr);
-    ~PreviewEngine();
-
-    void parseMessage(const QString& messageId, const QString& msg, bool showPreview);
-
-Q_SIGNALS:
-    void infoReady(const QString& messageId, const QVariantMap& info);
-    void linkifyReady(const QString& messageId, const QString& linkified);
-
-private:
-    struct Impl;
-    std::unique_ptr<Impl> pimpl_;
-};
+void
+PreviewEngine::parseMessage(const QString& messageId, const QString& msg, bool showPreview)
+{}

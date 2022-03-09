@@ -157,6 +157,7 @@ ColumnLayout {
 
         PushButton {
             id: emojiButton
+            visible: USE_WEB_ENGINE
 
             Layout.alignment: Qt.AlignVCenter
             Layout.rightMargin: sendMessageButton.visible ? 0 : marginSize
