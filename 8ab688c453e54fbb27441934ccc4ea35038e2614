@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae78a47c_53c35412",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-03-09T21:13:12Z",
+      "side": 1,
+      "message": "You could make suggestions.",
+      "parentUuid": "3d551928_07ba5bd5",
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "be8864d2_af8a90d8",
         "filename": "CMakeLists.txt",
         "patchSetId": 1
@@ -31,6 +49,30 @@
       "writtenOn": "2022-03-09T20:11:58Z",
       "side": 1,
       "message": "indentation?",
+      "range": {
+        "startLine": 236,
+        "startChar": 4,
+        "endLine": 236,
+        "endChar": 12
+      },
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6111fb1b_5f0ef16c",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-03-09T21:13:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be8864d2_af8a90d8",
       "range": {
         "startLine": 236,
         "startChar": 4,
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab44a309_c01f1dc3",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-03-09T21:13:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81def115_00e23f21",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 7
+      },
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2068ad68_59181cf1",
@@ -87,6 +153,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10bec67c_8985b7c8",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-03-09T21:13:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2068ad68_59181cf1",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 7
+      },
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5b93623_a9a72578",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-03-09T20:11:58Z",
       "side": 1,
       "message": "indentation?",
+      "range": {
+        "startLine": 387,
+        "startChar": 20,
+        "endLine": 387,
+        "endChar": 28
+      },
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "638beb2e_a991ab91",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-03-09T21:13:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5b93623_a9a72578",
       "range": {
         "startLine": 387,
         "startChar": 20,
