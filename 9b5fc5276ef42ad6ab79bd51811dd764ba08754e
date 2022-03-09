@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a225fb0_f2538851",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 24
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-09T07:16:05Z",
+      "side": 1,
+      "message": "Does this refer to https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/659 ? If so, should the following be added to the commit message:\nGitLab: #659\n\nThank you",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "9b5fc5276ef42ad6ab79bd51811dd764ba08754e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
