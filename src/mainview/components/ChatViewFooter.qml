@@ -25,6 +25,7 @@ import net.jami.Adapters 1.1
 
 import "../../commoncomponents"
 import "../../commoncomponents/emojipicker"
+import "../../commoncomponents/emojipicker/appstore"
 
 Rectangle {
     id: root
