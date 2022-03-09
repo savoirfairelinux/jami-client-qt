@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dfbde18_3fa3ae1e",
+        "filename": "src/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-09T07:08:29Z",
+      "side": 1,
+      "message": "Delete `by `?",
+      "range": {
+        "startLine": 2,
+        "startChar": 27,
+        "endLine": 2,
+        "endChar": 30
+      },
+      "revId": "08b9188ccadb714a5f493170e5b30aea7dbe43e8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
