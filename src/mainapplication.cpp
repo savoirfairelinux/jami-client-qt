@@ -25,7 +25,11 @@
 #include "appsettingsmanager.h"
 #include "connectivitymonitor.h"
 #include "systemtray.h"
+#ifdef APPSTORE
+#include "os/macos/previewengine.h"
+#else
 #include "previewengine.h"
+#endif
 #include "videoprovider.h"
 
 #include <QAction>
@@ -167,6 +171,11 @@ MainApplication::init()
     auto startMinimizedSetting = settingsManager_->getValue(Settings::Key::StartMinimized).toBool();
     // The presence of start URI should override the startMinimized setting for this instance.
     set_startMinimized(startMinimizedSetting && runOptions_[Option::StartUri].isNull());
+#ifdef APPSTORE
+    engine_.get()->rootContext()->setContextProperty("APP_STORE", QVariant(true));
+#else
+    engine_.get()->rootContext()->setContextProperty("APP_STORE", QVariant(false));
+#endif
 
     initQmlLayer();
 

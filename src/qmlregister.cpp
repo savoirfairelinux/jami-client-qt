@@ -24,7 +24,11 @@
 #include "contactadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
+#ifdef APPSTORE
+#include "os/macos/previewengine.h"
+#else
 #include "previewengine.h"
+#endif
 #include "utilsadapter.h"
 #include "conversationsadapter.h"
 #include "currentconversation.h"
