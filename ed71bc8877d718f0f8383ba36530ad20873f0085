@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1541906_69cd6cb6",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-09T22:45:52Z",
+      "side": 1,
+      "message": "if(not ...) ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 12
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f4fedb7_d22fc3e2",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-09T22:45:52Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 3
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43f1fce7_9df4f7fa",
+        "filename": "src/commoncomponents/appstore/Import.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-09T22:45:52Z",
+      "side": 1,
+      "message": "Best to remove the illegal dependencies after running macdeployqt.\nSubtractive is better than additive here, in case some non-macOS dev adds a QML dependency and the deployment is not covered.",
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d768bc81_7a135f7c",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-09T22:45:52Z",
+      "side": 1,
+      "message": "include outside for all",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 18
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85ca892f_f6ce10c7",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-09T22:45:52Z",
+      "side": 1,
+      "message": "#ifndef APPSTORE\n...",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54751933_24b0303c",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-09T22:45:52Z",
+      "side": 1,
+      "message": "try to make the header the same(e.g. pimpl)",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 6
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c156246_272b35db",
+        "filename": "src/os/macos/previewengine.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-09T22:45:52Z",
+      "side": 1,
+      "message": "either:\n- move this to a different file\nor\n- rename and maybe restructure to be less confusing when pimpling the parent",
+      "range": {
+        "startLine": 26,
+        "startChar": 6,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e40808a_e5d610ce",
+        "filename": "src/os/macos/previewengine.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-09T22:45:52Z",
+      "side": 1,
+      "message": "pimpl so the cpp is the only difference, addressed by the CMakeList.txt",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 36
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
