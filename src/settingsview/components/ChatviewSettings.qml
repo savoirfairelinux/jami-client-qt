@@ -62,6 +62,7 @@ ColumnLayout {
 
     ToggleSwitch {
         id: displayImagesCheckbox
+        visible: !APP_STORE
 
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
