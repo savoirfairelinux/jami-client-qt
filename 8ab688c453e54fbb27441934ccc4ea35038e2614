@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d551928_07ba5bd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-09T20:11:58Z",
+      "side": 1,
+      "message": "Do you want suggestions if your patch is set at WIP?\n\nIf not, please ignore the suggestions.\n\nThank you",
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be8864d2_af8a90d8",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-09T20:11:58Z",
+      "side": 1,
+      "message": "indentation?",
+      "range": {
+        "startLine": 236,
+        "startChar": 4,
+        "endLine": 236,
+        "endChar": 12
+      },
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81def115_00e23f21",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-09T20:11:58Z",
+      "side": 1,
+      "message": "indentation?",
+      "range": {
+        "startLine": 381,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 7
+      },
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2068ad68_59181cf1",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-09T20:11:58Z",
+      "side": 1,
+      "message": "indentation?",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 7
+      },
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5b93623_a9a72578",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-09T20:11:58Z",
+      "side": 1,
+      "message": "indentation?",
+      "range": {
+        "startLine": 387,
+        "startChar": 20,
+        "endLine": 387,
+        "endChar": 28
+      },
+      "revId": "8ab688c453e54fbb27441934ccc4ea35038e2614",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
