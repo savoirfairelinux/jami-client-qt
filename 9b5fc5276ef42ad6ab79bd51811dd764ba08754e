@@ -22,6 +22,29 @@
       },
       "revId": "9b5fc5276ef42ad6ab79bd51811dd764ba08754e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cfe382c_13067eae",
+        "filename": "src/calladapter.cpp",
+        "patchSetId": 24
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-09T07:26:16Z",
+      "side": 1,
+      "message": "me -\u003e Me ?\n\nhttps://transvision.mozfr.org/?recherche\u003dme\u0026repo\u003dgecko_strings\u0026sourcelocale\u003den-US\u0026locale\u003dhu\u0026search_type\u003dstrings\u0026entire_string\u003dentire_string",
+      "range": {
+        "startLine": 507,
+        "startChar": 38,
+        "endLine": 507,
+        "endChar": 40
+      },
+      "revId": "9b5fc5276ef42ad6ab79bd51811dd764ba08754e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
