@@ -187,5 +187,6 @@
         <file>src/mainview/components/KeyboardShortcutKeyDelegate.qml</file>
         <file>src/mainview/components/KeyboardShortcutTabButton.qml</file>
         <file>src/LayoutManager.qml</file>
+        <file>src/disablewebengine/</file>
     </qresource>
 </RCC>

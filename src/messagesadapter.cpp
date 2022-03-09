@@ -60,11 +60,8 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
             set_currentConvComposingList({});
     });
 
-    connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
-    connect(previewEngine_,
-            &PreviewEngine::linkifyReady,
-            this,
-            &MessagesAdapter::onMessageLinkified);
+    connect(previewEngine_, &PreviewEngine::ready, this, &MessagesAdapter::onPreviewInfoReady);
+    connect(previewEngine_, &PreviewEngine::linkify, this, &MessagesAdapter::onMessageLinkified);
 }
 
 void
