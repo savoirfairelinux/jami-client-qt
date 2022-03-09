@@ -108,9 +108,9 @@ QtObject {
         const visibilityStr = AppSettingsManager.getValue(Settings.WindowState)
         var visibilitySetting = parseInt(visibilityStr)
 
-        // We should never restore a hidden state here. Default to normal
+        // We should never restore a hidden or fullscreen state here. Default to normal
         // windowed state in such a case. This shouldn't happen.
-        if (visibilitySetting === Window.Hidden) {
+        if (visibilitySetting === Window.Hidden || visibilitySetting === Window.FullScreen) {
             visibilitySetting = Window.Windowed
         }
         if (MainApplication.startMinimized) {
