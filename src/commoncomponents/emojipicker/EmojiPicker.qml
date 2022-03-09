@@ -18,8 +18,8 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtWebEngine
-import QtWebChannel
+//import QtWebEngine
+//import QtWebChannel
 
 import net.jami.Constants 1.1
 import net.jami.Adapters 1.1

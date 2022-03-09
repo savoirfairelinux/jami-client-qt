@@ -42,12 +42,17 @@ set(QT_MODULES
     Concurrent
     Core
     Core5Compat
-    WebEngineCore
-    WebEngineQuick
-    WebChannel
-    WebEngineWidgets
     Multimedia
 )
+
+if(APPSTORE)
+else()
+    list(APPEND QT_MODULES WebEngineCore)
+    list(APPEND QT_MODULES WebEngineQuick)
+    list(APPEND QT_MODULES WebChannel)
+    list(APPEND QT_MODULES WebEngineWidgets)
+endif()
+
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
@@ -58,7 +63,11 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
 set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
-set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
+if (APPSTORE)
+    set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml_appstore.qrc)
+else()
+    set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
+endif()
 
 if (APPLE)
     include(FetchContent)
@@ -137,7 +146,6 @@ set(COMMON_SOURCES
     ${SRC_DIR}/currentconversation.cpp
     ${SRC_DIR}/currentaccount.cpp
     ${SRC_DIR}/videodevices.cpp
-    ${SRC_DIR}/previewengine.cpp
     ${SRC_DIR}/videoprovider.cpp
 )
 
@@ -193,7 +201,6 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentconversation.h
     ${SRC_DIR}/currentaccount.h
     ${SRC_DIR}/videodevices.h
-    ${SRC_DIR}/previewengine.h
     ${SRC_DIR}/videoprovider.h
 )
 
@@ -223,6 +230,10 @@ if(MSVC)
     list(APPEND COMMON_SOURCES
                 ${SRC_DIR}/connectivitymonitor.cpp
                 ${SRC_DIR}/updatemanager.cpp
+                ${SRC_DIR}/previewengine.cpp
+    )
+    list(APPEND COMMON_HEADERS
+            ${SRC_DIR}/previewengine.h
     )
     # preprocessor defines
     add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
@@ -279,10 +290,12 @@ elseif (NOT APPLE)
                 ${SRC_DIR}/xrectsel.c
                 ${SRC_DIR}/dbuserrorhandler.cpp
                 ${SRC_DIR}/connectivitymonitor.cpp
-                ${SRC_DIR}/updatemanager.cpp)
+                ${SRC_DIR}/updatemanager.cpp
+                ${SRC_DIR}/previewengine.cpp)
     list(APPEND COMMON_HEADERS
                 ${SRC_DIR}/dbuserrorhandler.h
-                ${SRC_DIR}/xrectsel.h)
+                ${SRC_DIR}/xrectsel.h
+                ${SRC_DIR}/previewengine.h)
     list(APPEND QT_LIBS Qt::DBus)
     list(APPEND QT_MODULES DBus)
 
@@ -362,6 +375,17 @@ else() # APPLE
     list(APPEND COMMON_SOURCES
                 ${SRC_DIR}/os/macos/updatemanager.mm
                 ${SRC_DIR}/os/macos/connectivitymonitor.mm)
+    if (APPSTORE)
+        list(APPEND COMMON_SOURCES
+                    ${SRC_DIR}/os/macos/previewengine.cpp)
+       list(APPEND COMMON_HEADERS
+                            ${SRC_DIR}/os/macos/previewengine.h)
+    else()
+        list(APPEND COMMON_SOURCES
+                    ${SRC_DIR}/previewengine.cpp)
+       list(APPEND COMMON_HEADERS
+                            ${SRC_DIR}/previewengine.h)
+    endif()
     if(NOT DEFINED LRC)
         if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
             set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
@@ -673,10 +697,18 @@ else()
           MACOSX_BUNDLE_GUI_IDENTIFIER "${BUNDLE_ID}"
           MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION}"
           MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_BUILD}"
-          MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}"
-          SPARKLE_URL "${SPARKLE_URL}"
-          XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
-          XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
+          MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}")
+      if(APPSTORE)
+          message(STATUS "app store version")
+          add_definitions(-DAPPSTORE)
+          set_target_properties(${PROJECT_NAME} PROPERTIES
+              XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements")
+      else()
+          set_target_properties(${PROJECT_NAME} PROPERTIES
+              SPARKLE_URL "${SPARKLE_URL}"
+              XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
+              XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
+      endif()
       if(DEPLOY)
           add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                              COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
