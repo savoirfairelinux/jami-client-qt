@@ -20,7 +20,11 @@
 
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
+#ifdef APPSTORE
+#include "os/macos/previewengine.h"
+#else
 #include "previewengine.h"
+#endif
 
 #include "api/chatview.h"
 
