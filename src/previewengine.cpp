@@ -23,65 +23,87 @@
 #include <QWebEngineProfile>
 #include <QWebEngineSettings>
 
-PreviewEngine::PreviewEngine(QObject* parent)
-    : QWebEnginePage(parent)
-    , pimpl_(new PreviewEnginePrivate(this))
+#include <QtWebChannel>
+#include <QWebEnginePage>
+
+class PreviewEngine::Impl : public QObject
 {
-    QWebEngineProfile* profile = QWebEngineProfile::defaultProfile();
+public:
+    PreviewEngine& parent_;
+    QWebEnginePage* page;
+    QWebChannel* channel_;
+    Impl(PreviewEngine& parent)
+        : QObject(nullptr)
+        , parent_(parent)
+    {
+        QWebEngineProfile* profile = QWebEngineProfile::defaultProfile();
+        page = new QWebEnginePage(this);
 
-    QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
-    dataDir.cdUp();
-    auto cachePath = dataDir.absolutePath() + "/jami";
-    profile->setCachePath(cachePath);
-    profile->setPersistentStoragePath(cachePath);
-    profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
-    profile->setHttpCacheType(QWebEngineProfile::NoCache);
+        QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+        dataDir.cdUp();
+        auto cachePath = dataDir.absolutePath() + "/jami";
+        profile->setCachePath(cachePath);
+        profile->setPersistentStoragePath(cachePath);
+        profile->setPersistentCookiesPolicy(QWebEngineProfile::NoPersistentCookies);
+        profile->setHttpCacheType(QWebEngineProfile::NoCache);
 
-    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-    settings()->setAttribute(QWebEngineSettings::ScrollAnimatorEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::LinksIncludedInFocusChain, false);
-    settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::AllowRunningInsecureContent, true);
-    settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
-    settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
-    settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
+        page->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+        page->settings()->setAttribute(QWebEngineSettings::ScrollAnimatorEnabled, false);
+        page->settings()->setAttribute(QWebEngineSettings::ErrorPageEnabled, false);
+        page->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
+        page->settings()->setAttribute(QWebEngineSettings::ScreenCaptureEnabled, false);
+        page->settings()->setAttribute(QWebEngineSettings::LinksIncludedInFocusChain, false);
+        page->settings()->setAttribute(QWebEngineSettings::LocalStorageEnabled, false);
+        page->settings()->setAttribute(QWebEngineSettings::AllowRunningInsecureContent, true);
+        page->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+        page->settings()->setAttribute(QWebEngineSettings::XSSAuditingEnabled, false);
+        page->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
 
-    channel_ = new QWebChannel(this);
-    channel_->registerObject(QStringLiteral("jsbridge"), pimpl_);
+        channel_ = new QWebChannel(this);
+        channel_->registerObject(QStringLiteral("jsbridge"), this);
 
-    setWebChannel(channel_);
-    runJavaScript(Utils::QByteArrayFromFile(":/linkify.js"), QWebEngineScript::MainWorld);
-    runJavaScript(Utils::QByteArrayFromFile(":/linkify-string.js"), QWebEngineScript::MainWorld);
-    runJavaScript(Utils::QByteArrayFromFile(":/qwebchannel.js"), QWebEngineScript::MainWorld);
-    runJavaScript(Utils::QByteArrayFromFile(":/previewInfo.js"), QWebEngineScript::MainWorld);
-    runJavaScript(Utils::QByteArrayFromFile(":/misc/previewInterop.js"),
-                  QWebEngineScript::MainWorld);
-}
+        page->setWebChannel(channel_);
+        page->runJavaScript(Utils::QByteArrayFromFile(":/linkify.js"), QWebEngineScript::MainWorld);
+        page->runJavaScript(Utils::QByteArrayFromFile(":/linkify-string.js"),
+                            QWebEngineScript::MainWorld);
+        page->runJavaScript(Utils::QByteArrayFromFile(":/qwebchannel.js"),
+                            QWebEngineScript::MainWorld);
+        page->runJavaScript(Utils::QByteArrayFromFile(":/previewInfo.js"),
+                            QWebEngineScript::MainWorld);
+        page->runJavaScript(Utils::QByteArrayFromFile(":/misc/previewInterop.js"),
+                            QWebEngineScript::MainWorld);
+    }
+    void parseMessage(const QString& messageId, const QString& msg, bool showPreview)
+    {
+        page->runJavaScript(QString("parseMessage(`%1`, `%2`, %3)")
+                                .arg(messageId, msg, showPreview ? "true" : "false"));
+    }
+
+    void log(const QString& str)
+    {
+        qDebug() << str;
+    }
+
+    void infoReady(const QString& messageId, const QVariantMap& info)
+    {
+        Q_EMIT parent_.infoReady(messageId, info);
+    }
+
+    void linkifyReady(const QString& messageId, const QString& linkified)
+    {
+        Q_EMIT parent_.linkifyReady(messageId, linkified);
+    }
+};
+
+PreviewEngine::PreviewEngine(QObject* parent)
+    : QObject(parent)
+    , pimpl_(std::make_unique<Impl>(*this))
+{}
+
+PreviewEngine::~PreviewEngine() {}
 
 void
 PreviewEngine::parseMessage(const QString& messageId, const QString& msg, bool showPreview)
 {
-    runJavaScript(
-        QString("parseMessage(`%1`, `%2`, %3)").arg(messageId, msg, showPreview ? "true" : "false"));
-}
-
-void
-PreviewEnginePrivate::log(const QString& str)
-{
-    qDebug() << str;
-}
-
-void
-PreviewEnginePrivate::infoReady(const QString& messageId, const QVariantMap& info)
-{
-    Q_EMIT parent_->infoReady(messageId, info);
-}
-
-void
-PreviewEnginePrivate::linkifyReady(const QString& messageId, const QString& linkified)
-{
-    Q_EMIT parent_->linkifyReady(messageId, linkified);
+    pimpl_->parseMessage(messageId, msg, showPreview);
 }
