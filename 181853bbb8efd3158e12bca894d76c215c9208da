@@ -22,6 +22,30 @@
       },
       "revId": "181853bbb8efd3158e12bca894d76c215c9208da",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2de7634_e7f439a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-10T20:18:03Z",
+      "side": 1,
+      "message": "Will the window have be scrollbars if it is too small to fix the information?",
+      "parentUuid": "8678d04b_60fade6c",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 27
+      },
+      "revId": "181853bbb8efd3158e12bca894d76c215c9208da",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
