@@ -160,7 +160,7 @@ Item {
         if (Qt.application.screens.length === 1) {
             AvAdapter.shareEntireScreen(0)
         } else {
-            SelectScreenWindowCreation.createSelectScreenWindowObject(JamiQmlUtils.mainApplicationScreen)
+            SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
             SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, false)
         }
     }
@@ -169,7 +169,7 @@ Item {
         AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
         AvAdapter.getListWindows()
         if (AvAdapter.windowsNames.length >= 1) {
-            SelectScreenWindowCreation.createSelectScreenWindowObject(JamiQmlUtils.mainApplicationScreen)
+            SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
             SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, true)
         }
     }

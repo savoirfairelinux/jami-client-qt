@@ -450,12 +450,8 @@ Rectangle {
     AboutPopUp {
         id: aboutPopUpDialog
 
-        onVisibleChanged: {
-            height = Qt.binding(function () {
-                return Math.min(preferredHeight,
-                                mainView.height - JamiTheme.preferredMarginSize * 2)
-            })
-        }
+        width: mainView.width - JamiTheme.preferredMarginSize * 2
+        height: mainView.height - JamiTheme.preferredMarginSize * 2
     }
 
     WelcomePageQrDialog {
@@ -464,6 +460,8 @@ Rectangle {
 
     UserProfile {
         id: userProfile
+        width: Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 480)
+        height: Math.min(root.height - 2 * JamiTheme.preferredMarginSize, 480)
     }
 
     Shortcut {

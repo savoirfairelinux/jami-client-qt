@@ -29,26 +29,16 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    property int preferredHeight: 0
-
-    width: 400
-
-    onPopupContentLoadStatusChanged: {
-        if (popupContentLoadStatus === Loader.Ready)
-            preferredHeight = Qt.binding(function() {
-                return popupContentLoader.item.contentHeight
-            })
-    }
-
     popupContent: JamiFlickable {
         id: aboutPopUpScrollView
 
         contentHeight: aboutPopUpContentRectColumnLayout.implicitHeight
+        width: root.width
 
         ColumnLayout {
             id: aboutPopUpContentRectColumnLayout
 
-            width: Math.max(root.width, implicitWidth)
+            width: root.width
             height: Math.max(aboutPopUpScrollView.height, implicitHeight)
 
             ResponsiveImage {
