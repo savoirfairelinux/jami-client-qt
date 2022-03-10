@@ -197,16 +197,21 @@ set(COMMON_HEADERS
     ${SRC_DIR}/videoprovider.h
 )
 
-# For avframe dependency on Windows/macOS.
-if(NOT DEFINED LIBAV_INCLUDE_PATH)
-   set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib/")
-   if(WIN32)
-      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include/)
-   else()
-      set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg)
+# For libavutil/avframe.
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+   find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h)
+   find_library(AVUTIL_LIBRARY avutil)
+else()
+   if(NOT DEFINED LIBAV_INCLUDE_PATH)
+      set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib/")
+      if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+         set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include/)
+      elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+         set(LIBAV_INCLUDE_PATH ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg)
+      endif()
    endif()
+   include_directories(${LIBAV_INCLUDE_PATH})
 endif()
-include_directories(${LIBAV_INCLUDE_PATH})
 
 if(MSVC)
     set(WINDOWS_SYS_LIBS
