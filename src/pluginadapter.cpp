@@ -20,8 +20,13 @@
 
 #include "lrcinstance.h"
 
-PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
+#include "utilsadapter.h"
+
+PluginAdapter::PluginAdapter(AppSettingsManager* settingsManager,
+                             LRCInstance* instance,
+                             QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , settingsManager_(settingsManager)
 {
     set_isEnabled(lrcInstance_->pluginModel().getPluginsEnabled());
     updateHandlersListCount();
@@ -53,7 +58,10 @@ PluginAdapter::getPluginPreferencesCategories(const QString& pluginId,
                                               bool removeLast)
 {
     QStringList categories;
-    auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId, accountId);
+    auto lang = settingsManager_->getValue(Settings::Key::LANG).toString();
+    lang = lang == "SYSTEM" ? QLocale::system().name() : lang;
+    qDebug() << QString("Plugin locale: %1").arg(lang);
+    auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId, "", lang);
     for (auto& preference : preferences) {
         if (!preference["category"].isEmpty())
             categories.push_back(preference["category"]);

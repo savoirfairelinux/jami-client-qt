@@ -197,6 +197,7 @@ Rectangle {
                             id: pluginListPreferenceCategoryModel
 
                             lrcInstance: LRCInstance
+                            settingsManager: AppSettingsManager
                             preferenceKey : PreferenceKey
                             accountId_: accountId
                             pluginId: PluginId
@@ -256,6 +257,7 @@ Rectangle {
                     id: pluginListPreferenceModel
 
                     lrcInstance: LRCInstance
+                    settingsManager: AppSettingsManager
                     preferenceKey : PreferenceKey
                     accountId_: accountId
                     pluginId: PluginId

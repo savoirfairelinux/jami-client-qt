@@ -19,6 +19,7 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
+#include "appsettingsmanager.h"
 
 class LRCInstance;
 
@@ -26,6 +27,7 @@ class PreferenceItemListModel : public AbstractListModelBase
 {
     Q_OBJECT
 
+    Q_PROPERTY(AppSettingsManager* settingsManager MEMBER settingsManager_)
     Q_PROPERTY(QString pluginId_ READ pluginId_ WRITE setPluginId)
     QML_PROPERTY(QString, category_)
     QML_PROPERTY(QString, mediaHandlerName_)
@@ -82,4 +84,5 @@ private:
 
     QString pluginId__;
     VectorMapStringString preferenceList_;
+    AppSettingsManager* settingsManager_;
 };

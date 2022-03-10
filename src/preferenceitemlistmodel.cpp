@@ -20,7 +20,7 @@
 
 #include "lrcinstance.h"
 #include "utils.h"
-
+#include "appsettingsmanager.h"
 #include "api/pluginmodel.h"
 
 #include <map>
@@ -87,9 +87,15 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
             acceptedFiles.append(QString("All (*.%1)").arg(mimeTypeList.join(" *.")));
         }
     }
+
+    auto lang = "";
+    // auto lang = settingsManager_->getValue(Settings::Key::LANG).toString();
+    // lang = lang == "SYSTEM" ? QLocale::system().name() : lang;
+    // qDebug() << QString("Plugin locale: %1").arg(lang);
     const auto dependsOn = details["dependsOn"].split(",");
     const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__,
-                                                                              accountId__);
+                                                                              accountId__,
+                                                                              lang);
     const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId__,
                                                                                    accountId__);
     bool enabled = true;
@@ -182,8 +188,16 @@ PreferenceItemListModel::preferencesCount()
 {
     if (!preferenceList_.isEmpty())
         return preferenceList_.size();
+
+    auto lang = "";
+    // auto lang = settingsManager_->getValue(Settings::Key::LANG).toString();
+    // lang = lang == "SYSTEM" ? QLocale::system().name() : lang;
+    // qDebug() << QString("Plugin locale: %1").arg(lang);
+
     if (mediaHandlerName__.isEmpty()) {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__, accountId__);
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__,
+                                                                            accountId__,
+                                                                            lang);
         if (category__ != "all")
             for (auto& preference : preferences) {
                 if (preference["category"] == category__)
@@ -193,9 +207,9 @@ PreferenceItemListModel::preferencesCount()
             preferenceList_ = preferences;
         return preferenceList_.size();
     } else {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__, "");
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId__, "", lang);
         preferences.append(
-            lrcInstance_->pluginModel().getPluginPreferences(pluginId__, accountId__));
+            lrcInstance_->pluginModel().getPluginPreferences(pluginId__, accountId__, lang));
         for (auto& preference : preferences) {
             QStringList scopeList = preference["scope"].split(",");
             if (scopeList.contains(mediaHandlerName__))

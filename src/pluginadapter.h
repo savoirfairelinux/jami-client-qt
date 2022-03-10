@@ -19,6 +19,7 @@
 #pragma once
 
 #include "qmladapterbase.h"
+#include "appsettingsmanager.h"
 #include "pluginlistmodel.h"
 #include "pluginhandlerlistmodel.h"
 #include "pluginlistpreferencemodel.h"
@@ -36,7 +37,9 @@ class PluginAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, isEnabled)
 
 public:
-    explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
+    explicit PluginAdapter(AppSettingsManager* settingsManager,
+                           LRCInstance* instance,
+                           QObject* parent = nullptr);
     ~PluginAdapter() = default;
 
 protected:
@@ -55,4 +58,5 @@ private:
     std::unique_ptr<PluginHandlerListModel> pluginHandlerListModel_;
 
     std::mutex mtx_;
+    AppSettingsManager* settingsManager_;
 };

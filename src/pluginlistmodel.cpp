@@ -133,7 +133,7 @@ PluginListModel::filterPlugins(VectorString& list)
 
     for (auto it = list.begin(); it != list.end();) {
         auto prefs = lrcInstance_->pluginModel()
-                         .getPluginPreferences(*it, lrcInstance_->get_currentAccountId());
+                         .getPluginPreferences(*it, lrcInstance_->get_currentAccountId(), "");
         if (prefs.empty()) {
             it = list.erase(it);
         } else

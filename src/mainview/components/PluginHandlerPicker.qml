@@ -250,6 +250,7 @@ Popup {
                             id: handlerPickerPreferenceModel
 
                             lrcInstance: LRCInstance
+                            settingsManager: AppSettingsManager
                             preferenceKey : PreferenceKey
                             accountId_: LRCInstance.currentAccountId
                             pluginId: PluginId
