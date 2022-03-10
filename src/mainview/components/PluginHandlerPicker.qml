@@ -59,8 +59,8 @@ Popup {
                 function onAboutToShow(visible) {
                     if (isCall) {
                         // Reset the model on each show.
-                        var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
-                                                            callStackViewWindow.responsibleConvUid)
+                        var callId = UtilsAdapter.getCallId(callStackView.responsibleAccountId,
+                                                            callStackView.responsibleConvUid)
                         pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
                     } else {
                         // Reset the model on each show.
@@ -73,8 +73,8 @@ Popup {
 
             function toggleHandlerSlot(handlerId, isLoaded) {
                 if (isCall) {
-                    var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
-                                                    callStackViewWindow.responsibleConvUid)
+                    var callId = UtilsAdapter.getCallId(callStackView.responsibleAccountId,
+                                                        callStackView.responsibleConvUid)
                     PluginModel.toggleCallMediaHandler(handlerId, callId, !isLoaded)
                     pluginhandlerPickerListView.model = PluginAdapter.getMediaHandlerSelectableModel(callId)
                 } else {
@@ -132,8 +132,8 @@ Popup {
 
                     model: {
                         if (isCall) {
-                            var callId = UtilsAdapter.getCallId(callStackViewWindow.responsibleAccountId,
-                                                                callStackViewWindow.responsibleConvUid)
+                            var callId = UtilsAdapter.getCallId(callStackView.responsibleAccountId,
+                                                                callStackView.responsibleConvUid)
                             return PluginAdapter.getMediaHandlerSelectableModel(callId)
                         } else {
                             var accountId = LRCInstance.currentAccountId
