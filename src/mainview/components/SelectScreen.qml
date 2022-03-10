@@ -44,7 +44,8 @@ Window {
     property bool selectAllScreens: false
     property string currentPreview: ""
     property var screens: []
-
+    
+    modality: Qt.ApplicationModal
     title: window ? JamiStrings.selectWindow : JamiStrings.selectScreen
 
     // How many rows the ScrollView should have.
