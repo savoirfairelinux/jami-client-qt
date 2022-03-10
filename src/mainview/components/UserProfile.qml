@@ -35,14 +35,12 @@ BaseModalDialog {
 
     property int preferredImgSize: 80
 
-    width: 480
-    height: 480
-
     popupContent: Rectangle {
         id: userProfileContentRect
 
         color: JamiTheme.backgroundColor
         radius: JamiTheme.modalPopupRadius
+        anchors.fill: parent
 
         GridLayout {
             id: userProfileDialogLayout
@@ -160,6 +158,7 @@ BaseModalDialog {
                 id: contactId
 
                 Layout.alignment: Qt.AlignLeft
+                width: userProfileContentRect.width - 200
 
                 font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
@@ -169,19 +168,11 @@ BaseModalDialog {
                 readOnly: true
                 selectByMouse: true
 
-                wrapMode: Text.NoWrap
-                text: textMetricsContactIdText.elidedText
+                wrapMode: Text.WrapAnywhere
+                text: idText
 
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
-
-                TextMetrics {
-                    id: textMetricsContactIdText
-                    font: contactId.font
-                    text: idText
-                    elideWidth: userProfileContentRect.width - 200
-                    elide: Qt.ElideMiddle
-                }
             }
 
             Text {

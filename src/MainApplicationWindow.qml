@@ -215,15 +215,11 @@ ApplicationWindow {
 
     onClosing: root.close()
 
-    onScreenChanged: JamiQmlUtils.mainApplicationScreen = root.screen
-
     Component.onCompleted: {
         if (CurrentAccountToMigrate.accountToMigrateListSize <= 0)
             startClient()
         else
             startAccountMigration()
-
-        JamiQmlUtils.mainApplicationScreen = root.screen
 
         if (Qt.platform.os.toString()  !== "windows" && Qt.platform.os.toString()  !== "osx")
             DBusErrorHandler.setActive(true)

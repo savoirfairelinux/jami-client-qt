@@ -271,6 +271,7 @@ Item {
     property real minimumPreviewWidth: 120
     property real pluginHandlersPopupViewHeight: 200
     property real pluginHandlersPopupViewDelegateHeight: 50
+    property real secondaryDialogDimension: 500
 
     property real lineEditContextMenuItemsHeight: 15
     property real lineEditContextMenuItemsWidth: 100

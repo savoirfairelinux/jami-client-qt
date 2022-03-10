@@ -35,15 +35,17 @@ import "../../commoncomponents"
 Window {
     id: root
 
-    property int minWidth: 650
-    property int minHeight: 500
-
     property bool window: false
 
     property int selectedScreenNumber: -1
     property bool selectAllScreens: false
     property string currentPreview: ""
     property var screens: []
+    property real componentMinWidth: 200
+    property real componentWidthDoubleColumn: screenSelectionScrollView.width / 2 -
+                                            screenSelectionScrollViewFlow.spacing / 2 - JamiTheme.preferredMarginSize
+    property real componentWidthSingleColumn: screenSelectionScrollView.width -
+                                              2 * JamiTheme.preferredMarginSize
     
     modality: Qt.ApplicationModal
     title: window ? JamiStrings.selectWindow : JamiStrings.selectScreen
@@ -75,11 +77,6 @@ Window {
         screenInfo2.model = screens.length
         windowsText.visible = root.window
     }
-    minimumWidth: minWidth
-    minimumHeight: minHeight
-
-    width: minWidth
-    height: minHeight
 
     Rectangle {
         id: selectScreenWindowRect
@@ -110,7 +107,7 @@ Window {
                 rightPadding: JamiTheme.preferredMarginSize
                 leftPadding: JamiTheme.preferredMarginSize
 
-                spacing: 10
+                spacing: JamiTheme.preferredMarginSize
 
                 Text {
                     width: screenSelectionScrollView.width
@@ -134,8 +131,7 @@ Window {
 
                         color: JamiTheme.secondaryBackgroundColor
 
-                        width: screenSelectionScrollView.width / 2 -
-                                screenSelectionScrollViewFlow.spacing / 2 - JamiTheme.preferredMarginSize
+                        width: componentWidthDoubleColumn > componentMinWidth ? componentWidthDoubleColumn : componentWidthSingleColumn
                         height: 3 * width / 4
 
                         border.color: selectedScreenNumber === index ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
@@ -208,8 +204,7 @@ Window {
 
                     color: JamiTheme.secondaryBackgroundColor
 
-                    width: screenSelectionScrollView.width / 2 -
-                                screenSelectionScrollViewFlow.spacing / 2 - JamiTheme.preferredMarginSize
+                    width: componentWidthDoubleColumn > componentMinWidth ? componentWidthDoubleColumn : componentWidthSingleColumn
                     height: 3 * width / 4
 
                     border.color: selectAllScreens ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
@@ -286,8 +281,7 @@ Window {
 
                         color: JamiTheme.secondaryBackgroundColor
 
-                        width: screenSelectionScrollView.width / 2 -
-                                screenSelectionScrollViewFlow.spacing / 2 - JamiTheme.preferredMarginSize
+                        width: componentWidthDoubleColumn > componentMinWidth ? componentWidthDoubleColumn : componentWidthSingleColumn
                         height: 3 * width / 4
 
                         border.color: selectedScreenNumber === index ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
@@ -356,14 +350,17 @@ Window {
         anchors.bottomMargin: JamiTheme.preferredMarginSize
         anchors.horizontalCenter: selectScreenWindowRect.horizontalCenter
 
-        width: childrenRect.width
+        width: parent.width
         height: childrenRect.height
         spacing: JamiTheme.preferredMarginSize
 
         MaterialButton {
             id: selectButton
 
-            preferredWidth: 200
+            Layout.maximumWidth: 200
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
+            Layout.leftMargin: JamiTheme.preferredMarginSize
 
             enabled: selectedScreenNumber != -1 || selectAllScreens
             opacity: enabled ? 1.0 : 0.5
@@ -392,7 +389,10 @@ Window {
         MaterialButton {
             id: cancelButton
 
-            preferredWidth: 200
+            Layout.maximumWidth: 200
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignHCenter
+            Layout.rightMargin: JamiTheme.preferredMarginSize
 
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
