@@ -22,6 +22,29 @@
       },
       "revId": "26d3a35d03bd38803496c25533db421fda4cc9b3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ade9a3a_69fdee88",
+        "filename": "src/callparticipantsmodel.h",
+        "patchSetId": 24
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-03-10T20:00:14Z",
+      "side": 1,
+      "message": "remove `by `?",
+      "range": {
+        "startLine": 2,
+        "startChar": 22,
+        "endLine": 2,
+        "endChar": 25
+      },
+      "revId": "26d3a35d03bd38803496c25533db421fda4cc9b3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
