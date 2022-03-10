@@ -35,9 +35,6 @@ BaseModalDialog {
 
     property int preferredImgSize: 80
 
-    width: 480
-    height: 480
-
     popupContent: Rectangle {
         id: userProfileContentRect
 

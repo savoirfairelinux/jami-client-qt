@@ -31,8 +31,6 @@ Item {
     readonly property string accountMigrationViewLoadPath: "qrc:/src/AccountMigrationView.qml"
     readonly property string base64StringTitle: "data:image/png;base64,"
 
-    property var mainApplicationScreen: ""
-
     property var accountCreationInputParaObject: ({})
 
     function setUpAccountCreationInputPara(inputPara) {

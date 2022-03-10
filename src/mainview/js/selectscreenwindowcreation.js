@@ -19,13 +19,14 @@
 // Global select screen window component, object variable for creation.
 var selectScreenWindowComponent
 var selectScreenWindowObject
+var mainWindow
 
-function createSelectScreenWindowObject(providedScreen) {
+function createSelectScreenWindowObject(appWindow) {
     if (selectScreenWindowObject)
         return
     selectScreenWindowComponent = Qt.createComponent(
                 "../components/SelectScreen.qml")
-    selectScreenWindowComponent.screen = providedScreen
+    mainWindow = appWindow
     if (selectScreenWindowComponent.status === Component.Ready)
         finishCreation()
     else if (selectScreenWindowComponent.status === Component.Error)
@@ -49,11 +50,13 @@ function showSelectScreenWindow(previewId, window) {
     selectScreenWindowObject.window = window
     selectScreenWindowObject.show()
 
-    var screen = selectScreenWindowComponent.screen
-    selectScreenWindowObject.x = screen.virtualX +
-            (screen.width - selectScreenWindowObject.width) / 2
-    selectScreenWindowObject.y = screen.virtualY +
-            (screen.height - selectScreenWindowObject.height) / 2
+    var centerX = mainWindow.x + mainWindow.width / 2
+    var centerY = mainWindow.y + mainWindow.height / 2
+
+    selectScreenWindowObject.width = 0.75 * appWindow.width
+    selectScreenWindowObject.height = 0.75 * appWindow.height
+    selectScreenWindowObject.x = centerX - selectScreenWindowObject.width / 2
+    selectScreenWindowObject.y = centerY - selectScreenWindowObject.height / 2
 }
 
 // Destroy and reset selectScreenWindowObject when window is closed.
