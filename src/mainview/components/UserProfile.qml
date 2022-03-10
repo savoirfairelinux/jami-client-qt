@@ -24,7 +24,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-BaseModalDialog {
+Window {
     id: root
 
     property string convId
@@ -36,10 +36,13 @@ BaseModalDialog {
     property int preferredImgSize: 80
 
     width: 480
+    minimumWidth: 300
     height: 480
+    minimumHeight: 480
 
-    popupContent: Rectangle {
+    Rectangle {
         id: userProfileContentRect
+        anchors.fill: parent
 
         color: JamiTheme.backgroundColor
         radius: JamiTheme.modalPopupRadius
