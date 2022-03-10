@@ -111,7 +111,7 @@ registerTypes(QQmlEngine* engine,
     auto contactAdapter = new ContactAdapter(lrcInstance, parent);
     auto accountAdapter = new AccountAdapter(settingsManager, lrcInstance, parent);
     auto utilsAdapter = new UtilsAdapter(settingsManager, systemTray, lrcInstance, parent);
-    auto pluginAdapter = new PluginAdapter(lrcInstance, parent);
+    auto pluginAdapter = new PluginAdapter(settingsManager, lrcInstance, parent);
     auto currentConversation = new CurrentConversation(lrcInstance, parent);
     auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, parent);
     auto videoDevices = new VideoDevices(lrcInstance, parent);

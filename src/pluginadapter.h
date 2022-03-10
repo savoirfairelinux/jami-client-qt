@@ -35,7 +35,7 @@ class PluginAdapter final : public QmlAdapterBase
     QML_PROPERTY(int, chatHandlersListCount)
 
 public:
-    explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);
+    explicit PluginAdapter(AppSettingsManager* settingsManager, LRCInstance* instance, QObject* parent = nullptr);
     ~PluginAdapter() = default;
 
 protected:
@@ -63,4 +63,6 @@ private:
     std::unique_ptr<PluginHandlerItemListModel> pluginHandlerListModel_;
     std::unique_ptr<PreferenceItemListModel> preferenceItemListModel_;
     std::unique_ptr<PluginItemListModel> pluginItemListModel_;
+
+    AppSettingsManager* settingsManager_;
 };

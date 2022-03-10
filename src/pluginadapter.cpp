@@ -20,8 +20,11 @@
 
 #include "lrcinstance.h"
 
-PluginAdapter::PluginAdapter(LRCInstance* instance, QObject* parent)
+#include "utilsadapter.h"
+
+PluginAdapter::PluginAdapter(AppSettingsManager* settingsManager, LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
+    , settingsManager_(settingsManager)
 {
     updateHandlersListCount();
     connect(&lrcInstance_->pluginModel(),
@@ -56,7 +59,7 @@ PluginAdapter::getPluginSelectableModel()
 QVariant
 PluginAdapter::getPluginPreferencesModel(const QString& pluginId, const QString& category)
 {
-    preferenceItemListModel_.reset(new PreferenceItemListModel(this, lrcInstance_));
+    preferenceItemListModel_.reset(new PreferenceItemListModel(this, lrcInstance_, settingsManager_));
     preferenceItemListModel_->setCategory(category);
     preferenceItemListModel_->setPluginId(pluginId);
 
@@ -66,7 +69,7 @@ PluginAdapter::getPluginPreferencesModel(const QString& pluginId, const QString&
 QVariant
 PluginAdapter::getHandlerPreferencesModel(const QString& pluginId, const QString& mediaHandlerName)
 {
-    preferenceItemListModel_.reset(new PreferenceItemListModel(this, lrcInstance_));
+    preferenceItemListModel_.reset(new PreferenceItemListModel(this, lrcInstance_, settingsManager_));
     preferenceItemListModel_->setMediaHandlerName(mediaHandlerName);
     preferenceItemListModel_->setPluginId(pluginId);
 
@@ -77,7 +80,10 @@ QVariant
 PluginAdapter::getPluginPreferencesCategories(const QString& pluginId, bool removeLast)
 {
     QStringList categories;
-    auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId);
+    auto lang = settingsManager_->getValue(Settings::Key::LANG).toString();
+    lang = lang == "SYSTEM" ? QLocale::system().name() : lang;
+    qDebug() << QString("Plugin locale: %1").arg(lang);
+    auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId, lang);
     for (auto& preference : preferences) {
         if (!preference["category"].isEmpty())
             categories.push_back(preference["category"]);

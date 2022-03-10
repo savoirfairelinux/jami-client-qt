@@ -294,6 +294,7 @@ Rectangle {
                             id: pluginListPreferenceCategoryModel
 
                             lrcInstance: LRCInstance
+                            settingsManager: AppSettingsManager
                             preferenceKey : PreferenceKey
                             pluginId: PluginId
                         }
@@ -344,6 +345,7 @@ Rectangle {
                     id: pluginListPreferenceModel
 
                     lrcInstance: LRCInstance
+                    settingsManager: AppSettingsManager
                     preferenceKey : PreferenceKey
                     pluginId: PluginId
                 }

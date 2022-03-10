@@ -20,7 +20,7 @@
 
 #include "lrcinstance.h"
 #include "utils.h"
-
+#include "appsettingsmanager.h"
 #include "api/pluginmodel.h"
 
 #include <map>
@@ -31,8 +31,9 @@ std::map<QString, int> mapType {{QString("List"), PreferenceItemListModel::Type:
                                 {QString("EditText"), PreferenceItemListModel::Type::EDITTEXT},
                                 {QString("Switch"), PreferenceItemListModel::Type::SWITCH}};
 
-PreferenceItemListModel::PreferenceItemListModel(QObject* parent, LRCInstance* instance)
+PreferenceItemListModel::PreferenceItemListModel(QObject* parent, LRCInstance* instance, AppSettingsManager* settingsManager)
     : AbstractListModelBase(parent)
+    , settingsManager_(settingsManager)
 {
     lrcInstance_ = instance;
 }
@@ -90,7 +91,10 @@ PreferenceItemListModel::data(const QModelIndex& index, int role) const
         }
     }
     const auto dependsOn = details["dependsOn"].split(",");
-    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
+    auto lang = settingsManager_->getValue(Settings::Key::LANG).toString();
+    lang = lang == "SYSTEM" ? QLocale::system().name() : lang;
+    qDebug() << QString("Plugin locale: %1").arg(lang);
+    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, lang);
     const auto prefValues = lrcInstance_->pluginModel().getPluginPreferencesValues(pluginId_);
     bool enabled = true;
     for (auto& preference : preferences) {
@@ -232,8 +236,11 @@ PreferenceItemListModel::preferencesCount()
 {
     if (!preferenceList_.isEmpty())
         return preferenceList_.size();
+    auto lang = settingsManager_->getValue(Settings::Key::LANG).toString();
+    lang = lang == "SYSTEM" ? QLocale::system().name() : lang;
     if (mediaHandlerName_.isEmpty()) {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
+        qDebug() << QString("Plugin locale: %1").arg(lang);
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, lang);
         if (category_ != "all")
             for (auto& preference : preferences) {
                 if (preference["category"] == category_)
@@ -243,7 +250,8 @@ PreferenceItemListModel::preferencesCount()
             preferenceList_ = preferences;
         return preferenceList_.size();
     } else {
-        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
+        qDebug() << QString("Plugin locale: %1").arg(lang);
+        auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, lang);
         for (auto& preference : preferences) {
             QStringList scopeList = preference["scope"].split(",");
             if (scopeList.contains(mediaHandlerName_))

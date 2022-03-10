@@ -19,6 +19,7 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
+#include "appsettingsmanager.h"
 
 class LRCInstance;
 
@@ -53,7 +54,7 @@ public:
 
     Q_ENUM(Role)
 
-    explicit PreferenceItemListModel(QObject* parent = nullptr, LRCInstance* instance = nullptr);
+    explicit PreferenceItemListModel(QObject* parent = nullptr, LRCInstance* instance = nullptr, AppSettingsManager* settingsManager = nullptr);
     ~PreferenceItemListModel();
 
     /*
@@ -88,4 +89,6 @@ private:
     QString mediaHandlerName_ = "";
     VectorMapStringString preferenceList_;
     QString category_ = "all";
+
+    AppSettingsManager* settingsManager_;
 };

@@ -19,12 +19,13 @@
 #pragma once
 
 #include "abstractlistmodelbase.h"
-
+#include "appsettingsmanager.h"
 #include "api/pluginmodel.h"
 
 class PluginListPreferenceModel : public AbstractListModelBase
 {
     Q_OBJECT
+    Q_PROPERTY(AppSettingsManager* settingsManager MEMBER settingsManager_)
     Q_PROPERTY(QString pluginId READ pluginId WRITE setPluginId)
     Q_PROPERTY(QString preferenceKey READ preferenceKey WRITE setPreferenceKey)
     Q_PROPERTY(QString preferenceNewValue READ preferenceNewValue WRITE setPreferenceNewValue)
@@ -115,4 +116,6 @@ private:
     QStringList preferenceValuesList_;
     QStringList preferenceList_;
     int idx_ = 0;
+
+    AppSettingsManager* settingsManager_;
 };

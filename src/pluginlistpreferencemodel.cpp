@@ -35,7 +35,10 @@ PluginListPreferenceModel::populateLists()
     preferenceList_.clear();
     if (pluginId_.isEmpty())
         return;
-    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_);
+    auto lang = settingsManager_->getValue(Settings::Key::LANG).toString();
+    lang = lang == "SYSTEM" ? QLocale::system().name() : lang;
+    qDebug() << QString("Plugin locale: %1").arg(lang);
+    const auto preferences = lrcInstance_->pluginModel().getPluginPreferences(pluginId_, lang);
     for (const auto& preference : preferences) {
         if (preference["key"] == preferenceKey_) {
             if (preference.find("entries") != preference.end()
