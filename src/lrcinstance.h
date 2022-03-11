@@ -61,11 +61,11 @@ class LRCInstance : public QObject
     QML_PROPERTY(bool, currentAccountAvatarSet)
 
 public:
-    explicit LRCInstance(migrateCallback willMigrateCb = {},
-                         migrateCallback didMigrateCb = {},
-                         const QString& updateUrl = {},
-                         ConnectivityMonitor* connectivityMonitor = {},
-                         bool muteDring = false);
+    explicit LRCInstance(migrateCallback willMigrateCb,
+                         migrateCallback didMigrateCb,
+                         const QString& updateUrl,
+                         ConnectivityMonitor* connectivityMonitor,
+                         bool muteDring);
     ~LRCInstance() = default;
 
     void finish();
