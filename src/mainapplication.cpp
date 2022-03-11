@@ -54,35 +54,6 @@
 #include <gnutls/gnutls.h>
 #endif
 
-static void
-consoleDebug()
-{
-#ifdef Q_OS_WIN
-    AllocConsole();
-    SetConsoleCP(CP_UTF8);
-
-    FILE* fpstdout = stdout;
-    freopen_s(&fpstdout, "CONOUT$", "w", stdout);
-    FILE* fpstderr = stderr;
-    freopen_s(&fpstderr, "CONOUT$", "w", stderr);
-
-    COORD coordInfo;
-    coordInfo.X = 130;
-    coordInfo.Y = 9000;
-
-    SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coordInfo);
-    SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), ENABLE_QUICK_EDIT_MODE | ENABLE_EXTENDED_FLAGS);
-#endif
-}
-
-static QString
-getDebugFilePath()
-{
-    QDir logPath(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
-    logPath.cdUp();
-    return QString(logPath.absolutePath() + "/jami/jami.log");
-}
-
 void
 ScreenInfo::setCurrentFocusWindow(QWindow* window)
 {
@@ -110,29 +81,13 @@ void
 MainApplication::vsConsoleDebug()
 {
 #ifdef _MSC_VER
-    /*
-     * Print debug to output window if using VS.
-     */
+    // Print debug to output window if using VS.
     QObject::connect(&lrcInstance_->behaviorController(),
                      &lrc::api::BehaviorController::debugMessageReceived,
                      [](const QString& message) {
                          OutputDebugStringA((message + "\n").toStdString().c_str());
                      });
 #endif
-}
-
-void
-MainApplication::fileDebug(QFile* debugFile)
-{
-    QObject::connect(&lrcInstance_->behaviorController(),
-                     &lrc::api::BehaviorController::debugMessageReceived,
-                     [debugFile](const QString& message) {
-                         if (debugFile->open(QIODevice::WriteOnly | QIODevice::Append)) {
-                             auto msg = (message + "\n").toStdString();
-                             debugFile->write(msg.c_str(), qstrlen(msg.c_str()));
-                             debugFile->close();
-                         }
-                     });
 }
 
 MainApplication::MainApplication(int& argc, char** argv)
@@ -165,10 +120,6 @@ MainApplication::init()
                      &QQmlApplicationEngine::retranslate);
 
     setWindowIcon(QIcon(":/images/jami.ico"));
-
-    if (runOptions_[Option::Debug].toBool()) {
-        consoleDebug();
-    }
 
     Utils::removeOldVersions();
     settingsManager_->loadTranslations();
@@ -214,13 +165,6 @@ MainApplication::init()
         this,
         [this] { engine_->quit(); },
         Qt::DirectConnection);
-
-    if (runOptions_[Option::DebugToFile].toBool()) {
-        debugFile_.reset(new QFile(getDebugFilePath()));
-        debugFile_->open(QIODevice::WriteOnly | QIODevice::Truncate);
-        debugFile_->close();
-        fileDebug(debugFile_.get());
-    }
 
     if (runOptions_[Option::DebugToConsole].toBool()) {
         vsConsoleDebug();
@@ -336,13 +280,10 @@ MainApplication::parseArguments()
     QCommandLineOption debugOption({"d", "debug"}, "Debug out.");
     parser.addOption(debugOption);
 
-    QCommandLineOption debugFileOption({"f", "file"}, "Debug to file.");
-    parser.addOption(debugFileOption);
+    QCommandLineOption logFileOption({"f", "file"}, "Debug to <file>.", "file");
+    parser.addOption(logFileOption);
 
 #ifdef Q_OS_WINDOWS
-    QCommandLineOption debugConsoleOption({"c", "console"}, "Debug out to IDE console.");
-    parser.addOption(debugConsoleOption);
-
     QCommandLineOption updateUrlOption({"u", "url"}, "<url> for debugging version queries.", "url");
     parser.addOption(updateUrlOption);
 
@@ -357,9 +298,12 @@ MainApplication::parseArguments()
 
     runOptions_[Option::StartMinimized] = parser.isSet(minimizedOption);
     runOptions_[Option::Debug] = parser.isSet(debugOption);
-    runOptions_[Option::DebugToFile] = parser.isSet(debugFileOption);
+    if (parser.isSet(logFileOption)) {
+        auto logFileValue = parser.value(logFileOption);
+        auto logFile = logFileValue.isEmpty() ? Utils::getDebugFilePath() : logFileValue;
+        qputenv("JAMI_LOG_FILE", logFile.toStdString().c_str());
+    }
 #ifdef Q_OS_WINDOWS
-    runOptions_[Option::DebugToConsole] = parser.isSet(debugConsoleOption);
     runOptions_[Option::UpdateUrl] = parser.value(updateUrlOption);
 #endif
     runOptions_[Option::TerminationRequested] = parser.isSet(terminateOption);
@@ -439,9 +383,6 @@ MainApplication::initSystray()
 void
 MainApplication::cleanup()
 {
-#ifdef Q_OS_WIN
-    FreeConsole();
-#endif
     QApplication::exit(0);
 }
 
