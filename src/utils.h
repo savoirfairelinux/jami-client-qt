@@ -118,5 +118,6 @@ QString generateUid();
 
 // Misc
 QString humanFileSize(qint64 fileSize);
+QString getDebugFilePath();
 
 } // namespace Utils

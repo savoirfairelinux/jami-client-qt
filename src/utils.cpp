@@ -863,6 +863,14 @@ Utils::humanFileSize(qint64 fileSize)
     return QString::number(fileSizeF) + " " + units[unit_position];
 }
 
+QString
+Utils::getDebugFilePath()
+{
+    QDir logPath(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+    logPath.cdUp();
+    return QString(logPath.absolutePath() + "/jami/jami.log");
+}
+
 bool
 Utils::isImage(const QString& fileExt)
 {
