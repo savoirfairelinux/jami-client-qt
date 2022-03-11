@@ -72,7 +72,7 @@ public:
         StartMinimized = 0,
         Debug,
         DebugToConsole,
-        DebugToFile,
+        LogFile,
         UpdateUrl,
         MuteJamid,
         TerminationRequested,
@@ -100,8 +100,10 @@ Q_SIGNALS:
 
 private:
     void vsConsoleDebug();
-    void fileDebug(QFile* debugFile);
-    void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon);
+    void initLrc(const QString& downloadUrl,
+                 ConnectivityMonitor* cm,
+                 bool logDaemon,
+                 const QString& logPath);
     void parseArguments();
     void setApplicationFont();
     void initQmlLayer();
@@ -111,7 +113,6 @@ private:
 private:
     std::map<Option, QVariant> runOptions_;
 
-    QScopedPointer<QFile> debugFile_;
     QScopedPointer<QQmlApplicationEngine> engine_;
     QScopedPointer<LRCInstance> lrcInstance_;
 

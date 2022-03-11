@@ -31,8 +31,9 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
                          migrateCallback didMigrateCb,
                          const QString& updateUrl,
                          ConnectivityMonitor* connectivityMonitor,
-                         bool muteDring)
-    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring))
+                         bool muteDring,
+                         const QString& logPath)
+    : lrc_(std::make_unique<Lrc>(willMigrateCb, didMigrateCb, muteDring, logPath))
     , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
     , threadPool_(new QThreadPool(this))
 {
@@ -400,6 +401,16 @@ void
 LRCInstance::monitor(bool continuous)
 {
     lrc_->monitor(continuous);
+}
+
+void
+LRCInstance::setFileLogging(const QString& filePath)
+{
+    if (QFileInfo(filePath).exists()) {
+        lrc_->setFileLogging(filePath);
+    } else {
+        lrc_->setFileLogging(Utils::getDebugFilePath());
+    }
 }
 
 QString

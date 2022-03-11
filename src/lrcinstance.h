@@ -61,11 +61,12 @@ class LRCInstance : public QObject
     QML_PROPERTY(bool, currentAccountAvatarSet)
 
 public:
-    explicit LRCInstance(migrateCallback willMigrateCb = {},
-                         migrateCallback didMigrateCb = {},
-                         const QString& updateUrl = {},
-                         ConnectivityMonitor* connectivityMonitor = {},
-                         bool muteDring = false);
+    explicit LRCInstance(migrateCallback willMigrateCb,
+                         migrateCallback didMigrateCb,
+                         const QString& updateUrl,
+                         ConnectivityMonitor* connectivityMonitor,
+                         bool muteDring,
+                         const QString& logPath);
     ~LRCInstance() = default;
 
     void finish();
@@ -118,6 +119,7 @@ public:
     void stopAudioMeter();
 
     void monitor(bool continous);
+    void setFileLogging(const QString& filePath = {});
 
     bool hasActiveCall(bool withVideo = false);
 

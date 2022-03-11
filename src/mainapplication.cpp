@@ -58,29 +58,20 @@ static void
 consoleDebug()
 {
 #ifdef Q_OS_WIN
-    AllocConsole();
-    SetConsoleCP(CP_UTF8);
-
-    FILE* fpstdout = stdout;
-    freopen_s(&fpstdout, "CONOUT$", "w", stdout);
-    FILE* fpstderr = stderr;
-    freopen_s(&fpstderr, "CONOUT$", "w", stderr);
-
-    COORD coordInfo;
-    coordInfo.X = 130;
-    coordInfo.Y = 9000;
-
-    SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coordInfo);
-    SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), ENABLE_QUICK_EDIT_MODE | ENABLE_EXTENDED_FLAGS);
+    if (AttachConsole(ATTACH_PARENT_PROCESS) || AllocConsole()) {
+        FILE* fpstdout = stdout;
+        freopen_s(&fpstdout, "CONOUT$", "w", stdout);
+        FILE* fpstderr = stderr;
+        freopen_s(&fpstderr, "CONOUT$", "w", stderr);
+        SetConsoleCP(CP_UTF8);
+        COORD coordInfo;
+        coordInfo.X = 130;
+        coordInfo.Y = 9000;
+        SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), coordInfo);
+        SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE),
+                       ENABLE_QUICK_EDIT_MODE | ENABLE_EXTENDED_FLAGS);
+    }
 #endif
-}
-
-static QString
-getDebugFilePath()
-{
-    QDir logPath(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
-    logPath.cdUp();
-    return QString(logPath.absolutePath() + "/jami/jami.log");
 }
 
 void
@@ -110,29 +101,13 @@ void
 MainApplication::vsConsoleDebug()
 {
 #ifdef _MSC_VER
-    /*
-     * Print debug to output window if using VS.
-     */
+    // Print debug to output window if using VS.
     QObject::connect(&lrcInstance_->behaviorController(),
                      &lrc::api::BehaviorController::debugMessageReceived,
                      [](const QString& message) {
                          OutputDebugStringA((message + "\n").toStdString().c_str());
                      });
 #endif
-}
-
-void
-MainApplication::fileDebug(QFile* debugFile)
-{
-    QObject::connect(&lrcInstance_->behaviorController(),
-                     &lrc::api::BehaviorController::debugMessageReceived,
-                     [debugFile](const QString& message) {
-                         if (debugFile->open(QIODevice::WriteOnly | QIODevice::Append)) {
-                             auto msg = (message + "\n").toStdString();
-                             debugFile->write(msg.c_str(), qstrlen(msg.c_str()));
-                             debugFile->close();
-                         }
-                     });
 }
 
 MainApplication::MainApplication(int& argc, char** argv)
@@ -178,9 +153,12 @@ MainApplication::init()
     gnutls_global_init();
 #endif
 
+    auto logFile = runOptions_[Option::LogFile].toString();
+
     initLrc(runOptions_[Option::UpdateUrl].toString(),
             connectivityMonitor_.get(),
-            runOptions_[Option::Debug].toBool() && !runOptions_[Option::MuteJamid].toBool());
+            runOptions_[Option::Debug].toBool() && !runOptions_[Option::MuteJamid].toBool(),
+            logFile);
 
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     using namespace Interfaces;
@@ -214,13 +192,6 @@ MainApplication::init()
         this,
         [this] { engine_->quit(); },
         Qt::DirectConnection);
-
-    if (runOptions_[Option::DebugToFile].toBool()) {
-        debugFile_.reset(new QFile(getDebugFilePath()));
-        debugFile_->open(QIODevice::WriteOnly | QIODevice::Truncate);
-        debugFile_->close();
-        fileDebug(debugFile_.get());
-    }
 
     if (runOptions_[Option::DebugToConsole].toBool()) {
         vsConsoleDebug();
@@ -272,7 +243,10 @@ MainApplication::handleUriAction(const QString& arg)
 }
 
 void
-MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon)
+MainApplication::initLrc(const QString& downloadUrl,
+                         ConnectivityMonitor* cm,
+                         bool logDaemon,
+                         const QString& logPath)
 {
     lrc::api::Lrc::cacheAvatars.store(false);
     /*
@@ -297,7 +271,8 @@ MainApplication::initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bo
         },
         downloadUrl,
         cm,
-        !logDaemon));
+        !logDaemon,
+        logPath));
     lrcInstance_->subscribeToDebugReceived();
 }
 
@@ -336,8 +311,8 @@ MainApplication::parseArguments()
     QCommandLineOption debugOption({"d", "debug"}, "Debug out.");
     parser.addOption(debugOption);
 
-    QCommandLineOption debugFileOption({"f", "file"}, "Debug to file.");
-    parser.addOption(debugFileOption);
+    QCommandLineOption logFileOption({"f", "file"}, "Debug to <file>.", "file");
+    parser.addOption(logFileOption);
 
 #ifdef Q_OS_WINDOWS
     QCommandLineOption debugConsoleOption({"c", "console"}, "Debug out to IDE console.");
@@ -357,7 +332,12 @@ MainApplication::parseArguments()
 
     runOptions_[Option::StartMinimized] = parser.isSet(minimizedOption);
     runOptions_[Option::Debug] = parser.isSet(debugOption);
-    runOptions_[Option::DebugToFile] = parser.isSet(debugFileOption);
+    if (parser.isSet(logFileOption)) {
+        auto logFile = parser.value(logFileOption);
+        runOptions_[Option::LogFile] = logFile.isEmpty() ? Utils::getDebugFilePath() : logFile;
+    } else {
+        runOptions_[Option::LogFile] = QString();
+    }
 #ifdef Q_OS_WINDOWS
     runOptions_[Option::DebugToConsole] = parser.isSet(debugConsoleOption);
     runOptions_[Option::UpdateUrl] = parser.value(updateUrlOption);
