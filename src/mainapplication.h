@@ -71,7 +71,6 @@ public:
     enum class Option {
         StartMinimized = 0,
         Debug,
-        DebugToConsole,
         UpdateUrl,
         MuteJamid,
         TerminationRequested,
@@ -98,7 +97,6 @@ Q_SIGNALS:
     void closeRequested();
 
 private:
-    void vsConsoleDebug();
     void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon);
     void parseArguments();
     void setApplicationFont();
