@@ -77,19 +77,6 @@ ScreenInfo::setCurrentFocusWindow(QWindow* window)
     }
 }
 
-void
-MainApplication::vsConsoleDebug()
-{
-#ifdef _MSC_VER
-    // Print debug to output window if using VS.
-    QObject::connect(&lrcInstance_->behaviorController(),
-                     &lrc::api::BehaviorController::debugMessageReceived,
-                     [](const QString& message) {
-                         OutputDebugStringA((message + "\n").toStdString().c_str());
-                     });
-#endif
-}
-
 MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
 {
@@ -165,10 +152,6 @@ MainApplication::init()
         this,
         [this] { engine_->quit(); },
         Qt::DirectConnection);
-
-    if (runOptions_[Option::DebugToConsole].toBool()) {
-        vsConsoleDebug();
-    }
 
     auto downloadPath = settingsManager_->getValue(Settings::Key::DownloadPath);
     auto allowTransferFromUntrusted = settingsManager_->getValue(Settings::Key::AllowFromUntrusted)
