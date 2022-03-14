@@ -36,7 +36,7 @@ cat << EOFILE > ${REPO_FOLDER}/${SPARKLE_FILE}
             <pubDate>$DATE_RFC2822</pubDate>
             <sparkle:version>${BUILD}</sparkle:version>
             <sparkle:shortVersionString>${VERSION}</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <sparkle:minimumSystemVersion>10.14.0</sparkle:minimumSystemVersion>
             <enclosure url="${REPO_URL}/$(basename ${PACKAGE})" length="$PACKAGE_SIZE" type="application/octet-stream" sparkle:dsaSignature="$(./sign_update.sh ${PACKAGE} ${DSA_KEY})" />
         </item>
 $(echo -e "${ITEMS}")
