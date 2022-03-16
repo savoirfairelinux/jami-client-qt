@@ -57,6 +57,9 @@ class LRCInstance;
 
 namespace Utils {
 
+// Throws if not supported(Windows only for now).
+void testVulkanSupport();
+
 // App System
 bool CreateStartupLink(const std::wstring& wstrAppName);
 void DeleteStartupLink(const std::wstring& wstrAppName);

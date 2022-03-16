@@ -51,6 +51,49 @@
 #include <windows.h>
 #endif
 
+void
+Utils::testVulkanSupport()
+{
+#if defined(Q_OS_WIN)
+    struct DllLoader
+    {
+        explicit DllLoader(const std::string& filename)
+            : module(LoadLibraryA(filename.c_str()))
+        {
+            if (module == nullptr) {
+                throw std::runtime_error("Can't load module.");
+            }
+        }
+        ~DllLoader()
+        {
+            FreeLibrary(module);
+        }
+        HMODULE module;
+    } vk {"vulkan-1.dll"};
+
+    typedef void*(__stdcall * PFN_vkGetInstanceProcAddr)(void*, const char*);
+    auto vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)
+        GetProcAddress(vk.module, "vkGetInstanceProcAddr");
+    if (!vkGetInstanceProcAddr) {
+        throw std::runtime_error("Missing vkGetInstanceProcAddr proc.");
+    }
+
+    typedef int(__stdcall * PFN_vkCreateInstance)(int*, void*, void**);
+    auto vkCreateInstance = (PFN_vkCreateInstance) vkGetInstanceProcAddr(vk.module,
+                                                                         "vkCreateInstance");
+    if (!vkCreateInstance) {
+        throw std::runtime_error("Missing vkCreateInstance proc.");
+    }
+
+    void* instance = 0;
+    int VkInstanceCreateInfo[16] = {1};
+    auto result = vkCreateInstance(VkInstanceCreateInfo, 0, &instance);
+    if (!instance || result != 0) {
+        throw std::runtime_error("Can't create instance.");
+    }
+#endif
+}
+
 bool
 Utils::CreateStartupLink(const std::wstring& wstrAppName)
 {
