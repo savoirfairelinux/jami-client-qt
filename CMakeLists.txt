@@ -205,6 +205,12 @@ find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
    ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
+find_package(Vulkan)
+if(Vulkan_FOUND)
+    add_definitions(-DHAS_VULKAN)
+    include_directories(${Vulkan_INCLUDE_DIR})
+endif()
+
 if(MSVC)
     set(WINDOWS_SYS_LIBS
         Shell32.lib
