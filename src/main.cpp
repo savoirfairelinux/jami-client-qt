@@ -20,12 +20,16 @@
 
 #include "mainapplication.h"
 #include "instancemanager.h"
+#include "utils.h"
 #include "version.h"
 
 #include <QCryptographicHash>
 #include <QApplication>
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
+#if defined(HAS_VULKAN)
+#include <QVulkanInstance>
+#endif
 
 #include <clocale>
 
@@ -39,7 +43,7 @@ parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
      */
     int oldArgc = argc;
     argc += argsToParse.size();
-    char** newArgv = new char*[argc];
+    auto newArgv = new char*[argc];
     for (int i = 0; i < oldArgc; i++) {
         newArgv[i] = argv[i];
     }
@@ -89,13 +93,27 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
-#if defined(Q_OS_MACOS)
-    QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
-#endif
-
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
 
     MainApplication app(argc, newArgv);
+
+#if defined(Q_OS_MACOS)
+    QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
+#else
+    if (std::invoke([] {
+#if defined(HAS_VULKAN)
+            QVulkanInstance inst;
+            inst.setLayers({"VK_LAYER_KHRONOS_validation"});
+            return inst.create();
+#else
+            return false;
+#endif
+        })) {
+        QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
+    } else {
+        QQuickWindow::setGraphicsApi(QSGRendererInterface::Unknown);
+    }
+#endif
 
     // InstanceManager prevents multiple instances, and will handle
     // IPC termination requests to and from secondary instances, which
