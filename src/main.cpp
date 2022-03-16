@@ -20,6 +20,7 @@
 
 #include "mainapplication.h"
 #include "instancemanager.h"
+#include "utils.h"
 #include "version.h"
 
 #include <QCryptographicHash>
@@ -91,6 +92,14 @@ main(int argc, char* argv[])
 
 #if defined(Q_OS_MACOS)
     QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
+#elif defined(Q_OS_WIN)
+    try {
+        Utils::testVulkanSupport();
+        QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
+    } catch (const std::exception& e) {
+        qWarning() << "Couldn't start a Vulkan instance:" << e.what();
+        QQuickWindow::setGraphicsApi(QSGRendererInterface::Unknown);
+    }
 #endif
 
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
