@@ -186,8 +186,7 @@ Rectangle {
             id: colorDialog
             title: JamiTheme.chooseAColor
             onAccepted: {
-                console.warn("TODO SAVE preference")
-                CurrentConversation.color = colorDialog.color
+                CurrentConversation.setPreference("color", colorDialog.color)
             }
         }
 

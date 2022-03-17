@@ -505,7 +505,7 @@ UtilsAdapter::setSwarmCreationImage(const QString& image, const QString& imageId
         file.close();
         Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
     } else {
-        lrcInstance_->getCurrentConversationModel()->updateConversationInfo(imageId,
+        lrcInstance_->getCurrentConversationModel()->updateConversationInfos(imageId,
                                                                             {{"avatar",
                                                                               ba.toBase64()}});
     }
@@ -529,7 +529,7 @@ UtilsAdapter::setSwarmCreationImageFromFile(const QString& path, const QString& 
         file.close();
         Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
     } else {
-        lrcInstance_->getCurrentConversationModel()->updateConversationInfo(imageId,
+        lrcInstance_->getCurrentConversationModel()->updateConversationInfos(imageId,
                                                                             {{"avatar",
                                                                               ba.toBase64()}});
     }
