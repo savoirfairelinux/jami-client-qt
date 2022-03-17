@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e61eaa2_d4121962",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-17T14:46:02Z",
+      "side": 1,
+      "message": "strncmp would be preferred just in case.",
+      "range": {
+        "startLine": 143,
+        "startChar": 8,
+        "endLine": 143,
+        "endChar": 14
+      },
+      "revId": "ddc13347a77dfddc8cc0ac5bde5413b9a62076e1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
