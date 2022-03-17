@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0694487_8d8cc744",
+        "filename": "src/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-17T14:38:29Z",
+      "side": 0,
+      "message": "I don\u0027t think that the About dialog should be wider than this. On a 1080p screen it\u0027s a bit ugly. (And the rest of the patch is ok for me)",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 14
+      },
+      "revId": "f74397d19a56a25b7635209a62b441b49b2d0d41",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
