@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cff753d8_e928cfa3",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-17T14:55:49Z",
+      "side": 1,
+      "message": "This is not portable",
+      "range": {
+        "startLine": 304,
+        "startChar": 8,
+        "endLine": 304,
+        "endChar": 17
+      },
+      "revId": "97575e97f4937cd095b3faa94f501463b711213b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
