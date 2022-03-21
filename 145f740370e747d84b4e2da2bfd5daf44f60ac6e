@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c112aeef_c596d66b",
+        "filename": "src/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-21T21:43:32Z",
+      "side": 1,
+      "message": "a bit trailing ws in this file",
+      "revId": "145f740370e747d84b4e2da2bfd5daf44f60ac6e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
