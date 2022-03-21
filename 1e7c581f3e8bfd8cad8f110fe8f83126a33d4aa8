@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8259f19f_30768dd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-21T21:50:31Z",
+      "side": 1,
+      "message": "check TODO comment",
+      "revId": "1e7c581f3e8bfd8cad8f110fe8f83126a33d4aa8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842b9ad0_9bac62c3",
+        "filename": "src/mainview/components/ContactPickerItemDelegate.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-21T21:50:31Z",
+      "side": 1,
+      "message": "??",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 37
+      },
+      "revId": "1e7c581f3e8bfd8cad8f110fe8f83126a33d4aa8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
