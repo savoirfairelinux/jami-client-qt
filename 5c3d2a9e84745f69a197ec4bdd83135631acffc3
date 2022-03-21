@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0216c65c_73a25961",
+        "filename": "src/constant/JamiTheme.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-21T21:45:44Z",
+      "side": 1,
+      "message": "I don\u0027t see this being used",
+      "range": {
+        "startLine": 272,
+        "startChar": 18,
+        "endLine": 272,
+        "endChar": 43
+      },
+      "revId": "5c3d2a9e84745f69a197ec4bdd83135631acffc3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
