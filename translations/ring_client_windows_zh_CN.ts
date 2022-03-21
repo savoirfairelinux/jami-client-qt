@@ -1005,7 +1005,7 @@ Jami 将立即退出。</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="187"/>
         <source>no video</source>
-        <translation type="unfinished"/>
+        <translation>无视频</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="194"/>
@@ -2463,17 +2463,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="405"/>
+        <location filename="../src/mainapplication.cpp" line="332"/>
         <source>E&amp;xit</source>
         <translation>退出(&amp;X)</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="407"/>
+        <location filename="../src/mainapplication.cpp" line="334"/>
         <source>&amp;Quit</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="413"/>
+        <location filename="../src/mainapplication.cpp" line="340"/>
         <source>&amp;Show Jami</source>
         <translation>打开 Jami (&amp;S)</translation>
     </message>
@@ -2716,7 +2716,7 @@ Copy and share it with your friends!</source>
 <context>
     <name>SelectScreen</name>
     <message>
-        <location filename="../src/mainview/components/SelectScreen.qml" line="55"/>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="58"/>
         <source>Screen</source>
         <translation>屏幕</translation>
     </message>

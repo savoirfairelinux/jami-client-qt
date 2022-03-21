@@ -1005,7 +1005,7 @@ Jami será finalizado agora.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="187"/>
         <source>no video</source>
-        <translation type="unfinished"/>
+        <translation>sem vídeo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="194"/>
@@ -2463,17 +2463,17 @@ Copie-o e compartilhe com seus amigos!</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="405"/>
+        <location filename="../src/mainapplication.cpp" line="332"/>
         <source>E&amp;xit</source>
         <translation>Sai&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="407"/>
+        <location filename="../src/mainapplication.cpp" line="334"/>
         <source>&amp;Quit</source>
         <translation>Sai&amp;r</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="413"/>
+        <location filename="../src/mainapplication.cpp" line="340"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Mostrar Jami</translation>
     </message>
@@ -2716,7 +2716,7 @@ Copie-o e compartilhe com seus amigos!</translation>
 <context>
     <name>SelectScreen</name>
     <message>
-        <location filename="../src/mainview/components/SelectScreen.qml" line="55"/>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="58"/>
         <source>Screen</source>
         <translation>Tela</translation>
     </message>

@@ -1007,7 +1007,7 @@ Notez que le mot de passe ne peut pas être récupéré.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="187"/>
         <source>no video</source>
-        <translation type="unfinished"/>
+        <translation>aucune vidéo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="194"/>
@@ -2459,17 +2459,17 @@ Copy and share it with your friends!</source>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="405"/>
+        <location filename="../src/mainapplication.cpp" line="332"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="407"/>
+        <location filename="../src/mainapplication.cpp" line="334"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="413"/>
+        <location filename="../src/mainapplication.cpp" line="340"/>
         <source>&amp;Show Jami</source>
         <translation type="unfinished"/>
     </message>
@@ -2712,7 +2712,7 @@ Copy and share it with your friends!</source>
 <context>
     <name>SelectScreen</name>
     <message>
-        <location filename="../src/mainview/components/SelectScreen.qml" line="55"/>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="58"/>
         <source>Screen</source>
         <translation type="unfinished"/>
     </message>

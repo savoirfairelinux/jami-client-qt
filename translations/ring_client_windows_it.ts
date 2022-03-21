@@ -96,7 +96,7 @@
     <message>
         <location filename="../src/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>Chiamata persa da %1</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="498"/>
@@ -1005,7 +1005,7 @@ Jami ora si chiuderà.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="187"/>
         <source>no video</source>
-        <translation type="unfinished"/>
+        <translation>senza video</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="194"/>
@@ -2463,17 +2463,17 @@ Copia e condividi con i tuoi amici!</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="405"/>
+        <location filename="../src/mainapplication.cpp" line="332"/>
         <source>E&amp;xit</source>
         <translation>E&amp;sci</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="407"/>
+        <location filename="../src/mainapplication.cpp" line="334"/>
         <source>&amp;Quit</source>
         <translation>&amp;Esci</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="413"/>
+        <location filename="../src/mainapplication.cpp" line="340"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Mostra Jami</translation>
     </message>
@@ -2716,7 +2716,7 @@ Copia e condividi con i tuoi amici!</translation>
 <context>
     <name>SelectScreen</name>
     <message>
-        <location filename="../src/mainview/components/SelectScreen.qml" line="55"/>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="58"/>
         <source>Screen</source>
         <translation>Schermo</translation>
     </message>

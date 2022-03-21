@@ -96,7 +96,7 @@
     <message>
         <location filename="../src/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>entgangener Anruf mit %1</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="498"/>
@@ -221,7 +221,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="39"/>
         <source>Find a user or search for a conversation</source>
-        <translation>Nach einem Benutzer oder einer Konversation suchen</translation>
+        <translation>Nach einem Benutzer oder einer Unterhaltung suchen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="40"/>
@@ -381,12 +381,12 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="86"/>
         <source>Voicemail</source>
-        <translation>Sprachmitteilung</translation>
+        <translation>Sprachnachricht</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="87"/>
         <source>Voicemail dial code</source>
-        <translation>Voicemail-Einwahlcode</translation>
+        <translation>Einwahlcode der Sprachnachricht</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="90"/>
@@ -406,7 +406,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="93"/>
         <source>Allow fallback on RTP</source>
-        <translation>Fallback auf RTP zulassen</translation>
+        <translation>Ausweichen auf RTP erlauben</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="94"/>
@@ -456,7 +456,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="103"/>
         <source>Audio input device selector</source>
-        <translation>Audioeingabegeräte Wähler</translation>
+        <translation>Auswahl des Audio-Eingabe-Geräts</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="104"/>
@@ -491,7 +491,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="149"/>
         <source>Enable local peer discovery</source>
-        <translation>Erlaube das finden von lokalen Teilnehmern</translation>
+        <translation>Erlaube das Finden von lokalen Teilnehmern</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="162"/>
@@ -598,7 +598,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="462"/>
         <source>Link device</source>
-        <translation>Verbinde Gerät</translation>
+        <translation>Gerät verbinden</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="553"/>
@@ -709,7 +709,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="44"/>
         <source>Start new conversation</source>
-        <translation>Neues Gespräch beginnen</translation>
+        <translation>Neues Unterhaltung starten</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="81"/>
@@ -884,7 +884,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="154"/>
         <source>Bootstrap</source>
-        <translation>Laden</translation>
+        <translation>Bootstrap</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="157"/>
@@ -1005,7 +1005,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="187"/>
         <source>no video</source>
-        <translation type="unfinished"/>
+        <translation>kein Video</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="194"/>
@@ -1187,12 +1187,12 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="245"/>
         <source>Clear conversation</source>
-        <translation>Gesprächsverlauf löschen</translation>
+        <translation>Unterhaltungsverlauf löschen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="246"/>
         <source>Remove conversation</source>
-        <translation>Konversation entfernen</translation>
+        <translation>Unterhaltung entfernen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="247"/>
@@ -1232,7 +1232,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="256"/>
         <source>Start recording</source>
-        <translation>Starte Aufnahme</translation>
+        <translation>Aufnahme starten</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="257"/>
@@ -1312,7 +1312,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="276"/>
         <source>Add to conversations</source>
-        <translation>Zu Konversationen hinzufügen</translation>
+        <translation>Zur Unterhaltung hinzufügen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -1342,7 +1342,8 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="286"/>
         <source>Enter Jami Account Management Server (JAMS) URL</source>
-        <translation>Geben Sie die URL des Jami Account Management Servers (JAMS) ein</translation>
+        <translation>Geben Sie die URL 
+ des Jami Account Management Servers (JAMS) ein</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="287"/>
@@ -1372,12 +1373,12 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="295"/>
         <source>Choose name</source>
-        <translation>Namen auswählen</translation>
+        <translation>Namen erstellen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="296"/>
         <source>Choose username</source>
-        <translation>Benutzernamen auswählen</translation>
+        <translation>Benutzernamen erstellen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="299"/>
@@ -1402,7 +1403,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="305"/>
         <source>Choose a name</source>
-        <translation>Einen Namen auswählen</translation>
+        <translation>Einen Namen wählen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="306"/>
@@ -1457,7 +1458,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="320"/>
         <source>Backup failed</source>
-        <translation>Sicherung fehlgeschlagen</translation>
+        <translation>Backup fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="321"/>
@@ -1548,7 +1549,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="347"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation>Sicher, dass Sie das Gerät trennen wollen?</translation>
+        <translation>Sicher, dass Sie das Gerät entfernen wollen?</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="348"/>
@@ -1803,7 +1804,7 @@ Möchten Sie jetzt updaten?</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="456"/>
         <source>Import from backup</source>
-        <translation>Aus Sicherung importieren</translation>
+        <translation>Aus Backup importieren</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="463"/>
@@ -1833,7 +1834,7 @@ Möchten Sie jetzt updaten?</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="511"/>
         <source>Enter your name</source>
-        <translation>Namen eingeben</translation>
+        <translation>Geben Sie Ihren Namen ein</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="535"/>
@@ -1940,12 +1941,12 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="604"/>
         <source>Write to %1</source>
-        <translation>Schreibe zu %1</translation>
+        <translation>An %1 schreiben</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="607"/>
         <source>%1 has sent you a request for a conversation.</source>
-        <translation>%1 hat Ihnen eine Gesprächsanfrage gesendet.</translation>
+        <translation>%1 hat Ihnen eine Unterhaltungsanfrage gesendet.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="608"/>
@@ -1959,14 +1960,14 @@ Möchten Sie der Unterhaltung beitreten?</translation>
         <source>You have accepted
 the conversation request</source>
         <translation>Sie haben
-die Gesprächsanfrage akzeptiert</translation>
+die Unterhaltungsanfrage angenommen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="610"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
         <translation>Warten bis %1
-eine Verbindung herstellt, um die Konversation zu synchronisieren.</translation>
+eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="238"/>
@@ -2132,7 +2133,7 @@ eine Verbindung herstellt, um die Konversation zu synchronisieren.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="474"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation>Geben Sie das Kontopasswort ein um die Trennung dieses Gerätes zu bestätigen</translation>
+        <translation>Geben Sie das Kontopasswort ein um die Entfernung dieses Gerätes zu bestätigen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="475"/>
@@ -2243,7 +2244,7 @@ eine Verbindung herstellt, um die Konversation zu synchronisieren.</translation>
         <location filename="../src/constant/JamiStrings.qml" line="533"/>
         <source>This is your Jami username.
 Copy and share it with your friends!</source>
-        <translation>Das ist Ihr Jami-Benutzername.
+        <translation>Dies ist Ihr Jami-Benutzername.
 Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     </message>
     <message>
@@ -2352,12 +2353,12 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="41"/>
         <source>Open account list</source>
-        <translation>Kontenliste öffnen</translation>
+        <translation>Kontoliste öffnen</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Focus conversations list</source>
-        <translation>Konversationsliste fokussieren</translation>
+        <translation>Unterhaltungsliste fokussieren</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="49"/>
@@ -2367,12 +2368,12 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="53"/>
         <source>Previous conversation</source>
-        <translation>Vorheriges Gespräch</translation>
+        <translation>Vorherige Unterhaltung</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="57"/>
         <source>Next conversation</source>
-        <translation>Nächstes Gespräch</translation>
+        <translation>Nächste Unterhaltung</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="61"/>
@@ -2407,7 +2408,7 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="90"/>
         <source>Remove conversation</source>
-        <translation>Konversation entfernen</translation>
+        <translation>Unterhaltung entfernen</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="94"/>
@@ -2463,17 +2464,17 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/mainapplication.cpp" line="405"/>
+        <location filename="../src/mainapplication.cpp" line="332"/>
         <source>E&amp;xit</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="407"/>
+        <location filename="../src/mainapplication.cpp" line="334"/>
         <source>&amp;Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../src/mainapplication.cpp" line="413"/>
+        <location filename="../src/mainapplication.cpp" line="340"/>
         <source>&amp;Show Jami</source>
         <translation>&amp;Jami anzeigen</translation>
     </message>
@@ -2716,7 +2717,7 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
 <context>
     <name>SelectScreen</name>
     <message>
-        <location filename="../src/mainview/components/SelectScreen.qml" line="55"/>
+        <location filename="../src/mainview/components/SelectScreen.qml" line="58"/>
         <source>Screen</source>
         <translation>Bildschirm</translation>
     </message>
@@ -2785,7 +2786,7 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/systemtray.cpp" line="221"/>
         <source>Open conversation</source>
-        <translation>Konversation öffnen</translation>
+        <translation>Unterhaltung öffnen</translation>
     </message>
     <message>
         <location filename="../src/systemtray.cpp" line="223"/>
