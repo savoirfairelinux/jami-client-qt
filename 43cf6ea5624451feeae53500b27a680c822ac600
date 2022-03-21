@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4212a006_a4cf5871",
+        "filename": "src/commoncomponents/EditableLineEdit.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-21T21:41:25Z",
+      "side": 1,
+      "message": "Here are some of the comments I had regarding this component:\n- placeholders disappear as soon as in edit mode(cursor should show, but also placeholder text while user input is empty)\n- accepting the input commits an empty string\n- enter/return no not accept the text input\n\nAlso, the color is hardcoded somewhere causing white text on white background in light mode.\n\nAll items are not critical and could be done in a follow-up patch(e.g. UI improvements).",
+      "revId": "43cf6ea5624451feeae53500b27a680c822ac600",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
