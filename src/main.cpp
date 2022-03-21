@@ -63,7 +63,8 @@ main(int argc, char* argv[])
 
 #ifdef Q_OS_LINUX
     if (!getenv("QT_QPA_PLATFORMTHEME")
-        && !(getenv("XDG_CURRENT_DESKTOP") == "KDE" || getenv("XDG_CURRENT_DESKTOP") == "GNOME"))
+        && !(strncmp(getenv("XDG_CURRENT_DESKTOP"), "KDE", 3) == 0
+             || strncmp(getenv("XDG_CURRENT_DESKTOP"), "GNOME", 5) == 0))
         setenv("QT_QPA_PLATFORMTHEME", "gtk3", true);
     setenv("QML_DISABLE_DISK_CACHE", "1", true);
 
