@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "404329cb_cec24da6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T17:57:41Z",
+      "side": 1,
+      "message": "Why should we test on old hardware? QVulkanInstance shouldn\u0027t permit the use of a Vulkan backend if it doesn\u0027t work on the hardware.",
+      "parentUuid": "45bb05d8_ca95aec9",
+      "revId": "02beff43b1d0295723a12f524b35be705043c3bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "66781e4a_8932ff99",
         "filename": "src/main.cpp",
         "patchSetId": 5
