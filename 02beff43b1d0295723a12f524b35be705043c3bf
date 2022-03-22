@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30852199_d9c388b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T18:20:33Z",
+      "side": 1,
+      "message": "the idea is if the hardware doesn\u0027t support Vulkan, then drivers aren\u0027t installed, then the Vulkan APIs to create the context called by QVulkanInstance will fail, this will cause the client to set a default backend(OpenGL)",
+      "parentUuid": "61720b10_11263ffc",
+      "revId": "02beff43b1d0295723a12f524b35be705043c3bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "66781e4a_8932ff99",
         "filename": "src/main.cpp",
         "patchSetId": 5
