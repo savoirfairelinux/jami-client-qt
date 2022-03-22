@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93fac4c6_051648fe",
+        "filename": "src/appsettingsmanager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T15:20:27Z",
+      "side": 1,
+      "message": "this shouldn\u0027t be here, maybe UtilsAdapter::setAppValue ?? and even then, I\u0027m wondering why AppSettingsManager::setValue is Q_INVOKABLE if it is just called from UtilsAdapter::setAppValue",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 59,
+        "endChar": 39
+      },
+      "revId": "ae97e57fbdd23a56bc11a6d96ed1e654f820c8d4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
