@@ -22,6 +22,30 @@
       },
       "revId": "5c3d2a9e84745f69a197ec4bdd83135631acffc3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f90f0ae_b1a16cbf",
+        "filename": "src/constant/JamiTheme.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T14:40:53Z",
+      "side": 1,
+      "message": "It\u0027s used in https://review.jami.net/c/jami-client-qt/+/20027, probably a missed rebase, but in the final stack it\u0027s there",
+      "parentUuid": "0216c65c_73a25961",
+      "range": {
+        "startLine": 272,
+        "startChar": 18,
+        "endLine": 272,
+        "endChar": 43
+      },
+      "revId": "5c3d2a9e84745f69a197ec4bdd83135631acffc3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
