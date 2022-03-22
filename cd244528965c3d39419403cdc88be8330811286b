@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7143e584_06b6b4d5",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T13:47:19Z",
+      "side": 1,
+      "message": "some random line endings thrown in here",
+      "revId": "cd244528965c3d39419403cdc88be8330811286b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b207c144_35758f9b",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T13:47:19Z",
+      "side": 1,
+      "message": "is this to prevent signal emission? I thought this was intrinsic to QML properties",
+      "range": {
+        "startLine": 165,
+        "startChar": 12,
+        "endLine": 167,
+        "endChar": 13
+      },
+      "revId": "cd244528965c3d39419403cdc88be8330811286b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86ec5bac_62667080",
+        "filename": "src/utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T13:47:19Z",
+      "side": 1,
+      "message": "maybe we could remove this log? since so many exceptions are expected",
+      "range": {
+        "startLine": 380,
+        "startChar": 8,
+        "endLine": 381,
+        "endChar": 76
+      },
+      "revId": "cd244528965c3d39419403cdc88be8330811286b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
