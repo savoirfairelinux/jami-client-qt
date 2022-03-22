@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f274fc89_b56d894f",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T00:37:53Z",
+      "side": 1,
+      "message": "\"Promote to administrator\" ?\nThis sounds like the administrator is to be promoted.",
+      "range": {
+        "startLine": 627,
+        "startChar": 47,
+        "endLine": 627,
+        "endChar": 70
+      },
+      "revId": "21b9d8ade68b32618665362d49964cddf1b1d0c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5c01338_7b1648e0",
+        "filename": "src/mainview/components/SwarmParticipantContextMenu.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T00:37:53Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "21b9d8ade68b32618665362d49964cddf1b1d0c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
