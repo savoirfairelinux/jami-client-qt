@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45bb05d8_ca95aec9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T17:47:35Z",
+      "side": 1,
+      "message": "To test on platforms + old hardware, also this  will break jami-qt on Wayland",
+      "revId": "02beff43b1d0295723a12f524b35be705043c3bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66781e4a_8932ff99",
+        "filename": "src/main.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T17:47:35Z",
+      "side": 1,
+      "message": "We must check for    if (!getenv(\"WAYLAND_DISPLAY\")) {\n\nhttps://bugreports.qt.io/browse/QTBUG-99684 - Vulkan on Wayland is not really supported as window decorations are removed. So we need to re-implement this (custom controls) or wait for a future version",
+      "range": {
+        "startLine": 112,
+        "startChar": 19,
+        "endLine": 112,
+        "endChar": 30
+      },
+      "revId": "02beff43b1d0295723a12f524b35be705043c3bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
