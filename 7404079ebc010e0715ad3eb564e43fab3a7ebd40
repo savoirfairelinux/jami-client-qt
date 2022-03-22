@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a808c231_d0f8c44e",
+        "filename": "src/commoncomponents/ContactMessageDelegate.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T15:26:35Z",
+      "side": 1,
+      "message": "x2 copyright header here",
+      "revId": "7404079ebc010e0715ad3eb564e43fab3a7ebd40",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80b0f829_711abf97",
+        "filename": "src/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T15:26:35Z",
+      "side": 1,
+      "message": "maybe expose this calc in UtilsAdapter ??",
+      "range": {
+        "startLine": 65,
+        "startChar": 16,
+        "endLine": 67,
+        "endChar": 36
+      },
+      "revId": "7404079ebc010e0715ad3eb564e43fab3a7ebd40",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
