@@ -347,7 +347,7 @@ MainApplication::initSystray()
                 if (reason != QSystemTrayIcon::ActivationReason::Context) {
 #ifdef Q_OS_WINDOWS
                     restoreApp();
-#else
+#elseif not defined Q_OS_MACOS
                     QWindow* window = focusWindow();
                     if (window)
                         window->close();
