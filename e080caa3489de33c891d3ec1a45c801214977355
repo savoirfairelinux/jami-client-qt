@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c26ebfe_d6373133",
+        "filename": "src/utilsadapter.cpp",
+        "patchSetId": 7
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T15:10:41Z",
+      "side": 1,
+      "message": "these 2 functions are almost identical",
+      "range": {
+        "startLine": 491,
+        "startChar": 0,
+        "endLine": 537,
+        "endChar": 0
+      },
+      "revId": "e080caa3489de33c891d3ec1a45c801214977355",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f2f981d_c8fc56e4",
+        "filename": "src/utilsadapter.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T15:10:41Z",
+      "side": 1,
+      "message": "TODO: rename this to getBestNameForConvId or something",
+      "range": {
+        "startLine": 60,
+        "startChar": 30,
+        "endLine": 60,
+        "endChar": 41
+      },
+      "revId": "e080caa3489de33c891d3ec1a45c801214977355",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
