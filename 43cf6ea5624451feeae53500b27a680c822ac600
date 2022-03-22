@@ -34,6 +34,24 @@
       "parentUuid": "4212a006_a4cf5871",
       "revId": "43cf6ea5624451feeae53500b27a680c822ac600",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0863b0ab_ef90610a",
+        "filename": "src/commoncomponents/EditableLineEdit.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T16:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0268da38_f7e428f5",
+      "revId": "43cf6ea5624451feeae53500b27a680c822ac600",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
