@@ -33,6 +33,24 @@
       "message": "\u003e older harder\n\nerr, hardware",
       "revId": "1632da4103e71429f937ffad070a8490cdc7c60e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e927b62f_b339d53e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-03-22T13:36:55Z",
+      "side": 1,
+      "message": "I\u0027m fairly certain those \"Updates can only be scheduled from GUI thread or from QQuickItem::updatePaintNode()\" messages were related to the previous render pipeline. Maybe check to see if they\u0027re gone now.",
+      "parentUuid": "a64a8653_1a8b902b",
+      "revId": "1632da4103e71429f937ffad070a8490cdc7c60e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
