@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c9cbc36_7546a4d6",
+        "filename": "src/constant/JamiStrings.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T14:41:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f274fc89_b56d894f",
+      "range": {
+        "startLine": 627,
+        "startChar": 47,
+        "endLine": 627,
+        "endChar": 70
+      },
+      "revId": "21b9d8ade68b32618665362d49964cddf1b1d0c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5c01338_7b1648e0",
