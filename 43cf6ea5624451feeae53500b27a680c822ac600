@@ -16,6 +16,24 @@
       "message": "Here are some of the comments I had regarding this component:\n- placeholders disappear as soon as in edit mode(cursor should show, but also placeholder text while user input is empty)\n- accepting the input commits an empty string\n- enter/return no not accept the text input\n\nAlso, the color is hardcoded somewhere causing white text on white background in light mode.\n\nAll items are not critical and could be done in a follow-up patch(e.g. UI improvements).",
       "revId": "43cf6ea5624451feeae53500b27a680c822ac600",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0268da38_f7e428f5",
+        "filename": "src/commoncomponents/EditableLineEdit.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T16:13:39Z",
+      "side": 1,
+      "message": "https://review.jami.net/c/jami-client-qt/+/21166 fixes :\n+ enter/return no not accept the text input\n+ Also, the color is hardcoded somewhere causing white text on white background in light mode.\n\n\u003e accepting the input commits an empty string\nThis is normal, we can remove the whole line\n\n\u003e placeholders disappear as soon as in edit mod\nSeems the current behaviour for qml\u0027s TextFIeld",
+      "parentUuid": "4212a006_a4cf5871",
+      "revId": "43cf6ea5624451feeae53500b27a680c822ac600",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
