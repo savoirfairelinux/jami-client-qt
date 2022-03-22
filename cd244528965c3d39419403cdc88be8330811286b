@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e992654_81cf20dc",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T15:59:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7143e584_06b6b4d5",
+      "revId": "cd244528965c3d39419403cdc88be8330811286b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b207c144_35758f9b",
@@ -41,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d981a5e5_58666457",
+        "filename": "src/mainview/components/SidePanel.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T15:59:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b207c144_35758f9b",
+      "range": {
+        "startLine": 165,
+        "startChar": 12,
+        "endLine": 167,
+        "endChar": 13
+      },
+      "revId": "cd244528965c3d39419403cdc88be8330811286b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86ec5bac_62667080",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-03-22T13:47:19Z",
       "side": 1,
       "message": "maybe we could remove this log? since so many exceptions are expected",
+      "range": {
+        "startLine": 380,
+        "startChar": 8,
+        "endLine": 381,
+        "endChar": 76
+      },
+      "revId": "cd244528965c3d39419403cdc88be8330811286b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfa11a9b_34905494",
+        "filename": "src/utils.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T15:59:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86ec5bac_62667080",
       "range": {
         "startLine": 380,
         "startChar": 8,
