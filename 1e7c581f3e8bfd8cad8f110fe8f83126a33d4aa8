@@ -39,6 +39,30 @@
       },
       "revId": "1e7c581f3e8bfd8cad8f110fe8f83126a33d4aa8",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e3cae27_174f19c9",
+        "filename": "src/mainview/components/ContactPickerItemDelegate.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-22T13:25:13Z",
+      "side": 1,
+      "message": "It\u0027s  a bit ugly, it should be handled higher, not in the delegate (I didn\u0027t change the contactPickerPopup, just reuse this for another component) (I think it\u0027s for the moderators)",
+      "parentUuid": "842b9ad0_9bac62c3",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 37
+      },
+      "revId": "1e7c581f3e8bfd8cad8f110fe8f83126a33d4aa8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
