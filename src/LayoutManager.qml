@@ -71,17 +71,20 @@ QtObject {
 
     // Save the window geometry and visibility settings.
     function saveWindowSettings() {
-        var geometry = Qt.rect(appWindow.x, appWindow.y,
-                               appWindow.width, appWindow.height)
-        AppSettingsManager.setValue(Settings.WindowGeometry, geometry)
-
-        // If closed-to-tray or minimized, save the cached windowedVisibility
+        // If closed-to-tray or minimized or fullscreen, save the cached windowedVisibility
         // value instead.
-        if (isHidden) {
+        if (isHidden || isFullScreen) {
             AppSettingsManager.setValue(Settings.WindowState, priv.windowedVisibility)
         } else {
             AppSettingsManager.setValue(Settings.WindowState, visibility)
         }
+
+        // Likewise, don't save fullscreen geometry.
+        const geometry = isFullScreen ?
+                           priv.windowedGeometry :
+                           Qt.rect(appWindow.x, appWindow.y,
+                                   appWindow.width, appWindow.height)
+        AppSettingsManager.setValue(Settings.WindowGeometry, geometry)
     }
 
     // Restore the window geometry and visibility settings.
@@ -208,6 +211,9 @@ QtObject {
         // Used to store the last windowed mode visibility.
         property int windowedVisibility
 
+        // Used to store the last windowed mode geometry.
+        property rect windowedGeometry
+
         // An stack of items that are fullscreened.
         property variant fullScreenItems: []
 
@@ -238,8 +244,10 @@ QtObject {
         function requestWindowModeChange(fullScreen) {
             if (fullScreen) {
                 if (!isFullScreen) {
-                    // Save the previous visibility state.
+                    // Save the previous visibility state and geometry.
                     windowedVisibility = visibility
+                    windowedGeometry = Qt.rect(appWindow.x, appWindow.y,
+                                               appWindow.width, appWindow.height)
                     showFullScreen()
                 }
             } else {
