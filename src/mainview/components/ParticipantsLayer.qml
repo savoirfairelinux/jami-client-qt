@@ -37,7 +37,7 @@ Item {
 
         ParticipantOverlay {
             anchors.fill: parent
-            anchors.centerIn: parent
+            anchors.leftMargin: leftMargin_
 
             sinkId: sinkId_
             uri: uri_
@@ -109,10 +109,14 @@ Item {
             property int topLimit: commonParticipants.count
             property int currentPos: 0
             property int showable: {
-                var placeableElements = inLine ? Math.floor((width * 0.95)/commonParticipantsFlow.componentWidth) : commonParticipants.count
+                if (!inLine)
+                    return commonParticipants.count
+                if (commonParticipantsFlow.componentWidth === 0)
+                    return 1
+                var placeableElements = Math.floor((width * 0.9)/commonParticipantsFlow.componentWidth)
                 if (commonParticipants.count - placeableElements < currentPos)
                     currentPos = Math.max(commonParticipants.count - placeableElements, 0)
-                return placeableElements
+                return Math.max(1, placeableElements)
             }
 
             RowLayout {
@@ -163,28 +167,38 @@ Item {
 
             Rectangle {
                 z:0
-                anchors.centerIn: parent
-                property int elements: inLine ? Math.min(genericParticipantsRect.showable, commonParticipants.count) : commonParticipantsFlow.columns
-                width: commonParticipantsFlow.componentWidth * elements + elements - 1
-                implicitHeight: parent.height + commonParticipantsFlow.rows - 1
+                anchors.fill: parent
                 color: "transparent"
 
                 // GENERIC
                 Flow {
                     id: commonParticipantsFlow
-                    anchors.centerIn: parent
-                    anchors.fill: parent
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: Math.ceil((parent.height - commonParticipants.height) / 2)
+                    anchors.leftMargin: {
+                        if (!inLine)
+                            return 0
+                        var showed = Math.min(genericParticipantsRect.showable, columns)
+                        return Math.max(0, (parent.width - componentWidth * showed) / 2)
+                    }
 
-                    spacing: 1
+                    spacing: 3
                     property int columns: {
                         if (inLine)
                             return commonParticipants.count
                         var ratio = Math.floor(root.width / root.height)
                         var sqrt = Math.max(1, Math.ceil(Math.sqrt(commonParticipants.count)))
-                        return Math.max(1, Math.round(sqrt * ratio))
+                        var wantedCol = Math.max(1, Math.round(sqrt * ratio))
+                        return Math.min(commonParticipants.count, wantedCol)
                     }
                     property int rows: Math.max(1, Math.ceil(commonParticipants.count/columns))
-                    property int componentWidth: inLine ? height : Math.floor(genericParticipantsRect.width / commonParticipantsFlow.columns) - 1
+                    property int componentWidth: {
+                        if (inLine)
+                            return height
+                        var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.columns
+                        return Math.floor((genericParticipantsRect.width - totalSpacing)/ commonParticipantsFlow.columns)
+                    }
 
                     Repeater {
                         id: commonParticipants
@@ -198,19 +212,28 @@ Item {
                                 if (status !== Loader.Ready)
                                     return false
                                 if (inLine)
-                                    return  index >= genericParticipantsRect.currentPos
+                                    return index >= genericParticipantsRect.currentPos
                                             && index < genericParticipantsRect.currentPos + genericParticipantsRect.showable
                                 return true
                             }
-                            width: {
-                                var lastLine = commonParticipants.count % commonParticipantsFlow.columns
-                                var horComponents = ((commonParticipants.count - index) > lastLine || index < 0) ? commonParticipantsFlow.columns : lastLine
-                                if (horComponents === lastLine)
-                                    return Math.floor(commonParticipantsFlow.width / horComponents) - 1
-                                else
-                                    return commonParticipantsFlow.componentWidth
+                            width: commonParticipantsFlow.componentWidth + leftMargin_
+                            height: {
+                                if (inLine || commonParticipantsFlow.rows === 1)
+                                    return genericParticipantsRect.height
+                                var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.rows
+                                return Math.floor((genericParticipantsRect.height - totalSpacing)/ commonParticipantsFlow.rows)
                             }
-                            height: inLine ? commonParticipantsFlow.componentWidth : Math.floor(genericParticipantsRect.height / commonParticipantsFlow.rows) - 1
+
+                            property int leftMargin_: {
+                                if (inLine || commonParticipantsFlow.rows === 1)
+                                    return 0
+                                if (index === commonParticipants.count - commonParticipantsFlow.columns + 1) {
+                                    var compW = commonParticipantsFlow.componentWidth + commonParticipantsFlow.spacing
+                                    var lastLineW = (commonParticipants.count % commonParticipantsFlow.columns) * compW
+                                    return (genericParticipantsRect.width - lastLineW) / 2
+                                }
+                                return 0
+                            }
 
                             property string uri_: Uri
                             property string bestName_: BestName
