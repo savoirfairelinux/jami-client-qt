@@ -99,8 +99,8 @@ Item {
             id: genericParticipantsRect
 
             SplitView.preferredHeight: (parent.height / 4)
-            SplitView.minimumHeight: parent.height / 4
-            SplitView.maximumHeight: inLine? parent.height / 4 : parent.height
+            SplitView.minimumHeight: parent.height / 6
+            SplitView.maximumHeight: inLine? parent.height / 2 : parent.height
 
             visible: inLine || CallParticipantsModel.conferenceLayout === CallParticipantsModel.GRID
             color: "transparent"
@@ -176,7 +176,13 @@ Item {
                     anchors.fill: parent
 
                     spacing: 1
-                    property int columns: inLine ? commonParticipants.count : Math.max(1, Math.ceil(Math.sqrt(commonParticipants.count)))
+                    property int columns: {
+                        if (inLine)
+                            return commonParticipants.count
+                        var ratio = Math.floor(root.width / root.height)
+                        var sqrt = Math.max(1, Math.ceil(Math.sqrt(commonParticipants.count)))
+                        return Math.max(1, Math.round(sqrt * ratio))
+                    }
                     property int rows: Math.max(1, Math.ceil(commonParticipants.count/columns))
                     property int componentWidth: inLine ? height : Math.floor(genericParticipantsRect.width / commonParticipantsFlow.columns) - 1
 
