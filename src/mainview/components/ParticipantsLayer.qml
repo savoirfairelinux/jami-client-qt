@@ -99,8 +99,8 @@ Item {
             id: genericParticipantsRect
 
             SplitView.preferredHeight: (parent.height / 4)
-            SplitView.minimumHeight: parent.height / 4
-            SplitView.maximumHeight: inLine? parent.height / 4 : parent.height
+            SplitView.minimumHeight: parent.height / 6
+            SplitView.maximumHeight: inLine? parent.height / 2 : parent.height
 
             visible: inLine || CallParticipantsModel.conferenceLayout === CallParticipantsModel.GRID
             color: "transparent"
