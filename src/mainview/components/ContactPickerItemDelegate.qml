@@ -26,7 +26,13 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 ItemDelegate {
-    id: contactPickerItemDelegate
+    id: root
+
+    width: ListView.view.width
+    height: Math.max(
+                contactPickerContactName.height + textMetricsContactPickerContactId.height + 10,
+                avatar.height + 10
+            )
 
     property var showPresenceIndicator: false
 
@@ -44,7 +50,7 @@ ItemDelegate {
 
         imageId: UID
 
-        showPresenceIndicator: contactPickerItemDelegate.showPresenceIndicator && Presence
+        showPresenceIndicator: root.showPresenceIndicator && Presence
     }
 
     Rectangle {
@@ -92,7 +98,7 @@ ItemDelegate {
                 font: contactPickerContactId.font
                 elide: Text.ElideMiddle
                 elideWidth: contactPickerContactInfoRect.width
-                text: BestId == Title ? "" : BestId
+                text: !BestId || BestId == Title ? "" : BestId
             }
 
             text: textMetricsContactPickerContactId.elidedText
@@ -105,12 +111,6 @@ ItemDelegate {
 
         color: JamiTheme.backgroundColor
 
-
-        implicitWidth: root.width
-        implicitHeight: Math.max(
-                            contactPickerContactName.height
-                            + textMetricsContactPickerContactId.height + 10,
-                            avatar.height + 10)
         border.width: 0
     }
 
