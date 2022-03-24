@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b95c59f_ebb231e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-03-24T14:44:30Z",
+      "side": 1,
+      "message": "On my old X200 laptop I see the following in the console logs\nwhen launching Jami, and the client seems to start and load\njust fine; so I\u0027d say this is working as it should.\n\nIf the change has already been tested to behave correctly on\nWayland then it should be good to go.\n\nFailed to load vulkan: Cannot load library vulkan: (vulkan: cannot open shared object file: No such file or directory)\ninitInstance: No Vulkan library available\nFailed to create platform Vulkan instance\n...\nMain window loaded using OpenGLRhi",
+      "revId": "8e2d600fd3f221f1732b51c3253fdf6c23e919ed",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
