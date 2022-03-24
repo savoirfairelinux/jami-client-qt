@@ -72,6 +72,10 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
         return QVariant::fromValue(participant.item.value("avatar"));
     case Role::SinkId:
         return QVariant::fromValue(participant.item.value("sinkId"));
+    case Role::Height:
+        return QVariant::fromValue(participant.item.value("height"));
+    case Role::Width:
+        return QVariant::fromValue(participant.item.value("width"));
     case Role::HandRaised:
         return QVariant::fromValue(participant.item.value("handRaised"));
     }

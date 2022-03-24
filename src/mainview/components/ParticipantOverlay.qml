@@ -93,6 +93,7 @@ Item {
         id: mediaDistRender
         anchors.fill: parent
         rendererId: root.sinkId
+        crop: true
 
         underlayItems: Avatar {
             property real componentSize: Math.min(mediaDistRender.contentRect.width / 2, mediaDistRender.contentRect.height / 2)
@@ -119,9 +120,7 @@ Item {
         overlayItems: Rectangle {
             id: overlayRect
 
-            width: mediaDistRender.contentRect.width
-            height: mediaDistRender.contentRect.height
-            anchors.centerIn: parent
+            anchors.fill: parent
             color: "transparent"
 
             Item {
