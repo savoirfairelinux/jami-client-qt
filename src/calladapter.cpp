@@ -478,8 +478,7 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
 void
 CallAdapter::onShowCallView(const QString& accountId, const QString& convUid)
 {
-    updateCall(convUid, accountId);
-    Q_EMIT lrcInstance_->conversationUpdated(convUid, accountId);
+    Q_EMIT lrcInstance_->conversationUpdated(convUid, accountId); // This will show the call
 }
 
 void
@@ -489,8 +488,7 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
         return;
     accountId_ = accountId.isEmpty() ? accountId_ : accountId;
 
-    const auto& convInfo = lrcInstance_->getConversationFromConvUid(
-        lrcInstance_->get_selectedConvUid());
+    const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid);
     if (convInfo.uid.isEmpty()) {
         return;
     }
