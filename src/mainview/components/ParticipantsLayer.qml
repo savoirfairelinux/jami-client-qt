@@ -163,17 +163,15 @@ Item {
 
             Rectangle {
                 z:0
-                anchors.centerIn: parent
-                property int elements: inLine ? Math.min(genericParticipantsRect.showable, commonParticipants.count) : commonParticipantsFlow.columns
-                width: commonParticipantsFlow.componentWidth * elements + elements - 1
-                implicitHeight: parent.height + commonParticipantsFlow.rows - 1
-                color: "transparent"
+                anchors.fill: parent
+                color: "red"
 
                 // GENERIC
                 Flow {
                     id: commonParticipantsFlow
-                    anchors.centerIn: parent
-                    anchors.fill: parent
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.top: (parent.height - commonParticipants.height) / 2
 
                     spacing: 1
                     property int columns: {
@@ -210,7 +208,13 @@ Item {
                                 else
                                     return commonParticipantsFlow.componentWidth
                             }
-                            height: inLine ? commonParticipantsFlow.componentWidth : Math.floor(genericParticipantsRect.height / commonParticipantsFlow.rows) - 1
+                            height: {
+                                if (inLine || commonParticipantsFlow.rows === 1)
+                                    return commonParticipantsFlow.componentWidth
+                                var h = commonParticipantsFlow.componentWidth * Height / Width
+                                var maxH = genericParticipantsRect.height / commonParticipantsFlow.rows
+                                return Math.min(h, maxH)
+                            }
 
                             property string uri_: Uri
                             property string bestName_: BestName
