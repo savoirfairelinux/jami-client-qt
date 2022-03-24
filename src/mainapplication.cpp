@@ -81,8 +81,7 @@ MainApplication::MainApplication(int& argc, char** argv)
     : QApplication(argc, argv)
 {
     const char* qtVersion = qVersion();
-    qInfo() << "Using Qt runtime version:" << qtVersion << " - "
-            << strnlen(qtVersion, sizeof qtVersion);
+    qInfo() << "Using Qt runtime version:" << qtVersion;
     if (strncmp(qtVersion, QT_VERSION_STR, strnlen(qtVersion, sizeof qtVersion)) != 0) {
         qFatal(QString("Qt build version mismatch!(%1)").arg(QT_VERSION_STR).toLatin1());
     }
