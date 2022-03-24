@@ -46,6 +46,9 @@ Item {
     property string bestName: ""
     property string sinkId: ""
     property bool participantIsActive: false
+    property bool canMaximize: root.meModerator &&
+                                    (!root.participantIsActive
+                                    || CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL)
     property bool participantIsHost: CallAdapter.participantIsHost(uri)
     property bool participantIsModerator: false
     property bool participantIsMuted: isLocalMuted || participantIsModeratorMuted
@@ -166,7 +169,7 @@ Item {
                     showUnsetModerator: root.meHost && !root.isMe && root.participantIsModerator
                     showModeratorMute: root.meModerator && !root.participantIsModeratorMuted
                     showModeratorUnmute: (root.meModerator || root.isMe) && root.participantIsModeratorMuted
-                    showMaximize: root.meModerator && !root.participantIsActive
+                    showMaximize: root.canMaximize
                     showMinimize: root.meModerator && root.participantIsActive
                     showHangup: root.meModerator && !root.isMe && !root.participantIsHost
                 }
