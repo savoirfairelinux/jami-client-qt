@@ -186,7 +186,16 @@ Item {
                         model: GenericParticipantsFilterModel
                         delegate: Loader {
                             sourceComponent: callVideoMedia
-                            visible: inLine ? index >= genericParticipantsRect.currentPos && index < genericParticipantsRect.currentPos + genericParticipantsRect.showable : true
+                            active: root.visible
+                            asynchronous: true
+                            visible: {
+                                if (status !== Loader.Ready)
+                                    return false
+                                if (inLine)
+                                    return  index >= genericParticipantsRect.currentPos
+                                            && index < genericParticipantsRect.currentPos + genericParticipantsRect.showable
+                                return true
+                            }
                             width: {
                                 var lastLine = commonParticipants.count % commonParticipantsFlow.columns
                                 var horComponents = ((commonParticipants.count - index) > lastLine || index < 0) ? commonParticipantsFlow.columns : lastLine
@@ -238,7 +247,11 @@ Item {
 
                 model: ActiveParticipantsFilterModel
                 delegate: Loader {
+                    active: root.visible
+                    asynchronous: true
                     sourceComponent: callVideoMedia
+                    visible: status == Loader.Ready
+
                     width: Math.ceil(activeParticipantsFlow.width / activeParticipantsFlow.columns) - activeParticipantsFlow.columnsSpacing
                     height: Math.ceil(activeParticipantsFlow.height / activeParticipantsFlow.rows) - activeParticipantsFlow.rowsSpacing
 
