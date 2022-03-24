@@ -41,8 +41,6 @@ Rectangle {
         OngoingPageStack
     }
 
-    anchors.fill: parent
-
     Shortcut {
         sequence: "Ctrl+D"
         context: Qt.ApplicationShortcut
@@ -150,7 +148,6 @@ Rectangle {
     OngoingCallPage {
         id: ongoingCallPage
 
-        anchors.fill: parent
         property int stackNumber: CallStackView.OngoingPageStack
 
         isAudioOnly: root.isAudioOnly
@@ -161,7 +158,6 @@ Rectangle {
     InitialCallPage {
         id: initialCallPage
 
-        anchors.fill: parent
         property int stackNumber: CallStackView.InitialPageStack
 
         isAudioOnly: root.isAudioOnly
