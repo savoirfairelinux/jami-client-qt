@@ -739,16 +739,18 @@ CallAdapter::maximizeParticipant(const QString& uri)
     if (confId.isEmpty())
         confId = convInfo.callId;
     try {
+        const auto call = callModel->getCall(confId);
         auto participants = getConferencesInfos();
         for (auto part : participants) {
             auto participant = part.toJsonObject();
             if (participant["uri"].toString() == uri) {
-                participant["active"] = !participant["active"].toBool();
-                if (participant["active"].toBool()) {
+                auto active = participant["active"].toBool();
+                // Else, continue.
+                if (!active) {
                     callModel->setActiveParticipant(confId, uri);
                     callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE_WITH_SMALL);
-                } else {
-                    callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
+                } else if (call.layout == lrc::api::call::Layout::ONE_WITH_SMALL) {
+                    callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE);
                 }
                 return;
             }
@@ -768,13 +770,19 @@ CallAdapter::minimizeParticipant(const QString& uri)
     if (confId.isEmpty())
         confId = convInfo.callId;
     try {
+        const auto call = callModel->getCall(confId);
         auto participants = getConferencesInfos();
         for (auto& part : participants) {
             auto participant = part.toJsonObject();
             if (participant["uri"].toString() == uri) {
-                if (participant["active"].toBool()) {
-                    participant["active"] = !participant["active"].toBool();
-                    callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
+                auto active = participant["active"].toBool();
+                if (active) {
+                    if (call.layout == lrc::api::call::Layout::ONE) {
+                        callModel->setConferenceLayout(confId,
+                                                       lrc::api::call::Layout::ONE_WITH_SMALL);
+                    } else {
+                        callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
+                    }
                 }
                 return;
             }
