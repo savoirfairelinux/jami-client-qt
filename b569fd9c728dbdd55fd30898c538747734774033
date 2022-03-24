@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f14739c_caff8d26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-24T13:27:16Z",
+      "side": 1,
+      "message": "copyright 2022\n\n\n    I have a big freeze when entering in the callview\n    I can\u0027t go fullscreen\n    I can\u0027t maximize 1 participant\n\n    Small ui bug, in one big, other smalls the separator seems resizable but it\u0027s not\n\n    I didn\u0027t test in a rdv or with 10+ participants \n\n",
+      "revId": "b569fd9c728dbdd55fd30898c538747734774033",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
