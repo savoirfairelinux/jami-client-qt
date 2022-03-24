@@ -385,7 +385,6 @@ Rectangle {
     CallStackView {
         id: callStackView
 
-        anchors.fill: parent
         visible: false
         objectName: "callStackViewObject"
     }

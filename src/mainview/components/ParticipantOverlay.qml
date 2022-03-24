@@ -101,9 +101,16 @@ Item {
             property real size: Math.floor((componentSize + step - 1) / step) * step
             sourceSize: Qt.size(size, size)
             mode: root.isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
-            imageId: root.isMe ? LRCInstance.currentAccountId : root.uri
             showPresenceIndicator: false
             visible: root.videoMuted
+
+            onVisibleChanged: {
+                // Only request avatars when visibility changes (and once)
+                // This avoid to request images for non showed participants
+                if (visible && !imageId) {
+                    imageId = root.isMe ? LRCInstance.currentAccountId : root.uri
+                }
+            }
         }
 
         overlayItems: Rectangle {
