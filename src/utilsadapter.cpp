@@ -495,7 +495,7 @@ UtilsAdapter::setSwarmCreationImageFromString(const QString& image, const QStrin
 {
     // Compress the image before saving
     auto img = Utils::imageFromBase64String(image, false);
-    setSwarmCreationImageFromImage(img);
+    setSwarmCreationImageFromImage(img, imageId);
 }
 
 void
@@ -504,7 +504,7 @@ UtilsAdapter::setSwarmCreationImageFromFile(const QString& path, const QString& 
     // Compress the image before saving
     auto image = Utils::QByteArrayFromFile(path);
     auto img = Utils::imageFromBase64Data(image, false);
-    setSwarmCreationImageFromImage(img);
+    setSwarmCreationImageFromImage(img, imageId);
 }
 
 void
@@ -524,9 +524,9 @@ UtilsAdapter::setSwarmCreationImageFromImage(const QImage& image, const QString&
         file.close();
         Q_EMIT lrcInstance_->base64SwarmAvatarChanged();
     } else {
-        lrcInstance_->getCurrentConversationModel()->updateConversationInfo(imageId,
-                                                                            {{"avatar",
-                                                                              ba.toBase64()}});
+        lrcInstance_->getCurrentConversationModel()->updateConversationInfos(imageId,
+                                                                             {{"avatar",
+                                                                               ba.toBase64()}});
     }
 }
 

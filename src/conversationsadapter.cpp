@@ -494,7 +494,7 @@ ConversationsAdapter::updateConversationTitle(const QString& convId, const QStri
     auto convModel = lrcInstance_->getCurrentConversationModel();
     QMap<QString, QString> details;
     details["title"] = newTitle;
-    convModel->updateConversationInfo(convId, details);
+    convModel->updateConversationInfos(convId, details);
 }
 
 void
@@ -504,7 +504,7 @@ ConversationsAdapter::updateConversationDescription(const QString& convId,
     auto convModel = lrcInstance_->getCurrentConversationModel();
     QMap<QString, QString> details;
     details["description"] = newDescription;
-    convModel->updateConversationInfo(convId, details);
+    convModel->updateConversationInfos(convId, details);
 }
 
 QString
