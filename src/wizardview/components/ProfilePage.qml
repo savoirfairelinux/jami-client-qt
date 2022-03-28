@@ -32,13 +32,12 @@ Rectangle {
     id: root
 
     // trigger a default avatar prior to account generation
-    property string createdAccountId: "dummy"
+    property string createdAccountId
     property int preferredHeight: profilePageColumnLayout.implicitHeight
 
     signal showThisPage
 
     function initializeOnShowUp() {
-        createdAccountId = "dummy"
         clearAllTextFields()
         saveProfileBtn.spinnerTriggered = true
     }
