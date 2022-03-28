@@ -1,4 +1,3 @@
-
 # Build instructions
 
 There is basically two ways to build `client-qt`:
@@ -125,39 +124,36 @@ If you want to install it to the path provided by `CMAKE_INSTALL_PREFIX` you can
 make install
 ```
 
-## Building On Native Windows
+## Building on native Windows
 
 Only 64-bit MSVC build can be compiled.
 
-> Note: command ```./build.py --init``` is not required on the Windows build <br>
-
 **Setup Before Building:**
 - Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)<br>
-
-  | | Prebuild | Module |
-  |---|---|---|
-  | Components: | msvc2019_64 | Qt WebEngine |
+- Using the online installer, install the following Qt 6.2.3 components:
+  - MSVC 2019 64-bit
+  - Qt 5 Compatibility Module
+  - Additional Libraries
+    - Qt Multimedia
+    - Qt Network Authorization
+    - Qt Positioning
+    - Qt WebChannel
+    - Qt WebEngine
+    - Qt WebSockets
+    - Qt WebView
 
 - Download [Visual Studio](https://visualstudio.microsoft.com/) (version >= 2019) <br>
 - Install Qt Vs Tools under extensions, and configure msvc2017_64 path under Qt Options <br>
 
   | | Qt Version | SDK | Toolset |
   |---|---|---|---|
-  | Minimum requirement: | 6.2.0 | 10.0.16299.0 | V142 |
+  | Minimum requirement: | 6.2.3 | 10.0.16299.0 | V142 |
 
 - Install [Python3](https://www.python.org/downloads/) for Windows
 
-**Start Building**
-- Using Command Prompt
-```sh
-    git clone https://review.jami.net/ring-project
-    cd ring-project/
-    git submodule update --init daemon lrc client-qt
-    git submodule update --recursive --remote daemon lrc client-qt
-```
 - Using **Elevated Command Prompt**
 ```sh
-    python make-ring.py --dependencies
+    python build.py --dependencies
 ```
 
 > Note:
@@ -174,18 +170,9 @@ Only 64-bit MSVC build can be compiled.
 
 - Using a new **Non-Elevated Command Prompt**
 ```sh
-    python make-ring.py --install
+    python build.py --install
 ```
 - Then you should be able to use the Visual Studio Solution file in client-windows folder **(Configuration = Release, Platform = x64)**
-
-> Note: <br>
-> To control the toolset and the sdk version that are used by msbuild, you can use ```--toolset``` and ```--sdk``` options <br>
-> To control which Qt version should be used (qmake, windeployqt), uou can use ```--qtver``` option <br>
-> By default: ```toolset=v142```, ```sdk=10.0.16299.0```,  ```qtver=5.15.0``` <br>
-> For example:
-```sh
-    python make-ring.py --install --toolset v142 --sdk 10.0.16299.0 --qtver 5.15.0
-```
 
 ### Build Module Individually
 
@@ -194,7 +181,7 @@ Only 64-bit MSVC build can be compiled.
 **Daemon**
 
 - Make sure that dependencies is built by make-ring.py
-- On MSVC folder (ring-project\daemon\MSVC):
+- On MSVC folder (jami-project\daemon\MSVC):
 ```sh
     cmake -DCMAKE_CONFIGURATION_TYPES="ReleaseLib_win32" -DCMAKE_VS_PLATFORM_NAME="x64" -G "Visual Studio 16 2019" -A x64 -T '$(DefaultPlatformToolset)' ..
     python winmake.py -b daemon
@@ -213,7 +200,7 @@ Only 64-bit MSVC build can be compiled.
 
 ```bash
     cd lrc
-    python make-lrc.py -gb
+    python make-lrc.py
 ```
 
 **Jami-qt**
@@ -222,14 +209,9 @@ Only 64-bit MSVC build can be compiled.
 
 ```bash
     cd client-windows
-    python make-client.py -d
-    python make-client.py -b
+    python make-client.py init
+    python make-client.py
 ```
-
-**Note**
-- For all python scripts, both ```--toolset``` and ```--sdk``` options are available.
-- For more available options, run scripts with ```-h``` option.
-- ```--qtver``` option is available on ```make-lrc.py``` and ```make-client.py```.
 
 ## Building On MacOS
 
