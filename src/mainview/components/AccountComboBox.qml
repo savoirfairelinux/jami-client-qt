@@ -61,9 +61,8 @@ Label {
 
     background: Rectangle {
         id: background
+        anchors.fill: parent
 
-        implicitWidth: root.width
-        implicitHeight: root.height
         color: root.popup.opened ?
                    Qt.lighter(JamiTheme.hoverColor, 1.0) :
                    mouseArea.containsMouse ?
