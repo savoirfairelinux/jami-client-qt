@@ -198,7 +198,7 @@ MainApplication::handleUriAction(const QString& arg)
     if (arg.isEmpty() && !runOptions_[Option::StartUri].isNull()) {
         uri = runOptions_[Option::StartUri].toString();
         qDebug() << "URI action invoked by run option" << uri;
-    } else {
+    } else if (!arg.isEmpty()) {
         uri = arg;
         qDebug() << "URI action invoked by secondary instance" << uri;
     }
