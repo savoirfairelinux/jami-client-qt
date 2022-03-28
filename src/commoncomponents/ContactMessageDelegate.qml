@@ -42,7 +42,7 @@ Column {
 
         anchors.horizontalCenter: parent.horizontalCenter
 
-        width: childrenRect.width + 12
+        width: childrenRect.width
         height: JamiTheme.contactMessageAvatarSize + 12
         radius: JamiTheme.contactMessageAvatarSize / 2 + 6
 
@@ -51,11 +51,11 @@ Column {
         border.color: CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : CurrentConversation.color
 
         RowLayout {
-
             anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
 
             Avatar {
+                Layout.leftMargin: 6
+
                 width: JamiTheme.contactMessageAvatarSize
                 height: JamiTheme.contactMessageAvatarSize
                 visible: ActionUri !== ""
@@ -66,6 +66,8 @@ Column {
             }
 
             Label {
+                Layout.rightMargin: 6
+
                 id: textLabel
                 width: parent.width
                 text: Body
