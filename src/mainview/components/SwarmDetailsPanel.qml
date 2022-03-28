@@ -67,7 +67,7 @@ Rectangle {
 
                 text: CurrentConversation.title
                 placeholderText: JamiStrings.editTitle
-                placeholderTextColor: UtilsAdapter.luma(backgroundColor) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                placeholderTextColor: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                 tooltipText: JamiStrings.editTitle
                 backgroundColor: root.color
                 color: UtilsAdapter.luma(backgroundColor) ?
@@ -93,7 +93,7 @@ Rectangle {
 
                 text: CurrentConversation.description
                 placeholderText: JamiStrings.editDescription
-                placeholderTextColor: UtilsAdapter.luma(backgroundColor) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
+                placeholderTextColor: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                 tooltipText: JamiStrings.editDescription
                 backgroundColor: root.color
                 color: UtilsAdapter.luma(backgroundColor) ?

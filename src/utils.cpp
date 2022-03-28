@@ -435,6 +435,8 @@ Utils::tempConversationAvatar(const QSize& size)
 QImage
 Utils::imageFromBase64String(const QString& str, bool circleCrop)
 {
+    if (str.isEmpty())
+        return {};
     return imageFromBase64Data(Utils::base64StringToByteArray(str), circleCrop);
 }
 

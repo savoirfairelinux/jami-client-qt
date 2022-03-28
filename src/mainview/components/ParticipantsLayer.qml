@@ -141,9 +141,92 @@ Item {
                         radius: JamiTheme.primaryRadius
                     }
                 }
-                Item {
+
+                Rectangle {
+                    z:0
                     Layout.fillHeight: true
                     Layout.fillWidth: true
+                    color: "transparent"
+
+                    // GENERIC
+                    Flow {
+                        id: commonParticipantsFlow
+                        anchors.fill: parent
+
+                        anchors.leftMargin: {
+                            if (!inLine)
+                                return 0
+                            var showed = Math.min(genericParticipantsRect.showable, columns)
+                            return Math.max(0, Math.ceil((parent.width - componentWidth * showed) / 2))
+                        }
+
+                        spacing: 3
+                        property int columns: {
+                            if (inLine)
+                                return commonParticipants.count
+                            var ratio = Math.floor(root.width / root.height)
+                            var sqrt = Math.max(1, Math.ceil(Math.sqrt(commonParticipants.count)))
+                            var wantedCol = Math.max(1, Math.round(sqrt * ratio))
+                            return Math.min(commonParticipants.count, wantedCol)
+                        }
+                        property int rows: Math.max(1, Math.ceil(commonParticipants.count/columns))
+                        property int componentWidth: {
+                            if (inLine)
+                                return height
+                            var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.columns
+                            return Math.floor((genericParticipantsRect.width - totalSpacing)/ commonParticipantsFlow.columns)
+                        }
+
+                        Repeater {
+                            id: commonParticipants
+
+                            model: GenericParticipantsFilterModel
+                            delegate: Loader {
+                                sourceComponent: callVideoMedia
+                                active: root.visible
+                                asynchronous: true
+                                visible: {
+                                    if (status !== Loader.Ready)
+                                        return false
+                                    if (inLine)
+                                        return index >= genericParticipantsRect.currentPos
+                                                && index < genericParticipantsRect.currentPos + genericParticipantsRect.showable
+                                    return true
+                                }
+                                width: commonParticipantsFlow.componentWidth + leftMargin_
+                                height: {
+                                    if (inLine || commonParticipantsFlow.rows === 1)
+                                        return genericParticipantsRect.height
+                                    var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.rows
+                                    return Math.floor((genericParticipantsRect.height - totalSpacing)/ commonParticipantsFlow.rows)
+                                }
+
+                                property int leftMargin_: {
+                                    if (inLine || commonParticipantsFlow.rows === 1)
+                                        return 0
+                                    if (index === commonParticipants.count - commonParticipantsFlow.columns + 1) {
+                                        var compW = commonParticipantsFlow.componentWidth + commonParticipantsFlow.spacing
+                                        var lastLineW = (commonParticipants.count % commonParticipantsFlow.columns) * compW
+                                        return (genericParticipantsRect.width - lastLineW) / 2
+                                    }
+                                    return 0
+                                }
+
+                                property string uri_: Uri
+                                property string bestName_: BestName
+                                property string avatar_: Avatar ? Avatar : ""
+                                property string sinkId_: SinkId ? SinkId : ""
+                                property bool isLocal_: IsLocal
+                                property bool active_: Active
+                                property bool videoMuted_: VideoMuted
+                                property bool isContact_: IsContact
+                                property bool isModerator_: IsModerator
+                                property bool audioLocalMuted_: AudioLocalMuted
+                                property bool audioModeratorMuted_: AudioModeratorMuted
+                                property bool isHandRaised_: HandRaised
+                            }
+                        }
+                    }
                 }
 
                 RoundButton {
@@ -161,93 +244,6 @@ Item {
                         anchors.fill: parent
                         color: JamiTheme.lightGrey_
                         radius: JamiTheme.primaryRadius
-                    }
-                }
-            }
-
-            Rectangle {
-                z:0
-                anchors.fill: parent
-                color: "transparent"
-
-                // GENERIC
-                Flow {
-                    id: commonParticipantsFlow
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.top: Math.ceil((parent.height - commonParticipants.height) / 2)
-                    anchors.leftMargin: {
-                        if (!inLine)
-                            return 0
-                        var showed = Math.min(genericParticipantsRect.showable, columns)
-                        return Math.max(0, (parent.width - componentWidth * showed) / 2)
-                    }
-
-                    spacing: 3
-                    property int columns: {
-                        if (inLine)
-                            return commonParticipants.count
-                        var ratio = Math.floor(root.width / root.height)
-                        var sqrt = Math.max(1, Math.ceil(Math.sqrt(commonParticipants.count)))
-                        var wantedCol = Math.max(1, Math.round(sqrt * ratio))
-                        return Math.min(commonParticipants.count, wantedCol)
-                    }
-                    property int rows: Math.max(1, Math.ceil(commonParticipants.count/columns))
-                    property int componentWidth: {
-                        if (inLine)
-                            return height
-                        var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.columns
-                        return Math.floor((genericParticipantsRect.width - totalSpacing)/ commonParticipantsFlow.columns)
-                    }
-
-                    Repeater {
-                        id: commonParticipants
-
-                        model: GenericParticipantsFilterModel
-                        delegate: Loader {
-                            sourceComponent: callVideoMedia
-                            active: root.visible
-                            asynchronous: true
-                            visible: {
-                                if (status !== Loader.Ready)
-                                    return false
-                                if (inLine)
-                                    return index >= genericParticipantsRect.currentPos
-                                            && index < genericParticipantsRect.currentPos + genericParticipantsRect.showable
-                                return true
-                            }
-                            width: commonParticipantsFlow.componentWidth + leftMargin_
-                            height: {
-                                if (inLine || commonParticipantsFlow.rows === 1)
-                                    return genericParticipantsRect.height
-                                var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.rows
-                                return Math.floor((genericParticipantsRect.height - totalSpacing)/ commonParticipantsFlow.rows)
-                            }
-
-                            property int leftMargin_: {
-                                if (inLine || commonParticipantsFlow.rows === 1)
-                                    return 0
-                                if (index === commonParticipants.count - commonParticipantsFlow.columns + 1) {
-                                    var compW = commonParticipantsFlow.componentWidth + commonParticipantsFlow.spacing
-                                    var lastLineW = (commonParticipants.count % commonParticipantsFlow.columns) * compW
-                                    return (genericParticipantsRect.width - lastLineW) / 2
-                                }
-                                return 0
-                            }
-
-                            property string uri_: Uri
-                            property string bestName_: BestName
-                            property string avatar_: Avatar ? Avatar : ""
-                            property string sinkId_: SinkId ? SinkId : ""
-                            property bool isLocal_: IsLocal
-                            property bool active_: Active
-                            property bool videoMuted_: VideoMuted
-                            property bool isContact_: IsContact
-                            property bool isModerator_: IsModerator
-                            property bool audioLocalMuted_: AudioLocalMuted
-                            property bool audioModeratorMuted_: AudioModeratorMuted
-                            property bool isHandRaised_: HandRaised
-                        }
                     }
                 }
             }

@@ -69,7 +69,7 @@ Rectangle {
                 enabled: visible
                 target: CurrentConversation
 
-                onUrisChanged: {
+                function onUrisChanged(uris) {
                     model = ContactAdapter.getContactSelectableModel(type)
                 }
             }
