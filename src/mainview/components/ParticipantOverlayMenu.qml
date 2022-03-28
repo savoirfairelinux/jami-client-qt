@@ -104,6 +104,7 @@ Item {
 
             ParticipantControlLayout {
                 id: barButtons
+                anchors.fill: parent
             }
         }
     }

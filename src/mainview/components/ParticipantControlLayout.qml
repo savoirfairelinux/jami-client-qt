@@ -39,6 +39,7 @@ RowLayout {
         preferredSize: iconButtonPreferredSize
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         source: JamiResources.moderator_svg
         onClicked: CallAdapter.setModerator(uri, showSetModerator)
         toolTipText: showSetModerator? JamiStrings.setModerator
@@ -52,6 +53,7 @@ RowLayout {
         preferredSize: iconButtonPreferredSize
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         source: showModeratorMute ?
                     JamiResources.micro_black_24dp_svg :
                     JamiResources.micro_off_black_24dp_svg
@@ -83,6 +85,7 @@ RowLayout {
         preferredSize: iconButtonPreferredSize
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         source: JamiResources.open_in_full_24dp_svg
         onClicked: CallAdapter.maximizeParticipant(uri)
         toolTipText: JamiStrings.maximizeParticipant
@@ -95,6 +98,7 @@ RowLayout {
         preferredSize: iconButtonPreferredSize
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         source: JamiResources.close_fullscreen_24dp_svg
         onClicked: CallAdapter.minimizeParticipant(uri)
         toolTipText: JamiStrings.minimizeParticipant
@@ -107,6 +111,7 @@ RowLayout {
         preferredSize: iconButtonPreferredSize
         Layout.preferredHeight: buttonPreferredSize
         Layout.preferredWidth: buttonPreferredSize
+        Layout.alignment: Qt.AlignVCenter
         source: JamiResources.ic_hangup_participant_24dp_svg
         onClicked: CallAdapter.hangupParticipant(uri)
         toolTipText: JamiStrings.hangupParticipant
