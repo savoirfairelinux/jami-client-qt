@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 by Savoir-faire Linux
+ * Copyright (C) 2022 Savoir-faire Linux Inc.
  * Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -178,6 +178,7 @@ Q_SIGNALS:
 private:
     LRCInstance* lrcInstance_ {nullptr};
 
+    std::mutex participantsMtx_;
     QList<CallParticipant::Item> participants_ {};
     QString callId_;
     LayoutType layout_;

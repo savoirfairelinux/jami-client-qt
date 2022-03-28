@@ -77,15 +77,16 @@ CurrentConversation::updateData()
             // It can be used to display add contact/conversation UI and
             // is consistently determined by the peer's uri being equal to
             // the conversation id.
-            set_isTemporary(isCoreDialog_ ? convId == uris_.at(0) : false);
+            auto members = accInfo.conversationModel->peersForConversation(convId);
+            set_isTemporary(isCoreDialog_ ? convId == members.at(0) : false);
 
             auto isContact {false};
             if (isCoreDialog_)
                 try {
-                    auto& contact = accInfo.contactModel->getContact(uris_.at(0));
+                    auto& contact = accInfo.contactModel->getContact(members.at(0));
                     isContact = contact.profileInfo.type != profile::Type::TEMPORARY;
-                } catch (...) {
-                    qInfo() << "Contact not found";
+                } catch (const std::exception& e) {
+                    qInfo() << "Contact not found: " << e.what();
                 }
             set_isContact(isContact);
         }
