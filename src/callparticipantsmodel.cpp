@@ -37,6 +37,7 @@ CallParticipantsModel::rowCount(const QModelIndex& parent) const
 {
     if (parent.isValid())
         return 0;
+    // Internal call, so no need to protect participants_ as locked higher
     return participants_.size();
 }
 
@@ -47,6 +48,7 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
         return QVariant();
 
     using namespace CallParticipant;
+    // Internal call, so no need to protect participants_ as locked higher
     auto participant = participants_.at(index.row());
 
     switch (role) {
@@ -96,6 +98,7 @@ CallParticipantsModel::roleNames() const
 void
 CallParticipantsModel::addParticipant(int index, const QVariant& infos)
 {
+    std::lock_guard<std::mutex> lk(participantsMtx_);
     if (index > participants_.size())
         return;
     beginInsertRows(QModelIndex(), index, index);
@@ -111,18 +114,22 @@ CallParticipantsModel::addParticipant(int index, const QVariant& infos)
 void
 CallParticipantsModel::updateParticipant(int index, const QVariant& infos)
 {
-    if (participants_.size() <= index)
-        return;
-    auto it = participants_.begin() + index;
-    (*it) = CallParticipant::Item {infos.toJsonObject()};
+    {
+        std::lock_guard<std::mutex> lk(participantsMtx_);
+        if (participants_.size() <= index)
+            return;
+        auto it = participants_.begin() + index;
+        (*it) = CallParticipant::Item {infos.toJsonObject()};
 
-    callId_ = participants_[index].item["callId"].toString();
+        callId_ = participants_[index].item["callId"].toString();
+    }
     Q_EMIT dataChanged(createIndex(index, 0), createIndex(index, 0));
 }
 
 void
 CallParticipantsModel::removeParticipant(int index)
 {
+    std::lock_guard<std::mutex> lk(participantsMtx_);
     if (participants_.size() <= index)
         return;
     callId_ = participants_[index].item["callId"].toString();
@@ -140,13 +147,17 @@ CallParticipantsModel::setParticipants(const QString& callId, const QVariantList
 {
     callId_ = callId;
 
+    std::lock_guard<std::mutex> lk(participantsMtx_);
     participants_.clear();
     reset();
 
     if (!participants.isEmpty()) {
         int idx = 0;
         for (const auto& participant : participants) {
-            addParticipant(idx, participant);
+            beginInsertRows(QModelIndex(), idx, idx);
+            auto it = participants_.begin() + idx;
+            participants_.insert(it, CallParticipant::Item {participant.toJsonObject()});
+            endInsertRows();
             idx++;
         }
     }

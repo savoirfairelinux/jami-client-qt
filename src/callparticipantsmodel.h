@@ -178,6 +178,7 @@ Q_SIGNALS:
 private:
     LRCInstance* lrcInstance_ {nullptr};
 
+    std::mutex participantsMtx_;
     QList<CallParticipant::Item> participants_ {};
     QString callId_;
     LayoutType layout_;
