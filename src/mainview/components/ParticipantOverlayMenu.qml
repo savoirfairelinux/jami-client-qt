@@ -85,7 +85,7 @@ Item {
         id: barComponent
 
         Control {
-            width: barButtons.implicitWidth
+            width: barButtons.implicitWidth + 16
             height: shapeHeight
             hoverEnabled: false
 
@@ -104,6 +104,9 @@ Item {
 
             ParticipantControlLayout {
                 id: barButtons
+                anchors.fill: parent
+                anchors.leftMargin: 8
+                anchors.rightMargin: 8
             }
         }
     }
