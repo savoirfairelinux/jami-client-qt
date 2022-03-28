@@ -2093,7 +2093,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="454"/>
         <source>Restore an account from backup</source>
-        <translation>Einen Benutzernamen aus der Datensicherung wiederherstellen</translation>
+        <translation>Einen Benutzernamen aus dem Backup wiederherstellen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="459"/>
