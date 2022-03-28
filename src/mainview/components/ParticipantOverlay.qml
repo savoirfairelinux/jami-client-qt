@@ -93,7 +93,7 @@ Item {
         id: mediaDistRender
         anchors.fill: parent
         rendererId: root.sinkId
-        crop: true
+        crop: !participantIsActive
 
         underlayItems: Avatar {
             property real componentSize: Math.min(mediaDistRender.contentRect.width / 2, mediaDistRender.contentRect.height / 2)
