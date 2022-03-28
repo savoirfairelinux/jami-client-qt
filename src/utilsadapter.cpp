@@ -511,10 +511,12 @@ void
 UtilsAdapter::setSwarmCreationImageFromImage(const QImage& image, const QString& imageId)
 {
     // Compress the image before saving
-    auto img = Utils::scaleAndFrame(image, QSize(256, 256));
     QByteArray ba;
     QBuffer bu(&ba);
-    img.save(&bu, "PNG");
+    if (!image.isNull()) {
+        auto img = Utils::scaleAndFrame(image, QSize(256, 256));
+        img.save(&bu, "PNG");
+    }
     // Save the image
     if (imageId == "temp") {
         QFile file(QStandardPaths::writableLocation(QStandardPaths::CacheLocation)

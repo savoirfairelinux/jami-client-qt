@@ -169,11 +169,11 @@ Control {
                 var muteState = CallAdapter.getMuteState(CurrentAccount.uri)
                 var modMuted = muteState === CallAdapter.MODERATOR_MUTED
                     || muteState === CallAdapter.BOTH_MUTED
-                if (isAudioMuted && modMuted) {
+                if (muteAudioAction.checked && modMuted) {
                     muteAlertActive = true
                     muteAlertMessage = JamiStrings.participantModIsStillMuted
                 }
-                CallAdapter.muteThisCallToggle(!isAudioMuted)
+                CallAdapter.muteThisCallToggle(!muteAudioAction.checked)
             }
             checkable: true
             icon.source: checked ?
