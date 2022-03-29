@@ -106,7 +106,7 @@ main(int argc, char* argv[])
 
     MainApplication app(argc, newArgv);
 
-#if defined(Q_OS_MACOS)
+#if defined(HAS_METAL)
     QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
 #else
     if (std::invoke([] {
@@ -125,6 +125,7 @@ main(int argc, char* argv[])
         // or wait for a future version
         QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
     } else {
+        qDebug("*********uses Unknown");
         QQuickWindow::setGraphicsApi(QSGRendererInterface::Unknown);
     }
 #endif
