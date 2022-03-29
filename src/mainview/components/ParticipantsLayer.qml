@@ -121,8 +121,6 @@ Item {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.centerIn: parent
-                z: 1
 
                 RoundButton {
                     Layout.alignment: Qt.AlignVCenter
