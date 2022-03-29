@@ -108,19 +108,12 @@ Rectangle {
     }
 
     function toggleFullScreen() {
-        const transitionCb = function() {
-            if (!root.isAudioOnly) {
-                ongoingCallPage.handleParticipantsInfo(
-                            CallAdapter.getConferencesInfos())
-            }
-        }
-
         if (!layoutManager.isCallFullscreen) {
             layoutManager.pushFullScreenItem(
                         callStackMainView.currentItem,
                         callStackMainView,
-                        transitionCb,
-                        transitionCb)
+                        null,
+                        null)
         } else {
             layoutManager.removeFullScreenItem(
                         callStackMainView.currentItem)
