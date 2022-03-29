@@ -33,6 +33,8 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
+    anchors.fill: parent
+
     property var accountPeerPair: ["", ""]
     property variant clickPos: "1,1"
     property int previewMargin: 15
@@ -164,7 +166,6 @@ Rectangle {
 
                 onClicked: function (mouse) {
                     if (mouse.button === Qt.RightButton)
-                        callOverlay.openCallViewContextMenuInPos(mouse.x, mouse.y)
                 }
 
                 VideoView {
