@@ -99,7 +99,7 @@ main(int argc, char* argv[])
 
     MainApplication app(argc, newArgv);
 
-#if defined(Q_OS_MACOS)
+#if defined(HAS_METAL)
     QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
 #else
     if (std::invoke([] {
