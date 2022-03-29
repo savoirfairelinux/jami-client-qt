@@ -98,6 +98,8 @@ Item {
         Rectangle {
             id: genericParticipantsRect
 
+            TapHandler { acceptedButtons: Qt.LeftButton | Qt.RightButton }
+
             SplitView.preferredHeight: (parent.height / 4)
             SplitView.minimumHeight: parent.height / 6
             SplitView.maximumHeight: inLine? parent.height / 2 : parent.height
@@ -121,8 +123,6 @@ Item {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.centerIn: parent
-                z: 1
 
                 RoundButton {
                     Layout.alignment: Qt.AlignVCenter
@@ -255,6 +255,8 @@ Item {
         // ACTIVE
         Flow {
             id: activeParticipantsFlow
+
+            TapHandler { acceptedButtons: Qt.LeftButton | Qt.RightButton }
 
             SplitView.minimumHeight: parent.height / 4
             SplitView.maximumHeight: parent.height
