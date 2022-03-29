@@ -33,6 +33,8 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
+    anchors.fill: parent
+
     property var accountPeerPair: ["", ""]
     property variant clickPos: "1,1"
     property int previewMargin: 15
@@ -149,228 +151,226 @@ Rectangle {
             SplitView.minimumWidth: root.width / 2 + 20
             SplitView.fillWidth: !mainColumnLayout.isHorizontal
 
-            MouseArea {
-                anchors.fill: parent
-
-                hoverEnabled: true
-                propagateComposedEvents: true
-
+            TapHandler {
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-                onDoubleClicked: function (mouse) {
-                    if (mouse.button === Qt.LeftButton)
+                onDoubleTapped: function (eventPoint, button) {
+                    if (button === Qt.LeftButton) {
                         callStackView.toggleFullScreen()
-                }
-
-                onClicked: function (mouse) {
-                    if (mouse.button === Qt.RightButton)
-                        callOverlay.openCallViewContextMenuInPos(mouse.x, mouse.y)
-                }
-
-                VideoView {
-                    id: distantRenderer
-
-                    anchors.centerIn: parent
-                    anchors.fill: parent
-                    z: -1
-
-                    visible: participantsLayer.count === 0 && !root.isAudioOnly
-                }
-
-                ParticipantsLayer {
-                    id: participantsLayer
-                    anchors.fill: parent
-                    anchors.centerIn: parent
-                    anchors.margins: 3
-                    visible: participantsLayer.count !== 0
-
-                    onCountChanged: {
-                        callOverlay.isConference = participantsLayer.count > 0
                     }
                 }
 
-                LocalVideo {
-                    id: previewRenderer
+                onTapped: function (eventPoint, button) {
+                    if (button === Qt.RightButton) {
+                        callOverlay.openCallViewContextMenuInPos(eventPoint.position.x,
+                                                                 eventPoint.position.y)
+                    }
+                }
+            }
 
-                    visible: !callOverlay.isAudioOnly && participantsLayer.count == 0 && !callOverlay.isVideoMuted && !callOverlay.isPaused &&
-                             ((VideoDevices.listSize !== 0 && AvAdapter.currentRenderingDeviceType === Video.DeviceType.CAMERA) || AvAdapter.currentRenderingDeviceType !== Video.DeviceType.CAMERA )
+            VideoView {
+                id: distantRenderer
 
-                    rendererId: root.callPreviewId
+                anchors.centerIn: parent
+                anchors.fill: parent
+                z: -1
 
-                    height: width * invAspectRatio
-                    width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
-                    x: callPageMainRect.width - previewRenderer.width - previewMargin
-                    y: previewMarginYTop
+                visible: false//participantsLayer.count === 0 && !root.isAudioOnly
+            }
 
-                    states: [
-                        State {
-                            name: "geoChanging"
-                            PropertyChanges {
-                                target: previewRenderer
-                                x: previewToX
-                                y: previewToY
-                            }
-                        }
-                    ]
+            ParticipantsLayer {
+                id: participantsLayer
+                anchors.fill: parent
+                anchors.centerIn: parent
+                anchors.margins: 3
+                visible: true//participantsLayer.count !== 0
 
-                    transitions: Transition {
-                        PropertyAnimation {
-                            properties: "x,y"
-                            easing.type: Easing.OutExpo
-                            duration: 250
+                onCountChanged: {
+                    callOverlay.isConference = participantsLayer.count > 0
+                }
+            }
 
-                            onStopped: {
-                                previewRenderer.state = ""
-                            }
+            LocalVideo {
+                id: previewRenderer
+
+                visible: !callOverlay.isAudioOnly && participantsLayer.count == 0 && !callOverlay.isVideoMuted && !callOverlay.isPaused &&
+                         ((VideoDevices.listSize !== 0 && AvAdapter.currentRenderingDeviceType === Video.DeviceType.CAMERA) || AvAdapter.currentRenderingDeviceType !== Video.DeviceType.CAMERA )
+
+                rendererId: root.callPreviewId
+
+                height: width * invAspectRatio
+                width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
+                x: callPageMainRect.width - previewRenderer.width - previewMargin
+                y: previewMarginYTop
+
+                states: [
+                    State {
+                        name: "geoChanging"
+                        PropertyChanges {
+                            target: previewRenderer
+                            x: previewToX
+                            y: previewToY
                         }
                     }
+                ]
 
-                    MouseArea {
-                        id: dragMouseArea
+                transitions: Transition {
+                    PropertyAnimation {
+                        properties: "x,y"
+                        easing.type: Easing.OutExpo
+                        duration: 250
 
-                        anchors.fill: previewRenderer
-
-                        onPressed: function (mouse) {
-                            clickPos = Qt.point(mouse.x, mouse.y)
-                        }
-
-                        onReleased: {
+                        onStopped: {
                             previewRenderer.state = ""
-                            previewMagneticSnap()
-                        }
-
-                        onPositionChanged: function (mouse) {
-                            // Calculate mouse position relative change.
-                            var delta = Qt.point(mouse.x - clickPos.x,
-                                                 mouse.y - clickPos.y)
-                            var deltaW = previewRenderer.x + delta.x + previewRenderer.width
-                            var deltaH = previewRenderer.y + delta.y + previewRenderer.height
-
-                            // Check if the previewRenderer exceeds the border of callPageMainRect.
-                            if (deltaW < callPageMainRect.width
-                                    && previewRenderer.x + delta.x > 1)
-                                previewRenderer.x += delta.x
-                            if (deltaH < callPageMainRect.height
-                                    && previewRenderer.y + delta.y > 1)
-                                previewRenderer.y += delta.y
-                        }
-                    }
-
-                    layer.enabled: true
-                    layer.effect: OpacityMask {
-                        maskSource: Rectangle {
-                            width: previewRenderer.width
-                            height: previewRenderer.height
-                            radius: JamiTheme.primaryRadius
                         }
                     }
                 }
 
-                CallOverlay {
-                    id: callOverlay
+                MouseArea {
+                    id: dragMouseArea
 
-                    anchors.fill: parent
-                    isConference: participantsLayer.count > 0
+                    anchors.fill: previewRenderer
 
-                    function toggleConversation() {
-                        if (inCallMessageWebViewStack.visible)
-                            closeInCallConversation()
-                        else
+                    onPressed: function (mouse) {
+                        clickPos = Qt.point(mouse.x, mouse.y)
+                    }
+
+                    onReleased: {
+                        previewRenderer.state = ""
+                        previewMagneticSnap()
+                    }
+
+                    onPositionChanged: function (mouse) {
+                        // Calculate mouse position relative change.
+                        var delta = Qt.point(mouse.x - clickPos.x,
+                                             mouse.y - clickPos.y)
+                        var deltaW = previewRenderer.x + delta.x + previewRenderer.width
+                        var deltaH = previewRenderer.y + delta.y + previewRenderer.height
+
+                        // Check if the previewRenderer exceeds the border of callPageMainRect.
+                        if (deltaW < callPageMainRect.width
+                                && previewRenderer.x + delta.x > 1)
+                            previewRenderer.x += delta.x
+                        if (deltaH < callPageMainRect.height
+                                && previewRenderer.y + delta.y > 1)
+                            previewRenderer.y += delta.y
+                    }
+                }
+
+                layer.enabled: true
+                layer.effect: OpacityMask {
+                    maskSource: Rectangle {
+                        width: previewRenderer.width
+                        height: previewRenderer.height
+                        radius: JamiTheme.primaryRadius
+                    }
+                }
+            }
+
+            CallOverlay {
+                id: callOverlay
+
+                anchors.fill: parent
+                isConference: participantsLayer.count > 0
+
+                function toggleConversation() {
+                    if (inCallMessageWebViewStack.visible)
+                        closeInCallConversation()
+                    else
+                        openInCallConversation()
+                }
+
+                Connections {
+                    target: CallAdapter
+
+                    function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
+                                             isSIP, isGrid, previewId) {
+                        if (previewId != "") {
+                            if (root.callPreviewId != previewId)
+                                VideoDevices.stopDevice(root.callPreviewId, true)
+                            VideoDevices.startDevice(previewId)
+                        } else {
+                            VideoDevices.stopDevice(root.callPreviewId, true)
+                        }
+                        root.callPreviewId = previewId
+                        callOverlay.showOnHoldImage(isPaused)
+                        root.isAudioOnly = isAudioOnly
+                        callOverlay.showOnHoldImage(isPaused)
+                        audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
+                        callOverlay.updateUI(isPaused, isAudioOnly,
+                                             isAudioMuted, isVideoMuted,
+                                             isSIP,
+                                             isGrid)
+                    }
+
+                    function onShowOnHoldLabel(isPaused) {
+                        callOverlay.showOnHoldImage(isPaused)
+                        audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
+                    }
+
+                    function onRemoteRecordingChanged(label, state) {
+                        callOverlay.showRemoteRecording(label, state)
+                    }
+
+                    function onEraseRemoteRecording() {
+                        callOverlay.resetRemoteRecording()
+                    }
+                }
+
+                Connections {
+                    target: MessagesAdapter
+                    enabled: root.visible
+
+                    function onNewInteraction(interactionType) {
+                        // Ignore call notifications, as we are in the call.
+                        if (interactionType !== Interaction.Type.CALL && !inCallMessageWebViewStack.visible)
                             openInCallConversation()
                     }
-
-                    Connections {
-                        target: CallAdapter
-
-                        function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
-                                                 isSIP, isGrid, previewId) {
-                            if (previewId != "") {
-                                if (root.callPreviewId != previewId)
-                                    VideoDevices.stopDevice(root.callPreviewId, true)
-                                VideoDevices.startDevice(previewId)
-                            } else {
-                                VideoDevices.stopDevice(root.callPreviewId, true)
-                            }
-                            root.callPreviewId = previewId
-                            callOverlay.showOnHoldImage(isPaused)
-                            root.isAudioOnly = isAudioOnly
-                            callOverlay.showOnHoldImage(isPaused)
-                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
-                            callOverlay.updateUI(isPaused, isAudioOnly,
-                                                 isAudioMuted, isVideoMuted,
-                                                 isSIP,
-                                                 isGrid)
-                        }
-
-                        function onShowOnHoldLabel(isPaused) {
-                            callOverlay.showOnHoldImage(isPaused)
-                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
-                        }
-
-                        function onRemoteRecordingChanged(label, state) {
-                            callOverlay.showRemoteRecording(label, state)
-                        }
-
-                        function onEraseRemoteRecording() {
-                            callOverlay.resetRemoteRecording()
-                        }
-                    }
-
-                    Connections {
-                        target: MessagesAdapter
-                        enabled: root.visible
-
-                        function onNewInteraction(interactionType) {
-                            // Ignore call notifications, as we are in the call.
-                            if (interactionType !== Interaction.Type.CALL && !inCallMessageWebViewStack.visible)
-                                openInCallConversation()
-                        }
-                    }
-
-                    onChatButtonClicked: {
-                        inCallMessageWebViewStack.visible ?
-                                    closeInCallConversation() :
-                                    openInCallConversation()
-                    }
-
-                    onFullScreenClicked: {
-                        callStackView.toggleFullScreen()
-                    }
                 }
 
-                ColumnLayout {
-                    id: audioCallPageRectCentralRect
-                    anchors.centerIn: parent
-                    anchors.left: parent.left
-                    anchors.right: parent.right
+                onChatButtonClicked: {
+                    inCallMessageWebViewStack.visible ?
+                                closeInCallConversation() :
+                                openInCallConversation()
+                }
 
-                    visible: root.isAudioOnly
+                onFullScreenClicked: {
+                    callStackView.toggleFullScreen()
+                }
+            }
 
-                    ConversationAvatar {
-                        id: contactImage
+            ColumnLayout {
+                id: audioCallPageRectCentralRect
+                anchors.centerIn: parent
+                anchors.left: parent.left
+                anchors.right: parent.right
 
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: JamiTheme.avatarSizeInCall
-                        Layout.preferredHeight: JamiTheme.avatarSizeInCall
+                visible: root.isAudioOnly
 
-                        showPresenceIndicator: false
-                    }
+                ConversationAvatar {
+                    id: contactImage
 
-                    Text {
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.topMargin: JamiTheme.preferredMarginSize
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: JamiTheme.avatarSizeInCall
+                    Layout.preferredHeight: JamiTheme.avatarSizeInCall
 
-                        Layout.preferredWidth: root.width
+                    showPresenceIndicator: false
+                }
 
-                        font.pointSize: JamiTheme.titleFontSize
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: JamiTheme.preferredMarginSize
 
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
+                    Layout.preferredWidth: root.width
 
-                        text: CurrentConversation.title
-                        elide: Text.ElideMiddle
-                        color: "white"
-                    }
+                    font.pointSize: JamiTheme.titleFontSize
+
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                    text: CurrentConversation.title
+                    elide: Text.ElideMiddle
+                    color: "white"
                 }
             }
 
