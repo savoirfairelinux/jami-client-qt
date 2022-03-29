@@ -141,6 +141,14 @@ Item {
                         participantRect.opacity = hovered ? 1 : 0
                     }
                 }
+
+
+                TapHandler {
+                    enabled: overlayRect.visible
+                    onDoubleTapped: function onDoubleTapped(eventPoint) {
+                        callStackView.toggleFullScreen()
+                    }
+                }
             }
 
             Rectangle {
