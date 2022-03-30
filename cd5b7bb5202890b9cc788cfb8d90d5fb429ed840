@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8353ef9a_7e3111ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-30T14:01:05Z",
+      "side": 1,
+      "message": "With 4 participants, there is an issue (last line)",
+      "revId": "cd5b7bb5202890b9cc788cfb8d90d5fb429ed840",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
