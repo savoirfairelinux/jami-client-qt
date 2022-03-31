@@ -182,7 +182,7 @@ Rectangle {
                     anchors.fill: parent
                     anchors.centerIn: parent
                     anchors.margins: 3
-                    visible: !root.isAudioOnly &&  participantsLayer.count !== 0
+                    visible: participantsLayer.count !== 0
 
                     onCountChanged: {
                         callOverlay.isConference = participantsLayer.count > 0
@@ -295,7 +295,7 @@ Rectangle {
                             callOverlay.showOnHoldImage(isPaused)
                             root.isAudioOnly = isAudioOnly
                             callOverlay.showOnHoldImage(isPaused)
-                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
+                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
                             callOverlay.updateUI(isPaused, isAudioOnly,
                                                  isAudioMuted, isVideoMuted,
                                                  isSIP,
@@ -304,7 +304,7 @@ Rectangle {
 
                         function onShowOnHoldLabel(isPaused) {
                             callOverlay.showOnHoldImage(isPaused)
-                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly
+                            audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
                         }
 
                         function onRemoteRecordingChanged(label, state) {
