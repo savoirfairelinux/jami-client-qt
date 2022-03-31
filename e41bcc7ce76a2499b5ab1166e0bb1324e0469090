@@ -93,6 +93,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93ba33e7_aeaf095d",
+        "filename": "src/callparticipantsmodel.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-31T16:05:14Z",
+      "side": 1,
+      "message": "Fixed higher in the stack.",
+      "parentUuid": "68131682_f5515fba",
+      "revId": "e41bcc7ce76a2499b5ab1166e0bb1324e0469090",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31bf13f5_17004dbe",
@@ -106,6 +124,30 @@
       "writtenOn": "2022-03-24T17:31:17Z",
       "side": 1,
       "message": "2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "e41bcc7ce76a2499b5ab1166e0bb1324e0469090",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39c46b48_9f9b1fd1",
+        "filename": "src/callparticipantsmodel.h",
+        "patchSetId": 26
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-31T16:05:14Z",
+      "side": 1,
+      "message": "Fixed higher in the stack.",
+      "parentUuid": "31bf13f5_17004dbe",
       "range": {
         "startLine": 2,
         "startChar": 17,
