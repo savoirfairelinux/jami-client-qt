@@ -89,6 +89,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "11ac49c1_e8829044",
+        "filename": "src/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 18
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-03-31T16:09:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a6738e9_9cbc2bc6",
+      "range": {
+        "startLine": 120,
+        "startChar": 19,
+        "endLine": 121,
+        "endChar": 20
+      },
+      "revId": "28b8542a4f52b8f3238a081f649ad0db88f48ee3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "397f1cbd_6e374a4f",
         "filename": "src/mainview/components/ParticipantsLayer.qml",
         "patchSetId": 18
