@@ -364,7 +364,10 @@ elseif (NOT APPLE)
 else() # APPLE
     list(APPEND COMMON_SOURCES
                 ${SRC_DIR}/os/macos/updatemanager.mm
-                ${SRC_DIR}/os/macos/connectivitymonitor.mm)
+                ${SRC_DIR}/os/macos/connectivitymonitor.mm
+                ${SRC_DIR}/os/macos/macutils.mm)
+    list(APPEND COMMON_HEADERS
+                ${SRC_DIR}/os/macos/macutils.h)
     if(NOT DEFINED LRC)
         if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
             set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)

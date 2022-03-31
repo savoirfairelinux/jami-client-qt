@@ -29,6 +29,9 @@
 #if defined(HAS_VULKAN)
 #include <QVulkanInstance>
 #endif
+#if defined(Q_OS_MACOS)
+#include <os/macos/macutils.h>
+#endif
 
 #include <clocale>
 
@@ -98,9 +101,12 @@ main(int argc, char* argv[])
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
 
     MainApplication app(argc, newArgv);
-
 #if defined(Q_OS_MACOS)
-    QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
+    if (!macutils::isMetalSupported()) {
+        QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
+    } else {
+        QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGLRhi);
+    }
 #else
     if (std::invoke([] {
 #if defined(HAS_VULKAN)
