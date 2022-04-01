@@ -514,17 +514,18 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
 void
 CallAdapter::fillParticipantData(QJsonObject& participant) const
 {
-    participant["bestName"] = participant["uri"];
+    participant[lrc::api::ParticipantsInfosStrings::BESTNAME]
+        = participant[lrc::api::ParticipantsInfosStrings::URI];
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-    participant["isLocal"] = false;
-    if (participant["bestName"] == accInfo.profileInfo.uri) {
-        participant["bestName"] = tr("me");
-        participant["isLocal"] = true;
+    participant[lrc::api::ParticipantsInfosStrings::ISLOCAL] = false;
+    if (participant[lrc::api::ParticipantsInfosStrings::BESTNAME] == accInfo.profileInfo.uri) {
+        participant[lrc::api::ParticipantsInfosStrings::BESTNAME] = tr("me");
+        participant[lrc::api::ParticipantsInfosStrings::ISLOCAL] = true;
     } else {
         try {
-            participant["bestName"] = lrcInstance_->getCurrentAccountInfo()
-                                          .contactModel->bestNameForContact(
-                                              participant["uri"].toString());
+            participant[lrc::api::ParticipantsInfosStrings::BESTNAME]
+                = lrcInstance_->getCurrentAccountInfo().contactModel->bestNameForContact(
+                    participant[lrc::api::ParticipantsInfosStrings::URI].toString());
         } catch (...) {
         }
     }
@@ -741,8 +742,8 @@ CallAdapter::maximizeParticipant(const QString& uri)
         auto participants = getConferencesInfos();
         for (auto part : participants) {
             auto participant = part.toJsonObject();
-            if (participant["uri"].toString() == uri) {
-                auto active = participant["active"].toBool();
+            if (participant[lrc::api::ParticipantsInfosStrings::URI].toString() == uri) {
+                auto active = participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool();
                 // Else, continue.
                 if (!active) {
                     callModel->setActiveParticipant(confId, uri);
@@ -772,8 +773,8 @@ CallAdapter::minimizeParticipant(const QString& uri)
         auto participants = getConferencesInfos();
         for (auto& part : participants) {
             auto participant = part.toJsonObject();
-            if (participant["uri"].toString() == uri) {
-                auto active = participant["active"].toBool();
+            if (participant[lrc::api::ParticipantsInfosStrings::URI].toString() == uri) {
+                auto active = participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool();
                 if (active) {
                     if (call.layout == lrc::api::call::Layout::ONE) {
                         callModel->setConferenceLayout(confId,
