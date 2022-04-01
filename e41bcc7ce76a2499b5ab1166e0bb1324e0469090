@@ -65,6 +65,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ac2c1b0_9c87da4f",
+        "filename": "src/callparticipantsmodel.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-04-01T20:13:44Z",
+      "side": 1,
+      "message": "Done up in the stack",
+      "parentUuid": "7d1c3a66_535073ff",
+      "revId": "e41bcc7ce76a2499b5ab1166e0bb1324e0469090",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6db712ab_82a15fbc",
@@ -78,6 +96,24 @@
       "writtenOn": "2022-03-24T17:31:17Z",
       "side": 1,
       "message": "same here.\nWe can easily misspell \"callId\" (CallId for instance)",
+      "revId": "e41bcc7ce76a2499b5ab1166e0bb1324e0469090",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33fe6b75_0d39caef",
+        "filename": "src/callparticipantsmodel.cpp",
+        "patchSetId": 26
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-04-01T20:13:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6db712ab_82a15fbc",
       "revId": "e41bcc7ce76a2499b5ab1166e0bb1324e0469090",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
