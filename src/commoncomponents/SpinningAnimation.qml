@@ -47,6 +47,7 @@ Item {
         }
 
         RotationAnimation on angle {
+            running: root.visible
             loops: Animation.Infinite
             duration: spinningAnimationDuration
             from: 0
@@ -88,6 +89,7 @@ Item {
         }
 
         RotationAnimation on angle {
+            running: root.visible
             loops: Animation.Infinite
             duration: spinningAnimationDuration
             from: 180.0

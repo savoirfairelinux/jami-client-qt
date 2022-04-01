@@ -213,7 +213,7 @@ Item {
 
                 SequentialAnimation on color {
                     loops: Animation.Infinite
-                    running: true
+                    running: recordingRect.visible
                     ColorAnimation {
                         from: JamiTheme.recordIconColor
                         to: "transparent"
