@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a440139a_2bbe28be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-01T21:57:58Z",
+      "side": 1,
+      "message": "A bug should be opened on bugreports.qt This is definitely a bug in Qt, it should handle this.",
+      "revId": "c57f32efd23595d87d5dfa5f1c1cc5bdab5b0a0e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
