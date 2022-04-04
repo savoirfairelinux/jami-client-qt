@@ -1101,7 +1101,7 @@ Jami will now quit.</source>
         <location filename="../src/constant/JamiStrings.qml" line="216"/>
         <location filename="../src/constant/JamiStrings.qml" line="574"/>
         <source>Unmute</source>
-        <translation type="unfinished"/>
+        <translation>Slå på ljudet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="222"/>
