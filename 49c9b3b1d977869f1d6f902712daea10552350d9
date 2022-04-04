@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "178aecd9_060e0082",
+        "filename": "src/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-04T21:40:14Z",
+      "side": 1,
+      "message": "to fix",
+      "revId": "49c9b3b1d977869f1d6f902712daea10552350d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38402b7a_b59d6575",
+        "filename": "src/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-04T21:40:14Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 185,
+        "startChar": 34,
+        "endLine": 186,
+        "endChar": 60
+      },
+      "revId": "49c9b3b1d977869f1d6f902712daea10552350d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02ac428e_0ab5a5d3",
+        "filename": "src/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-04T21:40:14Z",
+      "side": 1,
+      "message": "weird anim",
+      "range": {
+        "startLine": 217,
+        "startChar": 34,
+        "endLine": 221,
+        "endChar": 36
+      },
+      "revId": "49c9b3b1d977869f1d6f902712daea10552350d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
