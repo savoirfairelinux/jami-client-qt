@@ -734,7 +734,7 @@ Jami ora si chiuderà.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="111"/>
         <source>Connectivity</source>
-        <translation>Connettività</translation>
+        <translation>Connessione</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="112"/>
@@ -884,7 +884,7 @@ Jami ora si chiuderà.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="154"/>
         <source>Bootstrap</source>
-        <translation>Avvio</translation>
+        <translation>Server di avvio</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="157"/>
@@ -1615,7 +1615,7 @@ Per favore riprova più tardi.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="372"/>
         <source>Downloads directory</source>
-        <translation>Cartella Scarica</translation>
+        <translation>Scarica nella cartella</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="373"/>

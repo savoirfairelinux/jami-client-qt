@@ -884,7 +884,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="154"/>
         <source>Bootstrap</source>
-        <translation>Server de conectare</translation>
+        <translation>Server de pornire</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="157"/>
@@ -1615,7 +1615,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="372"/>
         <source>Downloads directory</source>
-        <translation>Folderul Descărcări</translation>
+        <translation>Descarcă în dosarul</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="373"/>
@@ -1635,7 +1635,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Display hyperlink previews in the chatview</source>
-        <translation>Afișare previzualizări linkuri</translation>
+        <translation>Arată adresele web în discuții</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>
@@ -2021,12 +2021,12 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="382"/>
         <source>Vertical view</source>
-        <translation>Vizualizare verticală</translation>
+        <translation>Pe verticală</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="383"/>
         <source>Horizontal view</source>
-        <translation>Vizualizare orizontală</translation>
+        <translation>Pe orizontală</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="429"/>
@@ -2815,7 +2815,7 @@ Copiază-l și distribuie-l prietenilor!</translation>
     <message>
         <location filename="../src/utilsadapter.cpp" line="266"/>
         <source>Default</source>
-        <translation>Implicit</translation>
+        <translation>Prestabilit</translation>
     </message>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>
