@@ -24,7 +24,6 @@ import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
 import "../../commoncomponents"
-import "../../commoncomponents/emojipicker"
 
 Rectangle {
     id: root
@@ -90,10 +89,19 @@ Rectangle {
         visible: false
     }
 
-    EmojiPicker {
-        id: emojiPicker
+    Loader {
+        id: empjiLoader
+        source: WITH_WEBENGINE ? "qrc:/src/commoncomponents/emojipicker/EmojiPicker.qml" : "qrc:/src/nowebengine/EmojiPicker.qml"
 
-        onEmojiIsPicked: messageBar.textAreaObj.insertText(content)
+        function openEmojiPicker() {
+            item.openEmojiPicker()
+        }
+        Connections {
+            target: empjiLoader.item
+            function onEmojiIsPicked(content) {
+                messageBar.textAreaObj.insertText(content)
+            }
+        }
     }
 
     JamiFileDialog {
@@ -126,20 +134,20 @@ Rectangle {
             onEmojiButtonClicked: {
                 JamiQmlUtils.updateMessageBarButtonsPoints()
 
-                emojiPicker.parent = JamiQmlUtils.mainViewRectObj
+                empjiLoader.parent = JamiQmlUtils.mainViewRectObj
 
-                emojiPicker.x = Qt.binding(function() {
+                empjiLoader.x = Qt.binding(function() {
                     var buttonX = JamiQmlUtils.emojiPickerButtonInMainViewPoint.x +
                             JamiQmlUtils.emojiPickerButtonObj.width
-                    return buttonX - emojiPicker.width
+                    return buttonX - empjiLoader.width
                 })
-                emojiPicker.y = Qt.binding(function() {
+                empjiLoader.y = Qt.binding(function() {
                     var buttonY = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.y
-                    return buttonY - emojiPicker.height - messageBar.marginSize
+                    return buttonY - empjiLoader.height - messageBar.marginSize
                             - JamiTheme.chatViewHairLineSize
                 })
 
-                emojiPicker.openEmojiPicker()
+                empjiLoader.openEmojiPicker()
             }
             onSendFileButtonClicked: jamiFileDialog.open()
             onSendMessageButtonClicked: {

@@ -23,7 +23,7 @@ build-local/
 *.vcxproj
 *.vcxproj.filters
 *qmlcache.qrc
-
+qml_without_webengine.qrc
 .deploy.stamp
 
 # auto-gen files
