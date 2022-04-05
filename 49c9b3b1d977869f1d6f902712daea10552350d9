@@ -128,6 +128,30 @@
       },
       "revId": "49c9b3b1d977869f1d6f902712daea10552350d9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad8a140_557343a9",
+        "filename": "src/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-05T14:26:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2bff773_e58cbae8",
+      "range": {
+        "startLine": 217,
+        "startChar": 34,
+        "endLine": 221,
+        "endChar": 36
+      },
+      "revId": "49c9b3b1d977869f1d6f902712daea10552350d9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
