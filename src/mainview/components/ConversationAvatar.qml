@@ -34,6 +34,7 @@ Item {
         id: animation
 
         anchors.fill: root
+        visible: mode !== SpinningAnimation.Mode.Disabled
     }
 
     Avatar {

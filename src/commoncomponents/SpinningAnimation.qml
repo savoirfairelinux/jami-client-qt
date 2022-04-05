@@ -39,7 +39,6 @@ Item {
 
         anchors.fill: parent
 
-        visible: mode !== SpinningAnimation.Mode.Disabled
         angle: 0.0
         gradient: Gradient {
             GradientStop { position: 0.5; color: "transparent" }
