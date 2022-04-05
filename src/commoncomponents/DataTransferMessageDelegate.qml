@@ -41,7 +41,7 @@ Loader {
     sourceComponent: {
         if (Status === Interaction.Status.TRANSFER_FINISHED) {
             mediaInfo = MessagesAdapter.getMediaInfo(Body)
-            if (Object.keys(mediaInfo).length !== 0)
+            if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE)
                 return localMediaMsgComp
         }
         return dataTransferMsgComp
@@ -264,48 +264,10 @@ Loader {
                     }
                     Component {
                         id: avComp
-                        WebEngineView {
-                            id: wev
-                            anchors.right: isOutgoing ? parent.right : undefined
-                            readonly property real minSize: 192
-                            readonly property real maxSize: 256
-                            readonly property real aspectRatio: 1 / .75
-                            readonly property real adjustedWidth: Math.min(maxSize,
-                                                                  Math.max(minSize,
-                                                                           innerContent.width - senderMargin))
-                            width: isFullScreen ? parent.width : adjustedWidth
-                            height: mediaInfo.isVideo ?
-                                        isFullScreen ?
-                                            parent.height :
-                                            Math.ceil(adjustedWidth / aspectRatio) :
-                                        54
-                            onContextMenuRequested: function(request) {
-                                request.accepted = true
-                            }
-                            settings.fullScreenSupportEnabled: mediaInfo.isVideo
-                            settings.javascriptCanOpenWindows: false
-                            Component.onCompleted: loadHtml(mediaInfo.html, 'file://')
-                            layer.enabled: !isFullScreen
-                            layer.effect: OpacityMask {
-                                maskSource: MessageBubble {
-                                    out: isOutgoing
-                                    type: seq
-                                    width: wev.width
-                                    height: wev.height
-                                    radius: msgRadius
-                                }
-                            }
-                            onFullScreenRequested: function(request) {
-                                if (request.toggleOn) {
-                                    layoutManager.pushFullScreenItem(
-                                                this,
-                                                localMediaCompLoader,
-                                                null,
-                                                function() { wev.fullScreenCancelled() })
-                                } else if (!request.toggleOn) {
-                                    layoutManager.removeFullScreenItem(this)
-                                }
-                                request.accept()
+                        Loader {
+                            Component.onCompleted: {
+                                var qml = WITH_WEBENGINE ? "qrc:/src/commoncomponents/MediaPreviewBase.qml" : "qrc:/src/nowebengine/MediaPreviewBase.qml"
+                                setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
                             }
                         }
                     }
