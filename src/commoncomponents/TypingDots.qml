@@ -31,7 +31,7 @@ Row {
 
     Timer {
         repeat: true
-        running: true
+        running: root.visible
         interval: JamiTheme.typingDotsAnimationInterval
 
         onTriggered: {

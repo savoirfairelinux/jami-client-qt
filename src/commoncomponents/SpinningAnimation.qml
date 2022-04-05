@@ -34,12 +34,13 @@ Item {
     property real outerCutRadius: root.height / 2
     property int spinningAnimationDuration: 1000
 
+    visible: mode !== SpinningAnimation.Mode.Disabled
+
     ConicalGradient {
         id: conicalGradientOne
 
         anchors.fill: parent
 
-        visible: mode !== SpinningAnimation.Mode.Disabled
         angle: 0.0
         gradient: Gradient {
             GradientStop { position: 0.5; color: "transparent" }
