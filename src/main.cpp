@@ -24,8 +24,11 @@
 
 #include <QCryptographicHash>
 #include <QApplication>
+#include <QtQuick>
+#ifdef WITH_WEBENGINE
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
+#endif
 #if defined(HAS_VULKAN) && !defined(Q_OS_LINUX)
 #include <QVulkanInstance>
 #endif
@@ -56,9 +59,11 @@ parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
     return newArgv;
 }
 
+#ifdef WITH_WEBENGINE
 // Qt WebEngine Chromium Flags
 static char disableWebSecurity[] {"--disable-web-security"};
 static char singleProcess[] {"--single-process"};
+#endif
 
 int
 main(int argc, char* argv[])
@@ -88,8 +93,10 @@ main(int argc, char* argv[])
      */
     unsetenv("QT_STYLE_OVERRIDE");
 #endif
+#ifdef WITH_WEBENGINE
     qtWebEngineChromiumFlags << disableWebSecurity;
     qtWebEngineChromiumFlags << singleProcess;
+#endif
 
     QApplication::setApplicationName("Jami");
     QApplication::setOrganizationDomain("jami.net");
