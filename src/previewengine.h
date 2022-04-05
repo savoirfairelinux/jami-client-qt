@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2021-2022 Savoir-faire Linux Inc.
  * Author: Trevor Tabah <trevor.tabah@savoirfairelinux.com>
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
@@ -20,42 +20,27 @@
 #pragma once
 
 #include "utils.h"
+#include <QObject>
 
-#include <QtWebChannel>
-#include <QWebEnginePage>
-
-class PreviewEngine;
-
-class PreviewEnginePrivate : public QObject
+class PreviewEngine : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PreviewEngine)
 public:
-    explicit PreviewEnginePrivate(PreviewEngine* parent)
-        : parent_(parent)
-    {}
+    PreviewEngine(QObject* parent = nullptr);
+    ~PreviewEngine();
+
+    void parseMessage(const QString& messageId, const QString& msg, bool showPreview);
 
     Q_INVOKABLE void infoReady(const QString& messageId, const QVariantMap& info);
     Q_INVOKABLE void linkifyReady(const QString& messageId, const QString& linkified);
     Q_INVOKABLE void log(const QString& str);
 
-private:
-    PreviewEngine* parent_;
-};
-
-class PreviewEngine : public QWebEnginePage
-{
-    Q_OBJECT
-public:
-    explicit PreviewEngine(QObject* parent = nullptr);
-    ~PreviewEngine() = default;
-
-    void parseMessage(const QString& messageId, const QString& msg, bool showPreview);
-
 Q_SIGNALS:
-    void infoReady(const QString& messageId, const QVariantMap& info);
-    void linkifyReady(const QString& messageId, const QString& linkified);
+    void ready(const QString& messageId, const QVariantMap& info);
+    void linkify(const QString& messageId, const QString& linkified);
 
 private:
-    QWebChannel* channel_;
-    PreviewEnginePrivate* pimpl_;
+    struct Impl;
+    std::unique_ptr<Impl> pimpl_;
 };
