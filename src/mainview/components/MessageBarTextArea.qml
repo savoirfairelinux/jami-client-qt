@@ -87,7 +87,7 @@ JamiFlickable {
 
             SequentialAnimation on opacity {
                 loops: Animation.Infinite
-                running: visible
+                running: textArea.cursorVisible
 
                 NumberAnimation {
                     from: 1
