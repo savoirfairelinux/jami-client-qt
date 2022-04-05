@@ -80,28 +80,6 @@ JamiFlickable {
         textFormat: TextEdit.PlainText
         placeholderTextColor: JamiTheme.placeholderTextColor
 
-        cursorDelegate: Rectangle {
-            visible: textArea.cursorVisible
-            color: JamiTheme.textColor
-            width: 1
-
-            SequentialAnimation on opacity {
-                loops: Animation.Infinite
-                running: textArea.cursorVisible
-
-                NumberAnimation {
-                    from: 1
-                    to: 0
-                    duration: JamiTheme.recordBlinkDuration
-                }
-                NumberAnimation {
-                    from: 0
-                    to: 1
-                    duration: JamiTheme.recordBlinkDuration
-                }
-            }
-        }
-
         background: Rectangle {
             border.width: 0
             color: JamiTheme.transparentColor
