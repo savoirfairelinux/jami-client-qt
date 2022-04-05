@@ -61,10 +61,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     });
 
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
-    connect(previewEngine_,
-            &PreviewEngine::linkifyReady,
-            this,
-            &MessagesAdapter::onMessageLinkified);
+    connect(previewEngine_, &PreviewEngine::linkified, this, &MessagesAdapter::onMessageLinkified);
 }
 
 void

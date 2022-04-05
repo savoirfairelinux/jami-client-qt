@@ -42,12 +42,22 @@ set(QT_MODULES
     Concurrent
     Core
     Core5Compat
-    WebEngineCore
-    WebEngineQuick
-    WebChannel
-    WebEngineWidgets
     Multimedia
 )
+
+if(NOT DEFINED WITH_WEBENGINE)
+    set(WITH_WEBENGINE true)
+endif()
+
+if(WITH_WEBENGINE)
+    list(APPEND QT_MODULES
+        WebEngineCore
+        WebEngineQuick
+        WebChannel
+        WebEngineWidgets
+    )
+endif()
+
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
@@ -58,7 +68,13 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
 set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
-set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
+if(WITH_WEBENGINE)
+    set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
+else()
+    execute_process(COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/scripts/gen-qrc-without-webengine.py
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml_without_webengine.qrc)
+endif()
 
 if (APPLE)
     include(FetchContent)
@@ -137,7 +153,6 @@ set(COMMON_SOURCES
     ${SRC_DIR}/currentconversation.cpp
     ${SRC_DIR}/currentaccount.cpp
     ${SRC_DIR}/videodevices.cpp
-    ${SRC_DIR}/previewengine.cpp
     ${SRC_DIR}/videoprovider.cpp
     ${SRC_DIR}/callparticipantsmodel.cpp
 )
@@ -194,10 +209,18 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentconversation.h
     ${SRC_DIR}/currentaccount.h
     ${SRC_DIR}/videodevices.h
-    ${SRC_DIR}/previewengine.h
     ${SRC_DIR}/videoprovider.h
     ${SRC_DIR}/callparticipantsmodel.h
 )
+
+if(WITH_WEBENGINE)
+    list(APPEND COMMON_SOURCES
+                ${SRC_DIR}/previewengine.cpp)
+    add_definitions(-DWITH_WEBENGINE)
+else()
+    list(APPEND COMMON_SOURCES
+                ${SRC_DIR}/nowebengine/previewengine.cpp)
+endif()
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib")
