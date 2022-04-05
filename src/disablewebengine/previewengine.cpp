@@ -17,30 +17,35 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "previewengine.h"
 
-#include "utils.h"
-#include <QObject>
-
-class PreviewEngine : public QObject
+class PreviewEngine::Impl : public QObject
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(PreviewEngine)
 public:
-    PreviewEngine(QObject* parent = nullptr);
-    ~PreviewEngine();
-
-    void parseMessage(const QString& messageId, const QString& msg, bool showPreview);
-
-    Q_INVOKABLE void infoReady(const QString& messageId, const QVariantMap& info);
-    Q_INVOKABLE void linkifyReady(const QString& messageId, const QString& linkified);
-    Q_INVOKABLE void log(const QString& str);
-
-Q_SIGNALS:
-    void ready(const QString& messageId, const QVariantMap& info);
-    void linkify(const QString& messageId, const QString& linkified);
-
-private:
-    struct Impl;
-    std::unique_ptr<Impl> pimpl_;
+    Impl(PreviewEngine& parent)
+        : QObject(nullptr)
+    {}
 };
+
+PreviewEngine::PreviewEngine(QObject* parent)
+    : QObject(parent)
+    , pimpl_(std::make_unique<Impl>(*this))
+{}
+
+PreviewEngine::~PreviewEngine() {}
+
+void
+PreviewEngine::parseMessage(const QString& messageId, const QString& msg, bool showPreview)
+{}
+
+void
+PreviewEngine::log(const QString& str)
+{}
+
+void
+PreviewEngine::infoReady(const QString& messageId, const QVariantMap& info)
+{}
+
+void
+PreviewEngine::linkifyReady(const QString& messageId, const QString& linkified)
+{}
