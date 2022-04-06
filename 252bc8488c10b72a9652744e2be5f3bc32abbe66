@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "570f9409_610dbaa6",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-06T20:26:03Z",
+      "side": 0,
+      "message": "Ideally the whole class should not depend on CurrentAccount.uri but this should be copied and passed at the opening to avoid any switch after clicking on \"Delete\"",
+      "revId": "252bc8488c10b72a9652744e2be5f3bc32abbe66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
