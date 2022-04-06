@@ -29,14 +29,10 @@ import "../commoncomponents"
 BaseModalDialog {
     id: root
 
-    property bool isSIP: {
-        switch (CurrentAccount.type) {
-        case Profile.Type.SIP:
-            return true;
-        default:
-            return false;
-        }
-    }
+    property string accountId
+    property bool isSip
+    property string bestName
+    property string uri
 
     signal accepted
 
@@ -44,6 +40,11 @@ BaseModalDialog {
 
     width: JamiTheme.preferredDialogWidth
     height: JamiTheme.preferredDialogHeight
+
+    Component.onCompleted: print("YEYAYA")
+    Component.onDestruction: print("NoNONO")
+
+    onClosed: this.destroy()
 
     popupContent: ColumnLayout {
         id: deleteAccountContentColumnLayout
@@ -74,7 +75,7 @@ BaseModalDialog {
                                    JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
-            text: CurrentAccount.bestName
+            text: bestName
 
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
@@ -93,7 +94,7 @@ BaseModalDialog {
                                    JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
-            text: CurrentAccount.uri
+            text: uri
 
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
@@ -106,7 +107,7 @@ BaseModalDialog {
         Label {
             id: labelWarning
 
-            visible: !isSIP
+            visible: !isSip
 
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: deleteAccountContentColumnLayout.width -
@@ -133,6 +134,7 @@ BaseModalDialog {
                 id: btnDelete
 
                 Layout.alignment: Qt.AlignHCenter
+                visible: !busyInd.running
 
                 preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 preferredHeight: JamiTheme.preferredFieldHeight
@@ -145,33 +147,32 @@ BaseModalDialog {
                 text: JamiStrings.optionDelete
 
                 Connections {
-                    target: root
-                    function onClosed() { btnDelete.enabled = true }
+                    target: AccountAdapter
+                    function onAccountRemoved(accountId) {
+                        if (accountId === root.accountId) {
+                            accepted()
+                            close()
+                        }
+                    }
                 }
 
                 onClicked: {
-                    btnDelete.enabled = false
+                    AccountAdapter.deleteAccount(root.accountId)
                     busyInd.running = true
-                    AccountAdapter.deleteCurrentAccount()
-                    close()
-                    accepted()
                 }
             }
 
             BusyIndicator {
                 id: busyInd
                 running: false
-
-                Connections {
-                    target: root
-                    function onClosed() { busyInd.running = false }
-                }
+                Layout.preferredHeight: JamiTheme.preferredFieldHeight
             }
 
             MaterialButton {
                 id: btnCancel
 
                 Layout.alignment: Qt.AlignHCenter
+                visible: !busyInd.running
 
                 preferredWidth: JamiTheme.preferredFieldWidth / 2 - 8
                 preferredHeight: JamiTheme.preferredFieldHeight

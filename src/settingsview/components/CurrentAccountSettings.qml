@@ -58,7 +58,22 @@ Rectangle {
     }
 
     function delAccountSlot() {
-        deleteAccountDialog.open()
+        var component = Qt.createComponent(
+                    "qrc:/src/commoncomponents/DeleteAccountDialog.qml")
+        var delAccDialog = component.createObject(appWindow, {
+                                      accountId: CurrentAccount.id,
+                                      isSip: CurrentAccount.type === Profile.Type.SIP,
+                                      bestName: CurrentAccount.bestName,
+                                      uri: CurrentAccount.uri
+                                  });
+        delAccDialog.accepted.connect(function (){
+            if(UtilsAdapter.getAccountListSize() > 0) {
+                navigateToMainView()
+            } else {
+                navigateToNewWizardView()
+            }
+        })
+        delAccDialog.open()
     }
 
     function getAdvancedSettingsScrollPosition() {
@@ -86,17 +101,17 @@ Rectangle {
         buttonCallBacks: [setPasswordButtonText]
     }
 
-    DeleteAccountDialog {
-        id: deleteAccountDialog
+//    DeleteAccountDialog {
+//        id: deleteAccountDialog
 
-        onAccepted: {
-            if(UtilsAdapter.getAccountListSize() > 0) {
-                navigateToMainView()
-            } else {
-                navigateToNewWizardView()
-            }
-        }
-    }
+//        onAccepted: {
+//            if(UtilsAdapter.getAccountListSize() > 0) {
+//                navigateToMainView()
+//            } else {
+//                navigateToNewWizardView()
+//            }
+//        }
+//    }
 
     PasswordDialog {
         id: passwordDialog

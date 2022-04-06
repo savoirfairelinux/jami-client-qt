@@ -241,18 +241,16 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
 }
 
 void
-AccountAdapter::deleteCurrentAccount()
+AccountAdapter::deleteAccount(const QString& accountId)
 {
     Utils::oneShotConnect(&lrcInstance_->accountModel(),
                           &lrc::api::NewAccountModel::accountRemoved,
                           [this](const QString& accountId) {
-                              Q_UNUSED(accountId);
-                              // For testing purpose
-                              Q_EMIT accountRemoved();
+                              Q_EMIT accountRemoved(accountId);
+                              Q_EMIT lrcInstance_->accountListChanged();
                           });
-
-    lrcInstance_->accountModel().removeAccount(lrcInstance_->get_currentAccountId());
-    Q_EMIT lrcInstance_->accountListChanged();
+    std::ignore = QtConcurrent::run(
+        [this, accountId] { lrcInstance_->accountModel().removeAccount(accountId); });
 }
 
 bool

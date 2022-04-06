@@ -59,8 +59,8 @@ public:
     Q_INVOKABLE void createSIPAccount(const QVariantMap& settings);
     Q_INVOKABLE void createJAMSAccount(const QVariantMap& settings);
 
-    // Delete current account
-    Q_INVOKABLE void deleteCurrentAccount();
+    // Delete an account by Id.
+    Q_INVOKABLE void deleteAccount(const QString& accountId);
 
     // Conf property
     Q_INVOKABLE bool hasPassword();
@@ -91,7 +91,7 @@ Q_SIGNALS:
     void reportFailure();
     void accountCreationFailed();
     void accountAdded(QString accountId, int index);
-    void accountRemoved();
+    void accountRemoved(const QString& accountId);
     void accountConfigFinalized();
 
 private:
