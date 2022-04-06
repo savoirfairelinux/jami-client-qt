@@ -24,19 +24,12 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
-import "../commoncomponents"
-
 BaseModalDialog {
     id: root
 
-    property bool isSIP: {
-        switch (CurrentAccount.type) {
-        case Profile.Type.SIP:
-            return true;
-        default:
-            return false;
-        }
-    }
+    property bool isSIP: false
+    property string bestName: ""
+    property string accountId: ""
 
     signal accepted
 
@@ -74,7 +67,7 @@ BaseModalDialog {
                                    JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
-            text: CurrentAccount.bestName
+            text: bestName
 
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
@@ -93,7 +86,7 @@ BaseModalDialog {
                                    JamiTheme.preferredMarginSize * 2
 
             color: JamiTheme.textColor
-            text: CurrentAccount.uri
+            text: accountId
 
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
@@ -144,10 +137,27 @@ BaseModalDialog {
 
                 text: JamiStrings.optionDelete
 
+                Connections {
+                    target: root
+                    function onClosed() { btnDelete.enabled = true }
+                }
+
                 onClicked: {
+                    btnDelete.enabled = false
+                    busyInd.running = true
                     AccountAdapter.deleteCurrentAccount()
-                    accepted()
                     close()
+                    accepted()
+                }
+            }
+
+            BusyIndicator {
+                id: busyInd
+                running: false
+
+                Connections {
+                    target: root
+                    function onClosed() { busyInd.running = false }
                 }
             }
 
