@@ -144,10 +144,27 @@ BaseModalDialog {
 
                 text: JamiStrings.optionDelete
 
+                Connections {
+                    target: root
+                    function onClosed() { btnDelete.enabled = true }
+                }
+
                 onClicked: {
+                    btnDelete.enabled = false
+                    busyInd.running = true
                     AccountAdapter.deleteCurrentAccount()
-                    accepted()
                     close()
+                    accepted()
+                }
+            }
+
+            BusyIndicator {
+                id: busyInd
+                running: false
+
+                Connections {
+                    target: root
+                    function onClosed() { busyInd.running = false }
                 }
             }
 
