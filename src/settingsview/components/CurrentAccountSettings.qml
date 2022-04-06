@@ -58,6 +58,9 @@ Rectangle {
     }
 
     function delAccountSlot() {
+        deleteAccountDialog.isSIP = CurrentAccount.type === Profile.Type.SIP ? true : false
+        deleteAccountDialog.bestName = CurrentAccount.bestName
+        deleteAccountDialog.accountId = CurrentAccount.uri
         deleteAccountDialog.open()
     }
 
