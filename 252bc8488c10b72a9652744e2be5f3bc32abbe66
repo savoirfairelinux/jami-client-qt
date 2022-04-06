@@ -16,6 +16,24 @@
       "message": "Ideally the whole class should not depend on CurrentAccount.uri but this should be copied and passed at the opening to avoid any switch after clicking on \"Delete\"",
       "revId": "252bc8488c10b72a9652744e2be5f3bc32abbe66",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "550a1c1a_0dbbe315",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-04-06T21:42:03Z",
+      "side": 0,
+      "message": "In addition, all the dialogs should be created dynamically with Qt.createComponent(), then createObject(), or incubateObject(). The creation method can be passed all the required arguments as Sébastien mentioned. After successful creation, internal signals can be connected to from CurrentAccountSettings.qml, and the dialog can be opened(it can `onClosed: this.destroy()` or something).\n\nLayout issues may be introduced with the current design, but some type of dynamic creation is going to be needed, although, this may not be in the scope of this commit.",
+      "parentUuid": "570f9409_610dbaa6",
+      "revId": "252bc8488c10b72a9652744e2be5f3bc32abbe66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
