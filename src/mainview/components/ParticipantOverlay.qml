@@ -120,7 +120,10 @@ Item {
         overlayItems: Rectangle {
             id: overlayRect
 
-            anchors.fill: parent
+            width: participantIsActive ? mediaDistRender.contentRect.width : undefined
+            height: participantIsActive ? mediaDistRender.contentRect.height : undefined
+            anchors.centerIn: participantIsActive ? parent : undefined
+            anchors.fill: participantIsActive ? undefined : parent
             color: "transparent"
 
             Item {
