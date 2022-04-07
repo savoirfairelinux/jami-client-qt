@@ -35,6 +35,7 @@
 #include <QMenu>
 #include <QQmlContext>
 #include <QResource>
+#include <QtGlobal>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
