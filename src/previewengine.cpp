@@ -26,7 +26,7 @@
 #include <QtWebChannel>
 #include <QWebEnginePage>
 
-class PreviewEngine::Impl : public QWebEnginePage
+struct PreviewEngine::Impl : public QWebEnginePage
 {
 public:
     PreviewEngine& parent_;
@@ -96,14 +96,5 @@ PreviewEngine::log(const QString& str)
     qDebug() << str;
 }
 
-void
-PreviewEngine::infoReady(const QString& messageId, const QVariantMap& info)
-{
-    Q_EMIT ready(messageId, info);
-}
-
-void
-PreviewEngine::linkifyReady(const QString& messageId, const QString& linkified)
-{
-    Q_EMIT linkify(messageId, linkified);
-}
+#include "moc_previewengine.cpp"
+#include "previewengine.moc"
