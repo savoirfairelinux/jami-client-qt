@@ -44,15 +44,18 @@ set(QT_MODULES
     Core5Compat
     Multimedia
 )
+
 if(NOT DEFINED WITH_WEBENGINE)
     set(WITH_WEBENGINE true)
 endif()
 
 if(WITH_WEBENGINE)
-    list(APPEND QT_MODULES WebEngineCore)
-    list(APPEND QT_MODULES WebEngineQuick)
-    list(APPEND QT_MODULES WebChannel)
-    list(APPEND QT_MODULES WebEngineWidgets)
+    list(APPEND QT_MODULES
+        WebEngineCore
+        WebEngineQuick
+        WebChannel
+        WebEngineWidgets
+    )
 endif()
 
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)

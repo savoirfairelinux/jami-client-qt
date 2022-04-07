@@ -18,10 +18,9 @@
 
 #include "previewengine.h"
 
-class PreviewEngine::Impl : public QObject
+struct PreviewEngine::Impl : public QObject
 {
-public:
-    Impl(PreviewEngine& parent)
+    Impl(PreviewEngine&)
         : QObject(nullptr)
     {}
 };
@@ -34,17 +33,12 @@ PreviewEngine::PreviewEngine(QObject* parent)
 PreviewEngine::~PreviewEngine() {}
 
 void
-PreviewEngine::parseMessage(const QString& messageId, const QString& msg, bool showPreview)
+PreviewEngine::parseMessage(const QString&, const QString&, bool)
 {}
 
 void
-PreviewEngine::log(const QString& str)
+PreviewEngine::log(const QString&)
 {}
 
-void
-PreviewEngine::infoReady(const QString& messageId, const QVariantMap& info)
-{}
-
-void
-PreviewEngine::linkifyReady(const QString& messageId, const QString& linkified)
-{}
+#include "moc_previewengine.cpp"
+#include "previewengine.moc"
