@@ -22,6 +22,30 @@
       },
       "revId": "a0d099ff4a48852be7e7e2eb1e46d088e257eb16",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a887173_0c598a5c",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-04-07T14:54:52Z",
+      "side": 1,
+      "message": "cool! let\u0027s do that with the upcoming static-\u003edynamic refactoring",
+      "parentUuid": "a7d6d209_b19d5404",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 33
+      },
+      "revId": "a0d099ff4a48852be7e7e2eb1e46d088e257eb16",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
