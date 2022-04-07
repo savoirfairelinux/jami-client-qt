@@ -34,6 +34,24 @@
       "parentUuid": "570f9409_610dbaa6",
       "revId": "252bc8488c10b72a9652744e2be5f3bc32abbe66",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ff5849f_2e361a62",
+        "filename": "src/commoncomponents/DeleteAccountDialog.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-04-07T13:41:41Z",
+      "side": 0,
+      "message": "thanks for the feedback.  i\u0027ve pushed a new revision implementing Séb\u0027s suggestion.\n\nand yeah i\u0027m all for the static -\u003e dynamic refactoring for all dialogs/views, but\ni think that\u0027s beyond the scope of this quickfix change.  it would make sense to\ndo that properly and all at once everywhere as a separate refactoring.",
+      "parentUuid": "550a1c1a_0dbbe315",
+      "revId": "252bc8488c10b72a9652744e2be5f3bc32abbe66",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
