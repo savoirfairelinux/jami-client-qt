@@ -39,6 +39,30 @@
       },
       "revId": "e0adc2e28f511114bf90ecbb50fcd5ac4809c539",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8aa6a0_2a9bb2da",
+        "filename": "src/settingsview/components/CurrentAccountSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-04-07T13:46:27Z",
+      "side": 1,
+      "message": "d\u0027uh, of course! thanks",
+      "parentUuid": "90e76a92_acfd373e",
+      "range": {
+        "startLine": 61,
+        "startChar": 77,
+        "endLine": 61,
+        "endChar": 91
+      },
+      "revId": "e0adc2e28f511114bf90ecbb50fcd5ac4809c539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
