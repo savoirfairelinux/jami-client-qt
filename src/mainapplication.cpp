@@ -37,7 +37,6 @@
 #include <QResource>
 #include <QTranslator>
 #include <QLibraryInfo>
-#include <QQuickWindow>
 
 #include <locale.h>
 #include <thread>
@@ -54,25 +53,6 @@
 #if defined _MSC_VER
 #include <gnutls/gnutls.h>
 #endif
-
-static QString
-getRenderInterfaceString()
-{
-    using GAPI = QSGRendererInterface::GraphicsApi;
-    switch (QQuickWindow::graphicsApi()) {
-    case GAPI::Direct3D11Rhi:
-        return "Direct3D11Rhi";
-    case GAPI::MetalRhi:
-        return "MetalRhi";
-    case GAPI::OpenGLRhi:
-        return "OpenGLRhi";
-    case GAPI::VulkanRhi:
-        return "VulkanRhi";
-    default:
-        break;
-    }
-    return {};
-}
 
 void
 ScreenInfo::setCurrentFocusWindow(QWindow* window)
@@ -344,7 +324,6 @@ MainApplication::initQmlLayer()
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
 
     engine_->load(QUrl(QStringLiteral("qrc:/src/MainApplicationWindow.qml")));
-    qWarning().noquote() << "Main window loaded using" << getRenderInterfaceString();
 }
 
 void

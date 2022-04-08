@@ -26,12 +26,6 @@
 #include <QApplication>
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
-#if defined(HAS_VULKAN)
-#include <QVulkanInstance>
-#endif
-#if defined(Q_OS_MACOS)
-#include <os/macos/macutils.h>
-#endif
 
 #include <clocale>
 
@@ -45,7 +39,7 @@ parseInputArgument(int& argc, char* argv[], QList<char*> argsToParse)
      */
     int oldArgc = argc;
     argc += argsToParse.size();
-    auto newArgv = new char*[argc];
+    char** newArgv = new char*[argc];
     for (int i = 0; i < oldArgc; i++) {
         newArgv[i] = argv[i];
     }
@@ -98,35 +92,13 @@ main(int argc, char* argv[])
     QApplication::setHighDpiScaleFactorRoundingPolicy(
         Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
+#if defined(Q_OS_MACOS)
+    QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
+#endif
+
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
 
     MainApplication app(argc, newArgv);
-#if defined(Q_OS_MACOS)
-    if (macutils::isMetalSupported()) {
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
-    } else {
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGLRhi);
-    }
-#else
-    if (std::invoke([] {
-#if defined(HAS_VULKAN)
-            QVulkanInstance inst;
-            inst.setLayers({"VK_LAYER_KHRONOS_validation"});
-            return inst.create();
-#else
-            return false;
-#endif
-        })
-        && qgetenv("WAYLAND_DISPLAY").isEmpty()) {
-        // https://bugreports.qt.io/browse/QTBUG-99684 - Vulkan on
-        // Wayland is not really supported as window decorations are
-        // removed. So we need to re-implement this (custom controls)
-        // or wait for a future version
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::VulkanRhi);
-    } else {
-        QQuickWindow::setGraphicsApi(QSGRendererInterface::Unknown);
-    }
-#endif
 
     // InstanceManager prevents multiple instances, and will handle
     // IPC termination requests to and from secondary instances, which
