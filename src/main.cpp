@@ -26,7 +26,7 @@
 #include <QApplication>
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
-#if defined(HAS_VULKAN)
+#if defined(HAS_VULKAN) && !defined(Q_OS_LINUX)
 #include <QVulkanInstance>
 #endif
 #if defined(Q_OS_MACOS)
@@ -109,7 +109,7 @@ main(int argc, char* argv[])
     }
 #else
     if (std::invoke([] {
-#if defined(HAS_VULKAN)
+#if defined(HAS_VULKAN) && !defined(Q_OS_LINUX)
             QVulkanInstance inst;
             inst.setLayers({"VK_LAYER_KHRONOS_validation"});
             return inst.create();
