@@ -302,7 +302,7 @@ Control {
             text: !checked ? JamiStrings.startRec : JamiStrings.stopRec
             property bool blinksWhenChecked: true
             property real size: 28
-            onCheckedChanged: {
+            onCheckedChanged: function(checked) {
                 CallOverlayModel.setUrgentCount(recordAction,
                                                 checked ? -1 : 0)
             }
