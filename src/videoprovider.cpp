@@ -111,9 +111,11 @@ VideoProvider::onRendererStarted(const QString& id)
         if (it == framesObjects_.end()) {
             auto fo = std::make_unique<FrameObject>();
             fo->videoFrame = std::make_unique<QVideoFrame>(frameFormat);
+            qDebug() << "Create new QVideoFrame " << frameFormat.frameSize();
             framesObjects_.emplace(id, std::move(fo));
         } else {
             it->second->videoFrame.reset(new QVideoFrame(frameFormat));
+            qDebug() << "QVideoFrame reset to " << frameFormat.frameSize();
         }
     }
 
@@ -174,8 +176,10 @@ VideoProvider::onFrameUpdated(const QString& id)
             qWarning() << "QVideoFrame can't be mapped" << id;
             return;
         }
-        auto frame = avModel_.getRendererFrame(id);
-        std::memcpy(videoFrame->bits(0), frame.ptr, frame.size);
+        auto srcFrame = avModel_.getRendererFrame(id);
+        if (srcFrame.ptr != nullptr and srcFrame.size > 0) {
+            copyUnaligned(videoFrame, srcFrame);
+        }
     }
     if (videoFrame->isMapped()) {
         videoFrame->unmap();
@@ -205,4 +209,35 @@ VideoProvider::onRendererStopped(const QString& id)
         return;
     }
     it->second->videoFrame.reset();
+}
+
+void
+VideoProvider::copyUnaligned(QVideoFrame* dst, const video::Frame& src)
+{
+    // Copy from a frame residing in the shared memory.
+    // Frames in shared memory have no specific line alignment
+    // (i.e. stride = width), as opposed to QVideoFrame frames, 
+    // so the copy need to be done accordingly.
+
+    // This helper only handles RGBA and BGRA pixel formats, so the
+    // following constraints must apply.
+    assert(dst->pixelFormat() == QVideoFrameFormat::Format_RGBA8888
+           or dst->pixelFormat() == QVideoFrameFormat::Format_BGRA8888);
+    assert(dst->planeCount() == 1);
+
+    const int BYTES_PER_PIXEL = 4;
+
+    // The provided source must be valid.
+    assert(src.ptr != nullptr and src.size > 0);
+    if (dst->width() * dst->height() * BYTES_PER_PIXEL != src.size) {
+        qCritical() << "Size mismatch. Actual " << src.size << " Expected "
+                    << dst->width() * dst->height() * BYTES_PER_PIXEL;
+        return;
+    }
+
+    for (int row = 0; row < dst->height(); row++) {
+        auto dstPtr = dst->bits(0) + row * dst->bytesPerLine(0);
+        auto srcPtr = src.ptr + row * dst->width() * BYTES_PER_PIXEL;
+        std::memcpy(dstPtr, srcPtr, dst->width() * BYTES_PER_PIXEL);
+    }
 }
