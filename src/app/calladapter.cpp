@@ -679,27 +679,31 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
     auto* callModel = accInfo.callModel.get();
 
-    auto* call = lrcInstance_->getCallInfoForConversation(convInfo);
-    if (!call) {
+    const auto* bestInfo = lrcInstance_->getCallInfoForConversation(convInfo);
+    if (!bestInfo)
         return;
-    }
 
-    bool isPaused = call->status == lrc::api::call::Status::PAUSED;
-    bool isAudioOnly = call->isAudioOnly && !isPaused;
-    bool isAudioMuted = call->audioMuted && (call->status != lrc::api::call::Status::PAUSED);
-    bool isVideoMuted = call->isAudioOnly || (call->videoMuted && !isPaused);
-    bool isGrid = call->layout == lrc::api::call::Layout::GRID;
+    bool isPaused = bestInfo->status == lrc::api::call::Status::PAUSED;
+    bool isAudioOnly = bestInfo->isAudioOnly && !isPaused;
+    bool isAudioMuted = bestInfo->audioMuted && (bestInfo->status != lrc::api::call::Status::PAUSED);
+    bool isVideoMuted = bestInfo->isAudioOnly || (bestInfo->videoMuted && !isPaused);
+    bool isGrid = bestInfo->layout == lrc::api::call::Layout::GRID;
     QString previewId {};
-    if (!isAudioOnly && !isVideoMuted && call->status == lrc::api::call::Status::IN_PROGRESS) {
-        for (const auto& media : call->mediaList) {
-            if (media["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO") {
-                if (media["ENABLED"] == "true" && media["MUTED"] == "false") {
-                    previewId = media["SOURCE"];
-                    break;
+    // Conference do not have media attributes, but the call inside manages the video
+    if (auto* infoCall = lrcInstance_->getCallInfo(convInfo.callId, accountId_)) {
+        //isVideoMuted = infoCall->hasMediaWithType("CAPTURE_DEVICE"); //TODO
+        if (!isAudioOnly && !isVideoMuted && infoCall->status == lrc::api::call::Status::IN_PROGRESS) {
+            for (const auto& media : infoCall->mediaList) {
+                if (media["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO") {
+                    if (media["ENABLED"] == "true" && media["MUTED"] == "false") {
+                        previewId = media["SOURCE"];
+                        break;
+                    }
                 }
             }
         }
     }
+
 
     Q_EMIT updateOverlay(isPaused,
                          isAudioOnly,
