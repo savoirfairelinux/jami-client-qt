@@ -434,7 +434,14 @@ Rectangle {
         }
 
         onCreateSwarmClicked: function(title, description, avatar) {
-            ConversationsAdapter.createSwarm(title, description, avatar, mainViewSidePanel.highlightedMembers)
+            var uris = []
+            for (var idx in newSwarmPage.members) {
+                var uri = newSwarmPage.members[idx].uri
+                if (uris.indexOf(uri) === -1) {
+                    uris.push(uri)
+                }
+            }
+            ConversationsAdapter.createSwarm(title, description, avatar, uris)
             backToMainView()
         }
     }
