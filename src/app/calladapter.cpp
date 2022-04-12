@@ -682,7 +682,6 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
     const auto* callInfo = lrcInstance_->getCallInfoForConversation(convInfo);
     if (!callInfo)
         return;
-    }
 
     bool isPaused = callInfo->status == lrc::api::call::Status::PAUSED;
     bool isAudioOnly = callInfo->isAudioOnly && !isPaused;
@@ -701,6 +700,7 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
             }
         }
     }
+
 
     Q_EMIT updateOverlay(isPaused,
                          isAudioOnly,
