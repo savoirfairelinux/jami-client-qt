@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "278c9078_7c3e136c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-12T20:39:14Z",
+      "side": 1,
+      "message": "not really alignment if it\u0027s striding, it\u0027s 2 concepts.",
+      "range": {
+        "startLine": 9,
+        "startChar": 46,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "ba247b577094bccd4fc73490f4ae79e07d233c8b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "308af24e_5d66f7e1",
@@ -14,6 +37,23 @@
       "writtenOn": "2022-04-12T20:30:27Z",
       "side": 1,
       "message": "nitpick, will test soon",
+      "revId": "ba247b577094bccd4fc73490f4ae79e07d233c8b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62aec33f_be99a916",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-12T20:39:14Z",
+      "side": 1,
+      "message": "works on my 2 Linux devices I tested, just some nitpicks/question",
       "revId": "ba247b577094bccd4fc73490f4ae79e07d233c8b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
