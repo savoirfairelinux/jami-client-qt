@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "618faaab_bbe8babf",
+        "filename": "src/videoprovider.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 856
+      },
+      "writtenOn": "2022-04-12T20:11:36Z",
+      "side": 1,
+      "message": "I did not expect this condition to be true, but it easy to reproduce by toggling between maximize and mosaic\nMight the source of crashes we have seen with SHM lately",
+      "revId": "ba247b577094bccd4fc73490f4ae79e07d233c8b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
