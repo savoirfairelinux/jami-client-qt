@@ -194,6 +194,12 @@ CallAdapter::onParticipantRemoved(const QString& callId, int index)
 void
 CallAdapter::onParticipantUpdated(const QString& callId, int index)
 {
+    auto infos = getConferencesInfos();
+    if (index >= infos.size()) {
+        qCritical() << "Index " << index << "is out of range. Size: " << infos.size();
+        return;
+    }
+    
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
     auto& callModel = accInfo.callModel;
     try {
@@ -205,7 +211,6 @@ CallAdapter::onParticipantUpdated(const QString& callId, int index)
             qDebug() << "trying to update not current conf";
             return;
         }
-        auto infos = getConferencesInfos();
         participantsModel_->updateParticipant(index, infos[index]);
     } catch (...) {
     }
