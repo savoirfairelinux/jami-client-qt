@@ -610,6 +610,7 @@ Item {
     property string send: qsTr("Send")
     property string remove: qsTr("Remove")
     property string writeTo: qsTr("Write to %1")
+    property string joinCall: qsTr("Join call") // TODO get if finished
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")
