@@ -203,7 +203,7 @@ JamiListView {
         }
         DelegateChoice {
             roleValue: Interaction.Type.CALL
-            GeneratedMessageDelegate {
+            CallMessageDelegate {
                 Component.onCompleted: {
                     if (index)
                         computeTimestampVisibility(this, index)
