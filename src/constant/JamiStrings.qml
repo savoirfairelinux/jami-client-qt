@@ -610,6 +610,10 @@ Item {
     property string send: qsTr("Send")
     property string remove: qsTr("Remove")
     property string writeTo: qsTr("Write to %1")
+    property string joinCall: qsTr("Join call")
+    property string callEnded: qsTr("Call ended")
+    property string callBack: qsTr("Call back")
+    property string aCallIsInProgress: qsTr("A call is in progress")
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")

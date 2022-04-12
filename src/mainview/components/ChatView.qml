@@ -49,6 +49,18 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
+    NotificationArea {
+        id: notificationArea
+        z: 1
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.margins: 16
+        anchors.topMargin: 16 + JamiTheme.chatViewHeaderPreferredHeight
+
+        width: 256
+        height: parent.height - this.anchors.topMargin
+    }
+
     ColumnLayout {
         anchors.fill: root
 
