@@ -54,6 +54,7 @@ private Q_SLOTS:
     void onRendererStopped(const QString& id);
 
 private:
+    void copyUnaligned(QVideoFrame* dst, const video::Frame& src);
     AVModel& avModel_;
 
     struct FrameObject
