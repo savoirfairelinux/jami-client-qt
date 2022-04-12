@@ -36,6 +36,7 @@
     X(ContactType) \
     X(IsSwarm) \
     X(IsCoreDialog) \
+    X(ActiveCalls) \
     X(IsBanned) \
     X(UID) \
     X(InCall) \
