@@ -124,6 +124,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return QVariant(item.isSwarm());
     case Role::IsCoreDialog:
         return QVariant(item.isCoreDialog());
+    case Role::ActiveCalls:
+        return QVariant(item.activeCalls);
     case Role::Mode:
         return QVariant(static_cast<int>(item.mode));
     case Role::UID:
