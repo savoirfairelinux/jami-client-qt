@@ -67,11 +67,20 @@ set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
+if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.12.0")
+    include(FindPython3)
+    find_package (Python3 COMPONENTS Interpreter)
+    set(PYTHON_EXEC ${Python3_EXECUTABLE})
+else()
+    include(FindPythonInterp)
+    set(PYTHON_EXEC ${PYTHON_EXECUTABLE})
+endif()
+
 set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
 if(WITH_WEBENGINE)
     set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
 else()
-    execute_process(COMMAND python ${CMAKE_CURRENT_SOURCE_DIR}/scripts/gen-qrc-without-webengine.py
+    execute_process(COMMAND ${PYTHON_EXEC} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/gen-qrc-without-webengine.py
         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
     set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml_without_webengine.qrc)
 endif()
@@ -94,14 +103,6 @@ file(GLOB_RECURSE
     RES_FILES CONFIGURE_DEPENDS
     ${PROJECT_SOURCE_DIR}/resources/*
 )
-if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.12.0")
-    include(FindPython3)
-    find_package (Python3 COMPONENTS Interpreter)
-    set(PYTHON_EXEC ${Python3_EXECUTABLE})
-else()
-    include(FindPythonInterp)
-    set(PYTHON_EXEC ${PYTHON_EXECUTABLE})
-endif()
 execute_process(
     COMMAND ${PYTHON_EXEC} ${PROJECT_SOURCE_DIR}/gen-resources.py
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
