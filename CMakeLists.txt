@@ -155,6 +155,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/currentaccount.cpp
     ${SRC_DIR}/videodevices.cpp
     ${SRC_DIR}/videoprovider.cpp
+    ${SRC_DIR}/activecallsmodel.cpp
     ${SRC_DIR}/callparticipantsmodel.cpp
 )
 
@@ -211,6 +212,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/currentaccount.h
     ${SRC_DIR}/videodevices.h
     ${SRC_DIR}/videoprovider.h
+    ${SRC_DIR}/activecallsmodel.h
     ${SRC_DIR}/callparticipantsmodel.h
 )
 
