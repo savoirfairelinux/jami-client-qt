@@ -139,6 +139,7 @@ set(COMMON_SOURCES
     ${SRC_DIR}/videodevices.cpp
     ${SRC_DIR}/previewengine.cpp
     ${SRC_DIR}/videoprovider.cpp
+    ${SRC_DIR}/activecallsmodel.cpp
     ${SRC_DIR}/callparticipantsmodel.cpp
 )
 
@@ -196,6 +197,7 @@ set(COMMON_HEADERS
     ${SRC_DIR}/videodevices.h
     ${SRC_DIR}/previewengine.h
     ${SRC_DIR}/videoprovider.h
+    ${SRC_DIR}/activecallsmodel.h
     ${SRC_DIR}/callparticipantsmodel.h
 )
 

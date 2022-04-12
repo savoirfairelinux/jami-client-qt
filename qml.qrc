@@ -96,6 +96,7 @@
         <file>src/mainview/components/SidePanel.qml</file>
         <file>src/mainview/components/WelcomePage.qml</file>
         <file>src/mainview/components/ChatView.qml</file>
+        <file>src/mainview/components/NotificationArea.qml</file>
         <file>src/mainview/components/NewSwarmPage.qml</file>
         <file>src/mainview/components/ChatViewHeader.qml</file>
         <file>src/mainview/components/AccountComboBox.qml</file>
@@ -175,6 +176,7 @@
         <file>src/commoncomponents/ReadStatus.qml</file>
         <file>src/commoncomponents/GeneratedMessageDelegate.qml</file>
         <file>src/commoncomponents/DataTransferMessageDelegate.qml</file>
+        <file>src/commoncomponents/CallMessageDelegate.qml</file>
         <file>src/commoncomponents/ContactMessageDelegate.qml</file>
         <file>src/mainview/components/ScrollToBottomButton.qml</file>
         <file>src/commoncomponents/TypingDots.qml</file>

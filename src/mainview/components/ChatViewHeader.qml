@@ -151,7 +151,7 @@ Rectangle {
             PushButton {
                 id: startAAudioCallButton
 
-                visible: interactionButtonsVisibility && !addMemberVisibility
+                visible: interactionButtonsVisibility
 
                 source: JamiResources.place_audiocall_24dp_svg
                 toolTipText: JamiStrings.placeAudioCall
@@ -165,7 +165,7 @@ Rectangle {
             PushButton {
                 id: startAVideoCallButton
 
-                visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && !addMemberVisibility
+                visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility
                 source: JamiResources.videocam_24dp_svg
                 toolTipText: JamiStrings.placeVideoCall
 

@@ -125,6 +125,16 @@ Rectangle {
                 }
             }
 
+            NotificationArea {
+                id: notificationArea
+                z: 1
+                anchors.right: parent.right
+                anchors.left: parent.left
+                anchors.top: parent.top
+
+                height: parent.height
+            }
+
             ColumnLayout {
                 SplitView.maximumWidth: splitView.width
                 // Note, without JamiTheme.detailsPageMinWidth, sometimes the details page is hidden at the right
