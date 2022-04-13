@@ -142,6 +142,24 @@
       "parentUuid": "15d3ec6b_c24b7dfc",
       "revId": "d3e998cfd2309eed11276fe50786f009ecc3e75b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa7b16c4_d95f5115",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-04-13T18:17:17Z",
+      "side": 1,
+      "message": "Linux. but if it done to not update, then we have the same behavior",
+      "parentUuid": "64167e0f_8b10e35c",
+      "revId": "d3e998cfd2309eed11276fe50786f009ecc3e75b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
