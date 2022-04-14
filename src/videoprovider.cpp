@@ -216,7 +216,7 @@ VideoProvider::copyUnaligned(QVideoFrame* dst, const video::Frame& src)
 {
     // Copy from a frame residing in the shared memory.
     // Frames in shared memory have no specific line alignment
-    // (i.e. stride = width), as opposed to QVideoFrame frames, 
+    // (i.e. stride = width), as opposed to QVideoFrame frames,
     // so the copy need to be done accordingly.
 
     // This helper only handles RGBA and BGRA pixel formats, so the
@@ -229,8 +229,10 @@ VideoProvider::copyUnaligned(QVideoFrame* dst, const video::Frame& src)
 
     // The provided source must be valid.
     assert(src.ptr != nullptr and src.size > 0);
-    if (dst->width() * dst->height() * BYTES_PER_PIXEL != src.size) {
-        qCritical() << "Size mismatch. Actual " << src.size << " Expected "
+    // The source buffer must be greater or equal to the min required
+    // buffer size.
+    if (dst->width() * dst->height() * BYTES_PER_PIXEL > src.size) {
+        qCritical() << "The size of frame buffer " << src.size << " is smaller than expected "
                     << dst->width() * dst->height() * BYTES_PER_PIXEL;
         return;
     }
