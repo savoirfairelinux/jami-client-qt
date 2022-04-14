@@ -229,8 +229,11 @@ VideoProvider::copyUnaligned(QVideoFrame* dst, const video::Frame& src)
 
     // The provided source must be valid.
     assert(src.ptr != nullptr and src.size > 0);
-    if (dst->width() * dst->height() * BYTES_PER_PIXEL != src.size) {
-        qCritical() << "Size mismatch. Actual " << src.size << " Expected "
+    // The source buffer must be greater or equal to the min required
+    // buffer size. The SHM buffer might be slightly larger than the 
+    // required size due to the 16-byte alignment.
+    if (dst->width() * dst->height() * BYTES_PER_PIXEL > src.size) {
+        qCritical() << "The size of frame buffer " << src.size << " is smaller than expected "
                     << dst->width() * dst->height() * BYTES_PER_PIXEL;
         return;
     }
