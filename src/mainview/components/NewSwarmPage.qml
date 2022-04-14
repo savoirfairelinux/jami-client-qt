@@ -114,6 +114,7 @@ Rectangle {
             newConversation: true
             imageId: root.visible ? "temp" : ""
             avatarSize: 180
+            buttonSize: JamiTheme.smartListAvatarSize
         }
 
         EditableLineEdit {
@@ -123,7 +124,7 @@ Rectangle {
 
             font.pointSize: JamiTheme.titleFontSize
 
-            horizontalAlignment: Text.AlignHCenter
+            horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
             placeholderText: JamiStrings.editTitle
@@ -138,6 +139,9 @@ Rectangle {
             Layout.topMargin: JamiTheme.preferredMarginSize
 
             font.pointSize: JamiTheme.titleFontSize
+
+            horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 
             placeholderText: JamiStrings.editDescription
             tooltipText: JamiStrings.editDescription

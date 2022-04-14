@@ -41,6 +41,7 @@ AbstractButton {
     property int preferredMargin: 16
     // Note the radius will default to preferredSize
     property alias radius: background.radius
+    property alias border: background.border
 
     // Text properties
     property alias buttonText: textContent.text

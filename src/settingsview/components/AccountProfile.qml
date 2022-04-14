@@ -62,6 +62,7 @@ ColumnLayout {
 
         imageId: LRCInstance.currentAccountId
         avatarSize: 180
+        buttonSize: JamiTheme.smartListAvatarSize
     }
 
     MaterialLineEdit {
