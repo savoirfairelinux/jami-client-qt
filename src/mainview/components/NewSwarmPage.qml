@@ -114,6 +114,7 @@ Rectangle {
             newConversation: true
             imageId: root.visible ? "temp" : ""
             avatarSize: 180
+            buttonSize: JamiTheme.smartListAvatarSize
         }
 
         EditableLineEdit {

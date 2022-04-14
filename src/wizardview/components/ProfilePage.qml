@@ -105,6 +105,7 @@ Rectangle {
             enabled: !saveProfileBtn.spinnerTriggered
             imageId: createdAccountId
             avatarSize: 200
+            buttonSize: JamiTheme.smartListAvatarSize
 
             onFocusOnPreviousItem: {
                 skipProfileSavingButton.forceActiveFocus()

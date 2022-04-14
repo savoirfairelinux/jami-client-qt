@@ -32,12 +32,12 @@ Item {
     property alias imageId: avatar.imageId
     property bool newConversation: false
     property real avatarSize
+    property real buttonSize: avatarSize
 
     signal focusOnPreviousItem
     signal focusOnNextItem
 
-    width: avatarSize
-    height: boothLayout.height
+    height: Math.max(avatarSize, buttonSize)
 
     function startBooth() {
         preview.startWithId(VideoDevices.getDefaultDevice())
@@ -109,31 +109,150 @@ Item {
         }
     }
 
-    ColumnLayout {
-        id: boothLayout
+    Item {
+        id: imageLayer
 
-        spacing: JamiTheme.preferredMarginSize / 2
+        anchors.centerIn: parent
+        width: avatarSize
+        height: avatarSize
 
-        Item {
-            id: imageLayer
+        Avatar {
+            id: avatar
 
-            Layout.preferredWidth: avatarSize
-            Layout.preferredHeight: avatarSize
-            Layout.alignment: Qt.AlignHCenter
+            anchors.fill: parent
+            anchors.margins: 1
 
-            Avatar {
-                id: avatar
+            mode: newConversation? Avatar.Mode.Conversation : Avatar.Mode.Account
+
+            fillMode: Image.PreserveAspectCrop
+            showPresenceIndicator: false
+
+            HoverHandler {
+                target: parent
+                enabled: parent.visible
+                onHoveredChanged: {
+                    overlayHighlighted.visible = hovered
+                }
+            }
+
+            TapHandler {
+                target: parent
+                enabled: parent.visible
+                onTapped: {
+                    imageLayer.visible = false
+                    buttonsRowLayout.visible = true
+                }
+            }
+
+            Rectangle {
+                id: overlayHighlighted
+                visible: false
 
                 anchors.fill: parent
-                anchors.margins: 1
+                color: Qt.rgba(0, 0, 0, 0.5)
+                radius: parent.height / 2
 
-                visible: !preview.visible
+                opacity: visible
 
-                mode: newConversation? Avatar.Mode.Conversation : Avatar.Mode.Account
+                Behavior on opacity {
+                    NumberAnimation {
+                        from: 0
+                        duration: JamiTheme.shortFadeDuration
+                    }
+                }
 
-                fillMode: Image.PreserveAspectCrop
-                showPresenceIndicator: false
+                Image {
+                    id: overlayImage
+
+                    width: JamiTheme.smartListAvatarSize / 2
+                    height: JamiTheme.smartListAvatarSize / 2
+                    anchors.centerIn: parent
+
+                    layer {
+                        enabled: true
+                        effect: ColorOverlay {
+                            color: "white"
+                        }
+                    }
+                    source: JamiResources.round_edit_24dp_svg
+                }
             }
+        }
+    }
+
+    RowLayout {
+        id: buttonsRowLayout
+        visible: false
+
+        anchors.centerIn: parent
+        Layout.preferredHeight: childrenRect.height
+        spacing: 12
+
+        function backToAvatar() {
+            imageLayer.visible = true
+            buttonsRowLayout.visible = false
+        }
+
+        PushButton {
+            id: takePhotoButton
+
+            objectName: "takePhotoButton"
+
+            Layout.alignment: Qt.AlignHCenter
+
+            height: buttonSize
+            width: buttonSize
+            radius: height / 2
+            border.width: 2
+            border.color: JamiTheme.textColor
+            normalColor: "transparent"
+            imageColor: JamiTheme.textColor
+            toolTipText: JamiStrings.takePhoto
+            source: isPreviewing ?
+                        JamiResources.round_add_a_photo_24dp_svg :
+                        JamiResources.baseline_camera_alt_24dp_svg
+
+            Keys.onPressed: function (keyEvent) {
+                if (keyEvent.key === Qt.Key_Enter ||
+                        keyEvent.key === Qt.Key_Return) {
+                    clicked()
+                    keyEvent.accepted = true
+                } else if (keyEvent.key === Qt.Key_Up) {
+                    root.focusOnPreviousItem()
+                    keyEvent.accepted = true
+                }
+            }
+
+            KeyNavigation.tab: {
+                if (clearButton.visible)
+                    return clearButton
+                return importButton
+            }
+            KeyNavigation.down: KeyNavigation.tab
+
+            onClicked: {
+                if (isPreviewing) {
+                    flashAnimation.start()
+                    var photo = preview.takePhoto(buttonSize)
+                    if (!root.newConversation)
+                        AccountAdapter.setCurrentAccountAvatarBase64(photo)
+                    else
+                        UtilsAdapter.setSwarmCreationImageFromString(photo, imageId)
+                    stopBooth()
+                    buttonsRowLayout.backToAvatar()
+                    return
+                }
+
+                startBooth()
+            }
+        }
+
+        Item {
+            id: previewLayer
+
+            visible: isPreviewing
+            width: buttonSize
+            height: buttonSize
 
             LocalVideo {
                 id: preview
@@ -141,7 +260,6 @@ Item {
                 anchors.fill: parent
                 anchors.margins: 1
 
-                visible: isPreviewing
 
                 rendererId: VideoDevices.getDefaultDevice()
 
@@ -152,9 +270,9 @@ Item {
                 layer.enabled: true
                 layer.effect: OpacityMask {
                     maskSource: Rectangle {
-                        width: avatarSize
-                        height: avatarSize
-                        radius: avatarSize / 2
+                        width: buttonSize
+                        height: buttonSize
+                        radius: buttonSize / 2
                     }
                 }
             }
@@ -164,7 +282,7 @@ Item {
 
                 anchors.fill: parent
                 anchors.margins: 0
-                radius: avatarSize / 2
+                radius: buttonSize / 2
                 color: "white"
                 opacity: 0
 
@@ -183,153 +301,139 @@ Item {
             }
         }
 
-        RowLayout {
-            id: buttonsRowLayout
+        PushButton {
+            id: clearButton
 
-            Layout.fillWidth: true
-            Layout.preferredHeight: childrenRect.height
-            Layout.bottomMargin: parent.spacing
+            objectName: "photoboothViewClearButton"
+
             Layout.alignment: Qt.AlignHCenter
 
-            PushButton {
-                id: takePhotoButton
+            height: buttonSize
+            width: buttonSize
+            radius: height / 2
+            border.width: 2
+            border.color: JamiTheme.textColor
+            normalColor: "transparent"
+            source: JamiResources.delete_24dp_svg
+            toolTipText: isPreviewing ? JamiStrings.stopTakingPhoto :
+                                        JamiStrings.clearAvatar
+            imageColor: JamiTheme.textColor
 
-                objectName: "takePhotoButton"
-
-                Layout.alignment: Qt.AlignHCenter
-
-                radius: JamiTheme.primaryRadius
-                imageColor: JamiTheme.textColor
-                toolTipText: JamiStrings.takePhoto
-                source: isPreviewing ?
-                            JamiResources.round_add_a_photo_24dp_svg :
-                            JamiResources.baseline_camera_alt_24dp_svg
-
-                Keys.onPressed: function (keyEvent) {
-                    if (keyEvent.key === Qt.Key_Enter ||
-                            keyEvent.key === Qt.Key_Return) {
-                        clicked()
-                        keyEvent.accepted = true
-                    } else if (keyEvent.key === Qt.Key_Up) {
-                        root.focusOnPreviousItem()
-                        keyEvent.accepted = true
-                    }
-                }
-
-                KeyNavigation.tab: {
-                    if (clearButton.visible)
-                        return clearButton
-                    return importButton
-                }
-                KeyNavigation.down: KeyNavigation.tab
-
-                onClicked: {
-                    if (isPreviewing) {
-                        flashAnimation.start()
-                        var photo = preview.takePhoto(avatarSize)
-                        if (!root.newConversation)
-                            AccountAdapter.setCurrentAccountAvatarBase64(photo)
-                        else
-                            UtilsAdapter.setSwarmCreationImageFromString(photo, imageId)
-                        stopBooth()
-                        return
-                    }
-
-                    startBooth()
-                }
-            }
-
-            PushButton {
-                id: clearButton
-
-                objectName: "photoboothViewClearButton"
-
-                Layout.alignment: Qt.AlignHCenter
-
-                visible: {
-                    if (isPreviewing)
-                        return true
-                    if (!newConversation && LRCInstance.currentAccountAvatarSet)
-                        return true
-                    if (newConversation && UtilsAdapter.swarmCreationImage(imageId).length !== 0)
-                        return true
+            visible: {
+                if (parent.visible && isPreviewing)
                     return false
-                }
+                if (!newConversation && LRCInstance.currentAccountAvatarSet)
+                    return true
+                if (newConversation && UtilsAdapter.swarmCreationImage(imageId).length !== 0)
+                    return true
+                return false
+            }
 
-                radius: JamiTheme.primaryRadius
-                source: JamiResources.round_close_24dp_svg
-                toolTipText: isPreviewing ? JamiStrings.stopTakingPhoto :
-                                            JamiStrings.clearAvatar
-                imageColor: JamiTheme.textColor
+            KeyNavigation.up: takePhotoButton
 
-                KeyNavigation.up: takePhotoButton
-
-                Keys.onPressed: function (keyEvent) {
-                    if (keyEvent.key === Qt.Key_Enter ||
-                            keyEvent.key === Qt.Key_Return) {
-                        clicked()
-                        takePhotoButton.forceActiveFocus()
-                        keyEvent.accepted = true
-                    } else if (keyEvent.key === Qt.Key_Down ||
-                               keyEvent.key === Qt.Key_Tab) {
-                        if (isPreviewing) {
-                            root.focusOnNextItem()
-                        } else
-                            importButton.forceActiveFocus()
-                        keyEvent.accepted = true
-                    }
-                }
-
-                onClicked: {
-                    stopBooth()
-                    if (!isPreviewing) {
-                        if (!root.newConversation)
-                            AccountAdapter.setCurrentAccountAvatarBase64()
-                        else
-                            UtilsAdapter.setSwarmCreationImageFromString("", imageId)
-                    }
+            Keys.onPressed: function (keyEvent) {
+                if (keyEvent.key === Qt.Key_Enter ||
+                        keyEvent.key === Qt.Key_Return) {
+                    clicked()
+                    takePhotoButton.forceActiveFocus()
+                    keyEvent.accepted = true
+                } else if (keyEvent.key === Qt.Key_Down ||
+                            keyEvent.key === Qt.Key_Tab) {
+                    importButton.forceActiveFocus()
+                    keyEvent.accepted = true
                 }
             }
 
-            PushButton {
-                id: importButton
+            onClicked: {
+                if (!root.newConversation)
+                    AccountAdapter.setCurrentAccountAvatarBase64()
+                else
+                    UtilsAdapter.setSwarmCreationImageFromString("", imageId)
+                stopBooth()
+                buttonsRowLayout.backToAvatar()
+            }
+        }
 
-                objectName: "photoboothViewImportButton"
+        PushButton {
+            id: importButton
 
-                property bool focusAfterFileDialogClosed: false
+            objectName: "photoboothViewImportButton"
 
-                Layout.alignment: Qt.AlignHCenter
+            property bool focusAfterFileDialogClosed: false
 
-                visible: !isPreviewing
+            Layout.alignment: Qt.AlignHCenter
+            visible: parent.visible && !isPreviewing
 
-                radius: JamiTheme.primaryRadius
-                source: JamiResources.round_folder_24dp_svg
-                toolTipText: JamiStrings.importFromFile
-                imageColor: JamiTheme.textColor
+            height: buttonSize
+            width: buttonSize
+            radius: height / 2
+            border.width: 2
+            border.color: JamiTheme.textColor
+            normalColor: "transparent"
+            source: JamiResources.round_folder_24dp_svg
+            toolTipText: JamiStrings.importFromFile
+            imageColor: JamiTheme.textColor
 
-                Keys.onPressed: function (keyEvent) {
-                    if (keyEvent.key === Qt.Key_Enter ||
-                            keyEvent.key === Qt.Key_Return) {
-                        focusAfterFileDialogClosed = true
-                        clicked()
-                        keyEvent.accepted = true
-                    } else if (keyEvent.key === Qt.Key_Down ||
-                               keyEvent.key === Qt.Key_Tab) {
-                        root.focusOnNextItem()
-                        keyEvent.accepted = true
-                    }
+            Keys.onPressed: function (keyEvent) {
+                if (keyEvent.key === Qt.Key_Enter ||
+                        keyEvent.key === Qt.Key_Return) {
+                    focusAfterFileDialogClosed = true
+                    clicked()
+                    keyEvent.accepted = true
+                } else if (keyEvent.key === Qt.Key_Down ||
+                            keyEvent.key === Qt.Key_Tab) {
+                    cancelButton.forceActiveFocus()
+                    keyEvent.accepted = true
                 }
+            }
 
-                KeyNavigation.up: {
-                    if (clearButton.visible)
-                        return clearButton
-                    return takePhotoButton
-                }
+            KeyNavigation.up: {
+                if (clearButton.visible)
+                    return clearButton
+                return takePhotoButton
+            }
 
-                onClicked: {
-                    stopBooth()
-                    importFromFileDialog.open()
+            onClicked: {
+                stopBooth()
+                buttonsRowLayout.backToAvatar()
+                importFromFileDialog.open()
+            }
+        }
+
+
+        PushButton {
+            id: cancelButton
+
+            height: 24
+            width: 24
+            radius: height / 2
+            normalColor: "transparent"
+            source: JamiResources.round_close_24dp_svg
+            toolTipText: JamiStrings.cancel
+            imageColor: JamiTheme.textColor
+
+            Keys.onPressed: function (keyEvent) {
+                if (keyEvent.key === Qt.Key_Enter ||
+                        keyEvent.key === Qt.Key_Return) {
+                    clicked()
+                    takePhotoButton.forceActiveFocus()
+                    keyEvent.accepted = true
+                } else if (keyEvent.key === Qt.Key_Down ||
+                            keyEvent.key === Qt.Key_Tab) {
+                    importButton.forceActiveFocus()
+                    keyEvent.accepted = true
                 }
+            }
+
+            KeyNavigation.up: {
+                if (importButton.visible)
+                    return importButton
+                return takePhotoButton
+            }
+
+            onClicked: {
+                stopBooth()
+                buttonsRowLayout.backToAvatar()
             }
         }
     }
