@@ -47,13 +47,13 @@ Rectangle {
             PhotoboothView {
                 id: currentAccountAvatar
 
-                Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: JamiTheme.swarmDetailsPageTopMargin
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
+                Layout.alignment: Qt.AlignHCenter
 
                 newConversation: true
                 imageId: LRCInstance.selectedConvUid
-                avatarSize: JamiTheme.avatarSizeInCall
+                avatarSize: JamiTheme.smartListAvatarSize
             }
 
             EditableLineEdit {
