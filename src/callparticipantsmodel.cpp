@@ -59,6 +59,9 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
     case Role::BestName:
         return QVariant::fromValue(
             participant.item.value(lrc::api::ParticipantsInfosStrings::BESTNAME));
+    case Role::Device:
+        return QVariant::fromValue(
+            participant.item.value(lrc::api::ParticipantsInfosStrings::DEVICE));
     case Role::Active:
         return QVariant::fromValue(
             participant.item.value(lrc::api::ParticipantsInfosStrings::ACTIVE));
@@ -85,7 +88,7 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
             participant.item.value(lrc::api::ParticipantsInfosStrings::AVATAR));
     case Role::SinkId:
         return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::SINKID));
+            participant.item.value(lrc::api::ParticipantsInfosStrings::STREAMID));
     case Role::Height:
         return QVariant::fromValue(
             participant.item.value(lrc::api::ParticipantsInfosStrings::HEIGHT));

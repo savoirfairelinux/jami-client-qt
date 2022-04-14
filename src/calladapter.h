@@ -69,16 +69,16 @@ public:
     Q_INVOKABLE void setModerator(const QString& uri, const bool state);
     Q_INVOKABLE bool isModerator(const QString& uri = {}) const;
     Q_INVOKABLE bool isHandRaised(const QString& uri = {}) const;
-    Q_INVOKABLE void setHandRaised(const QString& uri, bool state);
+    Q_INVOKABLE void raiseHand(const QString& uri, const QString& deviceId, bool state);
     Q_INVOKABLE void holdThisCallToggle();
     Q_INVOKABLE void muteThisCallToggle(bool mute);
     Q_INVOKABLE void recordThisCallToggle();
     Q_INVOKABLE void videoPauseThisCallToggle(bool mute);
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE QVariantList getConferencesInfos() const;
-    Q_INVOKABLE void muteParticipant(const QString& uri, const bool state);
+    Q_INVOKABLE void muteParticipant(const QString& accountUri, const QString& deviceId, const QString& sinkId, const bool state);
     Q_INVOKABLE MuteStates getMuteState(const QString& uri) const;
-    Q_INVOKABLE void hangupParticipant(const QString& uri);
+    Q_INVOKABLE void kickDevice(const QString& uri, const QString& deviceId);
     Q_INVOKABLE void updateCall(const QString& convUid = {},
                                 const QString& accountId = {},
                                 bool forceCallOnly = false);
