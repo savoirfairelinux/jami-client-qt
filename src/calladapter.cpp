@@ -740,18 +740,36 @@ CallAdapter::maximizeParticipant(const QString& uri)
     try {
         const auto call = callModel->getCall(confId);
         auto participants = getConferencesInfos();
+        std::vector<QJsonObject> activeParticipants = {};
+        bool removeActive = false;
         for (auto part : participants) {
             auto participant = part.toJsonObject();
-            if (participant[lrc::api::ParticipantsInfosStrings::URI].toString() == uri) {
-                auto active = participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool();
+            auto isParticipant = participant[lrc::api::ParticipantsInfosStrings::URI].toString()
+                                 == uri;
+            auto active = participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool();
+            if (active && !isParticipant) {
+                activeParticipants.push_back(participant);
+            }
+            if (isParticipant) {
+                auto deviceId = participant[lrc::api::ParticipantsInfosStrings::DEVICE].toString();
+                auto sinkId = participant[lrc::api::ParticipantsInfosStrings::SINKID].toString();
                 // Else, continue.
                 if (!active) {
-                    callModel->setActiveParticipant(confId, uri);
+                    callModel->setActiveSink(confId, uri, deviceId, sinkId, true);
                     callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE_WITH_SMALL);
                 } else if (call.layout == lrc::api::call::Layout::ONE_WITH_SMALL) {
+                    removeActive = true;
                     callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE);
                 }
-                return;
+            }
+        }
+        if (removeActive) {
+            // If in Big, we can remove other actives
+            for (const auto& p : activeParticipants) {
+                auto puri = p[lrc::api::ParticipantsInfosStrings::URI].toString();
+                auto deviceId = p[lrc::api::ParticipantsInfosStrings::DEVICE].toString();
+                auto sinkId = p[lrc::api::ParticipantsInfosStrings::SINKID].toString();
+                callModel->setActiveSink(confId, puri, deviceId, sinkId, false);
             }
         }
     } catch (...) {
@@ -771,21 +789,29 @@ CallAdapter::minimizeParticipant(const QString& uri)
     try {
         const auto call = callModel->getCall(confId);
         auto participants = getConferencesInfos();
+        auto activeParticipants = 0;
         for (auto& part : participants) {
             auto participant = part.toJsonObject();
-            if (participant[lrc::api::ParticipantsInfosStrings::URI].toString() == uri) {
-                auto active = participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool();
-                if (active) {
-                    if (call.layout == lrc::api::call::Layout::ONE) {
-                        callModel->setConferenceLayout(confId,
-                                                       lrc::api::call::Layout::ONE_WITH_SMALL);
-                    } else {
-                        callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
-                    }
+            if (participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool()) {
+                activeParticipants += 1;
+                if (participant[lrc::api::ParticipantsInfosStrings::URI].toString() == uri
+                    && call.layout == lrc::api::call::Layout::ONE_WITH_SMALL) {
+                    auto deviceId = participant[lrc::api::ParticipantsInfosStrings::DEVICE]
+                                        .toString();
+                    auto sinkId = participant[lrc::api::ParticipantsInfosStrings::SINKID].toString();
+                    callModel->setActiveSink(confId, uri, deviceId, sinkId, false);
                 }
-                return;
             }
         }
+        if (activeParticipants == 1) {
+            // only one active left, we can change the layout.
+            if (call.layout == lrc::api::call::Layout::ONE) {
+                callModel->setConferenceLayout(confId, lrc::api::call::Layout::ONE_WITH_SMALL);
+            } else {
+                callModel->setConferenceLayout(confId, lrc::api::call::Layout::GRID);
+            }
+        }
+
     } catch (...) {
     }
 }
@@ -904,7 +930,7 @@ CallAdapter::isHandRaised(const QString& uri) const
 }
 
 void
-CallAdapter::setHandRaised(const QString& uri, bool state)
+CallAdapter::raiseHand(const QString& uri, const QString& deviceId, bool state)
 {
     auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(
@@ -913,7 +939,7 @@ CallAdapter::setHandRaised(const QString& uri, bool state)
     if (confId.isEmpty())
         confId = convInfo.callId;
     try {
-        callModel->setHandRaised(accountId_, confId, uri, state);
+        callModel->raiseHand(confId, uri, deviceId, state);
     } catch (...) {
     }
 }
@@ -934,7 +960,10 @@ CallAdapter::setModerator(const QString& uri, const bool state)
 }
 
 void
-CallAdapter::muteParticipant(const QString& uri, const bool state)
+CallAdapter::muteParticipant(const QString& accountUri,
+                             const QString& deviceId,
+                             const QString& sinkId,
+                             const bool state)
 {
     auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(
@@ -945,7 +974,7 @@ CallAdapter::muteParticipant(const QString& uri, const bool state)
         confId = convInfo.callId;
     try {
         const auto call = callModel->getCall(confId);
-        callModel->muteParticipant(confId, uri, state);
+        callModel->muteStream(confId, accountUri, deviceId, sinkId, state);
     } catch (...) {
     }
 }
@@ -984,7 +1013,7 @@ CallAdapter::getMuteState(const QString& uri) const
 }
 
 void
-CallAdapter::hangupParticipant(const QString& uri)
+CallAdapter::kickDevice(const QString& uri, const QString& deviceId)
 {
     auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(
@@ -995,7 +1024,7 @@ CallAdapter::hangupParticipant(const QString& uri)
         confId = convInfo.callId;
     try {
         const auto call = callModel->getCall(confId);
-        callModel->hangupParticipant(confId, uri);
+        callModel->kickDevice(confId, uri, deviceId);
     } catch (...) {
     }
 }

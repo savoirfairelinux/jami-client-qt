@@ -43,6 +43,7 @@ Item {
         .arg(shapeWidth)
 
     property string uri: ""
+    property string deviceId: ""
     property string bestName: ""
     property string sinkId: ""
     property bool participantIsActive: false
@@ -320,7 +321,7 @@ Item {
                 normalColor: JamiTheme.raiseHandColor
                 z: participantRect.z + 1
                 toolTipText: root.meModerator ? JamiStrings.lowerHand : ""
-                onClicked: CallAdapter.setHandRaised(uri, false)
+                onClicked: CallAdapter.raiseHand(uri, deviceId, false)
                 radius: 5
             }
 
