@@ -68,7 +68,7 @@ RowLayout {
                     muteAlertMessage = JamiStrings.participantMicIsStillMuted
                 muteAlertActive = true
             }
-            CallAdapter.muteParticipant(uri, showModeratorMute)
+            CallAdapter.muteParticipant(uri, deviceId, sinkId, showModeratorMute)
         }
         toolTipText: {
             if (!checkable && participantIsModeratorMuted)
@@ -115,7 +115,7 @@ RowLayout {
         Layout.preferredWidth: buttonPreferredSize
         Layout.alignment: Qt.AlignVCenter
         source: JamiResources.ic_hangup_participant_24dp_svg
-        onClicked: CallAdapter.hangupParticipant(uri)
+        onClicked: CallAdapter.kickDevice(uri, deviceId)
         toolTipText: JamiStrings.hangupParticipant
     }
 }
