@@ -284,7 +284,7 @@ Control {
         },
         Action {
             id: raiseHandAction
-            onTriggered: CallAdapter.setHandRaised("", !CallAdapter.isHandRaised())
+            onTriggered: CallAdapter.setHandRaised("", "", !CallAdapter.isHandRaised())
             checkable: true
             icon.source: JamiResources.hand_black_24dp_svg
             icon.color: checked ? JamiTheme.raiseHandColor : "white"
