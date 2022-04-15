@@ -67,21 +67,21 @@ Rectangle {
                 delegate: Rectangle {
                     id: delegate
                     radius: (delegate.height + 12) / 2
-                    width: childrenRect.width + 12
-                    height: childrenRect.height + 12
+                    width: label.width + 36
+                    height: label.height + 12
 
                     RowLayout {
                         anchors.centerIn: parent
 
                         Label {
+                            id: label
                             text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
                             color: JamiTheme.textColor
+                            Layout.leftMargin: 8
                         }
 
                         PushButton {
                             id: removeUserBtn
-
-                            Layout.leftMargin: 8
 
                             preferredSize: 24
 
@@ -110,6 +110,7 @@ Rectangle {
             id: currentAccountAvatar
 
             Layout.alignment: Qt.AlignCenter
+            darkTheme: UtilsAdapter.luma(root.color)
 
             newConversation: true
             imageId: root.visible ? "temp" : ""
@@ -127,10 +128,27 @@ Rectangle {
             horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            placeholderText: JamiStrings.editTitle
-            tooltipText: JamiStrings.editTitle
+            placeholderText: JamiStrings.groupName
+            tooltipText: JamiStrings.groupName
             backgroundColor: root.color
-            color: "white"
+            color: UtilsAdapter.luma(backgroundColor) ?
+                    JamiTheme.chatviewTextColorLight :
+                    JamiTheme.chatviewTextColorDark
+            placeholderTextColor: {
+                if (editable) {
+                    if (UtilsAdapter.luma(root.color)) {
+                        return JamiTheme.placeholderTextColorWhite
+                    } else {
+                        return JamiTheme.placeholderTextColor
+                    }
+                } else {
+                    if (UtilsAdapter.luma(root.color)) {
+                        return JamiTheme.chatviewTextColorLight
+                    } else {
+                        return JamiTheme.chatviewTextColorDark
+                    }
+                }
+            }
         }
 
         EditableLineEdit {
@@ -138,15 +156,32 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
 
-            font.pointSize: JamiTheme.titleFontSize
+            font.pointSize: JamiTheme.menuFontSize
 
             horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            placeholderText: JamiStrings.editDescription
-            tooltipText: JamiStrings.editDescription
+            placeholderText: JamiStrings.addADescription
+            tooltipText: JamiStrings.addADescription
             backgroundColor: root.color
-            color: "white"
+            color: UtilsAdapter.luma(backgroundColor) ?
+                    JamiTheme.chatviewTextColorLight :
+                    JamiTheme.chatviewTextColorDark
+            placeholderTextColor: {
+                if (editable) {
+                    if (UtilsAdapter.luma(root.color)) {
+                        return JamiTheme.placeholderTextColorWhite
+                    } else {
+                        return JamiTheme.placeholderTextColor
+                    }
+                } else {
+                    if (UtilsAdapter.luma(root.color)) {
+                        return JamiTheme.chatviewTextColorLight
+                    } else {
+                        return JamiTheme.chatviewTextColorDark
+                    }
+                }
+            }
         }
 
         MaterialButton {

@@ -108,7 +108,7 @@ ItemDelegate {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 20
                 Layout.alignment: Qt.AlignVCenter
-                elide: Text.ElideRight
+                elide: Text.ElideMiddle
                 text: Title === undefined ? "" : Title
                 font.pointSize: JamiTheme.smartlistItemFontSize
                 font.weight: UnreadMessagesCount ? Font.Bold : Font.Normal
@@ -117,6 +117,7 @@ ItemDelegate {
             RowLayout {
                 visible: ContactType !== Profile.Type.TEMPORARY
                          && LastInteractionDate !== undefined
+                         && interactive
                 Layout.fillWidth: true
                 Layout.preferredHeight: 20
                 Layout.alignment: Qt.AlignTop
