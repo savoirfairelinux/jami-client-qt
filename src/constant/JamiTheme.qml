@@ -79,9 +79,10 @@ Item {
     property color invertedHoveredButtonColor: Qt.rgba(0, 0, 0, 0.6)
     property color invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
 
-    property color buttonTintedBlue: "#00aaff"
-    property color buttonTintedBlueHovered: "#0e81c5"
-    property color buttonTintedBluePressed: "#273261"
+    property color editLineColor: "#03b9e9"
+    property color buttonTintedBlue: "#005699"
+    property color buttonTintedBlueHovered: "#0071c9"
+    property color buttonTintedBluePressed: "#0071c9"
     property color buttonTintedGrey: darkTheme ? "#555" : "#999"
     property color buttonTintedGreyHovered: "#777"
     property color buttonTintedGreyPressed: "#777"
