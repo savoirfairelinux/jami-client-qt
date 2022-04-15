@@ -174,10 +174,13 @@ Item {
                         }
                         property int rows: Math.max(1, Math.ceil(commonParticipants.count/columns))
                         property int componentWidth: {
-                            if (inLine)
-                                return height
                             var totalSpacing = commonParticipantsFlow.spacing * commonParticipantsFlow.columns
-                            return Math.floor((commonParticipantsFlow.width - totalSpacing)/ commonParticipantsFlow.columns)
+                            var w = Math.floor((commonParticipantsFlow.width - totalSpacing)/ commonParticipantsFlow.columns)
+                            if (inLine) {
+                                w = Math.max(w, height)
+                                w = Math.min(w, height * 4 / 3) // Avoid to wide elements
+                            }
+                            return w
                         }
 
                         Repeater {
