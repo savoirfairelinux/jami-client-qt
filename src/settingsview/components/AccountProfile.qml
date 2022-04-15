@@ -57,6 +57,7 @@ ColumnLayout {
 
     PhotoboothView {
         id: currentAccountAvatar
+        darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
 
         Layout.alignment: Qt.AlignCenter
 
