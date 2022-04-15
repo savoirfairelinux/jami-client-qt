@@ -214,9 +214,9 @@ Item {
             width: buttonSize
             radius: height / 2
             border.width: 2
-            border.color: JamiTheme.textColor
+            border.color: JamiTheme.buttonTintedBlue
             normalColor: "transparent"
-            imageColor: JamiTheme.textColor
+            imageColor: JamiTheme.buttonTintedBlue
             toolTipText: JamiStrings.takePhoto
             source: JamiResources.baseline_camera_alt_24dp_svg
             hoveredColor: Qt.rgba(255, 255, 255, 0.2)
@@ -268,11 +268,11 @@ Item {
             width: buttonSize
             radius: height / 2
             border.width: 2
-            border.color: JamiTheme.textColor
+            border.color: JamiTheme.buttonTintedBlue
             normalColor: "transparent"
             source: JamiResources.round_folder_24dp_svg
             toolTipText: JamiStrings.importFromFile
-            imageColor: JamiTheme.textColor
+            imageColor: JamiTheme.buttonTintedBlue
             hoveredColor: Qt.rgba(255, 255, 255, 0.2)
 
             Keys.onPressed: function (keyEvent) {
@@ -309,11 +309,11 @@ Item {
             width: buttonSize
             radius: height / 2
             border.width: 2
-            border.color: JamiTheme.textColor
+            border.color: JamiTheme.buttonTintedBlue
             normalColor: "transparent"
             source: JamiResources.ic_hangup_participant_24dp_svg
             toolTipText: JamiStrings.clearAvatar
-            imageColor: JamiTheme.textColor
+            imageColor: JamiTheme.buttonTintedBlue
             hoveredColor: Qt.rgba(255, 255, 255, 0.2)
 
             visible: {
@@ -357,7 +357,7 @@ Item {
             normalColor: "transparent"
             source: JamiResources.round_close_24dp_svg
             toolTipText: JamiStrings.cancel
-            imageColor: JamiTheme.textColor
+            imageColor: JamiTheme.buttonTintedBlue
             hoveredColor: Qt.rgba(255, 255, 255, 0.2)
             Layout.leftMargin: -8
 

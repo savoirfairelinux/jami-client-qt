@@ -69,9 +69,23 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
 
                 text: CurrentConversation.title
-                placeholderText: JamiStrings.editTitle
-                placeholderTextColor: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
-                tooltipText: JamiStrings.editTitle
+                placeholderText: JamiStrings.groupName
+                placeholderTextColor: {
+                    if (editable) {
+                        if (UtilsAdapter.luma(root.color)) {
+                            return JamiTheme.placeholderTextColorWhite
+                        } else {
+                            return JamiTheme.placeholderTextColor
+                        }
+                    } else {
+                        if (UtilsAdapter.luma(root.color)) {
+                            return JamiTheme.chatviewTextColorLight
+                        } else {
+                            return JamiTheme.chatviewTextColorDark
+                        }
+                    }
+                }
+                tooltipText: JamiStrings.groupName
                 backgroundColor: root.color
                 color: UtilsAdapter.luma(backgroundColor) ?
                         JamiTheme.chatviewTextColorLight :
@@ -95,9 +109,23 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
 
                 text: CurrentConversation.description
-                placeholderText: JamiStrings.editDescription
-                placeholderTextColor: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
-                tooltipText: JamiStrings.editDescription
+                placeholderText: JamiStrings.addADescription
+                placeholderTextColor: {
+                    if (editable) {
+                        if (UtilsAdapter.luma(root.color)) {
+                            return JamiTheme.placeholderTextColorWhite
+                        } else {
+                            return JamiTheme.placeholderTextColor
+                        }
+                    } else {
+                        if (UtilsAdapter.luma(root.color)) {
+                            return JamiTheme.chatviewTextColorLight
+                        } else {
+                            return JamiTheme.chatviewTextColorDark
+                        }
+                    }
+                }
+                tooltipText: JamiStrings.addADescription
                 backgroundColor: root.color
                 color: UtilsAdapter.luma(backgroundColor) ?
                         JamiTheme.chatviewTextColorLight :

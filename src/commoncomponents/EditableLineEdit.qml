@@ -23,6 +23,7 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
 import net.jami.Constants 1.1
+import net.jami.Adapters 1.1
 
 Item {
     id: root
@@ -37,6 +38,8 @@ Item {
     property alias placeholderText: lineEdit.placeholderText
     property alias placeholderTextColor: lineEdit.placeholderTextColor
     property alias backgroundColor: lineEdit.backgroundColor
+    property var editIconColor:  UtilsAdapter.luma(root.color) ? JamiTheme.editLineColor : "black"
+    property var cancelIconColor: UtilsAdapter.luma(root.color) ? JamiTheme.buttonTintedBlue : "black"
 
     property bool editable: false
     property bool hovered: false
@@ -75,7 +78,7 @@ Item {
             layer {
                 enabled: true
                 effect: ColorOverlay {
-                    color: root.color
+                    color: root.editIconColor
                 }
             }
 
@@ -95,10 +98,10 @@ Item {
             readOnly: !editable
             underlined: true
 
-            borderColor: root.color
+            borderColor: root.editIconColor
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: root.preferredFieldWidth - btnEdit.width - editImg.width - btnEdit.width
+            Layout.preferredWidth: root.preferredFieldWidth - editImg.width - btnCancel.width
             Layout.fillHeight: true
 
             wrapMode: Text.NoWrap
@@ -119,13 +122,13 @@ Item {
         }
 
         PushButton {
-            id: btnEdit
+            id: btnCancel
 
             Layout.alignment: Qt.AlignVCenter
 
             enabled: editable
             opacity: editable ? 0.8 : 0
-            imageColor: root.color
+            imageColor: root.cancelIconColor
             normalColor: "transparent"
             hoveredColor: JamiTheme.hoveredButtonColor
 
@@ -151,7 +154,7 @@ Item {
         radius: JamiTheme.primaryRadius
 
         visible: root.editable || root.hovered
-        color: root.color
+        color: root.editIconColor
 
         Rectangle {
             visible: parent.visible
