@@ -18,6 +18,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
@@ -40,6 +41,7 @@ Popup {
     property int state: RecordBox.States.INIT
     property bool isVideo: false
     property bool isPhoto: false
+    property bool showVideo: (root.isVideo && VideoDevices.listSize !== 0)
     property int preferredWidth: 320
     property int preferredHeight: 240
     property int btnSize: 40
@@ -54,28 +56,12 @@ Popup {
 
     function openRecorder(vid) {
         isVideo = vid
-
-        scaleHeight()
         updateState(RecordBox.States.INIT)
 
         if (isVideo) {
-            previewWidget.startWithId(VideoDevices.getDefaultDevice())
+            localVideo.startWithId(VideoDevices.getDefaultDevice())
         }
         open()
-    }
-
-    function scaleHeight() {
-        height = preferredHeight
-        if (isVideo) {
-            var resolution = VideoDevices.defaultRes
-            var resVec = resolution.split("x")
-            var aspectRatio = resVec[1] / resVec[0]
-            if (aspectRatio) {
-                height = preferredWidth * aspectRatio
-            } else {
-                console.error("Could not scale recording video preview")
-            }
-        }
     }
 
     function closeRecorder() {
@@ -143,8 +129,6 @@ Popup {
         time.text = min + ":" + sec
     }
 
-    width: 320
-    height: 240
     modal: true
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
@@ -160,283 +144,251 @@ Popup {
         }
     }
 
-    background: Rectangle {
-        anchors.fill: parent
-        visible: !root.isVideo
+    background: Item {} // Computed by id: box, to do the layer on LocalVideo
+
+    width: preferredWidth
+    height: isVideo? previewWidget.height + 80 : preferredHeight
+    Rectangle {
+        id: box
         radius: 5
-        border.color: JamiTheme.tabbarBorderColor
-        color: JamiTheme.backgroundColor
-    }
-
-    Item {
         anchors.fill: parent
-        anchors.margins: 0
-
-        Rectangle {
-            id: rectBox
-
-            anchors.fill: parent
-
-            visible: (isVideo && VideoDevices.listSize !== 0)
-            color: JamiTheme.blackColor
-            radius: 5
-
-            Item {
-                // Else it will be resized by the layer effect
-                id: photoMask
-                visible: false
-                anchors.fill: rectBox
-                Rectangle {
-                    anchors.centerIn: parent
-                    height: parent.height
-                    width: parent.height
-                    radius: height / 2
-                }
-            }
-
-            Image {
-                id: screenshotImg
-                visible: parent.visible && root.isPhoto && btnSend.visible
-
-                anchors.fill: parent
-
-                layer.enabled: true
-                layer.effect: OpacityMask {
-                    maskSource: rectBox
-                }
-
-                Rectangle {
-                    anchors.fill: parent
-                    color: "black"
-                    opacity: 0.6
-
-                    layer.enabled: true
-                    layer.effect: OpacityMask {
-                        anchors.centerIn: parent
-                        maskSource: photoMask
-                        invert: true
-                    }
-                }
-                source: root.photo === "" ? "" : "data:image/png;base64," + root.photo
-            }
-
-            LocalVideo {
-                id: previewWidget
-
-                visible: parent.visible && !screenshotImg.visible
-
-                anchors.fill: rectBox
-                anchors.margins: 1
-
-                rendererId: VideoDevices.getDefaultDevice()
-
-                layer.enabled: true
-                layer.effect: OpacityMask {
-                    maskSource: rectBox
-                }
-
-                Rectangle {
-                    anchors.fill: parent
-                    color: "black"
-                    opacity: 0.6
-                    visible: root.isPhoto
-
-                    layer.enabled: true
-                    layer.effect: OpacityMask {
-                        anchors.centerIn: parent
-                        maskSource: photoMask
-                        invert: true
-                    }
-                }
-            }
-        }
-
-        Label {
-            anchors.centerIn: parent
-
-            width: root.width
-
-            visible: (isVideo && VideoDevices.listSize === 0)
-
-            onVisibleChanged: {
-                if (visible) {
-                    closeRecorder()
-                }
-            }
-
-            text: JamiStrings.previewUnavailable
-            font.pointSize: JamiTheme.settingsFontSize
-            font.kerning: true
-            color: JamiTheme.primaryForegroundColor
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-        }
-
-        Timer {
-            id: timer
-
-            interval: 1000
-            running: false
-            repeat: true
-
-            onTriggered: updateTimer()
-        }
-
-        Text {
-            id: time
-
-            anchors.centerIn: recordButton
-            anchors.horizontalCenterOffset: (isVideo ? 100 : 0)
-            anchors.verticalCenterOffset: (isVideo ? 0 : -100)
-
-            visible: !root.isPhoto
-            text: "00:00"
-            color: (isVideo ? JamiTheme.whiteColor : JamiTheme.textColor)
-            font.pointSize: (isVideo ? 12 : 20)
-        }
-
-        PushButton {
-            id: recordButton
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
-
-            preferredSize: btnSize
-
-            normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-
-            source: JamiResources.fiber_manual_record_24dp_svg
-            imageColor: JamiTheme.recordIconColor
-
-            onClicked: {
-                updateState(RecordBox.States.RECORDING)
-                if (!root.isPhoto)
-                    startRecording()
-            }
-        }
-
-        PushButton {
-            id: screenshotBtn
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
-
-            preferredSize: btnSize
-
-            normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            border.width: 1
-            border.color: imageColor
-
-            source: JamiResources.fiber_manual_record_24dp_svg
-            imageColor: JamiTheme.whiteColor
-
-            onClicked: {
-                root.photo = videoProvider.captureVideoFrame(previewWidget.videoSink)
-                updateState(RecordBox.States.REC_SUCCESS)
-            }
-        }
-
-        PushButton {
-            id: btnStop
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
-
-            preferredSize: btnSize
-
-            normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-
-            source: JamiResources.stop_24dp_red_svg
-            imageColor: isVideo ? JamiTheme.whiteColor : JamiTheme.textColor
-            border.width: 1
-            border.color: imageColor
-
-            onClicked: {
-                if (!root.isPhoto)
-                    stopRecording()
-                updateState(RecordBox.States.REC_SUCCESS)
-            }
-        }
-
-        PushButton {
-            id: btnRestart
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.horizontalCenterOffset: -25
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
-
-            preferredSize: btnSize
-
-            normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
-
-            source: JamiResources.re_record_24dp_svg
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            imageColor: isVideo ? JamiTheme.whiteColor : JamiTheme.textColor
-            border.width: 1
-            border.color: imageColor
-
-            onClicked: {
-                if (!root.isPhoto)
-                    stopRecording()
-                updateState(RecordBox.States.INIT)
-            }
-        }
-
-        PushButton {
-            id: btnSend
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.horizontalCenterOffset: 25
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 5
-
-            preferredSize: btnSize
-
-            normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
-
-            source: JamiResources.check_black_24dp_svg
-            imageColor: isVideo ? JamiTheme.whiteColor : JamiTheme.textColor
-            border.width: 1
-            border.color: imageColor
-
-            onClicked: {
-                if (!root.isPhoto) {
-                    stopRecording()
-                    sendRecord()
-                } else if (root.photo !== "") {
-                    root.validatePhoto(root.photo)
-                }
-                closeRecorder()
-                updateState(RecordBox.States.INIT)
-            }
-        }
+        color: JamiTheme.backgroundColor
 
         PushButton {
             id: cancelBtn
+            z: 1
 
             normalColor: "transparent"
             hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            imageColor: JamiTheme.primaryForegroundColor
+            imageColor: isVideo ? JamiTheme.whiteColor : JamiTheme.textColor
 
             preferredSize: 12
 
             source: JamiResources.round_close_24dp_svg
             toolTipText: JamiStrings.back
 
-            anchors.right: parent.right
-            anchors.top: parent.top
+            anchors.right: box.right
+            anchors.top: box.top
             anchors.margins: 8
 
             onClicked: {
                 closeRecorder()
                 updateState(RecordBox.States.INIT)
+            }
+        }
+
+        Item {
+            // Else it will be resized by the layer effect
+            id: photoMask
+            visible: false
+            anchors.fill: parent
+            Rectangle {
+                anchors.centerIn: parent
+                height: parent.height
+                width: parent.height
+                radius: height / 2
+            }
+        }
+
+        Rectangle {
+            id: rectBox
+            visible: false
+            anchors.fill: parent
+            radius: 5
+        }
+
+        ColumnLayout {
+            id: recordItem
+            anchors.fill: parent
+            spacing: 0
+            Layout.alignment: Qt.AlignTop
+
+            // Video
+            Image {
+                id: screenshotImg
+                visible: root.showVideo && root.isPhoto && btnSend.visible
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+
+                sourceSize.width: parent.width
+                sourceSize.height: width * localVideo.invAspectRatio
+
+                source: root.photo === "" ? "" : "data:image/png;base64," + root.photo
+            }
+
+            // video Preview
+            Rectangle {
+                id: previewWidget
+                visible: root.showVideo && !screenshotImg.visible
+
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                height: localVideo.width * localVideo.invAspectRatio
+                width: parent.width
+
+                color: JamiTheme.primaryForegroundColor
+
+                LocalVideo {
+                    id: localVideo
+                    anchors.fill: parent
+
+                    layer.enabled: true
+                    layer.effect: OpacityMask {
+                        maskSource: rectBox
+                    }
+
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "black"
+                        opacity: 0.6
+                        visible: root.isPhoto
+
+                        layer.enabled: true
+                        layer.effect: OpacityMask {
+                            anchors.centerIn: parent
+                            maskSource: photoMask
+                            invert: true
+                        }
+                    }
+                }
+            }
+
+            RowLayout {
+                id: controls
+                Layout.alignment: Qt.AlignCenter
+                Layout.fillWidth: true
+                spacing: 24
+                Layout.bottomMargin: isVideo ? 8 : 0
+
+                PushButton {
+                    id: recordButton
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    preferredSize: btnSize
+
+                    normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
+                    hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+
+                    source: JamiResources.fiber_manual_record_24dp_svg
+                    imageColor: JamiTheme.recordIconColor
+
+                    onClicked: {
+                        updateState(RecordBox.States.RECORDING)
+                        if (!root.isPhoto)
+                            startRecording()
+                    }
+                }
+
+                PushButton {
+                    id: screenshotBtn
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    preferredSize: btnSize
+
+                    normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
+                    hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+                    border.width: 1
+                    border.color: imageColor
+
+                    source: JamiResources.fiber_manual_record_24dp_svg
+                    imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.buttonTintedBlue
+
+                    onClicked: {
+                        root.photo = videoProvider.captureVideoFrame(localVideo.videoSink)
+                        updateState(RecordBox.States.REC_SUCCESS)
+                    }
+                }
+
+                PushButton {
+                    id: btnStop
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    preferredSize: btnSize
+
+                    normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
+                    hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+
+                    source: JamiResources.stop_24dp_red_svg
+                    imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.buttonTintedBlue
+                    border.width: 1
+                    border.color: imageColor
+
+                    onClicked: {
+                        if (!root.isPhoto)
+                            stopRecording()
+                        updateState(RecordBox.States.REC_SUCCESS)
+                    }
+                }
+
+                PushButton {
+                    id: btnRestart
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    preferredSize: btnSize
+
+                    normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
+
+                    source: JamiResources.re_record_24dp_svg
+                    hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+                    imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.buttonTintedBlue
+                    border.width: 1
+                    border.color: imageColor
+
+                    onClicked: {
+                        if (!root.isPhoto)
+                            stopRecording()
+                        updateState(RecordBox.States.INIT)
+                    }
+                }
+
+                PushButton {
+                    id: btnSend
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    preferredSize: btnSize
+
+                    normalColor: isVideo ? "transparent" : JamiTheme.backgroundColor
+
+                    source: JamiResources.check_black_24dp_svg
+                    imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.buttonTintedBlue
+                    border.width: 1
+                    border.color: imageColor
+
+                    onClicked: {
+                        if (!root.isPhoto) {
+                            stopRecording()
+                            sendRecord()
+                        } else if (root.photo !== "") {
+                            root.validatePhoto(root.photo)
+                        }
+                        closeRecorder()
+                        updateState(RecordBox.States.INIT)
+                    }
+                }
+
+                Timer {
+                    id: timer
+
+                    interval: 1000
+                    running: false
+                    repeat: true
+
+                    onTriggered: updateTimer()
+                }
+
+                Text {
+                    id: time
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    visible: !root.isPhoto
+                    text: "00:00"
+                    color: JamiTheme.textColor
+                    font.pointSize: (isVideo ? 12 : 20)
+                }
             }
         }
     }

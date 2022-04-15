@@ -101,6 +101,7 @@ Rectangle {
             objectName: "setAvatarWidget"
 
             Layout.alignment: Qt.AlignCenter
+            darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
 
             enabled: !saveProfileBtn.spinnerTriggered
             imageId: createdAccountId
