@@ -60,7 +60,7 @@ Rectangle {
             EditableLineEdit {
                 id: titleLine
 
-                Layout.alignment: Qt.AlignCenter
+                Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: JamiTheme.preferredMarginSize
 
                 font.pointSize: JamiTheme.titleFontSize
@@ -85,7 +85,7 @@ Rectangle {
             EditableLineEdit {
                 id: descriptionLine
 
-                Layout.alignment: Qt.AlignCenter
+                Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
 
