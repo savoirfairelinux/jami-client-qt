@@ -26,7 +26,7 @@ TextField {
     id: root
 
     property int fieldLayoutWidth: 256
-    property int fieldLayoutHeight: 48
+    property int fieldLayoutHeight: 24
 
     property var backgroundColor: JamiTheme.editBackgroundColor
     property var borderColor: JamiTheme.greyBorderColor
@@ -76,7 +76,7 @@ TextField {
                 fill: parent
                 topMargin: 0
                 rightMargin: 0
-                bottomMargin: 3
+                bottomMargin: 1
                 leftMargin: 0
             }
             color: backgroundColor

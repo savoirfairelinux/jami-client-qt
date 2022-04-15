@@ -423,7 +423,7 @@ Popup {
 
             normalColor: "transparent"
             hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            imageColor: JamiTheme.primaryForegroundColor
+            imageColor: isVideo ? JamiTheme.whiteColor : JamiTheme.textColor
 
             preferredSize: 12
 
