@@ -37,6 +37,7 @@ Item {
     property string incomingVideoCallFrom: qsTr("Incoming video call from {}")
     property string contactSearchConversation: qsTr("Find a user or search for a conversation")
     property string startASwarm: qsTr("Start a swarm")
+    property string createASwarm: qsTr("Create a swarm")
     property string contactSearchInvitations: qsTr("Search your invitations")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is free software for universal communication which respects the freedoms and the privacy of its users.")
@@ -618,8 +619,8 @@ Item {
     property string members: qsTr("%1 Members")
     property string member: qsTr("Member")
     property string documents: qsTr("Documents")
-    property string editTitle: qsTr("Edit title")
-    property string editDescription: qsTr("Edit description")
+    property string groupName: qsTr("Group's name")
+    property string addADescription: qsTr("Add a description")
 
     property string ignoreTheSwarm: qsTr("Ignore the swarm")
     property string ignoreTheSwarmTooltip: qsTr("Ignore all notifications from this conversation")
