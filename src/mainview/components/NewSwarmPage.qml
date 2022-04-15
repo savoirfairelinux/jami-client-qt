@@ -67,21 +67,21 @@ Rectangle {
                 delegate: Rectangle {
                     id: delegate
                     radius: (delegate.height + 12) / 2
-                    width: childrenRect.width + 12
-                    height: childrenRect.height + 12
+                    width: label.width + 36
+                    height: label.height + 12
 
                     RowLayout {
                         anchors.centerIn: parent
 
                         Label {
+                            id: label
                             text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, modelData.uri)
                             color: JamiTheme.textColor
+                            Layout.leftMargin: 8
                         }
 
                         PushButton {
                             id: removeUserBtn
-
-                            Layout.leftMargin: 8
 
                             preferredSize: 24
 
