@@ -20,16 +20,16 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Constants 1.1
 
-RowLayout {
+Item {
     id: root
 
     signal editingFinished
 
     property alias text: lineEdit.text
-    property alias tooltipText: btnEdit.toolTipText
     property alias color: lineEdit.color
     property alias verticalAlignment: lineEdit.verticalAlignment
     property alias horizontalAlignment: lineEdit.horizontalAlignment
@@ -39,58 +39,130 @@ RowLayout {
     property alias backgroundColor: lineEdit.backgroundColor
 
     property bool editable: false
+    property bool hovered: false
+    property string tooltipText: ""
+    property int preferredWidth: JamiTheme.preferredFieldWidth
 
-    MaterialLineEdit {
-        id: lineEdit
+    height: lineEdit.height
+    width: preferredWidth
 
-        readOnly: !editable
-        underlined: true
+    MaterialToolTip {
+        parent: lineEdit
+        visible: tooltipText != "" && hovered
+        delay: Qt.styleHints.mousePressAndHoldInterval
+        text: tooltipText
+    }
 
-        borderColor: root.color
+    HoverHandler {
+        target : parent
+        onHoveredChanged: {
+            root.hovered = hovered
+        }
+        cursorShape: Qt.PointingHandCursor
+    }
 
-        Layout.alignment: Qt.AlignCenter
-        Layout.maximumWidth: JamiTheme.preferredFieldWidth
-        Layout.fillHeight: true
+    RowLayout {
+        id: row
+        anchors.centerIn: parent
+        z: 1
 
-        wrapMode: Text.NoWrap
+        Image {
+            id: editImg
+            opacity: editable
 
-        onFocusChanged: function(focus) {
-            if (!focus && editable) {
-                editable = !editable
-                root.editingFinished()
-            } else if (focus && !editable) {
-                editable = !editable
-                lineEdit.forceActiveFocus()
+            Layout.alignment: Qt.AlignVCenter
+
+            layer {
+                enabled: true
+                effect: ColorOverlay {
+                    color: root.color
+                }
+            }
+
+            source: JamiResources.round_edit_24dp_svg
+
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0
+                    duration: JamiTheme.longFadeDuration
+                }
             }
         }
-        onAccepted: {
-            editable = !editable
-            root.editingFinished()
+
+        MaterialLineEdit {
+            id: lineEdit
+
+            readOnly: !editable
+            underlined: true
+
+            borderColor: root.color
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: root.preferredFieldWidth - btnEdit.width - editImg.width - btnEdit.width
+            Layout.fillHeight: true
+
+            wrapMode: Text.NoWrap
+
+            onFocusChanged: function(focus) {
+                if (!focus && editable) {
+                    editable = !editable
+                    root.editingFinished()
+                } else if (focus && !editable) {
+                    editable = !editable
+                    lineEdit.forceActiveFocus()
+                }
+            }
+            onAccepted: {
+                editable = !editable
+                root.editingFinished()
+            }
+        }
+
+        PushButton {
+            id: btnEdit
+
+            Layout.alignment: Qt.AlignVCenter
+
+            enabled: editable
+            opacity: editable ? 0.8 : 0
+            imageColor: root.color
+            normalColor: "transparent"
+            hoveredColor: JamiTheme.hoveredButtonColor
+
+            source: JamiResources.round_close_24dp_svg
+
+            onClicked: {
+                root.editingFinished()
+                root.editable = !root.editable
+                lineEdit.forceActiveFocus()
+            }
+
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0
+                    duration: JamiTheme.longFadeDuration
+                }
+            }
         }
     }
 
-    PushButton {
-        id: btnEdit
+    Rectangle {
+        anchors.fill: row
+        radius: JamiTheme.primaryRadius
 
-        Layout.alignment: Qt.AlignVCenter
+        visible: root.editable || root.hovered
+        color: root.color
 
-        opacity: 0.8
-        imageColor: root.color
-        normalColor: "transparent"
-        hoveredColor: JamiTheme.hoveredButtonColor
-
-        Layout.preferredWidth: preferredSize
-        Layout.preferredHeight: preferredSize
-
-        source: editable ?
-                JamiResources.round_close_24dp_svg :
-                JamiResources.round_edit_24dp_svg
-
-        onClicked: {
-            if (root.editable)
-                root.editingFinished()
-            root.editable = !root.editable
-            lineEdit.forceActiveFocus()
+        Rectangle {
+            visible: parent.visible
+            anchors {
+                fill: parent
+                topMargin: 0
+                rightMargin: 0
+                bottomMargin: 3
+                leftMargin: 0
+            }
+            color: root.backgroundColor
         }
     }
 }
