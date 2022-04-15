@@ -200,4 +200,13 @@ AbstractButton {
             keyEvent.accepted = true
         }
     }
+
+    MouseArea {
+        anchors.fill: parent
+
+        // We don't want to eat clicks on the Text.
+        acceptedButtons: Qt.NoButton
+        cursorShape: root.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+    }
+
 }

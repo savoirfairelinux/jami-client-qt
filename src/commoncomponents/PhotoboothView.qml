@@ -34,7 +34,7 @@ Item {
     property bool newConversation: false
     property real avatarSize
     property real buttonSize: avatarSize
-    property bool inverted: false
+    property bool darkTheme: false
 
     signal focusOnPreviousItem
     signal focusOnNextItem
@@ -196,7 +196,7 @@ Item {
 
         anchors.centerIn: parent
         Layout.preferredHeight: childrenRect.height
-        spacing: 12
+        spacing: 10
 
         function backToAvatar() {
             imageLayer.visible = true
@@ -209,17 +209,18 @@ Item {
             objectName: "takePhotoButton"
 
             Layout.alignment: Qt.AlignHCenter
+            Layout.leftMargin: cancelButton.width
 
             height: buttonSize
             width: buttonSize
             radius: height / 2
             border.width: 2
-            border.color: JamiTheme.textColor
+            border.color: darkTheme ? "white" : JamiTheme.buttonTintedBlue
             normalColor: "transparent"
-            imageColor: JamiTheme.textColor
+            imageColor: darkTheme ? "white" : JamiTheme.buttonTintedBlue
             toolTipText: JamiStrings.takePhoto
             source: JamiResources.baseline_camera_alt_24dp_svg
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+            hoveredColor: darkTheme ? Qt.rgba(255, 255, 255, 0.2) : JamiTheme.buttonTintedBlueInternalHover
 
             Keys.onPressed: function (keyEvent) {
                 if (keyEvent.key === Qt.Key_Enter ||
@@ -240,15 +241,14 @@ Item {
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
-                recordBox.parent = takePhotoButton
+                recordBox.parent = buttonsRowLayout
 
                 recordBox.x = Qt.binding(function() {
-                    var buttonCenterX = takePhotoButton.x + takePhotoButton.width / 2
+                    var buttonCenterX = buttonsRowLayout.width / 2
                     return buttonCenterX - recordBox.width / 2
                 })
                 recordBox.y = Qt.binding(function() {
-                    var buttonY = takePhotoButton.y
-                    return inverted? buttonY + takePhotoButton.height : buttonY - recordBox.height
+                    return - recordBox.height / 2
                 })
                 startBooth()
             }
@@ -268,12 +268,12 @@ Item {
             width: buttonSize
             radius: height / 2
             border.width: 2
-            border.color: JamiTheme.textColor
+            border.color: darkTheme ? "white" : JamiTheme.buttonTintedBlue
             normalColor: "transparent"
             source: JamiResources.round_folder_24dp_svg
             toolTipText: JamiStrings.importFromFile
-            imageColor: JamiTheme.textColor
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+            imageColor: darkTheme ? "white" : JamiTheme.buttonTintedBlue
+            hoveredColor: darkTheme ? Qt.rgba(255, 255, 255, 0.2) : JamiTheme.buttonTintedBlueInternalHover
 
             Keys.onPressed: function (keyEvent) {
                 if (keyEvent.key === Qt.Key_Enter ||
@@ -309,12 +309,12 @@ Item {
             width: buttonSize
             radius: height / 2
             border.width: 2
-            border.color: JamiTheme.textColor
+            border.color: darkTheme ? "white" : JamiTheme.buttonTintedBlue
             normalColor: "transparent"
             source: JamiResources.ic_hangup_participant_24dp_svg
             toolTipText: JamiStrings.clearAvatar
-            imageColor: JamiTheme.textColor
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+            imageColor: darkTheme ? "white" : JamiTheme.buttonTintedBlue
+            hoveredColor: darkTheme ? Qt.rgba(255, 255, 255, 0.2) : JamiTheme.buttonTintedBlueInternalHover
 
             visible: {
                 if (!newConversation && LRCInstance.currentAccountAvatarSet)
@@ -353,13 +353,14 @@ Item {
             id: cancelButton
 
             preferredSize: 18
+            width: 18
+            height: 18
             radius: height / 2
             normalColor: "transparent"
             source: JamiResources.round_close_24dp_svg
             toolTipText: JamiStrings.cancel
-            imageColor: JamiTheme.textColor
-            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-            Layout.leftMargin: -8
+            imageColor: darkTheme ? "white" : JamiTheme.buttonTintedBlue
+            hoveredColor: darkTheme ? Qt.rgba(255, 255, 255, 0.2) : JamiTheme.buttonTintedBlueInternalHover
 
             Keys.onPressed: function (keyEvent) {
                 if (keyEvent.key === Qt.Key_Enter ||

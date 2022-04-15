@@ -131,10 +131,56 @@ Rectangle {
     }
 
     RowLayout {
-        id: startBar
+        id: titleBar
+
+        visible: swarmMemberSearchList.visible
 
         height: 40
         anchors.top: root.top
+        anchors.topMargin: 10
+        anchors.left: root.left
+        anchors.leftMargin: 15
+        anchors.right: root.right
+        anchors.rightMargin: 15
+
+        Label {
+            id: title
+
+            height: parent.height
+            Layout.fillWidth: true
+            Layout.alignment: Qt.AlignVCenter
+
+            color: JamiTheme.textColor
+
+            font.bold: true
+            font.pointSize: JamiTheme.contactEventPointSize
+
+            text: JamiStrings.createASwarm
+        }
+
+        PushButton {
+            radius: JamiTheme.primaryRadius
+
+            imageColor: JamiTheme.textColor
+            imagePadding: 8
+            normalColor: JamiTheme.secondaryBackgroundColor
+
+            preferredSize: titleBar.height
+
+            visible: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
+
+            source: JamiResources.round_close_24dp_svg
+            toolTipText: JamiStrings.cancel
+
+            onClicked: createSwarmClicked()
+        }
+    }
+
+    RowLayout {
+        id: startBar
+
+        height: 40
+        anchors.top: titleBar.visible ? titleBar.bottom : root.top
         anchors.topMargin: 10
         anchors.left: root.left
         anchors.leftMargin: 15
@@ -176,7 +222,7 @@ Rectangle {
 
             preferredSize: startBar.height
 
-            visible: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
+            visible: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm) && !swarmMemberSearchList.visible
 
             source: smartListLayout.visible ? JamiResources.create_swarm_svg : JamiResources.round_close_24dp_svg
             toolTipText: smartListLayout.visible ? JamiStrings.startASwarm : JamiStrings.cancel
@@ -365,6 +411,7 @@ Rectangle {
                     } else {
                         root.highlighted = Array.from(root.highlighted).filter(r => r !== UID)
                     }
+                    root.clearContactSearchBar()
                 }
             }
             currentIndex: model.currentFilteredRow

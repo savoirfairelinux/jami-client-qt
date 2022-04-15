@@ -79,9 +79,11 @@ Item {
     property color invertedHoveredButtonColor: Qt.rgba(0, 0, 0, 0.6)
     property color invertedNormalButtonColor: Qt.rgba(0, 0, 0, 0.75)
 
-    property color buttonTintedBlue: "#00aaff"
-    property color buttonTintedBlueHovered: "#0e81c5"
-    property color buttonTintedBluePressed: "#273261"
+    property color editLineColor: "#03b9e9"
+    property color buttonTintedBlue: "#005699"
+    property color buttonTintedBlueHovered: "#0071c9"
+    property color buttonTintedBlueInternalHover: Qt.rgba(0, 86, 153, 0.2)
+    property color buttonTintedBluePressed: "#0071c9"
     property color buttonTintedGrey: darkTheme ? "#555" : "#999"
     property color buttonTintedGreyHovered: "#777"
     property color buttonTintedGreyPressed: "#777"
@@ -167,7 +169,7 @@ Item {
     property color fileInTimestampColor: darkTheme ? "#999" : "#555"
     property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
     property color bgInvitationRectColor: darkTheme ? "#222222" : whiteColor
-    property color placeholderTextColor: darkTheme ? "#7a7a7a" : "#767676"
+    property color placeholderTextColor: darkTheme ? "#7a7a7a" : Qt.rgba(0, 0, 0, 0.2)
     property color placeholderTextColorWhite: "#cccccc"
     property color inviteHoverColor: darkTheme ? blackColor : whiteColor
     property color chatviewButtonColor: darkTheme ? whiteColor : blackColor
@@ -271,7 +273,7 @@ Item {
     property real preferredFieldHeight: 32
     property real preferredMarginSize: 16
     property real settingsMarginSize: 8
-    property real swarmDetailsPageTopMargin: 64
+    property real swarmDetailsPageTopMargin: 32
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
     property real minimumPreviewWidth: 120
