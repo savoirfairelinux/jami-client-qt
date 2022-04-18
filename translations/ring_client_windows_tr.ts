@@ -96,7 +96,7 @@
     <message>
         <location filename="../src/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 ile cevapsız arama</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="498"/>
@@ -995,12 +995,12 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="185"/>
         <source>Screen Sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ekran Paylaşımı</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="186"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation type="unfinished"/>
+        <translation>Ekran paylaşımı kare hızı (saniyedeki kare sayısı)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="187"/>
@@ -1127,17 +1127,17 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="226"/>
         <source>Mosaic</source>
-        <translation type="unfinished"/>
+        <translation>Mozaik</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="229"/>
         <source>You are still muted by moderator</source>
-        <translation type="unfinished"/>
+        <translation>Hala yönetici tarafından sessize alındınız</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="230"/>
         <source>You are muted by a moderator</source>
-        <translation type="unfinished"/>
+        <translation>Bir yönetici tarafından sessize alındınız</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="231"/>
@@ -1147,22 +1147,22 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="232"/>
         <source>Host</source>
-        <translation type="unfinished"/>
+        <translation>Oturum Sahibi</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="233"/>
         <source>Local and Moderator muted</source>
-        <translation type="unfinished"/>
+        <translation>Siz ve Yönetici sessize aldı</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="234"/>
         <source>Moderator muted</source>
-        <translation type="unfinished"/>
+        <translation>Yönetici sessize aldı</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="235"/>
         <source>Not muted</source>
-        <translation type="unfinished"/>
+        <translation>Sesi açık</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="239"/>
@@ -1217,7 +1217,7 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="253"/>
         <source>Sip input panel</source>
-        <translation type="unfinished"/>
+        <translation>Sip giriş paneli</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="254"/>
@@ -1282,7 +1282,7 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="268"/>
         <source>Lower hand</source>
-        <translation type="unfinished"/>
+        <translation>Elini indir</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="269"/>
@@ -1322,22 +1322,22 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="280"/>
         <source>{} is typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} yazıyor...</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="281"/>
         <source>{} are typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} yazıyor...</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="282"/>
         <source>Several people are typing…</source>
-        <translation type="unfinished"/>
+        <translation>Birkaç kişi yazıyor...</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="283"/>
         <source> and </source>
-        <translation type="unfinished"/>
+        <translation>ve</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="286"/>
@@ -1660,12 +1660,12 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="389"/>
         <source>Accept transfer limit</source>
-        <translation type="unfinished"/>
+        <translation>Aktarma sınırını kabul et</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="390"/>
         <source>in MB, 0 = unlimited</source>
-        <translation type="unfinished"/>
+        <translation>MB&apos;ta, 0 = sınırsız</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="393"/>
@@ -1685,7 +1685,7 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="400"/>
         <source>Open location</source>
-        <translation type="unfinished"/>
+        <translation>Konumu aç</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="403"/>
@@ -1758,17 +1758,17 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="421"/>
         <source>Troubleshoot</source>
-        <translation type="unfinished"/>
+        <translation>Sorun Giderme</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="422"/>
         <source>Open logs</source>
-        <translation type="unfinished"/>
+        <translation>Kayıtları aç</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="423"/>
         <source>Get logs</source>
-        <translation type="unfinished"/>
+        <translation>Kayıtları al</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="426"/>
@@ -1778,17 +1778,17 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="436"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>Hata ayıkla</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="437"/>
         <source>Show Stats</source>
-        <translation type="unfinished"/>
+        <translation>İstatistikleri Göster</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="438"/>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Başlat</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="439"/>
@@ -1813,12 +1813,12 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="484"/>
         <source>Stop taking photo</source>
-        <translation type="unfinished"/>
+        <translation>Fotoğraf çekmeyi durdur</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="485"/>
         <source>Clear avatar image</source>
-        <translation type="unfinished"/>
+        <translation>Avatar görselini kaldır</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="501"/>
@@ -1848,7 +1848,7 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="539"/>
         <source>Hide advanced features</source>
-        <translation type="unfinished"/>
+        <translation>Gelişmiş özellikleri gizle</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="546"/>
@@ -1868,17 +1868,17 @@ Lütfen yeniden deneyin.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="566"/>
         <source>Upgrade</source>
-        <translation type="unfinished"/>
+        <translation>Yükselt</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="567"/>
         <source>Later</source>
-        <translation type="unfinished"/>
+        <translation>Sonra</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="578"/>
         <source>Local muted</source>
-        <translation type="unfinished"/>
+        <translation>Sizde sessiz</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="589"/>
@@ -1895,17 +1895,17 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="593"/>
         <source>Is swarm:</source>
-        <translation type="unfinished"/>
+        <translation>Küme mi?:</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="594"/>
         <source>True</source>
-        <translation type="unfinished"/>
+        <translation>Doğru</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="595"/>
         <source>False</source>
-        <translation type="unfinished"/>
+        <translation>Yanlış</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="598"/>
@@ -1940,30 +1940,33 @@ Jami şimdi kapatılacak.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="604"/>
         <source>Write to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 &apos;e yaz</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="607"/>
         <source>%1 has sent you a request for a conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 size bir konuşma için istek yolladı.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="608"/>
         <source>Hello,
 Would you like to join the conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Merhaba,
+Konuşmaya katılmak ister misin?</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="609"/>
         <source>You have accepted
 the conversation request</source>
-        <translation type="unfinished"/>
+        <translation>Konuşma isteğini
+kabul ettiniz</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="610"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>Sohbeti senkronize etmek için %1
+bağlanana kadar bekleyin</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="238"/>
@@ -1974,12 +1977,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="227"/>
         <source>Participant is still muted on their device</source>
-        <translation type="unfinished"/>
+        <translation>Katılımcılar hala kendi cihazlarında sessize alındılar</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="228"/>
         <source>You are still muted on your device</source>
-        <translation type="unfinished"/>
+        <translation>Hala cihazınızda sessize alındınız</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
@@ -1989,22 +1992,22 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Stop sharing screen or file</source>
-        <translation type="unfinished"/>
+        <translation>Ekran veya dosya paylaşımını durdur</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="330"/>
         <source>Display advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Gelişmiş ayarları göster</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="331"/>
         <source>Hide advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>Gelişmiş ayarları gizle</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="353"/>
         <source>Display banned contacts</source>
-        <translation type="unfinished"/>
+        <translation>Engellenmiş kişileri görüntüle</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="354"/>
@@ -2029,12 +2032,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="429"/>
         <source>Keyboard Shortcut Table</source>
-        <translation type="unfinished"/>
+        <translation>Klavye Kısayolları Tablosu</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="431"/>
         <source>Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Konuşma</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="432"/>
@@ -2049,7 +2052,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="441"/>
         <source>Report Bug</source>
-        <translation type="unfinished"/>
+        <translation>Hata Bildir</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="442"/>
@@ -2059,12 +2062,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="444"/>
         <source>Copied to clipboard!</source>
-        <translation type="unfinished"/>
+        <translation>Panoya kopyalandı!</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="445"/>
         <source>Receive Logs</source>
-        <translation type="unfinished"/>
+        <translation>Kayıtları Al</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="448"/>
@@ -2209,7 +2212,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="521"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Paylaşmak için bir pencere seçin</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="522"/>
@@ -2219,12 +2222,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="523"/>
         <source>Screens</source>
-        <translation type="unfinished"/>
+        <translation>Ekranlar</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="524"/>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Pencereler</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="527"/>
@@ -2276,7 +2279,7 @@ Kopyalayın ve arkadaşlarınızla paylaşın!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="552"/>
         <source>Clear Text</source>
-        <translation type="unfinished"/>
+        <translation>Yazıyı Temizle</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="554"/>
@@ -2331,7 +2334,7 @@ Kopyalayın ve arkadaşlarınızla paylaşın!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="584"/>
         <source>Make all participants moderators</source>
-        <translation type="unfinished"/>
+        <translation>Tüm katılımcıları oturum başkanı yap</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="585"/>
@@ -2429,7 +2432,7 @@ Kopyalayın ve arkadaşlarınızla paylaşın!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="115"/>
         <source>Plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Eklenti ayarları</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="119"/>
@@ -2439,7 +2442,7 @@ Kopyalayın ve arkadaşlarınızla paylaşın!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="123"/>
         <source>Open keyboard shortcut table</source>
-        <translation type="unfinished"/>
+        <translation>Klavye kısayolları tablosunu aç</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="132"/>
