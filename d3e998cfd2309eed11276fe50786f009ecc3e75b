@@ -160,6 +160,24 @@
       "parentUuid": "64167e0f_8b10e35c",
       "revId": "d3e998cfd2309eed11276fe50786f009ecc3e75b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cde04dda_9f323e0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-04-18T21:31:11Z",
+      "side": 1,
+      "message": "Would the microphone list update if the webcam has a microphone?\n\nAn IPEVO VZ-R document camera has an inbuilt microphone.\nhttps://www.ipevo.com/products/vz-r\n\nWould plugin/unplugin an IPEVO VZ-R document camera update the microphone list?\n\nIf you require, we can test with an IPEVO VZ-R document camera.\n\nThank you",
+      "parentUuid": "aa7b16c4_d95f5115",
+      "revId": "d3e998cfd2309eed11276fe50786f009ecc3e75b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
