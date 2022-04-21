@@ -132,6 +132,7 @@ Item {
                     radius: 10
                     text: "<"
                     visible: genericParticipantsRect.currentPos > 0
+                             && activeParticipantsFlow.visible
                     onClicked: {
                         if (genericParticipantsRect.currentPos > 0)
                             genericParticipantsRect.currentPos--
@@ -244,6 +245,7 @@ Item {
                     radius: 10
                     text: ">"
                     visible: genericParticipantsRect.topLimit - genericParticipantsRect.showable > genericParticipantsRect.currentPos
+                             && activeParticipantsFlow.visible
                     onClicked: {
                         if (genericParticipantsRect.topLimit - genericParticipantsRect.showable > genericParticipantsRect.currentPos)
                             genericParticipantsRect.currentPos++
