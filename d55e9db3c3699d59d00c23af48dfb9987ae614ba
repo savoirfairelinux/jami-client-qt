@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56606901_21b72a88",
+        "filename": "src/disablewebengine/previewengine.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-25T19:42:25Z",
+      "side": 1,
+      "message": "Because of this, you must add:\n\n#include \"moc_previewengine.cpp\"\n#include \"previewengine.moc\"\n\n\nat the end of the file, else meta compilation will fail.",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 42
+      },
+      "revId": "d55e9db3c3699d59d00c23af48dfb9987ae614ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
