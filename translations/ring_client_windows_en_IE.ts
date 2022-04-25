@@ -919,7 +919,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="166"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Audio</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="167"/>
@@ -959,7 +959,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="176"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="177"/>

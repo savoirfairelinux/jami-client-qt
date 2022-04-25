@@ -96,7 +96,7 @@
     <message>
         <location filename="../src/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>來自 %1 的未接來電</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="498"/>
@@ -2212,7 +2212,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="521"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>選取要分享的視窗</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="522"/>

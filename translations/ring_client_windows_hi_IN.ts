@@ -106,7 +106,7 @@
     <message>
         <location filename="../src/calladapter.cpp" line="545"/>
         <source>Incoming call</source>
-        <translation type="unfinished"/>
+        <translation>फोन आ रहा है </translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="546"/>
@@ -662,7 +662,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="548"/>
         <source>About Jami</source>
-        <translation type="unfinished"/>
+        <translation>जामी के बारे में</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="557"/>
@@ -1643,7 +1643,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="386"/>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>फ़ाइल स्थानांतरण</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="387"/>
@@ -2731,7 +2731,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/smartlistmodel.cpp" line="173"/>
         <location filename="../src/smartlistmodel.cpp" line="174"/>
         <source>Calls</source>
-        <translation type="unfinished"/>
+        <translation>कॉल</translation>
     </message>
     <message>
         <location filename="../src/smartlistmodel.cpp" line="63"/>
@@ -2749,7 +2749,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/SystemSettings.qml" line="58"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>सिस्टम</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/SystemSettings.qml" line="74"/>
@@ -2813,7 +2813,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utilsadapter.cpp" line="454"/>
         <source>System</source>
-        <translation type="unfinished"/>
+        <translation>सिस्टम</translation>
     </message>
 </context>
 </TS>

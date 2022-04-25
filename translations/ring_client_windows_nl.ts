@@ -320,7 +320,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="72"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation type="unfinished"/>
+        <translation>Sta inkomende oproepen van onbekende contacten toe</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="64"/>
@@ -490,7 +490,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="149"/>
         <source>Enable local peer discovery</source>
-        <translation type="unfinished"/>
+        <translation>Lokale verwanten ontdekken inschakelen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="162"/>
@@ -984,7 +984,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="183"/>
         <source>Enable hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Hardware versnelling inschakelen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="184"/>

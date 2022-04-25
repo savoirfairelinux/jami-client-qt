@@ -1635,7 +1635,7 @@ Per favore riprova più tardi.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="379"/>
         <source>Display hyperlink previews in the chatview</source>
-        <translation>Mostra anteprime di collegamento</translation>
+        <translation>Mostra le anteprime dei collegamenti</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="381"/>

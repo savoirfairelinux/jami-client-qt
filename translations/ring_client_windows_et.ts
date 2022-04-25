@@ -924,7 +924,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="167"/>
         <source>Microphone</source>
-        <translation type="unfinished"/>
+        <translation>Mikrofon</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="168"/>
@@ -959,7 +959,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="176"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="177"/>
@@ -994,12 +994,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="185"/>
         <source>Screen Sharing</source>
-        <translation type="unfinished"/>
+        <translation>Ekraani jagamine</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="186"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation type="unfinished"/>
+        <translation>Ekraani jagamise kaadrisageduse valimine (kaadrit sekundis)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="187"/>
@@ -2601,7 +2601,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="273"/>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Ühendab</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="275"/>
@@ -2767,7 +2767,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/systemtray.cpp" line="218"/>
         <source>Answer</source>
-        <translation type="unfinished"/>
+        <translation>vasta</translation>
     </message>
     <message>
         <location filename="../src/systemtray.cpp" line="219"/>

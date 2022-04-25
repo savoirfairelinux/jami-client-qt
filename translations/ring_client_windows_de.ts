@@ -940,7 +940,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="170"/>
         <source>Select audio output device</source>
-        <translation>Audio-Ausgabegerät wählen</translation>
+        <translation>Audio-Ausgabegerät auswählen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="171"/>

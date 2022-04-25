@@ -124,7 +124,7 @@
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="84"/>
         <source>Add to conference</source>
-        <translation type="unfinished"/>
+        <translation>सम्मेलन में जोड़ें</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="86"/>
@@ -290,7 +290,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="63"/>
         <source>Delete account</source>
-        <translation type="unfinished"/>
+        <translation>खाता मिटाये</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="65"/>
@@ -310,7 +310,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="68"/>
         <source>Alias</source>
-        <translation type="unfinished"/>
+        <translation>उपनाम</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="71"/>
@@ -898,7 +898,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="159"/>
         <source>Account</source>
-        <translation type="unfinished"/>
+        <translation>खाता</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="160"/>
@@ -969,7 +969,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="178"/>
         <source>Device</source>
-        <translation type="unfinished"/>
+        <translation>दर्ज करें</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="179"/>
@@ -1196,7 +1196,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="247"/>
         <source>Remove contact</source>
-        <translation type="unfinished"/>
+        <translation>संपर्क हटाये</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="248"/>
@@ -1381,7 +1381,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="299"/>
         <source>Create account</source>
-        <translation type="unfinished"/>
+        <translation>खाता बनाएं</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="300"/>
@@ -1668,7 +1668,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="393"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>पंजी करें</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="394"/>
@@ -1860,7 +1860,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="549"/>
         <source>Welcome to</source>
-        <translation type="unfinished"/>
+        <translation>आपका स्वागत है</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="566"/>
@@ -2035,7 +2035,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="432"/>
         <source>Call</source>
-        <translation type="unfinished"/>
+        <translation>कॉल</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="433"/>
@@ -2100,7 +2100,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="467"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>बंद करे</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="468"/>
@@ -2110,7 +2110,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="469"/>
         <source>Add Device</source>
-        <translation type="unfinished"/>
+        <translation>उपकरण जोड़ें</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="472"/>
@@ -2241,7 +2241,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="534"/>
         <source>Link this device to an existing account</source>
-        <translation type="unfinished"/>
+        <translation>इस उपकरण को किसी मौजूदा खाते से लिंक करें</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="537"/>
@@ -2379,12 +2379,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="74"/>
         <source>Start an audio call</source>
-        <translation type="unfinished"/>
+        <translation>ऑडियो कॉल शुरू करें</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="78"/>
         <source>Start a video call</source>
-        <translation type="unfinished"/>
+        <translation>वीडियो कॉल शुरू करें</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="82"/>
@@ -2571,12 +2571,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utils.cpp" line="538"/>
         <source>Created by:</source>
-        <translation type="unfinished"/>
+        <translation>द्वारा बनाया गया</translation>
     </message>
     <message>
         <location filename="../src/utils.cpp" line="545"/>
         <source>Artwork by:</source>
-        <translation type="unfinished"/>
+        <translation>द्वारा कलाकृति</translation>
     </message>
     <message>
         <location filename="../src/utils.cpp" line="554"/>
@@ -2741,7 +2741,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/smartlistmodel.cpp" line="175"/>
         <location filename="../src/smartlistmodel.cpp" line="176"/>
         <source>Contacts</source>
-        <translation type="unfinished"/>
+        <translation>संपर्क</translation>
     </message>
 </context>
 <context>

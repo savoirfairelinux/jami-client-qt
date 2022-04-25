@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/mainview/components/AccountComboBoxPopup.qml" line="86"/>
         <source>Add Account</source>
-        <translation type="unfinished"/>
+        <translation>Pridať účet</translation>
     </message>
 </context>
 <context>
@@ -12,7 +12,7 @@
     <message>
         <location filename="../src/settingsview/components/AccountProfile.qml" line="47"/>
         <source>Profile</source>
-        <translation type="unfinished"/>
+        <translation>Profil</translation>
     </message>
 </context>
 <context>
@@ -34,7 +34,7 @@
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="44"/>
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="62"/>
         <source>Certificate File</source>
-        <translation type="unfinished"/>
+        <translation>Súbor s certifikátom</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/AdvancedJamiSecuritySettings.qml" line="45"/>
@@ -55,7 +55,7 @@
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="45"/>
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="63"/>
         <source>Certificate File</source>
-        <translation type="unfinished"/>
+        <translation>Súbor s certifikátom</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/AdvancedSIPSecuritySettings.qml" line="46"/>
@@ -75,7 +75,7 @@
     <message>
         <location filename="../src/settingsview/components/AdvancedSettings.qml" line="52"/>
         <source>Advanced Account Settings</source>
-        <translation type="unfinished"/>
+        <translation>Pokročilé nastavenia účtu</translation>
     </message>
 </context>
 <context>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../src/settingsview/components/BannedContacts.qml" line="79"/>
         <source>Banned Contacts</source>
-        <translation type="unfinished"/>
+        <translation>Blokované kontakty</translation>
     </message>
 </context>
 <context>
@@ -106,7 +106,7 @@
     <message>
         <location filename="../src/calladapter.cpp" line="545"/>
         <source>Incoming call</source>
-        <translation type="unfinished"/>
+        <translation>Prichádzajúci hovor</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="546"/>
@@ -124,7 +124,7 @@
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="84"/>
         <source>Add to conference</source>
-        <translation type="unfinished"/>
+        <translation>Pridať ku konferencii</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="86"/>
@@ -142,12 +142,12 @@
     <message>
         <location filename="../src/conversationsadapter.cpp" line="178"/>
         <source>New message</source>
-        <translation type="unfinished"/>
+        <translation>Nová správa</translation>
     </message>
     <message>
         <location filename="../src/conversationsadapter.cpp" line="232"/>
         <source>Trust request</source>
-        <translation type="unfinished"/>
+        <translation>Veriť žiadosti</translation>
     </message>
 </context>
 <context>
@@ -161,13 +161,13 @@
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="105"/>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="146"/>
         <source>Success</source>
-        <translation type="unfinished"/>
+        <translation>Úspech</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="105"/>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="146"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Chyba</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/CurrentAccountSettings.qml" line="133"/>
@@ -212,7 +212,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/settingsview/components/DeviceItemDelegate.qml" line="124"/>
         <source>Device Id</source>
-        <translation type="unfinished"/>
+        <translation>Id zariadenia</translation>
     </message>
 </context>
 <context>
@@ -230,7 +230,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="41"/>
         <source>Invitations</source>
-        <translation type="unfinished"/>
+        <translation>Pozvánky</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="42"/>
@@ -240,7 +240,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="47"/>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Verzia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="50"/>
@@ -250,7 +250,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="51"/>
         <source>Credits</source>
-        <translation type="unfinished"/>
+        <translation>Autori</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="54"/>
@@ -290,37 +290,37 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="63"/>
         <source>Delete account</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť účet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="65"/>
         <source>Authentication failed</source>
-        <translation type="unfinished"/>
+        <translation>Overenie zlyhalo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="66"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Heslo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="67"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Používateľské meno</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="68"/>
         <source>Alias</source>
-        <translation type="unfinished"/>
+        <translation>Alias</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="71"/>
         <source>Call Settings</source>
-        <translation type="unfinished"/>
+        <translation>Nastavenia hovoru</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="72"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť prichádzajúce hovory od neznámych kontaktov</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="64"/>
@@ -330,12 +330,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="32"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>Prijať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="35"/>
         <source>Refuse</source>
-        <translation type="unfinished"/>
+        <translation>Odmietnuť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="37"/>
@@ -370,7 +370,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="77"/>
         <source>Add a custom ringtone</source>
-        <translation type="unfinished"/>
+        <translation>Pridať vlastný vyzváňací tón</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="78"/>
@@ -380,7 +380,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="86"/>
         <source>Voicemail</source>
-        <translation type="unfinished"/>
+        <translation>Hlasové správy</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="87"/>
@@ -390,12 +390,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="90"/>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>Bezpečnosť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="91"/>
         <source>Encrypt media streams (SRTP)</source>
-        <translation type="unfinished"/>
+        <translation>Zašifrovať mediálne streamy (SRTP)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="92"/>
@@ -410,27 +410,27 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="94"/>
         <source>Encrypt negotiation (TLS)</source>
-        <translation type="unfinished"/>
+        <translation>Dohodnutie parametrov šifrovania (TLS)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="95"/>
         <source>CA certificate</source>
-        <translation type="unfinished"/>
+        <translation>CA certifikát</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="96"/>
         <source>User certificate</source>
-        <translation type="unfinished"/>
+        <translation>Používateľský certifikát</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="97"/>
         <source>Private key</source>
-        <translation type="unfinished"/>
+        <translation>Privátny kľúč</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="98"/>
         <source>Private key password</source>
-        <translation type="unfinished"/>
+        <translation>Heslo privátneho kľúča</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="99"/>
@@ -450,12 +450,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="102"/>
         <source>TLS protocol method</source>
-        <translation type="unfinished"/>
+        <translation>TLS protokolová metóda</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="103"/>
         <source>Audio input device selector</source>
-        <translation type="unfinished"/>
+        <translation>Volič Zvukového vstupného zariadenia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="104"/>
@@ -465,7 +465,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="105"/>
         <source>Negotiation timeout (seconds)</source>
-        <translation type="unfinished"/>
+        <translation>Časový limit dohodovania (v sekundách)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="106"/>
@@ -485,12 +485,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="127"/>
         <source>Use custom address and port</source>
-        <translation type="unfinished"/>
+        <translation>Použiť vlastnú adresu a port</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="149"/>
         <source>Enable local peer discovery</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť lokálne vyhľadávanie peerov</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="162"/>
@@ -582,7 +582,7 @@ Jami will now quit.</source>
         <location filename="../src/constant/JamiStrings.qml" line="395"/>
         <location filename="../src/constant/JamiStrings.qml" line="412"/>
         <source>Network error</source>
-        <translation type="unfinished"/>
+        <translation>Chyba siete</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="413"/>
@@ -597,17 +597,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="462"/>
         <source>Link device</source>
-        <translation type="unfinished"/>
+        <translation>Prepájanie zariadenia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="553"/>
         <source>Conversations</source>
-        <translation type="unfinished"/>
+        <translation>Konverzácie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="489"/>
         <source>Enable</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="497"/>
@@ -657,12 +657,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="545"/>
         <source>Create a Jami account</source>
-        <translation type="unfinished"/>
+        <translation>Vytvoriť Jami účet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="548"/>
         <source>About Jami</source>
-        <translation type="unfinished"/>
+        <translation>O programe Jami</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="557"/>
@@ -677,7 +677,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="561"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky kontrolovať dostupnosť aktualizácií</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="564"/>
@@ -733,7 +733,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="111"/>
         <source>Connectivity</source>
-        <translation type="unfinished"/>
+        <translation>Pripojenie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="112"/>
@@ -743,32 +743,32 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="114"/>
         <source>Network interface</source>
-        <translation type="unfinished"/>
+        <translation>Sieťové rozhranie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="115"/>
         <source>Use UPnP</source>
-        <translation type="unfinished"/>
+        <translation>Používať UPnP</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="116"/>
         <source>Use TURN</source>
-        <translation type="unfinished"/>
+        <translation>Použiť TURN</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="117"/>
         <source>TURN address</source>
-        <translation type="unfinished"/>
+        <translation>TURN adresa</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="118"/>
         <source>TURN username</source>
-        <translation type="unfinished"/>
+        <translation>TURN používateľské meno</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="119"/>
         <source>TURN password</source>
-        <translation type="unfinished"/>
+        <translation>TURN heslo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="120"/>
@@ -778,12 +778,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="121"/>
         <source>Use STUN</source>
-        <translation type="unfinished"/>
+        <translation>Použiť STUN</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="122"/>
         <source>STUN address</source>
-        <translation type="unfinished"/>
+        <translation>STUN adresa</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="125"/>
@@ -798,42 +798,42 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="128"/>
         <source>Address</source>
-        <translation type="unfinished"/>
+        <translation>Adresa</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="129"/>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="132"/>
         <source>Media</source>
-        <translation type="unfinished"/>
+        <translation>Médiá</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="133"/>
         <source>Enable video</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť video</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="134"/>
         <source>Video Codecs</source>
-        <translation type="unfinished"/>
+        <translation>Video kodeky</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="135"/>
         <source>Audio Codecs</source>
-        <translation type="unfinished"/>
+        <translation>Zvukové kodeky</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="138"/>
         <source>Name Server</source>
-        <translation type="unfinished"/>
+        <translation>Name server</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="141"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation type="unfinished"/>
+        <translation>SDP Session Negotiation (ICE Fallback)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="142"/>
@@ -868,27 +868,27 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="151"/>
         <source>OpenDHT Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurácia OpenDHT</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="152"/>
         <source>Enable proxy</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť proxy</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="153"/>
         <source>Proxy address</source>
-        <translation type="unfinished"/>
+        <translation>Adresa proxy</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="154"/>
         <source>Bootstrap</source>
-        <translation type="unfinished"/>
+        <translation>Bootstrap</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="157"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>Späť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="158"/>
@@ -898,13 +898,13 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="159"/>
         <source>Account</source>
-        <translation type="unfinished"/>
+        <translation>Účet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="160"/>
         <location filename="../src/constant/JamiStrings.qml" line="430"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>Všeobecné</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="161"/>
@@ -914,17 +914,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="163"/>
         <source>Audio/Video</source>
-        <translation type="unfinished"/>
+        <translation>Audio/Video</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="166"/>
         <source>Audio</source>
-        <translation type="unfinished"/>
+        <translation>Zvuk</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="167"/>
         <source>Microphone</source>
-        <translation type="unfinished"/>
+        <translation>Mikrofón</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="168"/>
@@ -959,7 +959,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="176"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>Video</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="177"/>
@@ -969,12 +969,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="178"/>
         <source>Device</source>
-        <translation type="unfinished"/>
+        <translation>Zariadenie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="179"/>
         <source>Resolution</source>
-        <translation type="unfinished"/>
+        <translation>Rozlíšenie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="180"/>
@@ -984,12 +984,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="183"/>
         <source>Enable hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť hardvérovú akceleráciu</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="184"/>
         <source>Preview unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Náhľad nedostupný</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="185"/>
@@ -1014,32 +1014,32 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="195"/>
         <source>Backup your account!</source>
-        <translation type="unfinished"/>
+        <translation>Zálohovať váš účet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="196"/>
         <source>Backup account</source>
-        <translation type="unfinished"/>
+        <translation>Zálohovať účet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="197"/>
         <source>Skip</source>
-        <translation type="unfinished"/>
+        <translation>Preskočiť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="198"/>
         <source>Success</source>
-        <translation type="unfinished"/>
+        <translation>Úspech</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="199"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Chyba</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="200"/>
         <source>Never show me this again</source>
-        <translation type="unfinished"/>
+        <translation>Už viac nezobrazovať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="201"/>
@@ -1064,7 +1064,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="207"/>
         <source>name</source>
-        <translation type="unfinished"/>
+        <translation>meno</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="208"/>
@@ -1106,7 +1106,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="222"/>
         <source>Add participant</source>
-        <translation type="unfinished"/>
+        <translation>Pridať účastníka</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="223"/>
@@ -1116,7 +1116,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="224"/>
         <source>Chat</source>
-        <translation type="unfinished"/>
+        <translation>Chat</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="225"/>
@@ -1166,52 +1166,52 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="239"/>
         <source>Cut</source>
-        <translation type="unfinished"/>
+        <translation>Vystrihnúť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="240"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Vlož</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="243"/>
         <source>Start video call</source>
-        <translation type="unfinished"/>
+        <translation>Začať video hovor</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="244"/>
         <source>Start audio call</source>
-        <translation type="unfinished"/>
+        <translation>Začať audio hovor</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="245"/>
         <source>Clear conversation</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať konverzáciu</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="246"/>
         <source>Remove conversation</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť konverzáciu</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="247"/>
         <source>Remove contact</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť kontakt</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="248"/>
         <source>Block contact</source>
-        <translation type="unfinished"/>
+        <translation>Zablokovať kontakt</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="249"/>
         <source>Contact details</source>
-        <translation type="unfinished"/>
+        <translation>Informácie o kontakte</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="252"/>
         <source>Hold</source>
-        <translation type="unfinished"/>
+        <translation>Podržať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="253"/>
@@ -1226,7 +1226,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="255"/>
         <source>Stop recording</source>
-        <translation type="unfinished"/>
+        <translation>Ukončiť zaznamenávanie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="256"/>
@@ -1256,7 +1256,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="263"/>
         <source>Share file</source>
-        <translation type="unfinished"/>
+        <translation>Zdieľať súbor</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="264"/>
@@ -1276,7 +1276,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="267"/>
         <source>N/A</source>
-        <translation type="unfinished"/>
+        <translation>N/A</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="268"/>
@@ -1291,17 +1291,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="272"/>
         <source>Hide chat view</source>
-        <translation type="unfinished"/>
+        <translation>Skryť chat</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="273"/>
         <source>Place audio call</source>
-        <translation type="unfinished"/>
+        <translation>Uskutočniť audio hovor</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="274"/>
         <source>Place video call</source>
-        <translation type="unfinished"/>
+        <translation>Uskutočniť video hovor</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="275"/>
@@ -1311,7 +1311,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="276"/>
         <source>Add to conversations</source>
-        <translation type="unfinished"/>
+        <translation>Pridať ku kontaktom</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="279"/>
@@ -1361,7 +1361,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="290"/>
         <source>Connect</source>
-        <translation type="unfinished"/>
+        <translation>Pripojiť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="292"/>
@@ -1381,12 +1381,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="299"/>
         <source>Create account</source>
-        <translation type="unfinished"/>
+        <translation>Vytvoriť účet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="300"/>
         <source>Confirm password</source>
-        <translation type="unfinished"/>
+        <translation>Potvrďte heslo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="302"/>
@@ -1406,7 +1406,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="306"/>
         <source>Choose your username</source>
-        <translation type="unfinished"/>
+        <translation>Zvoľte si používateľské meno</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="307"/>
@@ -1416,7 +1416,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="308"/>
         <source>Invalid username</source>
-        <translation type="unfinished"/>
+        <translation>Neplatné používateľské meno</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="309"/>
@@ -1426,17 +1426,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="310"/>
         <source>Username already taken</source>
-        <translation type="unfinished"/>
+        <translation>Používateľské meno už je použité</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="313"/>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Proxy</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="314"/>
         <source>Server</source>
-        <translation type="unfinished"/>
+        <translation>Server</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="315"/>
@@ -1481,13 +1481,13 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="325"/>
         <source>Change password</source>
-        <translation type="unfinished"/>
+        <translation>Zmeniť heslo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="326"/>
         <location filename="../src/constant/JamiStrings.qml" line="327"/>
         <source>Set password</source>
-        <translation type="unfinished"/>
+        <translation>Nastaviť heslo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="328"/>
@@ -1502,7 +1502,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="332"/>
         <source>Enable account</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť účet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="335"/>
@@ -1517,12 +1517,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="339"/>
         <source>Register a username</source>
-        <translation type="unfinished"/>
+        <translation>Registrovať používateľské meno</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="340"/>
         <source>Register username</source>
-        <translation type="unfinished"/>
+        <translation>Registrovať používateľské meno</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="343"/>
@@ -1532,27 +1532,27 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="344"/>
         <source>Link another device</source>
-        <translation type="unfinished"/>
+        <translation>Prepojiť ďalšie zariadenie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="345"/>
         <source>Exporting account…</source>
-        <translation type="unfinished"/>
+        <translation>Exportovanie účtu...</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="346"/>
         <source>Remove Device</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť zariadenie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="347"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation type="unfinished"/>
+        <translation>Naozaj chcete odstrániť toto zariadenie?</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="348"/>
         <source>Linked Devices</source>
-        <translation type="unfinished"/>
+        <translation>Prepojené zariadenia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="349"/>
@@ -1573,7 +1573,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="361"/>
         <source>Save new device name</source>
-        <translation type="unfinished"/>
+        <translation>Uložiť nový názov zariadenia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="362"/>
@@ -1603,7 +1603,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="369"/>
         <source>Keep minimized on close</source>
-        <translation type="unfinished"/>
+        <translation>Ponechať minimalizované namiesto vypnutia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="370"/>
@@ -1623,7 +1623,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="374"/>
         <source>Record call</source>
-        <translation type="unfinished"/>
+        <translation>Zaznamenať hovor</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="377"/>
@@ -1643,17 +1643,17 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="386"/>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Prenos súborov</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="387"/>
         <source>Allow incoming files from unknown contacts</source>
-        <translation type="unfinished"/>
+        <translation>Povoliť prichádzajúce súbory od neznámych kontaktov</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="388"/>
         <source>Automatically accept incoming files</source>
-        <translation type="unfinished"/>
+        <translation>Automaticky prijať prichádzajúce súbory</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="389"/>
@@ -1668,17 +1668,17 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="393"/>
         <source>Register</source>
-        <translation type="unfinished"/>
+        <translation>Registrovať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="394"/>
         <source>Incorrect password</source>
-        <translation type="unfinished"/>
+        <translation>Nesprávne heslo</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="399"/>
         <source>Save file</source>
-        <translation type="unfinished"/>
+        <translation>Uložiť súbor</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="400"/>
@@ -1693,7 +1693,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="404"/>
         <source>Check for updates now</source>
-        <translation type="unfinished"/>
+        <translation>Skontrolovať aktualizácie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="405"/>
@@ -1708,12 +1708,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="407"/>
         <source>Updates</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizácie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="408"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizácia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="409"/>
@@ -1750,7 +1750,7 @@ Please try again later.</source>
         <location filename="../src/constant/JamiStrings.qml" line="396"/>
         <location filename="../src/constant/JamiStrings.qml" line="418"/>
         <source>Something went wrong</source>
-        <translation type="unfinished"/>
+        <translation>Došlo k chybe</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="421"/>
@@ -1790,7 +1790,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="439"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Zastaviť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="455"/>
@@ -1800,12 +1800,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="456"/>
         <source>Import from backup</source>
-        <translation type="unfinished"/>
+        <translation>Importovať zo zálohy</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="463"/>
         <source>PIN</source>
-        <translation type="unfinished"/>
+        <translation>PIN</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="484"/>
@@ -1860,7 +1860,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="549"/>
         <source>Welcome to</source>
-        <translation type="unfinished"/>
+        <translation>Vitajte v</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="566"/>
@@ -1926,12 +1926,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="602"/>
         <source>Send</source>
-        <translation type="unfinished"/>
+        <translation>Poslať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="603"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="604"/>
@@ -1965,7 +1965,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/constant/JamiStrings.qml" line="238"/>
         <location filename="../src/constant/JamiStrings.qml" line="440"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="227"/>
@@ -2005,7 +2005,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="354"/>
         <source>Hide banned contacts</source>
-        <translation type="unfinished"/>
+        <translation>Skryť blokované kontakty</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="380"/>
@@ -2035,12 +2035,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="432"/>
         <source>Call</source>
-        <translation type="unfinished"/>
+        <translation>Volať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="433"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Nastavenia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="441"/>
@@ -2050,7 +2050,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="442"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Vyčistiť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="444"/>
@@ -2065,12 +2065,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="448"/>
         <source>Archive</source>
-        <translation type="unfinished"/>
+        <translation>Archív</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="449"/>
         <source>Open file</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť súbor</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="450"/>
@@ -2100,17 +2100,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="467"/>
         <source>Close</source>
-        <translation type="unfinished"/>
+        <translation>Zavrieť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="468"/>
         <source>Enter your account password</source>
-        <translation type="unfinished"/>
+        <translation>Zadajte heslo k účtu</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="469"/>
         <source>Add Device</source>
-        <translation type="unfinished"/>
+        <translation>Pridať zariadenie</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="472"/>
@@ -2125,7 +2125,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="474"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Potvrďte odobranie tohto zariadenia zadaním hesla zariadenia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="475"/>
@@ -2145,7 +2145,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="478"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Potvrdiť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="479"/>
@@ -2165,7 +2165,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="486"/>
         <source>Take photo</source>
-        <translation type="unfinished"/>
+        <translation>Zhotoviť fotografiu</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="492"/>
@@ -2236,12 +2236,13 @@ connects to synchronize the conversation.</source>
         <location filename="../src/constant/JamiStrings.qml" line="533"/>
         <source>This is your Jami username.
 Copy and share it with your friends!</source>
-        <translation type="unfinished"/>
+        <translation>Toto je vaše Jami používateľské meno.
+Skopírujte ho a zdieľajte s priateľmi!</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="534"/>
         <source>Link this device to an existing account</source>
-        <translation type="unfinished"/>
+        <translation>Prepojiť toto zariadenie s existujúcim účtom</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="537"/>
@@ -2261,7 +2262,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="542"/>
         <source>Add a SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Pridať SIP účet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="543"/>
@@ -2276,12 +2277,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="554"/>
         <source>Search Results</source>
-        <translation type="unfinished"/>
+        <translation>Výsledky vyhľadávania</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="568"/>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="571"/>
@@ -2301,12 +2302,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="576"/>
         <source>Minimize</source>
-        <translation type="unfinished"/>
+        <translation>Minimalizovať</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="577"/>
         <source>Hangup</source>
-        <translation type="unfinished"/>
+        <translation>Zložiť</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="581"/>
@@ -2344,7 +2345,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="41"/>
         <source>Open account list</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť zoznam účtov</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="45"/>
@@ -2379,27 +2380,27 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="74"/>
         <source>Start an audio call</source>
-        <translation type="unfinished"/>
+        <translation>Začať audio hovor</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="78"/>
         <source>Start a video call</source>
-        <translation type="unfinished"/>
+        <translation>Začať video hovor</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="82"/>
         <source>Clear history</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať históriu</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="86"/>
         <source>Block contact</source>
-        <translation type="unfinished"/>
+        <translation>Zablokovať kontakt</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="90"/>
         <source>Remove conversation</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť konverzáciu</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="94"/>
@@ -2414,7 +2415,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="107"/>
         <source>General settings</source>
-        <translation type="unfinished"/>
+        <translation>Všeobecné nastavenia</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="111"/>
@@ -2571,27 +2572,27 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utils.cpp" line="538"/>
         <source>Created by:</source>
-        <translation type="unfinished"/>
+        <translation>Vytvorili:</translation>
     </message>
     <message>
         <location filename="../src/utils.cpp" line="545"/>
         <source>Artwork by:</source>
-        <translation type="unfinished"/>
+        <translation>Dizajn od:</translation>
     </message>
     <message>
         <location filename="../src/utils.cpp" line="554"/>
         <source>Based on the SFLPhone project</source>
-        <translation type="unfinished"/>
+        <translation>Založené na projekte SFLPhone</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="267"/>
         <source>Sending</source>
-        <translation type="unfinished"/>
+        <translation>Posiela sa</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="269"/>
         <source>Failure</source>
-        <translation type="unfinished"/>
+        <translation>Chyba</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="271"/>
@@ -2601,12 +2602,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="273"/>
         <source>Connecting</source>
-        <translation type="unfinished"/>
+        <translation>Pripájanie</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="275"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>Prijať</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="277"/>
@@ -2641,7 +2642,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="290"/>
         <source>Finished</source>
-        <translation type="unfinished"/>
+        <translation>Ukončený</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="536"/>
@@ -2651,7 +2652,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="538"/>
         <source>one day ago</source>
-        <translation type="unfinished"/>
+        <translation>Včera</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="541"/>
@@ -2661,7 +2662,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="543"/>
         <source>one hour ago</source>
-        <translation type="unfinished"/>
+        <translation>Pred hodinou</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="546"/>
@@ -2671,7 +2672,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="547"/>
         <source>just now</source>
-        <translation type="unfinished"/>
+        <translation>Práve teraz</translation>
     </message>
 </context>
 <context>
@@ -2679,12 +2680,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/RecordingSettings.qml" line="68"/>
         <source>Call Recording</source>
-        <translation type="unfinished"/>
+        <translation>Nahrávanie hovoru</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/RecordingSettings.qml" line="81"/>
         <source>Always record calls</source>
-        <translation type="unfinished"/>
+        <translation>Vždy nahrávať hovory</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/RecordingSettings.qml" line="111"/>
@@ -2694,7 +2695,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/RecordingSettings.qml" line="167"/>
         <source>Save in</source>
-        <translation type="unfinished"/>
+        <translation>Uložiť v</translation>
     </message>
 </context>
 <context>
@@ -2702,7 +2703,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/RevokeDevicePasswordDialog.qml" line="105"/>
         <source>Remove</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť</translation>
     </message>
 </context>
 <context>
@@ -2731,7 +2732,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/smartlistmodel.cpp" line="173"/>
         <location filename="../src/smartlistmodel.cpp" line="174"/>
         <source>Calls</source>
-        <translation type="unfinished"/>
+        <translation>Hovory</translation>
     </message>
     <message>
         <location filename="../src/smartlistmodel.cpp" line="63"/>
@@ -2741,7 +2742,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/smartlistmodel.cpp" line="175"/>
         <location filename="../src/smartlistmodel.cpp" line="176"/>
         <source>Contacts</source>
-        <translation type="unfinished"/>
+        <translation>Kontakty</translation>
     </message>
 </context>
 <context>
@@ -2767,27 +2768,27 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/systemtray.cpp" line="218"/>
         <source>Answer</source>
-        <translation type="unfinished"/>
+        <translation>Zdvihnúť</translation>
     </message>
     <message>
         <location filename="../src/systemtray.cpp" line="219"/>
         <source>Decline</source>
-        <translation type="unfinished"/>
+        <translation>Odmietnuť</translation>
     </message>
     <message>
         <location filename="../src/systemtray.cpp" line="221"/>
         <source>Open conversation</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť konverzáciu</translation>
     </message>
     <message>
         <location filename="../src/systemtray.cpp" line="223"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>Prijať</translation>
     </message>
     <message>
         <location filename="../src/systemtray.cpp" line="224"/>
         <source>Refuse</source>
-        <translation type="unfinished"/>
+        <translation>Odmietnuť</translation>
     </message>
 </context>
 <context>
@@ -2795,7 +2796,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/UserIdentity.qml" line="38"/>
         <source>Identity</source>
-        <translation type="unfinished"/>
+        <translation>Identita</translation>
     </message>
 </context>
 <context>
