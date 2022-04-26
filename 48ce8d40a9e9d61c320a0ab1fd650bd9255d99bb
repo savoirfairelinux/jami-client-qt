@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46738932_df5c7dea",
+        "filename": "src/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-26T13:34:54Z",
+      "side": 1,
+      "message": "In fact the API says peerId, so we may want to clean this later, for now, no need.",
+      "parentUuid": "0698f930_ff7ef509",
+      "range": {
+        "startLine": 63,
+        "startChar": 28,
+        "endLine": 63,
+        "endChar": 34
+      },
+      "revId": "48ce8d40a9e9d61c320a0ab1fd650bd9255d99bb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c0f64fb9_8b3f14a3",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-04-25T17:50:22Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 75,
+        "startChar": 24,
+        "endLine": 75,
+        "endChar": 30
+      },
+      "revId": "48ce8d40a9e9d61c320a0ab1fd650bd9255d99bb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b30dbd5e_0606e05b",
+        "filename": "src/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-26T13:34:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0f64fb9_8b3f14a3",
       "range": {
         "startLine": 75,
         "startChar": 24,
@@ -87,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d65317de_8930bdeb",
+        "filename": "src/mainview/components/PluginHandlerPicker.qml",
+        "patchSetId": 14
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-26T13:34:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "394fc983_bc131018",
+      "range": {
+        "startLine": 130,
+        "startChar": 32,
+        "endLine": 130,
+        "endChar": 38
+      },
+      "revId": "48ce8d40a9e9d61c320a0ab1fd650bd9255d99bb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8ce0524_e1ebc9c2",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-04-25T17:50:22Z",
       "side": 1,
       "message": "why so much _",
+      "range": {
+        "startLine": 184,
+        "startChar": 11,
+        "endLine": 184,
+        "endChar": 26
+      },
+      "revId": "48ce8d40a9e9d61c320a0ab1fd650bd9255d99bb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c02204d9_a5e146c3",
+        "filename": "src/preferenceitemlistmodel.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-04-26T13:34:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8ce0524_e1ebc9c2",
       "range": {
         "startLine": 184,
         "startChar": 11,
