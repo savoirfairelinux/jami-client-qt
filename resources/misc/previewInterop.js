@@ -24,13 +24,13 @@ function getPreviewInfo(messageId, url) {
         var doc = parser.parseFromString(html, "text/html")
         if (!url.includes("twitter.com")){
             title = getTitle(doc)
-            image = getImage(doc, url)
-            description = getDescription(doc)
-            var domain = (new URL(url))
-            domain = (domain.hostname).replace("www.", "")
         } else {
             title = "Twitter. It's what's happening."
         }
+        image = getImage(doc, url)
+        description = getDescription(doc)
+        var domain = (new URL(url))
+        domain = (domain.hostname).replace("www.", "")
 
         window.jsbridge.infoReady(messageId, {
                                       'title': title,

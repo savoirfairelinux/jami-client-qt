@@ -148,7 +148,9 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: JamiTheme.previewTitleColor
+                        color: UtilsAdapter.luma(bubble.color) ?
+                                JamiTheme.chatviewTextColorLight :
+                                JamiTheme.chatviewTextColorDark
                         visible: LinkPreviewInfo.title !== null
                         text: LinkPreviewInfo.title
                     }
@@ -159,7 +161,9 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: JamiTheme.previewSubtitleColor
+                        color: UtilsAdapter.luma(bubble.color) ?
+                                JamiTheme.chatviewTextColorLight :
+                                JamiTheme.chatviewTextColorDark
                         visible: LinkPreviewInfo.description !== null
                         text: '<a href=" " style="text-decoration: ' +
                               ( hoveredLink ? 'underline' : 'none') + ';"' +
@@ -172,7 +176,9 @@ SBSMessageBase {
                         wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                         renderType: Text.NativeRendering
                         textFormat: TextEdit.RichText
-                        color: JamiTheme.previewSubtitleColor
+                        color: UtilsAdapter.luma(bubble.color) ?
+                                JamiTheme.chatviewTextColorLight :
+                                JamiTheme.chatviewTextColorDark
                         text: LinkPreviewInfo.domain
                     }
                 }

@@ -175,8 +175,6 @@ Item {
     property color chatviewButtonColor: darkTheme ? whiteColor : blackColor
     property color bgTextInput: darkTheme ? "#060608" : whiteColor
     property color previewTextContainerColor: darkTheme ? "#959595" : "#ececec"
-    property color previewTitleColor: darkTheme ? whiteColor : blackColor
-    property color previewSubtitleColor: darkTheme ? whiteColor : blackColor
     property color previewImageBackgroundColor: whiteColor
     property color previewCardContainerColor : darkTheme ? blackColor : whiteColor
     property color previewUrlColor : darkTheme ? "#eeeeee" : "#333"
