@@ -96,7 +96,7 @@
     <message>
         <location filename="../src/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>Zgrešen klic: %1</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="498"/>

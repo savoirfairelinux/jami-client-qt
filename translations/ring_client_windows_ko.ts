@@ -12,7 +12,7 @@
     <message>
         <location filename="../src/settingsview/components/AccountProfile.qml" line="47"/>
         <source>Profile</source>
-        <translation type="unfinished"/>
+        <translation>프로필</translation>
     </message>
 </context>
 <context>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../src/settingsview/components/BannedContacts.qml" line="79"/>
         <source>Banned Contacts</source>
-        <translation type="unfinished"/>
+        <translation>차단한 연락처</translation>
     </message>
 </context>
 <context>
@@ -300,17 +300,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="66"/>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>암호</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="67"/>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>사용자명</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="68"/>
         <source>Alias</source>
-        <translation type="unfinished"/>
+        <translation>별칭</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="71"/>
@@ -330,7 +330,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="32"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>수락</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="35"/>
@@ -390,7 +390,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="90"/>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>보안</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="91"/>
@@ -425,12 +425,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="97"/>
         <source>Private key</source>
-        <translation type="unfinished"/>
+        <translation>개인키</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="98"/>
         <source>Private key password</source>
-        <translation type="unfinished"/>
+        <translation>개인키 암호</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="99"/>
@@ -602,7 +602,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="553"/>
         <source>Conversations</source>
-        <translation type="unfinished"/>
+        <translation>대화</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="489"/>
@@ -753,7 +753,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="116"/>
         <source>Use TURN</source>
-        <translation type="unfinished"/>
+        <translation>TURN 사용</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="117"/>
@@ -778,7 +778,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="121"/>
         <source>Use STUN</source>
-        <translation type="unfinished"/>
+        <translation>STUN 사용</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="122"/>
@@ -798,12 +798,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="128"/>
         <source>Address</source>
-        <translation type="unfinished"/>
+        <translation>주소</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="129"/>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>포트</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="132"/>
@@ -898,13 +898,13 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="159"/>
         <source>Account</source>
-        <translation type="unfinished"/>
+        <translation>계정</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="160"/>
         <location filename="../src/constant/JamiStrings.qml" line="430"/>
         <source>General</source>
-        <translation type="unfinished"/>
+        <translation>일반</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="161"/>
@@ -914,7 +914,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="163"/>
         <source>Audio/Video</source>
-        <translation type="unfinished"/>
+        <translation>오디오/비디오</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="166"/>
@@ -959,7 +959,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="176"/>
         <source>Video</source>
-        <translation type="unfinished"/>
+        <translation>비디오</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="177"/>
@@ -969,12 +969,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="178"/>
         <source>Device</source>
-        <translation type="unfinished"/>
+        <translation>장치</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="179"/>
         <source>Resolution</source>
-        <translation type="unfinished"/>
+        <translation>해상도</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="180"/>
@@ -1256,7 +1256,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="263"/>
         <source>Share file</source>
-        <translation type="unfinished"/>
+        <translation>파일 공유하기</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="264"/>
@@ -1386,7 +1386,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="300"/>
         <source>Confirm password</source>
-        <translation type="unfinished"/>
+        <translation>암호 확인</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="302"/>
@@ -1406,7 +1406,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="306"/>
         <source>Choose your username</source>
-        <translation type="unfinished"/>
+        <translation>사용자명 선택</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="307"/>
@@ -1431,7 +1431,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="313"/>
         <source>Proxy</source>
-        <translation type="unfinished"/>
+        <translation>프록시</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="314"/>
@@ -1593,7 +1593,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="367"/>
         <source>Enable notifications</source>
-        <translation type="unfinished"/>
+        <translation>알람 사용하기</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="368"/>
@@ -1603,7 +1603,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="369"/>
         <source>Keep minimized on close</source>
-        <translation type="unfinished"/>
+        <translation>닫을 때 최소화 유지하기</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="370"/>
@@ -1693,7 +1693,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="404"/>
         <source>Check for updates now</source>
-        <translation type="unfinished"/>
+        <translation>지금 업데이트 확인하기</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="405"/>
@@ -1965,7 +1965,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/constant/JamiStrings.qml" line="238"/>
         <location filename="../src/constant/JamiStrings.qml" line="440"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>복사하기</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="227"/>
@@ -2035,12 +2035,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="432"/>
         <source>Call</source>
-        <translation type="unfinished"/>
+        <translation>통화</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="433"/>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>설정</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="441"/>
@@ -2150,7 +2150,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="479"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>내보내기</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="482"/>
@@ -2165,7 +2165,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="486"/>
         <source>Take photo</source>
-        <translation type="unfinished"/>
+        <translation>사진 찍기</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="492"/>
@@ -2306,7 +2306,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="577"/>
         <source>Hangup</source>
-        <translation type="unfinished"/>
+        <translation>통화종료</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="581"/>
@@ -2581,7 +2581,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/utils.cpp" line="554"/>
         <source>Based on the SFLPhone project</source>
-        <translation type="unfinished"/>
+        <translation>SFLPhone 프로젝트 기반</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="267"/>
@@ -2606,7 +2606,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/messagesadapter.cpp" line="275"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>수락</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="277"/>
@@ -2689,7 +2689,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/settingsview/components/RecordingSettings.qml" line="111"/>
         <source>Quality</source>
-        <translation type="unfinished"/>
+        <translation>품질</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/RecordingSettings.qml" line="167"/>
@@ -2767,7 +2767,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/systemtray.cpp" line="218"/>
         <source>Answer</source>
-        <translation type="unfinished"/>
+        <translation>응답</translation>
     </message>
     <message>
         <location filename="../src/systemtray.cpp" line="219"/>
@@ -2782,7 +2782,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/systemtray.cpp" line="223"/>
         <source>Accept</source>
-        <translation type="unfinished"/>
+        <translation>수락</translation>
     </message>
     <message>
         <location filename="../src/systemtray.cpp" line="224"/>

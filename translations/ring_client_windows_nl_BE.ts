@@ -320,7 +320,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="72"/>
         <source>Allow incoming calls from unknown contacts</source>
-        <translation type="unfinished"/>
+        <translation>Sta inkomende oproepen van onbekende contacten toe</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="64"/>
@@ -490,7 +490,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="149"/>
         <source>Enable local peer discovery</source>
-        <translation type="unfinished"/>
+        <translation>Lokale verwanten ontdekken inschakelen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="162"/>
@@ -546,7 +546,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="297"/>
         <source>Encrypt account with password</source>
-        <translation type="unfinished"/>
+        <translation>Mijn account versleutelen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="298"/>
@@ -576,7 +576,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="378"/>
         <source>Enable typing indicators</source>
-        <translation type="unfinished"/>
+        <translation>Typ indicator inschakelen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="395"/>
@@ -627,7 +627,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="505"/>
         <source>Select</source>
-        <translation type="unfinished"/>
+        <translation>Selecteren</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="506"/>
@@ -718,7 +718,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="82"/>
         <source>Enable read receipts</source>
-        <translation type="unfinished"/>
+        <translation>Ontvangst bevestigingen inschakelen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="83"/>
@@ -984,7 +984,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="183"/>
         <source>Enable hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>Hardware versnelling inschakelen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="184"/>
@@ -1044,7 +1044,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="201"/>
         <source>Recommended</source>
-        <translation type="unfinished"/>
+        <translation>Aanbevolen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="202"/>
@@ -1095,13 +1095,13 @@ Jami will now quit.</source>
         <location filename="../src/constant/JamiStrings.qml" line="215"/>
         <location filename="../src/constant/JamiStrings.qml" line="573"/>
         <source>Mute</source>
-        <translation type="unfinished"/>
+        <translation>Dempen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="216"/>
         <location filename="../src/constant/JamiStrings.qml" line="574"/>
         <source>Unmute</source>
-        <translation type="unfinished"/>
+        <translation>Dempen opheffen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="222"/>
@@ -1346,7 +1346,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="287"/>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Vereist</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="288"/>
@@ -1391,12 +1391,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="302"/>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>Optioneel</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="303"/>
         <source>Choose a username for your account</source>
-        <translation type="unfinished"/>
+        <translation>Kies een unieke naam waarop men u kan zoeken</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="305"/>
@@ -1456,7 +1456,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="320"/>
         <source>Backup failed</source>
-        <translation type="unfinished"/>
+        <translation>Reservekopie maken mislukt</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="321"/>
@@ -1790,7 +1790,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="439"/>
         <source>Stop</source>
-        <translation type="unfinished"/>
+        <translation>Stoppen</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="455"/>
@@ -1825,12 +1825,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="509"/>
         <source>Profile is only shared with contacts</source>
-        <translation type="unfinished"/>
+        <translation>Uw profiel wordt enkel gedeeld met uw contacten</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="511"/>
         <source>Enter your name</source>
-        <translation type="unfinished"/>
+        <translation>Voer uw scherm naam in</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="535"/>
@@ -2297,7 +2297,7 @@ Deel hem met uw vrienden!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="575"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Maximaliseren</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="576"/>
