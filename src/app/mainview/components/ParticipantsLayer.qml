@@ -43,12 +43,29 @@ Item {
             uri: uri_
             isMe: isLocal_
             participantIsModerator: isModerator_
-            bestName: bestName_
+            bestName: {
+                if (bestName_ === uri_)
+                    NameDirectory.lookupAddress("", uri_)
+                return bestName_
+            }
             videoMuted: videoMuted_
             participantIsActive: active_
             isLocalMuted: audioLocalMuted_
             participantIsModeratorMuted: audioModeratorMuted_
             participantHandIsRaised: isHandRaised_
+
+            Connections {
+                id: registeredNameFoundConnection
+
+                target: NameDirectory
+                enabled: bestName_ === uri_
+
+                function onRegisteredNameFound(status, address, name) {
+                    if (address === uri_ && status == NameDirectory.LookupStatus.SUCCESS) {
+                        bestName_ = name
+                    }
+                }
+            }
         }
     }
 
