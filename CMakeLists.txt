@@ -37,7 +37,6 @@ set(QT_MODULES
     Gui
     Qml
     QmlModels
-    Positioning
     Sql
     Concurrent
     Core
@@ -47,6 +46,7 @@ set(QT_MODULES
     WebChannel
     WebEngineWidgets
     Multimedia
+    Widgets
 )
 find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
 foreach(MODULE ${QT_MODULES})

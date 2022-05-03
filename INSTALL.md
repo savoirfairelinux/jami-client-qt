@@ -136,7 +136,6 @@ Only 64-bit MSVC build can be compiled.
   - Additional Libraries
     - Qt Multimedia
     - Qt Network Authorization
-    - Qt Positioning
     - Qt WebChannel
     - Qt WebEngine
     - Qt WebSockets
