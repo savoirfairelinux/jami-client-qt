@@ -37,12 +37,12 @@ set(QT_MODULES
     Gui
     Qml
     QmlModels
-    Positioning
     Sql
     Concurrent
     Core
     Core5Compat
     Multimedia
+    Widgets
 )
 
 if(NOT DEFINED WITH_WEBENGINE)

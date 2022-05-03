@@ -26,7 +26,6 @@
 #include <QDir>
 
 #include <QImage>
-#include <QItemDelegate>
 #include <QLabel>
 #include <QListWidget>
 #include <QMessageBox>
