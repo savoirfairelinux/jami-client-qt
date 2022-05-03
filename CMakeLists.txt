@@ -37,7 +37,6 @@ set(QT_MODULES
     Gui
     Qml
     QmlModels
-    Positioning
     Sql
     Concurrent
     Core
@@ -47,6 +46,11 @@ set(QT_MODULES
 
 if(NOT DEFINED WITH_WEBENGINE)
     set(WITH_WEBENGINE true)
+endif()
+
+if(WITH_POSITIONING)
+    list(APPEND QT_MODULES Positioning)
+    add_definitions(-DWITH_POSITIONING)
 endif()
 
 if(WITH_WEBENGINE)
