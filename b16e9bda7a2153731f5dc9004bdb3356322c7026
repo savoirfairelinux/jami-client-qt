@@ -22,6 +22,30 @@
       },
       "revId": "b16e9bda7a2153731f5dc9004bdb3356322c7026",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24584964_26e15139",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-05-03T12:38:39Z",
+      "side": 1,
+      "message": "if WITH_WEBENGINE is not defined, I think it\u0027s a UB",
+      "parentUuid": "d8daa4ac_67a371d1",
+      "range": {
+        "startLine": 197,
+        "startChar": 71,
+        "endLine": 197,
+        "endChar": 85
+      },
+      "revId": "b16e9bda7a2153731f5dc9004bdb3356322c7026",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
