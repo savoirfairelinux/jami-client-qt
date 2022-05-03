@@ -46,6 +46,30 @@
       },
       "revId": "b16e9bda7a2153731f5dc9004bdb3356322c7026",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50ed203a_55334518",
+        "filename": "src/mainapplication.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-03T12:46:57Z",
+      "side": 1,
+      "message": "It actually fails to build on my end, so...yeah this wouldn\u0027t work right now:\n\n    /home/bandali/src/jami/main/client-qt/src/mainapplication.cpp: In member function ‘bool MainApplication::init()’:\n    /home/bandali/src/jami/main/client-qt/src/mainapplication.cpp:196:72: error: ‘WITH_WEBENGINE’ was not declared in this scope\n      196 |     engine_.get()-\u003erootContext()-\u003esetContextProperty(\"WITH_WEBENGINE\", WITH_WEBENGINE);\n          |                                                                        ^~~~~~~~~~~~~~\n\nWe can of course later look into whether we should always set these preprocessor vars in cpp from the CMake side even if they\u0027re set to false there.",
+      "parentUuid": "24584964_26e15139",
+      "range": {
+        "startLine": 197,
+        "startChar": 71,
+        "endLine": 197,
+        "endChar": 85
+      },
+      "revId": "b16e9bda7a2153731f5dc9004bdb3356322c7026",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
