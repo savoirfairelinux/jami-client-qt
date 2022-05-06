@@ -91,7 +91,7 @@ Rectangle {
 
     Loader {
         id: empjiLoader
-        source: WITH_WEBENGINE ? "qrc:/src/commoncomponents/emojipicker/EmojiPicker.qml" : "qrc:/src/nowebengine/EmojiPicker.qml"
+        source: WITH_WEBENGINE ? "qrc:/src/app/commoncomponents/emojipicker/EmojiPicker.qml" : "qrc:/src/app/nowebengine/EmojiPicker.qml"
 
         function openEmojiPicker() {
             item.openEmojiPicker()

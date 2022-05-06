@@ -171,11 +171,11 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, MessageList::staticMetaObject, "MessageList");
 
     // Qml singleton components
-    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/constant/JamiTheme.qml", JamiTheme);
-    QML_REGISTERSINGLETONTYPE_URL(NS_MODELS, "qrc:/src/constant/JamiQmlUtils.qml", JamiQmlUtils);
-    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/constant/JamiStrings.qml", JamiStrings);
-    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/constant/JamiResources.qml", JamiResources);
-    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/constant/MsgSeq.qml", MsgSeq);
+    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/app/constant/JamiTheme.qml", JamiTheme);
+    QML_REGISTERSINGLETONTYPE_URL(NS_MODELS, "qrc:/src/app/constant/JamiQmlUtils.qml", JamiQmlUtils);
+    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/app/constant/JamiStrings.qml", JamiStrings);
+    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/app/constant/JamiResources.qml", JamiResources);
+    QML_REGISTERSINGLETONTYPE_URL(NS_CONSTANTS, "qrc:/src/app/constant/MsgSeq.qml", MsgSeq);
 
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, parent, "MainApplication")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_CONSTANTS, screenInfo, "CurrentScreenInfo")
