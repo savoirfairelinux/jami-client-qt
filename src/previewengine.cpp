@@ -96,5 +96,17 @@ PreviewEngine::log(const QString& str)
     qDebug() << str;
 }
 
+void
+PreviewEngine::emitInfoReady(const QString& messageId, const QVariantMap& info)
+{
+    Q_EMIT infoReady(messageId, info);
+}
+
+void
+PreviewEngine::emitLinkified(const QString& messageId, const QString& linkifiedStr)
+{
+    Q_EMIT linkified(messageId, linkifiedStr);
+}
+
 #include "moc_previewengine.cpp"
 #include "previewengine.moc"
