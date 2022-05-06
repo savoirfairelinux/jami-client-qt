@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07185e22_d3e1e98f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-05-06T19:14:37Z",
+      "side": 1,
+      "message": "- add the issue # into the commit message\n- optional: a more detailed commit message explaining what was wrong, how this fixes it, etc.",
+      "revId": "22b8bb2f3f0ded53333bd8fa28f3308de3f3708c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
