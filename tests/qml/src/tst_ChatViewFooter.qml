@@ -25,7 +25,7 @@ import QtTest
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
-import "qrc:/src/mainview/components"
+import "qrc:/src/app/mainview/components"
 
 ColumnLayout {
     id: root
@@ -64,7 +64,7 @@ ColumnLayout {
 
                 // File added into filesToSendContainer will cause sendMessageButton to show
                 filesToSendContainer.filesToSendListModel.addToPending(
-                            ":/src/resources/png_test.png")
+                            ":/src/app/resources/png_test.png")
                 compare(filesToSendContainer.filesToSendCount, 1)
                 compare(sendMessageButton.visible, true)
 
@@ -77,7 +77,7 @@ ColumnLayout {
                 // clear one of them will still make sendMessageButton to show
                 messageBarTextArea.insertText("test")
                 filesToSendContainer.filesToSendListModel.addToPending(
-                            ":/src/resources/png_test.png")
+                            ":/src/app/resources/png_test.png")
                 messageBarTextArea.clearText()
                 compare(sendMessageButton.visible, true)
 
