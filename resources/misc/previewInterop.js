@@ -32,13 +32,13 @@ function getPreviewInfo(messageId, url) {
             title = "Twitter. It's what's happening."
         }
 
-        window.jsbridge.infoReady(messageId, {
-                                      'title': title,
-                                      'image': image,
-                                      'description': description,
-                                      'url': url,
-                                      'domain': domain,
-                                  })
+        window.jsbridge.emitInfoReady(messageId, {
+                                          'title': title,
+                                          'image': image,
+                                          'description': description,
+                                          'url': url,
+                                          'domain': domain,
+                                      })
     }).catch(function (err) {
         log("Error occured while fetching document: " + err)
     })
@@ -51,5 +51,5 @@ function parseMessage(messageId, message, showPreview) {
     }
     if (showPreview)
         getPreviewInfo(messageId, links[0].href)
-    window.jsbridge.linkifyReady(messageId, linkifyStr(message))
+    window.jsbridge.emitLinkified(messageId, linkifyStr(message))
 }
