@@ -63,7 +63,7 @@ foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
 endforeach()
 
-set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)
+set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
@@ -112,115 +112,115 @@ execute_process(
 add_definitions(-DQT_NO_KEYWORDS)
 
 set(COMMON_SOURCES
-    ${SRC_DIR}/bannedlistmodel.cpp
-    ${SRC_DIR}/accountlistmodel.cpp
-    ${SRC_DIR}/networkmanager.cpp
-    ${SRC_DIR}/instancemanager.cpp
-    ${SRC_DIR}/main.cpp
-    ${SRC_DIR}/smartlistmodel.cpp
-    ${SRC_DIR}/utils.cpp
-    ${SRC_DIR}/mainapplication.cpp
-    ${SRC_DIR}/messagesadapter.cpp
-    ${SRC_DIR}/accountadapter.cpp
-    ${SRC_DIR}/calladapter.cpp
-    ${SRC_DIR}/conversationsadapter.cpp
-    ${SRC_DIR}/avadapter.cpp
-    ${SRC_DIR}/contactadapter.cpp
-    ${SRC_DIR}/pluginadapter.cpp
-    ${SRC_DIR}/deviceitemlistmodel.cpp
-    ${SRC_DIR}/pluginlistmodel.cpp
-    ${SRC_DIR}/pluginhandlerlistmodel.cpp
-    ${SRC_DIR}/preferenceitemlistmodel.cpp
-    ${SRC_DIR}/mediacodeclistmodel.cpp
-    ${SRC_DIR}/currentaccounttomigrate.cpp
-    ${SRC_DIR}/audiodevicemodel.cpp
-    ${SRC_DIR}/pluginlistpreferencemodel.cpp
-    ${SRC_DIR}/audiomanagerlistmodel.cpp
-    ${SRC_DIR}/qmlregister.cpp
-    ${SRC_DIR}/utilsadapter.cpp
-    ${SRC_DIR}/moderatorlistmodel.cpp
-    ${SRC_DIR}/screensaver.cpp
-    ${SRC_DIR}/systemtray.cpp
-    ${SRC_DIR}/appsettingsmanager.cpp
-    ${SRC_DIR}/lrcinstance.cpp
-    ${SRC_DIR}/selectablelistproxymodel.cpp
-    ${SRC_DIR}/conversationlistmodelbase.cpp
-    ${SRC_DIR}/conversationlistmodel.cpp
-    ${SRC_DIR}/searchresultslistmodel.cpp
-    ${SRC_DIR}/calloverlaymodel.cpp
-    ${SRC_DIR}/filestosendlistmodel.cpp
-    ${SRC_DIR}/wizardviewstepmodel.cpp
-    ${SRC_DIR}/avatarregistry.cpp
-    ${SRC_DIR}/currentconversation.cpp
-    ${SRC_DIR}/currentaccount.cpp
-    ${SRC_DIR}/videodevices.cpp
-    ${SRC_DIR}/videoprovider.cpp
-    ${SRC_DIR}/callparticipantsmodel.cpp
+    ${APP_SRC_DIR}/bannedlistmodel.cpp
+    ${APP_SRC_DIR}/accountlistmodel.cpp
+    ${APP_SRC_DIR}/networkmanager.cpp
+    ${APP_SRC_DIR}/instancemanager.cpp
+    ${APP_SRC_DIR}/main.cpp
+    ${APP_SRC_DIR}/smartlistmodel.cpp
+    ${APP_SRC_DIR}/utils.cpp
+    ${APP_SRC_DIR}/mainapplication.cpp
+    ${APP_SRC_DIR}/messagesadapter.cpp
+    ${APP_SRC_DIR}/accountadapter.cpp
+    ${APP_SRC_DIR}/calladapter.cpp
+    ${APP_SRC_DIR}/conversationsadapter.cpp
+    ${APP_SRC_DIR}/avadapter.cpp
+    ${APP_SRC_DIR}/contactadapter.cpp
+    ${APP_SRC_DIR}/pluginadapter.cpp
+    ${APP_SRC_DIR}/deviceitemlistmodel.cpp
+    ${APP_SRC_DIR}/pluginlistmodel.cpp
+    ${APP_SRC_DIR}/pluginhandlerlistmodel.cpp
+    ${APP_SRC_DIR}/preferenceitemlistmodel.cpp
+    ${APP_SRC_DIR}/mediacodeclistmodel.cpp
+    ${APP_SRC_DIR}/currentaccounttomigrate.cpp
+    ${APP_SRC_DIR}/audiodevicemodel.cpp
+    ${APP_SRC_DIR}/pluginlistpreferencemodel.cpp
+    ${APP_SRC_DIR}/audiomanagerlistmodel.cpp
+    ${APP_SRC_DIR}/qmlregister.cpp
+    ${APP_SRC_DIR}/utilsadapter.cpp
+    ${APP_SRC_DIR}/moderatorlistmodel.cpp
+    ${APP_SRC_DIR}/screensaver.cpp
+    ${APP_SRC_DIR}/systemtray.cpp
+    ${APP_SRC_DIR}/appsettingsmanager.cpp
+    ${APP_SRC_DIR}/lrcinstance.cpp
+    ${APP_SRC_DIR}/selectablelistproxymodel.cpp
+    ${APP_SRC_DIR}/conversationlistmodelbase.cpp
+    ${APP_SRC_DIR}/conversationlistmodel.cpp
+    ${APP_SRC_DIR}/searchresultslistmodel.cpp
+    ${APP_SRC_DIR}/calloverlaymodel.cpp
+    ${APP_SRC_DIR}/filestosendlistmodel.cpp
+    ${APP_SRC_DIR}/wizardviewstepmodel.cpp
+    ${APP_SRC_DIR}/avatarregistry.cpp
+    ${APP_SRC_DIR}/currentconversation.cpp
+    ${APP_SRC_DIR}/currentaccount.cpp
+    ${APP_SRC_DIR}/videodevices.cpp
+    ${APP_SRC_DIR}/videoprovider.cpp
+    ${APP_SRC_DIR}/callparticipantsmodel.cpp
 )
 
 set(COMMON_HEADERS
-    ${SRC_DIR}/avatarimageprovider.h
-    ${SRC_DIR}/networkmanager.h
-    ${SRC_DIR}/smartlistmodel.h
-    ${SRC_DIR}/updatemanager.h
-    ${SRC_DIR}/utils.h
-    ${SRC_DIR}/bannedlistmodel.h
-    ${SRC_DIR}/version.h
-    ${SRC_DIR}/accountlistmodel.h
-    ${SRC_DIR}/instancemanager.h
-    ${SRC_DIR}/connectivitymonitor.h
-    ${SRC_DIR}/jamiavatartheme.h
-    ${SRC_DIR}/mainapplication.h
-    ${SRC_DIR}/qrimageprovider.h
-    ${SRC_DIR}/messagesadapter.h
-    ${SRC_DIR}/accountadapter.h
-    ${SRC_DIR}/calladapter.h
-    ${SRC_DIR}/conversationsadapter.h
-    ${SRC_DIR}/qmladapterbase.h
-    ${SRC_DIR}/avadapter.h
-    ${SRC_DIR}/contactadapter.h
-    ${SRC_DIR}/pluginadapter.h
-    ${SRC_DIR}/deviceitemlistmodel.h
-    ${SRC_DIR}/pluginlistmodel.h
-    ${SRC_DIR}/pluginhandlerlistmodel.h
-    ${SRC_DIR}/preferenceitemlistmodel.h
-    ${SRC_DIR}/mediacodeclistmodel.h
-    ${SRC_DIR}/currentaccounttomigrate.h
-    ${SRC_DIR}/audiodevicemodel.h
-    ${SRC_DIR}/pluginlistpreferencemodel.h
-    ${SRC_DIR}/audiomanagerlistmodel.h
-    ${SRC_DIR}/qmlregister.h
-    ${SRC_DIR}/abstractlistmodelbase.h
-    ${SRC_DIR}/quickimageproviderbase.h
-    ${SRC_DIR}/qtutils.h
-    ${SRC_DIR}/utilsadapter.h
-    ${SRC_DIR}/moderatorlistmodel.h
-    ${SRC_DIR}/screensaver.h
-    ${SRC_DIR}/systemtray.h
-    ${SRC_DIR}/appsettingsmanager.h
-    ${SRC_DIR}/lrcinstance.h
-    ${SRC_DIR}/selectablelistproxymodel.h
-    ${SRC_DIR}/conversationlistmodelbase.h
-    ${SRC_DIR}/conversationlistmodel.h
-    ${SRC_DIR}/searchresultslistmodel.h
-    ${SRC_DIR}/calloverlaymodel.h
-    ${SRC_DIR}/filestosendlistmodel.h
-    ${SRC_DIR}/wizardviewstepmodel.h
-    ${SRC_DIR}/avatarregistry.h
-    ${SRC_DIR}/currentconversation.h
-    ${SRC_DIR}/currentaccount.h
-    ${SRC_DIR}/videodevices.h
-    ${SRC_DIR}/videoprovider.h
-    ${SRC_DIR}/callparticipantsmodel.h
+    ${APP_SRC_DIR}/avatarimageprovider.h
+    ${APP_SRC_DIR}/networkmanager.h
+    ${APP_SRC_DIR}/smartlistmodel.h
+    ${APP_SRC_DIR}/updatemanager.h
+    ${APP_SRC_DIR}/utils.h
+    ${APP_SRC_DIR}/bannedlistmodel.h
+    ${APP_SRC_DIR}/version.h
+    ${APP_SRC_DIR}/accountlistmodel.h
+    ${APP_SRC_DIR}/instancemanager.h
+    ${APP_SRC_DIR}/connectivitymonitor.h
+    ${APP_SRC_DIR}/jamiavatartheme.h
+    ${APP_SRC_DIR}/mainapplication.h
+    ${APP_SRC_DIR}/qrimageprovider.h
+    ${APP_SRC_DIR}/messagesadapter.h
+    ${APP_SRC_DIR}/accountadapter.h
+    ${APP_SRC_DIR}/calladapter.h
+    ${APP_SRC_DIR}/conversationsadapter.h
+    ${APP_SRC_DIR}/qmladapterbase.h
+    ${APP_SRC_DIR}/avadapter.h
+    ${APP_SRC_DIR}/contactadapter.h
+    ${APP_SRC_DIR}/pluginadapter.h
+    ${APP_SRC_DIR}/deviceitemlistmodel.h
+    ${APP_SRC_DIR}/pluginlistmodel.h
+    ${APP_SRC_DIR}/pluginhandlerlistmodel.h
+    ${APP_SRC_DIR}/preferenceitemlistmodel.h
+    ${APP_SRC_DIR}/mediacodeclistmodel.h
+    ${APP_SRC_DIR}/currentaccounttomigrate.h
+    ${APP_SRC_DIR}/audiodevicemodel.h
+    ${APP_SRC_DIR}/pluginlistpreferencemodel.h
+    ${APP_SRC_DIR}/audiomanagerlistmodel.h
+    ${APP_SRC_DIR}/qmlregister.h
+    ${APP_SRC_DIR}/abstractlistmodelbase.h
+    ${APP_SRC_DIR}/quickimageproviderbase.h
+    ${APP_SRC_DIR}/qtutils.h
+    ${APP_SRC_DIR}/utilsadapter.h
+    ${APP_SRC_DIR}/moderatorlistmodel.h
+    ${APP_SRC_DIR}/screensaver.h
+    ${APP_SRC_DIR}/systemtray.h
+    ${APP_SRC_DIR}/appsettingsmanager.h
+    ${APP_SRC_DIR}/lrcinstance.h
+    ${APP_SRC_DIR}/selectablelistproxymodel.h
+    ${APP_SRC_DIR}/conversationlistmodelbase.h
+    ${APP_SRC_DIR}/conversationlistmodel.h
+    ${APP_SRC_DIR}/searchresultslistmodel.h
+    ${APP_SRC_DIR}/calloverlaymodel.h
+    ${APP_SRC_DIR}/filestosendlistmodel.h
+    ${APP_SRC_DIR}/wizardviewstepmodel.h
+    ${APP_SRC_DIR}/avatarregistry.h
+    ${APP_SRC_DIR}/currentconversation.h
+    ${APP_SRC_DIR}/currentaccount.h
+    ${APP_SRC_DIR}/videodevices.h
+    ${APP_SRC_DIR}/videoprovider.h
+    ${APP_SRC_DIR}/callparticipantsmodel.h
 )
 
 if(WITH_WEBENGINE)
     list(APPEND COMMON_SOURCES
-                ${SRC_DIR}/previewengine.cpp)
+                ${APP_SRC_DIR}/previewengine.cpp)
     add_definitions(-DWITH_WEBENGINE)
 else()
     list(APPEND COMMON_SOURCES
-                ${SRC_DIR}/nowebengine/previewengine.cpp)
+                ${APP_SRC_DIR}/nowebengine/previewengine.cpp)
 endif()
 
 # For libavutil/avframe.
@@ -250,8 +250,8 @@ if(MSVC)
     )
 
     list(APPEND COMMON_SOURCES
-                ${SRC_DIR}/connectivitymonitor.cpp
-                ${SRC_DIR}/updatemanager.cpp
+                ${APP_SRC_DIR}/connectivitymonitor.cpp
+                ${APP_SRC_DIR}/updatemanager.cpp
     )
     # preprocessor defines
     add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
@@ -305,13 +305,13 @@ if(MSVC)
     )
 elseif (NOT APPLE)
     list(APPEND COMMON_SOURCES
-                ${SRC_DIR}/xrectsel.c
-                ${SRC_DIR}/dbuserrorhandler.cpp
-                ${SRC_DIR}/connectivitymonitor.cpp
-                ${SRC_DIR}/updatemanager.cpp)
+                ${APP_SRC_DIR}/xrectsel.c
+                ${APP_SRC_DIR}/dbuserrorhandler.cpp
+                ${APP_SRC_DIR}/connectivitymonitor.cpp
+                ${APP_SRC_DIR}/updatemanager.cpp)
     list(APPEND COMMON_HEADERS
-                ${SRC_DIR}/dbuserrorhandler.h
-                ${SRC_DIR}/xrectsel.h)
+                ${APP_SRC_DIR}/dbuserrorhandler.h
+                ${APP_SRC_DIR}/xrectsel.h)
     list(APPEND QT_LIBS Qt::DBus)
     list(APPEND QT_MODULES DBus)
 
@@ -389,11 +389,11 @@ elseif (NOT APPLE)
     find_library(X11 X11)
 else() # APPLE
     list(APPEND COMMON_SOURCES
-                ${SRC_DIR}/os/macos/updatemanager.mm
-                ${SRC_DIR}/os/macos/connectivitymonitor.mm
-                ${SRC_DIR}/os/macos/macutils.mm)
+                ${APP_SRC_DIR}/os/macos/updatemanager.mm
+                ${APP_SRC_DIR}/os/macos/connectivitymonitor.mm
+                ${APP_SRC_DIR}/os/macos/macutils.mm)
     list(APPEND COMMON_HEADERS
-                ${SRC_DIR}/os/macos/macutils.h)
+                ${APP_SRC_DIR}/os/macos/macutils.h)
     if(NOT DEFINED LRC)
         if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
             set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
@@ -465,11 +465,11 @@ endif()
 
 # common include
 include_directories(${PROJECT_SOURCE_DIR}
-                    ${SRC_DIR})
+                    ${APP_SRC_DIR})
 
 # common executable sources
 qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
-                  ${SRC_DIR}/main.cpp
+                  ${APP_SRC_DIR}/main.cpp
                   ${COMMON_HEADERS}
                   ${COMMON_SOURCES}
                   ${QML_RESOURCES}
@@ -540,7 +540,7 @@ if(MSVC)
                        WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
                        COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
                                -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
-                               -DQML_SRC_DIR=${SRC_DIR}
+                               -DQML_SRC_DIR=${APP_SRC_DIR}
                                -DEXE_NAME=$<TARGET_FILE:${PROJECT_NAME}>
                                -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
 
@@ -613,7 +613,7 @@ elseif (NOT APPLE)
     # install jami launcher that selects between clients
     install(
         FILES
-            "${PROJECT_SOURCE_DIR}/src/jami"
+            "${PROJECT_SOURCE_DIR}/src/app/jami"
         DESTINATION
             ${CMAKE_INSTALL_PREFIX}/bin
         PERMISSIONS
@@ -711,7 +711,7 @@ else()
           XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
       if(DEPLOY)
           add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                             COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${SRC_DIR}
+                             COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${APP_SRC_DIR}
                              -DMAC_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
                              -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
                              -DSPARKLE_PATH=${SPARKLE_FRAMEWORK}

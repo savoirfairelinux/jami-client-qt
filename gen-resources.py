@@ -3,7 +3,7 @@ import sys
 import re
 
 resdir = 'resources'
-qmlfile = os.path.join('src', 'constant', 'JamiResources.qml')
+qmlfile = os.path.join('src', 'app', 'constant', 'JamiResources.qml')
 sep = '_'
 
 print("Generating resource files ...")

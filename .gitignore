@@ -28,7 +28,7 @@ qml_without_webengine.qrc
 
 # auto-gen files
 resources.qrc
-src/constant/JamiResources.qml
+src/app/constant/JamiResources.qml
 
 # macOS
 .DS_Store
