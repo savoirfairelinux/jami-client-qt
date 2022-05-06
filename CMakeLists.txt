@@ -64,6 +64,7 @@ foreach(MODULE ${QT_MODULES})
 endforeach()
 
 set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
+set(LJC_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libjamiclient)
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
@@ -112,6 +113,55 @@ execute_process(
 add_definitions(-DQT_NO_KEYWORDS)
 
 set(COMMON_SOURCES
+    # -------------
+    # libjamiclient
+    # -------------
+
+    # data objects
+    ${LJC_SRC_DIR}/uri.cpp
+
+    # models
+    ${LJC_SRC_DIR}/contactmodel.cpp
+    ${LJC_SRC_DIR}/callparticipantsmodel.cpp
+    ${LJC_SRC_DIR}/newcallmodel.cpp
+    ${LJC_SRC_DIR}/newdevicemodel.cpp
+    ${LJC_SRC_DIR}/newcodecmodel.cpp
+    ${LJC_SRC_DIR}/conversationmodel.cpp
+    ${LJC_SRC_DIR}/database.cpp
+    ${LJC_SRC_DIR}/authority/daemon.cpp
+    ${LJC_SRC_DIR}/authority/storagehelper.cpp
+    ${LJC_SRC_DIR}/lrc.cpp
+    ${LJC_SRC_DIR}/newaccountmodel.cpp
+    ${LJC_SRC_DIR}/peerdiscoverymodel.cpp
+    ${LJC_SRC_DIR}/callbackshandler.cpp
+    ${LJC_SRC_DIR}/behaviorcontroller.cpp
+    ${LJC_SRC_DIR}/datatransfermodel.cpp
+    ${LJC_SRC_DIR}/messagelistmodel.cpp
+
+    # communication
+    ${LJC_SRC_DIR}/dbus/configurationmanager.cpp
+    ${LJC_SRC_DIR}/dbus/callmanager.cpp
+    ${LJC_SRC_DIR}/dbus/instancemanager.cpp
+    ${LJC_SRC_DIR}/dbus/videomanager.cpp
+    ${LJC_SRC_DIR}/dbus/presencemanager.cpp
+    ${LJC_SRC_DIR}/dbus/pluginmanager.cpp
+
+    # default interface implementations
+    ${LJC_SRC_DIR}/globalinstances.cpp
+    ${LJC_SRC_DIR}/pixmapmanipulatordefault.cpp
+    ${LJC_SRC_DIR}/dbuserrorhandlerdefault.cpp
+
+    # other
+    ${LJC_SRC_DIR}/avmodel.cpp
+    ${LJC_SRC_DIR}/pluginmodel.cpp
+    ${LJC_SRC_DIR}/namedirectory.cpp
+    ${LJC_SRC_DIR}/smartinfohub.cpp
+    ${LJC_SRC_DIR}/chatview.cpp
+
+    # -------
+    # jami-qt
+    # -------
+
     ${APP_SRC_DIR}/bannedlistmodel.cpp
     ${APP_SRC_DIR}/accountlistmodel.cpp
     ${APP_SRC_DIR}/networkmanager.cpp
@@ -159,6 +209,60 @@ set(COMMON_SOURCES
 )
 
 set(COMMON_HEADERS
+    # -------------
+    # libjamiclient
+    # -------------
+
+    ${LJC_SRC_DIR}/uri.h
+    ${LJC_SRC_DIR}/globalinstances.h
+    ${LJC_SRC_DIR}/pixmapmanipulatordefault.h
+    ${LJC_SRC_DIR}/dbuserrorhandlerdefault.h
+    ${LJC_SRC_DIR}/smartinfohub.h
+    ${LJC_SRC_DIR}/vcard.h
+    ${LJC_SRC_DIR}/namedirectory.h
+    ${LJC_SRC_DIR}/messagelistmodel.h
+
+    # api
+    ${LJC_SRC_DIR}/api/account.h
+    ${LJC_SRC_DIR}/api/avmodel.h
+    ${LJC_SRC_DIR}/api/behaviorcontroller.h
+    ${LJC_SRC_DIR}/api/chatview.h
+    ${LJC_SRC_DIR}/api/call.h
+    ${LJC_SRC_DIR}/api/contact.h
+    ${LJC_SRC_DIR}/api/conversation.h
+    ${LJC_SRC_DIR}/api/contactmodel.h
+    ${LJC_SRC_DIR}/api/conversationmodel.h
+    ${LJC_SRC_DIR}/api/datatransfermodel.h
+    ${LJC_SRC_DIR}/api/datatransfer.h
+    ${LJC_SRC_DIR}/api/interaction.h
+    ${LJC_SRC_DIR}/api/lrc.h
+    ${LJC_SRC_DIR}/api/member.h
+    ${LJC_SRC_DIR}/api/newaccountmodel.h
+    ${LJC_SRC_DIR}/api/newcallmodel.h
+    ${LJC_SRC_DIR}/api/callparticipantsmodel.h
+    ${LJC_SRC_DIR}/api/newcodecmodel.h
+    ${LJC_SRC_DIR}/api/newdevicemodel.h
+    ${LJC_SRC_DIR}/api/pluginmodel.h
+    ${LJC_SRC_DIR}/api/peerdiscoverymodel.h
+    ${LJC_SRC_DIR}/api/profile.h
+    ${LJC_SRC_DIR}/api/video.h
+
+    # interfaces
+    ${LJC_SRC_DIR}/interfaces/pixmapmanipulatori.h
+    ${LJC_SRC_DIR}/interfaces/dbuserrorhandleri.h
+
+    # extra
+    ${LJC_SRC_DIR}/typedefs.h
+    ${LJC_SRC_DIR}/containerview.h
+
+    # video
+    ${LJC_SRC_DIR}/renderer.h
+    ${LJC_SRC_DIR}/directrenderer.h
+    ${LJC_SRC_DIR}/shmrenderer.h
+
+    # -------
+    # jami-qt
+    # -------
     ${APP_SRC_DIR}/avatarimageprovider.h
     ${APP_SRC_DIR}/networkmanager.h
     ${APP_SRC_DIR}/smartlistmodel.h
@@ -257,7 +361,6 @@ if(MSVC)
     add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
 
     # dependencies
-    set(LRC ${PROJECT_SOURCE_DIR}/../lrc)
     set(DRING ${PROJECT_SOURCE_DIR}/../daemon)
     set(QRENCODE_DIR ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
 
@@ -279,10 +382,8 @@ if(MSVC)
     # client deps
     set(QRENCODE_LIB ${QRENCODE_DIR}/vc8/qrcodelib/x64/Release-Lib/qrcodelib.lib)
 
-    # lrc
-    set(LRC_SRC_PATH ${LRC}/src)
-    set(RINGCLIENT_STATIC_LIB ${LRC}/build/release/ringclient_static.lib)
-    set(QTWRAPPER_LIB ${LRC}/build/src/qtwrapper/Release/qtwrapper.lib)
+    # libjamiclient
+    set(LJC_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libjamiclient)
 
     # daemon
     set(DRING_SRC_PATH ${DRING}/contrib/msvc/include)
@@ -300,7 +401,7 @@ if(MSVC)
 
     include_directories(
         ${DRING_SRC_PATH}
-        ${LRC_SRC_PATH}
+        ${LJC_SRC_DIR}
         ${QRENCODE_DIR}
     )
 elseif (NOT APPLE)
@@ -340,43 +441,7 @@ elseif (NOT APPLE)
         add_definitions(${LIBGDKPIXBUF_CFLAGS})
     endif()
 
-    if(NOT DEFINED LRC)
-        if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
-            set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
-        endif()
-    endif()
-
-    # If LRC is not globally installed, it's path should be specified
-    # by setting variable LRC. If library is not inside LRC + suffixes
-    # lib, build or build-local, it's path should be set with LRCLIB.
-    if(DEFINED LRC)
-        if(EXISTS ${LRC}/include/libringclient)
-            set(LRC_SRC_PATH ${LRC}/include/libringclient)
-        else()
-            set(LRC_SRC_PATH ${LRC}/src)
-        endif()
-        if(NOT DEFINED LRCLIB)
-            set(LRCLIB ${LRC})
-        endif()
-        find_library(ringclient ringclient
-            PATHS ${LRCLIB}
-            PATH_SUFFIXES lib build build-local NO_DEFAULT_PATH)
-        message("Will expect lrc library in ${LRCLIB} (including \
-    subdirs /lib, /build and /build-local)")
-        set(LRC_LIB_NAME ${ringclient})
-    else()
-        find_package(LibRingClient REQUIRED)
-        if (LibRingClient_FOUND)
-            set(LRC_SRC_PATH ${LIB_RING_CLIENT_INCLUDE_DIR})
-            set(LRC_LIB_NAME ${LIB_RING_CLIENT_LIBRARY})
-        else()
-            message("lrc not found!")
-        endif()
-    endif()
-
-    message("Will expect lrc headers in ${LRC_SRC_PATH}")
-
-    include_directories(${LRC_SRC_PATH}
+    include_directories(${LJC_SRC_DIR}
                         ${LIBNM_INCLUDE_DIRS}
                         ${LIBNOTIFY_INCLUDE_DIRS}
                         ${LIBGDKPIXBUF_INCLUDE_DIRS}
@@ -384,7 +449,6 @@ elseif (NOT APPLE)
 
     set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
-    find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
     find_library(qrencode qrencode)
     find_library(X11 X11)
 else() # APPLE
@@ -394,41 +458,10 @@ else() # APPLE
                 ${APP_SRC_DIR}/os/macos/macutils.mm)
     list(APPEND COMMON_HEADERS
                 ${APP_SRC_DIR}/os/macos/macutils.h)
-    if(NOT DEFINED LRC)
-        if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
-            set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
-        endif()
-    endif()
-    if(DEFINED LRC)
-        if(EXISTS ${LRC}/include/libringclient)
-            set(LRC_SRC_PATH ${LRC}/include/libringclient)
-        else()
-            set(LRC_SRC_PATH ${LRC}/src)
-        endif()
-        if(NOT DEFINED LRCLIB)
-            set(LRCLIB ${LRC})
-        endif()
-        find_library(ringclient ringclient
-            PATHS ${LRCLIB}
-            PATH_SUFFIXES lib build build-local NO_DEFAULT_PATH)
-        set(LRC_LIB_NAME ${ringclient})
-    else()
-        find_package(LibRingClient REQUIRED)
-        if (LibRingClient_FOUND)
-            set(LRC_SRC_PATH ${LIB_RING_CLIENT_INCLUDE_DIR})
-            set(LRC_LIB_NAME ${LIB_RING_CLIENT_LIBRARY})
-        else()
-            message("lrc not found!")
-        endif()
-    endif()
-
-    message("Will expect lrc headers in ${LRC_SRC_PATH}")
-
-    include_directories(${LRC_SRC_PATH})
+    include_directories(${LJC_SRC_DIR})
 
     set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
-    find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
     find_library(SYSTEM_CONFIGURATUION SystemConfiguration)
     set(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
     set_source_files_properties(${myApp_ICON} PROPERTIES
@@ -474,7 +507,7 @@ qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
                   ${COMMON_SOURCES}
                   ${QML_RESOURCES}
                   ${QML_RESOURCES_QML}
-                  ${LRC_SRC_PATH}/webresource.qrc)
+                  ${LJC_SRC_DIR}/webresource.qrc)
 
 if(MSVC)
     # Makes it a GUI executable instead of a console application
@@ -495,27 +528,19 @@ if(MSVC)
     target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/ico.rc)
 
     target_link_libraries(${PROJECT_NAME} PRIVATE
-                          ${RINGCLIENT_STATIC_LIB}
-                          ${QTWRAPPER_LIB}
                           ${DRING_LIB}
                           ${GNUTLS_LIB})
 
     # translations
     if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
         message("Releasing and copying translation files")
-        file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/ring/translations/")
-        file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/libringclient/translations/")
-        file(GLOB TS_CLIENT_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
-        file(GLOB TS_LRC_FILES ${LRC}/translations/*.ts)
-        set_source_files_properties(${TS_CLIENT_FILES} PROPERTIES OUTPUT_LOCATION
-                                    "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/ring/translations")
-        set_source_files_properties(${TS_LRC_FILES} PROPERTIES OUTPUT_LOCATION
-                                    "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/libringclient/translations")
+        file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/jami/translations/")
+        file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
+        set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION
+                                    "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/jami/translations")
 
-        qt_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
-        qt_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
-        target_sources(${PROJECT_NAME} PRIVATE ${QM_CLIENT_FILES})
-        target_sources(${PROJECT_NAME} PRIVATE ${QM_LRC_FILES})
+        qt_add_translation(QM_FILES ${TS_FILES})
+        target_sources(${PROJECT_NAME} PRIVATE ${QM_FILES})
     endif()
 
     # POST_BUILD steps
@@ -555,7 +580,6 @@ if(MSVC)
 elseif (NOT APPLE)
     target_link_libraries(${PROJECT_NAME} PRIVATE
                           ${QT_LIBS}
-                          ${LRC_LIB_NAME}
                           ${qrencode}
                           ${X11}
                           ${LIBNM_LIBRARIES}
@@ -645,14 +669,14 @@ elseif (NOT APPLE)
     # translations
     if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
         message("Releasing and copying translation files")
-        file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/")
+        file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/share/jami/translations/")
         file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
-        set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION "share/ring/translations")
+        set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION "share/jami/translations")
 
         qt_add_translation(QM_FILES ${TS_FILES})
         add_custom_target(translations ALL DEPENDS ${QM_FILES})
-        install(DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/"
-                DESTINATION ${CMAKE_INSTALL_PREFIX}/share/ring/translations)
+        install(DIRECTORY "${CMAKE_BINARY_DIR}/share/jami/translations/"
+                DESTINATION ${CMAKE_INSTALL_PREFIX}/share/jami/translations)
     endif()
 
     # uninstall
@@ -665,7 +689,7 @@ elseif (NOT APPLE)
         COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 else()
     set(resources ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
-    set(libs ${QT_LIBS} ${LRC_LIB_NAME} ${SYSTEM_CONFIGURATUION} qrencode)
+    set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} qrencode)
     if(ENABLE_SPARKLE)
         set(resources ${resources} ${PUBLIC_KEY} ${SPARKLE_FRAMEWORK})
         set(libs ${libs} ${SPARKLE_FRAMEWORK})
@@ -675,27 +699,21 @@ else()
 
      # translations
      if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
-         set(LRC ${PROJECT_SOURCE_DIR}/../lrc)
          set(APP_CONTAINER "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents")
-         file(GLOB TS_CLIENT_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
-         file(GLOB TS_LRC_FILES ${LRC}/translations/*.ts)
+         file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
 
          # generate lproj folders
-         FOREACH(QM_FILE ${TS_LRC_FILES})
+         FOREACH(QM_FILE ${TS_FILES})
              # Extract language code from filename
              GET_FILENAME_COMPONENT(FILENAME ${QM_FILE} NAME_WE)
              STRING(REGEX REPLACE "^lrc_" "" LANG ${FILENAME})
              file(MAKE_DIRECTORY ${APP_CONTAINER}/Resources/${LANG}.lproj)
          ENDFOREACH()
-         set_source_files_properties(${TS_CLIENT_FILES} PROPERTIES OUTPUT_LOCATION
-                                              "${APP_CONTAINER}/Resources/share/ring/translations")
-         set_source_files_properties(${TS_LRC_FILES} PROPERTIES OUTPUT_LOCATION
-                                              "${APP_CONTAINER}/Resources/share/libringclient/translations")
+         set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION
+                                              "${APP_CONTAINER}/Resources/share/jami/translations")
 
-         qt_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
-         qt_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
-         target_sources(${PROJECT_NAME} PRIVATE ${QM_CLIENT_FILES})
-         target_sources(${PROJECT_NAME} PRIVATE ${QM_LRC_FILES})
+         qt_add_translation(QM_FILES ${TS_FILES})
+         target_sources(${PROJECT_NAME} PRIVATE ${QM_FILES})
       endif()
       set_target_properties(${PROJECT_NAME} PROPERTIES
           MACOSX_BUNDLE TRUE
