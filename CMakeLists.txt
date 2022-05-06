@@ -1,16 +1,34 @@
-cmake_minimum_required(VERSION 3.11)
+# Copyright (C) 2020-2022 Savoir-faire Linux Inc.
+#
+# Author: Albert Babí <albert.babi@savoirfairelinux.com>
+# Author: Amin Bandali <amin.bandali@savoirfairelinux.com>
+# Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+# Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
+# Author: Kateryna Kostiuk <kateryna.kostiuk@savoirfairelinux.com>
+# Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA.
 
-if (APPLE)
-    project(Jami)
+cmake_minimum_required(VERSION 3.16)
+
+if(APPLE)
+  project(Jami)
 else()
-    project(jami-qt)
+  project(jami-qt)
 endif()
 
-if(MSVC)
-    cmake_minimum_required(VERSION 3.15)
-endif()
-
-# todo: show error if Qt version < 5.14
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS_DEBUG "-Og -ggdb")
@@ -23,701 +41,692 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Here we let find_package(<PackageName>...) try to find Qt 6,
 # If it is found, find_package will succeed, and the CMake variable
 # QT_VERSION_MAJOR will be defined 6.
-find_package(QT NAMES Qt6 REQUIRED)
-if (${QT_VERSION_MAJOR} STRLESS 6)
-    if (${QT_VERSION_MINOR} STRLESS 2)
-        message(FATAL_ERROR "Qt 6.2 or higher is required." )
-    endif()
+if(QT6_VER AND QT6_PATH)
+  find_package(QT NAMES Qt6 REQUIRED
+    PATHS ${QT6_PATH} NO_DEFAULT_PATH)
+else()
+  find_package(QT NAMES Qt6 REQUIRED)
 endif()
+if (${QT_VERSION_MAJOR} STRLESS 6)
+  if (${QT_VERSION_MINOR} STRLESS 2)
+    message(FATAL_ERROR "Qt 6.2 or higher is required.")
+  endif()
+endif()
+
+# libjamiclient
+set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
+add_subdirectory(${LIBCLIENT_SRC_DIR})
+
 set(QT_MODULES
-    Quick
-    Network
-    NetworkAuth
-    Svg
-    Gui
-    Qml
-    QmlModels
-    Sql
-    Concurrent
-    Core
-    Core5Compat
-    Multimedia
-    Widgets
-)
+  Quick
+  Network
+  NetworkAuth
+  Svg
+  Gui
+  Qml
+  QmlModels
+  Sql
+  Concurrent
+  Core
+  Core5Compat
+  Multimedia
+  Widgets)
 
 if(NOT DEFINED WITH_WEBENGINE)
-    set(WITH_WEBENGINE true)
+  set(WITH_WEBENGINE true)
 endif()
 
 if(WITH_WEBENGINE)
-    list(APPEND QT_MODULES
-        WebEngineCore
-        WebEngineQuick
-        WebChannel
-        WebEngineWidgets
-    )
+  list(APPEND QT_MODULES
+    WebEngineCore
+    WebEngineQuick
+    WebChannel
+    WebEngineWidgets)
 endif()
-
-find_package(Qt6 COMPONENTS ${QT_MODULES} REQUIRED)
-foreach(MODULE ${QT_MODULES})
-  list(APPEND QT_LIBS "Qt::${MODULE}")
-endforeach()
 
 set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS})
+set(CMAKE_CXX_FLAGS
+  ${CMAKE_CXX_FLAGS} ${Qt6Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
-if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.12.0")
-    include(FindPython3)
-    find_package (Python3 COMPONENTS Interpreter)
-    set(PYTHON_EXEC ${Python3_EXECUTABLE})
-else()
-    include(FindPythonInterp)
-    set(PYTHON_EXEC ${PYTHON_EXECUTABLE})
+# jami-daemon
+set(CMAKE_MODULE_PATH
+  ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+find_package(LibJami REQUIRED)
+if(${LIBJAMI_FOUND} MATCHES "true")
+  include_directories(${LIBJAMI_INCLUDE_DIRS})
 endif()
+
+include(FindPython3)
+find_package(Python3 COMPONENTS Interpreter)
+set(PYTHON_EXEC ${Python3_EXECUTABLE})
 
 set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
 if(WITH_WEBENGINE)
-    set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
+  set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
 else()
-    execute_process(COMMAND ${PYTHON_EXEC} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/gen-qrc-without-webengine.py
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-    set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml_without_webengine.qrc)
+  execute_process(
+    COMMAND
+    ${PYTHON_EXEC} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/gen-qrc-without-webengine.py
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  set(QML_RESOURCES_QML
+    ${PROJECT_SOURCE_DIR}/qml_without_webengine.qrc)
 endif()
 
 if (APPLE)
-    include(FetchContent)
-    FetchContent_Declare(
-        libqrencode
-        GIT_REPOSITORY https://github.com/fukuchi/libqrencode.git
-        GIT_TAG v4.1.1
-    )
-    FetchContent_Populate(libqrencode)
-    add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
-    include_directories(${libqrencode_SOURCE_DIR})
+  include(FetchContent)
+  FetchContent_Declare(
+    libqrencode
+    GIT_REPOSITORY https://github.com/fukuchi/libqrencode.git
+    GIT_TAG v4.1.1)
+  FetchContent_Populate(libqrencode)
+  add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
+  include_directories(${libqrencode_SOURCE_DIR})
 endif()
 
 # Resource auto-gen
-# check files in the resource directory and force a reconfigure if it changes
+# check files in the resources directory and force a reconfigure if it
+# changes
 file(GLOB_RECURSE
-    RES_FILES CONFIGURE_DEPENDS
-    ${PROJECT_SOURCE_DIR}/resources/*
-)
+  RES_FILES CONFIGURE_DEPENDS
+  ${PROJECT_SOURCE_DIR}/resources/*)
 execute_process(
-    COMMAND ${PYTHON_EXEC} ${PROJECT_SOURCE_DIR}/gen-resources.py
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-)
+  COMMAND ${PYTHON_EXEC} ${PROJECT_SOURCE_DIR}/gen-resources.py
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 # library compatibility (boost, libnotify, etc.)
 add_definitions(-DQT_NO_KEYWORDS)
 
 set(COMMON_SOURCES
-    ${APP_SRC_DIR}/bannedlistmodel.cpp
-    ${APP_SRC_DIR}/accountlistmodel.cpp
-    ${APP_SRC_DIR}/networkmanager.cpp
-    ${APP_SRC_DIR}/instancemanager.cpp
-    ${APP_SRC_DIR}/main.cpp
-    ${APP_SRC_DIR}/smartlistmodel.cpp
-    ${APP_SRC_DIR}/utils.cpp
-    ${APP_SRC_DIR}/mainapplication.cpp
-    ${APP_SRC_DIR}/messagesadapter.cpp
-    ${APP_SRC_DIR}/accountadapter.cpp
-    ${APP_SRC_DIR}/calladapter.cpp
-    ${APP_SRC_DIR}/conversationsadapter.cpp
-    ${APP_SRC_DIR}/avadapter.cpp
-    ${APP_SRC_DIR}/contactadapter.cpp
-    ${APP_SRC_DIR}/pluginadapter.cpp
-    ${APP_SRC_DIR}/deviceitemlistmodel.cpp
-    ${APP_SRC_DIR}/pluginlistmodel.cpp
-    ${APP_SRC_DIR}/pluginhandlerlistmodel.cpp
-    ${APP_SRC_DIR}/preferenceitemlistmodel.cpp
-    ${APP_SRC_DIR}/mediacodeclistmodel.cpp
-    ${APP_SRC_DIR}/currentaccounttomigrate.cpp
-    ${APP_SRC_DIR}/audiodevicemodel.cpp
-    ${APP_SRC_DIR}/pluginlistpreferencemodel.cpp
-    ${APP_SRC_DIR}/audiomanagerlistmodel.cpp
-    ${APP_SRC_DIR}/qmlregister.cpp
-    ${APP_SRC_DIR}/utilsadapter.cpp
-    ${APP_SRC_DIR}/moderatorlistmodel.cpp
-    ${APP_SRC_DIR}/screensaver.cpp
-    ${APP_SRC_DIR}/systemtray.cpp
-    ${APP_SRC_DIR}/appsettingsmanager.cpp
-    ${APP_SRC_DIR}/lrcinstance.cpp
-    ${APP_SRC_DIR}/selectablelistproxymodel.cpp
-    ${APP_SRC_DIR}/conversationlistmodelbase.cpp
-    ${APP_SRC_DIR}/conversationlistmodel.cpp
-    ${APP_SRC_DIR}/searchresultslistmodel.cpp
-    ${APP_SRC_DIR}/calloverlaymodel.cpp
-    ${APP_SRC_DIR}/filestosendlistmodel.cpp
-    ${APP_SRC_DIR}/wizardviewstepmodel.cpp
-    ${APP_SRC_DIR}/avatarregistry.cpp
-    ${APP_SRC_DIR}/currentconversation.cpp
-    ${APP_SRC_DIR}/currentaccount.cpp
-    ${APP_SRC_DIR}/videodevices.cpp
-    ${APP_SRC_DIR}/videoprovider.cpp
-    ${APP_SRC_DIR}/callparticipantsmodel.cpp
-)
+  ${APP_SRC_DIR}/bannedlistmodel.cpp
+  ${APP_SRC_DIR}/accountlistmodel.cpp
+  ${APP_SRC_DIR}/networkmanager.cpp
+  ${APP_SRC_DIR}/instancemanager.cpp
+  ${APP_SRC_DIR}/main.cpp
+  ${APP_SRC_DIR}/smartlistmodel.cpp
+  ${APP_SRC_DIR}/utils.cpp
+  ${APP_SRC_DIR}/mainapplication.cpp
+  ${APP_SRC_DIR}/messagesadapter.cpp
+  ${APP_SRC_DIR}/accountadapter.cpp
+  ${APP_SRC_DIR}/calladapter.cpp
+  ${APP_SRC_DIR}/conversationsadapter.cpp
+  ${APP_SRC_DIR}/avadapter.cpp
+  ${APP_SRC_DIR}/contactadapter.cpp
+  ${APP_SRC_DIR}/pluginadapter.cpp
+  ${APP_SRC_DIR}/deviceitemlistmodel.cpp
+  ${APP_SRC_DIR}/pluginlistmodel.cpp
+  ${APP_SRC_DIR}/pluginhandlerlistmodel.cpp
+  ${APP_SRC_DIR}/preferenceitemlistmodel.cpp
+  ${APP_SRC_DIR}/mediacodeclistmodel.cpp
+  ${APP_SRC_DIR}/currentaccounttomigrate.cpp
+  ${APP_SRC_DIR}/audiodevicemodel.cpp
+  ${APP_SRC_DIR}/pluginlistpreferencemodel.cpp
+  ${APP_SRC_DIR}/audiomanagerlistmodel.cpp
+  ${APP_SRC_DIR}/qmlregister.cpp
+  ${APP_SRC_DIR}/utilsadapter.cpp
+  ${APP_SRC_DIR}/moderatorlistmodel.cpp
+  ${APP_SRC_DIR}/screensaver.cpp
+  ${APP_SRC_DIR}/systemtray.cpp
+  ${APP_SRC_DIR}/appsettingsmanager.cpp
+  ${APP_SRC_DIR}/lrcinstance.cpp
+  ${APP_SRC_DIR}/selectablelistproxymodel.cpp
+  ${APP_SRC_DIR}/conversationlistmodelbase.cpp
+  ${APP_SRC_DIR}/conversationlistmodel.cpp
+  ${APP_SRC_DIR}/searchresultslistmodel.cpp
+  ${APP_SRC_DIR}/calloverlaymodel.cpp
+  ${APP_SRC_DIR}/filestosendlistmodel.cpp
+  ${APP_SRC_DIR}/wizardviewstepmodel.cpp
+  ${APP_SRC_DIR}/avatarregistry.cpp
+  ${APP_SRC_DIR}/currentconversation.cpp
+  ${APP_SRC_DIR}/currentaccount.cpp
+  ${APP_SRC_DIR}/videodevices.cpp
+  ${APP_SRC_DIR}/videoprovider.cpp
+  ${APP_SRC_DIR}/callparticipantsmodel.cpp)
 
 set(COMMON_HEADERS
-    ${APP_SRC_DIR}/avatarimageprovider.h
-    ${APP_SRC_DIR}/networkmanager.h
-    ${APP_SRC_DIR}/smartlistmodel.h
-    ${APP_SRC_DIR}/updatemanager.h
-    ${APP_SRC_DIR}/utils.h
-    ${APP_SRC_DIR}/bannedlistmodel.h
-    ${APP_SRC_DIR}/version.h
-    ${APP_SRC_DIR}/accountlistmodel.h
-    ${APP_SRC_DIR}/instancemanager.h
-    ${APP_SRC_DIR}/connectivitymonitor.h
-    ${APP_SRC_DIR}/jamiavatartheme.h
-    ${APP_SRC_DIR}/mainapplication.h
-    ${APP_SRC_DIR}/qrimageprovider.h
-    ${APP_SRC_DIR}/messagesadapter.h
-    ${APP_SRC_DIR}/accountadapter.h
-    ${APP_SRC_DIR}/calladapter.h
-    ${APP_SRC_DIR}/conversationsadapter.h
-    ${APP_SRC_DIR}/qmladapterbase.h
-    ${APP_SRC_DIR}/avadapter.h
-    ${APP_SRC_DIR}/contactadapter.h
-    ${APP_SRC_DIR}/pluginadapter.h
-    ${APP_SRC_DIR}/deviceitemlistmodel.h
-    ${APP_SRC_DIR}/pluginlistmodel.h
-    ${APP_SRC_DIR}/pluginhandlerlistmodel.h
-    ${APP_SRC_DIR}/preferenceitemlistmodel.h
-    ${APP_SRC_DIR}/mediacodeclistmodel.h
-    ${APP_SRC_DIR}/currentaccounttomigrate.h
-    ${APP_SRC_DIR}/audiodevicemodel.h
-    ${APP_SRC_DIR}/pluginlistpreferencemodel.h
-    ${APP_SRC_DIR}/audiomanagerlistmodel.h
-    ${APP_SRC_DIR}/qmlregister.h
-    ${APP_SRC_DIR}/abstractlistmodelbase.h
-    ${APP_SRC_DIR}/quickimageproviderbase.h
-    ${APP_SRC_DIR}/qtutils.h
-    ${APP_SRC_DIR}/utilsadapter.h
-    ${APP_SRC_DIR}/moderatorlistmodel.h
-    ${APP_SRC_DIR}/screensaver.h
-    ${APP_SRC_DIR}/systemtray.h
-    ${APP_SRC_DIR}/appsettingsmanager.h
-    ${APP_SRC_DIR}/lrcinstance.h
-    ${APP_SRC_DIR}/selectablelistproxymodel.h
-    ${APP_SRC_DIR}/conversationlistmodelbase.h
-    ${APP_SRC_DIR}/conversationlistmodel.h
-    ${APP_SRC_DIR}/searchresultslistmodel.h
-    ${APP_SRC_DIR}/calloverlaymodel.h
-    ${APP_SRC_DIR}/filestosendlistmodel.h
-    ${APP_SRC_DIR}/wizardviewstepmodel.h
-    ${APP_SRC_DIR}/avatarregistry.h
-    ${APP_SRC_DIR}/currentconversation.h
-    ${APP_SRC_DIR}/currentaccount.h
-    ${APP_SRC_DIR}/videodevices.h
-    ${APP_SRC_DIR}/videoprovider.h
-    ${APP_SRC_DIR}/callparticipantsmodel.h
-)
+  ${APP_SRC_DIR}/avatarimageprovider.h
+  ${APP_SRC_DIR}/networkmanager.h
+  ${APP_SRC_DIR}/smartlistmodel.h
+  ${APP_SRC_DIR}/updatemanager.h
+  ${APP_SRC_DIR}/utils.h
+  ${APP_SRC_DIR}/bannedlistmodel.h
+  ${APP_SRC_DIR}/version.h
+  ${APP_SRC_DIR}/accountlistmodel.h
+  ${APP_SRC_DIR}/instancemanager.h
+  ${APP_SRC_DIR}/connectivitymonitor.h
+  ${APP_SRC_DIR}/jamiavatartheme.h
+  ${APP_SRC_DIR}/mainapplication.h
+  ${APP_SRC_DIR}/qrimageprovider.h
+  ${APP_SRC_DIR}/messagesadapter.h
+  ${APP_SRC_DIR}/accountadapter.h
+  ${APP_SRC_DIR}/calladapter.h
+  ${APP_SRC_DIR}/conversationsadapter.h
+  ${APP_SRC_DIR}/qmladapterbase.h
+  ${APP_SRC_DIR}/avadapter.h
+  ${APP_SRC_DIR}/contactadapter.h
+  ${APP_SRC_DIR}/pluginadapter.h
+  ${APP_SRC_DIR}/deviceitemlistmodel.h
+  ${APP_SRC_DIR}/pluginlistmodel.h
+  ${APP_SRC_DIR}/pluginhandlerlistmodel.h
+  ${APP_SRC_DIR}/preferenceitemlistmodel.h
+  ${APP_SRC_DIR}/mediacodeclistmodel.h
+  ${APP_SRC_DIR}/currentaccounttomigrate.h
+  ${APP_SRC_DIR}/audiodevicemodel.h
+  ${APP_SRC_DIR}/pluginlistpreferencemodel.h
+  ${APP_SRC_DIR}/audiomanagerlistmodel.h
+  ${APP_SRC_DIR}/qmlregister.h
+  ${APP_SRC_DIR}/abstractlistmodelbase.h
+  ${APP_SRC_DIR}/quickimageproviderbase.h
+  ${APP_SRC_DIR}/qtutils.h
+  ${APP_SRC_DIR}/utilsadapter.h
+  ${APP_SRC_DIR}/moderatorlistmodel.h
+  ${APP_SRC_DIR}/screensaver.h
+  ${APP_SRC_DIR}/systemtray.h
+  ${APP_SRC_DIR}/appsettingsmanager.h
+  ${APP_SRC_DIR}/lrcinstance.h
+  ${APP_SRC_DIR}/selectablelistproxymodel.h
+  ${APP_SRC_DIR}/conversationlistmodelbase.h
+  ${APP_SRC_DIR}/conversationlistmodel.h
+  ${APP_SRC_DIR}/searchresultslistmodel.h
+  ${APP_SRC_DIR}/calloverlaymodel.h
+  ${APP_SRC_DIR}/filestosendlistmodel.h
+  ${APP_SRC_DIR}/wizardviewstepmodel.h
+  ${APP_SRC_DIR}/avatarregistry.h
+  ${APP_SRC_DIR}/currentconversation.h
+  ${APP_SRC_DIR}/currentaccount.h
+  ${APP_SRC_DIR}/videodevices.h
+  ${APP_SRC_DIR}/videoprovider.h
+  ${APP_SRC_DIR}/callparticipantsmodel.h)
 
 if(WITH_WEBENGINE)
-    list(APPEND COMMON_SOURCES
-                ${APP_SRC_DIR}/previewengine.cpp)
-    add_definitions(-DWITH_WEBENGINE)
+  list(APPEND COMMON_SOURCES
+    ${APP_SRC_DIR}/previewengine.cpp)
+  add_definitions(-DWITH_WEBENGINE)
 else()
-    list(APPEND COMMON_SOURCES
-                ${APP_SRC_DIR}/nowebengine/previewengine.cpp)
+  list(APPEND COMMON_SOURCES
+    ${APP_SRC_DIR}/nowebengine/previewengine.cpp)
 endif()
 
 # For libavutil/avframe.
 set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
-   PATHS
-   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
-   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
+  PATHS
+  ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
 find_package(Vulkan)
 if(Vulkan_FOUND)
-    add_definitions(-DHAS_VULKAN)
-    include_directories(${Vulkan_INCLUDE_DIR})
+  add_definitions(-DHAS_VULKAN)
+  include_directories(${Vulkan_INCLUDE_DIR})
 endif()
 
 if(MSVC)
-    set(WINDOWS_SYS_LIBS
-        Shell32.lib
-        Ole32.lib
-        Advapi32.lib
-        Shlwapi.lib
-        User32.lib
-        Gdi32.lib
-        Crypt32.lib
-        Strmiids.lib
-    )
+  set(WINDOWS_SYS_LIBS
+    Shell32.lib
+    Ole32.lib
+    Advapi32.lib
+    Shlwapi.lib
+    User32.lib
+    Gdi32.lib
+    Crypt32.lib
+    Strmiids.lib)
 
-    list(APPEND COMMON_SOURCES
-                ${APP_SRC_DIR}/connectivitymonitor.cpp
-                ${APP_SRC_DIR}/updatemanager.cpp
-    )
-    # preprocessor defines
-    add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
+  list(APPEND COMMON_SOURCES
+    ${APP_SRC_DIR}/connectivitymonitor.cpp
+    ${APP_SRC_DIR}/updatemanager.cpp)
+  # preprocessor defines
+  add_definitions(-DUNICODE -DQT_NO_DEBUG -DNDEBUG)
 
-    # dependencies
-    set(LRC ${PROJECT_SOURCE_DIR}/../lrc)
-    set(DRING ${PROJECT_SOURCE_DIR}/../daemon)
-    set(QRENCODE_DIR ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
+  # dependencies
+  set(DRING ${PROJECT_SOURCE_DIR}/../daemon)
+  set(QRENCODE_DIR
+    ${PROJECT_SOURCE_DIR}/3rdparty/qrencode-win32/qrencode-win32)
 
-    # compiler options
-    add_compile_options(/wd4068 /wd4099 /wd4189 /wd4267 /wd4577 /wd4467 /wd4715 /wd4828)
-    add_compile_options(/MP /GS /W3 /Gy /Zc:wchar_t /Zi /Gm- /O2 /Zc:inline /fp:precise)
-    add_compile_options(/Gd /Oi /MD /FC /EHsc /nologo /sdl)
+  # compiler options
+  add_compile_options(
+    /wd4068 /wd4099 /wd4189 /wd4267 /wd4577 /wd4467 /wd4715 /wd4828)
+  add_compile_options(
+    /MP /GS /W3 /Gy /Zc:wchar_t /Zi /Gm- /O2 /Zc:inline /fp:precise)
+  add_compile_options(/Gd /Oi /MD /FC /EHsc /nologo /sdl)
 
-    # linker options
-    add_link_options(
-        "/IGNORE:4006,4049,4078,4098"
-        "/FORCE:MULTIPLE"
-        "/INCREMENTAL:NO"
-        "/DEBUG"
-        "/LTCG"
-        "/NODEFAULTLIB:LIBCMT"
-    )
+  # linker options
+  add_link_options(
+    "/IGNORE:4006,4049,4078,4098"
+    "/FORCE:MULTIPLE"
+    "/INCREMENTAL:NO"
+    "/DEBUG"
+    "/LTCG"
+    "/NODEFAULTLIB:LIBCMT")
 
-    # client deps
-    set(QRENCODE_LIB ${QRENCODE_DIR}/vc8/qrcodelib/x64/Release-Lib/qrcodelib.lib)
+  # client deps
+  set(QRENCODE_LIB
+    ${QRENCODE_DIR}/vc8/qrcodelib/x64/Release-Lib/qrcodelib.lib)
 
-    # lrc
-    set(LRC_SRC_PATH ${LRC}/src)
-    set(RINGCLIENT_STATIC_LIB ${LRC}/build/release/ringclient_static.lib)
-    set(QTWRAPPER_LIB ${LRC}/build/src/qtwrapper/Release/qtwrapper.lib)
+  # libjamiclient
+  set(LIBCLIENT_STATIC_LIB
+    ${PROJECT_SOURCE_DIR}/build/release/${LIBCLIENT_NAME}.lib)
+  set(QTWRAPPER_LIB
+    ${PROJECT_SOURCE_DIR}/build/src/qtwrapper/Release/qtwrapper.lib)
 
-    # daemon
-    set(DRING_SRC_PATH ${DRING}/contrib/msvc/include)
-    set(DRING_LIB ${DRING}/build/x64/ReleaseLib_win32/bin/jami.lib)
-    set(GNUTLS_LIB ${DRING}/contrib/msvc/lib/x64/libgnutls.lib)
+  # daemon
+  set(DRING_SRC_PATH ${DRING}/contrib/msvc/include)
+  set(DRING_LIB ${DRING}/build/x64/ReleaseLib_win32/bin/jami.lib)
+  set(GNUTLS_LIB ${DRING}/contrib/msvc/lib/x64/libgnutls.lib)
 
-    # Beta config
-    if(BETA)
-        message(STATUS "Beta config enabled")
-        add_definitions(-DBETA)
-        set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Beta)
-    else()
-        set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Release)
-    endif()
+  # Beta config
+  if(BETA)
+    message(STATUS "Beta config enabled")
+    add_definitions(-DBETA)
+    set(JAMI_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/x64/Beta)
+  else()
+    set(JAMI_OUTPUT_DIRECTORY_RELEASE
+      ${PROJECT_SOURCE_DIR}/x64/Release)
+  endif()
 
-    include_directories(
-        ${DRING_SRC_PATH}
-        ${LRC_SRC_PATH}
-        ${QRENCODE_DIR}
-    )
+  include_directories(
+    ${DRING_SRC_PATH}
+    ${LIBCLIENT_SRC_DIR}
+    ${QRENCODE_DIR})
 elseif (NOT APPLE)
-    list(APPEND COMMON_SOURCES
-                ${APP_SRC_DIR}/xrectsel.c
-                ${APP_SRC_DIR}/dbuserrorhandler.cpp
-                ${APP_SRC_DIR}/connectivitymonitor.cpp
-                ${APP_SRC_DIR}/updatemanager.cpp)
-    list(APPEND COMMON_HEADERS
-                ${APP_SRC_DIR}/dbuserrorhandler.h
-                ${APP_SRC_DIR}/xrectsel.h)
-    list(APPEND QT_LIBS Qt::DBus)
-    list(APPEND QT_MODULES DBus)
+  list(APPEND COMMON_SOURCES
+    ${APP_SRC_DIR}/xrectsel.c
+    ${APP_SRC_DIR}/connectivitymonitor.cpp
+    ${APP_SRC_DIR}/dbuserrorhandler.cpp
+    ${APP_SRC_DIR}/updatemanager.cpp)
+  list(APPEND COMMON_HEADERS
+    ${APP_SRC_DIR}/xrectsel.h
+    ${APP_SRC_DIR}/dbuserrorhandler.h)
+  list(APPEND QT_MODULES DBus)
 
-    find_package(PkgConfig REQUIRED)
+  find_package(PkgConfig REQUIRED)
 
-    pkg_check_modules(GLIB REQUIRED glib-2.0)
-    if(GLIB_FOUND)
-        add_definitions(${GLIB_CFLAGS_OTHER})
-    endif()
+  pkg_check_modules(GLIB REQUIRED glib-2.0)
+  if(GLIB_FOUND)
+    add_definitions(${GLIB_CFLAGS_OTHER})
+  endif()
 
-    pkg_check_modules(GIO REQUIRED gio-2.0)
-    if(GIO_FOUND)
-        add_definitions(${GIO_CFLAGS})
-    endif()
+  pkg_check_modules(GIO REQUIRED gio-2.0)
+  if(GIO_FOUND)
+    add_definitions(${GIO_CFLAGS})
+  endif()
 
-    pkg_check_modules(LIBNM libnm)
-    if(LIBNM_FOUND)
-        add_definitions(-DUSE_LIBNM)
-    endif()
+  pkg_check_modules(LIBNM libnm)
+  if(LIBNM_FOUND)
+    add_definitions(-DUSE_LIBNM)
+  endif()
 
-    pkg_check_modules(LIBNOTIFY libnotify>=0.7.6)
-    if(LIBNOTIFY_FOUND)
-        add_definitions(-DUSE_LIBNOTIFY)
-        add_definitions(${LIBNOTIFY_CFLAGS})
-        pkg_check_modules(LIBGDKPIXBUF gdk-pixbuf-2.0>=2.40.0)
-        add_definitions(${LIBGDKPIXBUF_CFLAGS})
-    endif()
+  pkg_check_modules(LIBNOTIFY libnotify>=0.7.6)
+  if(LIBNOTIFY_FOUND)
+    add_definitions(-DUSE_LIBNOTIFY)
+    add_definitions(${LIBNOTIFY_CFLAGS})
+    pkg_check_modules(LIBGDKPIXBUF gdk-pixbuf-2.0>=2.40.0)
+    add_definitions(${LIBGDKPIXBUF_CFLAGS})
+  endif()
 
-    if(NOT DEFINED LRC)
-        if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
-            set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
-        endif()
-    endif()
+  pkg_check_modules(XCB xcb)
 
-    # If LRC is not globally installed, it's path should be specified
-    # by setting variable LRC. If library is not inside LRC + suffixes
-    # lib, build or build-local, it's path should be set with LRCLIB.
-    if(DEFINED LRC)
-        if(EXISTS ${LRC}/include/libringclient)
-            set(LRC_SRC_PATH ${LRC}/include/libringclient)
-        else()
-            set(LRC_SRC_PATH ${LRC}/src)
-        endif()
-        if(NOT DEFINED LRCLIB)
-            set(LRCLIB ${LRC})
-        endif()
-        find_library(ringclient ringclient
-            PATHS ${LRCLIB}
-            PATH_SUFFIXES lib build build-local NO_DEFAULT_PATH)
-        message("Will expect lrc library in ${LRCLIB} (including \
-    subdirs /lib, /build and /build-local)")
-        set(LRC_LIB_NAME ${ringclient})
-    else()
-        find_package(LibRingClient REQUIRED)
-        if (LibRingClient_FOUND)
-            set(LRC_SRC_PATH ${LIB_RING_CLIENT_INCLUDE_DIR})
-            set(LRC_LIB_NAME ${LIB_RING_CLIENT_LIBRARY})
-        else()
-            message("lrc not found!")
-        endif()
-    endif()
+  include_directories(
+    ${LIBCLIENT_SRC_DIR}
+    ${LIBNM_INCLUDE_DIRS}
+    ${LIBNOTIFY_INCLUDE_DIRS}
+    ${LIBGDKPIXBUF_INCLUDE_DIRS}
+    ${GLIB_INCLUDE_DIRS}
+    ${XCB_INCLUDE_DIRS})
 
-    message("Will expect lrc headers in ${LRC_SRC_PATH}")
+  set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
-    include_directories(${LRC_SRC_PATH}
-                        ${LIBNM_INCLUDE_DIRS}
-                        ${LIBNOTIFY_INCLUDE_DIRS}
-                        ${LIBGDKPIXBUF_INCLUDE_DIRS}
-                        ${GLIB_INCLUDE_DIRS})
-
-    set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
-
-    find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
-    find_library(qrencode qrencode)
-    find_library(X11 X11)
+  find_library(qrencode qrencode)
+  find_library(X11 X11)
 else() # APPLE
-    list(APPEND COMMON_SOURCES
-                ${APP_SRC_DIR}/os/macos/updatemanager.mm
-                ${APP_SRC_DIR}/os/macos/connectivitymonitor.mm
-                ${APP_SRC_DIR}/os/macos/macutils.mm)
-    list(APPEND COMMON_HEADERS
-                ${APP_SRC_DIR}/os/macos/macutils.h)
-    if(NOT DEFINED LRC)
-        if(EXISTS ${PROJECT_SOURCE_DIR}/../install/lrc)
-            set(LRC ${PROJECT_SOURCE_DIR}/../install/lrc)
-        endif()
-    endif()
-    if(DEFINED LRC)
-        if(EXISTS ${LRC}/include/libringclient)
-            set(LRC_SRC_PATH ${LRC}/include/libringclient)
-        else()
-            set(LRC_SRC_PATH ${LRC}/src)
-        endif()
-        if(NOT DEFINED LRCLIB)
-            set(LRCLIB ${LRC})
-        endif()
-        find_library(ringclient ringclient
-            PATHS ${LRCLIB}
-            PATH_SUFFIXES lib build build-local NO_DEFAULT_PATH)
-        set(LRC_LIB_NAME ${ringclient})
-    else()
-        find_package(LibRingClient REQUIRED)
-        if (LibRingClient_FOUND)
-            set(LRC_SRC_PATH ${LIB_RING_CLIENT_INCLUDE_DIR})
-            set(LRC_LIB_NAME ${LIB_RING_CLIENT_LIBRARY})
-        else()
-            message("lrc not found!")
-        endif()
-    endif()
+  list(APPEND COMMON_SOURCES
+    ${APP_SRC_DIR}/os/macos/updatemanager.mm
+    ${APP_SRC_DIR}/os/macos/connectivitymonitor.mm
+    ${APP_SRC_DIR}/os/macos/macutils.mm)
+  list(APPEND COMMON_HEADERS
+    ${APP_SRC_DIR}/os/macos/macutils.h)
+  include_directories(${LIBCLIENT_SRC_DIR})
 
-    message("Will expect lrc headers in ${LRC_SRC_PATH}")
+  set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
-    include_directories(${LRC_SRC_PATH})
-
-    set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
-
-    find_library(ringclient ringclient ${LRCLIBDIR} NO_DEFAULT_PATH)
-    find_library(SYSTEM_CONFIGURATUION SystemConfiguration)
-    set(myApp_ICON ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
-    set_source_files_properties(${myApp_ICON} PROPERTIES
-           MACOSX_PACKAGE_LOCATION Resources)
-    if(ENABLE_SPARKLE)
-        message("Sparkle auto-update enabled")
-        find_library(SPARKLE_FRAMEWORK
-                     NAMES Sparkle
-                     HINTS ${CMAKE_CURRENT_SOURCE_DIR}/sparkle)
-        add_definitions(-DENABLE_SPARKLE)
-        message("Sparkle is here:" ${SPARKLE_FRAMEWORK})
-        set(PUBLIC_KEY_PATH "${CMAKE_CURRENT_SOURCE_DIR}/sparkle/dsa_pub.pem")
-        set_source_files_properties(${PUBLIC_KEY_PATH} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
-        set(PUBLIC_KEY ${PUBLIC_KEY_PATH})
-     endif()
-     if(BETA)
-         message(STATUS "Beta config enabled")
-         add_definitions(-DBETA)
-     endif()
+  find_library(SYSTEM_CONFIGURATUION SystemConfiguration)
+  set(myApp_ICON
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+  set_source_files_properties(
+    ${myApp_ICON}
+    PROPERTIES
+    MACOSX_PACKAGE_LOCATION Resources)
+  if(ENABLE_SPARKLE)
+    message("Sparkle auto-update enabled")
+    find_library(SPARKLE_FRAMEWORK
+      NAMES Sparkle
+      HINTS ${CMAKE_CURRENT_SOURCE_DIR}/sparkle)
+    add_definitions(-DENABLE_SPARKLE)
+    message("Sparkle is here:" ${SPARKLE_FRAMEWORK})
+    set(PUBLIC_KEY_PATH
+      "${CMAKE_CURRENT_SOURCE_DIR}/sparkle/dsa_pub.pem")
+    set_source_files_properties(
+      ${PUBLIC_KEY_PATH}
+      PROPERTIES
+      MACOSX_PACKAGE_LOCATION Resources)
+    set(PUBLIC_KEY ${PUBLIC_KEY_PATH})
+  endif()
+  if(BETA)
+    message(STATUS "Beta config enabled")
+    add_definitions(-DBETA)
+  endif()
 endif()
 
 # Qt find package
 if(QT6_VER AND QT6_PATH)
-    message(STATUS "Using custom Qt version")
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_MODULES}
-                 PATHS ${QT6_PATH} NO_DEFAULT_PATH)
-    # Linguist tools is not required.
-    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS LinguistTools
-                 PATHS ${QT6_PATH} NO_DEFAULT_PATH)
+  message(STATUS "Using custom Qt version")
+  find_package(Qt${QT_VERSION_MAJOR}
+    REQUIRED COMPONENTS ${QT_MODULES}
+    OPTIONAL_COMPONENTS LinguistTools
+    PATHS ${QT6_PATH} NO_DEFAULT_PATH)
 else()
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_MODULES})
-    find_package(Qt${QT_VERSION_MAJOR}LinguistTools)
+  find_package(Qt${QT_VERSION_MAJOR}
+    REQUIRED COMPONENTS ${QT_MODULES}
+    OPTIONAL_COMPONENTS LinguistTools)
 endif()
 
-# common include
-include_directories(${PROJECT_SOURCE_DIR}
-                    ${APP_SRC_DIR})
+# common includes
+include_directories(
+  ${PROJECT_SOURCE_DIR}
+  ${APP_SRC_DIR})
 
 # common executable sources
-qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
-                  ${APP_SRC_DIR}/main.cpp
-                  ${COMMON_HEADERS}
-                  ${COMMON_SOURCES}
-                  ${QML_RESOURCES}
-                  ${QML_RESOURCES_QML}
-                  ${LRC_SRC_PATH}/webresource.qrc)
+qt_add_executable(
+  ${PROJECT_NAME}
+  MANUAL_FINALIZATION
+  ${APP_SRC_DIR}/main.cpp
+  ${COMMON_HEADERS}
+  ${COMMON_SOURCES}
+  ${QML_RESOURCES}
+  ${QML_RESOURCES_QML}
+  ${LIBCLIENT_SRC_DIR}/webresource.qrc)
+
+foreach(MODULE ${QT_MODULES})
+  list(APPEND QT_LIBS "Qt::${MODULE}")
+endforeach()
 
 if(MSVC)
-    # Makes it a GUI executable instead of a console application
-    set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
+  # Makes it a GUI executable instead of a console application
+  set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    WIN32_EXECUTABLE TRUE)
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-                          ${QT_LIBS}
-                          ${QRENCODE_LIB}
-                          ${WINDOWS_SYS_LIBS})
+  target_link_libraries(
+    ${PROJECT_NAME}
+    PRIVATE
+    ${DRING_LIB}
+    ${GNUTLS_LIB}
+    ${LIBCLIENT_STATIC_LIB}
+    ${QTWRAPPER_LIB}
+    ${QT_LIBS}
+    ${QRENCODE_LIB}
+    ${WINDOWS_SYS_LIBS})
 
-    # specify output executable files
-    set_target_properties(${PROJECT_NAME}
-        PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${JAMI_OUTPUT_DIRECTORY_RELEASE}"
-    )
+  # specify output executable files
+  set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY_RELEASE
+    "${JAMI_OUTPUT_DIRECTORY_RELEASE}")
 
-    # executable icon
-    target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/ico.rc)
+  # executable icon
+  target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/ico.rc)
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-                          ${RINGCLIENT_STATIC_LIB}
-                          ${QTWRAPPER_LIB}
-                          ${DRING_LIB}
-                          ${GNUTLS_LIB})
+  # translations
+  if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
+    message("Releasing and copying translation files")
+    file(MAKE_DIRECTORY
+      "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/jami/translations/")
+    file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
+    set_source_files_properties(
+      ${TS_FILES}
+      PROPERTIES
+      OUTPUT_LOCATION
+      "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/jami/translations")
 
-    # translations
-    if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
-        message("Releasing and copying translation files")
-        file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/ring/translations/")
-        file(MAKE_DIRECTORY "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/libringclient/translations/")
-        file(GLOB TS_CLIENT_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
-        file(GLOB TS_LRC_FILES ${LRC}/translations/*.ts)
-        set_source_files_properties(${TS_CLIENT_FILES} PROPERTIES OUTPUT_LOCATION
-                                    "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/ring/translations")
-        set_source_files_properties(${TS_LRC_FILES} PROPERTIES OUTPUT_LOCATION
-                                    "${JAMI_OUTPUT_DIRECTORY_RELEASE}/share/libringclient/translations")
+    qt_add_translation(QM_FILES ${TS_FILES})
+    target_sources(${PROJECT_NAME} PRIVATE ${QM_FILES})
+  endif()
 
-        qt_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
-        qt_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
-        target_sources(${PROJECT_NAME} PRIVATE ${QM_CLIENT_FILES})
-        target_sources(${PROJECT_NAME} PRIVATE ${QM_LRC_FILES})
-    endif()
+  # POST_BUILD steps
 
-    # POST_BUILD steps
+  # check time stamp
+  set(TIME_STAMP_FILE ".deploy.stamp")
+  add_custom_command(
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+    COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
+    -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/time_stamp_check.cmake)
 
-    # check time stamp
-    set(TIME_STAMP_FILE ".deploy.stamp")
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/time_stamp_check.cmake)
+  # copy runtime files and run windeployqt on target and deploy Qt libs
+  add_custom_command(
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+    COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
+    -DCOPY_TO_PATH=$<TARGET_FILE_DIR:${PROJECT_NAME}>
+    -DDRING_PATH=${DRING}
+    -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
+    -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_daemon_deploy.cmake)
 
-    # copy runtime files and run windeployqt on target and deploy Qt libs
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -DCOPY_TO_PATH=$<TARGET_FILE_DIR:${PROJECT_NAME}>
-                               -DDRING_PATH=${DRING}
-                               -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
-                               -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_daemon_deploy.cmake)
+  add_custom_command(
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+    COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
+    -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
+    -DQML_SRC_DIR=${APP_SRC_DIR}
+    -DEXE_NAME=$<TARGET_FILE:${PROJECT_NAME}>
+    -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
 
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
-                               -DQML_SRC_DIR=${APP_SRC_DIR}
-                               -DEXE_NAME=$<TARGET_FILE:${PROJECT_NAME}>
-                               -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
+  # create time stamp
+  add_custom_command(
+    TARGET ${PROJECT_NAME}
+    POST_BUILD
+    WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+    COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
+    -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/time_stamp_create.cmake)
 
-    # create time stamp
-    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                       WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-                       COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-                               -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/time_stamp_create.cmake)
-
-    # executable name
-    set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Jami")
+  # executable name
+  set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Jami")
 elseif (NOT APPLE)
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-                          ${QT_LIBS}
-                          ${LRC_LIB_NAME}
-                          ${qrencode}
-                          ${X11}
-                          ${LIBNM_LIBRARIES}
-                          ${LIBNOTIFY_LIBRARIES}
-                          ${LIBGDKPIXBUF_LIBRARIES}
-                          ${GLIB_LIBRARIES}
-                          ${GIO_LIBRARIES})
+  target_link_libraries(
+    ${PROJECT_NAME}
+    PRIVATE
+    ${QT_LIBS}
+    ${LIBCLIENT_NAME}
+    ${qrencode}
+    ${X11}
+    ${LIBNM_LIBRARIES}
+    ${LIBNOTIFY_LIBRARIES}
+    ${LIBGDKPIXBUF_LIBRARIES}
+    ${GLIB_LIBRARIES}
+    ${GIO_LIBRARIES}
+    ${XCB_LIBRARIES})
 
-    # Installation rules
-    install(TARGETS jami-qt
-        RUNTIME DESTINATION bin)
+  # Installation rules
+  install(
+    TARGETS jami-qt
+    RUNTIME DESTINATION bin)
 
-    # install .desktop in XDG desktop dir so that it is recognized by the system
-    install(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
-        DESTINATION ${JAMI_DATA_PREFIX}/applications)
+  # Install .desktop in XDG desktop direcory so that it is recognized
+  # by the system.
+  install(
+    FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
+    DESTINATION ${JAMI_DATA_PREFIX}/applications)
 
-    # install .desktop in the jami-qt data dir, so that it can be copied to the
-    # autostart dir by the client
-    install(FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
-       DESTINATION
-          "${JAMI_DATA_PREFIX}/${PROJECT_NAME}"
-       PERMISSIONS
-          WORLD_READ
-          OWNER_WRITE
-          OWNER_READ
-          GROUP_READ
-    )
+  # Install .desktop in the jami-qt data directory, so that it can be
+  # copied to the autostart directory by the client.
+  install(
+    FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
+    DESTINATION "${JAMI_DATA_PREFIX}/${PROJECT_NAME}"
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ) # 644
 
-    # adjust JAMI_DATA_PREFIX for snap package
-    #   (this must come after all 'install' commands that refer to
-    #    JAMI_DATA_PREFIX; the following value is not meant to be used for
-    #    any install destinations)
-    if(DEFINED ENV{SNAPCRAFT_PROJECT_NAME})
-        set(JAMI_DATA_PREFIX "/snap/$ENV{SNAPCRAFT_PROJECT_NAME}/current/usr/share")
-    endif()
+  # Adjust JAMI_DATA_PREFIX for snap package.
+  #   (This must come after all 'install' commands that refer to
+  #    JAMI_DATA_PREFIX; the following value is not meant to be used
+  #    for any install destinations.)
+  if(DEFINED ENV{SNAPCRAFT_PROJECT_NAME})
+    set(JAMI_DATA_PREFIX
+      "/snap/$ENV{SNAPCRAFT_PROJECT_NAME}/current/usr/share")
+  endif()
 
-    # (this must come after the above adjustment to JAMI_DATA_PREFIX)
-    target_compile_definitions(jami-qt PRIVATE JAMI_INSTALL_PREFIX="${JAMI_DATA_PREFIX}")
+  # (This must come after the above adjustment to JAMI_DATA_PREFIX.)
+  target_compile_definitions(
+    jami-qt
+    PRIVATE
+    JAMI_INSTALL_PREFIX="${JAMI_DATA_PREFIX}")
 
-    # logos
-    install(FILES resources/images/jami.svg
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps)
+  # Logos
+  install(
+    FILES resources/images/jami.svg
+    DESTINATION
+    ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/scalable/apps)
 
-    install(FILES resources/images/jami-48px.png
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/48x48/apps
-        RENAME jami.png)
+  install(
+    FILES resources/images/jami-48px.png
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/48x48/apps
+    RENAME jami.png)
 
-    install(FILES resources/images/jami-32px.xpm
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/pixmaps
-        RENAME jami.xpm)
+  install(
+    FILES resources/images/jami-32px.xpm
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/pixmaps
+    RENAME jami.xpm)
 
-    install(FILES jami-qt.appdata.xml
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo)
+  install(
+    FILES jami-qt.appdata.xml
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo)
 
-    # install jami launcher that selects between clients
-    install(
-        FILES
-            "${PROJECT_SOURCE_DIR}/src/app/jami"
-        DESTINATION
-            ${CMAKE_INSTALL_PREFIX}/bin
-        PERMISSIONS
-            WORLD_READ
-            OWNER_WRITE
-            OWNER_READ
-            GROUP_READ
-            OWNER_EXECUTE
-            GROUP_EXECUTE
-            WORLD_EXECUTE)
+  # Install 'jami' launcher that automatically chooses between clients
+  install(
+    FILES
+    "${APP_SRC_DIR}/jami"
+    DESTINATION
+    ${CMAKE_INSTALL_PREFIX}/bin
+    PERMISSIONS
+    OWNER_READ OWNER_WRITE OWNER_EXECUTE
+    GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE) # 755
 
-    # add a target to generate API documentation with Doxygen and graphviz-dot
-    find_package(Doxygen)
-    find_program(dot "dot")
-    if(Doxygen_FOUND AND dot)
-        configure_file(${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile @ONLY)
-        add_custom_target(doc
-            COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
-            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
-            COMMENT "Generating API documentation with Doxygen" VERBATIM)
-
-        # create doc/README.md symlink to README since Doxygen doesn't understand file with no extension
-        add_custom_command(
-            TARGET doc
-            PRE_BUILD
-            COMMAND ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_SOURCE_DIR}/doc/README.md)
-    endif()
-
-    # translations
-    if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
-        message("Releasing and copying translation files")
-        file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/")
-        file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
-        set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION "share/ring/translations")
-
-        qt_add_translation(QM_FILES ${TS_FILES})
-        add_custom_target(translations ALL DEPENDS ${QM_FILES})
-        install(DIRECTORY "${CMAKE_BINARY_DIR}/share/ring/translations/"
-                DESTINATION ${CMAKE_INSTALL_PREFIX}/share/ring/translations)
-    endif()
-
-    # uninstall
+  # Add a target to generate API documentation using Doxygen and
+  # graphviz-dot.
+  find_package(Doxygen)
+  find_program(dot "dot")
+  if(Doxygen_FOUND AND dot)
     configure_file(
-        "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
-        "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-        IMMEDIATE @ONLY)
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in
+      ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
+      @ONLY)
+    add_custom_target(
+      doc
+      COMMAND
+      ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
+      COMMENT "Generating API documentation with Doxygen"
+      VERBATIM)
 
-    add_custom_target(uninstall
-        COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
+    # Create doc/README.md symlink to README since Doxygen doesn't
+    # understand file with no extension.
+    add_custom_command(
+      TARGET doc
+      PRE_BUILD
+      COMMAND
+      ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_SOURCE_DIR}/doc/README.md)
+  endif()
+
+  # translations
+  if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
+    message("Releasing and copying translation files")
+    file(MAKE_DIRECTORY
+      "${CMAKE_BINARY_DIR}/share/jami/translations/")
+    file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
+    set_source_files_properties(
+      ${TS_FILES}
+      PROPERTIES
+      OUTPUT_LOCATION "share/jami/translations")
+
+    qt_add_translation(QM_FILES ${TS_FILES})
+    add_custom_target(translations ALL DEPENDS ${QM_FILES})
+    install(DIRECTORY "${CMAKE_BINARY_DIR}/share/jami/translations/"
+      DESTINATION ${CMAKE_INSTALL_PREFIX}/share/jami/translations)
+  endif()
+
+  # uninstall rule
+  configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+    IMMEDIATE
+    @ONLY)
+
+  add_custom_target(
+    uninstall
+    COMMAND
+    ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 else()
-    set(resources ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
-    set(libs ${QT_LIBS} ${LRC_LIB_NAME} ${SYSTEM_CONFIGURATUION} qrencode)
-    if(ENABLE_SPARKLE)
-        set(resources ${resources} ${PUBLIC_KEY} ${SPARKLE_FRAMEWORK})
-        set(libs ${libs} ${SPARKLE_FRAMEWORK})
-    endif(ENABLE_SPARKLE)
-    target_sources(${PROJECT_NAME} PRIVATE ${resources})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${libs})
+  set(resources
+    ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
+  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} qrencode)
+  if(ENABLE_SPARKLE)
+    set(resources ${resources} ${PUBLIC_KEY} ${SPARKLE_FRAMEWORK})
+    set(libs ${libs} ${SPARKLE_FRAMEWORK})
+  endif(ENABLE_SPARKLE)
+  target_sources(${PROJECT_NAME} PRIVATE ${resources})
+  target_link_libraries(${PROJECT_NAME} PRIVATE ${libs})
 
-     # translations
-     if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
-         set(LRC ${PROJECT_SOURCE_DIR}/../lrc)
-         set(APP_CONTAINER "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents")
-         file(GLOB TS_CLIENT_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
-         file(GLOB TS_LRC_FILES ${LRC}/translations/*.ts)
+  # translations
+  if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
+    set(APP_CONTAINER
+      "${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app/Contents")
+    file(GLOB TS_FILES ${PROJECT_SOURCE_DIR}/translations/*.ts)
 
-         # generate lproj folders
-         FOREACH(QM_FILE ${TS_LRC_FILES})
-             # Extract language code from filename
-             GET_FILENAME_COMPONENT(FILENAME ${QM_FILE} NAME_WE)
-             STRING(REGEX REPLACE "^lrc_" "" LANG ${FILENAME})
-             file(MAKE_DIRECTORY ${APP_CONTAINER}/Resources/${LANG}.lproj)
-         ENDFOREACH()
-         set_source_files_properties(${TS_CLIENT_FILES} PROPERTIES OUTPUT_LOCATION
-                                              "${APP_CONTAINER}/Resources/share/ring/translations")
-         set_source_files_properties(${TS_LRC_FILES} PROPERTIES OUTPUT_LOCATION
-                                              "${APP_CONTAINER}/Resources/share/libringclient/translations")
+    # Generate lproj folders.
+    foreach(QM_FILE ${TS_FILES})
+      # Extract language code from filename.
+      get_filename_component(FILENAME ${QM_FILE} NAME_WE)
+      string(REGEX REPLACE "^lrc_" "" LANG ${FILENAME})
+      file(MAKE_DIRECTORY ${APP_CONTAINER}/Resources/${LANG}.lproj)
+    endforeach()
+    set_source_files_properties(
+      ${TS_FILES}
+      PROPERTIES OUTPUT_LOCATION
+      "${APP_CONTAINER}/Resources/share/jami/translations")
 
-         qt_add_translation(QM_CLIENT_FILES ${TS_CLIENT_FILES})
-         qt_add_translation(QM_LRC_FILES ${TS_LRC_FILES})
-         target_sources(${PROJECT_NAME} PRIVATE ${QM_CLIENT_FILES})
-         target_sources(${PROJECT_NAME} PRIVATE ${QM_LRC_FILES})
-      endif()
-      set_target_properties(${PROJECT_NAME} PROPERTIES
-          MACOSX_BUNDLE TRUE
-          MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/Info.plist"
-          MACOSX_BUNDLE_EXECUTABLE_NAME "${PROJ_NAME}"
-          MACOSX_BUNDLE_ICON_FILE "jami.icns"
-          MACOSX_BUNDLE_GUI_IDENTIFIER "${BUNDLE_ID}"
-          MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION}"
-          MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_BUILD}"
-          MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}"
-          SPARKLE_URL "${SPARKLE_URL}"
-          XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
-          XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
-      if(DEPLOY)
-          add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-                             COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${APP_SRC_DIR}
-                             -DMAC_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
-                             -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
-                             -DSPARKLE_PATH=${SPARKLE_FRAMEWORK}
-                             -DENABLE_SPARKLE=${ENABLE_SPARKLE}
-                             -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/macos_qt_deploy.cmake)
-      endif()
+    qt_add_translation(QM_FILES ${TS_FILES})
+    target_sources(${PROJECT_NAME} PRIVATE ${QM_FILES})
+  endif()
+  set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    MACOSX_BUNDLE TRUE
+    MACOSX_BUNDLE_INFO_PLIST
+    "${CMAKE_CURRENT_SOURCE_DIR}/resources/Info.plist"
+    MACOSX_BUNDLE_EXECUTABLE_NAME "${PROJ_NAME}"
+    MACOSX_BUNDLE_ICON_FILE "jami.icns"
+    MACOSX_BUNDLE_GUI_IDENTIFIER "${BUNDLE_ID}"
+    MACOSX_BUNDLE_SHORT_VERSION_STRING "${JAMI_VERSION}"
+    MACOSX_BUNDLE_BUNDLE_VERSION "${JAMI_BUILD}"
+    MACOSX_BUNDLE_COPYRIGHT "${PROJ_COPYRIGHT}"
+    SPARKLE_URL "${SPARKLE_URL}"
+    XCODE_ATTRIBUTE_CODE_SIGN_ENTITLEMENTS
+    "${CMAKE_CURRENT_SOURCE_DIR}/resources/entitlements/Jami.entitlements"
+    XCODE_ATTRIBUTE_ENABLE_HARDENED_RUNTIME TRUE)
+  if(DEPLOY)
+    add_custom_command(
+      TARGET ${PROJECT_NAME}
+      POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -DQML_SRC_DIR=${APP_SRC_DIR}
+      -DMAC_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
+      -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
+      -DSPARKLE_PATH=${SPARKLE_FRAMEWORK}
+      -DENABLE_SPARKLE=${ENABLE_SPARKLE}
+      -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/macos_qt_deploy.cmake)
+  endif()
 endif()
 
 qt_import_qml_plugins(${PROJECT_NAME})
@@ -725,6 +734,6 @@ qt_finalize_executable(${PROJECT_NAME})
 
 # test
 if(ENABLE_TESTS)
-    message("Add Jami tests")
-    add_subdirectory(tests)
+  message("Add Jami tests")
+  add_subdirectory(tests)
 endif()
