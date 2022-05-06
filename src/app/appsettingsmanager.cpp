@@ -99,13 +99,13 @@ AppSettingsManager::loadTranslations()
     QTranslator* lrcTranslator_lang = new QTranslator(qApp);
     QTranslator* lrcTranslator_name = new QTranslator(qApp);
     if (locale_name != locale_lang) {
-        if (lrcTranslator_lang->load(appDir + QDir::separator() + "libringclient" + QDir::separator()
+        if (lrcTranslator_lang->load(appDir + QDir::separator() + "jami" + QDir::separator()
                                      + "translations" + QDir::separator() + "lrc_" + locale_lang)) {
             qApp->installTranslator(lrcTranslator_lang);
             installedTr_.append(lrcTranslator_lang);
         }
     }
-    if (lrcTranslator_name->load(appDir + QDir::separator() + "libringclient" + QDir::separator()
+    if (lrcTranslator_name->load(appDir + QDir::separator() + "jami" + QDir::separator()
                                  + "translations" + QDir::separator() + "lrc_" + locale_name)) {
         qApp->installTranslator(lrcTranslator_name);
         installedTr_.append(lrcTranslator_name);
@@ -114,14 +114,14 @@ AppSettingsManager::loadTranslations()
     QTranslator* mainTranslator_lang = new QTranslator(qApp);
     QTranslator* mainTranslator_name = new QTranslator(qApp);
     if (locale_name != locale_lang) {
-        if (mainTranslator_lang->load(appDir + QDir::separator() + "ring" + QDir::separator()
+        if (mainTranslator_lang->load(appDir + QDir::separator() + "jami" + QDir::separator()
                                       + "translations" + QDir::separator() + "ring_client_windows_"
                                       + locale_lang)) {
             qApp->installTranslator(mainTranslator_lang);
             installedTr_.append(mainTranslator_lang);
         }
     }
-    if (mainTranslator_name->load(appDir + QDir::separator() + "ring" + QDir::separator()
+    if (mainTranslator_name->load(appDir + QDir::separator() + "jami" + QDir::separator()
                                   + "translations" + QDir::separator() + "ring_client_windows_"
                                   + locale_name)) {
         qApp->installTranslator(mainTranslator_name);
