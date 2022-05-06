@@ -42,7 +42,7 @@ SBSMessageBase {
         TextEdit {
             padding: 10
             anchors.right: isOutgoing ? parent.right : undefined
-            text: '<span style="white-space: pre-wrap">' + Body + '</span>'
+            text: Body
             width: {
                 if (extraContent.active)
                     Math.max(extraContent.width,
@@ -57,7 +57,7 @@ SBSMessageBase {
             font.pointSize: 11
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
-            textFormat: TextEdit.RichText
+            textFormat: Text.MarkdownText
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(hoveredLink)
             readOnly: true
