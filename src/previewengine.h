@@ -33,10 +33,12 @@ public:
     void parseMessage(const QString& messageId, const QString& msg, bool showPreview);
 
     Q_INVOKABLE void log(const QString& str);
+    Q_INVOKABLE void emitInfoReady(const QString& messageId, const QVariantMap& info);
+    Q_INVOKABLE void emitLinkified(const QString& messageId, const QString& linkifiedStr);
 
 Q_SIGNALS:
-    Q_INVOKABLE void infoReady(const QString& messageId, const QVariantMap& info);
-    Q_INVOKABLE void linkified(const QString& messageId, const QString& linkified);
+    void infoReady(const QString& messageId, const QVariantMap& info);
+    void linkified(const QString& messageId, const QString& linkifiedStr);
 
 private:
     struct Impl;
