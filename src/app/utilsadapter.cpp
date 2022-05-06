@@ -457,7 +457,7 @@ UtilsAdapter::supportedLang()
 #else
     QString appDir = qApp->applicationDirPath() + QDir::separator() + "share";
 #endif
-    auto trDir = QDir(appDir + QDir::separator() + "ring" + QDir::separator() + "translations");
+    auto trDir = QDir(appDir + QDir::separator() + "jami" + QDir::separator() + "translations");
     QStringList trFiles = trDir.entryList(QStringList() << "ring_client_windows_*.qm", QDir::Files);
     QVariantMap result;
     result["SYSTEM"] = tr("System");
