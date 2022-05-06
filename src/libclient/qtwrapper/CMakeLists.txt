@@ -1,0 +1,65 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
+
+IF(POLICY CMP0022)
+  CMAKE_POLICY(SET CMP0022 NEW)
+ENDIF(POLICY CMP0022)
+
+PROJECT(qtwrapper)
+
+MESSAGE("Compiling with qtwrapper")
+
+SET(ENABLE_LIBWRAP true)
+ADD_DEFINITIONS(-DENABLE_LIBWRAP=true)
+
+SET(LOCAL_CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../cmake/)
+SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${LOCAL_CMAKE_MODULE_PATH})
+
+IF (${MUTE_DRING} MATCHES true)
+   #It makes clients debugging easier
+   MESSAGE("Dring logs are disabled")
+   ADD_DEFINITIONS(-DMUTE_DRING=true)
+ENDIF()
+
+FIND_PACKAGE(Qt${QT_VERSION_MAJOR}Core REQUIRED)
+FIND_PACKAGE(Ring REQUIRED)
+
+SET(libqtwrapper_LIB_SRCS
+   instancemanager.cpp
+   videomanager_wrap.cpp
+)
+
+IF(NOT (${ENABLE_VIDEO} MATCHES "false"))
+   MESSAGE("VIDEO enabled")
+   ADD_DEFINITIONS(-DENABLE_VIDEO=true)
+   SET(ENABLE_VIDEO 1 CACHE BOOL "Enable video")
+ENDIF(NOT (${ENABLE_VIDEO} MATCHES "false"))
+
+IF(NOT (${ENABLE_PLUGIN} MATCHES "false"))
+   MESSAGE("PLUGIN enabled")
+   ADD_DEFINITIONS(-DENABLE_PLUGIN=true)
+   SET(ENABLE_PLUGIN 1 CACHE BOOL "Enable plugin")
+ENDIF(NOT (${ENABLE_PLUGIN} MATCHES "false"))
+
+IF(ENABLE_PLUGIN)
+   MESSAGE("Adding pluginmanager.cpp")
+   SET(plugin_SRC pluginmanager.cpp)
+ELSE()
+   MESSAGE("Adding pluginmanagerMock.cpp")
+   SET(plugin_SRC pluginmanagerMock.cpp)
+ENDIF()
+
+INCLUDE_DIRECTORIES(SYSTEM ${Qt6Core_INCLUDE_DIRS} )
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+INCLUDE_DIRECTORIES(${ring_INCLUDE_DIRS})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../)
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/../dbus)
+
+ADD_LIBRARY( qtwrapper STATIC ${libqtwrapper_LIB_SRCS} ${plugin_SRC})
+
+IF(NOT ${ring_BIN} MATCHES "ring_BIN-NOTFOUND")
+   TARGET_LINK_LIBRARIES( qtwrapper
+      ${QT_QTCORE_LIBRARY}
+      Qt::Core
+      ${ring_BIN}
+   )
+ENDIF()
