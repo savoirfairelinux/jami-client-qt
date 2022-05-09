@@ -22,6 +22,30 @@
       },
       "revId": "250cd39df145d672c868e87d1da3674e3c451ad5",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f0e7a5_824fd350",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-05-09T14:27:13Z",
+      "side": 1,
+      "message": "it wasn\u0027t working for me on linux :/",
+      "parentUuid": "2e43ebef_0d76d5d0",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 30
+      },
+      "revId": "250cd39df145d672c868e87d1da3674e3c451ad5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
