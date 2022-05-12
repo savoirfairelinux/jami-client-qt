@@ -294,7 +294,7 @@ Popup {
                     imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.buttonTintedBlue
 
                     onClicked: {
-                        root.photo = videoProvider.captureVideoFrame(localVideo.videoSink)
+                        root.photo = videoProvider.captureVideoFrame(VideoDevices.getDefaultDevice())
                         updateState(RecordBox.States.REC_SUCCESS)
                     }
                 }

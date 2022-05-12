@@ -67,31 +67,41 @@ VideoProvider::unregisterSink(QVideoSink* obj)
     }
 }
 
-QString
-VideoProvider::captureVideoFrame(QVideoSink* obj)
+QVideoFrame*
+VideoProvider::frame(const QString& id)
 {
-    QImage img;
-    QVideoFrame currentFrame = obj->videoFrame();
-    FrameObject* frameObj {nullptr};
-    QMutexLocker lk(&framesObjsMutex_);
-    for (auto& frameObjIt : qAsConst(framesObjects_)) {
-        auto& subs = frameObjIt.second->subscribers;
-        auto it = subs.constFind(obj);
-        if (it != subs.cend()) {
-            frameObj = frameObjIt.second.get();
-        }
+    // framesObjsMutex_ MUST be locked
+    auto it = framesObjects_.find(id);
+    if (it == framesObjects_.end()) {
+        return {};
     }
-    if (frameObj) {
-        QMutexLocker lk(&frameObj->mutex);
+    if (it->second->subscribers.empty()) {
+        return {};
+    }
+    QMutexLocker lk(&it->second->mutex);
+    auto videoFrame = it->second->videoFrame.get();
+    if (!mapVideoFrame(videoFrame)) {
+        qWarning() << "QVideoFrame can't be mapped" << id;
+        return {};
+    }
+    return videoFrame;
+}
+
+QString
+VideoProvider::captureVideoFrame(const QString& id)
+{
+    QMutexLocker framesLk(&framesObjsMutex_);
+    if (auto* videoFrame = frame(id)) {
         auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
             QVideoFrameFormat::Format_RGBA8888);
-        img = QImage(currentFrame.bits(0),
-                     currentFrame.width(),
-                     currentFrame.height(),
-                     currentFrame.bytesPerLine(0),
-                     imageFormat);
+        auto img = QImage(videoFrame->bits(0),
+                        videoFrame->width(),
+                        videoFrame->height(),
+                        videoFrame->bytesPerLine(0),
+                        imageFormat);
+        return Utils::byteArrayToBase64String(Utils::QImageToByteArray(img));
     }
-    return Utils::byteArrayToBase64String(Utils::QImageToByteArray(img));
+    return {};
 }
 
 void
@@ -127,30 +137,19 @@ void
 VideoProvider::onFrameBufferRequested(const QString& id, AVFrame* avframe)
 {
     QMutexLocker framesLk(&framesObjsMutex_);
-    auto it = framesObjects_.find(id);
-    if (it == framesObjects_.end()) {
-        return;
+    if (auto* videoFrame = frame(id)) {
+        // The ownership of avframe structure remains the subscriber(jamid), and
+        // the videoFrame instance is owned by the VideoProvider(client). The
+        // avframe structure contains only a description of the QVideoFrame
+        // underlying buffer.
+        // TODO: ideally, the colorspace format should likely come from jamid and
+        // be the decoded format.
+        avframe->format = AV_PIX_FMT_RGBA;
+        avframe->width = videoFrame->width();
+        avframe->height = videoFrame->height();
+        avframe->data[0] = (uint8_t*) videoFrame->bits(0);
+        avframe->linesize[0] = videoFrame->bytesPerLine(0);
     }
-    if (it->second->subscribers.empty()) {
-        return;
-    }
-    QMutexLocker lk(&it->second->mutex);
-    auto videoFrame = it->second->videoFrame.get();
-    if (!mapVideoFrame(videoFrame)) {
-        qWarning() << "QVideoFrame can't be mapped" << id;
-        return;
-    }
-    // The ownership of avframe structure remains the subscriber(jamid), and
-    // the videoFrame instance is owned by the VideoProvider(client). The
-    // avframe structure contains only a description of the QVideoFrame
-    // underlying buffer.
-    // TODO: ideally, the colorspace format should likely come from jamid and
-    // be the decoded format.
-    avframe->format = AV_PIX_FMT_RGBA;
-    avframe->width = videoFrame->width();
-    avframe->height = videoFrame->height();
-    avframe->data[0] = (uint8_t*) videoFrame->bits(0);
-    avframe->linesize[0] = videoFrame->bytesPerLine(0);
 }
 
 void
@@ -230,7 +229,7 @@ VideoProvider::copyUnaligned(QVideoFrame* dst, const video::Frame& src)
     // The provided source must be valid.
     assert(src.ptr != nullptr and src.size > 0);
     // The source buffer must be greater or equal to the min required
-    // buffer size. The SHM buffer might be slightly larger than the 
+    // buffer size. The SHM buffer might be slightly larger than the
     // required size due to the 16-byte alignment.
     if (dst->width() * dst->height() * BYTES_PER_PIXEL > src.size) {
         qCritical() << "The size of frame buffer " << src.size << " is smaller than expected "
