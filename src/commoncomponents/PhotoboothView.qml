@@ -32,6 +32,7 @@ Item {
 
     property alias imageId: avatar.imageId
     property bool newConversation: false
+    property bool editable: true
     property real avatarSize
     property real buttonSize: avatarSize
     property bool darkTheme: false
@@ -139,7 +140,7 @@ Item {
 
             HoverHandler {
                 target: parent
-                enabled: parent.visible
+                enabled: parent.visible && editable
                 onHoveredChanged: {
                     overlayHighlighted.visible = hovered
                 }
@@ -147,7 +148,7 @@ Item {
 
             TapHandler {
                 target: parent
-                enabled: parent.visible
+                enabled: parent.visible && editable
                 onTapped: {
                     imageLayer.visible = false
                     buttonsRowLayout.visible = true
