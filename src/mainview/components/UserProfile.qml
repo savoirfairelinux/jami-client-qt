@@ -155,7 +155,7 @@ BaseModalDialog {
                 id: contactId
 
                 Layout.alignment: Qt.AlignLeft
-                width: userProfileContentRect.width - 200
+                Layout.preferredWidth: userProfileContentRect.width - 200
 
                 font.pointSize: JamiTheme.textFontSize
                 font.kerning: true
@@ -164,7 +164,7 @@ BaseModalDialog {
                 readOnly: true
                 selectByMouse: true
 
-                wrapMode: Text.WrapAnywhere
+                wrapMode: TextEdit.WrapAnywhere
                 text: idText
 
                 horizontalAlignment: Text.AlignLeft
