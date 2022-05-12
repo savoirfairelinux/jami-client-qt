@@ -66,7 +66,7 @@ BaseModalDialog {
             }
 
             // Visible when user alias is not empty and not equal to id.
-            MaterialLineEdit {
+            TextEdit {
                 id: contactAlias
 
                 Layout.alignment: Qt.AlignLeft
@@ -76,8 +76,6 @@ BaseModalDialog {
                 color: JamiTheme.textColor
                 visible: aliasText ? (aliasText === idText ? false : true) : false
 
-                padding: 0
-                readOnly: true
                 selectByMouse: true
 
                 wrapMode: Text.NoWrap
@@ -118,7 +116,7 @@ BaseModalDialog {
             }
 
             // Visible when user name is not empty or equals to id.
-            MaterialLineEdit {
+            TextEdit {
                 id: contactDisplayName
 
                 Layout.alignment: Qt.AlignLeft
@@ -128,7 +126,6 @@ BaseModalDialog {
                 color: JamiTheme.textColor
                 visible: registeredNameText ? (registeredNameText === idText ? false : true) : false
 
-                padding: 0
                 readOnly: true
                 selectByMouse: true
 
@@ -154,7 +151,7 @@ BaseModalDialog {
                 color: JamiTheme.faddedFontColor
             }
 
-            MaterialLineEdit {
+            TextEdit {
                 id: contactId
 
                 Layout.alignment: Qt.AlignLeft
@@ -164,7 +161,6 @@ BaseModalDialog {
                 font.kerning: true
                 color: JamiTheme.textColor
 
-                padding: 0
                 readOnly: true
                 selectByMouse: true
 
