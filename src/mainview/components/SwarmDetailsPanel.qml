@@ -48,6 +48,7 @@ Rectangle {
             PhotoboothView {
                 id: currentAccountAvatar
                 darkTheme: UtilsAdapter.luma(root.color)
+                editable: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
 
                 Layout.alignment: Qt.AlignHCenter
 
