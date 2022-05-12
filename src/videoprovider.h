@@ -45,13 +45,14 @@ public:
 
     Q_INVOKABLE void registerSink(const QString& id, QVideoSink* obj);
     Q_INVOKABLE void unregisterSink(QVideoSink* obj);
-    Q_INVOKABLE QString captureVideoFrame(QVideoSink* obj);
+    Q_INVOKABLE QString captureVideoFrame(const QString& id);
 
 private Q_SLOTS:
     void onRendererStarted(const QString& id);
     void onFrameBufferRequested(const QString& id, AVFrame* avframe);
     void onFrameUpdated(const QString& id);
     void onRendererStopped(const QString& id);
+    QVideoFrame* frame(const QString& id);
 
 private:
     void copyUnaligned(QVideoFrame* dst, const video::Frame& src);
