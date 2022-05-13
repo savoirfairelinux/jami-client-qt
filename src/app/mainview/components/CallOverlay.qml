@@ -45,7 +45,7 @@ Item {
     property bool isConference
     property bool isGrid
     property bool localHandRaised
-    property bool sharingActive: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE
+    property bool sharingActive: AvAdapter.isSharing()
     property string callId: ""
 
     signal chatButtonClicked

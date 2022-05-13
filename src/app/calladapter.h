@@ -73,7 +73,7 @@ public:
     Q_INVOKABLE void holdThisCallToggle();
     Q_INVOKABLE void muteThisCallToggle(bool mute);
     Q_INVOKABLE void recordThisCallToggle();
-    Q_INVOKABLE void videoPauseThisCallToggle(bool mute);
+    Q_INVOKABLE void muteCameraToggle(bool mute);
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE QVariantList getConferencesInfos() const;
     Q_INVOKABLE void muteParticipant(const QString& uri, const bool state);
