@@ -45,8 +45,7 @@ Rectangle {
     property bool isAudioOnly: false
     property var linkedWebview: null
     property string callPreviewId: ""
-    property bool sharingActive: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY
-                                 || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE
+    property bool sharingActive: AvAdapter.isSharing()
 
     onSharingActiveChanged: {
         const deviceId = AvAdapter.currentRenderingDeviceId

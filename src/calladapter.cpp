@@ -1048,7 +1048,7 @@ CallAdapter::recordThisCallToggle()
 }
 
 void
-CallAdapter::videoPauseThisCallToggle(bool mute)
+CallAdapter::muteCameraToggle(bool mute)
 {
     const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
                                                                   accountId_);
@@ -1057,11 +1057,8 @@ CallAdapter::videoPauseThisCallToggle(bool mute)
     }
     auto* callModel = lrcInstance_->getCurrentCallModel();
     if (callModel->hasCall(callId)) {
-        callModel->requestMediaChange(callId,
-                                      "video_0",
-                                      lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
-                                      lrc::api::NewCallModel::MediaRequestType::CAMERA,
-                                      mute);
+        callModel->removeMedia(callId,
+                                      "video_0");
         // media label should come from qml
         // also thi function can me emrged with "muteThisCallToggle"
     }

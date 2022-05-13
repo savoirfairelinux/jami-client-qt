@@ -103,7 +103,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: stopSharing
 
-            canTrigger: sharingActive
+            canTrigger: AvAdapter.isSharing()
                         && !isSIP && !isVideoMuted
             itemName: JamiStrings.stopSharing
             iconSource: JamiResources.share_stop_black_24dp_svg
