@@ -96,7 +96,7 @@ AvAdapter::shareEntireScreen(int screenNumber)
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()
         ->requestMediaChange(callId,
-                             "video_0",
+                             "video_1",
                              resource,
                              lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                              false);
@@ -115,7 +115,7 @@ AvAdapter::shareAllScreens()
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()
         ->requestMediaChange(callId,
-                             "video_0",
+                             "video_1",
                              resource,
                              lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                              false);
@@ -182,7 +182,7 @@ AvAdapter::shareFile(const QString& filePath)
     if (!callId.isEmpty()) {
         lrcInstance_->getCurrentCallModel()
             ->requestMediaChange(callId,
-                                 "video_0",
+                                 "video_1",
                                  filePath,
                                  lrc::api::NewCallModel::MediaRequestType::FILESHARING,
                                  false);
@@ -207,7 +207,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
         auto callId = lrcInstance_->getCurrentCallId();
         lrcInstance_->getCurrentCallModel()
             ->requestMediaChange(callId,
-                                 "video_0",
+                                 "video_1",
                                  resource,
                                  lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                                  false);
@@ -221,7 +221,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()
         ->requestMediaChange(callId,
-                             "video_0",
+                             "video_1",
                              resource,
                              lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                              false);
@@ -235,7 +235,7 @@ AvAdapter::shareWindow(const QString& windowId)
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()
         ->requestMediaChange(callId,
-                             "video_0",
+                             "video_1",
                              resource,
                              lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
                              false);
@@ -287,7 +287,7 @@ AvAdapter::stopSharing()
     if (!callId.isEmpty()) {
         lrcInstance_->getCurrentCallModel()
             ->requestMediaChange(callId,
-                                 "video_0",
+                                 "video_1",
                                  lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
                                  lrc::api::NewCallModel::MediaRequestType::CAMERA,
                                  muteCamera_);
