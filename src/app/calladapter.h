@@ -71,9 +71,9 @@ public:
     Q_INVOKABLE bool isHandRaised(const QString& uri = {}) const;
     Q_INVOKABLE void setHandRaised(const QString& uri, bool state);
     Q_INVOKABLE void holdThisCallToggle();
-    Q_INVOKABLE void muteThisCallToggle(bool mute);
     Q_INVOKABLE void recordThisCallToggle();
-    Q_INVOKABLE void videoPauseThisCallToggle(bool mute);
+    Q_INVOKABLE void muteAudioToggle();
+    Q_INVOKABLE void muteCameraToggle();
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE QVariantList getConferencesInfos() const;
     Q_INVOKABLE void muteParticipant(const QString& uri, const bool state);
