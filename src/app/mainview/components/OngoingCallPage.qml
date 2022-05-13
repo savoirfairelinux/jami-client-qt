@@ -45,13 +45,6 @@ Rectangle {
     property bool isAudioOnly: false
     property var linkedWebview: null
     property string callPreviewId: ""
-    property bool sharingActive: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY
-                                 || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE
-
-    onSharingActiveChanged: {
-        const deviceId = AvAdapter.currentRenderingDeviceId
-        previewRenderer.startWithId(deviceId, true)
-    }
 
     color: "black"
 
@@ -301,6 +294,14 @@ Rectangle {
                                              isAudioMuted, isVideoMuted,
                                              isSIP,
                                              isGrid)
+                        callOverlay.isVideoMuted = !AvAdapter.isCapturing()
+                        var isSharing = AvAdapter.isSharing()
+                        if (isSharing != callOverlay.isSharing) {
+                            // On update
+                            const deviceId = AvAdapter.currentRenderingDeviceId
+                            previewRenderer.startWithId(deviceId, true)
+                        }
+                        callOverlay.sharingActive = isSharing
                     }
 
                     function onShowOnHoldLabel(isPaused) {

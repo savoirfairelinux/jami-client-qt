@@ -49,6 +49,10 @@ Q_SIGNALS:
 protected:
     void safeInit() override {};
 
+    Q_INVOKABLE bool isSharing() const;
+    Q_INVOKABLE bool isCapturing() const;
+    Q_INVOKABLE bool hasCamera() const;
+
     // Share the screen specificed by screen number.
     Q_INVOKABLE void shareEntireScreen(int screenNumber);
 

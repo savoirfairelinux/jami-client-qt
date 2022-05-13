@@ -193,13 +193,13 @@ Control {
         },
         Action {
             id: muteVideoAction
-            onTriggered: CallAdapter.videoPauseThisCallToggle(!isVideoMuted)
+            onTriggered: CallAdapter.muteCameraToggle()
             checkable: true
             icon.source: checked ?
                              JamiResources.videocam_off_24dp_svg :
                              JamiResources.videocam_24dp_svg
             icon.color: checked ? "red" : "white"
-            text: !checked ? JamiStrings.pauseVideo : JamiStrings.resumeVideo
+            text: !checked ? JamiStrings.muteCamera : JamiStrings.unmuteCamera
             property var menuAction: videoInputMenuAction
         }
     ]
