@@ -29,16 +29,18 @@
 #include <api/datatransfermodel.h>
 
 #include <QApplication>
+#include <QBuffer>
 #include <QClipboard>
 #include <QDesktopServices>
+#include <QDir>
 #include <QFileInfo>
 #include <QImageReader>
 #include <QList>
-#include <QUrl>
 #include <QMimeData>
-#include <QBuffer>
+#include <QMimeDatabase>
+#include <QUrl>
 #include <QtMath>
-#include <QDir>
+#include <QRegExp>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -476,21 +478,17 @@ MessagesAdapter::conversationTypersUrlToName(const QSet<QString>& typersSet)
 }
 
 QVariantMap
-MessagesAdapter::isLocalImage(const QString& msg)
+MessagesAdapter::isLocalImage(const QString& mimename)
 {
-    QImageReader reader;
-    reader.setDecideFormatFromContent(true);
-    reader.setFileName(msg);
-    QByteArray fileFormat = reader.format();
-    if (fileFormat == "gif") {
-        return {{"isAnimatedImage", true}};
-    }
-    QList<QByteArray> supportedFormats = reader.supportedImageFormats();
-    auto iterator = std::find_if(supportedFormats.begin(),
-                                 supportedFormats.end(),
-                                 [fileFormat](QByteArray format) { return format == fileFormat; });
-    if (iterator != supportedFormats.end()) {
-        return {{"isImage", true}};
+    if (mimename.startsWith("image/")) {
+        QString fileFormat = mimename;
+        fileFormat.replace("image/", "");
+        QImageReader reader;
+        QList<QByteArray> supportedFormats = reader.supportedImageFormats();
+        auto iterator = std::find_if(supportedFormats.begin(),
+                                    supportedFormats.end(),
+                                    [fileFormat](QByteArray format) { return format == fileFormat; });
+        return {{"isImage", iterator != supportedFormats.end()}};
     }
     return {{"isImage", false}};
 }
@@ -504,26 +502,28 @@ MessagesAdapter::getMediaInfo(const QString& msg)
           "<%1 style='width:100%;height:%2;outline:none;background-color:#f1f3f4;"
           "object-fit:cover;' "
           "controls controlsList='nodownload' src='file://%3' type='%4'/></body>";
-    QVariantMap fileInfo = isLocalImage(msg);
+    QMimeDatabase db;
+    QMimeType mime = db.mimeTypeForFile(filePath);
+    QVariantMap fileInfo = isLocalImage(mime.name());
     if (fileInfo["isImage"].toBool() || fileInfo["isAnimatedImage"].toBool()) {
         return fileInfo;
     }
-    QRegularExpression vPattern("[^\\s]+(.*?)\\.(avi|mov|webm|webp|rmvb)$",
-                                QRegularExpression::CaseInsensitiveOption);
-    QString type = vPattern.match(filePath).captured(2);
+    static const QRegExp vPattern("(video/)(avi|mov|webm|webp|rmvb)$", Qt::CaseInsensitive);
+    auto match = vPattern.indexIn(mime.name());
+    QString type = vPattern.capturedTexts().size() == 3 ? vPattern.capturedTexts()[1] : "";
     if (!type.isEmpty()) {
         return {
             {"isVideo", true},
-            {"html", html.arg("video", "100%", filePath, "video/" + type)},
+            {"html", html.arg("video", "100%", filePath, mime.name())},
         };
     } else {
-        QRegularExpression aPattern("[^\\s]+(.*?)\\.(ogg|flac|wav|mpeg|mp3)$",
-                                    QRegularExpression::CaseInsensitiveOption);
-        type = aPattern.match(filePath).captured(2);
+        static const QRegExp aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$", Qt::CaseInsensitive);
+        match = aPattern.indexIn(mime.name());
+        type = aPattern.capturedTexts().size() == 3 ? aPattern.capturedTexts()[1] : "";
         if (!type.isEmpty()) {
             return {
                 {"isVideo", false},
-                {"html", html.arg("audio", "54px", filePath, "audio/" + type)},
+                {"html", html.arg("audio", "54px", filePath, mime.name())},
             };
         }
     }
