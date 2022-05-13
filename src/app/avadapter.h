@@ -49,6 +49,8 @@ Q_SIGNALS:
 protected:
     void safeInit() override {};
 
+    Q_INVOKABLE bool isSharing();
+
     // Share the screen specificed by screen number.
     Q_INVOKABLE void shareEntireScreen(int screenNumber);
 
