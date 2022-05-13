@@ -18,6 +18,23 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05583a55_77851564",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-05-13T06:29:41Z",
+      "side": 1,
+      "message": "🔥",
+      "revId": "0b9a32993a4f8f759d3946ae166cd83b054cd902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a614b13f_03517832",
@@ -37,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9988e435_590b71c7",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-05-13T06:29:41Z",
+      "side": 1,
+      "message": "yeah indeed, and I don\u0027t think gcc \u003c 6 can be found nowadays",
+      "parentUuid": "a614b13f_03517832",
+      "revId": "0b9a32993a4f8f759d3946ae166cd83b054cd902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe0bfefc_dd4356cb",
         "filename": "CMakeLists.txt",
         "patchSetId": 7
@@ -48,6 +83,29 @@
       "writtenOn": "2022-05-12T15:33:08Z",
       "side": 1,
       "message": "wildcard ?",
+      "revId": "0b9a32993a4f8f759d3946ae166cd83b054cd902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f86e108_de637466",
+        "filename": "src/lib/web-chatview/chatview.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-05-13T06:29:41Z",
+      "side": 1,
+      "message": "I think we can also delete .eslint, chatview* and update new*model -\u003e *model (can be done in another patch anw)\n\nElse, cool!",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 2,
+        "endChar": 31
+      },
       "revId": "0b9a32993a4f8f759d3946ae166cd83b054cd902",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
