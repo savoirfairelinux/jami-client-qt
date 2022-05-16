@@ -593,7 +593,7 @@ Jami se bo zdaj zaprl.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="460"/>
         <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
-        <translation>Vnesite PIN z drugega nastavljenega Jami računa. Uporabite funkcijo &quot;Poveži drugo napravo&quot;, da pridobite PIN.</translation>
+        <translation>Vnesite PIN z drugega nastavljenega računa Jami. Uporabite funkcijo &quot;Poveži drugo napravo&quot;, da pridobite PIN.</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="462"/>
@@ -1342,7 +1342,7 @@ Jami se bo zdaj zaprl.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="286"/>
         <source>Enter Jami Account Management Server (JAMS) URL</source>
-        <translation>Vnesite URl naslov za Jami Account Management Server (JAMS) URL</translation>
+        <translation>Vnesite URl naslov za strežnik JAMS (Jami Account Management Server)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="287"/>
@@ -1352,7 +1352,7 @@ Jami se bo zdaj zaprl.</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="288"/>
         <source>Jami Account Management Server URL</source>
-        <translation>URL strežnika upravljanja z računi Jam</translation>
+        <translation>URL strežnika upravljanja z računi Jami</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="289"/>
@@ -2243,7 +2243,7 @@ poveže, da sinhroniziramo pogovor.</translation>
         <location filename="../src/constant/JamiStrings.qml" line="533"/>
         <source>This is your Jami username.
 Copy and share it with your friends!</source>
-        <translation>To je vaše Jami uporabniško ime.
+        <translation>To je vaše uporabniško ime Jami.
 Kopirajte ga in delite s prijatelji!</translation>
     </message>
     <message>
