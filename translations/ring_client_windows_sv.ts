@@ -96,7 +96,7 @@
     <message>
         <location filename="../src/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>Missat samtal med %1</translation>
     </message>
     <message>
         <location filename="../src/calladapter.cpp" line="498"/>
@@ -134,7 +134,7 @@
     <message>
         <location filename="../src/mainview/components/ContactPicker.qml" line="88"/>
         <source>Add default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Ange grundinställd moderator </translation>
     </message>
 </context>
 <context>
@@ -194,12 +194,12 @@
         <location filename="../src/DaemonReconnectWindow.qml" line="93"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte ansluta till Jami appen (jamid). Jami avslutas. </translation>
     </message>
     <message>
         <location filename="../src/DaemonReconnectWindow.qml" line="94"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation type="unfinished"/>
+        <translation>Försöker återansluta till Jami-tjänsten. </translation>
     </message>
     <message>
         <location filename="../src/DaemonReconnectWindow.qml" line="149"/>
@@ -385,7 +385,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="87"/>
         <source>Voicemail dial code</source>
-        <translation type="unfinished"/>
+        <translation>Röstsamtalsnummer</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="90"/>
@@ -400,12 +400,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="92"/>
         <source>Enable SDES key exchange</source>
-        <translation type="unfinished"/>
+        <translation>Godkänn SDES nyckel utbyte</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="93"/>
         <source>Allow fallback on RTP</source>
-        <translation type="unfinished"/>
+        <translation>Tillåt falla tillbaka på RTP</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="94"/>
@@ -445,7 +445,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="101"/>
         <source>Require certificate for incoming TLS connections</source>
-        <translation type="unfinished"/>
+        <translation>Begär certifikat för inkommande TLS anslutningar </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="102"/>
@@ -455,7 +455,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="103"/>
         <source>Audio input device selector</source>
-        <translation type="unfinished"/>
+        <translation>Val av  Ljudenhet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="104"/>
@@ -480,7 +480,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="113"/>
         <source>Registration expiration time (seconds)</source>
-        <translation type="unfinished"/>
+        <translation>Tid för registrering går ut (sekunder)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="127"/>
@@ -490,7 +490,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="149"/>
         <source>Enable local peer discovery</source>
-        <translation type="unfinished"/>
+        <translation>Möjliggör upptäckt av lokal anslutningspunkt </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="162"/>
@@ -510,7 +510,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="190"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and can not be recovered. You can backup your account now or later.</source>
-        <translation type="unfinished"/>
+        <translation>Ditt konto finns endast på denna enhet. Om du förlorar enheten eller avinstallerar appen kommer ditt konto raderas och kan inte återställas. Du kan säkerhetskopiera nu eller senare. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="36"/>
@@ -526,7 +526,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="219"/>
         <source>Resume call</source>
-        <translation type="unfinished"/>
+        <translation>Återuppta samtalet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="220"/>
@@ -536,7 +536,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="221"/>
         <source>Resume video</source>
-        <translation type="unfinished"/>
+        <translation>Återuppta videosamtalet </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="291"/>
@@ -556,17 +556,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="301"/>
         <source>Choose a password to encrypt your account on this device. Note that the password cannot be recovered.</source>
-        <translation type="unfinished"/>
+        <translation>Välj lösenord för att kryptera ditt konto på denna enhet. Notera att lösenordet inte kan återställas. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="304"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Välj namn för din Mötespunkt</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="358"/>
         <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation type="unfinished"/>
+        <translation>Om ditt konto inte blivit säkerhetskopierat eller lagt till på annan enhet kommer ditt konto och ditt registrerade namn att oåterkalleligen vara förlorat. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="371"/>
@@ -576,7 +576,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="378"/>
         <source>Enable typing indicators</source>
-        <translation type="unfinished"/>
+        <translation>Visa skrivindikering</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="395"/>
@@ -612,7 +612,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="497"/>
         <source>Display or hide preferences</source>
-        <translation type="unfinished"/>
+        <translation>Visa eller göm preferenser</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="500"/>
@@ -637,12 +637,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="512"/>
         <source>Enter the rendezvous point&apos;s name</source>
-        <translation type="unfinished"/>
+        <translation>Ange namn på mötesrummet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="513"/>
         <source>Creating rendezvous point…</source>
-        <translation type="unfinished"/>
+        <translation>Skapa mötesrum </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="541"/>
@@ -652,7 +652,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="544"/>
         <source>Create new rendezvous point</source>
-        <translation type="unfinished"/>
+        <translation>Skapar nytt mötesrum </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="545"/>
@@ -667,7 +667,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="557"/>
         <source>Decline contact request</source>
-        <translation type="unfinished"/>
+        <translation>Avslå kontakt begäran </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="558"/>
@@ -693,7 +693,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="33"/>
         <source>Accept in audio</source>
-        <translation type="unfinished"/>
+        <translation>Godkänn ljud</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="34"/>
@@ -703,12 +703,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="43"/>
         <source>You are viewing a conversation where all participants other than you have left. New interactions will not be possible.</source>
-        <translation type="unfinished"/>
+        <translation>Du ser en konversation där alla andra deltagare har lämnat . Nya interaktioner är inte möjliga. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="44"/>
         <source>Start new conversation</source>
-        <translation type="unfinished"/>
+        <translation>Starta ny konversation </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="81"/>
@@ -718,12 +718,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="82"/>
         <source>Enable read receipts</source>
-        <translation type="unfinished"/>
+        <translation>Visa läskvitto </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="83"/>
         <source>Send and receive receipts indicating that a message have been displayed</source>
-        <translation type="unfinished"/>
+        <translation>Skicka och ta emot kvitto som visar ett meddelande har visats </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="108"/>
@@ -738,7 +738,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="112"/>
         <source>Auto Registration After Expired</source>
-        <translation type="unfinished"/>
+        <translation>Automatisk registrering upphör. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="114"/>
@@ -788,7 +788,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="125"/>
         <source>Allow IP Auto Rewrite</source>
-        <translation type="unfinished"/>
+        <translation>Tillåt IP Auto uppdatering</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="126"/>
@@ -838,32 +838,32 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="142"/>
         <source>Only used during negotiation in case ICE is not supported</source>
-        <translation type="unfinished"/>
+        <translation>Använd endast förhandling om ICE inte stöds</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="143"/>
         <source>Audio RTP minimum Port</source>
-        <translation type="unfinished"/>
+        <translation>Audio RTP minimum port </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="144"/>
         <source>Audio RTP maximum Port</source>
-        <translation type="unfinished"/>
+        <translation>Audio RTP maximum port</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="145"/>
         <source>Video RTP minimum Port</source>
-        <translation type="unfinished"/>
+        <translation>Video RTP minimum port</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="146"/>
         <source>Video RTP maximum port</source>
-        <translation type="unfinished"/>
+        <translation>Video RTP maximum port</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="150"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
-        <translation type="unfinished"/>
+        <translation>Anslut till annan DHT node på ditt lokala nätverk</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="151"/>
@@ -949,7 +949,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="172"/>
         <source>Select ringtone output device</source>
-        <translation type="unfinished"/>
+        <translation>Välj enhet för utgående ringsignal </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="173"/>
@@ -989,7 +989,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="184"/>
         <source>Preview unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Förhandsvisning ej möjlig</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="185"/>
@@ -999,7 +999,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="186"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation type="unfinished"/>
+        <translation>Välj videouppdatering (rutor per sekund)</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="187"/>
@@ -1059,7 +1059,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="206"/>
         <source>Reinstate as contact</source>
-        <translation type="unfinished"/>
+        <translation>Återställ som kontakt</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="207"/>
@@ -1074,17 +1074,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="211"/>
         <source>is recording</source>
-        <translation type="unfinished"/>
+        <translation>spelar in</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="212"/>
         <source>are recording</source>
-        <translation type="unfinished"/>
+        <translation>spelar in</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="213"/>
         <source>Peer stopped recording</source>
-        <translation type="unfinished"/>
+        <translation>Nod stoppar inspelning </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="214"/>
@@ -1126,17 +1126,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="226"/>
         <source>Mosaic</source>
-        <translation type="unfinished"/>
+        <translation>Mosiak</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="229"/>
         <source>You are still muted by moderator</source>
-        <translation type="unfinished"/>
+        <translation>Du är fortfarande tystad av moderator </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="230"/>
         <source>You are muted by a moderator</source>
-        <translation type="unfinished"/>
+        <translation>Du är tystad av moderator </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="231"/>
@@ -1151,17 +1151,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="233"/>
         <source>Local and Moderator muted</source>
-        <translation type="unfinished"/>
+        <translation>Lokal och moderator tystnade</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="234"/>
         <source>Moderator muted</source>
-        <translation type="unfinished"/>
+        <translation>Moderator tystad </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="235"/>
         <source>Not muted</source>
-        <translation type="unfinished"/>
+        <translation>Inte tystad </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="239"/>
@@ -1216,7 +1216,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="253"/>
         <source>Sip input panel</source>
-        <translation type="unfinished"/>
+        <translation>Panel för Sip </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="254"/>
@@ -1281,7 +1281,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="268"/>
         <source>Lower hand</source>
-        <translation type="unfinished"/>
+        <translation>Ta ned handen </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="269"/>
@@ -1306,7 +1306,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="275"/>
         <source>Show available plugins</source>
-        <translation type="unfinished"/>
+        <translation>Visa tillgängliga tillägg </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="276"/>
@@ -1321,17 +1321,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="280"/>
         <source>{} is typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} skriver </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="281"/>
         <source>{} are typing…</source>
-        <translation type="unfinished"/>
+        <translation>{} skriver </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="282"/>
         <source>Several people are typing…</source>
-        <translation type="unfinished"/>
+        <translation>Flera personer skriver </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="283"/>
@@ -1451,7 +1451,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="319"/>
         <source>Backup successful</source>
-        <translation type="unfinished"/>
+        <translation>Säkerhetskopiering lyckades</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="320"/>
@@ -1471,12 +1471,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="323"/>
         <source>Password set successfully</source>
-        <translation type="unfinished"/>
+        <translation>Lösenord lyckades </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="324"/>
         <source>Password set failed</source>
-        <translation type="unfinished"/>
+        <translation>Lösenord misslyckade </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="325"/>
@@ -1497,7 +1497,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="329"/>
         <source>Backup account to a .gz file</source>
-        <translation type="unfinished"/>
+        <translation>Säkerhetskopiering till en .gz fil</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="332"/>
@@ -1527,7 +1527,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="343"/>
         <source>Link a new device to this account</source>
-        <translation type="unfinished"/>
+        <translation>Länka ny enhet till detta konto</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="344"/>
@@ -1547,7 +1547,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="347"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation type="unfinished"/>
+        <translation>Är du säker du vill ta bort denna enhet? </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="348"/>
@@ -1563,7 +1563,8 @@ Jami will now quit.</source>
         <location filename="../src/constant/JamiStrings.qml" line="350"/>
         <source>Error connecting to the network.
 Please try again later.</source>
-        <translation type="unfinished"/>
+        <translation>Fel vid anslutning till nätverket. 
+Försök igen senare. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="357"/>
@@ -1583,7 +1584,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="363"/>
         <source>Unlink device from account</source>
-        <translation type="unfinished"/>
+        <translation>Ta bort länkad enhet från kontot</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="366"/>
@@ -1608,7 +1609,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="370"/>
         <source>Run application on system startup</source>
-        <translation type="unfinished"/>
+        <translation>Kör appen vid systemstart </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="372"/>
@@ -1618,7 +1619,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="373"/>
         <source>Choose download directory</source>
-        <translation type="unfinished"/>
+        <translation>Välj mapp för nedladdning</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="374"/>
@@ -1658,12 +1659,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="389"/>
         <source>Accept transfer limit</source>
-        <translation type="unfinished"/>
+        <translation>Ange gräns för överföring</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="390"/>
         <source>in MB, 0 = unlimited</source>
-        <translation type="unfinished"/>
+        <translation>in MB, 0 = obegränsad</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="393"/>
@@ -1703,7 +1704,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="406"/>
         <source>toggle automatic updates</source>
-        <translation type="unfinished"/>
+        <translation>sök uppdateringar automatiskt </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="407"/>
@@ -1734,17 +1735,17 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="414"/>
         <source>Installer download canceled</source>
-        <translation type="unfinished"/>
+        <translation>Nedladdning av Installationsprogram avbruten </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="416"/>
         <source>This will uninstall your current Release version and you can always download the latest Release version on our website</source>
-        <translation type="unfinished"/>
+        <translation>Detta kommer avinstallera din nuvarande version och du kan alltid ladda ned den senaste versionen på vår webbplats </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="417"/>
         <source>Network disconnected</source>
-        <translation type="unfinished"/>
+        <translation>Nätverk frånkopplat</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="396"/>
@@ -1760,32 +1761,32 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="422"/>
         <source>Open logs</source>
-        <translation type="unfinished"/>
+        <translation>Öppna logg</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="423"/>
         <source>Get logs</source>
-        <translation type="unfinished"/>
+        <translation>Få tag i logg</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="426"/>
         <source>Select a record directory</source>
-        <translation type="unfinished"/>
+        <translation>Välj mapp för spara inspelning</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="436"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>Debug </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="437"/>
         <source>Show Stats</source>
-        <translation type="unfinished"/>
+        <translation>Visa statistik </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="438"/>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Starta</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="439"/>
@@ -1810,7 +1811,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="484"/>
         <source>Stop taking photo</source>
-        <translation type="unfinished"/>
+        <translation>Avbryt ta bilder</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="485"/>
@@ -1820,12 +1821,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="501"/>
         <source>Go back to plugins list</source>
-        <translation type="unfinished"/>
+        <translation>Go tillbaka till listan med tillägg</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="509"/>
         <source>Profile is only shared with contacts</source>
-        <translation type="unfinished"/>
+        <translation>Användarprofilen delas endast med dina kontakter. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="511"/>
@@ -1840,7 +1841,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="536"/>
         <source>Import account from backup file</source>
-        <translation type="unfinished"/>
+        <translation>Importera konto från säkerhetskopia </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="539"/>
@@ -1875,23 +1876,23 @@ Please try again later.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="578"/>
         <source>Local muted</source>
-        <translation type="unfinished"/>
+        <translation>Lokal nod tystad </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="589"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation type="unfinished"/>
+        <translation>Försöker återansluta till Jami-tjänsten. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="590"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte ansluta till Jami appen (jamid). Jami avslutas. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="593"/>
         <source>Is swarm:</source>
-        <translation type="unfinished"/>
+        <translation>Svärmar: </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="594"/>
@@ -1941,25 +1942,28 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="607"/>
         <source>%1 has sent you a request for a conversation.</source>
-        <translation type="unfinished"/>
+        <translation>%1 har skickat begäran om konversation. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="608"/>
         <source>Hello,
 Would you like to join the conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Hej! 
+Vill du gå med i konversationen? </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="609"/>
         <source>You have accepted
 the conversation request</source>
-        <translation type="unfinished"/>
+        <translation>Du har accepterat
+konversationsbegäran </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="610"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
-        <translation type="unfinished"/>
+        <translation>Inväntar tills %1
+ansluter för att synkronisera konversationen. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="238"/>
@@ -1970,12 +1974,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="227"/>
         <source>Participant is still muted on their device</source>
-        <translation type="unfinished"/>
+        <translation>Deltagare fortfarande tystade på sina enheter</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="228"/>
         <source>You are still muted on your device</source>
-        <translation type="unfinished"/>
+        <translation>Du är fortfarande tystad på din enhet</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="258"/>
@@ -1985,7 +1989,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="261"/>
         <source>Stop sharing screen or file</source>
-        <translation type="unfinished"/>
+        <translation>Avsluta dela skärm eller fil </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="330"/>
@@ -2000,7 +2004,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="353"/>
         <source>Display banned contacts</source>
-        <translation type="unfinished"/>
+        <translation>Visa blockerade kontakter</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="354"/>
@@ -2025,7 +2029,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="429"/>
         <source>Keyboard Shortcut Table</source>
-        <translation type="unfinished"/>
+        <translation>Kortkommando för tangentbord</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="431"/>
@@ -2060,7 +2064,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="445"/>
         <source>Receive Logs</source>
-        <translation type="unfinished"/>
+        <translation>Ta emot loggar</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="448"/>
@@ -2075,7 +2079,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="450"/>
         <source>Create your account from a backup</source>
-        <translation type="unfinished"/>
+        <translation>Skapa konto från säkerhetskopia</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="451"/>
@@ -2095,7 +2099,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="466"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>PIN-kod och konto lösenord måste skrivas in på din enhet inom 10 minuter. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="467"/>
@@ -2125,7 +2129,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="474"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Ange lösenord till detta konto för att bekräfta borttagning av denna enhet </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="475"/>
@@ -2175,7 +2179,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="493"/>
         <source>Select a plugin to install</source>
-        <translation type="unfinished"/>
+        <translation>Välj tillägg att installera </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="494"/>
@@ -2195,7 +2199,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="517"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Ange kontolösenord för att bekräfta borttagning av denna enhet </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="520"/>
@@ -2205,7 +2209,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="521"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Välj fönster för att dela </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="522"/>
@@ -2220,7 +2224,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="524"/>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Skärmfönster </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="527"/>
@@ -2267,12 +2271,12 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="543"/>
         <source>Error while creating your account. Check your credentials.</source>
-        <translation type="unfinished"/>
+        <translation>Fel uppstod när kontot skulle skapas. Kontrollera dina data. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="552"/>
         <source>Clear Text</source>
-        <translation type="unfinished"/>
+        <translation>Radera text</translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="554"/>
@@ -2287,12 +2291,12 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="571"/>
         <source>Set moderator</source>
-        <translation type="unfinished"/>
+        <translation>Ange moderator. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="572"/>
         <source>Unset moderator</source>
-        <translation type="unfinished"/>
+        <translation>Moderator inte åsatt. </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="575"/>
@@ -2312,32 +2316,32 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="581"/>
         <source>Conference moderation</source>
-        <translation type="unfinished"/>
+        <translation>Konferens moderering </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="582"/>
         <source>Default moderators</source>
-        <translation type="unfinished"/>
+        <translation>Grundinställda moderatorer </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="583"/>
         <source>Enable local moderators</source>
-        <translation type="unfinished"/>
+        <translation>Möjliggör lokala moderatorer </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="584"/>
         <source>Make all participants moderators</source>
-        <translation type="unfinished"/>
+        <translation>Gör alla deltagare till moderatorer </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="585"/>
         <source>Add default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Ange grundinställd moderator </translation>
     </message>
     <message>
         <location filename="../src/constant/JamiStrings.qml" line="586"/>
         <source>Remove default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Ta bort grundinställd moderator </translation>
     </message>
 </context>
 <context>
@@ -2350,12 +2354,12 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Focus conversations list</source>
-        <translation type="unfinished"/>
+        <translation>Fokus konversationslista </translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="49"/>
         <source>Requests list</source>
-        <translation type="unfinished"/>
+        <translation>Begär lista</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="53"/>
@@ -2370,7 +2374,7 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="61"/>
         <source>Search bar</source>
-        <translation type="unfinished"/>
+        <translation>Sökfält </translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="65"/>
@@ -2425,17 +2429,17 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="115"/>
         <source>Plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Inställningar tillägg </translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="119"/>
         <source>Open account creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>Öppna hjälp för skapa konto</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="123"/>
         <source>Open keyboard shortcut table</source>
-        <translation type="unfinished"/>
+        <translation>Öppna kortkommandolista till tangentbord</translation>
     </message>
     <message>
         <location filename="../src/mainview/components/KeyboardShortcutTable.qml" line="132"/>
@@ -2458,7 +2462,7 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/mainapplication.cpp" line="332"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>Avsluta</translation>
     </message>
     <message>
         <location filename="../src/mainapplication.cpp" line="334"/>
@@ -2523,7 +2527,7 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="100"/>
         <source>Reset preferences</source>
-        <translation type="unfinished"/>
+        <translation>Återställ preferenser </translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListPreferencesView.qml" line="147"/>
@@ -2546,7 +2550,7 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="66"/>
         <source>Plugin Files</source>
-        <translation type="unfinished"/>
+        <translation>Tilläggsfiler</translation>
     </message>
     <message>
         <location filename="../src/settingsview/components/PluginListSettingsView.qml" line="66"/>
@@ -2564,7 +2568,7 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/commoncomponents/PreferenceItemDelegate.qml" line="130"/>
         <source>Edit preference</source>
-        <translation type="unfinished"/>
+        <translation>Ändra preferenser </translation>
     </message>
 </context>
 <context>
@@ -2617,7 +2621,7 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/messagesadapter.cpp" line="280"/>
         <source>Unable to make contact</source>
-        <translation type="unfinished"/>
+        <translation>Ej möjligt få kontakt </translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="282"/>
@@ -2627,7 +2631,7 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/messagesadapter.cpp" line="284"/>
         <source>Waiting for contact</source>
-        <translation type="unfinished"/>
+        <translation>Inväntar kontakt </translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="286"/>
@@ -2637,7 +2641,7 @@ Kopiera och dela det med dina vänner!</translation>
     <message>
         <location filename="../src/messagesadapter.cpp" line="288"/>
         <source>Timed out waiting for contact</source>
-        <translation type="unfinished"/>
+        <translation>Tidsfel inväntar kontakt</translation>
     </message>
     <message>
         <location filename="../src/messagesadapter.cpp" line="290"/>
