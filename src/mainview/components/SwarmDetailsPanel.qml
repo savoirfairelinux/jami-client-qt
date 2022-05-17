@@ -68,7 +68,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
 
                 text: CurrentConversation.title
-                placeholderText: JamiStrings.groupName
+                placeholderText: JamiStrings.swarmName
                 placeholderTextColor: {
                     if (editable) {
                         if (UtilsAdapter.luma(root.color)) {
@@ -84,7 +84,7 @@ Rectangle {
                         }
                     }
                 }
-                tooltipText: JamiStrings.groupName
+                tooltipText: JamiStrings.swarmName
                 backgroundColor: root.color
                 color: UtilsAdapter.luma(backgroundColor) ?
                         JamiTheme.chatviewTextColorLight :
