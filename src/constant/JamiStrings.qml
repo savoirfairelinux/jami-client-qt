@@ -622,7 +622,7 @@ Item {
     property string members: qsTr("%1 Members")
     property string member: qsTr("Member")
     property string documents: qsTr("Documents")
-    property string groupName: qsTr("Group's name")
+    property string swarmName: qsTr("Swarm's name")
     property string addADescription: qsTr("Add a description")
 
     property string ignoreTheSwarm: qsTr("Ignore the swarm")

@@ -128,8 +128,8 @@ Rectangle {
             horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            placeholderText: JamiStrings.groupName
-            tooltipText: JamiStrings.groupName
+            placeholderText: JamiStrings.swarmName
+            tooltipText: JamiStrings.swarmName
             backgroundColor: root.color
             color: UtilsAdapter.luma(backgroundColor) ?
                     JamiTheme.chatviewTextColorLight :
