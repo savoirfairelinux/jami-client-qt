@@ -31,6 +31,7 @@ SBSMessageBase {
     id : root
 
     property bool isRemoteImage
+
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
 
     isOutgoing: Author === ""
@@ -38,32 +39,43 @@ SBSMessageBase {
     readers: Readers
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
+
     innerContent.children: [
         TextEdit {
-            padding: 10
+
+            padding : 10
+            topPadding : 16
+            bottomPadding : 16
+            leftPadding: isOutgoing ? 23 : 34
+            rightPadding: isOutgoing ? 34 : 23
             anchors.right: isOutgoing ? parent.right : undefined
+
             text: Body
+
+            horizontalAlignment : isOutgoing ?  Text.AlignRight : Text.AlignLeft
+
             width: {
                 if (extraContent.active)
                     Math.max(extraContent.width,
                              Math.min(implicitWidth - avatarBlockWidth,
-                                      extraContent.minSize) - senderMargin)
+                                      extraContent.minSize) - senderMargin )
                 else
                     Math.min(implicitWidth, innerContent.width - senderMargin)
             }
+
             height: implicitHeight
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
-            font.pointSize: 11
+            font.pixelSize: 15
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.MarkdownText
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(hoveredLink)
             readOnly: true
-            color: UtilsAdapter.luma(bubble.color) ?
-                       JamiTheme.chatviewTextColorLight :
-                       JamiTheme.chatviewTextColorDark
+            color: JamiTheme.chatviewTextColor /* UtilsAdapter.luma(bubble.color) ?
+                       JamiTheme.chatviewTextColorDark :
+                       JamiTheme.chatviewTextColorLight*/
 
             TapHandler {
                 acceptedButtons: Qt.RightButton

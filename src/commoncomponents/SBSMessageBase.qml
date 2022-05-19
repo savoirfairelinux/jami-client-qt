@@ -25,6 +25,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
+
 Control {
     id: root
 
@@ -39,6 +40,7 @@ Control {
     property int seq
     property string author
     property string transferId
+    property string registeredNameText
     property string transferName
     property string formattedTime
     property string location
@@ -46,7 +48,7 @@ Control {
     property var readers: []
 
     readonly property real senderMargin: 64
-    readonly property real avatarSize: 32
+    readonly property real avatarSize: 20
     readonly property real msgRadius: 18
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
 
@@ -63,15 +65,46 @@ Control {
 
         width: parent.width - hPadding * 2
 
-        spacing: 2
+        spacing: 0
+
+        Item{
+
+            id: usernameblock
+            Layout.preferredHeight: {
+                if (seq === MsgSeq.first || seq === MsgSeq.single)
+                    return 10
+                else
+                    return 0
+            }
+
+
+            Label {
+
+                id: username                                
+                text: UtilsAdapter.getBestId(LRCInstance.currentAccountId)
+                font.bold : true
+                visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
+                opacity: 0.36
+                font.pixelSize: 11
+                font.family: 'Ubuntu'
+                lineHeight: 14
+                leftPadding: 66               
+
+
+                 }
+            }
+
 
         RowLayout {
             Layout.preferredHeight: innerContent.height + root.extraHeight
             Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) ? 6 : 0
+
             spacing: 0
+
+
             Item {
                 id: avatarBlock
-                Layout.preferredWidth: isOutgoing ? 0 : avatar.width + hPadding
+                Layout.preferredWidth: isOutgoing ? 0 : avatar.width + hPadding/3
                 Layout.preferredHeight: isOutgoing ? 0 : bubble.height
                 Avatar {
                     id: avatar
@@ -90,6 +123,7 @@ Control {
                 Column {
                     id: innerContent
                     width: parent.width
+
                     // place actual content here
                 }
                 MessageBubble {
@@ -100,6 +134,8 @@ Control {
                     color: isOutgoing ?
                                JamiTheme.messageOutBgColor :
                                CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                    layer.enabled: true
+                    opacity: isOutgoing ? 0.1 : 0.2
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     width: innerContent.childrenRect.width
@@ -107,6 +143,7 @@ Control {
                 }
             }
         }
+
         ListView {
             id: infoCell
 
@@ -120,6 +157,7 @@ Control {
                 return 0
             }
 
+
             Label {
                 id: formattedTimeLabel
 
@@ -128,7 +166,7 @@ Control {
                 visible: showTime || seq === MsgSeq.last
                 height: visible * implicitHeight
                 font.pointSize: 9
-
+                topPadding : 4
                 anchors.right: !isOutgoing ? undefined : reads.left
                 anchors.rightMargin: 8
                 anchors.left: isOutgoing ? undefined : parent.left

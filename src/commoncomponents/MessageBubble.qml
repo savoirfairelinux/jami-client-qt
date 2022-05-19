@@ -29,18 +29,16 @@ Rectangle {
 
     Rectangle {
         id: mask
-
-        visible: type !== MsgSeq.single
         z: -1
         radius: 2
         color: root.color
 
         anchors {
             fill: parent
-            leftMargin: out ? root.width - root.radius : 0
+            leftMargin: out ?  root.width - root.radius : 0
             rightMargin: out ? 0 : root.width - root.radius
-            topMargin: type === MsgSeq.first ? root.height - root.radius : 0
-            bottomMargin: type === MsgSeq.last ? root.height - root.radius : 0
+            topMargin: (type === MsgSeq.first || type === MsgSeq.single) ? root.height - root.radius : 0
+            bottomMargin: 0
         }
     }
 }
