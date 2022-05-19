@@ -42,7 +42,7 @@ Rectangle {
         id: countLabel
 
         anchors.centerIn: root
-        text: count > 9 ? "…" : count
+        text: count > 9 ? "9+" : count
         color: JamiTheme.filterBadgeTextColor
         font.pointSize: JamiTheme.filterBadgeFontSize
         font.weight: Font.ExtraBold
