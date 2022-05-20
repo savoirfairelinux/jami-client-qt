@@ -148,6 +148,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea5b8857_aa748d84",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-05-20T20:25:14Z",
+      "side": 1,
+      "message": "from cmake docs (https://cmake.org/cmake/help/v3.12/command/file.html#filesystem):\n\"Note We do not recommend using GLOB to collect a list of source files from your source tree. If no CMakeLists.txt file changes when a source is added or removed then the generated build system cannot know when to ask CMake to regenerate. The CONFIGURE_DEPENDS flag may not work reliably on all generators, or if a new generator is added in the future that cannot support it, projects using it will be stuck. Even if CONFIGURE_DEPENDS works reliably, there is still a cost to perform the check on every rebuild.\"",
+      "parentUuid": "09683ab5_8c50afea",
+      "revId": "0b9a32993a4f8f759d3946ae166cd83b054cd902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f86e108_de637466",
         "filename": "src/lib/web-chatview/chatview.html",
         "patchSetId": 7
