@@ -56,6 +56,9 @@ class LRCInstance;
 
 namespace Utils {
 
+// Throws if Vulkan cannot be instantiated.
+void testWindowsVulkanSupport();
+
 // App System
 bool CreateStartupLink(const std::wstring& wstrAppName);
 void DeleteStartupLink(const std::wstring& wstrAppName);

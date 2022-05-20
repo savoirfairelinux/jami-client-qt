@@ -20,6 +20,7 @@
 
 #include "mainapplication.h"
 #include "instancemanager.h"
+#include "utils.h"
 #include "version.h"
 
 #include <QCryptographicHash>
@@ -117,6 +118,19 @@ main(int argc, char* argv[])
 #else
     if (std::invoke([] {
 #if defined(HAS_VULKAN) && !defined(Q_OS_LINUX)
+            // Somehow, several bug reports show that, on Windows, QVulkanInstance
+            // verification  passes, but goes on to fail when creating the QQuickWindow
+            // with "Failed to initialize graphics backend for Vulkan".
+            // Here we allow platform-specific checks using native Vulkan libraries.
+            // Currently only implemented on Windows.
+            try {
+                Utils::testVulkanSupport();
+            } catch (const std::exception& e) {
+                qWarning() << "Vulkan instance cannot be created:" << e.what();
+                return false;
+            }
+
+            // Check using Qt's QVulkanInstance.
             QVulkanInstance inst;
             inst.setLayers({"VK_LAYER_KHRONOS_validation"});
             bool ok = inst.create();
@@ -128,6 +142,7 @@ main(int argc, char* argv[])
                 qWarning() << "VK_LAYER_KHRONOS_validation layer is not available.";
                 return false;
             }
+
             return true;
 #else
             return false;
