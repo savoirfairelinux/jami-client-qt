@@ -119,12 +119,21 @@ main(int argc, char* argv[])
 #if defined(HAS_VULKAN) && !defined(Q_OS_LINUX)
             QVulkanInstance inst;
             inst.setLayers({"VK_LAYER_KHRONOS_validation"});
-            return inst.create();
+            bool ok = inst.create();
+            if (!ok) {
+                qWarning() << "QVulkanInstance cannot be created.";
+                return false;
+            }
+            if (!inst.layers().contains("VK_LAYER_KHRONOS_validation")) {
+                qWarning() << "VK_LAYER_KHRONOS_validation layer is not available.";
+                return false;
+            }
+            return true;
 #else
             return false;
 #endif
         })
-        && qgetenv("WAYLAND_DISPLAY").isEmpty()) {
+        && qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY")) {
         // https://bugreports.qt.io/browse/QTBUG-99684 - Vulkan on
         // Wayland is not really supported as window decorations are
         // removed. So we need to re-implement this (custom controls)
