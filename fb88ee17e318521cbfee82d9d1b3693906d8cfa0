@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ff56678_a3bd7d50",
+        "filename": "src/app/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-05-23T08:40:47Z",
+      "side": 1,
+      "message": "not necessary if testVulkanSupport already check this platform",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 25
+      },
+      "revId": "fb88ee17e318521cbfee82d9d1b3693906d8cfa0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d882dade_ad93c8e1",
+        "filename": "src/app/main.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-05-23T08:40:47Z",
+      "side": 1,
+      "message": "move this comment inside Utils::testVulkanSupport",
+      "range": {
+        "startLine": 126,
+        "startChar": 18,
+        "endLine": 126,
+        "endChar": 52
+      },
+      "revId": "fb88ee17e318521cbfee82d9d1b3693906d8cfa0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
