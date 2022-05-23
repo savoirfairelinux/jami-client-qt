@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09871c37_be90181a",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-05-23T16:23:03Z",
+      "side": 1,
+      "message": "Quick note:\n\"QRegExp caches recently used regexs, QRegularExpression does not.\"\nhttps://forum.qt.io/topic/103687/qregularexpression-construction-time\n\nMaybe it should be static/const like \u0027html\u0027 above (or use a global regexp) instead of rebuilding/recompiling it every time ?",
+      "range": {
+        "startLine": 497,
+        "startChar": 4,
+        "endLine": 497,
+        "endChar": 22
+      },
+      "revId": "0e01a9fedb3088ddfe2c2225c723080c72e5d63b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40081ed2_f6302e30",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-05-23T16:23:03Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 506,
+        "startChar": 8,
+        "endLine": 506,
+        "endChar": 33
+      },
+      "revId": "0e01a9fedb3088ddfe2c2225c723080c72e5d63b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
