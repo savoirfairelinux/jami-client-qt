@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6249a2f9_395c4d27",
+        "filename": "cmake/FindJamid.cmake",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 951
+      },
+      "writtenOn": "2022-05-25T19:37:07Z",
+      "side": 1,
+      "message": "MATCHES does regex, so this condition will always be true, regardless of the contents of JAMID_LIB. STREQUAL looks like it does what we want (compare strings lexicographically).\n\nhttps://cmake.org/cmake/help/latest/command/if.html",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "ec101e51d4dd8556cbb01d4e794a2d80932d4c28",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
