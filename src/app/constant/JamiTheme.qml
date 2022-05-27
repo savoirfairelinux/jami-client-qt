@@ -157,13 +157,13 @@ Item {
     // Chatview
     property color jamiLightBlue: darkTheme ? "#003b4e" : Qt.rgba(59, 193, 211, 0.3)
     property color jamiDarkBlue: darkTheme ? "#28b1ed" : "#003b4e"
-    property color chatviewTextColor: darkTheme ? "#f0f0f0" : "#353637"
+    property color chatviewTextColor: darkTheme ? "#f0f0f0" : "#000000"
     property color chatviewTextColorLight: "#f0f0f0"
     property color chatviewTextColorDark: "#353637"
     property color timestampColor: darkTheme ? "#bbb" : "#777"
     property color messageOutTxtColor: chatviewTextColor
-    property color messageInBgColor: darkTheme ? "#28b1ed" : "#cfd8dc"
-    property color messageOutBgColor: darkTheme? "#616161" : "#cfebf5"
+    property color messageInBgColor: darkTheme ? "#28b1ed" : "#009EFF"
+    property color messageOutBgColor: darkTheme? "#616161" : "#000000"
     property color messageInTxtColor: chatviewTextColor
     property color fileOutTimestampColor: darkTheme ? "#eee" : "#555"
     property color fileInTimestampColor: darkTheme ? "#999" : "#555"
