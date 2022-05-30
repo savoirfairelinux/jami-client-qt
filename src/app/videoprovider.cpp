@@ -120,12 +120,18 @@ VideoProvider::onRendererStarted(const QString& id)
         auto it = framesObjects_.find(id);
         if (it == framesObjects_.end()) {
             auto fo = std::make_unique<FrameObject>();
+            qDebug() << QString("Creating new QVideoFrame %1").arg(id) << frameFormat.frameSize();
             fo->videoFrame = std::make_unique<QVideoFrame>(frameFormat);
-            qDebug() << "Create new QVideoFrame " << frameFormat.frameSize();
             framesObjects_.emplace(id, std::move(fo));
         } else {
+            if (it->second->videoFrame &&
+                size.width() == it->second->videoFrame->width() &&
+                size.height() == it->second->videoFrame->height()) {
+                qDebug() << QString("QVideoFrame %1 already has size").arg(id) << frameFormat.frameSize();
+                return;
+            }
+            qDebug() << QString("Resetting QVideoFrame %1 to").arg(id) << frameFormat.frameSize();
             it->second->videoFrame.reset(new QVideoFrame(frameFormat));
-            qDebug() << "QVideoFrame reset to " << frameFormat.frameSize();
         }
     }
 
