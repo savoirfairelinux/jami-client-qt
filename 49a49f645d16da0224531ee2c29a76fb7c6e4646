@@ -54,6 +54,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "565d602b_3e0b75b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T17:47:58Z",
+      "side": 1,
+      "message": "excellent.  builds with -DENABLE_LIBWRAP\u003dtrue should now work as well.",
+      "parentUuid": "2e934ced_5c7d7d86",
+      "revId": "49a49f645d16da0224531ee2c29a76fb7c6e4646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ac09320_9fa0a44d",
