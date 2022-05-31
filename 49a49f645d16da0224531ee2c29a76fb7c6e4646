@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6479da34_81e07368",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T13:01:28Z",
+      "side": 1,
+      "message": "can you try now?  also, explain more?",
+      "parentUuid": "fa88decd_f0d27164",
+      "revId": "49a49f645d16da0224531ee2c29a76fb7c6e4646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ac09320_9fa0a44d",
         "filename": "CMakeLists.txt",
         "patchSetId": 8
@@ -31,6 +49,30 @@
       "writtenOn": "2022-05-20T09:08:14Z",
       "side": 1,
       "message": "also build.py needs to be updated",
+      "range": {
+        "startLine": 4,
+        "startChar": 39,
+        "endLine": 4,
+        "endChar": 41
+      },
+      "revId": "49a49f645d16da0224531ee2c29a76fb7c6e4646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2715450d_2a27b219",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T13:01:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0ac09320_9fa0a44d",
       "range": {
         "startLine": 4,
         "startChar": 39,
@@ -54,6 +96,30 @@
       "writtenOn": "2022-05-20T09:12:39Z",
       "side": 1,
       "message": "This will use \"jami/install/client-qt/share/dbus-1/interfaces/cx.ring.Ring.PresenceManager.xml\", but not  \"daemon\".",
+      "range": {
+        "startLine": 572,
+        "startChar": 39,
+        "endLine": 572,
+        "endChar": 59
+      },
+      "revId": "49a49f645d16da0224531ee2c29a76fb7c6e4646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "450b78bc_b2ee2867",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 8
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T13:01:28Z",
+      "side": 1,
+      "message": "as far as i can tell that\u0027s meant for global installations.\n\nfor local ones, the elseif branch above it should be used --\ni.e. JAMID_BUILD_DIR, which i\u0027ve now changed to LIBJAMI_BUILD_DIR btw.",
+      "parentUuid": "77b17630_e28542f2",
       "range": {
         "startLine": 572,
         "startChar": 39,

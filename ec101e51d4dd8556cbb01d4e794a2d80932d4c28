@@ -22,6 +22,30 @@
       },
       "revId": "ec101e51d4dd8556cbb01d4e794a2d80932d4c28",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6ef857c_3fc59c3e",
+        "filename": "cmake/FindJamid.cmake",
+        "patchSetId": 10
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T13:01:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6249a2f9_395c4d27",
+      "range": {
+        "startLine": 57,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "ec101e51d4dd8556cbb01d4e794a2d80932d4c28",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

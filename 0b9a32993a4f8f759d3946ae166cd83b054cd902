@@ -95,6 +95,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "afc12bc5_b86ee4ef",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T13:01:28Z",
+      "side": 1,
+      "message": "right.  i\u0027ll probably bump this up to gcc 8",
+      "parentUuid": "9988e435_590b71c7",
+      "revId": "0b9a32993a4f8f759d3946ae166cd83b054cd902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe0bfefc_dd4356cb",
         "filename": "CMakeLists.txt",
         "patchSetId": 7
@@ -164,6 +182,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd24e8b4_5e7bdf68",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T13:01:28Z",
+      "side": 1,
+      "message": "yes, what Andreas said.  based on that, and what i\u0027ve seen around the net,\nmy preference is to continue with listing out all the files manually.",
+      "parentUuid": "ea5b8857_aa748d84",
+      "revId": "0b9a32993a4f8f759d3946ae166cd83b054cd902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f86e108_de637466",
@@ -177,6 +213,30 @@
       "writtenOn": "2022-05-13T06:29:41Z",
       "side": 1,
       "message": "I think we can also delete .eslint, chatview* and update new*model -\u003e *model (can be done in another patch anw)\n\nElse, cool!",
+      "range": {
+        "startLine": 1,
+        "startChar": 7,
+        "endLine": 2,
+        "endChar": 31
+      },
+      "revId": "0b9a32993a4f8f759d3946ae166cd83b054cd902",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a28efdc3_c98797cf",
+        "filename": "src/lib/web-chatview/chatview.html",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T13:01:28Z",
+      "side": 1,
+      "message": "ack; will do such cleanups in separate followup patches",
+      "parentUuid": "6f86e108_de637466",
       "range": {
         "startLine": 1,
         "startChar": 7,

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "185c67fe_5239d00b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-05-31T13:01:28Z",
+      "side": 1,
+      "message": "still to be done from my side:\n\n- check (and try fixing, if needed) with enable_libwrap (i\u0027ve tested with dbus)\n- hook up lrc\u0027s translations in its CMakeLists.txt",
+      "revId": "267aa7a29da4f2caeb0801fec0cd4026e070645c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
