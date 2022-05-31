@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e934ced_5c7d7d86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-05-31T15:26:41Z",
+      "side": 1,
+      "message": "No issue with cmake -DWITH_WEBENGINE\u003dTrue -DLIBJAMI_BUILD_DIR\u003d/home/sblin/Projects/jami/daemon/src/ ..\n\n(libwrap not working for now)",
+      "parentUuid": "6479da34_81e07368",
+      "revId": "49a49f645d16da0224531ee2c29a76fb7c6e4646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ac09320_9fa0a44d",
         "filename": "CMakeLists.txt",
         "patchSetId": 8
