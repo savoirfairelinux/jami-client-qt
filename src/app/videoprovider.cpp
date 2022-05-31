@@ -109,7 +109,7 @@ VideoProvider::onRendererStarted(const QString& id)
 {
     auto size = avModel_.getRendererSize(id);
     // This slot is queued, the renderer may have been destroyed.
-    if (size.width() == 0 || size.height() == 0) {
+    if (size.width() == 0 || size.height() == 0 || activeRenderers_[id] == size) {
         return;
     }
     auto pixelFormat = avModel_.useDirectRenderer() ? QVideoFrameFormat::Format_RGBA8888
