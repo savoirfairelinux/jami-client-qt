@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c15c084_b40a4868",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 16
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-06-01T17:21:26Z",
+      "side": 1,
+      "message": "yeah it seems so.  but i don\u0027t see anything like it in the current code-base,\nso i\u0027m not really sure why it\u0027s needed now.  well, i mean without it, we get the\nabove qtwrapper-related linking error.\n\nmaybe Andreas, Kat, or Aline have some idea as to why this is needed?",
+      "parentUuid": "b0605cdc_ec64656f",
+      "range": {
+        "startLine": 439,
+        "startChar": 19,
+        "endLine": 442,
+        "endChar": 7
+      },
+      "revId": "be84eb49f7dcf11427710075cebbc26b05eb4e90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96bb5827_f79f4723",
         "filename": "CMakeLists.txt",
         "patchSetId": 16
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-01T15:42:35Z",
       "side": 1,
       "message": "same if in libclient cmake",
+      "range": {
+        "startLine": 560,
+        "startChar": 16,
+        "endLine": 565,
+        "endChar": 9
+      },
+      "revId": "be84eb49f7dcf11427710075cebbc26b05eb4e90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fce66b2e_d1430c26",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 16
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-06-01T17:21:26Z",
+      "side": 1,
+      "message": "ack; this indeed doesn\u0027t seem to be needed. removed.",
+      "parentUuid": "96bb5827_f79f4723",
       "range": {
         "startLine": 560,
         "startChar": 16,
