@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "343d3a7f_f8b4266e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-01T06:30:25Z",
+      "side": 1,
+      "message": "[100%] Linking CXX executable jami-qt\n/usr/bin/ld: src/libclient/qtwrapper/libqtwrapper.a(instancemanager.cpp.o): in function `InstanceManagerInterface::InstanceManagerInterface(bool)\u0027:\n/home/sblin/Projects/jami/client-qt/src/libclient/qtwrapper/instancemanager.cpp:30: undefined reference to `vtable for InstanceManagerInterface\u0027\n/usr/bin/ld: src/libclient/qtwrapper/libqtwrapper.a(instancemanager.cpp.o): in function `InstanceManagerInterface::~InstanceManagerInterface()\u0027:\n/home/sblin/Projects/jami/client-qt/src/libclient/qtwrapper/instancemanager.cpp:70: undefined reference to `vtable for InstanceManagerInterface\u0027\ncollect2: error: ld returned 1 exit status\n\n\nI still have this on patchset 16",
+      "parentUuid": "565d602b_3e0b75b9",
+      "revId": "49a49f645d16da0224531ee2c29a76fb7c6e4646",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0ac09320_9fa0a44d",
         "filename": "CMakeLists.txt",
         "patchSetId": 8
