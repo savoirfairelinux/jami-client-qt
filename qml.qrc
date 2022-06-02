@@ -116,6 +116,7 @@
         <file>src/app/mainview/components/CallViewContextMenu.qml</file>
         <file>src/app/mainview/components/UserProfile.qml</file>
         <file>src/app/mainview/components/SwarmDetailsPanel.qml</file>
+        <file>src/app/mainview/components/SwarmDetailsItem.qml</file>
         <file>src/app/mainview/components/AddMemberPanel.qml</file>
         <file>src/app/mainview/components/SelectScreen.qml</file>
         <file>src/app/mainview/components/ScreenRubberBand.qml</file>
