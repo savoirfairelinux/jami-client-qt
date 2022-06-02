@@ -70,4 +70,12 @@ RowLayout {
 
         onToggled: switchToggled()
     }
+
+    TapHandler {
+        target: parent
+        enabled: parent.visible
+        onTapped: function onTapped(eventPoint) {
+            switchOfLayout.checked = !switchOfLayout.checked
+        }
+    }
 }
