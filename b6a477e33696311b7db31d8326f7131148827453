@@ -39,6 +39,30 @@
       },
       "revId": "b6a477e33696311b7db31d8326f7131148827453",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ae3284_131efc6f",
+        "filename": "src/libclient/qtwrapper/CMakeLists.txt",
+        "patchSetId": 18
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-06-02T13:43:04Z",
+      "side": 1,
+      "message": "Ack; will do in separate patch",
+      "parentUuid": "1f906a0b_d35f0cfa",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 13
+      },
+      "revId": "b6a477e33696311b7db31d8326f7131148827453",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
