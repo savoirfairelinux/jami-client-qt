@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73799cc3_c46ab6a2",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 16
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-02T06:23:18Z",
+      "side": 1,
+      "message": "to be honest, no big deal for me.",
+      "parentUuid": "4c15c084_b40a4868",
+      "range": {
+        "startLine": 439,
+        "startChar": 19,
+        "endLine": 442,
+        "endChar": 7
+      },
+      "revId": "be84eb49f7dcf11427710075cebbc26b05eb4e90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96bb5827_f79f4723",

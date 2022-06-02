@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51ebe975_98403d54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-02T06:23:18Z",
+      "side": 1,
+      "message": "Build, but I only have local",
+      "revId": "b6a477e33696311b7db31d8326f7131148827453",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f906a0b_d35f0cfa",
+        "filename": "src/libclient/qtwrapper/CMakeLists.txt",
+        "patchSetId": 18
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-02T06:23:18Z",
+      "side": 1,
+      "message": "TODO later MUTE_JAMID",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 13
+      },
+      "revId": "b6a477e33696311b7db31d8326f7131148827453",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
