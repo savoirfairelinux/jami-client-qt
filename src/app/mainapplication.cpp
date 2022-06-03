@@ -328,7 +328,7 @@ void
 MainApplication::setApplicationFont()
 {
     QFont font;
-    font.setFamily("Segoe UI");
+    font.setFamily("Segoe UI Emoji");
     setFont(font);
     QFontDatabase::addApplicationFont(":/fonts/FontAwesome.otf");
 }
