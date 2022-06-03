@@ -157,14 +157,14 @@ Item {
     // Chatview
     property color jamiLightBlue: darkTheme ? "#003b4e" : Qt.rgba(59, 193, 211, 0.3)
     property color jamiDarkBlue: darkTheme ? "#28b1ed" : "#003b4e"
-    property color chatviewTextColor: darkTheme ? "#f0f0f0" : "#353637"
+    property color chatviewTextColor: darkTheme ? "#f0f0f0" : "#000000"
     property color chatviewTextColorLight: "#f0f0f0"
     property color chatviewTextColorDark: "#353637"
     property color timestampColor: darkTheme ? "#bbb" : "#777"
-    property color messageOutTxtColor: chatviewTextColor
-    property color messageInBgColor: darkTheme ? "#28b1ed" : "#cfd8dc"
-    property color messageOutBgColor: darkTheme? "#616161" : "#cfebf5"
-    property color messageInTxtColor: chatviewTextColor
+    property color messageOutTxtColor: "#000000"
+    property color messageInBgColor: darkTheme ? "#28b1ed" : "#e5e5e5"
+    property color messageOutBgColor: darkTheme? "#616161" : "#005699"
+    property color messageInTxtColor: "#FFFFFF"
     property color fileOutTimestampColor: darkTheme ? "#eee" : "#555"
     property color fileInTimestampColor: darkTheme ? "#999" : "#555"
     property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
@@ -179,6 +179,7 @@ Item {
     property color previewCardContainerColor : darkTheme ? blackColor : whiteColor
     property color previewUrlColor : darkTheme ? "#eeeeee" : "#333"
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
+    property color chatviewUsernameColor : "#A7A7A7"
 
     // Files To Send Container
     property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
@@ -191,6 +192,7 @@ Item {
     property color typingDotsEnlargeColor: darkTheme ? "white" : Qt.darker("lightgrey", 3.0)
 
     // Font.
+
     property color faddedFontColor: darkTheme? "#c0c0c0" : "#a0a0a0"
     property color faddedLastInteractionFontColor: darkTheme ? "#c0c0c0" : "#505050"
 
@@ -212,6 +214,9 @@ Item {
     property int overlayFadeDelay: 4000
     property int overlayFadeDuration: 250
     property int smartListTransitionDuration: 120
+
+    property string chatviewFontFamily : 'Ubuntu'
+
 
     // Sizes
     property real qrCodeImageSize: 256
@@ -283,6 +288,8 @@ Item {
     property real lineEditContextMenuItemsWidth: 100
     property real lineEditContextMenuSeparatorsHeight: 2
 
+
+
     // Jami switch
     property real switchIndicatorRadius: 30
     property real switchPreferredHeight: 25
@@ -294,6 +301,7 @@ Item {
 
     // MessageWebView
     property real chatViewHairLineSize: 1
+    property real chatviewPadding : 16
     property real chatViewMaximumWidth: 900
     property real chatViewHeaderPreferredHeight: 64
     property real chatViewFooterPreferredHeight: 50
@@ -305,6 +313,10 @@ Item {
     property real chatViewFooterFileContainerPreferredHeight: 150
     property real chatViewFooterTextAreaMaximumHeight: 130
     property real chatViewScrollToBottomButtonBottomMargin: 8
+
+    property real usernameBlockFontSize : 12
+    property real usernameBlockLineHeight : 14
+    property real usernameBlockPadding : contactMessageAvatarSize  + 8
 
     // TypingDots
     property real typingDotsAnimationInterval: 500
