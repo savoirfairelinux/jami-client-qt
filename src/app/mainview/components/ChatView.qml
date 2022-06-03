@@ -61,6 +61,7 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
             Layout.maximumHeight: JamiTheme.chatViewHeaderPreferredHeight
+            Layout.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
 
             userAliasLabelText: headerUserAliasLabelText
             userUserNameLabelText: headerUserUserNameLabelText
@@ -137,9 +138,10 @@ Rectangle {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
                     Layout.topMargin: JamiTheme.chatViewHairLineSize
                     Layout.bottomMargin: JamiTheme.chatViewHairLineSize
+                    Layout.leftMargin: JamiTheme.chatviewMargin
+                    Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
                                 CurrentConversation.needsSyncing
