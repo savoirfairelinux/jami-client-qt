@@ -18,29 +18,26 @@
 
 import QtQuick
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Constants 1.1
+
+
 
 Rectangle {
     id: root
-
     property bool out: true
     property int type: MsgSeq.single
-
     Rectangle {
         id: mask
-
         visible: type !== MsgSeq.single
         z: -1
-        radius: 2
+        radius: 5
         color: root.color
-
         anchors {
             fill: parent
-            leftMargin: out ? root.width - root.radius : 0
-            rightMargin: out ? 0 : root.width - root.radius
-            topMargin: type === MsgSeq.first ? root.height - root.radius : 0
-            bottomMargin: type === MsgSeq.last ? root.height - root.radius : 0
+            leftMargin: out ? root.width/2  : 0
+            rightMargin: out ? 0 : root.width/2
+            topMargin: type === MsgSeq.first ? root.height /2 : 0
+            bottomMargin: type === MsgSeq.last ? root.height /2 : 0
         }
     }
 }

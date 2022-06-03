@@ -50,7 +50,6 @@ ColumnLayout {
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         Layout.preferredHeight: JamiTheme.chatViewHairLineSize
         Layout.fillWidth: true
-        Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
 
         color: JamiTheme.tabbarBorderColor
     }
