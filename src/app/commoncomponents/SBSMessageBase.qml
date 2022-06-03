@@ -25,6 +25,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
+
 Control {
     id: root
 
@@ -39,6 +40,7 @@ Control {
     property int seq
     property string author
     property string transferId
+    property string registeredNameText
     property string transferName
     property string formattedTime
     property string location
@@ -46,8 +48,8 @@ Control {
     property var readers: []
 
     readonly property real senderMargin: 64
-    readonly property real avatarSize: 32
-    readonly property real msgRadius: 18
+    readonly property real avatarSize: 20
+    readonly property real msgRadius: 20
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
 
     width: ListView.view ? ListView.view.width : 0
@@ -63,15 +65,37 @@ Control {
 
         width: parent.width - hPadding * 2
 
-        spacing: 2
+        spacing: 0
+
+        Item{
+
+            id: usernameblock
+            Layout.preferredHeight: (seq === MsgSeq.first || seq === MsgSeq.single) ? 10 : 0
+
+            Label {
+
+                id: username
+                text: chatView.headerUserUserNameLabelText
+                font.bold : true
+                visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
+                font.pixelSize: JamiTheme.usernameBlockFontSize
+                font.family: JamiTheme.chatviewFontFamily
+                lineHeight: JamiTheme.usernameBlockLineHeight
+                leftPadding: JamiTheme.usernameBlockPadding
+
+
+                 }
+            }
+
 
         RowLayout {
             Layout.preferredHeight: innerContent.height + root.extraHeight
             Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) ? 6 : 0
-            spacing: 0
+
+
             Item {
                 id: avatarBlock
-                Layout.preferredWidth: isOutgoing ? 0 : avatar.width + hPadding
+                Layout.preferredWidth: isOutgoing ? 0 : avatar.width + hPadding/3
                 Layout.preferredHeight: isOutgoing ? 0 : bubble.height
                 Avatar {
                     id: avatar
@@ -90,6 +114,7 @@ Control {
                 Column {
                     id: innerContent
                     width: parent.width
+
                     // place actual content here
                 }
                 MessageBubble {
@@ -102,11 +127,13 @@ Control {
                                CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
-                    width: innerContent.childrenRect.width
+                    anchors.top: parent.top
+                    width: innerContent.childrenRect.width + innerContent.childrenRect.height/(innerContent.childrenRect.height+1)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
                 }
             }
         }
+
         ListView {
             id: infoCell
 
@@ -120,6 +147,7 @@ Control {
                 return 0
             }
 
+
             Label {
                 id: formattedTimeLabel
 
@@ -128,13 +156,15 @@ Control {
                 visible: showTime || seq === MsgSeq.last
                 height: visible * implicitHeight
                 font.pointSize: 9
-
+                topPadding : 4
                 anchors.right: !isOutgoing ? undefined : reads.left
                 anchors.rightMargin: 8
                 anchors.left: isOutgoing ? undefined : parent.left
                 anchors.leftMargin: avatarBlockWidth + 6
             }
+
             ReadStatus {
+
                 id: reads
                 visible: root.readers.length !== 0 && CurrentAccount.sendReadReceipt
                 width: {
@@ -144,7 +174,10 @@ Control {
                     var margin = JamiTheme.avatarReadReceiptSize / 3
                     return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin
                 }
+
                 anchors.right: parent.right
+                anchors.top : parent.top
+                anchors.topMargin: 1
                 readers: root.readers
             }
         }
