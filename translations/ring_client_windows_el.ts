@@ -230,7 +230,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
         <source>Invitations</source>
-        <translation type="unfinished"/>
+        <translation>Προσκλήσεις</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
@@ -290,7 +290,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="63"/>
         <source>Delete account</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή λογαριασμού</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="65"/>
@@ -597,7 +597,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="462"/>
         <source>Link device</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση συσκευής</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="553"/>
@@ -677,7 +677,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="561"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγξε αυτόματα για ενημερώσεις</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
@@ -1024,7 +1024,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
         <source>Skip</source>
-        <translation type="unfinished"/>
+        <translation>Παράληψη</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
@@ -1095,13 +1095,13 @@ Jami will now quit.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="573"/>
         <source>Mute</source>
-        <translation type="unfinished"/>
+        <translation>Σίγαση</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="574"/>
         <source>Unmute</source>
-        <translation type="unfinished"/>
+        <translation>Μη σίγαση</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="222"/>
@@ -1713,7 +1713,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Ενημέρωση</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
@@ -2050,7 +2050,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
@@ -2140,7 +2140,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="477"/>
         <source>Change</source>
-        <translation type="unfinished"/>
+        <translation>Αλλαγή</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="478"/>
@@ -2296,7 +2296,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Μεγιστοποίηση</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
@@ -2684,7 +2684,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/settingsview/components/RecordingSettings.qml" line="81"/>
         <source>Always record calls</source>
-        <translation type="unfinished"/>
+        <translation>Πάντοτε κατέγραφε τις κλήσεις</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/RecordingSettings.qml" line="111"/>
