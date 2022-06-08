@@ -34,10 +34,26 @@ VideoProvider::VideoProvider(AVModel& avModel, QObject* parent)
     : QObject(parent)
     , avModel_(avModel)
 {
-    connect(&avModel_, &AVModel::rendererStarted, this, &VideoProvider::onRendererStarted);
-    connect(&avModel_, &AVModel::frameBufferRequested, this, &VideoProvider::onFrameBufferRequested);
-    connect(&avModel_, &AVModel::frameUpdated, this, &VideoProvider::onFrameUpdated);
-    connect(&avModel_, &AVModel::rendererStopped, this, &VideoProvider::onRendererStopped);
+    connect(&avModel_,
+            &AVModel::rendererStarted,
+            this,
+            &VideoProvider::onRendererStarted,
+            Qt::DirectConnection);
+    connect(&avModel_,
+            &AVModel::frameBufferRequested,
+            this,
+            &VideoProvider::onFrameBufferRequested,
+            Qt::DirectConnection);
+    connect(&avModel_,
+            &AVModel::frameUpdated,
+            this,
+            &VideoProvider::onFrameUpdated,
+            Qt::DirectConnection);
+    connect(&avModel_,
+            &AVModel::rendererStopped,
+            this,
+            &VideoProvider::onRendererStopped,
+            Qt::DirectConnection);
 }
 
 void
@@ -95,10 +111,10 @@ VideoProvider::captureVideoFrame(const QString& id)
         auto imageFormat = QVideoFrameFormat::imageFormatFromPixelFormat(
             QVideoFrameFormat::Format_RGBA8888);
         auto img = QImage(videoFrame->bits(0),
-                        videoFrame->width(),
-                        videoFrame->height(),
-                        videoFrame->bytesPerLine(0),
-                        imageFormat);
+                          videoFrame->width(),
+                          videoFrame->height(),
+                          videoFrame->bytesPerLine(0),
+                          imageFormat);
         return Utils::byteArrayToBase64String(Utils::QImageToByteArray(img));
     }
     return {};

@@ -46,11 +46,5 @@ Renderer::size() const
     return size_;
 }
 
-void
-Renderer::update(const QSize& size, const QString&)
-{
-    size_ = size;
-}
-
 } // namespace video
 } // namespace lrc
