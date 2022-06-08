@@ -871,24 +871,12 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
                 Qt::DirectConnection);
         };
         std::lock_guard<std::mutex> lk(renderers_mtx_);
-        Renderer* renderer {nullptr};
-        auto it = renderers_.find(id);
-        if (it == renderers_.end()) {
-            renderers_.emplace(id, createRenderer(id, res, shmPath));
-            renderer = renderers_.at(id).get();
-            connectRenderer(renderer, id);
-            renderer->startRendering();
-        } else {
-            renderer = it->second.get();
-            if (renderer) {
-                renderer->update(res, shmPath);
-            } else {
-                it->second.reset(createRenderer(id, res, shmPath).get());
-                renderer = it->second.get();
-                connectRenderer(renderer, id);
-                renderer->startRendering();
-            }
-        }
+        renderers_.erase(id); // Because it should be done before creating the renderer
+        auto renderer = createRenderer(id, res, shmPath);
+        auto& r = renderers_[id];
+        r = std::move(renderer);
+        connectRenderer(r.get(), id);
+        r->startRendering();
     }
 }
 
