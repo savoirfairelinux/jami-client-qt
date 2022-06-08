@@ -34,10 +34,10 @@ VideoProvider::VideoProvider(AVModel& avModel, QObject* parent)
     : QObject(parent)
     , avModel_(avModel)
 {
-    connect(&avModel_, &AVModel::rendererStarted, this, &VideoProvider::onRendererStarted);
-    connect(&avModel_, &AVModel::frameBufferRequested, this, &VideoProvider::onFrameBufferRequested);
-    connect(&avModel_, &AVModel::frameUpdated, this, &VideoProvider::onFrameUpdated);
-    connect(&avModel_, &AVModel::rendererStopped, this, &VideoProvider::onRendererStopped);
+    connect(&avModel_, &AVModel::rendererStarted, this, &VideoProvider::onRendererStarted, Qt::DirectConnection);
+    connect(&avModel_, &AVModel::frameBufferRequested, this, &VideoProvider::onFrameBufferRequested, Qt::DirectConnection);
+    connect(&avModel_, &AVModel::frameUpdated, this, &VideoProvider::onFrameUpdated, Qt::DirectConnection);
+    connect(&avModel_, &AVModel::rendererStopped, this, &VideoProvider::onRendererStopped, Qt::DirectConnection);
 }
 
 void
