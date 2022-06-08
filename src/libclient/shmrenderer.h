@@ -32,7 +32,6 @@ public:
     ~ShmRenderer();
 
     // Renderer interface.
-    void update(const QSize& res, const QString& shmPath) override;
     lrc::api::video::Frame currentFrame() const override;
 
     void stopShm();
