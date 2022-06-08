@@ -114,10 +114,16 @@ public:
     constexpr static const int FRAME_CHECK_RATE_HZ = 120;
 
     // Lock the memory while the copy is being made
-    bool shmLock() { return ::sem_wait(&shmArea->mutex) >= 0; };
+    bool shmLock()
+    {
+        return ::sem_wait(&shmArea->mutex) >= 0;
+    };
 
     // Remove the lock, allow a new frame to be drawn
-    void shmUnlock() { ::sem_post(&shmArea->mutex); };
+    void shmUnlock()
+    {
+        ::sem_post(&shmArea->mutex);
+    };
 
     // Wait for new frame data from shared memory and save pointer.
     bool getNewFrame(bool wait)
@@ -240,20 +246,6 @@ ShmRenderer::~ShmRenderer()
 {
     VideoManager::instance().startShmSink(id(), false);
     stopShm();
-}
-
-void
-ShmRenderer::update(const QSize& res, const QString& shmPath)
-{
-    Q_EMIT stopped();
-    Renderer::update(res);
-
-    if (!pimpl_->thread.isRunning())
-        pimpl_->thread.start();
-
-    pimpl_->path = shmPath;
-    VideoManager::instance().startShmSink(id(), true);
-    Q_EMIT started();
 }
 
 Frame

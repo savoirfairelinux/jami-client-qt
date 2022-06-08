@@ -50,13 +50,6 @@ public:
     QSize size() const;
 
     /**
-     * Update size and shmPath of a renderer
-     * @param size new renderer dimensions
-     * @param shmPath new shmPath
-     */
-    virtual void update(const QSize& size, const QString& shmPath = {});
-
-    /**
      * @return current rendered frame
      */
     virtual lrc::api::video::Frame currentFrame() const = 0;
