@@ -41,6 +41,7 @@ Item {
 
             sinkId: sinkId_
             uri: uri_
+            deviceId: deviceId_
             isMe: isLocal_
             participantIsModerator: isModerator_
             bestName: {
@@ -237,6 +238,7 @@ Item {
                                 }
 
                                 property string uri_: Uri
+                                property string deviceId_: Device
                                 property string bestName_: BestName
                                 property string avatar_: Avatar ? Avatar : ""
                                 property string sinkId_: SinkId ? SinkId : ""
@@ -311,6 +313,8 @@ Item {
                     property string bestName_: BestName
                     property string avatar_: Avatar ? Avatar : ""
                     property string sinkId_: SinkId ? SinkId : ""
+                    property string deviceId_: Device
+                    property int leftMargin_: 0
                     property bool isLocal_: IsLocal
                     property bool active_: Active
                     property bool videoMuted_: VideoMuted
