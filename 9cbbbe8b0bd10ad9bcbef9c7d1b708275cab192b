@@ -16,6 +16,24 @@
       "message": "Breaks linkpreview",
       "revId": "9cbbbe8b0bd10ad9bcbef9c7d1b708275cab192b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac743d6_df283372",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-06-09T15:47:35Z",
+      "side": 1,
+      "message": "Oh whoops...  That didn\u0027t occur to me, since I don\u0027t use the webengine at all.\nI\u0027ll update the patch and test and make sure that the link preview remains functional.",
+      "parentUuid": "5a31b1d6_cecb01e8",
+      "revId": "9cbbbe8b0bd10ad9bcbef9c7d1b708275cab192b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
