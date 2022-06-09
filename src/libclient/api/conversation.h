@@ -82,6 +82,7 @@ struct Info
     QSet<QString> typers;
 
     MapStringString infos {};
+    MapStringString preferences {};
 
     QString getCallId() const
     {

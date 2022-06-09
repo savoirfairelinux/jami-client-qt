@@ -229,8 +229,7 @@ Rectangle {
             id: colorDialog
             title: JamiStrings.chooseAColor
             onAccepted: {
-                console.warn("TODO SAVE preference")
-                CurrentConversation.color = colorDialog.color
+                CurrentConversation.setPreference("color", colorDialog.color)
             }
         }
 
@@ -258,7 +257,7 @@ Rectangle {
                         anchors.fill: parent
                         anchors.leftMargin: JamiTheme.preferredMarginSize
 
-                        checked: false // TODO
+                        checked: CurrentConversation.ignoreNotifications
 
                         labelText: JamiStrings.ignoreTheSwarm
                         fontPointSize: JamiTheme.settingsFontSize
@@ -266,7 +265,7 @@ Rectangle {
                         tooltipText: JamiStrings.ignoreTheSwarmTooltip
 
                         onSwitchToggled: {
-                            // TODO
+                            CurrentConversation.setPreference("ignoreNotifications", checked ? "true" : "false")
                         }
                     }
                 }
