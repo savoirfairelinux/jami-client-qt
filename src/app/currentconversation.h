@@ -40,6 +40,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, needsSyncing)
     QML_PROPERTY(bool, isSip)
     QML_PROPERTY(bool, isBanned)
+    QML_PROPERTY(bool, ignoreNotifications)
     QML_PROPERTY(QString, callId)
     QML_PROPERTY(QString, color)
     QML_PROPERTY(call::Status, callState)
@@ -60,6 +61,8 @@ public:
     ~CurrentConversation() = default;
     Q_INVOKABLE void scrollToMsg(const QString& msgId);
     Q_INVOKABLE void showSwarmDetails() const;
+    Q_INVOKABLE void setPreference(const QString& key, const QString& value);
+    Q_INVOKABLE QString getPreference(const QString& key) const;
 
 Q_SIGNALS:
     void scrollTo(const QString& msgId);
@@ -70,6 +73,7 @@ private Q_SLOTS:
     void onConversationUpdated(const QString& convId);
     void onProfileUpdated(const QString& convId);
     void updateErrors(const QString& convId);
+    void updateConversationPreferences(const QString& convId);
 
 private:
     LRCInstance* lrcInstance_;

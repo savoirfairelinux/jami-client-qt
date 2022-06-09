@@ -319,6 +319,14 @@ public:
                        Q_EMIT conversationRemoved(QString(accountId.c_str()),
                                                   QString(conversationId.c_str()));
                    }),
+               exportable_callback<ConversationSignal::ConversationPreferencesUpdated>(
+                   [this](const std::string& accountId,
+                          const std::string& conversationId,
+                          const std::map<std::string, std::string>& preferences) {
+                       Q_EMIT conversationPreferencesUpdated(QString(accountId.c_str()),
+                                                             QString(conversationId.c_str()),
+                                                             convertMap(preferences));
+                   }),
                exportable_callback<ConversationSignal::ConversationMemberEvent>(
                    [this](const std::string& accountId,
                           const std::string& conversationId,
@@ -1103,6 +1111,13 @@ public Q_SLOTS: // METHODS
             DRing::conversationInfos(accountId.toStdString(), conversationId.toStdString()));
     }
 
+    MapStringString getConversationPreferences(const QString& accountId,
+                                               const QString& conversationId)
+    {
+        return convertMap(DRing::getConversationPreferences(accountId.toStdString(),
+                                                            conversationId.toStdString()));
+    }
+
     void updateConversationInfos(const QString& accountId,
                                  const QString& conversationId,
                                  const MapStringString& info)
@@ -1110,6 +1125,15 @@ public Q_SLOTS: // METHODS
         DRing::updateConversationInfos(accountId.toStdString(),
                                        conversationId.toStdString(),
                                        convertMap(info));
+    }
+
+    void setConversationPreferences(const QString& accountId,
+                                    const QString& conversationId,
+                                    const MapStringString& prefs)
+    {
+        DRing::setConversationPreferences(accountId.toStdString(),
+                                          conversationId.toStdString(),
+                                          convertMap(prefs));
     }
 
     uint32_t countInteractions(const QString& accountId,
@@ -1214,6 +1238,9 @@ Q_SIGNALS: // SIGNALS
                              const QString& conversationId,
                              int code,
                              const QString& what);
+    void conversationPreferencesUpdated(const QString& accountId,
+                                        const QString& conversationId,
+                                        const MapStringString& message);
 };
 
 namespace org {

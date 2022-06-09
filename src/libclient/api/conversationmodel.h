@@ -332,11 +332,17 @@ public:
      */
     void removeConversationMember(const QString& conversationId, const QString& memberId);
     /**
-     * get conversation info
+     * get conversation's info
      * @param conversationId conversation's id
      * @return conversation info
      */
     MapStringString getConversationInfos(const QString& conversationId);
+    /**
+     * get conversation's preferences
+     * @param conversationId conversation's id
+     * @return conversation preferences
+     */
+    MapStringString getConversationPreferences(const QString& conversationId);
     /**
      * create a new swarm conversation
      * @param participants  conversation's participants
@@ -346,9 +352,15 @@ public:
     /**
      * update conversation info
      * @param conversationId conversation's id
-     * @param info
+     * @param infos
      */
     void updateConversationInfos(const QString& conversationId, MapStringString info);
+    /**
+     * update conversation's preferences
+     * @param conversationId conversation's id
+     * @param preferences
+     */
+    void setConversationPreferences(const QString& conversationId, MapStringString preferences);
     /**
      * Remove first error
      * @param conversationId
@@ -438,6 +450,11 @@ Q_SIGNALS:
      * @param uid
      */
     void onConversationErrorsUpdated(const QString& uid) const;
+    /**
+     * Emitted when conversation's preferences has been updated
+     * @param uid
+     */
+    void conversationPreferencesUpdated(const QString& uid) const;
     /**
      * Emitted when conversation's profile has been updated
      * @param uid
