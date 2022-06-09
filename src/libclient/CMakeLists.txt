@@ -301,7 +301,6 @@ set(LIBCLIENT_SOURCES
   pluginmodel.cpp
   namedirectory.cpp
   smartinfohub.cpp
-  chatview.cpp
   renderer.cpp)
 
 set(LIBCLIENT_HEADERS
@@ -327,7 +326,6 @@ set(LIBCLIENT_HEADERS_API
   api/account.h
   api/avmodel.h
   api/behaviorcontroller.h
-  api/chatview.h
   api/call.h
   api/contact.h
   api/conversation.h
