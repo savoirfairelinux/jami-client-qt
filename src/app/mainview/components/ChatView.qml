@@ -47,6 +47,10 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
+    HostPopup {
+        id: hostPopup
+    }
+
     ColumnLayout {
         anchors.fill: root
 
@@ -88,6 +92,10 @@ Rectangle {
                         addMemberPanel.visible = !addMemberPanel.visible
                     }
                 }
+
+                function onNeedsHost() {
+                    hostPopup.open()
+                }
             }
 
             onAddToConversationClicked: {
@@ -111,6 +119,13 @@ Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
             visible: false
+        }
+
+        NotificationArea {
+            id: notificationArea
+            Layout.fillWidth: true
+            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            visible: parent.visible && !invitationView.visible && ActiveCallsModel.count > 0
         }
 
         SplitView {
