@@ -70,7 +70,6 @@ SBSMessageBase {
                     Math.min(implicitWidth, innerContent.width - senderMargin)
             }
 
-            height: implicitHeight
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
             font.pixelSize: isEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
