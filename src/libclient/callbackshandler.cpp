@@ -333,6 +333,11 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             this,
             &CallbacksHandler::slotConversationMemberEvent,
             Qt::QueuedConnection);
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::conversationPreferencesUpdated,
+            this,
+            &CallbacksHandler::slotConversationPreferencesUpdated,
+            Qt::QueuedConnection);
 }
 
 CallbacksHandler::~CallbacksHandler() {}
@@ -777,6 +782,14 @@ CallbacksHandler::slotConversationMemberEvent(const QString& accountId,
                                               int event)
 {
     Q_EMIT conversationMemberEvent(accountId, conversationId, memberId, event);
+}
+
+void
+CallbacksHandler::slotConversationPreferencesUpdated(const QString& accountId,
+                                                     const QString& conversationId,
+                                                     const MapStringString& preferences)
+{
+    Q_EMIT conversationPreferencesUpdated(accountId, conversationId, preferences);
 }
 
 } // namespace lrc

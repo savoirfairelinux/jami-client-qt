@@ -209,8 +209,7 @@ Rectangle {
             id: colorDialog
             title: JamiStrings.chooseAColor
             onAccepted: {
-                console.warn("TODO SAVE preference")
-                CurrentConversation.color = colorDialog.color
+                CurrentConversation.setPreference("color", colorDialog.color)
             }
         }
 
@@ -225,30 +224,33 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.rightMargin: JamiTheme.settingsMarginSize
-                spacing: JamiTheme.preferredMarginSize
                 visible: tabBar.currentIndex === 0
                 Layout.alignment: Qt.AlignTop
 
-                ToggleSwitch {
-                    id: ignoreSwarm
-
+                SwarmDetailsItem {
                     Layout.fillWidth: true
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
-                    Layout.topMargin: JamiTheme.preferredMarginSize
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
-                    checked: false // TODO
+                    ToggleSwitch {
+                        id: ignoreSwarm
 
-                    labelText: JamiStrings.ignoreTheSwarm
-                    fontPointSize: JamiTheme.settingsFontSize
+                        anchors.fill: parent
+                        anchors.leftMargin: JamiTheme.preferredMarginSize
 
-                    tooltipText: JamiStrings.ignoreTheSwarmTooltip
+                        checked: CurrentConversation.ignoreNotifications
 
-                    onSwitchToggled: {
-                        // TODO
+                        labelText: JamiStrings.ignoreTheSwarm
+                        fontPointSize: JamiTheme.settingsFontSize
+
+                        tooltipText: JamiStrings.ignoreTheSwarmTooltip
+
+                        onSwitchToggled: {
+                            CurrentConversation.setPreference("ignoreNotifications", checked ? "true" : "false")
+                        }
                     }
                 }
 
-                Rectangle {
+                SwarmDetailsItem {
                     Layout.fillWidth: true
                     Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
@@ -266,16 +268,6 @@ Rectangle {
                         color: JamiTheme.textColor
                     }
 
-                    color: "transparent"
-
-                    HoverHandler {
-                        target: parent
-                        enabled: parent.visible
-                        onHoveredChanged: {
-                            parent.color = hovered ? Qt.darker(JamiTheme.selectedColor, 1.05) : "transparent"
-                        }
-                    }
-
                     TapHandler {
                         target: parent
                         enabled: parent.visible
@@ -285,40 +277,47 @@ Rectangle {
                     }
                 }
 
-                RowLayout {
-                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                SwarmDetailsItem {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
-                    Text {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 30
-                        Layout.rightMargin: JamiTheme.preferredMarginSize
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.leftMargin: JamiTheme.preferredMarginSize
 
-                        text: JamiStrings.chooseAColor
-                        font.pointSize: JamiTheme.settingsFontSize
-                        font.kerning: true
-                        elide: Text.ElideRight
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
+                        Text {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 30
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
 
-                        color: JamiTheme.textColor
+                            text: JamiStrings.chooseAColor
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+                        Rectangle {
+                            id: chooseAColorBtn
+
+                            Layout.alignment: Qt.AlignRight
+
+                            width: JamiTheme.aboutBtnSize
+                            height: JamiTheme.aboutBtnSize
+                            radius: JamiTheme.aboutBtnSize / 2
+
+                            color: CurrentConversation.color
+                        }
                     }
 
-                    Rectangle {
-                        id: chooseAColorBtn
-
-                        Layout.alignment: Qt.AlignRight
-
-                        width: JamiTheme.aboutBtnSize
-                        height: JamiTheme.aboutBtnSize
-                        radius: JamiTheme.aboutBtnSize / 2
-
-                        color: CurrentConversation.color
-
-                        MouseArea {
-                            id: mouseArea
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked: colorDialog.open()
+                    TapHandler {
+                        target: parent
+                        enabled: parent.visible
+                        onTapped: function onTapped(eventPoint) {
+                            colorDialog.open()
                         }
                     }
                 }
