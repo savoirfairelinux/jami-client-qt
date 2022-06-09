@@ -139,7 +139,14 @@ struct Info
     Layout layout = Layout::GRID;
     VectorMapStringString mediaList = {};
     QSet<QString> peerRec {};
-    bool isConference = false;
+
+    bool hasMediaWithType(const QString& type, const QString& mediaType) const
+    {
+        for (const auto& m : mediaList)
+            if (m["SOURCE_TYPE"] == type && m["MEDIA_TYPE"] == mediaType)
+                return true;
+        return false;
+    }
 };
 
 static inline bool
