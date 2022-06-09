@@ -56,11 +56,11 @@ QString prepareUri(const QString& uri, api::profile::Type type);
 
 /**
  * Get a formatted string for a call interaction's body
- * @param author_uri
- * @param duration of the call
+ * @param info
  * @return the formatted and translated call message string
  */
-QString getCallInteractionString(const QString& authorUri, const std::time_t& duration);
+QString getCallInteractionString(const api::interaction::Info& info);
+QString getCallInteractionStringOld(const QString& authorUri, const std::time_t& duration);
 
 /**
  * Get a formatted string for a contact interaction's body

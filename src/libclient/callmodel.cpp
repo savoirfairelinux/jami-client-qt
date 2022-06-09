@@ -398,6 +398,23 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
 }
 
 void
+CallModel::emplaceConversationConference(const QString& confId)
+{
+    if (hasCall(confId))
+        return;
+
+    auto callInfo = std::make_shared<call::Info>();
+    callInfo->id = confId;
+    callInfo->isOutgoing = false;
+    callInfo->status = call::Status::SEARCHING;
+    callInfo->type = call::Type::CONFERENCE;
+    callInfo->isAudioOnly = false;
+    callInfo->videoMuted = false;
+    callInfo->mediaList = {};
+    pimpl_->calls.emplace(confId, std::move(callInfo));
+}
+
+void
 CallModel::muteMedia(const QString& callId, const QString& label, bool mute)
 {
     auto& callInfo = pimpl_->calls[callId];
@@ -1076,7 +1093,8 @@ CallModel::setCurrentCall(const QString& callId) const
         }
 
         for (const auto& cid : Lrc::activeCalls(acc)) {
-            auto filtered = std::find(filterCalls.begin(), filterCalls.end(), cid) != filterCalls.end();
+            auto filtered = std::find(filterCalls.begin(), filterCalls.end(), cid)
+                            != filterCalls.end();
             if (cid != callId && !filtered) {
                 // Only hold calls for a non rendez-vous point
                 CallManager::instance().hold(acc, cid);
@@ -1090,7 +1108,8 @@ CallModel::setCurrentCall(const QString& callId) const
         // then we should hold it.
         for (const auto& confId : conferences) {
             if (callId != confId) {
-                MapStringString confDetails = CallManager::instance().getConferenceDetails(acc, confId);
+                MapStringString confDetails = CallManager::instance().getConferenceDetails(acc,
+                                                                                           confId);
                 // Only hold conference if attached
                 if (confDetails["CALL_STATE"] == "ACTIVE_DETACHED")
                     continue;
@@ -1533,9 +1552,13 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, confId);
-        calls[call]->videoMuted = it->second->videoMuted;
-        calls[call]->audioMuted = it->second->audioMuted;
-        Q_EMIT linked.callInfosChanged(linked.owner.id, call);
+        if (calls.find(call) == calls.end()) {
+            qWarning() << "Call not found";
+        } else {
+            calls[call]->videoMuted = it->second->videoMuted;
+            calls[call]->audioMuted = it->second->audioMuted;
+            Q_EMIT linked.callInfosChanged(linked.owner.id, call);
+        }
     }
     Q_EMIT linked.callInfosChanged(linked.owner.id, confId);
     Q_EMIT linked.onParticipantsChanged(confId);

@@ -19,6 +19,7 @@
 #pragma once
 
 #include "lrcinstance.h"
+#include "activecallsmodel.h"
 
 #include <QObject>
 #include <QString>
@@ -60,6 +61,7 @@ public:
     ~CurrentConversation() = default;
     Q_INVOKABLE void scrollToMsg(const QString& msgId);
     Q_INVOKABLE void showSwarmDetails() const;
+    QVector<QMap<QString, QString>> activeCalls() const;
 
 Q_SIGNALS:
     void scrollTo(const QString& msgId);
@@ -73,6 +75,7 @@ private Q_SLOTS:
 
 private:
     LRCInstance* lrcInstance_;
+    QScopedPointer<ActiveCallsModel> activeCalls_;
 
     void connectModel();
 };

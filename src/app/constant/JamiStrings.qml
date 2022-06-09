@@ -726,6 +726,8 @@ Item {
     property string inReplyTo: qsTr("In reply to")
     property string reply: qsTr("Reply")
     property string writeTo: qsTr("Write to %1")
+    property string joinCall: qsTr("Join call")
+    property string wantToJoin: qsTr("A call is in progress. Do you want to join the call?")
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")

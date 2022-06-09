@@ -240,7 +240,8 @@ CallAdapter::onCallStatusChanged(const QString& callId, int code)
             const auto& currentConvInfo = lrcInstance_->getConversationFromConvUid(currentConvId);
 
             // was it a conference and now is a dialog?
-            if (currentConvInfo.confId.isEmpty() && currentConfSubcalls_.size() == 2) {
+            if (currentConvInfo.isCoreDialog() && currentConvInfo.confId.isEmpty()
+                && currentConfSubcalls_.size() == 2) {
                 auto it = std::find_if(currentConfSubcalls_.cbegin(),
                                        currentConfSubcalls_.cend(),
                                        [&callId](const QString& cid) { return cid != callId; });

@@ -92,6 +92,7 @@
         <file>wizardview/components/ProfilePage.qml</file>
         <file>wizardview/components/AccountCreationStepIndicator.qml</file>
         <file>mainview/MainView.qml</file>
+        <file>mainview/components/NotificationArea.qml</file>
         <file>mainview/components/PluginHandlerItemDelegate.qml</file>
         <file>mainview/components/AboutPopUp.qml</file>
         <file>mainview/components/SidePanel.qml</file>
@@ -182,6 +183,7 @@
         <file>commoncomponents/ReadStatus.qml</file>
         <file>commoncomponents/GeneratedMessageDelegate.qml</file>
         <file>commoncomponents/DataTransferMessageDelegate.qml</file>
+        <file>commoncomponents/CallMessageDelegate.qml</file>
         <file>commoncomponents/ContactMessageDelegate.qml</file>
         <file>mainview/components/ScrollToBottomButton.qml</file>
         <file>commoncomponents/TypingDots.qml</file>
