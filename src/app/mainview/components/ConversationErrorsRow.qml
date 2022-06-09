@@ -43,6 +43,7 @@ Rectangle {
             errorRect.visible = CurrentConversation.errors.length > 0 && LRCInstance.debugMode()
         }
     }
+    color: JamiTheme.filterBadgeColor
 
     RowLayout {
         anchors.fill: parent

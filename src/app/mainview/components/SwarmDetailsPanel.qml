@@ -36,6 +36,11 @@ Rectangle {
     color: CurrentConversation.color
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
 
+
+    DevicesListPopup {
+        id: devicesListPopup
+    }
+
     ColumnLayout {
         id: swarmProfileDetails
         Layout.fillHeight: true
@@ -340,6 +345,114 @@ Rectangle {
                         enabled: parent.visible
                         onTapped: function onTapped(eventPoint) {
                             colorDialog.open()
+                        }
+                    }
+                }
+
+                SwarmDetailsItem {
+                    id: settingsSwarmItem
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.leftMargin: JamiTheme.preferredMarginSize
+
+                        Text {
+                            id: settingsSwarmText
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 30
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
+                            Layout.maximumWidth: settingsSwarmItem.width / 2
+
+                            text: JamiStrings.defaultCallHost
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+
+                        RowLayout {
+                            id: swarmRdvPref
+                            spacing: 10
+                            Layout.alignment: Qt.AlignRight
+                            Layout.maximumWidth: settingsSwarmItem.width / 2
+
+                            Connections {
+                                target: CurrentConversation
+
+                                function onRdvAccountChanged() {
+                                    // This avoid incorrect avatar by always modifying the mode before the imageId
+                                    avatar.mode = CurrentConversation.rdvAccount === CurrentAccount.uri ? Avatar.Mode.Account : Avatar.Mode.Contact
+                                    avatar.imageId = CurrentConversation.rdvAccount === CurrentAccount.uri ? CurrentAccount.id : CurrentConversation.rdvAccount
+                                }
+                            }
+
+                            Avatar {
+                                id: avatar
+                                width: JamiTheme.contactMessageAvatarSize
+                                height: JamiTheme.contactMessageAvatarSize
+                                Layout.leftMargin: JamiTheme.preferredMarginSize
+                                Layout.topMargin: JamiTheme.preferredMarginSize / 2
+                                visible: CurrentConversation.rdvAccount !== ""
+
+                                imageId: ""
+                                showPresenceIndicator: false
+                                mode: Avatar.Mode.Account
+                            }
+
+                            ColumnLayout {
+                                spacing: 0
+                                Layout.alignment: Qt.AlignVCenter
+
+                                ElidedTextLabel {
+                                    id: bestName
+
+                                    eText: {
+                                        if (CurrentConversation.rdvAccount === "")
+                                            return JamiStrings.none
+                                        else if (CurrentConversation.rdvAccount === CurrentAccount.uri)
+                                            return CurrentAccount.bestName
+                                        else
+                                            return UtilsAdapter.getBestNameForUri(CurrentAccount.id, CurrentConversation.rdvAccount)
+                                    }
+                                    maxWidth: JamiTheme.preferredFieldWidth
+
+                                    font.pointSize: JamiTheme.participantFontSize
+                                    color: JamiTheme.primaryForegroundColor
+                                    font.kerning: true
+
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+
+                                ElidedTextLabel {
+                                    id: deviceId
+
+                                    eText: CurrentConversation.rdvDevice === "" ? JamiStrings.none : CurrentConversation.rdvDevice
+                                    visible: CurrentConversation.rdvDevice !== ""
+                                    maxWidth: JamiTheme.preferredFieldWidth
+
+                                    font.pointSize: JamiTheme.participantFontSize
+                                    color: JamiTheme.textColorHovered
+                                    font.kerning: true
+
+                                    horizontalAlignment: Text.AlignRight
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+                        }
+                    }
+
+                    TapHandler {
+                        target: parent
+
+                        enabled: parent.visible && root.isAdmin
+                        onTapped: function onTapped(eventPoint) {
+                            devicesListPopup.open()
                         }
                     }
                 }

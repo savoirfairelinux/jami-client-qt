@@ -43,12 +43,15 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, ignoreNotifications)
     QML_PROPERTY(QString, callId)
     QML_PROPERTY(QString, color)
+    QML_PROPERTY(QString, rdvAccount)
+    QML_PROPERTY(QString, rdvDevice)
     QML_PROPERTY(call::Status, callState)
     QML_PROPERTY(bool, inCall)
     QML_PROPERTY(bool, isTemporary)
     QML_PROPERTY(bool, isContact)
     QML_PROPERTY(bool, allMessagesLoaded)
     QML_PROPERTY(QString, modeString)
+    QML_PROPERTY(QVariantList, activeCalls)
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
 
@@ -63,6 +66,8 @@ public:
     Q_INVOKABLE void showSwarmDetails() const;
     Q_INVOKABLE void setPreference(const QString& key, const QString& value);
     Q_INVOKABLE QString getPreference(const QString& key) const;
+    Q_INVOKABLE MapStringString getPreferences() const;
+    Q_INVOKABLE void setInfo(const QString& key, const QString& value);
 
 Q_SIGNALS:
     void scrollTo(const QString& msgId);
@@ -70,10 +75,15 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void updateData();
+    void onNeedsHost(const QString& convId);
     void onConversationUpdated(const QString& convId);
     void onProfileUpdated(const QString& convId);
     void updateErrors(const QString& convId);
     void updateConversationPreferences(const QString& convId);
+    void updateActiveCalls(const QString&, const QString& convId);
+
+Q_SIGNALS:
+    void needsHost();
 
 private:
     LRCInstance* lrcInstance_;
