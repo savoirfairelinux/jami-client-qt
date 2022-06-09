@@ -384,24 +384,6 @@ VideoDevices::updateData()
             }
         }
 
-        if (deviceOpen_ && defaultId_ != defaultDeviceSettings.id) {
-            auto callId = lrcInstance_->getCurrentCallId();
-            if (!callId.isEmpty()) {
-                auto callId = lrcInstance_->getCurrentCallId();
-                auto callInfos = lrcInstance_->getCallInfo(callId,
-                                                           lrcInstance_->get_currentAccountId());
-                for (const auto& media : callInfos->mediaList) {
-                    if (media["MUTED"] == "false" && media["ENABLED"] == "true"
-                        && media["SOURCE"] == getDefaultDevice()) {
-                        /*lrcInstance_->avModel().switchInputTo("camera://" +
-                           defaultDeviceSettings.id, callId);*/
-                        // startDevice("camera://" + defaultDeviceSettings.id);
-                        break;
-                    }
-                }
-            }
-        }
-
         set_defaultChannel(defaultDeviceSettings.channel);
         set_defaultId(defaultDeviceSettings.id);
         set_defaultName(defaultDeviceSettings.name);
