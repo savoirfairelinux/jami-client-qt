@@ -760,7 +760,8 @@ ConversationModel::selectConversation(const QString& uid) const
                 case call::Status::CONNECTING:
                 case call::Status::SEARCHING:
                     // We are currently in a call
-                    Q_EMIT pimpl_->behaviorController.showIncomingCallView(owner.id, conversation.uid);
+                    Q_EMIT pimpl_->behaviorController.showIncomingCallView(owner.id,
+                                                                           conversation.uid);
                     break;
                 case call::Status::PAUSED:
                 case call::Status::CONNECTED:
@@ -769,7 +770,8 @@ ConversationModel::selectConversation(const QString& uid) const
                     Q_EMIT pimpl_->behaviorController.showCallView(owner.id, conversation.uid);
                     break;
                 case call::Status::PEER_BUSY:
-                    Q_EMIT pimpl_->behaviorController.showLeaveMessageView(owner.id, conversation.uid);
+                    Q_EMIT pimpl_->behaviorController.showLeaveMessageView(owner.id,
+                                                                           conversation.uid);
                     break;
                 case call::Status::TIMEOUT:
                 case call::Status::TERMINATING:
@@ -2242,8 +2244,11 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
 
     try {
         auto& conversation = getConversationForUid(conversationId).get();
+        QString oldLast; // Used to detect loading loops just in case.
+        if (conversation.interactions->size() != 0)
+            oldLast = conversation.interactions->rbegin()->first;
         for (const auto& message : messages) {
-            if (message["type"].isEmpty() || message["type"] == "application/update-profile") {
+            if (message["type"].isEmpty()) {
                 continue;
             }
             auto msgId = message["id"];
@@ -2300,6 +2305,13 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
         }
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
+            QString newLast = conversation.interactions->rbegin()->first;
+            if (newLast == oldLast && !newLast.isEmpty()) { // [[unlikely]] in c++20
+                qCritical() << "Loading loop detected for " << conversationId << "(" << newLast
+                            << ")";
+                return;
+            }
+
             // In this case, we only have loaded merge commits. Load more messages
             ConfigurationManager::instance().loadConversationMessages(linked.owner.id,
                                                                       conversationId,
@@ -2405,9 +2417,9 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         invalidateModel();
         if (!interaction::isOutgoing(msg)) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
-                                                         conversationId,
-                                                         msgId,
-                                                         msg);
+                                                           conversationId,
+                                                           msgId,
+                                                           msg);
         }
         Q_EMIT linked.newInteraction(conversationId, msgId, msg);
         Q_EMIT linked.modelChanged();
@@ -3467,9 +3479,9 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
         }
         if (updateDisplayedUid) {
             Q_EMIT linked.displayedInteractionChanged(conversation.uid,
-                                                    peerId,
-                                                    oldDisplayedUid,
-                                                    msgId);
+                                                      peerId,
+                                                      oldDisplayedUid,
+                                                      msgId);
         }
         if (emitUpdated) {
             invalidateModel();
@@ -3496,7 +3508,10 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
                                                                          peerId);
                     Q_EMIT linked.dataChanged(indexOf(conversationId));
                 }
-                Q_EMIT linked.displayedInteractionChanged(conversationId, peerId, previous, messageId);
+                Q_EMIT linked.displayedInteractionChanged(conversationId,
+                                                          peerId,
+                                                          previous,
+                                                          messageId);
             }
         }
     } catch (const std::out_of_range& e) {
@@ -3798,9 +3813,9 @@ ConversationModelPimpl::slotTransferStatusCreated(const QString& fileId, datatra
         conversations[conversationIdx].unreadMessages = getNumberOfUnreadMessagesFor(convId);
     }
     Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
-                                                 convId,
-                                                 interactionId,
-                                                 interaction);
+                                                   convId,
+                                                   interactionId,
+                                                   interaction);
     Q_EMIT linked.newInteraction(convId, interactionId, interaction);
 
     invalidateModel();
