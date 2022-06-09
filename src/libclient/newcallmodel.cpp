@@ -406,6 +406,23 @@ NewCallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringSt
 }
 
 void
+NewCallModel::emplaceConversationConference(const QString& confId)
+{
+    if (hasCall(confId))
+        return;
+
+    auto callInfo = std::make_shared<call::Info>();
+    callInfo->id = confId;
+    callInfo->isOutgoing = false;
+    callInfo->status = call::Status::SEARCHING;
+    callInfo->type = call::Type::CONFERENCE;
+    callInfo->isAudioOnly = false;
+    callInfo->videoMuted = false;
+    callInfo->mediaList = {};
+    pimpl_->calls.emplace(confId, std::move(callInfo));
+}
+
+void
 NewCallModel::muteMedia(const QString& callId, const QString& label, bool mute)
 {
     auto& callInfo = pimpl_->calls[callId];
@@ -1562,9 +1579,13 @@ NewCallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, confId);
-        calls[call]->videoMuted = it->second->videoMuted;
-        calls[call]->audioMuted = it->second->audioMuted;
-        Q_EMIT linked.callInfosChanged(linked.owner.id, call);
+        if (calls.find(call) == calls.end()) {
+            qWarning() << "Call not found";
+        } else {
+            calls[call]->videoMuted = it->second->videoMuted;
+            calls[call]->audioMuted = it->second->audioMuted;
+            Q_EMIT linked.callInfosChanged(linked.owner.id, call);
+        }
     }
 }
 
