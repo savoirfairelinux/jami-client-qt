@@ -707,6 +707,7 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
         }
     }
 
+
     Q_EMIT updateOverlay(isPaused,
                          isAudioOnly,
                          isAudioMuted,

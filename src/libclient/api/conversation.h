@@ -59,6 +59,7 @@ to_mode(const int intMode)
 
 struct Info
 {
+    // TODO as a Q_OBJECT to listen on changes (activeCalls)
     Info()
         : interactions(std::make_unique<MessageListModel>(nullptr))
     {}
@@ -71,6 +72,7 @@ struct Info
     QString uid = "";
     QString accountId;
     QVector<member::Member> participants;
+    QVector<MapStringString> activeCalls;
     QString callId;
     QString confId;
     std::unique_ptr<MessageListModel> interactions;
@@ -82,13 +84,37 @@ struct Info
 
     MapStringString infos {};
 
-    QString getCallId() const { return confId.isEmpty() ? callId : confId; }
+    int indexOfActiveCall(const MapStringString& commit)
+    {
+        for (auto idx = 0; idx != activeCalls.size(); ++idx) {
+            const auto& call = activeCalls[idx];
+            if (call["id"] == commit["confId"] && call["uri"] == commit["uri"]
+                && call["device"] == commit["device"]) {
+                return idx;
+            }
+        }
+        return -1;
+    }
 
-    inline bool isLegacy() const { return mode == Mode::NON_SWARM; }
-    inline bool isSwarm() const { return !isLegacy(); }
+    QString getCallId() const
+    {
+        return confId.isEmpty() ? callId : confId;
+    }
+
+    inline bool isLegacy() const
+    {
+        return mode == Mode::NON_SWARM;
+    }
+    inline bool isSwarm() const
+    {
+        return !isLegacy();
+    }
     // for each contact we must have one non-swarm conversation or one active one-to-one
     // conversation. Where active means peer did not leave the conversation.
-    inline bool isCoreDialog() const { return isLegacy() || mode == Mode::ONE_TO_ONE; };
+    inline bool isCoreDialog() const
+    {
+        return isLegacy() || mode == Mode::ONE_TO_ONE;
+    };
 
     inline QStringList participantsUris() const
     {
