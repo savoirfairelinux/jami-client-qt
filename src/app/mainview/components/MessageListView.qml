@@ -221,7 +221,7 @@ JamiListView {
         DelegateChoice {
             roleValue: Interaction.Type.CALL
 
-            GeneratedMessageDelegate {
+            CallMessageDelegate {
                 Component.onCompleted:  {
                     computeChatview(this,index)
                 }
