@@ -2242,8 +2242,11 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
 
     try {
         auto& conversation = getConversationForUid(conversationId).get();
+        QString oldLast; // Used to detect loading loops just in case.
+        if (!conversation.interactions->size() == 0)
+            oldLast = conversation.interactions->rbegin()->first;
         for (const auto& message : messages) {
-            if (message["type"].isEmpty() || message["type"] == "application/update-profile") {
+            if (message["type"].isEmpty()) {
                 continue;
             }
             auto msgId = message["id"];
@@ -2300,6 +2303,13 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
         }
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
+            QString newLast = conversation.interactions->rbegin()->first;
+            if (newLast == oldLast && !newLast.isEmpty()) { // [[unlikely]] in c++20
+                qCritical() << "Loading loop detected for " << conversationId << "(" << newLast
+                            << ")";
+                return;
+            }
+
             // In this case, we only have loaded merge commits. Load more messages
             ConfigurationManager::instance().loadConversationMessages(linked.owner.id,
                                                                       conversationId,
