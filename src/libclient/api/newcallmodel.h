@@ -83,21 +83,36 @@ public:
     QString createCall(const QString& uri,
                        bool isAudioOnly = false,
                        VectorMapStringString mediaList = {});
-
     /**
-     * Request a media change in a ongoing call.
-     * @param  accountId
-     * @param  callId
-     * @param  mediaLabel label of media to be changed
-     * @param source
-     * @param type
+     * Add a new media to the current list
+     * @param callId
+     * @param source        Of the media
+     * @param type          Audio/video
+     * @param mute
+     * @note For now, we only support video, as multistream only supports video in the daemon
+     */
+    void addMedia(const QString& callId,
+                  const QString& source,
+                  MediaRequestType type,
+                  bool mute = false);
+    /**
+     * Mute a media
+     * @param callId
+     * @param label        Of the media (audio_0, video_0, etc)
      * @param mute
      */
-    void requestMediaChange(const QString& callId,
-                            const QString& mediaLabel,
-                            const QString& source,
-                            MediaRequestType type,
-                            bool mute);
+    void muteMedia(const QString& callId, const QString& label, bool mute);
+    /**
+     * Remove a media from the current list
+     * @param callId
+     * @param source        Of the media
+     * @param type          Audio/video
+     * @param mute
+     */
+    void removeMedia(const QString& callId,
+                     const QString& mediaType,
+                     const QString& type,
+                     bool muteCamera);
 
     /**
      * Get the call from its call id
@@ -187,14 +202,6 @@ public:
      * @param callId
      */
     void togglePause(const QString& callId) const;
-
-    /**
-     * @deprecated Use requestMediaChange instead
-     * Toggle a media on a call
-     * @param callId
-     * @param media {AUDIO, VIDEO}
-     */
-    void toggleMedia(const QString& callId, const NewCallModel::Media media);
 
     /**
      * Not implemented yet

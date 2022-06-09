@@ -45,7 +45,7 @@ Item {
     property bool isConference
     property bool isGrid
     property bool localHandRaised
-    property bool sharingActive: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE
+    property bool sharingActive: AvAdapter.isSharing()
     property string callId: ""
 
     signal chatButtonClicked
@@ -129,7 +129,6 @@ Item {
         mode: JamiFileDialog.Mode.OpenFile
 
         onAccepted: {
-            AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
             AvAdapter.shareFile(jamiFileDialog.file)
         }
     }
@@ -154,7 +153,6 @@ Item {
     }
 
     function openShareScreen() {
-        AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
         if (Qt.application.screens.length === 1) {
             AvAdapter.shareEntireScreen(0)
         } else {
@@ -164,7 +162,6 @@ Item {
     }
 
     function openShareWindow() {
-        AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
         AvAdapter.getListWindows()
         if (AvAdapter.windowsNames.length >= 1) {
             SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
@@ -173,7 +170,6 @@ Item {
     }
 
     function openShareScreenArea() {
-        AvAdapter.muteCamera = !sharingActive && root.isVideoMuted
         if (Qt.platform.os !== "windows") {
             AvAdapter.shareScreenArea(0, 0, 0, 0)
         } else {

@@ -403,11 +403,11 @@ LRCInstance::monitor(bool continuous)
 }
 
 QString
-LRCInstance::getCurrentCallId()
+LRCInstance::getCurrentCallId(bool forceCallOnly)
 {
     try {
         const auto& convInfo = getConversationFromConvUid(get_selectedConvUid());
-        auto call = getCallInfoForConversation(convInfo);
+        auto call = getCallInfoForConversation(convInfo, forceCallOnly);
         return call ? call->id : QString();
     } catch (...) {
         return QString();
