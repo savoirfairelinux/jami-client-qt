@@ -30,8 +30,15 @@ Rectangle {
     id: root
 
     opacity: visible
-    color: JamiTheme.filterBadgeColor
+    color: CurrentConversation.color
 
+    property string id: ""
+    property string uri: ""
+    property string device: ""
+
+    property string textColor: UtilsAdapter.luma(root.color) ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
     RowLayout {
         anchors.fill: parent
         anchors.margins: JamiTheme.preferredMarginSize
@@ -39,46 +46,58 @@ Rectangle {
         Text {
             id: errorLabel
             Layout.alignment: Qt.AlignVCenter
-            text: CurrentConversation.errors.count > 0 ? CurrentConversation.errors[0][0] : ""
-            color: JamiTheme.filterBadgeTextColor
+            text: JamiStrings.wantToJoin
+            color: root.textColor
             font.pixelSize: JamiTheme.headerFontSize
             elide: Text.ElideRight
         }
 
-        ResponsiveImage {
-            id: backEndError
+        PushButton {
+            id: joinCallInAudio
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-            width: 30
-            height: 30
 
-            source: JamiResources.outline_info_24dp_svg
-            layer {
-                enabled: true
-                effect: ColorOverlay {
-                    color: JamiTheme.filterBadgeTextColor
-                }
-            }
+            source: JamiResources.place_audiocall_24dp_svg
+            toolTipText: JamiStrings.joinCall
+
+            imageColor: root.textColor
+            normalColor: "transparent"
+            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+            border.width: 1
+            border.color: root.textColor
+
+            onClicked: MessagesAdapter.joinCall(uri, device, id, true)
+        }
 
 
-            MaterialToolTip {
-                id: backendErrorToolTip
-                text: ""
-                visible: parent.hovered && text !== ""
-                delay: Qt.styleHints.mousePressAndHoldInterval
-            }
+        PushButton {
+            id: joinCallInVideo
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
+            source: JamiResources.videocam_24dp_svg
+            toolTipText: JamiStrings.joinCall
+
+            imageColor: root.textColor
+            normalColor: "transparent"
+            hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+            border.width: 1
+            border.color: root.textColor
+            visible: CurrentAccount.videoEnabled_Video
+
+            onClicked: MessagesAdapter.joinCall(uri, device, id)
         }
 
         PushButton {
             id: btnClose
             Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
 
-            imageColor: JamiTheme.filterBadgeTextColor
+            imageColor: root.textColor
             normalColor: JamiTheme.transparentColor
 
             source: JamiResources.round_close_24dp_svg
 
-            onClicked: ConversationsAdapter.popFrontError(CurrentConversation.id)
+            onClicked: console.warn("@@@@ TODO")
         }
+
     }
 
     Behavior on opacity {

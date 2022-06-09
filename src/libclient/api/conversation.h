@@ -71,6 +71,7 @@ struct Info
     QString uid = "";
     QString accountId;
     QVector<member::Member> participants;
+    VectorMapStringString activeCalls;
     QString callId;
     QString confId;
     std::unique_ptr<MessageListModel> interactions;
@@ -83,6 +84,18 @@ struct Info
 
     MapStringString infos {};
     MapStringString preferences {};
+
+    int indexOfActiveCall(const MapStringString& commit)
+    {
+        for (auto idx = 0; idx != activeCalls.size(); ++idx) {
+            const auto& call = activeCalls[idx];
+            if (call["id"] == commit["confId"] && call["uri"] == commit["uri"]
+                && call["device"] == commit["device"]) {
+                return idx;
+            }
+        }
+        return -1;
+    }
 
     QString getCallId() const
     {

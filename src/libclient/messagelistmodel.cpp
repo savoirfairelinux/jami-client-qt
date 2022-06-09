@@ -69,6 +69,20 @@ MessageListModel::find(const QString& msgId)
 }
 
 iterator
+MessageListModel::findActiveCall(const MapStringString& commit)
+{
+    iterator it;
+    for (it = interactions_.begin(); it != interactions_.end(); ++it) {
+        const auto& itCommit = it->second.commit;
+        if (itCommit["confId"] == commit["confId"] && itCommit["uri"] == commit["uri"]
+            && itCommit["device"] == commit["device"]) {
+            return it;
+        }
+    }
+    return interactions_.end();
+}
+
+iterator
 MessageListModel::erase(const iterator& it)
 {
     auto index = std::distance(begin(), it);
@@ -396,6 +410,13 @@ MessageListModel::dataForItem(item_t item, int, int role) const
     case Role::Timestamp:
         return QVariant::fromValue(item.second.timestamp);
     case Role::Duration:
+        if (!item.second.commit.empty()) {
+            // For swarm, check the commit value
+            if (item.second.commit.find("duration") == item.second.commit.end())
+                return QVariant::fromValue(0);
+            else
+                return QVariant::fromValue(item.second.commit["duration"].toInt() / 1000);
+        }
         return QVariant::fromValue(item.second.duration);
     case Role::Type:
         return QVariant(static_cast<int>(item.second.type));
@@ -409,6 +430,10 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.second.linkified);
     case Role::ActionUri:
         return QVariant(item.second.commit["uri"]);
+    case Role::ConfId:
+        return QVariant(item.second.commit["confId"]);
+    case Role::DeviceId:
+        return QVariant(item.second.commit["device"]);
     case Role::ContactAction:
         return QVariant(item.second.commit["action"]);
     case Role::PreviousBodies: {
