@@ -602,11 +602,12 @@ AVModel::getListWindows() const
                     free(e);
                 }
                 if (replyProp.get()) {
-                    int valueLegth2 = xcb_get_property_value_length(replyProp.get());
-                    if (valueLegth2) {
-                        auto name = QString::fromUtf8(
-                            reinterpret_cast<char*>(xcb_get_property_value(replyProp.get())));
-                        name.truncate(valueLegth2);
+                    int v_size = xcb_get_property_value_length(replyProp.get());
+                    if (v_size) {
+                        auto v = std::string(reinterpret_cast<char*>(
+                                                 xcb_get_property_value(replyProp.get())),
+                                             v_size);
+                        auto name = QString::fromUtf8(v.c_str());
                         if (ret.find(name) != ret.end())
                             name += QString(" - 0x%1").arg(win[i], 0, 16);
                         ret.insert(name, QVariant(QString("0x%1").arg(win[i], 0, 16)));
