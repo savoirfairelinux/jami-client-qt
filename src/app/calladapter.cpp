@@ -119,7 +119,7 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
     const auto call = callModel->getCall(callId);
 
     const auto& convInfo = lrcInstance_->getConversationFromCallId(callId, accountId);
-    if (convInfo.uid.isEmpty())
+    if (convInfo.uid.isEmpty() || call.isOutgoing)
         return;
 
     // handle notifications
@@ -464,7 +464,7 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
         auto currentCall = accInfo.callModel->getCall(currentConvInfo.callId);
         if ((currentCall.status == call::Status::CONNECTED
              || currentCall.status == call::Status::IN_PROGRESS)
-            && !accountProperties.autoAnswer) {
+            && !accountProperties.autoAnswer && !currentCall.isOutgoing) {
             showNotification(accountId, convInfo.uid);
             return;
         }
@@ -679,22 +679,23 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
     auto* callModel = accInfo.callModel.get();
 
-    auto* call = lrcInstance_->getCallInfoForConversation(convInfo);
-    if (!call) {
+    const auto* callInfo = lrcInstance_->getCallInfoForConversation(convInfo);
+    if (!callInfo)
         return;
     }
 
-    bool isPaused = call->status == lrc::api::call::Status::PAUSED;
-    bool isAudioOnly = call->isAudioOnly && !isPaused;
-    bool isAudioMuted = call->audioMuted && (call->status != lrc::api::call::Status::PAUSED);
-    bool isVideoMuted = call->isAudioOnly || (call->videoMuted && !isPaused);
-    bool isGrid = call->layout == lrc::api::call::Layout::GRID;
+    bool isPaused = callInfo->status == lrc::api::call::Status::PAUSED;
+    bool isAudioOnly = callInfo->isAudioOnly && !isPaused;
+    bool isAudioMuted = callInfo->audioMuted && (callInfo->status != lrc::api::call::Status::PAUSED);
+    bool isGrid = callInfo->layout == lrc::api::call::Layout::GRID;
     QString previewId {};
-    if (!isAudioOnly && !isVideoMuted && call->status == lrc::api::call::Status::IN_PROGRESS) {
-        for (const auto& media : call->mediaList) {
+    bool isVideoMuted = false;
+    if (callInfo->status != lrc::api::call::Status::ENDED) {
+        for (const auto& media : callInfo->mediaList) {
             if (media["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO") {
                 if (media["ENABLED"] == "true" && media["MUTED"] == "false") {
                     previewId = media["SOURCE"];
+                    isVideoMuted |= media["SOURCE_TYPE"] == "CAPTURE_DEVICE";
                     break;
                 }
             }
@@ -1016,7 +1017,7 @@ CallAdapter::holdThisCallToggle()
 }
 
 void
-CallAdapter::muteThisCallToggle(bool mute)
+CallAdapter::muteAudioToggle()
 {
     const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
                                                                   accountId_);
@@ -1025,11 +1026,14 @@ CallAdapter::muteThisCallToggle(bool mute)
     }
     auto* callModel = lrcInstance_->getCurrentCallModel();
     if (callModel->hasCall(callId)) {
-        callModel->requestMediaChange(callId,
-                                      "audio_0",
-                                      lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
-                                      lrc::api::NewCallModel::MediaRequestType::CAMERA,
-                                      mute);
+        const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
+        auto mute = false;
+        for (const auto& m: callInfo.mediaList) {
+            if (m["SOURCE_TYPE"] == "CAPTURE_DEVICE" && m["MEDIA_TYPE"] == "MEDIA_TYPE_AUDIO") {
+                mute = m["MUTED"] == "false";
+            }
+        }
+        callModel->muteMedia(callId, "audio_0", mute);
     }
 }
 
@@ -1048,7 +1052,7 @@ CallAdapter::recordThisCallToggle()
 }
 
 void
-CallAdapter::videoPauseThisCallToggle(bool mute)
+CallAdapter::muteCameraToggle()
 {
     const auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
                                                                   accountId_);
@@ -1057,11 +1061,22 @@ CallAdapter::videoPauseThisCallToggle(bool mute)
     }
     auto* callModel = lrcInstance_->getCurrentCallModel();
     if (callModel->hasCall(callId)) {
-        callModel->requestMediaChange(callId,
-                                      "video_0",
-                                      lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
-                                      lrc::api::NewCallModel::MediaRequestType::CAMERA,
-                                      mute);
+        const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
+        auto mute = false;
+        for (const auto& m: callInfo.mediaList) {
+            if (m["SOURCE_TYPE"] == "CAPTURE_DEVICE" && m["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO") {
+                mute = m["MUTED"] == "false";
+            }
+        }
+
+        // Note: here we do not use mute, because for video we can have several inputs, so if we are sharing
+        // and showing the camera, we just want to remove the camera
+        // TODO Enum
+        if (mute)
+            callModel->removeMedia(callId, "MEDIA_TYPE_VIDEO", "CAPTURE_DEVICE", mute);
+        else
+            callModel->addMedia(callId, lrcInstance_->avModel().getCurrentVideoCaptureDevice(), lrc::api::NewCallModel::MediaRequestType::CAMERA);
+
         // media label should come from qml
         // also thi function can me emrged with "muteThisCallToggle"
     }
