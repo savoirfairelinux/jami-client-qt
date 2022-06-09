@@ -17,6 +17,8 @@
  */
 
 #include "currentconversation.h"
+#include "qmlregister.h"
+#include <api/conversationmodel.h>
 
 CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
@@ -50,6 +52,7 @@ CurrentConversation::updateData()
         const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
         if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
+            auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
             set_title(accInfo.conversationModel->title(convId));
             set_description(accInfo.conversationModel->description(convId));
             set_uris(convInfo.participantsUris());
@@ -59,7 +62,11 @@ CurrentConversation::updateData()
             set_isRequest(convInfo.isRequest);
             set_readOnly(convInfo.readOnly);
             set_needsSyncing(convInfo.needsSyncing);
-            set_color(Utils::getAvatarColor(convId).name());
+            auto color = Utils::getAvatarColor(convId).name();
+            if (preferences.contains("color")) {
+                color = preferences["color"];
+            }
+            set_color(color);
             set_isSip(accInfo.profileInfo.type == profile::Type::SIP);
             set_callId(convInfo.getCallId());
             set_allMessagesLoaded(convInfo.allMessagesLoaded);
@@ -105,6 +112,37 @@ CurrentConversation::updateData()
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
     }
+}
+
+void
+CurrentConversation::setPreference(const QString& key, const QString& value)
+{
+    if (key == "color") {
+        set_color(value);
+    }
+    auto accountId = lrcInstance_->get_currentAccountId();
+    const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    auto convId = lrcInstance_->get_selectedConvUid();
+    if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
+        auto& convInfo = optConv->get();
+        auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
+        preferences[key] = value;
+        accInfo.conversationModel->setConversationPreferences(convId, preferences);
+    }
+}
+
+QString
+CurrentConversation::getPreference(const QString& key) const
+{
+    auto accountId = lrcInstance_->get_currentAccountId();
+    const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    auto convId = lrcInstance_->get_selectedConvUid();
+    if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
+        auto& convInfo = optConv->get();
+        auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
+        return preferences[key];
+    }
+    return {};
 }
 
 void
