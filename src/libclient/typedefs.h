@@ -41,6 +41,9 @@ typedef QMap<QString, QStringList> MapStringStringList;
 typedef QVector<QByteArray> VectorVectorByte;
 typedef uint64_t DataTransferId;
 
+constexpr static const char* TRUE_STR = "true";
+constexpr static const char* FALSE_STR = "false";
+
 // Adapted from libring DRing::DataTransferInfo
 struct DataTransferInfo
 {
@@ -172,17 +175,35 @@ public:
         return *this;
     }
 
-    bool operator!=(const T& other) const { return m_Flags != static_cast<uint>(other); }
+    bool operator!=(const T& other) const
+    {
+        return m_Flags != static_cast<uint>(other);
+    }
 
-    bool operator==(const T& other) const { return m_Flags == static_cast<uint>(other); }
+    bool operator==(const T& other) const
+    {
+        return m_Flags == static_cast<uint>(other);
+    }
 
-    bool operator==(const FlagPack<T>& other) const { return m_Flags == other.m_Flags; }
+    bool operator==(const FlagPack<T>& other) const
+    {
+        return m_Flags == other.m_Flags;
+    }
 
-    bool operator!() const { return !m_Flags; }
+    bool operator!() const
+    {
+        return !m_Flags;
+    }
 
-    operator bool() const { return m_Flags != 0; }
+    operator bool() const
+    {
+        return m_Flags != 0;
+    }
 
-    uint value() const { return m_Flags; }
+    uint value() const
+    {
+        return m_Flags;
+    }
 
 private:
     FlagPack(uint base)
