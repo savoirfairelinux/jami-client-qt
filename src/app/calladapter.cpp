@@ -200,7 +200,8 @@ CallAdapter::onParticipantUpdated(const QString& callId, int index)
             return;
         }
         auto infos = getConferencesInfos();
-        participantsModel_->updateParticipant(index, infos[index]);
+        if (index < infos.size())
+            participantsModel_->updateParticipant(index, infos[index]);
     } catch (...) {
     }
 }
@@ -240,7 +241,8 @@ CallAdapter::onCallStatusChanged(const QString& callId, int code)
             const auto& currentConvInfo = lrcInstance_->getConversationFromConvUid(currentConvId);
 
             // was it a conference and now is a dialog?
-            if (currentConvInfo.confId.isEmpty() && currentConfSubcalls_.size() == 2) {
+            if (currentConvInfo.isCoreDialog() && currentConvInfo.confId.isEmpty()
+                && currentConfSubcalls_.size() == 2) {
                 auto it = std::find_if(currentConfSubcalls_.cbegin(),
                                        currentConfSubcalls_.cend(),
                                        [&callId](const QString& cid) { return cid != callId; });
@@ -479,14 +481,12 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
     accountId_ = accountId.isEmpty() ? accountId_ : accountId;
 
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convUid);
-    if (convInfo.uid.isEmpty()) {
+    if (convInfo.uid.isEmpty())
         return;
-    }
 
     auto call = lrcInstance_->getCallInfoForConversation(convInfo, forceCallOnly);
-    if (!call) {
+    if (!call)
         return;
-    }
 
     if (convInfo.uid == lrcInstance_->get_selectedConvUid()) {
         auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);

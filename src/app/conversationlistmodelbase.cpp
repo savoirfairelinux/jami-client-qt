@@ -94,6 +94,9 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             return lrcInstance_->getContentDraft(item.uid, item.accountId);
         return {};
     }
+    case Role::ActiveCallsCount: {
+        return item.activeCalls.size();
+    }
     case Role::IsRequest:
         return QVariant(item.isRequest);
     case Role::Title:
