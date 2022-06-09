@@ -59,7 +59,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
         } else {
             // selected
             const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
-            if (convInfo.uid.isEmpty())
+            if (convInfo.uid.isEmpty() || convInfo.accountId != lrcInstance_->get_currentAccountId())
                 return;
 
             auto& accInfo = lrcInstance_->getAccountInfo(convInfo.accountId);
