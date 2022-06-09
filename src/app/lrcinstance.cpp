@@ -372,6 +372,16 @@ LRCInstance::selectConversation(const QString& convId, const QString& accountId)
     set_selectedConvUid(convId);
 }
 
+int
+LRCInstance::indexOfActiveCall(const QString& confId, const QString& uri, const QString& deviceId)
+{
+    if (auto optConv = getCurrentConversationModel()->getConversationForUid(selectedConvUid_)) {
+        auto& convInfo = optConv->get();
+        return convInfo.indexOfActiveCall({{"confId", confId}, {"uri", uri}, {"device", deviceId}});
+    }
+    return -1;
+}
+
 void
 LRCInstance::deselectConversation()
 {

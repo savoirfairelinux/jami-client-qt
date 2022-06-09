@@ -25,6 +25,8 @@ CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* pare
     : QObject(parent)
     , lrcInstance_(lrcInstance)
 {
+    activeCalls_.reset(new ActiveCallsModel(this, lrcInstance_));
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, activeCalls_.get(), "ActiveCallsModel");
     // whenever the account changes, reconnect the new conversation model
     // for updates to the conversation and call state/id
     connect(lrcInstance_,
@@ -103,11 +105,25 @@ CurrentConversation::updateData()
             } else if (convInfo.mode == conversation::Mode::PUBLIC) {
                 set_modeString(tr("Public group"));
             }
+
+            activeCalls_->reset();
         }
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
     }
     updateErrors(convId);
+}
+
+QVector<QMap<QString, QString>>
+CurrentConversation::activeCalls() const
+{
+    auto accountId = lrcInstance_->get_currentAccountId();
+    const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    if (auto optConv = accInfo.conversationModel->getConversationForUid(id_)) {
+        auto& convInfo = optConv->get();
+        return convInfo.activeCalls;
+    }
+    return {};
 }
 
 void
