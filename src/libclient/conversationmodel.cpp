@@ -965,6 +965,14 @@ ConversationModel::getConversationInfos(const QString& conversationId)
     return ret;
 }
 
+MapStringString
+ConversationModel::getConversationPreferences(const QString& conversationId)
+{
+    MapStringString ret = ConfigurationManager::instance()
+                              .getConversationPreferences(owner.id, conversationId);
+    return ret;
+}
+
 void
 ConversationModel::createConversation(const VectorString& participants, const MapStringString& infos)
 {
@@ -981,9 +989,17 @@ ConversationModel::createConversation(const VectorString& participants, const Ma
 }
 
 void
-ConversationModel::updateConversationInfos(const QString& conversationId, const MapStringString info)
+ConversationModel::updateConversationInfos(const QString& conversationId,
+                                           const MapStringString infos)
 {
-    ConfigurationManager::instance().updateConversationInfos(owner.id, conversationId, info);
+    ConfigurationManager::instance().updateConversationInfos(owner.id, conversationId, infos);
+}
+
+void
+ConversationModel::setConversationPreferences(const QString& conversationId,
+                                              const MapStringString prefs)
+{
+    ConfigurationManager::instance().setConversationPreferences(owner.id, conversationId, prefs);
 }
 
 bool
