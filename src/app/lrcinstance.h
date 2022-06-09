@@ -108,6 +108,9 @@ public:
     Q_INVOKABLE void setContentDraft(const QString& convUid,
                                      const QString& accountId,
                                      const QString& content);
+    Q_INVOKABLE int indexOfActiveCall(const QString& confId,
+                                      const QString& uri,
+                                      const QString& deviceId);
 
     int getCurrentAccountIndex();
     void setCurrAccDisplayName(const QString& displayName);
