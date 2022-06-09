@@ -45,13 +45,6 @@ Rectangle {
     property bool isAudioOnly: false
     property var linkedWebview: null
     property string callPreviewId: ""
-    property bool sharingActive: AvAdapter.currentRenderingDeviceType === Video.DeviceType.DISPLAY
-                                 || AvAdapter.currentRenderingDeviceType === Video.DeviceType.FILE
-
-    onSharingActiveChanged: {
-        const deviceId = AvAdapter.currentRenderingDeviceId
-        previewRenderer.startWithId(deviceId, true)
-    }
 
     color: "black"
 
@@ -193,10 +186,16 @@ Rectangle {
             LocalVideo {
                 id: previewRenderer
 
-                visible: !callOverlay.isAudioOnly && participantsLayer.count == 0 && !callOverlay.isVideoMuted && !callOverlay.isPaused &&
-                         ((VideoDevices.listSize !== 0 && AvAdapter.currentRenderingDeviceType === Video.DeviceType.CAMERA) || AvAdapter.currentRenderingDeviceType !== Video.DeviceType.CAMERA )
+                visible: false
+                rendererId: ""
 
-                rendererId: root.callPreviewId
+                Connections {
+                    target: AvAdapter
+
+                    function onCurrentRenderingDeviceIdChanged() {
+                        previewRenderer.rendererId = AvAdapter.currentRenderingDeviceId
+                    }
+                }
 
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
@@ -301,6 +300,9 @@ Rectangle {
                                              isAudioMuted, isVideoMuted,
                                              isSIP,
                                              isGrid)
+                        callOverlay.isVideoMuted = !AvAdapter.isCapturing()
+                        callOverlay.sharingActive = AvAdapter.isSharing()
+                        previewRenderer.visible = (AvAdapter.isSharing() || AvAdapter.isCapturing()) && participantsLayer.count == 0
                     }
 
                     function onShowOnHoldLabel(isPaused) {
