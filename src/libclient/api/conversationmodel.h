@@ -210,6 +210,11 @@ public:
      * @param uid of the conversation
      */
     void placeAudioOnlyCall(const QString& uid);
+    void joinCall(const QString& uid,
+                  const QString& confId,
+                  const QString& uri,
+                  const QString& deviceId,
+                  bool isAudioOnly);
     /**
      * Send a message to the conversation
      * @param uid of the conversation
@@ -428,15 +433,6 @@ Q_SIGNALS:
                         QString& interactionId,
                         const interaction::Info& interactionInfo) const;
     /**
-     * Emitted when an interaction got a new status
-     * @param convUid conversation which owns the interaction
-     * @param interactionId
-     * @param msg
-     */
-    void interactionStatusUpdated(const QString& convUid,
-                                  const QString& interactionId,
-                                  const api::interaction::Info& msg) const;
-    /**
      * Emitted when an interaction got removed from the conversation
      * @param convUid conversation which owns the interaction
      * @param interactionId
@@ -540,6 +536,8 @@ Q_SIGNALS:
      * @param conversationId conversation Id
      */
     void newMessagesAvailable(const QString& accountId, const QString& conversationId) const;
+
+    void activeCallsChanged(const QString& accountId, const QString& conversationId) const;
 
     /**
      * Emitted when creation of conversation started, finished with success or finisfed with error
