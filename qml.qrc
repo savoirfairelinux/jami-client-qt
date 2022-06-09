@@ -96,6 +96,7 @@
         <file>src/app/mainview/components/AboutPopUp.qml</file>
         <file>src/app/mainview/components/SidePanel.qml</file>
         <file>src/app/mainview/components/WelcomePage.qml</file>
+        <file>src/app/mainview/components/NotificationArea.qml</file>
         <file>src/app/mainview/components/ChatView.qml</file>
         <file>src/app/mainview/components/NewSwarmPage.qml</file>
         <file>src/app/mainview/components/ChatViewHeader.qml</file>
@@ -177,6 +178,7 @@
         <file>src/app/commoncomponents/ReadStatus.qml</file>
         <file>src/app/commoncomponents/GeneratedMessageDelegate.qml</file>
         <file>src/app/commoncomponents/DataTransferMessageDelegate.qml</file>
+        <file>src/app/commoncomponents/CallMessageDelegate.qml</file>
         <file>src/app/commoncomponents/ContactMessageDelegate.qml</file>
         <file>src/app/mainview/components/ScrollToBottomButton.qml</file>
         <file>src/app/commoncomponents/TypingDots.qml</file>

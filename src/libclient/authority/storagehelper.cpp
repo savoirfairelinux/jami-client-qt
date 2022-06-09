@@ -164,7 +164,7 @@ getFormattedCallDuration(const std::time_t duration)
 }
 
 QString
-getCallInteractionString(const QString& authorUri, const std::time_t& duration)
+getCallInteractionStringOld(const QString& authorUri, const std::time_t& duration)
 {
     if (duration < 0) {
         if (authorUri.isEmpty()) {
@@ -185,6 +185,19 @@ getCallInteractionString(const QString& authorUri, const std::time_t& duration)
             return QObject::tr("Missed incoming call");
         }
     }
+}
+
+QString
+getCallInteractionString(const api::interaction::Info& info)
+{
+    if (!info.confId.isEmpty()) {
+        if (info.duration <= 0) {
+            return QObject::tr("Join call");
+        } else {
+            return QObject::tr("Call ended");
+        }
+    }
+    return getCallInteractionStringOld(info.authorUri, info.duration);
 }
 
 QString
@@ -498,7 +511,7 @@ getHistory(Database& db, api::conversation::Info& conversation)
                                        : std::stoi(durationString.toStdString());
             auto status = api::interaction::to_status(payloads[i + 5]);
             if (type == api::interaction::Type::CALL) {
-                body = getCallInteractionString(payloads[i + 1], duration);
+                body = getCallInteractionStringOld(payloads[i + 1], duration);
             } else if (type == api::interaction::Type::CONTACT) {
                 body = getContactInteractionString(payloads[i + 1], status);
             }

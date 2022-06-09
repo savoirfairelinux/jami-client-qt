@@ -181,6 +181,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/currentaccount.cpp
   ${APP_SRC_DIR}/videodevices.cpp
   ${APP_SRC_DIR}/videoprovider.cpp
+  ${APP_SRC_DIR}/activecallsmodel.cpp
   ${APP_SRC_DIR}/callparticipantsmodel.cpp)
 
 set(COMMON_HEADERS
@@ -236,6 +237,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/currentaccount.h
   ${APP_SRC_DIR}/videodevices.h
   ${APP_SRC_DIR}/videoprovider.h
+  ${APP_SRC_DIR}/activecallsmodel.h
   ${APP_SRC_DIR}/callparticipantsmodel.h)
 
 if(WITH_WEBENGINE)
