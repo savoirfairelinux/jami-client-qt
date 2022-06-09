@@ -20,9 +20,10 @@
 import QtQuick
 import QtQuick.Layouts
 
-import net.jami.Models 1.1
-import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 
 import "../../commoncomponents"
 
@@ -155,7 +156,7 @@ Rectangle {
             PushButton {
                 id: startAAudioCallButton
 
-                visible: interactionButtonsVisibility && !addMemberVisibility
+                visible: interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
 
                 source: JamiResources.place_audiocall_24dp_svg
                 toolTipText: JamiStrings.placeAudioCall
@@ -169,7 +170,7 @@ Rectangle {
             PushButton {
                 id: startAVideoCallButton
 
-                visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && !addMemberVisibility
+                visible: CurrentAccount.videoEnabled_Video && interactionButtonsVisibility && (!addMemberVisibility || UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
                 source: JamiResources.videocam_24dp_svg
                 toolTipText: JamiStrings.placeVideoCall
 

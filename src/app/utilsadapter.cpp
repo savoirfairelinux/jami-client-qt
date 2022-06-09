@@ -371,6 +371,8 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         settingsManager_->loadTranslations();
     else if (key == Settings::Key::BaseZoom)
         Q_EMIT changeFontSize();
+    else if (key == Settings::Key::EnableExperimentalSwarm)
+        Q_EMIT showExperimentalCallSwarm();
     else if (key == Settings::Key::ShowChatviewHorizontally)
         Q_EMIT chatviewPositionChanged();
     else if (key == Settings::Key::AppTheme)
