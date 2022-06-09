@@ -52,6 +52,8 @@ class CurrentConversation final : public QObject
 public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;
+    Q_INVOKABLE void setPreference(const QString& key, const QString& value);
+    Q_INVOKABLE QString getPreference(const QString& key) const;
 
 private Q_SLOTS:
     void updateData();
