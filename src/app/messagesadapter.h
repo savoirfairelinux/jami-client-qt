@@ -22,8 +22,6 @@
 #include "qmladapterbase.h"
 #include "previewengine.h"
 
-#include "api/chatview.h"
-
 #include <QObject>
 #include <QString>
 
