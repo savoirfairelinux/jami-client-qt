@@ -49,6 +49,21 @@ Q_SIGNALS:
 protected:
     void safeInit() override {};
 
+    /**
+     * Check if user is sharing a media
+     */
+    Q_INVOKABLE bool isSharing() const;
+
+    /**
+     * Check if user is showing a camera
+     */
+    Q_INVOKABLE bool isCapturing() const;
+
+    /**
+     * Check if user has a camera (even muted)
+     */
+    Q_INVOKABLE bool hasCamera() const;
+
     // Share the screen specificed by screen number.
     Q_INVOKABLE void shareEntireScreen(int screenNumber);
 
