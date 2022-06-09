@@ -242,7 +242,10 @@ public:
 
     ~CallManagerInterface() {}
 
-    bool isValid() { return true; }
+    bool isValid()
+    {
+        return true;
+    }
 
 public Q_SLOTS: // METHODS
     bool accept(const QString& accountId, const QString& callId)
@@ -303,6 +306,13 @@ public Q_SLOTS: // METHODS
     {
         MapStringString temp = convertMap(
             DRing::getConferenceDetails(accountId.toStdString(), callId.toStdString()));
+        return temp;
+    }
+
+    VectorMapStringString currentMediaList(const QString& accountId, const QString& callId)
+    {
+        VectorMapStringString temp = convertVecMap(
+            DRing::currentMediaList(accountId.toStdString(), callId.toStdString()));
         return temp;
     }
 
@@ -430,9 +440,15 @@ public Q_SLOTS: // METHODS
     }
     // END OF MULTISTREAM FUNCTIONS
 
-    void playDTMF(const QString& key) { DRing::playDTMF(key.toStdString()); }
+    void playDTMF(const QString& key)
+    {
+        DRing::playDTMF(key.toStdString());
+    }
 
-    void recordPlaybackSeek(double value) { DRing::recordPlaybackSeek(value); }
+    void recordPlaybackSeek(double value)
+    {
+        DRing::recordPlaybackSeek(value);
+    }
 
     bool refuse(const QString& accountId, const QString& callId)
     {
@@ -457,9 +473,15 @@ public Q_SLOTS: // METHODS
         return DRing::startRecordedFilePlayback(filepath.toStdString());
     }
 
-    void startTone(int start, int type) { DRing::startTone(start, type); }
+    void startTone(int start, int type)
+    {
+        DRing::startTone(start, type);
+    }
 
-    void stopRecordedFilePlayback() { DRing::stopRecordedFilePlayback(); }
+    void stopRecordedFilePlayback()
+    {
+        DRing::stopRecordedFilePlayback();
+    }
 
     bool toggleRecording(const QString& accountId, const QString& callId)
     {
@@ -492,9 +514,15 @@ public Q_SLOTS: // METHODS
                                      mute);
     }
 
-    void startSmartInfo(int refresh) { DRing::startSmartInfo(refresh); }
+    void startSmartInfo(int refresh)
+    {
+        DRing::startSmartInfo(refresh);
+    }
 
-    void stopSmartInfo() { DRing::stopSmartInfo(); }
+    void stopSmartInfo()
+    {
+        DRing::stopSmartInfo();
+    }
 
     void setConferenceLayout(const QString& accountId, const QString& confId, int layout)
     {
