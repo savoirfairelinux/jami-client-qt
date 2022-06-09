@@ -153,7 +153,10 @@ public:
     /**
      * @return the conference layout
      */
-    call::Layout getLayout() const { return hostLayout_; }
+    call::Layout getLayout() const
+    {
+        return hostLayout_;
+    }
 
     /**
      * @param index participant index
@@ -175,7 +178,7 @@ private:
     QMap<QString, ParticipantInfos> candidates_;
     // Participants ordered
     QMap<QString, ParticipantInfos> participants_;
-    QList<QString> validUris_;
+    QList<QString> validMedias_;
     int idx_ = 0;
 
     const NewCallModel& linked_;
