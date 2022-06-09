@@ -19,6 +19,7 @@
 #pragma once
 
 #include "lrcinstance.h"
+#include "activecallsmodel.h"
 
 #include <QObject>
 #include <QString>
@@ -55,12 +56,16 @@ public:
     Q_INVOKABLE void setPreference(const QString& key, const QString& value);
     Q_INVOKABLE QString getPreference(const QString& key) const;
 
+    Q_INVOKABLE int indexOfActiveCall(const QString& confId, const QString& uri, const QString& deviceId) const;
+    QVector<QMap<QString, QString>> activeCalls() const;
+
 private Q_SLOTS:
     void updateData();
     void onConversationUpdated(const QString& convId);
 
 private:
     LRCInstance* lrcInstance_;
+    QScopedPointer<ActiveCallsModel> activeCalls_;
 
     void connectModel();
 };
