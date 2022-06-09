@@ -201,6 +201,19 @@ MessagesAdapter::retryInteraction(const QString& interactionId)
 }
 
 void
+MessagesAdapter::joinCall(const QString& uri,
+                          const QString& deviceId,
+                          const QString& confId,
+                          bool isAudioOnly)
+{
+    lrcInstance_->getCurrentConversationModel()->joinCall(lrcInstance_->get_selectedConvUid(),
+                                                          uri,
+                                                          deviceId,
+                                                          confId,
+                                                          isAudioOnly);
+}
+
+void
 MessagesAdapter::copyToDownloads(const QString& interactionId, const QString& displayName)
 {
     auto downloadDir = lrcInstance_->accountModel().downloadDirectory;
