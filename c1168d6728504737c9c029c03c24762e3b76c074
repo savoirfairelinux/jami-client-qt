@@ -36,6 +36,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c9f826_b9b5ee7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-09T20:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08e974be_69ab1832",
+      "revId": "c1168d6728504737c9c029c03c24762e3b76c074",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abdd8ced_7b0e743d",
@@ -49,6 +67,30 @@
       "writtenOn": "2022-05-30T06:34:47Z",
       "side": 1,
       "message": "dark theme is broken",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 13
+      },
+      "revId": "c1168d6728504737c9c029c03c24762e3b76c074",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "787d96db_c29ddb89",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-09T20:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abdd8ced_7b0e743d",
       "range": {
         "startLine": 78,
         "startChar": 8,
