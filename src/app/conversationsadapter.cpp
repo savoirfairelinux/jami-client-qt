@@ -168,6 +168,11 @@ ConversationsAdapter::onNewUnreadInteraction(const QString& accountId,
             || convUid != lrcInstance_->get_selectedConvUid())) {
         auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
         auto from = accountInfo.contactModel->bestNameForContact(interaction.authorUri);
+
+        auto preferences = accountInfo.conversationModel->getConversationPreferences(convUid);
+        // Ignore notifications for this conversation
+        if (preferences["ignoreNotifications"] == "true")
+            return;
 #ifdef Q_OS_LINUX
         auto contactPhoto = Utils::contactPhoto(lrcInstance_,
                                                 interaction.authorUri,
@@ -226,6 +231,11 @@ ConversationsAdapter::onNewTrustRequest(const QString& accountId,
         }
         auto& accInfo = lrcInstance_->getAccountInfo(accountId);
         auto from = accInfo.contactModel->bestNameForContact(peerUri);
+
+        auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
+        // Ignore notifications for this conversation
+        if (preferences["ignoreNotifications"] == "true")
+            return;
         auto contactPhoto = Utils::contactPhoto(lrcInstance_, peerUri, QSize(50, 50), accountId);
         auto notifId = QString("%1;%2").arg(accountId).arg(conv);
         systemTray_->showNotification(notifId,

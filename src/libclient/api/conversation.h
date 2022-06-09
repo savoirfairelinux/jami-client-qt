@@ -81,14 +81,27 @@ struct Info
     QSet<QString> typers;
 
     MapStringString infos {};
+    MapStringString preferences {};
 
-    QString getCallId() const { return confId.isEmpty() ? callId : confId; }
+    QString getCallId() const
+    {
+        return confId.isEmpty() ? callId : confId;
+    }
 
-    inline bool isLegacy() const { return mode == Mode::NON_SWARM; }
-    inline bool isSwarm() const { return !isLegacy(); }
+    inline bool isLegacy() const
+    {
+        return mode == Mode::NON_SWARM;
+    }
+    inline bool isSwarm() const
+    {
+        return !isLegacy();
+    }
     // for each contact we must have one non-swarm conversation or one active one-to-one
     // conversation. Where active means peer did not leave the conversation.
-    inline bool isCoreDialog() const { return isLegacy() || mode == Mode::ONE_TO_ONE; };
+    inline bool isCoreDialog() const
+    {
+        return isLegacy() || mode == Mode::ONE_TO_ONE;
+    };
 
     inline QStringList participantsUris() const
     {
