@@ -113,6 +113,13 @@ Rectangle {
             visible: false
         }
 
+        NotificationArea {
+            id: notificationArea
+            Layout.fillWidth: true
+            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            visible: parent.visible && !invitationView.visible && ActiveCallsModel.count > 0
+        }
+
         SplitView {
             id: chatViewMainRow
             Layout.fillWidth: true

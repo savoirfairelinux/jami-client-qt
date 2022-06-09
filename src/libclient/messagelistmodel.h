@@ -43,6 +43,8 @@ struct Info;
     X(IsRead) \
     X(ContactAction) \
     X(ActionUri) \
+    X(ConfId) \
+    X(DeviceId) \
     X(LinkPreviewInfo) \
     X(Linkified) \
     X(ReplyTo) \
@@ -83,7 +85,9 @@ public:
                                   interaction::Info message,
                                   bool beginning = false);
     iterator find(const QString& msgId);
+    iterator findActiveCall(const MapStringString& commit);
     iterator erase(const iterator& it);
+
     constIterator find(const QString& msgId) const;
     QPair<iterator, bool> insert(std::pair<QString, interaction::Info> message,
                                  bool beginning = false);
