@@ -148,11 +148,6 @@ ItemDelegate {
                     font.hintingPreference: Font.PreferNoHinting
                     maximumLineCount: 1
                     color: JamiTheme.textColor
-                    // deal with poor rendering of the pencil emoji on Windows
-                    font.family: Qt.platform.os === "windows" && Draft ?
-                                     "Segoe UI Emoji" :
-                                     Qt.application.font.family
-                    lineHeight: font.family === "Segoe UI Emoji" ? 1.25 : 1
                 }
             }
             Text {
