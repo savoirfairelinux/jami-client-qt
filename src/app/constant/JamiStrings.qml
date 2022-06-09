@@ -487,6 +487,9 @@ Item {
     property string troubleshootButton: qsTr("Open logs")
     property string troubleshootText: qsTr("Get logs")
 
+    property string experimentalCallSwarm: qsTr("(Experimental) Enable call support for swarm")
+    property string experimentalCallSwarmTooltip: qsTr("This feature will enable call buttons in swarms with multiple participants.")
+
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")
     property string quality: qsTr("Quality")
@@ -727,6 +730,15 @@ Item {
     property string writeTo: qsTr("Write to %1")
     property string edit: qsTr("Edit")
     property string edited: qsTr("Edited")
+    property string joinCall: qsTr("Join call")
+    property string wantToJoin: qsTr("A call is in progress. Do you want to join the call?")
+    property string needsHost: qsTr("Current host for this swarm seems unreachable. Do you want to host the call?")
+    property string chooseHoster: qsTr("Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.")
+    property string chooseThisDevice: qsTr("Choose this device")
+    property string removeCurrentDevice: qsTr("Remove current device")
+    property string becomeHostOneCall: qsTr("Host only this call")
+    property string hostThisCall: qsTr("Host this call")
+    property string becomeDefaultHost: qsTr("Make me the default host for future calls")
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")
@@ -745,9 +757,11 @@ Item {
     property string muteConversation: qsTr("Mute conversation")
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose a color")
+    property string defaultCallHost: qsTr("Default host (calls)")
     property string leaveTheSwarm: qsTr("Leave the swarm")
     property string leave: qsTr("Leave")
     property string typeOfSwarm: qsTr("Type of swarm")
+    property string none: qsTr("None")
 
     // NewSwarmPage
     property string youCanAdd8: qsTr("You can add 8 people in the swarm")

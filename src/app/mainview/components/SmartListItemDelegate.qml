@@ -22,9 +22,10 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 
 import "../../commoncomponents"
 
@@ -148,11 +149,6 @@ ItemDelegate {
                     font.hintingPreference: Font.PreferNoHinting
                     maximumLineCount: 1
                     color: JamiTheme.textColor
-                    // deal with poor rendering of the pencil emoji on Windows
-                    font.family: Qt.platform.os === "windows" && Draft ?
-                                     "Segoe UI Emoji" :
-                                     Qt.application.font.family
-                    lineHeight: font.family === "Segoe UI Emoji" ? 1.25 : 1
                 }
             }
             Text {
@@ -172,6 +168,13 @@ ItemDelegate {
         ResponsiveImage {
             visible: Draft && !root.highlighted
             source: JamiResources.round_edit_24dp_svg
+            color: JamiTheme.primaryForegroundColor
+        }
+
+        // Show that a call is ongoing for groups indicator
+        ResponsiveImage {
+            visible: ActiveCallsCount && !root.highlighted
+            source: JamiResources.videocam_24dp_svg
             color: JamiTheme.primaryForegroundColor
         }
 
@@ -232,6 +235,8 @@ ItemDelegate {
         if (!interactive)
             return;
         ListView.view.model.select(index)
+        if (CurrentConversation.isSwarm && !CurrentConversation.isCoreDialog && !UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm))
+            return; // For now disable calls for swarm with multiple participants
         if (LRCInstance.currentAccountType === Profile.Type.SIP || !CurrentAccount.videoEnabled_Video)
             CallAdapter.placeAudioOnlyCall()
         else {
