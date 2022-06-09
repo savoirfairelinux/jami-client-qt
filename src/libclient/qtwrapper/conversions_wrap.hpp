@@ -183,9 +183,6 @@ convertStringInt(const std::map<std::string, int>& m)
     return temp;
 }
 
-constexpr static const char* TRUE_STR = "true";
-constexpr static const char* FALSE_STR = "false";
-
 static inline QString
 toQString(bool b) noexcept
 {
