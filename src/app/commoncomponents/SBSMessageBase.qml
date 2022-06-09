@@ -53,15 +53,13 @@ Control {
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
 
     width: ListView.view ? ListView.view.width : 0
-    height: mainColumnLayout.implicitHeight
+    height: visible ? mainColumnLayout.implicitHeight : 0
 
     rightPadding: hPadding
     leftPadding: hPadding
 
     contentItem: ColumnLayout {
         id: mainColumnLayout
-
-        anchors.centerIn: parent
 
         width: parent.width - hPadding * 2
 
