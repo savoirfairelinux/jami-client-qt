@@ -101,6 +101,7 @@ class CurrentAccount final : public QObject
 
     QML_RO_PROPERTY(QString, id)
     QML_RO_PROPERTY(QString, uri)
+    QML_RO_PROPERTY(QString, deviceId)
     QML_RO_PROPERTY(QString, registeredName)
     QML_RO_PROPERTY(QString, alias)
     QML_RO_PROPERTY(QString, bestId)

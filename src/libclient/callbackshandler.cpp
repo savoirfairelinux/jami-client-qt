@@ -129,6 +129,12 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::needsHost,
+            this,
+            &CallbacksHandler::slotNeedsHost,
+            Qt::QueuedConnection);
+
+    connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::accountDetailsChanged,
             this,
             &CallbacksHandler::slotAccountDetailsChanged,
@@ -344,6 +350,11 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &ConfigurationManagerInterface::onConversationError,
             this,
             &CallbacksHandler::slotOnConversationError,
+            Qt::QueuedConnection);
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::activeCallsChanged,
+            this,
+            &CallbacksHandler::slotActiveCallsChanged,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::conversationPreferencesUpdated,
@@ -572,6 +583,7 @@ CallbacksHandler::slotConferenceChanged(const QString& accountId,
                                         const QString& callId,
                                         const QString& state)
 {
+    Q_EMIT conferenceChanged(accountId, callId, state);
     slotCallStateChanged(accountId, callId, state, 0);
 }
 
@@ -589,6 +601,12 @@ CallbacksHandler::slotAccountMessageStatusChanged(const QString& accountId,
                                                   int status)
 {
     Q_EMIT accountMessageStatusChanged(accountId, conversationId, peer, messageId, status);
+}
+
+void
+CallbacksHandler::slotNeedsHost(const QString& accountId, const QString& conversationId)
+{
+    Q_EMIT needsHost(accountId, conversationId);
 }
 
 void
@@ -809,6 +827,14 @@ CallbacksHandler::slotOnConversationError(const QString& accountId,
                                           const QString& what)
 {
     Q_EMIT conversationError(accountId, conversationId, code, what);
+}
+
+void
+CallbacksHandler::slotActiveCallsChanged(const QString& accountId,
+                                          const QString& conversationId,
+                                          const VectorMapStringString& activeCalls)
+{
+    Q_EMIT activeCallsChanged(accountId, conversationId, activeCalls);
 }
 
 void
