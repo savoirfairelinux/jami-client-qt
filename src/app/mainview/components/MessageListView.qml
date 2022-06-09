@@ -203,12 +203,15 @@ JamiListView {
         }
         DelegateChoice {
             roleValue: Interaction.Type.CALL
-            GeneratedMessageDelegate {
+            CallMessageDelegate {
                 Component.onCompleted: {
-                    if (index)
+                    if (index) {
                         computeTimestampVisibility(this, index)
-                    else
+                        computeSequencing(this, index)
+                    } else {
                         Qt.callLater(computeTimestampVisibility, this, index)
+                        Qt.callLater(computeSequencing, this, index)
+                    }
                 }
             }
         }

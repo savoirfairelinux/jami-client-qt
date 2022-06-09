@@ -53,7 +53,7 @@ Control {
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
 
     width: ListView.view ? ListView.view.width : 0
-    height: mainColumnLayout.implicitHeight
+    height: visible ? mainColumnLayout.implicitHeight : 0
 
     rightPadding: hPadding
     leftPadding: hPadding
