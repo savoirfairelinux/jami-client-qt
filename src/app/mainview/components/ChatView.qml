@@ -47,6 +47,10 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
+    HostPopup {
+        id: hostPopup
+    }
+
     ColumnLayout {
         anchors.fill: root
 
@@ -88,6 +92,10 @@ Rectangle {
                         addMemberPanel.visible = !addMemberPanel.visible
                     }
                 }
+
+                function onNeedsHost() {
+                    hostPopup.open()
+                }
             }
 
             onAddToConversationClicked: {
@@ -105,9 +113,38 @@ Rectangle {
             }
         }
 
+
+        Connections {
+            target: CurrentConversation
+            enabled: true
+
+            function onActiveCallsChanged() {
+                if (CurrentConversation.activeCalls.length > 0) {
+                    notificationArea.id = CurrentConversation.activeCalls[0]["id"]
+                    notificationArea.uri = CurrentConversation.activeCalls[0]["uri"]
+                    notificationArea.device = CurrentConversation.activeCalls[0]["device"]
+                }
+                notificationArea.visible = CurrentConversation.activeCalls.length > 0
+            }
+
+            function onErrorsChanged() {
+                if (CurrentConversation.errors.length > 0) {
+                    errorRect.errorLabel.text = CurrentConversation.errors[0]
+                    errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0])
+                }
+                errorRect.visible = CurrentConversation.errors.length > 0 // If too much noise: && LRCInstance.debugMode()
+            }
+        }
+
         ConversationErrorsRow {
             id: errorRect
-            color: JamiTheme.filterBadgeColor
+            Layout.fillWidth: true
+            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            visible: false
+        }
+
+        NotificationArea {
+            id: notificationArea
             Layout.fillWidth: true
             Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
             visible: false

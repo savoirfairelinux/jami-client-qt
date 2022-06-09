@@ -190,9 +190,8 @@ LRCInstance::getCallInfoForConversation(const conversation::Info& convInfo, bool
         auto callId = forceCallOnly
                           ? convInfo.callId
                           : (convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId);
-        if (!accInfo.callModel->hasCall(callId)) {
+        if (!accInfo.callModel->hasCall(callId))
             return nullptr;
-        }
         return &accInfo.callModel->getCall(callId);
     } catch (...) {
         return nullptr;
@@ -370,6 +369,16 @@ LRCInstance::selectConversation(const QString& convId, const QString& accountId)
         return;
     }
     set_selectedConvUid(convId);
+}
+
+int
+LRCInstance::indexOfActiveCall(const QString& confId, const QString& uri, const QString& deviceId)
+{
+    if (auto optConv = getCurrentConversationModel()->getConversationForUid(selectedConvUid_)) {
+        auto& convInfo = optConv->get();
+        return convInfo.indexOfActiveCall({{"confId", confId}, {"uri", uri}, {"device", deviceId}});
+    }
+    return -1;
 }
 
 void
