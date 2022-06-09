@@ -210,6 +210,11 @@ public:
      * @param uid of the conversation
      */
     void placeAudioOnlyCall(const QString& uid);
+    void joinCall(const QString& uid,
+                  const QString& confId,
+                  const QString& uri,
+                  const QString& deviceId,
+                  bool isAudioOnly);
     /**
      * Send a message to the conversation
      * @param uid of the conversation
@@ -378,6 +383,17 @@ public:
      * @param conversationId
      */
     void popFrontError(const QString& conversationId);
+    /**
+     * Ignore an active call
+     * @param convId
+     * @param id
+     * @param uri
+     * @param device
+     */
+    void ignoreActiveCall(const QString& convId,
+                          const QString& id,
+                          const QString& uri,
+                          const QString& device);
 
     /**
      * @return if conversations requests exists.
@@ -432,15 +448,6 @@ Q_SIGNALS:
     void newInteraction(const QString& uid,
                         QString& interactionId,
                         const interaction::Info& interactionInfo) const;
-    /**
-     * Emitted when an interaction got a new status
-     * @param convUid conversation which owns the interaction
-     * @param interactionId
-     * @param msg
-     */
-    void interactionStatusUpdated(const QString& convUid,
-                                  const QString& interactionId,
-                                  const api::interaction::Info& msg) const;
     /**
      * Emitted when an interaction got removed from the conversation
      * @param convUid conversation which owns the interaction
@@ -547,6 +554,11 @@ Q_SIGNALS:
     void newMessagesAvailable(const QString& accountId, const QString& conversationId) const;
 
     /**
+     * Emitted whenever conversation's calls changed
+     */
+    void activeCallsChanged(const QString& accountId, const QString& conversationId) const;
+
+    /**
      * Emitted when creation of conversation started, finished with success or finisfed with error
      * @param accountId  account id
      * @param conversationId conversation Id, when conversation creation started conversationId =
@@ -598,6 +610,11 @@ Q_SIGNALS:
     void messagesFoundProcessed(const QString& accountId,
                                 const VectorMapStringString& messageIds,
                                 const QVector<interaction::Info>& messageInformations) const;
+    /**
+     * Emitted once a conversation needs somebody to host the call
+     * @param callId
+     */
+    void needsHost(const QString& conversationId) const;
 
 private:
     std::unique_ptr<ConversationModelPimpl> pimpl_;

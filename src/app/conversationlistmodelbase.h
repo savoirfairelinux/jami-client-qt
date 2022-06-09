@@ -44,6 +44,7 @@
     X(CallState) \
     X(SectionName) \
     X(AccountId) \
+    X(ActiveCallsCount) \
     X(Draft) \
     X(IsRequest) \
     X(Mode) \

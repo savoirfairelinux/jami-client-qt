@@ -195,12 +195,19 @@ Q_SIGNALS:
      * @param callId of the conference
      */
     void conferenceCreated(const QString& accountId, const QString& callId);
+    void conferenceChanged(const QString& accountId, const QString& confId, const QString& state);
     /**
      * Connect this signal to know when a conference is removed
      * @param accountId
      * @param callId of the conference
      */
     void conferenceRemoved(const QString& accountId, const QString& callId);
+    /**
+     * Connect this signal to know if a conversation needs an host.
+     * @param accountId, account linked
+     * @param conversationId id of the conversation
+     */
+    void needsHost(const QString& accountId, const QString& conversationId);
     /**
      * Connect this signal to know when a message sent get a new status
      * @param accountId, account linked
@@ -374,6 +381,9 @@ Q_SIGNALS:
                            const QString& conversationId,
                            int code,
                            const QString& what);
+    void activeCallsChanged(const QString& accountId,
+                           const QString& conversationId,
+                           const VectorMapStringString& activeCalls);
     void conversationPreferencesUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& preferences);
@@ -549,6 +559,12 @@ private Q_SLOTS:
                                          const QString& peer,
                                          const QString& messageId,
                                          int status);
+    /**
+     * Emit needsHost
+     * @param accountId, account linked
+     * @param conversationId id of the conversation
+     */
+    void slotNeedsHost(const QString& accountId, const QString& conversationId);
 
     void slotDataTransferEvent(const QString& accountId,
                                const QString& conversationId,
@@ -699,6 +715,9 @@ private Q_SLOTS:
                                  const QString& conversationId,
                                  int code,
                                  const QString& what);
+    void slotActiveCallsChanged(const QString& accountId,
+                                 const QString& conversationId,
+                                 const VectorMapStringString& activeCalls);
 
 private:
     const api::Lrc& parent;
