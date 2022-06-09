@@ -449,8 +449,7 @@ qt_add_executable(
   ${COMMON_HEADERS}
   ${COMMON_SOURCES}
   ${QML_RESOURCES}
-  ${QML_RESOURCES_QML}
-  ${LIBCLIENT_SRC_DIR}/webresource.qrc)
+  ${QML_RESOURCES_QML})
 
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
