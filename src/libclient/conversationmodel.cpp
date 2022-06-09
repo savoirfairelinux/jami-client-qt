@@ -374,6 +374,9 @@ public Q_SLOTS:
                                  const QString& what);
     void slotConversationReady(const QString& accountId, const QString& conversationId);
     void slotConversationRemoved(const QString& accountId, const QString& conversationId);
+    void slotConversationPreferencesUpdated(const QString& accountId,
+                                            const QString& conversationId,
+                                            const MapStringString& preferences);
 };
 
 ConversationModel::ConversationModel(const account::Info& owner,
@@ -966,6 +969,14 @@ ConversationModel::getConversationInfos(const QString& conversationId)
     return ret;
 }
 
+MapStringString
+ConversationModel::getConversationPreferences(const QString& conversationId)
+{
+    MapStringString ret = ConfigurationManager::instance()
+                              .getConversationPreferences(owner.id, conversationId);
+    return ret;
+}
+
 void
 ConversationModel::createConversation(const VectorString& participants, const MapStringString& infos)
 {
@@ -982,12 +993,13 @@ ConversationModel::createConversation(const VectorString& participants, const Ma
 }
 
 void
-ConversationModel::updateConversationInfos(const QString& conversationId, const MapStringString info)
+ConversationModel::updateConversationInfos(const QString& conversationId,
+                                           const MapStringString infos)
 {
-    MapStringString newInfos = info;
+    MapStringString newInfos = infos;
     // Compress avatar as it will be sent in the conversation's request over the DHT
-    if (info.contains("avatar"))
-        newInfos["avatar"] = storage::vcard::compressedAvatar(info["avatar"]);
+    if (infos.contains("avatar"))
+        newInfos["avatar"] = storage::vcard::compressedAvatar(infos["avatar"]);
     ConfigurationManager::instance().updateConversationInfos(owner.id, conversationId, newInfos);
 }
 
@@ -1001,6 +1013,13 @@ ConversationModel::popFrontError(const QString& conversationId)
     auto& conversation = conversationOpt->get();
     conversation.errors.pop_front();
     Q_EMIT onConversationErrorsUpdated(conversationId);
+}
+
+void
+ConversationModel::setConversationPreferences(const QString& conversationId,
+                                              const MapStringString prefs)
+{
+    ConfigurationManager::instance().setConversationPreferences(owner.id, conversationId, prefs);
 }
 
 bool
@@ -1865,6 +1884,10 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &CallbacksHandler::conversationError,
             this,
             &ConversationModelPimpl::slotOnConversationError);
+    connect(&callbacksHandler,
+            &CallbacksHandler::conversationPreferencesUpdated,
+            this,
+            &ConversationModelPimpl::slotConversationPreferencesUpdated);
 }
 
 ConversationModelPimpl::~ConversationModelPimpl()
@@ -2009,6 +2032,10 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &CallbacksHandler::conversationError,
                this,
                &ConversationModelPimpl::slotOnConversationError);
+    disconnect(&callbacksHandler,
+               &CallbacksHandler::conversationPreferencesUpdated,
+               this,
+               &ConversationModelPimpl::slotConversationPreferencesUpdated);
 }
 
 void
@@ -2577,6 +2604,9 @@ ConversationModelPimpl::slotConversationReady(const QString& accountId,
         const MapStringString& details = ConfigurationManager::instance()
                                              .conversationInfos(accountId, conversationId);
         conversation.infos = details;
+        const MapStringString& preferences
+            = ConfigurationManager::instance().getConversationPreferences(accountId, conversationId);
+        conversation.preferences = preferences;
         conversation.mode = conversation::to_mode(details["mode"].toInt());
         conversation.isRequest = false;
         conversation.needsSyncing = false;
@@ -2983,6 +3013,9 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
     }
     conversation.participants = participants;
     conversation.mode = mode;
+    const MapStringString& preferences = ConfigurationManager::instance()
+                                             .getConversationPreferences(linked.owner.id, convId);
+    conversation.preferences = preferences;
     conversation.unreadMessages = ConfigurationManager::instance().countInteractions(linked.owner.id,
                                                                                      convId,
                                                                                      lastRead,
@@ -4196,6 +4229,19 @@ ConversationModelPimpl::updateTransferProgress(QTimer* timer,
 
     timer->stop();
     timer->deleteLater();
+}
+
+void
+ConversationModelPimpl::slotConversationPreferencesUpdated(const QString&,
+                                                           const QString& conversationId,
+                                                           const MapStringString& preferences)
+{
+    auto conversationIdx = indexOf(conversationId);
+    if (conversationIdx < 0)
+        return;
+    auto& conversation = conversations[conversationIdx];
+    conversation.preferences = preferences;
+    Q_EMIT linked.conversationPreferencesUpdated(conversationId);
 }
 
 } // namespace lrc

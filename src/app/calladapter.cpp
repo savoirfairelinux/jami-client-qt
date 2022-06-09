@@ -572,6 +572,11 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
     auto& accInfo = lrcInstance_->getAccountInfo(accountId);
     auto title = accInfo.conversationModel->title(convUid);
 
+    auto preferences = accInfo.conversationModel->getConversationPreferences(convUid);
+    // Ignore notifications for this conversation
+    if (preferences["ignoreNotifications"] == "true")
+        return;
+
 #ifdef Q_OS_LINUX
     auto convAvatar = Utils::conversationAvatar(lrcInstance_, convUid, QSize(50, 50), accountId);
     auto notifId = QString("%1;%2").arg(accountId).arg(convUid);
