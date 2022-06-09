@@ -233,6 +233,9 @@ public Q_SLOTS:
      * @param callId
      */
     void slotConferenceCreated(const QString& accountId, const QString& callId);
+    void slotConferenceChanged(const QString& accountId,
+                               const QString& callId,
+                               const QString& state);
     /**
      * Listen from CallbacksHandler when a voice mail notice is incoming
      * @param accountId
@@ -395,6 +398,23 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
     pimpl_->calls.emplace(callId, std::move(callInfo));
 
     return callId;
+}
+
+void
+CallModel::emplaceConversationConference(const QString& confId)
+{
+    if (hasCall(confId))
+        return;
+
+    auto callInfo = std::make_shared<call::Info>();
+    callInfo->id = confId;
+    callInfo->isOutgoing = false;
+    callInfo->status = call::Status::SEARCHING;
+    callInfo->type = call::Type::CONFERENCE;
+    callInfo->isAudioOnly = false;
+    callInfo->videoMuted = false;
+    callInfo->mediaList = {};
+    pimpl_->calls.emplace(confId, std::move(callInfo));
 }
 
 void
@@ -928,6 +948,10 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
             &CallbacksHandler::conferenceCreated,
             this,
             &CallModelPimpl::slotConferenceCreated);
+    connect(&callbacksHandler,
+            &CallbacksHandler::conferenceChanged,
+            this,
+            &CallModelPimpl::slotConferenceChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::voiceMailNotify,
             this,
@@ -1535,9 +1559,13 @@ CallModelPimpl::slotOnConferenceInfosUpdated(const QString& confId,
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
     Q_FOREACH (const auto& call, callList) {
         Q_EMIT linked.callAddedToConference(call, confId);
-        calls[call]->videoMuted = it->second->videoMuted;
-        calls[call]->audioMuted = it->second->audioMuted;
-        Q_EMIT linked.callInfosChanged(linked.owner.id, call);
+        if (calls.find(call) == calls.end()) {
+            qWarning() << "Call not found";
+        } else {
+            calls[call]->videoMuted = it->second->videoMuted;
+            calls[call]->audioMuted = it->second->audioMuted;
+            Q_EMIT linked.callInfosChanged(linked.owner.id, call);
+        }
     }
     Q_EMIT linked.callInfosChanged(linked.owner.id, confId);
     Q_EMIT linked.onParticipantsChanged(confId);
@@ -1554,14 +1582,7 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
 {
     if (accountId != linked.owner.id)
         return;
-    // Detect if conference is created for this account
     QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
-    auto hasConference = false;
-    Q_FOREACH (const auto& call, callList) {
-        hasConference |= linked.hasCall(call);
-    }
-    if (!hasConference)
-        return;
 
     auto callInfo = std::make_shared<call::Info>();
     callInfo->id = confId;
@@ -1591,6 +1612,20 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
                 break;
             }
         }
+    }
+}
+
+void
+CallModelPimpl::slotConferenceChanged(const QString& accountId,
+                                      const QString& confId,
+                                      const QString& state)
+{
+    if (accountId != linked.owner.id)
+        return;
+    // Detect if conference is created for this account
+    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    Q_FOREACH (const auto& call, callList) {
+        Q_EMIT linked.callAddedToConference(call, confId);
     }
 }
 

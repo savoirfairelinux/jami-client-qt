@@ -92,8 +92,6 @@ public:
                     Q_EMIT this->volatileAccountDetailsChanged(QString(accountID.c_str()),
                                                                convertMap(details));
                 }),
-            exportable_callback<ConfigurationSignal::Error>(
-                [this](int code) { Q_EMIT this->errorAlert(code); }),
             exportable_callback<ConfigurationSignal::CertificateExpired>(
                 [this](const std::string& certId) {
                     Q_EMIT this->certificateExpired(QString(certId.c_str()));
@@ -128,6 +126,11 @@ public:
                                                              QString(peer.c_str()),
                                                              QString(message_id.c_str()),
                                                              state);
+                }),
+            exportable_callback<libjami::ConfigurationSignal::NeedsHost>(
+                [this](const std::string& account_id, const std::string& conversation_id) {
+                    Q_EMIT this->needsHost(QString(account_id.c_str()),
+                                           QString(conversation_id.c_str()));
                 }),
             exportable_callback<ConfigurationSignal::IncomingTrustRequest>(
                 [this](const std::string& accountId,
@@ -356,6 +359,14 @@ public:
                                                   QString(conversationId.c_str()),
                                                   code,
                                                   QString(what.c_str()));
+                   }),
+               exportable_callback<ConfigurationSignal::ActiveCallsChanged>(
+                   [this](const std::string& accountId,
+                          const std::string& conversationId,
+                          const std::vector<std::map<std::string, std::string>>& activeCalls) {
+                       Q_EMIT activeCallsChanged(QString(accountId.c_str()),
+                                                  QString(conversationId.c_str()),
+                                                  convertVecMap(activeCalls));
                    })};
     }
 
@@ -432,7 +443,15 @@ public Q_SLOTS: // METHODS
 
     QStringList getAccountList()
     {
-        QStringList temp = convertStringList(libjami::getAccountList());
+        return convertStringList(libjami::getAccountList());
+    }
+
+    VectorMapStringString getActiveCalls(const QString& accountId, const QString& convId)
+    {
+        VectorMapStringString temp;
+        for (const auto& x : libjami::getActiveCalls(accountId.toStdString(), convId.toStdString())) {
+            temp.push_back(convertMap(x));
+        }
         return temp;
     }
 
@@ -1195,7 +1214,6 @@ Q_SIGNALS: // SIGNALS
                                   unsigned detail_code,
                                   const QString& detail_str);
     void stunStatusSuccess(const QString& message);
-    void errorAlert(int code);
     void volatileAccountDetailsChanged(const QString& accountID, MapStringString details);
     void certificatePinned(const QString& certId);
     void certificatePathPinned(const QString& path, const QStringList& certIds);
@@ -1222,6 +1240,7 @@ Q_SIGNALS: // SIGNALS
                                      const QString& peer,
                                      const QString& messageId,
                                      int status);
+    void needsHost(const QString& accountId, const QString& conversationId);
     void nameRegistrationEnded(const QString& accountId, int status, const QString& name);
     void registeredNameFound(const QString& accountId,
                              int status,
@@ -1278,6 +1297,9 @@ Q_SIGNALS: // SIGNALS
                              const QString& conversationId,
                              int code,
                              const QString& what);
+    void activeCallsChanged(const QString& accountId,
+                             const QString& conversationId,
+                             const VectorMapStringString& activeCalls);
     void conversationPreferencesUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& message);
