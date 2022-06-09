@@ -126,71 +126,88 @@ Rectangle {
                 }
             }
 
-            ColumnLayout {
+
+            Item {
                 SplitView.maximumWidth: splitView.width
                 // Note, without JamiTheme.detailsPageMinWidth, sometimes the details page is hidden at the right
                 SplitView.preferredWidth: Math.max(0, 2 * splitView.width / 3 - JamiTheme.detailsPageMinWidth)
                 SplitView.fillHeight: true
 
-                StackLayout {
-                    id: chatViewStack
+                NotificationArea {
+                    id: notificationArea
+                    visible: parent.visible && !invitationView.visible
+                    z: 1
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    anchors.top: parent.top
 
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.topMargin: JamiTheme.chatViewHairLineSize
-                    Layout.bottomMargin: JamiTheme.chatViewHairLineSize
-                    Layout.leftMargin: JamiTheme.chatviewMargin
-                    Layout.rightMargin: JamiTheme.chatviewMargin
+                    height: 100
+                }
 
-                    currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                ColumnLayout {
+                    anchors.fill: parent
 
-                    Loader {
-                        active: CurrentConversation.id !== ""
-                        sourceComponent: MessageListView {
-                            DropArea {
-                                anchors.fill: parent
-                                onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
+                    StackLayout {
+                        id: chatViewStack
+
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        Layout.topMargin: JamiTheme.chatViewHairLineSize
+                        Layout.bottomMargin: JamiTheme.chatViewHairLineSize
+                        Layout.leftMargin: JamiTheme.chatviewMargin
+                        Layout.rightMargin: JamiTheme.chatviewMargin
+
+                        currentIndex: CurrentConversation.isRequest ||
+                                    CurrentConversation.needsSyncing
+
+                        Loader {
+                            active: CurrentConversation.id !== ""
+                            sourceComponent: MessageListView {
+                                DropArea {
+                                    anchors.fill: parent
+                                    onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
+                                }
                             }
+                        }
+
+                        InvitationView {
+                            id: invitationView
+
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
                         }
                     }
 
-                    InvitationView {
-                        id: invitationView
-
+                    ReadOnlyFooter {
+                        visible: CurrentConversation.readOnly
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
-                    }
-                }
-
-                ReadOnlyFooter {
-                    visible: CurrentConversation.readOnly
-                    Layout.fillWidth: true
-                }
-
-                ChatViewFooter {
-                    id: chatViewFooter
-
-                    visible: {
-                        if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
-                            return false
-                        else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
-                            return false
-                        return true
                     }
 
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: implicitHeight
-                    Layout.maximumHeight: JamiTheme.chatViewFooterMaximumHeight
+                    ChatViewFooter {
+                        id: chatViewFooter
 
-                    DropArea {
-                        anchors.fill: parent
-                        onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
+                        visible: {
+                            if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
+                                return false
+                            else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
+                                return false
+                            return true
+                        }
+
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: implicitHeight
+                        Layout.maximumHeight: JamiTheme.chatViewFooterMaximumHeight
+
+                        DropArea {
+                            anchors.fill: parent
+                            onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
+                        }
                     }
                 }
             }
+
 
             SwarmDetailsPanel {
                 id: swarmDetailsPanel
