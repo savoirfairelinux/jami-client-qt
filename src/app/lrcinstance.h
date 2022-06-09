@@ -88,11 +88,11 @@ public:
 
     const account::Info& getAccountInfo(const QString& accountId);
     const account::Info& getCurrentAccountInfo();
-    QString getCurrentCallId();
+    QString getCurrentCallId(bool forceCallOnly = false);
     QString getCallIdForConversationUid(const QString& convUid, const QString& accountId);
     const call::Info* getCallInfo(const QString& callId, const QString& accountId);
     const call::Info* getCallInfoForConversation(const conversation::Info& convInfo,
-                                                 bool forceCallOnly = {});
+                                                 bool forceCallOnly = false);
     const conversation::Info& getConversationFromConvUid(const QString& convUid,
                                                          const QString& accountId = {});
     const conversation::Info& getConversationFromPeerUri(const QString& peerUri,

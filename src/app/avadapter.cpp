@@ -94,12 +94,10 @@ AvAdapter::shareEntireScreen(int screenNumber)
                                      rect.width() * screen->devicePixelRatio(),
                                      rect.height() * screen->devicePixelRatio());
     auto callId = lrcInstance_->getCurrentCallId();
+    if (hasCamera())
+        muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->requestMediaChange(callId,
-                             "video_0",
-                             resource,
-                             lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
-                             false);
+        ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
 }
 
 void
@@ -113,12 +111,10 @@ AvAdapter::shareAllScreens()
                                                                     arrangementRect.width(),
                                                                     arrangementRect.height());
     auto callId = lrcInstance_->getCurrentCallId();
+    if (hasCamera())
+        muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->requestMediaChange(callId,
-                             "video_0",
-                             resource,
-                             lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
-                             false);
+        ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
 }
 
 void
@@ -180,18 +176,18 @@ AvAdapter::shareFile(const QString& filePath)
 {
     auto callId = lrcInstance_->getCurrentCallId();
     if (!callId.isEmpty()) {
+        if (hasCamera())
+            muteCamera_ = !isCapturing();
         lrcInstance_->getCurrentCallModel()
-            ->requestMediaChange(callId,
-                                 "video_0",
-                                 filePath,
-                                 lrc::api::NewCallModel::MediaRequestType::FILESHARING,
-                                 false);
+            ->addMedia(callId, filePath, lrc::api::NewCallModel::MediaRequestType::FILESHARING);
     }
 }
 
 void
 AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height)
 {
+    if (hasCamera())
+        muteCamera_ = !isCapturing();
 #ifdef Q_OS_LINUX
     // xrectsel will freeze all displays too fast so that the call
     // context menu will not be closed even closed signal is emitted
@@ -206,11 +202,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                                                         height < 128 ? 128 : height);
         auto callId = lrcInstance_->getCurrentCallId();
         lrcInstance_->getCurrentCallModel()
-            ->requestMediaChange(callId,
-                                 "video_0",
-                                 resource,
-                                 lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
-                                 false);
+            ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
     });
 #else
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
@@ -220,11 +212,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                                                     height < 128 ? 128 : height);
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()
-        ->requestMediaChange(callId,
-                             "video_0",
-                             resource,
-                             lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
-                             false);
+        ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
 #endif
 }
 
@@ -233,12 +221,11 @@ AvAdapter::shareWindow(const QString& windowId)
 {
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowId);
     auto callId = lrcInstance_->getCurrentCallId();
+
+    if (hasCamera())
+        muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->requestMediaChange(callId,
-                             "video_0",
-                             resource,
-                             lrc::api::NewCallModel::MediaRequestType::SCREENSHARING,
-                             false);
+        ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
 }
 
 QString
@@ -285,12 +272,9 @@ AvAdapter::stopSharing()
 {
     auto callId = lrcInstance_->getCurrentCallId();
     if (!callId.isEmpty()) {
+        // TODO enum
         lrcInstance_->getCurrentCallModel()
-            ->requestMediaChange(callId,
-                                 "video_0",
-                                 lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
-                                 lrc::api::NewCallModel::MediaRequestType::CAMERA,
-                                 muteCamera_);
+            ->removeMedia(callId, "MEDIA_TYPE_VIDEO", "display:", muteCamera_);
     }
 }
 
@@ -321,8 +305,61 @@ AvAdapter::onRendererStarted(const QString& id)
     auto callId = lrcInstance_->getCurrentCallId();
     auto callModel = lrcInstance_->getCurrentCallModel();
     auto renderDevice = callModel->getCurrentRenderedDevice(callId);
+    if (!id.contains("://"))
+        return;
     set_currentRenderingDeviceId(id);
     set_currentRenderingDeviceType(renderDevice.type);
+}
+
+bool
+AvAdapter::isSharing() const
+{
+    try {
+        auto callId = lrcInstance_->getCurrentCallId();
+        auto callModel = lrcInstance_->getCurrentCallModel();
+        auto call = callModel->getCall(callId);
+        // TODO enum
+        return call.hasMediaWithType("display:", "MEDIA_TYPE_VIDEO")
+               || call.hasMediaWithType("file:", "MEDIA_TYPE_VIDEO");
+    } catch (...) {
+    }
+    return false;
+}
+
+bool
+AvAdapter::isCapturing() const
+{
+    try {
+        auto callId = lrcInstance_->getCurrentCallId();
+        auto callModel = lrcInstance_->getCurrentCallModel();
+        auto call = callModel->getCall(callId);
+        // TODO enum
+        for (const auto& m : call.mediaList) {
+            if (m["SOURCE"].startsWith("camera:") && m["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO")
+                return m["MUTED"] == "false";
+        }
+        return false;
+    } catch (...) {
+    }
+    return false;
+}
+
+bool
+AvAdapter::hasCamera() const
+{
+    try {
+        auto callId = lrcInstance_->getCurrentCallId();
+        auto callModel = lrcInstance_->getCurrentCallModel();
+        auto call = callModel->getCall(callId);
+        // TODO enum
+        for (const auto& m : call.mediaList) {
+            if (m["SOURCE"].startsWith("camera:") && m["MEDIA_TYPE"] == "MEDIA_TYPE_VIDEO")
+                return true;
+        }
+        return false;
+    } catch (...) {
+    }
+    return false;
 }
 
 int
