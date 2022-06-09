@@ -103,7 +103,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: stopSharing
 
-            canTrigger: sharingActive
+            canTrigger: AvAdapter.isSharing()
                         && !isSIP && !isVideoMuted
             itemName: JamiStrings.stopSharing
             iconSource: JamiResources.share_stop_black_24dp_svg
@@ -118,9 +118,6 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.shareScreen
             iconSource: JamiResources.laptop_black_24dp_svg
             onClicked: {
-                if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
-                    AvAdapter.muteCamera = root.isVideoMuted
-                }
                 if (Qt.application.screens.length === 1) {
                     AvAdapter.shareEntireScreen(0)
                 } else {
@@ -137,9 +134,6 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.shareWindow
             iconSource: JamiResources.window_black_24dp_svg
             onClicked: {
-                if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
-                    AvAdapter.muteCamera = root.isVideoMuted
-                }
                 AvAdapter.getListWindows()
                 if (AvAdapter.windowsNames.length >= 1) {
                     windowSelection = true
@@ -155,9 +149,6 @@ ContextMenuAutoLoader {
             itemName: JamiStrings.shareScreenArea
             iconSource: JamiResources.share_area_black_24dp_svg
             onClicked: {
-                if (AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.FILE) {
-                    AvAdapter.muteCamera = root.isVideoMuted
-                }
                 if (Qt.platform.os !== "windows") {
                     AvAdapter.shareScreenArea(0, 0, 0, 0)
                 } else {
