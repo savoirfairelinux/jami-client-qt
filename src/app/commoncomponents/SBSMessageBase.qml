@@ -74,7 +74,7 @@ Control {
 
             Label {
                 id: username
-                text: chatView.headerUserUserNameLabelText
+                text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
                 font.bold: true
                 visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
                 font.pixelSize: JamiTheme.usernameBlockFontSize
