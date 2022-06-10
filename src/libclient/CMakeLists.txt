@@ -37,11 +37,11 @@ project(jami-libclient)
 if(CMAKE_COMPILER_IS_GNUCC)
   execute_process(COMMAND ${CMAKE_C_COMPILER} -dumpversion
     OUTPUT_VARIABLE GCC_VERSION)
-  if(GCC_VERSION VERSION_GREATER_EQUAL 4.8)
-    message(STATUS "Found GCC version >= 4.8: " ${GCC_VERSION})
+  if(GCC_VERSION VERSION_GREATER_EQUAL 8.0)
+    message(STATUS "Found GCC version >= 8.0: " ${GCC_VERSION})
   else()
     message(FATAL_ERROR "Your version of GCC is too old, \
-please install GCC 4.8 or later")
+please install GCC 8.0 or newer")
   endif()
 endif()
 
@@ -108,32 +108,25 @@ endif()
 #     grep -E "\-W[a-zA-Z=-]*" -o > /tmp/49;
 #   sort /tmp/48 /tmp/49 | uniq -u
 if(CMAKE_COMPILER_IS_GNUCC)
-  if(GCC_VERSION VERSION_GREATER_EQUAL 4.9)
-    add_definitions(
-      -Wconditionally-supported
-      -Wno-cpp
-      -Wdouble-promotion
-      -Wdate-time
-      -Wfloat-conversion)
-  endif()
-
-  if(GCC_VERSION VERSION_GREATER_EQUAL 5.1)
-    add_definitions(
-      -Wformat-signedness
-      -Wnormalized
-      -Wshift-count-negative
-      -Wshift-count-overflow
-      -Wsized-deallocation
-      -Wsizeof-array-argument)
-  endif()
-
-  if(GCC_VERSION VERSION_GREATER_EQUAL 6.0)
-    add_definitions(
-      -Wnull-dereference
-      -Wshift-negative-value
-      -Wshift-overflow
-      -Wduplicated-cond)
-  endif()
+  add_definitions(
+    # GCC 4.9
+    -Wconditionally-supported
+    -Wno-cpp
+    -Wdouble-promotion
+    -Wdate-time
+    -Wfloat-conversion
+    # GCC 5.1
+    -Wformat-signedness
+    -Wnormalized
+    -Wshift-count-negative
+    -Wshift-count-overflow
+    -Wsized-deallocation
+    -Wsizeof-array-argument
+    # GCC 6.0
+    -Wnull-dereference
+    -Wshift-negative-value
+    -Wshift-overflow
+    -Wduplicated-cond)
 endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
