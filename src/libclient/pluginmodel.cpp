@@ -36,17 +36,30 @@
 // Ring daemon
 
 // LRC
+#include "callbackshandler.h"
 #include "dbus/pluginmanager.h"
 
 namespace lrc {
 
 using namespace api;
 
-PluginModel::PluginModel()
+PluginModel::PluginModel(const CallbacksHandler& callbacksHandler)
     : QObject()
-{}
+    , callbacksHandler(callbacksHandler)
+{
+    connect(&callbacksHandler,
+            &CallbacksHandler::webViewMessageReceived,
+            this,
+            &PluginModel::slotWebViewMessageReceived);
+}
 
-PluginModel::~PluginModel() {}
+PluginModel::~PluginModel()
+{
+    disconnect(&callbacksHandler,
+               &CallbacksHandler::webViewMessageReceived,
+               this,
+               &PluginModel::slotWebViewMessageReceived);
+}
 
 void
 PluginModel::setPluginsEnabled(bool enable)
@@ -160,6 +173,12 @@ PluginModel::getChatHandlers() const
     return VectorString::fromList(PluginManager::instance().getChatHandlers());
 }
 
+VectorString
+PluginModel::getWebViewHandlers() const
+{
+    return VectorString::fromList(PluginManager::instance().getWebViewHandlers());
+}
+
 void
 PluginModel::toggleChatHandler(const QString& chatHandlerId,
                                const QString& accountId,
@@ -220,6 +239,25 @@ PluginModel::getChatHandlerDetails(const QString& chatHandlerId)
     return result;
 }
 
+plugin::PluginHandlerDetails
+PluginModel::getWebViewHandlerDetails(const QString& handlerAddress)
+{
+    if (handlerAddress.isEmpty()) {
+        return plugin::PluginHandlerDetails();
+    }
+    MapStringString chatHandlerDetails = PluginManager::instance().getWebViewHandlerDetails(
+        handlerAddress);
+    plugin::PluginHandlerDetails result;
+    if (!chatHandlerDetails.empty()) {
+        result.id = handlerAddress;
+        result.iconPath = chatHandlerDetails["iconPath"];
+        result.name = chatHandlerDetails["name"];
+        result.pluginId = chatHandlerDetails["pluginId"];
+    }
+
+    return result;
+}
+
 VectorMapStringString
 PluginModel::getPluginPreferences(const QString& path, const QString& accountId)
 {
@@ -249,6 +287,41 @@ PluginModel::resetPluginPreferencesValues(const QString& path, const QString& ac
     auto result = PluginManager::instance().resetPluginPreferencesValues(path, accountId);
     Q_EMIT modelUpdated();
     return result;
+}
+
+void
+PluginModel::slotWebViewMessageReceived(const QString& pluginId,
+                                        const QString& webViewId,
+                                        const QString& messageId,
+                                        const QString& payload)
+{
+    Q_EMIT webViewMessageReceived(pluginId, webViewId, messageId, payload);
+}
+
+void
+PluginModel::sendWebViewMessage(const QString& pluginId,
+                                const QString& webViewId,
+                                const QString& messageId,
+                                const QString& payload)
+{
+    PluginManager::instance().sendWebViewMessage(pluginId, webViewId, messageId, payload);
+}
+
+QString
+PluginModel::sendWebViewAttach(const QString& pluginId,
+                               const QString& accountId,
+                               const QString& webViewId,
+                               const QString& action)
+{
+    return PluginManager::instance().sendWebViewAttach(pluginId, accountId, webViewId, action);
+}
+
+void
+PluginModel::sendWebViewDetach(const QString& pluginId,
+                               const QString& accountId,
+                               const QString& webViewId)
+{
+    PluginManager::instance().sendWebViewDetach(pluginId, accountId, webViewId);
 }
 
 } // namespace lrc
