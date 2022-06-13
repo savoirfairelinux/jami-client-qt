@@ -146,3 +146,23 @@ PluginManagerInterface::resetPluginPreferencesValues(const QString& path, const 
 {
     return false;
 }
+
+void
+PluginManagerInterface::sendWebViewMessage(const QString& pluginId,
+                                           const QString& webViewId,
+                                           const QString& messageId,
+                                           const QString& payload)
+{}
+
+QString
+PluginManagerInterface::sendWebViewAttach(const QString& pluginId,
+                                          const QString& accountId,
+                                          const QString& webViewId,
+                                          const QString& action)
+{
+    return {};
+}
+
+void
+PluginManagerInterface::sendWebViewDetach(const QString& pluginId, const QString& webViewId)
+{}
