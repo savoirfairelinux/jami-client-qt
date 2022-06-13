@@ -378,6 +378,10 @@ Q_SIGNALS:
                                         const QString& conversationId,
                                         const MapStringString& preferences);
     void recordingStateChanged(const QString& callId, bool state);
+    void webViewMessageReceived(const QString& pluginId,
+                                const QString& webViewId,
+                                const QString& messageId,
+                                const QString& payload);
 
     /**
      * Emitted when a conversation receives a new position
@@ -705,6 +709,10 @@ private Q_SLOTS:
     void slotActiveCallsChanged(const QString& accountId,
                                 const QString& conversationId,
                                 const VectorMapStringString& activeCalls);
+    void slotWebViewMessageReceived(const QString& pluginId,
+                                    const QString& webViewId,
+                                    const QString& messageId,
+                                    const QString& payload);
 
 private:
     const api::Lrc& parent;

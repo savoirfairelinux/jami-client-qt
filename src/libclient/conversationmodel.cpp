@@ -4003,7 +4003,7 @@ ConversationModel::getConvMediasInfos(const QString& accountId, const QString& c
 {
     pimpl_->currentMsgRequestId = ConfigurationManager::instance().searchConversation(
         accountId, conversationId, "", "", "", "application/data-transfer+json", 0, 0, 0, 0);
-};
+}
 
 void
 ConversationModel::acceptTransfer(const QString& convUid, const QString& interactionId)

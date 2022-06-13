@@ -24,6 +24,7 @@
 #include "contactadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
+#include "webviewadapter.h"
 #include "positionmanager.h"
 #include "tipsmodel.h"
 #include "previewengine.h"
@@ -126,6 +127,7 @@ registerTypes(QQmlEngine* engine,
     auto tipsModel = new TipsModel(settingsManager, parent);
     auto videoDevices = new VideoDevices(lrcInstance, parent);
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
+    auto webViewAdapter = new WebViewAdapter(lrcInstance, parent);
 
     // qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
@@ -143,6 +145,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount, "CurrentAccount");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices, "VideoDevices");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccountToMigrate, "CurrentAccountToMigrate")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, webViewAdapter, "WebViewAdapter");
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
