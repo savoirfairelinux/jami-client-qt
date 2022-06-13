@@ -67,6 +67,7 @@ public:
     Q_INVOKABLE bool hasCall(const QString& accountId);
     Q_INVOKABLE const QString getCallConvForAccount(const QString& accountId);
     Q_INVOKABLE const QString getCallId(const QString& accountId, const QString& convUid);
+    Q_INVOKABLE const QString getRendererId(const QString& accountId, const QString& convUid);
     Q_INVOKABLE int getCallStatus(const QString& callId);
     Q_INVOKABLE const QString getCallStatusStr(int statusInt);
     Q_INVOKABLE QString getStringUTF8(QString string);

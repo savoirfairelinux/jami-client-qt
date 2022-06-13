@@ -52,7 +52,7 @@ Rectangle {
         if (accountPeerPair[0] === "" || accountPeerPair[1] === "")
             return
         contactImage.imageId = accountPeerPair[1]
-        distantRenderer.rendererId = UtilsAdapter.getCallId(accountPeerPair[0],
+        distantRenderer.rendererId = UtilsAdapter.getRendererId(accountPeerPair[0],
                                              accountPeerPair[1])
     }
 
