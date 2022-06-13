@@ -303,12 +303,6 @@ if(MSVC)
   set(QRENCODE_LIB
     ${QRENCODE_DIR}/vc8/qrcodelib/x64/Release-Lib/qrcodelib.lib)
 
-  # libjamiclient
-  set(LIBCLIENT_STATIC_LIB
-    ${PROJECT_SOURCE_DIR}/build/release/${LIBCLIENT_NAME}.lib)
-  set(QTWRAPPER_LIB
-    ${PROJECT_SOURCE_DIR}/build/src/qtwrapper/Release/qtwrapper.lib)
-
   # daemon
   set(DRING_SRC_PATH ${DRING}/contrib/msvc/include)
   set(DRING_LIB ${DRING}/build/x64/ReleaseLib_win32/bin/jami.lib)
@@ -468,8 +462,7 @@ if(MSVC)
     PRIVATE
     ${DRING_LIB}
     ${GNUTLS_LIB}
-    ${LIBCLIENT_STATIC_LIB}
-    ${QTWRAPPER_LIB}
+    ${LIBCLIENT_NAME}
     ${QT_LIBS}
     ${QRENCODE_LIB}
     ${WINDOWS_SYS_LIBS})

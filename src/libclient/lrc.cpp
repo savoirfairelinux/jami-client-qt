@@ -21,11 +21,9 @@
 
 #include <locale>
 
-#ifndef _MSC_VER
+#if !defined(ENABLE_LIBWRAP) && !defined(_MSC_VER)
 #include <unistd.h>
-#else
-#include "../../daemon/compat/msvc/unistd.h"
-#endif // !_MSC_VER
+#endif
 
 #include "call_const.h"
 
