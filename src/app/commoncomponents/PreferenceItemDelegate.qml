@@ -26,6 +26,7 @@ import net.jami.Constants 1.1
 
 import "../commoncomponents"
 import "../settingsview/components"
+import "../webview/webviewcreation.js" as WebViewCreation
 
 ItemDelegate {
     id: root
@@ -200,6 +201,63 @@ ItemDelegate {
 
             onEditingFinished: getNewPreferenceValueSlot(0)
             opacity: enabled ? 1.0 : 0.5
+        }
+
+        // TODO: make the UI better, decide where the popup/interface should go and give it focus
+        // TODO: grey out and disable button when WebViewAdapter.webViewPluginLoaded(pluginId) === false
+        MaterialButton {
+            id: webViewPreferenceButton
+
+            visible: preferenceType === PreferenceItemListModel.WEBVIEW
+
+            preferredWidth: root.width / 2 - 8
+            preferredHeight: 30
+
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            Layout.rightMargin: 4
+
+            text: "Open WebView"
+            onClicked: function() {
+                if (WebViewAdapter.webViewPluginLoaded(pluginId)) {
+                    popUp.trigger();
+                } else {
+                    console.error(`plugin: ${pluginId} not currently loaded`);
+                }
+            }
+            opacity: enabled ? 1.0 : 0.5
+
+            Popup {
+                id: popUp
+                x: 0
+                y: 0
+                width: root.width
+                height: 500
+
+                parent: root
+
+                signal trigger()
+
+                property var webViewObject
+
+                Rectangle {
+                    id: rect
+                    anchors.fill: parent
+                    color: "grey"
+                    border.width: 5
+                }
+
+                onTrigger: function() {
+                    // create webview
+                    webViewObject = WebViewCreation.createWebView(rect, pluginId, "", "PREFRENCES_OPEN");
+
+                    // open the popup
+                    popUp.open();
+                }
+
+                onClosed: function() {
+                    webViewObject.destroy();
+                }
+            }
         }
     }
 }

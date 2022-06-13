@@ -38,6 +38,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
+#include <QLoggingCategory>
 
 #include <locale.h>
 #include <thread>
@@ -198,6 +199,20 @@ MainApplication::init()
 #else
     engine_.get()->rootContext()->setContextProperty("WITH_WEBENGINE", QVariant(false));
 #endif
+
+    // set up JS and QML logging
+    // TODO: make them output to logfile if -f is enabled?
+    if (getOpt(Option::Debug).toBool()) {
+        auto rules = "js = true\n" // enable all JS output
+                     "qml = true"; // enable all QML output
+        QLoggingCategory::setFilterRules(rules);
+    } else {
+        auto rules = "js = false\n"         // JS output disabled
+                     "js.critical=true\n"   // except critical
+                     "qml = false\n"        // QML output disabled
+                     "qml.critical = true"; // except critical
+        QLoggingCategory::setFilterRules(rules);
+    }
 
     initQmlLayer();
 

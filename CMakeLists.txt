@@ -181,7 +181,8 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/currentaccount.cpp
   ${APP_SRC_DIR}/videodevices.cpp
   ${APP_SRC_DIR}/videoprovider.cpp
-  ${APP_SRC_DIR}/callparticipantsmodel.cpp)
+  ${APP_SRC_DIR}/callparticipantsmodel.cpp
+  ${APP_SRC_DIR}/webviewadapter.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -236,7 +237,9 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/currentaccount.h
   ${APP_SRC_DIR}/videodevices.h
   ${APP_SRC_DIR}/videoprovider.h
-  ${APP_SRC_DIR}/callparticipantsmodel.h)
+  ${APP_SRC_DIR}/callparticipantsmodel.h
+  ${APP_SRC_DIR}/webviewadapter.h
+)
 
 if(WITH_WEBENGINE)
   list(APPEND COMMON_SOURCES
