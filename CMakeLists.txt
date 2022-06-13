@@ -305,9 +305,9 @@ if(MSVC)
 
   # libjamiclient
   set(LIBCLIENT_STATIC_LIB
-    ${PROJECT_SOURCE_DIR}/build/release/${LIBCLIENT_NAME}.lib)
+    ${PROJECT_SOURCE_DIR}/build/src/libclient/Release/${LIBCLIENT_NAME}.lib)
   set(QTWRAPPER_LIB
-    ${PROJECT_SOURCE_DIR}/build/src/qtwrapper/Release/qtwrapper.lib)
+    ${PROJECT_SOURCE_DIR}/build/src/libclient/qtwrapper/Release/qtwrapper.lib)
 
   # daemon
   set(DRING_SRC_PATH ${DRING}/contrib/msvc/include)
