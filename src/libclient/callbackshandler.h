@@ -363,6 +363,10 @@ Q_SIGNALS:
                                  const QString& conversationId,
                                  const QString& memberId,
                                  int event);
+    void webViewMessageReceived(const QString& pluginId,
+                                const QString& webViewId,
+                                const QString& messageId,
+                                const QString& payload);
 
 private Q_SLOTS:
     /**
@@ -671,6 +675,10 @@ private Q_SLOTS:
                                      const QString& conversationId,
                                      const QString& memberId,
                                      int event);
+    void slotWebViewMessageReceived(const QString& pluginId,
+                                    const QString& webViewId,
+                                    const QString& messageId,
+                                    const QString& payload);
 
 private:
     const api::Lrc& parent;
