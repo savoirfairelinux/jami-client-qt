@@ -16,6 +16,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.    *
  *****************************************************************************/
 
+#include "plugin_manager_interface.h"
 #include "pluginmanager_wrap.h"
 
 bool
@@ -162,4 +163,49 @@ bool
 PluginManagerInterface::resetPluginPreferencesValues(const QString& path, const QString& accountId)
 {
     return DRing::resetPluginPreferencesValues(path.toStdString(), accountId.toStdString());
+}
+
+MapStringString
+PluginManagerInterface::getWebViewHandlerDetails(const QString& handlerAddress)
+{
+    return convertMap(DRing::getWebViewHandlerDetails(handlerAddress.toStdString()));
+}
+
+QStringList
+PluginManagerInterface::getWebViewHandlers()
+{
+    return convertStringList(DRing::getWebViewHandlers());
+}
+
+void
+PluginManagerInterface::sendWebViewMessage(const QString& pluginId,
+                                           const QString& webViewId,
+                                           const QString& messageId,
+                                           const QString& payload)
+{
+    DRing::sendWebViewMessage(pluginId.toStdString(),
+                              webViewId.toStdString(),
+                              messageId.toStdString(),
+                              payload.toStdString());
+}
+
+QString
+PluginManagerInterface::sendWebViewAttach(const QString& pluginId,
+                                          const QString& accountId,
+                                          const QString& webViewId,
+                                          const QString& action)
+{
+    return toQString(DRing::sendWebViewAttach(pluginId.toStdString(),
+                                              accountId.toStdString(),
+                                              webViewId.toStdString(),
+                                              action.toStdString()));
+}
+void
+PluginManagerInterface::sendWebViewDetach(const QString& pluginId,
+                                          const QString& accountId,
+                                          const QString& webViewId)
+{
+    DRing::sendWebViewDetach(pluginId.toStdString(),
+                             accountId.toStdString(),
+                             webViewId.toStdString());
 }
