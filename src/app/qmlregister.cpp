@@ -54,6 +54,7 @@
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
 #include "version.h"
+#include "webviewadapter.h"
 #include "wizardviewstepmodel.h"
 
 #include "api/peerdiscoverymodel.h"
@@ -119,6 +120,7 @@ registerTypes(QQmlEngine* engine,
     auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, parent);
     auto videoDevices = new VideoDevices(lrcInstance, parent);
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
+    auto webViewAdapter = new WebViewAdapter(lrcInstance, parent);
 
     // qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
@@ -133,6 +135,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount, "CurrentAccount");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices, "VideoDevices");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccountToMigrate, "CurrentAccountToMigrate")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, webViewAdapter, "WebViewAdapter");
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())
