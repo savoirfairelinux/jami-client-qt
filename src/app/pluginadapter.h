@@ -34,6 +34,10 @@ class PluginAdapter final : public QmlAdapterBase
     QML_PROPERTY(int, callMediaHandlersListCount)
     QML_PROPERTY(int, chatHandlersListCount)
     QML_PROPERTY(bool, isEnabled)
+    QML_CONSTANT(QString, globalPreferences, "GLOBAL_PREFERENCES")
+    QML_CONSTANT(QString, accountPreferences, "ACCOUNT_PREFERENCES")
+    QML_CONSTANT(QString, chatView, "CHAT_VIEW")
+    QML_CONSTANT(QString, callView, "CALL_VIEW")
 
 public:
     explicit PluginAdapter(LRCInstance* instance, QObject* parent = nullptr);

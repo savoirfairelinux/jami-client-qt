@@ -242,7 +242,7 @@ LrcPimpl::LrcPimpl(Lrc& linked, MigrationCb& willMigrateCb, MigrationCb& didMigr
                                                   willMigrateCb,
                                                   didMigrateCb))
     , AVModel_ {std::make_unique<AVModel>(*callbackHandler)}
-    , PluginModel_ {std::make_unique<PluginModel>()}
+    , PluginModel_ {std::make_unique<PluginModel>(*callbackHandler)}
 {}
 
 } // namespace lrc

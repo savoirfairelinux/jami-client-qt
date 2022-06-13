@@ -57,6 +57,10 @@ private: \
     Q_PROPERTY(type prop MEMBER prop##_ NOTIFY prop##Changed); \
     PROPERTY_BASE(type, prop)
 
+#define QML_CONSTANT(type, name, value) \
+    static inline const type name##_ = value; \
+    Q_PROPERTY(type name MEMBER name##_ CONSTANT)
+
 namespace Utils {
 
 template<typename Func1, typename Func2>

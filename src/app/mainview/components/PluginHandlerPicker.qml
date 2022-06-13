@@ -246,6 +246,8 @@ Popup {
                         fileFilters: FileFilters
                         isImage: IsImage
                         enabled: Enabled
+                        webviewScope: isCall ? PluginAdapter.callView : PluginAdapter.chatView
+                        accountId: LRCInstance.currentAccountId
                         pluginListPreferenceModel: PluginListPreferenceModel {
                             id: handlerPickerPreferenceModel
 

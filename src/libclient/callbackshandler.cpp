@@ -25,12 +25,14 @@
 #include "api/datatransfer.h"
 #include "api/datatransfermodel.h"
 #include "api/behaviorcontroller.h"
+#include "api/pluginmodel.h"
 
 // Lrc
 #include "dbus/callmanager.h"
 #include "dbus/configurationmanager.h"
 #include "dbus/presencemanager.h"
 #include "dbus/videomanager.h"
+#include "dbus/pluginmanager.h"
 
 #include "typedefs.h"
 
@@ -366,6 +368,11 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &ConfigurationManagerInterface::conversationPreferencesUpdated,
             this,
             &CallbacksHandler::slotConversationPreferencesUpdated,
+            Qt::QueuedConnection);
+    connect(&PluginManager::instance(),
+            &PluginManagerInterface::webViewMessageReceived,
+            this,
+            &CallbacksHandler::slotWebViewMessageReceived,
             Qt::QueuedConnection);
 }
 
@@ -851,6 +858,15 @@ CallbacksHandler::slotConversationPreferencesUpdated(const QString& accountId,
                                                      const MapStringString& preferences)
 {
     Q_EMIT conversationPreferencesUpdated(accountId, conversationId, preferences);
+}
+
+void
+CallbacksHandler::slotWebViewMessageReceived(const QString& pluginId,
+                                             const QString& webViewId,
+                                             const QString& messageId,
+                                             const QString& payload)
+{
+    Q_EMIT webViewMessageReceived(pluginId, webViewId, messageId, payload);
 }
 
 } // namespace lrc

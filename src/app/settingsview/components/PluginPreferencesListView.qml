@@ -187,7 +187,9 @@ Rectangle {
                         preferenceKey: PreferenceKey
                         fileFilters: FileFilters
                         isImage: IsImage
-                        enabled: Enabled
+                        accountId: root.accountId
+                        webviewScope: root.accountId === "" ? PluginAdapter.globalPreferences : PluginAdapter.accountPreferences
+                        enabled: PreferenceType === PreferenceItemListModel.WEBVIEW ? Enabled && isLoaded : Enabled
                         pluginListPreferenceModel: PluginListPreferenceModel {
                             id: pluginListPreferenceCategoryModel
 
@@ -246,7 +248,9 @@ Rectangle {
                 preferenceKey: PreferenceKey
                 fileFilters: FileFilters
                 isImage: IsImage
-                enabled: Enabled
+                accountId: root.accountId
+                webviewScope: root.accountId === "" ? PluginAdapter.globalPreferences : PluginAdapter.accountPreferences
+                enabled: PreferenceType === PreferenceItemListModel.WEBVIEW ? Enabled && isLoaded : Enabled
                 pluginListPreferenceModel: PluginListPreferenceModel {
                     id: pluginListPreferenceModel
 

@@ -26,6 +26,7 @@ import net.jami.Constants 1.1
 
 import "../commoncomponents"
 import "../settingsview/components"
+import "../webview/webviewcreation.js" as WebViewCreation
 
 ItemDelegate {
     id: root
@@ -39,6 +40,8 @@ ItemDelegate {
     property string pluginId: ""
     property string currentPath: ""
     property bool isImage: false
+    property string webviewScope: ""
+    property string accountId: ""
     property var fileFilters: []
     property PluginListPreferenceModel pluginListPreferenceModel
 
@@ -200,6 +203,51 @@ ItemDelegate {
 
             onEditingFinished: getNewPreferenceValueSlot(0)
             opacity: enabled ? 1.0 : 0.5
+        }
+
+        // TODO: make the UI better, decide where the popup/interface should go and give it focus
+        MaterialButton {
+            id: webViewPreferenceButton
+
+            visible: preferenceType === PreferenceItemListModel.WEBVIEW
+
+            preferredWidth: root.width / 2 - 8
+            preferredHeight: 30
+
+            Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+            Layout.rightMargin: 4
+
+            text: "Open WebView"
+            onClicked: popUp.show()
+            opacity: enabled ? 1.0 : 0.5
+
+            Window {
+                id: popUp
+                x: 0
+                y: 0
+                width: 500
+                height: 500
+
+                property var webViewObject
+
+                Rectangle {
+                    id: rect
+                    width: 500
+                    height: 500
+                    color: "grey"
+                    border.width: 5
+                }
+
+                onVisibleChanged: {
+                    if (visible)
+                        webViewObject = WebViewCreation.createWebView(rect, pluginId, accountId, webviewScope);
+                }
+
+                onClosing: {
+                    if (webViewObject)
+                        webViewObject.destroy();
+                }
+            }
         }
     }
 }
