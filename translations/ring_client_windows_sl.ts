@@ -2249,7 +2249,7 @@ Kopirajte ga in delite s prijatelji!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="534"/>
         <source>Link this device to an existing account</source>
-        <translation>Povežite to napravo z obstoječim računom</translation>
+        <translation>Poveži to napravo z obstoječim računom</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="537"/>

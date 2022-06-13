@@ -85,27 +85,27 @@
     <message>
         <location filename="../src/libclient/api/interaction.h" line="226"/>
         <source>%1 was invited to join</source>
-        <translation type="unfinished"/>
+        <translation>از %1 دعوت به پیوستن شد</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="228"/>
         <source>%1 joined</source>
-        <translation>%1 ملحق شد</translation>
+        <translation>%1 پیوست</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="230"/>
         <source>%1 left</source>
-        <translation>%1 ترک کرد</translation>
+        <translation>%1 رفت</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="232"/>
         <source>%1 was kicked</source>
-        <translation type="unfinished"/>
+        <translation>%1 اخراج شد</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="234"/>
         <source>%1 was re-added</source>
-        <translation type="unfinished"/>
+        <translation>%1 دوباره افزوده شد</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="300"/>

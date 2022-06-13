@@ -2597,7 +2597,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="271"/>
         <source>Sent</source>
-        <translation type="unfinished"/>
+        <translation>送信</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="273"/>
