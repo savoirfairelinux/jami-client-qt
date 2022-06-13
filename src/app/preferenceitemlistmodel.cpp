@@ -29,7 +29,8 @@
 std::map<QString, int> mapType {{QString("List"), PreferenceItemListModel::Type::LIST},
                                 {QString("Path"), PreferenceItemListModel::Type::PATH},
                                 {QString("EditText"), PreferenceItemListModel::Type::EDITTEXT},
-                                {QString("Switch"), PreferenceItemListModel::Type::SWITCH}};
+                                {QString("Switch"), PreferenceItemListModel::Type::SWITCH},
+                                {QString("WebView"), PreferenceItemListModel::Type::WEBVIEW}};
 
 PreferenceItemListModel::PreferenceItemListModel(QObject* parent)
     : AbstractListModelBase(parent)

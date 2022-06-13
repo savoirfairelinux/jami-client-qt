@@ -24,6 +24,7 @@
 #include "contactadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
+#include "webviewadapter.h"
 #include "positionmanager.h"
 #include "tipsmodel.h"
 #include "previewengine.h"
@@ -127,6 +128,7 @@ registerTypes(QQmlEngine* engine,
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
     auto avatarRegistry = new AvatarRegistry(lrcInstance, parent);
     auto wizardViewStepModel = new WizardViewStepModel(lrcInstance, accountAdapter, settingsManager, parent);
+    auto webViewAdapter = new WebViewAdapter(lrcInstance, parent);
 
     // qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
@@ -147,6 +149,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccountToMigrate, "CurrentAccountToMigrate")
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_HELPERS, avatarRegistry, "AvatarRegistry");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, wizardViewStepModel, "WizardViewStepModel")
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, webViewAdapter, "WebViewAdapter");
 
     // TODO: remove these
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, AVModel, &lrcInstance->avModel())

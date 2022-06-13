@@ -50,6 +50,7 @@ public:
         EDITTEXT,
         SWITCH,
         DEFAULT,
+        WEBVIEW,
     } Type;
 
     Q_ENUM(Role)

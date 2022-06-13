@@ -39,6 +39,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
+#include <QLoggingCategory>
 
 #include <locale.h>
 #include <thread>
@@ -333,6 +334,18 @@ MainApplication::setApplicationFont()
 void
 MainApplication::initQmlLayer()
 {
+    // set up JS and QML logging
+    // TODO: maybe make them output to logfile if -f is enabled?
+    if (getOpt(Option::Debug).toBool()) {
+        QLoggingCategory::setFilterRules("js = true\n"  // enable all JS output
+                                         "qml = true"); // enable all qml output
+    } else {
+        QLoggingCategory::setFilterRules("js = false\n"          // JS output disabled
+                                         "js.critical=true\n"    // except critical
+                                         "qml = false\n"         // QML output disabled
+                                         "qml.critical = true"); // except critical
+    }
+
     // Expose custom types to the QML engine.
     Utils::registerTypes(engine_.get(),
                          systemTray_.get(),

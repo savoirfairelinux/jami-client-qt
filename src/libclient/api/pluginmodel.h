@@ -24,11 +24,14 @@
 
 // Qt
 #include <qobject.h>
+#include <qtmetamacros.h>
 
 // LRC
 #include "typedefs.h"
 
 namespace lrc {
+
+class CallbacksHandler;
 
 namespace api {
 
@@ -57,7 +60,7 @@ class LIB_EXPORT PluginModel : public QObject
 {
     Q_OBJECT
 public:
-    PluginModel();
+    PluginModel(const CallbacksHandler& callbacksHandler);
     ~PluginModel();
 
     /**
@@ -88,7 +91,7 @@ public:
      * Get details of installed plugin
      * @return plugin Details
      */
-    plugin::PluginDetails getPluginDetails(const QString& path);
+    Q_INVOKABLE plugin::PluginDetails getPluginDetails(const QString& path);
 
     /**
      * Install plugin
@@ -181,9 +184,34 @@ public:
      */
     Q_INVOKABLE bool resetPluginPreferencesValues(const QString& path, const QString& accountId);
 
+    Q_INVOKABLE void sendWebViewMessage(const QString& pluginId,
+                                        const QString& webViewId,
+                                        const QString& messageId,
+                                        const QString& payload);
+    Q_INVOKABLE QString sendWebViewAttach(const QString& pluginId,
+                                          const QString& accountId,
+                                          const QString& webViewId,
+                                          const QString& action);
+    Q_INVOKABLE void sendWebViewDetach(const QString& pluginId, const QString& webViewId);
+
+public Q_SLOTS:
+    void slotWebViewMessageReceived(const QString& pluginId,
+                                    const QString& webViewId,
+                                    const QString& messageId,
+                                    const QString& payload);
+
 Q_SIGNALS:
     void chatHandlerStatusUpdated(bool isVisible);
     void modelUpdated();
+
+    // emitted whenever a message is passed up through daemon
+    void webViewMessageReceived(const QString& pluginId,
+                                const QString& webViewId,
+                                const QString& messageId,
+                                const QString& payload) const;
+
+private:
+    const CallbacksHandler& callbacksHandler;
 };
 
 } // namespace api
