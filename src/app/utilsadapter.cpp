@@ -232,6 +232,24 @@ UtilsAdapter::getCallId(const QString& accountId, const QString& convUid)
     return {};
 }
 
+const QString
+UtilsAdapter::getRendererId(const QString& accountId, const QString& convUid)
+{
+    auto const& convInfo = lrcInstance_->getConversationFromConvUid(convUid, accountId);
+    if (convInfo.uid.isEmpty()) {
+        return {};
+    }
+
+    if (auto* call = lrcInstance_->getCallInfoForConversation(convInfo, false)) {
+        if (call::Type::DIALOG == call->type) {
+            return call->id + "_video_0"; // Only support one renderer per callId for now
+        }
+        return call->id;
+    }
+
+    return {};
+}
+
 int
 UtilsAdapter::getCallStatus(const QString& callId)
 {
