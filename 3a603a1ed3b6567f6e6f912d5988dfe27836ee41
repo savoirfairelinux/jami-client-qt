@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "059c0a81_f6d8e055",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 2246,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-06-13T17:10:12Z",
+      "side": 1,
+      "message": "conversation.interactions-\u003esize() !\u003d 0 ??",
+      "range": {
+        "startLine": 2246,
+        "startChar": 12,
+        "endLine": 2246,
+        "endChar": 51
+      },
+      "revId": "3a603a1ed3b6567f6e6f912d5988dfe27836ee41",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
