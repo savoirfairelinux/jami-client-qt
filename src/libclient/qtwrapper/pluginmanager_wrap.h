@@ -39,7 +39,27 @@ class PluginManagerInterface : public QObject
 {
     Q_OBJECT
 public:
-    PluginManagerInterface() {}
+    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> callbackHandlers;
+
+    PluginManagerInterface()
+    {
+        setObjectName("PluginManagerInterface");
+        using DRing::exportable_callback;
+
+        setObjectName("PluginManagerInterface");
+        callbackHandlers = {
+            exportable_callback<DRing::PluginSignal::WebViewMessageReceived>(
+                [this](const std::string& pluginId,
+                       const std::string& accountId,
+                       const std::string& webViewId,
+                       const std::string& payload) {
+                    Q_EMIT this->webViewMessageReceived(QString(pluginId.c_str()),
+                                                        QString(accountId.c_str()),
+                                                        QString(webViewId.c_str()),
+                                                        QString(payload.c_str()));
+                }),
+        };
+    }
     ~PluginManagerInterface() {}
 
 public Q_SLOTS: // METHODS
@@ -91,6 +111,23 @@ public Q_SLOTS: // METHODS
     MapStringString getPluginPreferencesValues(const QString& path, const QString& accountId);
 
     bool resetPluginPreferencesValues(const QString& path, const QString& accountId);
+
+    void sendWebViewMessage(const QString& pluginId,
+                            const QString& webViewId,
+                            const QString& messageId,
+                            const QString& payload);
+    QString sendWebViewAttach(const QString& pluginId,
+                              const QString& accountId,
+                              const QString& webViewId,
+                              const QString& action);
+    void sendWebViewDetach(const QString& pluginId, const QString& webViewId);
+
+Q_SIGNALS:
+
+    void webViewMessageReceived(const QString& pluginId,
+                                const QString& webViewId,
+                                const QString& messageId,
+                                const QString& payload);
 };
 
 namespace org {

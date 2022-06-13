@@ -19,6 +19,9 @@
 
 #include "instancemanager_wrap.h"
 #include "callmanager.h"
+#ifdef ENABLE_PLUGIN
+#include "pluginmanager.h"
+#endif
 #include "presencemanager.h"
 #include "configurationmanager.h"
 #ifdef ENABLE_VIDEO
@@ -58,6 +61,9 @@ InstanceManagerInterface::InstanceManagerInterface(bool muteDring)
     registerSignalHandlers(ConfigurationManager::instance().dataXferHandlers);
 #ifdef ENABLE_VIDEO
     registerSignalHandlers(VideoManager::instance().videoHandlers);
+#endif
+#ifdef ENABLE_PLUGIN
+    registerSignalHandlers(PluginManager::instance().callbackHandlers);
 #endif
     registerSignalHandlers(ConfigurationManager::instance().conversationsHandlers);
 
