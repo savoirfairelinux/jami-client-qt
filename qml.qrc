@@ -189,5 +189,8 @@
         <file>src/app/mainview/components/KeyboardShortcutKeyDelegate.qml</file>
         <file>src/app/mainview/components/KeyboardShortcutTabButton.qml</file>
         <file>src/app/LayoutManager.qml</file>
+        <file>src/app/webview/WebViewCustom.qml</file>
+        <file>src/app/webview/jamiclientinternal_qt.js</file>
+        <file>src/app/webview/webviewcreation.js</file>
     </qresource>
 </RCC>
