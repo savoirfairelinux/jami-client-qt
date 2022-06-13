@@ -226,7 +226,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
         <source>Search your invitations</source>
-        <translation>Buscá tus invitaciones</translation>
+        <translation>Buscar tus invitaciones</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
@@ -471,12 +471,12 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
         <source>Select a private key</source>
-        <translation>Seleccioná una clave privada</translation>
+        <translation>Seleccionar una clave privada</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
         <source>Select a user certificate</source>
-        <translation>Seleccione un certificado de usuario</translation>
+        <translation>Seleccionar un certificado de usuario</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
@@ -506,7 +506,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="182"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation>Seleccioná la tasa de cuadros de video (cuadros por segundo)</translation>
+        <translation>Seleccionar la tasa de cuadros de video (cuadros por segundo)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="190"/>
@@ -562,7 +562,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Choose a name for your rendezvous point</source>
-        <translation>Elegí un nombre para tu punto de encuentro</translation>
+        <translation>Elegir un nombre para tu punto de encuentro</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
@@ -623,7 +623,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="504"/>
         <source>Select a file</source>
-        <translation>Seleccioná un archivo</translation>
+        <translation>Seleccionar un archivo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
@@ -633,12 +633,12 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="506"/>
         <source>Choose image file</source>
-        <translation>Elegí un archivo de imagen</translation>
+        <translation>Elegir un archivo de imagen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="512"/>
         <source>Enter the rendezvous point&apos;s name</source>
-        <translation>Introducí el nombre del punto de encuentro</translation>
+        <translation>Introducir el nombre del punto de encuentro</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
@@ -930,7 +930,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
         <source>Select audio input device</source>
-        <translation>Elegí el dispositivo de entrada de audio</translation>
+        <translation>Elegir el dispositivo de entrada de audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
@@ -940,7 +940,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>Select audio output device</source>
-        <translation>Elegí el dispositivo de salida de audio</translation>
+        <translation>Elegir el dispositivo de salida de audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
@@ -950,7 +950,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
         <source>Select ringtone output device</source>
-        <translation>Elegí el dispositivo de salida del tono de llamada</translation>
+        <translation>Elegir el dispositivo de salida del tono de llamada</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
@@ -965,7 +965,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
         <source>Select video device</source>
-        <translation>Elegí el dispositivo de video</translation>
+        <translation>Elegir el dispositivo de video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
@@ -980,7 +980,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="180"/>
         <source>Select video resolution</source>
-        <translation>Elegí la resolución de video</translation>
+        <translation>Elegir la resolución de video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
@@ -1000,7 +1000,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>Elegí la tasa de cuadros para la compartición de pantalla (cuadros por segundo)</translation>
+        <translation>Elegir la tasa de cuadros para la compartición de pantalla (cuadros por segundo)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
@@ -1287,7 +1287,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
         <source>Raise hand</source>
-        <translation>Levanta tu mano</translation>
+        <translation>Levantar la mano</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
@@ -1342,7 +1342,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>Enter Jami Account Management Server (JAMS) URL</source>
-        <translation>Ingresá la URL del JAMS (Jami Account Management Server)</translation>
+        <translation>Ingresar la URL del JAMS (Jami Account Management Server)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
@@ -1357,7 +1357,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>Enter your JAMS credentials</source>
-        <translation>Ingresa tus credenciales del JAMS</translation>
+        <translation>Ingresar tus credenciales del JAMS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
@@ -1372,12 +1372,12 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
         <source>Choose name</source>
-        <translation>Elegí un nombre</translation>
+        <translation>Elegir un nombre</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
         <source>Choose username</source>
-        <translation>Elegí un nombre de usuario</translation>
+        <translation>Elegir un nombre de usuario</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="299"/>
@@ -1402,12 +1402,12 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Choose a name</source>
-        <translation>Elegí un nombre</translation>
+        <translation>Elegir un nombre</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>Choose your username</source>
-        <translation>Elegí tu nombre de usuario</translation>
+        <translation>Elegir tu nombre de usuario</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
@@ -1518,7 +1518,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Register a username</source>
-        <translation>Registrá un nombre de usuario</translation>
+        <translation>Registrar un nombre de usuario</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
@@ -1548,7 +1548,7 @@ Jami se cerrará.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
         <source>Are you sure you wish to remove this device?</source>
-        <translation>¿Está seguro que desea remover este dispositivo?</translation>
+        <translation>¿Estás seguro que deseás remover este dispositivo?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
@@ -1620,7 +1620,7 @@ Por favor intentalo más tarde.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
         <source>Choose download directory</source>
-        <translation>Elegí un directorio de descargas</translation>
+        <translation>Elegir un directorio de descargas</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
@@ -1773,7 +1773,7 @@ Por favor intentalo más tarde.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>Select a record directory</source>
-        <translation>Elegí un directorio para las grabaciones</translation>
+        <translation>Elegir un directorio para las grabaciones</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
@@ -1833,7 +1833,7 @@ Por favor intentalo más tarde.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
         <source>Enter your name</source>
-        <translation>Ingresá tu nombre</translation>
+        <translation>Ingresar tu nombre</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
@@ -1959,7 +1959,7 @@ Would you like to join the conversation?</source>
         <source>You have accepted
 the conversation request</source>
         <translation>Has aceptado
- la solicitud de conversación.</translation>
+ la solicitud de conversación</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
@@ -2097,7 +2097,7 @@ se conecte para sincronizar la conversación.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="459"/>
         <source>Enter Jami account password</source>
-        <translation>Ingresá la contraseña de tu cuenta Jami</translation>
+        <translation>Ingresar la contraseña de tu cuenta Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="466"/>
@@ -2112,7 +2112,7 @@ se conecte para sincronizar la conversación.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="468"/>
         <source>Enter your account password</source>
-        <translation>Ingresá la contraseña de la cuenta</translation>
+        <translation>Ingresar la contraseña de la cuenta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
@@ -2122,17 +2122,17 @@ se conecte para sincronizar la conversación.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="472"/>
         <source>Enter the password</source>
-        <translation>Ingresá la contraseña</translation>
+        <translation>Ingresar la contraseña</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="473"/>
         <source>Enter current password</source>
-        <translation>Ingresá la contraseña actual</translation>
+        <translation>Ingresar la contraseña actual</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="474"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation>Ingresá la contraseña de la cuenta para confirmar la remoción del dispositivo</translation>
+        <translation>Ingresar la contraseña de la cuenta para confirmar la remoción del dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
@@ -2162,7 +2162,7 @@ se conecte para sincronizar la conversación.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="482"/>
         <source>Choose a picture as avatar</source>
-        <translation>Elegí una imagen de avatar</translation>
+        <translation>Elegir una imagen de avatar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="483"/>
@@ -2182,7 +2182,7 @@ se conecte para sincronizar la conversación.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="493"/>
         <source>Select a plugin to install</source>
-        <translation>Seleccioná un complemento para instalar</translation>
+        <translation>Seleccionar un complemento para instalar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="494"/>
@@ -2202,12 +2202,12 @@ se conecte para sincronizar la conversación.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="517"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation>Introducí la contraseña de la cuenta para confirmar su eliminación de este dispositivo</translation>
+        <translation>Introducir la contraseña de la cuenta para confirmar su eliminación de este dispositivo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="520"/>
         <source>Select a screen to share</source>
-        <translation>Seleccioná una pantalla para compartir</translation>
+        <translation>Seleccionar una pantalla para compartir</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
@@ -2654,7 +2654,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="536"/>
         <source>%1 days ago</source>
-        <translation>Hace %1 días</translation>
+        <translation>hace %1 días</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="538"/>
@@ -2664,7 +2664,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="541"/>
         <source>%1 hours ago</source>
-        <translation>Hace %1 horas</translation>
+        <translation>hace %1 horas</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="543"/>
@@ -2674,7 +2674,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="546"/>
         <source>%1 minutes ago</source>
-        <translation>Hace %1 minutos</translation>
+        <translation>hace %1 minutos</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="547"/>

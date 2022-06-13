@@ -73,7 +73,7 @@
         <location filename="../src/libclient/authority/storagehelper.cpp" line="197"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="952"/>
         <source>Invitation received</source>
-        <translation type="unfinished"/>
+        <translation>Η πρόσκληση παραλήφθηκε</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="224"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="31"/>
         <source>Place video call</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη κλήσης βίντεο</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="32"/>
@@ -443,17 +443,17 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="33"/>
         <source>Place audio call</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη κλήσης ήχου</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="34"/>
         <source>Add to conversations</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη στις συνομιλίες</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="35"/>
         <source>Unban contact</source>
-        <translation type="unfinished"/>
+        <translation>Κατάργηση αποκλεισμού επαφής</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="36"/>
@@ -598,37 +598,37 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="59"/>
         <source>%d days ago</source>
-        <translation type="unfinished"/>
+        <translation>1%d ημέρες πρίν</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="60"/>
         <source>%d hours ago</source>
-        <translation type="unfinished"/>
+        <translation>1%d ώρες πρίν</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="62"/>
         <source>%d minutes ago</source>
-        <translation type="unfinished"/>
+        <translation>1%d λεπτά πριν</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="63"/>
         <source>one day ago</source>
-        <translation type="unfinished"/>
+        <translation>μία ημέρα πρίν</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="64"/>
         <source>one hour ago</source>
-        <translation type="unfinished"/>
+        <translation>μία ώρα πρίν</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="65"/>
         <source>just now</source>
-        <translation type="unfinished"/>
+        <translation>Μόλις τώρα</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="66"/>
         <source>Failure</source>
-        <translation type="unfinished"/>
+        <translation>Αποτυχία</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="69"/>
@@ -638,7 +638,7 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="70"/>
         <source>Retry</source>
-        <translation type="unfinished"/>
+        <translation>Επανάληψη</translation>
     </message>
 </context>
 <context>

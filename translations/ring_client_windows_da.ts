@@ -91,12 +91,12 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="128"/>
         <source>Missed call</source>
-        <translation type="unfinished"/>
+        <translation>Ubesvaret opkld</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>Ubesvaret opkald fra %1</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="498"/>
@@ -111,12 +111,12 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="546"/>
         <source>%1 is calling you</source>
-        <translation type="unfinished"/>
+        <translation>%1 ringer</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="557"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>ringer</translation>
     </message>
 </context>
 <context>
@@ -134,7 +134,7 @@
     <message>
         <location filename="../src/app/mainview/components/ContactPicker.qml" line="88"/>
         <source>Add default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Tilføj standardmoderator</translation>
     </message>
 </context>
 <context>
@@ -1089,7 +1089,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
         <source>is calling you</source>
-        <translation type="unfinished"/>
+        <translation>ringer</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
@@ -2332,7 +2332,7 @@ Kopier og del det med dine venner!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
         <source>Add default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Tilføj standardmoderator</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
@@ -2597,7 +2597,7 @@ Kopier og del det med dine venner!</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="271"/>
         <source>Sent</source>
-        <translation type="unfinished"/>
+        <translation>Sendt</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="273"/>

@@ -1948,7 +1948,8 @@ Jami will now quit.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
         <source>Hello,
 Would you like to join the conversation?</source>
-        <translation type="unfinished"/>
+        <translation>درود،
+می‌خواهید به گفت‌وگو بپیوندید؟</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
@@ -2598,7 +2599,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="271"/>
         <source>Sent</source>
-        <translation type="unfinished"/>
+        <translation>فرستاده</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="273"/>

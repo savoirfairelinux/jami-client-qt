@@ -2599,7 +2599,7 @@ Zkopírujte je a sdílejte je se svými přáteli!</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="271"/>
         <source>Sent</source>
-        <translation type="unfinished"/>
+        <translation>Posláno</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="273"/>

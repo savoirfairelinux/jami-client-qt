@@ -661,7 +661,7 @@
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1015"/>
         <source>Couldn&apos;t lookup…</source>
-        <translation>Nisem mogel pridobiti...</translation>
+        <translation>Ni mogoče pridobiti ...</translation>
     </message>
 </context>
 <context>
