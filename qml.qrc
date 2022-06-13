@@ -191,6 +191,9 @@
         <file>src/app/mainview/components/KeyboardShortcutKeyDelegate.qml</file>
         <file>src/app/mainview/components/KeyboardShortcutTabButton.qml</file>
         <file>src/app/LayoutManager.qml</file>
+        <file>src/app/webview/WebViewCustom.qml</file>
+        <file>src/app/webview/jamiclientinternal_qt.js</file>
+        <file>src/app/webview/webviewcreation.js</file>
         <file>src/app/mainview/components/JamiIdentifier.qml</file>
         <file>src/app/wizardview/components/NoUsernamePopup.qml</file>
         <file>src/app/wizardview/components/AdvancedAccountSettings.qml</file>
