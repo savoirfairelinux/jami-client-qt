@@ -25,12 +25,14 @@
 #include "api/datatransfer.h"
 #include "api/datatransfermodel.h"
 #include "api/behaviorcontroller.h"
+#include "api/pluginmodel.h"
 
 // Lrc
 #include "dbus/callmanager.h"
 #include "dbus/configurationmanager.h"
 #include "dbus/presencemanager.h"
 #include "dbus/videomanager.h"
+#include "dbus/pluginmanager.h"
 
 // DRing
 #include <datatransfer_interface.h>
@@ -333,6 +335,12 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             this,
             &CallbacksHandler::slotConversationMemberEvent,
             Qt::QueuedConnection);
+
+    connect(&PluginManager::instance(),
+            &PluginManagerInterface::webViewMessageReceived,
+            this,
+            &CallbacksHandler::slotWebViewMessageReceived,
+            Qt::QueuedConnection);
 }
 
 CallbacksHandler::~CallbacksHandler() {}
@@ -528,11 +536,11 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
             auto pieces2 = pieces1[1].split("=");
             auto pieces3 = pieces1[2].split("=");
             Q_EMIT incomingVCardChunk(accountId,
-                                    callId,
-                                    from2,
-                                    pieces2[1].toInt(),
-                                    pieces3[1].toInt(),
-                                    e.second);
+                                      callId,
+                                      from2,
+                                      pieces2[1].toInt(),
+                                      pieces3[1].toInt(),
+                                      e.second);
         } else if (e.first.contains(
                        "text/plain")) { // we consider it as an usual message interaction
             Q_EMIT incomingCallMessage(accountId, callId, from2, e.second);
@@ -777,6 +785,15 @@ CallbacksHandler::slotConversationMemberEvent(const QString& accountId,
                                               int event)
 {
     Q_EMIT conversationMemberEvent(accountId, conversationId, memberId, event);
+}
+
+void
+CallbacksHandler::slotWebViewMessageReceived(const QString& pluginId,
+                                             const QString& webViewId,
+                                             const QString& messageId,
+                                             const QString& payload)
+{
+    Q_EMIT webViewMessageReceived(pluginId, webViewId, messageId, payload);
 }
 
 } // namespace lrc
