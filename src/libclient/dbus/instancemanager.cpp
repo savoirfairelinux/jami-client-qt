@@ -19,11 +19,9 @@
 
 #include "instancemanager.h"
 
-#ifndef _MSC_VER
+#if !defined(ENABLE_LIBWRAP) && !defined(_MSC_VER)
 #include <unistd.h>
-#else
-#include "../../daemon/compat/msvc/unistd.h"
-#endif // !_MSC_VER
+#endif
 
 #include "../globalinstances.h"
 #include "../interfaces/dbuserrorhandleri.h"
