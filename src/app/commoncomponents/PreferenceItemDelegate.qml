@@ -100,7 +100,7 @@ ItemDelegate {
             color: JamiTheme.textColor
             elide: Text.ElideRight
             font.pointSize: JamiTheme.settingsFontSize
-            ToolTip.visible: hovered
+            ToolTip.visible: hovered && preferenceSummary
             ToolTip.text: preferenceSummary
             opacity: enabled ? 1.0 : 0.5
         }
