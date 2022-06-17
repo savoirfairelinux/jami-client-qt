@@ -32,6 +32,7 @@ Rectangle {
     id: root
 
     color: CurrentConversation.color
+    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -48,7 +49,7 @@ Rectangle {
             PhotoboothView {
                 id: currentAccountAvatar
                 darkTheme: UtilsAdapter.luma(root.color)
-                editable: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
+                readOnly: !root.isAdmin
 
                 Layout.alignment: Qt.AlignHCenter
 
@@ -68,6 +69,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
 
                 text: CurrentConversation.title
+                readOnly: !root.isAdmin
                 placeholderText: JamiStrings.swarmName
                 placeholderTextColor: {
                     if (editable) {
@@ -106,6 +108,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
 
                 text: CurrentConversation.description
+                readOnly: !root.isAdmin
                 placeholderText: JamiStrings.addADescription
                 placeholderTextColor: {
                     if (editable) {

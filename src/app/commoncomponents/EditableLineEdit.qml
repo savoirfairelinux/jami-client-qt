@@ -41,6 +41,7 @@ Item {
     property var editIconColor:  UtilsAdapter.luma(root.color) ? JamiTheme.editLineColor : "white"
     property var cancelIconColor: UtilsAdapter.luma(root.color) ? JamiTheme.buttonTintedBlue : "white"
 
+    property bool readOnly: false
     property bool editable: false
     property bool hovered: false
     property string tooltipText: ""
@@ -71,7 +72,7 @@ Item {
 
         Image {
             id: editImg
-            opacity: editable
+            opacity: editable && !root.readOnly
 
             Layout.alignment: Qt.AlignVCenter
 
@@ -95,7 +96,7 @@ Item {
         MaterialLineEdit {
             id: lineEdit
 
-            readOnly: !editable
+            readOnly: !editable || root.readOnly
             underlined: true
 
             borderColor: root.editIconColor
@@ -127,9 +128,9 @@ Item {
 
             Layout.alignment: Qt.AlignVCenter
 
-            enabled: editable
+            enabled: editable && !root.readOnly
             preferredSize: lineEdit.height * 2 / 3
-            opacity: editable ? 0.8 : 0
+            opacity: enabled ? 0.8 : 0
             imageColor: root.cancelIconColor
             normalColor: "transparent"
             hoveredColor: JamiTheme.hoveredButtonColor
@@ -155,7 +156,7 @@ Item {
         anchors.fill: row
         radius: JamiTheme.primaryRadius
 
-        visible: root.editable || root.hovered
+        visible: (root.editable || root.hovered)  && !root.readOnly
         color: root.editIconColor
 
         Rectangle {
