@@ -818,7 +818,7 @@ ConversationModel::removeConversation(const QString& uid, bool banned)
             ConfigurationManager::instance().removeConversation(owner.id, uid);
 
         // Still some other conversation, do nothing else
-        if (!banned && getConversationForPeerUri(peers.front()) != std::nullopt)
+        if (!banned)
             return;
     }
 
@@ -2648,23 +2648,20 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
         auto& conversation = getConversationForUid(conversationId).get();
         auto& peers = peersForConversation(conversation);
 
-        // if swarm conversation removed but we still have contact we create non swarm conversation.
-        // we should create non swarm conversation only for removed one-to-one conversation.
         if (conversation.mode == conversation::Mode::ONE_TO_ONE) {
             if (peers.isEmpty()) {
                 removeConversation();
                 return;
             }
 
-            auto contactId = peers.first();
+            auto contactUri = peers.first();
             removeConversation();
 
-            auto conv = storage::getConversationsWithPeer(db, contactId);
-            if (conv.empty()) {
-                conv.push_back(storage::beginConversationWithPeer(db, contactId));
-            }
-            addConversationWith(conv[0], contactId, false);
-            Q_EMIT linked.newConversation(conv[0]);
+            // If it's a 1:1 conversation and we don't have any more conversation
+            // we can remove the contact
+            auto conv = storage::getConversationsWithPeer(db, contactUri);
+            if (conv.empty())
+                linked.owner.contactModel->removeContact(contactUri, true);
         } else {
             removeConversation();
         }
