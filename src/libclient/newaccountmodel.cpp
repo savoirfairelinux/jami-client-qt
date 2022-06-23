@@ -77,9 +77,6 @@ public:
     AccountInfoDbMap accounts;
 
     // Synchronization tools
-    std::mutex m_mutex_account;
-    std::mutex m_mutex_account_removal;
-    std::condition_variable m_condVar_account_removal;
     std::atomic_bool username_changed;
     QString new_username;
 
@@ -341,21 +338,6 @@ NewAccountModel::changeAccountPassword(const QString& accountId,
     return ConfigurationManager::instance().changeAccountPassword(accountId,
                                                                   currentPassword,
                                                                   newPassword);
-}
-
-void
-NewAccountModel::flagFreeable(const QString& accountId) const
-{
-    auto account = pimpl_->accounts.find(accountId);
-    if (account == pimpl_->accounts.end())
-        throw std::out_of_range("NewAccountModel::flagFreeable, can't find "
-                                + accountId.toStdString());
-
-    {
-        std::lock_guard<std::mutex> lock(pimpl_->m_mutex_account_removal);
-        account->second.first.freeable = true;
-    }
-    pimpl_->m_condVar_account_removal.notify_all();
 }
 
 const account::Info&
@@ -790,13 +772,6 @@ NewAccountModelPimpl::removeFromAccounts(const QString& accountId)
     accountInfo.valid = false;
     Q_EMIT linked.accountRemoved(accountId);
 
-#ifdef CHK_FREEABLE_BEFORE_ERASE_ACCOUNT
-    std::unique_lock<std::mutex> lock(m_mutex_account_removal);
-    // Wait for client to stop using old account structs
-    m_condVar_account_removal.wait(lock, [&]() { return accounts[accountId].first.freeable; });
-    lock.unlock();
-#endif
-
     // Now we can free them
     accounts.erase(accountId);
 }
@@ -1227,7 +1202,6 @@ NewAccountModel::avatar(const QString& accountId) const
 {
     return authority::storage::avatar(accountId);
 }
-
 
 } // namespace lrc
 
