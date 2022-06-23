@@ -21,7 +21,7 @@
 
 #include <locale>
 
-#if !defined(ENABLE_LIBWRAP) && !defined(_MSC_VER)
+#if !defined(_MSC_VER)
 #include <unistd.h>
 #endif
 
