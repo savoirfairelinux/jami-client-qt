@@ -217,7 +217,6 @@ Q_ENUM_NS(LookupStatus)
 
 struct Info
 {
-    bool freeable = false;
     bool valid = true;
     QString registeredName;
     Status status = account::Status::INVALID;

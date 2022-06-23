@@ -176,24 +176,6 @@ if(NOT (${ENABLE_PLUGIN} MATCHES false))
   add_definitions(-DENABLE_PLUGIN=true)
 endif()
 
-set(CHK_FREEABLE_BEFORE_ERASE_ACCOUNT_DESCRIPTION
-  "Check that an account has been marked freeable by the client
-before freeing the structures.  This avoids various race conditions
-conditions while removing accounts but may not be supported by all
-clients.  ON by default on GNU/Linux systems, otherwise OFF.")
-
-if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-  option(CHK_FREEABLE_BEFORE_ERASE_ACCOUNT
-    CHK_FREEABLE_BEFORE_ERASE_ACCOUNT_DESCRIPTION ON)
-else()
-  option(CHK_FREEABLE_BEFORE_ERASE_ACCOUNT
-    CHK_FREEABLE_BEFORE_ERASE_ACCOUNT_DESCRIPTION OFF)
-endif()
-
-if(CHK_FREEABLE_BEFORE_ERASE_ACCOUNT)
-  add_definitions(-DCHK_FREEABLE_BEFORE_ERASE_ACCOUNT)
-endif()
-
 include_directories(SYSTEM ${QT_INCLUDES})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})

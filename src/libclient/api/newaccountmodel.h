@@ -67,10 +67,6 @@ public:
      * @return a const account::Info& structure.
      */
     const account::Info& getAccountInfo(const QString& accountId) const;
-    /**
-     * flag account corresponding to passed id as freeable.
-     */
-    void flagFreeable(const QString& accountId) const;
 
     /**
      * Used when images < 20 Mb are automatically accepted and downloaded
