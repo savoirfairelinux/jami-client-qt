@@ -306,7 +306,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
         <source>Username</source>
-        <translation>Nume de Utilizator</translation>
+        <translation>Nume de utilizator</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="68"/>
@@ -511,7 +511,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="190"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and can not be recovered. You can backup your account now or later.</source>
-        <translation>Acest cont există doar în acest aparat. Dacă ai pierdut aparatul sau ai dezinstalat aplicația, contul tău va fi șters și nu va putea fi recuperat. Poți face o copie de rezervă acum sau mai tîrziu.</translation>
+        <translation>Acest cont există doar în acest aparat. Dacă ai pierdut aparatul sau ai dezinstalat aplicația, contul tău va fi șters și nu va putea fi recuperat. Poți face o copie de rezervă acum sau mai târziu.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
@@ -532,7 +532,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
         <source>Pause video</source>
-        <translation>Întrerupe video</translation>
+        <translation>Pauză video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="221"/>
@@ -588,7 +588,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="413"/>
         <source>SSL error</source>
-        <translation>eroare SSL</translation>
+        <translation>Eroare SSL</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="460"/>
@@ -648,7 +648,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="541"/>
         <source>Create account from Jami Account Management Server (JAMS)</source>
-        <translation>Creează un cont de pe Jami Account Management Server (JAMS)</translation>
+        <translation>Creează un cont de pe Serverul de Administrare a Conturilor Jami (JAMS)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="544"/>
@@ -694,7 +694,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="33"/>
         <source>Accept in audio</source>
-        <translation>Doar vocal</translation>
+        <translation>Răspunde vocal</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="34"/>
@@ -1080,7 +1080,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
         <source>are recording</source>
-        <translation>sînt înregistrate</translation>
+        <translation>sunt înregistrate</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
@@ -1282,12 +1282,12 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Lower hand</source>
-        <translation>Coboară mîna</translation>
+        <translation>Coboară mâna</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
         <source>Raise hand</source>
-        <translation>Ridică mîna</translation>
+        <translation>Ridică mâna</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
@@ -1332,7 +1332,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
         <source>Several people are typing…</source>
-        <translation>Cîteva persoane scriu…</translation>
+        <translation>Câteva persoane scriu…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
@@ -1342,7 +1342,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>Enter Jami Account Management Server (JAMS) URL</source>
-        <translation>Introdu URL-ul Serverului de Administrare a Conturilor JAMI (JAMS)</translation>
+        <translation>Introdu URL-ul Serverului de Administrare a Conturilor Jami (JAMS)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
@@ -1352,7 +1352,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Jami Account Management Server URL</source>
-        <translation>URL-ul Serverului de Administrare a Conturilor</translation>
+        <translation>URL-ul Serverului de Administrare a Conturilor Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
@@ -1427,7 +1427,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>Username already taken</source>
-        <translation>Nume de utilizator ales deja</translation>
+        <translation>Nume ales deja</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
@@ -1467,7 +1467,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
         <source>Password change failed</source>
-        <translation>Schimbare nereușită a parolei</translation>
+        <translation>Schimbare parolei nu a reușit</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="323"/>
@@ -1565,7 +1565,7 @@ Jami se va închide acum.</translation>
         <source>Error connecting to the network.
 Please try again later.</source>
         <translation>Eroare la conectarea la rețea.
-Încearcă din nou mai tîrziu.</translation>
+Încearcă din nou mai târziu.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
@@ -1742,7 +1742,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
         <source>This will uninstall your current Release version and you can always download the latest Release version on our website</source>
-        <translation>Aceasta va dezinstala versiunea actuală și poți descărca cînd vrei ultima versiune de pe situl nostru web</translation>
+        <translation>Aceasta va dezinstala versiunea actuală și poți descărca când vrei ultima versiune de pe situl nostru web</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
@@ -1788,7 +1788,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="438"/>
         <source>Start</source>
-        <translation>Pornește</translation>
+        <translation>Start</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
@@ -1873,7 +1873,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="567"/>
         <source>Later</source>
-        <translation>Mai tîrziu</translation>
+        <translation>Mai târziu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
@@ -2086,7 +2086,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
         <source>You can obtain an archive by clicking on &quot;Backup account&quot; in the account settings. This will create a .gz file on your device.</source>
-        <translation>Poți obține o arhivă făcînd clic pe „Copie de rezervă a contului” în reglările contului. Asta va crea un fișier .gz în aparatul tău.</translation>
+        <translation>Poți obține o arhivă făcând clic pe „Copie de rezervă a contului” în reglările contului. Asta va crea un fișier .gz în aparatul tău.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="454"/>
@@ -2766,7 +2766,7 @@ Copiază-l și distribuie-l prietenilor!</translation>
     <message>
         <location filename="../src/app/settingsview/components/SystemSettings.qml" line="92"/>
         <source>Enable desktop notifications</source>
-        <translation>Afișați notificări</translation>
+        <translation>Activează notificările</translation>
     </message>
 </context>
 <context>

@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/libclient/api/call.h" line="67"/>
         <source>Incoming</source>
-        <translation>Sosește</translation>
+        <translation>Se primește</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="69"/>
@@ -568,7 +568,7 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="58"/>
         <source>Note: you can automatically accept this invitation by sending a message.</source>
-        <translation>Aviz: poți accepta automat această invitație trimițînd un mesaj.</translation>
+        <translation>Aviz: poți accepta automat această invitație trimițând un mesaj.</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="59"/>
