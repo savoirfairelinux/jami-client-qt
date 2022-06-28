@@ -28,9 +28,6 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    radius: 5
-    border.color: JamiTheme.tabbarBorderColor
-
     JamiFlickable {
         id: projectCreditsFlickable
 

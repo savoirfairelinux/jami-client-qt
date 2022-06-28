@@ -48,7 +48,7 @@ Item {
     property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (BETA)" : "")
     property string companyDeclarationYear: "© 2015-2022 Savoir-faire Linux Inc."
     property string slogan: "Taranis"
-    property string declaration: qsTr("Jami is a free software for universal communication which respects the freedom and privacy of its users.")
+    property string declaration: qsTr("Jami is a free universal communication software that\n respects the freedom and privacy of its users.")
     property string credits: qsTr("Credits")
 
     // AccountComboBox
