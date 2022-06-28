@@ -39,6 +39,8 @@ Flickable {
     ScrollBar.horizontal: JamiScrollBar {
         id: horizontalScrollBar
 
+
+
         attachedFlickableMoving: root.attachedFlickableMoving
         orientation: Qt.Horizontal
     }
