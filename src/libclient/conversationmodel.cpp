@@ -2739,18 +2739,17 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
 
     auto peerUri = convRequest["from"];
     auto mode = conversation::to_mode(convRequest["mode"].toInt());
+    QString callId, confId;
     if (mode == conversation::Mode::ONE_TO_ONE) {
         try {
             // check if we have contact request for peer
             auto& conv = getConversationForPeerUri(peerUri).get();
             if (conv.mode == conversation::Mode::NON_SWARM) {
-                // update conversation and remove the invite conversation from db
-                conv.mode = mode;
-                conv.uid = convId;
+                eraseConversation(conv.uid);
                 storage::removeContactConversations(db, peerUri);
                 invalidateModel();
+                Q_EMIT linked.conversationRemoved(conv.uid);
                 Q_EMIT linked.modelChanged();
-                return;
             }
         } catch (std::out_of_range&) {
             qWarning() << "Couldn't find contact request conversation for" << peerUri;
@@ -2769,6 +2768,8 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
     conversation::Info conversation;
     conversation.uid = convId;
     conversation.infos = details;
+    conversation.callId = callId;
+    conversation.confId = confId;
     conversation.accountId = linked.owner.id;
     conversation.participants = {{linked.owner.profileInfo.uri, member::Role::INVITED},
                                  {peerUri, member::Role::MEMBER}};
@@ -2778,6 +2779,10 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
     invalidateModel();
     Q_EMIT linked.newConversation(convId);
     Q_EMIT linked.modelChanged();
+    if (!callId.isEmpty()) {
+        // If we replace a non swarm request by a swarm request while having a call.
+        Q_EMIT linked.selectConversation(convId);
+    }
 }
 
 void
@@ -3101,7 +3106,7 @@ ConversationModelPimpl::slotIncomingCall(const QString& fromId, const QString& c
     }
 
     auto& conversation = conversations.at(conversationIndices.at(0));
-    qDebug() << "Add call to conversation with " << fromId;
+    qDebug() << "Add call to conversation " << conversation.uid << " - " << callId;
     conversation.callId = callId;
 
     addOrUpdateCallMessage(callId, fromId, true);
@@ -3198,23 +3203,22 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
                                                const std::time_t& duration)
 {
     // do not save call interaction for swarm conversation
-    auto convIds = storage::getConversationsWithPeer(db, from);
-    if (convIds.empty()) {
-        // in case if we receive call after removing contact add conversation request;
+    try {
+        auto& conv = getConversationForPeerUri(from).get();
+        if (conv.isSwarm())
+            return;
+    } catch (const std::exception&) {
+        // If we have no conversation with peer.
         try {
             auto contact = linked.owner.contactModel->getContact(from);
-            if (contact.profileInfo.type == profile::Type::PENDING && !contact.isBanned) {
+            if (contact.profileInfo.type == profile::Type::PENDING) {
                 addContactRequest(from);
-                convIds.push_back(storage::beginConversationWithPeer(db, contact.profileInfo.uri));
-                auto& conv = getConversationForPeerUri(contact.profileInfo.uri).get();
-                conv.uid = convIds[0];
-            } else {
-                return;
+                storage::beginConversationWithPeer(db, contact.profileInfo.uri);
             }
-        } catch (const std::out_of_range&) {
-            return;
+        } catch (const std::exception&) {
         }
     }
+
     // Get conversation
     auto conv_it = std::find_if(conversations.begin(),
                                 conversations.end(),
