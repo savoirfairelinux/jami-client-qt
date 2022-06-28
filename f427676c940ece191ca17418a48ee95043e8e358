@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd3d28b6_468fbc49",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-28T18:35:38Z",
+      "side": 1,
+      "message": "bad commit message + missing GitLab ticket",
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50083dd3_71d29158",
+        "filename": "src/app/commoncomponents/JamiFlickable.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-28T18:35:38Z",
+      "side": 1,
+      "message": "remove empty lines.",
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e30cd9d_62aff18c",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-28T18:35:38Z",
+      "side": 1,
+      "message": "There is a useless scrollbar that can be activated when scrolling",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "995dec6c_160859fd",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-28T18:35:38Z",
+      "side": 1,
+      "message": "missing todo",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 21
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6847fbee_8f950b11",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-28T18:35:38Z",
+      "side": 1,
+      "message": "avoid magic numbers and add into JamiTheme",
+      "range": {
+        "startLine": 71,
+        "startChar": 39,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f23cb38_1af0706d",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-28T18:35:38Z",
+      "side": 1,
+      "message": "make this clickable to https://savoirfairelinux.com",
+      "range": {
+        "startLine": 195,
+        "startChar": 22,
+        "endLine": 195,
+        "endChar": 58
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7795a8db_f976bf1e",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-28T18:35:38Z",
+      "side": 1,
+      "message": "something a bit weird, in light theme, the view is pretty transparent, but in dark theme it\u0027s black text on pure white. Maybe homogeneize (and get white text on a correct background color).",
+      "range": {
+        "startLine": 228,
+        "startChar": 12,
+        "endLine": 228,
+        "endChar": 36
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
