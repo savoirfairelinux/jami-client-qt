@@ -40,6 +40,7 @@ Item {
     property color whiteColor: "#ffffff"
     property color darkGreyColor: "#272727"
     property color darkGreyColorOpacity: "#be272727" // 77%
+    property color tintedBlue: "#005699"
 
     property color transparentColor: "transparent"
     property color primaryForegroundColor: darkTheme ? whiteColor : blackColor
@@ -224,12 +225,15 @@ Item {
     property real indicatorFontSize: 6
     property real tinyFontSize: 7 + fontSizeOffset
     property real textFontSize: 9 + fontSizeOffset
+    property real bigFontSize: 22
     property real settingsFontSize: 11 + fontSizeOffset
     property real buttonFontSize: 9
     property real participantFontSize: 10
     property real menuFontSize: 12 + fontSizeOffset
     property real headerFontSize: 13 + fontSizeOffset
     property real titleFontSize: 16 + fontSizeOffset
+    property real tinyCreditsTextSize: 13 + fontSizeOffset
+    property real creditsTextSize: 15 + fontSizeOffset
     property real primaryRadius: 4
     property real smartlistItemFontSize: 10.5 + fontSizeOffset
     property real smartlistItemInfoFontSize: 9 + fontSizeOffsetSmall
@@ -297,7 +301,7 @@ Item {
     property real switchIndicatorPreferredWidth: 26
 
     // Modal Popup
-    property real modalPopupRadius: 4
+    property real modalPopupRadius: 20
 
     // MessageWebView
     property real chatViewHairLineSize: 1
