@@ -394,9 +394,6 @@ CallAdapter::acceptACall(const QString& accountId, const QString& convUid)
     lrcInstance_->getAccountInfo(accountId).callModel->accept(convInfo.callId);
     auto& accInfo = lrcInstance_->getAccountInfo(convInfo.accountId);
     accInfo.callModel->setCurrentCall(convInfo.callId);
-    if (convInfo.isRequest) {
-        lrcInstance_->makeConversationPermanent(convInfo.uid, accountId);
-    }
 }
 
 void
