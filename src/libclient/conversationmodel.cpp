@@ -2239,7 +2239,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
         return;
     }
 
-    auto allLoaded = false;
+    auto allLoaded = messages.size() == 0;
 
     try {
         auto& conversation = getConversationForUid(conversationId).get();
@@ -2304,11 +2304,13 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
         }
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
-            QString newLast = conversation.interactions->rbegin()->first;
-            if (newLast == oldLast && !newLast.isEmpty()) { // [[unlikely]] in c++20
-                qCritical() << "Loading loop detected for " << conversationId << "(" << newLast
-                            << ")";
-                return;
+            if (conversation.interactions->size() > 0) {
+                QString newLast = conversation.interactions->rbegin()->first;
+                if (newLast == oldLast && !newLast.isEmpty()) { // [[unlikely]] in c++20
+                    qCritical() << "Loading loop detected for " << conversationId << "(" << newLast
+                                << ")";
+                    return;
+                }
             }
 
             // In this case, we only have loaded merge commits. Load more messages
