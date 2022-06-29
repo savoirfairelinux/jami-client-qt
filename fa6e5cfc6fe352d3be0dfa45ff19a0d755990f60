@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ce36e85_122e8779",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-29T20:45:21Z",
+      "side": 1,
+      "message": "Just a typo and LGTM",
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d234fd51_9875a4c1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-29T20:45:21Z",
+      "side": 1,
+      "message": "rendezvous (rendez-vous is in french)",
+      "range": {
+        "startLine": 303,
+        "startChar": 48,
+        "endLine": 303,
+        "endChar": 54
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

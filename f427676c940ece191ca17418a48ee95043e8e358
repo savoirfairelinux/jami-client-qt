@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5632c0e2_50860706",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-29T20:45:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd3d28b6_468fbc49",
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50083dd3_71d29158",
@@ -58,6 +76,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28a7c933_cb54f6e8",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-29T20:45:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e30cd9d_62aff18c",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "995dec6c_160859fd",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-06-28T18:35:38Z",
       "side": 1,
       "message": "missing todo",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 21
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c5984cd_fa1731e0",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-29T20:45:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "995dec6c_160859fd",
       "range": {
         "startLine": 40,
         "startChar": 9,
@@ -104,6 +170,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "983ceab6_c92e1d85",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-29T20:45:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6847fbee_8f950b11",
+      "range": {
+        "startLine": 71,
+        "startChar": 39,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f23cb38_1af0706d",
@@ -127,6 +217,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44cdc4f8_31d894fc",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-29T20:45:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f23cb38_1af0706d",
+      "range": {
+        "startLine": 195,
+        "startChar": 22,
+        "endLine": 195,
+        "endChar": 58
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7795a8db_f976bf1e",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-06-28T18:35:38Z",
       "side": 1,
       "message": "something a bit weird, in light theme, the view is pretty transparent, but in dark theme it\u0027s black text on pure white. Maybe homogeneize (and get white text on a correct background color).",
+      "range": {
+        "startLine": 228,
+        "startChar": 12,
+        "endLine": 228,
+        "endChar": 36
+      },
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9d4f34c_66c7e2b0",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-29T20:45:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7795a8db_f976bf1e",
       "range": {
         "startLine": 228,
         "startChar": 12,
