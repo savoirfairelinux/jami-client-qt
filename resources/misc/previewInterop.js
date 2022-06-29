@@ -13,12 +13,46 @@ function getPreviewInfo(messageId, url) {
     if (!url.includes("http://") && !url.includes("https://")) {
         url = "http://".concat(url)
     }
+    var domain = (new URL(url))
     fetch(url, {
               mode: 'no-cors',
               headers: {'Set-Cookie': 'SameSite=None; Secure'}
           }).then(function (response) {
-        return response.text()
-    }).then(function (html) {
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('text/html')) {
+            return
+        }
+        return response.body
+    }).then(body => {
+        const reader = body.getReader();
+
+        return new ReadableStream({
+          start(controller) {
+            return pump();
+
+            function pump() {
+                return reader.read().then(({ done, value }) => {
+                    // When no more data needs to be consumed, close the stream
+                    if (done) {
+                        controller.close();
+                        return;
+                    }
+                    if(value.byteLength > 2*1024*1024) {
+                        controller.close();
+                        return;
+                    }
+
+                    // Enqueue the next data chunk into our target stream
+                    controller.enqueue(value);
+                    return pump();
+                });
+            }
+          }
+        })
+      }, e => Promise.reject(e))
+      .then(stream => new Response(stream))
+      .then(response => response.text())
+      .then(function (html) {
         // create DOM from html string
         var parser = new DOMParser()
         var doc = parser.parseFromString(html, "text/html")
@@ -29,18 +63,17 @@ function getPreviewInfo(messageId, url) {
         }
         image = getImage(doc, url)
         description = getDescription(doc)
-        var domain = (new URL(url))
         domain = (domain.hostname).replace("www.", "")
-
-        window.jsbridge.emitInfoReady(messageId, {
-                                          'title': title,
-                                          'image': image,
-                                          'description': description,
-                                          'url': url,
-                                          'domain': domain,
-                                      })
     }).catch(function (err) {
         log("Error occured while fetching document: " + err)
+    }).finally(() => {
+        window.jsbridge.emitInfoReady(messageId, {
+            'title': title,
+            'image': image,
+            'description': description,
+            'url': url,
+            'domain': domain,
+        })
     })
 }
 
