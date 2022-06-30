@@ -69,6 +69,16 @@ CurrentConversation::updateData()
                 color = preferences["color"];
             }
             set_color(color);
+            if (convInfo.infos.contains("rdvAccount")) {
+                set_rdvAccount(convInfo.infos["rdvAccount"]);
+            } else {
+                set_rdvAccount("");
+            }
+            if (convInfo.infos.contains("rdvDevice")) {
+                set_rdvDevice(convInfo.infos["rdvDevice"]);
+            } else {
+                set_rdvDevice("");
+            }
             set_isSip(accInfo.profileInfo.type == profile::Type::SIP);
             set_callId(convInfo.getCallId());
             set_allMessagesLoaded(convInfo.allMessagesLoaded);
@@ -117,6 +127,14 @@ CurrentConversation::updateData()
     }
 }
 
+void
+CurrentConversation::onNeedsHoster(const QString& convId)
+{
+    if (id_ != convId)
+        return;
+    Q_EMIT needsHoster();
+}
+
 QVector<QMap<QString, QString>>
 CurrentConversation::activeCalls() const
 {
@@ -132,22 +150,24 @@ CurrentConversation::activeCalls() const
 void
 CurrentConversation::setPreference(const QString& key, const QString& value)
 {
-    if (key == "color") {
+    if (key == "color")
         set_color(value);
-    }
+    auto preferences = getPreferences();
+    preferences[key] = value;
     auto accountId = lrcInstance_->get_currentAccountId();
     const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
     auto convId = lrcInstance_->get_selectedConvUid();
-    if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
-        auto& convInfo = optConv->get();
-        auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
-        preferences[key] = value;
-        accInfo.conversationModel->setConversationPreferences(convId, preferences);
-    }
+    accInfo.conversationModel->setConversationPreferences(convId, preferences);
 }
 
 QString
 CurrentConversation::getPreference(const QString& key) const
+{
+    return getPreferences()[key];
+}
+
+MapStringString
+CurrentConversation::getPreferences() const
 {
     auto accountId = lrcInstance_->get_currentAccountId();
     const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
@@ -155,9 +175,20 @@ CurrentConversation::getPreference(const QString& key) const
     if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
         auto& convInfo = optConv->get();
         auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
-        return preferences[key];
+        return preferences;
     }
     return {};
+}
+
+void
+CurrentConversation::setInfo(const QString& key, const QString& value)
+{
+    MapStringString infos;
+    infos[key] = value;
+    auto accountId = lrcInstance_->get_currentAccountId();
+    const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    auto convId = lrcInstance_->get_selectedConvUid();
+    accInfo.conversationModel->updateConversationInfos(convId, infos);
 }
 
 void
@@ -178,6 +209,16 @@ CurrentConversation::connectModel()
 
     connect(lrcInstance_->getCurrentConversationModel(),
             &ConversationModel::conversationUpdated,
+            this,
+            &CurrentConversation::onConversationUpdated,
+            Qt::UniqueConnection);
+    connect(lrcInstance_->getCurrentConversationModel(),
+            &ConversationModel::needsHoster,
+            this,
+            &CurrentConversation::onNeedsHoster,
+            Qt::UniqueConnection);
+    connect(lrcInstance_->getCurrentConversationModel(),
+            &ConversationModel::profileUpdated,
             this,
             &CurrentConversation::onConversationUpdated,
             Qt::UniqueConnection);
