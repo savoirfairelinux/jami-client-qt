@@ -123,6 +123,7 @@ CurrentAccount::updateData()
         set_enabled(accInfo.enabled, true);
         set_managerUri(accConfig.managerUri);
         set_keepAliveEnabled(accConfig.keepAliveEnabled, true);
+        set_deviceId(accConfig.deviceId);
         set_peerDiscovery(accConfig.peerDiscovery, true);
         set_sendReadReceipt(accConfig.sendReadReceipt, true);
         set_isRendezVous(accConfig.isRendezVous, true);

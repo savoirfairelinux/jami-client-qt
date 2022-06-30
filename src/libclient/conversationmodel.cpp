@@ -835,9 +835,9 @@ ConversationModel::deleteObsoleteHistory(int days)
 
 void
 ConversationModel::joinCall(const QString& uid,
-                            const QString& confId,
                             const QString& uri,
                             const QString& deviceId,
+                            const QString& confId,
                             bool isAudioOnly)
 {
     try {
@@ -1812,6 +1812,9 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &ConfigurationManagerInterface::composingStatusChanged,
             this,
             &ConversationModelPimpl::slotComposingStatusChanged);
+    connect(&callbacksHandler, &CallbacksHandler::needsHoster, this, [&](auto, auto convId) {
+        emit linked.needsHoster(convId);
+    });
 
     // data transfer
     connect(&*linked.owner.contactModel,

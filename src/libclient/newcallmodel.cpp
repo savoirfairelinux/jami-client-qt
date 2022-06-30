@@ -233,6 +233,9 @@ public Q_SLOTS:
      * @param callId
      */
     void slotConferenceCreated(const QString& accountId, const QString& callId);
+    void slotConferenceChanged(const QString& accountId,
+                               const QString& callId,
+                               const QString& state);
     /**
      * Listen from CallbacksHandler when a voice mail notice is incoming
      * @param accountId
@@ -964,6 +967,10 @@ NewCallModelPimpl::NewCallModelPimpl(const NewCallModel& linked,
             this,
             &NewCallModelPimpl::slotConferenceCreated);
     connect(&callbacksHandler,
+            &CallbacksHandler::conferenceChanged,
+            this,
+            &NewCallModelPimpl::slotConferenceChanged);
+    connect(&callbacksHandler,
             &CallbacksHandler::voiceMailNotify,
             this,
             &NewCallModelPimpl::slotVoiceMailNotify);
@@ -1623,6 +1630,20 @@ NewCallModelPimpl::slotConferenceCreated(const QString& accountId, const QString
                 break;
             }
         }
+    }
+}
+
+void
+NewCallModelPimpl::slotConferenceChanged(const QString& accountId,
+                                         const QString& confId,
+                                         const QString& state)
+{
+    if (accountId != linked.owner.id)
+        return;
+    // Detect if conference is created for this account
+    QStringList callList = CallManager::instance().getParticipantList(linked.owner.id, confId);
+    Q_FOREACH (const auto& call, callList) {
+        Q_EMIT linked.callAddedToConference(call, confId);
     }
 }
 
