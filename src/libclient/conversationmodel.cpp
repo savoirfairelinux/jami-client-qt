@@ -1818,6 +1818,9 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &ConfigurationManagerInterface::composingStatusChanged,
             this,
             &ConversationModelPimpl::slotComposingStatusChanged);
+    connect(&callbacksHandler, &CallbacksHandler::needsHoster, this, [&](auto, auto convId) {
+        emit linked.needsHoster(convId);
+    });
 
     // data transfer
     connect(&*linked.owner.contactModel,

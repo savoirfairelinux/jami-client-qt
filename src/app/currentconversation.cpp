@@ -117,6 +117,14 @@ CurrentConversation::updateData()
     }
 }
 
+void
+CurrentConversation::onNeedsHoster(const QString& convId)
+{
+    if (id_ != convId)
+        return;
+    Q_EMIT needsHoster();
+}
+
 QVector<QMap<QString, QString>>
 CurrentConversation::activeCalls() const
 {
@@ -180,5 +188,10 @@ CurrentConversation::connectModel()
             &ConversationModel::conversationUpdated,
             this,
             &CurrentConversation::onConversationUpdated,
+            Qt::UniqueConnection);
+    connect(lrcInstance_->getCurrentConversationModel(),
+            &ConversationModel::needsHoster,
+            this,
+            &CurrentConversation::onNeedsHoster,
             Qt::UniqueConnection);
 }

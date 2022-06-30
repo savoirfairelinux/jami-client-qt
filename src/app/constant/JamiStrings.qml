@@ -612,6 +612,9 @@ Item {
     property string writeTo: qsTr("Write to %1")
     property string joinCall: qsTr("Join call")
     property string wantToJoin: qsTr("A call is in progress. Do you want to join the call?")
+    property string needsHoster: qsTr("Current host for this swarm seems unreachable. Do you want to host the call?")
+    property string becomeHostOneCall: qsTr("Host only this call")
+    property string becomeDefaultHost: qsTr("Make me the default host for future calls")
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")

@@ -60,7 +60,11 @@ public:
 
 private Q_SLOTS:
     void updateData();
+    void onNeedsHoster(const QString& convId);
     void onConversationUpdated(const QString& convId);
+
+Q_SIGNALS:
+    void needsHoster();
 
 private:
     LRCInstance* lrcInstance_;
