@@ -35,6 +35,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dc69dcd_8c1e380d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-30T13:08:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e0f4377_a3dd5462",
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2bebf4a_3b2422b5",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-06-30T10:14:31Z",
       "side": 1,
       "message": "Can the `\\n` newlines be removed and word-wrap applied? When translating strings it makes it easier and also sometime the translation will be longer in length that the width of the dialog window.",
+      "range": {
+        "startLine": 53,
+        "startChar": 91,
+        "endLine": 53,
+        "endChar": 93
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb9d756f_59e5655c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-30T13:08:58Z",
+      "side": 1,
+      "message": "indeed",
+      "parentUuid": "f2bebf4a_3b2422b5",
       "range": {
         "startLine": 53,
         "startChar": 91,
@@ -163,6 +205,30 @@
       "writtenOn": "2022-06-30T10:14:31Z",
       "side": 1,
       "message": "Should there be a trailing `/` to be `https://savoirfairelinux.com/`?",
+      "range": {
+        "startLine": 196,
+        "startChar": 109,
+        "endLine": 196,
+        "endChar": 137
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f9e9f6f_f435f199",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-06-30T13:08:58Z",
+      "side": 1,
+      "message": "no need for the href",
+      "parentUuid": "db1148b6_89aa30c8",
       "range": {
         "startLine": 196,
         "startChar": 109,
