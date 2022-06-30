@@ -66,9 +66,8 @@ AvatarRegistry::connectAccount()
             this,
             &AvatarRegistry::onProfileUpdated,
             Qt::UniqueConnection);
-
     connect(lrcInstance_->getCurrentConversationModel(),
-            &ConversationModel::conversationUpdated,
+            &ConversationModel::profileUpdated,
             this,
             &AvatarRegistry::addOrUpdateImage,
             Qt::UniqueConnection);
