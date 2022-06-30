@@ -33,6 +33,7 @@ Rectangle {
     id: root
 
     property string headerUserAliasLabelText: ""
+    property string headerUserUserNameLabelText: ""
 
     property bool allMessagesLoaded
 
@@ -63,6 +64,7 @@ Rectangle {
             Layout.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
 
             userAliasLabelText: headerUserAliasLabelText
+            userUserNameLabelText: headerUserUserNameLabelText
 
             DropArea {
                 anchors.fill: parent

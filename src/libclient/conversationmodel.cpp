@@ -1133,10 +1133,15 @@ QString
 ConversationModel::description(const QString& conversationId) const
 {
     auto conversationOpt = getConversationForUid(conversationId);
-    if (!conversationOpt.has_value()) {
+    if (!conversationOpt.has_value())
         return {};
-    }
     auto& conversation = conversationOpt->get();
+    if (conversation.isCoreDialog()) {
+        auto peer = pimpl_->peersForConversation(conversation);
+        if (peer.isEmpty())
+            return {};
+        return owner.contactModel->bestIdForContact(peer.front());
+    }
     return conversation.infos["description"];
 }
 
