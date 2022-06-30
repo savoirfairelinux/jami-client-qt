@@ -575,6 +575,8 @@ Q_SIGNALS:
      */
     void dataChanged(int position) const;
 
+    void needsHoster(const QString& conversationId) const;
+
 private:
     std::unique_ptr<ConversationModelPimpl> pimpl_;
 };

@@ -839,9 +839,9 @@ ConversationModel::deleteObsoleteHistory(int days)
 
 void
 ConversationModel::joinCall(const QString& uid,
-                            const QString& confId,
                             const QString& uri,
                             const QString& deviceId,
+                            const QString& confId,
                             bool isAudioOnly)
 {
     try {
@@ -1844,6 +1844,9 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &ConfigurationManagerInterface::composingStatusChanged,
             this,
             &ConversationModelPimpl::slotComposingStatusChanged);
+    connect(&callbacksHandler, &CallbacksHandler::needsHoster, this, [&](auto, auto convId) {
+        emit linked.needsHoster(convId);
+    });
 
     // data transfer
     connect(&*linked.owner.contactModel,
@@ -3368,12 +3371,13 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
                                                bool incoming,
                                                const std::time_t& duration)
 {
-    // do not save call interaction for swarm conversation
-    try {
-        auto& conv = getConversationForPeerUri(from).get();
-        if (conv.isSwarm())
-            return;
-    } catch (const std::exception&) {
+    // Get conversation
+    auto conv_it = std::find_if(conversations.begin(),
+                                conversations.end(),
+                                [&callId](const conversation::Info& conversation) {
+                                    return conversation.callId == callId;
+                                });
+    if (conv_it == conversations.end()) {
         // If we have no conversation with peer.
         try {
             auto contact = linked.owner.contactModel->getContact(from);
@@ -3382,18 +3386,18 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
                 storage::beginConversationWithPeer(db, contact.profileInfo.uri);
             }
         } catch (const std::exception&) {
+            return;
+        }
+        try {
+            auto& conv = getConversationForPeerUri(from).get();
+            conv.callId = callId;
+        } catch (...) {
+            return;
         }
     }
-
-    // Get conversation
-    auto conv_it = std::find_if(conversations.begin(),
-                                conversations.end(),
-                                [&callId](const conversation::Info& conversation) {
-                                    return conversation.callId == callId;
-                                });
-    if (conv_it == conversations.end()) {
+    // do not save call interaction for swarm conversation
+    if (conv_it->isSwarm())
         return;
-    }
     auto uid = conv_it->uid;
     auto uriString = incoming ? storage::prepareUri(from, linked.owner.profileInfo.type) : "";
     auto msg = interaction::Info {uriString,
