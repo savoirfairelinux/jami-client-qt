@@ -20,6 +20,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e0f4377_a3dd5462",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-06-30T10:14:31Z",
+      "side": 1,
+      "message": "Thank you",
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2bebf4a_3b2422b5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-06-30T10:14:31Z",
+      "side": 1,
+      "message": "Can the `\\n` newlines be removed and word-wrap applied? When translating strings it makes it easier and also sometime the translation will be longer in length that the width of the dialog window.",
+      "range": {
+        "startLine": 53,
+        "startChar": 91,
+        "endLine": 53,
+        "endChar": 93
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d234fd51_9875a4c1",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 5
@@ -36,6 +76,98 @@
         "startChar": 48,
         "endLine": 303,
         "endChar": 54
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3a418c_81020a2a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-06-30T10:14:31Z",
+      "side": 1,
+      "message": "Should the space be removed to change `an other` to `another`?",
+      "range": {
+        "startLine": 545,
+        "startChar": 68,
+        "endLine": 545,
+        "endChar": 76
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2351b163_36efe936",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-06-30T10:14:31Z",
+      "side": 1,
+      "message": "French language?",
+      "range": {
+        "startLine": 554,
+        "startChar": 48,
+        "endLine": 554,
+        "endChar": 59
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed9ee6f_9f82493a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-06-30T10:14:31Z",
+      "side": 1,
+      "message": "Can `\\n` be removed and word-wrap applied if necessary? Especially helpful for other language translations.",
+      "range": {
+        "startLine": 561,
+        "startChar": 71,
+        "endLine": 561,
+        "endChar": 73
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db1148b6_89aa30c8",
+        "filename": "src/app/mainview/components/AboutPopUp.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-06-30T10:14:31Z",
+      "side": 1,
+      "message": "Should there be a trailing `/` to be `https://savoirfairelinux.com/`?",
+      "range": {
+        "startLine": 196,
+        "startChar": 109,
+        "endLine": 196,
+        "endChar": 137
       },
       "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
