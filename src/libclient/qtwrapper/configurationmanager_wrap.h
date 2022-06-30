@@ -129,6 +129,11 @@ public:
                                                              QString(message_id.c_str()),
                                                              state);
                 }),
+            exportable_callback<DRing::ConfigurationSignal::NeedsHoster>(
+                [this](const std::string& account_id, const std::string& conversation_id) {
+                    Q_EMIT this->needsHoster(QString(account_id.c_str()),
+                                             QString(conversation_id.c_str()));
+                }),
             exportable_callback<ConfigurationSignal::IncomingTrustRequest>(
                 [this](const std::string& accountId,
                        const std::string& conversationId,
@@ -1197,6 +1202,7 @@ Q_SIGNALS: // SIGNALS
                                      const QString& peer,
                                      const QString& messageId,
                                      int status);
+    void needsHoster(const QString& accountId, const QString& conversationId);
     void nameRegistrationEnded(const QString& accountId, int status, const QString& name);
     void registeredNameFound(const QString& accountId,
                              int status,

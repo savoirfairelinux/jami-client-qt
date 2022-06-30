@@ -55,7 +55,7 @@ Control {
     readonly property real msgRadius: 20
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
     width: ListView.view ? ListView.view.width : 0
-    height: visible ? mainColumnLayout.implicitHeight : 0
+    height: mainColumnLayout.implicitHeight
 
     rightPadding: hPadding
     leftPadding: hPadding
