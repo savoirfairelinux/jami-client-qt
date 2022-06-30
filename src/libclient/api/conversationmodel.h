@@ -430,6 +430,11 @@ Q_SIGNALS:
      */
     void conversationUpdated(const QString& uid) const;
     /**
+     * Emitted when conversation's profile has been updated
+     * @param uid
+     */
+    void profileUpdated(const QString& uid) const;
+    /**
      * Emitted when the conversations list is modified
      */
     void modelChanged() const;

@@ -2354,8 +2354,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             MapStringString details = ConfigurationManager::instance()
                                           .conversationInfos(linked.owner.id, conversationId);
             conversation.infos = details;
-            Q_EMIT linked.conversationUpdated(conversationId);
-            Q_EMIT linked.dataChanged(indexOf(conversationId));
+            Q_EMIT linked.profileUpdated(conversationId);
             return;
         }
         if (message["type"] == "initial") {
