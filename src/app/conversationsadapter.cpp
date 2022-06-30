@@ -440,6 +440,7 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
     return {{"convId", convId},
             {"bestId", bestId},
             {"title", lrcInstance_->getCurrentConversationModel()->title(convId)},
+            {"description", lrcInstance_->getCurrentConversationModel()->description(convId)},
             {"uri", peerUri},
             {"uris", accountInfo.conversationModel->peersForConversation(convId)},
             {"isSwarm", convInfo.isSwarm()},

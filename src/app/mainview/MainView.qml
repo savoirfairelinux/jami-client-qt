@@ -182,6 +182,7 @@ Rectangle {
         if (item.convId === undefined)
             return
         chatView.headerUserAliasLabelText = item.title
+        chatView.headerUserUserNameLabelText = item.description
         if (item.callStackViewShouldShow) {
             if (inSettingsView) {
                 toggleSettingsView()
