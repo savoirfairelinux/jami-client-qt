@@ -49,6 +49,10 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
+    HostPopup {
+        id: hostPopup
+    }
+
     ColumnLayout {
         anchors.fill: root
 
@@ -92,6 +96,10 @@ Rectangle {
                         swarmDetailsPanel.visible = false
                         addMemberPanel.visible = !addMemberPanel.visible
                     }
+                }
+
+                function onNeedsHoster() {
+                    hostPopup.open()
                 }
             }
 

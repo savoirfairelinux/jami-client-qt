@@ -44,6 +44,8 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, isBanned)
     QML_PROPERTY(QString, callId)
     QML_PROPERTY(QString, color)
+    QML_PROPERTY(QString, rdvAccount)
+    QML_PROPERTY(QString, rdvDevice)
     QML_PROPERTY(call::Status, callState)
     QML_PROPERTY(bool, inCall)
     QML_PROPERTY(bool, isTemporary)
@@ -56,12 +58,18 @@ public:
     ~CurrentConversation() = default;
     Q_INVOKABLE void setPreference(const QString& key, const QString& value);
     Q_INVOKABLE QString getPreference(const QString& key) const;
+    Q_INVOKABLE MapStringString getPreferences() const;
+    Q_INVOKABLE void setInfo(const QString& key, const QString& value);
 
     QVector<QMap<QString, QString>> activeCalls() const;
 
 private Q_SLOTS:
     void updateData();
+    void onNeedsHoster(const QString& convId);
     void onConversationUpdated(const QString& convId);
+
+Q_SIGNALS:
+    void needsHoster();
 
 private:
     LRCInstance* lrcInstance_;

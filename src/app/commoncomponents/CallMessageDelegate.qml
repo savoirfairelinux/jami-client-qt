@@ -27,7 +27,6 @@ SBSMessageBase {
     id: root
 
     property bool isRemoteImage
-    property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
 
     isOutgoing: Author === ""
     author: Author
@@ -54,6 +53,7 @@ SBSMessageBase {
             id: msg
             anchors.right: isOutgoing ? parent.right : undefined
             spacing: 10
+            visible: root.visible
 
             Label {
                 id: callLabel
