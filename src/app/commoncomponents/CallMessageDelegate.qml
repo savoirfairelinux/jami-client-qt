@@ -27,7 +27,6 @@ SBSMessageBase {
     id: root
 
     property bool isRemoteImage
-    property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
 
     isOutgoing: Author === ""
     author: Author
@@ -54,6 +53,7 @@ SBSMessageBase {
             id: msg
             anchors.right: isOutgoing ? parent.right : undefined
             spacing: 10
+            visible: root.visible
 
             Label {
                 id: callLabel
@@ -88,7 +88,7 @@ SBSMessageBase {
                 border.width: 1
                 border.color: callLabel.color
 
-                onClicked: MessagesAdapter.joinCall(Id, ActionUri, DeviceId, true)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId, true)
             }
 
             PushButton {
@@ -105,7 +105,7 @@ SBSMessageBase {
                 border.width: 1
                 border.color: callLabel.color
 
-                onClicked: MessagesAdapter.joinCall(Id, ActionUri, DeviceId)
+                onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId)
 
                 Layout.rightMargin: parent.spacing
             }

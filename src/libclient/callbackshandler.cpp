@@ -127,6 +127,12 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::needsHoster,
+            this,
+            &CallbacksHandler::slotNeedsHoster,
+            Qt::QueuedConnection);
+
+    connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::accountDetailsChanged,
             this,
             &CallbacksHandler::slotAccountDetailsChanged,
@@ -528,11 +534,11 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
             auto pieces2 = pieces1[1].split("=");
             auto pieces3 = pieces1[2].split("=");
             Q_EMIT incomingVCardChunk(accountId,
-                                    callId,
-                                    from2,
-                                    pieces2[1].toInt(),
-                                    pieces3[1].toInt(),
-                                    e.second);
+                                      callId,
+                                      from2,
+                                      pieces2[1].toInt(),
+                                      pieces3[1].toInt(),
+                                      e.second);
         } else if (e.first.contains(
                        "text/plain")) { // we consider it as an usual message interaction
             Q_EMIT incomingCallMessage(accountId, callId, from2, e.second);
@@ -551,6 +557,7 @@ CallbacksHandler::slotConferenceChanged(const QString& accountId,
                                         const QString& callId,
                                         const QString& state)
 {
+    Q_EMIT conferenceChanged(accountId, callId, state);
     slotCallStateChanged(accountId, callId, state, 0);
 }
 
@@ -568,6 +575,12 @@ CallbacksHandler::slotAccountMessageStatusChanged(const QString& accountId,
                                                   int status)
 {
     Q_EMIT accountMessageStatusChanged(accountId, conversationId, peer, messageId, status);
+}
+
+void
+CallbacksHandler::slotNeedsHoster(const QString& accountId, const QString& conversationId)
+{
+    Q_EMIT needsHoster(accountId, conversationId);
 }
 
 void
