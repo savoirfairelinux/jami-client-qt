@@ -194,15 +194,15 @@ MessagesAdapter::retryInteraction(const QString& interactionId)
 }
 
 void
-MessagesAdapter::joinCall(const QString& confId,
-                          const QString& uri,
+MessagesAdapter::joinCall(const QString& uri,
                           const QString& deviceId,
+                          const QString& confId,
                           bool isAudioOnly)
 {
     lrcInstance_->getCurrentConversationModel()->joinCall(lrcInstance_->get_selectedConvUid(),
-                                                          confId,
                                                           uri,
                                                           deviceId,
+                                                          confId,
                                                           isAudioOnly);
 }
 

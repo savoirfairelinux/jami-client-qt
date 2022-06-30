@@ -92,6 +92,8 @@
         <file>wizardview/components/ProfilePage.qml</file>
         <file>wizardview/components/AccountCreationStepIndicator.qml</file>
         <file>mainview/MainView.qml</file>
+        <file>mainview/components/HostPopup.qml</file>
+        <file>mainview/components/DevicesListPopup.qml</file>
         <file>mainview/components/NotificationArea.qml</file>
         <file>mainview/components/PluginHandlerItemDelegate.qml</file>
         <file>mainview/components/AboutPopUp.qml</file>

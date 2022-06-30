@@ -55,8 +55,6 @@ CurrentConversation::updateData()
         const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
         if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
             auto& convInfo = optConv->get();
-            set_title(accInfo.conversationModel->title(convId));
-            set_description(accInfo.conversationModel->description(convId));
             set_uris(convInfo.participantsUris());
             set_isSwarm(convInfo.isSwarm());
             set_isLegacy(convInfo.isLegacy());
@@ -106,12 +104,22 @@ CurrentConversation::updateData()
                 set_modeString(tr("Public group"));
             }
 
+            onProfileUpdated(convId);
+
             activeCalls_->reset();
         }
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
     }
     updateErrors(convId);
+}
+
+void
+CurrentConversation::onNeedsHost(const QString& convId)
+{
+    if (id_ != convId)
+        return;
+    Q_EMIT needsHost();
 }
 
 QVector<QMap<QString, QString>>
@@ -129,28 +137,45 @@ CurrentConversation::activeCalls() const
 void
 CurrentConversation::setPreference(const QString& key, const QString& value)
 {
+    if (key == "color")
+        set_color(value);
+    auto preferences = getPreferences();
+    preferences[key] = value;
     auto accountId = lrcInstance_->get_currentAccountId();
     const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
     auto convId = lrcInstance_->get_selectedConvUid();
-    if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
-        auto& convInfo = optConv->get();
-        auto preferences = convInfo.preferences;
-        preferences[key] = value;
-        accInfo.conversationModel->setConversationPreferences(convId, preferences);
-    }
+    accInfo.conversationModel->setConversationPreferences(convId, preferences);
 }
 
 QString
 CurrentConversation::getPreference(const QString& key) const
+{
+    return getPreferences()[key];
+}
+
+MapStringString
+CurrentConversation::getPreferences() const
 {
     auto accountId = lrcInstance_->get_currentAccountId();
     const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
     auto convId = lrcInstance_->get_selectedConvUid();
     if (auto optConv = accInfo.conversationModel->getConversationForUid(convId)) {
         auto& convInfo = optConv->get();
-        return convInfo.preferences[key];
+        auto preferences = accInfo.conversationModel->getConversationPreferences(convId);
+        return preferences;
     }
     return {};
+}
+
+void
+CurrentConversation::setInfo(const QString& key, const QString& value)
+{
+    MapStringString infos;
+    infos[key] = value;
+    auto accountId = lrcInstance_->get_currentAccountId();
+    const auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
+    auto convId = lrcInstance_->get_selectedConvUid();
+    accInfo.conversationModel->updateConversationInfos(convId, infos);
 }
 
 void
@@ -168,8 +193,27 @@ CurrentConversation::onProfileUpdated(const QString& convId)
     // filter for our currently set id
     if (id_ != convId)
         return;
-    set_title(lrcInstance_->getCurrentConversationModel()->title(convId));
-    set_description(lrcInstance_->getCurrentConversationModel()->description(convId));
+    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    set_title(convModel->title(convId));
+    set_description(convModel->description(convId));
+
+    try {
+        if (auto optConv = convModel->getConversationForUid(convId)) {
+            auto& convInfo = optConv->get();
+            // Now, update call informations (rdvAccount/device)
+            if (convInfo.infos.contains("rdvAccount")) {
+                set_rdvAccount(convInfo.infos["rdvAccount"]);
+            } else {
+                set_rdvAccount("");
+            }
+            if (convInfo.infos.contains("rdvDevice")) {
+                set_rdvDevice(convInfo.infos["rdvDevice"]);
+            } else {
+                set_rdvDevice("");
+            }
+        }
+    } catch (...) {
+    }
 }
 
 void
@@ -219,6 +263,11 @@ CurrentConversation::connectModel()
             &ConversationModel::conversationPreferencesUpdated,
             this,
             &CurrentConversation::updateConversationPreferences,
+            Qt::UniqueConnection);
+    connect(lrcInstance_->getCurrentConversationModel(),
+            &ConversationModel::needsHost,
+            this,
+            &CurrentConversation::onNeedsHost,
             Qt::UniqueConnection);
 }
 

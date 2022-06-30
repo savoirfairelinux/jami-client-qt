@@ -78,9 +78,9 @@ protected:
     Q_INVOKABLE void openDirectory(const QString& arg);
     Q_INVOKABLE void retryInteraction(const QString& interactionId);
     Q_INVOKABLE void deleteInteraction(const QString& interactionId);
-    Q_INVOKABLE void joinCall(const QString& confId,
-                              const QString& uri,
+    Q_INVOKABLE void joinCall(const QString& uri,
                               const QString& deviceId,
+                              const QString& confId,
                               bool isAudioOnly = false);
     Q_INVOKABLE void copyToDownloads(const QString& interactionId, const QString& displayName);
     Q_INVOKABLE void userIsComposing(bool isComposing);
