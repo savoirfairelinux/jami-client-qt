@@ -1,0 +1,102 @@
+/*
+ * Copyright (C) 2022 Savoir-faire Linux Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
+
+import net.jami.Models 1.1
+import net.jami.Adapters 1.1
+import net.jami.Constants 1.1
+
+import "../../commoncomponents"
+
+BaseModalDialog {
+    id: root
+
+    width: 488
+    height: 256
+
+    popupContent: Rectangle {
+        id: rect
+
+        color: JamiTheme.transparentColor
+        width: root.width
+
+
+        PushButton {
+            id: btnCancel
+            imageColor: "grey"
+            normalColor: "transparent"
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.topMargin: 10
+            anchors.rightMargin: 10
+            source: JamiResources.round_close_24dp_svg
+            onClicked: { close();}
+        }
+
+        ColumnLayout {
+            id: mainLayout
+            anchors.fill: parent
+            anchors.margins: JamiTheme.preferredMarginSize
+
+            Label {
+                id: informativeLabel
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.fillWidth: true
+                Layout.topMargin: 26
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                text: JamiStrings.needsHoster
+                color: JamiTheme.primaryForegroundColor
+            }
+
+            MaterialButton {
+                id: becomeHostBtn
+
+                Layout.alignment: Qt.AlignCenter
+
+                Layout.topMargin: 26
+                text: JamiStrings.becomeHostOneCall
+                toolTipText: JamiStrings.becomeHostOneCall
+
+                onClicked: {
+                    CallAdapter.placeCall()
+                }
+            }
+
+            MaterialButton {
+                id: becomeDefaultHostBtn
+
+                Layout.alignment: Qt.AlignCenter
+
+                text: JamiStrings.becomeDefaultHost
+                toolTipText: JamiStrings.becomeDefaultHost
+
+                onClicked: {
+                    CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri)
+                    CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId)
+                    CallAdapter.placeCall()
+                }
+            }
+        }
+    }
+}

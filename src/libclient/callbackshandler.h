@@ -202,6 +202,12 @@ Q_SIGNALS:
      */
     void conferenceRemoved(const QString& accountId, const QString& callId);
     /**
+     * Connect this signal to know if a conversation needs an hoster.
+     * @param accountId, account linked
+     * @param conversationId id of the conversation
+     */
+    void needsHoster(const QString& accountId, const QString& conversationId);
+    /**
      * Connect this signal to know when a message sent get a new status
      * @param accountId, account linked
      * @param messageId id of the message
@@ -535,6 +541,12 @@ private Q_SLOTS:
                                          const QString& peer,
                                          const QString& messageId,
                                          int status);
+    /**
+     * Emit needsHoster
+     * @param accountId, account linked
+     * @param conversationId id of the conversation
+     */
+    void slotNeedsHoster(const QString& accountId, const QString& conversationId);
 
     void slotDataTransferEvent(const QString& accountId,
                                const QString& conversationId,
