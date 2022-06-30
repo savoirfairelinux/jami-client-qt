@@ -322,6 +322,109 @@ Rectangle {
                     }
                 }
 
+                SwarmDetailsItem {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.leftMargin: JamiTheme.preferredMarginSize
+
+                        Text {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 30
+                            Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                            text: JamiStrings.defaultCallHost
+                            font.pointSize: JamiTheme.settingsFontSize
+                            font.kerning: true
+                            elide: Text.ElideRight
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            color: JamiTheme.textColor
+                        }
+
+
+
+                        RowLayout {
+                            spacing: 10
+                            Layout.alignment: Qt.AlignRight
+
+                            Avatar {
+                                width: JamiTheme.contactMessageAvatarSize
+                                height: JamiTheme.contactMessageAvatarSize
+                                Layout.leftMargin: JamiTheme.preferredMarginSize
+                                Layout.topMargin: JamiTheme.preferredMarginSize / 2
+                                opacity: {
+                                    var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
+                                    return role === Member.Role.INVITED ? 0.5 : 1
+                                }
+
+                                imageId: CurrentAccount.uri == CurrentAccount.uri ? CurrentAccount.id : CurrentAccount.uri
+                                showPresenceIndicator: UtilsAdapter.getContactPresence(CurrentAccount.id, CurrentAccount.uri)
+                                mode: CurrentAccount.uri == CurrentAccount.uri ? Avatar.Mode.Account : Avatar.Mode.Contact
+                            }
+
+                            ColumnLayout {
+                                spacing: 0
+                                Layout.alignment: Qt.AlignVCenter
+
+                                ElidedTextLabel {
+                                    id: bestName
+
+                                    eText: UtilsAdapter.getContactBestName(CurrentAccount.id, CurrentAccount.uri)
+                                    maxWidth: JamiTheme.preferredFieldWidth
+
+                                    font.pointSize: JamiTheme.participantFontSize
+                                    color: JamiTheme.primaryForegroundColor
+                                    opacity: {
+                                        var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
+                                        return role === Member.Role.INVITED ? 0.5 : 1
+                                    }
+                                    font.kerning: true
+
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+
+                                ElidedTextLabel {
+                                    id: deviceId
+
+                                    eText: {
+                                        var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
+                                        if (role === Member.Role.ADMIN)
+                                            return JamiStrings.administrator
+                                        if (role === Member.Role.INVITED)
+                                            return JamiStrings.invited
+                                        return ""
+                                    }
+                                    maxWidth: JamiTheme.preferredFieldWidth
+
+                                    font.pointSize: JamiTheme.participantFontSize
+                                    color: JamiTheme.textColorHovered
+                                    opacity: {
+                                        var role = UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri)
+                                        return role === Member.Role.INVITED ? 0.5 : 1
+                                    }
+                                    font.kerning: true
+
+                                    horizontalAlignment: Text.AlignRight
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+                        }
+                    }
+
+                    TapHandler {
+                        target: parent
+                        enabled: parent.visible
+                        onTapped: function onTapped(eventPoint) {
+                            console.warn("@@@ TODO")
+                        }
+                    }
+                }
+
+
 
                 RowLayout {
                     Layout.leftMargin: JamiTheme.preferredMarginSize
