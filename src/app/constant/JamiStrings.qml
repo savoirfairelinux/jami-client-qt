@@ -730,6 +730,13 @@ Item {
     property string edited: qsTr("Edited")
     property string joinCall: qsTr("Join call")
     property string wantToJoin: qsTr("A call is in progress. Do you want to join the call?")
+    property string needsHoster: qsTr("Current host for this swarm seems unreachable. Do you want to host the call?")
+    property string chooseHoster: qsTr("Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.")
+    property string chooseThisDevice: qsTr("Choose this device")
+    property string removeCurrentDevice: qsTr("Remove current device")
+    property string becomeHostOneCall: qsTr("Host only this call")
+    property string hostThisCall: qsTr("Host this call")
+    property string becomeDefaultHost: qsTr("Make me the default host for future calls")
 
     // Invitation View
     property string invitationViewSentRequest: qsTr("%1 has sent you a request for a conversation.")
@@ -748,9 +755,11 @@ Item {
     property string ignoreTheSwarm: qsTr("Ignore the swarm")
     property string ignoreTheSwarmTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose a color")
+    property string defaultCallHost: qsTr("Default host (calls)")
     property string leaveTheSwarm: qsTr("Leave the swarm")
     property string leave: qsTr("Leave")
     property string typeOfSwarm: qsTr("Type of swarm")
+    property string none: qsTr("None")
 
     // NewSwarmPage
     property string youCanAdd8: qsTr("You can add 8 people in the swarm")

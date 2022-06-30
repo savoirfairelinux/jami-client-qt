@@ -72,7 +72,7 @@ Item {
                         border.width: 1
                         border.color: "white"
 
-                        onClicked: MessagesAdapter.joinCall(Id, Uri, Device, true)
+                        onClicked: MessagesAdapter.joinCall(Uri, Device, Id, true)
                     }
 
                     PushButton {
@@ -90,7 +90,7 @@ Item {
                         border.width: 1
                         border.color: "white"
 
-                        onClicked: MessagesAdapter.joinCall(Id, Uri, Device)
+                        onClicked: MessagesAdapter.joinCall(Uri, Device, Id)
                     }
                 }
 

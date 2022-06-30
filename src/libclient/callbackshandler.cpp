@@ -129,6 +129,12 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::needsHoster,
+            this,
+            &CallbacksHandler::slotNeedsHoster,
+            Qt::QueuedConnection);
+
+    connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::accountDetailsChanged,
             this,
             &CallbacksHandler::slotAccountDetailsChanged,
@@ -572,6 +578,7 @@ CallbacksHandler::slotConferenceChanged(const QString& accountId,
                                         const QString& callId,
                                         const QString& state)
 {
+    Q_EMIT conferenceChanged(accountId, callId, state);
     slotCallStateChanged(accountId, callId, state, 0);
 }
 
@@ -589,6 +596,12 @@ CallbacksHandler::slotAccountMessageStatusChanged(const QString& accountId,
                                                   int status)
 {
     Q_EMIT accountMessageStatusChanged(accountId, conversationId, peer, messageId, status);
+}
+
+void
+CallbacksHandler::slotNeedsHoster(const QString& accountId, const QString& conversationId)
+{
+    Q_EMIT needsHoster(accountId, conversationId);
 }
 
 void
