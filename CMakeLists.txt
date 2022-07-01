@@ -359,6 +359,7 @@ elseif (NOT APPLE)
   endif()
 
   pkg_check_modules(XCB xcb)
+  pkg_check_modules(LIBAVUTIL libavutil>=55.75.100)
 
   include_directories(
     ${LIBCLIENT_SRC_DIR}
@@ -366,7 +367,8 @@ elseif (NOT APPLE)
     ${LIBNOTIFY_INCLUDE_DIRS}
     ${LIBGDKPIXBUF_INCLUDE_DIRS}
     ${GLIB_INCLUDE_DIRS}
-    ${XCB_INCLUDE_DIRS})
+    ${XCB_INCLUDE_DIRS}
+    ${LIBAVUTIL_INCLUDE_DIRS})
 
   set(JAMI_DATA_PREFIX "${CMAKE_INSTALL_PREFIX}/share")
 
@@ -548,7 +550,8 @@ elseif (NOT APPLE)
     ${LIBGDKPIXBUF_LIBRARIES}
     ${GLIB_LIBRARIES}
     ${GIO_LIBRARIES}
-    ${XCB_LIBRARIES})
+    ${XCB_LIBRARIES}
+    ${LIBAVUTIL_LIBRARIES})
 
   # Installation rules
   install(
