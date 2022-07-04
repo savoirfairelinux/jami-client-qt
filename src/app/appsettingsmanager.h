@@ -45,6 +45,7 @@ extern const QString defaultDownloadPath;
     X(DisplayHyperlinkPreviews, true) \
     X(EnableExperimentalSwarm, false) \
     X(EnableDarkTheme, false) \
+    X(BaseZoom, 1.0) \
     X(AutoUpdate, true) \
     X(StartMinimized, false) \
     X(ShowChatviewHorizontally, true) \
