@@ -125,7 +125,7 @@ Rectangle {
 
             preferredWidth: JamiTheme.wizardButtonWidth
 
-            text: JamiStrings.createRV
+            text: JamiStrings.createNewRV
             font.capitalization: Font.AllUppercase
             toolTipText: JamiStrings.createNewRV
             iconSource: JamiResources.groups_24dp_svg

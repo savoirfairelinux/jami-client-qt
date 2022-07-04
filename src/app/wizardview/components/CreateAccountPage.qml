@@ -371,7 +371,7 @@ Rectangle {
                     }
 
                     font.capitalization: Font.AllUppercase
-                    text: isRendezVous ? JamiStrings.createRV : JamiStrings.createAccount
+                    text: isRendezVous ? JamiStrings.createNewRV : JamiStrings.createAccount
                     enabled: checkEnable()
                     color: checkEnable() ? JamiTheme.wizardBlueButtons :
                                            JamiTheme.buttonTintedGreyInactive

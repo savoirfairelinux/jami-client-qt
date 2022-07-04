@@ -40,15 +40,17 @@ Item {
     property string createASwarm: qsTr("Create a swarm")
     property string contactSearchInvitations: qsTr("Search your invitations")
     property string invitations: qsTr("Invitations")
-    property string description: qsTr("Jami is free software for universal communication which respects the freedoms and the privacy of its users.")
+    property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
     property string contactLeft: qsTr("You are viewing a conversation where all participants other than you have left. New interactions will not be possible.")
     property string newConversation: qsTr("Start new conversation")
 
     // AboutPopUp
     property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (BETA)" : "")
-    property string companyDeclarationYear: "© 2015-2022 Savoir-faire Linux Inc."
+    property string companyDeclarationYear: declarationYear + " " + companyName
+    property string declarationYear: "© 2015-2022"
+    property string companyName: "Savoir-faire Linux Inc."
     property string slogan: "Taranis"
-    property string declaration: qsTr("Jami is a free software for universal communication which respects the freedom and privacy of its users.")
+    property string declaration: qsTr("Jami is a free universal communication software that respects the freedom and privacy of its users.")
     property string credits: qsTr("Credits")
 
     // AccountComboBox
@@ -298,12 +300,11 @@ Item {
     property string chooseName: qsTr("Choose name")
     property string chooseUsername: qsTr("Choose username")
     property string createPassword: qsTr("Encrypt account with password")
-    property string createRV: qsTr("Create a rendezvous point")
     property string createAccount: qsTr("Create account")
     property string confirmPassword: qsTr("Confirm password")
     property string notePasswordRecovery: qsTr("Choose a password to encrypt your account on this device. Note that the password cannot be recovered.")
     property string optional: qsTr("Optional")
-    property string chooseUsernameForAccount: qsTr("Choose a username for your account")
+    property string chooseUsernameForAccount: qsTr("You can choose a username to be easily found and reached on Jami.")
     property string chooseUsernameForRV: qsTr("Choose a name for your rendezvous point")
     property string chooseAName: qsTr("Choose a name")
     property string chooseYourUserName: qsTr("Choose your username")
@@ -540,21 +541,26 @@ Item {
     // WelcomePage
     property string shareInvite: qsTr("This is your Jami username.\nCopy and share it with your friends!")
     property string linkFromAnotherDevice: qsTr("Link this device to an existing account")
-    property string importAccountFromOtherDevice: qsTr("Import account from other device")
-    property string importAccountFromBackup: qsTr("Import account from backup file")
+    property string importAccountFromOtherDevice: qsTr("Import from another device")
+    property string importAccountFromBackup: qsTr("Import from an archive backup")
     property string advancedFeatures: qsTr("Advanced features")
     property string showAdvancedFeatures: qsTr("Show advanced features")
     property string hideAdvancedFeatures: qsTr("Hide advanced features")
     property string connectJAMSServer: qsTr("Connect to a JAMS server")
     property string createFromJAMS: qsTr("Create account from Jami Account Management Server (JAMS)")
-    property string addSIPAccount: qsTr("Add a SIP account")
+    property string addSIPAccount: qsTr("Configure a SIP account")
     property string errorCreateAccount: qsTr("Error while creating your account. Check your credentials.")
-    property string createNewRV: qsTr("Create new rendezvous point")
+    property string createNewRV: qsTr("Create a rendezvous point")
     property string createAJamiAccount: qsTr("Create a Jami account")
+    property string joinJami: qsTr("Join Jami")
     property string createNewJamiAccount: qsTr("Create new Jami account")
     property string createNewSipAccount: qsTr("Create new SIP account")
     property string aboutJami: qsTr("About Jami")
     property string welcomeTo: qsTr("Welcome to")
+    property string introductionJami: qsTr("Share, freely and privately with Jami")
+    property string alreadyHaveAccount: qsTr("I already have an account")
+    property string useExistingAccount: qsTr("Use existing Jami account")
+    property string recommendationMessage: qsTr("Here are some recommendations to improve your experience on Jami")
 
     // SmartList
     property string clearText: qsTr("Clear Text")
