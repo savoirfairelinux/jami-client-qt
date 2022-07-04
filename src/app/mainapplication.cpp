@@ -328,7 +328,7 @@ void
 MainApplication::setApplicationFont()
 {
     QFont font;
-    font.setFamily("Segoe UI");
+    font.setFamily("Ubuntu");
     setFont(font);
     QFontDatabase::addApplicationFont(":/fonts/FontAwesome.otf");
 }

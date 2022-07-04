@@ -28,7 +28,12 @@ import net.jami.Constants 1.1
 AbstractButton {
     id: root
 
+
     property bool outlined: false
+    property bool boldFont: false
+    property bool primary: false
+    property bool secondary:false
+    property bool tertiary: false
     property alias toolTipText: toolTip.text
     property alias iconSource: icon.source_
     property alias animatedIconSource: icon.animatedSource_
@@ -37,8 +42,8 @@ AbstractButton {
     property var hoveredColor: JamiTheme.buttonTintedBlueHovered
     property var pressedColor: JamiTheme.buttonTintedBluePressed
     property var keysNavigationFocusColor: Qt.darker(hoveredColor, 2)
-    property bool hasIcon: animatedIconSource.length !== 0 ||
-                           iconSource.length !== 0
+    property bool hasIcon: false /*animatedIconSource.length !== 0 ||
+                           iconSource.length !== 0*/
 
     property var preferredWidth
     Binding on width {
@@ -71,12 +76,19 @@ AbstractButton {
     }
 
     property string contentColorProvider: {
-        if (!root.outlined)
-            return "white"
+
         if (root.hovered)
-            return root.hoveredColor
+            if (root.primary)
+                return "white"
+            else return root.color
+        if (root.primary)
+            return "white"
+        if (root.secondary || root.tertiary)
+            return root.color
         if (root.down)
             return root.pressedColor
+        if (!root.outlined)
+            return "white"
         return root.color
     }
 
@@ -148,44 +160,64 @@ AbstractButton {
             Text {
                 // this right margin will make the text visually
                 // centered within button
-                Layout.rightMargin: {
-                    if ((!hasIcon || root.preferredWidth === undefined) &&
-                            !root.Layout.fillWidth)
-                        return undefined
-                    return icon.width + JamiTheme.preferredMarginSize / 2 +
-                            parent.spacing
-                }
+//                Layout.rightMargin: {
+//                    if ((!hasIcon || root.preferredWidth === undefined) &&
+//                            !root.Layout.fillWidth)
+//                        return undefined
+//                    return icon.width + JamiTheme.preferredMarginSize / 2 +
+//                            parent.spacing
+//                }
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
+                Layout.rightMargin: JamiTheme.preferredMarginSize*2
+                Layout.leftMargin:  JamiTheme.preferredMarginSize*2
                 text: root.text
-                font: root.font
+                //font.bold: root.hovered
+                //font.bold: boldFont
+                //font.weight : { (root.hovered|| boldFont) ? Font.Bold : Font.Medium }
+
+
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: contentColorProvider
+
             }
         }
     }
 
     background: Rectangle {
+
         color: {
+
+
+            if(root.primary)
+                if (root.hovered)
+                    return root.hoveredColor
+                else return root.color
+            if (root.secondary || root.tertiary)
+                if (root.hovered)
+                    return Qt.rgba(0,0.34,0.6,0.1)
+                else return "transparent"
+            if (root.down)
+                return root.pressedColor
             if (root.outlined)
                 return "transparent"
-            if (root.hovered)
-                return root.hoveredColor
-            if (root.down)
-                return root.pressedColor
+
             return root.focus ?
-                        root.keysNavigationFocusColor :
-                        root.color
+                        root.keysNavigationFocusColor : root.color
+
         }
         border.color: {
-            if (!root.outlined)
+
+            if (root.secondary)
+                return root.hovered ? root.color : Qt.rgba(0,0.34,0.6,0.36)
+            if (root.primary || root.tertiary)
                 return "transparent"
-            if (root.hovered)
-                return root.hoveredColor
             if (root.down)
                 return root.pressedColor
+            if (!root.outlined)
+                return "transparent"
             return root.focus ?
                         root.keysNavigationFocusColor :
                         root.color

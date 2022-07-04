@@ -44,6 +44,10 @@ Item {
     property bool readOnly: false
     property bool editable: false
     property bool hovered: false
+    property bool identifier: false
+    property bool password: false
+    property bool nickname: false
+    property bool description: true
     property string tooltipText: ""
     property int preferredWidth: JamiTheme.preferredFieldWidth
 
@@ -156,7 +160,7 @@ Item {
         anchors.fill: row
         radius: JamiTheme.primaryRadius
 
-        visible: (root.editable || root.hovered)  && !root.readOnly
+        visible: (root.editable || root.hovered)  && !root.readOnly && !description
         color: root.editIconColor
 
         Rectangle {
