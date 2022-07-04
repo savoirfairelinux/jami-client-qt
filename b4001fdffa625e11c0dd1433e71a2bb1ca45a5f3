@@ -16,6 +16,24 @@
       "message": "Nice, thanks for putting this together :)\n\nI tested the patch, and it would be great if the following would also get resized:\n\n1. in the chatview, the call statuses (e.g. \u0027Outgoing call\u0027 or \u0027Missed outgoing call\u0027, etc.) and their timestamps, and the initial \u0027Swarm created\u0027 bold text in the very beginning of a swarm conversation;\n2. in Account Settings, the device IDs of Linked Devices;\n3. under Media Settings, the name and sample rate for each audio or video codec; and\n4. in the about dialog, the name of the contributors.\n\nAdditionally, depending on the time/effort required, it would be great if other dimensions are changed also, to give a more complete \u0027zooming\u0027 experience.  This could be in a separate patch.  Things like:\n\n- font size and width/height of buttons and other elements/components;\n- padding/margins between components, and the line-heights between texts;\n- icon and avatar sizes; and so on.",
       "revId": "b4001fdffa625e11c0dd1433e71a2bb1ca45a5f3",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f71e89_e4837c90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-04T19:17:22Z",
+      "side": 1,
+      "message": "1. In fact, call-swarm will change the design so it\u0027s a wontfix\n2/3/4 will check\n\nThe \"zooming\" feature is a bit different and is not wanted in this patch at least, and can be changed with the QT_SCALE_FACTOR variable. For now I prefer to not touch this.",
+      "parentUuid": "4fd89db2_b583bb7d",
+      "revId": "b4001fdffa625e11c0dd1433e71a2bb1ca45a5f3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
