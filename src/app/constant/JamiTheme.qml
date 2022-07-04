@@ -367,6 +367,12 @@ Item {
     property real invitationViewButtonIconSize: 24
     property real invitationViewButtonsSpacing: 30
 
+    // MainView
+    property real welcomeRectSideMargins: 45
+    property real welcomeRectTopMargin: 90
+    property real jamiIdMargins: 36
+    property color rectColor: Qt.rgba(0,0.34,0.6,0.16)
+
     // WizardView
     property real wizardViewPageLayoutSpacing: 12
     property real wizardViewPageBackButtonMargins: 20

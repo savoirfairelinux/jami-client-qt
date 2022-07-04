@@ -40,16 +40,16 @@ Rectangle {
     height: 91
     color: "white"
 
-
-
+    ColumnLayout {
+        anchors.fill: parent
 
         RowLayout {
+            id: firstLine
 
-
-            Layout.fillWidth: true
+            Layout.preferredWidth: parent.width
+            Layout.alignment: Qt.AlignTop
 
             Rectangle {
-
                 id: mainRectangle
 
                 width: 97
@@ -57,13 +57,6 @@ Rectangle {
                 color: "#005699"
                 radius: 20
 
-                Label {
-                    id: jamiIdLogo
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                    text: "JamiId"
-
-                }
 
                 Rectangle {
 
@@ -74,25 +67,33 @@ Rectangle {
                     color: "#005699"
 
                 }
+
+                ResponsiveImage {
+                    id: jamiIdLogo
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 70
+                    height: 24
+                    opacity: 1
+
+                    source: JamiResources.jamiid_svg
+
+                }
             }
 
             RowLayout {
-
-
-                Layout.alignment: Qt.AlignRight
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
                 Layout.fillWidth: true
 
                 PushButton {
                     id: btnEdit
-
-                    Layout.alignment: Qt.AlignRight
 
                     imageColor: "#005699"
                     normalColor: "transparent"
                     Layout.topMargin: 10
                     hoverEnabled: false
                     visible: editable
-
+                    border.color: "#005699"
 
                     source: JamiResources.round_edit_24dp_svg
 
@@ -102,56 +103,52 @@ Rectangle {
                 PushButton {
                     id: btnCopy
 
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-
                     imageColor: "#005699"
                     normalColor: "transparent"
                     Layout.topMargin: 10
 
                     hoverEnabled: false
+                    border.color: "#005699"
 
                     source: JamiResources.content_copy_24dp_svg
 
-                    onClicked: { }
+                    onClicked: {
+                        UtilsAdapter.setClipboardText(
+                                    textMetricsjamiRegisteredNameText.text)
+                    }
                 }
 
                 PushButton {
                     id: btnShare
 
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
                     imageColor: "#005699"
                     normalColor: "transparent"
                     Layout.topMargin: 10
+                    Layout.rightMargin: 10
                     hoverEnabled: false
+                    border.color: "#005699"
 
                     source: JamiResources.share_24dp_svg
 
                     onClicked: { }
                 }
 
-            }}
-
+            }
+        }
 
         Text {
             id: jamiRegisteredNameText
 
-            Layout.alignment: Qt.AlignVCenter || Qt.AnchorRight || Qt.AlignHCenter
-            //            Layout.preferredWidth: welcomePageColumnLayout.width
-            Layout.preferredHeight: 30
+            Layout.alignment: Qt.AlignBottom | Qt.AlignCenter
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
 
             font.pointSize: JamiTheme.textFontSize + 1
 
-            text: textMetricsjamiRegisteredNameText.elidedText
-            color: JamiTheme.textColor
-            TextMetrics {
-                id: textMetricsjamiRegisteredNameText
-                font: jamiRegisteredNameText.font
-                text: UtilsAdapter.getBestId(LRCInstance.currentAccountId)
-                //                elideWidth: welcomePageColumnLayout.width
-                elide: Qt.ElideMiddle
-            }
+            text: CurrentAccount.bestId
+            color: "black"
         }
-
     }
+
+}
 

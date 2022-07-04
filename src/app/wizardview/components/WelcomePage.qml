@@ -27,15 +27,21 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
+//TO DO Focus Nav+ bold
 Rectangle {
     id: root
 
     property int preferredHeight: welcomePageColumnLayout.implicitHeight
+    property bool showTab: false
+    property bool showAlreadyHave: false
+    property bool showAdvanced: false
 
     signal scrollToBottom
     signal showThisPage
 
+
     color: JamiTheme.transparentColor
+    opacity: 0.93
 
     Connections {
         target: WizardViewStepModel
@@ -63,22 +69,6 @@ Rectangle {
 
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-        Text {
-            id: welcomeLabel
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-            Layout.preferredHeight: contentHeight
-
-            text: JamiStrings.welcomeTo
-            color: JamiTheme.textColor
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
-            font.pointSize: JamiTheme.welcomeLabelPointSize
-            font.kerning: true
-        }
-
         ResponsiveImage {
             id: welcomeLogo
 
@@ -86,26 +76,58 @@ Rectangle {
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
-            source: JamiTheme.darkTheme ?
-                        JamiResources.logo_jami_standard_coul_white_svg :
-                        JamiResources.logo_jami_standard_coul_svg
+            source: JamiResources.jami_svg
         }
+
+        Text {
+            id: introduction
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+            Layout.preferredHeight: contentHeight
+
+            text: JamiStrings.introductionJami
+            color: JamiTheme.textColor
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            font.pixelSize: 26
+            font.kerning: true
+        }
+
+        Text {
+            id: description
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+            Layout.preferredHeight: contentHeight
+
+            text: JamiStrings.description
+            color: JamiTheme.textColor
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            wrapMode : Text.WordWrap
+
+            font.pixelSize: 15
+            font.kerning: true
+        }
+
+
 
         MaterialButton {
             id: newAccountButton
 
             objectName: "newAccountButton"
+            primary: true
 
             Layout.alignment: Qt.AlignCenter
-
+            Layout.topMargin: 21
             preferredWidth: JamiTheme.wizardButtonWidth
 
-            text: JamiStrings.createAJamiAccount
-            font.capitalization: Font.AllUppercase
+            text: JamiStrings.joinJami
             toolTipText: JamiStrings.createNewJamiAccount
-            iconSource: JamiResources.default_avatar_overlay_svg
 
-            KeyNavigation.tab: newRdvButton
+            KeyNavigation.tab: alreadyHaveAccount
             KeyNavigation.up: backButton.visible ? backButton :
                                                    (showAdvancedButton.showAdvanced ?
                                                         newSIPAccountButton :
@@ -117,43 +139,55 @@ Rectangle {
         }
 
         MaterialButton {
-            id: newRdvButton
+            id: alreadyHaveAccount
 
-            objectName: "newRdvButton"
+            objectName: "alreadyHaveAccount"
+            primary: true
 
-            Layout.alignment: Qt.AlignCenter
 
             preferredWidth: JamiTheme.wizardButtonWidth
+            Layout.alignment: Qt.AlignCenter
 
-            text: JamiStrings.createNewRV
-            font.capitalization: Font.AllUppercase
-            toolTipText: JamiStrings.createNewRV
-            iconSource: JamiResources.groups_24dp_svg
+            text: JamiStrings.alreadyHaveAccount
+            toolTipText: JamiStrings.useExistingAccount
 
-            KeyNavigation.tab: fromDeviceButton
+            outlined: true
+            font.bold: true
+
+            hoverEnabled: true
+
+            KeyNavigation.tab: showAlreadyHave ? fromDeviceButton : showAdvancedButton
+
+
             KeyNavigation.up: newAccountButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.CreateRendezVous)
+            onClicked: {
+                boldFont = !boldFont
+                showAlreadyHave = !showAlreadyHave
+                showAdvanced = false
+                fromDeviceButton.visible = showAlreadyHave
+                fromBackupButton.visible = showAlreadyHave
+                newRdvButton.visible = showAdvanced
+                connectAccountManagerButton.visible = showAdvanced
+                newSIPAccountButton.visible = showAdvanced
+
+            }
         }
 
         MaterialButton {
             id: fromDeviceButton
 
             objectName: "fromDeviceButton"
+            secondary: true
 
             Layout.alignment: Qt.AlignCenter
 
             preferredWidth: JamiTheme.wizardButtonWidth
+            visible: false
 
             text: JamiStrings.linkFromAnotherDevice
-            font.capitalization: Font.AllUppercase
             toolTipText: JamiStrings.importAccountFromOtherDevice
-            iconSource: JamiResources.devices_24dp_svg
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
 
             KeyNavigation.tab: fromBackupButton
             KeyNavigation.up: newRdvButton
@@ -167,85 +201,97 @@ Rectangle {
             id: fromBackupButton
 
             objectName: "fromBackupButton"
+            secondary: true
 
             Layout.alignment: Qt.AlignCenter
 
             preferredWidth: JamiTheme.wizardButtonWidth
+            visible: false
 
             text: JamiStrings.connectFromBackup
-            font.capitalization: Font.AllUppercase
             toolTipText: JamiStrings.importAccountFromBackup
-            iconSource: JamiResources.backup_24dp_svg
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
 
             KeyNavigation.tab: showAdvancedButton
-            KeyNavigation.up: fromDeviceButton
+            KeyNavigation.up: newAccountButton
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.ImportFromBackup)
         }
 
+
         MaterialButton {
             id: showAdvancedButton
 
             objectName: "showAdvancedButton"
-
-            property bool showAdvanced: false
+            tertiary: true
 
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: newSIPAccountButton.visible ?
                                      0 : JamiTheme.wizardViewPageBackButtonMargins
 
             preferredWidth: JamiTheme.wizardButtonWidth
-
             text: JamiStrings.advancedFeatures
-            font.capitalization: Font.AllUppercase
             toolTipText: showAdvanced ? JamiStrings.hideAdvancedFeatures :
                                         JamiStrings.showAdvancedFeatures
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
-            outlined: true
 
-            hoverEnabled: true
 
-            KeyNavigation.tab: showAdvanced ? connectAccountManagerButton :
+            KeyNavigation.tab: showAdvanced ? newRdvButton :
                                               (backButton.visible ? backButton : newAccountButton)
-            KeyNavigation.up: fromBackupButton
+            KeyNavigation.up: alreadyHaveAccount
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
+                boldFont = !boldFont
                 showAdvanced = !showAdvanced
+                showAlreadyHave = false
+                newRdvButton.visible = showAdvanced
                 connectAccountManagerButton.visible = showAdvanced
                 newSIPAccountButton.visible = showAdvanced
+                fromDeviceButton.visible = showAlreadyHave
+                fromBackupButton.visible = showAlreadyHave
             }
+        }
+
+        MaterialButton {
+            id: newRdvButton
+
+            objectName: "newRdvButton"
+            secondary: true
+
+            Layout.alignment: Qt.AlignCenter
+
+            preferredWidth: JamiTheme.wizardButtonWidth
+            visible: false
+
+            text: JamiStrings.createRV
+            toolTipText: JamiStrings.createNewRV
+
+            KeyNavigation.tab: fromBackupButton
+            KeyNavigation.up: newAccountButton
+            KeyNavigation.down: KeyNavigation.tab
+
+            onClicked: WizardViewStepModel.startAccountCreationFlow(
+                           WizardViewStepModel.AccountCreationOption.CreateRendezVous)
         }
 
         MaterialButton {
             id: connectAccountManagerButton
 
             objectName: "connectAccountManagerButton"
+            secondary: true
 
             Layout.alignment: Qt.AlignCenter
 
             preferredWidth: JamiTheme.wizardButtonWidth
-
             visible: false
 
             text: JamiStrings.connectJAMSServer
-            font.capitalization: Font.AllUppercase
             toolTipText: JamiStrings.createFromJAMS
-            iconSource: JamiResources.router_24dp_svg
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
 
             KeyNavigation.tab: newSIPAccountButton
-            KeyNavigation.up: showAdvancedButton
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.up: newRdvButton
+            KeyNavigation.down: newSIPAccountButton
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
@@ -255,18 +301,16 @@ Rectangle {
             id: newSIPAccountButton
 
             objectName: "newSIPAccountButton"
+            secondary: true
 
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
             preferredWidth: JamiTheme.wizardButtonWidth
-
             visible: false
 
             text: JamiStrings.addSIPAccount
-            font.capitalization: Font.AllUppercase
             toolTipText: JamiStrings.createNewSipAccount
-            iconSource: JamiResources.default_avatar_overlay_svg
             color: JamiTheme.buttonTintedBlue
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
@@ -304,9 +348,13 @@ Rectangle {
         visible: UtilsAdapter.getAccountListSize()
 
         KeyNavigation.tab: newAccountButton
-        KeyNavigation.up: newSIPAccountButton
+        KeyNavigation.up: newAccountButton
         KeyNavigation.down: KeyNavigation.tab
 
         onClicked: WizardViewStepModel.previousStep()
+
     }
+
+
+
 }
