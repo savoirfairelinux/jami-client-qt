@@ -945,7 +945,7 @@ A Jami most kilép.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
         <source>Ringtone device</source>
-        <translation>Csengőhang eszköz</translation>
+        <translation>Csengőhang-eszköz</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="172"/>

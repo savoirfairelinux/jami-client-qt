@@ -96,7 +96,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>Vastaamaton puhelu %1 :lta</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="498"/>
@@ -2212,7 +2212,7 @@ tahdistaa yhteyden keskusteluun.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="521"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Valitse jaettava ikkuna</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="522"/>

@@ -202,7 +202,7 @@
     <message>
         <location filename="../src/libclient/newcallmodel.cpp" line="70"/>
         <source>Moved Temporarily</source>
-        <translation>Átmenetileg áthelyezve</translation>
+        <translation>Ideiglenesen áthelyezve</translation>
     </message>
     <message>
         <location filename="../src/libclient/newcallmodel.cpp" line="71"/>

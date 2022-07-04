@@ -1630,7 +1630,7 @@ Per favore riprova più tardi.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="377"/>
         <source>Chatview</source>
-        <translation>Chat</translation>
+        <translation>Vista chat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
@@ -1640,7 +1640,7 @@ Per favore riprova più tardi.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
         <source>User interface language</source>
-        <translation>Lingua dell&apos;interfaccia utente</translation>
+        <translation>Lingua dell&apos;interfaccia</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>

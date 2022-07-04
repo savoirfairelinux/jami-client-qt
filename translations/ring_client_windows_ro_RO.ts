@@ -910,7 +910,7 @@ Jami se va închide acum.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
         <source>Plugin</source>
-        <translation>Extensie</translation>
+        <translation>Extensii</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
@@ -1630,7 +1630,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="377"/>
         <source>Chatview</source>
-        <translation>Discuție</translation>
+        <translation>Discuții</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
@@ -1640,7 +1640,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
         <source>User interface language</source>
-        <translation>Limba interfeței cu utilizatorul</translation>
+        <translation>Limba</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
