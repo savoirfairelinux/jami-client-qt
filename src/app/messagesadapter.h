@@ -90,6 +90,7 @@ protected:
     Q_INVOKABLE void refuseInvitation(const QString& convUid = "");
     Q_INVOKABLE void blockConversation(const QString& convUid = "");
     Q_INVOKABLE void unbanContact(int index);
+    Q_INVOKABLE void unbanConversation(const QString& convUid);
     Q_INVOKABLE void sendMessage(const QString& message);
     Q_INVOKABLE void sendFile(const QString& message);
     Q_INVOKABLE void acceptFile(const QString& arg);
