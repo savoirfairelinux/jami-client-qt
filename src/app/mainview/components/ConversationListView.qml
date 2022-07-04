@@ -128,6 +128,7 @@ JamiListView {
                 "title": model.dataForRow(row, ConversationList.Title),
                 "uri": model.dataForRow(row, ConversationList.URI),
                 "isSwarm": model.dataForRow(row, ConversationList.IsSwarm),
+                "isBanned": model.dataForRow(row, ConversationList.IsBanned),
                 "mode": model.dataForRow(row, ConversationList.Mode),
                 "readOnly": model.dataForRow(row, ConversationList.ReadOnly)
             }
@@ -135,6 +136,7 @@ JamiListView {
             responsibleAccountId = LRCInstance.currentAccountId
             responsibleConvUid = item.convId
             isSwarm = item.isSwarm
+            isBanned = item.isBanned
             mode = item.mode
             contactType = LRCInstance.currentAccountType
             readOnly = item.readOnly

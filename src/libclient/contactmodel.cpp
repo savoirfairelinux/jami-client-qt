@@ -344,6 +344,15 @@ ContactModel::addToContacts(const QString& contactUri)
 void
 ContactModel::removeContact(const QString& contactUri, bool banned)
 {
+    try {
+        const auto& contact = getContact(contactUri);
+        if (contact.isBanned) {
+            qWarning() << "Contact already banned";
+            return;
+        }
+    } catch (...) {
+    }
+
     bool emitContactRemoved = false;
     {
         std::lock_guard<std::mutex> lk(pimpl_->contactsMtx_);
@@ -872,8 +881,9 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId,
         std::lock_guard<std::mutex> lk(contactsMtx_);
 
         auto contact = contacts.find(contactUri);
-        if (contact == contacts.end())
+        if (contact == contacts.end()) {
             return;
+        }
 
         if (contact->profileInfo.type == profile::Type::PENDING) {
             Q_EMIT behaviorController.trustRequestTreated(linked.owner.id, contactUri);
@@ -911,8 +921,9 @@ ContactModelPimpl::slotContactRemoved(const QString& accountId,
     linked.owner.conversationModel->refreshFilter();
     if (banned) {
         Q_EMIT linked.bannedStatusChanged(contactUri, true);
+    } else {
+        Q_EMIT linked.contactRemoved(contactUri);
     }
-    Q_EMIT linked.contactRemoved(contactUri);
 }
 
 void

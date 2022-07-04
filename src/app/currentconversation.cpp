@@ -84,6 +84,7 @@ CurrentConversation::updateData()
             if (isCoreDialog_)
                 try {
                     auto& contact = accInfo.contactModel->getContact(members.at(0));
+                    set_isBlocked(contact.isBanned);
                     isContact = contact.profileInfo.type != profile::Type::TEMPORARY;
                 } catch (const std::exception& e) {
                     qInfo() << "Contact not found: " << e.what();

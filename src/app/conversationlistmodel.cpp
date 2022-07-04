@@ -120,7 +120,7 @@ ConversationListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& s
     if (ignored_.contains(index.data(Role::UID).toString())) {
         match = true;
     } else if (index.data(Role::IsBanned).toBool()) {
-        if (!rx.isValid()) {
+        if (!rx.pattern().isEmpty() && rx.isValid()) {
             Q_FOREACH (const auto& filter, toFilter) {
                 auto matchResult = rx.match(filter);
                 if (matchResult.hasMatch() && matchResult.captured(0) == filter) {
