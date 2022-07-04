@@ -88,6 +88,8 @@ Rectangle {
 
             color: JamiTheme.backgroundColor
 
+
+
             ColumnLayout {
                 id: usernameColumnLayout
 
@@ -96,26 +98,77 @@ Rectangle {
                 anchors.centerIn: parent
 
                 width: root.width
+                height: root.height
 
                 RowLayout {
-                    spacing: JamiTheme.wizardViewPageLayoutSpacing
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+
+                    BackButton {
+                        id: backButton
+
+                        objectName: "createAccountPageBackButton"
+                        Layout.alignment: Qt.AlignLeft
+                        Layout.leftMargin: 20
+
+                        preferredSize: JamiTheme.wizardViewPageBackButtonSize
+
+                        KeyNavigation.tab: {
+                            if (createAccountStack.currentIndex === nameRegistrationPage.stackIndex)
+                                return usernameEdit
+                            else
+                                return passwordSwitch
+                        }
+                        KeyNavigation.up: {
+                            if (createAccountStack.currentIndex === nameRegistrationPage.stackIndex)
+                                return skipButton
+                            else
+                                return createAccountButton.enabled ? createAccountButton : passwordConfirmEdit
+                        }
+                        KeyNavigation.down: KeyNavigation.tab
+
+                        onClicked: WizardViewStepModel.previousStep()
+                    }
+
+                    PushButton {
+
+                        Layout.alignment: Qt.AlignRight
+                        Layout.rightMargin: 10
+
+                        preferredSize: 24
+
+                        source: JamiResources.round_close_24dp_svg
+
+
+                    }
+
+                }
+
+                Text {
+                    id: joinJami
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-                    Layout.preferredWidth: usernameEdit.width
+                    Layout.preferredHeight: contentHeight
 
-                    Label {
-                        text: isRendezVous ? JamiStrings.chooseUsernameForRV :
+                    text: JamiStrings.joinJami
+                    color: JamiTheme.textColor
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                    font.pixelSize: 26
+                    font.kerning: true
+                }
+
+                Label {
+                    Layout.alignment: Qt.AlignCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    text: isRendezVous ? JamiStrings.chooseUsernameForRV :
                                              JamiStrings.chooseUsernameForAccount
-                        color: JamiTheme.textColor
-                        font.pointSize: JamiTheme.textFontSize + 3
-                    }
-
-                    BubbleLabel {
-                        Layout.alignment: Qt.AlignRight
-
-                        text: JamiStrings.recommended
-                    }
+                    color: JamiTheme.textColor
+                    font.pointSize: JamiTheme.textFontSize + 3
                 }
 
                 UsernameLineEdit {
@@ -127,6 +180,7 @@ Rectangle {
                     Layout.preferredHeight: fieldLayoutHeight
                     Layout.preferredWidth:  chooseUsernameButton.width
                     Layout.alignment: Qt.AlignHCenter
+
 
                     focus: visible
 
@@ -145,6 +199,50 @@ Rectangle {
                             skipButton.clicked()
                     }
                 }
+
+                EditableLineEdit {
+                    id: descriptionLine
+                    editable: true
+
+                    Layout.alignment: Qt.AlignHCenter
+
+                    font.pointSize: JamiTheme.menuFontSize
+
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                    text: CurrentConversation.description
+                    placeholderText: isRendezVous ? JamiStrings.chooseAName :
+                                                    JamiStrings.chooseYourUserName
+                    placeholderTextColor: {
+                        if (editable) {
+                            if (UtilsAdapter.luma(root.color)) {
+                                return JamiTheme.placeholderTextColorWhite
+                            } else {
+                                return JamiTheme.placeholderTextColor
+                            }
+                        } else {
+                            if (UtilsAdapter.luma(root.color)) {
+                                return JamiTheme.chatviewTextColorLight
+                            } else {
+                                return JamiTheme.chatviewTextColorDark
+                            }
+                        }
+                    }
+                    tooltipText: JamiStrings.addADescription
+                    backgroundColor: root.color
+                    color: UtilsAdapter.luma(backgroundColor) ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
+
+//                    onAccepted: {
+//                        if (chooseUsernameButton.enabled)
+//                            chooseUsernameButton.clicked()
+//                        else
+//                            skipButton.clicked()
+//                    }
+                }
+
 
                 Label {
                     Layout.alignment: Qt.AlignHCenter
@@ -175,17 +273,13 @@ Rectangle {
                     objectName: "chooseUsernameButton"
 
                     Layout.alignment: Qt.AlignCenter
+                    primary: true
 
                     preferredWidth: JamiTheme.wizardButtonWidth
 
                     font.capitalization: Font.AllUppercase
-                    text: isRendezVous ? JamiStrings.chooseName : JamiStrings.chooseUsername
+                    text: isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
                     enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE
-                    color: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE ?
-                               JamiTheme.wizardBlueButtons :
-                               JamiTheme.buttonTintedGreyInactive
-                    hoveredColor: JamiTheme.buttonTintedBlueHovered
-                    pressedColor: JamiTheme.buttonTintedBluePressed
 
                     KeyNavigation.tab: skipButton
                     KeyNavigation.up: usernameEdit
@@ -218,6 +312,22 @@ Rectangle {
                         usernameEdit.clear()
                         WizardViewStepModel.nextStep()
                     }
+                }
+
+
+
+                MaterialButton {
+                    id: showAdvancedButton
+
+                    objectName: "showAdvancedButton"
+                    tertiary: true
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    preferredWidth: JamiTheme.wizardButtonWidth
+                    text: JamiStrings.advancedFeatures
+                    toolTipText: JamiStrings.showAdvancedFeatures
+
                 }
 
                 AccountCreationStepIndicator {
@@ -406,31 +516,4 @@ Rectangle {
         }
     }
 
-    BackButton {
-        id: backButton
-
-        objectName: "createAccountPageBackButton"
-
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
-
-        preferredSize: JamiTheme.wizardViewPageBackButtonSize
-
-        KeyNavigation.tab: {
-            if (createAccountStack.currentIndex === nameRegistrationPage.stackIndex)
-                return usernameEdit
-            else
-                return passwordSwitch
-        }
-        KeyNavigation.up: {
-            if (createAccountStack.currentIndex === nameRegistrationPage.stackIndex)
-                return skipButton
-            else
-                return createAccountButton.enabled ? createAccountButton : passwordConfirmEdit
-        }
-        KeyNavigation.down: KeyNavigation.tab
-
-        onClicked: WizardViewStepModel.previousStep()
-    }
 }

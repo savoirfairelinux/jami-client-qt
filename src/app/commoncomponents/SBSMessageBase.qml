@@ -78,7 +78,6 @@ Control {
                 font.bold: true
                 visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
                 font.pixelSize: JamiTheme.usernameBlockFontSize
-                font.family: JamiTheme.chatviewFontFamily
                 color: JamiTheme.chatviewUsernameColor
                 lineHeight: JamiTheme.usernameBlockLineHeight
                 leftPadding: JamiTheme.usernameBlockPadding

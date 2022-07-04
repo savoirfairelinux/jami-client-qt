@@ -189,5 +189,7 @@
         <file>src/app/mainview/components/KeyboardShortcutKeyDelegate.qml</file>
         <file>src/app/mainview/components/KeyboardShortcutTabButton.qml</file>
         <file>src/app/LayoutManager.qml</file>
+        <file>src/app/mainview/components/JamiIdentifier.qml</file>
+        <file>src/app/mainview/components/TipBox.qml</file>
     </qresource>
 </RCC>

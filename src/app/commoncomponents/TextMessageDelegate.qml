@@ -63,7 +63,6 @@ SBSMessageBase {
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
             font.pixelSize: 15
-            font.family: 'Ubuntu'
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.MarkdownText
