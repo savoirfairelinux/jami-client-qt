@@ -189,4 +189,34 @@ ColumnLayout {
             UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id)
         }
     }
+
+
+    Connections {
+        target: UtilsAdapter
+
+        function onChangeFontSize() {
+            zoomSpinBox.valueField = Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
+        }
+    }
+
+    SettingSpinBox {
+        id: zoomSpinBox
+        Layout.fillWidth: true
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+
+        title: JamiStrings.textZoom
+        itemWidth: root.itemWidth
+
+        valueField: Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)
+
+        onNewValue: {
+            // here, avoid validator cause it can be painful for the user to change
+            // values by modifying the whole field.
+            if (valueField < 10)
+                valueField = 10
+            else if (valueField > 200)
+                valueField = 200
+            UtilsAdapter.setAppValue(Settings.BaseZoom, Math.round(valueField / 100.0))
+        }
+    }
 }
