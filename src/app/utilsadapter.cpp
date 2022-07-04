@@ -361,12 +361,18 @@ UtilsAdapter::getAppValue(const Settings::Key key)
 void
 UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
 {
+    if (key == Settings::Key::BaseOffset) {
+        if (value.toInt() < -30 || value.toInt() > 30)
+            return;
+    }
     settingsManager_->setValue(key, value);
     // If we change the lang preference, reload the translations
     if (key == Settings::Key::LANG)
         settingsManager_->loadTranslations();
     else if (key == Settings::Key::EnableExperimentalSwarm)
         Q_EMIT showExperimentalSwarm();
+    else if (key == Settings::Key::BaseOffset)
+        Q_EMIT changeFontSize();
 }
 
 QString

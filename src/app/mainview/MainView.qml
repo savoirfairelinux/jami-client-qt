@@ -20,9 +20,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 
 // Import qml component files.
 import "components"
@@ -522,6 +523,30 @@ Rectangle {
                 toggleSettingsView()
             }
             settingsMenu.buttonSelectedManually(SettingsView.Media)
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl++"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            UtilsAdapter.setAppValue(Settings.BaseOffset, parseInt(UtilsAdapter.getAppValue(Settings.BaseOffset)) + 1)
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+-"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            UtilsAdapter.setAppValue(Settings.BaseOffset, parseInt(UtilsAdapter.getAppValue(Settings.BaseOffset)) - 1)
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+0"
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            UtilsAdapter.setAppValue(Settings.BaseOffset, 0)
         }
     }
 
