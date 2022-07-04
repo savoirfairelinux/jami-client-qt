@@ -377,6 +377,7 @@ Item {
     property string downloadFolder: qsTr("Downloads directory")
     property string tipChooseDownloadFolder: qsTr("Choose download directory")
     property string recordCall: qsTr("Record call")
+    property string textZoom: qsTr("Text zoom")
 
     // ChatviewSettings
     property string chatview: qsTr("Chatview")
