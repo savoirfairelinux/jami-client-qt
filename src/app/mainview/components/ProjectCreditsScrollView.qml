@@ -27,10 +27,8 @@ import "../../commoncomponents"
 
 Rectangle {
     id: root
-
-    radius: 5
-    border.color: JamiTheme.tabbarBorderColor
-
+    color: "transparent"
+    width : 480
     JamiFlickable {
         id: projectCreditsFlickable
 
@@ -44,7 +42,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
 
             width: projectCreditsFlickable.width
-
+            color: JamiTheme.textColor
             selectByMouse: false
             readOnly: true
             wrapMode: Text.WordWrap
@@ -59,6 +57,11 @@ Rectangle {
                 cursorShape: Qt.ArrowCursor
                 acceptedButtons: Qt.NoButton
             }
+
         }
     }
+
+
+
+
 }

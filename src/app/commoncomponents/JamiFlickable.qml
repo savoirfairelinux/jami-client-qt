@@ -24,6 +24,7 @@ import net.jami.Constants 1.1
 Flickable {
     id: root
 
+
     property bool attachedFlickableMoving: root.moving
     property alias verticalHandleColor: verticalScrollBar.handleColor
     property alias horizontalHandleColor: horizontalScrollBar.handleColor
@@ -38,7 +39,6 @@ Flickable {
     }
     ScrollBar.horizontal: JamiScrollBar {
         id: horizontalScrollBar
-
         attachedFlickableMoving: root.attachedFlickableMoving
         orientation: Qt.Horizontal
     }
