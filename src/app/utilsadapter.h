@@ -111,6 +111,7 @@ public:
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void showExperimentalSwarm();
+    void changeFontSize();
 
 private:
     QClipboard* clipboard_;
