@@ -100,6 +100,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9844c3d1_71a03ff0",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-07-04T15:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb9d756f_59e5655c",
+      "range": {
+        "startLine": 53,
+        "startChar": 91,
+        "endLine": 53,
+        "endChar": 93
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d234fd51_9875a4c1",
@@ -113,6 +137,30 @@
       "writtenOn": "2022-06-29T20:45:21Z",
       "side": 1,
       "message": "rendezvous (rendez-vous is in french)",
+      "range": {
+        "startLine": 303,
+        "startChar": 48,
+        "endLine": 303,
+        "endChar": 54
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d16dbee9_c17c4802",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-07-04T15:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d234fd51_9875a4c1",
       "range": {
         "startLine": 303,
         "startChar": 48,
@@ -146,6 +194,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "647c65b2_24cf0b2f",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-07-04T15:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da3a418c_81020a2a",
+      "range": {
+        "startLine": 545,
+        "startChar": 68,
+        "endLine": 545,
+        "endChar": 76
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2351b163_36efe936",
@@ -169,6 +241,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6f7040a_506f019d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-07-04T15:54:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2351b163_36efe936",
+      "range": {
+        "startLine": 554,
+        "startChar": 48,
+        "endLine": 554,
+        "endChar": 59
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ed9ee6f_9f82493a",
@@ -182,6 +278,30 @@
       "writtenOn": "2022-06-30T10:14:31Z",
       "side": 1,
       "message": "Can `\\n` be removed and word-wrap applied if necessary? Especially helpful for other language translations.",
+      "range": {
+        "startLine": 561,
+        "startChar": 71,
+        "endLine": 561,
+        "endChar": 73
+      },
+      "revId": "fa6e5cfc6fe352d3be0dfa45ff19a0d755990f60",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08808f7a_bf03f1a3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-07-04T15:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ed9ee6f_9f82493a",
       "range": {
         "startLine": 561,
         "startChar": 71,

@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0147b434_9cfcc9fa",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-07-04T15:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eddfa947_c0504398",
+      "range": {
+        "startLine": 308,
+        "startChar": 101,
+        "endLine": 308,
+        "endChar": 106
+      },
+      "revId": "14157fc9faa72159aa500170fd3246b215dc3178",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "440f1344_fac420d1",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-01T21:36:29Z",
       "side": 1,
       "message": "Should `a ` be removed?",
+      "range": {
+        "startLine": 552,
+        "startChar": 51,
+        "endLine": 552,
+        "endChar": 53
+      },
+      "revId": "14157fc9faa72159aa500170fd3246b215dc3178",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9caa8d7_8bcd8e51",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-07-04T15:54:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "440f1344_fac420d1",
       "range": {
         "startLine": 552,
         "startChar": 51,

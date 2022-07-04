@@ -53,6 +53,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b343ba8_ea54c227",
+        "filename": "src/app/commoncomponents/JamiFlickable.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-07-04T15:54:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50083dd3_71d29158",
+      "revId": "f427676c940ece191ca17418a48ee95043e8e358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e30cd9d_62aff18c",
