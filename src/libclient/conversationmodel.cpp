@@ -814,20 +814,14 @@ ConversationModel::removeConversation(const QString& uid, bool banned)
                     "participant";
         return;
     }
-    if (conversation.isSwarm()) {
+    if (!conversation.isCoreDialog()) {
         if (conversation.isRequest)
             ConfigurationManager::instance().declineConversationRequest(owner.id, uid);
         else
             ConfigurationManager::instance().removeConversation(owner.id, uid);
-
-        // Still some other conversation, do nothing else
-        if (!banned)
-            return;
+    } else {
+        owner.contactModel->removeContact(peers.front(), banned);
     }
-
-    if (!conversation.isCoreDialog())
-        return;
-    owner.contactModel->removeContact(peers.front(), banned);
 }
 
 void
@@ -2575,21 +2569,33 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
 
         auto& conversation = getConversationForUid(conversationId).get();
         auto& peers = peersForConversation(conversation);
+        if (peers.isEmpty()) {
+            removeConversation();
+            return;
+        }
+        auto contactUri = peers.first();
+        contact::Info contact;
+        try {
+            contact = linked.owner.contactModel->getContact(contactUri);
+        } catch (...) {
+        }
 
         if (conversation.mode == conversation::Mode::ONE_TO_ONE) {
-            if (peers.isEmpty()) {
-                removeConversation();
-                return;
-            }
-
-            auto contactUri = peers.first();
             removeConversation();
 
             // If it's a 1:1 conversation and we don't have any more conversation
             // we can remove the contact
             auto conv = storage::getConversationsWithPeer(db, contactUri);
             if (conv.empty())
-                linked.owner.contactModel->removeContact(contactUri, true);
+                linked.owner.contactModel->removeContact(contactUri, false);
+
+            if (contact.isBanned && conv.empty()) {
+                // Add 1:1 conv for banned
+                auto c = storage::beginConversationWithPeer(db, contactUri);
+                addConversationWith(c, contactUri, false);
+                Q_EMIT linked.conversationReady(c, contactUri);
+                Q_EMIT linked.newConversation(c);
+            }
         } else {
             removeConversation();
         }

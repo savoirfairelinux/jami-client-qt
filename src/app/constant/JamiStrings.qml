@@ -355,6 +355,7 @@ Item {
 
     // BannedContacts
     property string tipBannedContactsDisplay: qsTr("Display banned contacts")
+    property string banned: qsTr("Banned")
     property string tipBannedContactsHide: qsTr("Hide banned contacts")
 
     // DeleteAccountDialog

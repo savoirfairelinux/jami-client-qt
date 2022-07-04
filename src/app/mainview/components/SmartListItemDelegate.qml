@@ -116,6 +116,7 @@ ItemDelegate {
             }
             RowLayout {
                 visible: ContactType !== Profile.Type.TEMPORARY
+                         && !IsBanned
                          && LastInteractionDate !== undefined
                          && interactive
                 Layout.fillWidth: true
@@ -150,6 +151,16 @@ ItemDelegate {
                                      Qt.application.font.family
                     lineHeight: font.family === "Segoe UI Emoji" ? 1.25 : 1
                 }
+            }
+            Text {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 20
+                Layout.alignment: Qt.AlignVCenter
+                text: JamiStrings.banned
+                visible: IsBanned
+                font.pointSize: JamiTheme.smartlistItemFontSize
+                font.weight: Font.Bold
+                color: JamiTheme.textColor
             }
         }
 
