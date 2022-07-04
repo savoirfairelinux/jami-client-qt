@@ -128,6 +128,11 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         return QVariant(static_cast<int>(item.mode));
     case Role::UID:
         return QVariant(item.uid);
+    case Role::IsBanned:
+        if (!item.isCoreDialog()) {
+            return false;
+        }
+        break;
     case Role::Uris:
         return QVariant(model_->peersForConversation(item.uid).toList());
     case Role::Monikers: {

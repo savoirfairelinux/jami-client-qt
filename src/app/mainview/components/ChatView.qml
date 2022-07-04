@@ -171,7 +171,9 @@ Rectangle {
                     id: chatViewFooter
 
                     visible: {
-                        if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
+                        if (CurrentConversation.isBlocked)
+                            return false
+                        else if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
                             return false
                         else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
                             return false

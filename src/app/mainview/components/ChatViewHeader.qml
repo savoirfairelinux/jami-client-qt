@@ -209,7 +209,7 @@ Rectangle {
             PushButton {
                 id: sendContactRequestButton
 
-                visible: CurrentConversation.isTemporary
+                visible: CurrentConversation.isTemporary || CurrentConversation.isBanned
 
                 source: JamiResources.add_people_24dp_svg
                 toolTipText: JamiStrings.addToConversations
@@ -217,7 +217,9 @@ Rectangle {
                 normalColor: JamiTheme.chatviewBgColor
                 imageColor: JamiTheme.chatviewButtonColor
 
-                onClicked: MessagesAdapter.sendConversationRequest()
+                onClicked: CurrentConversation.isBanned ?
+                                MessagesAdapter.unbanConversation(CurrentConversation.id)
+                                : MessagesAdapter.sendConversationRequest()
             }
 
             PushButton {

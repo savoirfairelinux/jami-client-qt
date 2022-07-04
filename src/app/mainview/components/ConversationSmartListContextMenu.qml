@@ -30,6 +30,7 @@ ContextMenuAutoLoader {
 
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
+    property bool isBanned: false
     property bool isSwarm: false
     property var mode: undefined
     property int contactType: Profile.Type.INVALID
@@ -70,7 +71,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: clearConversation
 
-            canTrigger: !isSwarm && !hasCall
+            canTrigger: !isSwarm && !hasCall && !root.isBanned
             itemName: JamiStrings.clearConversation
             iconSource: JamiResources.ic_clear_24dp_svg
             onClicked: MessagesAdapter.clearConversationHistory(
@@ -80,7 +81,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: removeContact
 
-            canTrigger: !hasCall
+            canTrigger: !hasCall && !root.isBanned
             itemName: {
                 if (mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM)
                     return JamiStrings.removeConversation
@@ -126,11 +127,20 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: blockContact
 
-            canTrigger: !hasCall && contactType !== Profile.Type.SIP
+            canTrigger: !hasCall && contactType !== Profile.Type.SIP && !root.isBanned
             itemName: !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM) ? JamiStrings.blockContact : JamiStrings.blockSwarm
             iconSource: JamiResources.block_black_24dp_svg
             addMenuSeparatorAfter: contactType !== Profile.Type.SIP
             onClicked: MessagesAdapter.blockConversation(responsibleConvUid)
+        },
+        GeneralMenuItem {
+            id: unblockContact
+
+            canTrigger: root.isBanned
+            itemName: JamiStrings.reinstateContact
+            iconSource: JamiResources.round_remove_circle_24dp_svg
+            addMenuSeparatorAfter: contactType !== Profile.Type.SIP
+            onClicked: MessagesAdapter.unbanConversation(responsibleConvUid)
         },
         GeneralMenuItem {
             id: contactDetails
