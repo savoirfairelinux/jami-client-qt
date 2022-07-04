@@ -107,7 +107,7 @@ ItemDelegate {
             elide: Text.ElideRight
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
-            font.pointSize: 8
+            font.pointSize: JamiTheme.textFontSize
             font.kerning: true
         }
     }
