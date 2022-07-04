@@ -565,38 +565,13 @@ Utils::forceDeleteAsync(const QString& path)
 QString
 Utils::getProjectCredits()
 {
-    QString credits;
     QFile projectCreditsFile(":/misc/projectcredits.html");
     if (!projectCreditsFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug().noquote() << " Project Credits failed to load";
         return {};
     }
     QTextStream in(&projectCreditsFile);
-    while (!in.atEnd()) {
-        QString currentLine = in.readLine();
-        if (currentLine.contains("Created by:")) {
-            credits += "<h3 align=\"center\" style=\" margin-top:0px; "
-                       + QString("margin-bottom:0px; margin-left:0px; margin-right:0px; ")
-                       + "-qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">"
-                       + QObject::tr("Created by:") + "</span></h3>";
-            continue;
-        } else if (currentLine.contains("Artwork by:")) {
-            credits
-                += "<h3 align=\"center\" style=\" margin-top:0px; margin-bottom:0px; "
-                   + QString(
-                       "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">")
-                   + "<span style=\" font-weight:600;\">" + QObject::tr("Artwork by:")
-                   + "</span></h3>";
-            continue;
-        }
-        credits += currentLine;
-    }
-    credits += "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; "
-               + QString(
-                   "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">")
-               + QObject::tr("Based on the SFLPhone project") + "</p>";
-
-    return credits;
+    return in.readAll();
 }
 
 inline QString
