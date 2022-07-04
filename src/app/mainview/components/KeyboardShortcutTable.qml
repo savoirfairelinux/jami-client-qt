@@ -64,6 +64,18 @@ Window {
             shortcut: "F11"
             description: qsTr("Full screen")
         }
+        ListElement {
+            shortcut: "Ctrl + +"
+            description: qsTr("Increase font size")
+        }
+        ListElement {
+            shortcut: "Ctrl + -"
+            description: qsTr("Decrease font size")
+        }
+        ListElement {
+            shortcut: "Ctrl + 0"
+            description: qsTr("Reset font size")
+        }
     }
 
     ListModel {
