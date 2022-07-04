@@ -27,12 +27,26 @@ import net.jami.Enums 1.1
 Item {
     property bool darkTheme: UtilsAdapter.getAppValue(Settings.EnableDarkTheme)
 
+    Connections {
+        target: UtilsAdapter
+
+        function onChangeFontSize() {
+            baseZoom = UtilsAdapter.getAppValue(Settings.BaseZoom)
+        }
+    }
+
     // Jami theme colors
     function rgba256(r, g, b, a) {
         return Qt.rgba(r / 255, g / 255, b / 255, a / 100.)
     }
-    property real fontSizeOffset: Qt.platform.os.toString() === "osx" ? 3 : 0;
-    property real fontSizeOffsetSmall: Qt.platform.os.toString() === "osx" ? 1 : 0;
+
+    function calcSize(size) {
+        return Math.min(Math.max(5, baseZoom * size), 30)
+    }
+
+    property real baseZoom: UtilsAdapter.getAppValue(Settings.BaseZoom)
+    property real fontSizeOffset: (Qt.platform.os.toString() === "osx" ? 3 : 0)
+    property real fontSizeOffsetSmall: (Qt.platform.os.toString() === "osx" ? 1 : 0)
 
     // General
     property color blackColor: "#000000"
@@ -163,6 +177,7 @@ Item {
     property color chatviewTextColor: darkTheme ? "#f0f0f0" : "#000000"
     property color chatviewTextColorLight: "#f0f0f0"
     property color chatviewTextColorDark: "#353637"
+    property real chatviewFontSize: calcSize(15)
     property color timestampColor: darkTheme ? "#bbb" : "#777"
     property color messageOutTxtColor: "#000000"
     property color messageInBgColor: darkTheme ? "#28b1ed" : "#e5e5e5"
@@ -222,23 +237,23 @@ Item {
     // Sizes
     property real qrCodeImageSize: 256
     property real splitViewHandlePreferredWidth: 4
-    property real indicatorFontSize: 6
-    property real tinyFontSize: 7 + fontSizeOffset
-    property real textFontSize: 9 + fontSizeOffset
-    property real bigFontSize: 22
-    property real settingsFontSize: 11 + fontSizeOffset
-    property real buttonFontSize: 9
-    property real participantFontSize: 10
-    property real menuFontSize: 12 + fontSizeOffset
-    property real headerFontSize: 13 + fontSizeOffset
-    property real titleFontSize: 16 + fontSizeOffset
-    property real tinyCreditsTextSize: 13 + fontSizeOffset
-    property real creditsTextSize: 15 + fontSizeOffset
-    property real primaryRadius: 4
-    property real smartlistItemFontSize: 10.5 + fontSizeOffset
-    property real smartlistItemInfoFontSize: 9 + fontSizeOffsetSmall
-    property real filterItemFontSize: smartlistItemFontSize
-    property real filterBadgeFontSize: 8.25
+    property real indicatorFontSize: calcSize(6)
+    property real tinyFontSize: calcSize(7 + fontSizeOffset)
+    property real textFontSize: calcSize(9 + fontSizeOffset)
+    property real bigFontSize: calcSize(22)
+    property real settingsFontSize: calcSize(11 + fontSizeOffset)
+    property real buttonFontSize: calcSize(9)
+    property real participantFontSize: calcSize(10)
+    property real menuFontSize: calcSize(12 + fontSizeOffset)
+    property real headerFontSize: calcSize(13 + fontSizeOffset)
+    property real titleFontSize: calcSize(16 + fontSizeOffset)
+    property real tinyCreditsTextSize: calcSize(13 + fontSizeOffset)
+    property real creditsTextSize: calcSize(15 + fontSizeOffset)
+    property real primaryRadius: calcSize(4)
+    property real smartlistItemFontSize: calcSize(10.5 + fontSizeOffset)
+    property real smartlistItemInfoFontSize: calcSize(9 + fontSizeOffsetSmall)
+    property real filterItemFontSize: calcSize(smartlistItemFontSize)
+    property real filterBadgeFontSize: calcSize(8.25)
     property real accountListItemHeight: 64
     property real accountListAvatarSize: 40
     property real smartListItemHeight: 64
@@ -256,8 +271,8 @@ Item {
     property int participantCallInStatusDelegateRadius: 5
     property real participantCallInStatusOpacity: 0.77
     property int participantCallInAvatarSize: 60
-    property int participantCallInNameFontSize: 11
-    property int participantCallInStatusFontSize: 8
+    property int participantCallInNameFontSize: calcSize(11)
+    property int participantCallInStatusFontSize: calcSize(8)
     property int participantCallInStatusTextWidthLimit: 80
     property int participantCallInStatusTextWidth: 40
     property int mosaicButtonRadius: 5
@@ -265,7 +280,7 @@ Item {
     property real mosaicButtonOpacity: 0.77
     property int mosaicButtonTextPreferredWidth: 40
     property int mosaicButtonTextPreferredHeight: 16
-    property int mosaicButtonTextPointSize: 8 + fontSizeOffsetSmall
+    property int mosaicButtonTextPointSize: calcSize(8 + fontSizeOffsetSmall)
     property int mosaicButtonPreferredWidth: 70
     property int mosaicButtonMaxWidth: 100
     property real avatarPresenceRatio: 0.26
@@ -321,7 +336,7 @@ Item {
     property real chatViewFooterTextAreaMaximumHeight: 130
     property real chatViewScrollToBottomButtonBottomMargin: 8
 
-    property real usernameBlockFontSize : 12
+    property real usernameBlockFontSize : calcSize(12)
     property real usernameBlockLineHeight : 14
     property real usernameBlockPadding : contactMessageAvatarSize  + 8
 
@@ -337,7 +352,7 @@ Item {
     property real filesToSendDelegateHeight: 100
     property real filesToSendDelegateRadius: 7
     property real filesToSendDelegateButtonSize: 16
-    property real filesToSendDelegateFontPointSize: textFontSize + 2
+    property real filesToSendDelegateFontPointSize: calcSize(textFontSize + 2)
 
     // SBSMessageBase
     property int sbsMessageBasePreferredPadding: 12
@@ -364,11 +379,11 @@ Item {
     property real wizardButtonWidth: 400
 
     // MaterialLineEdit
-    property real materialLineEditPointSize: 10 + fontSizeOffset
+    property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
     property real materialLineEditPadding: 16
 
     // UsernameLineEdit
-    property real usernameLineEditPointSize: 9 + fontSizeOffset
+    property real usernameLineEditPointSize:calcSize(9 + fontSizeOffset)
     property real usernameLineEditlookupInterval: 200
 
     // JamiScrollBar
@@ -394,7 +409,7 @@ Item {
     property int aboutBtnSize: 24
 
     // Messages point size
-    property real contactEventPointSize: 10 + fontSizeOffset
+    property real contactEventPointSize: calcSize(10 + fontSizeOffset)
     property int contactMessageAvatarSize: 24
 
 
