@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "095b9893_be5b30c5",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-07-05T11:58:47Z",
+      "side": 1,
+      "message": "is there a reason why the terms \u0027blocked\u0027 and \u0027banned\u0027 are interchanged here?",
+      "range": {
+        "startLine": 87,
+        "startChar": 20,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "e39db14f0b959719744d95d8a5a0d44c3672b36a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
