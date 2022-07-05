@@ -168,19 +168,41 @@ BaseModalDialog {
                 }
             }
 
-            MaterialButton {
-                id: chooseBtn
+            RowLayout {
 
-                Layout.alignment: Qt.AlignCenter
-                enabled: devicesListView.currentItem
+                spacing: JamiTheme.preferredMarginSize
+                Layout.alignment: Qt.AlignHCenter
 
-                text: JamiStrings.chooseThisDevice
-                toolTipText: JamiStrings.chooseThisDevice
+                MaterialButton {
+                    id: chooseBtn
 
-                onClicked: {
-                    CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri)
-                    CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId)
-                    close()
+                    Layout.alignment: Qt.AlignCenter
+                    enabled: devicesListView.currentItem
+
+                    text: JamiStrings.chooseThisDevice
+                    toolTipText: JamiStrings.chooseThisDevice
+
+                    onClicked: {
+                        CurrentConversation.setInfo("rdvAccount", CurrentAccount.uri)
+                        CurrentConversation.setInfo("rdvDevice", devicesListView.currentItem.deviceId)
+                        close()
+                    }
+                }
+
+                MaterialButton {
+                    id: removeBtn
+
+                    Layout.alignment: Qt.AlignCenter
+                    visible: CurrentAccount.uri === CurrentConversation.rdvAccount
+
+                    text: JamiStrings.removeCurrentHost
+                    toolTipText: JamiStrings.removeCurrentHost
+
+                    onClicked: {
+                        CurrentConversation.setInfo("rdvAccount", "")
+                        CurrentConversation.setInfo("rdvDevice", "")
+                        close()
+                    }
                 }
             }
         }

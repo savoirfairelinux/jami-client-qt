@@ -190,7 +190,7 @@ Rectangle {
                     }
                 }
 
-                /*FilterTabButton {
+                FilterTabButton {
                     id: documentsTabButton
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
@@ -206,7 +206,7 @@ Rectangle {
 
                     down: tabBar.currentIndex === 2
                     labelText: JamiStrings.documents
-                }*/
+                }
             }
         }
 
@@ -424,8 +424,6 @@ Rectangle {
                     }
                 }
 
-
-
                 RowLayout {
                     Layout.leftMargin: JamiTheme.preferredMarginSize
 
@@ -567,6 +565,65 @@ Rectangle {
 
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+            }
+
+            Flow {
+                id: documentsFlow
+
+                anchors.left: parent.left
+                anchors.right: parent.right
+                visible: tabBar.currentIndex === 2
+                Layout.alignment: Qt.AlignTop
+
+                spacing: 8
+
+                Repeater {
+                    id: documentsList
+
+                    model: CurrentConversation.documents
+
+                    delegate: Item {
+                        width: 64
+                        height: 64
+
+                        Image {
+                            id: preview
+                            anchors.fill: parent
+
+                            asynchronous: true
+
+                            fillMode: Image.PreserveAspectCrop
+                            source: "file://" + CurrentConversation.documentsPath + modelData
+
+                            onStatusChanged: {
+                                if (status === Image.Error) {
+                                    textPreview.visible = true
+                                    source = JamiResources.file_black_24dp_svg
+                                }
+                            }
+
+                            TapHandler {
+                                target: parent
+                                enabled: parent.visible
+
+                                onTapped: {
+                                    MessagesAdapter.openUrl("file://" + CurrentConversation.documentsPath + modelData)
+                                }
+                            }
+                        }
+
+                        Text {
+                            id: textPreview
+                            width: parent.width
+                            clip: true
+                            visible: false
+                            anchors.centerIn: parent
+                            z: 1
+                            text: modelData
+                            color: "white"
                         }
                     }
                 }

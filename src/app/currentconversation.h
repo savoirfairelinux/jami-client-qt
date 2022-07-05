@@ -52,6 +52,8 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, isContact)
     QML_PROPERTY(bool, allMessagesLoaded)
     QML_PROPERTY(QString, modeString)
+    QML_PROPERTY(QStringList, documents)
+    QML_PROPERTY(QString, documentsPath)
 
 public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);

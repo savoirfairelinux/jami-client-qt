@@ -622,6 +622,7 @@ Item {
     property string needsHoster: qsTr("Current host for this swarm seems unreachable. Do you want to host the call?")
     property string chooseHoster: qsTr("Choose a dedicated device for hosting future calls in this swarm. If not set, the device starting a call will host it.")
     property string chooseThisDevice: qsTr("Choose this device")
+    property string removeCurrentHost: qsTr("Remove current host")
     property string becomeHostOneCall: qsTr("Host only this call")
     property string becomeDefaultHost: qsTr("Make me the default host for future calls")
 

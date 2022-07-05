@@ -139,7 +139,7 @@ AbstractButton {
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: hasIcon ?
                                        JamiTheme.preferredMarginSize :
-                                       undefined
+                                       JamiTheme.preferredMarginSize / 2
                 sourceComponent: animatedSource_.length !== 0 ?
                                      animatedIconComponent :
                                      iconComponent
@@ -151,7 +151,7 @@ AbstractButton {
                 Layout.rightMargin: {
                     if ((!hasIcon || root.preferredWidth === undefined) &&
                             !root.Layout.fillWidth)
-                        return undefined
+                        return JamiTheme.preferredMarginSize / 2
                     return icon.width + JamiTheme.preferredMarginSize / 2 +
                             parent.spacing
                 }

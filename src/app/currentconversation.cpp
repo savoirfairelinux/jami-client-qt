@@ -122,6 +122,18 @@ CurrentConversation::updateData()
             }
 
             activeCalls_->reset();
+
+            auto accountId = lrcInstance_->get_currentAccountId();
+            QDir dataDir(QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation));
+            // Avoid to depends on the client name.
+            dataDir.cdUp();
+            auto appPath = dataDir.absolutePath() + "/jami/";
+            documentsPath_ = appPath + accountId + "/conversation_data/" + convId + "/";
+            QDir directory(documentsPath_);
+            QStringList received = directory.entryList(QStringList() << "*_*",
+                                                       QDir::Files,
+                                                       QDir::Time);
+            set_documents(received);
         }
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
