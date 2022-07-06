@@ -274,10 +274,18 @@ AvAdapter::stopSharing()
 {
     auto callId = lrcInstance_->getCurrentCallId();
     if (!callId.isEmpty()) {
-        lrcInstance_->getCurrentCallModel()->removeMedia(callId,
-                                                         DRing::Media::Details::MEDIA_TYPE_VIDEO,
-                                                         DRing::Media::VideoProtocolPrefix::DISPLAY,
-                                                         muteCamera_);
+        try {
+            auto callModel = lrcInstance_->getCurrentCallModel();
+            auto call = callModel->getCall(callId);
+            auto sharingFile = call.hasMediaWithType(DRing::Media::VideoProtocolPrefix::FILE,
+                                                     DRing::Media::Details::MEDIA_TYPE_VIDEO);
+            callModel->removeMedia(callId,
+                                   "", // Remove both the video and the audio
+                                   sharingFile ? DRing::Media::VideoProtocolPrefix::FILE
+                                               : DRing::Media::VideoProtocolPrefix::DISPLAY,
+                                   muteCamera_);
+        } catch (...) {
+        }
     }
 }
 

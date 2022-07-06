@@ -105,8 +105,8 @@ public:
     /**
      * Remove a media from the current list
      * @param callId
-     * @param source        Of the media
-     * @param type          Audio/video
+     * @param mediaType     Audio/Video
+     * @param type          of the media
      * @param mute
      */
     void removeMedia(const QString& callId,
