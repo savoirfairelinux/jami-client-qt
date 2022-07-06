@@ -485,32 +485,49 @@ NewCallModel::addMedia(const QString& callId,
     }
 
     auto proposedList = callInfo->mediaList;
-    MapStringString mediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
-                                      {MediaAttributeKey::ENABLED, TRUE_STR},
-                                      {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
-                                      {MediaAttributeKey::SOURCE, resource},
-                                      {MediaAttributeKey::LABEL, "video_1"}};
+    MapStringString videoMedia = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+                                  {MediaAttributeKey::ENABLED, TRUE_STR},
+                                  {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                                  {MediaAttributeKey::SOURCE, resource},
+                                  {MediaAttributeKey::LABEL, "video_1"}};
+    MapStringString audioMedia = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::AUDIO},
+                                  {MediaAttributeKey::ENABLED, TRUE_STR},
+                                  {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                                  {MediaAttributeKey::SOURCE, resource},
+                                  {MediaAttributeKey::LABEL, "audio_1"}};
     // if we're in a 1:1, we only show one preview, so, limit to 1 video (the new one)
     auto participantsModel = pimpl_->participantsModel.find(callId);
     auto isConf = participantsModel != pimpl_->participantsModel.end()
                   && participantsModel->second->getParticipants().size() != 0;
 
-    auto replaced = false;
+    auto replacedVideo = false, replacedAudio = false;
     for (auto& media : proposedList) {
-        auto replace = media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
+        auto replaceA = media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::AUDIO;
+        auto replaceV = media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
         // In a 1:1 we replace the first video, in a conference we replace only if it's a muted
         // video as we show multiple previews
-        if (isConf)
-            replace &= media[MediaAttributeKey::MUTED] == TRUE_STR;
-        if (replace) {
-            mediaAttribute[MediaAttributeKey::LABEL] = media[MediaAttributeKey::LABEL];
-            media = mediaAttribute;
-            replaced = true;
-            break;
+        if (isConf && replaceV)
+            replaceV &= media[MediaAttributeKey::MUTED] == TRUE_STR;
+        else if (isConf && replaceA)
+            replaceA &= media[MediaAttributeKey::MUTED] == TRUE_STR;
+
+        if (replaceV && !replacedVideo) {
+            videoMedia[MediaAttributeKey::LABEL] = media[MediaAttributeKey::LABEL];
+            media = videoMedia;
+            replacedVideo = true;
         }
+        if (replaceA && !replacedAudio) {
+            audioMedia[MediaAttributeKey::LABEL] = media[MediaAttributeKey::LABEL];
+            media = audioMedia;
+            replacedAudio = true;
+        }
+        if (replacedAudio && replacedVideo)
+            break;
     }
-    if (!replaced)
-        proposedList.push_back(mediaAttribute);
+    if (!replacedAudio)
+        proposedList.push_back(audioMedia);
+    if (!replacedVideo)
+        proposedList.push_back(videoMedia);
 
     if (isConf && !resource.isEmpty())
         pimpl_->lrc.getAVModel().startPreview(resource);
