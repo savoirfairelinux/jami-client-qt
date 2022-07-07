@@ -77,18 +77,19 @@ AbstractButton {
 
     property string contentColorProvider: {
 
-        if (root.hovered)
-            if (root.primary)
-                return "white"
-            else return root.color
+
         if (root.primary)
             return "white"
+
         if (root.secondary || root.tertiary)
-            return root.color
+            return JamiTheme.secAndTertiTextColor
+
         if (root.down)
             return root.pressedColor
+
         if (!root.outlined)
             return "white"
+
         return root.color
     }
 
@@ -160,22 +161,18 @@ AbstractButton {
             Text {
                 // this right margin will make the text visually
                 // centered within button
-//                Layout.rightMargin: {
-//                    if ((!hasIcon || root.preferredWidth === undefined) &&
-//                            !root.Layout.fillWidth)
-//                        return undefined
-//                    return icon.width + JamiTheme.preferredMarginSize / 2 +
-//                            parent.spacing
-//                }
+                //                Layout.rightMargin: {
+                //                    if ((!hasIcon || root.preferredWidth === undefined) &&
+                //                            !root.Layout.fillWidth)
+                //                        return undefined
+                //                    return icon.width + JamiTheme.preferredMarginSize / 2 +
+                //                            parent.spacing
+                //                }
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
                 Layout.rightMargin: JamiTheme.preferredMarginSize*2
                 Layout.leftMargin:  JamiTheme.preferredMarginSize*2
                 text: root.text
-                //font.bold: root.hovered
-                //font.bold: boldFont
-                //font.weight : { (root.hovered|| boldFont) ? Font.Bold : Font.Medium }
-
 
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
@@ -195,14 +192,17 @@ AbstractButton {
                 if (root.hovered)
                     return root.hoveredColor
                 else return root.color
+
             if (root.secondary || root.tertiary)
                 if (root.hovered)
-                    return Qt.rgba(0,0.34,0.6,0.1)
-                else return "transparent"
+                    return JamiTheme.secAndTertiHoveredBackgroundColor
+                else return JamiTheme.transparentColor
+
             if (root.down)
                 return root.pressedColor
+
             if (root.outlined)
-                return "transparent"
+                return JamiTheme.transparentColor
 
             return root.focus ?
                         root.keysNavigationFocusColor : root.color
@@ -211,13 +211,14 @@ AbstractButton {
         border.color: {
 
             if (root.secondary)
-                return root.hovered ? root.color : Qt.rgba(0,0.34,0.6,0.36)
-            if (root.primary || root.tertiary)
-                return "transparent"
+                return root.hovered ? root.color : JamiTheme.secondaryButtonBorderColor
+
+            if (root.primary || root.tertiary || !root.outlined )
+                return JamiTheme.transparentColor
+
             if (root.down)
                 return root.pressedColor
-            if (!root.outlined)
-                return "transparent"
+
             return root.focus ?
                         root.keysNavigationFocusColor :
                         root.color

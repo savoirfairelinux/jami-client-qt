@@ -53,6 +53,7 @@ RowLayout {
         maxWidth: widthOfComboBox
     }
 
+
     SettingParaCombobox {
         id: comboBoxOfLayout
 
@@ -70,3 +71,5 @@ RowLayout {
         onActivated: root.activated()
     }
 }
+
+
