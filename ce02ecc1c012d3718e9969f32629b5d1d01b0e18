@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0346f133_fe116a69",
+        "filename": "src/app/commoncomponents/MaterialButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-07T19:20:48Z",
+      "side": 0,
+      "message": "remove the lines instead of commenting it",
+      "revId": "ce02ecc1c012d3718e9969f32629b5d1d01b0e18",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
