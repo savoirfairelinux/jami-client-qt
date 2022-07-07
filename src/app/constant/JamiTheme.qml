@@ -73,7 +73,7 @@ Item {
 
     // General buttons
     property color pressedButtonColor: darkTheme ? pressColor : "#a0a0a0"
-    property color hoveredButtonColor: darkTheme ? hoverColor : "#c7c7c7"
+    property color hoveredButtonColor: darkTheme ? hoverColor : Qt.rgba(0,0.34,0.6,0.1)
     property color normalButtonColor: darkTheme ? backgroundColor : "#e0e0e0"
 
     property color invertedPressedButtonColor: Qt.rgba(0, 0, 0, 0.5)
@@ -103,17 +103,26 @@ Item {
     property color whiteColorTransparent: rgba256(255, 255, 255, 50)
     property color raiseHandColor: rgba256(0, 184, 255, 77)
 
+    property color secAndTertiTextColor: darkTheme ? buttonTintedBlueHovered : buttonTintedBlue
+    property color secondaryButtonBorderColor: Qt.rgba(0,0.34,0.6,0.36)
+    property color secAndTertiHoveredBackgroundColor: Qt.rgba(0,0.34,0.6,0.1)
+
+
 
 
     property color closeButtonLighterBlack: "#4c4c4c"
 
     // Jami switch
-    property color switchBackgroundColor: darkTheme ? "#373737" : "#9f9f9f"
-    property color switchBackgroundCheckedColor: "#8dbaea"
+    property color switchBackgroundColor: darkTheme ? "#373737" : Qt.rgba(0, 0.34, 0.6, 0.16)
     property color switchHandleColor: darkTheme ? Qt.darker(lightGrey_, 2) : whiteColor
-    property color switchHandleCheckedColor: "#1b76d1"
-    property color switchHandleBorderColor: darkTheme ? whiteColor : Qt.darker(lightGrey_, 2)
-    property color switchHandleCheckedBorderColor: Qt.darker(lightGrey_, 3)
+    property color switchHandleCheckedColor: "#005699"
+    property color switchHandleBorderColor: darkTheme ? whiteColor : "#005699"
+    property color switchHandleCheckedBorderColor: darkTheme ? "#0071c9" : Qt.darker(lightGrey_, 3)
+
+    //Combobox
+    property color comboboxBorderColorActive: darkTheme? "#03B9E9" : tintedBlue
+    property color comboboxBorderColor: darkTheme ? tintedBlue : Qt.rgba(0, 0.34, 0.6, 0.36)
+    property color comboboxTextColorHovered: darkTheme ? "#03B9E9" : tintedBlue
 
     // Call buttons
     property color acceptButtonGreen: "#4caf50"
@@ -148,7 +157,7 @@ Item {
     property color separationLine: darkTheme ? selectedColor : backgroundColor
 
     // Plugin Preferences View
-    property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
+    property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : "#005699"
 
     // ParticipantCallInStatusView
     property color participantCallInStatusTextColor: whiteColor
@@ -352,12 +361,6 @@ Item {
     property real invitationViewButtonIconSize: 24
     property real invitationViewButtonsSpacing: 30
 
-    // MainView
-    property real welcomeRectSideMargins: 45
-    property real welcomeRectTopMargin: 90
-    property real jamiIdMargins: 36
-    property color rectColor: Qt.rgba(0,0.34,0.6,0.16)
-
     // WizardView
     property real wizardViewPageLayoutSpacing: 12
     property real wizardViewPageBackButtonMargins: 20
@@ -402,7 +405,6 @@ Item {
     // Messages point size
     property real contactEventPointSize: 10 + fontSizeOffset
     property int contactMessageAvatarSize: 24
-
 
     function setTheme(dark) {
         darkTheme = dark
