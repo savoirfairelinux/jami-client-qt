@@ -74,12 +74,14 @@ Label {
 
         // TODO: this can be removed when frameless window is implemented
         Rectangle {
+
             height: 1
             anchors {
                 top: parent.top
                 left: parent.left
                 right: parent.right
             }
+
             color: JamiTheme.tabbarBorderColor
         }
     }
@@ -144,7 +146,7 @@ Label {
 
                 visible: text.length && text !== bestNameText.text
 
-                text:  CurrentAccount.bestId
+                text: CurrentAccount.bestId
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight

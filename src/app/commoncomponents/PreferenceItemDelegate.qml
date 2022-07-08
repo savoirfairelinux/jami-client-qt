@@ -46,31 +46,31 @@ ItemDelegate {
 
     function getNewPreferenceValueSlot(index) {
         switch (preferenceType) {
-            case PreferenceItemListModel.LIST:
-                pluginListPreferenceModel.idx = index
-                preferenceNewValue = pluginListPreferenceModel.preferenceNewValue
+        case PreferenceItemListModel.LIST:
+            pluginListPreferenceModel.idx = index
+            preferenceNewValue = pluginListPreferenceModel.preferenceNewValue
+            btnPreferenceClicked()
+            break
+        case PreferenceItemListModel.PATH:
+            if (index === 0) {
+                preferenceFilePathDialog.title = qsTr("Select An Image to " + preferenceName)
+                preferenceFilePathDialog.nameFilters = fileFilters
+                preferenceFilePathDialog.selectedNameFilter.index = fileFilters.length - 1
+                preferenceFilePathDialog.open()
+            }
+            else
                 btnPreferenceClicked()
-                break
-            case PreferenceItemListModel.PATH:
-                if (index === 0) {
-                    preferenceFilePathDialog.title = qsTr("Select An Image to " + preferenceName)
-                    preferenceFilePathDialog.nameFilters = fileFilters
-                    preferenceFilePathDialog.selectedNameFilter.index = fileFilters.length - 1
-                    preferenceFilePathDialog.open()
-                }
-                else
-                    btnPreferenceClicked()
-                break
-            case PreferenceItemListModel.EDITTEXT:
-                preferenceNewValue = editTextPreference.text
-                btnPreferenceClicked()
-                break
-            case PreferenceItemListModel.SWITCH:
-                preferenceNewValue = index ? "1" : "0"
-                btnPreferenceClicked()
-                break
-            default:
-                break
+            break
+        case PreferenceItemListModel.EDITTEXT:
+            preferenceNewValue = editTextPreference.text
+            btnPreferenceClicked()
+            break
+        case PreferenceItemListModel.SWITCH:
+            preferenceNewValue = index ? "1" : "0"
+            btnPreferenceClicked()
+            break
+        default:
+            break
         }
     }
 
@@ -154,7 +154,6 @@ ItemDelegate {
             tooltipText: JamiStrings.select
             onActivated: getNewPreferenceValueSlot(index)
             opacity: enabled ? 1.0 : 0.5
-            comboBoxBackgroundColor: JamiTheme.comboBoxBackgroundColor
         }
 
         MaterialButton {
