@@ -40,7 +40,7 @@ Item {
     property string createASwarm: qsTr("Create a swarm")
     property string contactSearchInvitations: qsTr("Search your invitations")
     property string invitations: qsTr("Invitations")
-    property string description: qsTr("Jami is a universal communication platform, with privacy\n as its foundation, that relies on a free distributed network\n for everyone.")
+    property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
     property string contactLeft: qsTr("You are viewing a conversation where all participants other than you have left. New interactions will not be possible.")
     property string newConversation: qsTr("Start new conversation")
 
@@ -562,6 +562,7 @@ Item {
     property string alreadyHaveAccount: qsTr("I already have an account")
     property string useExistingAccount: qsTr("Use existing Jami account")
     property string recommendationMessage: qsTr("Here are some recommendations to improve your experience on Jami")
+    property string noRecommendations: qsTr("Never show recommendations again")
 
     // SmartList
     property string clearText: qsTr("Clear Text")
