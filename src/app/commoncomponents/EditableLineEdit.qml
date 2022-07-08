@@ -38,6 +38,11 @@ Item {
     property alias placeholderText: lineEdit.placeholderText
     property alias placeholderTextColor: lineEdit.placeholderTextColor
     property alias backgroundColor: lineEdit.backgroundColor
+
+    property string leftIcon: ""
+    property string secondIcon: ""
+    property string thirdIcon: ""
+
     property var editIconColor:  UtilsAdapter.luma(root.color) ? JamiTheme.editLineColor : "white"
     property var cancelIconColor: UtilsAdapter.luma(root.color) ? JamiTheme.buttonTintedBlue : "white"
 
@@ -74,29 +79,6 @@ Item {
         anchors.centerIn: parent
         z: 1
 
-        Image {
-            id: editImg
-            opacity: editable && !root.readOnly
-
-            Layout.alignment: Qt.AlignVCenter
-
-            layer {
-                enabled: true
-                effect: ColorOverlay {
-                    color: root.editIconColor
-                }
-            }
-
-            source: JamiResources.round_edit_24dp_svg
-
-            Behavior on opacity {
-                NumberAnimation {
-                    from: 0
-                    duration: JamiTheme.longFadeDuration
-                }
-            }
-        }
-
         MaterialLineEdit {
             id: lineEdit
 
@@ -107,7 +89,7 @@ Item {
             fieldLayoutHeight: 24
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: root.preferredFieldWidth - editImg.width - btnCancel.width
+            Layout.preferredWidth: root.preferredFieldWidth - lineEdit.height * 4 / 3
             Layout.fillHeight: true
 
             wrapMode: Text.NoWrap
@@ -127,33 +109,6 @@ Item {
             }
         }
 
-        PushButton {
-            id: btnCancel
-
-            Layout.alignment: Qt.AlignVCenter
-
-            enabled: editable && !root.readOnly
-            preferredSize: lineEdit.height * 2 / 3
-            opacity: enabled ? 0.8 : 0
-            imageColor: root.cancelIconColor
-            normalColor: "transparent"
-            hoveredColor: JamiTheme.hoveredButtonColor
-
-            source: JamiResources.round_close_24dp_svg
-
-            onClicked: {
-                root.editingFinished()
-                root.editable = !root.editable
-                lineEdit.forceActiveFocus()
-            }
-
-            Behavior on opacity {
-                NumberAnimation {
-                    from: 0
-                    duration: JamiTheme.longFadeDuration
-                }
-            }
-        }
     }
 
     Rectangle {

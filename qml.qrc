@@ -191,5 +191,8 @@
         <file>src/app/LayoutManager.qml</file>
         <file>src/app/mainview/components/JamiIdentifier.qml</file>
         <file>src/app/mainview/components/TipBox.qml</file>
+        <file>src/app/commoncomponents/CloseButton.qml</file>
+        <file>src/app/commoncomponents/IdentifierLineEdit.qml</file>
+        <file>src/app/commoncomponents/SwarmEdit.qml</file>
     </qresource>
 </RCC>

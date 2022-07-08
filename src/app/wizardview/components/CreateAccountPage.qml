@@ -95,14 +95,13 @@ Rectangle {
 
                 spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-                anchors.centerIn: parent
-
-                width: root.width
-                height: root.height
+                anchors.fill: parent
+                //                width: root.width
+                //                height: root.height
 
                 RowLayout {
 
-                    Layout.fillWidth: true
+                    Layout.preferredWidth: parent.width
                     Layout.alignment: Qt.AlignTop
 
                     BackButton {
@@ -111,6 +110,7 @@ Rectangle {
                         objectName: "createAccountPageBackButton"
                         Layout.alignment: Qt.AlignLeft
                         Layout.leftMargin: 20
+                        Layout.topMargin: 20
 
                         preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
@@ -134,11 +134,12 @@ Rectangle {
                     PushButton {
 
                         Layout.alignment: Qt.AlignRight
+                        Layout.topMargin: 20
                         Layout.rightMargin: 10
-
-                        preferredSize: 24
-
-                        source: JamiResources.round_close_24dp_svg
+                        normalColor: JamiTheme.backgroundColor
+                        imageColor: JamiTheme.primaryForegroundColor
+                        circled: false
+                        source: JamiResources.hand_black_24dp_svg
 
 
                     }
@@ -166,7 +167,7 @@ Rectangle {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     text: isRendezVous ? JamiStrings.chooseUsernameForRV :
-                                             JamiStrings.chooseUsernameForAccount
+                                         JamiStrings.chooseUsernameForAccount
                     color: JamiTheme.textColor
                     font.pointSize: JamiTheme.textFontSize + 3
                 }
@@ -200,8 +201,8 @@ Rectangle {
                     }
                 }
 
-                EditableLineEdit {
-                    id: descriptionLine
+                IdentifierLineEdit {
+                    id: identifierEdit
                     editable: true
 
                     Layout.alignment: Qt.AlignHCenter
@@ -232,15 +233,15 @@ Rectangle {
                     tooltipText: JamiStrings.addADescription
                     backgroundColor: root.color
                     color: UtilsAdapter.luma(backgroundColor) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                               JamiTheme.chatviewTextColorLight :
+                               JamiTheme.chatviewTextColorDark
 
-//                    onAccepted: {
-//                        if (chooseUsernameButton.enabled)
-//                            chooseUsernameButton.clicked()
-//                        else
-//                            skipButton.clicked()
-//                    }
+                    //                    onAccepted: {
+                    //                        if (chooseUsernameButton.enabled)
+                    //                            chooseUsernameButton.clicked()
+                    //                        else
+                    //                            skipButton.clicked()
+                    //                    }
                 }
 
 
@@ -497,8 +498,8 @@ Rectangle {
                                 JamiQmlUtils.setUpAccountCreationInputPara(
                                     {isRendezVous : WizardViewStepModel.accountCreationOption ===
                                                     WizardViewStepModel.AccountCreationOption.CreateRendezVous,
-                                     password : passwordEdit.text,
-                                     registeredName : usernameEdit.text})
+                                        password : passwordEdit.text,
+                                        registeredName : usernameEdit.text})
                         WizardViewStepModel.nextStep()
                     }
                 }

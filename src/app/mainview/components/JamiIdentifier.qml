@@ -92,6 +92,9 @@ Rectangle {
                     normalColor: "transparent"
                     Layout.topMargin: 10
                     hoverEnabled: false
+                    preferredSize : 30
+                    imageContainerWidth: 22
+                    imageContainerHeight: 22
                     visible: editable
                     border.color: "#005699"
 
@@ -106,6 +109,11 @@ Rectangle {
                     imageColor: "#005699"
                     normalColor: "transparent"
                     Layout.topMargin: 10
+
+
+                    preferredSize : 30
+                    imageContainerWidth: 22
+                    imageContainerHeight: 22
 
                     hoverEnabled: false
                     border.color: "#005699"
@@ -126,6 +134,10 @@ Rectangle {
                     normalColor: "transparent"
                     Layout.topMargin: 10
                     Layout.rightMargin: 10
+                    preferredSize : 30
+                    imageContainerWidth: 22
+                    imageContainerHeight: 22
+
                     hoverEnabled: false
                     border.color: "#005699"
 

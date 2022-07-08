@@ -86,6 +86,9 @@ Rectangle {
             Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredHeight: contentHeight
 
+            wrapMode : Text.WordWrap
+            Layout.preferredWidth: 350
+
             text: JamiStrings.introductionJami
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignHCenter
@@ -101,6 +104,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredHeight: contentHeight
+            Layout.preferredWidth: 398
 
             text: JamiStrings.description
             color: JamiTheme.textColor

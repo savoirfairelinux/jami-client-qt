@@ -23,6 +23,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import Qt.labs.lottieqt
 
 import "../../commoncomponents"
 
@@ -33,27 +34,29 @@ Rectangle {
     ColumnLayout{
 
         spacing: 20
-        anchors.fill:parent
+        anchors.centerIn: parent
+
+        //                LottieAnimation {
+
+        //                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
+        //                 source: JamiResources.notification_bell_outline_edited_json
+        //                 autoPlay: true
+        //                 width: 5
+        //                 height:5
+        //                 loops: Animation.Infinite
+
+        //                }
 
         Rectangle {
 
             Layout.alignment: Qt.AlignCenter
+            color: "transparent"
+
+
             width: 630
             height: 263
 
-            ResponsiveImage {
-                id: welcomeLogo
 
-                width: 212
-                height: 244
-                anchors.top: parent.top
-                anchors.right: parent.right
-                anchors.rightMargin: 20
-                opacity: 1
-
-                source: JamiResources.welcome_illustration_2_svg
-
-            }
 
 
             Rectangle {
@@ -117,49 +120,76 @@ Rectangle {
 
             }
 
+            ResponsiveImage {
+                id: welcomeLogo
+
+                width: 212
+                height: 244
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.rightMargin: 20
+                opacity: 1
+
+                source: JamiResources.welcome_illustration_2_svg
+
+            }
+
         }
 
-    Label {
+        Label {
 
-        text: JamiStrings.recommendationMessage
-        font.bold: true
-        Layout.alignment: Qt.AlignCenter
+            text: JamiStrings.recommendationMessage
+            font.bold: true
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 10
+
+        }
+
+        RowLayout{
+            spacing: 17
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 10
+            Layout.bottomMargin: 50
+
+            TipBox {
+
+                id: lol
+
+            }
+
+            TipBox {
+
+                tips_ : false
+            }
+
+            TipBox {
+
+                tips_ : false
+            }
+
+
+        }
+
+        Label {
+
+            text: JamiStrings.noRecommendations
+            color: "#002B4A"
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 10
+
+        }
+
     }
-
-    RowLayout{
-        spacing: 17
-        Layout.alignment: Qt.AlignCenter
-
-        TipBox {
-
-            id: lol
-
-        }
-
-        TipBox {
-
-            tips_ : false
-
-
-        }
-
-        Rectangle {radius:20
-            height: 100
-            width:200
-
-
-        }
-    }
-
-
 
     MaterialButton {
+
         id: aboutJami
         tertiary: true
 
-        Layout.alignment: Qt.AlignCenter
-        Layout.bottomMargin: 10
+        anchors.horizontalCenter: root.horizontalCenter
+        anchors.bottom: root.bottom
 
+        anchors.bottomMargin: 10
         preferredWidth: JamiTheme.aboutButtonPreferredWidthth
         text: JamiStrings.aboutJami
 
@@ -168,52 +198,48 @@ Rectangle {
 
 
 
-}
+    //            Label {
+    //                id: jamiShareWithFriendText
+
+    //                Layout.alignment: Qt.AlignCenter
+    //                Layout.preferredWidth: welcomePageColumnLayout.width
+    //                Layout.preferredHeight: 50
+
+    //                wrapMode: Text.WordWrap
+    //                font.pointSize: JamiTheme.textFontSize
+
+    //                horizontalAlignment: Text.AlignHCenter
+    //                verticalAlignment: Text.AlignVCenter
+
+    //                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
+
+    //                text: JamiStrings.shareInvite
+    //                color: JamiTheme.faddedFontColor
+    //            }
+
+    //            Rectangle {
+    //                id: jamiRegisteredNameRect
+
+    //                Layout.alignment: Qt.AlignCenter
+    //                Layout.preferredWidth: welcomePageColumnLayout.width
+    //                Layout.preferredHeight: 65
+
+    //                color: JamiTheme.secondaryBackgroundColor
+
+    //                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
+
+    //                ColumnLayout {
+    //                    id: jamiRegisteredNameRectColumnLayout
+
+    //                    spacing: 0
 
 
-
-//            Label {
-//                id: jamiShareWithFriendText
-
-//                Layout.alignment: Qt.AlignCenter
-//                Layout.preferredWidth: welcomePageColumnLayout.width
-//                Layout.preferredHeight: 50
-
-//                wrapMode: Text.WordWrap
-//                font.pointSize: JamiTheme.textFontSize
-
-//                horizontalAlignment: Text.AlignHCenter
-//                verticalAlignment: Text.AlignVCenter
-
-//                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
-
-//                text: JamiStrings.shareInvite
-//                color: JamiTheme.faddedFontColor
-//            }
-
-//            Rectangle {
-//                id: jamiRegisteredNameRect
-
-//                Layout.alignment: Qt.AlignCenter
-//                Layout.preferredWidth: welcomePageColumnLayout.width
-//                Layout.preferredHeight: 65
-
-//                color: JamiTheme.secondaryBackgroundColor
-
-//                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
-
-//                ColumnLayout {
-//                    id: jamiRegisteredNameRectColumnLayout
-
-//                    spacing: 0
-
-
-CustomBorder {
-    commonBorder: false
-    lBorderwidth: 1
-    rBorderwidth: 0
-    tBorderwidth: 0
-    bBorderwidth: 0
-    borderColor: JamiTheme.tabbarBorderColor
-}
+    CustomBorder {
+        commonBorder: false
+        lBorderwidth: 1
+        rBorderwidth: 0
+        tBorderwidth: 0
+        bBorderwidth: 0
+        borderColor: JamiTheme.tabbarBorderColor
+    }
 }
