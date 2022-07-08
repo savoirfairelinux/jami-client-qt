@@ -24,100 +24,200 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
+import Qt5Compat.GraphicalEffects
+
 import "../../commoncomponents"
 
-Rectangle {
-
-    property bool tips_ : true
-    property bool hovered: false
+Item {
 
     id: root
+    property bool tips_ : true
+    property bool hovered: false
+    property bool clicked : false
+    property bool opened : false
     width: 200
-    height: 105
+    height: opened ? 170 : 105
 
-    border.color: JamiTheme.rectColor
-    radius: 20
+    Rectangle {
 
-    ColumnLayout {
+        id: rect
+        anchors.fill: parent
 
-        RowLayout {
+        border.color: Qt.rgba(0, 0.34,0.6,0.16)
+        radius: 20
 
-            Layout.topMargin: 20
-            Layout.leftMargin: 20
+        ColumnLayout {
 
-            ResponsiveImage {
-                id: icon
+            anchors.fill: parent
+            anchors.topMargin: 5
+
+            RowLayout {
+
+                Layout.leftMargin: 20
+                Layout.alignment: Qt.AlignLeft
+
+                PushButton {
+                    id: btnClose
+
+                    width: 20
+                    height: 20
+                    imageContainerWidth: 20
+                    imageContainerHeight : 20
+                    Layout.rightMargin: 8
+                    Layout.alignment: Qt.AlignRight
+                    visible: opened
+                    radius : 5
+
+                    imageColor: "grey"
+                    normalColor: "transparent"
+
+                    source: JamiResources.round_close_24dp_svg
+
+                    onClicked: { root.destroy();}
+                }
+
+                ResponsiveImage {
+                    id: icon
+
+                    visible: !opened
+
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.topMargin: 5
+                    Layout.preferredWidth: 26
+                    Layout.preferredHeight: 26
+
+                    containerHeight: Layout.preferredHeight
+                    containerWidth: Layout.preferredWidth
+
+                    source: tips_ ?  JamiResources.noun_paint_svg : JamiResources.glasses_tips_svg
+                    color: "#005699"
+                }
+
+                Label {
+
+                    text: tips_ ? "Customize" : " Tips"
+                    font.weight: Font.Medium
+                    Layout.topMargin: 5
+                    visible: !opened
+                    Layout.alignment: Qt.AlignLeft
+                    Layout.leftMargin: tips_ ? 8 : 5
+                    font.pixelSize: 13
+
+                }
+
+            }
+
+            Text {
+
+                Layout.preferredWidth: 170
+                Layout.leftMargin: 20
+                Layout.topMargin: 8
+                Layout.bottomMargin: 15
+                font.pixelSize: 12
+                visible: !opened
+                wrapMode: Text.WordWrap
+                text: tips_ ? "Add a picture and a nickname to complete your profile" : "Why should I save my account ?"
+            }
+
+
+            PhotoboothView {
+                id: setAvatarWidget
+                Layout.preferredWidth: JamiTheme.accountListAvatarSize
+                Layout.preferredHeight: JamiTheme.accountListAvatarSize
 
                 Layout.alignment: Qt.AlignHCenter
-                Layout.preferredWidth: 26
-                Layout.preferredHeight: 26
-
-                containerHeight: Layout.preferredHeight
-                containerWidth: Layout.preferredWidth
-
-                source: tips_ ?  JamiResources.noun_paint_svg : JamiResources.glasses_tips_svg
-                color: "#005699"
-            }
-
-            Label {
-
-                text: tips_ ? "Customize" : " Tips"
-                font.weight: Font.Medium
-                Layout.alignment: Qt.AlignVCenter
-                Layout.leftMargin: 10
-                font.pixelSize: 13
+                darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
+                visible: opened && tips_
+                enabled: true
+                imageId: CurrentAccount.id
+                avatarSize: 53
+                buttonSize: 53
 
             }
 
-            //            PushButton {
-
-            //            }
-
+            MaterialLineEdit {
+                id: aliasEdit
 
 
-        }
 
-        Text {
+                property string lastFirstChar
 
-            Layout.preferredWidth: 170
-            Layout.leftMargin: 20
-            Layout.topMargin: 8
-            font.pixelSize: 12
-            wrapMode: Text.WordWrap
-            text: tips_ ? "Add a picture and a nickname to complete your profile" : "Why should I save my account ?"
+                Layout.preferredHeight: fieldLayoutHeight
+                Layout.preferredWidth: fieldLayoutWidth
+                Layout.alignment: Qt.AlignCenter
+
+                focus: visible
+                visible: tips_ && opened
+                selectByMouse: true
+                enabled: visible
+                placeholderText: {
+                    if (WizardViewStepModel.accountCreationOption !==
+                            WizardViewStepModel.AccountCreationOption.CreateRendezVous)
+                        return JamiStrings.enterYourName
+                    else
+                        return JamiStrings.enterRVName
+                }
+                font.pointSize: JamiTheme.textFontSize
+                font.kerning: true
+
+
+                }
+
+            Text {
+
+                Layout.preferredWidth: 170
+                Layout.leftMargin: 20
+                Layout.topMargin: 8
+                font.pixelSize: 12
+                visible: opened && tips_
+                wrapMode: Text.WrapAnywhere
+                text: "Your profile is only shared with your contacts"
+            }
+
+            Text {
+
+                Layout.preferredWidth: 170
+                Layout.leftMargin: 20
+                Layout.topMargin: 8
+                font.pixelSize: 12
+                visible: opened && !tips_
+                wrapMode: Text.WrapAnywhere
+                text: "Ceci est le texte affiché lorsqu'on ouvre une box tips"
+            }
+
         }
 
     }
 
-    MouseArea {
-
-        id: mouseArea
-        hoverEnabled: true
-
-        onEntered: hovered = true
-        onExited: hovered = false
-
-        anchors.fill: root
-
+    HoverHandler {
+        target : rect
+        onHoveredChanged: {
+            root.hovered = hovered
+        }
+        cursorShape: Qt.PointingHandCursor
     }
 
-    states: [
-        State {
-            name: "clicked"; when: mouseArea.clicked
-            PropertyChanges { target: root; height: 170 }
-        },
-        State {
-            name: "hovered"; when: hovered
-            PropertyChanges { target: root; border.color: "red" }
-        }/*,
-        State {
-            name: "normal"; when: !hovered && !clicked
-            PropertyChanges { target: background; color: normalColor }
-        }*/
+    TapHandler {
+        target: rect
+        onTapped: {
+            opened = !opened
+        }
+    }
 
-    ]
+
+    DropShadow {
+        z: -1
+        visible: hovered || opened
+        width: root.width
+        height: root.height
+        horizontalOffset: 3.0
+        verticalOffset: 3.0
+        radius: 16
+        color: Qt.rgba(0, 0.34,0.6,0.16)
+        source: rect
+        transparentBorder: true
+    }
 
 }
-
 
 
