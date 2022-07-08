@@ -58,7 +58,9 @@ Rectangle {
                 avatarSize: JamiTheme.smartListAvatarSize
             }
 
-            EditableLineEdit {
+
+
+           SwarmEdit {
                 id: titleLine
 
                 Layout.alignment: Qt.AlignHCenter
@@ -67,6 +69,8 @@ Rectangle {
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+
+//                firstIcon: JamiResources.round_edit_24dp_svg
 
                 text: CurrentConversation.title
                 readOnly: !root.isAdmin

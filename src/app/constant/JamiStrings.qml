@@ -563,6 +563,7 @@ Item {
     property string alreadyHaveAccount: qsTr("I already have an account")
     property string useExistingAccount: qsTr("Use existing Jami account")
     property string recommendationMessage: qsTr("Here are some recommendations to improve your experience on Jami")
+    property string noRecommendations: qsTr("Never show recommendations again")
 
     // SmartList
     property string clearText: qsTr("Clear Text")

@@ -40,6 +40,7 @@ AbstractButton {
     property int preferredWidth: 0
     property int preferredMargin: 16
     // Note the radius will default to preferredSize
+    property bool circled: true
     property alias radius: background.radius
     property alias border: background.border
 
@@ -55,7 +56,7 @@ AbstractButton {
     property alias toolTipText: toolTip.text
 
     // State colors
-    property string pressedColor: JamiTheme.pressedButtonColor
+    property string pressedColor: JamiTheme.buttonTintedBluePressed //pressedButtonColor
     property string hoveredColor: JamiTheme.hoveredButtonColor
     property string normalColor: JamiTheme.normalButtonColor
     property string checkedColor: pressedColor
@@ -147,7 +148,7 @@ AbstractButton {
     background: Rectangle {
         id: background
 
-        radius: preferredSize
+        radius: circled ? preferredSize : 5
 
         states: [
             State {
@@ -182,7 +183,6 @@ AbstractButton {
                 ColorAnimation { duration: root.duration }
             }
         ]
-
 
     }
 }
