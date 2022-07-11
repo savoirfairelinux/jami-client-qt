@@ -1095,13 +1095,13 @@ Jami will now quit.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="573"/>
         <source>Mute</source>
-        <translation type="unfinished"/>
+        <translation>ਚੁੱਪ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="574"/>
         <source>Unmute</source>
-        <translation type="unfinished"/>
+        <translation>ਬੋਲੋ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="222"/>
@@ -2140,7 +2140,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="477"/>
         <source>Change</source>
-        <translation type="unfinished"/>
+        <translation>ਬਦਲੋ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="478"/>
