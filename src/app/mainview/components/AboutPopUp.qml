@@ -31,8 +31,6 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-    width: 488
-    height: 560
 
     popupContent: Rectangle {
         id: aboutPopUpScrollView
@@ -176,8 +174,7 @@ BaseModalDialog {
                 id: jamiNoneWarrantyHyperText
 
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: 390
-                Layout.preferredHeight: textMetricsjamiNoneWarrantyHyperText.boundingRect.height * 2
+                Layout.preferredWidth: Math.min(390, root.width)
                 Layout.topMargin: 15
                 lineHeight: 1.2
                 wrapMode: Text.WordWrap
