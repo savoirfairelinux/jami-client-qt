@@ -594,43 +594,43 @@ CallAdapter::connectCallModel(const QString& accountId)
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
 
     connect(accInfo.callModel.get(),
-            &NewCallModel::participantAdded,
+            &CallModel::participantAdded,
             this,
             &CallAdapter::onParticipantAdded,
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
-            &NewCallModel::participantRemoved,
+            &CallModel::participantRemoved,
             this,
             &CallAdapter::onParticipantRemoved,
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
-            &NewCallModel::participantUpdated,
+            &CallModel::participantUpdated,
             this,
             &CallAdapter::onParticipantUpdated,
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
-            &NewCallModel::callStatusChanged,
+            &CallModel::callStatusChanged,
             this,
             QOverload<const QString&, int>::of(&CallAdapter::onCallStatusChanged),
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
-            &NewCallModel::remoteRecordingChanged,
+            &CallModel::remoteRecordingChanged,
             this,
             &CallAdapter::onRemoteRecordingChanged,
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
-            &NewCallModel::callAddedToConference,
+            &CallModel::callAddedToConference,
             this,
             &CallAdapter::onCallAddedToConference,
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
-            &NewCallModel::callInfosChanged,
+            &CallModel::callInfosChanged,
             this,
             QOverload<const QString&, const QString&>::of(&CallAdapter::onCallInfosChanged));
 }
@@ -1121,7 +1121,7 @@ CallAdapter::muteCameraToggle()
         else
             callModel->addMedia(callId,
                                 lrcInstance_->avModel().getCurrentVideoCaptureDevice(),
-                                lrc::api::NewCallModel::MediaRequestType::CAMERA);
+                                lrc::api::CallModel::MediaRequestType::CAMERA);
     }
 }
 

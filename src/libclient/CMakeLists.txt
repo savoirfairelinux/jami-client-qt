@@ -243,15 +243,15 @@ set(LIBCLIENT_SOURCES
   # models
   contactmodel.cpp
   callparticipantsmodel.cpp
-  newcallmodel.cpp
-  newdevicemodel.cpp
-  newcodecmodel.cpp
+  callmodel.cpp
+  devicemodel.cpp
+  codecmodel.cpp
   conversationmodel.cpp
   database.cpp
   authority/daemon.cpp
   authority/storagehelper.cpp
   lrc.cpp
-  newaccountmodel.cpp
+  accountmodel.cpp
   peerdiscoverymodel.cpp
   callbackshandler.cpp
   behaviorcontroller.cpp
@@ -311,11 +311,11 @@ set(LIBCLIENT_HEADERS_API
   api/interaction.h
   api/lrc.h
   api/member.h
-  api/newaccountmodel.h
-  api/newcallmodel.h
+  api/accountmodel.h
+  api/callmodel.h
   api/callparticipantsmodel.h
-  api/newcodecmodel.h
-  api/newdevicemodel.h
+  api/codecmodel.h
+  api/devicemodel.h
   api/pluginmodel.h
   api/peerdiscoverymodel.h
   api/profile.h

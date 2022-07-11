@@ -51,7 +51,7 @@ struct Info;
 
 class Lrc;
 class BehaviorController;
-class NewAccountModel;
+class AccountModel;
 
 enum class ConferenceableItem { CALL, CONTACT };
 Q_ENUM_NS(ConferenceableItem)

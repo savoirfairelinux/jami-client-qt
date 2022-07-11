@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#include "api/newcodecmodel.h"
+#include "api/codecmodel.h"
 
 // LRC
 #include "callbackshandler.h"
@@ -35,12 +35,12 @@ namespace lrc {
 
 using namespace api;
 
-class NewCodecModelPimpl : public QObject
+class CodecModelPimpl : public QObject
 {
     Q_OBJECT
 public:
-    NewCodecModelPimpl(const NewCodecModel& linked, const CallbacksHandler& callbacksHandler);
-    ~NewCodecModelPimpl();
+    CodecModelPimpl(const CodecModel& linked, const CallbacksHandler& callbacksHandler);
+    ~CodecModelPimpl();
 
     void loadFromDaemon();
 
@@ -51,7 +51,7 @@ public:
     std::mutex videoCodecsMtx;
 
     const CallbacksHandler& callbacksHandler;
-    const NewCodecModel& linked;
+    const CodecModel& linked;
 
     void setActiveCodecs();
     void setCodecDetails(const Codec& codec, bool isAudio);
@@ -60,27 +60,27 @@ private:
     void addCodec(const unsigned int& id, const QVector<unsigned int>& activeCodecs);
 };
 
-NewCodecModel::NewCodecModel(const account::Info& owner, const CallbacksHandler& callbacksHandler)
+CodecModel::CodecModel(const account::Info& owner, const CallbacksHandler& callbacksHandler)
     : owner(owner)
-    , pimpl_(std::make_unique<NewCodecModelPimpl>(*this, callbacksHandler))
+    , pimpl_(std::make_unique<CodecModelPimpl>(*this, callbacksHandler))
 {}
 
-NewCodecModel::~NewCodecModel() {}
+CodecModel::~CodecModel() {}
 
 QList<Codec>
-NewCodecModel::getAudioCodecs() const
+CodecModel::getAudioCodecs() const
 {
     return pimpl_->audioCodecs;
 }
 
 QList<Codec>
-NewCodecModel::getVideoCodecs() const
+CodecModel::getVideoCodecs() const
 {
     return pimpl_->videoCodecs;
 }
 
 void
-NewCodecModel::increasePriority(const unsigned int& codecId, bool isVideo)
+CodecModel::increasePriority(const unsigned int& codecId, bool isVideo)
 {
     auto& codecs = isVideo ? pimpl_->videoCodecs : pimpl_->audioCodecs;
     auto& mutex = isVideo ? pimpl_->videoCodecsMtx : pimpl_->audioCodecsMtx;
@@ -103,7 +103,7 @@ NewCodecModel::increasePriority(const unsigned int& codecId, bool isVideo)
 }
 
 void
-NewCodecModel::decreasePriority(const unsigned int& codecId, bool isVideo)
+CodecModel::decreasePriority(const unsigned int& codecId, bool isVideo)
 {
     auto& codecs = isVideo ? pimpl_->videoCodecs : pimpl_->audioCodecs;
     auto& mutex = isVideo ? pimpl_->videoCodecsMtx : pimpl_->audioCodecsMtx;
@@ -126,7 +126,7 @@ NewCodecModel::decreasePriority(const unsigned int& codecId, bool isVideo)
 }
 
 bool
-NewCodecModel::enable(const unsigned int& codecId, bool enabled)
+CodecModel::enable(const unsigned int& codecId, bool enabled)
 {
     auto redraw = false;
     auto isAudio = true;
@@ -170,7 +170,7 @@ NewCodecModel::enable(const unsigned int& codecId, bool enabled)
 }
 
 void
-NewCodecModel::autoQuality(const unsigned int& codecId, bool on)
+CodecModel::autoQuality(const unsigned int& codecId, bool on)
 {
     auto isAudio = true;
     Codec finalCodec;
@@ -203,7 +203,7 @@ NewCodecModel::autoQuality(const unsigned int& codecId, bool on)
 }
 
 void
-NewCodecModel::quality(const unsigned int& codecId, double quality)
+CodecModel::quality(const unsigned int& codecId, double quality)
 {
     auto isAudio = true;
     auto qualityStr = toQString(static_cast<int>(quality));
@@ -237,7 +237,7 @@ NewCodecModel::quality(const unsigned int& codecId, double quality)
 }
 
 void
-NewCodecModel::bitrate(const unsigned int& codecId, double bitrate)
+CodecModel::bitrate(const unsigned int& codecId, double bitrate)
 {
     auto isAudio = true;
     auto bitrateStr = toQString(static_cast<int>(bitrate));
@@ -270,8 +270,7 @@ NewCodecModel::bitrate(const unsigned int& codecId, double bitrate)
     pimpl_->setCodecDetails(finalCodec, isAudio);
 }
 
-NewCodecModelPimpl::NewCodecModelPimpl(const NewCodecModel& linked,
-                                       const CallbacksHandler& callbacksHandler)
+CodecModelPimpl::CodecModelPimpl(const CodecModel& linked, const CallbacksHandler& callbacksHandler)
     : linked(linked)
     , callbacksHandler(callbacksHandler)
 {
@@ -279,10 +278,10 @@ NewCodecModelPimpl::NewCodecModelPimpl(const NewCodecModel& linked,
     loadFromDaemon();
 }
 
-NewCodecModelPimpl::~NewCodecModelPimpl() {}
+CodecModelPimpl::~CodecModelPimpl() {}
 
 void
-NewCodecModelPimpl::loadFromDaemon()
+CodecModelPimpl::loadFromDaemon()
 {
     {
         std::unique_lock<std::mutex> lock(audioCodecsMtx);
@@ -305,7 +304,7 @@ NewCodecModelPimpl::loadFromDaemon()
 }
 
 void
-NewCodecModelPimpl::setActiveCodecs()
+CodecModelPimpl::setActiveCodecs()
 {
     QVector<unsigned int> enabledCodecs;
     {
@@ -330,7 +329,7 @@ NewCodecModelPimpl::setActiveCodecs()
 }
 
 void
-NewCodecModelPimpl::addCodec(const unsigned int& id, const QVector<unsigned int>& activeCodecs)
+CodecModelPimpl::addCodec(const unsigned int& id, const QVector<unsigned int>& activeCodecs)
 {
     MapStringString details = ConfigurationManager::instance().getCodecDetails(linked.owner.id, id);
     Codec codec;
@@ -357,7 +356,7 @@ NewCodecModelPimpl::addCodec(const unsigned int& id, const QVector<unsigned int>
 }
 
 void
-NewCodecModelPimpl::setCodecDetails(const Codec& codec, bool isAudio)
+CodecModelPimpl::setCodecDetails(const Codec& codec, bool isAudio)
 {
     MapStringString details;
     details[DRing::Account::ConfProperties::CodecInfo::NAME] = codec.name;
@@ -376,5 +375,5 @@ NewCodecModelPimpl::setCodecDetails(const Codec& codec, bool isAudio)
 
 } // namespace lrc
 
-#include "newcodecmodel.moc"
-#include "api/moc_newcodecmodel.cpp"
+#include "codecmodel.moc"
+#include "api/moc_codecmodel.cpp"

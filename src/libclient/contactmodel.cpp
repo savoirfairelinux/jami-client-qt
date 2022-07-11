@@ -29,8 +29,8 @@
 #include "api/conversationmodel.h"
 #include "api/interaction.h"
 #include "api/lrc.h"
-#include "api/newaccountmodel.h"
-#include "api/newcallmodel.h"
+#include "api/accountmodel.h"
+#include "api/callmodel.h"
 #include "callbackshandler.h"
 #include "uri.h"
 #include "vcard.h"
@@ -619,7 +619,7 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
             this,
             &ContactModelPimpl::slotRegisteredNameFound);
     connect(&*linked.owner.callModel,
-            &NewCallModel::newIncomingCall,
+            &CallModel::newIncomingCall,
             this,
             &ContactModelPimpl::slotIncomingCall);
     connect(&callbacksHandler,
@@ -663,7 +663,7 @@ ContactModelPimpl::~ContactModelPimpl()
                this,
                &ContactModelPimpl::slotRegisteredNameFound);
     disconnect(&*linked.owner.callModel,
-               &NewCallModel::newIncomingCall,
+               &CallModel::newIncomingCall,
                this,
                &ContactModelPimpl::slotIncomingCall);
     disconnect(&callbacksHandler,

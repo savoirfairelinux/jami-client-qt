@@ -28,7 +28,7 @@
 namespace lrc {
 
 class CallbacksHandler;
-class NewCodecModelPimpl;
+class CodecModelPimpl;
 
 namespace api {
 
@@ -55,15 +55,15 @@ struct Codec
 /**
  *  @brief Class that manages ring devices for an account
  */
-class LIB_EXPORT NewCodecModel : public QObject
+class LIB_EXPORT CodecModel : public QObject
 {
     Q_OBJECT
 
 public:
     const account::Info& owner;
 
-    NewCodecModel(const account::Info& owner, const CallbacksHandler& callbacksHandler);
-    ~NewCodecModel();
+    CodecModel(const account::Info& owner, const CallbacksHandler& callbacksHandler);
+    ~CodecModel();
 
     /**
      * @return audio codecs for the account
@@ -115,8 +115,8 @@ public:
     void bitrate(const unsigned int& codecid, double bitrate);
 
 private:
-    std::unique_ptr<NewCodecModelPimpl> pimpl_;
+    std::unique_ptr<CodecModelPimpl> pimpl_;
 };
 } // namespace api
 } // namespace lrc
-Q_DECLARE_METATYPE(lrc::api::NewCodecModel*)
+Q_DECLARE_METATYPE(lrc::api::CodecModel*)

@@ -43,7 +43,7 @@ TEST_F(ContactFixture, AddSIPContactTest)
 {
     // AccountAdded signal spy
     QSignalSpy accountAddedSpy(&globalEnv.lrcInstance->accountModel(),
-                               &lrc::api::NewAccountModel::accountAdded);
+                               &lrc::api::AccountModel::accountAdded);
 
     // Create SIP Acc
     globalEnv.accountAdapter->createSIPAccount(QVariantMap());
@@ -59,7 +59,7 @@ TEST_F(ContactFixture, AddSIPContactTest)
 
     // Make sure the account setup is done
     QSignalSpy accountStatusChangedSpy(&globalEnv.lrcInstance->accountModel(),
-                                       &lrc::api::NewAccountModel::accountStatusChanged);
+                                       &lrc::api::AccountModel::accountStatusChanged);
 
     accountStatusChangedSpy.wait();
     EXPECT_GE(accountStatusChangedSpy.count(), 1);
@@ -94,7 +94,7 @@ TEST_F(ContactFixture, AddSIPContactTest)
 
     // Remove the account
     QSignalSpy accountRemovedSpy(&globalEnv.lrcInstance->accountModel(),
-                                 &lrc::api::NewAccountModel::accountRemoved);
+                                 &lrc::api::AccountModel::accountRemoved);
 
     globalEnv.lrcInstance->accountModel().removeAccount(
         globalEnv.lrcInstance->get_currentAccountId());

@@ -21,7 +21,7 @@
 // Models and database
 #include "api/account.h"
 #include "api/lrc.h"
-#include "api/newaccountmodel.h"
+#include "api/accountmodel.h"
 #include "api/datatransfer.h"
 #include "api/datatransfermodel.h"
 #include "api/behaviorcontroller.h"
@@ -528,11 +528,11 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
             auto pieces2 = pieces1[1].split("=");
             auto pieces3 = pieces1[2].split("=");
             Q_EMIT incomingVCardChunk(accountId,
-                                    callId,
-                                    from2,
-                                    pieces2[1].toInt(),
-                                    pieces3[1].toInt(),
-                                    e.second);
+                                      callId,
+                                      from2,
+                                      pieces2[1].toInt(),
+                                      pieces3[1].toInt(),
+                                      e.second);
         } else if (e.first.contains(
                        "text/plain")) { // we consider it as an usual message interaction
             Q_EMIT incomingCallMessage(accountId, callId, from2, e.second);

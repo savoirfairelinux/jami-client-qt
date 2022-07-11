@@ -15,9 +15,9 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#include "api/newdevicemodel.h"
+#include "api/devicemodel.h"
 
-#include "api/newaccountmodel.h"
+#include "api/accountmodel.h"
 #include "callbackshandler.h"
 #include "dbus/configurationmanager.h"
 
@@ -32,15 +32,15 @@ namespace lrc {
 
 using namespace api;
 
-class NewDeviceModelPimpl : public QObject
+class DeviceModelPimpl : public QObject
 {
     Q_OBJECT
 public:
-    NewDeviceModelPimpl(const NewDeviceModel& linked, const CallbacksHandler& callbacksHandler);
-    ~NewDeviceModelPimpl();
+    DeviceModelPimpl(const DeviceModel& linked, const CallbacksHandler& callbacksHandler);
+    ~DeviceModelPimpl();
 
     const CallbacksHandler& callbacksHandler;
-    const NewDeviceModel& linked;
+    const DeviceModel& linked;
 
     std::mutex devicesMtx_;
     QString currentDeviceId_;
@@ -64,21 +64,21 @@ public Q_SLOTS:
                                    const int status);
 };
 
-NewDeviceModel::NewDeviceModel(const account::Info& owner, const CallbacksHandler& callbacksHandler)
+DeviceModel::DeviceModel(const account::Info& owner, const CallbacksHandler& callbacksHandler)
     : owner(owner)
-    , pimpl_(std::make_unique<NewDeviceModelPimpl>(*this, callbacksHandler))
+    , pimpl_(std::make_unique<DeviceModelPimpl>(*this, callbacksHandler))
 {}
 
-NewDeviceModel::~NewDeviceModel() {}
+DeviceModel::~DeviceModel() {}
 
 QList<Device>
-NewDeviceModel::getAllDevices() const
+DeviceModel::getAllDevices() const
 {
     return pimpl_->devices_;
 }
 
 Device
-NewDeviceModel::getDevice(const QString& id) const
+DeviceModel::getDevice(const QString& id) const
 {
     std::lock_guard<std::mutex> lock(pimpl_->devicesMtx_);
     auto i = std::find_if(pimpl_->devices_.begin(), pimpl_->devices_.end(), [id](const Device& d) {
@@ -92,13 +92,13 @@ NewDeviceModel::getDevice(const QString& id) const
 }
 
 void
-NewDeviceModel::revokeDevice(const QString& id, const QString& password)
+DeviceModel::revokeDevice(const QString& id, const QString& password)
 {
     ConfigurationManager::instance().revokeDevice(owner.id, password, id);
 }
 
 void
-NewDeviceModel::setCurrentDeviceName(const QString& newName)
+DeviceModel::setCurrentDeviceName(const QString& newName)
 {
     // Update deamon config
     auto config = owner.accountModel->getAccountConfig(owner.id);
@@ -116,8 +116,8 @@ NewDeviceModel::setCurrentDeviceName(const QString& newName)
     }
 }
 
-NewDeviceModelPimpl::NewDeviceModelPimpl(const NewDeviceModel& linked,
-                                         const CallbacksHandler& callbacksHandler)
+DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked,
+                                   const CallbacksHandler& callbacksHandler)
     : linked(linked)
     , callbacksHandler(callbacksHandler)
     , devices_({})
@@ -146,27 +146,27 @@ NewDeviceModelPimpl::NewDeviceModelPimpl(const NewDeviceModel& linked,
     connect(&callbacksHandler,
             &CallbacksHandler::knownDevicesChanged,
             this,
-            &NewDeviceModelPimpl::slotKnownDevicesChanged);
+            &DeviceModelPimpl::slotKnownDevicesChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::deviceRevocationEnded,
             this,
-            &NewDeviceModelPimpl::slotDeviceRevocationEnded);
+            &DeviceModelPimpl::slotDeviceRevocationEnded);
 }
 
-NewDeviceModelPimpl::~NewDeviceModelPimpl()
+DeviceModelPimpl::~DeviceModelPimpl()
 {
     disconnect(&callbacksHandler,
                &CallbacksHandler::knownDevicesChanged,
                this,
-               &NewDeviceModelPimpl::slotKnownDevicesChanged);
+               &DeviceModelPimpl::slotKnownDevicesChanged);
     disconnect(&callbacksHandler,
                &CallbacksHandler::deviceRevocationEnded,
                this,
-               &NewDeviceModelPimpl::slotDeviceRevocationEnded);
+               &DeviceModelPimpl::slotDeviceRevocationEnded);
 }
 
 void
-NewDeviceModelPimpl::slotKnownDevicesChanged(const QString& accountId, const MapStringString devices)
+DeviceModelPimpl::slotKnownDevicesChanged(const QString& accountId, const MapStringString devices)
 {
     if (accountId != linked.owner.id)
         return;
@@ -206,9 +206,9 @@ NewDeviceModelPimpl::slotKnownDevicesChanged(const QString& accountId, const Map
 }
 
 void
-NewDeviceModelPimpl::slotDeviceRevocationEnded(const QString& accountId,
-                                               const QString& deviceId,
-                                               const int status)
+DeviceModelPimpl::slotDeviceRevocationEnded(const QString& accountId,
+                                            const QString& deviceId,
+                                            const int status)
 {
     if (accountId != linked.owner.id)
         return;
@@ -224,13 +224,13 @@ NewDeviceModelPimpl::slotDeviceRevocationEnded(const QString& accountId,
 
     switch (status) {
     case 0:
-        Q_EMIT linked.deviceRevoked(deviceId, NewDeviceModel::Status::SUCCESS);
+        Q_EMIT linked.deviceRevoked(deviceId, DeviceModel::Status::SUCCESS);
         break;
     case 1:
-        Q_EMIT linked.deviceRevoked(deviceId, NewDeviceModel::Status::WRONG_PASSWORD);
+        Q_EMIT linked.deviceRevoked(deviceId, DeviceModel::Status::WRONG_PASSWORD);
         break;
     case 2:
-        Q_EMIT linked.deviceRevoked(deviceId, NewDeviceModel::Status::UNKNOWN_DEVICE);
+        Q_EMIT linked.deviceRevoked(deviceId, DeviceModel::Status::UNKNOWN_DEVICE);
         break;
     default:
         break;
@@ -239,5 +239,5 @@ NewDeviceModelPimpl::slotDeviceRevocationEnded(const QString& accountId,
 
 } // namespace lrc
 
-#include "newdevicemodel.moc"
-#include "api/moc_newdevicemodel.cpp"
+#include "devicemodel.moc"
+#include "api/moc_devicemodel.cpp"

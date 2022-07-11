@@ -35,7 +35,7 @@ namespace lrc {
 
 class CallbacksHandler;
 class Database;
-class NewAccountModelPimpl;
+class AccountModelPimpl;
 
 namespace api {
 
@@ -45,18 +45,18 @@ class BehaviorController;
 /**
  *  @brief Class that manages account information.
  */
-class LIB_EXPORT NewAccountModel : public QObject
+class LIB_EXPORT AccountModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString downloadDirectory_qml MEMBER downloadDirectory)
 public:
-    NewAccountModel(Lrc& lrc,
-                    const CallbacksHandler& callbackHandler,
-                    const api::BehaviorController& behaviorController,
-                    MigrationCb& willMigrateCb,
-                    MigrationCb& didMigrateCb);
+    AccountModel(Lrc& lrc,
+                 const CallbacksHandler& callbackHandler,
+                 const api::BehaviorController& behaviorController,
+                 MigrationCb& willMigrateCb,
+                 MigrationCb& didMigrateCb);
 
-    ~NewAccountModel();
+    ~AccountModel();
     /**
      * @return a list of all acountId.
      */
@@ -331,8 +331,8 @@ Q_SIGNALS:
     void migrationEnded(const QString& accountId, bool ok);
 
 private:
-    std::unique_ptr<NewAccountModelPimpl> pimpl_;
+    std::unique_ptr<AccountModelPimpl> pimpl_;
 };
 } // namespace api
 } // namespace lrc
-Q_DECLARE_METATYPE(lrc::api::NewAccountModel*)
+Q_DECLARE_METATYPE(lrc::api::AccountModel*)

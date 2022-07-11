@@ -30,7 +30,7 @@ AvatarRegistry::AvatarRegistry(LRCInstance* instance, QObject* parent)
             &AvatarRegistry::connectAccount);
 
     connect(&lrcInstance_->accountModel(),
-            &NewAccountModel::profileUpdated,
+            &AccountModel::profileUpdated,
             this,
             &AvatarRegistry::addOrUpdateImage,
             Qt::UniqueConnection);

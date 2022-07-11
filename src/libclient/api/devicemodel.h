@@ -29,7 +29,7 @@
 namespace lrc {
 
 class CallbacksHandler;
-class NewDeviceModelPimpl;
+class DeviceModelPimpl;
 
 namespace api {
 
@@ -47,7 +47,7 @@ struct Device
 /**
  *  @brief Class that manages ring devices for an account
  */
-class LIB_EXPORT NewDeviceModel : public QObject
+class LIB_EXPORT DeviceModel : public QObject
 {
     Q_OBJECT
 
@@ -58,8 +58,8 @@ public:
     enum class Status { SUCCESS = 0, WRONG_PASSWORD = 1, UNKNOWN_DEVICE = 2 };
     const account::Info& owner;
 
-    NewDeviceModel(const account::Info& owner, const CallbacksHandler& callbacksHandler);
-    ~NewDeviceModel();
+    DeviceModel(const account::Info& owner, const CallbacksHandler& callbacksHandler);
+    ~DeviceModel();
 
     /**
      * Get ring devices of an account
@@ -109,8 +109,8 @@ Q_SIGNALS:
     void deviceUpdated(const QString& id) const;
 
 private:
-    std::unique_ptr<NewDeviceModelPimpl> pimpl_;
+    std::unique_ptr<DeviceModelPimpl> pimpl_;
 };
 } // namespace api
 } // namespace lrc
-Q_DECLARE_METATYPE(lrc::api::NewDeviceModel*)
+Q_DECLARE_METATYPE(lrc::api::DeviceModel*)

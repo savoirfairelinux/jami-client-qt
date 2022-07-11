@@ -23,8 +23,8 @@
 #include "api/account.h"
 #include "api/contact.h"
 #include "api/conversation.h"
-#include "api/newcodecmodel.h"
-#include "api/newdevicemodel.h"
+#include "api/codecmodel.h"
+#include "api/devicemodel.h"
 
 MediaCodecListModel::MediaCodecListModel(QObject* parent)
     : AbstractListModelBase(parent)

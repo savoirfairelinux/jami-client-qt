@@ -24,7 +24,7 @@
 #include "api/account.h"
 #include "api/contact.h"
 #include "api/conversation.h"
-#include "api/newdevicemodel.h"
+#include "api/devicemodel.h"
 
 CurrentAccountToMigrate::CurrentAccountToMigrate(LRCInstance* instance, QObject* parent)
     : QObject(parent)
@@ -42,7 +42,7 @@ CurrentAccountToMigrate::CurrentAccountToMigrate(LRCInstance* instance, QObject*
     if (accountToMigrateList_.size()) {
         migrationEndedConnection_ = connect(
             &lrcInstance_->accountModel(),
-            &lrc::api::NewAccountModel::migrationEnded,
+            &lrc::api::AccountModel::migrationEnded,
             this,
             [this](const QString& accountId, bool ok) {
                 if (ok && accountToMigrateList_.removeOne(accountId)) {
@@ -74,7 +74,7 @@ CurrentAccountToMigrate::removeCurrentAccountToMigrate()
     }
 
     Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                          &lrc::api::NewAccountModel::accountRemoved,
+                          &lrc::api::AccountModel::accountRemoved,
                           [this] {
                               if (accountToMigrateList_.isEmpty())
                                   Q_EMIT allMigrationsFinished();

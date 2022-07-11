@@ -38,17 +38,17 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accModel_.get(), "CurrentAccountFilterModel");
 
     connect(&lrcInstance_->accountModel(),
-            &NewAccountModel::accountStatusChanged,
+            &AccountModel::accountStatusChanged,
             this,
             &AccountAdapter::accountStatusChanged);
 
     connect(&lrcInstance_->accountModel(),
-            &NewAccountModel::profileUpdated,
+            &AccountModel::profileUpdated,
             this,
             &AccountAdapter::accountStatusChanged);
 }
 
-NewAccountModel*
+AccountModel*
 AccountAdapter::getModel()
 {
     return &(lrcInstance_->accountModel());
@@ -68,25 +68,25 @@ AccountAdapter::connectFailure()
 {
     Utils::oneShotConnect(
         &lrcInstance_->accountModel(),
-        &lrc::api::NewAccountModel::accountRemoved,
+        &lrc::api::AccountModel::accountRemoved,
         [this](const QString& accountId) {
             Q_UNUSED(accountId);
             Q_EMIT accountCreationFailed();
             Q_EMIT reportFailure();
         },
         &lrcInstance_->accountModel(),
-        &lrc::api::NewAccountModel::accountAdded);
+        &lrc::api::AccountModel::accountAdded);
 
     Utils::oneShotConnect(
         &lrcInstance_->accountModel(),
-        &lrc::api::NewAccountModel::invalidAccountDetected,
+        &lrc::api::AccountModel::invalidAccountDetected,
         [this](const QString& accountId) {
             Q_UNUSED(accountId);
             Q_EMIT accountCreationFailed();
             Q_EMIT reportFailure();
         },
         &lrcInstance_->accountModel(),
-        &lrc::api::NewAccountModel::accountAdded);
+        &lrc::api::AccountModel::accountAdded);
 }
 
 void
@@ -96,10 +96,10 @@ AccountAdapter::createJamiAccount(QString registeredName,
 {
     Utils::oneShotConnect(
         &lrcInstance_->accountModel(),
-        &lrc::api::NewAccountModel::accountAdded,
+        &lrc::api::AccountModel::accountAdded,
         [this, registeredName, settings, isCreating](const QString& accountId) {
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                                  &lrc::api::NewAccountModel::accountDetailsChanged,
+                                  &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
                                       Q_UNUSED(accountId);
                                       // For testing purpose
@@ -117,7 +117,7 @@ AccountAdapter::createJamiAccount(QString registeredName,
                 QObject::disconnect(registeredNameSavedConnection_);
                 registeredNameSavedConnection_
                     = connect(&lrcInstance_->accountModel(),
-                              &lrc::api::NewAccountModel::profileUpdated,
+                              &lrc::api::AccountModel::profileUpdated,
                               [this, addedAccountId = accountId](const QString& accountId) {
                                   if (addedAccountId == accountId) {
                                       Q_EMIT lrcInstance_->accountListChanged();
@@ -159,10 +159,10 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
 {
     Utils::oneShotConnect(
         &lrcInstance_->accountModel(),
-        &lrc::api::NewAccountModel::accountAdded,
+        &lrc::api::AccountModel::accountAdded,
         [this, settings](const QString& accountId) {
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                                  &lrc::api::NewAccountModel::accountDetailsChanged,
+                                  &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
                                       Q_UNUSED(accountId);
                                       // For testing purpose
@@ -205,13 +205,13 @@ AccountAdapter::createJAMSAccount(const QVariantMap& settings)
 {
     Utils::oneShotConnect(
         &lrcInstance_->accountModel(),
-        &lrc::api::NewAccountModel::accountAdded,
+        &lrc::api::AccountModel::accountAdded,
         [this](const QString& accountId) {
             if (!lrcInstance_->accountModel().getAccountList().size())
                 return;
 
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                                  &lrc::api::NewAccountModel::accountDetailsChanged,
+                                  &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
                                       Q_UNUSED(accountId);
                                       // For testing purpose
@@ -244,7 +244,7 @@ void
 AccountAdapter::deleteCurrentAccount()
 {
     Utils::oneShotConnect(&lrcInstance_->accountModel(),
-                          &lrc::api::NewAccountModel::accountRemoved,
+                          &lrc::api::AccountModel::accountRemoved,
                           [this](const QString& accountId) {
                               Q_UNUSED(accountId);
                               // For testing purpose

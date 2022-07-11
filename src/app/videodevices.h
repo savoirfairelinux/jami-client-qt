@@ -21,7 +21,7 @@
 #include "lrcinstance.h"
 #include "qtutils.h"
 
-#include "api/newdevicemodel.h"
+#include "api/devicemodel.h"
 
 #include <QSortFilterProxyModel>
 #include <QObject>
