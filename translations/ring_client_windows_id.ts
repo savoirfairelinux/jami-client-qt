@@ -929,7 +929,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
         <source>Select audio input device</source>
-        <translation type="unfinished"/>
+        <translation>Pilih perangkat input audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
@@ -939,7 +939,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>Select audio output device</source>
-        <translation type="unfinished"/>
+        <translation>Pilih perangkat output audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
@@ -964,7 +964,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
         <source>Select video device</source>
-        <translation type="unfinished"/>
+        <translation>Pilih sumber video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
@@ -1166,12 +1166,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
         <source>Cut</source>
-        <translation type="unfinished"/>
+        <translation>Potong</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Tempel</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
@@ -2301,7 +2301,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
         <source>Minimize</source>
-        <translation type="unfinished"/>
+        <translation>Minimalkan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
@@ -2767,7 +2767,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="218"/>
         <source>Answer</source>
-        <translation type="unfinished"/>
+        <translation>Jawab</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="219"/>
