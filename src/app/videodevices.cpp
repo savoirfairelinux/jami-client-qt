@@ -271,7 +271,7 @@ VideoDevices::setDefaultDevice(int index, bool useSourceModel)
     lrcInstance_->avModel().setDefaultDevice(deviceId);
 
     if (!callId.isEmpty())
-        lrcInstance_->getCurrentCallModel()->switchInputTo(deviceId, callId);
+        lrcInstance_->getCurrentCallModel()->replaceDefaultCamera(callId, deviceId);
 
     updateData();
 }
@@ -455,37 +455,18 @@ VideoDevices::onVideoDeviceEvent()
         deviceEvent = DeviceEvent::Removed;
     }
 
-    auto cb = [this, currentDeviceListSize, deviceEvent, defaultDevice, callId] {
-        auto& avModel = lrcInstance_->avModel();
-        auto* callModel = lrcInstance_->getCurrentCallModel();
-        if (currentDeviceListSize == 0) {
-            callModel->switchInputTo({}, callId);
-            avModel.stopPreview(this->getDefaultDevice());
-        } else if (deviceEvent == DeviceEvent::Removed) {
-            callModel->switchInputTo(defaultDevice, callId);
-        }
-
-        updateData();
-        Q_EMIT deviceListChanged(currentDeviceListSize);
-    };
-
     if (deviceEvent == DeviceEvent::Added) {
         updateData();
         Q_EMIT deviceListChanged(currentDeviceListSize);
     } else if (deviceEvent == DeviceEvent::FirstDevice) {
         updateData();
 
-        if (callId.isEmpty()) {
+        if (callId.isEmpty())
             Q_EMIT deviceAvailable();
-        } else {
-            callModel->switchInputTo(defaultDevice, callId);
-        }
 
         Q_EMIT deviceListChanged(currentDeviceListSize);
     } else if (deviceOpen_) {
         updateData();
-    } else {
-        cb();
     }
 }
 
