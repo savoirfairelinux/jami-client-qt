@@ -440,6 +440,39 @@ NewCallModel::muteMedia(const QString& callId, const QString& label, bool mute)
 }
 
 void
+NewCallModel::replaceDefaultCamera(const QString& callId, const QString& deviceId)
+{
+    auto& callInfo = pimpl_->calls[callId];
+    if (!callInfo)
+        return;
+
+    VectorMapStringString proposedList = callInfo->mediaList;
+    QString oldPreview, newPreview;
+    for (auto& media : proposedList) {
+        if (media[MediaAttributeKey::MEDIA_TYPE] ==  MediaAttributeValue::VIDEO
+            && media[MediaAttributeKey::SOURCE].startsWith(DRing::Media::VideoProtocolPrefix::CAMERA)) {
+            oldPreview = media[MediaAttributeKey::SOURCE];
+            QString resource = QString("%1%2%3")
+                                              .arg(DRing::Media::VideoProtocolPrefix::CAMERA)
+                                              .arg(DRing::Media::VideoProtocolPrefix::SEPARATOR)
+                                              .arg(deviceId);
+            media[MediaAttributeKey::SOURCE] = resource;
+            newPreview = resource;
+            break;
+        }
+    }
+
+    if (!newPreview.isEmpty()) {
+        pimpl_->lrc.getAVModel().stopPreview(oldPreview);
+        pimpl_->lrc.getAVModel().startPreview(newPreview);
+    }
+
+
+
+    CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
+}
+
+void
 NewCallModel::addMedia(const QString& callId,
                        const QString& source,
                        MediaRequestType type,
@@ -880,22 +913,6 @@ NewCallModel::getCurrentRenderedDevice(const QString& call_id) const
     return result;
 }
 
-void
-NewCallModel::setInputFile(const QString& uri, const QString& callId)
-{
-    QString sep = DRing::Media::VideoProtocolPrefix::SEPARATOR;
-    auto resource = !uri.isEmpty() ? QString("%1%2%3")
-                                         .arg(DRing::Media::VideoProtocolPrefix::FILE)
-                                         .arg(sep)
-                                         .arg(QUrl(uri).toLocalFile())
-                                   : DRing::Media::VideoProtocolPrefix::NONE;
-    if (callId.isEmpty()) {
-        VideoManager::instance().openVideoInput(resource);
-    } else {
-        CallManager::instance().switchInput(owner.id, callId, resource);
-    }
-}
-
 QString
 NewCallModel::getDisplay(int idx, int x, int y, int w, int h)
 {
@@ -918,36 +935,6 @@ NewCallModel::getDisplay(const QString& windowId)
         .arg(DRing::Media::VideoProtocolPrefix::DISPLAY)
         .arg(sep)
         .arg(windowId);
-}
-
-void
-NewCallModel::setDisplay(int idx, int x, int y, int w, int h, const QString& callId)
-{
-    auto resource = getDisplay(idx, x, y, w, h);
-    if (callId.isEmpty()) {
-        VideoManager::instance().openVideoInput(resource);
-    } else {
-        CallManager::instance().switchInput(owner.id, callId, resource);
-    }
-}
-
-void
-NewCallModel::switchInputTo(const QString& id, const QString& callId)
-{
-    QString resource;
-    auto devices = pimpl_->lrc.getAVModel().getDevices();
-    auto deviceAvailable = std::find(std::begin(devices), std::end(devices), id);
-    if (deviceAvailable != devices.end()) {
-        QString sep = DRing::Media::VideoProtocolPrefix::SEPARATOR;
-        resource = QString("%1%2%3").arg(DRing::Media::VideoProtocolPrefix::CAMERA).arg(sep).arg(id);
-    } else {
-        resource = QString(DRing::Media::VideoProtocolPrefix::NONE);
-    }
-    if (callId.isEmpty()) {
-        VideoManager::instance().openVideoInput(resource);
-    } else {
-        CallManager::instance().switchInput(owner.id, callId, resource);
-    }
 }
 
 NewCallModelPimpl::NewCallModelPimpl(const NewCallModel& linked,
@@ -1653,7 +1640,7 @@ NewCallModelPimpl::slotConferenceCreated(const QString& accountId, const QString
 void
 NewCallModelPimpl::slotConferenceChanged(const QString& accountId,
                                          const QString& confId,
-                                         const QString& state)
+                                         const QString&)
 {
     if (accountId != linked.owner.id)
         return;
