@@ -420,6 +420,38 @@ CallModel::muteMedia(const QString& callId, const QString& label, bool mute)
 }
 
 void
+CallModel::replaceDefaultCamera(const QString& callId, const QString& deviceId)
+{
+    auto& callInfo = pimpl_->calls[callId];
+    if (!callInfo)
+        return;
+
+    VectorMapStringString proposedList = callInfo->mediaList;
+    QString oldPreview, newPreview;
+    for (auto& media : proposedList) {
+        if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO
+            && media[MediaAttributeKey::SOURCE].startsWith(
+                DRing::Media::VideoProtocolPrefix::CAMERA)) {
+            oldPreview = media[MediaAttributeKey::SOURCE];
+            QString resource = QString("%1%2%3")
+                                   .arg(DRing::Media::VideoProtocolPrefix::CAMERA)
+                                   .arg(DRing::Media::VideoProtocolPrefix::SEPARATOR)
+                                   .arg(deviceId);
+            media[MediaAttributeKey::SOURCE] = resource;
+            newPreview = resource;
+            break;
+        }
+    }
+
+    if (!newPreview.isEmpty()) {
+        pimpl_->lrc.getAVModel().stopPreview(oldPreview);
+        pimpl_->lrc.getAVModel().startPreview(newPreview);
+    }
+
+    CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
+}
+
+void
 CallModel::addMedia(const QString& callId, const QString& source, MediaRequestType type, bool mute)
 {
     auto& callInfo = pimpl_->calls[callId];
@@ -840,22 +872,6 @@ CallModel::getCurrentRenderedDevice(const QString& call_id) const
     return result;
 }
 
-void
-CallModel::setInputFile(const QString& uri, const QString& callId)
-{
-    QString sep = DRing::Media::VideoProtocolPrefix::SEPARATOR;
-    auto resource = !uri.isEmpty() ? QString("%1%2%3")
-                                         .arg(DRing::Media::VideoProtocolPrefix::FILE)
-                                         .arg(sep)
-                                         .arg(QUrl(uri).toLocalFile())
-                                   : DRing::Media::VideoProtocolPrefix::NONE;
-    if (callId.isEmpty()) {
-        VideoManager::instance().openVideoInput(resource);
-    } else {
-        CallManager::instance().switchInput(owner.id, callId, resource);
-    }
-}
-
 QString
 CallModel::getDisplay(int idx, int x, int y, int w, int h)
 {
@@ -878,36 +894,6 @@ CallModel::getDisplay(const QString& windowId)
         .arg(DRing::Media::VideoProtocolPrefix::DISPLAY)
         .arg(sep)
         .arg(windowId);
-}
-
-void
-CallModel::setDisplay(int idx, int x, int y, int w, int h, const QString& callId)
-{
-    auto resource = getDisplay(idx, x, y, w, h);
-    if (callId.isEmpty()) {
-        VideoManager::instance().openVideoInput(resource);
-    } else {
-        CallManager::instance().switchInput(owner.id, callId, resource);
-    }
-}
-
-void
-CallModel::switchInputTo(const QString& id, const QString& callId)
-{
-    QString resource;
-    auto devices = pimpl_->lrc.getAVModel().getDevices();
-    auto deviceAvailable = std::find(std::begin(devices), std::end(devices), id);
-    if (deviceAvailable != devices.end()) {
-        QString sep = DRing::Media::VideoProtocolPrefix::SEPARATOR;
-        resource = QString("%1%2%3").arg(DRing::Media::VideoProtocolPrefix::CAMERA).arg(sep).arg(id);
-    } else {
-        resource = QString(DRing::Media::VideoProtocolPrefix::NONE);
-    }
-    if (callId.isEmpty()) {
-        VideoManager::instance().openVideoInput(resource);
-    } else {
-        CallManager::instance().switchInput(owner.id, callId, resource);
-    }
 }
 
 CallModelPimpl::CallModelPimpl(const CallModel& linked,
