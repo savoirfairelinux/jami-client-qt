@@ -21,8 +21,8 @@
 #include "api/account.h"
 #include "api/contactmodel.h"
 #include "api/contact.h"
-#include "api/newcallmodel.h"
-#include "api/newaccountmodel.h"
+#include "api/callmodel.h"
+#include "api/accountmodel.h"
 
 namespace lrc {
 
@@ -30,7 +30,7 @@ namespace api {
 
 CallParticipants::CallParticipants(const VectorMapStringString& infos,
                                    const QString& callId,
-                                   const NewCallModel& linked)
+                                   const CallModel& linked)
     : linked_(linked)
     , callId_(callId)
 {

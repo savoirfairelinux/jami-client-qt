@@ -24,8 +24,8 @@
 #include "api/lrc.h"
 #include "api/behaviorcontroller.h"
 #include "api/contactmodel.h"
-#include "api/newcallmodel.h"
-#include "api/newaccountmodel.h"
+#include "api/callmodel.h"
+#include "api/accountmodel.h"
 #include "api/account.h"
 #include "api/call.h"
 #include "api/datatransfer.h"
@@ -1741,19 +1741,19 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             this,
             &ConversationModelPimpl::slotIncomingCall);
     connect(&*linked.owner.callModel,
-            &lrc::api::NewCallModel::callStatusChanged,
+            &lrc::api::CallModel::callStatusChanged,
             this,
             &ConversationModelPimpl::slotCallStatusChanged);
     connect(&*linked.owner.callModel,
-            &lrc::api::NewCallModel::callStarted,
+            &lrc::api::CallModel::callStarted,
             this,
             &ConversationModelPimpl::slotCallStarted);
     connect(&*linked.owner.callModel,
-            &lrc::api::NewCallModel::callEnded,
+            &lrc::api::CallModel::callEnded,
             this,
             &ConversationModelPimpl::slotCallEnded);
     connect(&*linked.owner.callModel,
-            &lrc::api::NewCallModel::callAddedToConference,
+            &lrc::api::CallModel::callAddedToConference,
             this,
             &ConversationModelPimpl::slotCallAddedToConference);
     connect(&callbacksHandler,
@@ -1877,19 +1877,19 @@ ConversationModelPimpl::~ConversationModelPimpl()
                this,
                &ConversationModelPimpl::slotIncomingCall);
     disconnect(&*linked.owner.callModel,
-               &lrc::api::NewCallModel::callStatusChanged,
+               &lrc::api::CallModel::callStatusChanged,
                this,
                &ConversationModelPimpl::slotCallStatusChanged);
     disconnect(&*linked.owner.callModel,
-               &lrc::api::NewCallModel::callStarted,
+               &lrc::api::CallModel::callStarted,
                this,
                &ConversationModelPimpl::slotCallStarted);
     disconnect(&*linked.owner.callModel,
-               &lrc::api::NewCallModel::callEnded,
+               &lrc::api::CallModel::callEnded,
                this,
                &ConversationModelPimpl::slotCallEnded);
     disconnect(&*linked.owner.callModel,
-               &lrc::api::NewCallModel::callAddedToConference,
+               &lrc::api::CallModel::callAddedToConference,
                this,
                &ConversationModelPimpl::slotCallAddedToConference);
     disconnect(&callbacksHandler,

@@ -23,7 +23,7 @@
 #include "api/account.h"
 #include "api/contact.h"
 #include "api/conversation.h"
-#include "api/newdevicemodel.h"
+#include "api/devicemodel.h"
 
 AudioManagerListModel::AudioManagerListModel(QObject* parent)
     : AbstractListModelBase(parent)

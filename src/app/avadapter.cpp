@@ -21,8 +21,8 @@
 #include "avadapter.h"
 #include "qtutils.h"
 
-#include "api/newcodecmodel.h"
-#include "api/newdevicemodel.h"
+#include "api/codecmodel.h"
+#include "api/devicemodel.h"
 
 #ifdef Q_OS_LINUX
 #include "xrectsel.h"
@@ -99,7 +99,7 @@ AvAdapter::shareEntireScreen(int screenNumber)
     if (hasCamera())
         muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
 void
@@ -116,7 +116,7 @@ AvAdapter::shareAllScreens()
     if (hasCamera())
         muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
 void
@@ -181,7 +181,7 @@ AvAdapter::shareFile(const QString& filePath)
         if (hasCamera())
             muteCamera_ = !isCapturing();
         lrcInstance_->getCurrentCallModel()
-            ->addMedia(callId, filePath, lrc::api::NewCallModel::MediaRequestType::FILESHARING);
+            ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING);
     }
 }
 
@@ -204,7 +204,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                                                         height < 128 ? 128 : height);
         auto callId = lrcInstance_->getCurrentCallId();
         lrcInstance_->getCurrentCallModel()
-            ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
+            ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
     });
 #else
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
@@ -214,7 +214,7 @@ AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned heig
                                                                     height < 128 ? 128 : height);
     auto callId = lrcInstance_->getCurrentCallId();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 #endif
 }
 
@@ -227,7 +227,7 @@ AvAdapter::shareWindow(const QString& windowId)
     if (hasCamera())
         muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
-        ->addMedia(callId, resource, lrc::api::NewCallModel::MediaRequestType::SCREENSHARING);
+        ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
 QString

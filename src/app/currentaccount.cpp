@@ -26,12 +26,12 @@ CurrentAccount::CurrentAccount(LRCInstance* lrcInstance,
     , lrcInstance_(lrcInstance)
 {
     connect(&lrcInstance_->accountModel(),
-            &NewAccountModel::accountStatusChanged,
+            &AccountModel::accountStatusChanged,
             this,
             &CurrentAccount::onAccountUpdated);
 
     connect(&lrcInstance_->accountModel(),
-            &NewAccountModel::profileUpdated,
+            &AccountModel::profileUpdated,
             this,
             &CurrentAccount::onAccountUpdated);
 

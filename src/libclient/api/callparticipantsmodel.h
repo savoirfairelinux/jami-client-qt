@@ -34,7 +34,7 @@
 namespace lrc {
 
 namespace api {
-class NewCallModel;
+class CallModel;
 
 namespace ParticipantsInfosStrings {
 const QString URI = "uri";
@@ -126,7 +126,7 @@ class LIB_EXPORT CallParticipants : public QObject
 public:
     CallParticipants(const VectorMapStringString& infos,
                      const QString& callId,
-                     const NewCallModel& linked);
+                     const CallModel& linked);
     ~CallParticipants() {}
 
     /**
@@ -181,7 +181,7 @@ private:
     QList<QString> validMedias_;
     int idx_ = 0;
 
-    const NewCallModel& linked_;
+    const CallModel& linked_;
 
     // Protects changes into the paticipants_ variable
     mutable std::mutex participantsMtx_ {};

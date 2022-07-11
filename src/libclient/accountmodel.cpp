@@ -18,16 +18,16 @@
  *   You should have received a copy of the GNU General Public License      *
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
  ***************************************************************************/
-#include "api/newaccountmodel.h"
+#include "api/accountmodel.h"
 
 // new LRC
 #include "api/lrc.h"
 #include "api/contactmodel.h"
 #include "api/conversationmodel.h"
 #include "api/peerdiscoverymodel.h"
-#include "api/newcallmodel.h"
-#include "api/newcodecmodel.h"
-#include "api/newdevicemodel.h"
+#include "api/callmodel.h"
+#include "api/codecmodel.h"
+#include "api/devicemodel.h"
 #include "api/behaviorcontroller.h"
 #include "api/datatransfermodel.h"
 #include "authority/storagehelper.h"
@@ -56,21 +56,21 @@ namespace lrc {
 
 using namespace api;
 
-class NewAccountModelPimpl : public QObject
+class AccountModelPimpl : public QObject
 {
     Q_OBJECT
 public:
-    NewAccountModelPimpl(NewAccountModel& linked,
-                         Lrc& lrc,
-                         const CallbacksHandler& callbackHandler,
-                         const BehaviorController& behaviorController,
-                         MigrationCb& willMigrateCb,
-                         MigrationCb& didMigrateCb);
-    ~NewAccountModelPimpl();
+    AccountModelPimpl(AccountModel& linked,
+                      Lrc& lrc,
+                      const CallbacksHandler& callbackHandler,
+                      const BehaviorController& behaviorController,
+                      MigrationCb& willMigrateCb,
+                      MigrationCb& didMigrateCb);
+    ~AccountModelPimpl();
 
     using AccountInfoDbMap = std::map<QString, std::pair<account::Info, std::shared_ptr<Database>>>;
 
-    NewAccountModel& linked;
+    AccountModel& linked;
     Lrc& lrc;
     const CallbacksHandler& callbacksHandler;
     const BehaviorController& behaviorController;
@@ -179,24 +179,24 @@ public Q_SLOTS:
                                     const QString& userPhoto);
 };
 
-NewAccountModel::NewAccountModel(Lrc& lrc,
-                                 const CallbacksHandler& callbacksHandler,
-                                 const BehaviorController& behaviorController,
-                                 MigrationCb& willMigrateCb,
-                                 MigrationCb& didMigrateCb)
+AccountModel::AccountModel(Lrc& lrc,
+                           const CallbacksHandler& callbacksHandler,
+                           const BehaviorController& behaviorController,
+                           MigrationCb& willMigrateCb,
+                           MigrationCb& didMigrateCb)
     : QObject(nullptr)
-    , pimpl_(std::make_unique<NewAccountModelPimpl>(*this,
-                                                    lrc,
-                                                    callbacksHandler,
-                                                    behaviorController,
-                                                    willMigrateCb,
-                                                    didMigrateCb))
+    , pimpl_(std::make_unique<AccountModelPimpl>(*this,
+                                                 lrc,
+                                                 callbacksHandler,
+                                                 behaviorController,
+                                                 willMigrateCb,
+                                                 didMigrateCb))
 {}
 
-NewAccountModel::~NewAccountModel() {}
+AccountModel::~AccountModel() {}
 
 QStringList
-NewAccountModel::getAccountList() const
+AccountModel::getAccountList() const
 {
     QStringList filteredAccountIds;
     const QStringList accountIds = ConfigurationManager::instance().getAccountList();
@@ -212,7 +212,7 @@ NewAccountModel::getAccountList() const
 }
 
 void
-NewAccountModel::setAccountEnabled(const QString& accountId, bool enabled) const
+AccountModel::setAccountEnabled(const QString& accountId, bool enabled) const
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     accountInfo.enabled = enabled;
@@ -220,8 +220,8 @@ NewAccountModel::setAccountEnabled(const QString& accountId, bool enabled) const
 }
 
 void
-NewAccountModel::setAccountConfig(const QString& accountId,
-                                  const account::ConfProperties_t& confProperties) const
+AccountModel::setAccountConfig(const QString& accountId,
+                               const account::ConfProperties_t& confProperties) const
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     auto& configurationManager = ConfigurationManager::instance();
@@ -264,13 +264,13 @@ NewAccountModel::setAccountConfig(const QString& accountId,
 }
 
 account::ConfProperties_t
-NewAccountModel::getAccountConfig(const QString& accountId) const
+AccountModel::getAccountConfig(const QString& accountId) const
 {
     return getAccountInfo(accountId).confProperties;
 }
 
 void
-NewAccountModel::setAlias(const QString& accountId, const QString& alias)
+AccountModel::setAlias(const QString& accountId, const QString& alias)
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     if (accountInfo.profileInfo.alias == alias)
@@ -283,7 +283,7 @@ NewAccountModel::setAlias(const QString& accountId, const QString& alias)
 }
 
 void
-NewAccountModel::setAvatar(const QString& accountId, const QString& avatar)
+AccountModel::setAvatar(const QString& accountId, const QString& avatar)
 {
     auto& accountInfo = pimpl_->getAccountInfo(accountId);
     if (accountInfo.profileInfo.avatar == avatar)
@@ -296,29 +296,29 @@ NewAccountModel::setAvatar(const QString& accountId, const QString& avatar)
 }
 
 bool
-NewAccountModel::registerName(const QString& accountId,
-                              const QString& password,
-                              const QString& username)
+AccountModel::registerName(const QString& accountId,
+                           const QString& password,
+                           const QString& username)
 {
     return ConfigurationManager::instance().registerName(accountId, password, username);
 }
 
 bool
-NewAccountModel::exportToFile(const QString& accountId,
-                              const QString& path,
-                              const QString& password) const
+AccountModel::exportToFile(const QString& accountId,
+                           const QString& path,
+                           const QString& password) const
 {
     return ConfigurationManager::instance().exportToFile(accountId, path, password);
 }
 
 bool
-NewAccountModel::exportOnRing(const QString& accountId, const QString& password) const
+AccountModel::exportOnRing(const QString& accountId, const QString& password) const
 {
     return ConfigurationManager::instance().exportOnRing(accountId, password);
 }
 
 void
-NewAccountModel::removeAccount(const QString& accountId) const
+AccountModel::removeAccount(const QString& accountId) const
 {
     auto account = pimpl_->accounts.find(accountId);
     if (account == pimpl_->accounts.end()) {
@@ -331,9 +331,9 @@ NewAccountModel::removeAccount(const QString& accountId) const
 }
 
 bool
-NewAccountModel::changeAccountPassword(const QString& accountId,
-                                       const QString& currentPassword,
-                                       const QString& newPassword) const
+AccountModel::changeAccountPassword(const QString& accountId,
+                                    const QString& currentPassword,
+                                    const QString& newPassword) const
 {
     return ConfigurationManager::instance().changeAccountPassword(accountId,
                                                                   currentPassword,
@@ -341,22 +341,22 @@ NewAccountModel::changeAccountPassword(const QString& accountId,
 }
 
 const account::Info&
-NewAccountModel::getAccountInfo(const QString& accountId) const
+AccountModel::getAccountInfo(const QString& accountId) const
 {
     auto accountInfo = pimpl_->accounts.find(accountId);
     if (accountInfo == pimpl_->accounts.end())
-        throw std::out_of_range("NewAccountModel::getAccountInfo, can't find "
+        throw std::out_of_range("AccountModel::getAccountInfo, can't find "
                                 + accountId.toStdString());
 
     return accountInfo->second.first;
 }
 
-NewAccountModelPimpl::NewAccountModelPimpl(NewAccountModel& linked,
-                                           Lrc& lrc,
-                                           const CallbacksHandler& callbacksHandler,
-                                           const BehaviorController& behaviorController,
-                                           MigrationCb& willMigrateCb,
-                                           MigrationCb& didMigrateCb)
+AccountModelPimpl::AccountModelPimpl(AccountModel& linked,
+                                     Lrc& lrc,
+                                     const CallbacksHandler& callbacksHandler,
+                                     const BehaviorController& behaviorController,
+                                     MigrationCb& willMigrateCb,
+                                     MigrationCb& didMigrateCb)
     : linked(linked)
     , lrc {lrc}
     , behaviorController(behaviorController)
@@ -382,45 +382,45 @@ NewAccountModelPimpl::NewAccountModelPimpl(NewAccountModel& linked,
     connect(&callbacksHandler,
             &CallbacksHandler::accountsChanged,
             this,
-            &NewAccountModelPimpl::updateAccounts);
+            &AccountModelPimpl::updateAccounts);
     connect(&callbacksHandler,
             &CallbacksHandler::accountStatusChanged,
             this,
-            &NewAccountModelPimpl::slotAccountStatusChanged);
+            &AccountModelPimpl::slotAccountStatusChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::accountDetailsChanged,
             this,
-            &NewAccountModelPimpl::slotAccountDetailsChanged);
+            &AccountModelPimpl::slotAccountDetailsChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::volatileAccountDetailsChanged,
             this,
-            &NewAccountModelPimpl::slotVolatileAccountDetailsChanged);
+            &AccountModelPimpl::slotVolatileAccountDetailsChanged);
     connect(&callbacksHandler,
             &CallbacksHandler::exportOnRingEnded,
             this,
-            &NewAccountModelPimpl::slotExportOnRingEnded);
+            &AccountModelPimpl::slotExportOnRingEnded);
     connect(&callbacksHandler,
             &CallbacksHandler::nameRegistrationEnded,
             this,
-            &NewAccountModelPimpl::slotNameRegistrationEnded);
+            &AccountModelPimpl::slotNameRegistrationEnded);
     connect(&callbacksHandler,
             &CallbacksHandler::registeredNameFound,
             this,
-            &NewAccountModelPimpl::slotRegisteredNameFound);
+            &AccountModelPimpl::slotRegisteredNameFound);
     connect(&callbacksHandler,
             &CallbacksHandler::migrationEnded,
             this,
-            &NewAccountModelPimpl::slotMigrationEnded);
+            &AccountModelPimpl::slotMigrationEnded);
     connect(&callbacksHandler,
             &CallbacksHandler::accountProfileReceived,
             this,
-            &NewAccountModelPimpl::slotAccountProfileReceived);
+            &AccountModelPimpl::slotAccountProfileReceived);
 }
 
-NewAccountModelPimpl::~NewAccountModelPimpl() {}
+AccountModelPimpl::~AccountModelPimpl() {}
 
 void
-NewAccountModelPimpl::updateAccounts()
+AccountModelPimpl::updateAccounts()
 {
     qDebug() << "Syncing lrc accounts list with the daemon";
     ConfigurationManagerInterface& configurationManager = ConfigurationManager::instance();
@@ -464,7 +464,7 @@ NewAccountModelPimpl::updateAccounts()
 }
 
 void
-NewAccountModelPimpl::updateAccountDetails(account::Info& accountInfo)
+AccountModelPimpl::updateAccountDetails(account::Info& accountInfo)
 {
     // Fill account::Info struct with details from daemon
     MapStringString details = ConfigurationManager::instance().getAccountDetails(accountInfo.id);
@@ -490,19 +490,19 @@ NewAccountModelPimpl::updateAccountDetails(account::Info& accountInfo)
 }
 
 account::Info&
-NewAccountModelPimpl::getAccountInfo(const QString& accountId)
+AccountModelPimpl::getAccountInfo(const QString& accountId)
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        throw std::out_of_range("NewAccountModelPimpl::getAccountInfo, can't find "
+        throw std::out_of_range("AccountModelPimpl::getAccountInfo, can't find "
                                 + accountId.toStdString());
     }
     return account->second.first;
 }
 
 void
-NewAccountModelPimpl::slotAccountStatusChanged(const QString& accountID,
-                                               const api::account::Status status)
+AccountModelPimpl::slotAccountStatusChanged(const QString& accountID,
+                                            const api::account::Status status)
 {
     if (status == api::account::Status::INVALID) {
         Q_EMIT linked.invalidAccountDetected(accountID);
@@ -539,12 +539,12 @@ NewAccountModelPimpl::slotAccountStatusChanged(const QString& accountID,
 }
 
 void
-NewAccountModelPimpl::slotAccountDetailsChanged(const QString& accountId,
-                                                const MapStringString& details)
+AccountModelPimpl::slotAccountDetailsChanged(const QString& accountId,
+                                             const MapStringString& details)
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        throw std::out_of_range("NewAccountModelPimpl::slotAccountDetailsChanged, can't find "
+        throw std::out_of_range("AccountModelPimpl::slotAccountDetailsChanged, can't find "
                                 + accountId.toStdString());
     }
     auto& accountInfo = account->second.first;
@@ -560,12 +560,12 @@ NewAccountModelPimpl::slotAccountDetailsChanged(const QString& accountId,
 }
 
 void
-NewAccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
-                                                        const MapStringString& details)
+AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
+                                                     const MapStringString& details)
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end()) {
-        qWarning() << "NewAccountModelPimpl::slotVolatileAccountDetailsChanged, can't find "
+        qWarning() << "AccountModelPimpl::slotVolatileAccountDetailsChanged, can't find "
                    << accountId;
         return;
     }
@@ -579,7 +579,7 @@ NewAccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId
 }
 
 void
-NewAccountModelPimpl::slotExportOnRingEnded(const QString& accountID, int status, const QString& pin)
+AccountModelPimpl::slotExportOnRingEnded(const QString& accountID, int status, const QString& pin)
 {
     account::ExportOnRingStatus convertedStatus = account::ExportOnRingStatus::INVALID;
     switch (status) {
@@ -599,9 +599,9 @@ NewAccountModelPimpl::slotExportOnRingEnded(const QString& accountID, int status
 }
 
 void
-NewAccountModelPimpl::slotNameRegistrationEnded(const QString& accountId,
-                                                int status,
-                                                const QString& name)
+AccountModelPimpl::slotNameRegistrationEnded(const QString& accountId,
+                                             int status,
+                                             const QString& name)
 {
     account::RegisterNameStatus convertedStatus = account::RegisterNameStatus::INVALID;
     switch (status) {
@@ -635,10 +635,10 @@ NewAccountModelPimpl::slotNameRegistrationEnded(const QString& accountId,
 }
 
 void
-NewAccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
-                                              int status,
-                                              const QString& address,
-                                              const QString& name)
+AccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
+                                           int status,
+                                           const QString& address,
+                                           const QString& name)
 {
     account::LookupStatus convertedStatus = account::LookupStatus::INVALID;
     switch (status) {
@@ -661,7 +661,7 @@ NewAccountModelPimpl::slotRegisteredNameFound(const QString& accountId,
 }
 
 void
-NewAccountModelPimpl::slotMigrationEnded(const QString& accountId, bool ok)
+AccountModelPimpl::slotMigrationEnded(const QString& accountId, bool ok)
 {
     if (ok) {
         auto it = accounts.find(accountId);
@@ -681,9 +681,9 @@ NewAccountModelPimpl::slotMigrationEnded(const QString& accountId, bool ok)
 }
 
 void
-NewAccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
-                                                 const QString& displayName,
-                                                 const QString& userPhoto)
+AccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
+                                              const QString& displayName,
+                                              const QString& userPhoto)
 {
     auto account = accounts.find(accountId);
     if (account == accounts.end())
@@ -698,7 +698,7 @@ NewAccountModelPimpl::slotAccountProfileReceived(const QString& accountId,
 }
 
 void
-NewAccountModelPimpl::addToAccounts(const QString& accountId, std::shared_ptr<Database> db)
+AccountModelPimpl::addToAccounts(const QString& accountId, std::shared_ptr<Database> db)
 {
     if (db == nullptr) {
         try {
@@ -731,10 +731,10 @@ NewAccountModelPimpl::addToAccounts(const QString& accountId, std::shared_ptr<Da
 
     // Init models for this account
     newAccInfo.accountModel = &linked;
-    newAccInfo.callModel = std::make_unique<NewCallModel>(newAccInfo,
-                                                          lrc,
-                                                          callbacksHandler,
-                                                          behaviorController);
+    newAccInfo.callModel = std::make_unique<CallModel>(newAccInfo,
+                                                       lrc,
+                                                       callbacksHandler,
+                                                       behaviorController);
     newAccInfo.contactModel = std::make_unique<ContactModel>(newAccInfo,
                                                              *db,
                                                              callbacksHandler,
@@ -746,13 +746,13 @@ NewAccountModelPimpl::addToAccounts(const QString& accountId, std::shared_ptr<Da
                                                                        behaviorController);
     newAccInfo.peerDiscoveryModel = std::make_unique<PeerDiscoveryModel>(callbacksHandler,
                                                                          accountId);
-    newAccInfo.deviceModel = std::make_unique<NewDeviceModel>(newAccInfo, callbacksHandler);
-    newAccInfo.codecModel = std::make_unique<NewCodecModel>(newAccInfo, callbacksHandler);
+    newAccInfo.deviceModel = std::make_unique<DeviceModel>(newAccInfo, callbacksHandler);
+    newAccInfo.codecModel = std::make_unique<CodecModel>(newAccInfo, callbacksHandler);
     newAccInfo.dataTransferModel = std::make_unique<DataTransferModel>();
 }
 
 void
-NewAccountModelPimpl::removeFromAccounts(const QString& accountId)
+AccountModelPimpl::removeFromAccounts(const QString& accountId)
 {
     /* Update db before waiting for the client to stop using the structs is fine
        as long as we don't free anything */
@@ -945,7 +945,7 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::ARCHIVE_HAS_PASSWORD] = toQString(this->archiveHasPassword);
     details[ConfProperties::ARCHIVE_PATH] = this->archivePath;
     details[ConfProperties::ARCHIVE_PIN] = this->archivePin;
-    // ConfProperties::DEVICE_NAME name is set with NewDeviceModel interface
+    // ConfProperties::DEVICE_NAME name is set with DeviceModel interface
     details[ConfProperties::PROXY_ENABLED] = toQString(this->proxyEnabled);
     details[ConfProperties::PROXY_SERVER] = this->proxyServer;
     details[ConfProperties::PROXY_PUSH_TOKEN] = this->proxyPushToken;
@@ -1037,13 +1037,13 @@ account::ConfProperties_t::toDetails() const
 }
 
 QString
-NewAccountModel::createNewAccount(profile::Type type,
-                                  const QString& displayName,
-                                  const QString& archivePath,
-                                  const QString& password,
-                                  const QString& pin,
-                                  const QString& uri,
-                                  const MapStringString& config)
+AccountModel::createNewAccount(profile::Type type,
+                               const QString& displayName,
+                               const QString& archivePath,
+                               const QString& password,
+                               const QString& pin,
+                               const QString& uri,
+                               const MapStringString& config)
 {
     MapStringString details = type == profile::Type::SIP
                                   ? ConfigurationManager::instance().getAccountTemplate("SIP")
@@ -1069,10 +1069,10 @@ NewAccountModel::createNewAccount(profile::Type type,
 }
 
 QString
-NewAccountModel::connectToAccountManager(const QString& username,
-                                         const QString& password,
-                                         const QString& serverUri,
-                                         const MapStringString& config)
+AccountModel::connectToAccountManager(const QString& username,
+                                      const QString& password,
+                                      const QString& serverUri,
+                                      const MapStringString& config)
 {
     MapStringString details = ConfigurationManager::instance().getAccountTemplate("RING");
     using namespace DRing::Account;
@@ -1091,7 +1091,7 @@ NewAccountModel::connectToAccountManager(const QString& username,
 }
 
 void
-NewAccountModel::setTopAccount(const QString& accountId)
+AccountModel::setTopAccount(const QString& accountId)
 {
     bool found = false;
     QString order = {};
@@ -1111,14 +1111,14 @@ NewAccountModel::setTopAccount(const QString& accountId)
 }
 
 QString
-NewAccountModel::accountVCard(const QString& accountId, bool compressImage) const
+AccountModel::accountVCard(const QString& accountId, bool compressImage) const
 {
     return authority::storage::vcard::profileToVcard(getAccountInfo(accountId).profileInfo,
                                                      compressImage);
 }
 
 const QString
-NewAccountModel::bestNameForAccount(const QString& accountID)
+AccountModel::bestNameForAccount(const QString& accountID)
 {
     // Order: Alias, registeredName, uri
     auto& accountInfo = getAccountInfo(accountID);
@@ -1137,7 +1137,7 @@ NewAccountModel::bestNameForAccount(const QString& accountID)
 }
 
 const QString
-NewAccountModel::bestIdForAccount(const QString& accountID)
+AccountModel::bestIdForAccount(const QString& accountID)
 {
     // Order: RegisteredName, uri after best name
     //        return empty string if duplicated with best name
@@ -1150,45 +1150,45 @@ NewAccountModel::bestIdForAccount(const QString& accountID)
 }
 
 void
-NewAccountModel::setDefaultModerator(const QString& accountID,
-                                     const QString& peerURI,
-                                     const bool& state)
+AccountModel::setDefaultModerator(const QString& accountID,
+                                  const QString& peerURI,
+                                  const bool& state)
 {
     ConfigurationManager::instance().setDefaultModerator(accountID, peerURI, state);
 }
 
 QStringList
-NewAccountModel::getDefaultModerators(const QString& accountID)
+AccountModel::getDefaultModerators(const QString& accountID)
 {
     return ConfigurationManager::instance().getDefaultModerators(accountID);
 }
 
 void
-NewAccountModel::enableLocalModerators(const QString& accountID, const bool& isModEnabled)
+AccountModel::enableLocalModerators(const QString& accountID, const bool& isModEnabled)
 {
     ConfigurationManager::instance().enableLocalModerators(accountID, isModEnabled);
 }
 
 bool
-NewAccountModel::isLocalModeratorsEnabled(const QString& accountID)
+AccountModel::isLocalModeratorsEnabled(const QString& accountID)
 {
     return ConfigurationManager::instance().isLocalModeratorsEnabled(accountID);
 }
 
 void
-NewAccountModel::setAllModerators(const QString& accountID, const bool& allModerators)
+AccountModel::setAllModerators(const QString& accountID, const bool& allModerators)
 {
     ConfigurationManager::instance().setAllModerators(accountID, allModerators);
 }
 
 bool
-NewAccountModel::isAllModerators(const QString& accountID)
+AccountModel::isAllModerators(const QString& accountID)
 {
     return ConfigurationManager::instance().isAllModerators(accountID);
 }
 
 int
-NewAccountModel::notificationsCount() const
+AccountModel::notificationsCount() const
 {
     auto total = 0;
     for (const auto& [_id, account] : pimpl_->accounts) {
@@ -1198,12 +1198,12 @@ NewAccountModel::notificationsCount() const
 }
 
 QString
-NewAccountModel::avatar(const QString& accountId) const
+AccountModel::avatar(const QString& accountId) const
 {
     return authority::storage::avatar(accountId);
 }
 
 } // namespace lrc
 
-#include "api/moc_newaccountmodel.cpp"
-#include "newaccountmodel.moc"
+#include "api/moc_accountmodel.cpp"
+#include "accountmodel.moc"

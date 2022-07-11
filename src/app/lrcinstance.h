@@ -36,8 +36,8 @@
 #include "api/contactmodel.h"
 #include "api/conversation.h"
 #include "api/conversationmodel.h"
-#include "api/newaccountmodel.h"
-#include "api/newcallmodel.h"
+#include "api/accountmodel.h"
+#include "api/callmodel.h"
 
 #include <QObject>
 #include <QThreadPool>
@@ -72,9 +72,9 @@ public:
 
     UpdateManager* getUpdateManager();
 
-    NewAccountModel& accountModel();
+    AccountModel& accountModel();
     ConversationModel* getCurrentConversationModel();
-    NewCallModel* getCurrentCallModel();
+    CallModel* getCurrentCallModel();
     ContactModel* getCurrentContactModel();
     AVModel& avModel();
     PluginModel& pluginModel();

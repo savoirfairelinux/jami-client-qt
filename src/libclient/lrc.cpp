@@ -32,7 +32,7 @@
 #include "api/pluginmodel.h"
 #include "api/behaviorcontroller.h"
 #include "api/datatransfermodel.h"
-#include "api/newaccountmodel.h"
+#include "api/accountmodel.h"
 #include "callbackshandler.h"
 #include "dbus/callmanager.h"
 #include "dbus/configurationmanager.h"
@@ -58,7 +58,7 @@ public:
     const Lrc& linked;
     std::unique_ptr<BehaviorController> behaviorController;
     std::unique_ptr<CallbacksHandler> callbackHandler;
-    std::unique_ptr<NewAccountModel> accountModel;
+    std::unique_ptr<AccountModel> accountModel;
     std::unique_ptr<AVModel> AVModel_;
     std::unique_ptr<PluginModel> PluginModel_;
 };
@@ -91,7 +91,7 @@ Lrc::~Lrc()
 #endif // ENABLE_LIBWRAP
 }
 
-NewAccountModel&
+AccountModel&
 Lrc::getAccountModel() const
 {
     return *lrcPimpl_->accountModel;
@@ -234,11 +234,11 @@ LrcPimpl::LrcPimpl(Lrc& linked, MigrationCb& willMigrateCb, MigrationCb& didMigr
     : linked(linked)
     , behaviorController(std::make_unique<BehaviorController>())
     , callbackHandler(std::make_unique<CallbacksHandler>(linked))
-    , accountModel(std::make_unique<NewAccountModel>(linked,
-                                                     *callbackHandler,
-                                                     *behaviorController,
-                                                     willMigrateCb,
-                                                     didMigrateCb))
+    , accountModel(std::make_unique<AccountModel>(linked,
+                                                  *callbackHandler,
+                                                  *behaviorController,
+                                                  willMigrateCb,
+                                                  didMigrateCb))
     , AVModel_ {std::make_unique<AVModel>(*callbackHandler)}
     , PluginModel_ {std::make_unique<PluginModel>()}
 {}

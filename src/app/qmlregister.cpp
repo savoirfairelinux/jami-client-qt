@@ -57,8 +57,8 @@
 #include "wizardviewstepmodel.h"
 
 #include "api/peerdiscoverymodel.h"
-#include "api/newcodecmodel.h"
-#include "api/newdevicemodel.h"
+#include "api/codecmodel.h"
+#include "api/devicemodel.h"
 #include "api/datatransfermodel.h"
 #include "api/pluginmodel.h"
 #include "api/conversation.h"
@@ -203,15 +203,15 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERNAMESPACE(NS_MODELS, lrc::api::conversation::staticMetaObject, "Conversation");
 
     // Same as QML_REGISTERUNCREATABLE but omit the namespace in Qml
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewAccountModel, lrc::api);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(AccountModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(BehaviorController, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(DataTransferModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(ContactModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(ConversationModel, lrc::api);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewCallModel, lrc::api);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(CallModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(CallParticipants, lrc::api);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewDeviceModel, lrc::api);
-    QML_REGISTERUNCREATABLE_IN_NAMESPACE(NewCodecModel, lrc::api);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(DeviceModel, lrc::api);
+    QML_REGISTERUNCREATABLE_IN_NAMESPACE(CodecModel, lrc::api);
     QML_REGISTERUNCREATABLE_IN_NAMESPACE(PeerDiscoveryModel, lrc::api);
 
     // Enums

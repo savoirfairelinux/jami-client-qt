@@ -32,7 +32,7 @@ class LrcPimpl;
 namespace api {
 
 class BehaviorController;
-class NewAccountModel;
+class AccountModel;
 class DataTransferModel;
 class AVModel;
 class PluginModel;
@@ -51,9 +51,9 @@ public:
     ~Lrc();
     /**
      * get a reference on account model.
-     * @return a NewAccountModel&.
+     * @return a AccountModel&.
      */
-    NewAccountModel& getAccountModel() const;
+    AccountModel& getAccountModel() const;
     /**
      * get a reference on the behavior controller.
      * @return a BehaviorController&.

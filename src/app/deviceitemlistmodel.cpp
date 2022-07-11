@@ -24,7 +24,7 @@
 #include "api/account.h"
 #include "api/contact.h"
 #include "api/conversation.h"
-#include "api/newdevicemodel.h"
+#include "api/devicemodel.h"
 
 DeviceItemListModel::DeviceItemListModel(QObject* parent)
     : AbstractListModelBase(parent)
@@ -150,19 +150,19 @@ DeviceItemListModel::onAccountChanged()
     auto* deviceModel = lrcInstance_->getCurrentAccountInfo().deviceModel.get();
 
     connect(deviceModel,
-            &lrc::api::NewDeviceModel::deviceAdded,
+            &lrc::api::DeviceModel::deviceAdded,
             this,
             &DeviceItemListModel::reset,
             Qt::UniqueConnection);
 
     connect(deviceModel,
-            &lrc::api::NewDeviceModel::deviceRevoked,
+            &lrc::api::DeviceModel::deviceRevoked,
             this,
             &DeviceItemListModel::reset,
             Qt::UniqueConnection);
 
     connect(deviceModel,
-            &lrc::api::NewDeviceModel::deviceUpdated,
+            &lrc::api::DeviceModel::deviceUpdated,
             this,
             &DeviceItemListModel::reset,
             Qt::UniqueConnection);

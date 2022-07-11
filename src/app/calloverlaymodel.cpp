@@ -129,13 +129,13 @@ PendingConferenceesListModel::connectSignals()
 
     using namespace PendingConferences;
     callsStatusChanged_
-        = connect(currentCallModel, &NewCallModel::callStatusChanged, [this](const QString&, int) {
+        = connect(currentCallModel, &CallModel::callStatusChanged, [this](const QString&, int) {
               Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1), {Role::CallStatus});
           });
 
     beginInsertPendingConferencesRows_ = connect(
         currentCallModel,
-        &NewCallModel::beginInsertPendingConferenceesRows,
+        &CallModel::beginInsertPendingConferenceesRows,
         this,
         [this](int position, int rows) {
             beginInsertRows(QModelIndex(), position, position + (rows - 1));
@@ -144,14 +144,14 @@ PendingConferenceesListModel::connectSignals()
 
     endInsertPendingConferencesRows_ = connect(
         currentCallModel,
-        &NewCallModel::endInsertPendingConferenceesRows,
+        &CallModel::endInsertPendingConferenceesRows,
         this,
         [this]() { endInsertRows(); },
         Qt::DirectConnection);
 
     beginRemovePendingConferencesRows_ = connect(
         currentCallModel,
-        &NewCallModel::beginRemovePendingConferenceesRows,
+        &CallModel::beginRemovePendingConferenceesRows,
         this,
         [this](int position, int rows) {
             beginRemoveRows(QModelIndex(), position, position + (rows - 1));
@@ -160,7 +160,7 @@ PendingConferenceesListModel::connectSignals()
 
     endRemovePendingConferencesRows_ = connect(
         currentCallModel,
-        &NewCallModel::endRemovePendingConferenceesRows,
+        &CallModel::endRemovePendingConferenceesRows,
         this,
         [this]() { endRemoveRows(); },
 

@@ -32,7 +32,7 @@
 namespace lrc {
 
 class CallbacksHandler;
-class NewCallModelPimpl;
+class CallModelPimpl;
 
 namespace api {
 
@@ -49,13 +49,13 @@ struct PendingConferenceeInfo
     QString callIdToJoin;
 };
 } // namespace call
-class NewAccountModel;
+class AccountModel;
 class CallParticipants;
 
 /**
  *  @brief Class that manages call informations.
  */
-class LIB_EXPORT NewCallModel : public QObject
+class LIB_EXPORT CallModel : public QObject
 {
     Q_OBJECT
 
@@ -68,11 +68,11 @@ public:
     enum class Media { NONE, AUDIO, VIDEO };
     enum class MediaRequestType { FILESHARING, SCREENSHARING, CAMERA };
 
-    NewCallModel(const account::Info& owner,
-                 Lrc& lrc,
-                 const CallbacksHandler& callbacksHandler,
-                 const BehaviorController& behaviorController);
-    ~NewCallModel();
+    CallModel(const account::Info& owner,
+              Lrc& lrc,
+              const CallbacksHandler& callbacksHandler,
+              const BehaviorController& behaviorController);
+    ~CallModel();
 
     /**
      * Create a new call with a contact
@@ -524,8 +524,8 @@ Q_SIGNALS:
     void callInfosChanged(const QString& accountId, const QString& callId) const;
 
 private:
-    std::unique_ptr<NewCallModelPimpl> pimpl_;
+    std::unique_ptr<CallModelPimpl> pimpl_;
 };
 } // namespace api
 } // namespace lrc
-Q_DECLARE_METATYPE(lrc::api::NewCallModel*)
+Q_DECLARE_METATYPE(lrc::api::CallModel*)

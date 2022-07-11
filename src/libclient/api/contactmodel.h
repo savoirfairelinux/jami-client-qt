@@ -42,7 +42,7 @@ struct Info;
 namespace datatransfer {
 struct Info;
 }
-class NewAccountModel;
+class AccountModel;
 class ConversationModel;
 
 /**

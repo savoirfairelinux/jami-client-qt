@@ -52,7 +52,7 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
         set_currentAccountAvatarSet(!profileInfo.avatar.isEmpty());
     });
 
-    connect(&accountModel(), &NewAccountModel::profileUpdated, [this](const QString& id) {
+    connect(&accountModel(), &AccountModel::profileUpdated, [this](const QString& id) {
         if (id != currentAccountId_)
             return;
 
@@ -79,7 +79,7 @@ LRCInstance::connectivityChanged()
     lrc_->connectivityChanged();
 }
 
-NewAccountModel&
+AccountModel&
 LRCInstance::accountModel()
 {
     return lrc_->getAccountModel();
@@ -236,7 +236,7 @@ LRCInstance::getCurrentConversationModel()
     }
 }
 
-NewCallModel*
+CallModel*
 LRCInstance::getCurrentCallModel()
 {
     try {

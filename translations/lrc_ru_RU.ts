@@ -149,279 +149,279 @@
         <translation>по-умолчанию</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="60"/>
+        <location filename="../src/libclient/callmodel.cpp" line="60"/>
         <source>Null</source>
         <translation>Пустой</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="61"/>
+        <location filename="../src/libclient/callmodel.cpp" line="61"/>
         <source>Trying</source>
         <translation>Пытаемся</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="62"/>
+        <location filename="../src/libclient/callmodel.cpp" line="62"/>
         <source>Ringing</source>
         <translation>Вызов</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="63"/>
+        <location filename="../src/libclient/callmodel.cpp" line="63"/>
         <source>Being Forwarded</source>
         <translation>Будет перенаправлено</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="64"/>
+        <location filename="../src/libclient/callmodel.cpp" line="64"/>
         <source>Queued</source>
         <translation>В очереди</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="65"/>
+        <location filename="../src/libclient/callmodel.cpp" line="65"/>
         <source>Progress</source>
         <translation>Вызов</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="66"/>
+        <location filename="../src/libclient/callmodel.cpp" line="66"/>
         <source>OK</source>
         <translation>В порядке</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="73"/>
-        <location filename="../src/libclient/newcallmodel.cpp" line="67"/>
+        <location filename="../src/libclient/callmodel.cpp" line="67"/>
         <source>Accepted</source>
         <translation>Принято</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="68"/>
+        <location filename="../src/libclient/callmodel.cpp" line="68"/>
         <source>Multiple Choices</source>
         <translation>Множественный выбор</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="69"/>
+        <location filename="../src/libclient/callmodel.cpp" line="69"/>
         <source>Moved Permanently</source>
         <translation>Перемещено навсегда</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="70"/>
+        <location filename="../src/libclient/callmodel.cpp" line="70"/>
         <source>Moved Temporarily</source>
         <translation>Временно перемещено</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="71"/>
+        <location filename="../src/libclient/callmodel.cpp" line="71"/>
         <source>Use Proxy</source>
         <translation>Использовать прокси</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="72"/>
+        <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Alternative Service</source>
         <translation>Альтернативный сервис</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="73"/>
+        <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Bad Request</source>
         <translation>Неверный запрос</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="74"/>
+        <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Unauthorized</source>
         <translation>Неавторизовано</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="75"/>
+        <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Payment Required</source>
         <translation>Требуется оплата</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="76"/>
+        <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Forbidden</source>
         <translation>Запрещено</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="77"/>
+        <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Not Found</source>
         <translation>Не найдено</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="78"/>
+        <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>Method Not Allowed</source>
         <translation>Метод не поддерживается</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="79"/>
-        <location filename="../src/libclient/newcallmodel.cpp" line="99"/>
+        <location filename="../src/libclient/callmodel.cpp" line="79"/>
+        <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Not Acceptable</source>
         <translation>Не принято</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="80"/>
+        <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Proxy Authentication Required</source>
         <translation>Требуется аутентификация</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="81"/>
+        <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Request Timeout</source>
         <translation>Время ожидания запроса</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="82"/>
+        <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Gone</source>
         <translation>Прошло</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="83"/>
+        <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Request Entity Too Large</source>
         <translation>Запрос слишком большой</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="84"/>
+        <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Request URI Too Long</source>
         <translation>Запрошенный URI слишком большой</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="85"/>
+        <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Unsupported Media Type</source>
         <translation>Неподдерживаемый тип медиа</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="86"/>
+        <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unsupported URI Scheme</source>
         <translation>Неподдерживаемая схема данных</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="87"/>
+        <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Bad Extension</source>
         <translation>Неверное расширение</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="88"/>
+        <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Extension Required</source>
         <translation>Требуется расширение</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="89"/>
+        <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Session Timer Too Small</source>
         <translation>Таймер сессии слишком мал</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="90"/>
+        <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Interval Too Brief</source>
         <translation>Интервал слишком короткий</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="91"/>
+        <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <source>Temporarily Unavailable</source>
         <translation>Временно недоступно</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="92"/>
+        <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Call TSX Does Not Exist</source>
         <translation>Вызываемый TSX не существует</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="93"/>
+        <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Loop Detected</source>
         <translation>Всё зациклилось</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="94"/>
+        <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Too Many Hops</source>
         <translation>Слишком много прыжков</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="95"/>
+        <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Address Incomplete</source>
         <translation>Неполный адрес</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="96"/>
+        <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Ambiguous</source>
         <translation>Двусмысленный</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="97"/>
+        <location filename="../src/libclient/callmodel.cpp" line="97"/>
         <source>Busy</source>
         <translation>Занят</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="98"/>
+        <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Request Terminated</source>
         <translation>Запрос прерван</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="100"/>
+        <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Bad Event</source>
         <translation>Некорректное событие</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="101"/>
+        <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Request Updated</source>
         <translation>Запрос обновлён</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="102"/>
+        <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Request Pending</source>
         <translation>Запрос ожидает выполнения</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="103"/>
+        <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Undecipherable</source>
         <translation>Неразборчивый</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="104"/>
+        <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Internal Server Error</source>
         <translation>Внутренняя ошибка сервера</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="105"/>
+        <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Not Implemented</source>
         <translation>Не реализовано</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="106"/>
+        <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Bad Gateway</source>
         <translation>Некорректный шлюз</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="107"/>
+        <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Service Unavailable</source>
         <translation>Сервис недоступен</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="108"/>
+        <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Server Timeout</source>
         <translation>Сервер не отвечает</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="109"/>
+        <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Version Not Supported</source>
         <translation>Версия не поддерживается</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="110"/>
+        <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Message Too Large</source>
         <translation>Сообщение слишком большое</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="111"/>
+        <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Precondition Failure</source>
         <translation>Сбой предусловия</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="112"/>
+        <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Busy Everywhere</source>
         <translation>Занят везде</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="113"/>
+        <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Call Refused</source>
         <translation>Звонок сброшен</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="114"/>
+        <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Does Not Exist Anywhere</source>
         <translation>Не существует нигде</translation>
     </message>
     <message>
-        <location filename="../src/libclient/newcallmodel.cpp" line="115"/>
+        <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Not Acceptable Anywhere</source>
         <translation>Не приемлемо нигде</translation>
     </message>
