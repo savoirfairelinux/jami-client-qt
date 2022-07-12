@@ -89,7 +89,7 @@ RowLayout {
         Layout.preferredWidth: buttonPreferredSize
         Layout.alignment: Qt.AlignVCenter
         source: JamiResources.open_in_full_24dp_svg
-        onClicked: CallAdapter.maximizeParticipant(uri)
+        onClicked: CallAdapter.setActiveStream(uri, deviceId, sinkId)
         toolTipText: JamiStrings.maximizeParticipant
     }
 
