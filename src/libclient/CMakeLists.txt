@@ -35,10 +35,9 @@ project(jami-libclient)
 # First, check if the compiler is new enough.  Most versions of Clang
 # are fine until specific problems arise.  Checking for GCC is enough.
 if(CMAKE_COMPILER_IS_GNUCC)
-  execute_process(COMMAND ${CMAKE_C_COMPILER} -dumpversion
-    OUTPUT_VARIABLE GCC_VERSION)
-  if(GCC_VERSION VERSION_GREATER_EQUAL 8.0)
-    message(STATUS "Found GCC version >= 8.0: " ${GCC_VERSION})
+  if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 8.0)
+    message(STATUS
+      "Found GCC version >= 8.0: " ${CMAKE_CXX_COMPILER_VERSION})
   else()
     message(FATAL_ERROR "Your version of GCC is too old, \
 please install GCC 8.0 or newer")
