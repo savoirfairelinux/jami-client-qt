@@ -739,7 +739,7 @@ CallAdapter::hangUpCall(const QString& callId)
 }
 
 void
-CallAdapter::maximizeParticipant(const QString& uri)
+CallAdapter::setActiveStream(const QString& uri, const QString& deviceId, const QString& streamId)
 {
     auto* callModel = lrcInstance_->getAccountInfo(accountId_).callModel.get();
     const auto& convInfo
@@ -755,15 +755,17 @@ CallAdapter::maximizeParticipant(const QString& uri)
         bool removeActive = false;
         for (auto part : participants) {
             auto participant = part.toJsonObject();
-            auto isParticipant = participant[lrc::api::ParticipantsInfosStrings::URI].toString()
-                                 == uri;
+
+            auto puri = participant[lrc::api::ParticipantsInfosStrings::URI].toString();
+            auto pdeviceId = participant[lrc::api::ParticipantsInfosStrings::DEVICE].toString();
+            auto pstreamId = participant[lrc::api::ParticipantsInfosStrings::STREAMID].toString();
+
+            auto isParticipant = puri == uri && pdeviceId == deviceId && pstreamId == streamId;
             auto active = participant[lrc::api::ParticipantsInfosStrings::ACTIVE].toBool();
-            if (active && !isParticipant) {
+            if (active && !isParticipant)
                 activeParticipants.push_back(participant);
-            }
+
             if (isParticipant) {
-                auto deviceId = participant[lrc::api::ParticipantsInfosStrings::DEVICE].toString();
-                auto streamId = participant[lrc::api::ParticipantsInfosStrings::STREAMID].toString();
                 // Else, continue.
                 if (!active) {
                     callModel->setActiveStream(confId, uri, deviceId, streamId, true);

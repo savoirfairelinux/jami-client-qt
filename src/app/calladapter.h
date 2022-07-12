@@ -60,7 +60,9 @@ public:
 
     // For Call Overlay
     Q_INVOKABLE void hangUpCall(const QString& callId);
-    Q_INVOKABLE void maximizeParticipant(const QString& uri);
+    Q_INVOKABLE void setActiveStream(const QString& uri,
+                                     const QString& deviceId,
+                                     const QString& streamId);
     Q_INVOKABLE void minimizeParticipant(const QString& uri);
     Q_INVOKABLE void showGridConferenceLayout();
     Q_INVOKABLE void hangUpThisCall();
@@ -76,7 +78,10 @@ public:
     Q_INVOKABLE void muteCameraToggle();
     Q_INVOKABLE bool isRecordingThisCall();
     Q_INVOKABLE QVariantList getConferencesInfos() const;
-    Q_INVOKABLE void muteParticipant(const QString& accountUri, const QString& deviceId, const QString& sinkId, const bool state);
+    Q_INVOKABLE void muteParticipant(const QString& accountUri,
+                                     const QString& deviceId,
+                                     const QString& sinkId,
+                                     const bool state);
     Q_INVOKABLE MuteStates getMuteState(const QString& uri) const;
     Q_INVOKABLE void hangupParticipant(const QString& uri, const QString& deviceId);
     Q_INVOKABLE void updateCall(const QString& convUid = {},
