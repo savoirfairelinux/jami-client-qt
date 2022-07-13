@@ -34,6 +34,24 @@
       "parentUuid": "c347576a_20758c39",
       "revId": "6da850ddc75a2d068ef4cb6c01e524096eaa6a61",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db255e2_8b500d72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-07-13T14:20:17Z",
+      "side": 1,
+      "message": "Yeah \u0027zoom\u0027 would probably be misleading indeed, since this is\ntechnically not zooming.\n\nMaybe something like this:\n\nFont size offset:\n\u003c--- (-30) -- ... -- (-1) -- (0) -- (1) -- (2) -- ... -- (30) ---\u003e\n\nOr with a better interface (maybe a dropdown?).  Just something that\nthe user could visually discover and change from the settings view.\n\nOr, if you think it might not be worth it and we may later redo this\nas a proper/complete zoom feature + separate font picker dialog then\nwe could skip it for now.",
+      "parentUuid": "eb531a9b_0f11f73b",
+      "revId": "6da850ddc75a2d068ef4cb6c01e524096eaa6a61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
