@@ -16,6 +16,24 @@
       "message": "Nice, thanks again.\n\nOne other thing that just came to mind: it would be neat to have a\npreference option for this under the General settings view.\nAnd/or perhaps a proper font picker dialog to also let the user\nchoose between the default system font and any other font available\non their machine, per #512.  These could be separate patches though,\nI guess, so otherwise LGTM.",
       "revId": "6da850ddc75a2d068ef4cb6c01e524096eaa6a61",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb531a9b_0f11f73b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-13T13:11:53Z",
+      "side": 1,
+      "message": "what kind of general preference do you think? Like Default \"zoom: 110%\"?\nActually it just adds an offset to the font until a maximum (cf JamiTheme), so not sure zoom is the word for this.",
+      "parentUuid": "c347576a_20758c39",
+      "revId": "6da850ddc75a2d068ef4cb6c01e524096eaa6a61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
