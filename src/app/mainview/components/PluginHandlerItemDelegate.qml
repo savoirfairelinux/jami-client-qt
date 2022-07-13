@@ -81,7 +81,7 @@ ItemDelegate {
 
             ToolTip.visible: hovered
             ToolTip.text: {
-                return qsTr("On/Off")
+                return JamiStrings.onOff
             }
 
             checked: isLoaded
@@ -121,7 +121,7 @@ ItemDelegate {
             source: JamiResources.round_settings_24dp_svg
             normalColor: JamiTheme.primaryBackgroundColor
             imageColor: JamiTheme.textColor
-            toolTipText: qsTr(pluginId)
+            toolTipText: root.pluginId
 
             onClicked: openPreferences()
         }

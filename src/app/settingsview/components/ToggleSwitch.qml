@@ -44,7 +44,7 @@ RowLayout {
         Layout.preferredHeight: heightOfLayout
         Layout.rightMargin: JamiTheme.preferredMarginSize
 
-        text: qsTr(labelText)
+        text: root.labelText
         font.pointSize: fontPointSize
         font.kerning: true
         elide: Text.ElideRight

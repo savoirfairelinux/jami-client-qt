@@ -55,8 +55,8 @@ ColumnLayout {
         folder: JamiQmlUtils.qmlFilePrefix + UtilsAdapter.toFileAbsolutepath(
                     CurrentAccount.ringtonePath_Ringtone)
 
-        nameFilters: [qsTr("Audio Files") + " (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)",
-            qsTr("All files") + " (*)"]
+        nameFilters: [JamiStrings.audioFile,
+            JamiStrings.allFiles]
 
         onAccepted: {
             var url = UtilsAdapter.getAbsPath(file.toString())

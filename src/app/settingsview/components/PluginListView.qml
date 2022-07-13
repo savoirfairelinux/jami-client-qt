@@ -42,7 +42,7 @@ Rectangle {
         title: JamiStrings.selectPluginInstall
         folder: StandardPaths.writableLocation(StandardPaths.DownloadLocation)
 
-        nameFilters: [JamiStrings.pluginFiles + " (*.jpl)", JamiStrings.allFiles + " (*)"]
+        nameFilters: [JamiStrings.pluginFiles, JamiStrings.allFiles]
 
         onAccepted: {
             var url = UtilsAdapter.getAbsPath(file.toString())

@@ -89,8 +89,8 @@ Item {
         folder: StandardPaths.writableLocation(StandardPaths.PicturesLocation)
 
         nameFilters: [
-            qsTr("Image Files") + " (*.png *.jpg *.jpeg)",
-            qsTr("All files") + " (*)"
+            JamiStrings.imageFiles,
+            JamiStrings.allFiles
         ]
 
         onVisibleChanged: {

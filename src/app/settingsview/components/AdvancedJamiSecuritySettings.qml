@@ -41,8 +41,8 @@ ColumnLayout {
         mode: JamiFileDialog.OpenFile
         title: JamiStrings.selectCACert
         folder: openPath
-        nameFilters: [qsTr("Certificate File") + " (*.crt)",
-            qsTr("All files") + " (*)"]
+        nameFilters: [JamiStrings.certificateFile,
+            JamiStrings.allFiles]
 
         onAccepted: CurrentAccount.certificateListFile_TLS =
                     UtilsAdapter.getAbsPath(file.toString())
@@ -59,8 +59,8 @@ ColumnLayout {
         mode: JamiFileDialog.OpenFile
         title: JamiStrings.selectUserCert
         folder: openPath
-        nameFilters: [qsTr("Certificate File") + " (*.crt)",
-            qsTr("All files") + " (*)"]
+        nameFilters: [JamiStrings.certificateFile,
+            JamiStrings.allFiles]
 
         onAccepted: CurrentAccount.certificateFile_TLS =
                     UtilsAdapter.getAbsPath(file.toString())
@@ -77,8 +77,8 @@ ColumnLayout {
         mode: JamiFileDialog.OpenFile
         title: JamiStrings.selectPrivateKey
         folder: openPath
-        nameFilters: [qsTr("Key File") + " (*.key)",
-            qsTr("All files") + " (*)"]
+        nameFilters: [JamiStrings.keyFile,
+            JamiStrings.allFiles]
 
         onAccepted: CurrentAccount.privateKeyFile_TLS =
                     UtilsAdapter.getAbsPath(file.toString())

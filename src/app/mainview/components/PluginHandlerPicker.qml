@@ -98,7 +98,7 @@ Popup {
                         verticalAlignment: Text.AlignVCenter
                         color: JamiTheme.textColor
 
-                        text: qsTr("Choose plugin")
+                        text: JamiStrings.choosePlugin
                     }
 
                     PushButton {
@@ -199,7 +199,7 @@ Popup {
                         verticalAlignment: Text.AlignVCenter
 
                         color: JamiTheme.textColor
-                        text: qsTr("Preferences")
+                        text: JamiStrings.pluginPreferences
                     }
 
                     PushButton {

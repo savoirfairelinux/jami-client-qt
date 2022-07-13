@@ -48,7 +48,7 @@ Rectangle {
         spacing: 16
 
         Label {
-            text: qsTr("To:")
+            text: JamiStrings.to
             font.bold: true
             color: JamiTheme.textColor
             Layout.leftMargin: 16

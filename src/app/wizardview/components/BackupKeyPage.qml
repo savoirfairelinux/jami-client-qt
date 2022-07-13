@@ -85,7 +85,7 @@ Rectangle {
         title: JamiStrings.backupAccountHere
         folder: StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop"
 
-        nameFilters: [JamiStrings.jamiArchiveFiles + " (*.gz)", JamiStrings.allFiles + " (*)"]
+        nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
 
         onAccepted: {
             // Is there password? If so, go to password dialog, else, go to following directly

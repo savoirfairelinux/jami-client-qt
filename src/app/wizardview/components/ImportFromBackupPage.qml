@@ -74,7 +74,7 @@ Rectangle {
         title: JamiStrings.openFile
         folder: StandardPaths.writableLocation(StandardPaths.HomeLocation) + "/Desktop"
 
-        nameFilters: [JamiStrings.jamiArchiveFiles + " (*.gz)", JamiStrings.allFiles + " (*)"]
+        nameFilters: [JamiStrings.jamiArchiveFiles, JamiStrings.allFiles]
 
         onVisibleChanged: {
             if (!visible) {
