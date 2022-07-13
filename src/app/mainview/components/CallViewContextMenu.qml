@@ -92,7 +92,7 @@ ContextMenuAutoLoader {
 
             itemName: layoutManager.isCallFullscreen ?
                           JamiStrings.exitFullScreen :
-                          JamiStrings.fullScreen
+                          JamiStrings.viewFullScreen
             iconSource: layoutManager.isCallFullscreen ?
                             JamiResources.close_fullscreen_24dp_svg :
                             JamiResources.open_in_full_24dp_svg

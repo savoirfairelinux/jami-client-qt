@@ -55,7 +55,7 @@ Window {
         screens = []
         var idx
         for (idx in Qt.application.screens) {
-            screens.push(qsTr("Screen") + " " + idx)
+            screens.push(JamiStrings.screen + " " + idx)
         }
         AvAdapter.getListWindows()
         for (idx in AvAdapter.windowsNames) {

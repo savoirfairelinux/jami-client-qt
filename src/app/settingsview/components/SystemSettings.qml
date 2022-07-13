@@ -55,7 +55,7 @@ ColumnLayout {
     Label {
         Layout.fillWidth: true
 
-        text: qsTr("System")
+        text: JamiStrings.system
         color: JamiTheme.textColor
         font.pointSize: JamiTheme.headerFontSize
         font.kerning: true
@@ -71,7 +71,7 @@ ColumnLayout {
 
         checked: UtilsAdapter.getAppValue(Settings.EnableDarkTheme)
 
-        labelText: qsTr("Enable dark theme")
+        labelText: JamiStrings.enableDarkTheme
         fontPointSize: JamiTheme.settingsFontSize
 
         tooltipText: JamiStrings.enableDarkTheme
@@ -89,7 +89,7 @@ ColumnLayout {
 
         checked: UtilsAdapter.getAppValue(Settings.EnableNotifications)
 
-        labelText: qsTr("Enable desktop notifications")
+        labelText: JamiStrings.enableDesktopNotifications
         fontPointSize: JamiTheme.settingsFontSize
 
         tooltipText: JamiStrings.enableNotifications

@@ -84,7 +84,7 @@ Rectangle {
     SimpleMessageDialog {
         id: msgDialog
 
-        buttonTitles: [qsTr("Ok")]
+        buttonTitles: [JamiStrings.optionOk]
         buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue]
         buttonCallBacks: [setPasswordButtonText]
     }
@@ -105,7 +105,7 @@ Rectangle {
         id: passwordDialog
 
         onDoneSignal: function (success, currentPurpose) {
-            var title = success ? qsTr("Success") : qsTr("Error")
+            var title = success ? JamiStrings.success : JamiStrings.error
 
             var info
             switch(currentPurpose) {
@@ -133,7 +133,7 @@ Rectangle {
         title: JamiStrings.backupAccountHere
         folder: StandardPaths.writableLocation(StandardPaths.DesktopLocation)
 
-        nameFilters: [qsTr("Jami archive files") + " (*.gz)", qsTr(
+        nameFilters: [JamiStrings.jamiArchiveFiles + " (*.gz)", qsTr(
                 "All files") + " (*)"]
 
         onAccepted: {
@@ -146,7 +146,7 @@ Rectangle {
                 if (exportPath.length > 0) {
                     var isSuccessful = AccountAdapter.model.exportToFile(LRCInstance.currentAccountId,
                                                                          exportPath, "")
-                    var title = isSuccessful ? qsTr("Success") : qsTr("Error")
+                    var title = isSuccessful ? JamiStrings.success : JamiStrings.error
                     var info = isSuccessful ? JamiStrings.backupSuccessful : JamiStrings.backupFailed
 
                     msgDialog.openWithParameters(title,info)

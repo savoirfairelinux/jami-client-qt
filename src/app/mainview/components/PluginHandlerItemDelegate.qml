@@ -81,7 +81,7 @@ ItemDelegate {
 
             ToolTip.visible: hovered
             ToolTip.text: {
-                return qsTr("On/Off")
+                return JamiStrings.onOff
             }
 
             checked: isLoaded

@@ -238,7 +238,7 @@ Control {
             onTriggered: root.fullScreenClicked()
             text: layoutManager.isCallFullscreen ?
                           JamiStrings.exitFullScreen :
-                          JamiStrings.fullScreen
+                          JamiStrings.viewFullScreen
         },
         Action {
             id: resumePauseCallAction

@@ -53,7 +53,7 @@ ItemDelegate {
                 break
             case PreferenceItemListModel.PATH:
                 if (index === 0) {
-                    preferenceFilePathDialog.title = qsTr("Select An Image to " + preferenceName)
+                    preferenceFilePathDialog.title = JamiStrings.selectAnImage.arg(preferenceName)
                     preferenceFilePathDialog.nameFilters = fileFilters
                     preferenceFilePathDialog.selectedNameFilter.index = fileFilters.length - 1
                     preferenceFilePathDialog.open()
@@ -119,7 +119,7 @@ ItemDelegate {
 
             source: JamiResources.round_settings_24dp_svg
 
-            toolTipText: qsTr("Edit preference")
+            toolTipText: JamiStrings.editPreference
             opacity: enabled ? 1.0 : 0.5
         }
 

@@ -81,13 +81,13 @@ Popup {
                 text: {
                     switch(type) {
                     case ContactList.CONFERENCE:
-                        return qsTr("Add to conference")
+                        return JamiStrings.addToConference
                     case ContactList.ADDCONVMEMBER:
-                        return qsTr("Add to conversation")
+                        return JamiStrings.addToConversation
                     case ContactList.TRANSFER:
-                        return qsTr("Transfer this call")
+                        return JamiStrings.transferThisCall
                     default:
-                        return qsTr("Add default moderator")
+                        return JamiStrings.addDefaultModerator
                     }
                 }
             }
