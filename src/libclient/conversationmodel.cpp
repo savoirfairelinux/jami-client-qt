@@ -1627,12 +1627,17 @@ ConversationModel::acceptConversationRequest(const QString& conversationId)
     if (peers.isEmpty()) {
         return;
     }
-    switch (conversation.mode) {
-    case conversation::Mode::NON_SWARM:
+
+    if (conversation.isSwarm()) {
+        conversation.needsSyncing = true;
+        Q_EMIT conversationUpdated(conversation.uid);
+        pimpl_->invalidateModel();
+        Q_EMIT modelChanged();
+        ConfigurationManager::instance().acceptConversationRequest(owner.id, conversationId);
+    } else {
         pimpl_->sendContactRequest(peers.front());
-        return;
-    case conversation::Mode::ONE_TO_ONE: {
-        // add contact if not added. Otherwise, accept the conversation request
+    }
+    if (conversation.isCoreDialog()) {
         try {
             auto contact = owner.contactModel->getContact(peers.front());
             auto notAdded = contact.profileInfo.type == profile::Type::TEMPORARY
@@ -1643,19 +1648,7 @@ ConversationModel::acceptConversationRequest(const QString& conversationId)
             }
         } catch (std::out_of_range& e) {
         }
-        break;
     }
-    case conversation::Mode::ADMIN_INVITES_ONLY:
-    case conversation::Mode::INVITES_ONLY:
-    case conversation::Mode::PUBLIC:
-    default:
-        break;
-    }
-    conversation.needsSyncing = true;
-    Q_EMIT conversationUpdated(conversation.uid);
-    pimpl_->invalidateModel();
-    Q_EMIT modelChanged();
-    ConfigurationManager::instance().acceptConversationRequest(owner.id, conversationId);
 }
 
 const VectorString

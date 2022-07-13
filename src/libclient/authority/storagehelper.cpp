@@ -289,6 +289,11 @@ setProfile(const QString& accountId, const api::profile::Info& profileInfo, cons
     auto path = profileVcardPath(accountId, isPeer ? profileInfo.uri : "");
     QLockFile lf(path + ".lock");
     QFile file(path);
+    QFileInfo fileInfo(path);
+    auto dir = fileInfo.dir();
+    if (!dir.exists()) {
+        dir.mkdir(".");
+    }
     if (!lf.lock()) {
         qWarning().noquote() << "Can't lock file for writing: " << file.fileName();
         return;
