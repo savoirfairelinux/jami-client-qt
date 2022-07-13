@@ -90,8 +90,8 @@ ApplicationWindow {
                     Layout.topMargin: preferredMargin
 
                     text: connectionFailed ?
-                              qsTr("Could not re-connect to the Jami daemon (jamid).\nJami will now quit.") :
-                              qsTr("Trying to reconnect to the Jami daemon (jamid)…")
+                              JamiStrings.reconnectWarn :
+                              JamiStrings.reconnectTry
                     font.pointSize: 11
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
@@ -146,7 +146,7 @@ ApplicationWindow {
                                     return (parent.width / 2 - 18) * 2
                                 }
 
-                                text: qsTr("Ok")
+                                text: JamiString.optionOk
 
                                 color: {
                                     if (btnOk.hovered)

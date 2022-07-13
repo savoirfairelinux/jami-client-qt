@@ -82,7 +82,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 color: JamiTheme.textColor
 
-                text: qsTr("General")
+                text: JamiStrings.generalSettingsTitle
                 elide: Text.ElideRight
             }
 
@@ -126,7 +126,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 color: JamiTheme.textColor
 
-                text: qsTr("Account")
+                text: JamiStrings.accountSettingsMenuTitle
                 elide: Text.ElideRight
             }
 

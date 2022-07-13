@@ -122,7 +122,7 @@ ItemDelegate {
                 elide: Text.ElideRight
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
-                text: deviceId === "" ? qsTr("Device Id") : deviceId
+                text: deviceId === "" ? JamiStrings.deviceId : deviceId
             }
         }
 

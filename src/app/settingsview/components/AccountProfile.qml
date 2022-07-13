@@ -44,7 +44,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        text: qsTr("Profile")
+        text: JamiStrings.profile
         elide: Text.ElideRight
 
         font.pointSize: JamiTheme.headerFontSize

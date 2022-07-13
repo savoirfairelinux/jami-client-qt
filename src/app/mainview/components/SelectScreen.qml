@@ -46,7 +46,7 @@ Window {
                                             screenSelectionScrollViewFlow.spacing / 2 - JamiTheme.preferredMarginSize
     property real componentWidthSingleColumn: screenSelectionScrollView.width -
                                               2 * JamiTheme.preferredMarginSize
-    
+
     modality: Qt.ApplicationModal
     title: window ? JamiStrings.selectWindow : JamiStrings.selectScreen
 
@@ -55,7 +55,7 @@ Window {
         screens = []
         var idx
         for (idx in Qt.application.screens) {
-            screens.push(qsTr("Screen") + " " + idx)
+            screens.push(JamiStrings.screen.arg(idx))
         }
         AvAdapter.getListWindows()
         for (idx in AvAdapter.windowsNames) {

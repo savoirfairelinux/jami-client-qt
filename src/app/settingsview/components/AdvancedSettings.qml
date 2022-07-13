@@ -49,7 +49,7 @@ ColumnLayout {
             verticalAlignment: Text.AlignVCenter
             color: JamiTheme.textColor
 
-            text: qsTr("Advanced Account Settings")
+            text: JamiStrings.advancedAccountSettings
             elide: Text.ElideRight
         }
 

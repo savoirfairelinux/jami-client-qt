@@ -44,6 +44,10 @@ Item {
     property string contactLeft: qsTr("You are viewing a conversation where all participants other than you have left. New interactions will not be possible.")
     property string newConversation: qsTr("Start new conversation")
 
+    // DaemonReconnectWindow
+    property string reconnectWarn: qsTr("Could not re-connect to the Jami daemon (jamid).\nJami will now quit.")
+    property string reconnectTry: qsTr("Trying to reconnect to the Jami daemon (jamid)…")
+
     // AboutPopUp
     property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (BETA)" : "")
     property string companyDeclarationYear: declarationYear + " " + companyName
@@ -57,6 +61,12 @@ Item {
     property string displayQRCode: qsTr("Display QR code")
     property string openSettings: qsTr("Open settings")
     property string closeSettings: qsTr("Close settings")
+    property string addAccount: qsTr("Add Account")
+
+    // ContactPicker
+    property string addToConference: qsTr("Add to conference")
+    property string addToConversation: qsTr("Add to conversation")
+    property string transferThisCall: qsTr("Transfer this call")
 
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")
@@ -79,6 +89,8 @@ Item {
     property string selectCustomRingtone: qsTr("Select custom ringtone")
     property string addCustomRingtone: qsTr("Add a custom ringtone")
     property string selectNewRingtone: qsTr("Select a new ringtone")
+    property string certificateFile: qsTr("Certificate File (*.crt)")
+    property string audioFile: qsTr("Audio File (*.wav *.ogg *.opus *.mp3 *.aiff *.wma)")
 
     // AdvancedChatSettings
     property string chatSettings: qsTr("Chat Settings")
@@ -109,6 +121,7 @@ Item {
     property string selectPrivateKey: qsTr("Select a private key")
     property string selectUserCert: qsTr("Select a user certificate")
     property string selectCACert: qsTr("Select a CA certificate")
+    property string keyFile: qsTr("Key File (*.key)")
 
     // AdvancedConnectivitySettings
     property string connectivity: qsTr("Connectivity")
@@ -202,8 +215,8 @@ Item {
     property string error: qsTr("Error")
     property string neverShowAgain: qsTr("Never show me this again")
     property string recommended: qsTr("Recommended")
-    property string jamiArchiveFiles: qsTr("Jami archive files")
-    property string allFiles: qsTr("All files")
+    property string jamiArchiveFiles: qsTr("Jami archive files (*.gz)")
+    property string allFiles: qsTr("All files (*)")
 
     // BannedItemDelegate
     property string reinstateContact: qsTr("Reinstate as contact")
@@ -263,7 +276,7 @@ Item {
     property string stopRec: qsTr("Stop recording")
     property string startRec: qsTr("Start recording")
     property string exitFullScreen: qsTr("Exit full screen")
-    property string fullScreen: qsTr("View full screen")
+    property string viewFullScreen: qsTr("View full screen")
     property string shareScreen: qsTr("Share screen")
     property string shareWindow: qsTr("Share window")
     property string stopSharing: qsTr("Stop sharing screen or file")
@@ -337,6 +350,7 @@ Item {
     property string tipAdvancedSettingsDisplay: qsTr("Display advanced settings")
     property string tipAdvancedSettingsHide: qsTr("Hide advanced settings")
     property string enableAccount: qsTr("Enable account")
+    property string advancedAccountSettings: qsTr("Advanced Account Settings")
 
     // NameRegistrationDialog
     property string setUsername: qsTr("Set username")
@@ -345,6 +359,7 @@ Item {
     // JamiUserIdentity
     property string registerAUsername: qsTr("Register a username")
     property string registerUsername: qsTr("Register username")
+    property string identity: qsTr("Identity")
 
     // LinkedDevices
     property string tipLinkNewDevice: qsTr("Link a new device to this account")
@@ -360,6 +375,7 @@ Item {
     property string tipBannedContactsDisplay: qsTr("Display banned contacts")
     property string banned: qsTr("Banned")
     property string tipBannedContactsHide: qsTr("Hide banned contacts")
+    property string bannedContacts: qsTr("Banned contacts")
 
     // DeleteAccountDialog
     property string confirmDeleteQuestion: qsTr("Do you really want to delete this account?")
@@ -369,11 +385,14 @@ Item {
     property string saveNewDeviceName: qsTr("Save new device name")
     property string editDeviceName: qsTr("Edit device name")
     property string unlinkDevice: qsTr("Unlink device from account")
+    property string deviceId: qsTr("Device Id")
 
     // SystemSettings
+    property string system: qsTr("System")
     property string selectFolder: qsTr("Select a folder")
     property string enableNotifications: qsTr("Enable notifications")
     property string enableDarkTheme: qsTr("Enable dark theme")
+    property string enableDesktopNotifications: qsTr("Enable desktop notifications")
     property string keepMinimized: qsTr("Keep minimized on close")
     property string tipRunStartup: qsTr("Run application on system startup")
     property string runStartup: qsTr("Launch at startup")
@@ -435,6 +454,10 @@ Item {
 
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")
+    property string quality: qsTr("Quality")
+    property string saveIn: qsTr("Save in")
+    property string callRecording: qsTr("Call Recording")
+    property string alwaysRecordCalls: qsTr("Always record calls")
 
     // KeyboardShortCutTable
     property string keyboardShortcutTableWindowTitle: qsTr("Keyboard Shortcut Table")
@@ -442,6 +465,22 @@ Item {
     property string conversationKeyboardShortcuts: qsTr("Conversation")
     property string callKeyboardShortcuts: qsTr("Call")
     property string settingsKeyboardShortcuts: qsTr("Settings")
+    property string openAccountList: qsTr("Open account list")
+    property string focusConversationsList: qsTr("Focus conversations list")
+    property string requestsList: qsTr("Requests list")
+    property string previousConversation: qsTr("Previous conversation")
+    property string nextConversation: qsTr("Next conversation")
+    property string searchBar: qsTr("Search bar")
+    property string fullScreen: qsTr("Full screen")
+    property string clearHistory: qsTr("Clear history")
+    property string mediaSettings: qsTr("Media settings")
+    property string generalSettings: qsTr("General settings")
+    property string accountSettings: qsTr("Account settings")
+    property string pluginSettings: qsTr("Plugin settings")
+    property string answerIncoming: qsTr("Answer an incoming call")
+    property string declineCallRequest: qsTr("Decline the call request")
+    property string openAccountCreationWizard: qsTr("Open account creation wizard")
+    property string openKeyboardShortcutTable: qsTr("Open keyboard shortcut table")
 
     // View Logs
     property string logsViewTitle: qsTr("Debug")
@@ -495,6 +534,7 @@ Item {
     property string stopTakingPhoto: qsTr("Stop taking photo")
     property string clearAvatar: qsTr("Clear avatar image")
     property string takePhoto: qsTr("Take photo")
+    property string imageFiles: qsTr("Image Files (*.png *.jpg *.jpeg)")
 
     // Plugins
     property string enable: qsTr("Enable")
@@ -516,8 +556,12 @@ Item {
     property string tipGeneralPluginSettingsDisplay: qsTr("Display or hide General plugin settings")
     property string tipAccountPluginSettingsDisplay: qsTr("Display or hide Account plugin settings")
     property string installedPlugins: qsTr("Installed plugins")
-    property string pluginFiles: qsTr("Plugin Files")
+    property string pluginFiles: qsTr("Plugin Files (*.jpl)")
     property string loadUnload: qsTr("Load/Unload")
+    property string selectAnImage: qsTr("Select An Image to %1")
+    property string editPreference: qsTr("Edit preference")
+    property string onOff: qsTr("On/Off")
+    property string choosePlugin: qsTr("Choose Plugin")
 
     // ProfilePage
     property string profileSharedWithContacts: qsTr("Profile is only shared with contacts")
@@ -526,6 +570,7 @@ Item {
     property string enterRVName: qsTr("Enter the rendezvous point's name")
     property string generatingRV: qsTr("Creating rendezvous point…")
     property string information: qsTr("Information")
+    property string profile: qsTr("Profile")
 
     // RevokeDevicePasswordDialog
     property string confirmRemovalRequest: qsTr("Enter the account password to confirm the removal of this device")
@@ -536,6 +581,7 @@ Item {
     property string allScreens: qsTr("All Screens")
     property string screens: qsTr("Screens")
     property string windows: qsTr("Windows")
+    property string screen: qsTr("Screen %1")
 
     // UserProfile
     property string qrCode: qsTr("QR code")
@@ -654,4 +700,5 @@ Item {
     property string administrator: qsTr("Administrator")
     property string invited: qsTr("Invited")
     property string removeMember: qsTr("Remove member")
+    property string to: qsTr("To:")
 }

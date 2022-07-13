@@ -76,7 +76,7 @@ ColumnLayout {
         ElidedTextLabel {
             Layout.fillWidth: true
 
-            eText: qsTr("Banned Contacts")
+            eText: JamiStrings.bannedContacts
             fontSize: JamiTheme.headerFontSize
             maxWidth: root.width - JamiTheme.preferredFieldHeight
                         - JamiTheme.preferredMarginSize * 4

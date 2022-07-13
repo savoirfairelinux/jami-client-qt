@@ -65,7 +65,7 @@ ColumnLayout {
     ElidedTextLabel {
         Layout.fillWidth: true
 
-        eText: qsTr("Call Recording")
+        eText: JamiStrings.callRecording
         font.pointSize: JamiTheme.headerFontSize
         maxWidth: width
     }
@@ -78,7 +78,7 @@ ColumnLayout {
 
         checked: AVModel.getAlwaysRecord()
 
-        labelText: qsTr("Always record calls")
+        labelText: JamiStrings.alwaysRecordCalls
         fontPointSize: JamiTheme.settingsFontSize
 
         onSwitchToggled: AVModel.setAlwaysRecord(checked)
@@ -108,7 +108,7 @@ ColumnLayout {
             Layout.rightMargin: JamiTheme.preferredMarginSize / 2
 
             color: JamiTheme.textColor
-            text: qsTr("Quality")
+            text: JamiStrings.quality
             font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
             elide: Text.ElideRight
@@ -164,7 +164,7 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            text: qsTr("Save in")
+            text: JamiStrings.saveIn
             color: JamiTheme.textColor
             font.pointSize: JamiTheme.settingsFontSize
             font.kerning: true
