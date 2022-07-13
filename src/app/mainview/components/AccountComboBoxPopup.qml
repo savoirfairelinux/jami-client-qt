@@ -83,7 +83,7 @@ Popup {
 
                 Text {
                     anchors.centerIn: parent
-                    text: qsTr("Add Account") + "+"
+                    text: JamiStrings.addAccount + "+"
                     color: JamiTheme.textColor
                     font.pointSize: JamiTheme.textFontSize
                 }

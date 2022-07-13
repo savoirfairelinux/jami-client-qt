@@ -102,7 +102,7 @@ BaseModalDialog {
                 outlined: true
                 enabled: false
 
-                text: qsTr("Remove")
+                text: JamiStrings.remove
 
                 onClicked: {
                     revokeDeviceWithPassword(deviceId, passwordEdit.text)

@@ -38,31 +38,31 @@ Window {
 
         ListElement {
             shortcut: "Ctrl + J"
-            description: qsTr("Open account list")
+            description: JamiStrings.openAccountList
         }
         ListElement {
             shortcut: "Ctrl + L"
-            description: qsTr("Focus conversations list")
+            description: JamiStrings.focusConversationsList
         }
         ListElement {
             shortcut: "Ctrl + R"
-            description: qsTr("Requests list")
+            description: JamiStrings.requestsList
         }
         ListElement {
             shortcut: "Ctrl + ↑"
-            description: qsTr("Previous conversation")
+            description: JamiStrings.previousConversation
         }
         ListElement {
             shortcut: "Ctrl + ↓"
-            description: qsTr("Next conversation")
+            description: JamiStrings.nextConversation
         }
         ListElement {
             shortcut: "Ctrl + F"
-            description: qsTr("Search bar")
+            description: JamiStrings.searchBar
         }
         ListElement {
             shortcut: "F11"
-            description: qsTr("Full screen")
+            description: JamiStrings.fullScreen
         }
     }
 
@@ -71,27 +71,27 @@ Window {
 
         ListElement {
             shortcut: "Ctrl + Shift + C"
-            description: qsTr("Start an audio call")
+            description: JamiStrings.startAudioCall
         }
         ListElement {
             shortcut: "Ctrl + Shift + X"
-            description: qsTr("Start a video call")
+            description: JamiStrings.startVideoCall
         }
         ListElement {
             shortcut: "Ctrl + Shift + L"
-            description: qsTr("Clear history")
+            description: JamiStrings.clearHistory
         }
         ListElement {
             shortcut: "Ctrl + Shift + B"
-            description: qsTr("Block contact")
+            description: JamiStrings.blockContact
         }
         ListElement {
             shortcut: "Ctrl + Shift + Delete"
-            description: qsTr("Remove conversation")
+            description: JamiStrings.removeConversation
         }
         ListElement {
             shortcut: "Shift + Ctrl + A"
-            description: qsTr("Accept contact request")
+            description: JamiStrings.acceptContactRequest
         }
     }
 
@@ -100,27 +100,27 @@ Window {
 
         ListElement {
             shortcut: "Ctrl + M"
-            description: qsTr("Media settings")
+            description: JamiStrings.mediaSettings
         }
         ListElement {
             shortcut: "Ctrl + G"
-            description: qsTr("General settings")
+            description: JamiStrings.generalSettings
         }
         ListElement {
             shortcut: "Ctrl + I"
-            description: qsTr("Account settings")
+            description: JamiStrings.accountSettings
         }
         ListElement {
             shortcut: "Ctrl + P"
-            description: qsTr("Plugin settings")
+            description: JamiStrings.pluginSettings
         }
         ListElement {
             shortcut: "Ctrl + Shift + N"
-            description: qsTr("Open account creation wizard")
+            description: JamiStrings.openAccountCreationWizard
         }
         ListElement {
             shortcut: "F10"
-            description: qsTr("Open keyboard shortcut table")
+            description: JamiStrings.openKeyboardShortcutTable
         }
     }
 
@@ -129,15 +129,15 @@ Window {
 
         ListElement {
             shortcut: "Ctrl + Y"
-            description: qsTr("Answer an incoming call")
+            description: JamiStrings.answerIncoming
         }
         ListElement {
             shortcut: "Ctrl + D"
-            description: qsTr("End call")
+            description: JamiStrings.endCall
         }
         ListElement {
             shortcut: "Ctrl + Shift + D"
-            description: qsTr("Decline the call request")
+            description: JamiStrings.declineCallRequest
         }
     }
 

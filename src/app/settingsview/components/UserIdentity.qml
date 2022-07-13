@@ -35,7 +35,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
 
-        eText: qsTr("Identity")
+        eText: JamiStrings.identity
         maxWidth: root.width - 72
         fontSize: JamiTheme.headerFontSize
     }
