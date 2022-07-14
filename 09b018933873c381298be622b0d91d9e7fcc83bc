@@ -34,6 +34,24 @@
       "parentUuid": "aabb3073_46e9d1f3",
       "revId": "09b018933873c381298be622b0d91d9e7fcc83bc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d8303ac_57d81a97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T18:54:14Z",
+      "side": 1,
+      "message": "1.\n\nThe spinbox is pretty horrible to use (not editable, no scroll, bad theme). That\u0027s why it\u0027s a custom spinbox\n\n2.\n\nNot related, and the settings view will change\n\n3. Done\n\n4. Done, I just prefer to not add Ctrl+\u003d in the shortcut view\n\n5. Jami with a zoom \u003e 2 is pretty unusable for now, I prefer to avoid really dirty interfaces.",
+      "parentUuid": "6f91e207_abab48be",
+      "revId": "09b018933873c381298be622b0d91d9e7fcc83bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
