@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a1242de_f22a285a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T23:11:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c3a8de8b_3a3aebb1",
+      "revId": "8bb69ab3058195c20a0f7005de6e59de645eab17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5ced3cb_20fed9cd",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-14T23:03:46Z",
       "side": 1,
       "message": "Should the spaces be removed? To be consistent with LibreOffice, Thunderbird, Firefox?\n\nShould the string be:\nCtrl++",
+      "range": {
+        "startLine": 68,
+        "startChar": 23,
+        "endLine": 68,
+        "endChar": 31
+      },
+      "revId": "8bb69ab3058195c20a0f7005de6e59de645eab17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d47cda46_76a87d0a",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T23:11:41Z",
+      "side": 1,
+      "message": "we should keep this as the other elements, so no. Redesigning the keyboardshortcut should be done in another patch",
+      "parentUuid": "e5ced3cb_20fed9cd",
       "range": {
         "startLine": 68,
         "startChar": 23,
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca9f030a_1755044b",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T23:11:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9af936d4_85350de0",
+      "range": {
+        "startLine": 72,
+        "startChar": 23,
+        "endLine": 72,
+        "endChar": 31
+      },
+      "revId": "8bb69ab3058195c20a0f7005de6e59de645eab17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd0148fc_b0e94aef",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-07-14T23:03:46Z",
       "side": 1,
       "message": "Should the spaces be removed? To be consistent with LibreOffice, Thunderbird, Firefox?\n\nShould the string be:\nCtrl+0",
+      "range": {
+        "startLine": 76,
+        "startChar": 23,
+        "endLine": 76,
+        "endChar": 31
+      },
+      "revId": "8bb69ab3058195c20a0f7005de6e59de645eab17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c106079b_b89fe04f",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T23:11:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fd0148fc_b0e94aef",
       "range": {
         "startLine": 76,
         "startChar": 23,
