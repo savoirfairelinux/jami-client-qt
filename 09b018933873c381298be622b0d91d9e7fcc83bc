@@ -16,6 +16,24 @@
       "message": "Neat, thanks!  Some more feedback:\n\n1. The SettingSpinBox should ideally use a QSpinBox (with the small\n   up/down arrows on the right-hand side) rather than just a plain\n   TextField.  Also would be nice if the up and down keys would\n   increase and decrease the zoom when the setting field is focused.\n\n2. Due to the large size of the text field, its title/caption is cut\n   off.  We may want to make the text field\u0027s width smaller.  And\n   perhaps even better, also show a tooltip with the full caption\n   when the user hovers it.\n\n3. When using the shortcuts to increase or decrease the zoom, the\n   SettingSpinBox does not get updated, which is confusing and might\n   even interfere with the new zoom when closing the settings view or\n   some such.\n\n4. I\u0027d like to suggest also binding Ctrl+\u003d to do what Ctrl++ does,\n   i.e. increase zoom, for convenience.  Many applications, including\n   Firefox, do this.\n\n5. It might be good to bump up the max zoom limit from 200 to 500 just\n   to be safe users\u0027 needs are covered.  That\u0027s what Firefox uses.\n\nThanks again :)",
       "revId": "09b018933873c381298be622b0d91d9e7fcc83bc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f91e207_abab48be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-07-14T18:17:41Z",
+      "side": 1,
+      "message": "uh, this shouldn\u0027t have been marked \u0027resolved\u0027; sorry",
+      "parentUuid": "aabb3073_46e9d1f3",
+      "revId": "09b018933873c381298be622b0d91d9e7fcc83bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
