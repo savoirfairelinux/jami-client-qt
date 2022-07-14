@@ -35,6 +35,7 @@ Popup {
     property alias popupContent: containerSubContentLoader.sourceComponent
     property int popupContentPreferredHeight: 0
     property int popupContentPreferredWidth: 0
+    property int popupContentMargins: 0
 
     parent: Overlay.overlay
 
@@ -77,8 +78,9 @@ Popup {
             Loader {
                 id: containerSubContentLoader
 
+                Layout.topMargin: popupContentMargins
+                Layout.bottomMargin: popupContentMargins
                 Layout.alignment: Qt.AlignCenter
-
                 Layout.fillWidth: popupContentPreferredWidth === 0
                 Layout.fillHeight: popupContentPreferredHeight === 0
                 Layout.preferredHeight: popupContentPreferredHeight
