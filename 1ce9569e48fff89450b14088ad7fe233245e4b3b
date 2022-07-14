@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15660bf3_2ecf4bb8",
+        "filename": "src/app/commoncomponents/MaterialButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2022-07-14T20:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3411b03f_6626c315",
+      "range": {
+        "startLine": 85,
+        "startChar": 29,
+        "endLine": 85,
+        "endChar": 49
+      },
+      "revId": "1ce9569e48fff89450b14088ad7fe233245e4b3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "055bc817_8bbb34dd",
@@ -70,6 +94,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4cce03b_7e09807c",
+        "filename": "src/app/commoncomponents/SettingParaCombobox.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2022-07-14T20:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6ef4af9_024627b0",
+      "range": {
+        "startLine": 77,
+        "startChar": 32,
+        "endLine": 78,
+        "endChar": 32
+      },
+      "revId": "1ce9569e48fff89450b14088ad7fe233245e4b3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fada50c_ae4890f9",
@@ -83,6 +131,24 @@
       "writtenOn": "2022-07-07T19:20:48Z",
       "side": 1,
       "message": "Remove the new lines you added in this patch",
+      "revId": "1ce9569e48fff89450b14088ad7fe233245e4b3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c002e79a_aac190f6",
+        "filename": "src/app/settingsview/components/SettingsComboBox.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2022-07-14T20:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fada50c_ae4890f9",
       "revId": "1ce9569e48fff89450b14088ad7fe233245e4b3b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }

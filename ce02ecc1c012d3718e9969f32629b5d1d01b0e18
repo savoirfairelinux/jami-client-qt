@@ -16,6 +16,24 @@
       "message": "remove the lines instead of commenting it",
       "revId": "ce02ecc1c012d3718e9969f32629b5d1d01b0e18",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33a66c7b_de460b4d",
+        "filename": "src/app/commoncomponents/MaterialButton.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2022-07-14T20:26:34Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "0346f133_fe116a69",
+      "revId": "ce02ecc1c012d3718e9969f32629b5d1d01b0e18",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
