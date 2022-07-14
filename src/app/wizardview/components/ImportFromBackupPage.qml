@@ -44,7 +44,7 @@ Rectangle {
         passwordFromBackupEdit.clear()
         filePath = ""
         errorText = ""
-        fileImportBtnText = JamiStrings.archive
+        fileImportBtnText = JamiStrings.selectArchiveFile
     }
 
     function errorOccured(errorMessage) {
@@ -103,20 +103,32 @@ Rectangle {
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 38
+        Text {
+
+            text: JamiStrings.importFromArchiveBackup
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            font.pixelSize: 26
+        }
 
         Text {
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
 
-            text: JamiStrings.importFromBackup
-            color: JamiTheme.textColor
-            font.pointSize: JamiTheme.menuFontSize
+            text: JamiStrings.importFromArchiveBackupDescription
+            Layout.preferredWidth: 360
+            Layout.topMargin: 15
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            font.pixelSize: 15
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
         }
 
         MaterialButton {
             id: fileImportBtn
 
             objectName: "fileImportBtn"
+            secondary: true
 
             Layout.alignment: Qt.AlignCenter
 
@@ -124,10 +136,6 @@ Rectangle {
 
             text: fileImportBtnText
             toolTipText: JamiStrings.importAccountArchive
-            iconSource: JamiResources.round_folder_24dp_svg
-            color: JamiTheme.buttonTintedGrey
-            hoveredColor: JamiTheme.buttonTintedGreyHovered
-            pressedColor: JamiTheme.buttonTintedGreyPressed
 
             KeyNavigation.tab: passwordFromBackupEdit
             KeyNavigation.up: {
@@ -145,33 +153,11 @@ Rectangle {
             }
         }
 
-        Text {
-            // For multiline text, recursive rearrange warning will show up when
-            // directly assigning contentHeight to Layout.preferredHeight
-            property int preferredHeight: JamiTheme.wizardViewPageLayoutSpacing
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: fileImportBtn.width
-            Layout.preferredHeight: preferredHeight
-
-            text: JamiStrings.importAccountExplanation
-            color: JamiTheme.textColor
-            wrapMode: Text.Wrap
-
-            onTextChanged: function (text) {
-                var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
-                preferredHeight += (boundingRect.width / fileImportBtn.preferredWidth)
-                        * boundingRect.height
-            }
-        }
-
-        MaterialLineEdit {
+        EditableLineEdit {
             id: passwordFromBackupEdit
 
             objectName: "passwordFromBackupEdit"
 
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
             Layout.alignment: Qt.AlignCenter
 
             focus: visible
@@ -194,10 +180,10 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onTextChanged: errorText = ""
-            onAccepted: {
-                if (connectBtn.enabled)
-                    connectBtn.clicked()
-            }
+//            onEditingFinished: {
+//                if (connectBtn.enabled)
+//                    connectBtn.clicked()
+//            }
         }
 
         SpinnerButton {
@@ -212,6 +198,8 @@ Rectangle {
 
             spinnerTriggeredtext: JamiStrings.generatingAccount
             normalText: JamiStrings.connectFromBackup
+
+            color: JamiTheme.tintedBlue
 
             enabled: {
                 if (spinnerTriggered)

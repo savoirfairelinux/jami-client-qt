@@ -194,5 +194,9 @@
         <file>src/app/commoncomponents/CloseButton.qml</file>
         <file>src/app/commoncomponents/IdentifierLineEdit.qml</file>
         <file>src/app/commoncomponents/SwarmEdit.qml</file>
+        <file>src/app/wizardview/components/NoUsernamePopup.qml</file>
+        <file>src/app/wizardview/components/AdvancedAccountSettings.qml</file>
+        <file>src/app/commoncomponents/InfoBox.qml</file>
+        <file>src/app/commoncomponents/PasswordLineEdit.qml</file>
     </qresource>
 </RCC>

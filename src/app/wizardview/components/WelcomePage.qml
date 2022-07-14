@@ -42,6 +42,7 @@ Rectangle {
     color: JamiTheme.transparentColor
     opacity: 0.93
 
+
     Connections {
         target: WizardViewStepModel
 
@@ -71,6 +72,10 @@ Rectangle {
         anchors.top: parent.top
         anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
 
+        Rectangle {
+
+        }
+
         ResponsiveImage {
             id: welcomeLogo
 
@@ -88,9 +93,10 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredHeight: contentHeight
+            Layout.preferredWidth: 480
 
             wrapMode : Text.WordWrap
-            Layout.preferredWidth: 350
+
             text: JamiStrings.introductionJami
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignHCenter
@@ -106,7 +112,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
             Layout.preferredHeight: contentHeight
-            Layout.preferredWidth: 398
+
 
             text: JamiStrings.description
             color: JamiTheme.textColor

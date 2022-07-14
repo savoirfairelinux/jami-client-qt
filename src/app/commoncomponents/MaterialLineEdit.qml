@@ -33,6 +33,7 @@ TextField {
 
     property bool loseFocusWhenEnterPressed: false
     property bool underlined: false
+    property bool wizardInput: false
 
     padding: JamiTheme.materialLineEditPadding
     horizontalAlignment: Text.AlignLeft
@@ -47,7 +48,7 @@ TextField {
     font.pointSize: JamiTheme.materialLineEditPointSize
     font.kerning: true
 
-    placeholderTextColor: JamiTheme.placeholderTextColor
+    placeholderTextColor: "black" //JamiTheme.placeholderTextColor
     color: JamiTheme.textColor
 
     LineEditContextMenu {
@@ -57,7 +58,10 @@ TextField {
         selectOnly: readOnly
     }
 
+
+
     background: Rectangle {
+        //visible: !wizardInput
         anchors.fill: root
         radius: JamiTheme.primaryRadius
 
@@ -71,7 +75,7 @@ TextField {
         }
 
         Rectangle {
-            visible: !readOnly && underlined
+            visible: true //underlined //!readOnly &&
             anchors {
                 fill: parent
                 topMargin: 0

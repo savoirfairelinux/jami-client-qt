@@ -72,24 +72,103 @@ Rectangle {
         // Prevent possible anchor loop detected on centerIn.
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 38
 
         Text {
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
 
-            text: JamiStrings.mainAccountPassword
-            color: JamiTheme.textColor
-            font.pointSize: JamiTheme.menuFontSize
+            text: JamiStrings.importAccountFromOtherDevice
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            font.pixelSize: 26
         }
 
-        MaterialLineEdit {
+        Text {
+
+            text: JamiStrings.importFromDeviceDescription
+            Layout.preferredWidth: 360
+            Layout.topMargin: 15
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            font.pixelSize: 15
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Grid {
+            columns: 2
+            spacing: 30
+            Layout.alignment: Qt.AlignCenter
+
+            InfoBox {
+                id: step1
+                icoSource: JamiResources.settings_24dp_svg
+                title: JamiStrings.importStep1
+                description: JamiStrings.importStep1Desc
+            }
+
+            InfoBox {
+                id: step2
+                icoSource: JamiResources.person_24dp_svg
+                title: JamiStrings.importStep2
+                description: JamiStrings.importStep2Desc
+            }
+
+            InfoBox {
+                id: step3
+                icoSource: JamiResources.finger_select_svg
+                title: JamiStrings.importStep3
+                description: JamiStrings.importStep3Desc
+            }
+
+            InfoBox {
+                id: step4
+                icoSource: JamiResources.time_clock_svg
+                title: JamiStrings.importStep4
+                description: JamiStrings.importStep4Desc
+            }
+
+        }
+
+        EditableLineEdit {
+            id: pinFromDevice
+            wizardInput: true
+
+            objectName: "pinFromDevice"
+
+            Layout.alignment: Qt.AlignCenter
+
+            focus: visible
+
+            selectByMouse: true
+            placeholderText: JamiStrings.pin
+            font.pointSize: JamiTheme.textFontSize
+            font.kerning: true
+
+            secondIco: ""
+
+            KeyNavigation.tab: {
+                if (connectBtn.enabled)
+                    return connectBtn
+                else if (connectBtn.spinnerTriggered)
+                    return passwordFromDevice
+                return backButton
+            }
+            KeyNavigation.up: passwordFromDevice
+            KeyNavigation.down: KeyNavigation.tab
+
+            onTextChanged: errorText = ""
+
+        }
+
+        EditableLineEdit {
             id: passwordFromDevice
+            wizardInput: true
 
             objectName: "passwordFromDevice"
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
+            underlined: true
             Layout.alignment: Qt.AlignCenter
+            secondIco: JamiResources.eye_cross_svg
+
 
             selectByMouse: true
             placeholderText: JamiStrings.password
@@ -107,63 +186,12 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onTextChanged: errorText = ""
-            onAccepted: pinFromDevice.forceActiveFocus()
-        }
-
-        Text {
-            property int preferredHeight: JamiTheme.wizardViewPageLayoutSpacing
-
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: connectBtn.width
-            Layout.preferredHeight: preferredHeight
-
-            text: JamiStrings.enterPIN
-            color: JamiTheme.textColor
-            wrapMode: Text.Wrap
-
-            onTextChanged: function (text) {
-                var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
-                preferredHeight += (boundingRect.width / connectBtn.preferredWidth)
-                        * boundingRect.height
-            }
-        }
-
-        MaterialLineEdit {
-            id: pinFromDevice
-
-            objectName: "pinFromDevice"
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
-            Layout.alignment: Qt.AlignCenter
-
-            focus: visible
-
-            selectByMouse: true
-            placeholderText: JamiStrings.pin
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
-            KeyNavigation.tab: {
-                if (connectBtn.enabled)
-                    return connectBtn
-                else if (connectBtn.spinnerTriggered)
-                    return passwordFromDevice
-                return backButton
-            }
-            KeyNavigation.up: passwordFromDevice
-            KeyNavigation.down: KeyNavigation.tab
-
-            onTextChanged: errorText = ""
-            onAccepted: {
-                if (connectBtn.enabled)
-                    connectBtn.clicked()
-            }
+            onEditingFinished: pinFromDevice.forceActiveFocus()
         }
 
         SpinnerButton {
             id: connectBtn
+            color: JamiTheme.tintedBlue
 
             objectName: "importFromDevicePageConnectBtn"
 
@@ -187,7 +215,7 @@ Rectangle {
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
                             {archivePin : pinFromDevice.text,
-                             password : passwordFromDevice.text})
+                                password : passwordFromDevice.text})
                 WizardViewStepModel.nextStep()
             }
         }
@@ -214,7 +242,7 @@ Rectangle {
 
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.margins: 20
+        anchors.margins: 10
 
         visible: !connectBtn.spinnerTriggered
 

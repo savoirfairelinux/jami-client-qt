@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Savoir-faire Linux Inc.
+ * Copyright (C) 2021-2022 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh <fadi.shehadeh@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -18,19 +18,26 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
 import net.jami.Constants 1.1
-import net.jami.Adapters 1.1
 
-EditableLineEdit {
-
+PushButton {
     id: root
 
-    leftIco: JamiResources.round_edit_24dp_svg
-    firstPBIco: JamiResources.round_close_24dp_svg
+    normalColor: JamiTheme.transparentColor
+    imageColor: JamiTheme.buttonTintedBlue
 
+    source: JamiResources.close_black_24dp_svg
+    toolTipText: JamiStrings.close
 
+    circled: false
+
+    Keys.onPressed: function (keyEvent) {
+        if (keyEvent.key === Qt.Key_Enter ||
+                keyEvent.key === Qt.Key_Return) {
+            clicked()
+            keyEvent.accepted = true
+        }
+    }
 
 }

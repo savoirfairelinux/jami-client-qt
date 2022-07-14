@@ -141,7 +141,7 @@ ColumnLayout {
             font.bold: CurrentAccount.registeredName !== ""
             loseFocusWhenEnterPressed: btnRegisterName.visible
 
-            onAccepted: {
+            onEditingFinished: {
                 if (btnRegisterName.visible)
                     btnRegisterName.clicked()
             }

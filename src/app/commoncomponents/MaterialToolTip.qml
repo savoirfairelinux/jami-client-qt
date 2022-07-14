@@ -34,6 +34,7 @@ ToolTip {
         text: root.text
         font: root.font
         color: "white"
+
     }
 
     background: Rectangle {

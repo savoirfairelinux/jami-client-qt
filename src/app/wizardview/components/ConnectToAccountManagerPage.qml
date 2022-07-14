@@ -69,27 +69,28 @@ Rectangle {
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 38
 
-        RowLayout {
-            spacing: JamiTheme.wizardViewPageLayoutSpacing
+        Text {
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-            Layout.preferredWidth: implicitWidth
+            text: JamiStrings.connectJAMSServer
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            font.pixelSize: 26
 
-            Label {
-                text: JamiStrings.enterJAMSURL
-                color: JamiTheme.textColor
-                font.pointSize: JamiTheme.textFontSize + 3
-            }
+        }
 
-            BubbleLabel {
-                Layout.alignment: Qt.AlignRight
+        Text {
 
-                text: JamiStrings.required
-                textColor: JamiTheme.requiredFieldColor
-                bubbleColor: JamiTheme.requiredFieldBackgroundColor
-            }
+            text: JamiStrings.jamsDecription
+            font.weight: Font.Medium
+            Layout.preferredWidth: 360
+            Layout.topMargin: 15
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            font.pixelSize: 15
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
         }
 
         MaterialLineEdit {
@@ -123,21 +124,26 @@ Rectangle {
         }
 
         Label {
-            id: credentialsLabel
+            id: referencesLabel
 
             Layout.alignment: Qt.AlignCenter
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
             Layout.preferredWidth: connectBtn.width
+            Layout.topMargin: 10
+            font.weight: Font.Medium
 
-            text: JamiStrings.jamsCredentials
+            text: JamiStrings.jamsReferences
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
             onTextChanged: Layout.preferredHeight =
                            JamiQmlUtils.getTextBoundingRect(
-                               credentialsLabel.font, credentialsLabel.text).height
+                               referencesLabel.font, referencesLabel.text).height
         }
 
-        MaterialLineEdit {
+        UsernameLineEdit {
+
             id: usernameManagerEdit
 
             objectName: "usernameManagerEdit"
@@ -156,10 +162,35 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onTextChanged: errorText = ""
-            onAccepted: passwordManagerEdit.forceActiveFocus()
+            //onAccepted: passwordManagerEdit.forceActiveFocus()
+
+
         }
 
-        MaterialLineEdit {
+        //        MaterialLineEdit {
+        //            id: usernameManagerEdit
+
+        //            objectName: "usernameManagerEdit"
+
+        //            Layout.preferredHeight: fieldLayoutHeight
+        //            Layout.preferredWidth: connectBtn.width
+        //            Layout.alignment: Qt.AlignCenter
+
+        //            selectByMouse: true
+        //            placeholderText: JamiStrings.username
+        //            font.pointSize: JamiTheme.textFontSize
+        //            font.kerning: true
+
+        //            KeyNavigation.tab: passwordManagerEdit
+        //            KeyNavigation.up: accountManagerEdit
+        //            KeyNavigation.down: KeyNavigation.tab
+
+        //            onTextChanged: errorText = ""
+        //            onAccepted: passwordManagerEdit.forceActiveFocus()
+        //        }
+
+        PasswordLineEdit {
+
             id: passwordManagerEdit
 
             objectName: "passwordManagerEdit"
@@ -186,11 +217,47 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onTextChanged: errorText = ""
-            onAccepted: {
-                if (connectBtn.enabled)
-                    connectBtn.clicked()
-            }
+            //            onAccepted: {
+            //                if (connectBtn.enabled)
+            //                    connectBtn.clicked()
+            //            }
         }
+
+        //        MaterialLineEdit {
+        //            id: passwordManagerEdit
+
+        //            objectName: "passwordManagerEdit"
+
+        //            Layout.preferredHeight: fieldLayoutHeight
+        //            Layout.preferredWidth: connectBtn.width
+        //            Layout.alignment: Qt.AlignCenter
+
+        //            selectByMouse: true
+        //            placeholderText: JamiStrings.password
+        //            font.pointSize: JamiTheme.textFontSize
+        //            font.kerning: true
+
+        //            echoMode: TextInput.Password
+
+        //            KeyNavigation.tab: {
+        //                if (connectBtn.enabled)
+        //                    return connectBtn
+        //                else if (backButton.visible)
+        //                    return backButton
+        //                return accountManagerEdit
+        //            }
+        //            KeyNavigation.up: usernameManagerEdit
+        //            KeyNavigation.down: KeyNavigation.tab
+
+        //            onTextChanged: errorText = ""
+        //            onAccepted: {
+        //                if (connectBtn.enabled)
+        //                    connectBtn.clicked()
+        //            }
+        //        }
+
+
+
 
         SpinnerButton {
             id: connectBtn
@@ -210,6 +277,8 @@ Rectangle {
                      && passwordManagerEdit.text.length !== 0
                      && !spinnerTriggered
 
+            color: JamiTheme.tintedBlue
+
             KeyNavigation.tab: {
                 if (backButton.visible)
                     return backButton
@@ -226,8 +295,8 @@ Rectangle {
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
                             {username : usernameManagerEdit.text,
-                             password : passwordManagerEdit.text,
-                             manager : accountManagerEdit.text})
+                                password : passwordManagerEdit.text,
+                                manager : accountManagerEdit.text})
                 WizardViewStepModel.nextStep()
             }
         }

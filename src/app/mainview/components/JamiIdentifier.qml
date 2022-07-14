@@ -38,7 +38,7 @@ Rectangle {
     Layout.leftMargin: 36
     width: 296
     height: 91
-    color: "white"
+    color: JamiTheme.whiteColor
 
     ColumnLayout {
         anchors.fill: parent
@@ -54,7 +54,7 @@ Rectangle {
 
                 width: 97
                 height: 40
-                color: "#005699"
+                color: JamiTheme.mainColor
                 radius: 20
 
 
@@ -64,7 +64,7 @@ Rectangle {
                     anchors.bottom: parent.bottom
                     width: 20
                     height: 20
-                    color: "#005699"
+                    color: JamiTheme.mainColor
 
                 }
 
@@ -88,15 +88,15 @@ Rectangle {
                 PushButton {
                     id: btnEdit
 
-                    imageColor: "#005699"
-                    normalColor: "transparent"
-                    Layout.topMargin: 10
+                    imageColor: JamiTheme.buttonTintedBlue
+                    normalColor: JamiTheme.transparentColor
+                    Layout.topMargin: JamiTheme.pushButtonMargin
                     hoverEnabled: false
                     preferredSize : 30
-                    imageContainerWidth: 22
-                    imageContainerHeight: 22
-                    visible: editable
-                    border.color: "#005699"
+                    imageContainerWidth: JamiTheme.pushButtonSize
+                    imageContainerHeight: JamiTheme.pushButtonSize
+                    visible: false //(editable) Not visible for the moment
+                    border.color: JamiTheme.buttonTintedBlue
 
                     source: JamiResources.round_edit_24dp_svg
 
@@ -106,50 +106,48 @@ Rectangle {
                 PushButton {
                     id: btnCopy
 
-                    imageColor: "#005699"
-                    normalColor: "transparent"
-                    Layout.topMargin: 10
+                    imageColor: JamiTheme.buttonTintedBlue
+                    normalColor: JamiTheme.transparentColor
+                    Layout.topMargin: JamiTheme.pushButtonMargin
 
 
                     preferredSize : 30
-                    imageContainerWidth: 22
-                    imageContainerHeight: 22
+                    imageContainerWidth: JamiTheme.pushButtonSize
+                    imageContainerHeight: JamiTheme.pushButtonSize
 
                     hoverEnabled: false
-                    border.color: "#005699"
+                    border.color: JamiTheme.tintedBlue
 
                     source: JamiResources.content_copy_24dp_svg
 
                     onClicked: {
-                        UtilsAdapter.setClipboardText(
-                                    textMetricsjamiRegisteredNameText.text)
+                        UtilsAdapter.setClipboardText(CurrentAccount.bestId)
                     }
                 }
 
                 PushButton {
                     id: btnShare
 
-
-                    imageColor: "#005699"
-                    normalColor: "transparent"
-                    Layout.topMargin: 10
-                    Layout.rightMargin: 10
+                    imageColor: JamiTheme.buttonTintedBlue
+                    normalColor: JamiTheme.transparentColor
+                    Layout.topMargin: JamiTheme.pushButtonMargin
+                    Layout.rightMargin: JamiTheme.pushButtonMargin
                     preferredSize : 30
-                    imageContainerWidth: 22
-                    imageContainerHeight: 22
+                    imageContainerWidth: JamiTheme.pushButtonSize
+                    imageContainerHeight: JamiTheme.pushButtonSize
 
                     hoverEnabled: false
-                    border.color: "#005699"
+                    border.color: JamiTheme.buttonTintedBlue
 
                     source: JamiResources.share_24dp_svg
 
-                    onClicked: { }
+                    onClicked: { qrDialog.open() }
                 }
 
             }
         }
 
-        Text {
+        ElidedTextLabel {
             id: jamiRegisteredNameText
 
             Layout.alignment: Qt.AlignBottom | Qt.AlignCenter
@@ -158,7 +156,8 @@ Rectangle {
             font.pointSize: JamiTheme.textFontSize + 1
 
             text: CurrentAccount.bestId
-            color: "black"
+            color: JamiTheme.blackColor
+
         }
     }
 

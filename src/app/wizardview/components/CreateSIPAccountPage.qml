@@ -60,37 +60,36 @@ Rectangle {
 
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-        anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 38
 
-        RowLayout {
-            spacing: JamiTheme.wizardViewPageLayoutSpacing
+        Label {
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-            Layout.preferredWidth: createAccountButton.width
+            text: JamiStrings.sipAccount
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            font.pixelSize: 26
 
-            Label {
-                text: JamiStrings.configureExistingSIP
-                color: JamiTheme.textColor
-                font.pointSize: JamiTheme.textFontSize + 3
-            }
-
-            BubbleLabel {
-                Layout.alignment: Qt.AlignRight
-
-                text: JamiStrings.optional
-                bubbleColor: JamiTheme.wizardBlueButtons
-            }
         }
 
-        MaterialLineEdit {
+        Label {
+            text: JamiStrings.configureExistingSIP
+            color: JamiTheme.textColor
+            Layout.preferredWidth: 260
+            Layout.topMargin: 15
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+            font.pointSize: JamiTheme.textFontSize + 3
+            font.weight: Font.Medium
+            wrapMode: Text.WordWrap
+        }
+
+        EditableLineEdit {
             id: sipServernameEdit
 
             objectName: "sipServernameEdit"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: createAccountButton.width
 
             focus: visible
 
@@ -103,17 +102,15 @@ Rectangle {
             KeyNavigation.up: backButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onAccepted: sipProxyEdit.forceActiveFocus()
+            onEditingFinished: sipProxyEdit.forceActiveFocus()
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
             id: sipProxyEdit
 
             objectName: "sipProxyEdit"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: createAccountButton.width
 
             selectByMouse: true
             placeholderText: JamiStrings.proxy
@@ -124,17 +121,15 @@ Rectangle {
             KeyNavigation.up: sipServernameEdit
             KeyNavigation.down: KeyNavigation.tab
 
-            onAccepted: sipUsernameEdit.forceActiveFocus()
+            onEditingFinished: sipUsernameEdit.forceActiveFocus()
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
             id: sipUsernameEdit
 
             objectName: "sipUsernameEdit"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: createAccountButton.width
 
             selectByMouse: true
             placeholderText: JamiStrings.username
@@ -145,20 +140,19 @@ Rectangle {
             KeyNavigation.up: sipProxyEdit
             KeyNavigation.down: KeyNavigation.tab
 
-            onAccepted: sipPasswordEdit.forceActiveFocus()
+            onEditingFinished: sipPasswordEdit.forceActiveFocus()
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
             id: sipPasswordEdit
 
             objectName: "sipPasswordEdit"
 
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: createAccountButton.width
 
             selectByMouse: true
-            echoMode: TextInput.Password
+            echoMode: hoveredIco ? TextInput.Normal : TextInput.Password
+
             placeholderText: JamiStrings.password
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
@@ -167,7 +161,10 @@ Rectangle {
             KeyNavigation.up: sipUsernameEdit
             KeyNavigation.down: KeyNavigation.tab
 
-            onAccepted: createAccountButton.clicked()
+            secondIco: JamiResources.eye_cross_svg
+
+
+            //onEditingFinished: createAccountButton.clicked()
         }
 
         MaterialButton {
@@ -180,10 +177,7 @@ Rectangle {
 
             preferredWidth: JamiTheme.wizardButtonWidth
 
-            text: JamiStrings.createSIPAccount
-            color: JamiTheme.wizardBlueButtons
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+            text: JamiStrings.addSip
 
             KeyNavigation.tab: backButton
             KeyNavigation.up: sipPasswordEdit
@@ -193,11 +187,21 @@ Rectangle {
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
                             {hostname : sipServernameEdit.text,
-                             username : sipUsernameEdit.text,
-                             password : sipPasswordEdit.text,
-                             proxy : sipProxyEdit.text})
+                                username : sipUsernameEdit.text,
+                                password : sipPasswordEdit.text,
+                                proxy : sipProxyEdit.text})
                 WizardViewStepModel.nextStep()
             }
+        }
+
+        MaterialButton {
+
+            id:personalizeAccount
+            text: JamiStrings.personalizeAccount
+            tertiary: true
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
         }
     }
 

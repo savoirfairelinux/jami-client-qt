@@ -30,6 +30,22 @@ Item {
 
     signal editingFinished
 
+    property alias borderColor: lineEdit.borderColor
+    property alias underlined: lineEdit.underlined
+    property alias wizardInput: lineEdit.wizardInput
+    property alias wrapMode: lineEdit.wrapMode
+    property alias padding: lineEdit.padding
+    property alias fieldLayoutWidth: lineEdit.fieldLayoutWidth
+    property alias fieldLayoutHeight: lineEdit.fieldLayoutHeight
+    property alias echoMode: lineEdit.echoMode
+    property string inactiveColor: JamiTheme.tintedBlue
+    property string hoveredColor: "#03B9E9"
+    property string selectedColor: "#03B9E9"
+    property string validatedColor: "#009980"
+    property string errorColor: "#CC0022"
+    property alias selectByMouse:lineEdit.selectByMouse
+    property alias loseFocusWhenEnterPressed: lineEdit.loseFocusWhenEnterPressed
+    property alias validator: lineEdit.validator
     property alias text: lineEdit.text
     property alias color: lineEdit.color
     property alias verticalAlignment: lineEdit.verticalAlignment
@@ -38,26 +54,35 @@ Item {
     property alias placeholderText: lineEdit.placeholderText
     property alias placeholderTextColor: lineEdit.placeholderTextColor
     property alias backgroundColor: lineEdit.backgroundColor
-
-    property string leftIcon: ""
-    property string secondIcon: ""
-    property string thirdIcon: ""
-
     property var editIconColor:  UtilsAdapter.luma(root.color) ? JamiTheme.editLineColor : "white"
     property var cancelIconColor: UtilsAdapter.luma(root.color) ? JamiTheme.buttonTintedBlue : "white"
+    property string informationToolTip: ""
+
+    property string firstIco: ""
+    property string secondIco: "" //JamiResources.outline_info_24dp_svg
+    property string thirdIco: ""
+
+    property string firstIcoColor: "#005699"
+    property string secondIcoColor: "#005699"
+    property string thirdIcoColor: "#005699"
 
     property bool readOnly: false
     property bool editable: false
     property bool hovered: false
-    property bool identifier: false
-    property bool password: false
-    property bool nickname: false
-    property bool description: true
+    property bool selected: false
+    property bool inactive: true
+    property bool validated: false
+    property bool error: false
+
     property string tooltipText: ""
     property int preferredWidth: JamiTheme.preferredFieldWidth
 
+    function clear(){ lineEdit.clear() }
     height: lineEdit.height
     width: preferredWidth
+
+    Layout.preferredHeight: 50
+    Layout.preferredWidth:  400
 
     MaterialToolTip {
         parent: lineEdit
@@ -70,14 +95,41 @@ Item {
         target : parent
         onHoveredChanged: {
             root.hovered = hovered
+
         }
-        cursorShape: Qt.PointingHandCursor
+        //cursorShape: Qt.PointingHandCursor
     }
 
     RowLayout {
         id: row
-        anchors.centerIn: parent
+        anchors.fill: parent
+
         z: 1
+
+        ResponsiveImage  {
+            id: firstIco_
+            opacity: firstIco!=="" && (editable && !root.readOnly)
+
+            Layout.alignment: Qt.AlignLeft
+            width: 18
+            height: 18
+
+            layer {
+                enabled: true
+                effect: ColorOverlay {
+                    color:  firstIcoColor
+                }
+            }
+
+            source: firstIco //JamiResources.round_edit_24dp_svg
+
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0
+                    duration: JamiTheme.longFadeDuration
+                }
+            }
+        }
 
         MaterialLineEdit {
             id: lineEdit
@@ -88,11 +140,16 @@ Item {
             borderColor: root.editIconColor
             fieldLayoutHeight: 24
 
+            maximumLength: 20
+
+
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: root.preferredFieldWidth - lineEdit.height * 4 / 3
+            Layout.preferredWidth: root.preferredFieldWidth - 18
+            Layout.leftMargin: 18
             Layout.fillHeight: true
 
             wrapMode: Text.NoWrap
+
 
             onFocusChanged: function(focus) {
                 if (!focus && editable) {
@@ -109,14 +166,122 @@ Item {
             }
         }
 
+        //        PushButton {
+        //            id: btnCancel
+        //            visible: !wizardInput
+
+        //            Layout.alignment: Qt.AlignVCenter
+
+        //            enabled: editable && !root.readOnly
+        //            preferredSize: lineEdit.height * 2 / 3
+        //            opacity: enabled ? 0.8 : 0
+        //            imageColor: root.cancelIconColor
+        //            normalColor: "transparent"
+        //            hoveredColor: JamiTheme.hoveredButtonColor
+
+        //            source: JamiResources.round_close_24dp_svg
+
+        //            onClicked: {
+
+        //                root.selected = !root.selected
+
+        //                root.editingFinished()
+        //                root.editable = !root.editable
+        //                lineEdit.forceActiveFocus()
+        //            }
+
+        //            Behavior on opacity {
+        //                NumberAnimation {
+        //                    from: 0
+        //                    duration: JamiTheme.longFadeDuration
+        //                }
+        //            }
+        //        }
+
+        ResponsiveImage  {
+            id: thirdICO_
+            opacity: thirdIco!=="" && (editable && !root.readOnly)
+
+            Layout.alignment: Qt.AlignRight
+            width: 18
+            height: 18
+
+            layer {
+                enabled: true
+                effect: ColorOverlay {
+                    color: thirdIcoColor
+                }
+            }
+
+            source: thirdIco //JamiResources.round_edit_24dp_svg
+
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0
+                    duration: JamiTheme.longFadeDuration
+                }
+            }
+        }
+
+        ResponsiveImage  {
+            id: secICO_
+            opacity: secondIco!=="" // && (editable && !root.readOnly) pourauoi pas visible, a tester
+            source: secondIco
+            Layout.alignment: Qt.AlignRight
+            width: 18
+            height: 18
+
+            MaterialToolTip {
+                id: toolTip
+                parent: secICO_
+                visible: parent.hovered && informationToolTip!==""
+                delay: Qt.styleHints.mousePressAndHoldInterval
+            }
+
+
+            layer {
+                enabled: true
+                effect: ColorOverlay {
+                    color: secondIcoColor
+                }
+            }
+
+
+
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0
+                    duration: JamiTheme.longFadeDuration
+                }
+            }
+
+        }
+
+
     }
 
+
     Rectangle {
-        anchors.fill: row
+        id: barColor
+        anchors.fill: root//row
         radius: JamiTheme.primaryRadius
 
-        visible: (root.editable || root.hovered)  && !root.readOnly && !description
-        color: root.editIconColor
+        visible: true
+        color: {
+
+            if(root.error)
+                return errorColor
+            if(root.validated)
+                return validatedColor
+            if(root.hovered || root.editable)
+                return hoveredColor
+            if(root.inactive)
+                return inactiveColor
+            if(root.editable)
+                return selectedColor
+            return "black"
+
+        }
 
         Rectangle {
             visible: parent.visible
@@ -130,4 +295,5 @@ Item {
             color: root.backgroundColor
         }
     }
+
 }

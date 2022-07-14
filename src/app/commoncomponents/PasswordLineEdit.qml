@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 Savoir-faire Linux Inc.
+ * Copyright (C) 2021-2022 Savoir-faire Linux Inc.
  * Author: Fadi Shehadeh <fadi.shehadeh@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,20 +17,31 @@
  */
 
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
+import net.jami.Models 1.1
 import net.jami.Constants 1.1
-import net.jami.Adapters 1.1
 
 EditableLineEdit {
 
     id: root
 
-    leftIco: JamiResources.round_edit_24dp_svg
-    firstPBIco: JamiResources.round_close_24dp_svg
+    property bool importedDevice: false
 
+    underlined: true
+    placeholderText: JamiStrings.enterPassword
+
+    secondIco: JamiResources.eye_cross_svg
+    secondIcoColor: "#005699"
+
+    wizardInput: true
+
+    selectByMouse: true
+    font.pointSize: JamiTheme.usernameLineEditPointSize
+    font.kerning: true
+
+    fieldLayoutWidth: 200
+    fieldLayoutHeight: 50
 
 
 }

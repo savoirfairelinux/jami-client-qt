@@ -69,7 +69,7 @@ Item {
                     radius : 5
 
                     imageColor: "grey"
-                    normalColor: "transparent"
+                    normalColor: JamiTheme.transparentColor
 
                     source: JamiResources.round_close_24dp_svg
 
@@ -90,12 +90,12 @@ Item {
                     containerWidth: Layout.preferredWidth
 
                     source: tips_ ?  JamiResources.noun_paint_svg : JamiResources.glasses_tips_svg
-                    color: "#005699"
+                    color: JamiTheme.mainColor
                 }
 
                 Label {
 
-                    text: tips_ ? "Customize" : " Tips"
+                    text: tips_ ? JamiStrings.customize : JamiStrings.tips
                     font.weight: Font.Medium
                     Layout.topMargin: 5
                     visible: !opened
@@ -116,7 +116,7 @@ Item {
                 font.pixelSize: 12
                 visible: !opened
                 wrapMode: Text.WordWrap
-                text: tips_ ? "Add a picture and a nickname to complete your profile" : "Why should I save my account ?"
+                text: tips_ ? JamiStrings.customizeText : "Why should I save my account ?"
             }
 
 
@@ -137,8 +137,6 @@ Item {
 
             MaterialLineEdit {
                 id: aliasEdit
-
-
 
                 property string lastFirstChar
 
@@ -161,7 +159,7 @@ Item {
                 font.kerning: true
 
 
-                }
+            }
 
             Text {
 
@@ -171,7 +169,7 @@ Item {
                 font.pixelSize: 12
                 visible: opened && tips_
                 wrapMode: Text.WrapAnywhere
-                text: "Your profile is only shared with your contacts"
+                text: JamiStrings.customizationDescription
             }
 
             Text {

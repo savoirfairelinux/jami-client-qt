@@ -36,28 +36,25 @@ Rectangle {
         spacing: 20
         anchors.centerIn: parent
 
-        //                LottieAnimation {
+//        LottieAnimation {
+//            //BUG https://bugreports.qt.io/browse/QTBUG-102550
 
-        //                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
-        //                 source: JamiResources.notification_bell_outline_edited_json
-        //                 autoPlay: true
-        //                 width: 5
-        //                 height:5
-        //                 loops: Animation.Infinite
+//            Layout.alignment: Qt.AlignTop | Qt.AlignRight
+//            source: JamiResources.notification_bell_outline_edited_json
+//            autoPlay: true
+//            width: 5
+//            height:5
+//            loops: Animation.Infinite
 
-        //                }
+//        }
 
         Rectangle {
 
             Layout.alignment: Qt.AlignCenter
-            color: "transparent"
-
+            color: JamiTheme.transparentColor
 
             width: 630
             height: 263
-
-
-
 
             Rectangle {
 
@@ -67,7 +64,6 @@ Rectangle {
                 anchors.fill: parent
                 height: 243
                 opacity:1
-
 
                 ColumnLayout {
 
@@ -85,10 +81,7 @@ Rectangle {
                         wrapMode: Text.WordWrap
                         font.pointSize: JamiTheme.textFontSize + 1
 
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-
-                        text: "Welcome to Jami"
+                        text: JamiStrings.welcomeToJami
                         color: JamiTheme.textColor
                     }
 
@@ -105,7 +98,7 @@ Rectangle {
                         wrapMode: Text.WordWrap
                         font.pointSize: JamiTheme.textFontSize + 1
 
-                        text: "Here is your Jami identifier, don’t hesitate to share it in order to be contacted more easily! "
+                        text: JamiStrings.identifierDescription
                         color: JamiTheme.textColor
                     }
 
@@ -139,7 +132,9 @@ Rectangle {
         Label {
 
             text: JamiStrings.recommendationMessage
+            color: JamiTheme.welcomeText
             font.bold: true
+            visible: false //Not visble for the moment
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 10
 
@@ -153,8 +148,7 @@ Rectangle {
 
             TipBox {
 
-                id: lol
-
+                id: customization
             }
 
             TipBox {
@@ -173,12 +167,12 @@ Rectangle {
         Label {
 
             text: JamiStrings.noRecommendations
-            color: "#002B4A"
+            color: JamiTheme.welcomeText
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 10
+            visible: false //Not visible for the moment
 
         }
-
     }
 
     MaterialButton {
@@ -188,9 +182,10 @@ Rectangle {
 
         anchors.horizontalCenter: root.horizontalCenter
         anchors.bottom: root.bottom
+        Layout.alignment: Qt.AlignCenter
 
         anchors.bottomMargin: 10
-        preferredWidth: JamiTheme.aboutButtonPreferredWidthth
+        preferredWidth: JamiTheme.aboutButtonPreferredWidth
         text: JamiStrings.aboutJami
 
         onClicked: aboutPopUpDialog.open()

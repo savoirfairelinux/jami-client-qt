@@ -67,7 +67,7 @@ Rectangle {
                                    WizardViewStepModel.AccountCreationOption.CreateRendezVous)
                 root.showThisPage()
             } else if (currentMainStep === WizardViewStepModel.MainSteps.SetPassword) {
-                createAccountStack.currentIndex = passwordSetupPage.stackIndex
+                createAccountStack.currentIndex =advancedAccountSettingsPage.stackIndex //  passwordSetupPage.stackIndex
             }
         }
     }
@@ -166,6 +166,8 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
+                    Layout.preferredWidth: 360
+                    wrapMode:Text.WordWrap
                     text: isRendezVous ? JamiStrings.chooseUsernameForRV :
                                          JamiStrings.chooseUsernameForAccount
                     color: JamiTheme.textColor
@@ -178,10 +180,7 @@ Rectangle {
                     objectName: "usernameEdit"
 
                     Layout.topMargin: 15
-                    Layout.preferredHeight: fieldLayoutHeight
-                    Layout.preferredWidth:  chooseUsernameButton.width
                     Layout.alignment: Qt.AlignHCenter
-
 
                     focus: visible
 
@@ -190,60 +189,13 @@ Rectangle {
                     KeyNavigation.up: backButton
                     KeyNavigation.down: KeyNavigation.tab
 
-                    placeholderText: isRendezVous ? JamiStrings.chooseAName :
-                                                    JamiStrings.chooseYourUserName
-
-                    onAccepted: {
+                    onEditingFinished: {
                         if (chooseUsernameButton.enabled)
                             chooseUsernameButton.clicked()
                         else
                             skipButton.clicked()
                     }
                 }
-
-                IdentifierLineEdit {
-                    id: identifierEdit
-                    editable: true
-
-                    Layout.alignment: Qt.AlignHCenter
-
-                    font.pointSize: JamiTheme.menuFontSize
-
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    text: CurrentConversation.description
-                    placeholderText: isRendezVous ? JamiStrings.chooseAName :
-                                                    JamiStrings.chooseYourUserName
-                    placeholderTextColor: {
-                        if (editable) {
-                            if (UtilsAdapter.luma(root.color)) {
-                                return JamiTheme.placeholderTextColorWhite
-                            } else {
-                                return JamiTheme.placeholderTextColor
-                            }
-                        } else {
-                            if (UtilsAdapter.luma(root.color)) {
-                                return JamiTheme.chatviewTextColorLight
-                            } else {
-                                return JamiTheme.chatviewTextColorDark
-                            }
-                        }
-                    }
-                    tooltipText: JamiStrings.addADescription
-                    backgroundColor: root.color
-                    color: UtilsAdapter.luma(backgroundColor) ?
-                               JamiTheme.chatviewTextColorLight :
-                               JamiTheme.chatviewTextColorDark
-
-                    //                    onAccepted: {
-                    //                        if (chooseUsernameButton.enabled)
-                    //                            chooseUsernameButton.clicked()
-                    //                        else
-                    //                            skipButton.clicked()
-                    //                    }
-                }
-
 
                 Label {
                     Layout.alignment: Qt.AlignHCenter
@@ -280,40 +232,56 @@ Rectangle {
 
                     font.capitalization: Font.AllUppercase
                     text: isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
-                    enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE
+                    enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
+
 
                     KeyNavigation.tab: skipButton
                     KeyNavigation.up: usernameEdit
                     KeyNavigation.down: KeyNavigation.tab
 
-                    onClicked: WizardViewStepModel.nextStep()
-                }
-
-                MaterialButton {
-                    id: skipButton
-
-                    objectName: "nameRegistrationPageSkipButton"
-
-                    Layout.alignment: Qt.AlignCenter
-
-                    preferredWidth: JamiTheme.wizardButtonWidth
-
-                    text: JamiStrings.skip
-                    color: JamiTheme.buttonTintedGrey
-                    hoveredColor: JamiTheme.buttonTintedGreyHovered
-                    pressedColor: JamiTheme.buttonTintedGreyPressed
-                    outlined: true
-
-                    KeyNavigation.tab: backButton
-                    KeyNavigation.up: chooseUsernameButton.enabled ? chooseUsernameButton :
-                                                                     usernameEdit
-                    KeyNavigation.down: KeyNavigation.tab
-
                     onClicked: {
-                        usernameEdit.clear()
-                        WizardViewStepModel.nextStep()
+
+                        if(usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE)
+                            WizardViewStepModel.nextStep()
+
+                        if(usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK)
+                            popup.visible = true
+
+
                     }
                 }
+
+                NoUsernamePopup {
+
+                    id: popup
+
+                }
+
+//                MaterialButton {
+//                    id: skipButton
+
+//                    objectName: "nameRegistrationPageSkipButton"
+
+//                    Layout.alignment: Qt.AlignCenter
+
+//                    preferredWidth: JamiTheme.wizardButtonWidth
+
+//                    text: JamiStrings.skip
+//                    color: JamiTheme.buttonTintedGrey
+//                    hoveredColor: JamiTheme.buttonTintedGreyHovered
+//                    pressedColor: JamiTheme.buttonTintedGreyPressed
+//                    outlined: true
+
+//                    KeyNavigation.tab: backButton
+//                    KeyNavigation.up: chooseUsernameButton.enabled ? chooseUsernameButton :
+//                                                                     usernameEdit
+//                    KeyNavigation.down: KeyNavigation.tab
+
+//                    onClicked: {
+//                        usernameEdit.clear()
+//                        WizardViewStepModel.nextStep()
+//                    }
+//                }
 
 
 
@@ -329,18 +297,30 @@ Rectangle {
                     text: JamiStrings.advancedFeatures
                     toolTipText: JamiStrings.showAdvancedFeatures
 
+                    onClicked: {
+                        WizardViewStepModel.nextStep()
+                    }
+
                 }
 
-                AccountCreationStepIndicator {
-                    Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
-                    Layout.alignment: Qt.AlignHCenter
+//                AccountCreationStepIndicator {
+//                    Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+//                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
+//                    Layout.alignment: Qt.AlignHCenter
 
-                    spacing: JamiTheme.wizardViewPageLayoutSpacing
-                    steps: 2
-                    currentStep: 1
-                }
+//                    spacing: JamiTheme.wizardViewPageLayoutSpacing
+//                    steps: 2
+//                    currentStep: 1
+//                }
             }
+        }
+
+        AdvancedAccountSettings {
+
+            id: advancedAccountSettingsPage
+            objectName: "advancedAccountSettingsPage"
+            property int stackIndex: 1
+
         }
 
         Rectangle {
@@ -348,7 +328,7 @@ Rectangle {
 
             objectName: "passwordSetupPage"
 
-            property int stackIndex: 1
+            //property int stackIndex: 1
 
             focus: visible
 
@@ -504,15 +484,15 @@ Rectangle {
                     }
                 }
 
-                AccountCreationStepIndicator {
-                    Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
-                    Layout.alignment: Qt.AlignHCenter
+//                AccountCreationStepIndicator {
+//                    Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
+//                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
+//                    Layout.alignment: Qt.AlignHCenter
 
-                    spacing: JamiTheme.wizardViewPageLayoutSpacing
-                    steps: 2
-                    currentStep: 2
-                }
+//                    spacing: JamiTheme.wizardViewPageLayoutSpacing
+//                    steps: 2
+//                    currentStep: 2
+//                }
             }
         }
     }
