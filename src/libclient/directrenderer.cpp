@@ -39,7 +39,8 @@ public:
         , parent_(parent)
     {
         configureTarget();
-        VideoManager::instance().registerSinkTarget(parent_->id(), target);
+        if (!VideoManager::instance().registerSinkTarget(parent_->id(), target))
+            qWarning() << "Cannot register " << parent_->id();
     };
     ~Impl()
     {
