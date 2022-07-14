@@ -32,32 +32,33 @@ BaseModalDialog {
     id: root
 
 
-    popupContent: Rectangle {
+    popupContentMargins: 14
+
+    PushButton {
+        id: btnClose
+
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.topMargin: JamiTheme.preferredMarginSize
+        anchors.rightMargin: JamiTheme.preferredMarginSize
+        imageColor: "grey"
+        normalColor: JamiTheme.transparentColor
+
+        source: JamiResources.round_close_24dp_svg
+
+        onClicked: { close();}
+    }
+
+    popupContent: JamiFlickable {
         id: aboutPopUpScrollView
 
-        color: JamiTheme.transparentColor
         width: root.width
+        contentHeight: aboutPopUpContentRectColumnLayout.implicitHeight
 
         ColumnLayout {
             id: aboutPopUpContentRectColumnLayout
 
             width: root.width
-            height: Math.max(aboutPopUpScrollView.height, implicitHeight)
-
-            PushButton {
-                id: btnCancel
-
-                Layout.alignment: Qt.AlignRight
-
-                imageColor: "grey"
-                normalColor: "transparent"
-                Layout.topMargin: 10
-                Layout.rightMargin: 10
-
-                source: JamiResources.round_close_24dp_svg
-
-                onClicked: { close();}
-            }
 
             ResponsiveImage {
                 id: aboutPopUPJamiLogoImage
@@ -66,7 +67,6 @@ BaseModalDialog {
                 Layout.topMargin: JamiTheme.preferredMarginSize
                 Layout.preferredWidth: JamiTheme.aboutLogoPreferredWidth
                 Layout.preferredHeight: JamiTheme.aboutLogoPreferredHeight
-                height: 10
 
                 source: JamiTheme.darkTheme ?
                             JamiResources.logo_jami_standard_coul_white_svg :
@@ -78,7 +78,6 @@ BaseModalDialog {
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPopUpScrollView.width
-                Layout.preferredHeight: textMetricsjamiSlogansText.boundingRect.height
                 Layout.topMargin: 26
 
                 wrapMode: Text.WordWrap
@@ -97,7 +96,7 @@ BaseModalDialog {
                 }
             }
 
-            MaterialLineEdit {
+            Label {
                 id: jamiVersionText
 
                 Layout.alignment: Qt.AlignCenter
@@ -106,8 +105,6 @@ BaseModalDialog {
                 font.pixelSize: JamiTheme.tinyCreditsTextSize
 
                 padding: 0
-                readOnly: true
-                selectByMouse: true
 
                 text: JamiStrings.version + ": " + UtilsAdapter.getVersionStr()
                 color: JamiTheme.textColor
@@ -116,13 +113,11 @@ BaseModalDialog {
                 verticalAlignment: Text.AlignVCenter
             }
 
-
             Label {
                 id: jamiDeclarationText
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPopUpScrollView.width - JamiTheme.preferredMarginSize * 2
-                Layout.preferredHeight: 40
                 Layout.topMargin: 15
 
                 wrapMode: Text.WordWrap
@@ -143,7 +138,6 @@ BaseModalDialog {
 
                 // Strangely, hoveredLink works badly when width grows too large
                 Layout.preferredWidth: 50
-                Layout.preferredHeight: textMetricsjamiDeclarationHyperText.boundingRect.height
                 Layout.topMargin: 15
 
                 color: JamiTheme.textColor
@@ -191,7 +185,7 @@ BaseModalDialog {
                     id: textMetricsjamiNoneWarrantyHyperText
                     font: jamiDeclarationHyperText.font
                     text: JamiStrings.declarationYear + " " + '<html><style type="text/css"></style><a href="https://savoirfairelinux.com">Savoir-faire Linux Inc.<br></a></html>'
-                    + '<html><style type="text/css"></style>This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License</a>, version 3 or later for details.</html>'
+                          + '<html><style type="text/css"></style>This program comes with absolutely no warranty. See the <a href="http://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License</a>, version 3 or later for details.</html>'
                 }
 
                 MouseArea {
