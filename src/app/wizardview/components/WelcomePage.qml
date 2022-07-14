@@ -59,30 +59,18 @@ Rectangle {
     ColumnLayout {
         id: welcomePageColumnLayout
 
-        anchors.centerIn: parent
-
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-        Text {
-            id: welcomeLabel
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-            Layout.preferredHeight: contentHeight
-
-            text: JamiStrings.welcomeTo
-            color: JamiTheme.textColor
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-
-            font.pointSize: JamiTheme.welcomeLabelPointSize
-            font.kerning: true
-        }
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
 
         ResponsiveImage {
             id: welcomeLogo
 
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
@@ -117,28 +105,6 @@ Rectangle {
         }
 
         MaterialButton {
-            id: newRdvButton
-
-            objectName: "newRdvButton"
-
-            Layout.alignment: Qt.AlignCenter
-
-            preferredWidth: JamiTheme.wizardButtonWidth
-
-            text: JamiStrings.createNewRV
-            font.capitalization: Font.AllUppercase
-            toolTipText: JamiStrings.createNewRV
-            iconSource: JamiResources.groups_24dp_svg
-
-            KeyNavigation.tab: fromDeviceButton
-            KeyNavigation.up: newAccountButton
-            KeyNavigation.down: KeyNavigation.tab
-
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.CreateRendezVous)
-        }
-
-        MaterialButton {
             id: fromDeviceButton
 
             objectName: "fromDeviceButton"
@@ -147,13 +113,8 @@ Rectangle {
 
             preferredWidth: JamiTheme.wizardButtonWidth
 
-            text: JamiStrings.linkFromAnotherDevice
-            font.capitalization: Font.AllUppercase
-            toolTipText: JamiStrings.importAccountFromOtherDevice
-            iconSource: JamiResources.devices_24dp_svg
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+            text: JamiStrings.importAccountFromAnotherDevice
+            toolTipText: JamiStrings.linkFromAnotherDevice
 
             KeyNavigation.tab: fromBackupButton
             KeyNavigation.up: newRdvButton
@@ -172,13 +133,8 @@ Rectangle {
 
             preferredWidth: JamiTheme.wizardButtonWidth
 
-            text: JamiStrings.connectFromBackup
-            font.capitalization: Font.AllUppercase
-            toolTipText: JamiStrings.importAccountFromBackup
-            iconSource: JamiResources.backup_24dp_svg
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
+            text: JamiStrings.importAccountFromBackup
+            toolTipText: JamiStrings.connectFromBackup
 
             KeyNavigation.tab: showAdvancedButton
             KeyNavigation.up: fromDeviceButton
@@ -222,6 +178,28 @@ Rectangle {
                 connectAccountManagerButton.visible = showAdvanced
                 newSIPAccountButton.visible = showAdvanced
             }
+        }
+
+        MaterialButton {
+            id: newRdvButton
+
+            objectName: "newRdvButton"
+            secondary: true
+
+            Layout.alignment: Qt.AlignCenter
+
+            preferredWidth: JamiTheme.wizardButtonWidth
+            visible: false
+
+            text: JamiStrings.createNewRV
+            toolTipText: JamiStrings.createNewRV
+
+            KeyNavigation.tab: fromBackupButton
+            KeyNavigation.up: newAccountButton
+            KeyNavigation.down: KeyNavigation.tab
+
+            onClicked: WizardViewStepModel.startAccountCreationFlow(
+                           WizardViewStepModel.AccountCreationOption.CreateRendezVous)
         }
 
         MaterialButton {
