@@ -46,9 +46,7 @@ Switch {
         y: parent.height / 2 - height / 2
 
         radius: JamiTheme.switchIndicatorRadius
-
-        color: root.checked ? JamiTheme.switchBackgroundCheckedColor :
-                              JamiTheme.switchBackgroundColor
+        color: JamiTheme.switchBackgroundColor
         border.color: handleBackground.color
 
         Rectangle {
@@ -64,9 +62,8 @@ Switch {
 
             color: root.checked ? JamiTheme.switchHandleCheckedColor :
                                   JamiTheme.switchHandleColor
-            border.color: root.focus ? (root.checked ? JamiTheme.switchHandleCheckedBorderColor :
-                                                       JamiTheme.switchHandleBorderColor) :
-                                       JamiTheme.transparentColor
+            border.color: root.checked ? JamiTheme.switchHandleCheckedBorderColor :
+                                         JamiTheme.switchHandleBorderColor
         }
     }
 
