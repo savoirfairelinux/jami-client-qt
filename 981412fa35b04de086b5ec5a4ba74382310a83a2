@@ -1,0 +1,481 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "996b3d3b_c2d0ab9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Thank you",
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "476aa074_cb90e17d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Typo?\n\nShould `jamsDecription` be `jamsDescription`?",
+      "range": {
+        "startLine": 292,
+        "startChar": 20,
+        "endLine": 292,
+        "endChar": 34
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f28a9a10_f4c41066",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "`JAMS` \u003d Jami Account Management Server\nhttps://jami.biz/\n\nHence, does `JAMS account management server` mean `Jami Account Management Server account management server`?\n\nShould the string be:\n`Enter the Jami Account Management Server (JAMS) URL`\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 292,
+        "startChar": 42,
+        "endLine": 292,
+        "endChar": 93
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13391908_e8e26e80",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Typo?\n\nShould `you` be `your`?",
+      "range": {
+        "startLine": 296,
+        "startChar": 48,
+        "endLine": 296,
+        "endChar": 51
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c21c976_782f0daa",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Sorry, not sure what this refer to so this comment may not be required.\n\nShould `references` be plural?\n\nThank you",
+      "range": {
+        "startLine": 296,
+        "startChar": 57,
+        "endLine": 296,
+        "endChar": 67
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74114f37_754ff552",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "1. Should first person, i.e. `you`, be removed as the person setting up the account is different to the end-user?\n2. Should `word` be replaced with `identifier`?\n3. `without having chosen` can be simplified to `without choosing`\n4. `join Jami` seems strange as the program is called Jami and if we have understood correctly can be used locally - perhaps \u0027setup Jami`.\nIf it is a noun, please use `setup`.\nhttps://writingexplained.org/setup-vs-set-up-difference\n5. Does every account have a 40-character identified, irrespective of the username setting? If so, should `only` be added?\n\nIf so, would the following string work:\nAre you sure that you want to set up Jami without a username?\\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 320,
+        "startChar": 46,
+        "endLine": 320,
+        "endChar": 194
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcd65bfe_b1b2b4e9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Remove space ` `?",
+      "range": {
+        "startLine": 320,
+        "startChar": 121,
+        "endLine": 320,
+        "endChar": 122
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ef1bdc_9cdb514d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Should `your` be removed?\n\nShould the string be:\nPersonalize account\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 328,
+        "startChar": 46,
+        "endLine": 328,
+        "endChar": 70
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cd18372_fe1309fc",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Should `my` be removed?\n\nShould the string be:\nAdd SIP\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 329,
+        "startChar": 34,
+        "endLine": 329,
+        "endChar": 44
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb645bee_2130e90a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Can `a ` be removed?",
+      "range": {
+        "startLine": 347,
+        "startChar": 63,
+        "endLine": 347,
+        "endChar": 65
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4b64f87_c9744565",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Can `your` be deleted?",
+      "range": {
+        "startLine": 348,
+        "startChar": 54,
+        "endLine": 348,
+        "endChar": 59
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88efa7c3_48cf0341",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Should `an ` be removed?",
+      "range": {
+        "startLine": 476,
+        "startChar": 63,
+        "endLine": 476,
+        "endChar": 66
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67a56d5a_6d34a48e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "1. Should this be rewritten to remove first-person?\n2. Doesn\u0027t import imply that it imports on the device which the action is executed? If so, can ` on your device` be removed?\n\nShould the string be:\nDirectly import Jami account from archive file.\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 477,
+        "startChar": 62,
+        "endLine": 477,
+        "endChar": 140
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db37110b_c4bfd969",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Should `an ` be removed?",
+      "range": {
+        "startLine": 478,
+        "startChar": 52,
+        "endLine": 478,
+        "endChar": 55
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54e42da9_ed60355c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "1. Reword to remove first-person?\n2. Sorry, not sure what `NIP` means.\n3. Is ` on this device` required?\n\nFor example:\nTo use an existing Jami model on this device, NIP (define NIP) code required.",
+      "range": {
+        "startLine": 487,
+        "startChar": 55,
+        "endLine": 487,
+        "endChar": 144
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16d2dfaa_f7ce8777",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Leading zero `0` required?",
+      "range": {
+        "startLine": 488,
+        "startChar": 44,
+        "endLine": 488,
+        "endChar": 45
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb78553c_438491af",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Have not set up JAMS so maybe this is correct. We only have `Account Settings`, i.e. without `management`.",
+      "range": {
+        "startLine": 492,
+        "startChar": 53,
+        "endLine": 492,
+        "endChar": 80
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efd764f8_184066cc",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Remove `the `?",
+      "range": {
+        "startLine": 493,
+        "startChar": 50,
+        "endLine": 493,
+        "endChar": 54
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66355785_74b6f024",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Typo?\n\nShould `avalable` be `available`?",
+      "range": {
+        "startLine": 495,
+        "startChar": 64,
+        "endLine": 495,
+        "endChar": 72
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49f387eb_1b48fbb4",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "1. Sorry are we missing something? Isn\u0027t the `username` used to be contacted more easily. Isn\u0027t the identifier is a 40-character string?\n2. Is `don\u0027t hesitate` superfluous? Also, the subconscious reads it as `do hesitate` which is even worse.\n3. Should first-person `your` be changed to `this` as someone else may be setting up Jami for the end-user?\n\nShould the string be:\nShare this Jami username to be contacted more easily!\n\nOr should the string be:\nShare this Jami username to be contacted on this account!\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 593,
+        "startChar": 49,
+        "endLine": 593,
+        "endChar": 143
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "951a8143_26602fac",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-14T22:37:02Z",
+      "side": 1,
+      "message": "Should string be reworded to remove first-person, i.e. `your`?\n\nShould string be:\nThis profile is only shared with this account’s contacts\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 686,
+        "startChar": 52,
+        "endLine": 686,
+        "endChar": 98
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
