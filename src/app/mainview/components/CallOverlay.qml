@@ -80,6 +80,7 @@ Item {
 
     function closeContextMenuAndRelatedWindows() {
         ContactPickerCreation.closeContactPicker()
+        sipInputPanel.close()
         SelectScreenWindowCreation.destroySelectScreenWindow()
         ScreenRubberBandCreation.destroyScreenRubberBandWindow()
         PluginHandlerPickerCreation.closePluginHandlerPicker()
