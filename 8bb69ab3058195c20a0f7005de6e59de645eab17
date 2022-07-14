@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ea1acd69_f26a8a0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-07-14T23:48:50Z",
+      "side": 1,
+      "message": "One last thing: I just noticed firefox has Ctrl+_ (i.e. Ctrl+Shift+-) for zoom out as well, and I think it\u0027s good UX.  Let\u0027s add that as well, for convenience/consistency with Ctrl+\u003d.\n\nOtherwise LGTM.  Thanks again :)",
+      "revId": "8bb69ab3058195c20a0f7005de6e59de645eab17",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5ced3cb_20fed9cd",
         "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
         "patchSetId": 9

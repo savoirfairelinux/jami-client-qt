@@ -52,6 +52,24 @@
       "parentUuid": "6f91e207_abab48be",
       "revId": "09b018933873c381298be622b0d91d9e7fcc83bc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3432783_df3bf828",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-07-14T23:48:50Z",
+      "side": 1,
+      "message": "1. I see. Ack; makes sense. That said, I hope we can (later in a separate patch?) go the extra mile and make the experience even better by adding those small up and down buttons and making the up and down arrow keys on the keyboard increase and decrease the zoom.\n\n2. Ack.\n\n3. Thanks.\n\n4. Thanks, and agreed about not listing Ctrl+\u003d explicitly, just having it work like Ctrl++ is good enough to me.\n\n6. Ack.",
+      "parentUuid": "1d8303ac_57d81a97",
+      "revId": "09b018933873c381298be622b0d91d9e7fcc83bc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
