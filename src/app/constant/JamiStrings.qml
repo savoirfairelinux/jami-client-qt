@@ -289,6 +289,7 @@ Item {
 
     // ConnectToAccountManager
     property string enterJAMSURL: qsTr("Enter Jami Account Management Server (JAMS) URL")
+    property string jamsDescription: qsTr("JAMS Account Management Server")
     property string required: qsTr("Required")
     property string jamiManagementServerURL: qsTr("Jami Account Management Server URL")
     property string jamsCredentials: qsTr("Enter your JAMS credentials")
@@ -299,6 +300,9 @@ Item {
     // CreateAccountPage
     property string chooseName: qsTr("Choose name")
     property string chooseUsername: qsTr("Choose username")
+    property string chooseAUsername: qsTr("Choose a username")
+    property string chooseIdentifier: qsTr("Choose an identifier")
+    property string identifierNotAvailable: qsTr("The identifier is not available")
     property string createPassword: qsTr("Encrypt account with password")
     property string createAccount: qsTr("Create account")
     property string confirmPassword: qsTr("Confirm password")
@@ -312,12 +316,16 @@ Item {
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
+    property string joinJamiNoPassword: qsTr("Are you sure that you want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
 
     // CreateSIPAccountPage
+    property string sipAccount: qsTr("SIP account")
     property string proxy: qsTr("Proxy")
     property string server: qsTr("Server")
     property string createSIPAccount: qsTr("Create SIP account")
     property string configureExistingSIP: qsTr("Configure an existing SIP account")
+    property string personalizeAccount: qsTr("Personalize account")
+    property string addSip: qsTr("Add SIP account")
 
     // CurrentAccountSettings && AdvancedSettings
     property string backupSuccessful: qsTr("Backup successful")
@@ -334,6 +342,9 @@ Item {
     property string tipAdvancedSettingsDisplay: qsTr("Display advanced settings")
     property string tipAdvancedSettingsHide: qsTr("Hide advanced settings")
     property string enableAccount: qsTr("Enable account")
+    property string advancedAccountSettings: qsTr("Advanced account settings")
+    property string encryptAccount: qsTr("Encrypt account with password")
+    property string customizeProfile: qsTr("Customize profile")
 
     // NameRegistrationDialog
     property string setUsername: qsTr("Set username")
@@ -462,13 +473,27 @@ Item {
     property string connectFromBackup: qsTr("Restore an account from backup")
     property string generatingAccount: qsTr("Generating account…")
     property string importFromBackup: qsTr("Import from backup")
+    property string importFromArchiveBackup: qsTr("Import from archive backup")
+    property string importFromArchiveBackupDescription: qsTr("Import Jami account from archive file.")
+    property string selectArchiveFile: qsTr("Select archive file")
 
     // ImportFromDevicePage
     property string mainAccountPassword: qsTr("Enter Jami account password")
     property string enterPIN: qsTr("Enter the PIN from another configured Jami account. " +
                                 "Use the \"Link Another Device\" feature to obtain a PIN.")
     property string connectFromAnotherDevice: qsTr("Link device")
+    property string importButton: qsTr("Import")
     property string pin: qsTr("PIN")
+    property string importFromDeviceDescription: qsTr("To use an existing Jami account on this device, you need to obtain a PIN.")
+    property string importStep1: qsTr("Step 1")
+    property string importStep2: qsTr("Step 2")
+    property string importStep3: qsTr("Step 3")
+    property string importStep4: qsTr("Step 4")
+    property string importStep1Desc: qsTr("Go to the Account Settings of a previous device")
+    property string importStep2Desc: qsTr("Choose Jami account to use")
+    property string importStep3Desc: qsTr("Select “Link another device”")
+    property string importStep4Desc: qsTr("The PIN code will be available for 10 minutes.")
+
 
     // LinkDevicesDialog
     property string pinTimerInfos: qsTr("The PIN and the account password should be entered in your device within 10 minutes.")
@@ -543,7 +568,7 @@ Item {
     // WelcomePage
     property string shareInvite: qsTr("This is your Jami username.\nCopy and share it with your friends!")
     property string linkFromAnotherDevice: qsTr("Link this device to an existing account")
-    property string importAccountFromOtherDevice: qsTr("Import from another device")
+    property string importAccountFromAnotherDevice: qsTr("Import from another device")
     property string importAccountFromBackup: qsTr("Import from an archive backup")
     property string advancedFeatures: qsTr("Advanced features")
     property string showAdvancedFeatures: qsTr("Show advanced features")
@@ -564,6 +589,8 @@ Item {
     property string useExistingAccount: qsTr("Use existing Jami account")
     property string recommendationMessage: qsTr("Here are some recommendations to improve your experience on Jami")
     property string noRecommendations: qsTr("Never show recommendations again")
+    property string welcomeToJami: qsTr("Welcome to Jami")
+    property string identifierDescription: qsTr("Share this Jami identifier to be contacted on this account!")
 
     // SmartList
     property string clearText: qsTr("Clear Text")
@@ -651,4 +678,11 @@ Item {
     property string administrator: qsTr("Administrator")
     property string invited: qsTr("Invited")
     property string removeMember: qsTr("Remove member")
+
+    //TipBox
+    property string customize: qsTr("Customize")
+    property string tips: qsTr("Tips")
+    property string customizeText: qsTr("Add a picture and a nickname to complete your profile")
+    property string customizationDescription: qsTr("This profile is only shared with this account’s contacts")
+
 }

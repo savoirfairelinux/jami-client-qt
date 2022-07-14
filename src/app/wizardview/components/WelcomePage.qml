@@ -27,7 +27,7 @@ import net.jami.Constants 1.1
 
 import "../../commoncomponents"
 
-//TO DO Focus Nav+ bold
+
 Rectangle {
     id: root
 
@@ -38,7 +38,6 @@ Rectangle {
 
     signal scrollToBottom
     signal showThisPage
-
 
     color: JamiTheme.transparentColor
     opacity: 0.93
@@ -65,14 +64,18 @@ Rectangle {
     ColumnLayout {
         id: welcomePageColumnLayout
 
-        anchors.centerIn: parent
-
         spacing: JamiTheme.wizardViewPageLayoutSpacing
+
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
 
         ResponsiveImage {
             id: welcomeLogo
 
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignCenter | Qt.AlignTop
+
             Layout.preferredWidth: JamiTheme.welcomeLogoWidth
             Layout.preferredHeight: JamiTheme.welcomeLogoHeight
 
@@ -88,13 +91,12 @@ Rectangle {
 
             wrapMode : Text.WordWrap
             Layout.preferredWidth: 350
-
             text: JamiStrings.introductionJami
             color: JamiTheme.textColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
-            font.pixelSize: 26
+            font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
             font.kerning: true
         }
 
@@ -111,12 +113,11 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             wrapMode : Text.WordWrap
+            lineHeight: 1.4
 
-            font.pixelSize: 15
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             font.kerning: true
         }
-
-
 
         MaterialButton {
             id: newAccountButton
@@ -147,7 +148,6 @@ Rectangle {
 
             objectName: "alreadyHaveAccount"
             primary: true
-
 
             preferredWidth: JamiTheme.wizardButtonWidth
             Layout.alignment: Qt.AlignCenter
@@ -190,8 +190,8 @@ Rectangle {
             preferredWidth: JamiTheme.wizardButtonWidth
             visible: false
 
-            text: JamiStrings.linkFromAnotherDevice
-            toolTipText: JamiStrings.importAccountFromOtherDevice
+            text: JamiStrings.importAccountFromAnotherDevice
+            toolTipText: JamiStrings.linkFromAnotherDevice
 
             KeyNavigation.tab: fromBackupButton
             KeyNavigation.up: newRdvButton
@@ -212,8 +212,8 @@ Rectangle {
             preferredWidth: JamiTheme.wizardButtonWidth
             visible: false
 
-            text: JamiStrings.connectFromBackup
-            toolTipText: JamiStrings.importAccountFromBackup
+            text: JamiStrings.importAccountFromBackup
+            toolTipText: JamiStrings.connectFromBackup
 
             KeyNavigation.tab: showAdvancedButton
             KeyNavigation.up: newAccountButton
@@ -268,7 +268,7 @@ Rectangle {
             preferredWidth: JamiTheme.wizardButtonWidth
             visible: false
 
-            text: JamiStrings.createRV
+            text: JamiStrings.createNewRV
             toolTipText: JamiStrings.createNewRV
 
             KeyNavigation.tab: fromBackupButton
@@ -358,7 +358,5 @@ Rectangle {
         onClicked: WizardViewStepModel.previousStep()
 
     }
-
-
 
 }

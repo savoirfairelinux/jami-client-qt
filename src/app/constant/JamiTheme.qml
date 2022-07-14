@@ -121,10 +121,6 @@ Item {
     property color secondaryButtonBorderColor: Qt.rgba(0,0.34,0.6,0.36)
     property color secAndTertiHoveredBackgroundColor: Qt.rgba(0,0.34,0.6,0.1)
 
-    //property color backButtonNormalColor:
-    //property color backButtonImageColor:
-
-
     property color closeButtonLighterBlack: "#4c4c4c"
 
     // Jami switch
@@ -320,12 +316,16 @@ Item {
     property real lineEditContextMenuSeparatorsHeight: 2
 
 
-
     // Jami switch
     property real switchIndicatorRadius: 30
     property real switchPreferredHeight: 25
     property real switchPreferredWidth: 48
     property real switchIndicatorPreferredWidth: 26
+
+    // Jami Identifier
+    property color mainColor: "#005699"
+    property real pushButtonSize: 22
+    property real pushButtonMargin: 10
 
     // Modal Popup
     property real modalPopupRadius: 20
@@ -378,22 +378,30 @@ Item {
     property real invitationViewButtonsSpacing: 30
 
     // MainView
+    property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
     property real welcomeRectSideMargins: 45
     property real welcomeRectTopMargin: 90
     property real jamiIdMargins: 36
     property color rectColor: Qt.rgba(0,0.34,0.6,0.16)
+    property color welcomeText: darkTheme ? "#0071c9" : "#002B4A"
+    property real illustrationWidth: 212
+    property real illustrationHeight: 244
 
 
     // WizardView
     property real wizardViewPageLayoutSpacing: 12
     property real wizardViewPageBackButtonMargins: 20
     property real wizardViewPageBackButtonSize: 35
+    property real wizardViewTitleFontPixelSize: 26
+    property real wizardViewDescriptionFontPixelSize: 15
+    property real wizardViewLayoutTopMargin: 38
 
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30
-    property real welcomeLogoWidth: 330
-    property real welcomeLogoHeight: 110
+    property real welcomeLogoWidth: 75
+    property real welcomeLogoHeight: 70
     property real wizardButtonWidth: 400
+
 
     // MaterialLineEdit
     property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
