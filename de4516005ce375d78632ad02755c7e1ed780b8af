@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "591d39c4_8a664732",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T14:57:56Z",
+      "side": 1,
+      "message": "some notes, else LGTM",
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e708836a_467a59ea",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T14:57:56Z",
+      "side": 1,
+      "message": "maybe use .arg(idx) here (also remove the trailing if possible)",
+      "range": {
+        "startLine": 58,
+        "startChar": 26,
+        "endLine": 58,
+        "endChar": 55
+      },
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d51a15_bc9b11e9",
+        "filename": "src/app/settingsview/components/AdvancedCallSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T14:57:56Z",
+      "side": 1,
+      "message": "maybe .arg too here",
+      "range": {
+        "startLine": 58,
+        "startChar": 23,
+        "endLine": 58,
+        "endChar": 87
+      },
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc64345b_dbc84461",
+        "filename": "src/app/settingsview/components/AdvancedJamiSecuritySettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T14:57:56Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 44,
+        "startChar": 42,
+        "endLine": 44,
+        "endChar": 59
+      },
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f1b6e9b_d50235ee",
+        "filename": "src/app/settingsview/components/AdvancedSIPSecuritySettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-14T14:57:56Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 45,
+        "startChar": 39,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
