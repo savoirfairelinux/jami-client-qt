@@ -165,11 +165,6 @@ Rectangle {
                 mainViewStack.pop(welcomePage, StackView.Immediate)
                 mainViewStack.push(settingsView, StackView.Immediate)
                 sidePanelViewStack.push(settingsMenu, StackView.Immediate)
-
-                var windowCurrentMinimizedSize = settingsViewPreferredWidth
-                        + sidePanelViewStackCurrentWidth + onWidthChangedTriggerDistance
-                if (appWindow.width < windowCurrentMinimizedSize)
-                    appWindow.width = windowCurrentMinimizedSize
             }
         } else {
             sidePanelViewStack.pop(StackView.Immediate)
