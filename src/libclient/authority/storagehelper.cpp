@@ -293,7 +293,7 @@ setProfile(const QString& accountId, const api::profile::Info& profileInfo, cons
     auto dir = fileInfo.dir();
     if (!dir.exists()) {
         if (!std::filesystem::create_directory(dir.path().toStdString())) {
-            qWarning() << "Cannot create " << dir.path().toStdString();
+            qWarning() << "Cannot create " << dir.path();
         }
     }
     if (!lf.lock()) {
