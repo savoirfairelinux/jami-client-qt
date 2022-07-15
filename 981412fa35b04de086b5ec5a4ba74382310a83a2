@@ -457,6 +457,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e713b78_a36653c5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-15T13:46:30Z",
+      "side": 1,
+      "message": "the id can be both username and fingerprint as it\u0027s both unique and in the welcome view you will have the username or the fingerprint if no username",
+      "parentUuid": "49f387eb_1b48fbb4",
+      "range": {
+        "startLine": 593,
+        "startChar": 49,
+        "endLine": 593,
+        "endChar": 143
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "951a8143_26602fac",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 1
