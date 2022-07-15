@@ -70,6 +70,24 @@
       "parentUuid": "0db255e2_8b500d72",
       "revId": "6da850ddc75a2d068ef4cb6c01e524096eaa6a61",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2de07346_f05b427e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-15T02:34:10Z",
+      "side": 1,
+      "message": "There is a Mozilla string `Text Zoom (%zoom% %)`, which is better than `Zoom Text`\n\nhttps://transvision.mozfr.org/?recherche\u003dtext+zoom\u0026repo\u003dgecko_strings\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings\n\nAnother variant is `Text Zoom: \u003cd\u003e%`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dtext%20zoom\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nHope this helps.\n\nThank you once again",
+      "parentUuid": "d95b2491_1ee28380",
+      "revId": "6da850ddc75a2d068ef4cb6c01e524096eaa6a61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
