@@ -479,6 +479,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d280bd_20412130",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-15T20:13:12Z",
+      "side": 1,
+      "message": "Thank you for your clarification.\n\nIf understood correctly:\n\nIdentifier ∈ {Username, Fingerprint}\ni.e. Identifier an element from the set {Username, Fingerprint}, where Username takes precedence\n\nIn Jami, Settings, Account, Identity, should `Identifier` be renamed `Fingerprint`?\n\nThank you",
+      "parentUuid": "7e713b78_a36653c5",
+      "range": {
+        "startLine": 593,
+        "startChar": 49,
+        "endLine": 593,
+        "endChar": 143
+      },
+      "revId": "981412fa35b04de086b5ec5a4ba74382310a83a2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "951a8143_26602fac",
