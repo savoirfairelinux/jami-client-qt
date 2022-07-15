@@ -52,6 +52,24 @@
       "parentUuid": "eb531a9b_0f11f73b",
       "revId": "6da850ddc75a2d068ef4cb6c01e524096eaa6a61",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95b2491_1ee28380",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-15T02:30:24Z",
+      "side": 1,
+      "message": "Should the string be `Zoom text`?\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dzoom%20text\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nIn FireFox, the Menu Bar, View, Zoom has a `Zoom Text Only` option.\n\nWhat do you think?\n\nThank you",
+      "parentUuid": "0db255e2_8b500d72",
+      "revId": "6da850ddc75a2d068ef4cb6c01e524096eaa6a61",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
