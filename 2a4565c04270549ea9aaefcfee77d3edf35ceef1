@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9475ed5_d89db84d",
+        "filename": "src/app/commoncomponents/SettingParaCombobox.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-15T13:25:19Z",
+      "side": 0,
+      "message": "qrc:/src/app/commoncomponents/PreferenceItemDelegate.qml:157:13: Cannot assign to non-existent property \"comboBoxBackgroundColor\"",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 74
+      },
+      "revId": "2a4565c04270549ea9aaefcfee77d3edf35ceef1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

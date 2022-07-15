@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41bfad80_fa75dadf",
+        "filename": "src/app/commoncomponents/JamiSwitch.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-15T13:25:19Z",
+      "side": 1,
+      "message": "I think some colors are missing, the switch seems not the same as Charlotte\u0027s design\n\nAlso the selected items in the left panel also got a different blue.",
+      "range": {
+        "startLine": 49,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 46
+      },
+      "revId": "d31f6c07b35d49e75de2af092607cf088c3eeb51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a69c53e5_37fcb4b9",
+        "filename": "src/app/commoncomponents/PushButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-15T13:25:19Z",
+      "side": 1,
+      "message": "remove comment",
+      "range": {
+        "startLine": 59,
+        "startChar": 67,
+        "endLine": 59,
+        "endChar": 88
+      },
+      "revId": "d31f6c07b35d49e75de2af092607cf088c3eeb51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8d31b72_c0a6f363",
+        "filename": "src/app/commoncomponents/SettingParaCombobox.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-07-15T13:25:19Z",
+      "side": 1,
+      "message": "seems a pretty magic number",
+      "range": {
+        "startLine": 117,
+        "startChar": 52,
+        "endLine": 117,
+        "endChar": 55
+      },
+      "revId": "d31f6c07b35d49e75de2af092607cf088c3eeb51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
