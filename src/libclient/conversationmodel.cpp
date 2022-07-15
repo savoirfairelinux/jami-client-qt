@@ -2580,25 +2580,27 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
         } catch (...) {
         }
 
+        removeConversation();
+
         if (conversation.mode == conversation::Mode::ONE_TO_ONE) {
-            removeConversation();
 
             // If it's a 1:1 conversation and we don't have any more conversation
             // we can remove the contact
-            auto conv = storage::getConversationsWithPeer(db, contactUri);
-            if (conv.empty())
-                linked.owner.contactModel->removeContact(contactUri, false);
+            auto contactRemoved = true;
+            try {
+                auto& conv = getConversationForPeerUri(contactUri).get();
+                contactRemoved = !conv.isSwarm();
+            } catch (...) {}
 
-            if (contact.isBanned && conv.empty()) {
+            if (contact.isBanned && contactRemoved) {
                 // Add 1:1 conv for banned
                 auto c = storage::beginConversationWithPeer(db, contactUri);
                 addConversationWith(c, contactUri, false);
                 Q_EMIT linked.conversationReady(c, contactUri);
                 Q_EMIT linked.newConversation(c);
             }
-        } else {
-            removeConversation();
         }
+
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
