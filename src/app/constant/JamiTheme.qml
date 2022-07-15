@@ -367,6 +367,11 @@ Item {
     property real invitationViewButtonIconSize: 24
     property real invitationViewButtonsSpacing: 30
 
+    //JamiIdentifier
+    property real jamiIdMargins: 36
+    property real jamiIdLogoWidth: 70
+    property real jamiIdLogoHeight: 24
+
     // WizardView
     property real wizardViewPageLayoutSpacing: 12
     property real wizardViewPageBackButtonMargins: 20
