@@ -292,7 +292,9 @@ setProfile(const QString& accountId, const api::profile::Info& profileInfo, cons
     QFileInfo fileInfo(path);
     auto dir = fileInfo.dir();
     if (!dir.exists()) {
-        dir.mkdir(".");
+        if (!std::filesystem::create_directory(dir.path().toStdString())) {
+            qWarning() << "Cannot create " << dir.path().toStdString();
+        }
     }
     if (!lf.lock()) {
         qWarning().noquote() << "Can't lock file for writing: " << file.fileName();
