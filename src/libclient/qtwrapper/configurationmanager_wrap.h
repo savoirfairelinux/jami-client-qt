@@ -889,11 +889,6 @@ public Q_SLOTS: // METHODS
                                                   transfer_id.toStdString()));
     }
 
-    void enableProxyClient(const QString& accountID, bool enable)
-    {
-        DRing::enableProxyClient(accountID.toStdString(), enable);
-    }
-
     void setPushNotificationToken(const QString& token)
     {
         DRing::setPushNotificationToken(token.toStdString());
