@@ -120,7 +120,7 @@ ItemDelegate {
                 Layout.leftMargin: editDeviceName.leftPadding
 
                 elide: Text.ElideRight
-                font.pointSize: JamiTheme.tinyFontSize
+                font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
                 text: deviceId === "" ? qsTr("Device Id") : deviceId
             }
