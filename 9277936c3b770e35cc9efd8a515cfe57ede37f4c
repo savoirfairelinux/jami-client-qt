@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "019266ab_946048b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-07-18T12:08:36Z",
+      "side": 1,
+      "message": "I just tested again, and last thing thing:\n\nIf I change the text zoom outside of settings view e.g. using Ctrl++\nthen go back to the settings view, the old value is still being\ndisplayed in the zoom textfield.",
+      "revId": "9277936c3b770e35cc9efd8a515cfe57ede37f4c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
