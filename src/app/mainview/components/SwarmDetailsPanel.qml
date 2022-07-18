@@ -93,7 +93,8 @@ Rectangle {
                         JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
-                    ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, titleLine.text)
+                    if (text !== CurrentConversation.title)
+                        ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, text)
                 }
             }
 
@@ -132,7 +133,8 @@ Rectangle {
                         JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
-                    ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, descriptionLine.text)
+                    if (text !== CurrentConversation.description)
+                        ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, text)
                 }
             }
 

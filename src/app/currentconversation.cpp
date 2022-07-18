@@ -117,6 +117,16 @@ CurrentConversation::onConversationUpdated(const QString& convId)
 }
 
 void
+CurrentConversation::onProfileUpdated(const QString& convId)
+{
+    // filter for our currently set id
+    if (id_ != convId)
+        return;
+    set_title(lrcInstance_->getCurrentConversationModel()->title(convId));
+    set_description(lrcInstance_->getCurrentConversationModel()->description(convId));
+}
+
+void
 CurrentConversation::connectModel()
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
@@ -127,5 +137,10 @@ CurrentConversation::connectModel()
             &ConversationModel::conversationUpdated,
             this,
             &CurrentConversation::onConversationUpdated,
+            Qt::UniqueConnection);
+    connect(lrcInstance_->getCurrentConversationModel(),
+            &ConversationModel::profileUpdated,
+            this,
+            &CurrentConversation::onProfileUpdated,
             Qt::UniqueConnection);
 }

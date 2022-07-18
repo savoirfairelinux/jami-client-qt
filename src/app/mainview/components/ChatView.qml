@@ -32,9 +32,6 @@ import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 Rectangle {
     id: root
 
-    property string headerUserAliasLabelText: ""
-    property string headerUserUserNameLabelText: ""
-
     property bool allMessagesLoaded
 
     signal needToHideConversationInCall
@@ -62,9 +59,6 @@ Rectangle {
             Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
             Layout.maximumHeight: JamiTheme.chatViewHeaderPreferredHeight
             Layout.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
-
-            userAliasLabelText: headerUserAliasLabelText
-            userUserNameLabelText: headerUserUserNameLabelText
 
             DropArea {
                 anchors.fill: parent

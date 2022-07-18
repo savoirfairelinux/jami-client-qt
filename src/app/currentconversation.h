@@ -57,6 +57,7 @@ public:
 private Q_SLOTS:
     void updateData();
     void onConversationUpdated(const QString& convId);
+    void onProfileUpdated(const QString& convId);
 
 private:
     LRCInstance* lrcInstance_;
