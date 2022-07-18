@@ -425,7 +425,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Private key</source>
-        <translation type="unfinished"/>
+        <translation>Kunci privat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
@@ -450,7 +450,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="102"/>
         <source>TLS protocol method</source>
-        <translation type="unfinished"/>
+        <translation>Metode protokol TLS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="103"/>
@@ -490,7 +490,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="149"/>
         <source>Enable local peer discovery</source>
-        <translation type="unfinished"/>
+        <translation>Mengaktifkan penemuan rekan lokal</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
@@ -1176,12 +1176,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>Start video call</source>
-        <translation type="unfinished"/>
+        <translation>Mulai panggilan video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>Start audio call</source>
-        <translation type="unfinished"/>
+        <translation>Mulai panggilan audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
