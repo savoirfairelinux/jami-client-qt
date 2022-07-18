@@ -29,14 +29,18 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property string userAliasLabelText
-    property string userUserNameLabelText
-
     signal backClicked
     signal needToHideConversationInCall
     signal addToConversationClicked
     signal pluginSelector
     signal showDetailsClicked
+
+    Connections {
+        target: CurrentConversation
+        enabled: true
+        function onTitleChanged() { title.eText = CurrentConversation.title }
+        function onDescriptionChanged() { description.eText = CurrentConversation.description }
+    }
 
     property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
@@ -109,7 +113,7 @@ Rectangle {
                 spacing: 0
 
                 ElidedTextLabel {
-                    id: userAliasLabel
+                    id: title
 
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
@@ -118,23 +122,23 @@ Rectangle {
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
 
-                    eText: userAliasLabelText
+                    eText: CurrentConversation.title
                     maxWidth: userNameOrIdRect.width
                 }
 
                 ElidedTextLabel {
-                    id: userUserNameLabel
+                    id: description
 
                     Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
                     visible: text.length &&
-                             userAliasLabelText != userUserNameLabelText
+                             CurrentConversation.title != CurrentConversation.description
                     font.pointSize: JamiTheme.textFontSize
                     color: JamiTheme.faddedLastInteractionFontColor
 
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
-                    eText: userUserNameLabelText
+                    eText: CurrentConversation.description
                     maxWidth: userNameOrIdRect.width
                 }
             }
