@@ -309,6 +309,11 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &CallbacksHandler::slotMessageReceived,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::conversationProfileUpdated,
+            this,
+            &CallbacksHandler::slotConversationProfileUpdated,
+            Qt::QueuedConnection);
+    connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::conversationRequestReceived,
             this,
             &CallbacksHandler::slotConversationRequestReceived,
@@ -741,6 +746,14 @@ CallbacksHandler::slotMessageReceived(const QString& accountId,
                                       const MapStringString& message)
 {
     Q_EMIT messageReceived(accountId, conversationId, message);
+}
+
+void
+CallbacksHandler::slotConversationProfileUpdated(const QString& accountId,
+                                                 const QString& conversationId,
+                                                 const MapStringString& profile)
+{
+    Q_EMIT conversationProfileUpdated(accountId, conversationId, profile);
 }
 
 void
