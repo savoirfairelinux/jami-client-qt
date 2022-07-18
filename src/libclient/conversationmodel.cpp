@@ -363,6 +363,9 @@ public Q_SLOTS:
     void slotMessageReceived(const QString& accountId,
                              const QString& conversationId,
                              const MapStringString& message);
+    void slotConversationProfileUpdated(const QString& accountId,
+                                        const QString& conversationId,
+                                        const MapStringString& profile);
     void slotConversationRequestReceived(const QString& accountId,
                                          const QString& conversationId,
                                          const MapStringString& metadatas);
@@ -1805,6 +1808,10 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             this,
             &ConversationModelPimpl::slotMessageReceived);
     connect(&callbacksHandler,
+            &CallbacksHandler::conversationProfileUpdated,
+            this,
+            &ConversationModelPimpl::slotConversationProfileUpdated);
+    connect(&callbacksHandler,
             &CallbacksHandler::conversationRequestReceived,
             this,
             &ConversationModelPimpl::slotConversationRequestReceived);
@@ -1940,6 +1947,10 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &CallbacksHandler::messageReceived,
                this,
                &ConversationModelPimpl::slotMessageReceived);
+    disconnect(&callbacksHandler,
+               &CallbacksHandler::conversationProfileUpdated,
+               this,
+               &ConversationModelPimpl::slotConversationProfileUpdated);
     disconnect(&callbacksHandler,
                &CallbacksHandler::conversationRequestReceived,
                this,
@@ -2340,15 +2351,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
     }
     try {
         auto& conversation = getConversationForUid(conversationId).get();
-        if (message["type"].isEmpty()) {
-            return;
-        }
-        if (message["type"] == "application/update-profile") {
-            // Refresh infos
-            MapStringString details = ConfigurationManager::instance()
-                                          .conversationInfos(linked.owner.id, conversationId);
-            conversation.infos = details;
-            Q_EMIT linked.profileUpdated(conversationId);
+        if (message["type"].isEmpty() || message["type"] == "application/update-profile") {
             return;
         }
         if (message["type"] == "initial") {
@@ -2425,6 +2428,22 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         Q_EMIT linked.dataChanged(indexOf(conversationId));
     } catch (const std::exception& e) {
         qDebug() << "messages received for not existing conversation";
+    }
+}
+
+void
+ConversationModelPimpl::slotConversationProfileUpdated(const QString& accountId,
+                                                       const QString& conversationId,
+                                                       const MapStringString& profile)
+{
+    if (accountId != linked.owner.id) {
+        return;
+    }
+    try {
+        auto& conversation = getConversationForUid(conversationId).get();
+        conversation.infos = profile;
+        Q_EMIT linked.profileUpdated(conversationId);
+    } catch (...) {
     }
 }
 
@@ -2583,14 +2602,14 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
         removeConversation();
 
         if (conversation.mode == conversation::Mode::ONE_TO_ONE) {
-
             // If it's a 1:1 conversation and we don't have any more conversation
             // we can remove the contact
             auto contactRemoved = true;
             try {
                 auto& conv = getConversationForPeerUri(contactUri).get();
                 contactRemoved = !conv.isSwarm();
-            } catch (...) {}
+            } catch (...) {
+            }
 
             if (contact.isBanned && contactRemoved) {
                 // Add 1:1 conv for banned
