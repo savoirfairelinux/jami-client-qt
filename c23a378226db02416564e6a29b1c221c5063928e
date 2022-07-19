@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a6ae8e5_6ad236c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-07-19T14:28:04Z",
+      "side": 1,
+      "message": "This part of the commit message title should include a verb describing what the commit is doing. For instance:\n- adding JamiSwitch\n- removing Combobox and PushButton\n- restyling/refactoring to ...",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "c23a378226db02416564e6a29b1c221c5063928e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
