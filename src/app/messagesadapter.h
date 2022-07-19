@@ -58,6 +58,7 @@ class MessagesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_RO_PROPERTY(QVariant, messageListModel)
+    QML_PROPERTY(QString, replyToId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
 
 public:
@@ -111,6 +112,8 @@ protected:
     Q_INVOKABLE void onPaste();
     Q_INVOKABLE QString getStatusString(int status);
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
+    Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
+                                            int role = Qt::DisplayRole) const;
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);

@@ -366,6 +366,16 @@ MessageListModel::dataForItem(item_t item, int, int role) const
 }
 
 QVariant
+MessageListModel::data(int idx, int role) const
+{
+    QModelIndex index = QAbstractListModel::index(idx, 0);
+    if (!index.isValid() || index.row() < 0 || index.row() >= rowCount()) {
+        return {};
+    }
+    return dataForItem(interactions_.at(index.row()), index.row(), role);
+}
+
+QVariant
 MessageListModel::data(const QModelIndex& index, int role) const
 {
     if (!index.isValid() || index.row() < 0 || index.row() >= rowCount()) {

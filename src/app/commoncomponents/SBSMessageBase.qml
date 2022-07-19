@@ -119,9 +119,16 @@ Control {
                     z:-1
                     out: isOutgoing
                     type: seq
-                    color: isOutgoing ?
-                               JamiTheme.messageOutBgColor :
-                               CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                    color: {
+                        var baseColor = isOutgoing ? JamiTheme.messageOutBgColor : JamiTheme.messageInBgColor
+                        if (Id === MessagesAdapter.replyToId) {
+                            // If we are replying to
+                            return Qt.darker(baseColor, 1.5)
+                        }
+                        return isOutgoing ?
+                                    JamiTheme.messageOutBgColor :
+                                    CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                    }
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
@@ -183,6 +190,7 @@ Control {
     SBSContextMenu {
         id: ctxMenu
 
+        msgId: Id
         location: root.location
         transferId: root.transferId
         transferName: root.transferName
@@ -191,11 +199,11 @@ Control {
     MouseArea {
         id: itemMouseArea
         anchors.fill: parent
-        z: -1
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: function (mouse) {
 
-            if (mouse.button === Qt.RightButton && transferId !== "") {
+            if (mouse.button === Qt.RightButton
+                && (transferId !== "" || Type === Interaction.Type.TEXT)) {
                 // Context Menu for Transfers
                 ctxMenu.x = mouse.x
                 ctxMenu.y = mouse.y

@@ -52,6 +52,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , filteredMsgListModel_(new FilteredMsgListModel(this))
 {
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+        set_replyToId("");
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
@@ -135,7 +136,8 @@ MessagesAdapter::sendMessage(const QString& message)
 {
     try {
         const auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message);
+        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+        set_replyToId("");
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
@@ -300,6 +302,17 @@ MessagesAdapter::getTransferStats(const QString& msgId, int status)
     lrc::api::datatransfer::Info info = {};
     convModel->getTransferInfo(lrcInstance_->get_selectedConvUid(), msgId, info);
     return {{"totalSize", qint64(info.totalSize)}, {"progress", qint64(info.progress)}};
+}
+
+QVariant
+MessagesAdapter::dataForInteraction(const QString& interactionId, int role) const
+{
+    if (auto* model = static_cast<MessageListModel*>(filteredMsgListModel_->sourceModel())) {
+        auto idx = model->indexOfMessage(interactionId);
+        if (idx != -1)
+            return model->data(idx, role);
+    }
+    return {};
 }
 
 void
@@ -486,8 +499,10 @@ MessagesAdapter::isLocalImage(const QString& mimename)
         QImageReader reader;
         QList<QByteArray> supportedFormats = reader.supportedImageFormats();
         auto iterator = std::find_if(supportedFormats.begin(),
-                                    supportedFormats.end(),
-                                    [fileFormat](QByteArray format) { return format == fileFormat; });
+                                     supportedFormats.end(),
+                                     [fileFormat](QByteArray format) {
+                                         return format == fileFormat;
+                                     });
         return {{"isImage", iterator != supportedFormats.end()}};
     }
     return {{"isImage", false}};
