@@ -183,6 +183,7 @@ Control {
     SBSContextMenu {
         id: ctxMenu
 
+        msgId: Id
         location: root.location
         transferId: root.transferId
         transferName: root.transferName
@@ -195,7 +196,8 @@ Control {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: function (mouse) {
 
-            if (mouse.button === Qt.RightButton && transferId !== "") {
+            if (mouse.button === Qt.RightButton
+                && (transferId !== "" || Type === Interaction.Type.TEXT)) {
                 // Context Menu for Transfers
                 ctxMenu.x = mouse.x
                 ctxMenu.y = mouse.y

@@ -302,6 +302,17 @@ MessagesAdapter::getTransferStats(const QString& msgId, int status)
     return {{"totalSize", qint64(info.totalSize)}, {"progress", qint64(info.progress)}};
 }
 
+QVariant
+MessagesAdapter::dataForInteraction(const QString& interactionId, int role) const
+{
+    if (auto* model = static_cast<MessageListModel*>(filteredMsgListModel_->sourceModel())) {
+        auto idx = model->indexOfMessage(interactionId);
+        if (idx != -1)
+            return model->data(idx, role);
+    }
+    return {};
+}
+
 void
 MessagesAdapter::userIsComposing(bool isComposing)
 {
@@ -486,8 +497,10 @@ MessagesAdapter::isLocalImage(const QString& mimename)
         QImageReader reader;
         QList<QByteArray> supportedFormats = reader.supportedImageFormats();
         auto iterator = std::find_if(supportedFormats.begin(),
-                                    supportedFormats.end(),
-                                    [fileFormat](QByteArray format) { return format == fileFormat; });
+                                     supportedFormats.end(),
+                                     [fileFormat](QByteArray format) {
+                                         return format == fileFormat;
+                                     });
         return {{"isImage", iterator != supportedFormats.end()}};
     }
     return {{"isImage", false}};
