@@ -144,3 +144,9 @@ CurrentConversation::connectModel()
             &CurrentConversation::onProfileUpdated,
             Qt::UniqueConnection);
 }
+
+void
+CurrentConversation::scrollToMsg(const QString& msg)
+{
+    Q_EMIT scrollTo(msg);
+}

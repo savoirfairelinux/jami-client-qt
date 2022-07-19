@@ -29,6 +29,7 @@ ContextMenuAutoLoader {
     id: root
 
     property string location
+    property string msgId
     property string transferName
     property string transferId
 
@@ -36,6 +37,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: saveFile
 
+            canTrigger: root.transferId !== ""
             itemName: JamiStrings.saveFile
             onClicked: {
                 MessagesAdapter.copyToDownloads(root.transferId, root.transferName)
@@ -44,9 +46,18 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: openLocation
 
+            canTrigger: root.transferId !== ""
             itemName: JamiStrings.openLocation
             onClicked: {
                 MessagesAdapter.openDirectory(root.location)
+            }
+        },
+        GeneralMenuItem {
+            id: reply
+
+            itemName: JamiStrings.reply
+            onClicked: {
+                MessagesAdapter.replyToId = root.msgId
             }
         }
     ]

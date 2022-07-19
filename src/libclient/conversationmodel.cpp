@@ -1615,6 +1615,25 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
                                                                      size);
 }
 
+int
+ConversationModel::loadConversationUntil(const QString& conversationId, const QString& to)
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value()) {
+        return -1;
+    }
+    auto& conversation = conversationOpt->get();
+    if (conversation.allMessagesLoaded) {
+        return -1;
+    }
+    auto lastMsgId = conversation.interactions->empty() ? ""
+                                                        : conversation.interactions->front().first;
+    return ConfigurationManager::instance().loadConversationUntil(owner.id,
+                                                                  conversationId,
+                                                                  lastMsgId,
+                                                                  to);
+}
+
 void
 ConversationModel::acceptConversationRequest(const QString& conversationId)
 {
@@ -2583,14 +2602,14 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
         removeConversation();
 
         if (conversation.mode == conversation::Mode::ONE_TO_ONE) {
-
             // If it's a 1:1 conversation and we don't have any more conversation
             // we can remove the contact
             auto contactRemoved = true;
             try {
                 auto& conv = getConversationForPeerUri(contactUri).get();
                 contactRemoved = !conv.isSwarm();
-            } catch (...) {}
+            } catch (...) {
+            }
 
             if (contact.isBanned && contactRemoved) {
                 // Add 1:1 conv for banned

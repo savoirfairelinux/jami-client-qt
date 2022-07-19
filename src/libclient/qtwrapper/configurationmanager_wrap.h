@@ -508,11 +508,20 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
-    int getHistoryLimit() { return DRing::getHistoryLimit(); }
+    int getHistoryLimit()
+    {
+        return DRing::getHistoryLimit();
+    }
 
-    bool getIsAlwaysRecording() { return DRing::getIsAlwaysRecording(); }
+    bool getIsAlwaysRecording()
+    {
+        return DRing::getIsAlwaysRecording();
+    }
 
-    bool getNoiseSuppressState() { return DRing::getNoiseSuppressState(); }
+    bool getNoiseSuppressState()
+    {
+        return DRing::getNoiseSuppressState();
+    }
 
     QString getRecordPath()
     {
@@ -520,9 +529,15 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
-    bool getRecordPreview() { return DRing::getRecordPreview(); }
+    bool getRecordPreview()
+    {
+        return DRing::getRecordPreview();
+    }
 
-    int getRecordQuality() { return DRing::getRecordQuality(); }
+    int getRecordQuality()
+    {
+        return DRing::getRecordQuality();
+    }
 
     QStringList getSupportedAudioManagers()
     {
@@ -580,27 +595,60 @@ public Q_SLOTS: // METHODS
         return temp;
     }
 
-    double getVolume(const QString& device) { return DRing::getVolume(device.toStdString()); }
+    double getVolume(const QString& device)
+    {
+        return DRing::getVolume(device.toStdString());
+    }
 
-    bool isAgcEnabled() { return DRing::isAgcEnabled(); }
+    bool isAgcEnabled()
+    {
+        return DRing::isAgcEnabled();
+    }
 
-    bool isCaptureMuted() { return DRing::isCaptureMuted(); }
+    bool isCaptureMuted()
+    {
+        return DRing::isCaptureMuted();
+    }
 
-    bool isDtmfMuted() { return DRing::isDtmfMuted(); }
+    bool isDtmfMuted()
+    {
+        return DRing::isDtmfMuted();
+    }
 
-    bool isPlaybackMuted() { return DRing::isPlaybackMuted(); }
+    bool isPlaybackMuted()
+    {
+        return DRing::isPlaybackMuted();
+    }
 
-    void muteCapture(bool mute) { DRing::muteCapture(mute); }
+    void muteCapture(bool mute)
+    {
+        DRing::muteCapture(mute);
+    }
 
-    void muteDtmf(bool mute) { DRing::muteDtmf(mute); }
+    void muteDtmf(bool mute)
+    {
+        DRing::muteDtmf(mute);
+    }
 
-    void mutePlayback(bool mute) { DRing::mutePlayback(mute); }
+    void mutePlayback(bool mute)
+    {
+        DRing::mutePlayback(mute);
+    }
 
-    void registerAllAccounts() { DRing::registerAllAccounts(); }
+    void registerAllAccounts()
+    {
+        DRing::registerAllAccounts();
+    }
 
-    void monitor(bool continuous) { DRing::monitor(continuous); }
+    void monitor(bool continuous)
+    {
+        DRing::monitor(continuous);
+    }
 
-    void removeAccount(const QString& accountID) { DRing::removeAccount(accountID.toStdString()); }
+    void removeAccount(const QString& accountID)
+    {
+        DRing::removeAccount(accountID.toStdString());
+    }
 
     bool changeAccountPassword(const QString& id,
                                const QString& currentPassword,
@@ -621,7 +669,10 @@ public Q_SLOTS: // METHODS
         DRing::setAccountDetails(accountID.toStdString(), convertMap(details));
     }
 
-    void setAccountsOrder(const QString& order) { DRing::setAccountsOrder(order.toStdString()); }
+    void setAccountsOrder(const QString& order)
+    {
+        DRing::setAccountsOrder(order.toStdString());
+    }
 
     void setActiveCodecList(const QString& accountID, VectorUInt& list)
     {
@@ -630,20 +681,35 @@ public Q_SLOTS: // METHODS
                                   std::vector<unsigned>(list.begin(), list.end()));
     }
 
-    void setAgcState(bool enabled) { DRing::setAgcState(enabled); }
+    void setAgcState(bool enabled)
+    {
+        DRing::setAgcState(enabled);
+    }
 
-    void setAudioInputDevice(int index) { DRing::setAudioInputDevice(index); }
+    void setAudioInputDevice(int index)
+    {
+        DRing::setAudioInputDevice(index);
+    }
 
-    bool setAudioManager(const QString& api) { return DRing::setAudioManager(api.toStdString()); }
+    bool setAudioManager(const QString& api)
+    {
+        return DRing::setAudioManager(api.toStdString());
+    }
 
-    void setAudioOutputDevice(int index) { DRing::setAudioOutputDevice(index); }
+    void setAudioOutputDevice(int index)
+    {
+        DRing::setAudioOutputDevice(index);
+    }
 
     void setAudioPlugin(const QString& audioPlugin)
     {
         DRing::setAudioPlugin(audioPlugin.toStdString());
     }
 
-    void setAudioRingtoneDevice(int index) { DRing::setAudioRingtoneDevice(index); }
+    void setAudioRingtoneDevice(int index)
+    {
+        DRing::setAudioRingtoneDevice(index);
+    }
 
     void setCredentials(const QString& accountID, VectorMapStringString credentialInformation)
     {
@@ -654,11 +720,20 @@ public Q_SLOTS: // METHODS
         DRing::setCredentials(accountID.toStdString(), temp);
     }
 
-    void setHistoryLimit(int days) { DRing::setHistoryLimit(days); }
+    void setHistoryLimit(int days)
+    {
+        DRing::setHistoryLimit(days);
+    }
 
-    void setIsAlwaysRecording(bool enabled) { DRing::setIsAlwaysRecording(enabled); }
+    void setIsAlwaysRecording(bool enabled)
+    {
+        DRing::setIsAlwaysRecording(enabled);
+    }
 
-    void setNoiseSuppressState(bool state) { DRing::setNoiseSuppressState(state); }
+    void setNoiseSuppressState(bool state)
+    {
+        DRing::setNoiseSuppressState(state);
+    }
 
     bool isAudioMeterActive(const QString& id)
     {
@@ -670,11 +745,20 @@ public Q_SLOTS: // METHODS
         DRing::setAudioMeterState(id.toStdString(), state);
     }
 
-    void setRecordPath(const QString& rec) { DRing::setRecordPath(rec.toStdString()); }
+    void setRecordPath(const QString& rec)
+    {
+        DRing::setRecordPath(rec.toStdString());
+    }
 
-    void setRecordPreview(const bool& rec) { DRing::setRecordPreview(rec); }
+    void setRecordPreview(const bool& rec)
+    {
+        DRing::setRecordPreview(rec);
+    }
 
-    void setRecordQuality(const int& quality) { DRing::setRecordQuality(quality); }
+    void setRecordQuality(const int& quality)
+    {
+        DRing::setRecordQuality(quality);
+    }
 
     void setVolume(const QString& device, double value)
     {
@@ -795,14 +879,20 @@ public Q_SLOTS: // METHODS
         return DRing::setCodecDetails(accountId.toStdString(), codecId, convertMap(details));
     }
 
-    int getMessageStatus(uint64_t id) { return DRing::getMessageStatus(id); }
+    int getMessageStatus(uint64_t id)
+    {
+        return DRing::getMessageStatus(id);
+    }
 
     MapStringString getNearbyPeers(const QString& accountID)
     {
         return convertMap(DRing::getNearbyPeers(accountID.toStdString()));
     }
 
-    void connectivityChanged() { DRing::connectivityChanged(); }
+    void connectivityChanged()
+    {
+        DRing::connectivityChanged();
+    }
 
     MapStringString getContactDetails(const QString& accountID, const QString& uri)
     {
@@ -989,6 +1079,16 @@ public Q_SLOTS: // METHODS
                                                conversationId.toStdString(),
                                                fromId.toStdString(),
                                                size);
+    }
+    uint32_t loadConversationUntil(const QString& accountId,
+                                   const QString& conversationId,
+                                   const QString& fromId,
+                                   const QString& toId)
+    {
+        return DRing::loadConversationUntil(accountId.toStdString(),
+                                            conversationId.toStdString(),
+                                            fromId.toStdString(),
+                                            toId.toStdString());
     }
 
     void setDefaultModerator(const QString& accountID, const QString& peerURI, const bool& state)
