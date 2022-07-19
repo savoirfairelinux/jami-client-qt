@@ -28,7 +28,12 @@ import net.jami.Constants 1.1
 AbstractButton {
     id: root
 
+
     property bool outlined: false
+    property bool boldFont: false
+    property bool primary: false
+    property bool secondary:false
+    property bool tertiary: false
     property alias toolTipText: toolTip.text
     property alias iconSource: icon.source_
     property alias animatedIconSource: icon.animatedSource_
@@ -71,12 +76,20 @@ AbstractButton {
     }
 
     property string contentColorProvider: {
-        if (!root.outlined)
+
+
+        if (root.primary)
             return "white"
-        if (root.hovered)
-            return root.hoveredColor
+
+        if (root.secondary || root.tertiary)
+            return JamiTheme.secAndTertiTextColor
+
         if (root.down)
             return root.pressedColor
+
+        if (!root.outlined)
+            return "white"
+
         return root.color
     }
 
@@ -146,8 +159,7 @@ AbstractButton {
             }
 
             Text {
-                // this right margin will make the text visually
-                // centered within button
+
                 Layout.rightMargin: {
                     if ((!hasIcon || root.preferredWidth === undefined) &&
                             !root.Layout.fillWidth)
@@ -155,37 +167,57 @@ AbstractButton {
                     return icon.width + JamiTheme.preferredMarginSize / 2 +
                             parent.spacing
                 }
+
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
+
                 text: root.text
-                font: root.font
+
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: contentColorProvider
+
             }
         }
     }
 
     background: Rectangle {
+
         color: {
-            if (root.outlined)
-                return "transparent"
-            if (root.hovered)
-                return root.hoveredColor
+
+
+            if(root.primary)
+                if (root.hovered)
+                    return root.hoveredColor
+                else return root.color
+
+            if (root.secondary || root.tertiary)
+                if (root.hovered)
+                    return JamiTheme.secAndTertiHoveredBackgroundColor
+                else return JamiTheme.transparentColor
+
             if (root.down)
                 return root.pressedColor
+
+            if (root.outlined)
+                return JamiTheme.transparentColor
+
             return root.focus ?
-                        root.keysNavigationFocusColor :
-                        root.color
+                        root.keysNavigationFocusColor : root.color
+
         }
         border.color: {
-            if (!root.outlined)
-                return "transparent"
-            if (root.hovered)
-                return root.hoveredColor
+
+            if (root.secondary)
+                return root.hovered ? root.color : JamiTheme.secondaryButtonBorderColor
+
+            if (root.primary || root.tertiary || !root.outlined )
+                return JamiTheme.transparentColor
+
             if (root.down)
                 return root.pressedColor
+
             return root.focus ?
                         root.keysNavigationFocusColor :
                         root.color
