@@ -43,7 +43,7 @@ SBSMessageBase {
     innerContent.children: [
         TextEdit {
 
-            padding: JamiTheme.chatviewPadding
+            padding: JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
 
             text: Body
@@ -76,6 +76,7 @@ SBSMessageBase {
                        JamiTheme.chatviewTextColorDark
 
             TapHandler {
+                enabled: parent.selectedText.length > 0
                 acceptedButtons: Qt.RightButton
                 onTapped: function onTapped(eventPoint) {
                     ctxMenu.openMenuAt(eventPoint.position)

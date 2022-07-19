@@ -1630,6 +1630,25 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
                                                                      size);
 }
 
+int
+ConversationModel::loadConversationUntil(const QString& conversationId, const QString& to)
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value()) {
+        return -1;
+    }
+    auto& conversation = conversationOpt->get();
+    if (conversation.allMessagesLoaded) {
+        return -1;
+    }
+    auto lastMsgId = conversation.interactions->empty() ? ""
+                                                        : conversation.interactions->front().first;
+    return ConfigurationManager::instance().loadConversationUntil(owner.id,
+                                                                  conversationId,
+                                                                  lastMsgId,
+                                                                  to);
+}
+
 void
 ConversationModel::acceptConversationRequest(const QString& conversationId)
 {

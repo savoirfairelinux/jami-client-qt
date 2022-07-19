@@ -32,6 +32,7 @@ Control {
     property alias avatarBlockWidth: avatarBlock.width
     property alias innerContent: innerContent
     property alias bubble: bubble
+    property alias selectAnimation: selectAnimation
     property real extraHeight: 0
 
     // these MUST be set but we won't use the 'required' keyword yet
@@ -44,6 +45,7 @@ Control {
     property string transferName
     property string formattedTime
     property string location
+    property string id: Id
     property string hoveredLink
     property var readers: []
 
@@ -89,7 +91,6 @@ Control {
             Layout.preferredHeight: innerContent.height + root.extraHeight
             Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) ? 6 : 0
 
-
             Item {
                 id: avatarBlock
                 Layout.preferredWidth: isOutgoing ? 0 : avatar.width + hPadding/3
@@ -100,33 +101,73 @@ Control {
                     anchors.bottom: parent.bottom
                     width: avatarSize
                     height: avatarSize
-                    imageId: author
+                    imageId: root.author
                     showPresenceIndicator: false
                     mode: Avatar.Mode.Contact
                 }
             }
-            Item {
+
+
+            MouseArea {
+                id: itemMouseArea
+            
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                onClicked: function (mouse) {
+                    if (mouse.button === Qt.RightButton
+                        && (transferId !== "" || Type === Interaction.Type.TEXT)) {
+                        // Context Menu for Transfers
+                        ctxMenu.x = mouse.x
+                        ctxMenu.y = mouse.y
+                        ctxMenu.openMenu()
+                    } else if (root.hoveredLink) {
+                        MessagesAdapter.openUrl(root.hoveredLink)
+                    }
+                }
+
                 Column {
                     id: innerContent
                     width: parent.width
 
                     // place actual content here
+                    ReplyToRow {}
                 }
+
                 MessageBubble {
                     id: bubble
                     z:-1
                     out: isOutgoing
                     type: seq
-                    color: isOutgoing ?
-                               JamiTheme.messageOutBgColor :
-                               CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                    function getBaseColor() {
+                        var baseColor = isOutgoing ? JamiTheme.messageOutBgColor
+                                            : CurrentConversation.isCoreDialog ?
+                                                JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                        if (Id === MessagesAdapter.replyToId) {
+                            // If we are replying to
+                            return Qt.darker(baseColor, 1.5)
+                        }
+                        return baseColor
+                    }
+                    color: getBaseColor()
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
                     width: innerContent.childrenRect.width
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
+                }
+
+                SequentialAnimation {
+                    id: selectAnimation
+                    ColorAnimation {
+                        target: bubble; property: "color"
+                        to: Qt.darker(bubble.getBaseColor(), 1.5); duration: 240
+                    }
+                    ColorAnimation {
+                        target: bubble; property: "color"
+                        to: bubble.getBaseColor(); duration: 240
+                    }
                 }
             }
 
@@ -220,25 +261,9 @@ Control {
     SBSContextMenu {
         id: ctxMenu
 
+        msgId: Id
         location: root.location
         transferId: root.transferId
         transferName: root.transferName
-    }
-
-    MouseArea {
-        id: itemMouseArea
-        anchors.fill: parent
-        z: -1
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: function (mouse) {
-
-            if (mouse.button === Qt.RightButton && transferId !== "") {
-                // Context Menu for Transfers
-                ctxMenu.x = mouse.x
-                ctxMenu.y = mouse.y
-                ctxMenu.openMenu()
-            } else if (root.hoveredLink)
-                MessagesAdapter.openUrl(root.hoveredLink)
-        }
     }
 }

@@ -324,7 +324,7 @@ Rectangle {
                     target: MessagesAdapter
                     enabled: root.visible
 
-                    function onNewInteraction(interactionType) {
+                    function onNewInteraction(id, interactionType) {
                         // Ignore call notifications, as we are in the call.
                         if (interactionType !== Interaction.Type.CALL && !inCallMessageWebViewStack.visible)
                             openInCallConversation()
