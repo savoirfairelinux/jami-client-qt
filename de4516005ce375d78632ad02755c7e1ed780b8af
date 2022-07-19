@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b09c865_c9d8abac",
+        "filename": "src/app/mainview/components/SelectScreen.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-07-19T14:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e708836a_467a59ea",
+      "range": {
+        "startLine": 58,
+        "startChar": 26,
+        "endLine": 58,
+        "endChar": 55
+      },
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4d51a15_bc9b11e9",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-07-14T14:57:56Z",
       "side": 1,
       "message": "maybe .arg too here",
+      "range": {
+        "startLine": 58,
+        "startChar": 23,
+        "endLine": 58,
+        "endChar": 87
+      },
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf62439f_2ea74814",
+        "filename": "src/app/settingsview/components/AdvancedCallSettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-07-19T14:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4d51a15_bc9b11e9",
       "range": {
         "startLine": 58,
         "startChar": 23,
@@ -87,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e07df61_0d98e3ae",
+        "filename": "src/app/settingsview/components/AdvancedJamiSecuritySettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-07-19T14:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc64345b_dbc84461",
+      "range": {
+        "startLine": 44,
+        "startChar": 42,
+        "endLine": 44,
+        "endChar": 59
+      },
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f1b6e9b_d50235ee",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-07-14T14:57:56Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 45,
+        "startChar": 39,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "de4516005ce375d78632ad02755c7e1ed780b8af",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6e2b3d2_dabe1fda",
+        "filename": "src/app/settingsview/components/AdvancedSIPSecuritySettings.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-07-19T14:22:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f1b6e9b_d50235ee",
       "range": {
         "startLine": 45,
         "startChar": 39,
