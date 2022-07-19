@@ -159,6 +159,7 @@
         <file>src/app/mainview/components/FilesToSendDelegate.qml</file>
         <file>src/app/mainview/components/MessageBar.qml</file>
         <file>src/app/mainview/components/FilesToSendContainer.qml</file>
+        <file>src/app/mainview/components/ReplyingContainer.qml</file>
         <file>src/app/commoncomponents/Avatar.qml</file>
         <file>src/app/mainview/components/ConversationAvatar.qml</file>
         <file>src/app/mainview/components/InvitationView.qml</file>

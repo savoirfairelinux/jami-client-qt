@@ -356,6 +356,8 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.second.commit["uri"]);
     case Role::ContactAction:
         return QVariant(item.second.commit["action"]);
+    case Role::ReplyTo:
+        return QVariant(item.second.commit["reply-to"]);
     case Role::TransferName:
         return QVariant(item.second.commit["displayName"]);
     case Role::Readers:
@@ -363,6 +365,16 @@ MessageListModel::dataForItem(item_t item, int, int role) const
     default:
         return {};
     }
+}
+
+QVariant
+MessageListModel::data(int idx, int role) const
+{
+    QModelIndex index = QAbstractListModel::index(idx, 0);
+    if (!index.isValid() || index.row() < 0 || index.row() >= rowCount()) {
+        return {};
+    }
+    return dataForItem(interactions_.at(index.row()), index.row(), role);
 }
 
 QVariant
