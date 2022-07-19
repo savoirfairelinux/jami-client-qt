@@ -719,6 +719,9 @@ Item {
     property string leaveVideoMessage: qsTr("Leave video message")
     property string send: qsTr("Send")
     property string remove: qsTr("Remove")
+    property string replyTo: qsTr("Reply to")
+    property string inReplyTo: qsTr("In reply to")
+    property string reply: qsTr("Reply")
     property string writeTo: qsTr("Write to %1")
 
     // Invitation View

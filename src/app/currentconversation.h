@@ -54,10 +54,11 @@ class CurrentConversation final : public QObject
 public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;
-
+    Q_INVOKABLE void scrollToMsg(const QString& msgId);
     Q_INVOKABLE void showSwarmDetails() const;
 
 Q_SIGNALS:
+    void scrollTo(const QString& msgId);
     void showDetails() const;
 
 private Q_SLOTS:
