@@ -32,6 +32,7 @@ Control {
     property alias avatarBlockWidth: avatarBlock.width
     property alias innerContent: innerContent
     property alias bubble: bubble
+    property alias selectAnimation: selectAnimation
     property real extraHeight: 0
 
     // these MUST be set but we won't use the 'required' keyword yet
@@ -44,6 +45,7 @@ Control {
     property string transferName
     property string formattedTime
     property string location
+    property string id: Id
     property string hoveredLink
     property var readers: []
 
@@ -105,9 +107,124 @@ Control {
                     mode: Avatar.Mode.Contact
                 }
             }
-            Item {
+
+
+            MouseArea {
+                id: itemMouseArea
+            
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                onClicked: function (mouse) {
+                    if (mouse.button === Qt.RightButton
+                        && (transferId !== "" || Type === Interaction.Type.TEXT)) {
+                        // Context Menu for Transfers
+                        ctxMenu.x = mouse.x
+                        ctxMenu.y = mouse.y
+                        ctxMenu.openMenu()
+                    } else if (root.hoveredLink) {
+                        MessagesAdapter.openUrl(root.hoveredLink)
+                    }
+                }
+
+                RowLayout {
+                    id: replyToRow
+                    z: 2
+                    anchors.right: isOutgoing ? parent.right : undefined
+                    Layout.topMargin: JamiTheme.tinyFontSize
+                    Layout.bottomMargin: JamiTheme.tinyFontSize
+
+                    // TODO connect to data changed for interaction
+                    Connections {
+                        target: MessagesAdapter.messageListModel
+                        enabled: replyToRow.visible
+
+                        function onRowsInserted() {
+                            replyToRow.author = replyToRow.getAuthor()
+                            replyToRow.body = replyToRow.getBody()
+                        }
+                    }
+
+                    visible: {
+                        if (ReplyTo !== "") {
+                            MessagesAdapter.loadConversationUntil(ReplyTo)
+                            return true
+                        }
+                        return false
+                    }
+                    property var isSelf: false
+                    property var author: getAuthor()
+                    property var body: getBody()
+
+                    function getBody() {
+                        if (ReplyTo === "")
+                            return ""
+                        // TODO MessageList.Role.Body
+                        var a = MessagesAdapter.dataForInteraction(ReplyTo, 260)
+                        return a === undefined ? "" : a
+                    }
+
+                    function getAuthor() {
+                        if (ReplyTo === "")
+                            return ""
+                        // TODO MessageList.Role.Author
+                        var a = MessagesAdapter.dataForInteraction(ReplyTo, 259)
+                        isSelf = a === "" || a === undefined
+                        return isSelf ? CurrentAccount.uri : a
+                    }
+
+                    Label {
+                        id: replyTo
+
+                        text: JamiStrings.inReplyTo
+
+                        color: UtilsAdapter.luma(bubble.color) ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
+                        font.pointSize: JamiTheme.textFontSize
+                        font.kerning: true
+                        font.bold: true
+                        Layout.leftMargin: JamiTheme.preferredMarginSize
+                    }
+
+                    Avatar {
+                        id: avatarReply
+
+                        Layout.preferredWidth: JamiTheme.avatarReadReceiptSize
+                        Layout.preferredHeight: JamiTheme.avatarReadReceiptSize
+
+                        showPresenceIndicator: false
+
+                        imageId: parent.isSelf ? CurrentAccount.id : parent.author
+                        mode: parent.isSelf ? Avatar.Mode.Account : Avatar.Mode.Contact
+                    }
+
+                    Text {
+                        id: body
+                        Layout.maximumWidth: JamiTheme.preferredFieldWidth - JamiTheme.preferredMarginSize
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+
+                        text: replyToRow.body
+                        elide: Text.ElideRight
+
+                        color:  UtilsAdapter.luma(bubble.color) ?
+                            JamiTheme.chatviewTextColorLight :
+                            JamiTheme.chatviewTextColorDark
+                        font.pointSize: JamiTheme.textFontSize
+                        font.kerning: true
+                        font.bold: true
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+
+                        onClicked: function(mouse) {
+                            CurrentConversation.scrollToMsg(ReplyTo)
+                        }
+                    }
+                }
+
                 Column {
                     id: innerContent
                     width: parent.width
@@ -119,16 +236,37 @@ Control {
                     z:-1
                     out: isOutgoing
                     type: seq
-                    color: isOutgoing ?
-                               JamiTheme.messageOutBgColor :
-                               CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                    function getBaseColor() {
+                        var baseColor = isOutgoing ? JamiTheme.messageOutBgColor
+                                            : CurrentConversation.isCoreDialog ?
+                                                JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                        if (Id === MessagesAdapter.replyToId) {
+                            // If we are replying to
+                            return Qt.darker(baseColor, 1.5)
+                        }
+                        return baseColor
+                    }
+                    color: getBaseColor()
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top
-                    width: innerContent.childrenRect.width
+                    width: Math.max(innerContent.childrenRect.width, replyToRow.implicitWidth)
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
                 }
+
+                SequentialAnimation {
+                    id: selectAnimation
+                    ColorAnimation {
+                        target: bubble; property: "color"
+                        to: Qt.darker(bubble.getBaseColor(), 1.5); duration: 240
+                    }
+                    ColorAnimation {
+                        target: bubble; property: "color"
+                        to: bubble.getBaseColor(); duration: 240
+                    }
+                }
             }
+
         }
 
         ListView {
@@ -183,25 +321,9 @@ Control {
     SBSContextMenu {
         id: ctxMenu
 
+        msgId: Id
         location: root.location
         transferId: root.transferId
         transferName: root.transferName
-    }
-
-    MouseArea {
-        id: itemMouseArea
-        anchors.fill: parent
-        z: -1
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: function (mouse) {
-
-            if (mouse.button === Qt.RightButton && transferId !== "") {
-                // Context Menu for Transfers
-                ctxMenu.x = mouse.x
-                ctxMenu.y = mouse.y
-                ctxMenu.openMenu()
-            } else if (root.hoveredLink)
-                MessagesAdapter.openUrl(root.hoveredLink)
-        }
     }
 }
