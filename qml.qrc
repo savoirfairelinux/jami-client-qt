@@ -163,6 +163,7 @@
         <file>src/app/mainview/components/FilesToSendDelegate.qml</file>
         <file>src/app/mainview/components/MessageBar.qml</file>
         <file>src/app/mainview/components/FilesToSendContainer.qml</file>
+        <file>src/app/mainview/components/ReplyingContainer.qml</file>
         <file>src/app/commoncomponents/Avatar.qml</file>
         <file>src/app/mainview/components/ConversationAvatar.qml</file>
         <file>src/app/mainview/components/InvitationView.qml</file>
@@ -178,6 +179,7 @@
         <file>src/app/constant/MsgSeq.qml</file>
         <file>src/app/commoncomponents/SBSContextMenu.qml</file>
         <file>src/app/commoncomponents/SBSMessageBase.qml</file>
+        <file>src/app/commoncomponents/ReplyToRow.qml</file>
         <file>src/app/commoncomponents/ReadStatus.qml</file>
         <file>src/app/commoncomponents/GeneratedMessageDelegate.qml</file>
         <file>src/app/commoncomponents/DataTransferMessageDelegate.qml</file>

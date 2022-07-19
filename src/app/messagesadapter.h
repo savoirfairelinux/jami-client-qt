@@ -58,6 +58,7 @@ class MessagesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_RO_PROPERTY(QVariant, messageListModel)
+    QML_PROPERTY(QString, replyToId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
 
 public:
@@ -68,7 +69,7 @@ public:
     ~MessagesAdapter() = default;
 
 Q_SIGNALS:
-    void newInteraction(int type);
+    void newInteraction(const QString& id, int type);
     void newMessageBarPlaceholderText(QString placeholderText);
     void newFilePasted(QString filePath);
     void newTextPasted();
@@ -80,6 +81,7 @@ protected:
 
     Q_INVOKABLE void setupChatView(const QVariantMap& convInfo);
     Q_INVOKABLE void loadMoreMessages();
+    Q_INVOKABLE void loadConversationUntil(const QString& to);
     Q_INVOKABLE void connectConversationModel();
     Q_INVOKABLE void sendConversationRequest();
     Q_INVOKABLE void removeConversation(const QString& convUid);
@@ -109,8 +111,11 @@ protected:
                                       const QString& msg,
                                       bool showPreview);
     Q_INVOKABLE void onPaste();
+    Q_INVOKABLE int getIndexOfMessage(const QString& messageId) const;
     Q_INVOKABLE QString getStatusString(int status);
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
+    Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
+                                            int role = Qt::DisplayRole) const;
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
