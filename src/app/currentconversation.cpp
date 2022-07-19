@@ -167,7 +167,7 @@ CurrentConversation::updateErrors(const QString& convId)
             auto& convInfo = optConv->get();
             QStringList newErrors;
             QStringList newBackendErr;
-            for (const auto& [code, error]: convInfo.errors) {
+            for (const auto& [code, error] : convInfo.errors) {
                 if (code == 1) {
                     newErrors.append(tr("An error occurred while fetching this repository"));
                 } else if (code == 2) {
@@ -175,7 +175,8 @@ CurrentConversation::updateErrors(const QString& convId)
                 } else if (code == 3) {
                     newErrors.append(tr("An invalid message was detected"));
                 } else if (code == 4) {
-                    newErrors.append(tr("Not enough authorization for updating conversation's infos"));
+                    newErrors.append(
+                        tr("Not enough authorization for updating conversation's infos"));
                 } else {
                     continue;
                 }
@@ -185,6 +186,11 @@ CurrentConversation::updateErrors(const QString& convId)
             set_errors(newErrors);
         }
     } catch (...) {
-
     }
+}
+
+void
+CurrentConversation::scrollToMsg(const QString& msg)
+{
+    Q_EMIT scrollTo(msg);
 }

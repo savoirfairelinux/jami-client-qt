@@ -171,6 +171,7 @@ MessageListModel::clear()
 {
     Q_EMIT beginResetModel();
     interactions_.clear();
+    replyTo_.clear();
     Q_EMIT endResetModel();
 }
 
@@ -289,6 +290,18 @@ MessageListModel::insertMessage(int index, item_t& message)
     Q_EMIT beginInsertRows(QModelIndex(), index, index);
     interactions_.insert(index, message);
     Q_EMIT endInsertRows();
+    auto replyId = message.second.commit["reply-to"];
+    auto commitId = message.second.commit["id"];
+    if (!replyId.isEmpty())
+        replyTo_[replyId].append(commitId);
+    for (const auto& msgId : replyTo_[commitId]) {
+        int index = getIndexOfMessage(msgId);
+        if (index == -1)
+            continue;
+        QModelIndex modelIndex = QAbstractListModel::index(index, 0);
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToAuthor});
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToBody});
+    }
 }
 
 iterator
@@ -343,6 +356,8 @@ MessageListModel::roleNames() const
 QVariant
 MessageListModel::dataForItem(item_t item, int, int role) const
 {
+    auto replyId = item.second.commit["reply-to"];
+    auto repliedMsg = getIndexOfMessage(replyId);
     switch (role) {
     case Role::Id:
         return QVariant(item.first);
@@ -368,6 +383,12 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.second.commit["uri"]);
     case Role::ContactAction:
         return QVariant(item.second.commit["action"]);
+    case Role::ReplyTo:
+        return QVariant(replyId);
+    case Role::ReplyToAuthor:
+        return repliedMsg == -1 ? QVariant("") : QVariant(data(repliedMsg, Role::Author));
+    case Role::ReplyToBody:
+        return repliedMsg == -1 ? QVariant("") : QVariant(data(repliedMsg, Role::Body));
     case Role::TransferName:
         return QVariant(item.second.commit["displayName"]);
     case Role::Readers:
@@ -375,6 +396,16 @@ MessageListModel::dataForItem(item_t item, int, int role) const
     default:
         return {};
     }
+}
+
+QVariant
+MessageListModel::data(int idx, int role) const
+{
+    QModelIndex index = QAbstractListModel::index(idx, 0);
+    if (!index.isValid() || index.row() < 0 || index.row() >= rowCount()) {
+        return {};
+    }
+    return dataForItem(interactions_.at(index.row()), index.row(), role);
 }
 
 QVariant

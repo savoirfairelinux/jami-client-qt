@@ -370,9 +370,9 @@ public Q_SLOTS:
                                      const QString& memberUri,
                                      int event);
     void slotOnConversationError(const QString& accountId,
-                                     const QString& conversationId,
-                                     int code,
-                                     const QString& what);
+                                 const QString& conversationId,
+                                 int code,
+                                 const QString& what);
     void slotConversationReady(const QString& accountId, const QString& conversationId);
     void slotConversationRemoved(const QString& accountId, const QString& conversationId);
 };
@@ -1633,6 +1633,25 @@ ConversationModel::loadConversationMessages(const QString& conversationId, const
                                                                      size);
 }
 
+int
+ConversationModel::loadConversationUntil(const QString& conversationId, const QString& to)
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value()) {
+        return -1;
+    }
+    auto& conversation = conversationOpt->get();
+    if (conversation.allMessagesLoaded) {
+        return -1;
+    }
+    auto lastMsgId = conversation.interactions->empty() ? ""
+                                                        : conversation.interactions->front().first;
+    return ConfigurationManager::instance().loadConversationUntil(owner.id,
+                                                                  conversationId,
+                                                                  lastMsgId,
+                                                                  to);
+}
+
 void
 ConversationModel::acceptConversationRequest(const QString& conversationId)
 {
@@ -2687,9 +2706,9 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
 
 void
 ConversationModelPimpl::slotOnConversationError(const QString& accountId,
-                                                    const QString& conversationId,
-                                                    int code,
-                                                    const QString& what)
+                                                const QString& conversationId,
+                                                int code,
+                                                const QString& what)
 {
     if (accountId != linked.owner.id || indexOf(conversationId) < 0) {
         return;
@@ -2698,7 +2717,8 @@ ConversationModelPimpl::slotOnConversationError(const QString& accountId,
         auto& conversation = getConversationForUid(conversationId).get();
         conversation.errors.push_back({code, what});
         Q_EMIT linked.onConversationErrorsUpdated(conversationId);
-    } catch (...) {}
+    } catch (...) {
+    }
 }
 
 void

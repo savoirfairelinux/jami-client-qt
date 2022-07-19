@@ -1056,6 +1056,16 @@ public Q_SLOTS: // METHODS
                                                fromId.toStdString(),
                                                size);
     }
+    uint32_t loadConversationUntil(const QString& accountId,
+                                   const QString& conversationId,
+                                   const QString& fromId,
+                                   const QString& toId)
+    {
+        return DRing::loadConversationUntil(accountId.toStdString(),
+                                            conversationId.toStdString(),
+                                            fromId.toStdString(),
+                                            toId.toStdString());
+    }
 
     void setDefaultModerator(const QString& accountID, const QString& peerURI, const bool& state)
     {
