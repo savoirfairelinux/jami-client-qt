@@ -44,6 +44,7 @@ struct Info;
     X(ActionUri) \
     X(LinkPreviewInfo) \
     X(Linkified) \
+    X(ReplyTo) \
     X(TransferName) \
     X(Readers)
 
@@ -88,7 +89,7 @@ public:
     iterator begin();
     constIterator begin() const;
     reverseIterator rbegin();
-    int size() const;
+    Q_INVOKABLE int size() const;
     void clear(int leaveN = 0);
     bool empty() const;
     interaction::Info at(const QString& intId) const;
@@ -101,7 +102,8 @@ public:
     void moveMessages(QList<QString> msgIds, const QString& parentId);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+    Q_INVOKABLE virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
+    Q_INVOKABLE virtual QVariant data(int idx, int role = Qt::DisplayRole) const;
     QHash<int, QByteArray> roleNames() const override;
     QVariant dataForItem(item_t item, int indexRow, int role = Qt::DisplayRole) const;
     bool contains(const QString& msgId);

@@ -52,6 +52,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , filteredMsgListModel_(new FilteredMsgListModel(this))
 {
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+        set_replyToId("");
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
         filteredMsgListModel_->setSourceModel(conversation.interactions.get());
@@ -101,6 +102,23 @@ MessagesAdapter::loadMoreMessages()
 }
 
 void
+MessagesAdapter::loadConversationUntil(const QString& to)
+{
+    if (auto* model = static_cast<MessageListModel*>(filteredMsgListModel_->sourceModel())) {
+        auto idx = model->indexOfMessage(to);
+        if (idx == -1) {
+            auto accountId = lrcInstance_->get_currentAccountId();
+            auto convId = lrcInstance_->get_selectedConvUid();
+            const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId, accountId);
+            if (convInfo.isSwarm()) {
+                auto* convModel = lrcInstance_->getCurrentConversationModel();
+                convModel->loadConversationUntil(convId, to);
+            }
+        }
+    }
+}
+
+void
 MessagesAdapter::connectConversationModel()
 {
     auto currentConversationModel = lrcInstance_->getCurrentConversationModel();
@@ -135,7 +153,8 @@ MessagesAdapter::sendMessage(const QString& message)
 {
     try {
         const auto convUid = lrcInstance_->get_selectedConvUid();
-        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message);
+        lrcInstance_->getCurrentConversationModel()->sendMessage(convUid, message, replyToId_);
+        set_replyToId("");
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
     }
@@ -302,6 +321,26 @@ MessagesAdapter::getTransferStats(const QString& msgId, int status)
     return {{"totalSize", qint64(info.totalSize)}, {"progress", qint64(info.progress)}};
 }
 
+QVariant
+MessagesAdapter::dataForInteraction(const QString& interactionId, int role) const
+{
+    if (auto* model = static_cast<MessageListModel*>(filteredMsgListModel_->sourceModel())) {
+        auto idx = model->indexOfMessage(interactionId);
+        if (idx != -1)
+            return model->data(idx, role);
+    }
+    return {};
+}
+
+int
+MessagesAdapter::getIndexOfMessage(const QString& interactionId) const
+{
+    if (auto* model = static_cast<MessageListModel*>(filteredMsgListModel_->sourceModel())) {
+        return model->indexOfMessage(interactionId);
+    }
+    return {};
+}
+
 void
 MessagesAdapter::userIsComposing(bool isComposing)
 {
@@ -327,7 +366,7 @@ MessagesAdapter::onNewInteraction(const QString& convUid,
         auto& accountInfo = lrcInstance_->getAccountInfo(accountId);
         auto& convModel = accountInfo.conversationModel;
         convModel->clearUnreadInteractions(convUid);
-        Q_EMIT newInteraction(static_cast<int>(interaction.type));
+        Q_EMIT newInteraction(interactionId, static_cast<int>(interaction.type));
     } catch (...) {
     }
 }
@@ -486,8 +525,10 @@ MessagesAdapter::isLocalImage(const QString& mimename)
         QImageReader reader;
         QList<QByteArray> supportedFormats = reader.supportedImageFormats();
         auto iterator = std::find_if(supportedFormats.begin(),
-                                    supportedFormats.end(),
-                                    [fileFormat](QByteArray format) { return format == fileFormat; });
+                                     supportedFormats.end(),
+                                     [fileFormat](QByteArray format) {
+                                         return format == fileFormat;
+                                     });
         return {{"isImage", iterator != supportedFormats.end()}};
     }
     return {{"isImage", false}};

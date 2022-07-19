@@ -150,3 +150,9 @@ CurrentConversation::showSwarmDetails() const
 {
     Q_EMIT showDetails();
 }
+
+void
+CurrentConversation::scrollToMsg(const QString& msg)
+{
+    Q_EMIT scrollTo(msg);
+}

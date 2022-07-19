@@ -121,6 +121,16 @@ Rectangle {
 
         spacing: 0
 
+        ReplyingContainer {
+            id: replyingContainer
+
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: footerColumnLayout.width
+            Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
+            Layout.preferredHeight: 36
+            visible: MessagesAdapter.replyToId !== ""
+        }
+
         MessageBar {
             id: messageBar
 
