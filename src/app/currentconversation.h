@@ -37,7 +37,6 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, isLegacy)
     QML_PROPERTY(bool, isCoreDialog)
     QML_PROPERTY(bool, isRequest)
-    QML_PROPERTY(bool, readOnly)
     QML_PROPERTY(bool, needsSyncing)
     QML_PROPERTY(bool, isSip)
     QML_PROPERTY(bool, isBanned)

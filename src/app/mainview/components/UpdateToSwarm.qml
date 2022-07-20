@@ -46,7 +46,7 @@ Control {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             Layout.fillWidth: true
 
-            text: JamiStrings.contactLeft
+            text: JamiStrings.updateToSwarm
             font.pointSize: JamiTheme.textFontSize + 2
             color: JamiTheme.textColor
             wrapMode: Text.Wrap

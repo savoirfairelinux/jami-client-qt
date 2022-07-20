@@ -168,7 +168,7 @@
         <file>src/app/commoncomponents/BubbleLabel.qml</file>
         <file>src/app/commoncomponents/BackButton.qml</file>
         <file>src/app/commoncomponents/JamiSwitch.qml</file>
-        <file>src/app/mainview/components/ReadOnlyFooter.qml</file>
+        <file>src/app/mainview/components/UpdateToSwarm.qml</file>
         <file>src/app/commoncomponents/TextMessageDelegate.qml</file>
         <file>src/app/mainview/components/MessageListView.qml</file>
         <file>src/app/commoncomponents/MessageBubble.qml</file>
