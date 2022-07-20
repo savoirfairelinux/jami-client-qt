@@ -329,6 +329,10 @@ find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
+find_library(AVUTIL_LIBRARY avutil
+  HINTS
+  ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 
 if(ENABLE_LIBWRAP)
   list(APPEND LIBCLIENT_HEADERS directrenderer.h)
@@ -465,6 +469,7 @@ foreach(QT_LIB ${QT_LIBS})
 endforeach()
 if(ENABLE_LIBWRAP)
   target_link_libraries(${LIBCLIENT_NAME} qtwrapper ${LIBJAMI_LIB})
+  target_link_libraries(${LIBCLIENT_NAME} ${AVUTIL_LIBRARY})
 endif()
 if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "MSVC"))
   target_link_libraries(${LIBCLIENT_NAME} -lpthread)
