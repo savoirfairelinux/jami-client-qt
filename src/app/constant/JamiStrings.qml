@@ -41,8 +41,8 @@ Item {
     property string contactSearchInvitations: qsTr("Search your invitations")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
-    property string contactLeft: qsTr("You are viewing a conversation where all participants other than you have left. New interactions will not be possible.")
-    property string newConversation: qsTr("Start new conversation")
+    property string updateToSwarm: qsTr("Migrating to the Swarm technology will enable syncing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.")
+    property string migrateConversation: qsTr("Migrate conversation")
 
     // DaemonReconnectWindow
     property string reconnectWarn: qsTr("Could not re-connect to the Jami daemon (jamid).\nJami will now quit.")

@@ -112,10 +112,9 @@ public:
      * return a vector of conversation indices for the given contact uri empty
      * if no index is found
      * @param uri of the contact to search
-     * @param writable whether or not to exclude read-only conversations(use for interactions)
      * @return an vector of indices
      */
-    std::vector<int> getIndicesForContact(const QString& uri, bool writable = false) const;
+    std::vector<int> getIndicesForContact(const QString& uri) const;
     /**
      * Initialize conversations_ and filteredConversations_
      */
@@ -2657,7 +2656,6 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
             membersRemaining.append(member["uri"]);
     }
     conversation.participants = participants;
-    conversation.readOnly = membersRemaining == VectorString(1, linked.owner.profileInfo.uri);
     invalidateModel();
     Q_EMIT linked.modelChanged();
     Q_EMIT linked.conversationUpdated(conversationId);
@@ -2938,7 +2936,6 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
         if (member["role"] == "left")
             membersLeft.append(member["uri"]);
     }
-    conversation.readOnly = mode == conversation::Mode::ONE_TO_ONE && membersLeft.size() == 1;
     conversation.participants = participants;
     conversation.mode = mode;
     conversation.unreadMessages = ConfigurationManager::instance().countInteractions(linked.owner.id,
@@ -3097,12 +3094,12 @@ ConversationModelPimpl::getConversationForPeerUri(const QString& uri,
 }
 
 std::vector<int>
-ConversationModelPimpl::getIndicesForContact(const QString& uri, bool writable) const
+ConversationModelPimpl::getIndicesForContact(const QString& uri) const
 {
     std::vector<int> ret;
     for (unsigned int i = 0; i < conversations.size(); ++i) {
         const auto& convInfo = conversations.at(i);
-        if (!convInfo.isCoreDialog() || (writable && convInfo.readOnly)) {
+        if (!convInfo.isCoreDialog()) {
             continue;
         }
         auto peers = peersForConversation(convInfo);
