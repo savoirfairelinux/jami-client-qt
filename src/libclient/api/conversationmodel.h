@@ -290,8 +290,6 @@ public:
 
     void acceptTransfer(const QString& convUid, const QString& interactionId);
 
-    void acceptTransfer(const QString& convUid, const QString& interactionId, const QString& path);
-
     void cancelTransfer(const QString& convUid, const QString& interactionId);
 
     void getTransferInfo(const QString& conversationId,

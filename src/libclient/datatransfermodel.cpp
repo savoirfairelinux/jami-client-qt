@@ -131,57 +131,11 @@ DataTransferModel::DataTransferModel()
 DataTransferModel::~DataTransferModel() = default;
 
 void
-DataTransferModel::transferInfo(const QString& accountId,
-                                const QString& fileId,
-                                datatransfer::Info& lrc_info)
-{
-    DataTransferInfo infoFromDaemon;
-    if (ConfigurationManager::instance().dataTransferInfo(accountId, fileId, infoFromDaemon) == 0) {
-        lrc_info.uid = fileId;
-        lrc_info.status = convertDataTransferEvent(
-            DRing::DataTransferEventCode(infoFromDaemon.lastEvent));
-        lrc_info.isOutgoing = !(infoFromDaemon.flags
-                                & (1 << uint32_t(DRing::DataTransferFlags::direction)));
-        lrc_info.totalSize = infoFromDaemon.totalSize;
-        lrc_info.progress = infoFromDaemon.bytesProgress;
-        lrc_info.path = infoFromDaemon.path;
-        lrc_info.displayName = infoFromDaemon.displayName;
-        lrc_info.accountId = infoFromDaemon.accountId;
-        lrc_info.peerUri = infoFromDaemon.peer;
-        lrc_info.conversationId = infoFromDaemon.conversationId;
-        // lrc_info.timestamp = ?
-        return;
-    }
-
-    lrc_info.status = datatransfer::Status::INVALID;
-}
-
-void
 DataTransferModel::sendFile(const QString& accountId,
-                            const QString& peer_uri,
                             const QString& conversationId,
                             const QString& filePath,
                             const QString& displayName)
 {
-    if (conversationId.isEmpty()) {
-        // Fallback
-        DataTransferInfo info;
-#ifdef ENABLE_LIBWRAP
-        DRing::DataTransferId id;
-#else
-        qulonglong id;
-#endif
-        info.accountId = accountId;
-        info.peer = peer_uri;
-        info.path = filePath;
-        info.conversationId = conversationId;
-        info.displayName = displayName;
-        info.bytesProgress = 0;
-        if (ConfigurationManager::instance().sendFileLegacy(info, id) != 0)
-            qWarning() << "DataTransferModel::sendFile(), error";
-        return;
-    }
-
     ConfigurationManager::instance().sendFile(accountId,
                                               conversationId,
                                               filePath,
@@ -199,15 +153,6 @@ DataTransferModel::fileTransferInfo(const QString& accountId,
 {
     ConfigurationManager::instance()
         .fileTransferInfo(accountId, conversationId, fileId, path, total, progress);
-}
-
-QString
-DataTransferModel::accept(const QString& accountId, const QString& fileId, const QString& filePath)
-{
-    auto uniqueFilePath = pimpl_->getUniqueFilePath(filePath);
-    auto daemonFileId = pimpl_->interactionToFileId[fileId];
-    ConfigurationManager::instance().acceptFileTransfer(accountId, daemonFileId, uniqueFilePath);
-    return uniqueFilePath;
 }
 
 void
