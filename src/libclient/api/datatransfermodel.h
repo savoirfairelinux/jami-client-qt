@@ -52,12 +52,9 @@ public:
     ~DataTransferModel();
 
     void sendFile(const QString& account_id,
-                  const QString& peer_uri,
                   const QString& conversationId,
                   const QString& file_path,
                   const QString& display_name);
-
-    void transferInfo(const QString& accountId, const QString& fileId, datatransfer::Info& lrc_info);
 
     void fileTransferInfo(const QString& accountId,
                           const QString& conversationId,
