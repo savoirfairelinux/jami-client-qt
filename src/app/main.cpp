@@ -99,8 +99,8 @@ main(int argc, char* argv[])
     qtWebEngineChromiumFlags << singleProcess;
 #endif
 
-    QApplication::setApplicationName("Jami");
-    QApplication::setOrganizationDomain("jami.net");
+    QApplication::setApplicationName(QStringLiteral("Jami"));
+    QApplication::setOrganizationDomain(QStringLiteral("jami.net"));
     QApplication::setQuitOnLastWindowClosed(false);
     QCoreApplication::setApplicationVersion(QString(VERSION_STRING));
     QApplication::setHighDpiScaleFactorRoundingPolicy(
@@ -109,6 +109,7 @@ main(int argc, char* argv[])
     auto newArgv = parseInputArgument(argc, argv, qtWebEngineChromiumFlags);
 
     MainApplication app(argc, newArgv);
+    app.setDesktopFileName(QStringLiteral("jami-qt"));
 #if defined(Q_OS_MACOS)
     if (macutils::isMetalSupported()) {
         QQuickWindow::setGraphicsApi(QSGRendererInterface::MetalRhi);
