@@ -520,6 +520,15 @@ Rectangle {
         }
     }
 
+    WheelHandler {
+        onWheel: (wheel)=> {
+            if (wheel.modifiers & Qt.ControlModifier) {
+                var delta = wheel.angleDelta.y / 120
+                UtilsAdapter.setAppValue(Settings.BaseZoom, parseFloat(UtilsAdapter.getAppValue(Settings.BaseZoom)) + delta * 0.1)
+            }
+        }
+    }
+
     Shortcut {
         sequence: "Ctrl++"
         context: Qt.ApplicationShortcut
