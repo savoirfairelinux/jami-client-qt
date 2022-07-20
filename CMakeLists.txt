@@ -740,7 +740,6 @@ else()
       endif()
 endif()
 
-qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
 
 # test
