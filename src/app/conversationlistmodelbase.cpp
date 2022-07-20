@@ -147,8 +147,6 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
             }
         return ret;
     }
-    case Role::ReadOnly:
-        return QVariant(item.readOnly);
     case Role::Presence: {
         // The conversation can show a green dot if at least one peer is present
         Q_FOREACH (const auto& peerUri, model_->peersForConversation(item.uid))

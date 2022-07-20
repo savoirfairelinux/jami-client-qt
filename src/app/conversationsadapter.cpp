@@ -438,18 +438,15 @@ ConversationsAdapter::getConvInfoMap(const QString& convId)
             {"needsSyncing", convInfo.needsSyncing},
             {"isAudioOnly", isAudioOnly},
             {"callState", static_cast<int>(callState)},
-            {"callStackViewShouldShow", callStackViewShouldShow},
-            {"readOnly", convInfo.readOnly}};
+            {"callStackViewShouldShow", callStackViewShouldShow}};
 }
 
 void
 ConversationsAdapter::restartConversation(const QString& convId)
 {
-    // make sure this conversation meets the criteria of a "restartable" conv
-    // 'readOnly' implies 'isSwarm'
     auto& accInfo = lrcInstance_->getCurrentAccountInfo();
     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
-    if (convInfo.uid.isEmpty() || !convInfo.isCoreDialog() || !convInfo.readOnly) {
+    if (convInfo.uid.isEmpty() || !convInfo.isCoreDialog()) {
         return;
     }
 
@@ -474,7 +471,7 @@ ConversationsAdapter::restartConversation(const QString& convId)
                 [this, peerUri, &accInfo](const QString& convId) {
                     const auto& convInfo = lrcInstance_->getConversationFromConvUid(convId);
                     // 3. filter for the correct contact-conversation and select it
-                    if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog() && !convInfo.readOnly
+                    if (!convInfo.uid.isEmpty() && convInfo.isCoreDialog()
                         && peerUri
                                == accInfo.conversationModel->peersForConversation(convId).at(0)) {
                         lrcInstance_->selectConversation(convId);
