@@ -210,13 +210,9 @@ public:
      * accept a file transfer
      * @param convUid
      * @param interactionId
-     * @param final name of the file
      */
-    void acceptTransfer(const QString& convUid, const QString& interactionId, const QString& path);
-    void handleIncomingFile(const QString& convId,
-                            const QString& interactionId,
-                            const QString& displayName,
-                            int totalSize);
+    void acceptTransfer(const QString& convUid, const QString& interactionId);
+    void handleIncomingFile(const QString& convId, const QString& interactionId, int totalSize);
     void addConversationRequest(const MapStringString& convRequest);
     void addContactRequest(const QString& contactUri);
 
@@ -2300,10 +2296,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             insertSwarmInteraction(msgId, msg, conversation, true);
             if (downloadFile) {
                 // Note, we must do this after insertSwarmInteraction to find the interaction
-                handleIncomingFile(conversationId,
-                                   msgId,
-                                   message["displayName"],
-                                   message["totalSize"].toInt());
+                handleIncomingFile(conversationId, msgId, message["totalSize"].toInt());
             }
         }
 
@@ -2435,10 +2428,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         Q_EMIT linked.newInteraction(conversationId, msgId, msg);
         Q_EMIT linked.modelChanged();
         if (msg.status == interaction::Status::TRANSFER_AWAITING_HOST) {
-            handleIncomingFile(conversationId,
-                               msgId,
-                               message["displayName"],
-                               message["totalSize"].toInt());
+            handleIncomingFile(conversationId, msgId, message["totalSize"].toInt());
         }
         Q_EMIT linked.dataChanged(indexOf(conversationId));
     } catch (const std::exception& e) {
@@ -3603,7 +3593,7 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
     try {
         auto& conversation = pimpl_->getConversationForUid(convUid, true).get();
         if (conversation.isSwarm()) {
-            owner.dataTransferModel->sendFile(owner.id, "", convUid, path, filename);
+            owner.dataTransferModel->sendFile(owner.id, convUid, path, filename);
             return;
         }
         auto peers = pimpl_->peersForConversation(conversation);
@@ -3639,10 +3629,7 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
                     qDebug() << "ContactModel::sendFile: denied, contact is banned";
                     return;
                 }
-                auto& conversation = conversationOpt->get();
-                // for non swarm conversation id should be empty, so peerId will be takin in consideration
-                auto id = conversation.mode != conversation::Mode::NON_SWARM ? conversationId : "";
-                owner.dataTransferModel->sendFile(owner.id, peerId, id, path, filename);
+                owner.dataTransferModel->sendFile(owner.id, conversationId, path, filename);
             } catch (...) {
             }
         });
@@ -3675,15 +3662,7 @@ ConversationModel::acceptTransfer(const QString& convUid, const QString& interac
 {
     lrc::api::datatransfer::Info info = {};
     getTransferInfo(convUid, interactionId, info);
-    acceptTransfer(convUid, interactionId, info.displayName);
-}
-
-void
-ConversationModel::acceptTransfer(const QString& convUid,
-                                  const QString& interactionId,
-                                  const QString& path)
-{
-    pimpl_->acceptTransfer(convUid, interactionId, path);
+    pimpl_->acceptTransfer(convUid, interactionId);
 }
 
 void
@@ -3733,11 +3712,7 @@ ConversationModel::getTransferInfo(const QString& conversationId,
         return;
     auto fileId = owner.dataTransferModel->getFileIdFromInteractionId(interactionId);
     if (convOpt->get().mode == conversation::Mode::NON_SWARM) {
-        try {
-            owner.dataTransferModel->transferInfo(owner.id, fileId, info);
-        } catch (...) {
-            info.status = datatransfer::Status::INVALID;
-        }
+        return;
     } else {
         QString path;
         qlonglong bytesProgress, totalSize;
@@ -3911,13 +3886,12 @@ ConversationModelPimpl::awaitingHost(const QString& fileId, datatransfer::Info i
             return;
         }
     }
-    handleIncomingFile(conversationId, interactionId, info.displayName, info.totalSize);
+    handleIncomingFile(conversationId, interactionId, info.totalSize);
 }
 
 void
 ConversationModelPimpl::handleIncomingFile(const QString& convId,
                                            const QString& interactionId,
-                                           const QString& displayName,
                                            int totalSize)
 {
     // If it's an accepted file type and less than 20 MB, accept transfer.
@@ -3926,75 +3900,17 @@ ConversationModelPimpl::handleIncomingFile(const QString& convId,
             || (totalSize > 0
                 && static_cast<unsigned>(totalSize)
                        < linked.owner.accountModel->autoTransferSizeThreshold * 1024 * 1024)) {
-            acceptTransfer(convId, interactionId, displayName);
+            acceptTransfer(convId, interactionId);
         }
     }
 }
 
 void
-ConversationModelPimpl::acceptTransfer(const QString& convUid,
-                                       const QString& interactionId,
-                                       const QString& path)
+ConversationModelPimpl::acceptTransfer(const QString& convUid, const QString& interactionId)
 {
     auto& conversation = getConversationForUid(convUid).get();
-    if (conversation.isLegacy()) {
-        // This is a fallback, will be removed when swarm will be mandatory
-        auto destinationDir = linked.owner.accountModel->downloadDirectory;
-        if (destinationDir.isEmpty()) {
-            return;
-        }
-#ifdef Q_OS_WIN
-        if (destinationDir.right(1) != '/') {
-            destinationDir += "/";
-        }
-#endif
-        QDir dir = QFileInfo(destinationDir + path).absoluteDir();
-        if (!dir.exists())
-            dir.mkpath(".");
-
-        auto acceptedFilePath = linked.owner.dataTransferModel->accept(linked.owner.id,
-                                                                       interactionId,
-                                                                       destinationDir + path);
-        auto fileId = linked.owner.dataTransferModel->getFileIdFromInteractionId(interactionId);
-        if (transfIdToDbIntId.find(fileId) != transfIdToDbIntId.end()) {
-            auto dbInteractionId = transfIdToDbIntId[fileId];
-            storage::updateInteractionBody(db, dbInteractionId, acceptedFilePath);
-            storage::updateInteractionStatus(db,
-                                             dbInteractionId,
-                                             interaction::Status::TRANSFER_ACCEPTED);
-        } else {
-            storage::updateInteractionBody(db, interactionId, acceptedFilePath);
-            storage::updateInteractionStatus(db,
-                                             interactionId,
-                                             interaction::Status::TRANSFER_ACCEPTED);
-        }
-        // prepare interaction Info and emit signal for the client
-        auto conversationIdx = indexOf(convUid);
-        interaction::Info itCopy;
-        bool emitUpdated = false;
-        if (conversationIdx != -1) {
-            std::lock_guard<std::mutex> lk(interactionsLocks[convUid]);
-            auto& interactions = conversations[conversationIdx].interactions;
-            auto it = interactions->find(interactionId);
-            if (it != interactions->end()) {
-                it->second.body = acceptedFilePath;
-                it->second.status = interaction::Status::TRANSFER_ACCEPTED;
-                using namespace MessageList;
-                interactions->emitDataChanged(it, {Role::Body, Role::Status});
-                emitUpdated = true;
-                itCopy = it->second;
-            }
-        }
-        if (emitUpdated) {
-            if (conversations[conversationIdx].isCoreDialog()) {
-                sendContactRequest(peersForConversation(conversations[conversationIdx]).front());
-            }
-            invalidateModel();
-            Q_EMIT linked.interactionStatusUpdated(convUid, interactionId, itCopy);
-            Q_EMIT behaviorController.newReadInteraction(linked.owner.id, convUid, interactionId);
-        }
+    if (conversation.isLegacy()) // Ignore legacy
         return;
-    }
 
     auto interaction = conversation.interactions->find(interactionId);
     if (interaction != conversation.interactions->end()) {

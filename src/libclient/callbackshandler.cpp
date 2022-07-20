@@ -581,13 +581,7 @@ CallbacksHandler::slotDataTransferEvent(const QString& accountId,
 
     api::datatransfer::Info info;
     if (conversationId.isEmpty()) {
-        try {
-            parent.getAccountModel()
-                .getAccountInfo(accountId)
-                .dataTransferModel->transferInfo(accountId, fileId, info);
-        } catch (...) {
-            return;
-        }
+        return;
     } else {
         info.uid = fileId;
         info.status = convertDataTransferEvent(event);
