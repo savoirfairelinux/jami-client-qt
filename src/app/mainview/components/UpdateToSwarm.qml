@@ -46,7 +46,7 @@ Control {
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             Layout.fillWidth: true
 
-            text: JamiStrings.contactLeft
+            text: JamiStrings.updateToSwarm
             font.pointSize: JamiTheme.textFontSize + 2
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
@@ -60,6 +60,7 @@ Control {
 
             MaterialButton {
                 text: JamiStrings.removeContact
+                padding: 8
                 autoAccelerator: true
                 font.pointSize: JamiTheme.textFontSize + 2
                 onClicked: MessagesAdapter.removeContact(
@@ -67,7 +68,8 @@ Control {
             }
 
             MaterialButton {
-                text: JamiStrings.newConversation
+                text: JamiStrings.migrateConversation
+                padding: 8
                 autoAccelerator: true
                 font.pointSize: JamiTheme.textFontSize + 2
                 onClicked: ConversationsAdapter.restartConversation(

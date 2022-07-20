@@ -160,8 +160,8 @@ Rectangle {
                     }
                 }
 
-                ReadOnlyFooter {
-                    visible: CurrentConversation.readOnly
+                UpdateToSwarm {
+                    visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary
                     Layout.fillWidth: true
                 }
 
@@ -171,11 +171,11 @@ Rectangle {
                     visible: {
                         if (CurrentConversation.isBlocked)
                             return false
-                        else if (CurrentConversation.needsSyncing || CurrentConversation.readOnly)
+                        else if (CurrentConversation.needsSyncing)
                             return false
                         else if (CurrentConversation.isSwarm && CurrentConversation.isRequest)
                             return false
-                        return true
+                        return CurrentConversation.isSwarm || CurrentConversation.isTemporary
                     }
 
                     Layout.alignment: Qt.AlignHCenter

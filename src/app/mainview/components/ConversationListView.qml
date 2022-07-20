@@ -133,7 +133,7 @@ JamiListView {
                 "isSwarm": model.dataForRow(row, ConversationList.IsSwarm),
                 "isBanned": model.dataForRow(row, ConversationList.IsBanned),
                 "mode": model.dataForRow(row, ConversationList.Mode),
-                "readOnly": model.dataForRow(row, ConversationList.ReadOnly)
+                "isTemporary": model.dataForRow(row, ConversationList.ContactType) === Profile.Type.TEMPORARY,
             }
 
             responsibleAccountId = LRCInstance.currentAccountId
@@ -142,7 +142,7 @@ JamiListView {
             isBanned = item.isBanned
             mode = item.mode
             contactType = LRCInstance.currentAccountType
-            readOnly = item.readOnly
+            readOnly = mode === Conversation.Mode.NON_SWARM && !item.isTemporary
 
             if (model.dataForRow(row, ConversationList.IsCoreDialog)) {
                 userProfile.aliasText = item.title
