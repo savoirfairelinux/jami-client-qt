@@ -164,13 +164,6 @@ ItemDelegate {
             }
         }
 
-        // read-only conversation indicator
-        ResponsiveImage {
-            visible: ReadOnly
-            source: JamiResources.lock_black_24dp_svg
-            color: JamiTheme.primaryForegroundColor
-        }
-
         // Draft indicator
         ResponsiveImage {
             visible: Draft && !root.highlighted

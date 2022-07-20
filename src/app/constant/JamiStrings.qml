@@ -41,7 +41,7 @@ Item {
     property string contactSearchInvitations: qsTr("Search your invitations")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
-    property string contactLeft: qsTr("You are viewing a conversation where all participants other than you have left. New interactions will not be possible.")
+    property string updateToSwarm: qsTr("This conversation cannot be synced with other devices and must be restarted.")
     property string newConversation: qsTr("Start new conversation")
 
     // AboutPopUp

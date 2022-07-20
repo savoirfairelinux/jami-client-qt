@@ -57,7 +57,6 @@ CurrentConversation::updateData()
             set_isLegacy(convInfo.isLegacy());
             set_isCoreDialog(convInfo.isCoreDialog());
             set_isRequest(convInfo.isRequest);
-            set_readOnly(convInfo.readOnly);
             set_needsSyncing(convInfo.needsSyncing);
             set_color(Utils::getAvatarColor(convId).name());
             set_isSip(accInfo.profileInfo.type == profile::Type::SIP);

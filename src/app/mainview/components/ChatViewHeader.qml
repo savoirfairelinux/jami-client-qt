@@ -45,12 +45,9 @@ Rectangle {
     property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
             return false
-        if (CurrentConversation.isSwarm &&
-                CurrentConversation.readOnly)
+        if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
             return false
-        if (CurrentConversation.isSwarm &&
-                (CurrentConversation.isRequest ||
-                 CurrentConversation.needsSyncing))
+        if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
             return false
         return true
     }
