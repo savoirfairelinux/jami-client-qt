@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "120a0db9_7e8e42a3",
+        "filename": "src/app/commoncomponents/JamiSwitch.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2022-07-21T13:39:24Z",
+      "side": 1,
+      "message": "\u003e I think some colors are missing, the switch seems not the same as Charlotte\u0027s design\n\u003e \n\u003e Also the selected items in the left panel also got a different blue.\n\nsince the handle is a child of the background i can\u0027t give an opacity, so i went through the rgba",
+      "parentUuid": "41bfad80_fa75dadf",
+      "range": {
+        "startLine": 49,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 46
+      },
+      "revId": "d31f6c07b35d49e75de2af092607cf088c3eeb51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a69c53e5_37fcb4b9",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-15T13:25:19Z",
       "side": 1,
       "message": "remove comment",
+      "range": {
+        "startLine": 59,
+        "startChar": 67,
+        "endLine": 59,
+        "endChar": 88
+      },
+      "revId": "d31f6c07b35d49e75de2af092607cf088c3eeb51",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "237dd677_dadf7447",
+        "filename": "src/app/commoncomponents/PushButton.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 948
+      },
+      "writtenOn": "2022-07-21T13:39:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a69c53e5_37fcb4b9",
       "range": {
         "startLine": 59,
         "startChar": 67,
