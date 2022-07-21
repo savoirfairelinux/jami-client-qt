@@ -125,8 +125,10 @@ Rectangle {
 
             font.pointSize: JamiTheme.titleFontSize
 
-            horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
+            horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+
+            fieldLayoutWidth: 10
 
             placeholderText: JamiStrings.swarmName
             tooltipText: JamiStrings.swarmName
@@ -158,7 +160,7 @@ Rectangle {
 
             font.pointSize: JamiTheme.menuFontSize
 
-            horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
+            horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
             placeholderText: JamiStrings.addADescription
