@@ -29,7 +29,26 @@ Item {
     id: root
 
     signal editingFinished
+    signal accepted
+    signal secondIcoClicked
 
+    property alias fontSize: lineEdit.fontSize
+    property alias borderColor: lineEdit.borderColor
+    property alias underlined: lineEdit.underlined
+    property alias wizardInput: lineEdit.wizardInput
+    property alias wrapMode: lineEdit.wrapMode
+    property alias padding: lineEdit.padding
+    property alias fieldLayoutWidth: lineEdit.fieldLayoutWidth
+    property alias fieldLayoutHeight: lineEdit.fieldLayoutHeight
+    property alias echoMode: lineEdit.echoMode
+    property string inactiveColor: JamiTheme.tintedBlue
+    property string hoveredColor: "#03B9E9"
+    property string selectedColor: "#03B9E9"
+    property string validatedColor: "#009980"
+    property string errorColor: "#CC0022"
+    property alias selectByMouse:lineEdit.selectByMouse
+    property alias loseFocusWhenEnterPressed: lineEdit.loseFocusWhenEnterPressed
+    property alias validator: lineEdit.validator
     property alias text: lineEdit.text
     property alias color: lineEdit.color
     property alias verticalAlignment: lineEdit.verticalAlignment
@@ -40,15 +59,42 @@ Item {
     property alias backgroundColor: lineEdit.backgroundColor
     property var editIconColor:  UtilsAdapter.luma(root.color) ? JamiTheme.editLineColor : "white"
     property var cancelIconColor: UtilsAdapter.luma(root.color) ? JamiTheme.buttonTintedBlue : "white"
+    property string informationToolTip: ""
+
+    property string firstIco: ""
+    property string secondIco: ""
+    property string thirdIco: ""
+
+    property string firstIcoColor: "#005699"
+    property string secondIcoColor: "#005699"
+    property string thirdIcoColor: "#005699"
 
     property bool readOnly: false
     property bool editable: false
     property bool hovered: false
+    property bool selected: false
+    property bool inactive: true
+    property bool validated: false
+    property bool error: false
+
     property string tooltipText: ""
     property int preferredWidth: JamiTheme.preferredFieldWidth
 
+    function clear(){ lineEdit.clear() }
+    function toggleEchoMode(){                 if (echoMode == TextInput.Normal) {
+            echoMode = TextInput.Password
+            secondIco = JamiResources.eye_cross_svg
+        }
+        else { echoMode = TextInput.Normal
+            secondIco = JamiResources.noun_eye_svg
+        }
+    }
+
     height: lineEdit.height
     width: preferredWidth
+
+    Layout.preferredHeight: 50
+    Layout.preferredWidth:  400
 
     MaterialToolTip {
         parent: lineEdit
@@ -61,29 +107,35 @@ Item {
         target : parent
         onHoveredChanged: {
             root.hovered = hovered
+
         }
-        cursorShape: Qt.PointingHandCursor
+        //cursorShape: Qt.PointingHandCursor
     }
 
-    RowLayout {
+    Item {
+
         id: row
-        anchors.centerIn: parent
+        anchors.fill: parent
+
         z: 1
 
-        Image {
-            id: editImg
-            opacity: editable && !root.readOnly
+        ResponsiveImage  {
+            id: firstIco_
+            opacity:  (editable && !root.readOnly) /*firstIco!=="" &&*/
+            anchors.left: row.left
+            anchors.verticalCenter: row.verticalCenter
 
-            Layout.alignment: Qt.AlignVCenter
+            width: 18
+            height: 18
 
             layer {
                 enabled: true
                 effect: ColorOverlay {
-                    color: root.editIconColor
+                    color:  firstIcoColor
                 }
             }
 
-            source: JamiResources.round_edit_24dp_svg
+            source: firstIco
 
             Behavior on opacity {
                 NumberAnimation {
@@ -95,18 +147,18 @@ Item {
 
         MaterialLineEdit {
             id: lineEdit
-
+            anchors.horizontalCenter: row.horizontalCenter
+            height: row.height
             readOnly: !editable || root.readOnly
             underlined: true
 
             borderColor: root.editIconColor
             fieldLayoutHeight: 24
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: root.preferredFieldWidth - editImg.width - btnCancel.width
-            Layout.fillHeight: true
+            maximumLength: 20
 
             wrapMode: Text.NoWrap
+
 
             onFocusChanged: function(focus) {
                 if (!focus && editable) {
@@ -119,29 +171,32 @@ Item {
             }
             onAccepted: {
                 editable = !editable
+                root.accepted()
                 root.editingFinished()
+                focus = false //probleme avec licon de gauche
             }
         }
 
-        PushButton {
-            id: btnCancel
 
-            Layout.alignment: Qt.AlignVCenter
 
-            enabled: editable && !root.readOnly
-            preferredSize: lineEdit.height * 2 / 3
-            opacity: enabled ? 0.8 : 0
-            imageColor: root.cancelIconColor
-            normalColor: "transparent"
-            hoveredColor: JamiTheme.hoveredButtonColor
+        ResponsiveImage  {
+            id: thirdICO_
+//            visible:  (editable && !root.readOnly) /*thirdIco!==""*/
+            anchors.right: secICO_.left
+            anchors.rightMargin: 12
+            anchors.verticalCenter: row.verticalCenter
 
-            source: JamiResources.round_close_24dp_svg
+            width: 18
+            height: 18
 
-            onClicked: {
-                root.editingFinished()
-                root.editable = !root.editable
-                lineEdit.forceActiveFocus()
+            layer {
+                enabled: true
+                effect: ColorOverlay {
+                    color: thirdIcoColor
+                }
             }
+
+            source: thirdIco
 
             Behavior on opacity {
                 NumberAnimation {
@@ -150,25 +205,90 @@ Item {
                 }
             }
         }
+
+        ResponsiveImage  {
+
+            id: secICO_
+            visible: (editable && !root.readOnly) || secondIco !==""
+            source: secondIco
+            anchors.right: row.right
+            anchors.verticalCenter: row.verticalCenter
+            width: 18
+            height: 18
+
+            MaterialToolTip {
+                id: toolTip
+                parent: secICO_
+                text: informationToolTip
+                textColor: "black"
+                backGroundColor: "white"
+                visible: parent.hovered && informationToolTip!==""
+                delay: Qt.styleHints.mousePressAndHoldInterval
+            }
+
+
+            layer {
+                enabled: true
+                effect: ColorOverlay {
+                    color: secondIcoColor
+                }
+            }
+
+            TapHandler{
+                target: parent
+                onTapped: {
+
+                    root.secondIcoClicked()
+
+                }
+
+            }
+
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0
+                    duration: JamiTheme.longFadeDuration
+                }
+            }
+
+        }
+
     }
 
+
     Rectangle {
-        anchors.fill: row
+        id: barColor
+        anchors.fill: root
         radius: JamiTheme.primaryRadius
 
-        visible: (root.editable || root.hovered)  && !root.readOnly
-        color: root.editIconColor
+        visible: true
+        color: {
+
+            if(root.error)
+                return errorColor
+            if(root.validated)
+                return validatedColor
+            if(root.hovered || root.editable)
+                return hoveredColor
+            if(root.inactive)
+                return inactiveColor
+            if(root.editable)
+                return selectedColor
+            return "black"
+
+        }
 
         Rectangle {
             visible: parent.visible
             anchors {
                 fill: parent
                 topMargin: 0
-                rightMargin: 0
+                rightMargin: -1
                 bottomMargin: 1
-                leftMargin: 0
+                leftMargin: -1
             }
             color: root.backgroundColor
         }
     }
+
 }

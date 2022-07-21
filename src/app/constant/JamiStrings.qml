@@ -327,12 +327,13 @@ Item {
     property string chooseUsernameForAccount: qsTr("You can choose a username to be easily found and reached on Jami.")
     property string chooseUsernameForRV: qsTr("Choose a name for your rendezvous point")
     property string chooseAName: qsTr("Choose a name")
-    property string chooseYourUserName: qsTr("Choose your username")
+    property string chooseYourUserName: qsTr("Choose username")
     property string invalidName: qsTr("Invalid name")
     property string invalidUsername: qsTr("Invalid username")
     property string nameAlreadyTaken: qsTr("Name already taken")
     property string usernameAlreadyTaken: qsTr("Username already taken")
     property string joinJamiNoPassword: qsTr("Are you sure that you want to join Jami without a username?\nIf yes, only a randomly generated 40-character identifier will be assigned to this account.")
+    property string usernameToolTip: qsTr("- 32 characters maximum\n- Alphabetical characters (A to Z)\n- Numeric characters (0 to 9)\n- Special character autorized: dash (-)")
 
     // CreateSIPAccountPage
     property string sipAccount: qsTr("SIP account")
@@ -515,7 +516,7 @@ Item {
     property string generatingAccount: qsTr("Generating account…")
     property string importFromBackup: qsTr("Import from backup")
     property string importFromArchiveBackup: qsTr("Import from archive backup")
-    property string importFromArchiveBackupDescription: qsTr("Import Jami account from archive file.")
+    property string importFromArchiveBackupDescription: qsTr("You can directly import your Jami account from an archive file on your device.")
     property string selectArchiveFile: qsTr("Select archive file")
 
     // ImportFromDevicePage

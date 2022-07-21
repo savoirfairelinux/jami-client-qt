@@ -192,5 +192,6 @@
         <file>src/app/mainview/components/KeyboardShortcutTabButton.qml</file>
         <file>src/app/LayoutManager.qml</file>
         <file>src/app/mainview/components/JamiIdentifier.qml</file>
+        <file>src/app/commoncomponents/PasswordLineEdit.qml</file>
     </qresource>
 </RCC>

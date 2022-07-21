@@ -25,6 +25,7 @@ import net.jami.Constants 1.1
 TextField {
     id: root
 
+    property int fontSize: 18
     property int fieldLayoutWidth: 256
     property int fieldLayoutHeight: 48
 
@@ -33,6 +34,7 @@ TextField {
 
     property bool loseFocusWhenEnterPressed: false
     property bool underlined: false
+    property bool wizardInput: false
 
     padding: JamiTheme.materialLineEditPadding
     horizontalAlignment: Text.AlignLeft
@@ -50,6 +52,8 @@ TextField {
     placeholderTextColor: JamiTheme.placeholderTextColor
     color: JamiTheme.textColor
 
+    font.pixelSize: fontSize
+
     LineEditContextMenu {
         id: lineEditContextMenu
 
@@ -57,7 +61,10 @@ TextField {
         selectOnly: readOnly
     }
 
+
+
     background: Rectangle {
+        //visible: !wizardInput
         anchors.fill: root
         radius: JamiTheme.primaryRadius
 
@@ -71,13 +78,13 @@ TextField {
         }
 
         Rectangle {
-            visible: !readOnly && underlined
+            visible: true //underlined //!readOnly &&
             anchors {
                 fill: parent
                 topMargin: 0
-                rightMargin: 0
+                rightMargin: -1
                 bottomMargin: 1
-                leftMargin: 0
+                leftMargin: -1
             }
             color: backgroundColor
         }
