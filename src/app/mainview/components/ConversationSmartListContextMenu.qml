@@ -28,6 +28,29 @@ import "../../commoncomponents/contextmenu"
 ContextMenuAutoLoader {
     id: root
 
+    ConfirmDialog {
+        id: rmDialog
+
+        title: JamiStrings.confirmAction
+        textLabel: JamiStrings.confirmRmConversation
+        confirmLabel: JamiStrings.optionDelete
+        onAccepted: {
+            if (isSwarm)
+                MessagesAdapter.removeConversation(responsibleConvUid)
+            else
+                MessagesAdapter.removeContact(responsibleConvUid)
+        }
+    }
+
+    ConfirmDialog {
+        id: blockDialog
+
+        title: JamiStrings.confirmAction
+        textLabel: JamiStrings.confirmBlockConversation
+        confirmLabel: JamiStrings.optionBlock
+        onAccepted: MessagesAdapter.blockConversation(responsibleConvUid)
+    }
+
     property string responsibleAccountId: ""
     property string responsibleConvUid: ""
     property bool isBanned: false
@@ -89,12 +112,7 @@ ContextMenuAutoLoader {
                     return JamiStrings.removeContact
             }
             iconSource: JamiResources.ic_hangup_participant_24dp_svg
-            onClicked: {
-                if (isSwarm)
-                    MessagesAdapter.removeConversation(responsibleConvUid)
-                else
-                    MessagesAdapter.removeContact(responsibleConvUid)
-            }
+            onClicked: rmDialog.open()
         },
         GeneralMenuItem {
             id: hangup
@@ -131,7 +149,7 @@ ContextMenuAutoLoader {
             itemName: !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM) ? JamiStrings.blockContact : JamiStrings.blockSwarm
             iconSource: JamiResources.block_black_24dp_svg
             addMenuSeparatorAfter: contactType !== Profile.Type.SIP
-            onClicked: MessagesAdapter.blockConversation(responsibleConvUid)
+            onClicked: blockDialog.open()
         },
         GeneralMenuItem {
             id: unblockContact

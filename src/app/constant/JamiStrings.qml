@@ -247,7 +247,10 @@ Item {
     property string startVideoCall: qsTr("Start video call")
     property string startAudioCall: qsTr("Start audio call")
     property string clearConversation: qsTr("Clear conversation")
+    property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Remove conversation")
+    property string confirmRmConversation: qsTr("Do you really want to remove this conversation")
+    property string confirmBlockConversation: qsTr("Do you really want to block this conversation")
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
     property string blockSwarm: qsTr("Block swarm")
@@ -582,6 +585,7 @@ Item {
     property string optionUpgrade: qsTr("Upgrade")
     property string optionLater: qsTr("Later")
     property string optionDelete: qsTr("Delete")
+    property string optionBlock: qsTr("Block")
 
     // Conference moderation
     property string setModerator: qsTr("Set moderator")

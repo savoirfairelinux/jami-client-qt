@@ -15,6 +15,7 @@
         <file>src/app/commoncomponents/PhotoboothView.qml</file>
         <file>src/app/commoncomponents/JamiListView.qml</file>
         <file>src/app/commoncomponents/DeleteAccountDialog.qml</file>
+        <file>src/app/commoncomponents/ConfirmDialog.qml</file>
         <file>src/app/commoncomponents/CustomBorder.qml</file>
         <file>src/app/commoncomponents/PushButton.qml</file>
         <file>src/app/commoncomponents/JamiFileDialog.qml</file>
