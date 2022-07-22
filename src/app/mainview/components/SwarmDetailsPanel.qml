@@ -325,9 +325,9 @@ Rectangle {
                     }
                 }
 
-
                 RowLayout {
                     Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
 
                     Text {
                         Layout.fillWidth: true
@@ -349,9 +349,43 @@ Rectangle {
 
                         Layout.alignment: Qt.AlignRight
 
-                        color: JamiTheme.buttonTintedBlack
+                        color: JamiTheme.textColor
 
                         text: CurrentConversation.modeString
+                    }
+                }
+
+                RowLayout {
+                    Layout.leftMargin: JamiTheme.preferredMarginSize
+                    Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
+                    Layout.maximumWidth: parent.width
+
+                    Text {
+                        id: idLabel
+                        Layout.preferredHeight: 30
+                        Layout.rightMargin: JamiTheme.preferredMarginSize
+                        Layout.maximumWidth: parent.width / 2
+
+                        text: JamiStrings.identifier
+                        font.pointSize: JamiTheme.settingsFontSize
+                        font.kerning: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        color: JamiTheme.textColor
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignRight
+                        Layout.maximumWidth: parent.width / 2
+
+                        color: JamiTheme.textColor
+
+
+                        text: CurrentConversation.id
+                        elide: Text.ElideRight
+
                     }
                 }
             }

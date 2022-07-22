@@ -144,3 +144,9 @@ CurrentConversation::connectModel()
             &CurrentConversation::onProfileUpdated,
             Qt::UniqueConnection);
 }
+
+void
+CurrentConversation::showSwarmDetails() const
+{
+    Q_EMIT showDetails();
+}

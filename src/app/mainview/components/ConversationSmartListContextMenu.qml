@@ -28,6 +28,8 @@ import "../../commoncomponents/contextmenu"
 ContextMenuAutoLoader {
     id: root
 
+    signal showSwarmDetails
+
     ConfirmDialog {
         id: rmDialog
 
@@ -164,10 +166,14 @@ ContextMenuAutoLoader {
             id: contactDetails
 
             canTrigger: contactType !== Profile.Type.SIP
-                        && !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM)
-            itemName: JamiStrings.contactDetails
+            itemName: JamiStrings.convDetails
             iconSource: JamiResources.person_24dp_svg
-            onClicked: userProfile.open()
+            onClicked: {
+                if (!(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM))
+                    userProfile.open()
+                else
+                    root.showSwarmDetails()
+            }
         }
     ]
 

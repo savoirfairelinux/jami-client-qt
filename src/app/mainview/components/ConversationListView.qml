@@ -113,6 +113,8 @@ JamiListView {
     ConversationSmartListContextMenu {
         id: contextMenu
 
+        property var index: -1
+
         function openMenuAt(x, y) {
             contextMenu.x = x
             contextMenu.y = y
@@ -122,6 +124,7 @@ JamiListView {
             // - userProfile dialog should use a loader/popup
 
             var row = root.indexAt(x, y + root.contentY)
+            index = row
             var item = {
                 "convId": model.dataForRow(row, ConversationList.UID),
                 "displayId": model.dataForRow(row, ConversationList.BestId),
@@ -150,6 +153,11 @@ JamiListView {
             }
 
             openMenu()
+        }
+
+        onShowSwarmDetails: {
+            model.select(index)
+            CurrentConversation.showSwarmDetails()
         }
     }
 

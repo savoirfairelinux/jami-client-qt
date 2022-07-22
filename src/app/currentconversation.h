@@ -54,6 +54,11 @@ public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;
 
+    Q_INVOKABLE void showSwarmDetails() const;
+
+Q_SIGNALS:
+    void showDetails() const;
+
 private Q_SLOTS:
     void updateData();
     void onConversationUpdated(const QString& convId);
