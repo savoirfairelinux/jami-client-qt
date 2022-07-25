@@ -38,6 +38,7 @@
 #include <QJsonDocument>
 
 #include <fstream>
+#include <filesystem>
 #include <thread>
 #include <cstring>
 
