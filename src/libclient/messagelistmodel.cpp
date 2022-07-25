@@ -64,6 +64,12 @@ MessageListModel::find(const QString& msgId)
     return interactions_.end();
 }
 
+iterator
+MessageListModel::erase(const iterator& it)
+{
+    return interactions_.erase(it);
+}
+
 constIterator
 MessageListModel::find(const QString& msgId) const
 {
