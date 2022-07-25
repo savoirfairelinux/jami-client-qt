@@ -38,6 +38,9 @@
 #include <QJsonDocument>
 
 #include <fstream>
+#if __has_include(<filesystem>)
+#include <filesystem>
+#endif
 #include <thread>
 #include <cstring>
 
@@ -292,9 +295,13 @@ setProfile(const QString& accountId, const api::profile::Info& profileInfo, cons
     QFileInfo fileInfo(path);
     auto dir = fileInfo.dir();
     if (!dir.exists()) {
+#if __has_include(<filesystem>)
         if (!std::filesystem::create_directory(dir.path().toStdString())) {
+#endif
             qWarning() << "Cannot create " << dir.path();
+#if __has_include(<filesystem>)
         }
+#endif
     }
     if (!lf.lock()) {
         qWarning().noquote() << "Can't lock file for writing: " << file.fileName();
