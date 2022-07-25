@@ -64,6 +64,12 @@ MessageListModel::find(const QString& msgId)
     return interactions_.end();
 }
 
+iterator
+MessageListModel::erase(const iterator& it)
+{
+    return interactions_.erase(it);
+}
+
 constIterator
 MessageListModel::find(const QString& msgId) const
 {
@@ -79,12 +85,14 @@ MessageListModel::find(const QString& msgId) const
 QPair<iterator, bool>
 MessageListModel::insert(std::pair<QString, interaction::Info> message, bool beginning)
 {
+    qWarning() << "@@@ --- Insert " << message.first;
     return emplace(message.first, message.second, beginning);
 }
 
 int
 MessageListModel::erase(const QString& msgId)
 {
+    qWarning() << "@@@ --- Erase " << msgId;
     iterator it;
     int index = 0;
     for (it = interactions_.begin(); it != interactions_.end(); ++it) {
@@ -232,6 +240,7 @@ void
 MessageListModel::moveMessages(QList<QString> msgIds, const QString& parentId)
 {
     for (auto msgId : msgIds) {
+        qWarning() << "@@@ MOVE " << msgId << " " << parentId;
         moveMessage(msgId, parentId);
     }
 }
@@ -259,10 +268,12 @@ MessageListModel::moveMessage(const QString& msgId, const QString& parentId)
     if (newIndex >= interactions_.size()) {
         newIndex = interactions_.size() - 1;
     }
+    qWarning() << "@@@ " << msgId << " - " << currentIndex << " " << newIndex << " - " << size();
 
     if (currentIndex == newIndex || newIndex == -1)
         return;
 
+    qWarning() << "@@@ " << msgId << " - " << currentIndex << " " << newIndex << " - " << size();
     moveMessage(currentIndex, newIndex);
 
     // move a child message

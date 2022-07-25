@@ -1190,7 +1190,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             bool ret = false;
 
             {
-                std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convId]);
+                std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[newConv.uid]);
                 ret = newConv.interactions->insert(std::pair<QString, interaction::Info>(msgId, msg))
                           .second;
             }
@@ -2289,6 +2289,13 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                 msg.body = interaction::getContactInteractionString(bestName,
                                                                     interaction::to_action(
                                                                         message["action"]));
+            } else if (msg.type == interaction::Type::MERGE) {
+                msg.body = "MERGE";
+            }
+
+            if (msg.type == interaction::Type::TEXT || msg.type == interaction::Type::MERGE) {
+                QString formatted = QString("Id: %0\n\nUp: %1\n\n\n\n%2").arg(msgId).arg(msg.parentId).arg(msg.body);
+                msg.body = formatted;
             }
             insertSwarmInteraction(msgId, msg, conversation, true);
             if (downloadFile) {
@@ -2401,15 +2408,22 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
                    && msg.authorUri != linked.owner.profileInfo.uri) {
             conversation.unreadMessages++;
         }
+        if (msg.type == interaction::Type::MERGE) {
+            msg.body = "MERGE";
+        }
+
+        if (msg.type == interaction::Type::TEXT || msg.type == interaction::Type::MERGE) {
+            QString formatted = QString("Id: %0\n\nUp: %1\n\n\n\n%2").arg(msgId).arg(msg.parentId).arg(msg.body);
+            msg.body = formatted;
+        }
+
         if (!insertSwarmInteraction(msgId, msg, conversation, false)) {
             // message already exists
             return;
         }
-        if (msg.type == interaction::Type::MERGE) {
-            invalidateModel();
-            return;
+        if (msg.type != interaction::Type::MERGE) {
+            conversation.lastMessageUid = msgId;
         }
-        conversation.lastMessageUid = msgId;
         invalidateModel();
         if (!interaction::isOutgoing(msg)) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
@@ -2455,6 +2469,16 @@ ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
 {
     std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
     int index = conversation.interactions->indexOfMessage(interaction.parentId);
+    auto itExists = conversation.interactions->find(interactionId);
+    qWarning() << "@@@@ INSERT " << interactionId;
+    if (itExists != conversation.interactions->end()) {
+        itExists = conversation.interactions->erase(itExists);
+        qWarning() << "@@@ ERASE " << interactionId;
+        if (itExists != conversation.interactions->end()) {
+            qWarning() << "@@@ ADD WAITING " << itExists->first << " - " << interactionId;
+            conversation.parentsId[itExists->first] = interactionId;
+        }
+    }
     if (index >= 0) {
         auto result = conversation.interactions->insert(index + 1,
                                                         qMakePair(interactionId, interaction));
