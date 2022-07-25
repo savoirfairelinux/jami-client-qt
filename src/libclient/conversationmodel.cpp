@@ -1190,7 +1190,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
             bool ret = false;
 
             {
-                std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convId]);
+                std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[newConv.uid]);
                 ret = newConv.interactions->insert(std::pair<QString, interaction::Info>(msgId, msg))
                           .second;
             }
@@ -1314,7 +1314,7 @@ ConversationModel::clearHistory(const QString& uid)
     storage::clearHistory(pimpl_->db, uid);
     // Update conversation
     {
-        std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[uid]);
+        std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[conversation.uid]);
         conversation.interactions->clear();
     }
     storage::getHistory(pimpl_->db, conversation); // will contain "Conversation started"
@@ -1401,7 +1401,7 @@ ConversationModel::clearInteractionsCache(const QString& convId)
         auto& conversation = pimpl_->conversations.at(conversationIdx);
         if (!conversation.isRequest && !conversation.needsSyncing && conversation.isSwarm()) {
             {
-                std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convId]);
+                std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[conversation.uid]);
                 conversation.interactions->clear();
             }
             conversation.allMessagesLoaded = false;
@@ -2454,6 +2454,15 @@ ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
                                                bool insertAtBegin)
 {
     std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
+    auto itExists = conversation.interactions->find(interactionId);
+    if (itExists != conversation.interactions->end()) {
+        // Erase interaction if exists, as it will be updated via a re-insertion
+        itExists = conversation.interactions->erase(itExists);
+        if (itExists != conversation.interactions->end()) {
+            // next interaction doesn't have parent anymore.
+            conversation.parentsId[itExists->first] = interactionId;
+        }
+    }
     int index = conversation.interactions->indexOfMessage(interaction.parentId);
     if (index >= 0) {
         auto result = conversation.interactions->insert(index + 1,
@@ -3005,7 +3014,7 @@ ConversationModelPimpl::addConversationWith(const QString& convId,
     storage::getHistory(db, conversation);
     std::vector<std::function<void(void)>> updateSlots;
     {
-        std::lock_guard<std::mutex> lk(interactionsLocks[convId]);
+        std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
         for (auto& interaction : (*(conversation.interactions))) {
             if (interaction.second.status != interaction::Status::SENDING) {
                 continue;
@@ -3976,7 +3985,7 @@ ConversationModelPimpl::acceptTransfer(const QString& convUid,
         interaction::Info itCopy;
         bool emitUpdated = false;
         if (conversationIdx != -1) {
-            std::lock_guard<std::mutex> lk(interactionsLocks[convUid]);
+            std::lock_guard<std::mutex> lk(interactionsLocks[conversations[conversationIdx].uid]);
             auto& interactions = conversations[conversationIdx].interactions;
             auto it = interactions->find(interactionId);
             if (it != interactions->end()) {
@@ -4084,7 +4093,7 @@ ConversationModelPimpl::slotTransferStatusFinished(const QString& fileId, datatr
         auto newStatus = interaction::Status::TRANSFER_FINISHED;
         interaction::Info itCopy;
         {
-            std::lock_guard<std::mutex> lk(interactionsLocks[conversationId]);
+            std::lock_guard<std::mutex> lk(interactionsLocks[conversations[conversationIdx].uid]);
             auto& interactions = conversations[conversationIdx].interactions;
             auto it = interactions->find(interactionId);
             if (it != interactions->end()) {
@@ -4174,7 +4183,7 @@ ConversationModelPimpl::updateTransferStatus(const QString& fileId,
     bool emitUpdated = false;
     interaction::Info itCopy;
     {
-        std::lock_guard<std::mutex> lk(interactionsLocks[conversationId]);
+        std::lock_guard<std::mutex> lk(interactionsLocks[conversations[conversationIdx].uid]);
         auto& interactions = conversations[conversationIdx].interactions;
         auto it = interactions->find(interactionId);
         if (it != interactions->end()) {
@@ -4209,7 +4218,7 @@ ConversationModelPimpl::updateTransferProgress(QTimer* timer,
         interaction::Info itCopy;
         {
             auto convId = conversations[conversationIdx].uid;
-            std::lock_guard<std::mutex> lk(interactionsLocks[convId]);
+            std::lock_guard<std::mutex> lk(interactionsLocks[conversations[conversationIdx].uid]);
             const auto& interactions = conversations[conversationIdx].interactions;
             const auto& it = interactions->find(interactionId);
             if (it != interactions->cend()
