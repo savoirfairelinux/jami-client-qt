@@ -77,6 +77,7 @@ public:
                                   interaction::Info message,
                                   bool beginning = false);
     iterator find(const QString& msgId);
+    iterator erase(const iterator& it);
     constIterator find(const QString& msgId) const;
     QPair<iterator, bool> insert(std::pair<QString, interaction::Info> message,
                                  bool beginning = false);
@@ -89,7 +90,7 @@ public:
     constIterator begin() const;
     reverseIterator rbegin();
     int size() const;
-    void clear(int leaveN = 0);
+    void clear();
     bool empty() const;
     interaction::Info at(const QString& intId) const;
     QPair<QString, interaction::Info> front() const;
@@ -116,8 +117,6 @@ public:
     // Note: this is not ideal, and this class should be refactored into a proper
     // view model and absorb the interaction management logic to avoid exposing
     // these emission wrappers
-    void emitBeginResetModel();
-    void emitEndResetModel();
     void emitDataChanged(iterator it, VectorInt roles = {});
     void emitDataChanged(const QString& msgId, VectorInt roles = {});
 

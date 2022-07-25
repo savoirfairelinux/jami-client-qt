@@ -64,6 +64,16 @@ MessageListModel::find(const QString& msgId)
     return interactions_.end();
 }
 
+iterator
+MessageListModel::erase(const iterator& it)
+{
+    auto index = std::distance(begin(), it);
+    Q_EMIT beginRemoveRows(QModelIndex(), index, index);
+    auto erased = interactions_.erase(it);
+    Q_EMIT endRemoveRows();
+    return erased;
+}
+
 constIterator
 MessageListModel::find(const QString& msgId) const
 {
@@ -157,9 +167,11 @@ MessageListModel::size() const
 }
 
 void
-MessageListModel::clear(int leaveN)
+MessageListModel::clear()
 {
-    interactions_.erase(interactions_.begin(), std::prev(interactions_.end(), leaveN));
+    Q_EMIT beginResetModel();
+    interactions_.clear();
+    Q_EMIT endResetModel();
 }
 
 bool
@@ -444,18 +456,6 @@ MessageListModel::getRead(const QString& peer)
     if (i != lastDisplayedMessageUid_.end())
         return i.value();
     return "";
-}
-
-void
-MessageListModel::emitBeginResetModel()
-{
-    Q_EMIT beginResetModel();
-}
-
-void
-MessageListModel::emitEndResetModel()
-{
-    Q_EMIT endResetModel();
 }
 
 void
