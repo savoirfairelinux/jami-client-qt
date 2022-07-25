@@ -38,6 +38,9 @@
 #include <QJsonDocument>
 
 #include <fstream>
+#if !defined(Q_OS_LINUX) || __GNUC__ > 8
+#include <filesystem>
+#endif
 #include <thread>
 #include <cstring>
 
@@ -292,9 +295,13 @@ setProfile(const QString& accountId, const api::profile::Info& profileInfo, cons
     QFileInfo fileInfo(path);
     auto dir = fileInfo.dir();
     if (!dir.exists()) {
+#if !defined(Q_OS_LINUX) || __GNUC__ > 8
         if (!std::filesystem::create_directory(dir.path().toStdString())) {
+#endif
             qWarning() << "Cannot create " << dir.path();
+#if !defined(Q_OS_LINUX) || __GNUC__ > 8
         }
+#endif
     }
     if (!lf.lock()) {
         qWarning().noquote() << "Can't lock file for writing: " << file.fileName();
