@@ -119,9 +119,14 @@ Control {
                     z:-1
                     out: isOutgoing
                     type: seq
-                    color: isOutgoing ?
+                    color:{
+                        if (Type === Interaction.Type.MERGE) {
+                            return "black"
+                        }
+                        return isOutgoing ?
                                JamiTheme.messageOutBgColor :
                                CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                    }
                     radius: msgRadius
                     anchors.right: isOutgoing ? parent.right : undefined
                     anchors.top: parent.top

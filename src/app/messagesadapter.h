@@ -43,7 +43,7 @@ public:
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
         auto type = sourceModel()->data(index, MessageList::Role::Type).toInt();
         auto hasBody = !sourceModel()->data(index, MessageList::Role::Body).toString().isEmpty();
-        return static_cast<interaction::Type>(type) != interaction::Type::MERGE && hasBody;
+        return true;//static_cast<interaction::Type>(type) != interaction::Type::MERGE && hasBody;
     };
 
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
