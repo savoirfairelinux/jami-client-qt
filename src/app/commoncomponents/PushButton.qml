@@ -56,7 +56,7 @@ AbstractButton {
     property alias toolTipText: toolTip.text
 
     // State colors
-    property string pressedColor: JamiTheme.buttonTintedBluePressed
+    property string pressedColor: JamiTheme.pressedButtonColor
     property string hoveredColor: JamiTheme.hoveredButtonColor
     property string normalColor: JamiTheme.normalButtonColor
     property string checkedColor: pressedColor
