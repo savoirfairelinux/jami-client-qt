@@ -83,7 +83,7 @@
     <message>
         <location filename="../src/app/settingsview/components/BannedContacts.qml" line="79"/>
         <source>Banned Contacts</source>
-        <translation type="unfinished"/>
+        <translation>Kontak yang diblokir</translation>
     </message>
 </context>
 <context>
@@ -96,7 +96,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="129"/>
         <source>Missed call with %1</source>
-        <translation type="unfinished"/>
+        <translation>Panggilan terlewat dari %1</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="498"/>
@@ -225,7 +225,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
         <source>Search your invitations</source>
-        <translation type="unfinished"/>
+        <translation>Cari undangan anda</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
@@ -280,7 +280,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="61"/>
         <source>JAMS server</source>
-        <translation type="unfinished"/>
+        <translation>Server JAMS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="62"/>
@@ -315,7 +315,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="71"/>
         <source>Call Settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan telepon</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="72"/>
@@ -325,7 +325,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
         <source>In progress…</source>
-        <translation type="unfinished"/>
+        <translation>Memproses...</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
@@ -340,12 +340,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
         <source>Incoming audio call from {}</source>
-        <translation type="unfinished"/>
+        <translation>Panggilan masuk dari {}</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
         <source>Incoming video call from {}</source>
-        <translation type="unfinished"/>
+        <translation>Panggilan video masuk dari {}</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="73"/>
@@ -425,7 +425,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="97"/>
         <source>Private key</source>
-        <translation type="unfinished"/>
+        <translation>Kunci privat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
@@ -450,7 +450,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="102"/>
         <source>TLS protocol method</source>
-        <translation type="unfinished"/>
+        <translation>Metode protokol TLS</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="103"/>
@@ -490,7 +490,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="149"/>
         <source>Enable local peer discovery</source>
-        <translation type="unfinished"/>
+        <translation>Mengaktifkan penemuan rekan lokal</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
@@ -521,12 +521,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
         <source>Pause call</source>
-        <translation type="unfinished"/>
+        <translation>Jeda panggilan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>Resume call</source>
-        <translation type="unfinished"/>
+        <translation>Lanjutkan panggilan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
@@ -617,12 +617,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
         <source>Add new plugin</source>
-        <translation type="unfinished"/>
+        <translation>Tambah plugin baru</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="504"/>
         <source>Select a file</source>
-        <translation type="unfinished"/>
+        <translation>Pilih file </translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="505"/>
@@ -632,7 +632,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="506"/>
         <source>Choose image file</source>
-        <translation type="unfinished"/>
+        <translation>Pilih gambar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="512"/>
@@ -667,7 +667,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="557"/>
         <source>Decline contact request</source>
-        <translation type="unfinished"/>
+        <translation>Tolak permintaan kontak</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
@@ -677,7 +677,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="561"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Secara otomatis memeriksa pembaruan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
@@ -708,12 +708,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="44"/>
         <source>Start new conversation</source>
-        <translation type="unfinished"/>
+        <translation>Mulai obrolan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="81"/>
         <source>Chat Settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan Obrolan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
@@ -728,7 +728,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="108"/>
         <source>Select a CA certificate</source>
-        <translation type="unfinished"/>
+        <translation>Pilih Sertifikat CA</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="111"/>
@@ -748,7 +748,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="115"/>
         <source>Use UPnP</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan UPnP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="116"/>
@@ -793,7 +793,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
         <source>Public address</source>
-        <translation type="unfinished"/>
+        <translation>Alamat publik</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
@@ -803,7 +803,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>Port</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
@@ -813,17 +813,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="133"/>
         <source>Enable video</source>
-        <translation type="unfinished"/>
+        <translation>Aktifkan Video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="134"/>
         <source>Video Codecs</source>
-        <translation type="unfinished"/>
+        <translation>Kodek Video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
         <source>Audio Codecs</source>
-        <translation type="unfinished"/>
+        <translation>Kodek Audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
@@ -868,7 +868,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="151"/>
         <source>OpenDHT Configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurasi OpenDHT</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
@@ -893,7 +893,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="158"/>
         <source>Account Settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan Akun</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
@@ -909,12 +909,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Plugin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
         <source>Audio/Video</source>
-        <translation type="unfinished"/>
+        <translation>Audio/Video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="166"/>
@@ -924,7 +924,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
         <source>Microphone</source>
-        <translation type="unfinished"/>
+        <translation>Mikrofon</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
@@ -934,7 +934,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
         <source>Output device</source>
-        <translation type="unfinished"/>
+        <translation>Perangkat keluaran</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
@@ -944,7 +944,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
         <source>Ringtone device</source>
-        <translation type="unfinished"/>
+        <translation>Perangkat nada dering</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
@@ -954,7 +954,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="173"/>
         <source>Audio manager</source>
-        <translation type="unfinished"/>
+        <translation>Manajer Audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
@@ -974,7 +974,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="179"/>
         <source>Resolution</source>
-        <translation type="unfinished"/>
+        <translation>Resolusi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="180"/>
@@ -994,7 +994,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
         <source>Screen Sharing</source>
-        <translation type="unfinished"/>
+        <translation>Berbagi Layar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
@@ -1176,12 +1176,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>Start video call</source>
-        <translation type="unfinished"/>
+        <translation>Mulai panggilan video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>Start audio call</source>
-        <translation type="unfinished"/>
+        <translation>Mulai panggilan audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
@@ -1226,7 +1226,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
         <source>Stop recording</source>
-        <translation type="unfinished"/>
+        <translation>Berhenti merekam</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
@@ -1291,17 +1291,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
         <source>Hide chat view</source>
-        <translation type="unfinished"/>
+        <translation>Sembunyikan tampilan chat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
         <source>Place audio call</source>
-        <translation type="unfinished"/>
+        <translation>Mulai panggilan suara</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="274"/>
         <source>Place video call</source>
-        <translation type="unfinished"/>
+        <translation>Mulai panggilan video</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
@@ -1311,7 +1311,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Add to conversations</source>
-        <translation type="unfinished"/>
+        <translation>Tambah ke obrolan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
@@ -1713,7 +1713,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Perbarui</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
@@ -1800,7 +1800,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="456"/>
         <source>Import from backup</source>
-        <translation type="unfinished"/>
+        <translation>Impor dari cadangan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="463"/>
@@ -2261,7 +2261,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
         <source>Add a SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Tambah akun SIP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="543"/>
@@ -2586,12 +2586,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="267"/>
         <source>Sending</source>
-        <translation type="unfinished"/>
+        <translation>Mengirim</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="269"/>
         <source>Failure</source>
-        <translation type="unfinished"/>
+        <translation>Gagal</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="271"/>
@@ -2651,7 +2651,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="538"/>
         <source>one day ago</source>
-        <translation type="unfinished"/>
+        <translation>satu hari yang lalu</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="541"/>
@@ -2661,7 +2661,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="543"/>
         <source>one hour ago</source>
-        <translation type="unfinished"/>
+        <translation>satu jam yang lalu</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="546"/>
@@ -2671,7 +2671,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="547"/>
         <source>just now</source>
-        <translation type="unfinished"/>
+        <translation>Baru saja</translation>
     </message>
 </context>
 <context>
@@ -2684,7 +2684,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/settingsview/components/RecordingSettings.qml" line="81"/>
         <source>Always record calls</source>
-        <translation type="unfinished"/>
+        <translation>Selalu rekam panggilan</translation>
     </message>
     <message>
         <location filename="../src/app/settingsview/components/RecordingSettings.qml" line="111"/>

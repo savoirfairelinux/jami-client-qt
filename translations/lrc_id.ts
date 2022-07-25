@@ -428,12 +428,12 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="30"/>
         <source>Hide chat view</source>
-        <translation type="unfinished"/>
+        <translation>Sembunyikan tampilan chat</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="31"/>
         <source>Place video call</source>
-        <translation type="unfinished"/>
+        <translation>Mulai panggilan video</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="32"/>
@@ -443,17 +443,17 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="33"/>
         <source>Place audio call</source>
-        <translation type="unfinished"/>
+        <translation>Mulai panggilan suara</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="34"/>
         <source>Add to conversations</source>
-        <translation type="unfinished"/>
+        <translation>Tambah ke obrolan</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="35"/>
         <source>Unban contact</source>
-        <translation type="unfinished"/>
+        <translation>Buka blokir kontak</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="36"/>
@@ -558,7 +558,7 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="47"/>
         <source>Note: an interaction will create a new contact.</source>
-        <translation type="unfinished"/>
+        <translation>Catatan: interaksi akan menciptakan kontak baru.</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="48"/>
@@ -568,7 +568,7 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="58"/>
         <source>Note: you can automatically accept this invitation by sending a message.</source>
-        <translation type="unfinished"/>
+        <translation>Catatan: Anda dapat secara otomatis menerima undangan ini dengan mengirim pesan.</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="59"/>
@@ -598,37 +598,37 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="59"/>
         <source>%d days ago</source>
-        <translation type="unfinished"/>
+        <translation>%d hari yang lalu</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="60"/>
         <source>%d hours ago</source>
-        <translation type="unfinished"/>
+        <translation>%d jam yang lalu</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="62"/>
         <source>%d minutes ago</source>
-        <translation type="unfinished"/>
+        <translation>%d menit yang lalu</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="63"/>
         <source>one day ago</source>
-        <translation type="unfinished"/>
+        <translation>satu hari yang lalu</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="64"/>
         <source>one hour ago</source>
-        <translation type="unfinished"/>
+        <translation>satu jam yang lalu</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="65"/>
         <source>just now</source>
-        <translation type="unfinished"/>
+        <translation>Baru saja</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="66"/>
         <source>Failure</source>
-        <translation type="unfinished"/>
+        <translation>Gagal</translation>
     </message>
     <message>
         <location filename="../src/libclient/chatview.cpp" line="69"/>
@@ -638,7 +638,7 @@
     <message>
         <location filename="../src/libclient/chatview.cpp" line="70"/>
         <source>Retry</source>
-        <translation type="unfinished"/>
+        <translation>Coba lagi</translation>
     </message>
 </context>
 <context>
