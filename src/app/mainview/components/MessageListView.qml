@@ -202,6 +202,20 @@ JamiListView {
             }
         }
         DelegateChoice {
+            roleValue: Interaction.Type.MERGE
+            TextMessageDelegate {
+                Component.onCompleted: {
+                    if (index) {
+                        computeTimestampVisibility(this, index)
+                        computeSequencing(this, index)
+                    } else {
+                        Qt.callLater(computeTimestampVisibility, this, index)
+                        Qt.callLater(computeSequencing, this, index)
+                    }
+                }
+            }
+        }
+        DelegateChoice {
             roleValue: Interaction.Type.CALL
             GeneratedMessageDelegate {
                 Component.onCompleted: {
