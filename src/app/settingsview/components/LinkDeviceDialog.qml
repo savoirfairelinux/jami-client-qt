@@ -34,8 +34,8 @@ BaseModalDialog {
 
     title: JamiStrings.addDevice
 
-    width: JamiTheme.preferredDialogWidth
-    height: JamiTheme.preferredDialogHeight
+    width: Math.min(mainView.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogWidth)
+    height: Math.min(mainView.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.preferredDialogHeight)
 
     popupContent: StackLayout {
         id: stackedWidget

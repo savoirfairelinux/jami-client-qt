@@ -262,8 +262,8 @@ Item {
     property string clearConversation: qsTr("Clear conversation")
     property string confirmAction: qsTr("Confirm action")
     property string removeConversation: qsTr("Remove conversation")
-    property string confirmRmConversation: qsTr("Do you really want to remove this conversation")
-    property string confirmBlockConversation: qsTr("Do you really want to block this conversation")
+    property string confirmRmConversation: qsTr("Do you really want to remove this conversation?")
+    property string confirmBlockConversation: qsTr("Do you really want to block this conversation?")
     property string removeContact: qsTr("Remove contact")
     property string blockContact: qsTr("Block contact")
     property string blockSwarm: qsTr("Block swarm")
@@ -631,6 +631,7 @@ Item {
     property string optionUpgrade: qsTr("Upgrade")
     property string optionLater: qsTr("Later")
     property string optionDelete: qsTr("Delete")
+    property string optionRemove: qsTr("Remove")
     property string optionBlock: qsTr("Block")
 
     // Conference moderation
