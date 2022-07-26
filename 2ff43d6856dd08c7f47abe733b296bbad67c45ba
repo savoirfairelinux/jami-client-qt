@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ca4ec96_7d26ff26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-07-26T14:39:05Z",
+      "side": 1,
+      "message": "Tested installation in an isolated environment with:\n\n  $ guix build jami --with-source\u003djami\u003d/home/maxim/src/jami-client-qt\n\nUntested: updating the translations (I lack a qtlinguist package to do so).",
+      "revId": "2ff43d6856dd08c7f47abe733b296bbad67c45ba",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
