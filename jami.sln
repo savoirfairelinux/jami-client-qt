@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "daemon", "daemon", "{B67527
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{1ECB5BD6-B3A0-4135-BA3F-48FC367B61C9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jami-qt", "build\jami-qt.vcxproj", "{78446125-FFDC-3CD8-BCBA-52E191038A34}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jami", "build\jami.vcxproj", "{78446125-FFDC-3CD8-BCBA-52E191038A34}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3EF5E2A0-3D11-3500-9E55-D31AE9FCDB08} = {3EF5E2A0-3D11-3500-9E55-D31AE9FCDB08}
 	EndProjectSection
