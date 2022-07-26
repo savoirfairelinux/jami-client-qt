@@ -381,7 +381,7 @@ Jami wird jetzt beendet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="86"/>
         <source>Voicemail</source>
-        <translation>Sprachnachricht</translation>
+        <translation>Audionachricht</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="87"/>
@@ -1661,7 +1661,7 @@ Bitte versuchen Sie es später erneut.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="389"/>
         <source>Accept transfer limit</source>
-        <translation>Akzeptiertes Transferlimit</translation>
+        <translation>Annahmelimit Datentransfer</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
