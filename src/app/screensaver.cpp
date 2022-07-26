@@ -73,7 +73,7 @@ ScreenSaver::inhibit(void)
         }
     }
 
-    QDBusReply<uint> reply = screenSaverInterface_->call("Inhibit", "jami-qt", "In a call");
+    QDBusReply<uint> reply = screenSaverInterface_->call("Inhibit", "jami", "In a call");
     if (reply.isValid()) {
         qDebug() << "Screen saver inhibited";
         request_ = static_cast<uint>(reply.value());
