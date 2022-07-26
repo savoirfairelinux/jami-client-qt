@@ -157,7 +157,7 @@ BaseModalDialog {
                         color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
                         pressedColor: JamiTheme.buttonTintedBlackPressed
-                        outlined: true
+                        secondary: true
                         enabled: false
 
                         text: JamiStrings.register
@@ -176,7 +176,7 @@ BaseModalDialog {
                         color: JamiTheme.buttonTintedBlack
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
                         pressedColor: JamiTheme.buttonTintedBlackPressed
-                        outlined: true
+                        secondary: true
 
                         text: JamiStrings.optionCancel
 
@@ -259,7 +259,7 @@ BaseModalDialog {
                     color: JamiTheme.buttonTintedBlack
                     hoveredColor: JamiTheme.buttonTintedBlackHovered
                     pressedColor: JamiTheme.buttonTintedBlackPressed
-                    outlined: true
+                    secondary: true
 
                     text: JamiStrings.close
 

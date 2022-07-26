@@ -75,7 +75,7 @@ ColumnLayout {
         color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
         hoveredColor: JamiTheme.buttonTintedBlackHovered
         pressedColor: JamiTheme.buttonTintedBlackPressed
-        outlined: true
+        secondary: true
 
         toolTipText: JamiStrings.checkForUpdates
         text: JamiStrings.checkForUpdates
@@ -96,7 +96,7 @@ ColumnLayout {
         color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
         hoveredColor: JamiTheme.buttonTintedBlackHovered
         pressedColor: JamiTheme.buttonTintedBlackPressed
-        outlined: true
+        secondary: true
 
         toolTipText: JamiStrings.betaInstall
         text: JamiStrings.betaInstall

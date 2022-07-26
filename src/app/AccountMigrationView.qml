@@ -337,7 +337,7 @@ Rectangle {
                             color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
                             hoveredColor: JamiTheme.buttonTintedBlackHovered
                             pressedColor: JamiTheme.buttonTintedBlackPressed
-                            outlined: true
+                            secondary: true
                             enabled: passwordInputLineEdit.text.length > 0
 
                             text: JamiStrings.authenticate
@@ -355,7 +355,7 @@ Rectangle {
                             color: JamiTheme.buttonTintedRed
                             hoveredColor: JamiTheme.buttonTintedRedHovered
                             pressedColor: JamiTheme.buttonTintedRedPressed
-                            outlined: true
+                            secondary: true
 
                             text: JamiStrings.deleteAccount
                             onClicked: slotDeleteButtonClicked()

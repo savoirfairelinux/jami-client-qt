@@ -31,7 +31,6 @@ import "../../commoncomponents"
 BaseModalDialog {
     id: root
 
-
     popupContentMargins: 14
 
     PushButton {

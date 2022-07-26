@@ -74,6 +74,7 @@ Item {
     property color tabbarBorderColor: darkTheme ? blackColor : "#e3e3e3"
     property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) :
                                                   Qt.rgba(0, 0, 0, 0.33)
+    property real formsRadius: 30
 
     // Side panel
     property color presenceGreen: "#4cd964"
@@ -117,17 +118,25 @@ Item {
     property color whiteColorTransparent: rgba256(255, 255, 255, 50)
     property color raiseHandColor: rgba256(0, 184, 255, 77)
 
-
+    property color secAndTertiTextColor: darkTheme ? buttonTintedBlueHovered : buttonTintedBlue
+    property color secondaryButtonBorderColor: Qt.rgba(0,0.34,0.6,0.36)
+    property color secAndTertiHoveredBackgroundColor: Qt.rgba(0,0.34,0.6,0.1)
 
     property color closeButtonLighterBlack: "#4c4c4c"
 
     // Jami switch
-    property color switchBackgroundColor: darkTheme ? "#373737" : "#9f9f9f"
     property color switchBackgroundCheckedColor: "#8dbaea"
+    property color switchBackgroundColor: darkTheme ? "#373737" : Qt.rgba(0, 0.34, 0.6, 0.16)
     property color switchHandleColor: darkTheme ? Qt.darker(lightGrey_, 2) : whiteColor
-    property color switchHandleCheckedColor: "#1b76d1"
-    property color switchHandleBorderColor: darkTheme ? whiteColor : Qt.darker(lightGrey_, 2)
-    property color switchHandleCheckedBorderColor: Qt.darker(lightGrey_, 3)
+    property color switchHandleCheckedColor: "#005699"
+    property color switchHandleBorderColor: darkTheme ? whiteColor : "#005699"
+    property color switchHandleCheckedBorderColor: darkTheme ? "#0071c9" : "#005699"
+
+    //Combobox
+    property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
+    property color comboboxBorderColorActive: darkTheme? "#03B9E9" : tintedBlue
+    property color comboboxBorderColor: darkTheme ? tintedBlue : Qt.rgba(0, 0.34, 0.6, 0.36)
+    property color comboboxTextColorHovered: darkTheme ? "#03B9E9" : tintedBlue
 
     // Call buttons
     property color acceptButtonGreen: "#4caf50"
@@ -161,9 +170,6 @@ Item {
     property color screenSelectionBorderColor: raiseHandColor
     property color separationLine: darkTheme ? selectedColor : backgroundColor
 
-    // Plugin Preferences View
-    property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
-
     // ParticipantCallInStatusView
     property color participantCallInStatusTextColor: whiteColor
 
@@ -187,7 +193,7 @@ Item {
     property color fileInTimestampColor: darkTheme ? "#999" : "#555"
     property color chatviewBgColor: darkTheme ? bgDarkMode_ : whiteColor
     property color bgInvitationRectColor: darkTheme ? "#222222" : whiteColor
-    property color placeholderTextColor: darkTheme ? "#7a7a7a" : Qt.rgba(0, 0, 0, 0.2)
+    property color placeholderTextColor: darkTheme ? "#7a7a7a" : "black" //Qt.rgba(0, 0, 0, 0.2)
     property color placeholderTextColorWhite: "#cccccc"
     property color inviteHoverColor: darkTheme ? blackColor : whiteColor
     property color chatviewButtonColor: darkTheme ? whiteColor : blackColor
@@ -243,10 +249,12 @@ Item {
     property real bigFontSize: calcSize(22)
     property real settingsFontSize: calcSize(11 + fontSizeOffset)
     property real buttonFontSize: calcSize(9)
+    property real materialButtonPreferredHeight: calcSize(36)
     property real participantFontSize: calcSize(10)
     property real menuFontSize: calcSize(12 + fontSizeOffset)
     property real headerFontSize: calcSize(13 + fontSizeOffset)
     property real titleFontSize: calcSize(16 + fontSizeOffset)
+    property real title2FontSize: calcSize(15 + fontSizeOffset)
     property real tinyCreditsTextSize: calcSize(13 + fontSizeOffset)
     property real creditsTextSize: calcSize(15 + fontSizeOffset)
     property real primaryRadius: calcSize(4)
@@ -310,12 +318,16 @@ Item {
     property real lineEditContextMenuSeparatorsHeight: 2
 
 
-
     // Jami switch
     property real switchIndicatorRadius: 30
     property real switchPreferredHeight: 25
     property real switchPreferredWidth: 48
     property real switchIndicatorPreferredWidth: 26
+
+    // Jami Identifier
+    property color mainColor: "#005699"
+    property real pushButtonSize: 22
+    property real pushButtonMargin: 10
 
     // Modal Popup
     property real modalPopupRadius: 20
@@ -372,16 +384,48 @@ Item {
     property real jamiIdLogoWidth: 70
     property real jamiIdLogoHeight: 24
 
+    // MainView
+    property color welcomeViewBackgroundColor: darkTheme ? lightGrey_ : secondaryBackgroundColor
+    property real welcomeRectSideMargins: 45
+    property real welcomeRectTopMargin: 90
+    property color rectColor: Qt.rgba(0,0.34,0.6,0.16)
+    property color welcomeText: darkTheme ? "#0071c9" : "#002B4A"
+    property real illustrationWidth: 212
+    property real illustrationHeight: 244
+
     // WizardView
     property real wizardViewPageLayoutSpacing: 12
     property real wizardViewPageBackButtonMargins: 20
     property real wizardViewPageBackButtonSize: 35
+    property real wizardViewTitleFontPixelSize: calcSize(26)
+    property real wizardViewDescriptionFontPixelSize: calcSize(15)
+    property real wizardViewLayoutTopMargin: 38
 
     // WizardView Welcome Page
     property real welcomeLabelPointSize: 30
-    property real welcomeLogoWidth: 330
-    property real welcomeLogoHeight: 110
+    property real welcomeLogoWidth: 75
+    property real welcomeLogoHeight: 70
     property real wizardButtonWidth: 400
+
+    // WizardView Advanced Account Settings
+    property color lightBlue_: "#e5eef5"
+    property color shadowColorBlue: Qt.rgba(0, 0.34,0.6,0.16)
+    property real passwordEditOpenedBoxWidth: 425
+    property real passwordEditClosedBoxWidth: 330
+    property real passwordEditOpenedBoxHeight: 380
+    property real passwordEditClosedBoxHeight: 65
+    property real customNicknameOpenedBoxWidth: 412
+    property real customNicknameClosedBoxWidth: 230
+    property real customNicknameOpenedBoxHeight: 320
+    property real customNicknameClosedBoxHeight: 65
+
+    property real cornerIconSize: 40
+
+
+    //InfoBox
+    property real infoBoxTitleFontSize: calcSize(13)
+    property real infoBoxDescFontSize: calcSize(12)
+
 
     // MaterialLineEdit
     property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)

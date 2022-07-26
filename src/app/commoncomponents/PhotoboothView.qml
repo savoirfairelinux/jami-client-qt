@@ -31,7 +31,8 @@ Item {
     id: root
 
     property alias imageId: avatar.imageId
-    property bool newConversation: false
+
+    property bool newItem: false
     property bool readOnly: false
     property real avatarSize
     property real buttonSize: avatarSize
@@ -71,10 +72,10 @@ Item {
         visible: false
 
         onValidatePhoto: function(photo) {
-            if (!root.newConversation)
+            if (!root.newItem)
                 AccountAdapter.setCurrentAccountAvatarBase64(photo)
             else
-                UtilsAdapter.setSwarmCreationImageFromString(photo, imageId)
+                UtilsAdapter.setTempCreationImageFromString(photo, imageId)
             buttonsRowLayout.backToAvatar()
         }
     }
@@ -106,10 +107,10 @@ Item {
             }
 
             var filePath = UtilsAdapter.getAbsPath(file)
-            if (!root.newConversation)
+            if (!root.newItem)
                 AccountAdapter.setCurrentAccountAvatarFile(filePath)
             else
-                UtilsAdapter.setSwarmCreationImageFromFile(filePath, root.imageId)
+                UtilsAdapter.setTempCreationImageFromFile(filePath, root.imageId)
         }
 
         onRejected: {
@@ -120,12 +121,13 @@ Item {
         }
     }
 
-    Item {
+    Rectangle {
         id: imageLayer
 
         anchors.centerIn: parent
         width: avatarSize
         height: avatarSize
+        color: "transparent"
 
         Avatar {
             id: avatar
@@ -133,59 +135,35 @@ Item {
             anchors.fill: parent
             anchors.margins: 1
 
-            mode: newConversation? Avatar.Mode.Conversation : Avatar.Mode.Account
+            mode: newItem? Avatar.Mode.Conversation : Avatar.Mode.Account
 
             fillMode: Image.PreserveAspectCrop
             showPresenceIndicator: false
 
-            HoverHandler {
-                target: parent
-                enabled: parent.visible && !root.readOnly
-                onHoveredChanged: {
-                    overlayHighlighted.visible = hovered
-                }
-            }
+            PushButton {
+                id: editImage
 
-            TapHandler {
-                target: parent
-                enabled: parent.visible && !root.readOnly
-                onTapped: {
+                width: avatar.width / 4
+                height: avatar.height / 4
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.margins: avatar.width / 22
+
+                source: JamiResources.round_edit_24dp_svg
+
+                preferredSize: avatar.width / 6
+
+                border.color: JamiTheme.buttonTintedBlue
+                normalColor: "white"
+                imageColor:  JamiTheme.buttonTintedBlue
+                hoveredColor: "#e5eef5"
+                pressedColor: "#e5eef5"
+                enabled: avatar.visible && !root.readOnly
+
+                onClicked :{
+
                     imageLayer.visible = false
                     buttonsRowLayout.visible = true
-                }
-            }
-
-            Rectangle {
-                id: overlayHighlighted
-                visible: false
-
-                anchors.fill: parent
-                color: Qt.rgba(0, 0, 0, 0.5)
-                radius: parent.height / 2
-
-                opacity: visible
-
-                Behavior on opacity {
-                    NumberAnimation {
-                        from: 0
-                        duration: JamiTheme.shortFadeDuration
-                    }
-                }
-
-                Image {
-                    id: overlayImage
-
-                    width: JamiTheme.smartListAvatarSize / 2
-                    height: JamiTheme.smartListAvatarSize / 2
-                    anchors.centerIn: parent
-
-                    layer {
-                        enabled: true
-                        effect: ColorOverlay {
-                            color: "white"
-                        }
-                    }
-                    source: JamiResources.round_edit_24dp_svg
                 }
             }
         }
@@ -283,7 +261,7 @@ Item {
                     clicked()
                     keyEvent.accepted = true
                 } else if (keyEvent.key === Qt.Key_Down ||
-                            keyEvent.key === Qt.Key_Tab) {
+                           keyEvent.key === Qt.Key_Tab) {
                     clearButton.forceActiveFocus()
                     keyEvent.accepted = true
                 }
@@ -318,9 +296,9 @@ Item {
             hoveredColor: darkTheme ? Qt.rgba(255, 255, 255, 0.2) : JamiTheme.buttonTintedBlueInternalHover
 
             visible: {
-                if (!newConversation && LRCInstance.currentAccountAvatarSet)
+                if (!newItem && LRCInstance.currentAccountAvatarSet)
                     return true
-                if (newConversation && UtilsAdapter.swarmCreationImage(imageId).length !== 0)
+                if (newItem && UtilsAdapter.tempCreationImage(imageId).length !== 0)
                     return true
                 return false
             }
@@ -334,17 +312,17 @@ Item {
                     importButton.forceActiveFocus()
                     keyEvent.accepted = true
                 } else if (keyEvent.key === Qt.Key_Down ||
-                            keyEvent.key === Qt.Key_Tab) {
+                           keyEvent.key === Qt.Key_Tab) {
                     cancelButton.forceActiveFocus()
                     keyEvent.accepted = true
                 }
             }
 
             onClicked: {
-                if (!root.newConversation)
+                if (!root.newItem)
                     AccountAdapter.setCurrentAccountAvatarBase64()
                 else
-                    UtilsAdapter.setSwarmCreationImageFromString("", imageId)
+                    UtilsAdapter.setTempCreationImageFromString("", imageId)
                 stopBooth()
                 buttonsRowLayout.backToAvatar()
             }
@@ -370,7 +348,7 @@ Item {
                     takePhotoButton.forceActiveFocus()
                     keyEvent.accepted = true
                 } else if (keyEvent.key === Qt.Key_Down ||
-                            keyEvent.key === Qt.Key_Tab) {
+                           keyEvent.key === Qt.Key_Tab) {
                     importButton.forceActiveFocus()
                     keyEvent.accepted = true
                 }

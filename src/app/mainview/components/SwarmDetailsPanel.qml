@@ -31,6 +31,8 @@ import "../../settingsview/components"
 Rectangle {
     id: root
 
+    property bool selected : false
+
     color: CurrentConversation.color
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
 
@@ -53,7 +55,7 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignHCenter
 
-                newConversation: true
+                newItem: true
                 imageId: LRCInstance.selectedConvUid
                 avatarSize: JamiTheme.smartListAvatarSize
             }
@@ -62,11 +64,21 @@ Rectangle {
                 id: titleLine
 
                 Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
                 font.pointSize: JamiTheme.titleFontSize
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+
+                firstIco:  JamiResources.round_edit_24dp_svg
+                secondIco: editable ? JamiResources.close_black_24dp_svg : ""
+
+                fieldLayoutWidth: 15
+                fieldLayoutHeight: 30
+
+                fontSize: 20
+                borderColor: "transparent"
 
                 text: CurrentConversation.title
                 readOnly: !root.isAdmin
@@ -89,14 +101,19 @@ Rectangle {
                 tooltipText: JamiStrings.swarmName
                 backgroundColor: root.color
                 color: UtilsAdapter.luma(backgroundColor) ?
-                        JamiTheme.chatviewTextColorLight :
-                        JamiTheme.chatviewTextColorDark
+                           JamiTheme.chatviewTextColorLight :
+                           JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
                     if (text !== CurrentConversation.title)
                         ConversationsAdapter.updateConversationTitle(LRCInstance.selectedConvUid, text)
                 }
+                onSecondIcoClicked: {editable = !editable}
+
             }
+
+
+
 
             EditableLineEdit {
                 id: descriptionLine
@@ -107,6 +124,16 @@ Rectangle {
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
+                fieldLayoutWidth: 15
+                fieldLayoutHeight: 30
+
+                fontSize: 16
+
+                firstIco:  JamiResources.round_edit_24dp_svg
+                secondIco: editable ? JamiResources.close_black_24dp_svg : ""
+                borderColor: "transparent"
 
                 text: CurrentConversation.description
                 readOnly: !root.isAdmin
@@ -129,13 +156,15 @@ Rectangle {
                 tooltipText: JamiStrings.addADescription
                 backgroundColor: root.color
                 color: UtilsAdapter.luma(backgroundColor) ?
-                        JamiTheme.chatviewTextColorLight :
-                        JamiTheme.chatviewTextColorDark
+                           JamiTheme.chatviewTextColorLight :
+                           JamiTheme.chatviewTextColorDark
 
                 onEditingFinished: {
                     if (text !== CurrentConversation.description)
                         ConversationsAdapter.updateConversationDescription(LRCInstance.selectedConvUid, text)
                 }
+
+                onSecondIcoClicked: {editable = !editable}
             }
 
             TabBar {
@@ -157,8 +186,8 @@ Rectangle {
 
                     textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                     textColor: UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                                   JamiTheme.chatviewTextColorLight :
+                                   JamiTheme.chatviewTextColorDark
 
                     down: tabBar.currentIndex === 0
                     labelText: JamiStrings.about
@@ -175,8 +204,8 @@ Rectangle {
 
                     textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                     textColor: UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                                   JamiTheme.chatviewTextColorLight :
+                                   JamiTheme.chatviewTextColorDark
 
                     down: tabBar.currentIndex === 1
                     labelText: {

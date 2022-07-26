@@ -167,7 +167,7 @@ Rectangle {
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
-            outlined: true
+            secondary: true
             toolTipText: JamiStrings.pluginUninstallConfirmation.arg(pluginName)
             iconSource: JamiResources.delete_24dp_svg
 

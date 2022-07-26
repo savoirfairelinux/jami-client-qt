@@ -34,6 +34,7 @@ Item {
     property alias source: image.source
     property alias status: image.status
     property string color: "transparent"
+    property bool hovered: false
 
     property bool isSvg: {
         var match = /[^.]+$/.exec(source)
@@ -80,4 +81,14 @@ Item {
         source: image
         color: root.color
     }
+
+    HoverHandler {
+        target: parent
+        onHoveredChanged: {
+            root.hovered = hovered
+
+        }
+    }
+
+
 }
