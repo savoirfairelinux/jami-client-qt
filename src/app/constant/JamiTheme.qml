@@ -122,12 +122,18 @@ Item {
     property color closeButtonLighterBlack: "#4c4c4c"
 
     // Jami switch
-    property color switchBackgroundColor: darkTheme ? "#373737" : "#9f9f9f"
     property color switchBackgroundCheckedColor: "#8dbaea"
+    property color switchBackgroundColor: darkTheme ? "#373737" : Qt.rgba(0, 0.34, 0.6, 0.16)
     property color switchHandleColor: darkTheme ? Qt.darker(lightGrey_, 2) : whiteColor
-    property color switchHandleCheckedColor: "#1b76d1"
-    property color switchHandleBorderColor: darkTheme ? whiteColor : Qt.darker(lightGrey_, 2)
-    property color switchHandleCheckedBorderColor: Qt.darker(lightGrey_, 3)
+    property color switchHandleCheckedColor: "#005699"
+    property color switchHandleBorderColor: darkTheme ? whiteColor : "#005699"
+    property color switchHandleCheckedBorderColor: darkTheme ? "#0071c9" : "#005699"
+
+    //Combobox
+    property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
+    property color comboboxBorderColorActive: darkTheme? "#03B9E9" : tintedBlue
+    property color comboboxBorderColor: darkTheme ? tintedBlue : Qt.rgba(0, 0.34, 0.6, 0.36)
+    property color comboboxTextColorHovered: darkTheme ? "#03B9E9" : tintedBlue
 
     // Call buttons
     property color acceptButtonGreen: "#4caf50"
@@ -160,9 +166,6 @@ Item {
     property color rubberBandSelectionBlue: "steelblue"
     property color screenSelectionBorderColor: raiseHandColor
     property color separationLine: darkTheme ? selectedColor : backgroundColor
-
-    // Plugin Preferences View
-    property color comboBoxBackgroundColor: darkTheme ? editBackgroundColor : selectedColor
 
     // ParticipantCallInStatusView
     property color participantCallInStatusTextColor: whiteColor
