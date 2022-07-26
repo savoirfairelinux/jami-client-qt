@@ -79,7 +79,7 @@ Then, you can build daemon, lrc and client-qt with:
 ./build.py --install --qt
 ```
 
-And you will have the daemon in `daemon/bin/jamid` and the client in `client-qt/build-local/jami-qt`. You also can run it with
+And you will have the daemon in `daemon/bin/jamid` and the client in `client-qt/build-local/jami`. You also can run it with
 
 If you use a Qt version that is not wide-system installed you need to specify its path after the `--qt` flag, i. e., `./build.py --install --qt /home/<username>/Qt/6.2.1/gcc_64
 
@@ -116,7 +116,7 @@ e.g. (with Qt version from https://jami.net)
 cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=jami-project/install/client-qt -DLRC=jami-project/install/lrc -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami
 ```
 
-After the build has finished, you are finally ready to launch jami-qt in your build directory.
+After the build has finished, you are finally ready to launch jami in your build directory.
 
 If you want to install it to the path provided by `CMAKE_INSTALL_PREFIX` you can run:
 
@@ -175,7 +175,7 @@ Only 64-bit MSVC build can be compiled.
 
 ### Build Module Individually
 
-- Jami-qt also support building each module (daemon, lrc, jami-qt) seperately
+- Jami also support building each module (daemon, lrc, jami) separately
 
 **Daemon**
 
@@ -202,7 +202,7 @@ Only 64-bit MSVC build can be compiled.
     python make-lrc.py
 ```
 
-**Jami-qt**
+**Jami**
 
 - Make sure that daemon, lrc are built first
 
@@ -271,4 +271,4 @@ Built client could be find in `client-qt/build-local/Jami`
 Compile the client with `BUILD=Debug` and compile LibRingClient with
 `-DCMAKE_BUILD_TYPE=Debug`
 
-Then, if you want to enable logging when running `jami-qt` launch it with `-d` or `--debug`
+Then, if you want to enable logging when running `jami` launch it with `-d` or `--debug`

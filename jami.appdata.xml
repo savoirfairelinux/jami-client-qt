@@ -103,9 +103,9 @@
   </screenshot>
  </screenshots>
 
- <launchable type="desktop-id">jami-qt.desktop</launchable>
+ <launchable type="desktop-id">jami.desktop</launchable>
 
- <provides><binary>jami-qt</binary><binary>jami</binary></provides>
+ <provides><binary>jami</binary><binary>jami</binary></provides>
 
  <!-- https://specifications.freedesktop.org/menu-spec/latest/apa.html -->
  <!-- https://specifications.freedesktop.org/menu-spec/latest/apas02.html -->
