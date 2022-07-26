@@ -31,6 +31,7 @@ Item {
     id: root
 
     property alias imageId: avatar.imageId
+
     property bool newConversation: false
     property bool readOnly: false
     property real avatarSize
@@ -120,12 +121,13 @@ Item {
         }
     }
 
-    Item {
+    Rectangle {
         id: imageLayer
 
         anchors.centerIn: parent
         width: avatarSize
         height: avatarSize
+        color: "transparent"
 
         Avatar {
             id: avatar
@@ -138,54 +140,57 @@ Item {
             fillMode: Image.PreserveAspectCrop
             showPresenceIndicator: false
 
-            HoverHandler {
-                target: parent
-                enabled: parent.visible && !root.readOnly
-                onHoveredChanged: {
-                    overlayHighlighted.visible = hovered
-                }
-            }
+            //            HoverHandler {
+            //                target: parent
+            //                enabled: parent.visible && !root.readOnly
+            //                onHoveredChanged: {
+            //                    overlayHighlighted.visible = hovered
+            //                }
+            //            }
 
-            TapHandler {
-                target: parent
-                enabled: parent.visible && !root.readOnly
-                onTapped: {
+
+
+            //            Rectangle {
+            //                id: overlayHighlighted
+            //                visible: true
+
+            //                anchors.fill: parent
+            //                color: Qt.rgba(0, 0, 0, 0.5)
+            //                radius: parent.height / 2
+
+            //                opacity: visible
+
+            //                Behavior on opacity {
+            //                    NumberAnimation {
+            //                        from: 0
+            //                        duration: JamiTheme.shortFadeDuration
+            //                    }
+            //                }
+
+            PushButton {
+                id: editImage
+
+                width: avatar.width / 4
+                height: avatar.height / 4
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.margins: avatar.width / 22
+
+                source: JamiResources.round_edit_24dp_svg
+
+                preferredSize: avatar.width / 6
+
+                border.color: JamiTheme.buttonTintedBlue
+                normalColor: "white"
+                imageColor:  JamiTheme.buttonTintedBlue
+                hoveredColor: "#e5eef5"
+                pressedColor: "#e5eef5"
+                enabled: avatar.visible && !root.readOnly
+
+                onClicked :{
+
                     imageLayer.visible = false
                     buttonsRowLayout.visible = true
-                }
-            }
-
-            Rectangle {
-                id: overlayHighlighted
-                visible: false
-
-                anchors.fill: parent
-                color: Qt.rgba(0, 0, 0, 0.5)
-                radius: parent.height / 2
-
-                opacity: visible
-
-                Behavior on opacity {
-                    NumberAnimation {
-                        from: 0
-                        duration: JamiTheme.shortFadeDuration
-                    }
-                }
-
-                Image {
-                    id: overlayImage
-
-                    width: JamiTheme.smartListAvatarSize / 2
-                    height: JamiTheme.smartListAvatarSize / 2
-                    anchors.centerIn: parent
-
-                    layer {
-                        enabled: true
-                        effect: ColorOverlay {
-                            color: "white"
-                        }
-                    }
-                    source: JamiResources.round_edit_24dp_svg
                 }
             }
         }
@@ -283,7 +288,7 @@ Item {
                     clicked()
                     keyEvent.accepted = true
                 } else if (keyEvent.key === Qt.Key_Down ||
-                            keyEvent.key === Qt.Key_Tab) {
+                           keyEvent.key === Qt.Key_Tab) {
                     clearButton.forceActiveFocus()
                     keyEvent.accepted = true
                 }
@@ -334,7 +339,7 @@ Item {
                     importButton.forceActiveFocus()
                     keyEvent.accepted = true
                 } else if (keyEvent.key === Qt.Key_Down ||
-                            keyEvent.key === Qt.Key_Tab) {
+                           keyEvent.key === Qt.Key_Tab) {
                     cancelButton.forceActiveFocus()
                     keyEvent.accepted = true
                 }
@@ -370,7 +375,7 @@ Item {
                     takePhotoButton.forceActiveFocus()
                     keyEvent.accepted = true
                 } else if (keyEvent.key === Qt.Key_Down ||
-                            keyEvent.key === Qt.Key_Tab) {
+                           keyEvent.key === Qt.Key_Tab) {
                     importButton.forceActiveFocus()
                     keyEvent.accepted = true
                 }

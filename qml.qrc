@@ -192,5 +192,8 @@
         <file>src/app/LayoutManager.qml</file>
         <file>src/app/mainview/components/JamiIdentifier.qml</file>
         <file>src/app/commoncomponents/PasswordLineEdit.qml</file>
+        <file>src/app/wizardview/components/NoUsernamePopup.qml</file>
+        <file>src/app/wizardview/components/AdvancedAccountSettings.qml</file>
+        <file>src/app/commoncomponents/InfoBox.qml</file>
     </qresource>
 </RCC>
