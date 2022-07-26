@@ -291,7 +291,7 @@ Popup {
                     border.color: imageColor
 
                     source: JamiResources.fiber_manual_record_24dp_svg
-                    imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.buttonTintedBlue
+                    imageColor: UtilsAdapter.luma(JamiTheme.backgroundColor) ? "white" : JamiTheme.redColor
 
                     onClicked: {
                         root.photo = videoProvider.captureVideoFrame(VideoDevices.getDefaultDevice())
