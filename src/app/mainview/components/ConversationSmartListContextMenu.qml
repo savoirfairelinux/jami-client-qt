@@ -35,7 +35,7 @@ ContextMenuAutoLoader {
 
         title: JamiStrings.confirmAction
         textLabel: JamiStrings.confirmRmConversation
-        confirmLabel: JamiStrings.optionDelete
+        confirmLabel: JamiStrings.optionRemove
         onAccepted: {
             if (isSwarm)
                 MessagesAdapter.removeConversation(responsibleConvUid)
