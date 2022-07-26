@@ -40,6 +40,7 @@ AbstractButton {
     property int preferredWidth: 0
     property int preferredMargin: 16
     // Note the radius will default to preferredSize
+    property bool circled: true
     property alias radius: background.radius
     property alias border: background.border
 
@@ -147,7 +148,7 @@ AbstractButton {
     background: Rectangle {
         id: background
 
-        radius: preferredSize
+        radius: circled ? preferredSize : 5
 
         states: [
             State {
@@ -182,5 +183,6 @@ AbstractButton {
                 ColorAnimation { duration: root.duration }
             }
         ]
+
     }
 }

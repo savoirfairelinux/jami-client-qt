@@ -44,7 +44,9 @@ ComboBox {
 
     delegate: ItemDelegate {
         width: root.width
+
         contentItem: Text {
+
             text: {
                 if (index >= 0) {
                     var currentItem = root.delegateModel.items.get(index)
@@ -52,42 +54,32 @@ ComboBox {
                 }
                 return ""
             }
-            color: JamiTheme.textColor
-            font: root.font
+
+            color: hovered ? JamiTheme.comboboxTextColorHovered : JamiTheme.textColor
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
+
         }
+
         background: Rectangle {
-            color: highlighted? JamiTheme.selectedColor : JamiTheme.editBackgroundColor
+            color: hovered ? JamiTheme.tintedBlue : JamiTheme.transparentColor
+            opacity: 0.1
         }
+
     }
 
-    indicator: Canvas {
-        id: canvas
+    indicator: ResponsiveImage {
+        containerHeight: 6
+        containerWidth: 10
+        width: 20
+        height: 20
 
-        x: root.width - width - root.rightPadding
-        y: root.topPadding + (root.availableHeight - height) / 2
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.rightMargin: 16
 
-        width: 12
-        height: 8
-        contextType: "2d"
-
-        Connections {
-            target: root
-            function onPressedChanged(){
-                canvas.requestPaint()
-            }
-        }
-
-        onPaint: {
-            context.reset();
-            context.moveTo(0, 0);
-            context.lineTo(width, 0);
-            context.lineTo(width / 2, height);
-            context.closePath();
-            context.fillStyle = root.pressed ? JamiTheme.pressColor : JamiTheme.textColor;
-            context.fill();
-        }
+        source: popup.visible ? JamiResources.expand_less_24dp_svg
+                              : JamiResources.expand_more_24dp_svg
     }
 
     contentItem: Text {
@@ -95,19 +87,22 @@ ComboBox {
         rightPadding: root.indicator.width + leftPadding
 
         text: root.displayText
-        font: root.font
         color: JamiTheme.textColor
+
         verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
         elide: Text.ElideRight
     }
 
     background: Rectangle {
-        color: root.comboBoxBackgroundColor
+        id: selectOption
+        color: JamiTheme.transparentColor
         implicitWidth: 120
-        implicitHeight: 40
-        border.color: root.comboBoxBackgroundColor
+        implicitHeight: 43
+        border.color: popup.visible ? JamiTheme.comboboxBorderColorActive
+                                    : JamiTheme.comboboxBorderColor
         border.width: root.visualFocus ? 2 : 1
-        radius: 2
+        radius: 5
     }
 
     popup: Popup {
@@ -115,8 +110,8 @@ ComboBox {
 
         y: root.height - 1
         width: root.width
-        implicitHeight: contentItem.implicitHeight
         padding: 1
+        height: Math.min(contentItem.implicitHeight, 5 * selectOption.implicitHeight)
 
         contentItem: JamiListView {
             id: listView
@@ -126,9 +121,11 @@ ComboBox {
         }
 
         background: Rectangle {
-            color: JamiTheme.editBackgroundColor
-            border.color: JamiTheme.greyBorderColor
-            radius: 2
+            color: JamiTheme.primaryBackgroundColor
+            border.color: JamiTheme.comboboxBorderColorActive
+            radius: 5
         }
+
     }
+
 }

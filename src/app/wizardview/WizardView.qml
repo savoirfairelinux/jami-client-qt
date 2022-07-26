@@ -77,6 +77,7 @@ Rectangle {
             objectName: "controlPanelStackView"
 
             function setPage(obj) {
+                wizardViewScrollView.vScrollBar.position = 0
                 for (var i in this.children) {
                     if (this.children[i] === obj) {
                         currentIndex = i
@@ -95,11 +96,6 @@ Rectangle {
                 objectName: "welcomePage"
 
                 onShowThisPage: controlPanelStackView.setPage(this)
-
-                onScrollToBottom: {
-                    if (welcomePage.preferredHeight > root.height)
-                        wizardViewScrollView.vScrollBar.position = 1
-                }
             }
 
             CreateAccountPage {

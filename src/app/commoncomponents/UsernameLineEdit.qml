@@ -22,8 +22,22 @@ import Qt5Compat.GraphicalEffects
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
-MaterialLineEdit {
+EditableLineEdit {
     id: root
+
+    placeholderText: isRendezVous ? JamiStrings.chooseAName :
+                                    JamiStrings.chooseYourUserName
+
+    firstIco: readOnly? "" : JamiResources.person_24dp_svg
+    firstIcoColor: "#03B9E9"
+
+    secondIco: readOnly? "" : JamiResources.outline_info_24dp_svg
+    secondIcoColor: "#005699"
+
+    informationToolTip: JamiStrings.usernameToolTip
+
+    fieldLayoutWidth: 200
+    fieldLayoutHeight: 50
 
     enum NameRegistrationState {
         BLANK,
@@ -34,7 +48,6 @@ MaterialLineEdit {
     }
 
     property int nameRegistrationState: UsernameLineEdit.NameRegistrationState.BLANK
-    property var __iconSource: ""
 
     selectByMouse: true
     font.pointSize: JamiTheme.usernameLineEditPointSize
@@ -83,56 +96,32 @@ MaterialLineEdit {
         }
     }
 
-    ResponsiveImage {
-        id: lineEditImage
-
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: JamiTheme.preferredMarginSize / 2
-
-        visible: nameRegistrationState !== UsernameLineEdit.NameRegistrationState.SEARCHING
-        source: nameRegistrationState === UsernameLineEdit.NameRegistrationState.SEARCHING ?
-                    "" : __iconSource
-        color: borderColor
-    }
-
-    AnimatedImage {
-        anchors.left: lineEditImage.left
-        anchors.verticalCenter: parent.verticalCenter
-
-        width: 24
-        height: 24
-
-        source: nameRegistrationState !== UsernameLineEdit.NameRegistrationState.SEARCHING ?
-                    "" : __iconSource
-        playing: true
-        paused: false
-        fillMode: Image.PreserveAspectFit
-        mipmap: true
-        visible: nameRegistrationState === UsernameLineEdit.NameRegistrationState.SEARCHING
-    }
-
     onNameRegistrationStateChanged: {
-        if (!enabled)
+        if (readOnly || !enabled)
             borderColor = "transparent"
 
         switch(nameRegistrationState){
-        case UsernameLineEdit.NameRegistrationState.SEARCHING:
-            __iconSource = JamiResources.jami_rolling_spinner_gif
-            borderColor = JamiTheme.greyBorderColor
-            break
         case UsernameLineEdit.NameRegistrationState.BLANK:
-            __iconSource = ""
-            borderColor = JamiTheme.greyBorderColor
+            firstIco=""
+            borderColor = "transparent"
+            error = false
+            validated = false
             break
         case UsernameLineEdit.NameRegistrationState.FREE:
-            __iconSource = JamiResources.round_check_circle_24dp_svg
-            borderColor = "green"
+            firstIco = JamiResources.circled_green_check_svg
+            borderColor = validatedColor
+            firstIcoColor = "transparent"
+            validated = true
+            error = false
+
             break
         case UsernameLineEdit.NameRegistrationState.INVALID:
         case UsernameLineEdit.NameRegistrationState.TAKEN:
-            __iconSource = JamiResources.round_error_24dp_svg
-            borderColor = "red"
+            firstIco = JamiResources.circled_red_cross_svg
+            borderColor = errorColor
+            firstIcoColor = "transparent"
+            error = true
+            validated = false
             break
         }
     }

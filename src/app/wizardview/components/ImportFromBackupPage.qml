@@ -31,7 +31,7 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property int preferredHeight: importFromBackupPageColumnLayout.implicitHeight
+    property int preferredHeight: importFromBackupPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
     property string fileImportBtnText: JamiStrings.archive
     property string filePath: ""
@@ -44,7 +44,7 @@ Rectangle {
         passwordFromBackupEdit.clear()
         filePath = ""
         errorText = ""
-        fileImportBtnText = JamiStrings.archive
+        fileImportBtnText = JamiStrings.selectArchiveFile
     }
 
     function errorOccured(errorMessage) {
@@ -65,7 +65,7 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.secondaryBackgroundColor
 
     JamiFileDialog {
         id: importFromFileDialog
@@ -102,42 +102,58 @@ Rectangle {
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+
+        width: Math.max(508, root.width - 100)
 
         Text {
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
 
-            text: JamiStrings.importFromBackup
+            text: JamiStrings.importFromArchiveBackup
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 15
+            Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
             color: JamiTheme.textColor
-            font.pointSize: JamiTheme.menuFontSize
+            font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
+            wrapMode : Text.WordWrap
+        }
+
+        Text {
+
+            text: JamiStrings.importFromArchiveBackupDescription
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 15
+            Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            color: JamiTheme.textColor
+
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+            wrapMode : Text.WordWrap
         }
 
         MaterialButton {
             id: fileImportBtn
 
             objectName: "fileImportBtn"
+            secondary: true
+            color: JamiTheme.secAndTertiTextColor
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 35
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
             text: fileImportBtnText
             toolTipText: JamiStrings.importAccountArchive
-            iconSource: JamiResources.round_folder_24dp_svg
-            color: JamiTheme.buttonTintedGrey
-            hoveredColor: JamiTheme.buttonTintedGreyHovered
-            pressedColor: JamiTheme.buttonTintedGreyPressed
 
             KeyNavigation.tab: passwordFromBackupEdit
-            KeyNavigation.up: {
-                if (backButton.visible)
-                    return backButton
-                else if (connectBtn.enabled)
-                    return connectBtn
-                return passwordFromBackupEdit
-            }
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.up: backButton
+            KeyNavigation.down: passwordFromBackupEdit
 
             onClicked: {
                 errorText = ""
@@ -145,34 +161,14 @@ Rectangle {
             }
         }
 
-        Text {
-            // For multiline text, recursive rearrange warning will show up when
-            // directly assigning contentHeight to Layout.preferredHeight
-            property int preferredHeight: JamiTheme.wizardViewPageLayoutSpacing
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: fileImportBtn.width
-            Layout.preferredHeight: preferredHeight
-
-            text: JamiStrings.importAccountExplanation
-            color: JamiTheme.textColor
-            wrapMode: Text.Wrap
-
-            onTextChanged: function (text) {
-                var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
-                preferredHeight += (boundingRect.width / fileImportBtn.preferredWidth)
-                        * boundingRect.height
-            }
-        }
-
-        MaterialLineEdit {
+        EditableLineEdit {
             id: passwordFromBackupEdit
 
             objectName: "passwordFromBackupEdit"
 
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
             Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 20
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
             focus: visible
 
@@ -181,23 +177,18 @@ Rectangle {
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
+            secondIco: JamiResources.eye_cross_svg
+
             echoMode: TextInput.Password
 
-            KeyNavigation.tab: {
-                if (connectBtn.enabled)
-                    return connectBtn
-                else if (backButton.visible)
-                    return backButton
-                return fileImportBtn
-            }
+            KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
             KeyNavigation.up: fileImportBtn
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
 
             onTextChanged: errorText = ""
-            onAccepted: {
-                if (connectBtn.enabled)
-                    connectBtn.clicked()
-            }
+
+            onSecondIcoClicked: { toggleEchoMode() }
+
         }
 
         SpinnerButton {
@@ -207,11 +198,14 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
+            Layout.topMargin: 30
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
             spinnerTriggeredtext: JamiStrings.generatingAccount
             normalText: JamiStrings.connectFromBackup
+
+            color: JamiTheme.tintedBlue
 
             enabled: {
                 if (spinnerTriggered)
@@ -221,13 +215,9 @@ Rectangle {
                 return false
             }
 
-            KeyNavigation.tab: {
-                if (backButton.visible)
-                    return backButton
-                return fileImportBtn
-            }
+            KeyNavigation.tab: backButton
             KeyNavigation.up: passwordFromBackupEdit
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.down: backButton
 
             onClicked: {
                 if (connectBtn.focus)
@@ -237,7 +227,7 @@ Rectangle {
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
                             {archivePath : UtilsAdapter.getAbsPath(filePath),
-                             password : passwordFromBackupEdit.text})
+                                password : passwordFromBackupEdit.text})
                 WizardViewStepModel.nextStep()
             }
         }
@@ -277,7 +267,7 @@ Rectangle {
                 return connectBtn
             return passwordFromBackupEdit
         }
-        KeyNavigation.down: KeyNavigation.tab
+        KeyNavigation.down: fileImportBtn
 
         onClicked: WizardViewStepModel.previousStep()
     }

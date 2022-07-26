@@ -210,7 +210,7 @@ Rectangle {
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
-            outlined: true
+            secondary: true
 
             toolTipText: AccountAdapter.hasPassword() ?
                              JamiStrings.changeCurrentPassword :
@@ -236,7 +236,7 @@ Rectangle {
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
-            outlined: true
+            secondary: true
 
             toolTipText: JamiStrings.tipBackupAccount
             text: JamiStrings.backupAccountBtn

@@ -24,6 +24,9 @@ import net.jami.Constants 1.1
 ToolTip {
     id: root
 
+    property alias backGroundColor: background.color
+    property alias textColor: label.color
+
     onVisibleChanged: {
         if (visible)
             animation.start()
@@ -32,11 +35,12 @@ ToolTip {
     contentItem: Text {
         id: label
         text: root.text
-        font: root.font
+        font.pixelSize: 13
         color: "white"
     }
 
     background: Rectangle {
+        id: background
         color: "#c4272727"
         radius: 5
     }

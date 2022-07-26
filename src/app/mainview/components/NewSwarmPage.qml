@@ -36,7 +36,7 @@ Rectangle {
     signal removeMember(string convId, string member)
 
     onVisibleChanged: {
-        UtilsAdapter.setSwarmCreationImageFromString()
+        UtilsAdapter.setTempCreationImageFromString()
     }
 
     property var members: []
@@ -112,7 +112,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             darkTheme: UtilsAdapter.luma(root.color)
 
-            newConversation: true
+            newItem: true
             imageId: root.visible ? "temp" : ""
             avatarSize: 180
             buttonSize: JamiTheme.smartListAvatarSize
@@ -122,11 +122,13 @@ Rectangle {
             id: title
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
+            Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
             font.pointSize: JamiTheme.titleFontSize
 
-            horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+
+            fieldLayoutWidth: 10
 
             placeholderText: JamiStrings.swarmName
             tooltipText: JamiStrings.swarmName
@@ -155,10 +157,10 @@ Rectangle {
             id: description
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
+            Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
             font.pointSize: JamiTheme.menuFontSize
 
-            horizontalAlignment: editable ? Text.AlignLeft : Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
             placeholderText: JamiStrings.addADescription
@@ -199,7 +201,7 @@ Rectangle {
             text: JamiStrings.createTheSwarm
 
             onClicked: {
-                createSwarmClicked(title.text, description.text, UtilsAdapter.swarmCreationImage())
+                createSwarmClicked(title.text, description.text, UtilsAdapter.tempCreationImage())
             }
         }
     }

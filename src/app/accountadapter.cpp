@@ -98,6 +98,8 @@ AccountAdapter::createJamiAccount(QString registeredName,
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
         [this, registeredName, settings, isCreating](const QString& accountId) {
+            lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString());
+
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
                                   &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
@@ -161,6 +163,7 @@ AccountAdapter::createSIPAccount(const QVariantMap& settings)
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
         [this, settings](const QString& accountId) {
+            lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString());
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
                                   &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
