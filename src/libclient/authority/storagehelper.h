@@ -73,6 +73,8 @@ QString getContactInteractionString(const QString& authorUri,
 
 namespace vcard {
 
+QString compressedAvatar(const QString& image);
+
 /**
  * Build the vCard for a profile
  * @param profileInfo

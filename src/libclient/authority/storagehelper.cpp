@@ -206,8 +206,6 @@ getContactInteractionString(const QString& authorUri, const api::interaction::St
 }
 
 namespace vcard {
-QString compressedAvatar(const QString& image);
-
 QString
 compressedAvatar(const QString& image)
 {

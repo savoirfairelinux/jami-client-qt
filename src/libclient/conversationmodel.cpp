@@ -986,7 +986,11 @@ ConversationModel::createConversation(const VectorString& participants, const Ma
 void
 ConversationModel::updateConversationInfos(const QString& conversationId, const MapStringString info)
 {
-    ConfigurationManager::instance().updateConversationInfos(owner.id, conversationId, info);
+    MapStringString newInfos = info;
+    // Compress avatar as it will be sent in the conversation's request over the DHT
+    if (info.contains("avatar"))
+        newInfos["avatar"] = storage::vcard::compressedAvatar(info["avatar"]);
+    ConfigurationManager::instance().updateConversationInfos(owner.id, conversationId, newInfos);
 }
 
 bool
