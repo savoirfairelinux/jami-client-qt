@@ -25,7 +25,7 @@ import net.jami.Helpers 1.1
 
 Item {
     readonly property string appTitle: "Jami"
-    readonly property string httpUserAgentName: "jami-qt"
+    readonly property string httpUserAgentName: "jami"
 
     // Misc
     property string accept: qsTr("Accept")
