@@ -25,9 +25,9 @@ import os
 import shutil
 
 print("== Updating from sources")
-if os.system("lupdate jami-qt.pro -no-obsolete"):
+if os.system("lupdate jami.pro -no-obsolete"):
     print("trying with 'lupdate-qt5'")
-    if os.system("lupdate-qt5 jami-qt.pro -no-obsolete"):
+    if os.system("lupdate-qt5 jami.pro -no-obsolete"):
         raise RuntimeError("unable to find any suitable lupdate Qt tool on this system. Stopping")
 
 print("== Pushing sources")
@@ -43,7 +43,7 @@ translationFiles = []
 for filename in os.listdir('./translations'):
     translationFiles.append("translations/{0}".format(filename))
 
-proFile = "jami-qt.pro"
+proFile = "jami.pro"
 shutil.move(proFile, proFile + "~")
 
 destination = open(proFile, "w")

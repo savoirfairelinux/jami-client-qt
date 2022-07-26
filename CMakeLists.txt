@@ -26,7 +26,7 @@ cmake_minimum_required(VERSION 3.16)
 if(APPLE)
   project(Jami)
 else()
-  project(jami-qt)
+  project(jami)
 endif()
 
 set(CMAKE_CXX_STANDARD 17)
@@ -585,13 +585,13 @@ elseif (NOT APPLE)
   # Install .desktop in XDG desktop direcory so that it is recognized
   # by the system.
   install(
-    FILES ${DATA_DIR}/jami-qt.desktop
+    FILES ${DATA_DIR}/jami.desktop
     DESTINATION ${JAMI_DATA_PREFIX}/applications)
 
-  # Install .desktop in the jami-qt data directory, so that it can be
+  # Install .desktop in the jami data directory, so that it can be
   # copied to the autostart directory by the client.
   install(
-    FILES ${DATA_DIR}/jami-qt.desktop
+    FILES ${DATA_DIR}/jami.desktop
     DESTINATION "${JAMI_DATA_PREFIX}/${PROJECT_NAME}"
     PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ) # 644
 
@@ -627,18 +627,8 @@ elseif (NOT APPLE)
     RENAME jami.xpm)
 
   install(
-    FILES ${DATA_DIR}/jami-qt.appdata.xml
+    FILES ${DATA_DIR}/jami.appdata.xml
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo)
-
-  # Install 'jami' launcher that automatically chooses between clients
-  install(
-    FILES
-    "${APP_SRC_DIR}/jami"
-    DESTINATION
-    ${CMAKE_INSTALL_PREFIX}/bin
-    PERMISSIONS
-    OWNER_READ OWNER_WRITE OWNER_EXECUTE
-    GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE) # 755
 
   # Add a target to generate API documentation using Doxygen and
   # graphviz-dot.
