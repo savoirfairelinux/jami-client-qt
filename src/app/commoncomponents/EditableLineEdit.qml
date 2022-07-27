@@ -54,7 +54,7 @@ Item {
     property alias verticalAlignment: lineEdit.verticalAlignment
     property alias horizontalAlignment: lineEdit.horizontalAlignment
     property alias font: lineEdit.font
-    property alias placeholderText: lineEdit.placeholderText
+    property var placeholderText
     property alias placeholderTextColor: lineEdit.placeholderTextColor
     property alias backgroundColor: lineEdit.backgroundColor
     property var editIconColor: "transparent"
@@ -104,12 +104,17 @@ Item {
     }
 
     HoverHandler {
-        target : parent
+        target: parent
         onHoveredChanged: {
             root.hovered = hovered
-
         }
-        //cursorShape: Qt.PointingHandCursor
+    }
+
+    TapHandler {
+        target: parent
+        onTapped: {
+            lineEdit.focus = true;
+        }
     }
 
     Item {
@@ -121,11 +126,12 @@ Item {
 
         ResponsiveImage  {
             id: firstIco_
-            opacity:  (editable && !root.readOnly) /*firstIco!=="" &&*/
+            opacity: editable && !root.readOnly && firstIco !== ""
+            visible: opacity
             anchors.left: row.left
             anchors.verticalCenter: row.verticalCenter
 
-            width: 18
+            width: visible? 18 : 0
             height: 18
 
             layer {
@@ -148,17 +154,17 @@ Item {
         MaterialLineEdit {
             id: lineEdit
             anchors.horizontalCenter: row.horizontalCenter
+            width: row.width - firstIco_.width - thirdIco_.width - secIco_.width
             height: row.height
             readOnly: !editable || root.readOnly
             underlined: true
 
             borderColor: root.editIconColor
             fieldLayoutHeight: 24
-
-            maximumLength: 20
+            placeholderText: editable? "" : root.placeholderText
 
             wrapMode: Text.NoWrap
-
+            horizontalAlignment: editable || text !== "" ? Qt.AlignLeft : Qt.AlignHCenter
 
             onFocusChanged: function(focus) {
                 if (!focus && editable) {
@@ -173,20 +179,20 @@ Item {
                 editable = !editable
                 root.accepted()
                 root.editingFinished()
-                focus = false //probleme avec licon de gauche
+                focus = false
             }
         }
 
 
 
         ResponsiveImage  {
-            id: thirdICO_
-            //            visible:  (editable && !root.readOnly) /*thirdIco!==""*/
-            anchors.right: secICO_.left
+            id: thirdIco_
+            anchors.right: secIco_.left
             anchors.rightMargin: 12
             anchors.verticalCenter: row.verticalCenter
 
-            width: 18
+            visible: thirdIco !== ""
+            width: visible? 18 : 0
             height: 18
 
             layer {
@@ -208,17 +214,17 @@ Item {
 
         ResponsiveImage  {
 
-            id: secICO_
-            visible: (editable && !root.readOnly) || secondIco !==""
+            id: secIco_
+            visible: (editable && !root.readOnly) || secondIco !== ""
             source: secondIco
             anchors.right: row.right
             anchors.verticalCenter: row.verticalCenter
-            width: 18
+            width: visible? 18 : 0
             height: 18
 
             MaterialToolTip {
                 id: toolTip
-                parent: secICO_
+                parent: secIco_
                 text: informationToolTip
                 textColor: "black"
                 backGroundColor: "white"
@@ -237,9 +243,7 @@ Item {
             TapHandler{
                 target: parent
                 onTapped: {
-
                     root.secondIcoClicked()
-
                 }
 
             }
