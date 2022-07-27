@@ -37,9 +37,7 @@ Rectangle {
     property bool helpOpened: false
 
     property int preferredHeight: {
-        if (createAccountStack.currentIndex === 0)
-            return usernameColumnLayout.implicitHeight
-        return passwordColumnLayout.implicitHeight
+        return usernameColumnLayout.implicitHeight
     }
 
     signal showThisPage
@@ -262,7 +260,7 @@ Rectangle {
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
         KeyNavigation.tab: usernameEdit
-        KeyNavigation.up: createAccountButton
+        KeyNavigation.up: advancedAccountSettingsPage
 
         KeyNavigation.down: usernameEdit
 
