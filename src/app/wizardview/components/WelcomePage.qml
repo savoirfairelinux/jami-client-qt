@@ -138,8 +138,7 @@ Rectangle {
                                                         showAdvancedButton)
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
         }
 
         MaterialButton {
@@ -197,8 +196,7 @@ Rectangle {
             KeyNavigation.up: newRdvButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.ImportFromDevice)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.ImportFromDevice)
         }
 
         MaterialButton {
@@ -209,7 +207,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             visible: false
 
             text: JamiStrings.importAccountFromBackup
@@ -219,8 +217,7 @@ Rectangle {
             KeyNavigation.up: newAccountButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.ImportFromBackup)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.ImportFromBackup)
         }
 
 
@@ -234,7 +231,7 @@ Rectangle {
             Layout.bottomMargin: newSIPAccountButton.visible ?
                                      0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             text: JamiStrings.advancedFeatures
             toolTipText: showAdvanced ? JamiStrings.hideAdvancedFeatures :
                                         JamiStrings.showAdvancedFeatures
@@ -265,7 +262,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             visible: false
 
             text: JamiStrings.createNewRV
@@ -275,8 +272,7 @@ Rectangle {
             KeyNavigation.up: newAccountButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.CreateRendezVous)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.CreateRendezVous)
         }
 
         MaterialButton {
@@ -287,7 +283,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             visible: false
 
             text: JamiStrings.connectJAMSServer
@@ -297,8 +293,7 @@ Rectangle {
             KeyNavigation.up: newRdvButton
             KeyNavigation.down: newSIPAccountButton
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
         }
 
         MaterialButton {
@@ -310,7 +305,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             visible: false
 
             text: JamiStrings.addSIPAccount
