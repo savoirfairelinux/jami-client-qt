@@ -122,10 +122,10 @@ Rectangle {
             id: title
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
+            Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
             font.pointSize: JamiTheme.titleFontSize
 
-            horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
             fieldLayoutWidth: 10
@@ -157,10 +157,10 @@ Rectangle {
             id: description
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
+            Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
             font.pointSize: JamiTheme.menuFontSize
 
-            horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
             placeholderText: JamiStrings.addADescription
