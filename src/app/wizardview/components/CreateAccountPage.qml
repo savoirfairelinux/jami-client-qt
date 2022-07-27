@@ -70,7 +70,7 @@ Rectangle {
                                    WizardViewStepModel.AccountCreationOption.CreateRendezVous)
                 root.showThisPage()
             } else if (currentMainStep === WizardViewStepModel.MainSteps.SetPassword) {
-                createAccountStack.currentIndex = advancedAccountSettingsPage.stackIndex //  passwordSetupPage.stackIndex
+                createAccountStack.currentIndex = advancedAccountSettingsPage.stackIndex
             }
         }
     }
@@ -257,84 +257,7 @@ Rectangle {
 
             id: advancedAccountSettingsPage
             objectName: "advancedAccountSettingsPage"
-            property int stackIndex: 2
-
-        }
-
-        Rectangle {
-
-            id: personalizeSipAccount
-
-            color: JamiTheme.transparentColor
-
-            ColumnLayout {
-                id: createSIPAccountPageColumnLayout
-
-                spacing: JamiTheme.wizardViewPageLayoutSpacing
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
-                width: Math.max(508, root.width - 100)
-
-
-                Label {
-
-                    text: JamiStrings.personalizeAccount
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 15
-                    font.pixelSize: 26
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                PhotoboothView {
-                    id: currentAccountAvatar
-                    darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.topMargin: 50
-
-                    imageId: currentAccountId
-                    avatarSize: 150
-                    buttonSize: JamiTheme.smartListAvatarSize
-
-                }
-
-                EditableLineEdit {
-
-                    id: displayNameLineEdit
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 30
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    fontSize: 15
-
-                    placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
-
-                    onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
-
-                }
-
-                Text {
-
-                    Layout.topMargin: 15
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    wrapMode: Text.WordWrap
-
-                    text: JamiStrings.customizeProfileDescription
-                    font.pixelSize: 13
-                }
-
-            }
+            property int stackIndex: 1
 
         }
 
@@ -343,7 +266,7 @@ Rectangle {
 
             objectName: "passwordSetupPage"
 
-            property int stackIndex: 2
+            property int stackIndex: 3
 
             focus: visible
 
