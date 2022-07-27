@@ -79,8 +79,8 @@ WizardViewStepModel::nextStep()
             break;
         }
         case AccountCreationOption::CreateSipAccount: {
-            set_mainStep(MainSteps::Profile);
             accountAdapter_->createSIPAccount(get_accountCreationInfo());
+            Q_EMIT closeWizardView();
             break;
         }
         }

@@ -209,9 +209,7 @@ Rectangle {
             secondary: true
 
             Layout.alignment: Qt.AlignCenter
-
-            preferredWidth: JamiTheme.wizardButtonWidth
-            visible: false
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
             text: JamiStrings.importAccountFromBackup
             toolTipText: JamiStrings.connectFromBackup
@@ -235,7 +233,7 @@ Rectangle {
             Layout.bottomMargin: newSIPAccountButton.visible ?
                                      0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             text: JamiStrings.advancedFeatures
             toolTipText: showAdvanced ? JamiStrings.hideAdvancedFeatures :
                                         JamiStrings.showAdvancedFeatures
@@ -266,7 +264,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             visible: false
 
             text: JamiStrings.createNewRV
@@ -288,7 +286,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             visible: false
 
             text: JamiStrings.connectJAMSServer
@@ -311,7 +309,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
             visible: false
 
             text: JamiStrings.addSIPAccount
