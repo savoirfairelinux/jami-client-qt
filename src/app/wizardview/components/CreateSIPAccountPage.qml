@@ -107,7 +107,6 @@ Rectangle {
                 Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
                 focus: visible
-                fontSize: 15
                 selectByMouse: true
                 placeholderText: JamiStrings.server
                 font.pointSize: JamiTheme.textFontSize
@@ -129,7 +128,6 @@ Rectangle {
                 Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
                 focus: visible
-                fontSize: 15
                 selectByMouse: true
                 placeholderText: JamiStrings.proxy
                 font.pointSize: JamiTheme.textFontSize
@@ -150,7 +148,6 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                fontSize: 15
                 selectByMouse: true
                 placeholderText: JamiStrings.username
                 font.pointSize: JamiTheme.textFontSize
@@ -173,7 +170,6 @@ Rectangle {
 
                 selectByMouse: true
                 echoMode: TextInput.Password
-                fontSize: 15
 
                 placeholderText: JamiStrings.password
                 font.pointSize: JamiTheme.textFontSize
@@ -275,10 +271,9 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
                 Layout.topMargin: 30
-                horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 
-                fontSize: 15
+                font.pointSize: JamiTheme.textFontSize
 
                 placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
 

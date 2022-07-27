@@ -183,8 +183,6 @@ Rectangle {
 
             secondIco: JamiResources.eye_cross_svg
 
-            fontSize: 15
-
             echoMode: TextInput.Password
 
             KeyNavigation.tab: {
