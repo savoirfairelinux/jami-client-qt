@@ -31,12 +31,11 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property int preferredHeight: welcomePageColumnLayout.implicitHeight
+    property int preferredHeight: welcomePageColumnLayout.implicitHeight + 2 * JamiTheme.wizardViewPageBackButtonMargins + JamiTheme.wizardViewPageBackButtonSize
     property bool showTab: false
     property bool showAlreadyHave: false
     property bool showAdvanced: false
 
-    signal scrollToBottom
     signal showThisPage
 
     color: JamiTheme.transparentColor
@@ -328,8 +327,6 @@ Rectangle {
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.CreateSipAccount)
         }
-
-        onHeightChanged: scrollToBottom()
     }
 
     BackButton {
