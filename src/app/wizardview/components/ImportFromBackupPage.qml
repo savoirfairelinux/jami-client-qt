@@ -150,14 +150,8 @@ Rectangle {
             toolTipText: JamiStrings.importAccountArchive
 
             KeyNavigation.tab: passwordFromBackupEdit
-            KeyNavigation.up: {
-                if (backButton.visible)
-                    return backButton
-                else if (connectBtn.enabled)
-                    return connectBtn
-                return passwordFromBackupEdit
-            }
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.up: backButton
+            KeyNavigation.down: passwordFromBackupEdit
 
             onClicked: {
                 errorText = ""
@@ -187,15 +181,9 @@ Rectangle {
 
             echoMode: TextInput.Password
 
-            KeyNavigation.tab: {
-                if (connectBtn.enabled)
-                    return connectBtn
-                else if (backButton.visible)
-                    return backButton
-                return fileImportBtn
-            }
+            KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
             KeyNavigation.up: fileImportBtn
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
 
             onTextChanged: errorText = ""
 
@@ -227,13 +215,9 @@ Rectangle {
                 return false
             }
 
-            KeyNavigation.tab: {
-                if (backButton.visible)
-                    return backButton
-                return fileImportBtn
-            }
+            KeyNavigation.tab: backButton
             KeyNavigation.up: passwordFromBackupEdit
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.down: backButton
 
             onClicked: {
                 if (connectBtn.focus)
@@ -283,7 +267,7 @@ Rectangle {
                 return connectBtn
             return passwordFromBackupEdit
         }
-        KeyNavigation.down: KeyNavigation.tab
+        KeyNavigation.down: fileImportBtn
 
         onClicked: WizardViewStepModel.previousStep()
     }

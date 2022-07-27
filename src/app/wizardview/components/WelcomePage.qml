@@ -194,7 +194,7 @@ Rectangle {
             toolTipText: JamiStrings.linkFromAnotherDevice
 
             KeyNavigation.tab: fromBackupButton
-            KeyNavigation.up: newRdvButton
+            KeyNavigation.up: alreadyHaveAccount
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(
@@ -207,6 +207,8 @@ Rectangle {
             objectName: "fromBackupButton"
             secondary: true
 
+            visible: false
+
             Layout.alignment: Qt.AlignCenter
             preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
@@ -214,7 +216,7 @@ Rectangle {
             toolTipText: JamiStrings.connectFromBackup
 
             KeyNavigation.tab: showAdvancedButton
-            KeyNavigation.up: newAccountButton
+            KeyNavigation.up: fromDeviceButton
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(
@@ -240,7 +242,7 @@ Rectangle {
 
             KeyNavigation.tab: showAdvanced ? newRdvButton :
                                               (backButton.visible ? backButton : newAccountButton)
-            KeyNavigation.up: alreadyHaveAccount
+            KeyNavigation.up: showAlreadyHave ? fromBackupButton : alreadyHaveAccount
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: {
@@ -269,9 +271,9 @@ Rectangle {
             text: JamiStrings.createNewRV
             toolTipText: JamiStrings.createNewRV
 
-            KeyNavigation.tab: fromBackupButton
-            KeyNavigation.up: newAccountButton
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.tab: connectAccountManagerButton
+            KeyNavigation.up: showAdvancedButton
+            KeyNavigation.down: connectAccountManagerButton
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.CreateRendezVous)
@@ -348,7 +350,7 @@ Rectangle {
         visible: UtilsAdapter.getAccountListSize()
 
         KeyNavigation.tab: newAccountButton
-        KeyNavigation.up: newAccountButton
+        KeyNavigation.up: showAdvanced ? newSIPAccountButton : showAdvancedButton
         KeyNavigation.down: KeyNavigation.tab
 
         onClicked: WizardViewStepModel.previousStep()

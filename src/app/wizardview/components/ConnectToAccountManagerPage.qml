@@ -122,14 +122,8 @@ Rectangle {
             font.kerning: true
 
             KeyNavigation.tab: usernameManagerEdit
-            KeyNavigation.up: {
-                if (backButton.visible)
-                    return backButton
-                else if (connectBtn.enabled)
-                    return connectBtn
-                return passwordManagerEdit
-            }
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.up: backButton
+            KeyNavigation.down: usernameManagerEdit
 
             onTextChanged: errorText = ""
             onAccepted: usernameManagerEdit.forceActiveFocus()
@@ -175,7 +169,7 @@ Rectangle {
 
             KeyNavigation.tab: passwordManagerEdit
             KeyNavigation.up: accountManagerEdit
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.down: passwordManagerEdit
 
             onTextChanged: errorText = ""
 
@@ -203,15 +197,9 @@ Rectangle {
 
             echoMode: TextInput.Password
 
-            KeyNavigation.tab: {
-                if (connectBtn.enabled)
-                    return connectBtn
-                else if (backButton.visible)
-                    return backButton
-                return accountManagerEdit
-            }
+            KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
             KeyNavigation.up: usernameManagerEdit
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
 
             onTextChanged: errorText = ""
             onSecondIcoClicked: { toggleEchoMode() }
@@ -239,13 +227,9 @@ Rectangle {
 
             color: JamiTheme.tintedBlue
 
-            KeyNavigation.tab: {
-                if (backButton.visible)
-                    return backButton
-                return accountManagerEdit
-            }
+            KeyNavigation.tab: backButton
             KeyNavigation.up: passwordManagerEdit
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.down: backButton
 
             onClicked: {
                 if (connectBtn.focus)

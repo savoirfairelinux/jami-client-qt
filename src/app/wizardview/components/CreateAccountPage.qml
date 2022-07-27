@@ -142,9 +142,8 @@ Rectangle {
                     fontSize: 18
 
                     KeyNavigation.tab: chooseUsernameButton
-
                     KeyNavigation.up: backButton
-                    KeyNavigation.down: KeyNavigation.tab
+                    KeyNavigation.down: chooseUsernameButton
 
                     onAccepted: {
                         if (chooseUsernameButton.enabled)
@@ -194,9 +193,9 @@ Rectangle {
                     enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
 
 
-                    //KeyNavigation.tab:
+                    KeyNavigation.tab: showAdvancedButton
                     KeyNavigation.up: usernameEdit
-                    KeyNavigation.down: KeyNavigation.tab
+                    KeyNavigation.down: showAdvancedButton
 
                     onClicked: {
 
@@ -220,6 +219,10 @@ Rectangle {
 
                     text: JamiStrings.advancedAccountSettings
                     toolTipText: JamiStrings.showAdvancedFeatures
+
+                    KeyNavigation.tab: backButton
+                    KeyNavigation.up: chooseUsernameButton
+                    KeyNavigation.down: backButton
 
                     onClicked: createAccountStack.currentIndex++
                 }
@@ -256,7 +259,7 @@ Rectangle {
         KeyNavigation.tab: usernameEdit
         KeyNavigation.up: createAccountButton
 
-        KeyNavigation.down: KeyNavigation.tab
+        KeyNavigation.down: usernameEdit
 
         onClicked: {
             if (createAccountStack.currentIndex > 0) {
