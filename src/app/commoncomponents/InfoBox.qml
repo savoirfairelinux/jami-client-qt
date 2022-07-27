@@ -69,6 +69,7 @@ Rectangle {
                 font.weight: Font.Medium
                 Layout.topMargin: 5
                 Layout.alignment: Qt.AlignCenter
+                color: JamiTheme.textColor
                 font.pixelSize: 13
 
             }
@@ -81,6 +82,7 @@ Rectangle {
             Layout.topMargin: 8
             Layout.bottomMargin: 15
             font.pixelSize: 12
+            color: JamiTheme.textColor
             wrapMode: Text.WordWrap
             text: description
 

@@ -57,7 +57,7 @@ Rectangle {
         passwordConfirmEdit.clear()
     }
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.secondaryBackgroundColor
 
     Connections {
         target: WizardViewStepModel
@@ -75,19 +75,6 @@ Rectangle {
         }
     }
 
-    //    MouseArea {
-
-    //        anchors.fill: parent
-
-    //        onClicked: {
-
-    //            helpOpened  = false
-    //            goodToKnow.visible = false
-    //            console.warn(root.width)
-
-    //        }
-    //    }
-
     StackLayout {
         id: createAccountStack
 
@@ -104,7 +91,7 @@ Rectangle {
 
             property int stackIndex: 0
 
-            color: JamiTheme.backgroundColor
+            color: JamiTheme.secondaryBackgroundColor
 
             ColumnLayout {
                 id: usernameColumnLayout
@@ -518,6 +505,7 @@ Rectangle {
             z: 0
             anchors.fill: parent
             radius: 30
+            color: JamiTheme.secondaryBackgroundColor
 
             ColumnLayout {
 
