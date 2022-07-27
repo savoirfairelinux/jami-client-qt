@@ -140,6 +140,8 @@ Rectangle {
 
             objectName: "fileImportBtn"
             secondary: true
+            color: JamiTheme.secAndTertiTextColor
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 35

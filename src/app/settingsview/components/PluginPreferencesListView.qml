@@ -279,7 +279,7 @@ Rectangle {
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
-            outlined: true
+            secondary: true
 
             iconSource: JamiResources.settings_backup_restore_24dp_svg
 

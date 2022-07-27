@@ -81,7 +81,7 @@ Rectangle {
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
-            outlined: true
+            secondary: true
             toolTipText: JamiStrings.addNewPlugin
 
             iconSource: JamiResources.round_add_24dp_svg

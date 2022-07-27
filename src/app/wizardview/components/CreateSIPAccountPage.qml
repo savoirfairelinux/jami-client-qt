@@ -281,7 +281,7 @@ Rectangle {
 
                 font.pointSize: JamiTheme.textFontSize
 
-                placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
+                placeholderText: JamiStrings.enterNickname
 
                 color: JamiTheme.textColor
             }

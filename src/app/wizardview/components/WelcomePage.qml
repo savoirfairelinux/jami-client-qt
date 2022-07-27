@@ -182,6 +182,8 @@ Rectangle {
 
             objectName: "fromDeviceButton"
             secondary: true
+            color: JamiTheme.secAndTertiTextColor
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             Layout.alignment: Qt.AlignCenter
 
@@ -204,6 +206,8 @@ Rectangle {
 
             objectName: "fromBackupButton"
             secondary: true
+            color: JamiTheme.secAndTertiTextColor
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             visible: false
 
@@ -226,6 +230,7 @@ Rectangle {
 
             objectName: "showAdvancedButton"
             tertiary: true
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: newSIPAccountButton.visible ?
@@ -259,6 +264,8 @@ Rectangle {
 
             objectName: "newRdvButton"
             secondary: true
+            color: JamiTheme.secAndTertiTextColor
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             Layout.alignment: Qt.AlignCenter
 
@@ -280,6 +287,8 @@ Rectangle {
 
             objectName: "connectAccountManagerButton"
             secondary: true
+            color: JamiTheme.secAndTertiTextColor
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             Layout.alignment: Qt.AlignCenter
 
@@ -301,6 +310,9 @@ Rectangle {
 
             objectName: "newSIPAccountButton"
             secondary: true
+            color: JamiTheme.secAndTertiTextColor
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+            pressedColor: JamiTheme.buttonTintedBluePressed
 
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
@@ -310,9 +322,6 @@ Rectangle {
 
             text: JamiStrings.addSIPAccount
             toolTipText: JamiStrings.createNewSipAccount
-            color: JamiTheme.buttonTintedBlue
-            hoveredColor: JamiTheme.buttonTintedBlueHovered
-            pressedColor: JamiTheme.buttonTintedBluePressed
 
             KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
             KeyNavigation.up: connectAccountManagerButton

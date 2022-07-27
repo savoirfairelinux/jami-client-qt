@@ -73,7 +73,7 @@ BaseModalDialog {
                 color: JamiTheme.buttonTintedRed
                 hoveredColor: JamiTheme.buttonTintedRedHovered
                 pressedColor: JamiTheme.buttonTintedRedPressed
-                outlined: true
+                secondary: true
 
                 onClicked: {
                     close()
@@ -92,7 +92,7 @@ BaseModalDialog {
                 color: JamiTheme.buttonTintedBlack
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
                 pressedColor: JamiTheme.buttonTintedBlackPressed
-                outlined: true
+                secondary: true
 
                 text: JamiStrings.optionCancel
 

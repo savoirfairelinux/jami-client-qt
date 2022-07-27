@@ -88,7 +88,9 @@ BaseModalDialog {
                 MaterialButton {
                     preferredWidth: 96
                     Layout.alignment: Qt.AlignCenter
-                    secondary:true
+                    secondary: true
+                    color: JamiTheme.secAndTertiTextColor
+                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
                     text: JamiStrings.joinJami
                     onClicked: {
                         WizardViewStepModel.nextStep()

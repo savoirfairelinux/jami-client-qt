@@ -147,7 +147,7 @@ Window {
                     preferredWidth: itemWidth / widthDivisor
                     preferredHeight: JamiTheme.preferredFieldHeight
 
-                    outlined: true
+                    secondary: true
                     color: JamiTheme.buttonTintedBlack
                     hoveredColor: JamiTheme.buttonTintedBlackHovered
                     pressedColor: JamiTheme.buttonTintedBlackPressed
@@ -175,7 +175,7 @@ Window {
                     hoveredColor: JamiTheme.buttonTintedBlackHovered
                     pressedColor: JamiTheme.buttonTintedBlackPressed
 
-                    outlined: true
+                    secondary: true
                     text: JamiStrings.logsViewCopy
 
                     onClicked: {
@@ -214,7 +214,7 @@ Window {
                     hoveredColor: JamiTheme.buttonTintedBlackHovered
                     pressedColor: JamiTheme.buttonTintedBlackPressed
                     text: JamiStrings.logsViewReport
-                    outlined: true
+                    secondary: true
 
                     onClicked: Qt.openUrlExternally(
                                    "https://jami.net/bugs-and-improvements/")
