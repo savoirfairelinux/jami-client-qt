@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75c30a91_771cc16a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-27T21:33:11Z",
+      "side": 1,
+      "message": "The current string expands to:\nJami Account Management Server Account Management Server\n\nShould `JAMS` be changed to `Jami`?\n\nShould the string be:\nJami Account Management Server\n\nOther options are:\nJAMS\nJAMS (Jami Account Management Server)\nJami Account Management Server (JAMS)\n\n\nThank you",
+      "range": {
+        "startLine": 292,
+        "startChar": 43,
+        "endLine": 292,
+        "endChar": 73
+      },
+      "revId": "3592abc9453138d18426e1e6adf4df7e0d442ced",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17bce81d_02b75bb3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-27T21:33:11Z",
+      "side": 1,
+      "message": "Should the string be changed to third-person?\n\nShould `your ` be removed?\n\nShould the string be:\nEnter JAMS credentials\n\nAs someone else may set up Jami for the end-user\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 295,
+        "startChar": 49,
+        "endLine": 295,
+        "endChar": 54
+      },
+      "revId": "3592abc9453138d18426e1e6adf4df7e0d442ced",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b95abcc4_8a5e2ab3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-27T21:33:11Z",
+      "side": 1,
+      "message": "Change to third-person?\n\nShould the string be:\nPIN required to use existing Jami account on this device.\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 487,
+        "startChar": 55,
+        "endLine": 487,
+        "endChar": 128
+      },
+      "revId": "3592abc9453138d18426e1e6adf4df7e0d442ced",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

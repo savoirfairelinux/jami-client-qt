@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d43a0f_f1c21b24",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-07-27T21:33:11Z",
+      "side": 1,
+      "message": "Should `fingerprint` be added to become:\n40-character fingerprint identifier",
+      "range": {
+        "startLine": 335,
+        "startChar": 141,
+        "endLine": 335,
+        "endChar": 164
+      },
+      "revId": "bd3cb8a5002b25ec0f00059eb2298c5fe629bf2e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
