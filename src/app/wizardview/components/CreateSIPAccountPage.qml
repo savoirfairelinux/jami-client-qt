@@ -21,8 +21,9 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import net.jami.Models 1.1
+import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Models 1.1
 
 import "../../commoncomponents"
 
@@ -56,7 +57,6 @@ Rectangle {
     color: JamiTheme.backgroundColor
 
 
-
     StackLayout {
         id: createAccountStack
 
@@ -68,9 +68,9 @@ Rectangle {
 
             spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.top: parent.top
-            anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+            Layout.preferredWidth: parent.width
+            Layout.alignment: Qt.AlignHCenter
+            Layout.topMargin: JamiTheme.wizardViewLayoutTopMargin
 
             width: Math.max(508, root.width - 100)
 
@@ -231,82 +231,72 @@ Rectangle {
             }
         }
 
+        ColumnLayout {
+            spacing: JamiTheme.wizardViewPageLayoutSpacing
 
+            Layout.preferredWidth: parent.width
+            Layout.alignment: Qt.AlignHCenter
+            Layout.topMargin: JamiTheme.wizardViewLayoutTopMargin
 
-        Rectangle {
-            id: personalizeSipAccount
+            width: Math.max(508, root.width - 100)
 
-            color: JamiTheme.transparentColor
-            property int stackIndex: 2
+            Label {
 
-            ColumnLayout {
-                spacing: JamiTheme.wizardViewPageLayoutSpacing
+                text: JamiStrings.personalizeAccount
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
+                Layout.topMargin: 15
+                font.pixelSize: 26
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+            }
 
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+            PhotoboothView {
+                id: currentAccountAvatar
+                darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
 
-                width: Math.max(508, root.width - 100)
+                Layout.alignment: Qt.AlignCenter
+                Layout.topMargin: 50
 
-
-                Label {
-
-                    text: JamiStrings.personalizeAccount
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 15
-                    font.pixelSize: 26
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                PhotoboothView {
-                    id: currentAccountAvatar
-                    darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.topMargin: 50
-
-                    imageId: visible ? "temp" : ""
-                    avatarSize: 150
-                    buttonSize: JamiTheme.smartListAvatarSize
-
-                }
-
-                EditableLineEdit {
-
-                    id: displayNameLineEdit
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 30
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    fontSize: 15
-
-                    placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
-
-                    onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
-
-                }
-
-                Text {
-
-                    Layout.topMargin: 15
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    wrapMode: Text.WordWrap
-
-                    text: JamiStrings.customizeProfileDescription
-                    font.pixelSize: 13
-                }
+                imageId: visible ? "temp" : ""
+                avatarSize: 150
+                buttonSize: JamiTheme.smartListAvatarSize
 
             }
 
+            EditableLineEdit {
+
+                id: displayNameLineEdit
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
+                Layout.topMargin: 30
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+
+                fontSize: 15
+
+                placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
+
+                onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
+
+            }
+
+            Text {
+
+                Layout.topMargin: 15
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                wrapMode: Text.WordWrap
+
+                text: JamiStrings.customizeProfileDescription
+                font.pixelSize: 13
+            }
+
         }
+
 
     }
 

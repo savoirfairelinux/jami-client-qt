@@ -21,9 +21,9 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Models 1.1
 import Qt5Compat.GraphicalEffects
 
 import "../"
