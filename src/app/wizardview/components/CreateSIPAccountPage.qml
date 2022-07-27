@@ -39,6 +39,8 @@ Rectangle {
         sipPasswordEdit.clear()
         sipServernameEdit.clear()
         sipProxyEdit.clear()
+        displayNameLineEdit.clear()
+        UtilsAdapter.setTempCreationImageFromString()
     }
 
     Connections {
@@ -211,9 +213,11 @@ Rectangle {
                     WizardViewStepModel.accountCreationInfo =
                             JamiQmlUtils.setUpAccountCreationInputPara(
                                 {hostname : sipServernameEdit.text,
-                                    username : sipUsernameEdit.text,
-                                    password : sipPasswordEdit.text,
-                                    proxy : sipProxyEdit.text})
+                                 alias: displayNameLineEdit.text,
+                                 username : sipUsernameEdit.text,
+                                 password : sipPasswordEdit.text,
+                                 proxy : sipProxyEdit.text,
+                                 avatar: UtilsAdapter.tempCreationImage()})
                     WizardViewStepModel.nextStep()
                 }
             }
@@ -260,6 +264,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: 50
 
+                newItem: true
                 imageId: visible ? "temp" : ""
                 avatarSize: 150
                 buttonSize: JamiTheme.smartListAvatarSize
@@ -279,7 +284,6 @@ Rectangle {
 
                 placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
 
-                onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
                 color: JamiTheme.textColor
             }
 

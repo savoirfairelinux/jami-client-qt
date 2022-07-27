@@ -138,8 +138,7 @@ Rectangle {
                                                         showAdvancedButton)
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.CreateJamiAccount)
         }
 
         MaterialButton {
@@ -197,8 +196,7 @@ Rectangle {
             KeyNavigation.up: newRdvButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.ImportFromDevice)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.ImportFromDevice)
         }
 
         MaterialButton {
@@ -217,8 +215,7 @@ Rectangle {
             KeyNavigation.up: newAccountButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.ImportFromBackup)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.ImportFromBackup)
         }
 
 
@@ -273,8 +270,7 @@ Rectangle {
             KeyNavigation.up: newAccountButton
             KeyNavigation.down: KeyNavigation.tab
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.CreateRendezVous)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.CreateRendezVous)
         }
 
         MaterialButton {
@@ -295,8 +291,7 @@ Rectangle {
             KeyNavigation.up: newRdvButton
             KeyNavigation.down: newSIPAccountButton
 
-            onClicked: WizardViewStepModel.startAccountCreationFlow(
-                           WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
+            onClicked: WizardViewStepModel.startAccountCreationFlow(WizardViewStepModel.AccountCreationOption.ConnectToAccountManager)
         }
 
         MaterialButton {
