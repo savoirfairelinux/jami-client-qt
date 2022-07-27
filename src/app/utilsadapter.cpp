@@ -488,33 +488,35 @@ UtilsAdapter::supportedLang()
 }
 
 QString
-UtilsAdapter::swarmCreationImage(const QString& imageId) const
+UtilsAdapter::tempCreationImage(const QString& imageId) const
 {
     if (imageId == "temp")
         return Utils::QByteArrayFromFile(
             QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + "tmpSwarmImage");
-    return lrcInstance_->getCurrentConversationModel()->avatar(imageId);
+    if (lrcInstance_->getCurrentConversationModel())
+        return lrcInstance_->getCurrentConversationModel()->avatar(imageId);
+    return {};
 }
 
 void
-UtilsAdapter::setSwarmCreationImageFromString(const QString& image, const QString& imageId)
+UtilsAdapter::setTempCreationImageFromString(const QString& image, const QString& imageId)
 {
     // Compress the image before saving
     auto img = Utils::imageFromBase64String(image, false);
-    setSwarmCreationImageFromImage(img, imageId);
+    setTempCreationImageFromImage(img, imageId);
 }
 
 void
-UtilsAdapter::setSwarmCreationImageFromFile(const QString& path, const QString& imageId)
+UtilsAdapter::setTempCreationImageFromFile(const QString& path, const QString& imageId)
 {
     // Compress the image before saving
     auto image = Utils::QByteArrayFromFile(path);
     auto img = Utils::imageFromBase64Data(image, false);
-    setSwarmCreationImageFromImage(img, imageId);
+    setTempCreationImageFromImage(img, imageId);
 }
 
 void
-UtilsAdapter::setSwarmCreationImageFromImage(const QImage& image, const QString& imageId)
+UtilsAdapter::setTempCreationImageFromImage(const QImage& image, const QString& imageId)
 {
     // Compress the image before saving
     QByteArray ba;

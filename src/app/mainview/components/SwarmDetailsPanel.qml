@@ -55,7 +55,7 @@ Rectangle {
 
                 Layout.alignment: Qt.AlignHCenter
 
-                newConversation: true
+                newItem: true
                 imageId: LRCInstance.selectedConvUid
                 avatarSize: JamiTheme.smartListAvatarSize
             }

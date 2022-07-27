@@ -50,6 +50,7 @@ Rectangle {
 
     function clearAllTextFields() {
         usernameEdit.clear()
+        advancedAccountSettingsPage.clear()
     }
 
     color: JamiTheme.secondaryBackgroundColor
@@ -196,7 +197,12 @@ Rectangle {
                     KeyNavigation.down: showAdvancedButton
 
                     onClicked: {
-
+                        WizardViewStepModel.accountCreationInfo =
+                                JamiQmlUtils.setUpAccountCreationInputPara(
+                                    {registeredName : usernameEdit.text,
+                                    alias: advancedAccountSettingsPage.alias,
+                                    password: advancedAccountSettingsPage.validatedPassword,
+                                    avatar: UtilsAdapter.tempCreationImage()})
                         if(usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE)
                             WizardViewStepModel.nextStep()
 
@@ -226,20 +232,19 @@ Rectangle {
                 }
 
                 NoUsernamePopup {
-
                     id: popup
-                    visible: false
 
+                    visible: false
                 }
             }
         }
 
         AdvancedAccountSettings {
-
             id: advancedAccountSettingsPage
-            objectName: "advancedAccountSettingsPage"
-            property int stackIndex: 1
 
+            objectName: "advancedAccountSettingsPage"
+
+            property int stackIndex: 1
         }
     }
 

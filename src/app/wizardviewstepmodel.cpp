@@ -83,7 +83,9 @@ WizardViewStepModel::nextStep()
         case AccountCreationOption::CreateRendezVous:
         case AccountCreationOption::ImportFromBackup:
         case AccountCreationOption::ImportFromDevice: {
-            accountAdapter_->createJamiAccount("", get_accountCreationInfo(), false);
+            accountAdapter_->createJamiAccount(get_accountCreationInfo()["registeredName"].toString(),
+                                               get_accountCreationInfo(),
+                                               false);
             break;
         }
         case AccountCreationOption::ConnectToAccountManager: {
