@@ -29,7 +29,7 @@ TextField {
     property int fieldLayoutWidth: 256
     property int fieldLayoutHeight: 48
 
-    property var backgroundColor: JamiTheme.editBackgroundColor
+    property var backgroundColor: JamiTheme.secondaryBackgroundColor
     property var borderColor: JamiTheme.greyBorderColor
 
     property bool loseFocusWhenEnterPressed: false
@@ -48,10 +48,9 @@ TextField {
 
     font.pointSize: JamiTheme.materialLineEditPointSize
     font.kerning: true
-
-    placeholderTextColor: JamiTheme.placeholderTextColor
     color: JamiTheme.textColor
 
+    placeholderTextColor: JamiTheme.placeholderTextColor
     font.pixelSize: fontSize
 
     LineEditContextMenu {
@@ -64,7 +63,7 @@ TextField {
 
 
     background: Rectangle {
-        //visible: !wizardInput
+
         anchors.fill: root
         radius: JamiTheme.primaryRadius
 
@@ -86,7 +85,7 @@ TextField {
                 bottomMargin: 1
                 leftMargin: -1
             }
-            color: backgroundColor
+            color: root.backgroundColor
         }
     }
 

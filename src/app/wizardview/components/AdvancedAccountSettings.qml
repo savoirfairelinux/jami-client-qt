@@ -34,7 +34,7 @@ Rectangle {
     property bool openedPassword: false
     property bool openedNickname: false
 
-    color: JamiTheme.transparentColor
+    color: JamiTheme.secondaryBackgroundColor
     opacity: 0.93
 
     MouseArea {
@@ -61,6 +61,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.topMargin: 50
         text: JamiStrings.advancedAccountSettings
+        color: JamiTheme.textColor
         font.pixelSize: 22
     }
 
@@ -76,6 +77,7 @@ Rectangle {
             border.color: JamiTheme.lightBlue_
             Layout.leftMargin: 45
             layer.enabled: true
+            color: JamiTheme.secondaryBackgroundColor
 
             Behavior on Layout.preferredWidth {
                 NumberAnimation { duration: 100 }
@@ -110,7 +112,7 @@ Rectangle {
                 anchors.bottom: parent.bottom
                 anchors.left: parent.left
                 border.color: JamiTheme.lightBlue_
-                color:JamiTheme.whiteColor
+                color: JamiTheme.secondaryBackgroundColor
 
                 Rectangle {
 
@@ -119,8 +121,8 @@ Rectangle {
                     anchors.bottom: parent.bottom
                     anchors.left: parent.left
                     anchors.margins: 1
-                    border.color: JamiTheme.whiteColor
-                    color:JamiTheme.whiteColor
+                    border.color: JamiTheme.secondaryBackgroundColor
+                    color: JamiTheme.secondaryBackgroundColor
 
                 }
 
@@ -139,6 +141,7 @@ Rectangle {
                     font.pixelSize: 15
                     Layout.leftMargin: 35
                     Layout.topMargin: 25
+                    color: JamiTheme.textColor
                     width: 100
 
                 }
@@ -151,6 +154,7 @@ Rectangle {
 
                     Layout.preferredWidth: 360
                     Layout.alignment: Qt.AlignLeft
+                    color: JamiTheme.textColor
                     wrapMode: Text.WordWrap
 
                     text: JamiStrings.encryptDescription
@@ -169,7 +173,6 @@ Rectangle {
 
                     fontSize: 15
 
-                    backgroundColor: JamiTheme.whiteColor
                     echoMode: TextInput.Password
 
                     placeholderText: JamiStrings.password
@@ -192,7 +195,6 @@ Rectangle {
 
                     fontSize: 15
 
-                    backgroundColor: JamiTheme.whiteColor
                     echoMode: TextInput.Password
 
                     placeholderText: JamiStrings.confirmPassword
@@ -235,6 +237,7 @@ Rectangle {
 
                     Layout.preferredWidth: 360
                     Layout.alignment: Qt.AlignCenter
+                    color: JamiTheme.textColor
                     wrapMode: Text.WordWrap
 
                     text: JamiStrings.encryptWarning
@@ -287,6 +290,7 @@ Rectangle {
                         visible: !openedPassword && !openedNickname
 
                         text: JamiStrings.encryptAccount
+                        color: JamiTheme.textColor
                         font.pixelSize: 15
                         width: 100
 
@@ -310,6 +314,7 @@ Rectangle {
             Layout.rightMargin: 45
             Layout.alignment: Qt.AlignRight
             layer.enabled: true
+            color: JamiTheme.secondaryBackgroundColor
 
             Behavior on Layout.preferredWidth {
                 NumberAnimation { duration: 100 }
@@ -345,7 +350,7 @@ Rectangle {
                 anchors.bottom: parent.bottom
                 anchors.right: parent.right
                 border.color: JamiTheme.lightBlue_
-                color: JamiTheme.whiteColor
+                color: JamiTheme.secondaryBackgroundColor
                 layer.enabled: true
 
                 Rectangle {
@@ -356,8 +361,8 @@ Rectangle {
                     anchors.bottom: parent.bottom
                     anchors.right: parent.right
                     anchors.margins: 1
-                    border.color: JamiTheme.whiteColor
-                    color: JamiTheme.whiteColor
+                    border.color: JamiTheme.secondaryBackgroundColor
+                    color: JamiTheme.secondaryBackgroundColor
 
                 }
 
@@ -375,6 +380,7 @@ Rectangle {
                     Layout.topMargin: 25
                     Layout.leftMargin: 35
                     font.pixelSize: 15
+                    color: JamiTheme.textColor
                     width: 100
                 }
 
@@ -405,7 +411,6 @@ Rectangle {
                     verticalAlignment: Text.AlignVCenter
 
                     fontSize: 15
-                    backgroundColor: JamiTheme.whiteColor
 
                     placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
 
@@ -422,6 +427,7 @@ Rectangle {
                     Layout.preferredWidth: 360
                     Layout.alignment: Qt.AlignCenter
                     wrapMode: Text.WordWrap
+                    color: JamiTheme.textColor
 
                     text: JamiStrings.customizeProfileDescription
                     font.pixelSize: 13
@@ -473,6 +479,7 @@ Rectangle {
 
                         visible: !openedNickname && !openedPassword
 
+                        color: JamiTheme.textColor
                         text: JamiStrings.customizeProfile
                         font.pixelSize: 15
 

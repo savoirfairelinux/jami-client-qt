@@ -53,8 +53,7 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.backgroundColor
-
+    color: JamiTheme.secondaryBackgroundColor
 
 
     StackLayout {
@@ -84,6 +83,7 @@ Rectangle {
                 font.pixelSize: 26
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                color: JamiTheme.textColor
             }
 
             Label {
@@ -95,6 +95,7 @@ Rectangle {
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                color: JamiTheme.textColor
             }
 
             EditableLineEdit {
@@ -256,6 +257,7 @@ Rectangle {
                     Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
                     Layout.topMargin: 15
                     font.pixelSize: 26
+                    color: JamiTheme.textColor
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -299,6 +301,7 @@ Rectangle {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.WordWrap
+                    color: JamiTheme.textColor
 
                     text: JamiStrings.customizeProfileDescription
                     font.pixelSize: 13

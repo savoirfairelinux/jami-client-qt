@@ -33,7 +33,7 @@ Item {
     signal secondIcoClicked
 
     property alias fontSize: lineEdit.fontSize
-    property alias borderColor: lineEdit.borderColor
+    property color borderColor: lineEdit.borderColor
     property alias underlined: lineEdit.underlined
     property alias wizardInput: lineEdit.wizardInput
     property alias wrapMode: lineEdit.wrapMode
@@ -57,7 +57,7 @@ Item {
     property alias placeholderText: lineEdit.placeholderText
     property alias placeholderTextColor: lineEdit.placeholderTextColor
     property alias backgroundColor: lineEdit.backgroundColor
-    property var editIconColor:  UtilsAdapter.luma(root.color) ? JamiTheme.editLineColor : "white"
+    property var editIconColor: "transparent"
     property var cancelIconColor: UtilsAdapter.luma(root.color) ? JamiTheme.buttonTintedBlue : "white"
     property string informationToolTip: ""
 
@@ -181,7 +181,7 @@ Item {
 
         ResponsiveImage  {
             id: thirdICO_
-//            visible:  (editable && !root.readOnly) /*thirdIco!==""*/
+            //            visible:  (editable && !root.readOnly) /*thirdIco!==""*/
             anchors.right: secICO_.left
             anchors.rightMargin: 12
             anchors.verticalCenter: row.verticalCenter

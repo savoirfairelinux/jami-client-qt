@@ -39,7 +39,7 @@ Rectangle {
     signal scrollToBottom
     signal showThisPage
 
-    color: JamiTheme.transparentColor
+    color: JamiTheme.secondaryBackgroundColor
     opacity: 0.93
 
     Connections {
