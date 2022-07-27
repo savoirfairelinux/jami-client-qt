@@ -156,7 +156,6 @@ Rectangle {
             placeholderText: JamiStrings.pin
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
-            fontSize: 15
 
             KeyNavigation.tab: {
                 if (connectBtn.enabled)
@@ -182,7 +181,6 @@ Rectangle {
             Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
             secondIco: JamiResources.eye_cross_svg
-            fontSize: 15
 
             selectByMouse: true
             placeholderText: JamiStrings.password
