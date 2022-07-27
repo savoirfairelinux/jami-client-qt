@@ -191,13 +191,9 @@ Rectangle {
 
             echoMode: TextInput.Password
 
-            KeyNavigation.tab: pinFromDevice
-            KeyNavigation.up: {
-                if (backButton.visible)
-                    return backButton
-                return pinFromDevice
-            }
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.tab: connectBtn.enabled ? connectBtn : backButton
+            KeyNavigation.up: pinFromDevice
+            KeyNavigation.down: connectBtn.enabled ? connectBtn : backButton
 
             onTextChanged: errorText = ""
             onEditingFinished: pinFromDevice.forceActiveFocus()
@@ -223,8 +219,8 @@ Rectangle {
             enabled: pinFromDevice.text.length !== 0 && !spinnerTriggered
 
             KeyNavigation.tab: backButton
-            KeyNavigation.up: pinFromDevice
-            KeyNavigation.down: KeyNavigation.tab
+            KeyNavigation.up: passwordFromDevice
+            KeyNavigation.down: backButton
 
             onClicked: {
                 spinnerTriggered = true
@@ -263,9 +259,9 @@ Rectangle {
 
         visible: !connectBtn.spinnerTriggered
 
-        KeyNavigation.tab: passwordFromDevice
-        KeyNavigation.up: connectBtn
-        KeyNavigation.down: KeyNavigation.tab
+        KeyNavigation.tab: pinFromDevice
+        KeyNavigation.up: connectBtn.enabled ? connectBtn : passwordFromDevice
+        KeyNavigation.down: pinFromDevice
 
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
 

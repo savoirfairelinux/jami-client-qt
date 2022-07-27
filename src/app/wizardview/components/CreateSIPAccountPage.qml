@@ -117,7 +117,7 @@ Rectangle {
 
                 KeyNavigation.tab: sipProxyEdit
                 KeyNavigation.up: backButton
-                KeyNavigation.down: KeyNavigation.tab
+                KeyNavigation.down: sipProxyEdit
 
                 onEditingFinished: sipProxyEdit.forceActiveFocus()
             }
@@ -139,7 +139,7 @@ Rectangle {
 
                 KeyNavigation.tab: sipUsernameEdit
                 KeyNavigation.up: sipServernameEdit
-                KeyNavigation.down: KeyNavigation.tab
+                KeyNavigation.down: sipUsernameEdit
 
                 onEditingFinished: sipUsernameEdit.forceActiveFocus()
             }
@@ -160,7 +160,7 @@ Rectangle {
 
                 KeyNavigation.tab: sipPasswordEdit
                 KeyNavigation.up: sipProxyEdit
-                KeyNavigation.down: KeyNavigation.tab
+                KeyNavigation.down: sipPasswordEdit
 
                 onEditingFinished: sipPasswordEdit.forceActiveFocus()
             }
@@ -183,7 +183,7 @@ Rectangle {
 
                 KeyNavigation.tab: createAccountButton
                 KeyNavigation.up: sipUsernameEdit
-                KeyNavigation.down: KeyNavigation.tab
+                KeyNavigation.down: createAccountButton
 
                 secondIco: JamiResources.eye_cross_svg
 
@@ -205,9 +205,9 @@ Rectangle {
 
                 text: JamiStrings.addSip
 
-                KeyNavigation.tab: backButton
+                KeyNavigation.tab: personalizeAccount
                 KeyNavigation.up: sipPasswordEdit
-                KeyNavigation.down: KeyNavigation.tab
+                KeyNavigation.down: personalizeAccount
 
                 onClicked: {
                     WizardViewStepModel.accountCreationInfo =
@@ -224,13 +224,17 @@ Rectangle {
 
             MaterialButton {
 
-                id:personalizeAccount
+                id: personalizeAccount
                 text: JamiStrings.personalizeAccount
                 tertiary: true
                 preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
+
+                KeyNavigation.tab: backButton
+                KeyNavigation.up: createAccountButton
+                KeyNavigation.down: backButton
 
                 onClicked: createAccountStack.currentIndex += 1
             }
@@ -318,8 +322,8 @@ Rectangle {
         preferredSize: JamiTheme.wizardViewPageBackButtonSize
 
         KeyNavigation.tab: sipServernameEdit
-        KeyNavigation.up: createAccountButton
-        KeyNavigation.down: KeyNavigation.tab
+        KeyNavigation.up: personalizeAccount
+        KeyNavigation.down: sipServernameEdit
 
         onClicked: {
             if (createAccountStack.currentIndex !== 0) {
