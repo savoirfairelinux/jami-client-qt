@@ -36,6 +36,7 @@
 #include <datatransfer_interface.h>
 
 #include <QFileInfo>
+#include <QUrl>
 
 #ifdef ENABLE_LIBWRAP
 // For the debugMessageReceived connection that queues const std::string refs
@@ -528,15 +529,19 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
 
     for (auto& e : interaction.toStdMap()) {
         if (e.first.contains("x-ring/ring.profile.vcard")) {
-            auto pieces0 = e.first.split(";");
-            auto pieces1 = pieces0[1].split(",");
-            auto pieces2 = pieces1[1].split("=");
-            auto pieces3 = pieces1[2].split("=");
+            auto decodedHead = QUrl::fromPercentEncoding(e.first.toLatin1());
+            int id, piece1, piece2;
+            auto ret = std::sscanf(decodedHead.toStdString().c_str(), "x-ring/ring.profile.vcard;id=%i,part=%i,of=%i", &id, &piece1, &piece2);
+
+            if (ret != 3) {
+                continue;
+            }
+
             Q_EMIT incomingVCardChunk(accountId,
                                       callId,
                                       from2,
-                                      pieces2[1].toInt(),
-                                      pieces3[1].toInt(),
+                                      piece1,
+                                      piece2,
                                       e.second);
         } else if (e.first.contains(
                        "text/plain")) { // we consider it as an usual message interaction
