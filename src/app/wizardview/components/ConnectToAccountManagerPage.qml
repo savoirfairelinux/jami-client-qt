@@ -68,43 +68,54 @@ Rectangle {
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
 
-        RowLayout {
-            spacing: JamiTheme.wizardViewPageLayoutSpacing
+        width: Math.max(508, root.width - 100)
 
+        Text {
+
+            text: JamiStrings.connectJAMSServer
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-            Layout.preferredWidth: implicitWidth
+            Layout.topMargin: 15
+            Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 
-            Label {
-                text: JamiStrings.enterJAMSURL
-                color: JamiTheme.textColor
-                font.pointSize: JamiTheme.textFontSize + 3
-            }
+            font.pixelSize: 26
+            wrapMode : Text.WordWrap
 
-            BubbleLabel {
-                Layout.alignment: Qt.AlignRight
-
-                text: JamiStrings.required
-                textColor: JamiTheme.requiredFieldColor
-                bubbleColor: JamiTheme.requiredFieldBackgroundColor
-            }
         }
 
-        MaterialLineEdit {
+        Text {
+
+            text: JamiStrings.enterJAMSURL
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 30
+            Layout.preferredWidth: Math.min(400, root.width - JamiTheme.preferredMarginSize * 2)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            font.pixelSize: 15
+            wrapMode : Text.WordWrap
+        }
+
+        EditableLineEdit {
             id: accountManagerEdit
 
             objectName: "accountManagerEdit"
 
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
             Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
+            fontSize: 15
+            Layout.topMargin: 5
             focus: visible
 
+            secondIco: JamiResources.outline_info_24dp_svg
+
             selectByMouse: true
-            placeholderText: JamiStrings.jamiManagementServerURL
+            placeholderText: JamiStrings.jamiManagementServerURL  //problem with resize
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
 
@@ -125,10 +136,15 @@ Rectangle {
         Label {
             id: credentialsLabel
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: connectBtn.width
-
             text: JamiStrings.jamsCredentials
+
+            Layout.alignment: Qt.AlignCenter
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: 35
+            font.weight: Font.Medium
+
             color: JamiTheme.textColor
             wrapMode: Text.Wrap
 
@@ -137,14 +153,18 @@ Rectangle {
                                credentialsLabel.font, credentialsLabel.text).height
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
+
             id: usernameManagerEdit
 
             objectName: "usernameManagerEdit"
 
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
             Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+            fontSize: 15
+
+            secondIco: JamiResources.outline_info_24dp_svg
 
             selectByMouse: true
             placeholderText: JamiStrings.username
@@ -156,22 +176,28 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onTextChanged: errorText = ""
-            onAccepted: passwordManagerEdit.forceActiveFocus()
+
         }
 
-        MaterialLineEdit {
+        EditableLineEdit {
+
             id: passwordManagerEdit
 
             objectName: "passwordManagerEdit"
 
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
             Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
             selectByMouse: true
             placeholderText: JamiStrings.password
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
+            Layout.topMargin: 10
+
+            secondIco: JamiResources.eye_cross_svg
+            thirdIco: JamiResources.outline_info_24dp_svg
+
+            fontSize: 15
 
             echoMode: TextInput.Password
 
@@ -186,10 +212,8 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onTextChanged: errorText = ""
-            onAccepted: {
-                if (connectBtn.enabled)
-                    connectBtn.clicked()
-            }
+            onSecondIcoClicked: { toggleEchoMode() }
+
         }
 
         SpinnerButton {
@@ -198,9 +222,10 @@ Rectangle {
             objectName: "connectToAccountManagerPageConnectBtn"
 
             Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 40
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
             spinnerTriggeredtext: JamiStrings.creatingAccount
             normalText: JamiStrings.connect
@@ -209,6 +234,8 @@ Rectangle {
                      && usernameManagerEdit.text.length !== 0
                      && passwordManagerEdit.text.length !== 0
                      && !spinnerTriggered
+
+            color: JamiTheme.tintedBlue
 
             KeyNavigation.tab: {
                 if (backButton.visible)
@@ -226,8 +253,8 @@ Rectangle {
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
                             {username : usernameManagerEdit.text,
-                             password : passwordManagerEdit.text,
-                             manager : accountManagerEdit.text})
+                                password : passwordManagerEdit.text,
+                                manager : accountManagerEdit.text})
                 WizardViewStepModel.nextStep()
             }
         }
