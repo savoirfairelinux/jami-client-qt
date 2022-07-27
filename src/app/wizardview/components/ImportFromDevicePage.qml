@@ -62,7 +62,7 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout {
         id: importFromDevicePageColumnLayout
@@ -84,6 +84,7 @@ Rectangle {
             Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+            color: JamiTheme.textColor
 
             font.pixelSize: 26
             wrapMode : Text.WordWrap
@@ -96,6 +97,7 @@ Rectangle {
             Layout.topMargin: 15
             Layout.alignment: Qt.AlignCenter
             font.pixelSize: 15
+            color: JamiTheme.textColor
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

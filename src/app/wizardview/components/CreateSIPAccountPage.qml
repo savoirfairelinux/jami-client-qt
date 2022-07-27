@@ -54,8 +54,7 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.backgroundColor
-
+    color: JamiTheme.secondaryBackgroundColor
 
     StackLayout {
         id: createAccountStack
@@ -84,6 +83,7 @@ Rectangle {
                 font.pixelSize: 26
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                color: JamiTheme.textColor
             }
 
             Label {
@@ -95,6 +95,7 @@ Rectangle {
                 wrapMode: Text.WordWrap
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                color: JamiTheme.textColor
             }
 
             EditableLineEdit {
@@ -249,6 +250,7 @@ Rectangle {
                 font.pixelSize: 26
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+                color: JamiTheme.textColor
             }
 
             PhotoboothView {
@@ -258,62 +260,9 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.topMargin: 50
 
-
-                Label {
-
-                    text: JamiStrings.personalizeAccount
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 15
-                    font.pixelSize: 26
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                }
-
-                PhotoboothView {
-                    id: currentAccountAvatar
-                    darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.topMargin: 50
-
-                    imageId: visible ? "temp" : ""
-                    avatarSize: 150
-                    buttonSize: JamiTheme.smartListAvatarSize
-
-                }
-
-                EditableLineEdit {
-
-                    id: displayNameLineEdit
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
-                    Layout.topMargin: 30
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-
-                    fontSize: 15
-
-                    placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
-
-                    onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
-
-                }
-
-                Text {
-
-                    Layout.topMargin: 15
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    wrapMode: Text.WordWrap
-
-                    text: JamiStrings.customizeProfileDescription
-                    font.pixelSize: 13
-                }
-
+                imageId: visible ? "temp" : ""
+                avatarSize: 150
+                buttonSize: JamiTheme.smartListAvatarSize
             }
 
             EditableLineEdit {
@@ -331,7 +280,7 @@ Rectangle {
                 placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
 
                 onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
-
+                color: JamiTheme.textColor
             }
 
             Text {
@@ -345,6 +294,7 @@ Rectangle {
 
                 text: JamiStrings.customizeProfileDescription
                 font.pixelSize: 13
+                color: JamiTheme.textColor
             }
 
         }

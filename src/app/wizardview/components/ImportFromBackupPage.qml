@@ -65,7 +65,7 @@ Rectangle {
         }
     }
 
-    color: JamiTheme.backgroundColor
+    color: JamiTheme.secondaryBackgroundColor
 
     JamiFileDialog {
         id: importFromFileDialog
@@ -116,6 +116,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
 
+            color: JamiTheme.textColor
             font.pixelSize: 26
             wrapMode : Text.WordWrap
         }
@@ -128,6 +129,7 @@ Rectangle {
             Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
+            color: JamiTheme.textColor
 
             font.pixelSize: 15
             wrapMode : Text.WordWrap
@@ -199,10 +201,6 @@ Rectangle {
 
             onSecondIcoClicked: { toggleEchoMode() }
 
-            //            onEditingFinished: {
-            //                if (connectBtn.enabled)
-            //                    connectBtn.clicked()
-            //            }
         }
 
         SpinnerButton {
