@@ -186,7 +186,7 @@ BaseModalDialog {
                 color: enabled? JamiTheme.buttonTintedBlack : JamiTheme.buttonTintedGrey
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
                 pressedColor: JamiTheme.buttonTintedBlackPressed
-                outlined: true
+                secondary: true
                 enabled: purpose === PasswordDialog.SetPassword
 
                 text: (purpose === PasswordDialog.ExportAccount) ? JamiStrings.exportAccount :
@@ -208,7 +208,7 @@ BaseModalDialog {
                 color: JamiTheme.buttonTintedBlack
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
                 pressedColor: JamiTheme.buttonTintedBlackPressed
-                outlined: true
+                secondary: true
 
                 text: JamiStrings.optionCancel
 

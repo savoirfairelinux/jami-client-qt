@@ -177,7 +177,6 @@ Rectangle {
                     visible: openedPassword
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: 325
-                    horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
 
                     fontSize: 15
@@ -198,7 +197,6 @@ Rectangle {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: 325
-                    horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
 
                     fontSize: 15
@@ -422,7 +420,6 @@ Rectangle {
 
                     Layout.alignment: Qt.AlignCenter
                     Layout.preferredWidth: 280
-                    horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
 
                     fontSize: 15

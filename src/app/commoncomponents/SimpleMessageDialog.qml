@@ -121,7 +121,7 @@ BaseModalDialog {
                             return JamiTheme.buttonTintedRedPressed
                         }
                     }
-                    outlined: true
+                    secondary: true
 
                     text: buttonTitles[modelData]
 
