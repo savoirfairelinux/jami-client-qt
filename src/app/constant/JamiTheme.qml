@@ -74,6 +74,7 @@ Item {
     property color tabbarBorderColor: darkTheme ? blackColor : "#e3e3e3"
     property color popupOverlayColor: darkTheme ? Qt.rgba(255, 255, 255, 0.22) :
                                                   Qt.rgba(0, 0, 0, 0.33)
+    property real formsRadius: 30
 
     // Side panel
     property color presenceGreen: "#4cd964"
@@ -403,6 +404,20 @@ Item {
     property real welcomeLogoWidth: 75
     property real welcomeLogoHeight: 70
     property real wizardButtonWidth: 400
+
+    // WizardView Advanced Account Settings
+    property color lightBlue_: "#e5eef5"
+    property real passwordEditOpenedBoxWidth: 425
+    property real passwordEditClosedBoxWidth: 330
+    property real passwordEditOpenedBoxHeight: 380
+    property real passwordEditClosedBoxHeight: 65
+    property real customNicknameOpenedBoxWidth: 412
+    property real customNicknameClosedBoxWidth: 230
+    property real customNicknameOpenedBoxHeight: 320
+    property real customNicknameClosedBoxHeight: 65
+
+    property real cornerIconSize: 40
+
 
 
     // MaterialLineEdit

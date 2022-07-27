@@ -67,29 +67,120 @@ Rectangle {
     ColumnLayout {
         id: importFromDevicePageColumnLayout
 
+
         spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-        // Prevent possible anchor loop detected on centerIn.
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.top: parent.top
+        anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
+
+        width: Math.max(508, root.width - 100)
 
         Text {
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
 
-            text: JamiStrings.mainAccountPassword
-            color: JamiTheme.textColor
-            font.pointSize: JamiTheme.menuFontSize
+            text: JamiStrings.importAccountFromAnotherDevice
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 15
+            Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+
+            font.pixelSize: 26
+            wrapMode : Text.WordWrap
         }
 
-        MaterialLineEdit {
+        Text {
+
+            text: JamiStrings.importFromDeviceDescription
+            Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: 15
+            Layout.alignment: Qt.AlignCenter
+            font.pixelSize: 15
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Grid {
+            columns: 2
+            spacing: 30
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 40
+            width: Math.max(508, root.width - 100)
+
+            InfoBox {
+                id: step1
+                icoSource: JamiResources.settings_24dp_svg
+                title: JamiStrings.importStep1
+                description: JamiStrings.importStep1Desc
+            }
+
+            InfoBox {
+                id: step2
+                icoSource: JamiResources.person_24dp_svg
+                title: JamiStrings.importStep2
+                description: JamiStrings.importStep2Desc
+            }
+
+            InfoBox {
+                id: step3
+                icoSource: JamiResources.finger_select_svg
+                title: JamiStrings.importStep3
+                description: JamiStrings.importStep3Desc
+            }
+
+            InfoBox {
+                id: step4
+                icoSource: JamiResources.time_clock_svg
+                title: JamiStrings.importStep4
+                description: JamiStrings.importStep4Desc
+            }
+
+        }
+
+        EditableLineEdit {
+            id: pinFromDevice
+
+
+            objectName: "pinFromDevice"
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+            Layout.topMargin: 22
+
+            focus: visible
+
+            selectByMouse: true
+            placeholderText: JamiStrings.pin
+            font.pointSize: JamiTheme.textFontSize
+            font.kerning: true
+            fontSize: 15
+
+            KeyNavigation.tab: {
+                if (connectBtn.enabled)
+                    return connectBtn
+                else if (connectBtn.spinnerTriggered)
+                    return passwordFromDevice
+                return backButton
+            }
+            KeyNavigation.up: passwordFromDevice
+            KeyNavigation.down: KeyNavigation.tab
+
+            onTextChanged: errorText = ""
+
+        }
+
+        EditableLineEdit {
             id: passwordFromDevice
+            wizardInput: true
 
             objectName: "passwordFromDevice"
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
+            underlined: true
             Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+            secondIco: JamiResources.eye_cross_svg
+            fontSize: 15
 
             selectByMouse: true
             placeholderText: JamiStrings.password
@@ -107,70 +198,22 @@ Rectangle {
             KeyNavigation.down: KeyNavigation.tab
 
             onTextChanged: errorText = ""
-            onAccepted: pinFromDevice.forceActiveFocus()
-        }
+            onEditingFinished: pinFromDevice.forceActiveFocus()
 
-        Text {
-            property int preferredHeight: JamiTheme.wizardViewPageLayoutSpacing
-
-
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: connectBtn.width
-            Layout.preferredHeight: preferredHeight
-
-            text: JamiStrings.enterPIN
-            color: JamiTheme.textColor
-            wrapMode: Text.Wrap
-
-            onTextChanged: function (text) {
-                var boundingRect = JamiQmlUtils.getTextBoundingRect(font, text)
-                preferredHeight += (boundingRect.width / connectBtn.preferredWidth)
-                        * boundingRect.height
-            }
-        }
-
-        MaterialLineEdit {
-            id: pinFromDevice
-
-            objectName: "pinFromDevice"
-
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: connectBtn.width
-            Layout.alignment: Qt.AlignCenter
-
-            focus: visible
-
-            selectByMouse: true
-            placeholderText: JamiStrings.pin
-            font.pointSize: JamiTheme.textFontSize
-            font.kerning: true
-
-            KeyNavigation.tab: {
-                if (connectBtn.enabled)
-                    return connectBtn
-                else if (connectBtn.spinnerTriggered)
-                    return passwordFromDevice
-                return backButton
-            }
-            KeyNavigation.up: passwordFromDevice
-            KeyNavigation.down: KeyNavigation.tab
-
-            onTextChanged: errorText = ""
-            onAccepted: {
-                if (connectBtn.enabled)
-                    connectBtn.clicked()
-            }
+            onSecondIcoClicked: { toggleEchoMode() }
         }
 
         SpinnerButton {
             id: connectBtn
+            color: JamiTheme.tintedBlue
 
             objectName: "importFromDevicePageConnectBtn"
 
             Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 22
             Layout.bottomMargin: errorLabel.visible ? 0 : JamiTheme.wizardViewPageBackButtonMargins
 
-            preferredWidth: JamiTheme.wizardButtonWidth
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
             spinnerTriggeredtext: JamiStrings.generatingAccount
             normalText: JamiStrings.connectFromAnotherDevice
@@ -187,7 +230,7 @@ Rectangle {
                 WizardViewStepModel.accountCreationInfo =
                         JamiQmlUtils.setUpAccountCreationInputPara(
                             {archivePin : pinFromDevice.text,
-                             password : passwordFromDevice.text})
+                                password : passwordFromDevice.text})
                 WizardViewStepModel.nextStep()
             }
         }
@@ -214,7 +257,7 @@ Rectangle {
 
         anchors.left: parent.left
         anchors.top: parent.top
-        anchors.margins: 20
+        anchors.margins: 10
 
         visible: !connectBtn.spinnerTriggered
 
