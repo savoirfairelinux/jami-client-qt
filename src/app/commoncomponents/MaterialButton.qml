@@ -185,6 +185,8 @@ AbstractButton {
     background: Rectangle {
 
         color: {
+            if (root.outlined)
+                return JamiTheme.transparentColor
 
             if(root.primary)
                 if (root.hovered)
@@ -198,9 +200,6 @@ AbstractButton {
 
             if (root.down)
                 return root.pressedColor
-
-            if (root.outlined)
-                return JamiTheme.transparentColor
 
             return root.focus ?
                         root.keysNavigationFocusColor : root.color

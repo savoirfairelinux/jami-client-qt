@@ -155,7 +155,6 @@ Rectangle {
             text: JamiStrings.alreadyHaveAccount
             toolTipText: JamiStrings.useExistingAccount
 
-            outlined: true
             font.bold: true
 
             hoverEnabled: true
