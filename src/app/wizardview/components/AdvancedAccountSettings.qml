@@ -33,6 +33,8 @@ Rectangle {
 
     property bool openedPassword: false
     property bool openedNickname: false
+    property string validatedPassword: ""
+    property string alias: ""
 
     color: JamiTheme.secondaryBackgroundColor
     opacity: 0.93
@@ -176,7 +178,6 @@ Rectangle {
                     echoMode: TextInput.Password
 
                     placeholderText: JamiStrings.password
-                    thirdIco: JamiResources.outline_info_24dp_svg
                     secondIco: JamiResources.eye_cross_svg
                     onSecondIcoClicked: { toggleEchoMode() }
 
@@ -224,6 +225,10 @@ Rectangle {
                     function checkEnable() {
                         return (passwordEdit.text === passwordConfirmEdit.text
                                 && passwordEdit.text.length !== 0)
+                    }
+
+                    onClicked: {
+                        root.validatedPassword = passwordConfirmEdit.text
                     }
 
                 }
@@ -393,7 +398,8 @@ Rectangle {
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: 10
 
-                    imageId: currentAccountId
+                    newItem: true
+                    imageId: visible? "temp" : ""
                     avatarSize: 80
                     buttonSize: JamiTheme.smartListAvatarSize
 
@@ -412,9 +418,9 @@ Rectangle {
 
                     fontSize: 15
 
-                    placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
+                    placeholderText: JamiStrings.enterNickname
 
-                    onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
+                    onEditingFinished: root.alias = text
 
                 }
 

@@ -36,12 +36,21 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
         accountAdapter_->changeAccount(index);
 
         auto accountCreationOption = get_accountCreationOption();
-        if (accountCreationOption == AccountCreationOption::ConnectToAccountManager)
-            set_mainStep(MainSteps::Profile);
-        else if (accountCreationOption == AccountCreationOption::ImportFromBackup
-                 || accountCreationOption == AccountCreationOption::ImportFromDevice) {
+        if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
+            || accountCreationOption == AccountCreationOption::CreateSipAccount) {
             Q_EMIT closeWizardView();
             reset();
+        } else if (accountCreationOption != AccountCreationOption::None) {
+            auto showBackup = (accountCreationOption == AccountCreationOption::CreateJamiAccount
+                               || accountCreationOption == AccountCreationOption::CreateRendezVous)
+                              && !appSettingsManager_->getValue(Settings::Key::NeverShowMeAgain)
+                                      .toBool();
+            if (showBackup)
+                set_mainStep(MainSteps::BackupKeys);
+            else {
+                Q_EMIT closeWizardView();
+                reset();
+            }
         }
 
         Q_EMIT accountIsReady(accountId);
@@ -67,11 +76,16 @@ WizardViewStepModel::nextStep()
         return;
 
     switch (get_mainStep()) {
+    case MainSteps::NameRegistration:
     case MainSteps::AccountCreation: {
         switch (get_accountCreationOption()) {
+        case AccountCreationOption::CreateJamiAccount:
+        case AccountCreationOption::CreateRendezVous:
         case AccountCreationOption::ImportFromBackup:
         case AccountCreationOption::ImportFromDevice: {
-            accountAdapter_->createJamiAccount("", get_accountCreationInfo(), false);
+            accountAdapter_->createJamiAccount(get_accountCreationInfo()["registeredName"].toString(),
+                                               get_accountCreationInfo(),
+                                               false);
             break;
         }
         case AccountCreationOption::ConnectToAccountManager: {
@@ -80,34 +94,8 @@ WizardViewStepModel::nextStep()
         }
         case AccountCreationOption::CreateSipAccount: {
             accountAdapter_->createSIPAccount(get_accountCreationInfo());
-            Q_EMIT closeWizardView();
             break;
         }
-        }
-        break;
-    }
-    case MainSteps::NameRegistration: {
-        set_mainStep(MainSteps::SetPassword);
-        break;
-    }
-    case MainSteps::SetPassword: {
-        set_mainStep(MainSteps::Profile);
-
-        auto accountCreationInfo = get_accountCreationInfo();
-        accountAdapter_->createJamiAccount(accountCreationInfo["registeredName"].toString(),
-                                           accountCreationInfo,
-                                           true);
-        break;
-    }
-    case MainSteps::Profile: {
-        auto showBackup = (accountCreationOption == AccountCreationOption::CreateJamiAccount
-                           || accountCreationOption == AccountCreationOption::CreateRendezVous)
-                          && !appSettingsManager_->getValue(Settings::Key::NeverShowMeAgain).toBool();
-        if (showBackup)
-            set_mainStep(MainSteps::BackupKeys);
-        else {
-            Q_EMIT closeWizardView();
-            reset();
         }
         break;
     }
@@ -130,10 +118,6 @@ WizardViewStepModel::previousStep()
     case MainSteps::AccountCreation:
     case MainSteps::NameRegistration: {
         reset();
-        break;
-    }
-    case MainSteps::SetPassword: {
-        set_mainStep(MainSteps::NameRegistration);
         break;
     }
     }

@@ -38,8 +38,6 @@ public:
         Initial,          // Initial welcome step.
         AccountCreation,  // General account creation step.
         NameRegistration, // Name registration step : CreateJamiAccount, CreateRendezVous
-        SetPassword,      // Password set up step: CreateJamiAccount, CreateRendezVous
-        Profile,          // Profile set up.
         BackupKeys        // Backup set up.
     };
     Q_ENUM(MainSteps)
