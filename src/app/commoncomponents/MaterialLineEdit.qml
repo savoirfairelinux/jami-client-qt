@@ -25,7 +25,7 @@ import net.jami.Constants 1.1
 TextField {
     id: root
 
-    property int fontSize: 18
+    property int fontSize: JamiTheme.materialLineEditPointSize
     property int fieldLayoutWidth: 256
     property int fieldLayoutHeight: 48
 
@@ -46,12 +46,11 @@ TextField {
     mouseSelectionMode: TextInput.SelectCharacters
     selectionColor: JamiTheme.placeholderTextColor
 
-    font.pointSize: JamiTheme.materialLineEditPointSize
+    font.pointSize: fontSize
     font.kerning: true
     color: JamiTheme.textColor
 
     placeholderTextColor: JamiTheme.placeholderTextColor
-    font.pixelSize: fontSize
 
     LineEditContextMenu {
         id: lineEditContextMenu
@@ -59,8 +58,6 @@ TextField {
         lineEditObj: root
         selectOnly: readOnly
     }
-
-
 
     background: Rectangle {
 
