@@ -64,6 +64,7 @@ Rectangle {
                 id: titleLine
 
                 Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
 
                 font.pointSize: JamiTheme.titleFontSize
 
@@ -74,7 +75,6 @@ Rectangle {
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
 
 
-                Layout.preferredWidth:300
                 fieldLayoutWidth: 15
                 fieldLayoutHeight: 30
 
@@ -126,7 +126,7 @@ Rectangle {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
 
-                Layout.preferredWidth: 300
+                Layout.preferredWidth: JamiTheme.preferredFieldWidth
                 fieldLayoutWidth: 15
                 fieldLayoutHeight: 30
 
