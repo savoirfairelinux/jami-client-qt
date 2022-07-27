@@ -48,13 +48,10 @@ Rectangle {
         isRendezVous = isRdv
         createAccountStack.currentIndex = 0
         clearAllTextFields()
-        passwordSwitch.checked = false
     }
 
     function clearAllTextFields() {
         usernameEdit.clear()
-        passwordEdit.clear()
-        passwordConfirmEdit.clear()
     }
 
     color: JamiTheme.secondaryBackgroundColor
@@ -69,8 +66,6 @@ Rectangle {
                 initializeOnShowUp(WizardViewStepModel.accountCreationOption ===
                                    WizardViewStepModel.AccountCreationOption.CreateRendezVous)
                 root.showThisPage()
-            } else if (currentMainStep === WizardViewStepModel.MainSteps.SetPassword) {
-                createAccountStack.currentIndex = advancedAccountSettingsPage.stackIndex
             }
         }
     }
@@ -226,9 +221,7 @@ Rectangle {
                     text: JamiStrings.advancedAccountSettings
                     toolTipText: JamiStrings.showAdvancedFeatures
 
-                    onClicked: {
-                        WizardViewStepModel.nextStep()
-                    }
+                    onClicked: createAccountStack.currentIndex++
                 }
 
                 NoUsernamePopup {
@@ -247,169 +240,6 @@ Rectangle {
             property int stackIndex: 1
 
         }
-
-        Rectangle {
-            id: passwordSetupPage
-
-            objectName: "passwordSetupPage"
-
-            property int stackIndex: 2
-
-            focus: visible
-
-            color: JamiTheme.backgroundColor
-
-            KeyNavigation.tab: passwordSwitch
-            KeyNavigation.up: passwordSwitch
-            KeyNavigation.down: passwordSwitch
-
-            ColumnLayout {
-                id: passwordColumnLayout
-
-                spacing: JamiTheme.wizardViewPageLayoutSpacing
-
-                anchors.centerIn: parent
-                width: root.width
-
-                RowLayout {
-                    spacing: JamiTheme.wizardViewPageLayoutSpacing
-
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.topMargin: JamiTheme.wizardViewPageBackButtonMargins
-                    Layout.preferredWidth: usernameEdit.width
-
-                    Label {
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                        text: JamiStrings.createPassword
-                        color: JamiTheme.textColor
-                        font.pointSize: JamiTheme.textFontSize + 3
-                    }
-
-                    JamiSwitch {
-                        id: passwordSwitch
-
-                        objectName: "passwordSwitch"
-
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                        Layout.leftMargin: -JamiTheme.wizardViewPageLayoutSpacing
-                        Layout.topMargin: 5
-
-                        KeyNavigation.tab: checked ? passwordEdit : createAccountButton
-                        KeyNavigation.up: backButton
-                        KeyNavigation.down: KeyNavigation.tab
-                    }
-
-                    BubbleLabel {
-                        Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
-
-                        text: JamiStrings.optional
-                        bubbleColor: JamiTheme.wizardBlueButtons
-                    }
-                }
-
-                MaterialLineEdit {
-                    id: passwordEdit
-
-                    objectName: "passwordEdit"
-
-                    Layout.preferredHeight: fieldLayoutHeight
-                    Layout.preferredWidth: createAccountButton.width
-                    Layout.alignment: Qt.AlignHCenter
-
-                    focus: visible
-                    visible: passwordSwitch.checked
-
-                    selectByMouse: true
-                    echoMode: TextInput.Password
-                    placeholderText: JamiStrings.password
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
-
-                    KeyNavigation.tab: passwordConfirmEdit
-                    KeyNavigation.up: passwordSwitch
-                    KeyNavigation.down: KeyNavigation.tab
-
-                    onAccepted: passwordConfirmEdit.forceActiveFocus()
-                }
-
-                MaterialLineEdit {
-                    id: passwordConfirmEdit
-
-                    objectName: "passwordConfirmEdit"
-
-                    Layout.preferredHeight: fieldLayoutHeight
-                    Layout.preferredWidth: createAccountButton.width
-                    Layout.alignment: Qt.AlignHCenter
-
-                    visible: passwordSwitch.checked
-
-                    selectByMouse: true
-                    echoMode: TextInput.Password
-                    placeholderText: JamiStrings.confirmPassword
-                    font.pointSize: JamiTheme.textFontSize
-                    font.kerning: true
-
-                    KeyNavigation.tab: createAccountButton.enabled ? createAccountButton :
-                                                                     backButton
-                    KeyNavigation.up: passwordEdit
-                    KeyNavigation.down: KeyNavigation.tab
-
-                    onAccepted: {
-                        if (createAccountButton.enabled)
-                            createAccountButton.clicked()
-                    }
-                }
-
-                Label {
-                    Layout.alignment: Qt.AlignLeft
-                    Layout.preferredWidth: createAccountButton.width - 10
-                    Layout.leftMargin: (root.width - createAccountButton.width) / 2
-
-                    text: JamiStrings.notePasswordRecovery
-                    color: JamiTheme.textColor
-                    wrapMode: Text.WordWrap
-                    font.pointSize: JamiTheme.textFontSize
-                }
-
-                MaterialButton {
-                    id: createAccountButton
-
-                    objectName: "createAccountButton"
-
-                    Layout.alignment: Qt.AlignCenter
-
-                    preferredWidth: JamiTheme.wizardButtonWidth
-
-                    function checkEnable() {
-                        return !passwordSwitch.checked ||
-                                (passwordEdit.text === passwordConfirmEdit.text
-                                 && passwordEdit.text.length !== 0)
-                    }
-
-                    font.capitalization: Font.AllUppercase
-                    text: isRendezVous ? JamiStrings.createNewRV : JamiStrings.createAccount
-                    enabled: checkEnable()
-                    color: checkEnable() ? JamiTheme.wizardBlueButtons :
-                                           JamiTheme.buttonTintedGreyInactive
-                    hoveredColor: JamiTheme.buttonTintedBlueHovered
-                    pressedColor: JamiTheme.buttonTintedBluePressed
-
-                    KeyNavigation.tab: backButton
-                    KeyNavigation.up: passwordSwitch.checked ? passwordConfirmEdit : passwordSwitch
-                    KeyNavigation.down: KeyNavigation.tab
-
-                    onClicked: {
-                        WizardViewStepModel.accountCreationInfo =
-                                JamiQmlUtils.setUpAccountCreationInputPara(
-                                    {isRendezVous : WizardViewStepModel.accountCreationOption ===
-                                                    WizardViewStepModel.AccountCreationOption.CreateRendezVous,
-                                        password : passwordEdit.text,
-                                        registeredName : usernameEdit.text})
-                        WizardViewStepModel.nextStep()
-                    }
-                }
-            }
-        }
     }
 
     BackButton {
@@ -423,20 +253,19 @@ Rectangle {
         anchors.top: parent.top
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins
 
-        KeyNavigation.tab: {
-            if (createAccountStack.currentIndex === nameRegistrationPage.stackIndex)
-                return usernameEdit
-            else
-                return passwordSwitch
-        }
-        KeyNavigation.up: createAccountButton.enabled ? createAccountButton : passwordConfirmEdit
+        KeyNavigation.tab: usernameEdit
+        KeyNavigation.up: createAccountButton
 
         KeyNavigation.down: KeyNavigation.tab
 
         onClicked: {
-            WizardViewStepModel.previousStep()
-            goodToKnow.visible = false
-            helpOpened = false
+            if (createAccountStack.currentIndex > 0) {
+                createAccountStack.currentIndex--
+            } else {
+                WizardViewStepModel.previousStep()
+                goodToKnow.visible = false
+                helpOpened = false
+            }
         }
     }
 
