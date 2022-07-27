@@ -368,7 +368,7 @@ Window {
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
-            outlined: true
+            secondary: true
 
             text: window ? JamiStrings.shareWindow : JamiStrings.shareScreen
 
@@ -397,7 +397,7 @@ Window {
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
-            outlined: true
+            secondary: true
 
             text: JamiStrings.optionCancel
 

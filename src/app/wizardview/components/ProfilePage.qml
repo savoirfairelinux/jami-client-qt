@@ -220,7 +220,7 @@ Rectangle {
             color: enabled? JamiTheme.buttonTintedGrey : JamiTheme.buttonTintedGreyInactive
             hoveredColor: JamiTheme.buttonTintedGreyHovered
             pressedColor: JamiTheme.buttonTintedGreyPressed
-            outlined: true
+            secondary: true
 
             KeyNavigation.up: saveProfileBtn
 

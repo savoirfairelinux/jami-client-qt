@@ -205,7 +205,7 @@ ColumnLayout {
             color: JamiTheme.buttonTintedBlack
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
-            outlined: true
+            secondary: true
             toolTipText: JamiStrings.addDefaultModerator
 
             iconSource: JamiResources.round_add_24dp_svg

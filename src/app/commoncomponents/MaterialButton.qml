@@ -29,10 +29,9 @@ AbstractButton {
     id: root
 
 
-    property bool outlined: false
     property bool boldFont: false
     property bool primary: false
-    property bool secondary:false
+    property bool secondary: false
     property bool tertiary: false
     property alias toolTipText: toolTip.text
     property alias iconSource: icon.source_
@@ -40,6 +39,7 @@ AbstractButton {
     property real iconSize: 18
     property var color: JamiTheme.buttonTintedBlue
     property var hoveredColor: JamiTheme.buttonTintedBlueHovered
+    property var secHoveredColor: JamiTheme.transparentColor
     property var pressedColor: JamiTheme.buttonTintedBluePressed
     property var keysNavigationFocusColor: Qt.darker(hoveredColor, 2)
     property bool hasIcon: animatedIconSource.length !== 0 ||
@@ -81,11 +81,11 @@ AbstractButton {
 
         if (root.primary)
             return "white"
-        if (root.secondary || root.tertiary)
+        if (root.tertiary)
             return JamiTheme.secAndTertiTextColor
         if (root.down)
             return root.pressedColor
-        if (!root.outlined)
+        if (!root.secondary)
             return "white"
         return root.color
     }
@@ -185,21 +185,23 @@ AbstractButton {
     background: Rectangle {
 
         color: {
-            if (root.outlined)
-                return JamiTheme.transparentColor
 
-            if(root.primary)
+            if(root.primary) {
                 if (root.hovered)
                     return root.hoveredColor
-                else return root.color
+                return root.color
+            }
 
-            if (root.secondary || root.tertiary)
+            if (root.secondary || root.tertiary) {
                 if (root.hovered)
-                    return JamiTheme.secAndTertiHoveredBackgroundColor
-                else return JamiTheme.transparentColor
+                    return root.secHoveredColor
+                return JamiTheme.transparentColor
+            }
 
             if (root.down)
                 return root.pressedColor
+            if (root.hovered)
+                return root.hoveredColor
 
             return root.focus ?
                         root.keysNavigationFocusColor : root.color
@@ -207,12 +209,11 @@ AbstractButton {
         }
 
         border.color: {
-
-            if (root.secondary)
-                return root.hovered ? root.color : JamiTheme.secondaryButtonBorderColor
-
-            if (root.primary || root.tertiary || !root.outlined )
+            if (root.primary || root.tertiary)
                 return JamiTheme.transparentColor
+
+            if (root.secondary && root.hovered)
+                return root.hoveredColor
 
             if (root.down)
                 return root.pressedColor

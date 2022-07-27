@@ -223,7 +223,7 @@ Rectangle {
             color: JamiTheme.buttonTintedGrey
             hoveredColor: JamiTheme.buttonTintedGreyHovered
             pressedColor: JamiTheme.buttonTintedGreyPressed
-            outlined: true
+            secondary: true
 
             KeyNavigation.tab: neverShowMeAgainSwitch
             KeyNavigation.up: backupBtn
