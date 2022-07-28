@@ -242,8 +242,7 @@ Rectangle {
                                         JamiStrings.showAdvancedFeatures
 
 
-            KeyNavigation.tab: showAdvanced ? newRdvButton :
-                                              (backButton.visible ? backButton : newAccountButton)
+            KeyNavigation.tab: showAdvanced ? newRdvButton : btnAboutPopUp
             KeyNavigation.up: showAlreadyHave ? fromBackupButton : alreadyHaveAccount
             KeyNavigation.down: KeyNavigation.tab
 
@@ -323,12 +322,35 @@ Rectangle {
             text: JamiStrings.addSIPAccount
             toolTipText: JamiStrings.createNewSipAccount
 
-            KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
+            KeyNavigation.tab: btnAboutPopUp
             KeyNavigation.up: connectAccountManagerButton
             KeyNavigation.down: KeyNavigation.tab
 
             onClicked: WizardViewStepModel.startAccountCreationFlow(
                            WizardViewStepModel.AccountCreationOption.CreateSipAccount)
+        }
+
+
+        MaterialButton {
+            id: btnAboutPopUp
+
+            Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+            Layout.bottomMargin: JamiTheme.preferredMarginSize
+
+            preferredWidth: JamiTheme.aboutButtonPreferredWidth
+
+            color: JamiTheme.buttonTintedBlack
+            hoveredColor: JamiTheme.buttonTintedBlackHovered
+            pressedColor: JamiTheme.buttonTintedBlackPressed
+            tertiary: true
+
+            KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
+            KeyNavigation.up: connectAccountManagerButton
+            KeyNavigation.down: KeyNavigation.tab
+
+            text: JamiStrings.aboutJami
+
+            onClicked: aboutPopUpDialog.open()
         }
     }
 
