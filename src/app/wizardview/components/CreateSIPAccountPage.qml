@@ -100,6 +100,7 @@ Rectangle {
                     Layout.topMargin: 15
                     Layout.alignment: Qt.AlignCenter
                     font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                                        font.weight: Font.Medium
                     wrapMode: Text.WordWrap
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter

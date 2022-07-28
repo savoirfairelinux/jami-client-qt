@@ -62,8 +62,9 @@ SBSMessageBase {
             height: implicitHeight
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
+
             font.pixelSize: JamiTheme.chatviewFontSize
-            font.family: 'Ubuntu'
+
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.MarkdownText

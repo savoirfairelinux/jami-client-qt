@@ -253,6 +253,7 @@ Item {
 
     // LineEditContextMenu
     property string copy: qsTr("Copy")
+    property string share: qsTr("Share")
     property string cut: qsTr("Cut")
     property string paste: qsTr("Paste")
 
@@ -487,6 +488,7 @@ Item {
 
     // KeyboardShortCutTable
     property string keyboardShortcutTableWindowTitle: qsTr("Keyboard Shortcut Table")
+    property string keyboardShortcuts: qsTr("Keyboard Shortcuts")
     property string generalKeyboardShortcuts: qsTr("General")
     property string conversationKeyboardShortcuts: qsTr("Conversation")
     property string callKeyboardShortcuts: qsTr("Call")
@@ -651,10 +653,9 @@ Item {
     property string introductionJami: qsTr("Share, freely and privately with Jami")
     property string alreadyHaveAccount: qsTr("I already have an account")
     property string useExistingAccount: qsTr("Use existing Jami account")
-    property string recommendationMessage: qsTr("Here are some recommendations to improve your experience on Jami")
-    property string noRecommendations: qsTr("Never show recommendations again")
     property string welcomeToJami: qsTr("Welcome to Jami")
     property string identifierDescription: qsTr("Share this Jami identifier to be contacted on this account!")
+    property string hereIsIdentifier: qsTr("Here is your Jami identifier, don't hesitate to share it in order to be contacted more easily!")
 
     // SmartList
     property string clearText: qsTr("Clear Text")
@@ -751,5 +752,6 @@ Item {
     property string tips: qsTr("Tips")
     property string customizeText: qsTr("Add a picture and a nickname to complete your profile")
     property string customizationDescription: qsTr("This profile is only shared with this account’s contacts")
-
+    property string customizationDescription2: qsTr("Your profile is only shared with your contacts")
+    property string whySaveAccount: qsTr("Why should I save my account ?")
 }
