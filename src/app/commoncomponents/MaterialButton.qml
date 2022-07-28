@@ -173,7 +173,7 @@ AbstractButton {
                 Layout.alignment: Qt.AlignHCenter
 
                 text: root.text
-
+                font.weight: Font.Medium
                 elide: Text.ElideRight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
