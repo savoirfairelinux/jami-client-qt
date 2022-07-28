@@ -263,9 +263,7 @@ Item {
                     duration: JamiTheme.longFadeDuration
                 }
             }
-
         }
-
     }
 
 
