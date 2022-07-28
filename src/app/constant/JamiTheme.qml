@@ -420,6 +420,10 @@ Item {
     property real cornerIconSize: 40
 
 
+    //InfoBox
+    property real infoBoxTitleFontSize: calcSize(13)
+    property real infoBoxDescFontSize: calcSize(12)
+
 
     // MaterialLineEdit
     property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
