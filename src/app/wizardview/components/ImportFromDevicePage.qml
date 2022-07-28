@@ -30,7 +30,7 @@ Rectangle {
     id: root
 
     property string errorText: ""
-    property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight
+    property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
     signal showThisPage
 

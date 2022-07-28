@@ -30,7 +30,7 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property int preferredHeight: createSIPAccountPageColumnLayout.implicitHeight
+    property int preferredHeight: createSIPAccountPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
     signal showThisPage
 

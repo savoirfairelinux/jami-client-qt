@@ -31,7 +31,7 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property int preferredHeight: importFromBackupPageColumnLayout.implicitHeight
+    property int preferredHeight: importFromBackupPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
     property string fileImportBtnText: JamiStrings.archive
     property string filePath: ""

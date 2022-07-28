@@ -29,7 +29,7 @@ import "../../commoncomponents"
 Rectangle {
     id: root
 
-    property int preferredHeight: connectToAccountManagerPageColumnLayout.implicitHeight
+    property int preferredHeight: connectToAccountManagerPageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
     property string errorText: ""
 
     signal showThisPage
