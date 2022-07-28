@@ -31,6 +31,7 @@ Item {
     id: root
 
     property alias imageId: avatar.imageId
+    property alias cancelButton: cancelButton.visible
 
     property bool newItem: false
     property bool readOnly: false
@@ -61,6 +62,8 @@ Item {
 
     onVisibleChanged: {
         if (!visible) {
+            imageLayer.visible = true
+            buttonsRowLayout.visible = false
             stopBooth()
         }
     }
@@ -192,6 +195,8 @@ Item {
 
             height: buttonSize
             width: buttonSize
+            imageContainerWidth: buttonSize
+            imageContainerHeight: buttonSize
             radius: height / 2
             border.width: 2
             border.color: darkTheme ? "white" : JamiTheme.buttonTintedBlue
@@ -245,6 +250,8 @@ Item {
 
             height: buttonSize
             width: buttonSize
+            imageContainerWidth: buttonSize
+            imageContainerHeight: buttonSize
             radius: height / 2
             border.width: 2
             border.color: darkTheme ? "white" : JamiTheme.buttonTintedBlue
@@ -286,6 +293,8 @@ Item {
 
             height: buttonSize
             width: buttonSize
+            imageContainerWidth: buttonSize
+            imageContainerHeight: buttonSize
             radius: height / 2
             border.width: 2
             border.color: darkTheme ? "white" : JamiTheme.buttonTintedBlue
@@ -331,6 +340,7 @@ Item {
         PushButton {
             id: cancelButton
 
+            visible: true
             preferredSize: 18
             width: 18
             height: 18

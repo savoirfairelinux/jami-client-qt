@@ -20,155 +20,204 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
+import Qt.labs.lottieqt
 
 import "../../commoncomponents"
+import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
 Rectangle {
-    id: root
 
+    id: root
     color: JamiTheme.secondaryBackgroundColor
 
-    ColumnLayout {
-        id: welcomePageColumnLayout
 
-        anchors.centerIn: parent
-
-        width: Math.max(mainViewStackPreferredWidth, root.width - 100)
-        height: parent.height
-
-        ColumnLayout {
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: welcomePageColumnLayout.width
-            Layout.preferredHeight: implicitHeight
-            Layout.topMargin: JamiTheme.preferredMarginSize
-
-            ResponsiveImage {
-                id: jamiLogoImage
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(welcomePageColumnLayout.width, 330)
-                Layout.preferredHeight: Math.min(welcomePageColumnLayout.width / 3, 110)
-                Layout.bottomMargin: 10
-
-                source: JamiTheme.darkTheme ?
-                            JamiResources.logo_jami_standard_coul_white_svg :
-                            JamiResources.logo_jami_standard_coul_svg
+    JamiFlickable {
+        id: welcomeView
+        MouseArea {
+            anchors.fill: parent
+            enabled: visible
+            onClicked: {
+                for (var c in flow.children) {
+                    flow.children[c].opened = false
+                }
             }
+        }
 
-            Label {
-                id: jamiIntroText
+        anchors.fill: root
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomePageColumnLayout.width
-                Layout.preferredHeight: 80
-                Layout.bottomMargin: 5
+        contentHeight: Math.max(root.height, welcomePageLayout.implicitHeight)
+        contentWidth: Math.max(300, root.width)
 
-                wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize + 1
+        Item {
+            id: welcomePageLayout
+            width: Math.max(300, root.width)
+            height: parent.height
 
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+            Item {
+                anchors.centerIn: parent
+                height: childrenRect.height
 
-                text: JamiStrings.description
-                color: JamiTheme.textColor
-            }
+                Rectangle {
+                    id: welcomeInfo
 
-            Label {
-                id: jamiShareWithFriendText
+                    radius: 30
+                    color: JamiTheme.rectColor
+                    anchors.topMargin: 25
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: identifier.width + 2 * JamiTheme.preferredMarginSize + (welcomeLogo.visible ?  welcomeLogo.width : 0)
+                    height: childrenRect.height
+                    opacity:1
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomePageColumnLayout.width
-                Layout.preferredHeight: 50
-
-                wrapMode: Text.WordWrap
-                font.pointSize: JamiTheme.textFontSize
-
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-
-                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
-
-                text: JamiStrings.shareInvite
-                color: JamiTheme.faddedFontColor
-            }
-
-            Rectangle {
-                id: jamiRegisteredNameRect
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: welcomePageColumnLayout.width
-                Layout.preferredHeight: 65
-
-                color: JamiTheme.secondaryBackgroundColor
-
-                visible: LRCInstance.currentAccountType === Profile.Type.JAMI
-
-                ColumnLayout {
-                    id: jamiRegisteredNameRectColumnLayout
-
-                    spacing: 0
-
-                    Text {
-                        id: jamiRegisteredNameText
-
-                        Layout.alignment: Qt.AlignCenter
-                        Layout.preferredWidth: welcomePageColumnLayout.width
-                        Layout.preferredHeight: 30
-
-                        font.pointSize: JamiTheme.textFontSize + 1
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        text: textMetricsjamiRegisteredNameText.elidedText
-                        color: JamiTheme.textColor
-                        TextMetrics {
-                            id: textMetricsjamiRegisteredNameText
-                            font: jamiRegisteredNameText.font
-                            text: UtilsAdapter.getBestId(LRCInstance.currentAccountId)
-                            elideWidth: welcomePageColumnLayout.width
-                            elide: Qt.ElideMiddle
-                        }
+                    Behavior on width {
+                        NumberAnimation { duration: JamiTheme.shortFadeDuration }
                     }
 
-                    PushButton {
-                        id: copyRegisterednameButton
 
-                        Layout.alignment: Qt.AlignCenter
+                    Label {
+                        id: welcome
 
-                        preferredSize: 34
-                        imagePadding: 4
-                        imageColor: JamiTheme.textColor
+                        anchors.top: parent.top
+                        anchors.left: parent.left
+                        anchors.topMargin: JamiTheme.preferredMarginSize
+                        anchors.leftMargin: JamiTheme.preferredMarginSize
+                        width: 300
 
-                        source: JamiResources.content_copy_24dp_svg
+                        font.pixelSize: JamiTheme.bigFontSize
 
-                        onClicked: {
-                            UtilsAdapter.setClipboardText(
-                                        textMetricsjamiRegisteredNameText.text)
+                        wrapMode: Text.WordWrap
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+
+                        text: JamiStrings.welcomeToJami
+                        color: JamiTheme.textColor
+                    }
+
+                    Label {
+                        id: identifierDescription
+                        
+                        anchors.top: welcome.bottom
+                        anchors.left: parent.left
+                        anchors.topMargin: JamiTheme.preferredMarginSize
+                        anchors.leftMargin: JamiTheme.preferredMarginSize
+                        width: 300
+
+                        font.pixelSize: JamiTheme.headerFontSize
+
+                        wrapMode: Text.WordWrap
+
+                        text: JamiStrings.hereIsIdentifier
+                        color: JamiTheme.textColor
+                    }
+
+                    JamiIdentifier {
+                        id: identifier
+                        editable: true
+                        
+                        anchors.top: identifierDescription.bottom
+                        anchors.left: parent.left
+                        anchors.margins: JamiTheme.preferredMarginSize
+                    }
+
+
+
+                    Image {
+                        id: welcomeLogo
+
+                        visible: root.width > 630
+                        width: 212
+                        height: 244
+                        anchors.top: parent.top
+                        anchors.left: identifier.right
+                        anchors.margins: JamiTheme.preferredMarginSize
+                        anchors.topMargin: -20
+                        opacity: visible
+
+                        source: JamiResources.welcome_illustration_2_svg
+
+                        Behavior on opacity {
+                            NumberAnimation { duration: JamiTheme.shortFadeDuration }
+                        }
+                    }
+                }
+
+                JamiFlickable {
+                    id: tipsFlow
+
+                    anchors.top: welcomeInfo.bottom
+                    anchors.topMargin: JamiTheme.preferredMarginSize * 2
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: welcomeInfo.width + JamiTheme.preferredMarginSize * 2
+                    height: flow.height + JamiTheme.preferredMarginSize * 2
+
+                    clip: true
+
+                    Flow {
+                        id: flow
+                        spacing: 12
+
+                        Repeater {
+                            model: TipsModel
+                            Layout.alignment: Qt.AlignCenter
+
+                            delegate: TipBox {
+                                tipId: TipId
+                                title: Title
+                                description: Description
+                                isTip: IsTip
+                                visible: index < 3
+
+                                onIgnoreClicked: TipsModel.remove(TipId)
+                            }
                         }
                     }
                 }
             }
 
-        }
 
-        MaterialButton {
-            id: btnAboutPopUp
+            Item {
+                id: bottomRow
+                width: Math.max(300, root.width)
+                height: aboutJami.height + JamiTheme.preferredMarginSize
+                anchors.bottom: parent.bottom
 
-            Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-            Layout.bottomMargin: JamiTheme.preferredMarginSize
+                MaterialButton {
+                    id: aboutJami
+                    tertiary: true
 
-            preferredWidth: JamiTheme.aboutButtonPreferredWidth
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    preferredWidth: JamiTheme.aboutButtonPreferredWidthth
+                    text: JamiStrings.aboutJami
 
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
-            secondary: true
+                    onClicked: aboutPopUpDialog.open()
+                }
 
-            text: JamiStrings.aboutJami
+                PushButton {
+                    id: btnKeyboard
 
-            onClicked: aboutPopUpDialog.open()
+                    imageColor: JamiTheme.buttonTintedBlue
+                    normalColor: JamiTheme.transparentColor
+                    hoveredColor: JamiTheme.transparentColor
+                    anchors.right: parent.right
+                    anchors.rightMargin: JamiTheme.preferredMarginSize
+                    preferredSize : 30
+                    imageContainerWidth: JamiTheme.pushButtonSize
+                    imageContainerHeight: JamiTheme.pushButtonSize
+
+                    border.color: JamiTheme.buttonTintedBlue
+
+                    source: JamiResources.keyboard_black_24dp_svg
+                    toolTipText: JamiStrings.keyboardShortcuts
+
+                    onClicked:  {
+                        KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject()
+                        KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow()
+                    }
+                }
+            }
         }
     }
 
@@ -180,4 +229,6 @@ Rectangle {
         bBorderwidth: 0
         borderColor: JamiTheme.tabbarBorderColor
     }
+
+
 }
