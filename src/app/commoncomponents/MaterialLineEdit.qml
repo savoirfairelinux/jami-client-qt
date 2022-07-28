@@ -74,7 +74,7 @@ TextField {
         }
 
         Rectangle {
-            visible: true //underlined //!readOnly &&
+            visible: true
             anchors {
                 fill: parent
                 topMargin: 0

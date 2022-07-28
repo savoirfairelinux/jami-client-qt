@@ -305,10 +305,9 @@ Item {
 
     // ConnectToAccountManager
     property string enterJAMSURL: qsTr("Enter the Jami Account Management Server (JAMS) URL")
-    property string jamsDescription: qsTr("JAMS Account Management Server")
     property string required: qsTr("Required")
     property string jamiManagementServerURL: qsTr("Jami Account Management Server URL")
-    property string jamsCredentials: qsTr("Enter your JAMS credentials")
+    property string jamsCredentials: qsTr("Enter JAMS credentials")
     property string connect: qsTr("Connect")
     property string creatingAccount: qsTr("Creating account…")
     property string backToWelcome: qsTr("Back to welcome page")
@@ -340,7 +339,7 @@ Item {
     property string goodToKnow: qsTr("Good to know")
     property string local: qsTr("Local")
     property string encrypt: qsTr("Encrypt")
-    property string localAccount: qsTr("Your account is created locally")
+    property string localAccount: qsTr("This account is created locally")
     property string usernameRecommened: qsTr("Choose a username is recommended and it can’t be changed")
     property string passwordOptional: qsTr("Encrypt your account with a password is optional and it can’t be recovered")
     property string customizeOptional: qsTr("The picture and the nickname are optional and can be changed in the settings")
@@ -373,9 +372,9 @@ Item {
     property string advancedAccountSettings: qsTr("Advanced account settings")
     property string encryptAccount: qsTr("Encrypt account with password")
     property string customizeProfile: qsTr("Customize profile")
-    property string customizeProfileDescription: qsTr("Your profile is only shared with your contacts.\nYour picture and your nickname can be changed at all time in the settings of your account.")
+    property string customizeProfileDescription: qsTr("This profile is only shared with this account's contacts.\nThe profile can be changed at all time in the account's settings.")
     property string encryptTitle: qsTr("Encrypt your account with a password")
-    property string encryptDescription: qsTr("Your Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
+    property string encryptDescription: qsTr("A Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.")
     property string encryptWarning: qsTr("Please note that if you loose your password it cannot be recovered!")
     property string enterNickname: qsTr("Enter a nickname, surname...")
 
@@ -532,7 +531,7 @@ Item {
     property string generatingAccount: qsTr("Generating account…")
     property string importFromBackup: qsTr("Import from backup")
     property string importFromArchiveBackup: qsTr("Import from archive backup")
-    property string importFromArchiveBackupDescription: qsTr("You can directly import your Jami account from an archive file on your device.")
+    property string importFromArchiveBackupDescription: qsTr("Import a Jami account from an archive file on this device.")
     property string selectArchiveFile: qsTr("Select archive file")
 
     // ImportFromDevicePage
@@ -542,13 +541,13 @@ Item {
     property string connectFromAnotherDevice: qsTr("Link device")
     property string importButton: qsTr("Import")
     property string pin: qsTr("PIN")
-    property string importFromDeviceDescription: qsTr("To use an existing Jami account on this device, you need to obtain a PIN.")
+    property string importFromDeviceDescription: qsTr("A PIN is required to use an existing Jami account on this device.")
     property string importStep1: qsTr("Step 1")
     property string importStep2: qsTr("Step 2")
     property string importStep3: qsTr("Step 3")
     property string importStep4: qsTr("Step 4")
     property string importStep1Desc: qsTr("Go to the Account Settings of a previous device")
-    property string importStep2Desc: qsTr("Choose Jami account to use")
+    property string importStep2Desc: qsTr("Choose the account to link")
     property string importStep3Desc: qsTr("Select “Link another device”")
     property string importStep4Desc: qsTr("The PIN code will be available for 10 minutes.")
 
@@ -556,7 +555,7 @@ Item {
     // LinkDevicesDialog
     property string pinTimerInfos: qsTr("The PIN and the account password should be entered in your device within 10 minutes.")
     property string close: qsTr("Close")
-    property string enterAccountPassword: qsTr("Enter your account password")
+    property string enterAccountPassword: qsTr("Enter account's password")
     property string addDevice: qsTr("Add Device")
 
     // PasswordDialog
