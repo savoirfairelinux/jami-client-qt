@@ -71,16 +71,18 @@ Rectangle {
 
     ColumnLayout {
 
-        anchors.centerIn: parent
-        height : parent.height
-        width: Math.max(800, root.width - 2 * JamiTheme.preferredMarginSize)
+        anchors.centerIn:parent
+        width: Math.min(500, root.width - 2 * JamiTheme.preferredMarginSize)
         spacing: 30
 
         Rectangle {
 
+            id: passwordRect
+
             radius: JamiTheme.formsRadius
             border.color: JamiTheme.lightBlue_
             Layout.leftMargin: 45
+            Layout.topMargin: openedPassword ? 80  : 0
             layer.enabled: true
             color: JamiTheme.secondaryBackgroundColor
 
@@ -94,7 +96,7 @@ Rectangle {
             Layout.preferredWidth: {
 
                 if (openedPassword)
-                    return JamiTheme.passwordEditOpenedBoxWidth
+                    return Math.min(JamiTheme.passwordEditOpenedBoxWidth, parent.width - 90)
                 if (openedNickname)
                     return cornerIcon1.width
                 return JamiTheme.passwordEditClosedBoxWidth
@@ -137,6 +139,7 @@ Rectangle {
 
                 id: passwordColumnLayout
                 anchors.fill: parent
+                anchors.rightMargin: 43
 
                 Text {
 
@@ -144,10 +147,12 @@ Rectangle {
 
                     text: JamiStrings.encryptAccount
                     font.pixelSize: 15
+                    Layout.rightMargin: 43
                     Layout.leftMargin: 35
                     Layout.topMargin: 25
                     color: JamiTheme.textColor
-                    width: 100
+//                    width: 100
+                    wrapMode: Text.WordWrap
 
                 }
 
@@ -266,7 +271,7 @@ Rectangle {
                         height: JamiTheme.cornerIconSize
                         width: JamiTheme.cornerIconSize
 
-                        color: openedPassword  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
+                        color: openedPassword  ? JamiTheme.lightBlue_ : "red" //JamiTheme.transparentColor
                         Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
                         Layout.leftMargin:  openedPassword ? 2 : openedNickname ? 0 : 20
                         Layout.bottomMargin: openedPassword ? 1 : 0
@@ -300,7 +305,6 @@ Rectangle {
                         text: JamiStrings.encryptAccount
                         color: JamiTheme.textColor
                         font.pixelSize: 15
-                        width: 100
 
                     }
                 }
@@ -317,6 +321,7 @@ Rectangle {
 
         Rectangle {
 
+            id: customRect
             radius: JamiTheme.formsRadius
             border.color: JamiTheme.lightBlue_
             Layout.rightMargin: 45
