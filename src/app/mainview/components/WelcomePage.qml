@@ -23,6 +23,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import Qt.labs.lottieqt
 
 import "../../commoncomponents"
 
@@ -31,12 +32,27 @@ Rectangle {
     color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout{
-        spacing: 20
-        anchors.fill:parent
+
+        anchors.fill: parent
+        //        anchors.topMargin: 20
+        //        anchors.centerIn: parent
+
+        //                LottieAnimation {
+
+        //                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
+        //                 source: JamiResources.notification_bell_outline_edited_json
+        //                 autoPlay: true
+        //                 width: 5
+        //                 height:5
+        //                 loops: Animation.Infinite
+
+        //                }
 
         Item {
 
             Layout.alignment: Qt.AlignCenter
+
+
             width: 630
             height: 263
 
@@ -119,12 +135,15 @@ Rectangle {
             text: JamiStrings.recommendationMessage
             font.bold: true
             Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 20
             color: JamiTheme.textColor
         }
 
-        RowLayout {
+        RowLayout{
             spacing: 17
             Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 10
+            Layout.bottomMargin: 50
 
             TipBox {
 
@@ -133,32 +152,44 @@ Rectangle {
             }
 
             TipBox {
+
                 tips_ : false
             }
 
-            Rectangle {
-                radius:20
-                height: 100
-                width: 200
+            TipBox {
+
+                tips_ : false
             }
+
         }
 
+        Label {
 
+            text: JamiStrings.noRecommendations
+            color: "#002B4A"
+
+            Layout.alignment: Qt.AlignCenter
+            Layout.topMargin: 10
+
+        }
 
         MaterialButton {
+
             id: aboutJami
             tertiary: true
 
-            Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: 10
-
+            Layout.alignment: Qt.AlignCenter | Qt.AlignBottom
+            Layout.topMargin: 10
             preferredWidth: JamiTheme.aboutButtonPreferredWidthth
             text: JamiStrings.aboutJami
 
             onClicked: aboutPopUpDialog.open()
         }
-
     }
+
+
+
+
 
     CustomBorder {
         commonBorder: false
@@ -169,3 +200,4 @@ Rectangle {
         borderColor: JamiTheme.tabbarBorderColor
     }
 }
+
