@@ -49,17 +49,18 @@ Rectangle {
         UtilsAdapter.setTempCreationImageFromString()
     }
 
-    MouseArea {
-        anchors.fill: parent
-
-        onClicked: {
-            openedPassword = false
-            openedNickname = false
-        }
-    }
 
     JamiFlickable {
         id: scrollView
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: {
+                openedPassword = false
+                openedNickname = false
+            }
+        }
 
         property ScrollBar vScrollBar: ScrollBar.vertical
 

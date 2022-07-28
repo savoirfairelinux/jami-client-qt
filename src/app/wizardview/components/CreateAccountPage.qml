@@ -46,6 +46,7 @@ Rectangle {
     }
 
     function clearAllTextFields() {
+        chooseUsernameButton.enabled = true
         usernameEdit.clear()
         advancedAccountSettingsPage.clear()
     }
@@ -185,7 +186,9 @@ Rectangle {
                     preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
                     font.capitalization: Font.AllUppercase
-                    text: isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
+                    color: enabled? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
+                    text: !enabled ? JamiStrings.creatingAccount :
+                                isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
                     enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
 
 
@@ -200,8 +203,10 @@ Rectangle {
                                         alias: advancedAccountSettingsPage.alias,
                                         password: advancedAccountSettingsPage.validatedPassword,
                                         avatar: UtilsAdapter.tempCreationImage()})
-                        if(usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE)
+                        if (usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE) {
+                            enabled = false
                             WizardViewStepModel.nextStep()
+                        }
 
                         if(usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK)
                             popup.visible = true
@@ -233,6 +238,9 @@ Rectangle {
                     id: popup
 
                     visible: false
+
+                    onJoinClicked:
+                        chooseUsernameButton.enabled = false
                 }
             }
         }
