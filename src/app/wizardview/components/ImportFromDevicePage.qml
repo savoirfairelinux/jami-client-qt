@@ -30,7 +30,7 @@ Rectangle {
     id: root
 
     property string errorText: ""
-    property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight
+    property int preferredHeight: importFromDevicePageColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
 
     signal showThisPage
 
@@ -103,12 +103,11 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
         }
 
-        Grid {
-            columns: 2
+        Flow {
             spacing: 30
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 40
-            width: Math.max(508, root.width - 100)
+            Layout.preferredWidth: Math.min(step1.width * 2 + 2 * spacing, root.width - JamiTheme.preferredMarginSize * 2)
 
             InfoBox {
                 id: step1

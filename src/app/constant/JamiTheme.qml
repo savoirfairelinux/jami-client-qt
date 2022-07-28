@@ -253,6 +253,7 @@ Item {
     property real menuFontSize: calcSize(12 + fontSizeOffset)
     property real headerFontSize: calcSize(13 + fontSizeOffset)
     property real titleFontSize: calcSize(16 + fontSizeOffset)
+    property real title2FontSize: calcSize(15 + fontSizeOffset)
     property real tinyCreditsTextSize: calcSize(13 + fontSizeOffset)
     property real creditsTextSize: calcSize(15 + fontSizeOffset)
     property real primaryRadius: calcSize(4)
