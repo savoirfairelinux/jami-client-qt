@@ -670,7 +670,7 @@ elseif (NOT APPLE)
 else()
   set(resources
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
-  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} qrencode)
+  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} qrencode ${LIBCLIENT_NAME})
   if(ENABLE_SPARKLE)
     set(resources ${resources} ${PUBLIC_KEY} ${SPARKLE_FRAMEWORK})
     set(libs ${libs} ${SPARKLE_FRAMEWORK})
