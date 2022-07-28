@@ -56,25 +56,6 @@ Item {
                 Layout.leftMargin: 20
                 Layout.alignment: Qt.AlignLeft
 
-                PushButton {
-                    id: btnClose
-
-                    width: 20
-                    height: 20
-                    imageContainerWidth: 20
-                    imageContainerHeight : 20
-                    Layout.rightMargin: 8
-                    Layout.alignment: Qt.AlignRight
-                    visible: opened
-                    radius : 5
-
-                    imageColor: "grey"
-                    normalColor: "transparent"
-
-                    source: JamiResources.round_close_24dp_svg
-
-                    onClicked: { root.destroy();}
-                }
 
                 ResponsiveImage {
                     id: icon
@@ -95,7 +76,7 @@ Item {
 
                 Label {
 
-                    text: tips_ ? "Customize" : " Tips"
+                    text: tips_ ? JamiStrings.customize : JamiStrings.tips
                     font.weight: Font.Medium
                     Layout.topMargin: 5
                     visible: !opened
@@ -116,7 +97,7 @@ Item {
                 font.pixelSize: 12
                 visible: !opened
                 wrapMode: Text.WordWrap
-                text: tips_ ? "Add a picture and a nickname to complete your profile" : "Why should I save my account ?"
+                text: tips_ ? JamiStrings.customizeText : JamiStrings.whySaveAccount
             }
 
 
@@ -135,50 +116,46 @@ Item {
 
             }
 
-            MaterialLineEdit {
-                id: aliasEdit
+            EditableLineEdit {
 
+                id: displayNameLineEdit
 
-
-                property string lastFirstChar
-
-                Layout.preferredHeight: fieldLayoutHeight
-                Layout.preferredWidth: fieldLayoutWidth
-                Layout.alignment: Qt.AlignCenter
-
-                focus: visible
                 visible: tips_ && opened
-                selectByMouse: true
-                enabled: visible
+
+                Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: root.width - 32
+                fieldLayoutHeight: 10
+
                 placeholderText: {
                     if (WizardViewStepModel.accountCreationOption !==
                             WizardViewStepModel.AccountCreationOption.CreateRendezVous)
-                        return JamiStrings.enterYourName
+                        return JamiStrings.enterNickname
                     else
                         return JamiStrings.enterRVName
                 }
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
 
+                fontSize: 12
 
-                }
+                onEditingFinished: root.alias = text
 
-            Text {
-
-                Layout.preferredWidth: 170
-                Layout.leftMargin: 20
-                Layout.topMargin: 8
-                font.pixelSize: 12
-                visible: opened && tips_
-                wrapMode: Text.WrapAnywhere
-                text: "Your profile is only shared with your contacts"
             }
 
             Text {
 
                 Layout.preferredWidth: 170
                 Layout.leftMargin: 20
-                Layout.topMargin: 8
+                Layout.topMargin: 6
+                font.pixelSize: 12
+                visible: opened && tips_
+                wrapMode: Text.WrapAnywhere
+                text: JamiStrings.customizationDescription2
+            }
+
+            Text {
+
+                Layout.preferredWidth: 170
+                Layout.leftMargin: 20
+                Layout.topMargin: 6
                 font.pixelSize: 12
                 visible: opened && !tips_
                 wrapMode: Text.WrapAnywhere
@@ -216,6 +193,27 @@ Item {
         color: Qt.rgba(0, 0.34,0.6,0.16)
         source: rect
         transparentBorder: true
+    }
+
+    PushButton {
+        id: btnClose
+
+        width: 20
+        height: 20
+        imageContainerWidth: 20
+        imageContainerHeight : 20
+        anchors.margins: 14
+        anchors.top: parent.top
+        anchors.right: parent.right
+        visible: opened
+        circled: true
+
+        imageColor: Qt.rgba(0, 86/255, 153/255, 1)
+        normalColor: "transparent"
+
+        source: JamiResources.round_close_24dp_svg
+
+        onClicked: { root.destroy();}
     }
 
 }

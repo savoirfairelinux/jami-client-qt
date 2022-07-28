@@ -752,5 +752,6 @@ Item {
     property string tips: qsTr("Tips")
     property string customizeText: qsTr("Add a picture and a nickname to complete your profile")
     property string customizationDescription: qsTr("This profile is only shared with this account’s contacts")
-
+    property string customizationDescription2: qsTr("Your profile is only shared with your contacts")
+    property string whySaveAccount: qsTr("Why should I save my account ?")
 }
