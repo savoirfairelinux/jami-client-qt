@@ -34,12 +34,12 @@ Rectangle {
     property string description: ""
 
     width: 190
-    height: 65
+    height: infos.implicitHeight
 
     color: JamiTheme.transparentColor
 
     ColumnLayout {
-
+        id: infos
         anchors.fill:  parent
 
         RowLayout {

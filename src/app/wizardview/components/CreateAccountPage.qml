@@ -311,8 +311,14 @@ Rectangle {
 
         anchors.margins: JamiTheme.wizardViewPageBackButtonMargins + infoBox.preferredSize*2/5
 
-        height: helpOpened ? 270 : 0
-        width: helpOpened ? 452 : 0
+        width: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
+        height: {
+            if (!helpOpened)
+                return 0
+            var finalHeight = title.height + 3 * JamiTheme.preferredMarginSize
+            finalHeight += flow.implicitHeight
+            return finalHeight
+        }
 
         visible: false
 
@@ -362,23 +368,27 @@ Rectangle {
 
 
                 Text {
-
+                    id: title
                     text: JamiStrings.goodToKnow
                     color: JamiTheme.textColor
 
                     Layout.topMargin: 15
                     Layout.alignment: Qt.AlignCenter | Qt.AlignTop
 
-                    font.pixelSize: 15
+                    font.pixelSize: JamiTheme.title2FontSize
                     font.kerning: true
                 }
 
-                Grid {
-                    columns: 2
+                Flow {
+                    id: flow
                     spacing: 25
                     Layout.alignment: Qt.AlignTop
+                    Layout.leftMargin: JamiTheme.preferredMarginSize * 2
+                    Layout.preferredWidth: helpOpened ? Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 452) : 0
+                    Layout.fillWidth: true
 
                     InfoBox {
+                        id: info
                         icoSource: JamiResources.laptop_black_24dp_svg
                         title: JamiStrings.local
                         description: JamiStrings.localAccount
