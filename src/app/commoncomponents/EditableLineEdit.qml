@@ -157,7 +157,7 @@ Item {
         MaterialLineEdit {
             id: lineEdit
             anchors.horizontalCenter: row.horizontalCenter
-            width: row.width - firstIco_.width - thirdIco_.width - secIco_.width
+            width: row.width - firstIco_.width - thirdIco_.width - secIco_.width - thirdIco_.anchors.rightMargin
             height: row.height
             readOnly: !editable || root.readOnly
             underlined: true
@@ -239,7 +239,6 @@ Item {
                 visible: parent.hovered && informationToolTip!==""
                 delay: Qt.styleHints.mousePressAndHoldInterval
             }
-
 
             layer {
                 enabled: true

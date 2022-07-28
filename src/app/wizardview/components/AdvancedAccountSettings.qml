@@ -49,17 +49,18 @@ Rectangle {
         UtilsAdapter.setTempCreationImageFromString()
     }
 
-    MouseArea {
-        anchors.fill: parent
-
-        onClicked: {
-            openedPassword = false
-            openedNickname = false
-        }
-    }
 
     JamiFlickable {
         id: scrollView
+
+        MouseArea {
+            anchors.fill: parent
+
+            onClicked: {
+                openedPassword = false
+                openedNickname = false
+            }
+        }
 
         property ScrollBar vScrollBar: ScrollBar.vertical
 
@@ -85,248 +86,254 @@ Rectangle {
                 Layout.preferredWidth: parent.width
                 Layout.preferredHeight: implicitHeight
                 Layout.alignment: Qt.AlignCenter
-                Rectangle {
 
-                    radius: JamiTheme.formsRadius
-                    border.color: JamiTheme.lightBlue_
-                    layer.enabled: true
-                    color: JamiTheme.secondaryBackgroundColor
+                Item {
+
                     Layout.alignment: Qt.AlignTop
 
-                    Behavior on Layout.preferredWidth {
-                        NumberAnimation { duration: 100 }
-                    }
-                    Behavior on Layout.preferredHeight {
-                        NumberAnimation { duration: 100 }
-                    }
-
                     Layout.preferredWidth: {
-                        if (openedPassword)
+                        if (root.openedPassword)
                             return Math.min(settings.width, JamiTheme.passwordEditOpenedBoxWidth)
-                        if (openedNickname)
+                        if (root.openedNickname)
                             return Math.min(settings.width, cornerIcon1.width)
                         return Math.min(settings.width, JamiTheme.passwordEditClosedBoxWidth)
                     }
 
                     Layout.preferredHeight: {
-
-                        if (openedPassword)
+                        if (root.openedPassword)
                             return passwordColumnLayout.implicitHeight
-                        if (openedNickname)
-                            return cornerIcon1.height
-                        return JamiTheme.passwordEditClosedBoxHeight
+                        return Math.max(cornerIcon1.height, labelEncrypt.height)
+                    }
+
+
+                    Behavior on Layout.preferredWidth {
+                        NumberAnimation { duration: 100 }
+                    }
+                    Behavior on Layout.preferredHeight {
+                        NumberAnimation { duration: 100 }
+                    }
+
+                    DropShadow {
+                        z: -1
+                        anchors.fill: parent
+                        horizontalOffset: 3.0
+                        verticalOffset: 3.0
+                        radius: 16
+                        source: bg
+                        color: Qt.rgba(0, 0.34,0.6,0.16)
                     }
 
                     Rectangle {
-
-                        layer.enabled: true
-                        height: parent.height /2
-                        width: parent.width /2
-                        anchors.bottom: parent.bottom
-                        anchors.left: parent.left
+                        id: bg
+                        radius: JamiTheme.formsRadius
                         border.color: JamiTheme.lightBlue_
+                        layer.enabled: true
                         color: JamiTheme.secondaryBackgroundColor
+                        anchors.fill: parent
 
                         Rectangle {
 
-                            height:  parent.height +1
-                            width: parent.width +1
+                            layer.enabled: true
+                            height: parent.height /2
+                            width: parent.width /2
                             anchors.bottom: parent.bottom
                             anchors.left: parent.left
-                            anchors.margins: 1
-                            border.color: JamiTheme.secondaryBackgroundColor
+                            border.color: JamiTheme.lightBlue_
                             color: JamiTheme.secondaryBackgroundColor
-
-                        }
-
-                    }
-
-                    ColumnLayout {
-
-                        id: passwordColumnLayout
-                        anchors.fill: parent
-
-                        Text {
-
-                            visible: openedPassword
-                            elide: Text.ElideRight
-
-                            text: JamiStrings.encryptAccount
-                            font.pixelSize: JamiTheme.creditsTextSize
-                            Layout.fillWidth: true
-                            Layout.leftMargin: 35
-                            Layout.topMargin: 25
-                            color: JamiTheme.textColor
-
-                        }
-
-                        Text {
-
-                            visible: openedPassword
-                            Layout.topMargin: 12
-                            Layout.leftMargin: 35
-
-                            Layout.preferredWidth: 360
-                            Layout.alignment: Qt.AlignLeft
-                            color: JamiTheme.textColor
-                            wrapMode: Text.WordWrap
-
-                            text: JamiStrings.encryptDescription
-                            font.pixelSize: JamiTheme.headerFontSize
-                        }
-
-                        EditableLineEdit {
-
-                            id: passwordEdit
-
-                            visible: openedPassword
-                            Layout.alignment: Qt.AlignCenter
-                            Layout.preferredWidth: 325
-                            verticalAlignment: Text.AlignVCenter
-
-
-                            echoMode: TextInput.Password
-
-                            placeholderText: JamiStrings.password
-                            secondIco: JamiResources.eye_cross_svg
-                            onSecondIcoClicked: { toggleEchoMode() }
-                        }
-
-                        EditableLineEdit {
-
-                            id: passwordConfirmEdit
-                            visible: openedPassword
-
-                            Layout.alignment: Qt.AlignCenter
-                            Layout.preferredWidth: 325
-                            verticalAlignment: Text.AlignVCenter
-
-
-                            echoMode: TextInput.Password
-
-                            placeholderText: JamiStrings.confirmPassword
-                            secondIco: JamiResources.eye_cross_svg
-                            onSecondIcoClicked: { toggleEchoMode() }
-
-                        }
-
-                        MaterialButton {
-
-                            visible: openedPassword
-
-                            Layout.topMargin: 10
-                            Layout.alignment: Qt.AlignCenter
-                            preferredWidth: JamiTheme.wizardButtonWidth / 2
-                            text: JamiStrings.setPassword
-                            primary: true
-
-                            hoveredColor: checkEnable() ? JamiTheme.buttonTintedBlueHovered : JamiTheme.buttonTintedGreyInactive
-                            pressedColor: checkEnable() ? JamiTheme.buttonTintedBluePressed : JamiTheme.buttonTintedGreyInactive
-
-                            color: checkEnable() ? JamiTheme.buttonTintedBlue :
-                                                JamiTheme.buttonTintedGreyInactive
-
-                            enabled: checkEnable()
-
-                            function checkEnable() {
-                                text = JamiStrings.setPassword
-                                return (passwordEdit.text === passwordConfirmEdit.text
-                                        && passwordEdit.text.length !== 0)
-                            }
-
-                            onClicked: {
-                                root.validatedPassword = passwordConfirmEdit.text
-                                text = JamiStrings.setPasswordSuccess
-                            }
-
-                        }
-
-                        Text {
-
-                            visible: openedPassword
-
-                            Layout.topMargin: 15
-                            Layout.leftMargin: 35
-
-                            Layout.preferredWidth: 360
-                            Layout.alignment: Qt.AlignCenter
-                            color: JamiTheme.textColor
-                            wrapMode: Text.WordWrap
-
-                            text: JamiStrings.encryptWarning
-                            font.pixelSize: JamiTheme.headerFontSize
-                        }
-
-                        RowLayout {
-
-                            Layout.alignment: Qt.AlignLeft
-                            Layout.fillWidth: true
 
                             Rectangle {
 
-                                id: cornerIcon1
-                                layer.enabled: true
-
-                                radius: JamiTheme.formsRadius
-                                height: JamiTheme.cornerIconSize
-                                width: JamiTheme.cornerIconSize
-
-                                color: openedPassword  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
-                                Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
-                                Layout.leftMargin:  openedPassword ? 2 : openedNickname ? 0 : 20
-                                Layout.bottomMargin: openedPassword ? 1 : 0
-
-                                Rectangle {
-
-                                    visible: openedPassword
-
-                                    height: cornerIcon1.height/2
-                                    width: cornerIcon1.width/2
-                                    anchors.left: cornerIcon1.left
-                                    anchors.bottom: cornerIcon1.bottom
-                                    color: JamiTheme.lightBlue_
-
-                                }
-
-                                ResponsiveImage  {
-
-                                    width: 18
-                                    height: 18
-                                    source: JamiResources.lock_svg
-                                    color: JamiTheme.tintedBlue
-                                    anchors.centerIn: cornerIcon1
-                                }
-                            }
-
-                            Text {
-                                Layout.fillWidth: true
-                                visible: !openedPassword && !openedNickname
-
-                                text: JamiStrings.encryptAccount
-                                elide: Text.ElideRight
-                                color: JamiTheme.textColor
-                                font.pixelSize: JamiTheme.creditsTextSize
+                                height:  parent.height +1
+                                width: parent.width +1
+                                anchors.bottom: parent.bottom
+                                anchors.left: parent.left
+                                anchors.margins: 1
+                                border.color: JamiTheme.secondaryBackgroundColor
+                                color: JamiTheme.secondaryBackgroundColor
 
                             }
                         }
-                    }
 
-                    TapHandler {
-                        target: passwordColumnLayout
-                        onTapped: {
-                            openedNickname = false
-                            openedPassword = true
+                        ColumnLayout {
+                            id: passwordColumnLayout
+                            anchors.fill: parent
+
+                            Text {
+                                visible: openedPassword
+                                elide: Text.ElideRight
+
+                                text: JamiStrings.encryptAccount
+                                font.pixelSize: JamiTheme.creditsTextSize
+                                Layout.fillWidth: true
+                                Layout.leftMargin: 35
+                                Layout.topMargin: 25
+                                color: JamiTheme.textColor
+
+                            }
+
+                            Text {
+
+                                visible: openedPassword
+                                Layout.topMargin: 12
+                                Layout.leftMargin: 35
+
+                                Layout.preferredWidth: 360
+                                Layout.alignment: Qt.AlignLeft
+                                color: JamiTheme.textColor
+                                wrapMode: Text.WordWrap
+
+                                text: JamiStrings.encryptDescription
+                                font.pixelSize: JamiTheme.headerFontSize
+                            }
+
+                            EditableLineEdit {
+
+                                id: passwordEdit
+
+                                visible: openedPassword
+                                Layout.alignment: Qt.AlignCenter
+                                Layout.preferredWidth: 325
+
+
+                                echoMode: TextInput.Password
+
+                                placeholderText: JamiStrings.password
+                                secondIco: JamiResources.eye_cross_svg
+                                onSecondIcoClicked: { toggleEchoMode() }
+                            }
+
+                            EditableLineEdit {
+
+                                id: passwordConfirmEdit
+                                visible: openedPassword
+
+                                Layout.alignment: Qt.AlignCenter
+                                Layout.preferredWidth: 325
+
+
+                                echoMode: TextInput.Password
+
+                                placeholderText: JamiStrings.confirmPassword
+                                secondIco: JamiResources.eye_cross_svg
+                                onSecondIcoClicked: { toggleEchoMode() }
+
+                            }
+
+                            MaterialButton {
+
+                                visible: openedPassword
+
+                                Layout.topMargin: 10
+                                Layout.alignment: Qt.AlignCenter
+                                preferredWidth: JamiTheme.wizardButtonWidth / 2
+                                text: JamiStrings.setPassword
+                                primary: true
+
+                                hoveredColor: checkEnable() ? JamiTheme.buttonTintedBlueHovered : JamiTheme.buttonTintedGreyInactive
+                                pressedColor: checkEnable() ? JamiTheme.buttonTintedBluePressed : JamiTheme.buttonTintedGreyInactive
+
+                                color: checkEnable() ? JamiTheme.buttonTintedBlue :
+                                                    JamiTheme.buttonTintedGreyInactive
+
+                                enabled: checkEnable()
+
+                                function checkEnable() {
+                                    text = JamiStrings.setPassword
+                                    return (passwordEdit.text === passwordConfirmEdit.text
+                                            && passwordEdit.text.length !== 0)
+                                }
+
+                                onClicked: {
+                                    root.validatedPassword = passwordConfirmEdit.text
+                                    text = JamiStrings.setPasswordSuccess
+                                }
+
+                            }
+
+                            Text {
+
+                                visible: openedPassword
+
+                                Layout.topMargin: 15
+                                Layout.leftMargin: 35
+
+                                Layout.preferredWidth: 360
+                                Layout.alignment: Qt.AlignCenter
+                                color: JamiTheme.textColor
+                                wrapMode: Text.WordWrap
+
+                                text: JamiStrings.encryptWarning
+                                font.pixelSize: JamiTheme.headerFontSize
+                            }
+
+                            RowLayout {
+
+                                Layout.alignment: Qt.AlignLeft
+                                Layout.preferredWidth: parent.width
+
+                                Rectangle {
+
+                                    id: cornerIcon1
+                                    layer.enabled: true
+
+                                    radius: JamiTheme.formsRadius
+                                    height: JamiTheme.cornerIconSize
+                                    width: JamiTheme.cornerIconSize
+
+                                    color: openedPassword  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
+                                    Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
+                                    Layout.leftMargin:  openedPassword ? 2 : openedNickname ? 0 : 20
+                                    Layout.bottomMargin: openedPassword ? 1 : 0
+
+                                    Rectangle {
+
+                                        visible: openedPassword
+
+                                        height: cornerIcon1.height/2
+                                        width: cornerIcon1.width/2
+                                        anchors.left: cornerIcon1.left
+                                        anchors.bottom: cornerIcon1.bottom
+                                        color: JamiTheme.lightBlue_
+
+                                    }
+
+                                    ResponsiveImage  {
+
+                                        width: 18
+                                        height: 18
+                                        source: JamiResources.lock_svg
+                                        color: JamiTheme.tintedBlue
+                                        anchors.centerIn: cornerIcon1
+                                    }
+                                }
+
+                                Text {
+                                    id: labelEncrypt
+                                    visible: !openedPassword && !openedNickname
+                                    Layout.fillWidth: true
+
+                                    text: JamiStrings.encryptAccount
+                                    elide: Text.ElideRight
+                                    color: JamiTheme.textColor
+                                    font.pixelSize: JamiTheme.creditsTextSize
+
+                                }
+                            }
+                        }
+
+                        TapHandler {
+                            target: passwordColumnLayout
+                            onTapped: {
+                                openedNickname = false
+                                openedPassword = true
+                            }
                         }
                     }
                 }
 
-                Rectangle {
 
-                    radius: JamiTheme.formsRadius
-                    border.color: JamiTheme.lightBlue_
+                Item {
                     Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                    layer.enabled: true
-                    color: JamiTheme.secondaryBackgroundColor
 
                     Behavior on Layout.preferredWidth {
                         NumberAnimation { duration: 100 }
@@ -337,7 +344,6 @@ Rectangle {
                     }
 
                     Layout.preferredWidth: {
-
                         if (openedNickname)
                             return Math.min(settings.width, JamiTheme.customNicknameOpenedBoxWidth)
                         if (openedPassword)
@@ -346,163 +352,178 @@ Rectangle {
                     }
 
                     Layout.preferredHeight: {
-
                         if (openedNickname)
                             return customColumnLayout.implicitHeight
-                        if (openedPassword)
-                            return cornerIcon1.height
-                        return JamiTheme.customNicknameClosedBoxHeight
+                        return Math.max(cornerIcon2.height, labelCustomize.height)
+                    }
 
+                    DropShadow {
+                        z: -1
+                        anchors.fill: parent
+                        horizontalOffset: 3.0
+                        verticalOffset: 3.0
+                        radius: 16
+                        source: bg2
+                        color: Qt.rgba(0, 0.34,0.6,0.16)
                     }
 
                     Rectangle {
+                        id: bg2
 
-                        height: parent.height /2
-                        width: parent.width /2
-                        anchors.bottom: parent.bottom
-                        anchors.right: parent.right
+                        radius: JamiTheme.formsRadius
                         border.color: JamiTheme.lightBlue_
-                        color: JamiTheme.secondaryBackgroundColor
                         layer.enabled: true
+                        color: JamiTheme.secondaryBackgroundColor
+                        anchors.fill: parent
 
                         Rectangle {
 
-                            height: parent.height +1
-                            width: parent.width +1
-                            opacity: 1
+                            height: parent.height /2
+                            width: parent.width /2
                             anchors.bottom: parent.bottom
                             anchors.right: parent.right
-                            anchors.margins: 1
-                            border.color: JamiTheme.secondaryBackgroundColor
+                            border.color: JamiTheme.lightBlue_
                             color: JamiTheme.secondaryBackgroundColor
-
-                        }
-
-                    }
-
-                    ColumnLayout {
-
-                        id: customColumnLayout
-                        anchors.fill: parent
-
-                        Text {
-
-                            visible: openedNickname
-                            text: JamiStrings.customizeProfile
-                            elide: Text.ElideRight
-                            Layout.topMargin: 25
-                            Layout.leftMargin: 35
-                            font.pixelSize: JamiTheme.creditsTextSize
-                            color: JamiTheme.textColor
-                            Layout.fillWidth: true
-                        }
-
-                        PhotoboothView {
-
-                            id: currentAccountAvatar
-                            darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-                            visible: openedNickname
-
-                            Layout.alignment: Qt.AlignCenter
-                            Layout.topMargin: 10
-
-                            newItem: true
-                            imageId: visible? "temp" : ""
-                            avatarSize: 80
-                            buttonSize: JamiTheme.smartListAvatarSize
-
-                        }
-
-                        EditableLineEdit {
-
-                            id: displayNameLineEdit
-
-                            visible: openedNickname
-
-                            Layout.alignment: Qt.AlignCenter
-                            Layout.preferredWidth: 280
-                            verticalAlignment: Text.AlignVCenter
-
-                            placeholderText: JamiStrings.enterNickname
-
-                            onEditingFinished: root.alias = text
-
-                        }
-
-                        Text {
-
-                            visible: openedNickname
-
-                            Layout.topMargin: 20
-
-                            Layout.preferredWidth: 360
-                            Layout.alignment: Qt.AlignCenter
-                            wrapMode: Text.WordWrap
-                            color: JamiTheme.textColor
-
-                            text: JamiStrings.customizeProfileDescription
-                            font.pixelSize: JamiTheme.headerFontSize
-                        }
-
-                        RowLayout{
-
-                            Layout.alignment: openedNickname ? Qt.AlignRight : Qt.AlignLeft
-                            Layout.fillWidth: true
+                            layer.enabled: true
 
                             Rectangle {
 
-                                id: cornerIcon2
-                                layer.enabled: true
+                                height: parent.height +1
+                                width: parent.width +1
+                                opacity: 1
+                                anchors.bottom: parent.bottom
+                                anchors.right: parent.right
+                                anchors.margins: 1
+                                border.color: JamiTheme.secondaryBackgroundColor
+                                color: JamiTheme.secondaryBackgroundColor
 
-                                radius: JamiTheme.formsRadius
-                                height: JamiTheme.cornerIconSize
-                                width: JamiTheme.cornerIconSize
+                            }
 
-                                color: openedNickname  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
-                                Layout.alignment: Qt.AlignBottom | Qt.AlignRight
-                                Layout.leftMargin: openedPassword ? 0 : 20
-                                Layout.rightMargin:  openedNickname? 2 : 0
-                                Layout.bottomMargin: openedNickname ? 2 : 0
+                        }
 
-                                Rectangle {
-                                    visible: openedNickname
+                        ColumnLayout {
 
-                                    height: cornerIcon2.height/2
-                                    width: cornerIcon2.width/2
-                                    anchors.right: cornerIcon2.right
-                                    anchors.bottom: cornerIcon2.bottom
-                                    color: JamiTheme.lightBlue_
-                                }
+                            id: customColumnLayout
+                            anchors.fill: parent
 
-                                ResponsiveImage  {
+                            Text {
 
-                                    width: 18
-                                    height: 18
-                                    source: JamiResources.noun_paint_svg
-                                    color: JamiTheme.tintedBlue
-                                    anchors.centerIn: cornerIcon2
-                                }
+                                visible: openedNickname
+                                text: JamiStrings.customizeProfile
+                                elide: Text.ElideRight
+                                Layout.topMargin: 25
+                                Layout.leftMargin: 35
+                                font.pixelSize: JamiTheme.creditsTextSize
+                                color: JamiTheme.textColor
+                                Layout.fillWidth: true
+                            }
+
+                            PhotoboothView {
+
+                                id: currentAccountAvatar
+                                darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
+                                visible: openedNickname
+
+                                Layout.alignment: Qt.AlignCenter
+                                Layout.topMargin: 10
+
+                                newItem: true
+                                imageId: visible? "temp" : ""
+                                avatarSize: 80
+                                buttonSize: JamiTheme.smartListAvatarSize
+
+                            }
+
+                            EditableLineEdit {
+
+                                id: displayNameLineEdit
+
+                                visible: openedNickname
+
+                                Layout.alignment: Qt.AlignCenter
+                                Layout.preferredWidth: 280
+
+                                placeholderText: JamiStrings.enterNickname
+
+                                onEditingFinished: root.alias = text
+
                             }
 
                             Text {
 
-                                visible: !openedNickname && !openedPassword
+                                visible: openedNickname
 
+                                Layout.topMargin: 20
+
+                                Layout.preferredWidth: 360
+                                Layout.alignment: Qt.AlignCenter
+                                wrapMode: Text.WordWrap
                                 color: JamiTheme.textColor
-                                text: JamiStrings.customizeProfile
-                                font.pixelSize: JamiTheme.creditsTextSize
-                                Layout.fillWidth: true
-                                elide: Text.ElideRight
 
+                                text: JamiStrings.customizeProfileDescription
+                                font.pixelSize: JamiTheme.headerFontSize
+                            }
+
+                            RowLayout{
+
+                                Layout.alignment: openedNickname ? Qt.AlignRight : Qt.AlignLeft
+                                Layout.fillWidth: true
+
+                                Rectangle {
+
+                                    id: cornerIcon2
+                                    layer.enabled: true
+
+                                    radius: JamiTheme.formsRadius
+                                    height: JamiTheme.cornerIconSize
+                                    width: JamiTheme.cornerIconSize
+
+                                    color: openedNickname  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
+                                    Layout.alignment: Qt.AlignBottom | Qt.AlignRight
+                                    Layout.leftMargin: openedPassword ? 0 : 20
+                                    Layout.rightMargin:  openedNickname? 2 : 0
+                                    Layout.bottomMargin: openedNickname ? 2 : 0
+
+                                    Rectangle {
+                                        visible: openedNickname
+
+                                        height: cornerIcon2.height/2
+                                        width: cornerIcon2.width/2
+                                        anchors.right: cornerIcon2.right
+                                        anchors.bottom: cornerIcon2.bottom
+                                        color: JamiTheme.lightBlue_
+                                    }
+
+                                    ResponsiveImage  {
+
+                                        width: 18
+                                        height: 18
+                                        source: JamiResources.noun_paint_svg
+                                        color: JamiTheme.tintedBlue
+                                        anchors.centerIn: cornerIcon2
+                                    }
+                                }
+
+                                Text {
+                                    id: labelCustomize
+                                    visible: !openedNickname && !openedPassword
+
+                                    color: JamiTheme.textColor
+                                    text: JamiStrings.customizeProfile
+                                    font.pixelSize: JamiTheme.creditsTextSize
+                                    Layout.fillWidth: true
+                                    elide: Text.ElideRight
+
+                                }
                             }
                         }
-                    }
 
-                    TapHandler {
-                        target: customColumnLayout
-                        onTapped: {
-                            openedNickname = true
-                            openedPassword = false
+                        TapHandler {
+                            target: customColumnLayout
+                            onTapped: {
+                                openedNickname = true
+                                openedPassword = false
+                            }
                         }
                     }
                 }
