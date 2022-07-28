@@ -73,7 +73,7 @@ Then you will need to install dependencies:
 ./build.py --dependencies --qt # needs sudo
 ```
 
-Then, you can build daemon, lrc and client-qt with:
+Then, you can build daemon and the client with:
 
 ```bash
 ./build.py --install --qt
@@ -108,12 +108,11 @@ make -j
 ```
 
 cmake can take some options:
-+ If lrc library is installed in a custom directory you can set its path with the variable LRC. Additionally you can specify built library location with `LRC` (otherwise it will seach inside LRC with the suffixes `/lib`, `/build` and `/build-local`).
 
 e.g. (with Qt version from https://jami.net)
 
 ```
-cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=jami-project/install/client-qt -DLRC=jami-project/install/lrc -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=jami-project/install/client-qt -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami
 ```
 
 After the build has finished, you are finally ready to launch jami-qt in your build directory.
@@ -175,7 +174,7 @@ Only 64-bit MSVC build can be compiled.
 
 ### Build Module Individually
 
-- Jami-qt also support building each module (daemon, lrc, jami-qt) seperately
+- Jami-qt also support building each module (daemon, jami-qt) seperately
 
 **Daemon**
 
@@ -193,18 +192,9 @@ Only 64-bit MSVC build can be compiled.
     python winmake.py -b opendht
 ```
 
-**Lrc**
-
-- Make sure that daemon is built first
-
-```bash
-    cd lrc
-    python make-lrc.py
-```
-
 **Jami-qt**
 
-- Make sure that daemon, lrc are built first
+- Make sure that daemon, is built first
 
 ```bash
     cd client-windows
