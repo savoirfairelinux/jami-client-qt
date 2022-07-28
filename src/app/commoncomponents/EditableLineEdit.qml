@@ -129,7 +129,8 @@ Item {
             opacity: editable && !root.readOnly && firstIco !== ""
             visible: opacity
             anchors.left: row.left
-            anchors.verticalCenter: row.verticalCenter
+            anchors.bottom: row.bottom
+            anchors.bottomMargin: 12
 
             width: visible? 18 : 0
             height: 18
@@ -158,9 +159,10 @@ Item {
             height: row.height
             readOnly: !editable || root.readOnly
             underlined: true
+            verticalAlignment: Text.AlignBottom
 
             borderColor: root.editIconColor
-            fieldLayoutHeight: 24
+            fieldLayoutHeight: row.height
             placeholderText: editable? "" : root.placeholderText
 
             wrapMode: Text.NoWrap
@@ -189,7 +191,8 @@ Item {
             id: thirdIco_
             anchors.right: secIco_.left
             anchors.rightMargin: 12
-            anchors.verticalCenter: row.verticalCenter
+            anchors.bottom: row.bottom
+            anchors.bottomMargin: 12
 
             visible: thirdIco !== ""
             width: visible? 18 : 0
@@ -218,7 +221,8 @@ Item {
             visible: (editable && !root.readOnly) || secondIco !== ""
             source: secondIco
             anchors.right: row.right
-            anchors.verticalCenter: row.verticalCenter
+            anchors.bottom: row.bottom
+            anchors.bottomMargin: 12
             width: visible? 18 : 0
             height: 18
 

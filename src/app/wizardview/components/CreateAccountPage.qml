@@ -245,6 +245,8 @@ Rectangle {
             objectName: "advancedAccountSettingsPage"
 
             property int stackIndex: 1
+
+            onSaveButtonClicked: createAccountStack.currentIndex--
         }
     }
 
