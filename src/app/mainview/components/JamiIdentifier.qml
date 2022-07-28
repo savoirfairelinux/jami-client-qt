@@ -155,7 +155,7 @@ Rectangle {
             font.pointSize: JamiTheme.textFontSize + 1
 
             text: CurrentAccount.bestId
-            color: JamiTheme.blackColor
+            color: JamiTheme.textColor
 
         }
     }
