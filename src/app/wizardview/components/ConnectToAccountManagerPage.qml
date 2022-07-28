@@ -93,6 +93,8 @@ Rectangle {
             text: JamiStrings.enterJAMSURL
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 30
+            font.weight: Font.Medium
+
             Layout.preferredWidth: Math.min(400, root.width - JamiTheme.preferredMarginSize * 2)
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

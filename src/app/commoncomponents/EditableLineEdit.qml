@@ -263,9 +263,7 @@ Item {
                     duration: JamiTheme.longFadeDuration
                 }
             }
-
         }
-
     }
 
 
@@ -301,6 +299,12 @@ Item {
             }
             color: root.backgroundColor
         }
+    }
+
+
+    onFocusChanged: function(focus) {
+        if (focus)
+            lineEdit.forceActiveFocus();
     }
 
 }

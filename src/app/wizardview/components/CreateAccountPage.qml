@@ -381,7 +381,7 @@ Rectangle {
                     id: title
                     text: JamiStrings.goodToKnow
                     color: JamiTheme.textColor
-
+                    font.weight: Font.Medium
                     Layout.topMargin: 15
                     Layout.alignment: Qt.AlignCenter | Qt.AlignTop
 
