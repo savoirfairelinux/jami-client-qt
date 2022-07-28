@@ -105,6 +105,7 @@ Item {
 
     HoverHandler {
         target: parent
+        enabled: !root.readOnly
         onHoveredChanged: {
             root.hovered = hovered
         }
@@ -112,6 +113,7 @@ Item {
 
     TapHandler {
         target: parent
+        enabled: !root.readOnly
         onTapped: {
             lineEdit.focus = true;
         }
@@ -163,12 +165,14 @@ Item {
 
             borderColor: root.editIconColor
             fieldLayoutHeight: row.height
-            placeholderText: editable? "" : root.placeholderText
+            placeholderText: readOnly? root.placeholderText : ""
 
             wrapMode: Text.NoWrap
-            horizontalAlignment: editable || text !== "" ? Qt.AlignLeft : Qt.AlignHCenter
+            horizontalAlignment: !readOnly || text !== "" ? Qt.AlignLeft : Qt.AlignHCenter
 
             onFocusChanged: function(focus) {
+                if (root.readOnly)
+                    return
                 if (!focus && editable) {
                     editable = !editable
                     root.editingFinished()
@@ -246,6 +250,7 @@ Item {
 
             TapHandler{
                 target: parent
+                enabled: !root.readOnly
                 onTapped: {
                     root.secondIcoClicked()
                 }
@@ -269,9 +274,8 @@ Item {
         anchors.fill: root
         radius: JamiTheme.primaryRadius
 
-        visible: true
+        visible: !readOnly
         color: {
-
             if(root.error)
                 return errorColor
             if(root.validated)
@@ -287,7 +291,7 @@ Item {
         }
 
         Rectangle {
-            visible: parent.visible
+            visible: !readOnly && parent.visible
             anchors {
                 fill: parent
                 topMargin: 0

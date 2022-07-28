@@ -74,7 +74,6 @@ Rectangle {
                 firstIco:  JamiResources.round_edit_24dp_svg
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
 
-
                 fieldLayoutWidth: 15
                 fieldLayoutHeight: 30
 

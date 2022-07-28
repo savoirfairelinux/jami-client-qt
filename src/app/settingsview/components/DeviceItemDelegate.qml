@@ -87,7 +87,7 @@ ItemDelegate {
                 wrapMode: Text.NoWrap
                 readOnly: !editable
                 loseFocusWhenEnterPressed: true
-                backgroundColor: JamiTheme.editBackgroundColor
+                backgroundColor: JamiTheme.transparentColor
 
                 onEditingFinished: {
                     AvAdapter.setDeviceName(editDeviceName.text)

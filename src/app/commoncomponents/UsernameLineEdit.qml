@@ -28,10 +28,10 @@ EditableLineEdit {
     placeholderText: isRendezVous ? JamiStrings.chooseAName :
                                     JamiStrings.chooseYourUserName
 
-    firstIco: JamiResources.person_24dp_svg
+    firstIco: readOnly? "" : JamiResources.person_24dp_svg
     firstIcoColor: "#03B9E9"
 
-    secondIco: JamiResources.outline_info_24dp_svg
+    secondIco: readOnly? "" : JamiResources.outline_info_24dp_svg
     secondIcoColor: "#005699"
 
     informationToolTip: JamiStrings.usernameToolTip
@@ -49,7 +49,6 @@ EditableLineEdit {
     }
 
     property int nameRegistrationState: UsernameLineEdit.NameRegistrationState.BLANK
-    // property var __iconSource: ""
     wizardInput: true
 
     selectByMouse: true
@@ -99,45 +98,11 @@ EditableLineEdit {
         }
     }
 
-    //    ResponsiveImage {
-    //        id: lineEditImage
-
-    //        anchors.verticalCenter: parent.verticalCenter
-    //        anchors.right: parent.right
-    //        anchors.rightMargin: JamiTheme.preferredMarginSize / 2
-
-    //        visible: nameRegistrationState !== UsernameLineEdit.NameRegistrationState.SEARCHING
-    //        source: nameRegistrationState === UsernameLineEdit.NameRegistrationState.SEARCHING ?
-    //                    "" : __iconSource
-    //        color: borderColor
-    //    }
-
-    //    AnimatedImage {
-    //        anchors.left: lineEditImage.left
-    //        anchors.verticalCenter: parent.verticalCenter
-
-    //        width: 24
-    //        height: 24
-
-    //        source: nameRegistrationState !== UsernameLineEdit.NameRegistrationState.SEARCHING ?
-    //                    "" : __iconSource
-    //        playing: true
-    //        paused: false
-    //        fillMode: Image.PreserveAspectFit
-    //        mipmap: true
-    //        visible: nameRegistrationState === UsernameLineEdit.NameRegistrationState.SEARCHING
-    //    }
-
     onNameRegistrationStateChanged: {
-        if (!enabled)
+        if (readOnly || !enabled)
             borderColor = "transparent"
 
         switch(nameRegistrationState){
-            //        case UsernameLineEdit.NameRegistrationState.SEARCHING:
-            ////            __iconSource = JamiResources.jami_rolling_spinner_gif
-            //            firstIco = JamiResources.jami_rolling_spinner_gif
-            //            borderColor = selectedColor
-            //            break
         case UsernameLineEdit.NameRegistrationState.BLANK:
             firstIco=""
             borderColor = "transparent"
