@@ -39,6 +39,7 @@ import "commoncomponents"
 
 ApplicationWindow {
     id: root
+    flags: Qt.WA_TranslucentBackground
 
     enum LoadedSource {
         WizardView = 0,
