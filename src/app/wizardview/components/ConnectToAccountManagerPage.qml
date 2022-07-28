@@ -83,7 +83,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             color: JamiTheme.textColor
 
-            font.pixelSize: 26
+            font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
             wrapMode : Text.WordWrap
 
         }
@@ -98,7 +98,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             color: JamiTheme.textColor
 
-            font.pixelSize: 15
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             wrapMode : Text.WordWrap
         }
 
@@ -140,6 +140,7 @@ Rectangle {
             Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: 35
             font.weight: Font.Medium
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
 
             color: JamiTheme.textColor
             wrapMode: Text.Wrap

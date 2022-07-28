@@ -117,7 +117,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
 
             color: JamiTheme.textColor
-            font.pixelSize: 26
+            font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
             wrapMode : Text.WordWrap
         }
 
@@ -131,7 +131,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             color: JamiTheme.textColor
 
-            font.pixelSize: 15
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             wrapMode : Text.WordWrap
         }
 

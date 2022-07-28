@@ -395,8 +395,8 @@ Item {
     property real wizardViewPageLayoutSpacing: 12
     property real wizardViewPageBackButtonMargins: 20
     property real wizardViewPageBackButtonSize: 35
-    property real wizardViewTitleFontPixelSize: 26
-    property real wizardViewDescriptionFontPixelSize: 15
+    property real wizardViewTitleFontPixelSize: calcSize(26)
+    property real wizardViewDescriptionFontPixelSize: calcSize(15)
     property real wizardViewLayoutTopMargin: 38
 
     // WizardView Welcome Page

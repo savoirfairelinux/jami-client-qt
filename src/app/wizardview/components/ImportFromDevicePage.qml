@@ -86,7 +86,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             color: JamiTheme.textColor
 
-            font.pixelSize: 26
+            font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
             wrapMode : Text.WordWrap
         }
 
@@ -96,7 +96,7 @@ Rectangle {
             Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
             Layout.topMargin: 15
             Layout.alignment: Qt.AlignCenter
-            font.pixelSize: 15
+            font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
             color: JamiTheme.textColor
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter

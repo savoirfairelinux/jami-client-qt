@@ -64,242 +64,256 @@ Rectangle {
         objectName: "createAccountStack"
         anchors.fill: parent
 
-        ColumnLayout {
-            id: createSIPAccountPageColumnLayout
+        Rectangle {
 
-            spacing: JamiTheme.wizardViewPageLayoutSpacing
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: JamiTheme.secondaryBackgroundColor
 
-            Layout.preferredWidth: parent.width
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: JamiTheme.wizardViewLayoutTopMargin
-
-            width: Math.max(508, root.width - 100)
+            ColumnLayout {
+                id: createSIPAccountPageColumnLayout
 
 
-            Label {
+                spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-                text: JamiStrings.sipAccount
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
-                Layout.topMargin: 15
-                font.pixelSize: 26
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: JamiTheme.textColor
-            }
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
 
-            Label {
-                text: JamiStrings.configureExistingSIP
-                Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
-                Layout.topMargin: 15
-                Layout.alignment: Qt.AlignCenter
-                font.pixelSize: 15
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: JamiTheme.textColor
-            }
+                width: Math.max(508, root.width - 100)
 
-            EditableLineEdit {
-                id: sipServernameEdit
+                Label {
 
-                objectName: "sipServernameEdit"
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-                focus: visible
-                selectByMouse: true
-                placeholderText: JamiStrings.server
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
-
-                KeyNavigation.tab: sipProxyEdit
-                KeyNavigation.up: backButton
-                KeyNavigation.down: sipProxyEdit
-
-                onEditingFinished: sipProxyEdit.forceActiveFocus()
-            }
-
-            EditableLineEdit {
-                id: sipProxyEdit
-
-                objectName: "sipProxyEdit"
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-                focus: visible
-                selectByMouse: true
-                placeholderText: JamiStrings.proxy
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
-
-                KeyNavigation.tab: sipUsernameEdit
-                KeyNavigation.up: sipServernameEdit
-                KeyNavigation.down: sipUsernameEdit
-
-                onEditingFinished: sipUsernameEdit.forceActiveFocus()
-            }
-
-            EditableLineEdit {
-                id: sipUsernameEdit
-
-                objectName: "sipUsernameEdit"
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-                selectByMouse: true
-                placeholderText: JamiStrings.username
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
-
-                KeyNavigation.tab: sipPasswordEdit
-                KeyNavigation.up: sipProxyEdit
-                KeyNavigation.down: sipPasswordEdit
-
-                onEditingFinished: sipPasswordEdit.forceActiveFocus()
-            }
-
-            EditableLineEdit {
-                id: sipPasswordEdit
-
-                objectName: "sipPasswordEdit"
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-
-                selectByMouse: true
-                echoMode: TextInput.Password
-
-                placeholderText: JamiStrings.password
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
-
-                KeyNavigation.tab: createAccountButton
-                KeyNavigation.up: sipUsernameEdit
-                KeyNavigation.down: createAccountButton
-
-                secondIco: JamiResources.eye_cross_svg
-
-
-                onEditingFinished: createAccountButton.forceActiveFocus()
-
-                onSecondIcoClicked: { toggleEchoMode() }
-            }
-
-            MaterialButton {
-                id: createAccountButton
-
-                objectName: "createSIPAccountButton"
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
-
-                preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
-
-                text: JamiStrings.addSip
-
-                KeyNavigation.tab: personalizeAccount
-                KeyNavigation.up: sipPasswordEdit
-                KeyNavigation.down: personalizeAccount
-
-                onClicked: {
-                    WizardViewStepModel.accountCreationInfo =
-                            JamiQmlUtils.setUpAccountCreationInputPara(
-                                {hostname : sipServernameEdit.text,
-                                 alias: displayNameLineEdit.text,
-                                 username : sipUsernameEdit.text,
-                                 password : sipPasswordEdit.text,
-                                 proxy : sipProxyEdit.text,
-                                 avatar: UtilsAdapter.tempCreationImage()})
-                    WizardViewStepModel.nextStep()
+                    text: JamiStrings.sipAccount
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: 15
+                    font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    color: JamiTheme.textColor
                 }
-            }
 
-            MaterialButton {
+                Label {
+                    text: JamiStrings.configureExistingSIP
+                    Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: 15
+                    Layout.alignment: Qt.AlignCenter
+                    font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                    wrapMode: Text.WordWrap
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    color: JamiTheme.textColor
+                }
 
-                id: personalizeAccount
-                text: JamiStrings.personalizeAccount
-                tertiary: true
-                preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+                EditableLineEdit {
+                    id: sipServernameEdit
 
-                Layout.alignment: Qt.AlignCenter
-                Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
+                    objectName: "sipServernameEdit"
 
-                KeyNavigation.tab: backButton
-                KeyNavigation.up: createAccountButton
-                KeyNavigation.down: backButton
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
 
-                onClicked: createAccountStack.currentIndex += 1
+                    focus: visible
+                    selectByMouse: true
+                    placeholderText: JamiStrings.server
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+
+                    KeyNavigation.tab: sipProxyEdit
+                    KeyNavigation.up: backButton
+                    KeyNavigation.down: sipProxyEdit
+
+                    onEditingFinished: sipProxyEdit.forceActiveFocus()
+                }
+
+                EditableLineEdit {
+                    id: sipProxyEdit
+
+                    objectName: "sipProxyEdit"
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    focus: visible
+                    selectByMouse: true
+                    placeholderText: JamiStrings.proxy
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+
+                    KeyNavigation.tab: sipUsernameEdit
+                    KeyNavigation.up: sipServernameEdit
+                    KeyNavigation.down: sipUsernameEdit
+
+                    onEditingFinished: sipUsernameEdit.forceActiveFocus()
+                }
+
+                EditableLineEdit {
+                    id: sipUsernameEdit
+
+                    objectName: "sipUsernameEdit"
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    selectByMouse: true
+                    placeholderText: JamiStrings.username
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+
+                    KeyNavigation.tab: sipPasswordEdit
+                    KeyNavigation.up: sipProxyEdit
+                    KeyNavigation.down: sipPasswordEdit
+
+                    onEditingFinished: sipPasswordEdit.forceActiveFocus()
+                }
+
+                EditableLineEdit {
+                    id: sipPasswordEdit
+
+                    objectName: "sipPasswordEdit"
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    selectByMouse: true
+                    echoMode: TextInput.Password
+
+                    placeholderText: JamiStrings.password
+                    font.pointSize: JamiTheme.textFontSize
+                    font.kerning: true
+
+                    KeyNavigation.tab: createAccountButton
+                    KeyNavigation.up: sipUsernameEdit
+                    KeyNavigation.down: createAccountButton
+
+                    secondIco: JamiResources.eye_cross_svg
+
+
+                    onEditingFinished: createAccountButton.forceActiveFocus()
+
+                    onSecondIcoClicked: { toggleEchoMode() }
+                }
+
+                MaterialButton {
+                    id: createAccountButton
+
+                    objectName: "createSIPAccountButton"
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
+
+                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    text: JamiStrings.addSip
+
+                    KeyNavigation.tab: personalizeAccount
+                    KeyNavigation.up: sipPasswordEdit
+                    KeyNavigation.down: personalizeAccount
+
+                    onClicked: {
+                        WizardViewStepModel.accountCreationInfo =
+                                JamiQmlUtils.setUpAccountCreationInputPara(
+                                    {hostname : sipServernameEdit.text,
+                                        alias: displayNameLineEdit.text,
+                                        username : sipUsernameEdit.text,
+                                        password : sipPasswordEdit.text,
+                                        proxy : sipProxyEdit.text,
+                                        avatar: UtilsAdapter.tempCreationImage()})
+                        WizardViewStepModel.nextStep()
+                    }
+                }
+
+                MaterialButton {
+
+                    id: personalizeAccount
+                    text: JamiStrings.personalizeAccount
+                    tertiary: true
+                    preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins*2
+
+                    KeyNavigation.tab: backButton
+                    KeyNavigation.up: createAccountButton
+                    KeyNavigation.down: backButton
+
+                    onClicked: createAccountStack.currentIndex += 1
+                }
             }
         }
 
-        ColumnLayout {
-            spacing: JamiTheme.wizardViewPageLayoutSpacing
+        Rectangle {
 
-            Layout.preferredWidth: parent.width
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: JamiTheme.wizardViewLayoutTopMargin
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: JamiTheme.secondaryBackgroundColor
 
-            width: Math.max(508, root.width - 100)
+            ColumnLayout {
+                spacing: JamiTheme.wizardViewPageLayoutSpacing
 
-            Label {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
 
-                text: JamiStrings.personalizeAccount
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
-                Layout.topMargin: 15
-                font.pixelSize: 26
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: JamiTheme.textColor
+                width: Math.max(508, root.width - 100)
+
+                Label {
+
+                    text: JamiStrings.personalizeAccount
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: Math.min(450, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: 15
+                    font.pixelSize: 26
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    color: JamiTheme.textColor
+                }
+
+                PhotoboothView {
+                    id: currentAccountAvatar
+                    darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: 50
+
+                    newItem: true
+                    imageId: visible ? "temp" : ""
+                    avatarSize: 150
+                    buttonSize: JamiTheme.smartListAvatarSize
+                }
+
+                EditableLineEdit {
+
+                    id: displayNameLineEdit
+
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
+                    Layout.topMargin: 30
+                    verticalAlignment: Text.AlignVCenter
+
+                    font.pointSize: JamiTheme.textFontSize
+
+                    placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
+
+                    color: JamiTheme.textColor
+                }
+
+                Text {
+
+                    Layout.topMargin: 15
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    wrapMode: Text.WordWrap
+
+                    text: JamiStrings.customizeProfileDescription
+                    font.pixelSize: JamiTheme.headerFontSize
+                    color: JamiTheme.textColor
+                }
+
             }
-
-            PhotoboothView {
-                id: currentAccountAvatar
-                darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.topMargin: 50
-
-                newItem: true
-                imageId: visible ? "temp" : ""
-                avatarSize: 150
-                buttonSize: JamiTheme.smartListAvatarSize
-            }
-
-            EditableLineEdit {
-
-                id: displayNameLineEdit
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(300, root.width - JamiTheme.preferredMarginSize * 2)
-                Layout.topMargin: 30
-                verticalAlignment: Text.AlignVCenter
-
-                font.pointSize: JamiTheme.textFontSize
-
-                placeholderText: CurrentAccount.alias === "" ? JamiStrings.enterNickname: CurrentAccount.alias
-
-                color: JamiTheme.textColor
-            }
-
-            Text {
-
-                Layout.topMargin: 15
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: Math.min(320, root.width - JamiTheme.preferredMarginSize * 2)
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-
-                text: JamiStrings.customizeProfileDescription
-                font.pixelSize: 13
-                color: JamiTheme.textColor
-            }
-
         }
 
 

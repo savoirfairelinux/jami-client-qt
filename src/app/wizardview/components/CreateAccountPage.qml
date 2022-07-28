@@ -36,10 +36,6 @@ Rectangle {
     property bool isRendezVous: false
     property bool helpOpened: false
 
-    property int preferredHeight: {
-        return usernameColumnLayout.implicitHeight
-    }
-
     signal showThisPage
 
     function initializeOnShowUp(isRdv) {
@@ -101,31 +97,31 @@ Rectangle {
                 Text {
                     id: joinJami
 
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.topMargin: 50
-                    Layout.preferredHeight: contentHeight
-
                     text: JamiStrings.joinJami
-                    color: JamiTheme.textColor
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: 15
+                    Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
 
-                    font.pixelSize: 26
-                    font.kerning: true
+                    color: JamiTheme.textColor
+                    font.pixelSize: JamiTheme.wizardViewTitleFontPixelSize
+                    wrapMode : Text.WordWrap
                 }
 
-                Label {
-                    Layout.alignment: Qt.AlignCenter
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
-                    Layout.topMargin: 16
-                    Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+                Text {
 
-                    wrapMode:Text.WordWrap
                     text: isRendezVous ? JamiStrings.chooseUsernameForRV :
                                          JamiStrings.chooseUsernameForAccount
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.topMargin: 15
+                    Layout.preferredWidth: Math.min(360, root.width - JamiTheme.preferredMarginSize * 2)
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
                     color: JamiTheme.textColor
-                    font.pointSize: JamiTheme.textFontSize + 3
+
+                    font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                    wrapMode:Text.WordWrap
                 }
 
                 UsernameLineEdit {
@@ -200,9 +196,9 @@ Rectangle {
                         WizardViewStepModel.accountCreationInfo =
                                 JamiQmlUtils.setUpAccountCreationInputPara(
                                     {registeredName : usernameEdit.text,
-                                    alias: advancedAccountSettingsPage.alias,
-                                    password: advancedAccountSettingsPage.validatedPassword,
-                                    avatar: UtilsAdapter.tempCreationImage()})
+                                        alias: advancedAccountSettingsPage.alias,
+                                        password: advancedAccountSettingsPage.validatedPassword,
+                                        avatar: UtilsAdapter.tempCreationImage()})
                         if(usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE)
                             WizardViewStepModel.nextStep()
 
