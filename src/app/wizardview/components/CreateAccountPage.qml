@@ -213,6 +213,7 @@ Rectangle {
 
                     objectName: "showAdvancedButton"
                     tertiary: true
+                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
                     Layout.alignment: Qt.AlignCenter
                     preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)

@@ -339,9 +339,7 @@ Rectangle {
 
             preferredWidth: JamiTheme.aboutButtonPreferredWidth
 
-            color: JamiTheme.buttonTintedBlack
-            hoveredColor: JamiTheme.buttonTintedBlackHovered
-            pressedColor: JamiTheme.buttonTintedBlackPressed
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
             tertiary: true
 
             KeyNavigation.tab: backButton.visible ? backButton : newAccountButton
