@@ -28,7 +28,6 @@ import net.jami.Constants 1.1
 AbstractButton {
     id: root
 
-
     property bool boldFont: false
     property bool primary: false
     property bool secondary: false
@@ -180,8 +179,6 @@ AbstractButton {
                 horizontalAlignment: Text.AlignHCenter
                 color: contentColorProvider
                 font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
-                wrapMode: Text.WordWrap
-
             }
         }
     }

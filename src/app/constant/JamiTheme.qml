@@ -409,6 +409,7 @@ Item {
 
     // WizardView Advanced Account Settings
     property color lightBlue_: "#e5eef5"
+    property color shadowColorBlue: Qt.rgba(0, 0.34,0.6,0.16)
     property real passwordEditOpenedBoxWidth: 425
     property real passwordEditClosedBoxWidth: 330
     property real passwordEditOpenedBoxHeight: 380

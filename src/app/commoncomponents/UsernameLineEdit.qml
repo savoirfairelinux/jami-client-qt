@@ -39,7 +39,6 @@ EditableLineEdit {
     fieldLayoutWidth: 200
     fieldLayoutHeight: 50
 
-
     enum NameRegistrationState {
         BLANK,
         INVALID,

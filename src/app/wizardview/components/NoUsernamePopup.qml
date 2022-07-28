@@ -33,8 +33,9 @@ BaseModalDialog {
     width: 350
     height: 240
 
-    popupContent: Item {
+    signal joinClicked
 
+    popupContent: Item {
 
         ColumnLayout {
 
@@ -88,6 +89,7 @@ BaseModalDialog {
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
                     text: JamiStrings.joinJami
                     onClicked: {
+                        root.joinClicked()
                         WizardViewStepModel.nextStep()
                         root.close()
                     }
