@@ -229,6 +229,7 @@ Rectangle {
                     id: personalizeAccount
                     text: JamiStrings.personalizeAccount
                     tertiary: true
+                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
                     preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
 
                     Layout.alignment: Qt.AlignCenter
