@@ -36,6 +36,7 @@ Rectangle {
     radius: 20
     Layout.bottomMargin: JamiTheme.jamiIdMargins
     Layout.leftMargin: JamiTheme.jamiIdMargins
+    width: 296
     height: 91
     color: JamiTheme.whiteColor
 
