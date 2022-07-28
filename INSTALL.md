@@ -43,7 +43,7 @@ sudo apt-get install cmake make doxygen g++ gettext libnotify-dev pandoc nasm li
 sudo dnf install qt6-qtsvg-devel qt6-qtwebengine-devel qt6-qtmultimedia-devel qt6-qtdeclarative-devel qt6-qtquickcontrols2-devel qt6-qtquickcontrols qrencode-devel NetworkManager-libnm-devel
 ```
 
-### Build Qt from sources
+### Qt from sources
 
 https://www.qt.io/product/qt6
 
@@ -73,7 +73,7 @@ Then you will need to install dependencies:
 ./build.py --dependencies --qt # needs sudo
 ```
 
-Then, you can build daemon, lrc and client-qt with:
+Then, you can build daemon and the client with:
 
 ```bash
 ./build.py --install --qt
@@ -108,12 +108,11 @@ make -j
 ```
 
 cmake can take some options:
-+ If lrc library is installed in a custom directory you can set its path with the variable LRC. Additionally you can specify built library location with `LRC` (otherwise it will seach inside LRC with the suffixes `/lib`, `/build` and `/build-local`).
 
 e.g. (with Qt version from https://jami.net)
 
 ```
-cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=jami-project/install/client-qt -DLRC=jami-project/install/lrc -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=jami-project/install/client-qt -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami
 ```
 
 After the build has finished, you are finally ready to launch jami-qt in your build directory.
@@ -129,8 +128,10 @@ make install
 Only 64-bit MSVC build can be compiled.
 
 **Setup Before Building:**
-- Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)<br>
+- Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)
+
 - Using the online installer, install the following Qt 6.2.3 components:
+
   - MSVC 2019 64-bit
   - Qt 5 Compatibility Module
   - Additional Libraries
@@ -141,8 +142,9 @@ Only 64-bit MSVC build can be compiled.
     - Qt WebSockets
     - Qt WebView
 
-- Download [Visual Studio](https://visualstudio.microsoft.com/) (version >= 2019) <br>
-- Install Qt Vs Tools under extensions, and configure msvc2017_64 path under Qt Options <br>
+- Download [Visual Studio](https://visualstudio.microsoft.com/) (version >= 2019). Note: version 2022 does not work.
+
+- Install Qt Vs Tools under extensions, and configure msvc2017_64 path under Qt Options
 
   | | Qt Version | SDK | Toolset |
   |---|---|---|---|
@@ -168,14 +170,26 @@ Only 64-bit MSVC build can be compiled.
 > The issue 4 can be solved by adding the location of the cmake.exe into PATH. <br>
 
 - Using a new **Non-Elevated Command Prompt**
-```sh
+
+```bash
     python build.py --install
 ```
-- Then you should be able to use the Visual Studio Solution file in client-windows folder **(Configuration = Release, Platform = x64)**
+
+Note: If you have another version than qt 6.2.3 installed this step will build daemon correctly but will fail for the client.
+When that happens you need to compile the client separately:
+
+```bash
+    python build.py --install
+    cd client-qt
+    python build.py init
+    python build.py --qtver <your qt version>
+```
+
+- Then you should be able to use the Visual Studio Solution file in client-qt folder **(Configuration = Release, Platform = x64)**
 
 ### Build Module Individually
 
-- Jami-qt also support building each module (daemon, lrc, jami-qt) seperately
+- Jami-qt also support building each module (daemon, jami-qt) seperately
 
 **Daemon**
 
@@ -193,24 +207,17 @@ Only 64-bit MSVC build can be compiled.
     python winmake.py -b opendht
 ```
 
-**Lrc**
-
-- Make sure that daemon is built first
-
-```bash
-    cd lrc
-    python make-lrc.py
-```
-
 **Jami-qt**
 
-- Make sure that daemon, lrc are built first
+- Make sure that daemon, is built first
 
 ```bash
-    cd client-windows
-    python make-client.py init
-    python make-client.py
+    cd client-qt
+    python build.py init
+    python build.py
 ```
+
+Note: if your qt version is different than 6.2.3, you need to use `python build.py --qtver <your qt version>`.
 
 ## Building On MacOS
 
@@ -222,38 +229,46 @@ Only 64-bit MSVC build can be compiled.
 - install Qt 6.2
 
 Qt 6.2 can be installed via brew
-```brew install qt
+
+```bash
+brew install qt
 ```
+
 or downloaded from [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)
 
 Then, you can build the project
 
 **Build with build.py**
 
-```git clone https://review.jami.net/jami-project
+```bash
+git clone https://review.jami.net/jami-project
  cd jami-project
 ./build.py --init
 ./build.py --dependencies --qt
 ./build.py --install --qt
 ```
+
 If you use a Qt version that is installed in a different than standard location you need to specify its path
-```./build.py --install --qt QT_ROOT_DIRECTORY=your_qt_directory
+
+```bash
+./build.py --install --qt QT_ROOT_DIRECTORY=your_qt_directory
 ```
+
 Built client could be find in `client-qt/build-local/Jami`
 
 ## Packaging On Native Windows
 
 - To be able to generate a msi package, first download and install [Wixtoolset](https://wixtoolset.org/releases/).
 - In Visual Studio, download WiX Toolset Visual Studio Extension.
-- Build client-windows project first, then the JamiInstaller project, msi package should be stored in ring-project\client-windows\JamiInstaller\bin\Release
+- Build client-qt project first, then the JamiInstaller project, msi package should be stored in jami-project\client-qt\JamiInstaller\bin\Release
 
 ## Testing for Client-qt on Windows
 
 - We currently use [GoogleTest](https://github.com/google/googletest) and [Qt Quick Test](https://doc.qt.io/qt-5/qtquicktest-index.html#introduction) in our product. To build and run tests, you could use the following command.
 
 ```
-    python make-client.py -b -wt
-    python make-client.py runtests
+    python build.py -b -wt
+    python build.py runtests
 ```
 
 - Note that, for tests, the path of local storage files for jami will be changed based on following environment variables.
