@@ -59,7 +59,7 @@ AbstractButton {
         value: width
     }
 
-    property real preferredHeight: 36
+    property real preferredHeight: JamiTheme.pushButtonMargin + textButton.height
     height: preferredHeight
     Layout.preferredHeight: height
 
@@ -160,6 +160,8 @@ AbstractButton {
 
             Text {
 
+                id: textButton
+
                 Layout.rightMargin: {
                     if ((!hasIcon || root.preferredWidth === undefined) &&
                             !root.Layout.fillWidth)
@@ -177,6 +179,8 @@ AbstractButton {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: contentColorProvider
+                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                wrapMode: Text.WordWrap
 
             }
         }
