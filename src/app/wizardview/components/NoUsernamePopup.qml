@@ -33,14 +33,8 @@ BaseModalDialog {
     width: 350
     height: 240
 
+    popupContent: Item {
 
-
-    popupContent: Rectangle {
-
-        id: rect
-        anchors.centerIn: parent
-        border.color: "transparent"
-        radius: 20
 
         ColumnLayout {
 
@@ -78,6 +72,7 @@ BaseModalDialog {
                 font.pixelSize: 15
                 font.weight: Font.Medium
                 wrapMode: Text.WordWrap
+                color: JamiTheme.textColor
                 text: JamiStrings.joinJamiNoPassword
             }
 
