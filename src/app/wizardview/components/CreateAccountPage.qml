@@ -35,6 +35,7 @@ Rectangle {
 
     property bool isRendezVous: false
     property bool helpOpened: false
+    property int preferredHeight: createAccountStack.implicitHeight
 
     signal showThisPage
 
@@ -239,6 +240,9 @@ Rectangle {
             id: advancedAccountSettingsPage
 
             objectName: "advancedAccountSettingsPage"
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
 
             property int stackIndex: 1
 
