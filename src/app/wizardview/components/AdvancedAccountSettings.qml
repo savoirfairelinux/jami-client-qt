@@ -30,6 +30,7 @@ import "../../commoncomponents"
 Rectangle {
 
     id: root
+    signal saveButtonClicked
 
     property bool openedPassword: false
     property bool openedNickname: false
@@ -58,12 +59,6 @@ Rectangle {
 
     }
 
-    BackButton {
-
-        anchors.top: parent.top
-        anchors.left: parent.right
-    }
-
     Label {
 
         anchors.top: parent.top
@@ -77,7 +72,8 @@ Rectangle {
     ColumnLayout {
 
         anchors.centerIn: parent
-        width : parent.width
+        height : parent.height
+        width: Math.max(800, root.width - 2 * JamiTheme.preferredMarginSize)
         spacing: 30
 
         Rectangle {
@@ -506,6 +502,21 @@ Rectangle {
                     openedPassword = false
                 }
             }
+        }
+
+        MaterialButton {
+            id: showAdvancedButton
+
+            tertiary: true
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
+            Layout.bottomMargin: JamiTheme.wizardViewPageBackButtonMargins
+
+            preferredWidth: Math.min(JamiTheme.wizardButtonWidth, root.width - JamiTheme.preferredMarginSize * 2)
+            text: JamiStrings.optionSave
+
+            onClicked: root.saveButtonClicked()
         }
     }
 

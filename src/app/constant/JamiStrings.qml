@@ -671,6 +671,7 @@ Item {
 
     // Generic dialog options
     property string optionOk: qsTr("Ok")
+    property string optionSave: qsTr("Save")
     property string optionCancel: qsTr("Cancel")
     property string optionUpgrade: qsTr("Upgrade")
     property string optionLater: qsTr("Later")
