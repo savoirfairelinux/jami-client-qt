@@ -185,15 +185,15 @@ AbstractButton {
     background: Rectangle {
 
         color: {
-
+            var baseColor = root.focus ? root.keysNavigationFocusColor : root.color
             if(root.primary) {
                 if (root.hovered)
                     return root.hoveredColor
-                return root.color
+                return baseColor
             }
 
             if (root.secondary || root.tertiary) {
-                if (root.hovered)
+                if (root.hovered || root.focus)
                     return root.secHoveredColor
                 return JamiTheme.transparentColor
             }
@@ -203,8 +203,7 @@ AbstractButton {
             if (root.hovered)
                 return root.hoveredColor
 
-            return root.focus ?
-                        root.keysNavigationFocusColor : root.color
+            return baseColor
 
         }
 
