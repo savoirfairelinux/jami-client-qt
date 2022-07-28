@@ -78,7 +78,7 @@ Rectangle {
                 Layout.margins: 50
                 text: JamiStrings.advancedAccountSettings
                 color: JamiTheme.textColor
-                font.pixelSize: 22
+                font.pixelSize: JamiTheme.bigFontSize
             }
 
             ColumnLayout {
@@ -115,18 +115,21 @@ Rectangle {
 
                     DropShadow {
                         z: -1
-                        anchors.fill: parent
+                        visible: openedPassword
+                        width: parent.width
+                        height: parent.height
                         horizontalOffset: 3.0
                         verticalOffset: 3.0
                         radius: 16
-                        source: bg
                         color: Qt.rgba(0, 0.34,0.6,0.16)
+                        source: bg
+                        transparentBorder: true
                     }
 
                     Rectangle {
                         id: bg
                         radius: JamiTheme.formsRadius
-                        border.color: JamiTheme.lightBlue_
+                        border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.lightBlue_
                         layer.enabled: true
                         color: JamiTheme.secondaryBackgroundColor
                         anchors.fill: parent
@@ -138,7 +141,7 @@ Rectangle {
                             width: parent.width /2
                             anchors.bottom: parent.bottom
                             anchors.left: parent.left
-                            border.color: JamiTheme.lightBlue_
+                            border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.lightBlue_
                             color: JamiTheme.secondaryBackgroundColor
 
                             Rectangle {
@@ -148,7 +151,7 @@ Rectangle {
                                 anchors.bottom: parent.bottom
                                 anchors.left: parent.left
                                 anchors.margins: 1
-                                border.color: JamiTheme.secondaryBackgroundColor
+                                border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.secondaryBackgroundColor
                                 color: JamiTheme.secondaryBackgroundColor
 
                             }
@@ -164,6 +167,7 @@ Rectangle {
 
                                 text: JamiStrings.encryptAccount
                                 font.pixelSize: JamiTheme.creditsTextSize
+                                font.weight: Font.Medium
                                 Layout.fillWidth: true
                                 Layout.leftMargin: 35
                                 Layout.topMargin: 25
@@ -283,7 +287,7 @@ Rectangle {
                                     color: openedPassword  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
                                     Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
                                     Layout.leftMargin:  openedPassword ? 2 : openedNickname ? 0 : 20
-                                    Layout.bottomMargin: openedPassword ? 1 : 0
+                                    Layout.bottomMargin: openedPassword ? 2 : 0
 
                                     Rectangle {
 
@@ -359,19 +363,22 @@ Rectangle {
 
                     DropShadow {
                         z: -1
-                        anchors.fill: parent
+                        visible: openedNickname
+                        width: parent.width
+                        height: parent.height
                         horizontalOffset: 3.0
                         verticalOffset: 3.0
                         radius: 16
-                        source: bg2
                         color: Qt.rgba(0, 0.34,0.6,0.16)
+                        source: bg2
+                        transparentBorder: true
                     }
 
                     Rectangle {
                         id: bg2
 
                         radius: JamiTheme.formsRadius
-                        border.color: JamiTheme.lightBlue_
+                        border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.lightBlue_
                         layer.enabled: true
                         color: JamiTheme.secondaryBackgroundColor
                         anchors.fill: parent
@@ -382,7 +389,7 @@ Rectangle {
                             width: parent.width /2
                             anchors.bottom: parent.bottom
                             anchors.right: parent.right
-                            border.color: JamiTheme.lightBlue_
+                            border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.lightBlue_
                             color: JamiTheme.secondaryBackgroundColor
                             layer.enabled: true
 
@@ -394,7 +401,7 @@ Rectangle {
                                 anchors.bottom: parent.bottom
                                 anchors.right: parent.right
                                 anchors.margins: 1
-                                border.color: JamiTheme.secondaryBackgroundColor
+                                border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.secondaryBackgroundColor
                                 color: JamiTheme.secondaryBackgroundColor
 
                             }
@@ -411,6 +418,7 @@ Rectangle {
                                 visible: openedNickname
                                 text: JamiStrings.customizeProfile
                                 elide: Text.ElideRight
+                                font.weight: Font.Medium
                                 Layout.topMargin: 25
                                 Layout.leftMargin: 35
                                 font.pixelSize: JamiTheme.creditsTextSize
