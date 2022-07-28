@@ -137,6 +137,9 @@ Item {
     property color comboboxBorderColorActive: darkTheme? "#03B9E9" : tintedBlue
     property color comboboxBorderColor: darkTheme ? tintedBlue : Qt.rgba(0, 0.34, 0.6, 0.36)
     property color comboboxTextColorHovered: darkTheme ? "#03B9E9" : tintedBlue
+    property color comboboxArrow: darkTheme ? tintedBlue : tintedBlue
+    property color comboboxArrowActive: darkTheme ? "#03B9E9" : tintedBlue
+
 
     // Call buttons
     property color acceptButtonGreen: "#4caf50"

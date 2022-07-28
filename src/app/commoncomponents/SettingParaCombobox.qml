@@ -80,7 +80,7 @@ ComboBox {
         anchors.rightMargin: 16
 
         source: popup.visible ? JamiResources.expand_less_24dp_svg : JamiResources.expand_more_24dp_svg
-
+        color:popup.visible ? JamiTheme.comboboxArrowActive : JamiTheme.comboboxArrow
 
     }
 
