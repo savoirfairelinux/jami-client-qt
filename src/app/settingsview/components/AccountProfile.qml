@@ -82,6 +82,7 @@ ColumnLayout {
         padding: 8
 
         loseFocusWhenEnterPressed: true
+        placeholderText: JamiStrings.enterNickname
 
         onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
     }
