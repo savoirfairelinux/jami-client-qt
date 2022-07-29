@@ -31,12 +31,17 @@ import "../../commoncomponents"
 Item {
 
     id: root
-    property bool tips_ : true
+    property var title: ""
+    property var description: ""
+    property int tipId: 0
+    property bool isTip : true
     property bool hovered: false
     property bool clicked : false
     property bool opened : false
     width: 200
     height: opened ? 170 : 105
+
+    signal ignoreClicked
 
     Rectangle {
 
@@ -70,18 +75,18 @@ Item {
                     containerHeight: Layout.preferredHeight
                     containerWidth: Layout.preferredWidth
 
-                    source: tips_ ?  JamiResources.noun_paint_svg : JamiResources.glasses_tips_svg
+                    source: !isTip ?  JamiResources.noun_paint_svg : JamiResources.glasses_tips_svg
                     color: "#005699"
                 }
 
                 Label {
 
-                    text: tips_ ? JamiStrings.customize : JamiStrings.tips
+                    text: root.title
                     font.weight: Font.Medium
                     Layout.topMargin: 5
                     visible: !opened
                     Layout.alignment: Qt.AlignLeft
-                    Layout.leftMargin: tips_ ? 8 : 5
+                    Layout.leftMargin: isTip ? 8 : 5
                     font.pixelSize: 13
 
                 }
@@ -97,7 +102,7 @@ Item {
                 font.pixelSize: 12
                 visible: !opened
                 wrapMode: Text.WordWrap
-                text: tips_ ? JamiStrings.customizeText : JamiStrings.whySaveAccount
+                text: !isTip ? JamiStrings.customizeText : root.title
             }
 
 
@@ -108,7 +113,7 @@ Item {
 
                 Layout.alignment: Qt.AlignHCenter
                 darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-                visible: opened && tips_
+                visible: opened &&! isTip
                 enabled: true
                 imageId: CurrentAccount.id
                 avatarSize: 53
@@ -120,7 +125,7 @@ Item {
 
                 id: displayNameLineEdit
 
-                visible: tips_ && opened
+                visible: !isTip && opened
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: root.width - 32
@@ -146,7 +151,7 @@ Item {
                 Layout.leftMargin: 20
                 Layout.topMargin: 6
                 font.pixelSize: 12
-                visible: opened && tips_
+                visible: opened && !isTip
                 wrapMode: Text.WrapAnywhere
                 text: JamiStrings.customizationDescription2
             }
@@ -157,9 +162,9 @@ Item {
                 Layout.leftMargin: 20
                 Layout.topMargin: 6
                 font.pixelSize: 12
-                visible: opened && !tips_
+                visible: opened && isTip
                 wrapMode: Text.WrapAnywhere
-                text: "Ceci est le texte affiché lorsqu'on ouvre une box tips"
+                text: root.description
             }
 
         }
@@ -168,17 +173,13 @@ Item {
 
     HoverHandler {
         target : rect
-        onHoveredChanged: {
-            root.hovered = hovered
-        }
+        onHoveredChanged: root.hovered = hovered
         cursorShape: Qt.PointingHandCursor
     }
 
     TapHandler {
         target: rect
-        onTapped: {
-            opened = !opened
-        }
+        onTapped: opened = !opened
     }
 
 
@@ -213,7 +214,7 @@ Item {
 
         source: JamiResources.round_close_24dp_svg
 
-        onClicked: { root.destroy();}
+        onClicked: root.ignoreClicked()
     }
 
 }
