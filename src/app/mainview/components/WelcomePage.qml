@@ -120,7 +120,7 @@ Rectangle {
                 anchors.topMargin: 25
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: welcomeLogo.visible ? 630 : Math.min(350, root.width - 2* JamiTheme.preferredMarginSize)
-                height: 243
+                height: leftPanel.implicitHeight
                 opacity:1
 
                 Behavior on width {
@@ -128,13 +128,12 @@ Rectangle {
                 }
 
                 ColumnLayout {
-
+                    id: leftPanel
                     Label {
                         id: welcome
 
                         Layout.alignment: Qt.AlignLeft
                         Layout.preferredWidth: 180
-                        Layout.preferredHeight: 36
                         Layout.bottomMargin: 5
                         font.pixelSize: JamiTheme.bigFontSize
                         Layout.leftMargin: 40
@@ -154,7 +153,6 @@ Rectangle {
                         Layout.alignment: Qt.AlignLeft
                         Layout.leftMargin: 40
                         Layout.preferredWidth: 300
-                        Layout.preferredHeight: 36
                         Layout.bottomMargin: 5
                         font.pixelSize: JamiTheme.headerFontSize
 

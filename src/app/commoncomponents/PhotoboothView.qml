@@ -31,7 +31,7 @@ Item {
     id: root
 
     property alias imageId: avatar.imageId
-    property alias cancelButton: cancelButton.visible
+    property alias cancelButton: cancelBtn.visible
 
     property bool newItem: false
     property bool readOnly: false
@@ -189,7 +189,7 @@ Item {
             objectName: "takePhotoButton"
 
             Layout.alignment: Qt.AlignHCenter
-            Layout.leftMargin: cancelButton.width
+            Layout.leftMargin: cancelBtn.width
 
             height: buttonSize
             width: buttonSize
@@ -320,7 +320,7 @@ Item {
                     keyEvent.accepted = true
                 } else if (keyEvent.key === Qt.Key_Down ||
                            keyEvent.key === Qt.Key_Tab) {
-                    cancelButton.forceActiveFocus()
+                    cancelBtn.forceActiveFocus()
                     keyEvent.accepted = true
                 }
             }
@@ -336,7 +336,7 @@ Item {
         }
 
         PushButton {
-            id: cancelButton
+            id: cancelBtn
 
             visible: true
             preferredSize: 18
