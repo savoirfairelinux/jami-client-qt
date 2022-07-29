@@ -147,6 +147,35 @@ Control {
             }
         },
         Action {
+            id: layoutMenuAction
+            text: JamiStrings.layoutSettings
+            property int popupMode: CallActionBar.ActionPopupMode.ListElement
+            property var listModel: ListModel {
+                id: layoutModel
+
+                Component.onCompleted: {
+                    layoutModel.append({"Name": layoutManager.isCallFullscreen ?
+                                                JamiStrings.exitFullScreen :
+                                                JamiStrings.viewFullScreen,
+                                        "IconSource": layoutManager.isCallFullscreen ?
+                                                      JamiResources.close_fullscreen_24dp_svg :
+                                                      JamiResources.open_in_full_24dp_svg})
+                }
+            }
+            function accept(index) {
+                switch(layoutModel.get(index).Name) {
+                  case JamiStrings.exitFullScreen:
+                        layoutModel.get(index).Name = JamiStrings.viewFullScreen
+                        root.fullScreenClicked()
+                        break
+                  case JamiStrings.viewFullScreen:
+                        layoutModel.get(index).Name = JamiStrings.exitFullScreen
+                        root.fullScreenClicked()
+                        break
+                }
+            }
+        },
+        Action {
             id: videoInputMenuAction
             enabled: VideoDevices.listSize !== 0
             text: JamiStrings.selectVideoDevice
@@ -230,17 +259,6 @@ Control {
             text: JamiStrings.chat
         },
         Action {
-            id: fullScreenAction
-            icon.source: layoutManager.isCallFullscreen ?
-                            JamiResources.close_fullscreen_24dp_svg :
-                            JamiResources.open_in_full_24dp_svg
-            icon.color: "white"
-            onTriggered: root.fullScreenClicked()
-            text: layoutManager.isCallFullscreen ?
-                          JamiStrings.exitFullScreen :
-                          JamiStrings.viewFullScreen
-        },
-        Action {
             id: resumePauseCallAction
             onTriggered: root.resumePauseCallClicked()
             icon.source: isPaused ?
@@ -292,6 +310,16 @@ Control {
                       JamiStrings.lowerHand :
                       JamiStrings.raiseHand
             property real size: 34
+        },
+        Action {
+            id: layoutAction
+            property bool openPopupWhenClicked: true
+            checkable: !openPopupWhenClicked
+            icon.source: JamiResources.mosaic_black_24dp_svg
+            icon.color: "white"
+            text: JamiStrings.layoutSettings
+            property real size: 34
+            property var menuAction: layoutMenuAction
         },
         Action {
             id: recordAction
@@ -363,9 +391,9 @@ Control {
         CallOverlayModel.addSecondaryControl(chatAction)
         if (CurrentAccount.videoEnabled_Video && !isSIP)
             CallOverlayModel.addSecondaryControl(shareAction)
+        CallOverlayModel.addSecondaryControl(layoutAction)
         CallOverlayModel.addSecondaryControl(recordAction)
         CallOverlayModel.addSecondaryControl(pluginsAction)
-        CallOverlayModel.addSecondaryControl(fullScreenAction)
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
 
         muteAudioAction.checked = isAudioMuted

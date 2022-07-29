@@ -289,6 +289,7 @@ Item {
     property string notAvailable: qsTr("N/A")
     property string lowerHand: qsTr("Lower hand")
     property string raiseHand: qsTr("Raise hand")
+    property string layoutSettings: qsTr("Layout settings")
 
     // Chatview header
     property string hideChatView: qsTr("Hide chat view")
