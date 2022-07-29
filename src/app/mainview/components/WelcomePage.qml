@@ -44,158 +44,164 @@ Rectangle {
         }
     }
 
-    Item {
-        width: Math.max(300, root.width)
-        anchors.bottom: root.bottom
-        height: aboutJami.height
-        anchors.margins: JamiTheme.preferredMarginSize
+    JamiFlickable {
+        id: welcomeView
 
-        MaterialButton {
-            id: aboutJami
-            tertiary: true
+        anchors.fill: root
 
-            anchors.horizontalCenter: parent.horizontalCenter
-            preferredWidth: JamiTheme.aboutButtonPreferredWidthth
-            text: JamiStrings.aboutJami
+        contentHeight: Math.max(root.height, welcomePageLayout.implicitHeight)
+        contentWidth: Math.max(300, root.width)
 
-            onClicked: aboutPopUpDialog.open()
-        }
+        ColumnLayout{
+            id: welcomePageLayout
+            width: Math.max(300, root.width)
+            height: parent.height
 
-        PushButton {
-            id: btnKeyboard
+            Item {
+                id: image
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
-            imageColor: JamiTheme.buttonTintedBlue
-            normalColor: JamiTheme.transparentColor
-            hoveredColor: JamiTheme.transparentColor
-            anchors.right: parent.right
-            anchors.rightMargin: JamiTheme.preferredMarginSize
-            preferredSize : 30
-            imageContainerWidth: JamiTheme.pushButtonSize
-            imageContainerHeight: JamiTheme.pushButtonSize
-
-            border.color: JamiTheme.buttonTintedBlue
-
-            source: JamiResources.keyboard_black_24dp_svg
-            toolTipText: JamiStrings.keyboardShortcuts
-
-            onClicked:  {
-                KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject()
-                KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow()
-            }
-        }
-    }
-
-    ColumnLayout{
-
-        anchors.centerIn: parent
-
-        Item {
-
-            Layout.alignment: Qt.AlignCenter
-
-            width: 630
-            height: 263
-
-            Rectangle {
-
-                radius: 30
-                color: JamiTheme.rectColor
-                anchors.topMargin: 25
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: welcomeLogo.visible ? 630 : Math.min(350, root.width - 2* JamiTheme.preferredMarginSize)
+                width: 630
                 height: leftPanel.implicitHeight
-                opacity:1
 
-                Behavior on width {
-                    NumberAnimation { duration: JamiTheme.shortFadeDuration }
+                Rectangle {
+                    radius: 30
+                    color: JamiTheme.rectColor
+                    anchors.topMargin: 25
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    width: welcomeLogo.visible ? 630 : Math.min(leftPanel.implicitWidth + 2 * JamiTheme.preferredMarginSize, root.width - 2 * JamiTheme.preferredMarginSize)
+                    height: leftPanel.implicitHeight + 2 * JamiTheme.preferredMarginSize
+                    opacity:1
+
+                    Behavior on width {
+                        NumberAnimation { duration: JamiTheme.shortFadeDuration }
+                    }
+
+                    ColumnLayout {
+                        id: leftPanel
+                        Label {
+                            id: welcome
+
+                            Layout.alignment: Qt.AlignLeft
+                            Layout.bottomMargin: 5
+                            font.pixelSize: JamiTheme.bigFontSize
+                            Layout.leftMargin: 40
+                            Layout.topMargin: 26
+
+                            wrapMode: Text.WordWrap
+                            horizontalAlignment: Text.AlignLeft
+                            verticalAlignment: Text.AlignVCenter
+
+                            text: JamiStrings.welcomeToJami
+                            color: JamiTheme.textColor
+                        }
+
+                        Label {
+                            id: identifierDescription
+
+                            Layout.alignment: Qt.AlignLeft
+                            Layout.leftMargin: 40
+                            Layout.preferredWidth: 300
+                            Layout.bottomMargin: 5
+                            font.pixelSize: JamiTheme.headerFontSize
+
+                            wrapMode: Text.WordWrap
+
+                            text: JamiStrings.hereIsIdentifier
+                            color: JamiTheme.textColor
+                        }
+
+                        JamiIdentifier {
+                            id: identifier
+                            editable: true
+                        }
+
+                    }
+
                 }
 
-                ColumnLayout {
-                    id: leftPanel
-                    Label {
-                        id: welcome
+                ResponsiveImage {
+                    id: welcomeLogo
 
-                        Layout.alignment: Qt.AlignLeft
-                        Layout.bottomMargin: 5
-                        font.pixelSize: JamiTheme.bigFontSize
-                        Layout.leftMargin: 40
-                        Layout.topMargin: 26
+                    visible: root.width > 630
+                    width: 212
+                    height: 244
+                    anchors.top: parent.top
+                    anchors.topMargin: - 20
+                    anchors.right: parent.right
+                    anchors.rightMargin: 20
+                    opacity: 1
 
-                        wrapMode: Text.WordWrap
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment: Text.AlignVCenter
-
-                        text: JamiStrings.welcomeToJami
-                        color: JamiTheme.textColor
-                    }
-
-                    Label {
-                        id: identifierDescription
-
-                        Layout.alignment: Qt.AlignLeft
-                        Layout.leftMargin: 40
-                        Layout.preferredWidth: 300
-                        Layout.bottomMargin: 5
-                        font.pixelSize: JamiTheme.headerFontSize
-
-                        wrapMode: Text.WordWrap
-
-                        text: JamiStrings.hereIsIdentifier
-                        color: JamiTheme.textColor
-                    }
-
-                    JamiIdentifier {
-                        id: identifier
-                        editable: true
-                    }
+                    source: JamiResources.welcome_illustration_2_svg
 
                 }
-
             }
 
-            ResponsiveImage {
-                id: welcomeLogo
+            Flow {
+                id: tipsFlow
 
-                visible: root.width > 630
-                width: 212
-                height: 244
-                anchors.top: parent.top
-                anchors.topMargin: - 20
-                anchors.right: parent.right
-                anchors.rightMargin: 20
-                opacity: 1
+                spacing: JamiTheme.preferredMarginSize
+                Layout.alignment: Qt.AlignHCenter
+                Layout.preferredWidth: Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 600 + 3 * JamiTheme.preferredMarginSize)
 
-                source: JamiResources.welcome_illustration_2_svg
+                Repeater {
+                    model: TipsModel
+                    Layout.alignment: Qt.AlignCenter
 
+                    delegate: TipBox {
+                        tipId: TipId
+                        title: Title
+                        description: Description
+                        isTip: IsTip
+                        visible: index < 3
+
+                        onIgnoreClicked: TipsModel.remove(TipId)
+                    }
+                }
             }
-        }
 
-        Flow {
-            id: tipsFlow
+            Item {
+                id: bottomRow
+                Layout.preferredWidth: Math.max(300, root.width)
+                height: aboutJami.height
+                Layout.alignment: Qt.AlignBottom
 
-            spacing: JamiTheme.preferredMarginSize
-            Layout.preferredWidth: Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 600 + 3 * JamiTheme.preferredMarginSize)
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 10
-            Layout.bottomMargin: 50
+                MaterialButton {
+                    id: aboutJami
+                    tertiary: true
 
-            Repeater {
-                model: TipsModel
-                Layout.alignment: Qt.AlignCenter
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    preferredWidth: JamiTheme.aboutButtonPreferredWidthth
+                    text: JamiStrings.aboutJami
 
-                delegate: TipBox {
-                    tipId: TipId
-                    title: Title
-                    description: Description
-                    isTip: IsTip
-                    visible: index < 3
+                    onClicked: aboutPopUpDialog.open()
+                }
 
-                    onIgnoreClicked: TipsModel.remove(TipId)
+                PushButton {
+                    id: btnKeyboard
+
+                    imageColor: JamiTheme.buttonTintedBlue
+                    normalColor: JamiTheme.transparentColor
+                    hoveredColor: JamiTheme.transparentColor
+                    anchors.right: parent.right
+                    anchors.rightMargin: JamiTheme.preferredMarginSize
+                    preferredSize : 30
+                    imageContainerWidth: JamiTheme.pushButtonSize
+                    imageContainerHeight: JamiTheme.pushButtonSize
+
+                    border.color: JamiTheme.buttonTintedBlue
+
+                    source: JamiResources.keyboard_black_24dp_svg
+                    toolTipText: JamiStrings.keyboardShortcuts
+
+                    onClicked:  {
+                        KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject()
+                        KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow()
+                    }
                 }
             }
         }
     }
-
 
     CustomBorder {
         commonBorder: false
