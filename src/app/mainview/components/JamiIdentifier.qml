@@ -108,21 +108,19 @@ Rectangle {
 
                     imageColor: JamiTheme.buttonTintedBlue
                     normalColor: JamiTheme.transparentColor
+                    hoveredColor: JamiTheme.transparentColor
                     Layout.topMargin: JamiTheme.pushButtonMargin
-
 
                     preferredSize : 30
                     imageContainerWidth: JamiTheme.pushButtonSize
                     imageContainerHeight: JamiTheme.pushButtonSize
 
-                    hoverEnabled: false
                     border.color: JamiTheme.tintedBlue
 
                     source: JamiResources.content_copy_24dp_svg
+                    toolTipText: JamiStrings.copy
 
-                    onClicked: {
-                        UtilsAdapter.setClipboardText(CurrentAccount.bestId)
-                    }
+                    onClicked: UtilsAdapter.setClipboardText(CurrentAccount.bestId)
                 }
 
                 PushButton {
@@ -130,18 +128,19 @@ Rectangle {
 
                     imageColor: JamiTheme.buttonTintedBlue
                     normalColor: JamiTheme.transparentColor
+                    hoveredColor: JamiTheme.transparentColor
                     Layout.topMargin: JamiTheme.pushButtonMargin
                     Layout.rightMargin: JamiTheme.pushButtonMargin
                     preferredSize : 30
                     imageContainerWidth: JamiTheme.pushButtonSize
                     imageContainerHeight: JamiTheme.pushButtonSize
 
-                    hoverEnabled: false
                     border.color: JamiTheme.buttonTintedBlue
 
                     source: JamiResources.share_24dp_svg
+                    toolTipText: JamiStrings.share
 
-                    onClicked: { qrDialog.open() }
+                    onClicked: qrDialog.open()
                 }
 
             }

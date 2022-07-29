@@ -253,6 +253,7 @@ Item {
 
     // LineEditContextMenu
     property string copy: qsTr("Copy")
+    property string share: qsTr("Share")
     property string cut: qsTr("Cut")
     property string paste: qsTr("Paste")
 
@@ -487,6 +488,7 @@ Item {
 
     // KeyboardShortCutTable
     property string keyboardShortcutTableWindowTitle: qsTr("Keyboard Shortcut Table")
+    property string keyboardShortcuts: qsTr("Keyboard Shortcuts")
     property string generalKeyboardShortcuts: qsTr("General")
     property string conversationKeyboardShortcuts: qsTr("Conversation")
     property string callKeyboardShortcuts: qsTr("Call")
