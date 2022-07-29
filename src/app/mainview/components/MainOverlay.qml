@@ -139,49 +139,6 @@ Item {
                 elide: Qt.ElideRight
             }
 
-            PushButton {
-                id: mosaicButton
-
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                Layout.preferredWidth: JamiTheme.mosaicButtonPreferredWidth
-                Layout.preferredHeight: 30
-                Layout.rightMargin: 5
-
-                visible: isConference && !isGrid
-
-                preferredMargin: JamiTheme.mosaicButtonPreferredMargin
-                radius: JamiTheme.mosaicButtonRadius
-                opacity: JamiTheme.mosaicButtonOpacity
-
-                buttonText: JamiStrings.mosaic
-                buttonTextColor: JamiTheme.whiteColor
-                buttonTextHeight: JamiTheme.mosaicButtonTextPreferredHeight
-                buttonTextFont.weight: Font.DemiBold
-                buttonTextFont.pointSize: JamiTheme.mosaicButtonTextPointSize
-                textHAlign: Text.AlignLeft
-
-                imageColor: JamiTheme.whiteColor
-                imageContainerHeight: 20
-                imageContainerWidth: 20
-                source: JamiResources.mosaic_black_24dp_svg
-
-                normalColor: JamiTheme.mosaicButtonNormalColor
-                onButtonTextWidthChanged: {
-                    if (buttonTextWidth > JamiTheme.mosaicButtonTextPreferredWidth) {
-                        if (mosaicButton.Layout.preferredWidth + buttonTextWidth
-                                - JamiTheme.mosaicButtonTextPreferredWidth
-                                > JamiTheme.mosaicButtonMaxWidth) {
-                            mosaicButton.Layout.preferredWidth = JamiTheme.mosaicButtonMaxWidth
-                            buttonTextEnableElide = true
-                        } else
-                            mosaicButton.Layout.preferredWidth += buttonTextWidth
-                                    - JamiTheme.mosaicButtonTextPreferredWidth
-                    }
-                }
-
-                onClicked: CallAdapter.showGridConferenceLayout()
-            }
-
             Text {
                 id: callTimerText
 
