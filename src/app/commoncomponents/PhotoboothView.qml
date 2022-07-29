@@ -62,6 +62,8 @@ Item {
 
     onVisibleChanged: {
         if (!visible) {
+            imageLayer.visible = true
+            buttonsRowLayout.visible = false
             stopBooth()
         }
     }

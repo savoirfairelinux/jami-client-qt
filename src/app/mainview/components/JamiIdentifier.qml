@@ -36,19 +36,17 @@ Rectangle {
     radius: 20
     Layout.bottomMargin: JamiTheme.jamiIdMargins
     Layout.leftMargin: JamiTheme.jamiIdMargins
-    width: Math.max(secondLine.width, jamiRegisteredNameText.width + 2 * JamiTheme.preferredMarginSize)
+    width: Math.max(mainRectangle.width + secondLine.implicitWidth, jamiRegisteredNameText.width + 2 * JamiTheme.preferredMarginSize)
     height: 91
     color: JamiTheme.backgroundColor
 
     ColumnLayout {
         id: component
-        anchors.fill: parent
 
         RowLayout {
             id: firstLine
-
-            Layout.preferredWidth: parent.width
             Layout.alignment: Qt.AlignTop
+            Layout.preferredWidth: root.width
 
             Rectangle {
                 id: mainRectangle
@@ -60,13 +58,11 @@ Rectangle {
 
 
                 Rectangle {
-
                     id: rectForRadius
                     anchors.bottom: parent.bottom
                     width: 20
                     height: 20
                     color: JamiTheme.mainColor
-
                 }
 
                 ResponsiveImage {
