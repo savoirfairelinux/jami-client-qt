@@ -152,27 +152,29 @@ Control {
             property int popupMode: CallActionBar.ActionPopupMode.ListElement
             property var listModel: ListModel {
                 id: layoutModel
-
-                Component.onCompleted: {
-                    layoutModel.append({"Name": layoutManager.isCallFullscreen ?
-                                                JamiStrings.exitFullScreen :
-                                                JamiStrings.viewFullScreen,
-                                        "IconSource": layoutManager.isCallFullscreen ?
-                                                      JamiResources.close_fullscreen_24dp_svg :
-                                                      JamiResources.open_in_full_24dp_svg})
-                    layoutModel.append({})
-                }
             }
             function accept(index) {
                 switch(layoutModel.get(index).Name) {
-                  case JamiStrings.exitFullScreen:
-                        layoutModel.get(index).Name = JamiStrings.viewFullScreen
-                        root.fullScreenClicked()
-                        break
                   case JamiStrings.viewFullScreen:
-                        layoutModel.get(index).Name = JamiStrings.exitFullScreen
                         root.fullScreenClicked()
+                        layoutModel.get(index).ActiveSetting = layoutManager.isCallFullscreen
                         break
+                  case JamiStrings.mosaic:
+                        if (!isGrid)
+                            CallAdapter.showGridConferenceLayout()
+                        break
+                }
+            }
+            onTriggered: {
+                layoutModel.clear()
+                layoutModel.append({"Name": JamiStrings.viewFullScreen,
+                                    "IconSource": JamiResources.open_in_full_24dp_svg,
+                                    "ActiveSetting": layoutManager.isCallFullscreen})
+                if (isConference) {
+                    layoutModel.append({})
+                    layoutModel.append({"Name": JamiStrings.mosaic,
+                                        "IconSource": JamiResources.mosaic_black_24dp_svg,
+                                        "ActiveSetting": isGrid})
                 }
             }
         },
