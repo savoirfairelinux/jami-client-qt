@@ -216,7 +216,7 @@ Only 64-bit MSVC build can be compiled.
 
 **Set up**
 
-- macOS minimum version 10.13
+- macOS minimum version 10.15
 - install python3
 - download xcode
 - install Qt 6.2
