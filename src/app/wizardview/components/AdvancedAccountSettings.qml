@@ -164,6 +164,7 @@ Rectangle {
 
                                 text: JamiStrings.encryptAccount
                                 font.pixelSize: JamiTheme.creditsTextSize
+                                font.weight: Font.Medium
                                 Layout.fillWidth: true
                                 Layout.leftMargin: 35
                                 Layout.topMargin: 25
@@ -411,6 +412,7 @@ Rectangle {
                                 visible: openedNickname
                                 text: JamiStrings.customizeProfile
                                 elide: Text.ElideRight
+                                font.weight: Font.Medium
                                 Layout.topMargin: 25
                                 Layout.leftMargin: 35
                                 font.pixelSize: JamiTheme.creditsTextSize
