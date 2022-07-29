@@ -207,22 +207,24 @@ ItemDelegate {
             id: menuItem
 
             width: itemListView.menuItemWidth
-            height: itemListView.menuItemHeight
             background: Rectangle {
                 anchors.fill: parent
                 color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
             }
             contentItem: RowLayout {
                 anchors.fill: parent
-                anchors.margins: 6
                 ResponsiveImage {
+                    Layout.leftMargin: 6
                     source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement ?
                                 IconSource : (menuItem.ListView.isCurrentItem ?
                                                   JamiResources.check_box_24dp_svg :
                                                   JamiResources.check_box_outline_blank_24dp_svg)
                     color: "white"
+                    visible: delegateText.visible
                 }
                 Text {
+                    id: delegateText
+                    Layout.rightMargin: 6
                     Layout.fillWidth: true
                     horizontalAlignment: Text.AlignLeft
                     verticalAlignment: Text.AlignVCenter
@@ -230,6 +232,14 @@ ItemDelegate {
                           === CallActionBar.ActionPopupMode.ListElement ? Name : DeviceName
                     elide: Text.ElideRight
                     font.pointSize: 9
+                    color: "white"
+                    visible: text
+                }
+                Rectangle {
+                    id: buttonDiv
+                    visible: !delegateText.visible
+                    Layout.fillWidth: true
+                    height: 1
                     color: "white"
                 }
             }
