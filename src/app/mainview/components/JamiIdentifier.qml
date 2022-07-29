@@ -36,11 +36,12 @@ Rectangle {
     radius: 20
     Layout.bottomMargin: JamiTheme.jamiIdMargins
     Layout.leftMargin: JamiTheme.jamiIdMargins
-    width: 296
+    width: Math.max(secondLine.width, jamiRegisteredNameText.width + 2 * JamiTheme.preferredMarginSize)
     height: 91
     color: JamiTheme.backgroundColor
 
     ColumnLayout {
+        id: component
         anchors.fill: parent
 
         RowLayout {
@@ -82,8 +83,8 @@ Rectangle {
             }
 
             RowLayout {
+                id: secondLine
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-                Layout.fillWidth: true
 
                 PushButton {
                     id: btnEdit
@@ -150,7 +151,7 @@ Rectangle {
             id: jamiRegisteredNameText
 
             Layout.alignment: Qt.AlignBottom | Qt.AlignCenter
-            Layout.bottomMargin: JamiTheme.preferredMarginSize
+            Layout.margins: JamiTheme.preferredMarginSize
 
             font.pointSize: JamiTheme.textFontSize + 1
 
