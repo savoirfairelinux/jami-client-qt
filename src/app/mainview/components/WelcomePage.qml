@@ -93,25 +93,8 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
 
-
             width: 630
             height: 263
-
-            ResponsiveImage {
-                id: welcomeLogo
-
-                visible: root.width > 630
-
-                width: 212
-                height: 244
-                anchors.top: parent.top
-                anchors.right: parent.right
-                anchors.rightMargin: 20
-                opacity: 1
-
-                source: JamiResources.welcome_illustration_2_svg
-
-            }
 
             Rectangle {
 
@@ -133,14 +116,13 @@ Rectangle {
                         id: welcome
 
                         Layout.alignment: Qt.AlignLeft
-                        Layout.preferredWidth: 180
                         Layout.bottomMargin: 5
                         font.pixelSize: JamiTheme.bigFontSize
                         Layout.leftMargin: 40
                         Layout.topMargin: 26
 
                         wrapMode: Text.WordWrap
-                        horizontalAlignment: Text.AlignHCenter
+                        horizontalAlignment: Text.AlignLeft
                         verticalAlignment: Text.AlignVCenter
 
                         text: JamiStrings.welcomeToJami
@@ -171,6 +153,21 @@ Rectangle {
 
             }
 
+            ResponsiveImage {
+                id: welcomeLogo
+
+                visible: root.width > 630
+                width: 212
+                height: 244
+                anchors.top: parent.top
+                anchors.topMargin: - 20
+                anchors.right: parent.right
+                anchors.rightMargin: 20
+                opacity: 1
+
+                source: JamiResources.welcome_illustration_2_svg
+
+            }
         }
 
         Flow {
