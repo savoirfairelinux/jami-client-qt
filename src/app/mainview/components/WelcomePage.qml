@@ -20,9 +20,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import Qt.labs.lottieqt
 
 import "../../commoncomponents"
@@ -49,20 +50,6 @@ Rectangle {
     ColumnLayout{
 
         anchors.centerIn: parent
-
-        //        anchors.topMargin: 20
-        //        anchors.centerIn: parent
-
-        //                LottieAnimation {
-
-        //                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
-        //                 source: JamiResources.notification_bell_outline_edited_json
-        //                 autoPlay: true
-        //                 width: 5
-        //                 height:5
-        //                 loops: Animation.Infinite
-
-        //                }
 
         Item {
 
@@ -150,54 +137,32 @@ Rectangle {
 
         }
 
-        Label {
+        Flow {
+            id: tipsFlow
 
-
-            text: JamiStrings.recommendationMessage
-            font.bold: true
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 25
-            color: JamiTheme.textColor
-            font.pixelSize: JamiTheme.tipBoxTitleFontSize
-        }
-
-        RowLayout {
-            spacing: 17
+            spacing: JamiTheme.preferredMarginSize
+            Layout.preferredWidth: Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 600 + 3 * JamiTheme.preferredMarginSize)
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 10
             Layout.bottomMargin: 50
 
-            TipBox {
-                id: firstTipBox
+            Repeater {
+                model: TipsModel
+                Layout.alignment: Qt.AlignCenter
 
-                tips_ : false
+                delegate: TipBox {
+                    tipId: TipId
+                    title: Title
+                    description: Description
+                    isTip: IsTip
+                    visible: index < 3
 
+                    onIgnoreClicked: TipsModel.remove(TipId)
+                }
             }
-
-            TipBox {
-
-
-            }
-
-            TipBox {
-
-
-            }
-
         }
-
-        Label {
-
-
-            text: JamiStrings.noRecommendations
-            color: "#002B4A"
-            visible: false
-            Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 10
-
-        }
-
     }
+
 
     CustomBorder {
         commonBorder: false
