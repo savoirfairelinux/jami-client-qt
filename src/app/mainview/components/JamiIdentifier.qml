@@ -38,7 +38,7 @@ Rectangle {
     Layout.leftMargin: JamiTheme.jamiIdMargins
     width: 296
     height: 91
-    color: JamiTheme.whiteColor
+    color: JamiTheme.backgroundColor
 
     ColumnLayout {
         anchors.fill: parent

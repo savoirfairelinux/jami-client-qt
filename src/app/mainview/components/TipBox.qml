@@ -50,6 +50,8 @@ Item {
         id: rect
         anchors.fill: parent
 
+        color: JamiTheme.backgroundColor
+
         border.color: opened ? "transparent" : Qt.rgba(0, 0.34,0.6,0.16)
         radius: 20
 
@@ -83,17 +85,15 @@ Item {
                 }
 
                 Label {
-
                     text: root.isTip ? JamiStrings.tips : JamiStrings.customize
+                    color: JamiTheme.textColor
                     font.weight: Font.Medium
                     Layout.topMargin: 5
                     visible: !opened
                     Layout.alignment: Qt.AlignLeft
                     Layout.leftMargin: isTip ? 8 : 5
                     font.pixelSize: 13
-
                 }
-
             }
 
             Text {
@@ -107,6 +107,7 @@ Item {
                 wrapMode: Text.WordWrap
                 font.weight: root.isTip && opened ?  Font.Medium : Font.Normal
                 text: !isTip ? JamiStrings.customizeText : root.title
+                color: JamiTheme.textColor
             }
 
 
@@ -134,6 +135,7 @@ Item {
 
                 text: CurrentAccount.alias
                 placeholderText: JamiStrings.enterNickname
+                color: JamiTheme.textColor
 
                 fontSize: JamiTheme.tipBoxContentFontSize
 
@@ -149,16 +151,17 @@ Item {
                 visible: opened && !isTip
                 wrapMode: Text.WordWrap
                 text: JamiStrings.customizationDescription2
+                color: JamiTheme.textColor
             }
 
             Text {
-
                 Layout.preferredWidth: root.width - 32
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                 font.pixelSize: JamiTheme.tipBoxContentFontSize
                 visible: opened && isTip
                 wrapMode: Text.WordWrap
                 text: root.description
+                color: JamiTheme.textColor
             }
 
         }

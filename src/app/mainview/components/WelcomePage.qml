@@ -34,6 +34,16 @@ Rectangle {
     id: root
     color: JamiTheme.secondaryBackgroundColor
 
+    MouseArea {
+        anchors.fill: parent
+        enabled: visible
+        onClicked: {
+            for (var c in tipsFlow.children) {
+                tipsFlow.children[c].opened = false
+            }
+        }
+    }
+
     Item {
         width: Math.max(300, root.width)
         anchors.bottom: root.bottom
