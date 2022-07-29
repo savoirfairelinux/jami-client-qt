@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1370378_47e8730d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-07-29T17:18:58Z",
+      "side": 1,
+      "message": "Looks good, thanks.\n\nLikely unrelated: when I opened settings view after rebuilding my client-qt with this (which is on top of the new UI changes), after clicking into a text box (the one with my name) the zoom level was reset back to 100 for some reason.  Couldn\u0027t reproduce again.",
+      "revId": "f2d1600234eb26445443c7a43fa847333920cb0f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
