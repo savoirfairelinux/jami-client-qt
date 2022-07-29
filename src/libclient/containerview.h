@@ -266,14 +266,7 @@ private:
 
     // Hard unbox and unwrap underlying data container.
     const BaseType& data() {
-        //this fix error when build for macOS 10.13(error: 'value' is unavailable: introduced in macOS 10.14)
-    #ifdef __APPLE__
-        if(!data_.has_value())
-           throw std::logic_error("bad optional access");
-        return *data_;
-    #else
         return data_.value().get();
-    #endif
     }
 
     // Actually filter the view.
