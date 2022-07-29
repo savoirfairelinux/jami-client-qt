@@ -78,7 +78,7 @@ Rectangle {
                 Layout.margins: 50
                 text: JamiStrings.advancedAccountSettings
                 color: JamiTheme.textColor
-                font.pixelSize: 22
+                font.pixelSize: JamiTheme.bigFontSize
             }
 
             ColumnLayout {
