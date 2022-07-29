@@ -235,12 +235,19 @@ ItemDelegate {
                     color: "white"
                     visible: text
                 }
+                ResponsiveImage {
+                    Layout.leftMargin: 6
+                    source: JamiResources.check_black_24dp_svg
+                    color: "white"
+                    visible: delegateText.visible && ActiveSetting
+                }
                 Rectangle {
                     id: buttonDiv
                     visible: !delegateText.visible
                     Layout.fillWidth: true
                     height: 1
-                    color: "white"
+                    border.width : 0
+                    color: JamiTheme.separationLine
                 }
             }
         }
