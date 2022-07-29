@@ -141,7 +141,7 @@ Rectangle {
                             width: parent.width /2
                             anchors.bottom: parent.bottom
                             anchors.left: parent.left
-                            border.color: JamiTheme.lightBlue_
+                            border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.lightBlue_
                             color: JamiTheme.secondaryBackgroundColor
 
                             Rectangle {
@@ -151,7 +151,7 @@ Rectangle {
                                 anchors.bottom: parent.bottom
                                 anchors.left: parent.left
                                 anchors.margins: 1
-                                border.color: JamiTheme.secondaryBackgroundColor
+                                border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.secondaryBackgroundColor
                                 color: JamiTheme.secondaryBackgroundColor
 
                             }
@@ -389,7 +389,7 @@ Rectangle {
                             width: parent.width /2
                             anchors.bottom: parent.bottom
                             anchors.right: parent.right
-                            border.color: JamiTheme.lightBlue_
+                            border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.lightBlue_
                             color: JamiTheme.secondaryBackgroundColor
                             layer.enabled: true
 
@@ -401,7 +401,7 @@ Rectangle {
                                 anchors.bottom: parent.bottom
                                 anchors.right: parent.right
                                 anchors.margins: 1
-                                border.color: JamiTheme.secondaryBackgroundColor
+                                border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.secondaryBackgroundColor
                                 color: JamiTheme.secondaryBackgroundColor
 
                             }
