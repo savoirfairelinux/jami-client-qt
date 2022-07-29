@@ -127,7 +127,7 @@ Item {
 
             }
 
-            EditableLineEdit {
+            MaterialLineEdit {
 
                 id: displayNameLineEdit
 
@@ -139,6 +139,8 @@ Item {
                 text: CurrentAccount.alias
                 placeholderText: JamiStrings.enterNickname
                 color: JamiTheme.textColor
+
+                backgroundColor: JamiTheme.backgroundColor
 
                 fontSize: JamiTheme.tipBoxContentFontSize
 
