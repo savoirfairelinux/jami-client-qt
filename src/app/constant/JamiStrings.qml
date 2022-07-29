@@ -651,8 +651,6 @@ Item {
     property string introductionJami: qsTr("Share, freely and privately with Jami")
     property string alreadyHaveAccount: qsTr("I already have an account")
     property string useExistingAccount: qsTr("Use existing Jami account")
-    property string recommendationMessage: qsTr("Here are some recommendations to improve your experience on Jami")
-    property string noRecommendations: qsTr("Never show recommendations again")
     property string welcomeToJami: qsTr("Welcome to Jami")
     property string identifierDescription: qsTr("Share this Jami identifier to be contacted on this account!")
     property string hereIsIdentifier: qsTr("Here is your Jami identifier, don't hesitate to share it in order to be contacted more easily!")

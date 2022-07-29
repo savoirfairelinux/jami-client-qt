@@ -24,6 +24,7 @@
 #include "contactadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
+#include "tipsmodel.h"
 #include "previewengine.h"
 #include "utilsadapter.h"
 #include "conversationsadapter.h"
@@ -117,11 +118,13 @@ registerTypes(QQmlEngine* engine,
     auto pluginAdapter = new PluginAdapter(lrcInstance, parent);
     auto currentConversation = new CurrentConversation(lrcInstance, parent);
     auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, parent);
+    auto tipsModel = new TipsModel(settingsManager, parent);
     auto videoDevices = new VideoDevices(lrcInstance, parent);
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
 
     // qml adapter registration
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, tipsModel, "TipsModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, messagesAdapter, "MessagesAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, conversationsAdapter, "ConversationsAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, avAdapter, "AvAdapter");

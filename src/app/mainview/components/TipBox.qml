@@ -31,15 +31,19 @@ import "../../commoncomponents"
 Item {
 
     id: root
-
-    property bool tips_ : true
+    property var title: ""
+    property var description: ""
+    property int tipId: 0
+    property bool isTip : true
     property bool hovered: false
     property bool clicked : false
     property bool opened : false
     property string alias: ""
 
     width: 200
-    height: opened ? 170 : 105
+    height: tipColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
+
+    signal ignoreClicked
 
     Rectangle {
 
@@ -51,15 +55,16 @@ Item {
 
         ColumnLayout {
 
+            id: tipColumnLayout
             anchors.top: parent.top
             width: parent.width
             anchors.topMargin: 10
+
 
             RowLayout {
 
                 Layout.leftMargin: 15
                 Layout.alignment: Qt.AlignLeft
-
 
                 ResponsiveImage {
                     id: icon
@@ -74,19 +79,19 @@ Item {
                     containerHeight: Layout.preferredHeight
                     containerWidth: Layout.preferredWidth
 
-                    source: tips_ ? JamiResources.glasses_tips_svg : JamiResources.noun_paint_svg
+                    source: !isTip ?  JamiResources.noun_paint_svg : JamiResources.glasses_tips_svg
                     color: "#005699"
                 }
 
                 Label {
 
-                    text: tips_ ? JamiStrings.tips : JamiStrings.customize
+                    text: root.isTip ? JamiStrings.tips : JamiStrings.customize
                     font.weight: Font.Medium
                     Layout.topMargin: 5
                     visible: !opened
                     Layout.alignment: Qt.AlignLeft
-                    Layout.leftMargin: tips_ ? 5 : 8
-                    font.pixelSize: JamiTheme.tipBoxTitleFontSize
+                    Layout.leftMargin: isTip ? 8 : 5
+                    font.pixelSize: 13
 
                 }
 
@@ -94,15 +99,15 @@ Item {
 
             Text {
 
-                Layout.preferredWidth: tips_? 150 : 170
+                Layout.preferredWidth: root.isTip ? opened ? 140 : 150 : 170
                 Layout.leftMargin: 20
-                Layout.topMargin: tips_ && opened ? 0 : 8
+                Layout.topMargin: root.isTip && opened ? 0 : 8
                 Layout.bottomMargin: 15
                 font.pixelSize: JamiTheme.tipBoxContentFontSize
-                visible: !opened || tips_
+                visible: !opened || root.isTip
                 wrapMode: Text.WordWrap
-                font.weight: tips_ && opened ?  Font.Medium : Font.Normal
-                text: tips_ ? JamiStrings.whySaveAccount : JamiStrings.customizeText
+                font.weight: root.isTip && opened ?  Font.Medium : Font.Normal
+                text: !isTip ? JamiStrings.customizeText : root.title
             }
 
 
@@ -113,7 +118,7 @@ Item {
                 Layout.topMargin: 10
                 Layout.alignment: Qt.AlignHCenter
                 darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-                visible: !tips_ && opened
+                visible: opened &&! isTip
                 enabled: true
                 imageId: CurrentAccount.id
                 avatarSize: 53
@@ -125,7 +130,7 @@ Item {
 
                 id: displayNameLineEdit
 
-                visible: !tips_ && opened
+                visible: !isTip && opened
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: root.width - 32
@@ -150,8 +155,8 @@ Item {
                 Layout.leftMargin: 20
                 Layout.topMargin: 6
                 font.pixelSize: JamiTheme.tipBoxContentFontSize
-                visible: opened && !tips_
-                wrapMode: Text.WrapAnywhere
+                visible: opened && !isTip
+                wrapMode: Text.WordWrap
                 text: JamiStrings.customizationDescription2
             }
 
@@ -160,9 +165,9 @@ Item {
                 Layout.preferredWidth: root.width - 32
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                 font.pixelSize: JamiTheme.tipBoxContentFontSize
-                visible: opened && tips_
-                wrapMode: Text.WrapAnywhere
-                text: "Ceci est le texte affiché lorsqu'on ouvre une box tips"
+                visible: opened && isTip
+                wrapMode: Text.WordWrap
+                text: root.description
             }
 
         }
@@ -171,19 +176,14 @@ Item {
 
     HoverHandler {
         target : rect
-        onHoveredChanged: {
-            root.hovered = hovered
-        }
+        onHoveredChanged: root.hovered = hovered
         cursorShape: Qt.PointingHandCursor
     }
 
     TapHandler {
         target: rect
-        onTapped: {
-            opened = !opened
-        }
+        onTapped: opened = !opened
     }
-
 
     DropShadow {
         z: -1
@@ -216,9 +216,6 @@ Item {
 
         source: JamiResources.round_close_24dp_svg
 
-        onClicked: { root.destroy();}
+        onClicked: root.ignoreClicked()
     }
-
 }
-
-
