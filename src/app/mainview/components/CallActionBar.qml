@@ -160,6 +160,7 @@ Control {
                                         "IconSource": layoutManager.isCallFullscreen ?
                                                       JamiResources.close_fullscreen_24dp_svg :
                                                       JamiResources.open_in_full_24dp_svg})
+                    layoutModel.append({})
                 }
             }
             function accept(index) {
