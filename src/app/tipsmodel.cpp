@@ -18,11 +18,15 @@
 
 #include "tipsmodel.h"
 
-TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
+TipsModel::TipsModel(LRCInstance* instance, AppSettingsManager* settingsManager, QObject* parent)
     : QAbstractListModel(parent)
+    , lrcInstance_(instance)
     , settingsManager_(settingsManager)
 {
-    tips_.append({{"id", "0"}, {"title", tr("Customize")}, {"desc", ""}, {"isTip", "false"}});
+    const auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+
+    if (accInfo.profileInfo.avatar.isEmpty() || accInfo.profileInfo.alias.isEmpty())
+        tips_.append({{"id", "0"}, {"title", tr("Customize")}, {"desc", ""}, {"isTip", "false"}});
     tips_.append({{"id", "1"},
                   {"title", tr("What does Jami mean?")},
                   {"desc",
@@ -103,6 +107,16 @@ TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
         else
             it++;
     }
+
+    connect(&lrcInstance_->accountModel(),
+            &AccountModel::profileUpdated,
+            this,
+            [&](const QString& id) {
+                const auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+                // If the profile changes, show or not customize
+                if (!accInfo.profileInfo.avatar.isEmpty() && !accInfo.profileInfo.alias.isEmpty())
+                    remove(QVariant::fromValue(0), false);
+            });
 }
 
 int
@@ -146,17 +160,19 @@ TipsModel::roleNames() const
 }
 
 void
-TipsModel::remove(QVariant id)
+TipsModel::remove(QVariant id, bool updateHidden)
 {
     auto index = 0;
     auto it = tips_.begin();
     while (it != tips_.end()) {
         if ((*it)["id"] == id.toString()) {
             beginRemoveRows(QModelIndex(), index, index);
-            QStringList hiddenIds = settingsManager_->getValue(Settings::Key::HiddenTips)
-                                        .toStringList();
-            hiddenIds.append(id.toString());
-            settingsManager_->setValue(Settings::Key::HiddenTips, hiddenIds);
+            if (updateHidden) {
+                QStringList hiddenIds = settingsManager_->getValue(Settings::Key::HiddenTips)
+                                            .toStringList();
+                hiddenIds.append(id.toString());
+                settingsManager_->setValue(Settings::Key::HiddenTips, hiddenIds);
+            }
             tips_.erase(it);
             endRemoveRows();
             return;

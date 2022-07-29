@@ -46,15 +46,16 @@ class TipsModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    TipsModel(AppSettingsManager* sm, QObject* parent = nullptr);
+    TipsModel(LRCInstance* instance, AppSettingsManager* sm, QObject* parent = nullptr);
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    Q_INVOKABLE void remove(QVariant id);
+    Q_INVOKABLE void remove(QVariant id, bool updateHidden = true);
 
 private:
+    LRCInstance* lrcInstance_ {nullptr};
     VectorMapStringString tips_;
     AppSettingsManager* settingsManager_;
 };

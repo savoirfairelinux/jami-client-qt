@@ -122,11 +122,9 @@ Item {
                 imageId: CurrentAccount.id
                 avatarSize: 53
                 buttonSize: 53
-
             }
 
             EditableLineEdit {
-
                 id: displayNameLineEdit
 
                 visible: !isTip && opened
@@ -134,18 +132,12 @@ Item {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: root.width - 32
 
-                placeholderText: {
-                    if (WizardViewStepModel.accountCreationOption !==
-                            WizardViewStepModel.AccountCreationOption.CreateRendezVous)
-                        return JamiStrings.enterNickname
-                    else
-                        return JamiStrings.enterRVName
-                }
+                text: CurrentAccount.alias
+                placeholderText: JamiStrings.enterNickname
 
                 fontSize: JamiTheme.tipBoxContentFontSize
 
-                onEditingFinished: root.alias = text
-
+                onEditingFinished: AccountAdapter.setCurrAccDisplayName(text)
             }
 
             Text {

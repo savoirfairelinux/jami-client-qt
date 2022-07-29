@@ -47,14 +47,13 @@ Rectangle {
         onClicked: aboutPopUpDialog.open()
     }
 
-    ColumnLayout{
+    ColumnLayout {
 
         anchors.centerIn: parent
 
         Item {
 
             Layout.alignment: Qt.AlignCenter
-
 
             width: 630
             height: 263
@@ -81,7 +80,7 @@ Rectangle {
                 color: JamiTheme.rectColor
                 anchors.topMargin: 25
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: welcomeLogo.visible ? 630 : Math.min(350, root.width - 2* JamiTheme.preferredMarginSize)
+                width: welcomeLogo.visible ? 630 : 350
                 height: 243
                 opacity:1
 
@@ -142,7 +141,7 @@ Rectangle {
 
             spacing: JamiTheme.preferredMarginSize
             Layout.preferredWidth: Math.min(root.width - 2 * JamiTheme.preferredMarginSize, 600 + 3 * JamiTheme.preferredMarginSize)
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 10
             Layout.bottomMargin: 50
 

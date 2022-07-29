@@ -118,7 +118,7 @@ registerTypes(QQmlEngine* engine,
     auto pluginAdapter = new PluginAdapter(lrcInstance, parent);
     auto currentConversation = new CurrentConversation(lrcInstance, parent);
     auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, parent);
-    auto tipsModel = new TipsModel(settingsManager, parent);
+    auto tipsModel = new TipsModel(lrcInstance, settingsManager, parent);
     auto videoDevices = new VideoDevices(lrcInstance, parent);
     auto currentAccountToMigrate = new CurrentAccountToMigrate(lrcInstance, parent);
 
