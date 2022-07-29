@@ -25,19 +25,28 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
-
+import "../../settingsview/components"
 
 Rectangle {
 
     id: root
 
+    NameRegistrationDialog {
+        id : nameRegistrationDialog
+
+        onAccepted: jamiRegisteredNameText.nameRegistrationState =
+                    UsernameLineEdit.NameRegistrationState.BLANK
+    }
+
     property bool editable: false
+    property bool editing: false
 
     radius: 20
     Layout.bottomMargin: JamiTheme.jamiIdMargins
     Layout.leftMargin: JamiTheme.jamiIdMargins
-    width: Math.max(mainRectangle.width + secondLine.implicitWidth, jamiRegisteredNameText.width + 2 * JamiTheme.preferredMarginSize)
-    height: 91
+    property var minWidth: mainRectangle.width + secondLine.implicitWidth
+    width: Math.max(minWidth, jamiRegisteredNameText.width + 2 * JamiTheme.preferredMarginSize)
+    height: component.implicitHeight
     color: JamiTheme.backgroundColor
 
     ColumnLayout {
@@ -85,19 +94,42 @@ Rectangle {
                 PushButton {
                     id: btnEdit
 
-                    imageColor: JamiTheme.buttonTintedBlue
+                    imageColor: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
                     normalColor: JamiTheme.transparentColor
                     Layout.topMargin: JamiTheme.pushButtonMargin
                     hoverEnabled: false
                     preferredSize : 30
                     imageContainerWidth: JamiTheme.pushButtonSize
                     imageContainerHeight: JamiTheme.pushButtonSize
-                    visible: false //(editable) Not visible for the moment
-                    border.color: JamiTheme.buttonTintedBlue
+                    visible: false // editable && CurrentAccount.registeredName === ""
+                    border.color: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
+
+                    enabled: {
+                        /*switch(jamiRegisteredNameText.nameRegistrationState) {
+                        case UsernameLineEdit.NameRegistrationState.BLANK:
+                        case UsernameLineEdit.NameRegistrationState.FREE:
+                            return true
+                        case UsernameLineEdit.NameRegistrationState.SEARCHING:
+                        case UsernameLineEdit.NameRegistrationState.INVALID:
+                        case UsernameLineEdit.NameRegistrationState.TAKEN:
+                            return false
+                        }*/
+                    }
 
                     source: JamiResources.round_edit_24dp_svg
 
-                    onClicked: { }
+                    onClicked: {
+                        /*if (!root.editing) {
+                            source = JamiResources.check_black_24dp_svg
+                            jamiRegisteredNameText.text = ""
+                            jamiRegisteredNameText.focus = true
+                        } else {
+                            source = JamiResources.round_edit_24dp_svg
+                            jamiRegisteredNameText.accepted()
+                            jamiRegisteredNameText.focus = false
+                        }
+                        root.editing = !root.editing*/
+                    }
                 }
 
                 PushButton {
@@ -143,17 +175,30 @@ Rectangle {
             }
         }
 
-        ElidedTextLabel {
+        MaterialLineEdit {
             id: jamiRegisteredNameText
+            readOnly: !root.editing
+            Layout.preferredWidth: 320
 
-            Layout.alignment: Qt.AlignBottom | Qt.AlignCenter
-            Layout.margins: JamiTheme.preferredMarginSize
+            horizontalAlignment: Qt.AlignHCenter
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+            backgroundColor: JamiTheme.backgroundColor
 
             font.pointSize: JamiTheme.textFontSize + 1
 
             text: CurrentAccount.bestId
             color: JamiTheme.textColor
 
+            onAccepted: {
+                if (!btnEdit.enabled)
+                    return
+                if (text.length === 0) {
+                    text = CurrentAccount.bestId
+                } else {
+                    nameRegistrationDialog.openNameRegistrationDialog(text)
+                }
+            }
         }
     }
 
