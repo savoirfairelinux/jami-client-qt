@@ -27,25 +27,54 @@ import net.jami.Models 1.1
 import Qt.labs.lottieqt
 
 import "../../commoncomponents"
+import "../js/keyboardshortcuttablecreation.js" as KeyboardShortcutTableCreation
 
 Rectangle {
 
     id: root
     color: JamiTheme.secondaryBackgroundColor
 
-    MaterialButton {
-
-        id: aboutJami
-        tertiary: true
-
+    Item {
+        width: Math.max(300, root.width)
         anchors.bottom: root.bottom
-        anchors.horizontalCenter: root.horizontalCenter
-        anchors.bottomMargin: 10
-        preferredWidth: JamiTheme.aboutButtonPreferredWidthth
-        text: JamiStrings.aboutJami
+        height: aboutJami.height
+        anchors.margins: JamiTheme.preferredMarginSize
 
-        onClicked: aboutPopUpDialog.open()
+        MaterialButton {
+            id: aboutJami
+            tertiary: true
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            preferredWidth: JamiTheme.aboutButtonPreferredWidthth
+            text: JamiStrings.aboutJami
+
+            onClicked: aboutPopUpDialog.open()
+        }
+
+        PushButton {
+            id: btnKeyboard
+
+            imageColor: JamiTheme.buttonTintedBlue
+            normalColor: JamiTheme.transparentColor
+            hoveredColor: JamiTheme.transparentColor
+            anchors.right: parent.right
+            anchors.rightMargin: JamiTheme.preferredMarginSize
+            preferredSize : 30
+            imageContainerWidth: JamiTheme.pushButtonSize
+            imageContainerHeight: JamiTheme.pushButtonSize
+
+            border.color: JamiTheme.buttonTintedBlue
+
+            source: JamiResources.keyboard_black_24dp_svg
+            toolTipText: JamiStrings.keyboardShortcuts
+
+            onClicked:  {
+                KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject()
+                KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow()
+            }
+        }
     }
+
 
     ColumnLayout {
 
