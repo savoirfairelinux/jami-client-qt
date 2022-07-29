@@ -20,9 +20,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
+import net.jami.Models 1.1
 import Qt.labs.lottieqt
 
 import "../../commoncomponents"
@@ -34,19 +35,6 @@ Rectangle {
     ColumnLayout{
 
         anchors.fill: parent
-        //        anchors.topMargin: 20
-        //        anchors.centerIn: parent
-
-        //                LottieAnimation {
-
-        //                 Layout.alignment: Qt.AlignTop | Qt.AlignRight
-        //                 source: JamiResources.notification_bell_outline_edited_json
-        //                 autoPlay: true
-        //                 width: 5
-        //                 height:5
-        //                 loops: Animation.Infinite
-
-        //                }
 
         Item {
 
@@ -131,50 +119,72 @@ Rectangle {
 
         }
 
+
+        Connections {
+            target: UtilsAdapter
+
+            function onHideRecommendations() {
+                var newVisibility = !AppSettingsManager.getValue(Settings.NeverShowRecoAgain)
+                labelRecommendations.visible = newVisibility
+                tipsFlow.visible = newVisibility
+                hideRecommendationsButton.visible = newVisibility
+            }
+        }
+
         Label {
+            id: labelRecommendations
             text: JamiStrings.recommendationMessage
             font.bold: true
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 20
             color: JamiTheme.textColor
+
+            visible: !AppSettingsManager.getValue(Settings.NeverShowRecoAgain)
         }
 
-        RowLayout{
+        Flow {
+            id: tipsFlow
             spacing: 17
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 10
             Layout.bottomMargin: 50
 
             TipBox {
-
                 id: lol
-
             }
 
             TipBox {
-
                 tips_ : false
             }
 
             TipBox {
-
                 tips_ : false
             }
 
+            visible: !AppSettingsManager.getValue(Settings.NeverShowRecoAgain)
         }
 
-        Label {
+        MaterialButton {
+            id: hideRecommendationsButton
+            tertiary: true
 
             text: JamiStrings.noRecommendations
-            color: "#002B4A"
+            secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 10
 
+            visible: !AppSettingsManager.getValue(Settings.NeverShowRecoAgain)
+            toolTipText: JamiStrings.hideRecommendations
+
+            onClicked: UtilsAdapter.setAppValue(Settings.NeverShowRecoAgain, true)
+
+            KeyNavigation.tab: aboutJami
+            KeyNavigation.up: tipsFlow
+            KeyNavigation.down: KeyNavigation.tab
         }
 
         MaterialButton {
-
             id: aboutJami
             tertiary: true
 
@@ -186,9 +196,6 @@ Rectangle {
             onClicked: aboutPopUpDialog.open()
         }
     }
-
-
-
 
 
     CustomBorder {
