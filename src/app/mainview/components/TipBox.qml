@@ -140,6 +140,8 @@ Item {
                 placeholderText: JamiStrings.enterNickname
                 color: JamiTheme.textColor
 
+                backgroundColor: JamiTheme.backgroundColor
+
                 fontSize: JamiTheme.tipBoxContentFontSize
 
                 onEditingFinished: root.alias = text
