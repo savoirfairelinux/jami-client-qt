@@ -50,7 +50,7 @@ Item {
         id: rect
         anchors.fill: parent
 
-        border.color: opened ? "transparent" : Qt.rgba(0, 0.34,0.6,0.16)
+        border.color: opened || hovered ? "transparent" : Qt.rgba(0, 0.34,0.6,0.16)
         radius: 20
 
         ColumnLayout {
