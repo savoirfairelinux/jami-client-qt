@@ -115,12 +115,14 @@ Rectangle {
 
                     DropShadow {
                         z: -1
-                        anchors.fill: parent
+                        width: parent.width
+                        height: parent.height
                         horizontalOffset: 3.0
                         verticalOffset: 3.0
                         radius: 16
-                        source: bg
                         color: Qt.rgba(0, 0.34,0.6,0.16)
+                        source: bg
+                        transparentBorder: true
                     }
 
                     Rectangle {
@@ -360,12 +362,14 @@ Rectangle {
 
                     DropShadow {
                         z: -1
-                        anchors.fill: parent
+                        width: parent.width
+                        height: parent.height
                         horizontalOffset: 3.0
                         verticalOffset: 3.0
                         radius: 16
-                        source: bg2
                         color: Qt.rgba(0, 0.34,0.6,0.16)
+                        source: bg2
+                        transparentBorder: true
                     }
 
                     Rectangle {
