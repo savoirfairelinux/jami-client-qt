@@ -120,9 +120,10 @@ Item {
                 darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
                 visible: opened &&! isTip
                 enabled: true
+                buttonSize: 35
                 imageId: CurrentAccount.id
                 avatarSize: 53
-                buttonSize: 53
+                cancelButton: false
 
             }
 
