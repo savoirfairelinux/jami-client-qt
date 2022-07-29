@@ -115,6 +115,7 @@ Rectangle {
 
                     DropShadow {
                         z: -1
+                        visible: openedPassword
                         width: parent.width
                         height: parent.height
                         horizontalOffset: 3.0
@@ -128,7 +129,7 @@ Rectangle {
                     Rectangle {
                         id: bg
                         radius: JamiTheme.formsRadius
-                        border.color: JamiTheme.lightBlue_
+                        border.color: openedPassword? JamiTheme.transparentColor : JamiTheme.lightBlue_
                         layer.enabled: true
                         color: JamiTheme.secondaryBackgroundColor
                         anchors.fill: parent
@@ -286,7 +287,7 @@ Rectangle {
                                     color: openedPassword  ? JamiTheme.lightBlue_ : JamiTheme.transparentColor
                                     Layout.alignment: Qt.AlignBottom | Qt.AlignLeft
                                     Layout.leftMargin:  openedPassword ? 2 : openedNickname ? 0 : 20
-                                    Layout.bottomMargin: openedPassword ? 1 : 0
+                                    Layout.bottomMargin: openedPassword ? 2 : 0
 
                                     Rectangle {
 
@@ -362,6 +363,7 @@ Rectangle {
 
                     DropShadow {
                         z: -1
+                        visible: openedNickname
                         width: parent.width
                         height: parent.height
                         horizontalOffset: 3.0
@@ -376,7 +378,7 @@ Rectangle {
                         id: bg2
 
                         radius: JamiTheme.formsRadius
-                        border.color: JamiTheme.lightBlue_
+                        border.color: openedNickname ? JamiTheme.transparentColor : JamiTheme.lightBlue_
                         layer.enabled: true
                         color: JamiTheme.secondaryBackgroundColor
                         anchors.fill: parent
