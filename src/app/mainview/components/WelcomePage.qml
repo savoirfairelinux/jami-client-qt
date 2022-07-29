@@ -28,12 +28,28 @@ import Qt.labs.lottieqt
 import "../../commoncomponents"
 
 Rectangle {
+
     id: root
     color: JamiTheme.secondaryBackgroundColor
 
+    MaterialButton {
+
+        id: aboutJami
+        tertiary: true
+
+        anchors.bottom: root.bottom
+        anchors.horizontalCenter: root.horizontalCenter
+        anchors.bottomMargin: 10
+        preferredWidth: JamiTheme.aboutButtonPreferredWidthth
+        text: JamiStrings.aboutJami
+
+        onClicked: aboutPopUpDialog.open()
+    }
+
     ColumnLayout{
 
-        anchors.fill: parent
+        anchors.centerIn: parent
+
         //        anchors.topMargin: 20
         //        anchors.centerIn: parent
 
@@ -59,6 +75,8 @@ Rectangle {
             ResponsiveImage {
                 id: welcomeLogo
 
+                visible: root.width > 630
+
                 width: 212
                 height: 244
                 anchors.top: parent.top
@@ -75,10 +93,14 @@ Rectangle {
                 radius: 30
                 color: JamiTheme.rectColor
                 anchors.topMargin: 25
-                anchors.fill: parent
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: welcomeLogo.visible ? 630 : Math.min(350, root.width - 2* JamiTheme.preferredMarginSize)
                 height: 243
                 opacity:1
 
+                Behavior on width {
+                    NumberAnimation { duration: JamiTheme.shortFadeDuration }
+                }
 
                 ColumnLayout {
 
@@ -89,13 +111,11 @@ Rectangle {
                         Layout.preferredWidth: 180
                         Layout.preferredHeight: 36
                         Layout.bottomMargin: 5
-                        font.pixelSize: 22
+                        font.pixelSize: JamiTheme.bigFontSize
                         Layout.leftMargin: 40
                         Layout.topMargin: 26
 
                         wrapMode: Text.WordWrap
-                        font.pointSize: JamiTheme.textFontSize + 1
-
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
 
@@ -111,10 +131,9 @@ Rectangle {
                         Layout.preferredWidth: 300
                         Layout.preferredHeight: 36
                         Layout.bottomMargin: 5
-                        font.pixelSize: 13
+                        font.pixelSize: JamiTheme.headerFontSize
 
                         wrapMode: Text.WordWrap
-                        font.pointSize: JamiTheme.textFontSize + 1
 
                         text: JamiStrings.hereIsIdentifier
                         color: JamiTheme.textColor
@@ -132,64 +151,53 @@ Rectangle {
         }
 
         Label {
+
+
             text: JamiStrings.recommendationMessage
             font.bold: true
             Layout.alignment: Qt.AlignCenter
-            Layout.topMargin: 20
+            Layout.topMargin: 25
             color: JamiTheme.textColor
+            font.pixelSize: JamiTheme.tipBoxTitleFontSize
         }
 
-        RowLayout{
+        RowLayout {
             spacing: 17
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 10
             Layout.bottomMargin: 50
 
             TipBox {
+                id: firstTipBox
 
-                id: lol
+                tips_ : false
 
             }
 
             TipBox {
 
-                tips_ : false
+
             }
 
             TipBox {
 
-                tips_ : false
+
             }
 
         }
 
         Label {
 
+
             text: JamiStrings.noRecommendations
             color: "#002B4A"
-
+            visible: false
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: 10
 
         }
 
-        MaterialButton {
-
-            id: aboutJami
-            tertiary: true
-
-            Layout.alignment: Qt.AlignCenter | Qt.AlignBottom
-            Layout.topMargin: 10
-            preferredWidth: JamiTheme.aboutButtonPreferredWidthth
-            text: JamiStrings.aboutJami
-
-            onClicked: aboutPopUpDialog.open()
-        }
     }
-
-
-
-
 
     CustomBorder {
         commonBorder: false
@@ -199,5 +207,6 @@ Rectangle {
         bBorderwidth: 0
         borderColor: JamiTheme.tabbarBorderColor
     }
-}
 
+
+}

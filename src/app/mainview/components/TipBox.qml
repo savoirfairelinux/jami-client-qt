@@ -31,10 +31,13 @@ import "../../commoncomponents"
 Item {
 
     id: root
+
     property bool tips_ : true
     property bool hovered: false
     property bool clicked : false
     property bool opened : false
+    property string alias: ""
+
     width: 200
     height: opened ? 170 : 105
 
@@ -43,38 +46,20 @@ Item {
         id: rect
         anchors.fill: parent
 
-        border.color: Qt.rgba(0, 0.34,0.6,0.16)
+        border.color: opened ? "transparent" : Qt.rgba(0, 0.34,0.6,0.16)
         radius: 20
 
         ColumnLayout {
 
-            anchors.fill: parent
-            anchors.topMargin: 5
+            anchors.top: parent.top
+            width: parent.width
+            anchors.topMargin: 10
 
             RowLayout {
 
-                Layout.leftMargin: 20
+                Layout.leftMargin: 15
                 Layout.alignment: Qt.AlignLeft
 
-                PushButton {
-                    id: btnClose
-
-                    width: 20
-                    height: 20
-                    imageContainerWidth: 20
-                    imageContainerHeight : 20
-                    Layout.rightMargin: 8
-                    Layout.alignment: Qt.AlignRight
-                    visible: opened
-                    radius : 5
-
-                    imageColor: "grey"
-                    normalColor: "transparent"
-
-                    source: JamiResources.round_close_24dp_svg
-
-                    onClicked: { root.destroy();}
-                }
 
                 ResponsiveImage {
                     id: icon
@@ -89,19 +74,19 @@ Item {
                     containerHeight: Layout.preferredHeight
                     containerWidth: Layout.preferredWidth
 
-                    source: tips_ ?  JamiResources.noun_paint_svg : JamiResources.glasses_tips_svg
+                    source: tips_ ? JamiResources.glasses_tips_svg : JamiResources.noun_paint_svg
                     color: "#005699"
                 }
 
                 Label {
 
-                    text: tips_ ? "Customize" : " Tips"
+                    text: tips_ ? JamiStrings.tips : JamiStrings.customize
                     font.weight: Font.Medium
                     Layout.topMargin: 5
                     visible: !opened
                     Layout.alignment: Qt.AlignLeft
-                    Layout.leftMargin: tips_ ? 8 : 5
-                    font.pixelSize: 13
+                    Layout.leftMargin: tips_ ? 5 : 8
+                    font.pixelSize: JamiTheme.tipBoxTitleFontSize
 
                 }
 
@@ -109,14 +94,15 @@ Item {
 
             Text {
 
-                Layout.preferredWidth: 170
+                Layout.preferredWidth: tips_? 150 : 170
                 Layout.leftMargin: 20
-                Layout.topMargin: 8
+                Layout.topMargin: tips_ && opened ? 0 : 8
                 Layout.bottomMargin: 15
-                font.pixelSize: 12
-                visible: !opened
+                font.pixelSize: JamiTheme.tipBoxContentFontSize
+                visible: !opened || tips_
                 wrapMode: Text.WordWrap
-                text: tips_ ? "Add a picture and a nickname to complete your profile" : "Why should I save my account ?"
+                font.weight: tips_ && opened ?  Font.Medium : Font.Normal
+                text: tips_ ? JamiStrings.whySaveAccount : JamiStrings.customizeText
             }
 
 
@@ -124,10 +110,10 @@ Item {
                 id: setAvatarWidget
                 Layout.preferredWidth: JamiTheme.accountListAvatarSize
                 Layout.preferredHeight: JamiTheme.accountListAvatarSize
-
+                Layout.topMargin: 10
                 Layout.alignment: Qt.AlignHCenter
                 darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-                visible: opened && tips_
+                visible: !tips_ && opened
                 enabled: true
                 imageId: CurrentAccount.id
                 avatarSize: 53
@@ -135,52 +121,46 @@ Item {
 
             }
 
-            MaterialLineEdit {
-                id: aliasEdit
+            EditableLineEdit {
 
+                id: displayNameLineEdit
 
+                visible: !tips_ && opened
 
-                property string lastFirstChar
-
-                Layout.preferredHeight: fieldLayoutHeight
-                Layout.preferredWidth: fieldLayoutWidth
                 Layout.alignment: Qt.AlignCenter
+                Layout.preferredWidth: root.width - 32
 
-                focus: visible
-                visible: tips_ && opened
-                selectByMouse: true
-                enabled: visible
                 placeholderText: {
                     if (WizardViewStepModel.accountCreationOption !==
                             WizardViewStepModel.AccountCreationOption.CreateRendezVous)
-                        return JamiStrings.enterYourName
+                        return JamiStrings.enterNickname
                     else
                         return JamiStrings.enterRVName
                 }
-                font.pointSize: JamiTheme.textFontSize
-                font.kerning: true
 
+                fontSize: JamiTheme.tipBoxContentFontSize
 
-                }
+                onEditingFinished: root.alias = text
 
-            Text {
-
-                Layout.preferredWidth: 170
-                Layout.leftMargin: 20
-                Layout.topMargin: 8
-                font.pixelSize: 12
-                visible: opened && tips_
-                wrapMode: Text.WrapAnywhere
-                text: "Your profile is only shared with your contacts"
             }
 
             Text {
 
-                Layout.preferredWidth: 170
+                Layout.preferredWidth: root.width - 32
                 Layout.leftMargin: 20
-                Layout.topMargin: 8
-                font.pixelSize: 12
+                Layout.topMargin: 6
+                font.pixelSize: JamiTheme.tipBoxContentFontSize
                 visible: opened && !tips_
+                wrapMode: Text.WrapAnywhere
+                text: JamiStrings.customizationDescription2
+            }
+
+            Text {
+
+                Layout.preferredWidth: root.width - 32
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                font.pixelSize: JamiTheme.tipBoxContentFontSize
+                visible: opened && tips_
                 wrapMode: Text.WrapAnywhere
                 text: "Ceci est le texte affiché lorsqu'on ouvre une box tips"
             }
@@ -216,6 +196,27 @@ Item {
         color: Qt.rgba(0, 0.34,0.6,0.16)
         source: rect
         transparentBorder: true
+    }
+
+    PushButton {
+        id: btnClose
+
+        width: 20
+        height: 20
+        imageContainerWidth: 20
+        imageContainerHeight : 20
+        anchors.margins: 14
+        anchors.top: parent.top
+        anchors.right: parent.right
+        visible: opened
+        circled: true
+
+        imageColor: Qt.rgba(0, 86/255, 153/255, 1)
+        normalColor: "transparent"
+
+        source: JamiResources.round_close_24dp_svg
+
+        onClicked: { root.destroy();}
     }
 
 }
