@@ -176,7 +176,7 @@ QtObject {
 
         // Only leave fullscreen mode if our window isn't in fullscreen
         // mode already.
-        if (priv.fullScreenItems.length === 0) {
+        if (priv.fullScreenItems.length === 0 && priv.windowedVisibility !== Window.Hidden) {
             // Simply recall the last visibility state.
             visibility = priv.windowedVisibility
         }
