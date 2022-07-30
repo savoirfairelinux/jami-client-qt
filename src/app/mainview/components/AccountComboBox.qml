@@ -131,6 +131,8 @@ Label {
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
                 text: CurrentAccount.bestName
+                textFormat: TextEdit.PlainText
+
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
@@ -145,6 +147,8 @@ Label {
                 visible: text.length && text !== bestNameText.text
 
                 text:  CurrentAccount.bestId
+                textFormat: TextEdit.PlainText
+
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight

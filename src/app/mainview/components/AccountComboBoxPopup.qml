@@ -84,6 +84,7 @@ Popup {
                 Text {
                     anchors.centerIn: parent
                     text: JamiStrings.addAccount + "+"
+                    textFormat: TextEdit.PlainText
                     color: JamiTheme.textColor
                     font.pointSize: JamiTheme.textFontSize
                 }
