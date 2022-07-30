@@ -45,7 +45,7 @@ BaseModalDialog {
 
         source: JamiResources.round_close_24dp_svg
 
-        onClicked: { close();}
+        onClicked: { close(); }
     }
 
     popupContent: JamiFlickable {
@@ -72,7 +72,7 @@ BaseModalDialog {
                             JamiResources.logo_jami_standard_coul_svg
             }
 
-            Label {
+            TextEdit {
                 id: jamiSlogansText
 
                 Layout.alignment: Qt.AlignCenter
@@ -86,6 +86,8 @@ BaseModalDialog {
                 verticalAlignment: Text.AlignVCenter
 
                 text: textMetricsjamiSlogansText.text
+                selectByMouse: true
+                readOnly: true
                 color: JamiTheme.tintedBlue
 
                 TextMetrics {
@@ -95,7 +97,7 @@ BaseModalDialog {
                 }
             }
 
-            Label {
+            TextEdit {
                 id: jamiVersionText
 
                 Layout.alignment: Qt.AlignCenter
@@ -106,13 +108,15 @@ BaseModalDialog {
                 padding: 0
 
                 text: JamiStrings.version + ": " + UtilsAdapter.getVersionStr()
+                selectByMouse: true
+                readOnly: true
                 color: JamiTheme.textColor
 
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }
 
-            Label {
+            TextEdit {
                 id: jamiDeclarationText
 
                 Layout.alignment: Qt.AlignCenter
@@ -128,9 +132,11 @@ BaseModalDialog {
 
                 // TextMetrics does not work for multi-line.
                 text: JamiStrings.declaration
+                selectByMouse: true
+                readOnly: true
             }
 
-            Label {
+            TextEdit {
                 id: jamiDeclarationHyperText
 
                 Layout.alignment: Qt.AlignCenter
@@ -146,6 +152,9 @@ BaseModalDialog {
                 verticalAlignment: Text.AlignVCenter
 
                 text: textMetricsjamiDeclarationHyperText.text
+                textFormat: TextEdit.RichText
+                selectByMouse: true
+                readOnly: true
                 onLinkActivated: Qt.openUrlExternally(link)
 
                 TextMetrics {
@@ -163,13 +172,12 @@ BaseModalDialog {
                 }
             }
 
-            Label {
+            TextEdit {
                 id: jamiNoneWarrantyHyperText
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: Math.min(390, root.width)
                 Layout.topMargin: 15
-                lineHeight: 1.2
                 wrapMode: Text.WordWrap
                 font.pixelSize: JamiTheme.tinyCreditsTextSize
 
@@ -178,6 +186,9 @@ BaseModalDialog {
                 color: JamiTheme.textColor
 
                 text: textMetricsjamiNoneWarrantyHyperText.text
+                textFormat: TextEdit.RichText
+                selectByMouse: true
+                readOnly: true
                 onLinkActivated: Qt.openUrlExternally(link)
 
                 TextMetrics {
