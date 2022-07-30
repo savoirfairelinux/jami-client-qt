@@ -106,7 +106,7 @@ ItemDelegate {
             // best name
             Text {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 20
+                Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignVCenter
                 elide: Text.ElideMiddle
                 text: Title === undefined ? "" : Title
@@ -121,7 +121,7 @@ ItemDelegate {
                          && LastInteractionDate !== undefined
                          && interactive
                 Layout.fillWidth: true
-                Layout.preferredHeight: 20
+                Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignTop
 
                 // last Interaction date
@@ -157,7 +157,7 @@ ItemDelegate {
             }
             Text {
                 Layout.fillWidth: true
-                Layout.preferredHeight: 20
+                Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignVCenter
                 text: JamiStrings.banned
                 textFormat: TextEdit.PlainText
@@ -190,7 +190,7 @@ ItemDelegate {
             Text {
                 id: callStatusText
 
-                Layout.preferredHeight: 20
+                Layout.minimumHeight: 20
                 Layout.alignment: Qt.AlignRight
                 text: InCall ? UtilsAdapter.getCallStatusStr(CallState) : ""
                 textFormat: TextEdit.PlainText
