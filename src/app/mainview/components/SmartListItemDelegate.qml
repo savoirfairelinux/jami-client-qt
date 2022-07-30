@@ -110,6 +110,7 @@ ItemDelegate {
                 Layout.alignment: Qt.AlignVCenter
                 elide: Text.ElideMiddle
                 text: Title === undefined ? "" : Title
+                textFormat: TextEdit.PlainText
                 font.pointSize: JamiTheme.smartlistItemFontSize
                 font.weight: UnreadMessagesCount ? Font.Bold : Font.Normal
                 color: JamiTheme.textColor
@@ -127,6 +128,7 @@ ItemDelegate {
                 Text {
                     Layout.alignment: Qt.AlignVCenter
                     text: LastInteractionDate === undefined ? "" : LastInteractionDate
+                    textFormat: TextEdit.PlainText
                     font.pointSize: JamiTheme.smartlistItemInfoFontSize
                     font.weight: UnreadMessagesCount ? Font.DemiBold : Font.Normal
                     color: JamiTheme.textColor
@@ -140,6 +142,7 @@ ItemDelegate {
                     text: Draft ?
                               Draft :
                               (LastInteraction === undefined ? "" : LastInteraction)
+                    textFormat: TextEdit.PlainText
                     font.pointSize: JamiTheme.smartlistItemInfoFontSize
                     font.weight: UnreadMessagesCount ? Font.Normal : Font.Light
                     font.hintingPreference: Font.PreferNoHinting
@@ -157,6 +160,7 @@ ItemDelegate {
                 Layout.preferredHeight: 20
                 Layout.alignment: Qt.AlignVCenter
                 text: JamiStrings.banned
+                textFormat: TextEdit.PlainText
                 visible: IsBanned
                 font.pointSize: JamiTheme.smartlistItemFontSize
                 font.weight: Font.Bold
@@ -189,6 +193,7 @@ ItemDelegate {
                 Layout.preferredHeight: 20
                 Layout.alignment: Qt.AlignRight
                 text: InCall ? UtilsAdapter.getCallStatusStr(CallState) : ""
+                textFormat: TextEdit.PlainText
                 font.pointSize: JamiTheme.smartlistItemInfoFontSize
                 font.weight: Font.Medium
                 color: JamiTheme.textColor
