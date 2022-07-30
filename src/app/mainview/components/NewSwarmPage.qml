@@ -191,6 +191,7 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
             Layout.topMargin: JamiTheme.preferredMarginSize
+            autoAccelerator: true
 
             preferredWidth: JamiTheme.aboutButtonPreferredWidth
 

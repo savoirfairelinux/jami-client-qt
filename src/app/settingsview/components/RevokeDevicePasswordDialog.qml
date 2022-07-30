@@ -100,9 +100,10 @@ BaseModalDialog {
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
                 pressedColor: JamiTheme.buttonTintedBlackPressed
                 secondary: true
+                autoAccelerator: true
                 enabled: false
 
-                text: JamiStrings.remove
+                text: JamiStrings.optionRemove
 
                 onClicked: {
                     revokeDeviceWithPassword(deviceId, passwordEdit.text)
@@ -122,6 +123,7 @@ BaseModalDialog {
                 hoveredColor: JamiTheme.buttonTintedBlackHovered
                 pressedColor: JamiTheme.buttonTintedBlackPressed
                 secondary: true
+                autoAccelerator: true
                 enabled: true
 
                 text: JamiStrings.optionCancel

@@ -122,6 +122,7 @@ BaseModalDialog {
                         }
                     }
                     secondary: true
+                    autoAccelerator: true
 
                     text: buttonTitles[modelData]
 

@@ -28,6 +28,7 @@ import net.jami.Constants 1.1
 AbstractButton {
     id: root
 
+    property bool autoAccelerator: false
     property bool boldFont: false
     property bool primary: false
     property bool secondary: false
@@ -240,6 +241,17 @@ AbstractButton {
         // We don't want to eat clicks on the Text.
         acceptedButtons: Qt.NoButton
         cursorShape: root.hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+    }
+
+    Shortcut {
+        enabled: text.length > 0 && parent.visible && autoAccelerator
+        sequence: {
+            if (text.length === 0)
+                return ""
+            return "Alt+" + text[0]
+        }
+        context: Qt.ApplicationShortcut
+        onActivated: clicked()
     }
 
 }
