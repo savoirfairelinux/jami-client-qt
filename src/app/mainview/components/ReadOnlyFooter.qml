@@ -60,6 +60,7 @@ Control {
 
             MaterialButton {
                 text: JamiStrings.removeContact
+                autoAccelerator: true
                 font.pointSize: JamiTheme.textFontSize + 2
                 onClicked: MessagesAdapter.removeContact(
                                LRCInstance.selectedConvUid)
@@ -67,6 +68,7 @@ Control {
 
             MaterialButton {
                 text: JamiStrings.newConversation
+                autoAccelerator: true
                 font.pointSize: JamiTheme.textFontSize + 2
                 onClicked: ConversationsAdapter.restartConversation(
                                LRCInstance.selectedConvUid)

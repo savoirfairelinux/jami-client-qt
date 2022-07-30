@@ -152,6 +152,7 @@ Window {
                     hoveredColor: JamiTheme.buttonTintedBlackHovered
                     pressedColor: JamiTheme.buttonTintedBlackPressed
                     text: JamiStrings.logsViewClear
+                    autoAccelerator: true
 
                     onClicked: {
                         logsText.clear()
@@ -177,6 +178,7 @@ Window {
 
                     secondary: true
                     text: JamiStrings.logsViewCopy
+                    autoAccelerator: true
 
                     onClicked: {
                         logsText.selectAll()
@@ -215,6 +217,7 @@ Window {
                     pressedColor: JamiTheme.buttonTintedBlackPressed
                     text: JamiStrings.logsViewReport
                     secondary: true
+                    autoAccelerator: true
 
                     onClicked: Qt.openUrlExternally(
                                    "https://jami.net/bugs-and-improvements/")

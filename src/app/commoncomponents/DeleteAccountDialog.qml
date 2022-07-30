@@ -134,6 +134,7 @@ BaseModalDialog {
                 hoveredColor: JamiTheme.buttonTintedRedHovered
                 pressedColor: JamiTheme.buttonTintedRedPressed
                 secondary: true
+                autoAccelerator: true
 
                 text: JamiStrings.optionDelete
 
@@ -175,6 +176,7 @@ BaseModalDialog {
                 secondary: true
 
                 text: JamiStrings.optionCancel
+                autoAccelerator: true
 
                 onClicked: close()
             }

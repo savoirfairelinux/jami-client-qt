@@ -92,6 +92,7 @@ BaseModalDialog {
             hoveredColor: JamiTheme.buttonTintedBlueHovered
             pressedColor: JamiTheme.buttonTintedBluePressed
             secondary: true
+                autoAccelerator: true
 
             onClicked: Qt.quit()
         }

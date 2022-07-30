@@ -130,7 +130,7 @@ Rectangle {
         radius: margin
         preferredSize: JamiTheme.filesToSendDelegateButtonSize
 
-        toolTipText: JamiStrings.remove
+        toolTipText: JamiStrings.optionRemove
 
         source: JamiResources.cross_black_24dp_svg
 
