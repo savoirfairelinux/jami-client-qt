@@ -70,6 +70,8 @@ ItemDelegate {
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
 
                 text: Alias
+                textFormat: TextEdit.PlainText
+
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.textColor
                 elide: Text.ElideRight
@@ -82,6 +84,8 @@ ItemDelegate {
                 visible: text.length && Alias != Username
 
                 text: Username
+                textFormat: TextEdit.PlainText
+
                 font.pointSize: JamiTheme.textFontSize
                 color: JamiTheme.faddedLastInteractionFontColor
                 elide: Text.ElideRight
