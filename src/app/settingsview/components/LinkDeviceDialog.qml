@@ -170,6 +170,7 @@ BaseModalDialog {
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
                         pressedColor: JamiTheme.buttonTintedBlackPressed
                         secondary: true
+                        autoAccelerator: true
                         enabled: false
 
                         text: JamiStrings.exportAccount
@@ -189,6 +190,7 @@ BaseModalDialog {
                         hoveredColor: JamiTheme.buttonTintedBlackHovered
                         pressedColor: JamiTheme.buttonTintedBlackPressed
                         secondary: true
+                        autoAccelerator: true
                         enabled: true
 
                         text: JamiStrings.optionCancel

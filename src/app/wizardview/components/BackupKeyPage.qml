@@ -198,6 +198,7 @@ Rectangle {
             preferredWidth: JamiTheme.wizardButtonWidth
 
             text: JamiStrings.backupAccountBtn
+            autoAccelerator: true
             color: JamiTheme.buttonTintedGrey
             hoveredColor: JamiTheme.buttonTintedGreyHovered
             pressedColor: JamiTheme.buttonTintedGreyPressed
@@ -220,6 +221,7 @@ Rectangle {
             preferredWidth: JamiTheme.wizardButtonWidth
 
             text: JamiStrings.skip
+            autoAccelerator: true
             color: JamiTheme.buttonTintedGrey
             hoveredColor: JamiTheme.buttonTintedGreyHovered
             pressedColor: JamiTheme.buttonTintedGreyPressed

@@ -369,6 +369,7 @@ Window {
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
+            autoAccelerator: true
 
             text: window ? JamiStrings.shareWindow : JamiStrings.shareScreen
 
@@ -398,6 +399,7 @@ Window {
             hoveredColor: JamiTheme.buttonTintedBlackHovered
             pressedColor: JamiTheme.buttonTintedBlackPressed
             secondary: true
+            autoAccelerator: true
 
             text: JamiStrings.optionCancel
 
