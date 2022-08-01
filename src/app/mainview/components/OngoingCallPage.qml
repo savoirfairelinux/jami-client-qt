@@ -177,6 +177,7 @@ Rectangle {
                 anchors.centerIn: parent
                 anchors.margins: 3
                 visible: participantsLayer.count !== 0
+                participantsSide: callOverlay.participantsSide
 
                 onCountChanged: {
                     callOverlay.isConference = participantsLayer.count > 0

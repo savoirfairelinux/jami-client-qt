@@ -136,6 +136,8 @@
         <file>src/app/mainview/components/SmartListItemDelegate.qml</file>
         <file>src/app/mainview/components/BadgeNotifier.qml</file>
         <file>src/app/mainview/components/ParticipantsLayer.qml</file>
+        <file>src/app/mainview/components/ParticipantsLayoutVertical.qml</file>
+        <file>src/app/mainview/components/ParticipantsLayoutHorizontal.qml</file>
         <file>src/app/mainview/components/MainOverlay.qml</file>
         <file>src/app/mainview/components/CallButtonDelegate.qml</file>
         <file>src/app/mainview/components/CallActionBar.qml</file>
