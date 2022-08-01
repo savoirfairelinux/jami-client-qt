@@ -115,7 +115,9 @@ CallParticipants::addParticipant(const ParticipantInfos& participant)
         std::lock_guard<std::mutex> lk(participantsMtx_);
         auto it = participants_.find(participant.sinkId);
         if (it == participants_.end()) {
-            participants_.insert(std::next(participants_.begin(), idx_), participant.sinkId, participant);
+            participants_.insert(std::next(participants_.begin(), idx_),
+                                 participant.sinkId,
+                                 participant);
             added = true;
         } else {
             if (participant == (*it))
@@ -198,6 +200,7 @@ CallParticipants::toQJsonObject(uint index) const
     ret[ParticipantsInfosStrings::ISLOCAL] = participant->islocal;
     ret[ParticipantsInfosStrings::ISCONTACT] = participant->isContact;
     ret[ParticipantsInfosStrings::HANDRAISED] = participant->handRaised;
+    ret[ParticipantsInfosStrings::VOICEACTIVITY] = participant->voiceActivity;
     ret[ParticipantsInfosStrings::CALLID] = callId_;
 
     return ret;

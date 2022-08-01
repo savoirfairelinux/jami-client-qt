@@ -98,6 +98,9 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
     case Role::HandRaised:
         return QVariant::fromValue(
             participant.item.value(lrc::api::ParticipantsInfosStrings::HANDRAISED));
+    case Role::VoiceActivity:
+        return QVariant::fromValue(
+            participant.item.value(lrc::api::ParticipantsInfosStrings::VOICEACTIVITY));
     }
     return QVariant();
 }
