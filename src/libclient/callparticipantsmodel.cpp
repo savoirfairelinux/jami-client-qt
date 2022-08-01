@@ -198,6 +198,7 @@ CallParticipants::toQJsonObject(uint index) const
     ret[ParticipantsInfosStrings::ISLOCAL] = participant->islocal;
     ret[ParticipantsInfosStrings::ISCONTACT] = participant->isContact;
     ret[ParticipantsInfosStrings::HANDRAISED] = participant->handRaised;
+    ret[ParticipantsInfosStrings::VOICEACTIVITY] = participant->voiceActivity;
     ret[ParticipantsInfosStrings::CALLID] = callId_;
 
     return ret;
