@@ -94,13 +94,15 @@ Rectangle {
                 PushButton {
                     id: btnEdit
 
-                    imageColor: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
-                    normalColor: JamiTheme.transparentColor
-                    Layout.topMargin: JamiTheme.pushButtonMargin
-                    hoverEnabled: false
                     preferredSize : 30
                     imageContainerWidth: JamiTheme.pushButtonSize
                     imageContainerHeight: JamiTheme.pushButtonSize
+
+                    Layout.topMargin: JamiTheme.pushButtonMargin
+
+                    imageColor: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
+                    normalColor: JamiTheme.transparentColor
+                    hoveredColor: JamiTheme.transparentColor
                     visible: editable && CurrentAccount.registeredName === ""
                     border.color: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
 
@@ -117,6 +119,7 @@ Rectangle {
                     }
 
                     source: JamiResources.round_edit_24dp_svg
+                    toolTipText: JamiStrings.chooseUsername
 
                     onClicked: {
                         if (!root.editing) {
