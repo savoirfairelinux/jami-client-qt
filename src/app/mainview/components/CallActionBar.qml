@@ -23,6 +23,7 @@ import QtQuick.Layouts
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
 
 import "../../commoncomponents"
 
@@ -163,6 +164,16 @@ Control {
                         if (!isGrid)
                             CallAdapter.showGridConferenceLayout()
                         break
+                  case JamiStrings.participantsSide:
+                        var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
+                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, !onTheSide)
+                        participantsSide = !onTheSide
+                        break
+                  case JamiStrings.participantsTop:
+                        var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
+                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, !onTheSide)
+                        participantsSide = !onTheSide
+                        break
                 }
             }
             onTriggered: {
@@ -171,6 +182,11 @@ Control {
                                     "IconSource": JamiResources.open_in_full_24dp_svg,
                                     "ActiveSetting": layoutManager.isCallFullscreen})
                 if (isConference) {
+                    layoutModel.append({})
+                    var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
+                    layoutModel.append({"Name": onTheSide ? JamiStrings.participantsSide : JamiStrings.participantsTop,
+                                        "IconSource": onTheSide ? JamiResources.ontheside_black_24dp_svg : JamiResources.onthetop_black_24dp_svg,
+                                        "ActiveSetting": true})
                     layoutModel.append({})
                     layoutModel.append({"Name": JamiStrings.mosaic,
                                         "IconSource": JamiResources.mosaic_black_24dp_svg,
