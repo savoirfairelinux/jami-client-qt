@@ -19,8 +19,8 @@
 
 import QtQuick
 
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick.Layouts
+import QtQuick.Controls
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
@@ -55,6 +55,8 @@ Item {
         id: callVideoMedia
 
         ParticipantOverlay {
+            id: overlay
+
             anchors.fill: parent
             anchors.leftMargin: leftMargin_
 
@@ -71,6 +73,7 @@ Item {
             videoMuted: videoMuted_
             participantIsActive: active_
             isLocalMuted: audioLocalMuted_
+            voiceActive: voiceActive_
             participantIsModeratorMuted: audioModeratorMuted_
             participantHandIsRaised: isHandRaised_
 

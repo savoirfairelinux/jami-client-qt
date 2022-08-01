@@ -45,6 +45,7 @@
     X(IsModerator) \
     X(IsLocal) \
     X(IsContact) \
+    X(VoiceActivity) \
     X(HandRaised)
 
 namespace CallParticipant {
