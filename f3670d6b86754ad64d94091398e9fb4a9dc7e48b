@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3398b24d_0497db3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2022-08-01T13:54:38Z",
+      "side": 1,
+      "message": "Please also fix the desktop file name in main.cpp:112.\n\nhttps://review.jami.net/c/jami-client-qt/+/21828",
+      "revId": "f3670d6b86754ad64d94091398e9fb4a9dc7e48b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
