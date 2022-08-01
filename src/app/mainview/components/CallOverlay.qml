@@ -23,6 +23,7 @@ import QtQuick
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Enums 1.1
 
 import "../js/contactpickercreation.js" as ContactPickerCreation
 import "../js/selectscreenwindowcreation.js" as SelectScreenWindowCreation
@@ -44,6 +45,7 @@ Item {
     property bool isModerator
     property bool isConference
     property bool isGrid
+    property bool participantsSide: UtilsAdapter.getAppValue(Settings.ParticipantsSide)
     property bool localHandRaised
     property bool sharingActive: AvAdapter.isSharing()
     property string callId: ""
