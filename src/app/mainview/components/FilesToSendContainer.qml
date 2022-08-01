@@ -62,7 +62,7 @@ Rectangle {
                     width: JamiTheme.filesToSendDelegateWidth
                     height: JamiTheme.filesToSendDelegateHeight
 
-                    onRemoveFileButtonClicked: {
+                    onRemoveFileButtonClicked: function(index) {
                         filesToSendListModel.removeFromPending(index)
                     }
                 }

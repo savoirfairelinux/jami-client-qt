@@ -145,7 +145,9 @@ Rectangle {
                         sourceComponent: MessageListView {
                             DropArea {
                                 anchors.fill: parent
-                                onDropped: chatViewFooter.setFilePathsToSend(drop.urls)
+                                onDropped: function(drop) {
+                                    chatViewFooter.setFilePathsToSend(drop.urls)
+                                }
                             }
                         }
                     }
