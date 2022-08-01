@@ -175,7 +175,7 @@ Rectangle {
                 id: participantsLayer
                 anchors.fill: parent
                 anchors.centerIn: parent
-                anchors.margins: 3
+                anchors.margins: 1
                 visible: participantsLayer.count !== 0
                 participantsSide: callOverlay.participantsSide
 

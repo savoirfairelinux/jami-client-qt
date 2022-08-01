@@ -118,39 +118,33 @@ Item {
             }
         }
 
-        overlayItems: Rectangle {
+        overlayItems: Item {
             id: overlayRect
 
             width: participantIsActive ? mediaDistRender.contentRect.width : undefined
             height: participantIsActive ? mediaDistRender.contentRect.height : undefined
             anchors.centerIn: participantIsActive ? parent : undefined
             anchors.fill: participantIsActive ? undefined : parent
-            color: "transparent"
 
-            Item {
-                anchors.fill: parent
+            HoverHandler {
+                onPointChanged: {
+                    participantRect.opacity = 1
+                    fadeOutTimer.restart()
+                }
 
-                HoverHandler {
-                    onPointChanged: {
+                onHoveredChanged: {
+                    if (overlayMenu.hovered) {
                         participantRect.opacity = 1
                         fadeOutTimer.restart()
+                        return
                     }
-
-                    onHoveredChanged: {
-                        if (overlayMenu.hovered) {
-                            participantRect.opacity = 1
-                            fadeOutTimer.restart()
-                            return
-                        }
-                        participantRect.opacity = hovered ? 1 : 0
-                    }
+                    participantRect.opacity = hovered ? 1 : 0
                 }
             }
 
-            Rectangle {
+            Item {
                 id: participantRect
                 anchors.fill: parent
-                color: "transparent"
                 opacity: 0
 
                 // Participant buttons for moderation
@@ -182,11 +176,10 @@ Item {
                 // - In another participant, if i am not moderator, the mute state is isLocalMuted || participantIsModeratorMuted
                 // - In another participant, if i am moderator, the mute state is isLocalMuted
                 // - In my video, the mute state is isLocalMuted
-                Rectangle {
+                Item {
                     id: participantIndicators
                     width: participantRect.width
                     height: shapeHeight
-                    color: "transparent"
                     anchors.bottom: parent.bottom
 
                     Shape {

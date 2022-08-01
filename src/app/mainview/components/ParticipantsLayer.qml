@@ -19,8 +19,10 @@
 
 import QtQuick
 
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick
+import Qt5Compat.GraphicalEffects
+import QtQuick.Layouts
+import QtQuick.Controls
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
@@ -54,39 +56,55 @@ Item {
     Component {
         id: callVideoMedia
 
-        ParticipantOverlay {
+        Item {
             anchors.fill: parent
             anchors.leftMargin: leftMargin_
 
-            sinkId: sinkId_
-            uri: uri_
-            deviceId: deviceId_
-            isMe: isLocal_
-            participantIsModerator: isModerator_
-            bestName: {
-                if (bestName_ === uri_)
-                    NameDirectory.lookupAddress(CurrentAccount.uri_RingNS, uri_)
-                return bestName_
+            Rectangle {
+                radius: 10
+                color: JamiTheme.buttonTintedBlue
+                z: -1
+                visible: voiceActive_
+                anchors.fill: parent
             }
-            videoMuted: videoMuted_
-            participantIsActive: active_
-            isLocalMuted: audioLocalMuted_
-            participantIsModeratorMuted: audioModeratorMuted_
-            participantHandIsRaised: isHandRaised_
 
-            Connections {
-                id: registeredNameFoundConnection
+            ParticipantOverlay {
+                id: overlay
 
-                target: NameDirectory
-                enabled: bestName_ === uri_
+                anchors.fill: parent
+                anchors.margins: 2
 
-                function onRegisteredNameFound(status, address, name) {
-                    if (address === uri_ && status == NameDirectory.LookupStatus.SUCCESS) {
-                        bestName_ = name
+                sinkId: sinkId_
+                uri: uri_
+                deviceId: deviceId_
+                isMe: isLocal_
+                participantIsModerator: isModerator_
+                bestName: {
+                    if (bestName_ === uri_)
+                        NameDirectory.lookupAddress(CurrentAccount.uri_RingNS, uri_)
+                    return bestName_
+                }
+                videoMuted: videoMuted_
+                participantIsActive: active_
+                isLocalMuted: audioLocalMuted_
+                participantIsModeratorMuted: audioModeratorMuted_
+                participantHandIsRaised: isHandRaised_
+
+                Connections {
+                    id: registeredNameFoundConnection
+
+                    target: NameDirectory
+                    enabled: bestName_ === uri_
+
+                    function onRegisteredNameFound(status, address, name) {
+                        if (address === uri_ && status == NameDirectory.LookupStatus.SUCCESS) {
+                            bestName_ = name
+                        }
                     }
                 }
             }
         }
+
     }
 
     ParticipantsLayoutVertical {
