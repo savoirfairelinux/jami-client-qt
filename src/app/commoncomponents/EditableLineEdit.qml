@@ -53,7 +53,7 @@ Item {
     property alias verticalAlignment: lineEdit.verticalAlignment
     property alias horizontalAlignment: lineEdit.horizontalAlignment
     property alias font: lineEdit.font
-    property var placeholderText
+    property var placeholderText: ""
     property alias placeholderTextColor: lineEdit.placeholderTextColor
     property alias backgroundColor: lineEdit.backgroundColor
     property var editIconColor: "transparent"
