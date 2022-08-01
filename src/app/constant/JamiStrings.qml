@@ -250,6 +250,8 @@ Item {
     property string bothMuted: qsTr("Local and Moderator muted")
     property string moderatorMuted: qsTr("Moderator muted")
     property string notMuted: qsTr("Not muted")
+    property string participantsSide: qsTr("On the side")
+    property string participantsTop: qsTr("On the top")
 
     // LineEditContextMenu
     property string copy: qsTr("Copy")
