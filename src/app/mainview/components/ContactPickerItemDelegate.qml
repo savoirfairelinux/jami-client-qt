@@ -81,6 +81,7 @@ ItemDelegate {
 
             color: JamiTheme.textColor
             text: textMetricsContactPickerContactName.elidedText
+            textFormat: TextEdit.PlainText
             font.pointSize: JamiTheme.textFontSize
         }
 
@@ -102,6 +103,7 @@ ItemDelegate {
             }
 
             text: textMetricsContactPickerContactId.elidedText
+            textFormat: TextEdit.PlainText
             font.pointSize: JamiTheme.textFontSize
         }
     }

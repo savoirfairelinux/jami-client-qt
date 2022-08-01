@@ -98,7 +98,7 @@ Rectangle {
 
                     Label {
                         id: identifierDescription
-                        
+
                         anchors.top: welcome.bottom
                         anchors.left: parent.left
                         anchors.topMargin: JamiTheme.preferredMarginSize
@@ -116,7 +116,7 @@ Rectangle {
                     JamiIdentifier {
                         id: identifier
                         editable: true
-                        
+
                         anchors.top: identifierDescription.bottom
                         anchors.left: parent.left
                         anchors.margins: JamiTheme.preferredMarginSize
@@ -157,7 +157,7 @@ Rectangle {
 
                     Flow {
                         id: flow
-                        spacing: 12
+                        spacing: 13
 
                         Repeater {
                             model: TipsModel

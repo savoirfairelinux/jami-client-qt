@@ -25,8 +25,7 @@ import net.jami.Constants 1.1
 EditableLineEdit {
     id: root
 
-    placeholderText: isRendezVous ? JamiStrings.chooseAName :
-                                    JamiStrings.chooseYourUserName
+    placeholderText: JamiStrings.chooseYourUserName
 
     firstIco: readOnly? "" : JamiResources.person_24dp_svg
     firstIcoColor: "#03B9E9"

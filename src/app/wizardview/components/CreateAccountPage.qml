@@ -134,6 +134,8 @@ Rectangle {
                     Layout.topMargin: 15
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
+                    placeholderText: isRendezVous ? JamiStrings.chooseAName :
+                                    JamiStrings.chooseYourUserName
 
                     focus: visible
                     fontSize: 18
