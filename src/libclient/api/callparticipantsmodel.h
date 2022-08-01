@@ -52,6 +52,7 @@ const QString AUDIOLOCALMUTED = "audioLocalMuted";
 const QString AUDIOMODERATORMUTED = "audioModeratorMuted";
 const QString ISMODERATOR = "isModerator";
 const QString HANDRAISED = "handRaised";
+const QString VOICEACTIVITY = "voiceActivity";
 const QString STREAMID = "sinkId"; // TODO update
 const QString BESTNAME = "bestName";
 const QString ISLOCAL = "isLocal";
@@ -81,6 +82,7 @@ struct ParticipantInfos
         audioModeratorMuted = infos[ParticipantsInfosStrings::AUDIOMODERATORMUTED] == "true";
         isModerator = infos[ParticipantsInfosStrings::ISMODERATOR] == "true";
         handRaised = infos[ParticipantsInfosStrings::HANDRAISED] == "true";
+        voiceActivity = infos[ParticipantsInfosStrings::VOICEACTIVITY] == "true";
 
         if (infos[ParticipantsInfosStrings::STREAMID].isEmpty())
             sinkId = callId + uri + device;
@@ -107,6 +109,7 @@ struct ParticipantInfos
     bool islocal {false};
     bool isContact {false};
     bool handRaised {false};
+    bool voiceActivity {false};
 
     bool operator==(const ParticipantInfos& other) const
     {
@@ -115,7 +118,7 @@ struct ParticipantInfos
                && audioModeratorMuted == other.audioModeratorMuted && avatar == other.avatar
                && bestName == other.bestName && isContact == other.isContact
                && islocal == other.islocal && videoMuted == other.videoMuted
-               && handRaised == other.handRaised;
+               && handRaised == other.handRaised && voiceActivity == other.voiceActivity;
     }
 };
 

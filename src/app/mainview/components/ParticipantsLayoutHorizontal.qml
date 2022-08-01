@@ -120,6 +120,7 @@ SplitView {
                 property bool audioLocalMuted_: AudioLocalMuted
                 property bool audioModeratorMuted_: AudioModeratorMuted
                 property bool isHandRaised_: HandRaised
+                property bool voiceActive_: VoiceActivity
             }
         }
     }
@@ -307,6 +308,7 @@ SplitView {
                             property bool audioLocalMuted_: AudioLocalMuted
                             property bool audioModeratorMuted_: AudioModeratorMuted
                             property bool isHandRaised_: HandRaised
+                            property bool voiceActive_: VoiceActivity
                         }
                     }
                 }
