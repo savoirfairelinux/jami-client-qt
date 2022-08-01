@@ -211,6 +211,7 @@ Item {
 
         imageColor: Qt.rgba(0, 86/255, 153/255, 1)
         normalColor: "transparent"
+        toolTipText: JamiStrings.dismiss
 
         source: JamiResources.round_close_24dp_svg
 
