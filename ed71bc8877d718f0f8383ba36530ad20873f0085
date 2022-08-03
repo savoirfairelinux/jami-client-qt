@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8a00d5c_95e292ae",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-08-03T19:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1541906_69cd6cb6",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 12
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f4fedb7_d22fc3e2",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-09T22:45:52Z",
       "side": 1,
       "message": "space",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 3
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5aa9c9f_839c0ac4",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-08-03T19:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f4fedb7_d22fc3e2",
       "range": {
         "startLine": 66,
         "startChar": 2,
@@ -64,6 +112,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "935a9b16_27cc5eac",
+        "filename": "src/commoncomponents/appstore/Import.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-08-03T19:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43f1fce7_9df4f7fa",
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d768bc81_7a135f7c",
@@ -87,6 +153,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "936b5418_5d795ee4",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-08-03T19:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d768bc81_7a135f7c",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 18
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85ca892f_f6ce10c7",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-03-09T22:45:52Z",
       "side": 1,
       "message": "#ifndef APPSTORE\n...",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c7c03a1_c42e6cc0",
+        "filename": "src/main.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-08-03T19:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85ca892f_f6ce10c7",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -169,6 +283,30 @@
       "writtenOn": "2022-03-09T22:45:52Z",
       "side": 1,
       "message": "pimpl so the cpp is the only difference, addressed by the CMakeList.txt",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 36
+      },
+      "revId": "ed71bc8877d718f0f8383ba36530ad20873f0085",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52066a0b_a12f8fd2",
+        "filename": "src/os/macos/previewengine.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 225
+      },
+      "writtenOn": "2022-08-03T19:57:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e40808a_e5d610ce",
       "range": {
         "startLine": 42,
         "startChar": 0,
