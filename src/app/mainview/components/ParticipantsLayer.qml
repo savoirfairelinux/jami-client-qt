@@ -162,6 +162,7 @@ Item {
                 }
 
                 Item {
+                    id: centerItem
                     Layout.fillHeight: true
                     Layout.fillWidth: true
                     Layout.margins: 4
@@ -170,13 +171,6 @@ Item {
                     Flow {
                         id: commonParticipantsFlow
                         anchors.fill: parent
-
-                        anchors.leftMargin: {
-                            if (!inLine)
-                                return 0
-                            var showed = Math.min(genericParticipantsRect.showable, columns)
-                            return Math.max(0, Math.ceil((parent.width - componentWidth * showed) / 2))
-                        }
 
                         spacing: 4
                         property int columns: {
@@ -196,9 +190,19 @@ Item {
                             var w = Math.floor((commonParticipantsFlow.width - totalSpacing)/ commonParticipantsFlow.columns)
                             if (inLine) {
                                 w = Math.max(w, height)
-                                w = Math.min(w, height * 4 / 3) // Avoid to wide elements
+                                w = Math.min(w, height * 4 / 3) // Avoid too wide elements
                             }
                             return w
+                        }
+
+                        Item {
+                            height: parent.height
+                            width: {
+                                if (!inLine)
+                                    return 0
+                                var showed = Math.min(genericParticipantsRect.showable, commonParticipantsFlow.columns)
+                                return Math.max(0, Math.ceil((centerItem.width - commonParticipantsFlow.componentWidth * showed) / 2))
+                            }
                         }
 
                         Repeater {
