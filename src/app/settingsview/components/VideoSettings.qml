@@ -21,6 +21,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
+import SortFilterProxyModel 0.2
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
@@ -118,13 +120,27 @@ ColumnLayout {
         tipText: JamiStrings.selectVideoDevice
         placeholderText: JamiStrings.noVideoDevice
         currentSelectionText: VideoDevices.defaultName
-        comboModel: VideoDevices.devicesFilterModel()
+
+        comboModel: SortFilterProxyModel {
+            id: filteredDevicesModel
+            sourceModel: SortFilterProxyModel {
+                id: deviceSourceModel
+                sourceModel: VideoDevices.deviceSourceModel
+            }
+            filters: ValueFilter {
+                roleName: "DeviceName"
+                value: VideoDevices.defaultName
+                inverted: true
+                enabled: deviceSourceModel.count > 1
+            }
+        }
         role: "DeviceName"
 
         onActivated: {
             // TODO: start and stop preview logic in here should be in LRC
             VideoDevices.stopDevice(previewWidget.deviceId)
-            VideoDevices.setDefaultDevice(modelIndex)
+            VideoDevices.setDefaultDevice(
+                        filteredDevicesModel.mapToSource(modelIndex))
             startPreviewing()
         }
     }
@@ -145,10 +161,24 @@ ColumnLayout {
         labelText: JamiStrings.resolution
         currentSelectionText: VideoDevices.defaultRes
         tipText: JamiStrings.selectVideoResolution
-        comboModel: VideoDevices.resFilterModel()
+
+        comboModel: SortFilterProxyModel {
+            id: filteredResModel
+            sourceModel: SortFilterProxyModel {
+                id: resSourceModel
+                sourceModel: VideoDevices.resSourceModel
+            }
+            filters: ValueFilter {
+                roleName: "Resolution"
+                value: VideoDevices.defaultRes
+                inverted: true
+                enabled: resSourceModel.count > 1
+            }
+        }
         role: "Resolution"
 
-        onActivated: VideoDevices.setDefaultDeviceRes(modelIndex)
+        onActivated: VideoDevices.setDefaultDeviceRes(
+                         filteredResModel.mapToSource(modelIndex))
     }
 
     SettingsComboBox {
@@ -167,10 +197,23 @@ ColumnLayout {
         tipText: JamiStrings.selectFPS
         labelText: JamiStrings.fps
         currentSelectionText: VideoDevices.defaultFps.toString()
-        comboModel: VideoDevices.fpsFilterModel()
+        comboModel: SortFilterProxyModel {
+            id: filteredFpsModel
+            sourceModel: SortFilterProxyModel {
+                id: fpsSourceModel
+                sourceModel: VideoDevices.fpsSourceModel
+            }
+            filters: ValueFilter {
+                roleName: "FPS"
+                value: VideoDevices.defaultFps
+                inverted: true
+                enabled: fpsSourceModel.count > 1
+            }
+        }
         role: "FPS"
 
-        onActivated: VideoDevices.setDefaultDeviceFps(modelIndex)
+        onActivated: VideoDevices.setDefaultDeviceFps(
+                         filteredFpsModel.mapToSource(modelIndex))
     }
 
     ToggleSwitch {
@@ -264,7 +307,7 @@ ColumnLayout {
         comboModel: ListModel { id: screenSharingFpsModel }
         role: "FPS"
         Component.onCompleted: {
-            var elements = VideoDevices.getScreenSharingFpsModel()
+            var elements = VideoDevices.sharingFpsSourceModel
             for (var item in elements) {
                 screenSharingFpsModel.append({"FPS": elements[item]})
             }
