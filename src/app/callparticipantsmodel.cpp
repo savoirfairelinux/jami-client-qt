@@ -51,56 +51,42 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
 
     using namespace CallParticipant;
     // Internal call, so no need to protect participants_ as locked higher
-    auto participant = participants_.at(index.row());
+    auto& item = participants_.at(index.row()).item;
 
+    using namespace ParticipantsInfosStrings;
     switch (role) {
     case Role::Uri:
-        return QVariant::fromValue(participant.item.value(lrc::api::ParticipantsInfosStrings::URI));
+        return QVariant(item.value(URI).toString());
     case Role::BestName:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::BESTNAME));
+        return QVariant(item.value(BESTNAME).toString());
     case Role::Device:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::DEVICE));
+        return QVariant(item.value(DEVICE).toString());
     case Role::Active:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::ACTIVE));
+        return QVariant(item.value(ACTIVE).toBool());
     case Role::AudioLocalMuted:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::AUDIOLOCALMUTED));
+        return QVariant(item.value(AUDIOLOCALMUTED).toBool());
     case Role::AudioModeratorMuted:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::AUDIOMODERATORMUTED));
+        return QVariant(item.value(AUDIOMODERATORMUTED).toBool());
     case Role::VideoMuted:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::VIDEOMUTED));
+        return QVariant(item.value(VIDEOMUTED).toBool());
     case Role::IsModerator:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::ISMODERATOR));
+        return QVariant(item.value(ISMODERATOR).toBool());
     case Role::IsLocal:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::ISLOCAL));
+        return QVariant(item.value(ISLOCAL).toBool());
     case Role::IsContact:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::ISCONTACT));
+        return QVariant(item.value(ISCONTACT).toBool());
     case Role::Avatar:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::AVATAR));
+        return QVariant(item.value(AVATAR).toString());
     case Role::SinkId:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::STREAMID));
+        return QVariant(item.value(STREAMID).toString());
     case Role::Height:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::HEIGHT));
+        return QVariant(item.value(HEIGHT).toInt());
     case Role::Width:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::WIDTH));
+        return QVariant(item.value(WIDTH).toInt());
     case Role::HandRaised:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::HANDRAISED));
+        return QVariant(item.value(HANDRAISED).toBool());
     case Role::VoiceActivity:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::VOICEACTIVITY));
+        return QVariant(item.value(VOICEACTIVITY).toBool());
     }
     return QVariant();
 }
@@ -124,10 +110,12 @@ CallParticipantsModel::addParticipant(int index, const QVariant& infos)
         return;
     beginInsertRows(QModelIndex(), index, index);
 
-    auto it = participants_.begin() + index;
+    const auto it = participants_.constBegin() + index;
     participants_.insert(it, CallParticipant::Item {infos.toJsonObject()});
 
     endInsertRows();
+
+    set_count(rowCount());
 
     callId_ = participants_[index].item[lrc::api::ParticipantsInfosStrings::CALLID].toString();
 }
@@ -157,10 +145,12 @@ CallParticipantsModel::removeParticipant(int index)
 
     beginRemoveRows(QModelIndex(), index, index);
 
-    auto it = participants_.begin() + index;
+    const auto it = participants_.constBegin() + index;
     participants_.erase(it);
 
     endRemoveRows();
+
+    set_count(rowCount());
 }
 
 void
@@ -176,12 +166,14 @@ CallParticipantsModel::setParticipants(const QString& callId, const QVariantList
         int idx = 0;
         for (const auto& participant : participants) {
             beginInsertRows(QModelIndex(), idx, idx);
-            auto it = participants_.begin() + idx;
+            const auto it = participants_.constBegin() + idx;
             participants_.insert(it, CallParticipant::Item {participant.toJsonObject()});
             endInsertRows();
             idx++;
         }
     }
+
+    set_count(rowCount());
 }
 
 void
@@ -189,4 +181,6 @@ CallParticipantsModel::reset()
 {
     beginResetModel();
     endResetModel();
+
+    set_count(rowCount());
 }

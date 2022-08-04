@@ -69,92 +69,13 @@ struct Item
 };
 } // namespace CallParticipant
 
-/*
- * The CurrentAccountFilterModel class
- * is for the sole purpose of filtering out current account.
- */
-class GenericParticipantsFilterModel final : public QSortFilterProxyModel
-{
-    Q_OBJECT
-    QML_PROPERTY(bool, hideSelf)
-    QML_PROPERTY(bool, hideAudioOnly)
-
-public:
-    explicit GenericParticipantsFilterModel(LRCInstance* lrcInstance,
-                                            QAbstractListModel* parent = nullptr)
-        : QSortFilterProxyModel(parent)
-        , lrcInstance_(lrcInstance)
-    {
-        setSourceModel(parent);
-        setFilterRole(CallParticipant::Role::Active);
-    }
-
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
-    {
-        // Accept all participants in participants list filtered with active status.
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-
-        bool acceptState = !sourceModel()->data(index, CallParticipant::Role::Active).toBool();
-        bool importantState = sourceModel()->data(index, CallParticipant::Role::HandRaised).toBool()
-                              || sourceModel()->data(index, CallParticipant::Role::VoiceActivity).toBool();
-        if (acceptState && !importantState
-            && ((hideSelf_ && sourceModel()->rowCount() > 1 && sourceModel()->data(index, CallParticipant::Role::IsLocal).toBool())
-                || (hideAudioOnly_ && sourceModel()->rowCount() > 1 && sourceModel()->data(index, CallParticipant::Role::VideoMuted).toBool())))
-            acceptState = false;
-
-        return acceptState;
-    }
-
-    Q_INVOKABLE void reset()
-    {
-        beginResetModel();
-        endResetModel();
-    }
-
-protected:
-    LRCInstance* lrcInstance_ {nullptr};
-};
-
-/*
- * The ActiveParticipantsFilterModel class
- * is for the sole purpose of filtering out current account.
- */
-class ActiveParticipantsFilterModel final : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    explicit ActiveParticipantsFilterModel(LRCInstance* lrcInstance,
-                                           QAbstractListModel* parent = nullptr)
-        : QSortFilterProxyModel(parent)
-        , lrcInstance_(lrcInstance)
-    {
-        setSourceModel(parent);
-        setFilterRole(CallParticipant::Role::Active);
-    }
-
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
-    {
-        // Accept all participants in participants list filtered with active status.
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        return sourceModel()->data(index, CallParticipant::Role::Active).toBool();
-    }
-
-    Q_INVOKABLE void reset()
-    {
-        beginResetModel();
-        endResetModel();
-    }
-
-protected:
-    LRCInstance* lrcInstance_ {nullptr};
-};
-
 class CallParticipantsModel : public QAbstractListModel
 {
     Q_OBJECT
 
     Q_PROPERTY(LayoutType conferenceLayout READ conferenceLayout NOTIFY layoutChanged)
+    QML_RO_PROPERTY(int, count)
+
 public:
     CallParticipantsModel(LRCInstance* instance, QObject* parent = nullptr);
 
@@ -170,6 +91,7 @@ public:
     void removeParticipant(int index);
     void setParticipants(const QString& callId, const QVariantList& participants);
     Q_INVOKABLE void reset();
+
     void setConferenceLayout(int layout, const QString& callId)
     {
         auto newLayout = static_cast<LayoutType>(layout);
@@ -178,13 +100,12 @@ public:
             Q_EMIT layoutChanged();
         }
     }
-    const LayoutType conferenceLayout()
+    LayoutType conferenceLayout()
     {
         return layout_;
     }
 
 Q_SIGNALS:
-    void updateParticipant(QVariant participantInfos);
     void layoutChanged();
 
 private:
