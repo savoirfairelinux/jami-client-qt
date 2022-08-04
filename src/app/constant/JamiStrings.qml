@@ -253,6 +253,7 @@ Item {
     property string participantsSide: qsTr("On the side")
     property string participantsTop: qsTr("On the top")
     property string hideSelf: qsTr("Hide self")
+    property string hideAudioOnly: qsTr("Hide participant without video")
 
     // LineEditContextMenu
     property string copy: qsTr("Copy")
