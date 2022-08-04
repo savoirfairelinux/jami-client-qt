@@ -176,19 +176,25 @@ Control {
                   case JamiStrings.hideSelf:
                         UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
                         GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
+                        GenericParticipantsFilterModel.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
+                        GenericParticipantsFilterModel.reset()
+                        break
+                  case JamiStrings.hideAudioOnly:
+                        UtilsAdapter.setAppValue(Settings.HideAudioOnly, !layoutModel.get(index).ActiveSetting)
+                        GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
+                        GenericParticipantsFilterModel.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
                         GenericParticipantsFilterModel.reset()
                         break
                 }
             }
             onTriggered: {
                 layoutModel.clear()
-                if (!isGrid && isConference) {
+                if (isConference) {
                     layoutModel.append({"Name": JamiStrings.mosaic,
                                         "IconSource": JamiResources.mosaic_black_24dp_svg,
                                         "ActiveSetting": isGrid})
                     layoutModel.append({})
-                }
-                if (isConference) {
+
                     var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
                     layoutModel.append({"Name": onTheSide ? JamiStrings.participantsSide : JamiStrings.participantsTop,
                                         "IconSource": onTheSide ? JamiResources.ontheside_black_24dp_svg : JamiResources.onthetop_black_24dp_svg,
@@ -202,6 +208,12 @@ Control {
                 layoutModel.append({"Name": JamiStrings.viewFullScreen,
                                     "IconSource": JamiResources.open_in_full_24dp_svg,
                                     "ActiveSetting": layoutManager.isCallFullscreen})
+                if (isConference) {
+                    layoutModel.append({})
+                    layoutModel.append({"Name": JamiStrings.hideAudioOnly,
+                                        "IconSource": JamiResources.videocam_off_24dp_svg,
+                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideAudioOnly)})
+                }
             }
         },
         Action {

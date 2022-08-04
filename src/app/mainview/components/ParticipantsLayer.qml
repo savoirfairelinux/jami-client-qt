@@ -37,12 +37,16 @@ Item {
 
     onVisibleChanged: {
         GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
+        GenericParticipantsFilterModel.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
     }
 
     Connections {
         target: GenericParticipantsFilterModel
 
         function onHideSelfChanged() {
+            GenericParticipantsFilterModel.reset()
+        }
+        function onHideAudioOnlyChanged() {
             GenericParticipantsFilterModel.reset()
         }
     }
