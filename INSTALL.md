@@ -94,9 +94,19 @@ Notes:
 
 ## Build only the client
 
-In order to use the Qt Client it is necessary to have the Qt version 5.14 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
+In order to use the Qt Client it is necessary to have the Qt version 6.2 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
 
 ## Build only this repository
+
+Clone with common required submodule(platform specific submodules will be cloned during the configure step)
+
+```bash
+git clone https://review.jami.net/jami-client-qt
+cd jami-client-qt
+git submodule update --recursive --init
+```
+
+Use CMake to build
 
 ```bash
 # In this repository
