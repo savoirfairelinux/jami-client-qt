@@ -22,6 +22,8 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
+import SortFilterProxyModel 0.2
+
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -36,19 +38,8 @@ Item {
     property bool participantsSide
 
     onVisibleChanged: {
-        GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
-        GenericParticipantsFilterModel.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
-    }
-
-    Connections {
-        target: GenericParticipantsFilterModel
-
-        function onHideSelfChanged() {
-            GenericParticipantsFilterModel.reset()
-        }
-        function onHideAudioOnlyChanged() {
-            GenericParticipantsFilterModel.reset()
-        }
+        CurrentConversation.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
+        CurrentConversation.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
     }
 
     Component {
@@ -84,7 +75,7 @@ Item {
                 enabled: bestName_ === uri_
 
                 function onRegisteredNameFound(status, address, name) {
-                    if (address === uri_ && status == NameDirectory.LookupStatus.SUCCESS) {
+                    if (address === uri_ && status === NameDirectory.LookupStatus.SUCCESS) {
                         bestName_ = name
                     }
                 }
@@ -92,11 +83,42 @@ Item {
         }
     }
 
+    SortFilterProxyModel {
+        id: genericParticipantsModel
+        sourceModel: CallParticipantsModel
+        filters: [
+            ValueFilter { roleName: "Active"; value: false },
+            AllOf {
+                ExpressionFilter { expression: genericParticipantsModel.count > 1 }
+                AnyOf {
+                    ValueFilter { roleName: "IsLocal"; value: true }
+                    ExpressionFilter {
+                        readonly property bool exp: CurrentConversation.hideSelf
+                        expression: exp
+                    }
+                }
+                AnyOf {
+                    ValueFilter { roleName: "VideoMuted"; value: true }
+                    ExpressionFilter {
+                        readonly property bool exp: CurrentConversation.hideAudioOnly
+                        expression: exp
+                    }
+                }
+                inverted: true
+            }
+        ]
+    }
+
+    SortFilterProxyModel {
+        id: activeParticipantsModel
+        sourceModel: CallParticipantsModel
+        filters: ValueFilter { roleName: "Active"; value: true }
+    }
+
     ParticipantsLayoutVertical {
         anchors.fill: parent
         participantComponent: callVideoMedia
         visible: !participantsSide
-
         onLayoutCountChanged: root.count = layoutCount
     }
 

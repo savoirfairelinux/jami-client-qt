@@ -178,15 +178,11 @@ Control {
                         break
                   case JamiStrings.hideSelf:
                         UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
-                        GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
-                        GenericParticipantsFilterModel.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
-                        GenericParticipantsFilterModel.reset()
+                        CurrentConversation.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
                         break
                   case JamiStrings.hideAudioOnly:
                         UtilsAdapter.setAppValue(Settings.HideAudioOnly, !layoutModel.get(index).ActiveSetting)
-                        GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
-                        GenericParticipantsFilterModel.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
-                        GenericParticipantsFilterModel.reset()
+                        CurrentConversation.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
                         break
                 }
             }
