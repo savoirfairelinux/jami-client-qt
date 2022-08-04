@@ -51,6 +51,10 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
 
+    // TODO: these belong in CurrentCall(which doesn't exist yet)
+    QML_PROPERTY(bool, hideSelf)
+    QML_PROPERTY(bool, hideAudioOnly)
+
 public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;

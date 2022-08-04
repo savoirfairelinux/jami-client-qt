@@ -51,56 +51,41 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
 
     using namespace CallParticipant;
     // Internal call, so no need to protect participants_ as locked higher
-    auto participant = participants_.at(index.row());
+    auto& item = participants_.at(index.row()).item;
 
     switch (role) {
     case Role::Uri:
-        return QVariant::fromValue(participant.item.value(lrc::api::ParticipantsInfosStrings::URI));
+        return QVariant(item.value(ParticipantsInfosStrings::URI).toString());
     case Role::BestName:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::BESTNAME));
+        return QVariant(item.value(ParticipantsInfosStrings::BESTNAME).toString());
     case Role::Device:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::DEVICE));
+        return QVariant(item.value(ParticipantsInfosStrings::DEVICE).toString());
     case Role::Active:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::ACTIVE));
+        return QVariant(item.value(ParticipantsInfosStrings::ACTIVE).toBool());
     case Role::AudioLocalMuted:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::AUDIOLOCALMUTED));
+        return QVariant(item.value(ParticipantsInfosStrings::AUDIOLOCALMUTED).toBool());
     case Role::AudioModeratorMuted:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::AUDIOMODERATORMUTED));
+        return QVariant(item.value(ParticipantsInfosStrings::AUDIOMODERATORMUTED).toBool());
     case Role::VideoMuted:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::VIDEOMUTED));
+        return QVariant(item.value(ParticipantsInfosStrings::VIDEOMUTED).toBool());
     case Role::IsModerator:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::ISMODERATOR));
+        return QVariant(item.value(ParticipantsInfosStrings::ISMODERATOR).toBool());
     case Role::IsLocal:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::ISLOCAL));
+        return QVariant(item.value(ParticipantsInfosStrings::ISLOCAL).toBool());
     case Role::IsContact:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::ISCONTACT));
+        return QVariant(item.value(ParticipantsInfosStrings::ISCONTACT).toBool());
     case Role::Avatar:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::AVATAR));
+        return QVariant(item.value(ParticipantsInfosStrings::AVATAR).toString());
     case Role::SinkId:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::STREAMID));
+        return QVariant(item.value(ParticipantsInfosStrings::STREAMID).toString());
     case Role::Height:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::HEIGHT));
+        return QVariant(item.value(ParticipantsInfosStrings::HEIGHT).toInt());
     case Role::Width:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::WIDTH));
+        return QVariant(item.value(ParticipantsInfosStrings::WIDTH).toInt());
     case Role::HandRaised:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::HANDRAISED));
+        return QVariant(item.value(ParticipantsInfosStrings::HANDRAISED).toBool());
     case Role::VoiceActivity:
-        return QVariant::fromValue(
-            participant.item.value(lrc::api::ParticipantsInfosStrings::VOICEACTIVITY));
+        return QVariant(item.value(ParticipantsInfosStrings::VOICEACTIVITY).toBool());
     }
     return QVariant();
 }
