@@ -133,7 +133,8 @@ SplitView {
         SplitView.minimumWidth: parent.width / 6
         SplitView.maximumWidth: inLine? parent.width / 2 : parent.width
 
-        visible: inLine || CallParticipantsModel.conferenceLayout === CallParticipantsModel.GRID
+        visible: commonParticipants.count > 0 &&
+                 (inLine || CallParticipantsModel.conferenceLayout === CallParticipantsModel.GRID)
         color: "transparent"
 
         property int lowLimit: 0
