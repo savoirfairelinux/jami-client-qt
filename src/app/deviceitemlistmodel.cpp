@@ -26,47 +26,27 @@
 #include "api/conversation.h"
 #include "api/devicemodel.h"
 
-DeviceItemListModel::DeviceItemListModel(QObject* parent)
+DeviceItemListModel::DeviceItemListModel(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {
-    connect(this, &AbstractListModelBase::lrcInstanceChanged, [this] {
-        if (lrcInstance_) {
-            if (!lrcInstance_->get_currentAccountId().isEmpty())
-                onAccountChanged();
-            connect(lrcInstance_,
-                    &LRCInstance::currentAccountIdChanged,
-                    this,
-                    &DeviceItemListModel::onAccountChanged,
-                    Qt::UniqueConnection);
-        }
-    });
-}
+    lrcInstance_ = instance;
 
-DeviceItemListModel::~DeviceItemListModel() {}
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountIdChanged,
+            this,
+            &DeviceItemListModel::connectAccount,
+            Qt::UniqueConnection);
+
+    connectAccount();
+}
 
 int
 DeviceItemListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid() && lrcInstance_) {
-        /*
-         * Count.
-         */
         return lrcInstance_->getCurrentAccountInfo().deviceModel->getAllDevices().size();
     }
-    /*
-     * A valid QModelIndex returns 0 as no entry has sub-elements.
-     */
     return 0;
-}
-
-int
-DeviceItemListModel::columnCount(const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    /*
-     * Only need one column.
-     */
-    return 1;
 }
 
 QVariant
@@ -98,27 +78,6 @@ DeviceItemListModel::roleNames() const
     return roles;
 }
 
-QModelIndex
-DeviceItemListModel::index(int row, int column, const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    if (column != 0) {
-        return QModelIndex();
-    }
-
-    if (row >= 0 && row < rowCount()) {
-        return createIndex(row, column);
-    }
-    return QModelIndex();
-}
-
-QModelIndex
-DeviceItemListModel::parent(const QModelIndex& child) const
-{
-    Q_UNUSED(child);
-    return QModelIndex();
-}
-
 Qt::ItemFlags
 DeviceItemListModel::flags(const QModelIndex& index) const
 {
@@ -143,8 +102,12 @@ DeviceItemListModel::revokeDevice(QString deviceId, QString password)
 }
 
 void
-DeviceItemListModel::onAccountChanged()
+DeviceItemListModel::connectAccount()
 {
+    if (lrcInstance_->get_currentAccountId().isEmpty()) {
+        return;
+    }
+
     reset();
 
     auto* deviceModel = lrcInstance_->getCurrentAccountInfo().deviceModel.get();

@@ -20,6 +20,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import SortFilterProxyModel 0.2
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -49,7 +51,7 @@ ColumnLayout {
         id: revokeDevicePasswordDialog
 
         onRevokeDeviceWithPassword: function(idOfDevice, password) {
-            deviceItemListModel.sourceModel.revokeDevice(idOfDevice, password)
+            DeviceItemListModel.revokeDevice(idOfDevice, password)
         }
     }
 
@@ -64,7 +66,9 @@ ColumnLayout {
         buttonTitles: [JamiStrings.optionOk, JamiStrings.optionCancel]
         buttonStyles: [SimpleMessageDialog.ButtonStyle.TintedBlue,
                        SimpleMessageDialog.ButtonStyle.TintedBlack]
-        buttonCallBacks: [function() {deviceItemListModel.sourceModel.revokeDevice(idOfDev, "")}]
+        buttonCallBacks: [
+            function() { DeviceItemListModel.revokeDevice(idOfDev, "") }
+        ]
     }
 
     Label {
@@ -83,10 +87,16 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.preferredHeight: 160
 
-        model: DeviceItemProxyModel {
-            id: deviceItemListModel
-
-            lrcInstance: LRCInstance
+        model: SortFilterProxyModel {
+            // TODO: this may be better placed within AccountAdapter/CurrentAccount
+            sourceModel: DeviceItemListModel
+            sorters: [
+                RoleSorter { roleName: "IsCurrent"; sortOrder: Qt.DescendingOrder },
+                StringSorter {
+                    roleName: "DeviceName"
+                    caseSensitivity: Qt.CaseInsensitive
+                }
+            ]
         }
 
         delegate: DeviceItemDelegate {
