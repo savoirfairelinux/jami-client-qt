@@ -102,7 +102,6 @@ private:
 
     AppSettingsManager* settingsManager_;
 
-    QScopedPointer<AccountListModel> accSrcModel_;
-    QScopedPointer<CurrentAccountFilterModel> accModel_;
+    QScopedPointer<AccountListModel> accountListModel_;
 };
 Q_DECLARE_METATYPE(AccountAdapter*)
