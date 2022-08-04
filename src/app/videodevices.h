@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -23,40 +23,9 @@
 
 #include "api/devicemodel.h"
 
-#include <QSortFilterProxyModel>
 #include <QObject>
 
 class VideoDevices;
-
-class CurrentItemFilterModel final : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    explicit CurrentItemFilterModel(QObject* parent = nullptr)
-        : QSortFilterProxyModel(parent)
-
-    {}
-
-    void setCurrentItemFilter(const QVariant& filter)
-    {
-        currentItemFilter_ = filter;
-    }
-
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
-    {
-        // Do not filter if there is only one item.
-        if (currentItemFilter_.isNull() || sourceModel()->rowCount() == 1)
-            return true;
-
-        // Exclude current item filter.
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        return index.data(filterRole()) != currentItemFilter_ && !index.parent().isValid();
-    }
-
-private:
-    QVariant currentItemFilter_ {};
-};
 
 class VideoInputDeviceModel : public QAbstractListModel
 {
@@ -155,21 +124,16 @@ class VideoDevices : public QObject
     QML_RO_PROPERTY(int, defaultFps)
     QML_PROPERTY(int, screenSharingDefaultFps)
 
+    QML_RO_PROPERTY(QVariant, deviceSourceModel)
+    QML_RO_PROPERTY(QVariant, resSourceModel)
+    QML_RO_PROPERTY(QVariant, fpsSourceModel)
+    QML_RO_PROPERTY(QVariant, sharingFpsSourceModel)
+
 public:
     explicit VideoDevices(LRCInstance* lrcInstance, QObject* parent = nullptr);
-    ~VideoDevices();
+    ~VideoDevices() = default;
 
-    Q_INVOKABLE QVariant devicesFilterModel();
-    Q_INVOKABLE QVariant devicesSourceModel();
-
-    Q_INVOKABLE QVariant resFilterModel();
-    Q_INVOKABLE QVariant resSourceModel();
-
-    Q_INVOKABLE QVariant fpsFilterModel();
-    Q_INVOKABLE QVariant fpsSourceModel();
-    Q_INVOKABLE QVariant getScreenSharingFpsModel();
-
-    Q_INVOKABLE void setDefaultDevice(int index, bool useSourceModel = false);
+    Q_INVOKABLE void setDefaultDevice(int index);
     Q_INVOKABLE const QString getDefaultDevice();
     Q_INVOKABLE QString startDevice(const QString& deviceId, bool force = false);
     Q_INVOKABLE void stopDevice(const QString& deviceId, bool force = false);
@@ -198,17 +162,13 @@ private:
 
     LRCInstance* lrcInstance_;
 
-    CurrentItemFilterModel* devicesFilterModel_;
-    CurrentItemFilterModel* resFilterModel_;
-    CurrentItemFilterModel* fpsFilterModel_;
-
-    VideoInputDeviceModel* devicesSourceModel_;
-    VideoFormatResolutionModel* resSourceModel_;
-    VideoFormatFpsModel* fpsSourceModel_;
+    VideoInputDeviceModel* deviceListModel_;
+    VideoFormatResolutionModel* resListModel_;
+    VideoFormatFpsModel* fpsListModel_;
 
     lrc::api::video::ResRateList defaultResRateList_;
     lrc::api::video::FrameratesList defaultFpsList_;
-    lrc::api::video::FrameratesList desktopfpsSourceModel_;
+    lrc::api::video::FrameratesList sharingFpsListModel_;
 
     constexpr static const char DEVICE_DESKTOP[] = "desktop";
     constexpr static const char CHANNEL_DEFAULT[] = "default";
