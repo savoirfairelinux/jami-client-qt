@@ -46,19 +46,16 @@ ComboBox {
         width: root.width
 
         contentItem: Text {
-
             text: {
-                if (index >= 0) {
-                    var currentItem = root.delegateModel.items.get(index)
-                    return currentItem.model[root.textRole].toString()
-                }
-                return ""
+                if (index < 0) return ''
+                var currentItem = root.delegateModel.items.get(index)
+                const value = currentItem.model[root.textRole]
+                return value === undefined ? '' : value.toString()
             }
 
             color: hovered ? JamiTheme.comboboxTextColorHovered : JamiTheme.textColor
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
-
         }
 
         background: Rectangle {
