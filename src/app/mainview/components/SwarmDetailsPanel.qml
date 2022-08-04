@@ -243,7 +243,7 @@ Rectangle {
         Rectangle {
             id: details
             Layout.fillWidth: true
-            Layout.preferredHeight: root.height - header.height
+            Layout.preferredHeight: root.height - header.height - JamiTheme.preferredMarginSize
             color: JamiTheme.secondaryBackgroundColor
 
             ColumnLayout {
@@ -416,8 +416,9 @@ Rectangle {
 
             JamiListView {
                 id: members
-                anchors.fill: parent
                 anchors.topMargin: JamiTheme.preferredMarginSize
+                anchors.bottomMargin: JamiTheme.preferredMarginSize
+                anchors.fill: parent
 
                 visible: tabBar.currentIndex === 1
 
