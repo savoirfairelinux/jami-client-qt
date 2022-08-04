@@ -76,6 +76,7 @@ class GenericParticipantsFilterModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
     QML_PROPERTY(bool, hideSelf)
+    QML_PROPERTY(bool, hideAudioOnly)
 
 public:
     explicit GenericParticipantsFilterModel(LRCInstance* lrcInstance,
@@ -97,7 +98,12 @@ public:
             hideSelf_ &&
             sourceModel()->rowCount() > 1 &&
             sourceModel()->data(index, CallParticipant::Role::IsLocal).toBool())
-            acceptState &= false;
+            acceptState = false;
+        if (acceptState &&
+            hideAudioOnly_ &&
+            sourceModel()->rowCount() > 1 &&
+            sourceModel()->data(index, CallParticipant::Role::VideoMuted).toBool())
+            acceptState = false;
 
         return acceptState;
     }
