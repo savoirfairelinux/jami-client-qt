@@ -31,11 +31,9 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
                                QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
-    , accSrcModel_(new AccountListModel(instance))
-    , accModel_(new CurrentAccountFilterModel(instance, accSrcModel_.get()))
+    , accountListModel_(new AccountListModel(instance))
 {
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accSrcModel_.get(), "AccountListModel");
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accModel_.get(), "CurrentAccountFilterModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accountListModel_.get(), "AccountListModel");
 
     connect(&lrcInstance_->accountModel(),
             &AccountModel::accountStatusChanged,
