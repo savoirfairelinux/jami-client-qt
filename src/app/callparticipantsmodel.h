@@ -75,6 +75,7 @@ struct Item
 class GenericParticipantsFilterModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
+    QML_PROPERTY(bool, hideSelf)
 
 public:
     explicit GenericParticipantsFilterModel(LRCInstance* lrcInstance,
@@ -90,7 +91,15 @@ public:
     {
         // Accept all participants in participants list filtered with active status.
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        return !sourceModel()->data(index, CallParticipant::Role::Active).toBool();
+
+        bool acceptState = !sourceModel()->data(index, CallParticipant::Role::Active).toBool();
+        if (acceptState &&
+            hideSelf_ &&
+            sourceModel()->rowCount() > 1 &&
+            sourceModel()->data(index, CallParticipant::Role::IsLocal).toBool())
+            acceptState = false;
+
+        return acceptState;
     }
 
     Q_INVOKABLE void reset()
