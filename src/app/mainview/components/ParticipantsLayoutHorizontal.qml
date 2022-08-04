@@ -19,8 +19,8 @@
 
 import QtQuick
 
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
+import QtQuick.Layouts
+import QtQuick.Controls
 
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
@@ -96,7 +96,7 @@ SplitView {
             anchors.fill: parent
             anchors.centerIn: parent
 
-            model: ActiveParticipantsFilterModel
+            model: activeParticipantsModel
             delegate: Loader {
                 active: root.visible
                 asynchronous: true
@@ -262,7 +262,7 @@ SplitView {
                     Repeater {
                         id: commonParticipants
 
-                        model: GenericParticipantsFilterModel
+                        model: genericParticipantsModel
                         delegate: Loader {
                             sourceComponent: callVideoMedia
                             active: root.visible
