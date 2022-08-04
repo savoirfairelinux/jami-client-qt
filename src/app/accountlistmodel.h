@@ -21,8 +21,6 @@
 
 #include "abstractlistmodelbase.h"
 
-#include <QSortFilterProxyModel>
-
 #define ACC_ROLES \
     X(Alias) \
     X(Username) \
@@ -40,35 +38,6 @@ enum Role {
 };
 Q_ENUM_NS(Role)
 } // namespace AccountList
-
-/*
- * The CurrentAccountFilterModel class
- * is for the sole purpose of filtering out current account.
- */
-class CurrentAccountFilterModel final : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    explicit CurrentAccountFilterModel(LRCInstance* lrcInstance,
-                                       QAbstractListModel* parent = nullptr)
-        : QSortFilterProxyModel(parent)
-        , lrcInstance_(lrcInstance)
-    {
-        setSourceModel(parent);
-    }
-
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
-    {
-        // Accept all contacts in conversation list filtered with account type, except those in a call.
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        auto accountId = sourceModel()->data(index, AccountList::ID);
-        return accountId != lrcInstance_->get_currentAccountId();
-    }
-
-protected:
-    LRCInstance* lrcInstance_ {nullptr};
-};
 
 class AccountListModel final : public AbstractListModelBase
 {

@@ -21,6 +21,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
+import SortFilterProxyModel 0.2
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -36,7 +38,7 @@ Popup {
     implicitHeight: {
         return visible ? Math.min(
                              JamiTheme.accountListItemHeight * Math.min(
-                                 5, CurrentAccountFilterModel.rowCount() + 1),
+                                 5, listView.model.count + 1),
                              mainViewSidePanelRect.height) : 0
     }
     padding: 0
@@ -54,7 +56,14 @@ Popup {
             Layout.fillHeight: true
             Layout.preferredWidth: parent.width
 
-            model: CurrentAccountFilterModel
+            model: SortFilterProxyModel {
+                sourceModel: AccountListModel
+                filters: ValueFilter {
+                    roleName: "ID"
+                    value: LRCInstance.currentAccountId
+                    inverted: true
+                }
+            }
             delegate: AccountItemDelegate {
                 height: JamiTheme.accountListItemHeight
                 width: root.width
