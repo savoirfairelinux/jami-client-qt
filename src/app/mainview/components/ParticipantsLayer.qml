@@ -35,6 +35,18 @@ Item {
     property bool inLine: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL
     property bool participantsSide
 
+    onVisibleChanged: {
+        GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
+    }
+
+    Connections {
+        target: GenericParticipantsFilterModel
+
+        function onHideSelfChanged() {
+            GenericParticipantsFilterModel.reset()
+        }
+    }
+
     Component {
         id: callVideoMedia
 

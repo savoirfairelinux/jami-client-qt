@@ -173,25 +173,35 @@ Control {
                         var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
                         UtilsAdapter.setAppValue(Settings.ParticipantsSide, !onTheSide)
                         participantsSide = !onTheSide
+                  case JamiStrings.hideSelf:
+                        UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
+                        GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
+                        GenericParticipantsFilterModel.reset()
                         break
                 }
             }
             onTriggered: {
                 layoutModel.clear()
-                layoutModel.append({"Name": JamiStrings.viewFullScreen,
-                                    "IconSource": JamiResources.open_in_full_24dp_svg,
-                                    "ActiveSetting": layoutManager.isCallFullscreen})
-                if (isConference) {
+                if (!isGrid && isConference) {
+                    layoutModel.append({"Name": JamiStrings.mosaic,
+                                        "IconSource": JamiResources.mosaic_black_24dp_svg,
+                                        "ActiveSetting": isGrid})
                     layoutModel.append({})
+                }
+                if (isConference) {
                     var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
                     layoutModel.append({"Name": onTheSide ? JamiStrings.participantsSide : JamiStrings.participantsTop,
                                         "IconSource": onTheSide ? JamiResources.ontheside_black_24dp_svg : JamiResources.onthetop_black_24dp_svg,
                                         "ActiveSetting": true})
                     layoutModel.append({})
-                    layoutModel.append({"Name": JamiStrings.mosaic,
-                                        "IconSource": JamiResources.mosaic_black_24dp_svg,
-                                        "ActiveSetting": isGrid})
+                    layoutModel.append({"Name": JamiStrings.hideSelf,
+                                        "IconSource": JamiResources.hidemyself_black_24dp_svg,
+                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf)})
+                    layoutModel.append({})
                 }
+                layoutModel.append({"Name": JamiStrings.viewFullScreen,
+                                    "IconSource": JamiResources.open_in_full_24dp_svg,
+                                    "ActiveSetting": layoutManager.isCallFullscreen})
             }
         },
         Action {

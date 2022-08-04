@@ -252,6 +252,7 @@ Item {
     property string notMuted: qsTr("Not muted")
     property string participantsSide: qsTr("On the side")
     property string participantsTop: qsTr("On the top")
+    property string hideSelf: qsTr("Hide self")
 
     // LineEditContextMenu
     property string copy: qsTr("Copy")
