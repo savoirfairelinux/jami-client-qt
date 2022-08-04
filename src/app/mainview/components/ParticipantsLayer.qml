@@ -22,6 +22,8 @@ import QtQuick
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 
+import SortFilterProxyModel 0.2
+
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -62,7 +64,7 @@ Item {
                 enabled: bestName_ === uri_
 
                 function onRegisteredNameFound(status, address, name) {
-                    if (address === uri_ && status == NameDirectory.LookupStatus.SUCCESS) {
+                    if (address === uri_ && status === NameDirectory.LookupStatus.SUCCESS) {
                         bestName_ = name
                     }
                 }
@@ -204,7 +206,10 @@ Item {
                         Repeater {
                             id: commonParticipants
 
-                            model: GenericParticipantsFilterModel
+                            model: SortFilterProxyModel {
+                                sourceModel: CallParticipantsModel
+                                filters: ValueFilter { roleName: "Active"; value: false }
+                            }
                             delegate: Loader {
                                 sourceComponent: callVideoMedia
                                 active: root.visible
@@ -299,7 +304,10 @@ Item {
                 anchors.fill: parent
                 anchors.centerIn: parent
 
-                model: ActiveParticipantsFilterModel
+                model: SortFilterProxyModel {
+                    sourceModel: CallParticipantsModel
+                    filters: ValueFilter { roleName: "Active"; value: true }
+                }
                 delegate: Loader {
                     active: root.visible
                     asynchronous: true

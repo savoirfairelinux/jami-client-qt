@@ -24,7 +24,6 @@
 #include <QAbstractListModel>
 #include <QObject>
 #include <QQmlEngine>
-#include <QSortFilterProxyModel>
 #include <QQuickItem>
 #include <QJsonObject>
 
@@ -67,76 +66,6 @@ struct Item
     }
 };
 } // namespace CallParticipant
-
-/*
- * The CurrentAccountFilterModel class
- * is for the sole purpose of filtering out current account.
- */
-class GenericParticipantsFilterModel final : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    explicit GenericParticipantsFilterModel(LRCInstance* lrcInstance,
-                                            QAbstractListModel* parent = nullptr)
-        : QSortFilterProxyModel(parent)
-        , lrcInstance_(lrcInstance)
-    {
-        setSourceModel(parent);
-        setFilterRole(CallParticipant::Role::Active);
-    }
-
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
-    {
-        // Accept all participants in participants list filtered with active status.
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        return !sourceModel()->data(index, CallParticipant::Role::Active).toBool();
-    }
-
-    Q_INVOKABLE void reset()
-    {
-        beginResetModel();
-        endResetModel();
-    }
-
-protected:
-    LRCInstance* lrcInstance_ {nullptr};
-};
-
-/*
- * The ActiveParticipantsFilterModel class
- * is for the sole purpose of filtering out current account.
- */
-class ActiveParticipantsFilterModel final : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    explicit ActiveParticipantsFilterModel(LRCInstance* lrcInstance,
-                                           QAbstractListModel* parent = nullptr)
-        : QSortFilterProxyModel(parent)
-        , lrcInstance_(lrcInstance)
-    {
-        setSourceModel(parent);
-        setFilterRole(CallParticipant::Role::Active);
-    }
-
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
-    {
-        // Accept all participants in participants list filtered with active status.
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        return sourceModel()->data(index, CallParticipant::Role::Active).toBool();
-    }
-
-    Q_INVOKABLE void reset()
-    {
-        beginResetModel();
-        endResetModel();
-    }
-
-protected:
-    LRCInstance* lrcInstance_ {nullptr};
-};
 
 class CallParticipantsModel : public QAbstractListModel
 {
