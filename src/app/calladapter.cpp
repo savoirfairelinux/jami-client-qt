@@ -42,16 +42,7 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
 {
     participantsModel_.reset(new CallParticipantsModel(lrcInstance_, this));
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, participantsModel_.get(), "CallParticipantsModel");
-    participantsModelFiltered_.reset(
-        new GenericParticipantsFilterModel(lrcInstance_, participantsModel_.get()));
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS,
-                                      participantsModelFiltered_.get(),
-                                      "GenericParticipantsFilterModel");
-    activeParticipantsModel_.reset(
-        new ActiveParticipantsFilterModel(lrcInstance_, participantsModel_.get()));
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS,
-                                      activeParticipantsModel_.get(),
-                                      "ActiveParticipantsFilterModel");
+
     overlayModel_.reset(new CallOverlayModel(lrcInstance_, this));
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, overlayModel_.get(), "CallOverlayModel");
 
