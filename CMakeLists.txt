@@ -439,6 +439,9 @@ if(ENABLE_LIBWRAP)
     ${LIBCLIENT_SRC_DIR}/qtwrapper/instancemanager_wrap.h)
 endif()
 
+add_subdirectory(3rdparty/SortFilterProxyModel)
+set(SortFilterProxyModelObjects $<TARGET_OBJECTS:SortFilterProxyModel>)
+
 # common executable sources
 qt_add_executable(
   ${PROJECT_NAME}
@@ -448,7 +451,8 @@ qt_add_executable(
   ${COMMON_SOURCES}
   ${QML_RESOURCES}
   ${QML_RESOURCES_QML}
-  ${LIBCLIENT_SRC_DIR}/webresource.qrc)
+  ${LIBCLIENT_SRC_DIR}/webresource.qrc
+  ${SortFilterProxyModelObjects})
 
 foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
