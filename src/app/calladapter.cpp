@@ -33,6 +33,7 @@
 #include <QJsonObject>
 
 #include <api/callparticipantsmodel.h>
+#include <api/devicemodel.h>
 
 #include <media_const.h>
 
@@ -42,16 +43,7 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
 {
     participantsModel_.reset(new CallParticipantsModel(lrcInstance_, this));
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, participantsModel_.get(), "CallParticipantsModel");
-    participantsModelFiltered_.reset(
-        new GenericParticipantsFilterModel(lrcInstance_, participantsModel_.get()));
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS,
-                                      participantsModelFiltered_.get(),
-                                      "GenericParticipantsFilterModel");
-    activeParticipantsModel_.reset(
-        new ActiveParticipantsFilterModel(lrcInstance_, participantsModel_.get()));
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS,
-                                      activeParticipantsModel_.get(),
-                                      "ActiveParticipantsFilterModel");
+
     overlayModel_.reset(new CallOverlayModel(lrcInstance_, this));
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, overlayModel_.get(), "CallOverlayModel");
 
@@ -517,18 +509,35 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
 void
 CallAdapter::fillParticipantData(QJsonObject& participant) const
 {
-    participant[lrc::api::ParticipantsInfosStrings::BESTNAME]
-        = participant[lrc::api::ParticipantsInfosStrings::URI];
+    // TODO: getCurrentDeviceId should be part of CurrentAccount, and Current<thing>
+    //       should be read accessible through LRCInstance ??
+    auto getCurrentDeviceId = [](const account::Info& accInfo) -> QString {
+        const auto& deviceList = accInfo.deviceModel->getAllDevices();
+        auto devIt = std::find_if(std::cbegin(deviceList),
+                                  std::cend(deviceList),
+                                  [](const Device& dev) { return dev.isCurrent; });
+        return devIt != deviceList.cend() ? devIt->id : QString();
+    };
+
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-    participant[lrc::api::ParticipantsInfosStrings::ISLOCAL] = false;
-    if (participant[lrc::api::ParticipantsInfosStrings::BESTNAME] == accInfo.profileInfo.uri) {
-        participant[lrc::api::ParticipantsInfosStrings::BESTNAME] = tr("me");
-        participant[lrc::api::ParticipantsInfosStrings::ISLOCAL] = true;
+    using namespace lrc::api::ParticipantsInfosStrings;
+
+    // If both the URI and the device Id match, we set the "is local" flag
+    // used to filter out the participant.
+    // TODO:
+    //  - This filter should always be applied, and any local streams should render
+    //    using local sinks. Local non-preview participants should have proxy participant
+    //    items replaced into this model using their local sink Ids.
+    //  - The app setting should remain and be used to control whether or not the preview
+    //    sink partipcant is rendered.
+    auto uri = participant[URI].toString();
+    participant[ISLOCAL] = false;
+    if (uri == accInfo.profileInfo.uri && participant[DEVICE] == getCurrentDeviceId(accInfo)) {
+        participant[BESTNAME] = tr("me");
+        participant[ISLOCAL] = true;
     } else {
         try {
-            participant[lrc::api::ParticipantsInfosStrings::BESTNAME]
-                = lrcInstance_->getCurrentAccountInfo().contactModel->bestNameForContact(
-                    participant[lrc::api::ParticipantsInfosStrings::URI].toString());
+            participant[BESTNAME] = accInfo.contactModel->bestNameForContact(uri);
         } catch (...) {
         }
     }
