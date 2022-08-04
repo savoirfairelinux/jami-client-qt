@@ -49,13 +49,12 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
     , previewEngine_(previewEngine)
-    , filteredMsgListModel_(new FilteredMsgListModel(this))
 {
-    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
+    connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, this, [this]() {
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
-        filteredMsgListModel_->setSourceModel(conversation.interactions.get());
-        set_messageListModel(QVariant::fromValue(filteredMsgListModel_));
+        set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
+
         if (!conversation.typers.empty())
             set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
         else
@@ -486,8 +485,10 @@ MessagesAdapter::isLocalImage(const QString& mimename)
         QImageReader reader;
         QList<QByteArray> supportedFormats = reader.supportedImageFormats();
         auto iterator = std::find_if(supportedFormats.begin(),
-                                    supportedFormats.end(),
-                                    [fileFormat](QByteArray format) { return format == fileFormat; });
+                                     supportedFormats.end(),
+                                     [fileFormat](QByteArray format) {
+                                         return format == fileFormat;
+                                     });
         return {{"isImage", iterator != supportedFormats.end()}};
     }
     return {{"isImage", false}};
