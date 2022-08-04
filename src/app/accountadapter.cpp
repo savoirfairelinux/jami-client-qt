@@ -32,8 +32,10 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
     , accountListModel_(new AccountListModel(instance))
+    , deviceItemListModel_(new DeviceItemListModel(instance))
 {
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, accountListModel_.get(), "AccountListModel");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, deviceItemListModel_.get(), "DeviceItemListModel");
 
     connect(&lrcInstance_->accountModel(),
             &AccountModel::accountStatusChanged,

@@ -21,6 +21,7 @@
 #include "qmladapterbase.h"
 
 #include "accountlistmodel.h"
+#include "deviceitemlistmodel.h"
 #include "lrcinstance.h"
 #include "utils.h"
 
@@ -103,5 +104,6 @@ private:
     AppSettingsManager* settingsManager_;
 
     QScopedPointer<AccountListModel> accountListModel_;
+    QScopedPointer<DeviceItemListModel> deviceItemListModel_;
 };
 Q_DECLARE_METATYPE(AccountAdapter*)
