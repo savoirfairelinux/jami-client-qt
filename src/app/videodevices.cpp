@@ -1,4 +1,4 @@
-/*!
+/*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -119,10 +119,8 @@ VideoFormatResolutionModel::roleNames() const
 int
 VideoFormatResolutionModel::getCurrentIndex() const
 {
-    QString currentDeviceId = videoDevices_->get_defaultId();
     QString currentResolution = videoDevices_->get_defaultRes();
     auto resultList = match(index(0, 0), Resolution, QVariant(currentResolution));
-
     return resultList.size() > 0 ? resultList[0].row() : 0;
 }
 
@@ -183,21 +181,13 @@ VideoFormatFpsModel::getCurrentIndex() const
 VideoDevices::VideoDevices(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
     , lrcInstance_(lrcInstance)
-    , devicesFilterModel_(new CurrentItemFilterModel(this))
-    , resFilterModel_(new CurrentItemFilterModel(this))
-    , fpsFilterModel_(new CurrentItemFilterModel(this))
 {
     devicesSourceModel_ = new VideoInputDeviceModel(lrcInstance, this);
     resSourceModel_ = new VideoFormatResolutionModel(lrcInstance, this);
     fpsSourceModel_ = new VideoFormatFpsModel(lrcInstance, this);
 
-    devicesFilterModel_->setSourceModel(devicesSourceModel_);
-    resFilterModel_->setSourceModel(resSourceModel_);
-    fpsFilterModel_->setSourceModel(fpsSourceModel_);
-
-    devicesFilterModel_->setFilterRole(VideoInputDeviceModel::DeviceName);
-    resFilterModel_->setFilterRole(VideoFormatResolutionModel::Resolution);
-    fpsFilterModel_->setFilterRole(VideoFormatFpsModel::FPS);
+    //    resFilterModel_->setFilterRole(VideoFormatResolutionModel::Resolution);
+    //    fpsFilterModel_->setFilterRole(VideoFormatFpsModel::FPS);
 
     connect(&lrcInstance_->avModel(),
             &lrc::api::AVModel::deviceEvent,
@@ -218,21 +208,9 @@ VideoDevices::VideoDevices(LRCInstance* lrcInstance, QObject* parent)
 VideoDevices::~VideoDevices() {}
 
 QVariant
-VideoDevices::devicesFilterModel()
-{
-    return QVariant::fromValue(devicesFilterModel_);
-}
-
-QVariant
 VideoDevices::devicesSourceModel()
 {
     return QVariant::fromValue(devicesSourceModel_);
-}
-
-QVariant
-VideoDevices::resFilterModel()
-{
-    return QVariant::fromValue(resFilterModel_);
 }
 
 QVariant
@@ -242,31 +220,24 @@ VideoDevices::resSourceModel()
 }
 
 QVariant
-VideoDevices::fpsFilterModel()
-{
-    return QVariant::fromValue(fpsFilterModel_);
-}
-
-QVariant
 VideoDevices::fpsSourceModel()
 {
     return QVariant::fromValue(fpsSourceModel_);
 }
 
 void
-VideoDevices::setDefaultDevice(int index, bool useSourceModel)
+VideoDevices::setDefaultDevice(int index)
 {
+    if (!listSize_) {
+        return;
+    }
+
     QString deviceId {};
     auto callId = lrcInstance_->getCurrentCallId();
 
-    if (useSourceModel)
-        deviceId = devicesSourceModel_
-                       ->data(devicesSourceModel_->index(index, 0), VideoInputDeviceModel::DeviceId)
-                       .toString();
-    else
-        deviceId = devicesFilterModel_
-                       ->data(devicesFilterModel_->index(index, 0), VideoInputDeviceModel::DeviceId)
-                       .toString();
+    deviceId = devicesSourceModel_
+                   ->data(devicesSourceModel_->index(index, 0), VideoInputDeviceModel::DeviceId)
+                   .toString();
 
     lrcInstance_->avModel().setDefaultDevice(deviceId);
 
@@ -318,8 +289,8 @@ VideoDevices::setDefaultDeviceRes(int index)
 {
     auto& channelCaps = get_defaultResRateList();
     auto settings = lrcInstance_->avModel().getDeviceSettings(get_defaultId());
-    settings.size = resFilterModel_
-                        ->data(resFilterModel_->index(index, 0),
+    settings.size = resSourceModel_
+                        ->data(resSourceModel_->index(index, 0),
                                VideoFormatResolutionModel::Resolution)
                         .toString();
 
@@ -339,8 +310,8 @@ VideoDevices::setDefaultDeviceFps(int index)
 {
     auto settings = lrcInstance_->avModel().getDeviceSettings(get_defaultId());
     settings.size = get_defaultRes();
-    settings.rate = fpsFilterModel_
-                        ->data(fpsFilterModel_->index(index, 0), VideoFormatFpsModel::FPS_Float)
+    settings.rate = fpsSourceModel_
+                        ->data(fpsSourceModel_->index(index, 0), VideoFormatFpsModel::FPS_Float)
                         .toFloat();
 
     lrcInstance_->avModel().setDeviceSettings(settings);
@@ -377,28 +348,9 @@ VideoDevices::updateData()
                                                        ? CHANNEL_DEFAULT
                                                        : defaultDeviceSettings.channel];
         lrc::api::video::FrameratesList fpsList;
-
         for (int i = 0; i < currentResRateList.size(); i++) {
             if (currentResRateList[i].first == defaultDeviceSettings.size) {
                 fpsList = currentResRateList[i].second;
-            }
-        }
-
-        if (deviceOpen_ && defaultId_ != defaultDeviceSettings.id) {
-            auto callId = lrcInstance_->getCurrentCallId();
-            if (!callId.isEmpty()) {
-                auto callId = lrcInstance_->getCurrentCallId();
-                auto callInfos = lrcInstance_->getCallInfo(callId,
-                                                           lrcInstance_->get_currentAccountId());
-                for (const auto& media : callInfos->mediaList) {
-                    if (media["MUTED"] == "false" && media["ENABLED"] == "true"
-                        && media["SOURCE"] == getDefaultDevice()) {
-                        /*lrcInstance_->avModel().switchInputTo("camera://" +
-                           defaultDeviceSettings.id, callId);*/
-                        // startDevice("camera://" + defaultDeviceSettings.id);
-                        break;
-                    }
-                }
             }
         }
 
@@ -409,10 +361,6 @@ VideoDevices::updateData()
         set_defaultFps(defaultDeviceSettings.rate);
         set_defaultResRateList(currentResRateList);
         set_defaultFpsList(fpsList);
-
-        devicesFilterModel_->setCurrentItemFilter(defaultDeviceSettings.name);
-        resFilterModel_->setCurrentItemFilter(defaultDeviceSettings.size);
-        fpsFilterModel_->setCurrentItemFilter(static_cast<int>(defaultDeviceSettings.rate));
     } else {
         set_defaultChannel("");
         set_defaultId("");
@@ -421,10 +369,6 @@ VideoDevices::updateData()
         set_defaultFps(0);
         set_defaultResRateList({});
         set_defaultFpsList({});
-
-        devicesFilterModel_->setCurrentItemFilter("");
-        resFilterModel_->setCurrentItemFilter("");
-        fpsFilterModel_->setCurrentItemFilter(0);
     }
 
     devicesSourceModel_->reset();
@@ -436,8 +380,6 @@ void
 VideoDevices::onVideoDeviceEvent()
 {
     auto& avModel = lrcInstance_->avModel();
-    auto* callModel = lrcInstance_->getCurrentCallModel();
-    auto defaultDevice = avModel.getDefaultDevice();
     QString callId = lrcInstance_->getCurrentCallId();
 
     // Decide whether a device has plugged, unplugged, or nothing has changed.
