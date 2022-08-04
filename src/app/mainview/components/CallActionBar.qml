@@ -238,12 +238,7 @@ Control {
             text: JamiStrings.selectVideoDevice
             property var listModel: VideoDevices.devicesSourceModel()
             function accept(index) {
-                if (VideoDevices.listSize < 1)
-                    return
-                // TODO: change it when we can suppot showing default and
-                //       current rendering device at the same time and
-                //       start and stop preview logic in here should be in LRC
-                VideoDevices.setDefaultDevice(index, true)
+                VideoDevices.setDefaultDevice(index)
             }
         }
     ]
