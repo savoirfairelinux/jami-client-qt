@@ -133,7 +133,5 @@ private:
     SystemTray* systemTray_;
     QScopedPointer<CallOverlayModel> overlayModel_;
     QScopedPointer<CallParticipantsModel> participantsModel_;
-    QScopedPointer<GenericParticipantsFilterModel> participantsModelFiltered_;
-    QScopedPointer<ActiveParticipantsFilterModel> activeParticipantsModel_;
     VectorString currentConfSubcalls_;
 };
