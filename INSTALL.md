@@ -19,8 +19,6 @@ The files will be installed in `/usr/lib/libqt-jami`.
 
 If Qt 6.2 is available, you can use the packages from your distribution:
 
-It should be (For now qt5 only is packaged by distributions, so names can change).
-
 #### Dependencies, Debian based
 
 ```
@@ -94,11 +92,19 @@ Notes:
 
 ## Build only the client
 
-In order to use the Qt Client it is necessary to have the Qt version 5.14 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
+In order to use the Qt Client it is necessary to have the Qt version 6.2 or higher. If your system does not have it you can install it [from sources or download the binary installer](https://www.qt.io/download).
 
 
 ## Build only this repository
 
+Clone with common required submodule(platform specific submodules will be cloned during the configure step)
+```bash
+git clone https://review.jami.net/jami-client-qt
+cd jami-client-qt
+git submodule update --init 3rdparty/SortFilterProxyModel
+```
+
+Use CMake to build
 ```bash
 # In this repository
 mkdir build
@@ -107,7 +113,7 @@ cmake ..
 make -j
 ```
 
-cmake can take some options:
+CMake can take some options:
 + If lrc library is installed in a custom directory you can set its path with the variable LRC. Additionally you can specify built library location with `LRC` (otherwise it will seach inside LRC with the suffixes `/lib`, `/build` and `/build-local`).
 
 e.g. (with Qt version from https://jami.net)
