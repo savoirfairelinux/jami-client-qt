@@ -25,33 +25,6 @@
 #include <QObject>
 #include <QString>
 
-#include <QSortFilterProxyModel>
-
-class FilteredMsgListModel final : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    explicit FilteredMsgListModel(QObject* parent = nullptr)
-        : QSortFilterProxyModel(parent)
-    {
-        sort(0, Qt::AscendingOrder);
-    }
-
-    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
-    {
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        auto type = sourceModel()->data(index, MessageList::Role::Type).toInt();
-        auto hasBody = !sourceModel()->data(index, MessageList::Role::Body).toString().isEmpty();
-        return static_cast<interaction::Type>(type) != interaction::Type::MERGE && hasBody;
-    };
-
-    bool lessThan(const QModelIndex& left, const QModelIndex& right) const override
-    {
-        return left.row() > right.row();
-    };
-};
-
 class AppSettingsManager;
 
 class MessagesAdapter final : public QmlAdapterBase
@@ -138,7 +111,6 @@ private:
 
     AppSettingsManager* settingsManager_;
     PreviewEngine* previewEngine_;
-    FilteredMsgListModel* filteredMsgListModel_;
 
     static constexpr const int loadChunkSize_ {20};
 };
