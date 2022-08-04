@@ -23,40 +23,9 @@
 
 #include "api/devicemodel.h"
 
-#include <QSortFilterProxyModel>
 #include <QObject>
 
 class VideoDevices;
-
-class CurrentItemFilterModel final : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-public:
-    explicit CurrentItemFilterModel(QObject* parent = nullptr)
-        : QSortFilterProxyModel(parent)
-
-    {}
-
-    void setCurrentItemFilter(const QVariant& filter)
-    {
-        currentItemFilter_ = filter;
-    }
-
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override
-    {
-        // Do not filter if there is only one item.
-        if (currentItemFilter_.isNull() || sourceModel()->rowCount() == 1)
-            return true;
-
-        // Exclude current item filter.
-        auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-        return index.data(filterRole()) != currentItemFilter_ && !index.parent().isValid();
-    }
-
-private:
-    QVariant currentItemFilter_ {};
-};
 
 class VideoInputDeviceModel : public QAbstractListModel
 {
@@ -159,17 +128,12 @@ public:
     explicit VideoDevices(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~VideoDevices();
 
-    Q_INVOKABLE QVariant devicesFilterModel();
     Q_INVOKABLE QVariant devicesSourceModel();
-
-    Q_INVOKABLE QVariant resFilterModel();
     Q_INVOKABLE QVariant resSourceModel();
-
-    Q_INVOKABLE QVariant fpsFilterModel();
     Q_INVOKABLE QVariant fpsSourceModel();
     Q_INVOKABLE QVariant getScreenSharingFpsModel();
 
-    Q_INVOKABLE void setDefaultDevice(int index, bool useSourceModel = false);
+    Q_INVOKABLE void setDefaultDevice(int index);
     Q_INVOKABLE const QString getDefaultDevice();
     Q_INVOKABLE QString startDevice(const QString& deviceId, bool force = false);
     Q_INVOKABLE void stopDevice(const QString& deviceId, bool force = false);
@@ -197,10 +161,6 @@ private:
     void updateData();
 
     LRCInstance* lrcInstance_;
-
-    CurrentItemFilterModel* devicesFilterModel_;
-    CurrentItemFilterModel* resFilterModel_;
-    CurrentItemFilterModel* fpsFilterModel_;
 
     VideoInputDeviceModel* devicesSourceModel_;
     VideoFormatResolutionModel* resSourceModel_;
