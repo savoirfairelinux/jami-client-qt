@@ -37,6 +37,7 @@ Control {
 
     property alias overflowOpen: overflowButton.popup.visible
     property bool subMenuOpen: false
+    property real parentHeight
 
     property real itemSpacing: 2
 
@@ -549,7 +550,7 @@ Control {
                 }
 
                 Item {
-                    implicitHeight: children[0].contentHeight
+                    implicitHeight: (overflowButton.width + itemSpacing) * urgentOverflowListView.count
                     width: overflowButton.width
                     anchors.bottom: parent.top
                     anchors.bottomMargin: itemSpacing
@@ -581,14 +582,15 @@ Control {
                 popup: Popup {
                     y: overflowButton.height + itemSpacing
                     width: overflowButton.width
-                    implicitHeight: contentItem.implicitHeight
+                    implicitHeight: Math.min(root.parentHeight - itemSpacing,
+                                             (overflowButton.width + itemSpacing) * overflowHiddenListView.count)
                     padding: 0
 
                     contentItem: JamiListView {
                         id: overflowHiddenListView
                         spacing: itemSpacing
-                        implicitHeight: contentHeight
-                        interactive: false
+                        implicitHeight: Math.min(contentHeight, parent.height)
+                        interactive: true
                         model: overflowButton.popup.visible ?
                                    overflowButton.delegateModel :
                                    null
