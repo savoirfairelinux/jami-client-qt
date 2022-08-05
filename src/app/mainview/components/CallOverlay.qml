@@ -148,8 +148,8 @@ Item {
     }
 
     function openContactPicker(type) {
-        ContactPickerCreation.createContactPickerObjects(type, root)
-        ContactPickerCreation.openContactPicker()
+        print("openContactPicker", type)
+        ContactPickerCreation.openContactPicker(type, root)
     }
 
     function openShareScreen() {

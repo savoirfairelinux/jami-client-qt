@@ -19,18 +19,68 @@
 
 #include "conversationlistmodelbase.h"
 
+#include "lrcinstance.h"
+
+ConversationListModelBase::ConversationListModelBase(QObject* parent)
+    : AbstractListModelBase(parent)
+{}
+
 ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {
-    lrcInstance_ = instance;
-    model_ = lrcInstance_->getCurrentConversationModel();
+    setProperty("lrcInstance", QVariant::fromValue(instance));
 }
 
-int
-ConversationListModelBase::columnCount(const QModelIndex& parent) const
+void
+ConversationListModelBase::onInitialized()
 {
-    Q_UNUSED(parent)
-    return 1;
+    model_ = lrcInstance_->getCurrentConversationModel();
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountIdChanged,
+            this,
+            &ConversationListModelBase::updateModel);
+    updateModel();
+}
+
+void
+ConversationListModelBase::updateModel()
+{
+    Q_FOREACH (const auto& binding, modelBindings_) {
+        disconnect(binding);
+    }
+
+    model_ = lrcInstance_->getCurrentConversationModel();
+
+    modelBindings_ += connect(
+        model_,
+        &ConversationModel::beginInsertRows,
+        this,
+        [this](int position, int rows) {
+            beginInsertRows(QModelIndex(), position, position + (rows - 1));
+        },
+        Qt::DirectConnection);
+    modelBindings_ += connect(model_,
+                              &ConversationModel::endInsertRows,
+                              this,
+                              &ConversationListModelBase::endInsertRows,
+                              Qt::DirectConnection);
+    modelBindings_ += connect(
+        model_,
+        &ConversationModel::beginRemoveRows,
+        this,
+        [this](int position, int rows) {
+            beginRemoveRows(QModelIndex(), position, position + (rows - 1));
+        },
+        Qt::DirectConnection);
+    modelBindings_ += connect(model_,
+                              &ConversationModel::endRemoveRows,
+                              this,
+                              &ConversationListModelBase::endRemoveRows,
+                              Qt::DirectConnection);
+    modelBindings_ += connect(model_, &ConversationModel::dataChanged, this, [this](int position) {
+        const auto index = createIndex(position, 0);
+        Q_EMIT ConversationListModelBase::dataChanged(index, index);
+    });
 }
 
 QHash<int, QByteArray>
@@ -97,25 +147,25 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     case Role::IsRequest:
         return QVariant(item.isRequest);
     case Role::Title:
-        return QVariant(model_->title(item.uid));
+        return QVariant(lrcInstance_->getCurrentConversationModel()->title(item.uid));
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
-        if (!item.interactions->empty()) {
+        if (item.interactions && !item.interactions->empty()) {
             auto ts = static_cast<qint32>(item.interactions->at(item.lastMessageUid).timestamp);
             return QVariant(ts);
         }
         break;
     }
     case Role::LastInteractionDate: {
-        if (!item.interactions->empty()) {
+        if (item.interactions && !item.interactions->empty()) {
             return QVariant(
                 Utils::formatTimeString(item.interactions->at(item.lastMessageUid).timestamp));
         }
         break;
     }
     case Role::LastInteraction: {
-        if (!item.interactions->empty()) {
+        if (item.interactions && !item.interactions->empty()) {
             return QVariant(item.interactions->at(item.lastMessageUid).body);
         }
         break;
@@ -134,11 +184,13 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         }
         break;
     case Role::Uris:
-        return QVariant(model_->peersForConversation(item.uid).toList());
+        return QVariant(
+            lrcInstance_->getCurrentConversationModel()->peersForConversation(item.uid).toList());
     case Role::Monikers: {
         // we shouldn't ever need these individually, they are used for filtering only
         QStringList ret;
-        Q_FOREACH (const auto& peerUri, model_->peersForConversation(item.uid))
+        Q_FOREACH (const auto& peerUri,
+                   lrcInstance_->getCurrentConversationModel()->peersForConversation(item.uid))
             try {
                 auto& accInfo = lrcInstance_->getCurrentAccountInfo();
                 auto contact = accInfo.contactModel->getContact(peerUri);
@@ -149,7 +201,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     }
     case Role::Presence: {
         // The conversation can show a green dot if at least one peer is present
-        Q_FOREACH (const auto& peerUri, model_->peersForConversation(item.uid))
+        Q_FOREACH (const auto& peerUri,
+                   lrcInstance_->getCurrentConversationModel()->peersForConversation(item.uid))
             try {
                 auto& accInfo = lrcInstance_->getCurrentAccountInfo();
                 auto contact = accInfo.contactModel->getContact(peerUri);
@@ -164,7 +217,8 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
     }
 
     if (item.isCoreDialog()) {
-        auto peerUriList = model_->peersForConversation(item.uid);
+        auto peerUriList = lrcInstance_->getCurrentConversationModel()->peersForConversation(
+            item.uid);
         if (peerUriList.isEmpty()) {
             return {};
         }
