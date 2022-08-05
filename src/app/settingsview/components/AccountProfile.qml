@@ -76,6 +76,7 @@ ColumnLayout {
         font.pointSize: JamiTheme.textFontSize
         font.kerning: true
         text: CurrentAccount.alias
+        placeholderText: JamiStrings.enterNickname
 
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
