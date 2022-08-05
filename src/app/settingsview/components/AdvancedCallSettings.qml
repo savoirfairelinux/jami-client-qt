@@ -40,9 +40,9 @@ ColumnLayout {
     }
 
     Connections {
-        target: ContactAdapter
+        target: CurrentAccount
 
-        function onDefaultModeratorsUpdated() {
+        function onDefaultModeratorsChanged() {
             updateAndShowModeratorsSlot()
         }
     }
@@ -212,12 +212,9 @@ ColumnLayout {
 
             text: JamiStrings.addDefaultModerator
 
-            onClicked: {
-                ContactPickerCreation.createContactPickerObjects(
-                            ContactList.CONVERSATION,
-                            mainView)
-                ContactPickerCreation.openContactPicker()
-            }
+            onClicked: ContactPickerCreation.openContactPicker(
+                           ContactList.CONVERSATION,
+                           mainView)
         }
 
         ToggleSwitch {

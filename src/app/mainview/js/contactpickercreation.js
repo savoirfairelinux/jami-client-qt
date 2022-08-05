@@ -59,7 +59,8 @@ function finishCreation(type, parent) {
     }
 }
 
-function openContactPicker() {
+function openContactPicker(type, parent) {
+    createContactPickerObjects(type, parent)
     if (contactPickerObject)
         contactPickerObject.open()
 }
