@@ -29,6 +29,10 @@ class SearchResultsListModel : public ConversationListModelBase
 public:
     explicit SearchResultsListModel(LRCInstance* instance, QObject* parent = nullptr);
 
+protected:
+    void onModelUpdated() override;
+
+public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
@@ -44,6 +48,7 @@ class SearchResultsListProxyModel final : public SelectableListProxyModel
     Q_OBJECT
 
 public:
-    explicit SearchResultsListProxyModel(QAbstractListModel* model, QObject* parent = nullptr)
+    explicit SearchResultsListProxyModel(QAbstractListModel* model = nullptr,
+                                         QObject* parent = nullptr)
         : SelectableListProxyModel(model, parent) {};
 };

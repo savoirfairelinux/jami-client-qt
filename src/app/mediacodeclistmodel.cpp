@@ -21,23 +21,17 @@
 #include "lrcinstance.h"
 
 #include "api/account.h"
-#include "api/contact.h"
-#include "api/conversation.h"
 #include "api/codecmodel.h"
-#include "api/devicemodel.h"
 
 MediaCodecListModel::MediaCodecListModel(QObject* parent)
     : AbstractListModelBase(parent)
-{
-    connect(this, &MediaCodecListModel::lrcInstanceChanged, [this]() {
-        connect(lrcInstance_,
-                &LRCInstance::currentAccountIdChanged,
-                this,
-                &MediaCodecListModel::reset);
-    });
-}
+{}
 
-MediaCodecListModel::~MediaCodecListModel() {}
+void
+MediaCodecListModel::onInitialized()
+{
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, &MediaCodecListModel::reset);
+}
 
 int
 MediaCodecListModel::rowCount(const QModelIndex& parent) const
