@@ -72,9 +72,6 @@ Rectangle {
                 firstIco:  JamiResources.round_edit_24dp_svg
                 secondIco: editable ? JamiResources.close_black_24dp_svg : ""
 
-                fieldLayoutWidth: 15
-                fieldLayoutHeight: 30
-
                 fontSize: 20
                 borderColor: "transparent"
 
@@ -121,9 +118,6 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
 
                 Layout.preferredWidth: JamiTheme.preferredFieldWidth
-                fieldLayoutWidth: 15
-                fieldLayoutHeight: 30
-
                 fontSize: 16
 
                 firstIco:  JamiResources.round_edit_24dp_svg
