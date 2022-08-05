@@ -54,7 +54,6 @@
 #include "pluginlistmodel.h"
 #include "pluginlistpreferencemodel.h"
 #include "preferenceitemlistmodel.h"
-#include "version.h"
 #include "wizardviewstepmodel.h"
 
 #include "api/peerdiscoverymodel.h"

@@ -126,6 +126,12 @@ PluginListModel::addPlugin()
 }
 
 void
+PluginListModel::onInitialized()
+{
+    reset();
+}
+
+void
 PluginListModel::filterPlugins(VectorString& list)
 {
     if (!lrcInstance_ || !filterAccount_)
