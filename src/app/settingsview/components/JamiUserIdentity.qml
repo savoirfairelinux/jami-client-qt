@@ -122,12 +122,7 @@ ColumnLayout {
             anchors.verticalCenter: parent.verticalCenter
 
             height: JamiTheme.preferredFieldHeight
-            width: {
-                var maximumWidth = parent.width - lblRegisteredName.width
-                        - JamiTheme.preferredMarginSize
-                return fieldLayoutWidth < maximumWidth ?
-                            fieldLayoutWidth : maximumWidth
-            }
+            width: JamiTheme.preferredFieldWidth
 
             padding: 8
             horizontalAlignment: CurrentAccount.registeredName === "" ? Text.AlignLeft :
