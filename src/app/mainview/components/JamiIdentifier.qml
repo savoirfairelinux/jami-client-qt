@@ -46,12 +46,10 @@ Rectangle {
     Layout.leftMargin: JamiTheme.jamiIdMargins
     property var minWidth: mainRectangle.width + secondLine.implicitWidth
     width: Math.max(minWidth, jamiRegisteredNameText.width + 2 * JamiTheme.preferredMarginSize)
-    height: component.implicitHeight
+    height: firstLine.implicitHeight + jamiRegisteredNameText.height + 12
     color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout {
-        id: component
-
         RowLayout {
             id: firstLine
             Layout.alignment: Qt.AlignTop

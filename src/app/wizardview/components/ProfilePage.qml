@@ -129,8 +129,6 @@ Rectangle {
 
             property string lastFirstChar
 
-            Layout.preferredHeight: fieldLayoutHeight
-            Layout.preferredWidth: fieldLayoutWidth
             Layout.alignment: Qt.AlignCenter
 
             focus: visible
@@ -146,8 +144,6 @@ Rectangle {
             }
             font.pointSize: JamiTheme.textFontSize
             font.kerning: true
-
-            fieldLayoutWidth: saveProfileBtn.width
 
             KeyNavigation.tab: saveProfileBtn
             KeyNavigation.down: KeyNavigation.tab

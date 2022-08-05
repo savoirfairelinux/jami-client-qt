@@ -128,8 +128,6 @@ Rectangle {
 
             verticalAlignment: Text.AlignVCenter
 
-            fieldLayoutWidth: 10
-
             placeholderText: JamiStrings.swarmName
             tooltipText: JamiStrings.swarmName
             backgroundColor: root.color

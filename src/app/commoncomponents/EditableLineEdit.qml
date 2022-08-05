@@ -37,8 +37,6 @@ Item {
     property alias underlined: lineEdit.underlined
     property alias wrapMode: lineEdit.wrapMode
     property alias padding: lineEdit.padding
-    property alias fieldLayoutWidth: lineEdit.fieldLayoutWidth
-    property alias fieldLayoutHeight: lineEdit.fieldLayoutHeight
     property alias echoMode: lineEdit.echoMode
     property string inactiveColor: JamiTheme.tintedBlue
     property string hoveredColor: "#03B9E9"
@@ -161,16 +159,14 @@ Item {
             id: lineEdit
             anchors.horizontalCenter: row.horizontalCenter
             width: row.width - firstIco_.width - thirdIco_.width - secIco_.width - thirdIco_.anchors.rightMargin
-            height: row.height
             readOnly: !editable || root.readOnly
             underlined: true
             verticalAlignment: Text.AlignBottom
 
             borderColor: root.editIconColor
-            fieldLayoutHeight: row.height
             placeholderText: readOnly? root.placeholderText : ""
 
-            wrapMode: Text.NoWrap
+            wrapMode: readOnly? TextEdit.WrapAnywhere : TextEdit.NoWrap
             horizontalAlignment: !readOnly || text !== "" ? Qt.AlignLeft : Qt.AlignHCenter
 
             onFocusChanged: function(focus) {

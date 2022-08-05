@@ -26,8 +26,6 @@ TextField {
     id: root
 
     property int fontSize: JamiTheme.materialLineEditPointSize
-    property int fieldLayoutWidth: 256
-    property int fieldLayoutHeight: 48
 
     property var backgroundColor: JamiTheme.secondaryBackgroundColor
     property var borderColor: JamiTheme.greyBorderColor
