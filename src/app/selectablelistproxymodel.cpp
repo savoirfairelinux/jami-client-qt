@@ -23,7 +23,8 @@ SelectableListProxyModel::SelectableListProxyModel(QAbstractListModel* model, QO
     , currentFilteredRow_(-1)
     , selectedSourceIndex_(QModelIndex())
 {
-    bindSourceModel(model);
+    if (model)
+        bindSourceModel(model);
 }
 
 void

@@ -69,16 +69,30 @@ class ConversationListModelBase : public AbstractListModelBase
 public:
     using item_t = const conversation::Info&;
 
+    ConversationListModelBase(QObject* parent = nullptr);
     explicit ConversationListModelBase(LRCInstance* instance, QObject* parent = nullptr);
+    ~ConversationListModelBase() = default;
 
-    int columnCount(const QModelIndex& parent) const override;
+protected:
+    Q_SLOT void onInitialized() override;
+
+    Q_SIGNAL void modelUpdated();
+    void updateModel();
+    // Classes that implement ConversationListModelBase may
+    // override this to connect if needed to the model's signals
+    // post initialization and if the model changes.
+    Q_SLOT virtual void onModelUpdated() {};
+
+    void connectModel();
+
+public:
     QHash<int, QByteArray> roleNames() const override;
-
-    QVariant dataForItem(item_t item, int role = Qt::DisplayRole) const;
+    QVariant dataForItem(item_t item, int role) const;
 
 protected:
     using Role = ConversationList::Role;
 
     // Convenience pointer to be pulled from lrcinstance
     ConversationModel* model_;
+    QVector<QMetaObject::Connection> modelBindings_;
 };

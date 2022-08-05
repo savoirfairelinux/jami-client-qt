@@ -203,5 +203,6 @@
         <file>src/app/mainview/components/CustomizeTipBox.qml</file>
         <file>src/app/mainview/components/BackupTipBox.qml</file>
         <file>src/app/mainview/components/InformativeTipBox.qml</file>
+        <file>src/app/mainview/components/SmartListProxyModel.qml</file>
     </qresource>
 </RCC>
