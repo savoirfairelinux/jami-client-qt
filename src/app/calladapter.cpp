@@ -670,7 +670,6 @@ CallAdapter::sipInputPanelPlayDTMF(const QString& key)
 void
 CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
 {
-    qWarning() << "CallAdapter::updateCallOverlay";
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
     auto* callModel = accInfo.callModel.get();
 

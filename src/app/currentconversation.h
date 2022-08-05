@@ -49,15 +49,16 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, isContact)
     QML_PROPERTY(bool, allMessagesLoaded)
     QML_PROPERTY(QString, modeString)
+    QML_PROPERTY(QStringList, members)
 
 public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;
 
-    Q_INVOKABLE void showSwarmDetails() const;
+    Q_INVOKABLE void showSwarmDetails();
 
 Q_SIGNALS:
-    void showDetails() const;
+    void showDetails();
 
 private Q_SLOTS:
     void updateData();
