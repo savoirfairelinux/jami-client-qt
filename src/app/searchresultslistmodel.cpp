@@ -22,6 +22,10 @@ SearchResultsListModel::SearchResultsListModel(LRCInstance* instance, QObject* p
     : ConversationListModelBase(instance, parent)
 {}
 
+void
+SearchResultsListModel::onModelUpdated()
+{}
+
 int
 SearchResultsListModel::rowCount(const QModelIndex& parent) const
 {

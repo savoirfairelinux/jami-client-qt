@@ -23,7 +23,8 @@ SelectableListProxyModel::SelectableListProxyModel(QAbstractListModel* model, QO
     , currentFilteredRow_(-1)
     , selectedSourceIndex_(QModelIndex())
 {
-    bindSourceModel(model);
+    if (model)
+        bindSourceModel(model);
 }
 
 void
@@ -159,7 +160,7 @@ SelectableListProxyGroupModel::SelectableListProxyGroupModel(QList<SelectableLis
     , models_(models)
 {
     Q_FOREACH (auto* m, models_) {
-        connect(m, &SelectableListProxyModel::validSelectionChanged, [this, m] {
+        connect(m, &SelectableListProxyModel::validSelectionChanged, this, [this, m] {
             // deselct all other lists in the group
             Q_FOREACH (auto* otherM, models_) {
                 if (m != otherM) {
