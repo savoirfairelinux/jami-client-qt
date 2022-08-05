@@ -75,11 +75,6 @@ JamiListView {
 
     onCountChanged: positionViewAtBeginning()
 
-    Component.onCompleted: {
-        // TODO: remove this
-        ConversationsAdapter.setQmlObject(this)
-    }
-
     add: Transition {
         NumberAnimation {
             property: "opacity"; from: 0; to: 1.0

@@ -1,7 +1,5 @@
 /*
  * Copyright (C) 2021-2022 Savoir-faire Linux Inc.
- * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +20,6 @@
 #include "conversationlistmodelbase.h"
 #include "selectablelistproxymodel.h"
 
-#include "api/profile.h"
-
 #include <QSortFilterProxyModel>
 
 // A wrapper view model around ConversationModel's underlying data
@@ -32,8 +28,15 @@ class ConversationListModel final : public ConversationListModelBase
     Q_OBJECT
 
 public:
+    ConversationListModel(QObject* parent = nullptr)
+        : ConversationListModelBase(parent) {};
     explicit ConversationListModel(LRCInstance* instance, QObject* parent = nullptr);
+    ~ConversationListModel() = default;
 
+protected:
+    Q_SLOT void onModelUpdated() override;
+
+public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 };
@@ -44,12 +47,14 @@ class ConversationListProxyModel final : public SelectableListProxyModel
     Q_OBJECT
 
 public:
-    explicit ConversationListProxyModel(QAbstractListModel* model, QObject* parent = nullptr);
+    explicit ConversationListProxyModel(QAbstractListModel* model = nullptr,
+                                        QObject* parent = nullptr);
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
     Q_INVOKABLE void setFilterRequests(bool filterRequests);
-    Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted) {
+    Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted)
+    {
         ignored_ = highlighted;
     }
 
