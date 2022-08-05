@@ -88,8 +88,7 @@ public:
 
     void safeInit() override {}
 
-    Q_INVOKABLE QVariant getContactSelectableModel(int type);
-    Q_INVOKABLE void setSearchFilter(const QString& filter);
+    Q_INVOKABLE void setConferenceableFilter(const QString& filter);
     Q_INVOKABLE void contactSelected(int index);
     Q_INVOKABLE void removeContact(const QString& peerUri, bool banContact);
 
@@ -104,9 +103,6 @@ private:
     QScopedPointer<SelectableProxyModel> selectableProxyModel_;
 
     QStringList defaultModerators_;
-
-    bool hasDifferentMembers(const VectorString& currentMembers,
-                             const VectorString& convMembers) const;
 
 Q_SIGNALS:
     void defaultModeratorsUpdated();

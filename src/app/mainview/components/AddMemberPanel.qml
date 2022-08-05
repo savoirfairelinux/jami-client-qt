@@ -20,6 +20,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import SortFilterProxyModel 0.2
+
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -35,14 +37,14 @@ Rectangle {
     width: 250
 
     ColumnLayout {
-        id: contactPickerPopupRectColumnLayout
+        id: columnLayout
 
         anchors.top: root.top
         anchors.bottom: root.bottom
         anchors.margins: 16
 
         ContactSearchBar {
-            id: contactPickerContactSearchBar
+            id: searchBar
 
             Layout.alignment: Qt.AlignCenter
             Layout.margins: 5
@@ -50,10 +52,6 @@ Rectangle {
             Layout.preferredHeight: 35
 
             placeHolderText: JamiStrings.addParticipant
-
-            onContactSearchBarTextChanged: {
-                ContactAdapter.setSearchFilter(text)
-            }
         }
 
         JamiListView {
@@ -61,27 +59,47 @@ Rectangle {
 
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: root.width - 8
-            Layout.preferredHeight: contactPickerPopupRectColumnLayout.height - contactPickerContactSearchBar.height
+            Layout.preferredHeight: columnLayout.height - searchBar.height
 
-            model: ContactAdapter.getContactSelectableModel(type)
-
-            Connections {
-                enabled: visible
-                target: CurrentConversation
-
-                function onUrisChanged(uris) {
-                    model = ContactAdapter.getContactSelectableModel(type)
-                }
-            }
-
-            onVisibleChanged: {
-                if (visible)
-                    model = ContactAdapter.getContactSelectableModel(type)
-            }
+//            model: SortFilterProxyModel {
+//                sourceModel: ConversationListModel
+//                filters: [
+//                    AnyOf {
+//                        RegExpFilter {
+//                            roleName: "Title"
+//                            pattern: searchBar.textContent
+//                            caseSensitivity: Qt.CaseInsensitive
+//                        }
+//                        RegExpFilter {
+//                            roleName: "RegisteredName"
+//                            pattern: searchBar.textContent
+//                            caseSensitivity: Qt.CaseInsensitive
+//                        }
+//                        RegExpFilter {
+//                            roleName: "URI"
+//                            pattern: searchBar.textContent
+//                            caseSensitivity: Qt.CaseInsensitive
+//                        }
+//                    },
+//                    ExpressionFilter {
+//                        property var currentMembers: CurrentConversation.members
+//                        property var currenAccountUri: CurrentAccount.uri
+//                        expression: {
+//                            for (const uri in model.Uris) {
+//                                if (uri !== currenAccountUri && !currentMembers.includes(uri))
+//                                    return true
+//                            }
+//                            return false
+//                        }
+//                    }
+//                ]
+//                sorters: ExpressionSorter {
+//                    expression: modelLeft.LastInteractionTimeStamp <
+//                                modelRight.LastInteractionTimeStamp
+//                }
+//            }
 
             delegate: ContactPickerItemDelegate {
-                id: contactPickerItemDelegate
-
                 showPresenceIndicator: true
             }
         }
