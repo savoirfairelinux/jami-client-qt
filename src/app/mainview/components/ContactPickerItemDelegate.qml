@@ -34,9 +34,9 @@ ItemDelegate {
                 avatar.height + 10
             )
 
-    property var showPresenceIndicator: false
+    property bool showPresenceIndicator: false
 
-    signal contactClicked
+    signal itemSelected(int index)
 
     ConversationAvatar {
         id: avatar
@@ -129,12 +129,7 @@ ItemDelegate {
 
         onReleased: {
             itemSmartListBackground.color = JamiTheme.normalButtonColor
-
-            ContactAdapter.contactSelected(index)
-            root.contactClicked()
-            // TODO remove from there
-            if (contactPickerPopup)
-                contactPickerPopup.close()
+            root.itemSelected(index)
         }
 
         onEntered: {

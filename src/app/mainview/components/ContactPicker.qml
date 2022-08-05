@@ -20,6 +20,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import SortFilterProxyModel 0.2
+
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -27,9 +29,9 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 
 Popup {
-    id: contactPickerPopup
+    id: root
 
-    property int type: ContactList.CONFERENCE
+    required property int type
 
     contentWidth: 250
     contentHeight: contactPickerPopupRectColumnLayout.height + 50
@@ -38,7 +40,7 @@ Popup {
 
     modal: true
 
-    contentItem: Rectangle {
+    contentItem: Item {
         id: contactPickerPopupRect
         width: 250
 
@@ -54,7 +56,7 @@ Popup {
             source: JamiResources.round_close_24dp_svg
 
             onClicked: {
-                contactPickerPopup.close()
+                root.close()
             }
         }
 
@@ -93,18 +95,16 @@ Popup {
             }
 
             ContactSearchBar {
-                id: contactPickerContactSearchBar
+                id: searchBar
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.margins: 5
                 Layout.fillWidth: true
                 Layout.preferredHeight: 35
 
-                placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
-
-                onContactSearchBarTextChanged: {
-                    ContactAdapter.setSearchFilter(text)
-                }
+                placeHolderText: type === ContactList.TRANSFER
+                                 ? JamiStrings.transferTo
+                                 : JamiStrings.addParticipant
             }
 
             JamiListView {
@@ -114,26 +114,49 @@ Popup {
                 Layout.preferredWidth: contactPickerPopupRect.width
                 Layout.preferredHeight: 200
 
-                model: ContactAdapter.getContactSelectableModel(type)
+                model: SmartListProxyModel {
+                    id: proxyModel
+                    filterPattern: searchBar.textContent
+                    Component.onCompleted: print(type)
+                    type: root.type
+                    filters: [
+                        ExpressionFilter {
+                            enabled: type === ContactList.CONVERSATION
+                            property var defaultModerators: CurrentAccount.defaultModerators
+                            onDefaultModeratorsChanged: Qt.callLater(invalidated)
+                            expression: !defaultModerators.includes(model.URI)
+                        },
+                        AllOf {
+                            enabled: type === ContactList.CONFERENCE
+                            ValueFilter { roleName: "Presence"; value: true }
+                            ValueFilter { roleName: "InCall"; value: false }
+                        },
+                        ExpressionFilter {
+                            enabled: type === ContactList.TRANSFER
+                            property var currentMembers: CurrentConversation.members
+                            onCurrentMembersChanged: Qt.callLater(invalidated)
+                            expression: !currentMembers.includes(model.URI)
+                        }
+                    ]
+                }
 
                 delegate: ContactPickerItemDelegate {
                     id: contactPickerItemDelegate
 
                     showPresenceIndicator: type !== ContactList.TRANSFER
+                    onItemSelected: index => {
+                                        proxyModel.selectItem(index)
+                                        root.close()
+                                    }
                 }
             }
         }
 
-        radius: 10
-        color: JamiTheme.backgroundColor
-    }
 
-    onAboutToShow: {
-        contactPickerListView.model =
-                ContactAdapter.getContactSelectableModel(type)
     }
 
     background: Rectangle {
-        color: "transparent"
+        radius: 10
+        color: JamiTheme.backgroundColor
     }
 }

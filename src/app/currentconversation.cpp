@@ -77,6 +77,7 @@ CurrentConversation::updateData()
             // is consistently determined by the peer's uri being equal to
             // the conversation id.
             auto members = accInfo.conversationModel->peersForConversation(convId);
+            set_members(members);
             set_isTemporary(isCoreDialog_ ? convId == members.at(0) : false);
 
             auto isContact {false};
@@ -133,17 +134,17 @@ CurrentConversation::connectModel()
     if (!convModel)
         return;
 
-    connect(lrcInstance_->getCurrentConversationModel(),
+    connect(convModel,
             &ConversationModel::conversationUpdated,
             this,
             &CurrentConversation::onConversationUpdated,
             Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentConversationModel(),
+    connect(convModel,
             &ConversationModel::profileUpdated,
             this,
             &CurrentConversation::onProfileUpdated,
             Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentConversationModel(),
+    connect(convModel,
             &ConversationModel::onConversationErrorsUpdated,
             this,
             &CurrentConversation::updateErrors,
@@ -151,7 +152,7 @@ CurrentConversation::connectModel()
 }
 
 void
-CurrentConversation::showSwarmDetails() const
+CurrentConversation::showSwarmDetails()
 {
     Q_EMIT showDetails();
 }

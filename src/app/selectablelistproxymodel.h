@@ -31,7 +31,8 @@ class SelectableListProxyModel : public QSortFilterProxyModel
     QML_PROPERTY(int, currentFilteredRow)
 
 public:
-    explicit SelectableListProxyModel(QAbstractListModel* model, QObject* parent = nullptr);
+    explicit SelectableListProxyModel(QAbstractListModel* model = nullptr,
+                                      QObject* parent = nullptr);
 
     void bindSourceModel(QAbstractListModel* model);
 

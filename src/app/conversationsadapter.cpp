@@ -34,10 +34,8 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                                            QObject* parent)
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
-    , convSrcModel_(new ConversationListModel(lrcInstance_))
-    , convModel_(new ConversationListProxyModel(convSrcModel_.get()))
-    , searchSrcModel_(new SearchResultsListModel(lrcInstance_))
-    , searchModel_(new SelectableListProxyModel(searchSrcModel_.get()))
+    , convModel_(new ConversationListProxyModel)
+    , searchModel_(new SelectableListProxyModel)
 {
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, convModel_.get(), "ConversationListModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, searchModel_.get(), "SearchResultsListModel");
@@ -103,13 +101,7 @@ ConversationsAdapter::ConversationsAdapter(SystemTray* systemTray,
                 accInfo.conversationModel->removeConversation(convUid);
             });
 #endif
-}
 
-void
-ConversationsAdapter::safeInit()
-{
-    // TODO: remove these safeInits, they are possibly called
-    // multiple times during qml component inits
     connect(&lrcInstance_->behaviorController(),
             &BehaviorController::newUnreadInteraction,
             this,
@@ -140,7 +132,9 @@ ConversationsAdapter::safeInit()
             &ConversationsAdapter::onCurrentAccountIdChanged,
             Qt::UniqueConnection);
 
-    connectConversationModel();
+    if (lrcInstance_->accountModel().getAccountList().size()) {
+        connectConversationModel();
+    }
 }
 
 void

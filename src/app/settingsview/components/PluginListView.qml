@@ -104,9 +104,6 @@ Rectangle {
                 id: installedPluginsModel
 
                 lrcInstance: LRCInstance
-                onLrcInstanceChanged: {
-                    this.reset()
-                }
             }
 
             delegate: PluginItemDelegate {
