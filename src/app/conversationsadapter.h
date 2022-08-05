@@ -44,7 +44,7 @@ public:
     ~ConversationsAdapter() = default;
 
 protected:
-    void safeInit() override;
+    void safeInit() override {};
 
 public:
     Q_INVOKABLE bool connectConversationModel();

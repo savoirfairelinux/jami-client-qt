@@ -75,10 +75,10 @@ JamiListView {
 
     onCountChanged: positionViewAtBeginning()
 
-    Component.onCompleted: {
-        // TODO: remove this
-        ConversationsAdapter.setQmlObject(this)
-    }
+//    Component.onCompleted: {
+//        // TODO: remove this
+//        ConversationsAdapter.setQmlObject(this)
+//    }
 
     add: Transition {
         NumberAnimation {
