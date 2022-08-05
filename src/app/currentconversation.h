@@ -19,6 +19,7 @@
 #pragma once
 
 #include "lrcinstance.h"
+#include "conversationlistmodel.h"
 
 #include <QObject>
 #include <QString>
@@ -50,6 +51,7 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(QString, modeString)
     QML_PROPERTY(QStringList, errors)
     QML_PROPERTY(QStringList, backendErrors)
+    QML_PROPERTY(QStringList, members)
 
     // TODO: these belong in CurrentCall(which doesn't exist yet)
     QML_PROPERTY(bool, hideSelf)
@@ -59,7 +61,7 @@ public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
     ~CurrentConversation() = default;
     Q_INVOKABLE void scrollToMsg(const QString& msgId);
-    Q_INVOKABLE void showSwarmDetails() const;
+    Q_INVOKABLE void showSwarmDetails();
 
 Q_SIGNALS:
     void scrollTo(const QString& msgId);

@@ -52,6 +52,9 @@ public:
     Q_INVOKABLE void pluginChanged(int index);
     Q_INVOKABLE void addPlugin();
 
+protected:
+    Q_SLOT void onInitialized() override;
+
 private:
     void filterPlugins(VectorString& list);
     VectorString installedPlugins_ {};
