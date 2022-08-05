@@ -196,5 +196,6 @@
         <file>src/app/wizardview/components/AdvancedAccountSettings.qml</file>
         <file>src/app/commoncomponents/InfoBox.qml</file>
         <file>src/app/mainview/components/TipBox.qml</file>
+        <file>src/app/mainview/components/SmartListProxyModel.qml</file>
     </qresource>
 </RCC>

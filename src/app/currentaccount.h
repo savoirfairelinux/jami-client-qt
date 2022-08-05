@@ -110,6 +110,7 @@ class CurrentAccount final : public QObject
     QML_RO_PROPERTY(bool, hasAvatarSet)
     QML_RO_PROPERTY(lrc::api::account::Status, status)
     QML_RO_PROPERTY(lrc::api::profile::Type, type)
+    QML_RO_PROPERTY(QStringList, defaultModerators)
 
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, keepAliveEnabled)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, peerDiscovery)

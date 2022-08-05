@@ -78,6 +78,7 @@ CurrentConversation::updateData()
             // is consistently determined by the peer's uri being equal to
             // the conversation id.
             auto members = accInfo.conversationModel->peersForConversation(convId);
+            set_members(members);
             set_isTemporary(isCoreDialog_ ? convId == members.at(0) : false);
 
             auto isContact {false};
@@ -146,7 +147,7 @@ CurrentConversation::connectModel()
 }
 
 void
-CurrentConversation::showSwarmDetails() const
+CurrentConversation::showSwarmDetails()
 {
     Q_EMIT showDetails();
 }
