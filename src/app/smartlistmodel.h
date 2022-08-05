@@ -34,12 +34,14 @@ class LRCInstance;
 class SmartListModel : public ConversationListModelBase
 {
     Q_OBJECT
+    QML_PROPERTY(ContactList::Type, listModelType)
+
 public:
     using Type = ContactList::Type;
 
-    explicit SmartListModel(QObject* parent = nullptr,
-                            Type listModelType = Type::CONVERSATION,
-                            LRCInstance* instance = nullptr);
+    explicit SmartListModel(QObject* parent = nullptr);
+
+    void updateData();
 
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
@@ -52,9 +54,9 @@ public:
     Q_INVOKABLE void toggleSection(const QString& section);
     Q_INVOKABLE int currentUidSmartListModelIndex();
     Q_INVOKABLE void fillConversationsList();
+    Q_INVOKABLE void selectItem(int index);
 
 private:
-    Type listModelType_;
     QMap<QString, bool> sectionState_;
     QMap<ConferenceableItem, ConferenceableValue> conferenceables_;
     ConversationModel::ConversationQueueProxy conversations_;

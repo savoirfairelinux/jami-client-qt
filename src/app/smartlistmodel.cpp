@@ -21,26 +21,35 @@
 #include "smartlistmodel.h"
 
 #include "lrcinstance.h"
-#include "utils.h"
 
 #include "api/account.h"
-#include "api/contact.h"
 #include "api/conversation.h"
 #include "api/conversationmodel.h"
-#include "api/contactmodel.h"
 
 #include <QDateTime>
 
-SmartListModel::SmartListModel(QObject* parent,
-                               SmartListModel::Type listModelType,
-                               LRCInstance* instance)
-    : ConversationListModelBase(instance, parent)
-    , listModelType_(listModelType)
+SmartListModel::SmartListModel(QObject* parent)
+    : ConversationListModelBase(parent)
+{
+    connect(this, &ConversationListModelBase::initialized, this, [this] {
+        connect(lrcInstance_,
+                &LRCInstance::currentAccountIdChanged,
+                this,
+                &SmartListModel::updateData);
+        updateData();
+    });
+}
+
+void
+SmartListModel::updateData()
 {
     if (listModelType_ == Type::CONFERENCE) {
         setConferenceableFilter();
     } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER) {
         fillConversationsList();
+    } else {
+        beginResetModel();
+        endResetModel();
     }
 }
 
@@ -48,9 +57,8 @@ int
 SmartListModel::rowCount(const QModelIndex& parent) const
 {
     if (!parent.isValid() && lrcInstance_) {
-        auto& accInfo = lrcInstance_->accountModel().getAccountInfo(
-            lrcInstance_->get_currentAccountId());
-        auto& convModel = accInfo.conversationModel;
+        auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+        auto convModel = accInfo.conversationModel.get();
         if (listModelType_ == Type::TRANSFER) {
             return convModel->getFilteredConversations(accInfo.profileInfo.type).size();
         } else if (listModelType_ == Type::CONFERENCE) {
@@ -63,8 +71,9 @@ SmartListModel::rowCount(const QModelIndex& parent) const
                 rowCount += sectionState_[tr("Contacts")] ? contacts.size() : 0;
             }
             return rowCount;
+        } else {
+            return conversations_.size();
         }
-        return conversations_.size();
     }
     return 0;
 }
@@ -146,9 +155,7 @@ void
 SmartListModel::setConferenceableFilter(const QString& filter)
 {
     beginResetModel();
-    auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(
-        lrcInstance_->get_currentAccountId());
-    auto& convModel = accountInfo.conversationModel;
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
     conferenceables_ = convModel->getConferenceableConversations(lrcInstance_->get_selectedConvUid(),
                                                                  filter);
     sectionState_[tr("Calls")] = true;
@@ -165,6 +172,101 @@ SmartListModel::fillConversationsList()
     conversations_ = ConversationList(convModel->getAllSearchResults())
                      + convModel->allFilteredConversations();
     endResetModel();
+}
+
+void
+SmartListModel::selectItem(int index)
+{
+    auto contactIndex = SmartListModel::index(index, 0);
+    auto* callModel = lrcInstance_->getCurrentCallModel();
+    auto* convModel = lrcInstance_->getCurrentConversationModel();
+    const auto& convInfo = lrcInstance_->getConversationFromConvUid(
+        lrcInstance_->get_selectedConvUid());
+    if (contactIndex.isValid()) {
+        switch (listModelType_) {
+        case SmartListModel::Type::ADDCONVMEMBER: {
+            auto members = convModel->peersForConversation(lrcInstance_->get_selectedConvUid());
+            auto cntMembers = members.size();
+            const auto uris = contactIndex.data(Role::Uris).toStringList();
+            for (const auto& uri : uris) {
+                // TODO remove < 9
+                if (!members.contains(uri) && cntMembers < 9) {
+                    cntMembers++;
+                    convModel->addConversationMember(lrcInstance_->get_selectedConvUid(), uri);
+                }
+            }
+            break;
+        }
+        case SmartListModel::Type::CONFERENCE: {
+            // Conference.
+            const auto sectionName = contactIndex.data(Role::SectionName).value<QString>();
+            if (!sectionName.isEmpty()) {
+                toggleSection(sectionName);
+                return;
+            }
+
+            const auto convUid = contactIndex.data(Role::UID).value<QString>();
+            const auto accId = contactIndex.data(Role::AccountId).value<QString>();
+            const auto callId = lrcInstance_->getCallIdForConversationUid(convUid, accId);
+
+            if (!callId.isEmpty()) {
+                if (convInfo.uid.isEmpty()) {
+                    return;
+                }
+                auto thisCallId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
+
+                callModel->joinCalls(thisCallId, callId);
+            } else {
+                const auto contactUri = contactIndex.data(Role::URI).value<QString>();
+                auto call = lrcInstance_->getCallInfoForConversation(convInfo);
+                if (!call) {
+                    return;
+                }
+                callModel->callAndAddParticipant(contactUri, call->id, call->isAudioOnly);
+            }
+        } break;
+        case SmartListModel::Type::TRANSFER: {
+            // SIP Transfer.
+            const auto contactUri = contactIndex.data(Role::URI).value<QString>();
+
+            if (convInfo.uid.isEmpty()) {
+                return;
+            }
+            const auto callId = convInfo.confId.isEmpty() ? convInfo.callId : convInfo.confId;
+
+            QString destCallId;
+
+            try {
+                // Check if the call exist - (check non-finished calls).
+                const auto callInfo = callModel->getCallFromURI(contactUri, true);
+                destCallId = callInfo.id;
+            } catch (std::exception& e) {
+                qDebug().noquote() << e.what();
+                destCallId = "";
+            }
+
+            // If no second call -> blind transfer.
+            // If there is a second call -> attended transfer.
+            if (destCallId.size() == 0) {
+                callModel->transfer(callId, "sip:" + contactUri);
+            } else {
+                callModel->transferToCall(callId, destCallId);
+            }
+        } break;
+        case SmartListModel::Type::CONVERSATION: {
+            const auto contactUri = contactIndex.data(Role::URI).value<QString>();
+            if (contactUri.isEmpty()) {
+                return;
+            }
+
+            lrcInstance_->accountModel().setDefaultModerator(lrcInstance_->get_currentAccountId(),
+                                                             contactUri,
+                                                             true);
+        } break;
+        default:
+            break;
+        }
+    }
 }
 
 void
