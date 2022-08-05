@@ -35,7 +35,7 @@ CurrentAccount::CurrentAccount(LRCInstance* lrcInstance,
             this,
             &CurrentAccount::onAccountUpdated);
 
-    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this] { updateData(); });
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this] { updateData(); });
 
     updateData();
 }
@@ -107,6 +107,7 @@ CurrentAccount::updateData()
         set_hasAvatarSet(!accInfo.profileInfo.avatar.isEmpty());
         set_status(accInfo.status);
         set_type(accInfo.profileInfo.type);
+        set_defaultModerators(lrcInstance_->accountModel().getDefaultModerators(id_));
 
         set_enabled(accInfo.enabled);
         set_managerUri(accConfig.managerUri);
