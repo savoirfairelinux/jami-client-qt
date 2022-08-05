@@ -23,42 +23,12 @@
 
 ConversationListModel::ConversationListModel(LRCInstance* instance, QObject* parent)
     : ConversationListModelBase(instance, parent)
+{}
+
+void
+ConversationListModel::onModelUpdated()
 {
-    if (!model_)
-        return;
-
-    connect(
-        model_,
-        &ConversationModel::beginInsertRows,
-        this,
-        [this](int position, int rows) {
-            beginInsertRows(QModelIndex(), position, position + (rows - 1));
-        },
-        Qt::DirectConnection);
-    connect(model_,
-            &ConversationModel::endInsertRows,
-            this,
-            &ConversationListModel::endInsertRows,
-            Qt::DirectConnection);
-
-    connect(
-        model_,
-        &ConversationModel::beginRemoveRows,
-        this,
-        [this](int position, int rows) {
-            beginRemoveRows(QModelIndex(), position, position + (rows - 1));
-        },
-        Qt::DirectConnection);
-    connect(model_,
-            &ConversationModel::endRemoveRows,
-            this,
-            &ConversationListModel::endRemoveRows,
-            Qt::DirectConnection);
-
-    connect(model_, &ConversationModel::dataChanged, this, [this](int position) {
-        const auto index = createIndex(position, 0);
-        Q_EMIT ConversationListModel::dataChanged(index, index);
-    });
+    connectModel();
 }
 
 int
