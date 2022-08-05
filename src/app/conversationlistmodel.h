@@ -22,8 +22,6 @@
 #include "conversationlistmodelbase.h"
 #include "selectablelistproxymodel.h"
 
-#include "api/profile.h"
-
 #include <QSortFilterProxyModel>
 
 // A wrapper view model around ConversationModel's underlying data
@@ -34,6 +32,7 @@ class ConversationListModel final : public ConversationListModelBase
 public:
     explicit ConversationListModel(LRCInstance* instance, QObject* parent = nullptr);
 
+public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 };
@@ -49,7 +48,8 @@ public:
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
     Q_INVOKABLE void setFilterRequests(bool filterRequests);
-    Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted) {
+    Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted)
+    {
         ignored_ = highlighted;
     }
 
