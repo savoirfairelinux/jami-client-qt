@@ -20,6 +20,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
+import SortFilterProxyModel 0.2
+
 import net.jami.Adapters 1.1
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -93,7 +95,7 @@ Popup {
             }
 
             ContactSearchBar {
-                id: contactPickerContactSearchBar
+                id: searchBar
 
                 Layout.alignment: Qt.AlignCenter
                 Layout.margins: 5
@@ -103,7 +105,8 @@ Popup {
                 placeHolderText: JamiStrings.addParticipant
 
                 onContactSearchBarTextChanged: {
-                    ContactAdapter.setSearchFilter(text)
+                    if (type === ContactList.CONFERENCE)
+                        ContactAdapter.setConferenceableFilter(text)
                 }
             }
 
@@ -114,7 +117,67 @@ Popup {
                 Layout.preferredWidth: contactPickerPopupRect.width
                 Layout.preferredHeight: 200
 
-                model: ContactAdapter.getContactSelectableModel(type)
+                model: SortFilterProxyModel {
+                    //sourceModel: ConversationListModel
+
+                    Component.onCompleted: ContactAdapter.setConferenceableFilter("")
+//                    proxyRoles: ExpressionRole {
+//                         name: "hasDifferentMembers"
+//                         property var currentMembers: CurrentConversation.members
+//                         property var currenAccountUri: CurrentAccount.uri
+//                         expression: {
+//                             for (const uri in model.Uris) {
+//                                 if (uri !== currenAccountUri && !currentMembers.includes(uri))
+//                                     return true
+//                             }
+//                             return false
+//                         }
+//                    }
+                    filters: [
+                        AnyOf {
+                            RegExpFilter {
+                                roleName: "Title"
+                                pattern: searchBar.textContent
+                                caseSensitivity: Qt.CaseInsensitive
+                            }
+                            RegExpFilter {
+                                roleName: "RegisteredName"
+                                pattern: searchBar.textContent
+                                caseSensitivity: Qt.CaseInsensitive
+                            }
+                            RegExpFilter {
+                                roleName: "URI"
+                                pattern: searchBar.textContent
+                                caseSensitivity: Qt.CaseInsensitive
+                            }
+                        },
+//                        ValueFilter {
+//                            enabled: type === ContactList.ADDCONVMEMBER
+//                            roleName: "hasDifferentMembers"
+//                            value: true
+//                        },
+                        ExpressionFilter {
+                            enabled: type === ContactList.ADDCONVMEMBER
+                            property var currentMembers: CurrentConversation.members
+                            property var currenAccountUri: CurrentAccount.uri
+                            expression: {
+                                for (const uri in model.Uris) {
+                                    if (uri !== currenAccountUri && !currentMembers.includes(uri))
+                                        return true
+                                }
+                                return false
+                            }
+                        },
+                        ExpressionFilter {
+                            enabled: type === ContactList.CONVERSATION
+                            expression: !CurrentAccount.defaulModerators.contains(URI)
+                        }
+                    ]
+                    sorters: ExpressionSorter {
+                        expression: modelLeft.LastInteractionTimeStamp <
+                                    modelRight.LastInteractionTimeStamp
+                    }
+                }
 
                 delegate: ContactPickerItemDelegate {
                     id: contactPickerItemDelegate
@@ -126,11 +189,6 @@ Popup {
 
         radius: 10
         color: JamiTheme.backgroundColor
-    }
-
-    onAboutToShow: {
-        contactPickerListView.model =
-                ContactAdapter.getContactSelectableModel(type)
     }
 
     background: Rectangle {
