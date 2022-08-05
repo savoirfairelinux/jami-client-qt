@@ -19,18 +19,25 @@
 
 #include "conversationlistmodelbase.h"
 
-ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObject* parent)
-    : AbstractListModelBase(parent)
+ConversationListModelBase::ConversationListModelBase(QObject* parent)
+    : QAbstractListModel(parent)
+{}
+
+ConversationListModelBase::ConversationListModelBase(LRCInstance* lrcInstance, QObject* parent)
+    : QAbstractListModel(parent)
 {
-    lrcInstance_ = instance;
-    model_ = lrcInstance_->getCurrentConversationModel();
+    init(lrcInstance);
 }
 
-int
-ConversationListModelBase::columnCount(const QModelIndex& parent) const
+void
+ConversationListModelBase::init(LRCInstance* lrcInstance)
 {
-    Q_UNUSED(parent)
-    return 1;
+    lrcInstance_ = lrcInstance;
+    connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, this, [this] {
+        model_ = lrcInstance_->getCurrentConversationModel();
+    });
+    model_ = lrcInstance_->getCurrentConversationModel();
+    Q_EMIT initialized();
 }
 
 QHash<int, QByteArray>
@@ -47,6 +54,9 @@ ConversationListModelBase::roleNames() const
 QVariant
 ConversationListModelBase::dataForItem(item_t item, int role) const
 {
+    if (lrcInstance_ == nullptr)
+        return {};
+
     switch (role) {
     case Role::InCall: {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
@@ -177,6 +187,7 @@ ConversationListModelBase::dataForItem(item_t item, int role) const
         } catch (const std::exception&) {
             qWarning() << Q_FUNC_INFO << "Can't find contact" << peerUri
                        << " this is a bug, please report";
+            return {};
         }
 
         switch (role) {
