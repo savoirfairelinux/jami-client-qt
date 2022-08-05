@@ -33,33 +33,28 @@ function createContactPickerObjects(type, parent) {
         contactPickerObject.type = type
         return
     }
-    contactPickerComponent = Qt.createComponent(
-                "../components/ContactPicker.qml")
-    if (contactPickerComponent.status === Component.Ready)
-        finishCreation(type, parent)
+    contactPickerComponent = Qt.createComponent("../components/ContactPicker.qml")
+    if (contactPickerComponent.status === Component.Ready) {
+        contactPickerObject = contactPickerComponent.createObject(parent, { "type": type })
+        if (contactPickerObject === null) {
+            /*
+             * Error Handling.
+             */
+            console.log("Error creating object for contact picker")
+        } else {
+            contactPickerObject.x = Qt.binding(function(){
+                return parent.width/2 - contactPickerObject.width / 2})
+            contactPickerObject.y = Qt.binding(function(){
+                return parent.height/2 - contactPickerObject.height / 2})
+        }
+    }
     else if (contactPickerComponent.status === Component.Error)
         console.log("Error loading component:",
                     contactPickerComponent.errorString())
 }
 
-function finishCreation(type, parent) {
-    contactPickerObject = contactPickerComponent.createObject(parent, {
-                                                                  "type": type
-                                                              })
-    if (contactPickerObject === null) {
-        /*
-         * Error Handling.
-         */
-        console.log("Error creating object for contact picker")
-    } else {
-        contactPickerObject.x = Qt.binding(function(){
-            return parent.width/2 - contactPickerObject.width / 2})
-        contactPickerObject.y = Qt.binding(function(){
-            return parent.height/2 - contactPickerObject.height / 2})
-    }
-}
-
-function openContactPicker() {
+function openContactPicker(type, parent) {
+    createContactPickerObjects(type, parent)
     if (contactPickerObject)
         contactPickerObject.open()
 }
