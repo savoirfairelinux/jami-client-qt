@@ -30,8 +30,12 @@ public:
     Q_ENUM(Role)
 
     explicit MediaCodecListModel(QObject* parent = nullptr);
-    ~MediaCodecListModel();
+    ~MediaCodecListModel() = default;
 
+protected:
+    Q_SLOT void onInitialized() override;
+
+public:
     /*
      * QAbstractListModel override.
      */
@@ -42,9 +46,11 @@ public:
      * Override role name as access point in qml.
      */
     QHash<int, QByteArray> roleNames() const override;
-    QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex& child) const;
-    Qt::ItemFlags flags(const QModelIndex& index) const;
+    QModelIndex index(int row,
+                      int column = 0,
+                      const QModelIndex& parent = QModelIndex()) const override;
+    QModelIndex parent(const QModelIndex& child) const override;
+    Qt::ItemFlags flags(const QModelIndex& index) const override;
 
     Q_INVOKABLE void reset();
 
