@@ -136,6 +136,7 @@ MainApplication::init()
     setWindowIcon(QIcon(":/images/jami.ico"));
 
     Utils::removeOldVersions();
+    qputenv("JAMI_LANG", settingsManager_->getValue(Settings::Key::LANG).toByteArray());
     settingsManager_->loadTranslations();
     setApplicationFont();
 
