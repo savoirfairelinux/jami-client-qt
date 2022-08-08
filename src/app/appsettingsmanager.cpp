@@ -24,6 +24,7 @@
 #include <QLibraryInfo>
 
 #include <locale.h>
+#include "api/lrc.h"
 
 const QString defaultDownloadPath = QStandardPaths::writableLocation(
     QStandardPaths::DownloadLocation);
@@ -42,6 +43,14 @@ AppSettingsManager::AppSettingsManager(QObject* parent)
 QVariant
 AppSettingsManager::getValue(const Settings::Key key)
 {
+    if (key == Settings::Key::LANG) {
+        auto value = lrc::api::Lrc::getLanguage();
+        if (value.isEmpty() || value == "SYSTEM") {
+            value = QLocale::system().name();
+            lrc::api::Lrc::setLanguage(value);
+        }
+        return value;
+    }
     auto value = settings_->value(Settings::toString(key), Settings::defaultValue(key));
 
     if (QString(value.typeName()) == "QString"
@@ -54,6 +63,10 @@ AppSettingsManager::getValue(const Settings::Key key)
 void
 AppSettingsManager::setValue(const Settings::Key key, const QVariant& value)
 {
+    if (key == Settings::Key::LANG) {
+        lrc::api::Lrc::setLanguage(value == "SYSTEM" ? QLocale::system().name() : value.toString());
+        return;
+    }
     settings_->setValue(Settings::toString(key), value);
 }
 

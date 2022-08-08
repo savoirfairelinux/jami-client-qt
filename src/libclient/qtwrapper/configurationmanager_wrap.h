@@ -1146,6 +1146,18 @@ public Q_SLOTS: // METHODS
                                         fromId.toStdString(),
                                         authorUri.toStdString());
     }
+
+    QString getLanguage()
+    {
+        QString temp(DRing::getLanguage().c_str());
+        return temp;
+    }
+
+    void setLanguage(const QString& language)
+    {
+        DRing::setLanguage(language.toStdString());
+    }
+
 Q_SIGNALS: // SIGNALS
     void volumeChanged(const QString& device, double value);
     void accountsChanged();
