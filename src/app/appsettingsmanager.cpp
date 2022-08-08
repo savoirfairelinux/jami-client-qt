@@ -24,6 +24,7 @@
 #include <QLibraryInfo>
 
 #include <locale.h>
+#include "api/lrc.h"
 
 const QString defaultDownloadPath = QStandardPaths::writableLocation(
     QStandardPaths::DownloadLocation);
@@ -57,6 +58,24 @@ AppSettingsManager::setValue(const Settings::Key key, const QVariant& value)
     settings_->setValue(Settings::toString(key), value);
 }
 
+QVariant
+AppSettingsManager::getLanguage()
+{
+    auto value = lrc::api::Lrc::getLanguage();
+    if (value.isEmpty() || value == "SYSTEM") {
+        value = QLocale::system().name();
+        lrc::api::Lrc::setLanguage(value);
+    }
+    return value;
+}
+
+void
+AppSettingsManager::setLanguage(const QVariant& value)
+{
+    lrc::api::Lrc::setLanguage(value == "SYSTEM" ? QLocale::system().name() : value.toString());
+    loadTranslations();
+}
+
 void
 AppSettingsManager::loadTranslations()
 {
@@ -75,7 +94,7 @@ AppSettingsManager::loadTranslations()
         qApp->removeTranslator(tr);
     installedTr_.clear();
 
-    auto pref = getValue(Settings::Key::LANG).toString();
+    auto pref = getLanguage().toString();
 
     QString locale_name = pref == "SYSTEM" ? QLocale::system().name() : pref;
     qDebug() << QString("Using locale: %1").arg(locale_name);

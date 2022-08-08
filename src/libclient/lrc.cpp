@@ -230,6 +230,18 @@ Lrc::monitor(bool continuous)
     ConfigurationManager::instance().monitor(continuous);
 }
 
+void
+Lrc::setLanguage(const QString& language)
+{
+    ConfigurationManager::instance().setLanguage(language);
+}
+
+QString
+Lrc::getLanguage()
+{
+    return ConfigurationManager::instance().getLanguage();
+}
+
 LrcPimpl::LrcPimpl(Lrc& linked, MigrationCb& willMigrateCb, MigrationCb& didMigrateCb)
     : linked(linked)
     , behaviorController(std::make_unique<BehaviorController>())
