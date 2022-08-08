@@ -42,6 +42,7 @@
 
 #include <locale.h>
 #include <thread>
+#include <stdlib.h>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -136,6 +137,7 @@ MainApplication::init()
     setWindowIcon(QIcon(":/images/jami.ico"));
 
     Utils::removeOldVersions();
+    setenv("JAMI_LANG", settingsManager_->getValue(Settings::Key::LANG).toString().toStdString().c_str(), true);
     settingsManager_->loadTranslations();
     setApplicationFont();
 
