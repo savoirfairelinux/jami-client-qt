@@ -174,7 +174,7 @@ ColumnLayout {
             Component.onCompleted: {
                 var supported = UtilsAdapter.supportedLang();
                 var keys = Object.keys(supported);
-                var currentKey = UtilsAdapter.getAppValue(Settings.Key.LANG);
+                var currentKey = AppSettingsManager.getLanguage()
                 for (var i = 0 ; i < keys.length ; ++i) {
                     append({ textDisplay: supported[keys[i]], id: keys[i] })
                     if (keys[i] == currentKey)
@@ -186,7 +186,7 @@ ColumnLayout {
         role: "textDisplay"
 
         onActivated: {
-            UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id)
+            AppSettingsManager.setLanguage(comboModel.get(modelIndex).id)
         }
     }
 

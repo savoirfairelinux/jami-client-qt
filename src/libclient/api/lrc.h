@@ -124,6 +124,16 @@ public:
      */
     static void monitor(bool continous);
 
+    /**
+     * Set application prefered language
+     */
+    static void setLanguage(const QString& language);
+
+    /**
+     * Get application prefered language
+     */
+    static QString getLanguage();
+
 private:
     std::unique_ptr<LrcPimpl> lrcPimpl_;
 };
