@@ -37,6 +37,8 @@ Rectangle {
         if (visible) {
             preferencesPerCategoryModel.reset()
             generalPreferencesModel.reset()
+            root.categories = PluginAdapter.getPluginPreferencesCategories(pluginId, accountId)
+            root.category = categories.length > 0 ? categories[0] : category ? category : ""
         }
     }
 

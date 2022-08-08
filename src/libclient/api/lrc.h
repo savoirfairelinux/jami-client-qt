@@ -2,7 +2,7 @@
  *    Copyright (C) 2017-2022 Savoir-faire Linux Inc.                       *
  *   Author: Nicolas Jäger <nicolas.jager@savoirfairelinux.com>             *
  *   Author: Sébastien Blin <sebastien.blin@savoirfairelinux.com>           *
- *   Author : Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com> *
+ *   Author: Aline Gondim Santos <aline.gondimsantos@savoirfairelinux.com>  *
  *                                                                          *
  *   This library is free software; you can redistribute it and/or          *
  *   modify it under the terms of the GNU Lesser General Public             *
@@ -123,6 +123,16 @@ public:
      * Make monitor continous or discrete
      */
     static void monitor(bool continous);
+
+    /**
+     * Set application preferred language
+     */
+    static void setLanguage(const QString& language);
+
+    /**
+     * Get application preferred language
+     */
+    static QString getLanguage();
 
 private:
     std::unique_ptr<LrcPimpl> lrcPimpl_;
