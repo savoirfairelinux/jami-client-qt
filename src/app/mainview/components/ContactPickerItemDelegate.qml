@@ -131,6 +131,7 @@ ItemDelegate {
             itemSmartListBackground.color = JamiTheme.normalButtonColor
 
             ContactAdapter.contactSelected(index)
+
             root.contactClicked()
             // TODO remove from there
             if (contactPickerPopup)

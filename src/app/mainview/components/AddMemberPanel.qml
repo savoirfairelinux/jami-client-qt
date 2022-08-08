@@ -61,43 +61,47 @@ Rectangle {
             Layout.preferredWidth: root.width - 8
             Layout.preferredHeight: columnLayout.height - searchBar.height
 
-//            model: SortFilterProxyModel {
-//                sourceModel: ConversationListModel
-//                filters: [
-//                    AnyOf {
-//                        RegExpFilter {
-//                            roleName: "Title"
-//                            pattern: searchBar.textContent
-//                            caseSensitivity: Qt.CaseInsensitive
-//                        }
-//                        RegExpFilter {
-//                            roleName: "RegisteredName"
-//                            pattern: searchBar.textContent
-//                            caseSensitivity: Qt.CaseInsensitive
-//                        }
-//                        RegExpFilter {
-//                            roleName: "URI"
-//                            pattern: searchBar.textContent
-//                            caseSensitivity: Qt.CaseInsensitive
-//                        }
-//                    },
-//                    ExpressionFilter {
-//                        property var currentMembers: CurrentConversation.members
-//                        property var currenAccountUri: CurrentAccount.uri
-//                        expression: {
-//                            for (const uri in model.Uris) {
-//                                if (uri !== currenAccountUri && !currentMembers.includes(uri))
-//                                    return true
-//                            }
-//                            return false
-//                        }
-//                    }
-//                ]
-//                sorters: ExpressionSorter {
-//                    expression: modelLeft.LastInteractionTimeStamp <
-//                                modelRight.LastInteractionTimeStamp
-//                }
-//            }
+            model: SortFilterProxyModel {
+                sourceModel: SmartListModel {
+                    Component.onCompleted: init(LRCInstance)
+                    listModelType: type
+                }
+
+                filters: [
+                    AnyOf {
+                        RegExpFilter {
+                            roleName: "Title"
+                            pattern: searchBar.textContent
+                            caseSensitivity: Qt.CaseInsensitive
+                        }
+                        RegExpFilter {
+                            roleName: "RegisteredName"
+                            pattern: searchBar.textContent
+                            caseSensitivity: Qt.CaseInsensitive
+                        }
+                        RegExpFilter {
+                            roleName: "URI"
+                            pattern: searchBar.textContent
+                            caseSensitivity: Qt.CaseInsensitive
+                        }
+                    },
+                    ExpressionFilter {
+                        property var currentMembers: CurrentConversation.members
+                        property var currenAccountUri: CurrentAccount.uri
+                        expression: {
+                            for (const uri in model.Uris) {
+                                if (uri !== currenAccountUri && !currentMembers.includes(uri))
+                                    return true
+                            }
+                            return false
+                        }
+                    }
+                ]
+                sorters: ExpressionSorter {
+                    expression: modelLeft.LastInteractionTimeStamp <
+                                modelRight.LastInteractionTimeStamp
+                }
+            }
 
             delegate: ContactPickerItemDelegate {
                 showPresenceIndicator: true

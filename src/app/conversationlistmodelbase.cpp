@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
+ *
  * Author: Andreas Traczyk <andreas.traczyk@savoirfairelinux.com>
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
  *
@@ -19,18 +20,22 @@
 
 #include "conversationlistmodelbase.h"
 
-ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObject* parent)
-    : AbstractListModelBase(parent)
+ConversationListModelBase::ConversationListModelBase(QObject* parent)
+    : QAbstractListModel(parent)
+{}
+
+ConversationListModelBase::ConversationListModelBase(LRCInstance* lrcInstance, QObject* parent)
+    : QAbstractListModel(parent)
 {
-    lrcInstance_ = instance;
-    model_ = lrcInstance_->getCurrentConversationModel();
+    init(lrcInstance);
 }
 
-int
-ConversationListModelBase::columnCount(const QModelIndex& parent) const
+void
+ConversationListModelBase::init(LRCInstance* lrcInstance)
 {
-    Q_UNUSED(parent)
-    return 1;
+    lrcInstance_ = lrcInstance;
+    model_ = lrcInstance_->getCurrentConversationModel();
+    Q_EMIT initialized();
 }
 
 QHash<int, QByteArray>
@@ -47,6 +52,9 @@ ConversationListModelBase::roleNames() const
 QVariant
 ConversationListModelBase::dataForItem(item_t item, int role) const
 {
+    if (lrcInstance_ == nullptr)
+        return {};
+
     switch (role) {
     case Role::InCall: {
         const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);

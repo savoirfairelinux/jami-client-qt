@@ -89,21 +89,10 @@ public:
     void safeInit() override {}
 
     Q_INVOKABLE void setConferenceableFilter(const QString& filter);
-    Q_INVOKABLE void contactSelected(int index);
     Q_INVOKABLE void removeContact(const QString& peerUri, bool banContact);
 
     void connectSignals();
 
 Q_SIGNALS:
     void bannedStatusChanged(const QString& uri, bool banned);
-
-private:
-    SmartListModel::Type listModeltype_;
-    QScopedPointer<SmartListModel> smartListModel_;
-    QScopedPointer<SelectableProxyModel> selectableProxyModel_;
-
-    QStringList defaultModerators_;
-
-Q_SIGNALS:
-    void defaultModeratorsUpdated();
 };

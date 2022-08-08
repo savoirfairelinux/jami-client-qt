@@ -40,9 +40,9 @@ ColumnLayout {
     }
 
     Connections {
-        target: ContactAdapter
+        target: CurrentAccount
 
-        function onDefaultModeratorsUpdated() {
+        function onDefaultModeratorsChanged() {
             updateAndShowModeratorsSlot()
         }
     }
