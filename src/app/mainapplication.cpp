@@ -136,7 +136,6 @@ MainApplication::init()
     setWindowIcon(QIcon(":/images/jami.ico"));
 
     Utils::removeOldVersions();
-    settingsManager_->loadTranslations();
     setApplicationFont();
 
 #if defined _MSC_VER
@@ -147,6 +146,9 @@ MainApplication::init()
             connectivityMonitor_.get(),
             runOptions_[Option::Debug].toBool() && !runOptions_[Option::MuteJamid].toBool());
 
+    // To grab the preferred user language from daemon,
+    // only load translations after lrc init
+    settingsManager_->loadTranslations();
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     using namespace Interfaces;
     GlobalInstances::setDBusErrorHandler(std::make_unique<DBusErrorHandler>());

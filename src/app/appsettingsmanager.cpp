@@ -24,6 +24,7 @@
 #include <QLibraryInfo>
 
 #include <locale.h>
+#include "api/lrc.h"
 
 const QString defaultDownloadPath = QStandardPaths::writableLocation(
     QStandardPaths::DownloadLocation);
@@ -42,6 +43,10 @@ AppSettingsManager::AppSettingsManager(QObject* parent)
 QVariant
 AppSettingsManager::getValue(const Settings::Key key)
 {
+    // If the Key is LANG, get the preference from the Daemon instead of the client
+    if (key == Settings::Key::LANG) {
+        return getLanguage();
+    }
     auto value = settings_->value(Settings::toString(key), Settings::defaultValue(key));
 
     if (QString(value.typeName()) == "QString"
@@ -54,7 +59,30 @@ AppSettingsManager::getValue(const Settings::Key key)
 void
 AppSettingsManager::setValue(const Settings::Key key, const QVariant& value)
 {
+    // If the Key is LANG, save the preference in the Daemon instead of the client
+    if (key == Settings::Key::LANG) {
+        setLanguage(value);
+        return;
+    }
     settings_->setValue(Settings::toString(key), value);
+}
+
+QVariant
+AppSettingsManager::getLanguage()
+{
+    auto value = lrc::api::Lrc::getLanguage();
+    if (value.isEmpty() || value == "SYSTEM") {
+        value = QLocale::system().name();
+        lrc::api::Lrc::setLanguage(value);
+    }
+    return value;
+}
+
+void
+AppSettingsManager::setLanguage(const QVariant& value)
+{
+    lrc::api::Lrc::setLanguage(value == "SYSTEM" ? QLocale::system().name() : value.toString());
+    loadTranslations();
 }
 
 void
@@ -75,7 +103,7 @@ AppSettingsManager::loadTranslations()
         qApp->removeTranslator(tr);
     installedTr_.clear();
 
-    auto pref = getValue(Settings::Key::LANG).toString();
+    auto pref = getLanguage().toString();
 
     QString locale_name = pref == "SYSTEM" ? QLocale::system().name() : pref;
     qDebug() << QString("Using locale: %1").arg(locale_name);
