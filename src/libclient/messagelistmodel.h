@@ -109,7 +109,7 @@ public:
     void addHyperlinkInfo(const QString& messageId, const QVariantMap& info);
     void linkifyMessage(const QString& messageId, const QString& linkified);
 
-    void setRead(const QString& peer, const QString& messageId);
+    void setRead(const QString& peer, const QString& messageId, bool isSelf = false);
     QString getRead(const QString& peer);
 
     // use these if the underlying data model is changed from conversationmodel

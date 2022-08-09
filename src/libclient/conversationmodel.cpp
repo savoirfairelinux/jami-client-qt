@@ -1359,7 +1359,7 @@ ConversationModel::clearInteractionFromConversation(const QString& convId,
                     }
                 }
                 updateDisplayedUid = true;
-                conversation.interactions->setRead(participantURI, newDisplayedUid);
+                conversation.interactions->setRead(participantURI, newDisplayedUid, participantURI == owner.profileInfo.uri);
             }
 
             if (conversation.lastMessageUid == interactionId) {
@@ -1567,8 +1567,12 @@ ConversationModel::clearUnreadInteractions(const QString& convId)
         auto& interactions = conversation.interactions;
         if (conversation.isSwarm()) {
             emitUpdated = true;
-            if (!interactions->empty())
-                lastDisplayed = interactions->rbegin()->first;
+            if (!interactions->empty()) {
+                auto lastInt = interactions->rbegin()->first;
+                if (lastInt != interactions->getRead(owner.profileInfo.uri)) {
+                    lastDisplayed = lastInt;
+                }
+            }
         } else {
             std::for_each(interactions->begin(),
                           interactions->end(),
@@ -2921,8 +2925,7 @@ ConversationModelPimpl::addSwarmConversation(const QString& convId)
         } else if (member["uri"] == accountURI) {
             lastRead = member["lastDisplayed"];
         }
-        if (member["uri"] != accountURI)
-            conversation.interactions->setRead(member["uri"], member["lastDisplayed"]);
+        conversation.interactions->setRead(member["uri"], member["lastDisplayed"], member["uri"] == accountURI);
         if (member["role"] == "left")
             membersLeft.append(member["uri"]);
     }
@@ -3482,13 +3485,11 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
                     updateDisplayedUid = interactionDisplayed && interactionIsLast;
                     if (updateDisplayedUid) {
                         oldDisplayedUid = messageId;
-                        if (peerId != linked.owner.profileInfo.uri)
-                            conversation.interactions->setRead(peerId, it->first);
+                        conversation.interactions->setRead(peerId, it->first, peerId == linked.owner.profileInfo.uri);
                     }
                 } else {
                     oldDisplayedUid = "";
-                    if (peerId != linked.owner.profileInfo.uri)
-                        conversation.interactions->setRead(peerId, it->first);
+                    conversation.interactions->setRead(peerId, it->first, peerId == linked.owner.profileInfo.uri);
                     updateDisplayedUid = true;
                 }
                 emitUpdated = true;
@@ -3513,9 +3514,8 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
             if (static_cast<DRing::Account::MessageStates>(status)
                 == DRing::Account::MessageStates::DISPLAYED) {
                 auto previous = conversation.interactions->getRead(peerId);
-                if (peerId != linked.owner.profileInfo.uri)
-                    conversation.interactions->setRead(peerId, messageId);
-                else {
+                conversation.interactions->setRead(peerId, messageId, peerId == linked.owner.profileInfo.uri);
+                if (peerId == linked.owner.profileInfo.uri) {
                     // Here, this means that the daemon synched the displayed message
                     // so, compute the number of unread messages.
                     conversation.unreadMessages = ConfigurationManager::instance()

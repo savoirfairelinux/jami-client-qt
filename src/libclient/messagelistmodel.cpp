@@ -412,7 +412,7 @@ MessageListModel::linkifyMessage(const QString& messageId, const QString& linkif
 }
 
 void
-MessageListModel::setRead(const QString& peer, const QString& messageId)
+MessageListModel::setRead(const QString& peer, const QString& messageId, bool isSelf)
 {
     auto i = lastDisplayedMessageUid_.find(peer);
     if (i != lastDisplayedMessageUid_.end()) {
@@ -427,7 +427,8 @@ MessageListModel::setRead(const QString& peer, const QString& messageId)
     }
     // update map
     lastDisplayedMessageUid_[peer] = messageId;
-    messageToReaders_[messageId].append(peer);
+    if (!isSelf)
+        messageToReaders_[messageId].append(peer);
     // update interaction
     auto msgIdx = getIndexOfMessage(messageId);
     // Remove from latest read
