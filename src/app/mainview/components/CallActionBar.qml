@@ -32,7 +32,8 @@ Control {
 
     enum ActionPopupMode {
         MediaDevice = 0,
-        ListElement
+        ListElement,
+        LayoutOption
     }
 
     property alias overflowOpen: overflowButton.popup.visible
@@ -151,7 +152,7 @@ Control {
         Action {
             id: layoutMenuAction
             text: JamiStrings.layoutSettings
-            property int popupMode: CallActionBar.ActionPopupMode.ListElement
+            property int popupMode: CallActionBar.ActionPopupMode.LayoutOption
             property var listModel: ListModel {
                 id: layoutModel
             }
@@ -166,14 +167,16 @@ Control {
                             CallAdapter.showGridConferenceLayout()
                         break
                   case JamiStrings.participantsSide:
-                        var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
-                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, !onTheSide)
-                        participantsSide = !onTheSide
+                        if (!UtilsAdapter.getAppValue(Settings.ParticipantsSide)) {
+                            UtilsAdapter.setAppValue(Settings.ParticipantsSide, true)
+                            participantsSide = true
+                        }
                         break
                   case JamiStrings.participantsTop:
-                        var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
-                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, !onTheSide)
-                        participantsSide = !onTheSide
+                        if (UtilsAdapter.getAppValue(Settings.ParticipantsSide)) {
+                            UtilsAdapter.setAppValue(Settings.ParticipantsSide, false)
+                            participantsSide = false
+                        }
                   case JamiStrings.hideSelf:
                         UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
                         GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
@@ -193,27 +196,44 @@ Control {
                 if (isConference) {
                     layoutModel.append({"Name": JamiStrings.mosaic,
                                         "IconSource": JamiResources.mosaic_black_24dp_svg,
-                                        "ActiveSetting": isGrid})
-                    layoutModel.append({})
+                                        "ActiveSetting": isGrid,
+                                        "TopMargin": true,
+                                        "BottomMargin": true,
+                                        "SectionEnd": true})
 
                     var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
-                    layoutModel.append({"Name": onTheSide ? JamiStrings.participantsSide : JamiStrings.participantsTop,
-                                        "IconSource": onTheSide ? JamiResources.ontheside_black_24dp_svg : JamiResources.onthetop_black_24dp_svg,
-                                        "ActiveSetting": true})
-                    layoutModel.append({})
+                    layoutModel.append({"Name": JamiStrings.participantsTop,
+                                        "IconSource": JamiResources.onthetop_black_24dp_svg,
+                                        "ActiveSetting": !onTheSide,
+                                        "TopMargin": true,
+                                        "BottomMargin": false,
+                                        "SectionEnd": false})
+                    layoutModel.append({"Name": JamiStrings.participantsSide,
+                                        "IconSource": JamiResources.ontheside_black_24dp_svg,
+                                        "ActiveSetting": onTheSide,
+                                        "TopMargin": false,
+                                        "BottomMargin": true,
+                                        "SectionEnd": true})
+
                     layoutModel.append({"Name": JamiStrings.hideSelf,
                                         "IconSource": JamiResources.hidemyself_black_24dp_svg,
-                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf)})
-                    layoutModel.append({})
+                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf),
+                                        "TopMargin": true,
+                                        "BottomMargin": true,
+                                        "SectionEnd": true})
                 }
                 layoutModel.append({"Name": JamiStrings.viewFullScreen,
                                     "IconSource": JamiResources.open_in_full_24dp_svg,
-                                    "ActiveSetting": layoutManager.isCallFullscreen})
+                                    "ActiveSetting": layoutManager.isCallFullscreen,
+                                    "TopMargin": true,
+                                    "BottomMargin": true,
+                                    "SectionEnd": isConference})
                 if (isConference) {
-                    layoutModel.append({})
                     layoutModel.append({"Name": JamiStrings.hideAudioOnly,
                                         "IconSource": JamiResources.videocam_off_24dp_svg,
-                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideAudioOnly)})
+                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideAudioOnly),
+                                        "TopMargin": true,
+                                        "BottomMargin": true})
                 }
             }
         },
@@ -360,7 +380,7 @@ Control {
             icon.source: JamiResources.mosaic_black_24dp_svg
             icon.color: "white"
             text: JamiStrings.layoutSettings
-            property real size: 34
+            property real size: 28
             property var menuAction: layoutMenuAction
         },
         Action {
