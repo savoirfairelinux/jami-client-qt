@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c30faa3_2276bb6f",
+        "filename": "src/app/appsettingsmanager.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-09T15:53:00Z",
+      "side": 1,
+      "message": "I guess we should avoid this specific code in AppSettingsManager as it\u0027s a bit unrelated to setValue/getValue and move this in \"AppSettingsManager::loadTranslations()\"?",
+      "range": {
+        "startLine": 66,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 5
+      },
+      "revId": "b8acf41183d5d69f9921f87884df16fb09288ddc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
