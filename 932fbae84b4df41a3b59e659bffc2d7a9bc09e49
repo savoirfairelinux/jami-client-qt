@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1299ed0_038fe166",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-08-09T22:12:11Z",
+      "side": 0,
+      "message": "Should the script matter (LTR \u003d left to right; RTL \u003d right to left)\n\nisLTR ? Text.AlignLeft : Text.AlignRight\n\nThank you",
+      "range": {
+        "startLine": 51,
+        "startChar": 33,
+        "endLine": 51,
+        "endChar": 79
+      },
+      "revId": "932fbae84b4df41a3b59e659bffc2d7a9bc09e49",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
