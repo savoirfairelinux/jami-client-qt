@@ -434,7 +434,8 @@ Control {
             CallOverlayModel.addSecondaryControl(shareAction)
         CallOverlayModel.addSecondaryControl(layoutAction)
         CallOverlayModel.addSecondaryControl(recordAction)
-        CallOverlayModel.addSecondaryControl(pluginsAction)
+        if (pluginsAction.enabled)
+            CallOverlayModel.addSecondaryControl(pluginsAction)
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
 
         muteAudioAction.checked = isAudioMuted
