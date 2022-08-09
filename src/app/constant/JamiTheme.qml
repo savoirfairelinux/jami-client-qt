@@ -250,7 +250,7 @@ Item {
     property real settingsFontSize: calcSize(11 + fontSizeOffset)
     property real buttonFontSize: calcSize(9)
     property real materialButtonPreferredHeight: calcSize(36)
-    property real participantFontSize: calcSize(10)
+    property real participantFontSize: calcSize(10 + fontSizeOffset)
     property real menuFontSize: calcSize(12 + fontSizeOffset)
     property real headerFontSize: calcSize(13 + fontSizeOffset)
     property real titleFontSize: calcSize(16 + fontSizeOffset)

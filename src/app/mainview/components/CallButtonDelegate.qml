@@ -207,47 +207,79 @@ ItemDelegate {
             id: menuItem
 
             width: itemListView.menuItemWidth
+            height: {
+                if (menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption &&
+                    (!TopMargin || !BottomMargin)) {
+                    return 40
+                }
+                return 45
+            }
             background: Rectangle {
                 anchors.fill: parent
                 color: menuItem.down ? "#c4aaaaaa" : menuItem.hovered ? "#c4777777" : "transparent"
             }
-            contentItem: RowLayout {
+            contentItem: ColumnLayout {
                 anchors.fill: parent
-                ResponsiveImage {
-                    Layout.leftMargin: 6
-                    source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement ?
-                                IconSource : (menuItem.ListView.isCurrentItem ?
-                                                  JamiResources.check_box_24dp_svg :
-                                                  JamiResources.check_box_outline_blank_24dp_svg)
-                    color: "white"
-                    visible: delegateText.visible
-                }
-                Text {
-                    id: delegateText
-                    Layout.rightMargin: 6
+                spacing: 0
+                RowLayout {
                     Layout.fillWidth: true
-                    horizontalAlignment: Text.AlignLeft
-                    verticalAlignment: Text.AlignVCenter
-                    text: menuAction.popupMode
-                          === CallActionBar.ActionPopupMode.ListElement ? Name : DeviceName
-                    elide: Text.ElideRight
-                    font.pointSize: 9
-                    color: "white"
-                    visible: text
-                }
-                ResponsiveImage {
-                    Layout.leftMargin: 6
-                    source: JamiResources.check_black_24dp_svg
-                    color: "white"
-                    visible: delegateText.visible && ActiveSetting
+                    Layout.rightMargin: 15
+                    Layout.leftMargin: 20
+                    Layout.fillHeight: true
+                    Layout.alignment: {
+                        if (menuAction.popupMode !== CallActionBar.ActionPopupMode.LayoutOption ||
+                            TopMargin && BottomMargin) {
+                            return Qt.AlignLeft | Qt.AlignVCenter
+                        }
+                        if (TopMargin) {
+                            Layout.bottomMargin = 4
+                            return Qt.AlignBottom
+                        }
+                        Layout.topMargin = 4
+                        return Qt.AlignTop
+                    }
+
+                    spacing: 6
+                    ResponsiveImage {
+                        source: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement ||
+                                menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ?
+                                    IconSource : (menuItem.ListView.isCurrentItem ?
+                                                    JamiResources.check_box_24dp_svg :
+                                                    JamiResources.check_box_outline_blank_24dp_svg)
+                        color: "white"
+                        width: 20
+                        height: 20
+                    }
+                    Text {
+                        id: delegateText
+                        Layout.fillWidth: true
+                        horizontalAlignment: Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                        text: menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement ||
+                                menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ?
+                                Name : DeviceName
+                        elide: Text.ElideRight
+                        font.pointSize: JamiTheme.participantFontSize
+                        color: "white"
+                    }
+                    ResponsiveImage {
+                        source: JamiResources.check_black_24dp_svg
+                        color: "white"
+                        width: 20
+                        height: 20
+                        visible: menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ?
+                                    ActiveSetting : false
+                    }
                 }
                 Rectangle {
                     id: buttonDiv
-                    visible: !delegateText.visible
+                    visible: menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption ? SectionEnd : false
                     Layout.fillWidth: true
                     height: 1
+                    opacity: 0.2
                     border.width : 0
                     color: JamiTheme.separationLine
+                    Layout.alignment: Qt.AlignBottom
                 }
             }
         }
@@ -256,7 +288,14 @@ ItemDelegate {
             id: itemPopup
 
             y: isVertical ? -(implicitHeight - wrapper.height) / 2 - 18 : -implicitHeight - 12
-            x: isVertical ? -implicitWidth - 12 : -(implicitWidth - wrapper.width) / 2 - 18
+            x: {
+                if (isVertical)
+                    return -implicitWidth - 12
+                var xValue = -(implicitWidth - wrapper.width) / 2 - 18
+                var mainPoint = mapToItem(mainView, xValue, y)
+                var diff = mainPoint.x + itemListView.implicitWidth - mainView.width
+                return diff > 0 ? xValue - diff - 24 : xValue
+            }
 
             implicitWidth: contentItem.implicitWidth
             implicitHeight: contentItem.implicitHeight
@@ -274,19 +313,23 @@ ItemDelegate {
                 pixelAligned: true
                 orientation: ListView.Vertical
                 implicitWidth: menuItemWidth
-                implicitHeight: Math.min(contentHeight, menuItemHeight * 6) + 24
+                implicitHeight: Math.min(contentHeight, menuItemHeight * 9) + 24
 
                 model: menu.delegateModel
 
                 TextMetrics {
                     id: itemTextMetrics
 
-                    font.pointSize: 9
+                    font.pointSize: JamiTheme.participantFontSize
                 }
 
                 // recalc list width based on max item width
                 onCountChanged: {
                     var maxWidth = 0
+                    if (count && menuAction.popupMode === CallActionBar.ActionPopupMode.LayoutOption) {
+                        menuItemWidth = 290
+                        return
+                    }
                     for (var i = 0; i < count; ++i) {
                         if (menuAction.popupMode === CallActionBar.ActionPopupMode.ListElement) {
                             itemTextMetrics.text = menuAction.listModel.get(i).Name
