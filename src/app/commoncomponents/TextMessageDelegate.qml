@@ -48,7 +48,7 @@ SBSMessageBase {
 
             text: Body
 
-            horizontalAlignment: isOutgoing ?  Text.AlignRight : Text.AlignLeft
+            horizontalAlignment: Text.AlignLeft
 
             width: {
                 if (extraContent.active)
