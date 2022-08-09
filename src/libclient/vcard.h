@@ -79,31 +79,8 @@ namespace utils {
  * @param content payload
  * @return the vCard representation
  */
-static QHash<QByteArray, QByteArray>
-toHashMap(const QByteArray& content)
-{
-    // TODO without Qt
-    QHash<QByteArray, QByteArray> vCard;
-    QByteArray previousKey, previousValue;
-    const QList<QByteArray> lines = content.split('\n');
+QHash<QByteArray, QByteArray> toHashMap(const QByteArray& content);
 
-    Q_FOREACH (const QByteArray& property, lines) {
-        // Ignore empty lines
-        if (property.size()) {
-            // Some properties are over multiple lines
-            if (property[0] == ' ' && previousKey.size()) {
-                previousValue += property.right(property.size() - 1);
-            }
-
-            // Do not use split, URIs can have : in them
-            const int dblptPos = property.indexOf(':');
-            const QByteArray k(property.left(dblptPos)),
-                v(property.right(property.size() - dblptPos - 1));
-            vCard[k] = v;
-        }
-    }
-    return vCard;
-}
 } // namespace utils
 } // namespace vCard
 } // namespace lrc
