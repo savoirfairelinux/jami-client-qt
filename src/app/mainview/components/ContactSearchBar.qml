@@ -82,7 +82,6 @@ Rectangle {
         font.kerning: true
 
         selectByMouse: true
-        selectionColor: JamiTheme.placeholderTextColor
 
         placeholderText: JamiStrings.contactSearchConversation
         placeholderTextColor: JamiTheme.placeholderTextColor
