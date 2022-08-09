@@ -155,6 +155,7 @@ Control {
             property var listModel: ListModel {
                 id: layoutModel
             }
+            property bool isLayoutMode: true
             function accept(index) {
                 switch(layoutModel.get(index).Name) {
                   case JamiStrings.viewFullScreen:
@@ -193,27 +194,28 @@ Control {
                 if (isConference) {
                     layoutModel.append({"Name": JamiStrings.mosaic,
                                         "IconSource": JamiResources.mosaic_black_24dp_svg,
-                                        "ActiveSetting": isGrid})
-                    layoutModel.append({})
+                                        "ActiveSetting": isGrid,
+                                        "SectionEnd": true})
 
                     var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
                     layoutModel.append({"Name": onTheSide ? JamiStrings.participantsSide : JamiStrings.participantsTop,
                                         "IconSource": onTheSide ? JamiResources.ontheside_black_24dp_svg : JamiResources.onthetop_black_24dp_svg,
-                                        "ActiveSetting": true})
-                    layoutModel.append({})
+                                        "ActiveSetting": true,
+                                        "SectionEnd": true})
                     layoutModel.append({"Name": JamiStrings.hideSelf,
                                         "IconSource": JamiResources.hidemyself_black_24dp_svg,
-                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf)})
-                    layoutModel.append({})
+                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSelf),
+                                        "SectionEnd": true})
                 }
                 layoutModel.append({"Name": JamiStrings.viewFullScreen,
                                     "IconSource": JamiResources.open_in_full_24dp_svg,
-                                    "ActiveSetting": layoutManager.isCallFullscreen})
+                                    "ActiveSetting": layoutManager.isCallFullscreen,
+                                    "SectionEnd": isConference})
                 if (isConference) {
-                    layoutModel.append({})
                     layoutModel.append({"Name": JamiStrings.hideAudioOnly,
                                         "IconSource": JamiResources.videocam_off_24dp_svg,
-                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideAudioOnly)})
+                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideAudioOnly),
+                                        "SectionEnd": false})
                 }
             }
         },
@@ -360,7 +362,7 @@ Control {
             icon.source: JamiResources.mosaic_black_24dp_svg
             icon.color: "white"
             text: JamiStrings.layoutSettings
-            property real size: 34
+            property real size: 28
             property var menuAction: layoutMenuAction
         },
         Action {
