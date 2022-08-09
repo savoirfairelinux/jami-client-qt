@@ -101,7 +101,7 @@ CallParticipants::removeParticipant(int index)
 {
     {
         std::lock_guard<std::mutex> lk(participantsMtx_);
-        auto it = participants_.begin() + index;
+        auto it = std::next(participants_.begin(), index);
         participants_.erase(it);
     }
     Q_EMIT linked_.participantRemoved(callId_, idx_);
@@ -115,7 +115,7 @@ CallParticipants::addParticipant(const ParticipantInfos& participant)
         std::lock_guard<std::mutex> lk(participantsMtx_);
         auto it = participants_.find(participant.sinkId);
         if (it == participants_.end()) {
-            participants_.insert(participants_.begin() + idx_, participant.sinkId, participant);
+            participants_.insert(std::next(participants_.begin(), idx_), participant.sinkId, participant);
             added = true;
         } else {
             if (participant == (*it))
@@ -179,7 +179,7 @@ CallParticipants::toQJsonObject(uint index) const
         return {};
 
     QJsonObject ret;
-    const auto& participant = participants_.begin() + index;
+    const auto& participant = std::next(participants_.begin(), index);
 
     ret[ParticipantsInfosStrings::URI] = participant->uri;
     ret[ParticipantsInfosStrings::DEVICE] = participant->device;

@@ -238,6 +238,7 @@ endif()
 set(LIBCLIENT_SOURCES
   # data objects
   uri.cpp
+  vcard.cpp
 
   # models
   contactmodel.cpp
