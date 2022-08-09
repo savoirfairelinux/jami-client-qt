@@ -76,7 +76,6 @@ JamiFlickable {
         color: JamiTheme.textColor
         wrapMode: TextEdit.Wrap
         selectByMouse: true
-        selectionColor: JamiTheme.placeholderTextColor
         textFormat: TextEdit.PlainText
         placeholderTextColor: JamiTheme.placeholderTextColor
 

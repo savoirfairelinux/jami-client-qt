@@ -43,7 +43,6 @@ TextField {
     readOnly: false
     selectByMouse: true
     mouseSelectionMode: TextInput.SelectCharacters
-    selectionColor: JamiTheme.placeholderTextColor
 
     font.pointSize: fontSize
     font.kerning: true
