@@ -168,13 +168,18 @@ Control {
                         break
                   case JamiStrings.participantsSide:
                         var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
-                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, !onTheSide)
-                        participantsSide = !onTheSide
+                        if (!onTheSide) {
+                            UtilsAdapter.setAppValue(Settings.ParticipantsSide, true)
+                            participantsSide = true
+                        }
                         break
                   case JamiStrings.participantsTop:
                         var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
-                        UtilsAdapter.setAppValue(Settings.ParticipantsSide, !onTheSide)
-                        participantsSide = !onTheSide
+                        if (onTheSide) {
+                            UtilsAdapter.setAppValue(Settings.ParticipantsSide, false)
+                            participantsSide = false
+                        }
+                        break
                   case JamiStrings.hideSelf:
                         UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
                         GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
@@ -198,9 +203,13 @@ Control {
                                         "SectionEnd": true})
 
                     var onTheSide = UtilsAdapter.getAppValue(Settings.ParticipantsSide)
-                    layoutModel.append({"Name": onTheSide ? JamiStrings.participantsSide : JamiStrings.participantsTop,
-                                        "IconSource": onTheSide ? JamiResources.ontheside_black_24dp_svg : JamiResources.onthetop_black_24dp_svg,
-                                        "ActiveSetting": true,
+                    layoutModel.append({"Name": JamiStrings.participantsTop,
+                                        "IconSource": JamiResources.onthetop_black_24dp_svg,
+                                        "ActiveSetting": !onTheSide,
+                                        "SectionEnd": false})
+                    layoutModel.append({"Name": JamiStrings.participantsSide,
+                                        "IconSource": JamiResources.ontheside_black_24dp_svg,
+                                        "ActiveSetting": onTheSide,
                                         "SectionEnd": true})
                     layoutModel.append({"Name": JamiStrings.hideSelf,
                                         "IconSource": JamiResources.hidemyself_black_24dp_svg,

@@ -216,8 +216,11 @@ ItemDelegate {
                 anchors.fill: parent
                 spacing: 0
                 RowLayout {
+                    // TODO fix width and alignement
+                    // TODO height is too big (in the reference design items are less spaced)
+                    // TODO margin around 6px around
                     Layout.fillWidth: true
-                    Layout.preferredHeight: childrenRect.height
+                    Layout.preferredHeight: childrenRect.height // TODO should not be necessary
                     Layout.rightMargin: 6
                     Layout.leftMargin: 6
                     Layout.topMargin: 5
@@ -228,6 +231,8 @@ ItemDelegate {
                                     IconSource : (menuItem.ListView.isCurrentItem ?
                                                     JamiResources.check_box_24dp_svg :
                                                     JamiResources.check_box_outline_blank_24dp_svg)
+                        width: 16
+                        height: 16
                         color: "white"
                     }
                     Text {
@@ -238,12 +243,14 @@ ItemDelegate {
                         text: menuAction.popupMode
                             === CallActionBar.ActionPopupMode.ListElement ? Name : DeviceName
                         elide: Text.ElideRight
-                        font.pointSize: 9
+                        font.pointSize: JamiTheme.textFontSize
                         color: "white"
                     }
                     ResponsiveImage {
                         source: JamiResources.check_black_24dp_svg
                         color: "white"
+                        width: 16
+                        height: 16
                         visible: menuAction.isLayoutMode ? ActiveSetting : false
                     }
                 }
@@ -253,6 +260,7 @@ ItemDelegate {
                     Layout.fillWidth: true
                     height: 1
                     border.width : 0
+                    opacity: 0.2
                     color: JamiTheme.separationLine
                 }
             }
