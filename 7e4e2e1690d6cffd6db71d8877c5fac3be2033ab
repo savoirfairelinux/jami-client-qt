@@ -34,6 +34,23 @@
       "parentUuid": "b55de43b_d01e4aa1",
       "revId": "7e4e2e1690d6cffd6db71d8877c5fac3be2033ab",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f520e980_1059ea73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-08-10T13:50:16Z",
+      "side": 1,
+      "message": "Thank you for this patch to homogenization Jami Desktop and Android clients",
+      "revId": "7e4e2e1690d6cffd6db71d8877c5fac3be2033ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
