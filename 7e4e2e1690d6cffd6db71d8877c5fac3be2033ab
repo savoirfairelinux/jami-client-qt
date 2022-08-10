@@ -16,6 +16,24 @@
       "message": "Should RTL and LTR be considered?",
       "revId": "7e4e2e1690d6cffd6db71d8877c5fac3be2033ab",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "206a38cb_7d344a7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-10T13:26:25Z",
+      "side": 1,
+      "message": "No, it\u0027s already handled by Qt.",
+      "parentUuid": "b55de43b_d01e4aa1",
+      "revId": "7e4e2e1690d6cffd6db71d8877c5fac3be2033ab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
