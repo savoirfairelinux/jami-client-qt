@@ -22,6 +22,30 @@
       },
       "revId": "a829f1942676bdaf321a687e90cb407148af895e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95abc356_5d4d8f90",
+        "filename": "src/app/mainview/components/CallActionBar.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-08-10T21:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d04351b_608ba23a",
+      "range": {
+        "startLine": 583,
+        "startChar": 72,
+        "endLine": 583,
+        "endChar": 88
+      },
+      "revId": "a829f1942676bdaf321a687e90cb407148af895e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
