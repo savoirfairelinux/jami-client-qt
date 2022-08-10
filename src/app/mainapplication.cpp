@@ -35,6 +35,7 @@
 #include <QMenu>
 #include <QQmlContext>
 #include <QResource>
+#include <QTimer>
 #include <QTranslator>
 #include <QLibraryInfo>
 #include <QQuickWindow>
@@ -165,7 +166,7 @@ MainApplication::init()
 #endif
 
     connect(connectivityMonitor_.get(), &ConnectivityMonitor::connectivityChanged, [this] {
-        lrcInstance_->connectivityChanged();
+        QTimer::singleShot(500, this, [&]() { lrcInstance_->connectivityChanged(); });
     });
 
     connect(this, &QGuiApplication::focusWindowChanged, [this] {
