@@ -161,7 +161,7 @@ Rectangle {
                 }
 
                 UpdateToSwarm {
-                    visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary
+                    visible: !CurrentConversation.isSwarm && !CurrentConversation.isTemporary && CurrentAccount.type  === Profile.Type.JAMI
                     Layout.fillWidth: true
                 }
 
@@ -169,6 +169,8 @@ Rectangle {
                     id: chatViewFooter
 
                     visible: {
+                        if (CurrentAccount.type  === Profile.Type.SIP)
+                            return true
                         if (CurrentConversation.isBlocked)
                             return false
                         else if (CurrentConversation.needsSyncing)
