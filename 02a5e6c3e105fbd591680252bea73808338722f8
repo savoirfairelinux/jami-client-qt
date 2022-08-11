@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6955d393_85eb65c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-08-11T16:48:58Z",
+      "side": 1,
+      "message": "To be discussed, but I\u0027m not fan of the idea:\n* Either we have our Jami font that gives us a visual identity that we want to preserve,\n* Or we shall respect the system preference (most desktop environnements have such preferences).\n\nIn both cases, having a user preference specific to Jami seems inappropriate.",
+      "revId": "02a5e6c3e105fbd591680252bea73808338722f8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
