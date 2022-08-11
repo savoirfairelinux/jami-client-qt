@@ -22,6 +22,30 @@
       },
       "revId": "b04e79174cce44ebfad61947c4c7577a82dcfc8a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "485868be_dde0f1b3",
+        "filename": "3rdparty/SortFilterProxyModel",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-08-11T18:12:16Z",
+      "side": 1,
+      "message": "INSTALL.md updated. Not sure what to add to the readme as this is just another QML component. Maybe something in the guidelines?\n\nAs for updating scripts, I will update jami-project\u0027s build.py, but prior to updating scripts in this project, I think we need to:\n- deprecate jami-project\n- audit the 3rdparty repos used in the client and how we get them",
+      "parentUuid": "c4fe7415_8d517ffd",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "b04e79174cce44ebfad61947c4c7577a82dcfc8a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
