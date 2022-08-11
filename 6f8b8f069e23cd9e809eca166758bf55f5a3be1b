@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30851342_d20b1707",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-08-11T19:47:13Z",
+      "side": 1,
+      "message": "please wrap me in QAbstractListModel mutation signals!\n\nkinda like\n    auto index \u003d std::distance(begin(), it);\n    Q_EMIT beginRemoveRows(QModelIndex(), index, index);\n    auto erased \u003d interactions_.erase(it);\n    Q_EMIT endRemoveRows();\n    return erased;",
+      "range": {
+        "startLine": 70,
+        "startChar": 4,
+        "endLine": 70,
+        "endChar": 35
+      },
+      "revId": "6f8b8f069e23cd9e809eca166758bf55f5a3be1b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
