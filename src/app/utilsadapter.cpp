@@ -373,6 +373,18 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT showExperimentalSwarm();
     else if (key == Settings::Key::BaseZoom)
         Q_EMIT changeFontSize();
+    else if (key == Settings::Key::FontFamily) {
+        // TODO
+    }
+    else if (key == Settings::Key::FontSize) {
+        // TODO
+    }
+    else if (key == Settings::Key::FontStyle) {
+        // TODO
+    }
+    else if (key == Settings::Key::FontWeight) {
+        // TODO
+    }
 }
 
 QString

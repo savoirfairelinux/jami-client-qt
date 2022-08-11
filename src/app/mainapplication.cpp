@@ -136,7 +136,13 @@ MainApplication::init()
 
     Utils::removeOldVersions();
     settingsManager_->loadTranslations();
-    setApplicationFont();
+
+    QFont font(settingsManager_->getValue(Settings::Key::FontFamily).toString());
+    font.setPointSizeF(settingsManager_->getValue(Settings::Key::FontSize).toDouble());
+    font.setStyle(settingsManager_->getValue(Settings::Key::FontStyle).value<QFont::Style>());
+    font.setWeight(settingsManager_->getValue(Settings::Key::FontWeight).value<QFont::Weight>());
+    setFont(font);
+    QFontDatabase::addApplicationFont(":/fonts/FontAwesome.otf");
 
 #if defined _MSC_VER
     gnutls_global_init();
@@ -322,15 +328,6 @@ MainApplication::parseArguments()
 #endif
     runOptions_[Option::TerminationRequested] = parser.isSet(terminateOption);
     runOptions_[Option::MuteJamid] = parser.isSet(muteDaemonOption);
-}
-
-void
-MainApplication::setApplicationFont()
-{
-    QFont font;
-    font.setFamily("Ubuntu");
-    setFont(font);
-    QFontDatabase::addApplicationFont(":/fonts/FontAwesome.otf");
 }
 
 void

@@ -33,6 +33,10 @@ ColumnLayout {
 
     property int itemWidth
     property string downloadPath: UtilsAdapter.getDirDownload()
+    property string fontFamily: UtilsAdapter.getAppValue(Settings.FontFamily)
+    property real fontSize: UtilsAdapter.getAppValue(Settings.FontSize)
+    property int fontStyle: UtilsAdapter.getAppValue(Settings.FontStyle)
+    property int fontWeight: UtilsAdapter.getAppValue(Settings.FontWeight)
 
     onDownloadPathChanged: {
         if(downloadPath === "") return
@@ -187,6 +191,65 @@ ColumnLayout {
 
         onActivated: {
             UtilsAdapter.setAppValue(Settings.Key.LANG, comboModel.get(modelIndex).id)
+        }
+    }
+
+    RowLayout {
+        Layout.fillWidth: true
+        Layout.preferredHeight: JamiTheme.preferredFieldHeight
+        Layout.leftMargin: JamiTheme.preferredMarginSize
+
+        Label {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            color: JamiTheme.textColor
+            text: JamiStrings.defaultFont
+            font.pointSize: JamiTheme.settingsFontSize
+            font.kerning: true
+
+            horizontalAlignment: Text.AlignLeft
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        MaterialButton {
+            id: fontButton
+
+            Layout.alignment: Qt.AlignRight
+
+            preferredWidth: itemWidth
+            preferredHeight: JamiTheme.preferredFieldHeight
+
+            toolTipText: JamiStrings.tipChooseFont
+            text: "%1  %2".arg(fontDialog.font.family).arg(fontDialog.font.pointSize)
+            color: JamiTheme.buttonTintedGrey
+            hoveredColor: JamiTheme.buttonTintedGreyHovered
+            pressedColor: JamiTheme.buttonTintedGreyPressed
+
+            onClicked: {
+                fontDialog.currentFont.family = fontFamily
+                fontDialog.currentFont.pointSize = fontSize
+                fontDialog.currentFont.italic = (fontStyle == 1 || fontStyle == 2)
+                fontDialog.currentFont.weight = fontWeight
+                fontDialog.open()
+            }
+        }
+
+        FontDialog {
+            id: fontDialog
+            currentFont.family: fontFamily
+            currentFont.pointSize: fontSize
+
+            onAccepted: {
+                fontFamily = fontDialog.font.family
+                fontSize = fontDialog.font.pointSize
+                fontStyle = fontDialog.font.italic ? 1 : 0
+                fontWeight = fontDialog.font.weight
+                UtilsAdapter.setAppValue(Settings.FontFamily, fontFamily)
+                UtilsAdapter.setAppValue(Settings.FontSize, fontSize)
+                UtilsAdapter.setAppValue(Settings.FontStyle, fontDialog.font.italic ? 1 : 0)
+                UtilsAdapter.setAppValue(Settings.FontWeight, fontWeight)
+            }
         }
     }
 
