@@ -99,7 +99,6 @@ Q_SIGNALS:
 private:
     void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon);
     void parseArguments();
-    void setApplicationFont();
     void initQmlLayer();
     void initSystray();
     void cleanup();

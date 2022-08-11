@@ -46,6 +46,10 @@ extern const QString defaultDownloadPath;
     X(EnableExperimentalSwarm, false) \
     X(EnableDarkTheme, false) \
     X(BaseZoom, 1.0) \
+    X(FontFamily, "Ubuntu") \
+    X(FontSize, 12.0) \
+    X(FontStyle, QFont::StyleNormal) \
+    X(FontWeight, QFont::Normal) \
     X(ParticipantsSide, false) \
     X(HideSelf, false) \
     X(HideAudioOnly, false) \
