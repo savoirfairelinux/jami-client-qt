@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a0794a0_68b90a01",
+        "filename": "src/app/mainview/components/JamiIdentifier.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-08-11T19:11:19Z",
+      "side": 1,
+      "message": "can this be removed if not used? (not a good name for a component anyhow)",
+      "range": {
+        "startLine": 53,
+        "startChar": 8,
+        "endLine": 53,
+        "endChar": 21
+      },
+      "revId": "2296c9ff6bd6447cd25b493b379b0f0b2a81205e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
