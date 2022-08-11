@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7005a83e_62a0206f",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 4138,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-08-11T19:48:21Z",
+      "side": 1,
+      "message": "convId from previous line?",
+      "range": {
+        "startLine": 4138,
+        "startChar": 61,
+        "endLine": 4138,
+        "endChar": 95
+      },
+      "revId": "6f8b8f069e23cd9e809eca166758bf55f5a3be1b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30851342_d20b1707",
         "filename": "src/libclient/messagelistmodel.cpp",
         "patchSetId": 5
