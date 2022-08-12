@@ -98,6 +98,7 @@
         <file>src/app/mainview/components/SidePanel.qml</file>
         <file>src/app/mainview/components/WelcomePage.qml</file>
         <file>src/app/mainview/components/ChatView.qml</file>
+        <file>src/app/mainview/components/ConversationErrorsRow.qml</file>
         <file>src/app/mainview/components/NewSwarmPage.qml</file>
         <file>src/app/mainview/components/ChatViewHeader.qml</file>
         <file>src/app/mainview/components/AccountComboBox.qml</file>

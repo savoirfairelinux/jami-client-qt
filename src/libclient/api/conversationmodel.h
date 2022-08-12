@@ -348,6 +348,11 @@ public:
      * @param info
      */
     void updateConversationInfos(const QString& conversationId, MapStringString info);
+    /**
+     * Remove first error
+     * @param conversationId
+     */
+    void popFrontError(const QString& conversationId);
 
     /**
      * @return if conversations requests exists.
@@ -427,6 +432,11 @@ Q_SIGNALS:
      * @param uid
      */
     void conversationUpdated(const QString& uid) const;
+    /**
+     * Emitted when a conversation detects an error
+     * @param uid
+     */
+    void onConversationErrorsUpdated(const QString& uid) const;
     /**
      * Emitted when conversation's profile has been updated
      * @param uid

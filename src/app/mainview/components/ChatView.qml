@@ -21,6 +21,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -102,6 +103,14 @@ Rectangle {
                                                                 root.height / 2)
                 PluginHandlerPickerCreation.openPluginHandlerPicker()
             }
+        }
+
+        ConversationErrorsRow {
+            id: errorRect
+            color: JamiTheme.filterBadgeColor
+            Layout.fillWidth: true
+            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            visible: false
         }
 
         SplitView {
