@@ -104,6 +104,45 @@ Rectangle {
             }
         }
 
+        Rectangle {
+            color: JamiTheme.filterBadgeColor
+            Layout.fillWidth: true
+            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+            visible: true
+            opacity: visible
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.margins: JamiTheme.preferredMarginSize
+
+                Label {
+                    Layout.alignment: Qt.AlignVCenter
+                    text: qsTr("An error occured")
+                    color: JamiTheme.filterBadgeTextColor
+                    // TODO size, elide, correct error
+                }
+
+                PushButton {
+                    id: btnClose
+                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
+
+                    imageColor: JamiTheme.filterBadgeTextColor
+                    normalColor: JamiTheme.transparentColor
+
+                    source: JamiResources.round_close_24dp_svg
+
+                    // TODO onClicked
+                }
+            }
+
+            Behavior on opacity {
+                NumberAnimation {
+                    from: 0
+                    duration: JamiTheme.shortFadeDuration
+                }
+            }
+        }
+
         SplitView {
             id: chatViewMainRow
             Layout.fillWidth: true

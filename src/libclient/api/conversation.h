@@ -77,6 +77,7 @@ struct Info
     QString lastMessageUid = 0;
     QHash<QString, QString> parentsId; // pair messageid/parentid for messages without parent loaded
     unsigned int unreadMessages = 0;
+    QStringList errors;
 
     QSet<QString> typers;
 

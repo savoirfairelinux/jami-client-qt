@@ -1830,6 +1830,10 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &CallbacksHandler::conversationMemberEvent,
             this,
             &ConversationModelPimpl::slotConversationMemberEvent);
+    connect(&callbacksHandler,
+            &CallbacksHandler::onConversationError,
+            this,
+            &ConversationModelPimpl::slotOnConversationError);
 }
 
 ConversationModelPimpl::~ConversationModelPimpl()
@@ -2622,6 +2626,21 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
             }
         }
 
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
+    }
+}
+
+void
+ConversationModelPimpl::slotOnConversation(const QString& accountId, const QString& conversationId)
+{
+    auto conversationIndex = indexOf(conversationId);
+    if (accountId != linked.owner.id || conversationIndex < 0) {
+        return;
+    }
+    try {
+        auto& conversation = getConversationForUid(conversationId).get();
+        conversation.errors.emplace
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
