@@ -301,6 +301,7 @@ Item {
     property string placeVideoCall: qsTr("Place video call")
     property string showPlugins: qsTr("Show available plugins")
     property string addToConversations: qsTr("Add to conversations")
+    property string backendError: qsTr("This is the error from the backend: %0")
 
     // Chatview footer
     property string jumpToLatest: qsTr("Jump to latest")

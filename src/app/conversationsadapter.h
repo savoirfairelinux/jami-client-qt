@@ -57,6 +57,7 @@ public:
     Q_INVOKABLE QVariantMap getConvInfoMap(const QString& convId);
     Q_INVOKABLE void restartConversation(const QString& convId);
     Q_INVOKABLE void updateConversationTitle(const QString& convId, const QString& newTitle);
+    Q_INVOKABLE void popFrontError(const QString& convId);
     Q_INVOKABLE void updateConversationDescription(const QString& convId,
                                                    const QString& newDescription);
 

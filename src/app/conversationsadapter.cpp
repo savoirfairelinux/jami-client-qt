@@ -496,6 +496,13 @@ ConversationsAdapter::updateConversationTitle(const QString& convId, const QStri
 }
 
 void
+ConversationsAdapter::popFrontError(const QString& convId)
+{
+    auto convModel = lrcInstance_->getCurrentConversationModel();
+    convModel->popFrontError(convId);
+}
+
+void
 ConversationsAdapter::updateConversationDescription(const QString& convId,
                                                     const QString& newDescription)
 {
