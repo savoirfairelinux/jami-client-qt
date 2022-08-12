@@ -369,6 +369,10 @@ public Q_SLOTS:
                                      const QString& conversationId,
                                      const QString& memberUri,
                                      int event);
+    void slotOnConversationError(const QString& accountId,
+                                     const QString& conversationId,
+                                     int code,
+                                     const QString& what);
     void slotConversationReady(const QString& accountId, const QString& conversationId);
     void slotConversationRemoved(const QString& accountId, const QString& conversationId);
 };
@@ -986,6 +990,18 @@ ConversationModel::updateConversationInfos(const QString& conversationId, const 
     if (info.contains("avatar"))
         newInfos["avatar"] = storage::vcard::compressedAvatar(info["avatar"]);
     ConfigurationManager::instance().updateConversationInfos(owner.id, conversationId, newInfos);
+}
+
+void
+ConversationModel::popFrontError(const QString& conversationId)
+{
+    auto conversationOpt = getConversationForUid(conversationId);
+    if (!conversationOpt.has_value())
+        return;
+
+    auto& conversation = conversationOpt->get();
+    conversation.errors.pop_front();
+    Q_EMIT onConversationErrorsUpdated(conversationId);
 }
 
 bool
@@ -1830,6 +1846,10 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             &CallbacksHandler::conversationMemberEvent,
             this,
             &ConversationModelPimpl::slotConversationMemberEvent);
+    connect(&callbacksHandler,
+            &CallbacksHandler::conversationError,
+            this,
+            &ConversationModelPimpl::slotOnConversationError);
 }
 
 ConversationModelPimpl::~ConversationModelPimpl()
@@ -1970,6 +1990,10 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &CallbacksHandler::conversationMemberEvent,
                this,
                &ConversationModelPimpl::slotConversationMemberEvent);
+    disconnect(&callbacksHandler,
+               &CallbacksHandler::conversationError,
+               this,
+               &ConversationModelPimpl::slotOnConversationError);
 }
 
 void
@@ -2659,6 +2683,22 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
     Q_EMIT linked.modelChanged();
     Q_EMIT linked.conversationUpdated(conversationId);
     Q_EMIT linked.dataChanged(indexOf(conversationId));
+}
+
+void
+ConversationModelPimpl::slotOnConversationError(const QString& accountId,
+                                                    const QString& conversationId,
+                                                    int code,
+                                                    const QString& what)
+{
+    if (accountId != linked.owner.id || indexOf(conversationId) < 0) {
+        return;
+    }
+    try {
+        auto& conversation = getConversationForUid(conversationId).get();
+        conversation.errors.push_back({code, what});
+        Q_EMIT linked.onConversationErrorsUpdated(conversationId);
+    } catch (...) {}
 }
 
 void

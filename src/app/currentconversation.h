@@ -48,6 +48,8 @@ class CurrentConversation final : public QObject
     QML_PROPERTY(bool, isContact)
     QML_PROPERTY(bool, allMessagesLoaded)
     QML_PROPERTY(QString, modeString)
+    QML_PROPERTY(QStringList, errors)
+    QML_PROPERTY(QStringList, backendErrors)
 
 public:
     explicit CurrentConversation(LRCInstance* lrcInstance, QObject* parent = nullptr);
@@ -62,6 +64,7 @@ private Q_SLOTS:
     void updateData();
     void onConversationUpdated(const QString& convId);
     void onProfileUpdated(const QString& convId);
+    void updateErrors(const QString& convId);
 
 private:
     LRCInstance* lrcInstance_;

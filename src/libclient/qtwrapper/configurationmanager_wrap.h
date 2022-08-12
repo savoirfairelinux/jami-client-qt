@@ -328,6 +328,16 @@ public:
                                                       QString(conversationId.c_str()),
                                                       QString(memberId.c_str()),
                                                       event);
+                   }),
+               exportable_callback<ConversationSignal::OnConversationError>(
+                   [this](const std::string& accountId,
+                          const std::string& conversationId,
+                          int code,
+                          const std::string& what) {
+                       Q_EMIT conversationError(QString(accountId.c_str()),
+                                                      QString(conversationId.c_str()),
+                                                      code,
+                                                      QString(what.c_str()));
                    })};
     }
 
@@ -1190,6 +1200,10 @@ Q_SIGNALS: // SIGNALS
                                  const QString& conversationId,
                                  const QString& memberId,
                                  int event);
+    void conversationError(const QString& accountId,
+                                 const QString& conversationId,
+                                 int code,
+                                 const QString& what);
 };
 
 namespace org {

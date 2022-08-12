@@ -104,6 +104,7 @@ CurrentConversation::updateData()
     } catch (...) {
         qWarning() << "Can't update current conversation data for" << convId;
     }
+    updateErrors(convId);
 }
 
 void
@@ -142,10 +143,48 @@ CurrentConversation::connectModel()
             this,
             &CurrentConversation::onProfileUpdated,
             Qt::UniqueConnection);
+    connect(lrcInstance_->getCurrentConversationModel(),
+            &ConversationModel::onConversationErrorsUpdated,
+            this,
+            &CurrentConversation::updateErrors,
+            Qt::UniqueConnection);
 }
 
 void
 CurrentConversation::showSwarmDetails() const
 {
     Q_EMIT showDetails();
+}
+
+void
+CurrentConversation::updateErrors(const QString& convId)
+{
+    if (convId != id_)
+        return;
+    try {
+        const auto& convModel = lrcInstance_->getCurrentConversationModel();
+        if (auto optConv = convModel->getConversationForUid(convId)) {
+            auto& convInfo = optConv->get();
+            QStringList newErrors;
+            QStringList newBackendErr;
+            for (const auto& [code, error]: convInfo.errors) {
+                if (code == 1) {
+                    newErrors.append(tr("An error occurred while fetching this repository"));
+                } else if (code == 2) {
+                    newErrors.append(tr("The conversation's mode is un-recognized"));
+                } else if (code == 3) {
+                    newErrors.append(tr("An invalid message was detected"));
+                } else if (code == 4) {
+                    newErrors.append(tr("Not enough authorization for updating conversation's infos"));
+                } else {
+                    continue;
+                }
+                newBackendErr.push_back(error);
+            }
+            set_backendErrors(newBackendErr);
+            set_errors(newErrors);
+        }
+    } catch (...) {
+
+    }
 }

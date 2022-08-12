@@ -366,6 +366,10 @@ Q_SIGNALS:
                                  const QString& conversationId,
                                  const QString& memberId,
                                  int event);
+    void conversationError(const QString& accountId,
+                                 const QString& conversationId,
+                                 int code,
+                                 const QString& what);
 
 private Q_SLOTS:
     /**
@@ -677,6 +681,10 @@ private Q_SLOTS:
                                      const QString& conversationId,
                                      const QString& memberId,
                                      int event);
+    void slotOnConversationError(const QString& accountId,
+                                 const QString& conversationId,
+                                 int code,
+                                 const QString& what);
 
 private:
     const api::Lrc& parent;
