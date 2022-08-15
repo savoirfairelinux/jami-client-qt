@@ -48,8 +48,8 @@ CurrentAccount::set_enabled(bool enabled, bool initialize)
         if (!initialize)
             lrcInstance_->accountModel().setAccountEnabled(lrcInstance_->get_currentAccountId(),
                                                            enabled);
-        Q_EMIT enabledChanged();
     }
+    Q_EMIT enabledChanged(); // In case we're during an account changes
 }
 
 bool
@@ -66,8 +66,8 @@ CurrentAccount::set_isAllModeratorsEnabled(bool enabled, bool initialize)
         if (!initialize)
             lrcInstance_->accountModel().setAllModerators(lrcInstance_->get_currentAccountId(),
                                                           enabled);
-        Q_EMIT isAllModeratorsEnabledChanged();
     }
+    Q_EMIT isAllModeratorsEnabledChanged(); // In case we're during an account changes
 }
 
 bool
@@ -84,8 +84,8 @@ CurrentAccount::set_isLocalModeratorsEnabled(bool enabled, bool initialize)
         if (!initialize)
             lrcInstance_->accountModel().enableLocalModerators(lrcInstance_->get_currentAccountId(),
                                                                enabled);
-        Q_EMIT isLocalModeratorsEnabledChanged();
     }
+    Q_EMIT isLocalModeratorsEnabledChanged(); // In case we're during an account changes
 }
 
 bool
