@@ -322,14 +322,14 @@ Control {
     Connections {
         target: callOverlay
 
-        function onIsAudioOnlyChanged() { reset() }
-        function onIsSIPChanged() { reset() }
-        function onIsModeratorChanged() { reset() }
-        function onIsAudioMutedChanged() { reset() }
-        function onIsVideoMutedChanged() { reset() }
-        function onIsRecordingChanged() { reset() }
-        function onLocalHandRaisedChanged() { reset() }
-        function onIsConferenceChanged() { reset() }
+        function onIsAudioOnlyChanged() { Qt.callLater(reset) }
+        function onIsSIPChanged() { Qt.callLater(reset) }
+        function onIsModeratorChanged() { Qt.callLater(reset) }
+        function onIsAudioMutedChanged() { Qt.callLater(reset) }
+        function onIsVideoMutedChanged() { Qt.callLater(reset) }
+        function onIsRecordingChanged() { Qt.callLater(reset) }
+        function onLocalHandRaisedChanged() { Qt.callLater(reset) }
+        function onIsConferenceChanged() { Qt.callLater(reset) }
     }
     Connections {
         target: CurrentAccount
