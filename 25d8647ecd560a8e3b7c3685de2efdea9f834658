@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de71264_562afa2d",
+        "filename": "src/app/appsettingsmanager.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-08-15T12:09:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc8e8679_542fc8f7",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "25d8647ecd560a8e3b7c3685de2efdea9f834658",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46f99a2e_818161d4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-11T18:47:12Z",
       "side": 1,
       "message": "preferred",
+      "range": {
+        "startLine": 128,
+        "startChar": 23,
+        "endLine": 128,
+        "endChar": 32
+      },
+      "revId": "25d8647ecd560a8e3b7c3685de2efdea9f834658",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05d41fed_d67dc54b",
+        "filename": "src/libclient/api/lrc.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-08-15T12:09:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46f99a2e_818161d4",
       "range": {
         "startLine": 128,
         "startChar": 23,
