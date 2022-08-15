@@ -48,8 +48,8 @@ CurrentAccount::set_enabled(bool enabled, bool initialize)
         if (!initialize)
             lrcInstance_->accountModel().setAccountEnabled(lrcInstance_->get_currentAccountId(),
                                                            enabled);
-        Q_EMIT enabledChanged();
     }
+    Q_EMIT enabledChanged();
 }
 
 bool
