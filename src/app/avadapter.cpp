@@ -337,7 +337,6 @@ AvAdapter::isCapturing() const
         auto callId = lrcInstance_->getCurrentCallId();
         auto callModel = lrcInstance_->getCurrentCallModel();
         auto call = callModel->getCall(callId);
-        // TODO enum
         for (const auto& m : call.mediaList) {
             if (m[DRing::Media::MediaAttributeKey::SOURCE].startsWith(
                     DRing::Media::VideoProtocolPrefix::CAMERA)

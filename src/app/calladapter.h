@@ -99,7 +99,6 @@ Q_SIGNALS:
     void updateOverlay(bool isPaused,
                        bool isAudioOnly,
                        bool isAudioMuted,
-                       bool isVideoMuted,
                        bool isSIP,
                        bool isGrid,
                        const QString& previewId);

@@ -283,7 +283,7 @@ Rectangle {
                 Connections {
                     target: CallAdapter
 
-                    function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
+                    function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted,
                                              isSIP, isGrid, previewId) {
                         if (previewId != "") {
                             if (root.callPreviewId != previewId)
@@ -298,7 +298,7 @@ Rectangle {
                         callOverlay.showOnHoldImage(isPaused)
                         audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
                         callOverlay.updateUI(isPaused, isAudioOnly,
-                                             isAudioMuted, isVideoMuted,
+                                             isAudioMuted,
                                              isSIP,
                                              isGrid)
                         callOverlay.isVideoMuted = !AvAdapter.isCapturing()

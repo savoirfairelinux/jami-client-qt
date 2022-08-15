@@ -59,14 +59,11 @@ Item {
                 || callViewContextMenu.peerIsRecording
     }
 
-    function updateUI(isPaused, isAudioOnly, isAudioMuted,
-                      isVideoMuted, isSIP,
-                      isGrid) {
+    function updateUI(isPaused, isAudioOnly, isAudioMuted, isSIP, isGrid) {
         if (isPaused !== undefined) {
             root.isPaused = isPaused
             root.isAudioOnly = isAudioOnly
             root.isAudioMuted = isAudioMuted
-            root.isVideoMuted = isVideoMuted
             callViewContextMenu.isVideoMuted = root.isVideoMuted
             root.isSIP = isSIP
             root.isGrid = isGrid
