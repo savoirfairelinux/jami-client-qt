@@ -76,7 +76,7 @@ RowLayout {
         enabled: parent.visible
         onTapped: function onTapped(eventPoint) {
             // switchToggled should be emitted as onToggled is not called (because it's only called if the user click on the switch)
-            switchOfLayout.checked = !switchOfLayout.checked
+            switchOfLayout.toggle()
             switchToggled()
         }
     }

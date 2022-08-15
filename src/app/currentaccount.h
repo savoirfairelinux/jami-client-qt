@@ -98,7 +98,6 @@ class CurrentAccount final : public QObject
 {
     Q_OBJECT
     // Basic settings
-    Q_PROPERTY(bool enabled READ get_enabled WRITE set_enabled NOTIFY enabledChanged);
 
     QML_RO_PROPERTY(QString, id)
     QML_RO_PROPERTY(QString, uri)
@@ -108,6 +107,7 @@ class CurrentAccount final : public QObject
     QML_RO_PROPERTY(QString, bestName)
     QML_RO_PROPERTY(QString, managerUri)
     QML_RO_PROPERTY(bool, hasAvatarSet)
+    QML_PROPERTY(bool, enabled)
     QML_RO_PROPERTY(lrc::api::account::Status, status)
     QML_RO_PROPERTY(lrc::api::profile::Type, type)
 
@@ -198,17 +198,15 @@ public:
                             QObject* parent = nullptr);
     ~CurrentAccount() = default;
 
-    void set_enabled(bool enabled = false, bool initialize = false);
-    bool get_enabled();
-
     void set_isAllModeratorsEnabled(bool enabled, bool initialize = false);
     bool get_isAllModeratorsEnabled();
 
     void set_isLocalModeratorsEnabled(bool enabled, bool initialize = false);
     bool get_isLocalModeratorsEnabled();
 
+    Q_INVOKABLE void enableAccount(bool enabled);
+
 Q_SIGNALS:
-    void enabledChanged();
     void isAllModeratorsEnabledChanged();
     void isLocalModeratorsEnabledChanged();
 
@@ -217,7 +215,6 @@ private Q_SLOTS:
     void onAccountUpdated(const QString& id);
 
 private:
-    bool enabled_;
     bool isAllModeratorsEnabled_;
     bool isLocalModeratorsEnabled_;
 

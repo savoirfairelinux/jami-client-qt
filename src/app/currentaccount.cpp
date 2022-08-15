@@ -41,21 +41,9 @@ CurrentAccount::CurrentAccount(LRCInstance* lrcInstance,
 }
 
 void
-CurrentAccount::set_enabled(bool enabled, bool initialize)
+CurrentAccount::enableAccount(bool enabled)
 {
-    if (enabled_ != enabled) {
-        enabled_ = enabled;
-        if (!initialize)
-            lrcInstance_->accountModel().setAccountEnabled(lrcInstance_->get_currentAccountId(),
-                                                           enabled);
-        Q_EMIT enabledChanged();
-    }
-}
-
-bool
-CurrentAccount::get_enabled()
-{
-    return enabled_;
+    lrcInstance_->accountModel().setAccountEnabled(lrcInstance_->get_currentAccountId(), enabled);
 }
 
 void
@@ -120,7 +108,7 @@ CurrentAccount::updateData()
         set_status(accInfo.status);
         set_type(accInfo.profileInfo.type);
 
-        set_enabled(accInfo.enabled, true);
+        set_enabled(accInfo.enabled);
         set_managerUri(accConfig.managerUri);
         set_keepAliveEnabled(accConfig.keepAliveEnabled, true);
         set_peerDiscovery(accConfig.peerDiscovery, true);

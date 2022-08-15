@@ -173,7 +173,7 @@ Rectangle {
 
             checked: CurrentAccount.enabled
 
-            onSwitchToggled: CurrentAccount.enabled = checked
+            onSwitchToggled: CurrentAccount.enableAccount(checked)
         }
 
         AccountProfile {
