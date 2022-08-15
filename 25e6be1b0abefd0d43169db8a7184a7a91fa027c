@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c93ba26_8c7d9347",
+        "filename": "src/app/callparticipantsmodel.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-08-15T19:18:05Z",
+      "side": 1,
+      "message": "can be a single if",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 102,
+        "endChar": 143
+      },
+      "revId": "25e6be1b0abefd0d43169db8a7184a7a91fa027c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
