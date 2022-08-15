@@ -95,14 +95,13 @@ public:
         auto index = sourceModel()->index(sourceRow, 0, sourceParent);
 
         bool acceptState = !sourceModel()->data(index, CallParticipant::Role::Active).toBool();
-        if (acceptState && hideSelf_ && sourceModel()->rowCount() > 1
-            && sourceModel()->data(index, CallParticipant::Role::IsLocal).toBool()
-            && !sourceModel()->data(index, CallParticipant::Role::HandRaised).toBool())
+        bool importantState = sourceModel()->data(index, CallParticipant::Role::HandRaised).toBool()
+                              || sourceModel()->data(index, CallParticipant::Role::VoiceActivity).toBool();
+        if (acceptState && !importantState) {
+            if ((hideSelf_ && sourceModel()->rowCount() > 1 && sourceModel()->data(index, CallParticipant::Role::IsLocal).toBool())
+                || (hideAudioOnly_ && sourceModel()->rowCount() > 1 && sourceModel()->data(index, CallParticipant::Role::VideoMuted).toBool()))
             acceptState = false;
-        if (acceptState && hideAudioOnly_ && sourceModel()->rowCount() > 1
-            && sourceModel()->data(index, CallParticipant::Role::VideoMuted).toBool()
-            && !sourceModel()->data(index, CallParticipant::Role::HandRaised).toBool())
-            acceptState = false;
+        }
 
         return acceptState;
     }
