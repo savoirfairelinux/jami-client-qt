@@ -692,7 +692,6 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
     bool isAudioMuted = callInfo->status == lrc::api::call::Status::PAUSED;
     bool isGrid = callInfo->layout == lrc::api::call::Layout::GRID;
     QString previewId {};
-    bool isVideoMuted = false;
     if (callInfo->status != lrc::api::call::Status::ENDED) {
         for (const auto& media : callInfo->mediaList) {
             if (media[DRing::Media::MediaAttributeKey::MEDIA_TYPE]
@@ -702,8 +701,6 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
                     if (previewId.isEmpty()) {
                         previewId = media[DRing::Media::MediaAttributeKey::SOURCE];
                     }
-                    isVideoMuted |= media[DRing::Media::MediaAttributeKey::SOURCE].startsWith(
-                        DRing::Media::VideoProtocolPrefix::CAMERA);
                 }
             } else if (media[DRing::Media::MediaAttributeKey::LABEL] == "audio_0") {
                 isAudioMuted |= media[DRing::Media::MediaAttributeKey::MUTED] == TRUE_STR;
@@ -714,7 +711,6 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
     Q_EMIT updateOverlay(isPaused,
                          isAudioOnly,
                          isAudioMuted,
-                         isVideoMuted,
                          accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
                          isGrid,
                          previewId);

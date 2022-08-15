@@ -98,7 +98,6 @@ Q_SIGNALS:
     void showOnHoldLabel(bool isPaused);
     void updateOverlay(bool isPaused,
                        bool isAudioOnly,
-                       bool isAudioMuted,
                        bool isVideoMuted,
                        bool isSIP,
                        bool isGrid,
