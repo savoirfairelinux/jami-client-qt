@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5117fa_934c3af6",
+        "filename": "src/app/calladapter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-08-15T19:00:22Z",
+      "side": 0,
+      "message": "you mean to remove this?",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 41
+      },
+      "revId": "571ec9a2b4abee1d4abf56cb425d19a83b1086d0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
