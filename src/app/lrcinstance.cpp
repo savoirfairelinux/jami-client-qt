@@ -36,6 +36,7 @@ LRCInstance::LRCInstance(migrateCallback willMigrateCb,
     , updateManager_(std::make_unique<UpdateManager>(updateUrl, connectivityMonitor, this))
     , threadPool_(new QThreadPool(this))
 {
+    debugMode_ = !muteDring;
     threadPool_->setMaxThreadCount(1);
 
     connect(this, &LRCInstance::currentAccountIdChanged, [this] {
