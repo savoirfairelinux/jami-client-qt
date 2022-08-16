@@ -46,6 +46,30 @@
       },
       "revId": "e326a1c1581e9a62bb4e485407994b3e4c466d94",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d3237ae_b44bda5e",
+        "filename": "src/libclient/callbackshandler.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-08-16T19:56:25Z",
+      "side": 1,
+      "message": "Hmm. I see yes. It should be changed in the daemon then, as its naming convention is different from all the other signals in conversation_interface. I see there\u0027s also `onConferenceInfosUpdated`. Not critical but they should be homogenized at some point to reflect that they\u0027re signals and not callback functions.",
+      "parentUuid": "512ebf42_e82a1a26",
+      "range": {
+        "startLine": 344,
+        "startChar": 44,
+        "endLine": 344,
+        "endChar": 63
+      },
+      "revId": "e326a1c1581e9a62bb4e485407994b3e4c466d94",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
