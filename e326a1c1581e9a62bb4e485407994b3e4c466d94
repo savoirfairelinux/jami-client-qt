@@ -46,6 +46,30 @@
       },
       "revId": "e326a1c1581e9a62bb4e485407994b3e4c466d94",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b669b3c8_b7b137c6",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 3564,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-08-16T19:45:51Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a4e8398a_ce97e1a7",
+      "range": {
+        "startLine": 3462,
+        "startChar": 4,
+        "endLine": 3564,
+        "endChar": 0
+      },
+      "revId": "e326a1c1581e9a62bb4e485407994b3e4c466d94",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
