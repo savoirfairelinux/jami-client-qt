@@ -40,7 +40,7 @@ Rectangle {
                 errorLabel.text = CurrentConversation.errors[0]
                 backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0])
             }
-            errorRect.visible = CurrentConversation.errors.length > 0
+            errorRect.visible = CurrentConversation.errors.length > 0 // If too much noise: && LRCInstance.debugMode()
         }
     }
 

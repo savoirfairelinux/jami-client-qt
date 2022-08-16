@@ -341,7 +341,7 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &CallbacksHandler::slotConversationMemberEvent,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
-            &ConfigurationManagerInterface::conversationError,
+            &ConfigurationManagerInterface::onConversationError,
             this,
             &CallbacksHandler::slotOnConversationError,
             Qt::QueuedConnection);
@@ -536,7 +536,8 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
     for (auto& e : interaction.toStdMap()) {
         if (e.first.contains("x-ring/ring.profile.vcard")) {
             auto decodedHead = QUrl::fromPercentEncoding(e.first.toLatin1());
-            QRegularExpression re("x-ring/ring.profile.vcard;id=([A-z0-9]+),part=([0-9]+),of=([0-9]+)");
+            QRegularExpression re(
+                "x-ring/ring.profile.vcard;id=([A-z0-9]+),part=([0-9]+),of=([0-9]+)");
             auto match = re.match(decodedHead);
 
             if (!match.hasMatch())
@@ -798,9 +799,9 @@ CallbacksHandler::slotConversationMemberEvent(const QString& accountId,
 
 void
 CallbacksHandler::slotOnConversationError(const QString& accountId,
-                                              const QString& conversationId,
-                                              int code,
-                                              const QString& what)
+                                          const QString& conversationId,
+                                          int code,
+                                          const QString& what)
 {
     Q_EMIT conversationError(accountId, conversationId, code, what);
 }

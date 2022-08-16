@@ -125,6 +125,11 @@ public:
 
     void set_selectedConvUid(QString selectedConvUid = "");
 
+    Q_INVOKABLE bool debugMode() const
+    {
+        return debugMode_;
+    }
+
 Q_SIGNALS:
     void accountListChanged();
     void selectedConvUidChanged();
@@ -144,6 +149,8 @@ private:
     MapStringString lastConferences_;
 
     conversation::Info invalid {};
+
+    bool debugMode_ {false};
 
     QThreadPool* threadPool_;
 };
