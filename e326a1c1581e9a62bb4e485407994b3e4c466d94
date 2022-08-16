@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2c470cf_e95d081b",
+        "filename": "src/libclient/callbackshandler.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-08-16T19:13:07Z",
+      "side": 1,
+      "message": "this seems like the name of a slot, conversationError was better imo",
+      "range": {
+        "startLine": 344,
+        "startChar": 44,
+        "endLine": 344,
+        "endChar": 63
+      },
+      "revId": "e326a1c1581e9a62bb4e485407994b3e4c466d94",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
