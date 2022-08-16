@@ -129,6 +129,43 @@ Control {
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
                 }
             }
+
+            Item {
+                id: status
+                Layout.alignment: Qt.AlignBottom
+                width: JamiTheme.avatarReadReceiptSize
+
+                Rectangle {
+                    id: sending
+
+                    radius: width / 2
+                    width: 12
+                    height: 12
+                    border.color: JamiTheme.tintedBlue
+                    border.width: 1
+                    color: JamiTheme.transparentColor
+                    visible: isOutgoing && Status === Interaction.Status.SENDING
+
+                    anchors.bottom: parent.bottom
+                }
+
+                ReadStatus {
+                    id: readsOne
+
+                    visible: root.readers.length === 1 && CurrentAccount.sendReadReceipt
+                    width: {
+                        if (root.readers.length === 0)
+                            return 0
+                        var nbAvatars = root.readers.length
+                        var margin = JamiTheme.avatarReadReceiptSize / 3
+                        return nbAvatars * JamiTheme.avatarReadReceiptSize - (nbAvatars - 1) * margin
+                    }
+                    height: JamiTheme.avatarReadReceiptSize
+
+                    anchors.bottom: parent.bottom
+                    readers: root.readers
+                }
+            }
         }
 
         ListView {
@@ -139,7 +176,7 @@ Control {
             Layout.preferredHeight: {
                 if (showTime || seq === MsgSeq.last)
                     return contentHeight + formattedTimeLabel.contentHeight
-                else if (reads.visible)
+                else if (readsMultiple.visible)
                     return JamiTheme.avatarReadReceiptSize
                 return 0
             }
@@ -154,16 +191,15 @@ Control {
                 height: visible * implicitHeight
                 font.pointSize: 9
                 topPadding : 4
-                anchors.right: !isOutgoing ? undefined : reads.left
-                anchors.rightMargin: 8
+                anchors.rightMargin: status.width
+                anchors.right: !isOutgoing ? undefined : readsMultiple.left
                 anchors.left: isOutgoing ? undefined : parent.left
                 anchors.leftMargin: avatarBlockWidth + 6
             }
 
             ReadStatus {
-
-                id: reads
-                visible: root.readers.length !== 0 && CurrentAccount.sendReadReceipt
+                id: readsMultiple
+                visible: root.readers.length > 1 && CurrentAccount.sendReadReceipt
                 width: {
                     if (root.readers.length === 0)
                         return 0
@@ -177,6 +213,7 @@ Control {
                 anchors.topMargin: 1
                 readers: root.readers
             }
+
         }
     }
 
