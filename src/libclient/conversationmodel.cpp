@@ -370,9 +370,9 @@ public Q_SLOTS:
                                      const QString& memberUri,
                                      int event);
     void slotOnConversationError(const QString& accountId,
-                                     const QString& conversationId,
-                                     int code,
-                                     const QString& what);
+                                 const QString& conversationId,
+                                 int code,
+                                 const QString& what);
     void slotConversationReady(const QString& accountId, const QString& conversationId);
     void slotConversationRemoved(const QString& accountId, const QString& conversationId);
 };
@@ -1524,7 +1524,6 @@ ConversationModel::setInteractionRead(const QString& convId, const QString& inte
         return;
     }
     bool emitUpdated = false;
-    interaction::Info itCopy;
     {
         std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convId]);
         auto& interactions = pimpl_->conversations[conversationIdx].interactions;
@@ -1538,7 +1537,6 @@ ConversationModel::setInteractionRead(const QString& convId, const QString& inte
             interactions->emitDataChanged(it, {MessageList::Role::IsRead});
             if (pimpl_->conversations[conversationIdx].unreadMessages != 0)
                 pimpl_->conversations[conversationIdx].unreadMessages -= 1;
-            itCopy = it->second;
         }
     }
     if (emitUpdated) {
@@ -1563,7 +1561,6 @@ ConversationModel::setInteractionRead(const QString& convId, const QString& inte
             }
             storage::setInteractionRead(pimpl_->db, interactionId);
         }
-        Q_EMIT interactionStatusUpdated(convId, interactionId, itCopy);
         Q_EMIT pimpl_->behaviorController.newReadInteraction(owner.id, convId, interactionId);
     }
 }
@@ -2687,9 +2684,9 @@ ConversationModelPimpl::slotConversationMemberEvent(const QString& accountId,
 
 void
 ConversationModelPimpl::slotOnConversationError(const QString& accountId,
-                                                    const QString& conversationId,
-                                                    int code,
-                                                    const QString& what)
+                                                const QString& conversationId,
+                                                int code,
+                                                const QString& what)
 {
     if (accountId != linked.owner.id || indexOf(conversationId) < 0) {
         return;
@@ -2698,7 +2695,8 @@ ConversationModelPimpl::slotOnConversationError(const QString& accountId,
         auto& conversation = getConversationForUid(conversationId).get();
         conversation.errors.push_back({code, what});
         Q_EMIT linked.onConversationErrorsUpdated(conversationId);
-    } catch (...) {}
+    } catch (...) {
+    }
 }
 
 void
@@ -3323,8 +3321,6 @@ ConversationModelPimpl::addOrUpdateCallMessage(const QString& callId,
 
     if (newInteraction)
         Q_EMIT linked.newInteraction(conv_it->uid, msgId, msg);
-    else
-        Q_EMIT linked.interactionStatusUpdated(conv_it->uid, msgId, msg);
 
     invalidateModel();
     Q_EMIT linked.modelChanged();
@@ -3456,111 +3452,41 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
                                                     const QString& messageId,
                                                     int status)
 {
-    if (accountId != linked.owner.id) {
+    if (accountId != linked.owner.id || conversationId.isEmpty())
         return;
-    }
-    // it may be not swarm conversation check in db
-    if (conversationId.isEmpty() || conversationId == linked.owner.profileInfo.uri) {
-        auto convIds = storage::getConversationsWithPeer(db, peerId);
-        if (convIds.empty()) {
-            return;
-        }
-        auto conversationIdx = indexOf(convIds[0]);
-        auto& conversation = conversations[conversationIdx];
-        auto newStatus = interaction::Status::INVALID;
-        switch (static_cast<DRing::Account::MessageStates>(status)) {
-        case DRing::Account::MessageStates::SENDING:
-            newStatus = interaction::Status::SENDING;
-            break;
-        case DRing::Account::MessageStates::CANCELLED:
-            newStatus = interaction::Status::TRANSFER_CANCELED;
-            break;
-        case DRing::Account::MessageStates::SENT:
-            newStatus = interaction::Status::SUCCESS;
-            break;
-        case DRing::Account::MessageStates::FAILURE:
-            newStatus = interaction::Status::FAILURE;
-            break;
-        case DRing::Account::MessageStates::DISPLAYED:
-            newStatus = interaction::Status::DISPLAYED;
-            break;
-        case DRing::Account::MessageStates::UNKNOWN:
-        default:
-            newStatus = interaction::Status::UNKNOWN;
-            break;
-        }
-        auto idString = messageId;
-        // for not swarm conversation messageId in hexdesimal string format. Convert to normal string
-        // TODO messageId should be received from daemon in string format
-        if (static_cast<DRing::Account::MessageStates>(status)
-            == DRing::Account::MessageStates::DISPLAYED) {
-            std::istringstream ss(messageId.toStdString());
-            ss >> std::hex;
-            uint64_t id;
-            if (!(ss >> id))
-                return;
-            idString = QString::number(id);
-        }
-        // Update database
-        auto interactionId = storage::getInteractionIdByDaemonId(db, idString);
-        if (interactionId.isEmpty()) {
-            return;
-        }
-        auto msgId = interactionId;
-        storage::updateInteractionStatus(db, msgId, newStatus);
-        // Update conversations
-        interaction::Info itCopy;
-        bool emitUpdated = false;
-        bool updateDisplayedUid = false;
-        QString oldDisplayedUid = 0;
-        {
-            std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
-            auto& interactions = conversation.interactions;
-            auto it = interactions->find(msgId);
-            auto messageId = conversation.interactions->getRead(peerId);
-            if (it != interactions->end()) {
-                it->second.status = newStatus;
-                interactions->emitDataChanged(it, {MessageList::Role::Status});
-                bool interactionDisplayed = newStatus == interaction::Status::DISPLAYED
-                                            && isOutgoing(it->second);
-                if (messageId != "") {
-                    auto lastDisplayedIt = interactions->find(messageId);
-                    bool interactionIsLast = lastDisplayedIt == interactions->end()
-                                             || lastDisplayedIt->second.timestamp
-                                                    < it->second.timestamp;
-                    updateDisplayedUid = interactionDisplayed && interactionIsLast;
-                    if (updateDisplayedUid) {
-                        oldDisplayedUid = messageId;
-                        if (peerId != linked.owner.profileInfo.uri)
-                            conversation.interactions->setRead(peerId, it->first);
-                    }
-                } else {
-                    oldDisplayedUid = "";
-                    if (peerId != linked.owner.profileInfo.uri)
-                        conversation.interactions->setRead(peerId, it->first);
-                    updateDisplayedUid = true;
-                }
-                emitUpdated = true;
-                itCopy = it->second;
-            }
-        }
-        if (updateDisplayedUid) {
-            Q_EMIT linked.displayedInteractionChanged(conversation.uid,
-                                                      peerId,
-                                                      oldDisplayedUid,
-                                                      msgId);
-        }
-        if (emitUpdated) {
-            invalidateModel();
-            Q_EMIT linked.interactionStatusUpdated(conversation.uid, msgId, itCopy);
-        }
-        return;
+    auto newStatus = interaction::Status::INVALID;
+    switch (static_cast<DRing::Account::MessageStates>(status)) {
+    case DRing::Account::MessageStates::SENDING:
+        newStatus = interaction::Status::SENDING;
+        break;
+    case DRing::Account::MessageStates::CANCELLED:
+        newStatus = interaction::Status::TRANSFER_CANCELED;
+        break;
+    case DRing::Account::MessageStates::SENT:
+        newStatus = interaction::Status::SUCCESS;
+        break;
+    case DRing::Account::MessageStates::FAILURE:
+        newStatus = interaction::Status::FAILURE;
+        break;
+    case DRing::Account::MessageStates::DISPLAYED:
+        newStatus = interaction::Status::DISPLAYED;
+        break;
+    case DRing::Account::MessageStates::UNKNOWN:
+    default:
+        newStatus = interaction::Status::UNKNOWN;
+        break;
     }
     try {
-        auto& conversation = getConversationForUid(conversationId).get();
-        if (conversation.mode != conversation::Mode::NON_SWARM) {
-            if (static_cast<DRing::Account::MessageStates>(status)
-                == DRing::Account::MessageStates::DISPLAYED) {
+        auto& conversation = conversationId.isEmpty()
+                                 ? getConversationForPeerUri(peerId).get() // SIP
+                                 : getConversationForUid(conversationId).get();
+        std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
+        auto& interactions = conversation.interactions;
+        auto it = interactions->find(messageId);
+        if (it != interactions->end()) {
+            it->second.status = newStatus;
+            interactions->emitDataChanged(it, {MessageList::Role::Status});
+            if (newStatus == interaction::Status::DISPLAYED) {
                 auto previous = conversation.interactions->getRead(peerId);
                 if (peerId != linked.owner.profileInfo.uri)
                     conversation.interactions->setRead(peerId, messageId);
@@ -3724,7 +3650,6 @@ ConversationModel::cancelTransfer(const QString& convUid, const QString& fileId)
     // For this action, we change interaction status before effective canceling as daemon will
     // emit Finished event code immediately (before leaving this method) in non-DBus mode.
     auto conversationIdx = pimpl_->indexOf(convUid);
-    interaction::Info itCopy;
     bool emitUpdated = false;
     if (conversationIdx != -1) {
         std::lock_guard<std::mutex> lk(pimpl_->interactionsLocks[convUid]);
@@ -3739,7 +3664,6 @@ ConversationModel::cancelTransfer(const QString& convUid, const QString& fileId)
                                              fileId,
                                              interaction::Status::TRANSFER_CANCELED);
             emitUpdated = true;
-            itCopy = it->second;
         }
     }
     if (emitUpdated) {
@@ -3750,7 +3674,6 @@ ConversationModel::cancelTransfer(const QString& convUid, const QString& fileId)
         // Forward cancel action to daemon (will invoke slotTransferStatusCanceled)
         owner.dataTransferModel->cancel(owner.id, convUid, fileId);
         pimpl_->invalidateModel();
-        Q_EMIT interactionStatusUpdated(convUid, fileId, itCopy);
         Q_EMIT pimpl_->behaviorController.newReadInteraction(owner.id, convUid, fileId);
     }
 }
@@ -4048,7 +3971,6 @@ ConversationModelPimpl::slotTransferStatusFinished(const QString& fileId, datatr
     if (conversationIdx != -1) {
         bool emitUpdated = false;
         auto newStatus = interaction::Status::TRANSFER_FINISHED;
-        interaction::Info itCopy;
         {
             std::lock_guard<std::mutex> lk(interactionsLocks[conversations[conversationIdx].uid]);
             auto& interactions = conversations[conversationIdx].interactions;
@@ -4060,7 +3982,6 @@ ConversationModelPimpl::slotTransferStatusFinished(const QString& fileId, datatr
                     emitUpdated = true;
                     it->second.status = newStatus;
                     interactions->emitDataChanged(it, {MessageList::Role::Status});
-                    itCopy = it->second;
                 }
             }
         }
@@ -4074,7 +3995,6 @@ ConversationModelPimpl::slotTransferStatusFinished(const QString& fileId, datatr
             } else {
                 storage::updateInteractionStatus(db, interactionId, newStatus);
             }
-            Q_EMIT linked.interactionStatusUpdated(conversationId, interactionId, itCopy);
             transfIdToDbIntId.remove(fileId);
         }
     }
@@ -4138,7 +4058,6 @@ ConversationModelPimpl::updateTransferStatus(const QString& fileId,
         storage::updateInteractionStatus(db, interactionId, newStatus);
     }
     bool emitUpdated = false;
-    interaction::Info itCopy;
     {
         std::lock_guard<std::mutex> lk(interactionsLocks[conversations[conversationIdx].uid]);
         auto& interactions = conversations[conversationIdx].interactions;
@@ -4153,26 +4072,22 @@ ConversationModelPimpl::updateTransferStatus(const QString& fileId,
                 roles += MessageList::Role::Body;
             }
             interactions->emitDataChanged(it, roles);
-            itCopy = it->second;
         }
     }
-    if (emitUpdated) {
+    if (emitUpdated)
         invalidateModel();
-        Q_EMIT linked.interactionStatusUpdated(conversationId, interactionId, itCopy);
-    }
     updated = emitUpdated;
     return true;
 }
 
 void
 ConversationModelPimpl::updateTransferProgress(QTimer* timer,
-                                               const QString& conversation,
+                                               const QString&,
                                                int conversationIdx,
                                                const QString& interactionId)
 {
     try {
         bool emitUpdated = false;
-        interaction::Info itCopy;
         {
             auto convId = conversations[conversationIdx].uid;
             std::lock_guard<std::mutex> lk(interactionsLocks[convId]);
@@ -4182,13 +4097,10 @@ ConversationModelPimpl::updateTransferProgress(QTimer* timer,
                 and it->second.status == interaction::Status::TRANSFER_ONGOING) {
                 interactions->emitDataChanged(it, {MessageList::Role::Status});
                 emitUpdated = true;
-                itCopy = it->second;
             }
         }
-        if (emitUpdated) {
-            Q_EMIT linked.interactionStatusUpdated(conversation, interactionId, itCopy);
+        if (emitUpdated)
             return;
-        }
     } catch (...) {
     }
 
