@@ -176,6 +176,7 @@ Control {
                              JamiResources.micro_black_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.mute : JamiStrings.unmute
+            checked: CurrentCall.isAudioMuted
             property var menuAction: audioInputMenuAction
         },
         Action {
@@ -195,6 +196,8 @@ Control {
                              JamiResources.videocam_24dp_svg
             icon.color: checked ? "red" : "white"
             text: !checked ? JamiStrings.muteCamera : JamiStrings.unmuteCamera
+            checked: CurrentCall.isAudioOnly ? true : CurrentCall.isVideoMuted
+            enabled: !CurrentCall.isAudioOnly
             property var menuAction: videoInputMenuAction
         }
     ]
@@ -238,11 +241,13 @@ Control {
         Action {
             id: resumePauseCallAction
             onTriggered: root.resumePauseCallClicked()
-            icon.source: isPaused ?
+            icon.source: CurrentAccount.isPaused ?
                              JamiResources.play_circle_outline_24dp_svg :
                              JamiResources.pause_circle_outline_24dp_svg
             icon.color: "white"
-            text: isPaused ? JamiStrings.resumeCall : JamiStrings.pauseCall
+            text: CurrentAccount.isPaused ?
+                      JamiStrings.resumeCall :
+                      JamiStrings.pauseCall
         },
         Action {
             id: inputPanelSIPAction
@@ -286,6 +291,7 @@ Control {
             text: checked ?
                       JamiStrings.lowerHand :
                       JamiStrings.raiseHand
+            checked: CurrentCall.isHandRaised
             property real size: 34
         },
         Action {
@@ -297,6 +303,7 @@ Control {
             text: !checked ? JamiStrings.startRec : JamiStrings.stopRec
             property bool blinksWhenChecked: true
             property real size: 28
+            checked: CurrentCall.isRecordingLocally
             onCheckedChanged: function(checked) {
                 CallOverlayModel.setUrgentCount(recordAction,
                                                 checked ? -1 : 0)
@@ -308,7 +315,8 @@ Control {
             icon.source: JamiResources.plugins_24dp_svg
             icon.color: "white"
             text: JamiStrings.viewPlugin
-            enabled: PluginAdapter.isEnabled && PluginAdapter.callMediaHandlersListCount
+            enabled: PluginAdapter.isEnabled
+                     && PluginAdapter.callMediaHandlersListCount
         }
     ]
 
@@ -328,8 +336,12 @@ Control {
     }
     Connections {
         target: CurrentAccount
-
         function onVideoEnabledVideoChanged() { reset() }
+    }
+
+    Connections {
+        target: CurrentCall
+        function onIsActiveChanged() { if (CurrentCall.isActive) reset() }
     }
 
     function reset() {
@@ -344,28 +356,23 @@ Control {
 
         // overflow controls
         CallOverlayModel.addSecondaryControl(audioOutputAction)
-        if (isConference) {
+        if (CurrentCall.isConference) {
             CallOverlayModel.addSecondaryControl(raiseHandAction)
-            raiseHandAction.checked = CallAdapter.isHandRaised()
         }
-        if (isModerator && !isSIP)
+        if (CurrentCall.isModerator && !CurrentCall.isSIP)
             CallOverlayModel.addSecondaryControl(addPersonAction)
-        if (isSIP) {
+        if (CurrentCall.isSIP) {
             CallOverlayModel.addSecondaryControl(resumePauseCallAction)
             CallOverlayModel.addSecondaryControl(inputPanelSIPAction)
             CallOverlayModel.addSecondaryControl(callTransferAction)
         }
         CallOverlayModel.addSecondaryControl(chatAction)
-        if (CurrentAccount.videoEnabled_Video && !isSIP)
+        if (CurrentAccount.videoEnabled_Video && !CurrentCall.isSIP)
             CallOverlayModel.addSecondaryControl(shareAction)
         CallOverlayModel.addSecondaryControl(recordAction)
         CallOverlayModel.addSecondaryControl(pluginsAction)
         CallOverlayModel.addSecondaryControl(fullScreenAction)
         overflowItemCount = CallOverlayModel.secondaryModel().rowCount()
-
-        muteAudioAction.checked = isAudioMuted
-        recordAction.checked = CallAdapter.isRecordingThisCall()
-        muteVideoAction.checked = isAudioOnly ? true : isVideoMuted
     }
 
     Item {

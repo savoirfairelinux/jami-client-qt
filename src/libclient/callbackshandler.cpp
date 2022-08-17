@@ -200,6 +200,12 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&CallManager::instance(),
+            &CallManagerInterface::recordingStateChanged,
+            this,
+            &CallbacksHandler::recordingStateChanged,
+            Qt::QueuedConnection);
+
+    connect(&CallManager::instance(),
             &CallManagerInterface::incomingMessage,
             this,
             &CallbacksHandler::slotIncomingMessage,
@@ -531,7 +537,8 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
     for (auto& e : interaction.toStdMap()) {
         if (e.first.contains("x-ring/ring.profile.vcard")) {
             auto decodedHead = QUrl::fromPercentEncoding(e.first.toLatin1());
-            QRegularExpression re("x-ring/ring.profile.vcard;id=([A-z0-9]+),part=([0-9]+),of=([0-9]+)");
+            QRegularExpression re(
+                "x-ring/ring.profile.vcard;id=([A-z0-9]+),part=([0-9]+),of=([0-9]+)");
             auto match = re.match(decodedHead);
 
             if (!match.hasMatch())
@@ -557,17 +564,17 @@ CallbacksHandler::slotConferenceCreated(const QString& accountId, const QString&
 }
 
 void
+CallbacksHandler::slotConferenceRemoved(const QString& accountId, const QString& callId)
+{
+    Q_EMIT conferenceRemoved(accountId, callId);
+}
+
+void
 CallbacksHandler::slotConferenceChanged(const QString& accountId,
                                         const QString& callId,
                                         const QString& state)
 {
     slotCallStateChanged(accountId, callId, state, 0);
-}
-
-void
-CallbacksHandler::slotConferenceRemoved(const QString& accountId, const QString& callId)
-{
-    Q_EMIT conferenceRemoved(accountId, callId);
 }
 
 void

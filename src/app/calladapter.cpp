@@ -220,7 +220,6 @@ CallAdapter::onCallStatusChanged(const QString& callId, int code)
         const auto& convInfo = lrcInstance_->getConversationFromCallId(callId);
         if (!convInfo.uid.isEmpty()) {
             Q_EMIT callStatusChanged(static_cast<int>(call.status), accountId_, convInfo.uid);
-            updateCallOverlay(convInfo);
         }
 
         switch (call.status) {
@@ -311,23 +310,9 @@ CallAdapter::onCallInfosChanged(const QString& accountId, const QString& callId)
             }
             Q_EMIT callInfosChanged(call.isAudioOnly, accountId, convInfo.uid);
             participantsModel_->setConferenceLayout(static_cast<int>(call.layout), callId);
-            updateCallOverlay(convInfo);
         }
     } catch (...) {
     }
-}
-
-void
-CallAdapter::onRemoteRecordingChanged(const QString& callId,
-                                      const QSet<QString>& peerRec,
-                                      bool state)
-{
-    Q_UNUSED(peerRec)
-    Q_UNUSED(state)
-    const auto currentCallId
-        = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(), accountId_);
-    if (callId == currentCallId)
-        updateRecordingPeers();
 }
 
 void
@@ -499,8 +484,6 @@ CallAdapter::updateCall(const QString& convUid, const QString& accountId, bool f
         }
     }
 
-    updateCallOverlay(convInfo);
-    updateRecordingPeers(true);
     participantsModel_->setParticipants(call->id, getConferencesInfos());
     participantsModel_->setConferenceLayout(static_cast<int>(call->layout), call->id);
 }
@@ -540,7 +523,6 @@ CallAdapter::getConferencesInfos() const
                                           .getAccountInfo(accountId_)
                                           .callModel.get()
                                           ->getParticipantsInfos(callId);
-            int index = 0;
             for (int index = 0; index < participantsModel.getParticipants().size(); index++) {
                 auto participant = participantsModel.toQJsonObject(index);
                 fillParticipantData(participant);
@@ -609,12 +591,6 @@ CallAdapter::connectCallModel(const QString& accountId)
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
-            &CallModel::remoteRecordingChanged,
-            this,
-            &CallAdapter::onRemoteRecordingChanged,
-            Qt::UniqueConnection);
-
-    connect(accInfo.callModel.get(),
             &CallModel::callAddedToConference,
             this,
             &CallAdapter::onCallAddedToConference,
@@ -627,32 +603,6 @@ CallAdapter::connectCallModel(const QString& accountId)
 }
 
 void
-CallAdapter::updateRecordingPeers(bool eraseLabelOnEmpty)
-{
-    const auto& convInfo = lrcInstance_->getConversationFromConvUid(
-        lrcInstance_->get_selectedConvUid());
-    auto* call = lrcInstance_->getCallInfoForConversation(convInfo);
-    if (!call) {
-        return;
-    }
-
-    const auto& accInfo = lrcInstance_->getCurrentAccountInfo();
-    QStringList peers {};
-    for (const auto& uri : call->peerRec) {
-        auto bestName = accInfo.contactModel->bestNameForContact(uri);
-        if (!bestName.isEmpty()) {
-            peers.append(bestName);
-        }
-    }
-    if (!peers.isEmpty())
-        Q_EMIT remoteRecordingChanged(peers, true);
-    else if (eraseLabelOnEmpty)
-        Q_EMIT eraseRemoteRecording();
-    else
-        Q_EMIT remoteRecordingChanged(peers, false);
-}
-
-void
 CallAdapter::sipInputPanelPlayDTMF(const QString& key)
 {
     auto callId = lrcInstance_->getCallIdForConversationUid(lrcInstance_->get_selectedConvUid(),
@@ -662,53 +612,6 @@ CallAdapter::sipInputPanelPlayDTMF(const QString& key)
     }
 
     lrcInstance_->getCurrentCallModel()->playDTMF(callId, key);
-}
-
-/*
- * For Call Overlay
- */
-void
-CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
-{
-    auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
-    auto* callModel = accInfo.callModel.get();
-
-    const auto* callInfo = lrcInstance_->getCallInfoForConversation(convInfo);
-    const auto currentCallId = lrcInstance_->getCurrentCallId();
-    if (!callInfo || callInfo->id != currentCallId)
-        return;
-
-    bool isPaused = callInfo->status == lrc::api::call::Status::PAUSED;
-    bool isAudioOnly = callInfo->isAudioOnly && !isPaused;
-    bool isAudioMuted = callInfo->status == lrc::api::call::Status::PAUSED;
-    bool isGrid = callInfo->layout == lrc::api::call::Layout::GRID;
-    QString previewId {};
-    bool isVideoMuted = false;
-    if (callInfo->status != lrc::api::call::Status::ENDED) {
-        for (const auto& media : callInfo->mediaList) {
-            if (media[DRing::Media::MediaAttributeKey::MEDIA_TYPE]
-                == DRing::Media::Details::MEDIA_TYPE_VIDEO) {
-                if (media[DRing::Media::MediaAttributeKey::ENABLED] == TRUE_STR
-                    && media[DRing::Media::MediaAttributeKey::MUTED] == FALSE_STR) {
-                    if (previewId.isEmpty()) {
-                        previewId = media[DRing::Media::MediaAttributeKey::SOURCE];
-                    }
-                    isVideoMuted |= media[DRing::Media::MediaAttributeKey::SOURCE].startsWith(
-                        DRing::Media::VideoProtocolPrefix::CAMERA);
-                }
-            } else if (media[DRing::Media::MediaAttributeKey::LABEL] == "audio_0") {
-                isAudioMuted |= media[DRing::Media::MediaAttributeKey::MUTED] == TRUE_STR;
-            }
-        }
-    }
-
-    Q_EMIT updateOverlay(isPaused,
-                         isAudioOnly,
-                         isAudioMuted,
-                         isVideoMuted,
-                         accInfo.profileInfo.type == lrc::api::profile::Type::SIP,
-                         isGrid,
-                         previewId);
 }
 
 void
@@ -1045,7 +948,6 @@ CallAdapter::holdThisCallToggle()
     if (callModel->hasCall(callId)) {
         callModel->togglePause(callId);
     }
-    Q_EMIT showOnHoldLabel(true);
 }
 
 void
