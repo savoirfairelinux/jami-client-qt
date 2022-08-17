@@ -217,7 +217,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/callparticipantsmodel.cpp
   ${APP_SRC_DIR}/tipsmodel.cpp
   ${APP_SRC_DIR}/positioning.cpp
-)
+  ${APP_SRC_DIR}/currentcall.cpp)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -276,7 +276,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/videoprovider.h
   ${APP_SRC_DIR}/callparticipantsmodel.h
   ${APP_SRC_DIR}/tipsmodel.h
-  ${APP_SRC_DIR}/positioning.h)
+  ${APP_SRC_DIR}/positioning.h
+  ${APP_SRC_DIR}/currentcall.h)
 
 if(WITH_WEBENGINE)
   list(APPEND COMMON_SOURCES
