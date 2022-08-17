@@ -44,7 +44,7 @@ Rectangle {
     property int previewToY: 0
     property bool isAudioOnly: false
     property var linkedWebview: null
-    property string callPreviewId: ""
+    property string callPreviewId
 
     color: "black"
 
@@ -186,7 +186,8 @@ Rectangle {
             LocalVideo {
                 id: previewRenderer
 
-                visible: false
+                visible: (CurrentCall.isSharing || !CurrentCall.isVideoMuted) &&
+                         participantsLayer.count == 0
                 rendererId: ""
 
                 Connections {
@@ -280,42 +281,18 @@ Rectangle {
                 }
 
                 Connections {
-                    target: CallAdapter
-
-                    function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted, isVideoMuted,
-                                             isSIP, isGrid, previewId) {
-                        if (previewId != "") {
-                            if (root.callPreviewId != previewId)
+                    target: CurrentCall
+                    function onPreviewIdChanged() {
+                        if (CurrentCall.previewId !== "") {
+                            if (callPreviewId !== "" &&
+                                    callPreviewId !== CurrentCall.previewId) {
                                 VideoDevices.stopDevice(root.callPreviewId, true)
-                            VideoDevices.startDevice(previewId)
+                            }
+                            VideoDevices.startDevice(CurrentCall.previewId)
                         } else {
                             VideoDevices.stopDevice(root.callPreviewId, true)
                         }
-                        root.callPreviewId = previewId
-                        callOverlay.showOnHoldImage(isPaused)
-                        root.isAudioOnly = isAudioOnly
-                        callOverlay.showOnHoldImage(isPaused)
-                        audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
-                        callOverlay.updateUI(isPaused, isAudioOnly,
-                                             isAudioMuted, isVideoMuted,
-                                             isSIP,
-                                             isGrid)
-                        callOverlay.isVideoMuted = !AvAdapter.isCapturing()
-                        callOverlay.sharingActive = AvAdapter.isSharing()
-                        previewRenderer.visible = (AvAdapter.isSharing() || AvAdapter.isCapturing()) && participantsLayer.count == 0
-                    }
-
-                    function onShowOnHoldLabel(isPaused) {
-                        callOverlay.showOnHoldImage(isPaused)
-                        audioCallPageRectCentralRect.visible = !isPaused && root.isAudioOnly && participantsLayer.count === 0
-                    }
-
-                    function onRemoteRecordingChanged(label, state) {
-                        callOverlay.showRemoteRecording(label, state)
-                    }
-
-                    function onEraseRemoteRecording() {
-                        callOverlay.resetRemoteRecording()
+                        root.callPreviewId = CurrentCall.previewId
                     }
                 }
 
@@ -347,7 +324,9 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                visible: root.isAudioOnly
+                visible: !CurrentCall.isPaused &&
+                         CurrentCall.isAudioOnly &&
+                         participantsLayer.count === 0
 
                 ConversationAvatar {
                     id: contactImage

@@ -34,19 +34,19 @@ import "../../commoncomponents"
 Item {
     id: root
 
-    property bool isPaused
-    property bool isAudioOnly
-    property bool isAudioMuted
-    property bool isVideoMuted
+    property bool isPaused: CurrentCall.isPaused
+    property bool isAudioOnly: CurrentCall.isAudioOnly
+    property bool isAudioMuted: CurrentCall.isAudioMuted
+    property bool isVideoMuted: CurrentCall.isVideoMuted
     property bool isRecording
     property bool remoteRecording
-    property bool isSIP
+    property bool isSIP: CurrentCall.isSIP
     property bool isModerator
     property bool isConference
-    property bool isGrid
-    property bool localHandRaised
-    property bool sharingActive: AvAdapter.isSharing()
-    property string callId: ""
+    property bool isGrid: CurrentCall.isGrid
+    property bool localHandRaised: CurrentCall.isHandRaised
+    property bool sharingActive: CurrentCall.isSharing
+    property string callId: CurrentCall.id
 
     signal chatButtonClicked
     signal fullScreenClicked
@@ -57,26 +57,14 @@ Item {
                 || callViewContextMenu.peerIsRecording
     }
 
-    function updateUI(isPaused, isAudioOnly, isAudioMuted,
-                      isVideoMuted, isSIP,
-                      isGrid) {
-        if (isPaused !== undefined) {
-            root.isPaused = isPaused
-            root.isAudioOnly = isAudioOnly
-            root.isAudioMuted = isAudioMuted
-            root.isVideoMuted = isVideoMuted
-            callViewContextMenu.isVideoMuted = root.isVideoMuted
-            root.isSIP = isSIP
-            root.isGrid = isGrid
-            root.localHandRaised = CallAdapter.isHandRaised()
-        }
-        root.isRecording = CallAdapter.isRecordingThisCall()
-        root.isModerator = CallAdapter.isModerator()
-    }
-
-    function showOnHoldImage(visible) {
-        onHoldImage.visible = visible
-    }
+//    function updateUI(isPaused, isVideoMuted) {
+//        if (isPaused !== undefined) {
+//            callViewContextMenu.isVideoMuted = root.isVideoMuted
+//            root.localHandRaised = CallAdapter.isHandRaised()
+//        }
+//        root.isRecording = CallAdapter.isRecordingThisCall()
+//        root.isModerator = CallAdapter.isModerator()
+//    }
 
     function closeContextMenuAndRelatedWindows() {
         ContactPickerCreation.closeContactPicker()
@@ -92,29 +80,6 @@ Item {
         callViewContextMenu.x = x
         callViewContextMenu.y = y
         callViewContextMenu.openMenu()
-    }
-
-    function showRemoteRecording(peers, state) {
-        var label = ""
-        var i = 0
-        if (state) {
-            for (var p in peers) {
-                label += peers[p]
-                if (i !== (peers.length - 1))
-                    label += ", "
-                i += 1
-            }
-            label += " " + ((peers.length > 1) ? JamiStrings.areRecording : JamiStrings.isRecording)
-        }
-
-        mainOverlay.remoteRecordingLabel = state ? label : JamiStrings.peerStoppedRecording
-        root.remoteRecording = state
-        callOverlayRectMouseArea.entered()
-    }
-
-    function resetRemoteRecording() {
-        mainOverlay.remoteRecordingLabel = ""
-        root.remoteRecording = false
     }
 
     SipInputPanel {
@@ -143,7 +108,7 @@ Item {
         width: 200
         height: 200
 
-        visible: false
+        visible: CurrentCall.isPaused
 
         source: JamiResources.ic_pause_white_100px_svg
     }

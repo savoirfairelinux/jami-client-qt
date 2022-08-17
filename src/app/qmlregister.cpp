@@ -28,6 +28,7 @@
 #include "previewengine.h"
 #include "utilsadapter.h"
 #include "conversationsadapter.h"
+#include "currentcall.h"
 #include "currentconversation.h"
 #include "currentaccount.h"
 #include "videodevices.h"
@@ -116,6 +117,7 @@ registerTypes(QQmlEngine* engine,
     auto accountAdapter = new AccountAdapter(settingsManager, lrcInstance, parent);
     auto utilsAdapter = new UtilsAdapter(settingsManager, systemTray, lrcInstance, parent);
     auto pluginAdapter = new PluginAdapter(lrcInstance, parent);
+    auto currentCall = new CurrentCall(lrcInstance, parent);
     auto currentConversation = new CurrentConversation(lrcInstance, parent);
     auto currentAccount = new CurrentAccount(lrcInstance, settingsManager, parent);
     auto tipsModel = new TipsModel(settingsManager, parent);
@@ -132,6 +134,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, accountAdapter, "AccountAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, utilsAdapter, "UtilsAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, pluginAdapter, "PluginAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentCall, "CurrentCall");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentConversation, "CurrentConversation");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, currentAccount, "CurrentAccount");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, videoDevices, "VideoDevices");

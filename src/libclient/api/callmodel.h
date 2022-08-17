@@ -423,7 +423,7 @@ Q_SIGNALS:
      * Emitted when the rendered image changed
      * @param confId
      */
-    void onParticipantsChanged(const QString& confId) const;
+    void participantsChanged(const QString& confId) const;
     /**
      * Emitted when a call starts
      * @param callId
@@ -463,15 +463,12 @@ Q_SIGNALS:
                          int urgentCount) const;
 
     /**
-     * Listen from CallbacksHandler when the peer start recording
+     * Provides notification of a new set of recording peers once a change has occured,
+     * in the form of a list, as QSet<QString> is not directly QML compatible.
      * @param callId
-     * @param contactId
-     * @param peerName
-     * @param state the new state
+     * @param recorders
      */
-    void remoteRecordingChanged(const QString& callId,
-                                const QSet<QString>& peerRec,
-                                bool state) const;
+    void remoteRecordersChanged(const QString& callId, const QStringList& recorders) const;
 
     /*!
      * Emitted before new pending conferences are inserted into the underlying list
