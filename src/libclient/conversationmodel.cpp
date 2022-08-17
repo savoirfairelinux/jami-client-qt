@@ -364,7 +364,6 @@ public Q_SLOTS:
     void slotConversationRequestReceived(const QString& accountId,
                                          const QString& conversationId,
                                          const MapStringString& metadatas);
-    void slotConversationRequestDeclined(const QString& accountId, const QString& conversationId);
     void slotConversationMemberEvent(const QString& accountId,
                                      const QString& conversationId,
                                      const QString& memberUri,
@@ -1849,7 +1848,7 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
     connect(&callbacksHandler,
             &CallbacksHandler::conversationRequestDeclined,
             this,
-            &ConversationModelPimpl::slotConversationRequestDeclined);
+            &ConversationModelPimpl::slotConversationRemoved);
     connect(&callbacksHandler,
             &CallbacksHandler::conversationReady,
             this,
@@ -1993,7 +1992,7 @@ ConversationModelPimpl::~ConversationModelPimpl()
     disconnect(&callbacksHandler,
                &CallbacksHandler::conversationRequestDeclined,
                this,
-               &ConversationModelPimpl::slotConversationRequestDeclined);
+               &ConversationModelPimpl::slotConversationRemoved);
     disconnect(&callbacksHandler,
                &CallbacksHandler::conversationReady,
                this,
@@ -2532,18 +2531,6 @@ ConversationModelPimpl::slotConversationRequestReceived(const QString& accountId
 }
 
 void
-ConversationModelPimpl::slotConversationRequestDeclined(const QString& accountId,
-                                                        const QString& convId)
-{
-    auto conversationIndex = indexOf(convId);
-    if (accountId != linked.owner.id || conversationIndex < 0)
-        return;
-    eraseConversation(conversationIndex);
-    Q_EMIT linked.conversationRemoved(convId);
-    Q_EMIT linked.modelChanged();
-}
-
-void
 ConversationModelPimpl::slotConversationReady(const QString& accountId,
                                               const QString& conversationId)
 {
@@ -2617,9 +2604,8 @@ ConversationModelPimpl::slotConversationRemoved(const QString& accountId,
                                                 const QString& conversationId)
 {
     auto conversationIndex = indexOf(conversationId);
-    if (accountId != linked.owner.id || conversationIndex < 0) {
+    if (accountId != linked.owner.id || conversationIndex < 0)
         return;
-    }
     try {
         auto removeConversation = [&]() {
             // remove swarm conversation
