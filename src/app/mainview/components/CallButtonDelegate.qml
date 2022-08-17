@@ -39,6 +39,7 @@ ItemDelegate {
 
     action: ItemAction
     checkable: ItemAction.checkable
+    hoverEnabled: ItemAction.enabled
 
     // hide the action's visual elements like the blurry looking icon
     icon.source: ""
@@ -122,7 +123,11 @@ ItemDelegate {
 
         anchors.centerIn: parent
         source: ItemAction ? ItemAction.icon.source : ""
-        color: ItemAction ? ItemAction.icon.color : null
+        color: ItemAction ?
+                   (ItemAction.enabled ?
+                       ItemAction.icon.color :
+                       Qt.lighter(ItemAction.icon.color)) :
+                   null
 
         SequentialAnimation on opacity {
             loops: Animation.Infinite
@@ -172,7 +177,8 @@ ItemDelegate {
 
         indicator: null
 
-        visible: menuAction !== undefined && !UrgentCount && menuAction.enabled
+        visible: ItemAction.enabled
+                 && menuAction !== undefined && !UrgentCount && menuAction.enabled
 
         y: isVertical ? 0 : -4
         x: isVertical ? -4 : 0
