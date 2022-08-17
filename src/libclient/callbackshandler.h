@@ -371,12 +371,13 @@ Q_SIGNALS:
                                  const QString& memberId,
                                  int event);
     void conversationError(const QString& accountId,
-                           const QString& conversationId,
-                           int code,
-                           const QString& what);
+                                 const QString& conversationId,
+                                 int code,
+                                 const QString& what);
     void conversationPreferencesUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& preferences);
+    void recordingStateChanged(const QString& callId, bool state);
 
 private Q_SLOTS:
     /**
