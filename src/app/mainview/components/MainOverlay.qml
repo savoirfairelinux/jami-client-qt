@@ -32,7 +32,15 @@ Item {
     id: root
 
     property string timeText: "00:00"
-    property string remoteRecordingLabel: ""
+    property bool remoteRecording: CurrentCall.isRecordingRemotely
+    property string remoteRecordingLabel: {
+        remoteRecording ?
+                    CurrentCall.remoteRecorderNameList.join(", ") + " "
+                    + ((CurrentCall.remoteRecorderNameList.length > 1) ?
+                           JamiStrings.areRecording : JamiStrings.isRecording) :
+                    JamiStrings.peerStoppedRecording
+    }
+    onRemoteRecordingChanged: callOverlayRectMouseArea.entered()
 
     property alias callActionBar: __callActionBar
 
@@ -43,7 +51,6 @@ Item {
 
     property string muteAlertMessage: ""
     property bool muteAlertActive: false
-    property bool remoteRecording: false
     property bool isRecording: false
 
     onMuteAlertActiveChanged: {

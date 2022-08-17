@@ -332,6 +332,11 @@ Control {
         function onVideoEnabledVideoChanged() { reset() }
     }
 
+    Connections {
+        target: CurrentCall
+        function onIsActiveChanged() { if (CurrentCall.isActive) reset() }
+    }
+
     function reset() {
         CallOverlayModel.clearControls()
 
