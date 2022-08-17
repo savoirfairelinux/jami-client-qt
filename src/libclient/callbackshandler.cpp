@@ -200,6 +200,12 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&CallManager::instance(),
+            &CallManagerInterface::recordingStateChanged,
+            this,
+            &CallbacksHandler::recordingStateChanged,
+            Qt::QueuedConnection);
+
+    connect(&CallManager::instance(),
             &CallManagerInterface::incomingMessage,
             this,
             &CallbacksHandler::slotIncomingMessage,
@@ -563,17 +569,17 @@ CallbacksHandler::slotConferenceCreated(const QString& accountId, const QString&
 }
 
 void
+CallbacksHandler::slotConferenceRemoved(const QString& accountId, const QString& callId)
+{
+    Q_EMIT conferenceRemoved(accountId, callId);
+}
+
+void
 CallbacksHandler::slotConferenceChanged(const QString& accountId,
                                         const QString& callId,
                                         const QString& state)
 {
     slotCallStateChanged(accountId, callId, state, 0);
-}
-
-void
-CallbacksHandler::slotConferenceRemoved(const QString& accountId, const QString& callId)
-{
-    Q_EMIT conferenceRemoved(accountId, callId);
 }
 
 void

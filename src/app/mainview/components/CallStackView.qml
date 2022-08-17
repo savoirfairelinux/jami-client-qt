@@ -143,8 +143,6 @@ Rectangle {
 
         property int stackNumber: CallStackView.OngoingPageStack
 
-        isAudioOnly: root.isAudioOnly
-
         visible: callStackMainView.currentItem.stackNumber === stackNumber
     }
 
@@ -153,7 +151,7 @@ Rectangle {
 
         property int stackNumber: CallStackView.InitialPageStack
 
-        isAudioOnly: root.isAudioOnly
+        isAudioOnly: CurrentCall.isAudioOnly
 
         onCallAccepted: {
             CallAdapter.acceptACall(responsibleAccountId, responsibleConvUid)
