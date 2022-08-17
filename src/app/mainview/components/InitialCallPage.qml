@@ -31,7 +31,7 @@ Rectangle {
     id: root
 
     property bool isIncoming: false
-    property bool isAudioOnly: false
+    property bool isAudioOnly: CurrentCall.isAudioOnly
     property int callStatus: 0
 
     signal callCanceled
