@@ -370,6 +370,7 @@ Q_SIGNALS:
                                  const QString& conversationId,
                                  int code,
                                  const QString& what);
+    void recordingStateChanged(const QString& callId, bool state);
 
 private Q_SLOTS:
     /**
