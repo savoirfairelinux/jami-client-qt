@@ -373,6 +373,8 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT showExperimentalSwarm();
     else if (key == Settings::Key::BaseZoom)
         Q_EMIT changeFontSize();
+    else if (key == Settings::Key::ShowChatviewHorizontally)
+        Q_EMIT chatviewPositionChanged();
 }
 
 QString

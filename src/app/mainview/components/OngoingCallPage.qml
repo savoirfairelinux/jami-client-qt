@@ -64,6 +64,15 @@ Rectangle {
                     closeInCallConversation)
     }
 
+
+    Connections {
+        target: UtilsAdapter
+
+        function onChatviewPositionChanged() {
+            mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
+        }
+    }
+
     function openInCallConversation() {
         mainColumnLayout.isHorizontal = UtilsAdapter.getAppValue(Settings.Key.ShowChatviewHorizontally)
         inCallMessageWebViewStack.visible = true
