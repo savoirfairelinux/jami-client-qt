@@ -177,6 +177,7 @@ Control {
                             UtilsAdapter.setAppValue(Settings.ParticipantsSide, false)
                             participantsSide = false
                         }
+                        break
                   case JamiStrings.hideSelf:
                         UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
                         GenericParticipantsFilterModel.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
