@@ -35,7 +35,7 @@ Rectangle {
         target: CurrentConversation
         enabled: true
 
-        onErrorsChanged: {
+        function onErrorsChanged() {
             if (CurrentConversation.errors.length > 0) {
                 errorLabel.text = CurrentConversation.errors[0]
                 backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0])
