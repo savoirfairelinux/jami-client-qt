@@ -46,6 +46,8 @@ Rectangle {
     property bool interactionButtonsVisibility: {
         if (CurrentConversation.inCall)
             return false
+        if (LRCInstance.currentAccountType === Profile.Type.SIP)
+            return true
         if (!CurrentConversation.isTemporary && !CurrentConversation.isSwarm)
             return false
         if (CurrentConversation.isRequest || CurrentConversation.needsSyncing)
