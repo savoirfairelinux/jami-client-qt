@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10943170_de7baded",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-19T15:12:31Z",
+      "side": 1,
+      "message": "with libqt-jami, seems to get some -fPIC erros",
+      "revId": "4b57aac261fb826e50b3611df75098120a6ee9f9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
