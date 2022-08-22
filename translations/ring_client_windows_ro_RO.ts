@@ -78,22 +78,22 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="172"/>
         <source>An error occurred while fetching this repository</source>
-        <translation type="unfinished"/>
+        <translation>A apărut o eroare la obținerea acestui depozit</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="174"/>
         <source>The conversation&apos;s mode is un-recognized</source>
-        <translation type="unfinished"/>
+        <translation>Tipul conversației nu e recunoscut.</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="176"/>
         <source>An invalid message was detected</source>
-        <translation type="unfinished"/>
+        <translation>A fost detectat un mesaj greșit</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="178"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
-        <translation type="unfinished"/>
+        <translation>Autorizații insuficiente pentru actualizarea informațiilor despre conversație</translation>
     </message>
 </context>
 <context>
@@ -217,11 +217,6 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="37"/>
         <source>Incoming video call from {}</source>
         <translation>Apel video primit de la {}</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="44"/>
-        <source>Migrating to the Swarm technology will enable syncing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation>Migrarea la tehnologia Swarm(Grup) va permite sincronizarea acestei conversații între mai multe aparate și va îmbunătăți calitatea. Cronologia conversațiilor vechi va fi ștearsă în acest proces.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
@@ -389,11 +384,6 @@
         <translation>Alege frecvența video (imagini/secundă)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="206"/>
-        <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and can not be recovered. You can backup your account now or later.</source>
-        <translation>Acest cont există doar în acest aparat. Dacă ai pierdut aparatul sau ai dezinstalat aplicația, contul tău va fi șters și nu va putea fi recuperat. Poți face o copie de rezervă acum sau mai târziu.</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <source>End call</source>
@@ -426,19 +416,9 @@
         <translation>Creează un loc de conferință</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
-        <source>Choose a password to encrypt your account on this device. Note that the password cannot be recovered.</source>
-        <translation>Alege o parolă pentru a cifra contul tău în acest aparat. Reține că parola nu poate fi recuperată.</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <source>Choose a name for your rendezvous point</source>
         <translation>Alege un nume pentru locul de conferință</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
-        <source>If your account has not been backed up or added to another device, your account and registered name will be irrevocably lost.</source>
-        <translation>Dacă contul tău nu a fost asociat altui aparat și nu ai o copie de rezervă, va fi pierdut definitiv împreună cu numele înscris.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="431"/>
@@ -480,6 +460,45 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Enable</source>
         <translation>Activează</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
+        <source>Are you sure you would like to join Jami without a username?
+If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
+        <source>- 32 characters maximum
+- Alphabetical characters (A to Z and a to z)
+- Numeric characters (0 to 9)
+- Special characters allowed: dash (-)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
+        <source>Your account will be created and stored locally.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
+        <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
+        <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
+        <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
+        <source>Back up account to a .gz file</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
@@ -581,6 +600,11 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="43"/>
         <source>Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.</source>
         <translation>Jami este o platformă de comunicare universală, având la temelie confidențialitatea, care se bazează pe o rețea distribuită și liberă pentru oricine.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="44"/>
+        <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="57"/>
@@ -919,19 +943,19 @@
         <translation>fără video</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
-        <source>Backup account here</source>
-        <translation>Fă aici o copie de rezervă a contului</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
+        <source>Add a profile picture and nickname to complete your profile</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
-        <source>Backup your account!</source>
-        <translation>Fă o copie de rezervă a contului!</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
+        <source>This profile is only shared with this account&apos;s contacts</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
-        <source>Backup account</source>
-        <translation>Fă o copie de rezervă</translation>
+        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
+        <source>Why should I save my account?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
@@ -1068,22 +1092,17 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
         <source>On the side</source>
-        <translation type="unfinished"/>
+        <translation>Pe margine</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="254"/>
         <source>On the top</source>
-        <translation type="unfinished"/>
+        <translation>Sus</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
         <source>Hide self</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
-        <source>Hide participant without video</source>
-        <translation type="unfinished"/>
+        <translation>Ascunde-te</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
@@ -1114,16 +1133,6 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
         <source>Remove conversation</source>
         <translation>Șterge conversația</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
-        <source>Do you really want to remove this conversation?</source>
-        <translation>Chiar vrei să ștergi această conversație?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
-        <source>Do you really want to block this conversation?</source>
-        <translation>Chiar vrei să blochezi această conversație?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
@@ -1218,7 +1227,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
         <source>Layout settings</source>
-        <translation type="unfinished"/>
+        <translation>Opțiuni de aranjare</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="299"/>
@@ -1248,7 +1257,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>This is the error from the backend: %0</source>
-        <translation type="unfinished"/>
+        <translation>Aceasta este eroarea din backend: %0</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="307"/>
@@ -1317,9 +1326,19 @@
         <translation>Confirmă parola</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
+        <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
         <source>Optional</source>
         <translation>Facultativ</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
+        <source>You can choose a username to help others more easily find and reach you on Jami.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
@@ -1347,24 +1366,6 @@
         <translation>Nume ales deja</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
-        <source>Are you sure that you want to join Jami without a username?
-If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation>Sigur vrei să te înscrii în Jami fără nume de utilizator?
-Dacă da, acestui cont îi va fi atribuit doar un identificator de 40 de caractere generat aleatoriu.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
-        <source>- 32 characters maximum
-- Alphabetical characters (A to Z)
-- Numeric characters (0 to 9)
-- Special character autorized: dash (-)</source>
-        <translation>- maximum 32 de caractere
-- Caractere alfabetice (de la A la Z)
-- Caractere numerice (de la 0 la 9)
-- Caracter special autorizat: liniuță (-)</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="346"/>
         <source>Good to know</source>
         <translation>Bine de știut</translation>
@@ -1378,26 +1379,6 @@ Dacă da, acestui cont îi va fi atribuit doar un identificator de 40 de caracte
         <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
         <source>Encrypt</source>
         <translation>Cifrează</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
-        <source>This account is created locally</source>
-        <translation>Acest cont este creat local</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
-        <source>Choose a username is recommended and it can’t be changed</source>
-        <translation>Este recomandată alegerea unui nume de utilizator, care nu poate fi schimbat.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
-        <source>Encrypt your account with a password is optional and it can’t be recovered</source>
-        <translation>Cifrarea contului tău cu o parolă este opțională, iar aceasta nu poate fi recuperată.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
-        <source>The picture and the nickname are optional and can be changed in the settings</source>
-        <translation>Imaginea și pseudonimul sunt opționale și pot fi modificate în reglări.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="356"/>
@@ -1485,11 +1466,6 @@ Dacă da, acestui cont îi va fi atribuit doar un identificator de 40 de caracte
         <translation>Schimbă parola actuală</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
-        <source>Backup account to a .gz file</source>
-        <translation>Copie de rezervă a contului ca fișier .gz</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
         <source>Enable account</source>
         <translation>Activează contul</translation>
@@ -1505,26 +1481,9 @@ Dacă da, acestui cont îi va fi atribuit doar un identificator de 40 de caracte
         <translation>Personalizează profilul</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
-        <source>This profile is only shared with this account's contacts.
-The profile can be changed at all time in the account&apos;s settings.</source>
-        <translation>Acest profil este împărtășit doar cu contactele acestui cont.
-Profilul poate fi modificat în orice moment în reglările contului.</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <source>Encrypt your account with a password</source>
         <translation>Cifrează contul cu o parolă</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
-        <source>A Jami account is registered only on this device as an archive containing the keys of your account. Access to this archive can be protected by a password.</source>
-        <translation>Un cont Jami este înregistrat doar în acest aparat ca o arhivă care conține cheile contului tău. Accesul la această arhivă poate fi protejat printr-o parolă.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
-        <source>Please note that if you loose your password it cannot be recovered!</source>
-        <translation>Atenție, dacă pierzi parola, aceasta nu poate fi recuperată!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
@@ -1607,11 +1566,6 @@ Please try again later.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
         <source>Banned contacts</source>
         <translation>Contacte blocate</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
-        <source>Do you really want to delete this account?</source>
-        <translation>Chiar vrei să ștergi acest cont?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="418"/>
@@ -1811,6 +1765,31 @@ Please try again later.</source>
         <translation>Rețea deconectată</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
+        <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the account settings. This will create a .gz file on your device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
+        <source>Select &quot;Link another device&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="560"/>
+        <source>The PIN code will be valid for 10 minutes.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
+        <source>Choose a picture as your avatar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
+        <source>Share freely and privately with Jami</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
         <source>About</source>
         <translation>Despre</translation>
@@ -1936,24 +1915,9 @@ Please try again later.</source>
         <translation>Ignoră</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
-        <source>Add a picture and a nickname to complete your profile</source>
-        <translation>Adaugă o poză și un pseudonim pentru a-ți completa profilul</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
-        <source>This profile is only shared with this account’s contacts</source>
-        <translation>Acest profil este distribuit doar contactelor acestui cont</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source>Your profile is only shared with your contacts</source>
         <translation>Profilul tău este distribuit doar contactelor tale</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
-        <source>Why should I save my account ?</source>
-        <translation>De ce ar trebui să-mi salvez contul?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="457"/>
@@ -2106,11 +2070,6 @@ Jami se va închide acum.</translation>
         <translation>Folosește Jami</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
-        <source>Share, freely and privately with Jami</source>
-        <translation>Distribuie, în mod liber și privat, cu Jami</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
         <source>I already have an account</source>
         <translation>Am deja un cont</translation>
@@ -2228,6 +2187,26 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>Copiază</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="206"/>
+        <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
+        <source>Back up account here</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
+        <source>Back up your account!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
+        <source>Back up account</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
         <source>Jami archive files (*.gz)</source>
         <translation>Fișierul arhivei Jami (*.gz)</translation>
@@ -2263,6 +2242,11 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>Microfonul aparatului tău încă este oprit</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
+        <source>Hide audio-only participants</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="260"/>
         <source>Share</source>
         <translation>Distribuie</translation>
@@ -2271,6 +2255,16 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Confirm action</source>
         <translation>Confirmă acțiunea</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
+        <source>Would you really like to remove this conversation?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
+        <source>Would you really like to block this conversation?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="274"/>
@@ -2318,11 +2312,6 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>Identificatorul nu e disponibil</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
-        <source>You can choose a username to be easily found and reached on Jami.</source>
-        <translation>Poți alege un nume de utilizator pentru a fi ușor de găsit și de contactat pe Jami.</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="376"/>
         <source>Display advanced settings</source>
         <translation>Arată reglările avansate</translation>
@@ -2333,6 +2322,22 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>Ascunde reglările avansate</translation>
     </message>
     <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
+        <source>This profile is only shared with this account's contacts.
+The profile can be changed at all times from the account&apos;s settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
+        <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
+        <source>Please note that if you lose your password, it CANNOT be recovered!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="408"/>
         <source>Display banned contacts</source>
         <translation>Arată contactele blocate</translation>
@@ -2341,6 +2346,16 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
         <source>Hide banned contacts</source>
         <translation>Ascunde contactele blocate</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
+        <source>Would you really like to delete this account?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
+        <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="441"/>
@@ -2528,11 +2543,6 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>Creează contul tău dintr-o copie de rezervă</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
-        <source>You can obtain an archive by clicking on &quot;Backup account&quot; in the account settings. This will create a .gz file on your device.</source>
-        <translation>Poți obține o arhivă făcând clic pe „Copie de rezervă a contului” în reglările contului. Asta va crea un fișier .gz în aparatul tău.</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="538"/>
         <source>Restore an account from backup</source>
         <translation>Recuperează un cont din copia de rezervă</translation>
@@ -2598,16 +2608,6 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <translation>Alege contul de asociat</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
-        <source>Select “Link another device”</source>
-        <translation>Alege „Asociază alt aparat”</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="560"/>
-        <source>The PIN code will be available for 10 minutes.</source>
-        <translation>Codul PIN va fi disponibil timp de 10 minute.</translation>
-    </message>
-    <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="564"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
         <translation>Codul PIN și parola contului trebuie introduse în aparatul tău în 10 minute.</translation>
@@ -2661,11 +2661,6 @@ să se conecteze pentru a sincroniza conversația.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="577"/>
         <source>Export</source>
         <translation>Exportă</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
-        <source>Choose a picture as avatar</source>
-        <translation>Alege o poză de profil</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="581"/>
@@ -3669,119 +3664,119 @@ Copiază-l și distribuie-l prietenilor!</translation>
         <translation>Ce înseamnă Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="29"/>
-        <source>The choice of the name Jami was inspired by the Swahili word jamii which means community as a noun and together as an adverb.</source>
-        <translation>Alegerea numelui Jami a fost inspirată de cuvântul Swahili „jamii”, care înseamnă comunitate ca substantiv și împreună ca adverb.</translation>
-    </message>
-    <message>
         <location filename="../src/app/tipsmodel.cpp" line="33"/>
         <source>What is the green dot next to my account?</source>
         <translation>Ce este punctul verde de lângă contul meu?</translation>
     </message>
     <message>
+        <location filename="../src/app/tipsmodel.cpp" line="29"/>
+        <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/app/tipsmodel.cpp" line="35"/>
-        <source>A red dot means that your account is disconnected from the network, it turns green when its connected</source>
-        <translation>Un punct roșu înseamnă că acest cont este deconectat de la rețea, iar când este conectat devine verde.</translation>
+        <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="39"/>
-        <source>Why should I backup my account?</source>
-        <translation>De ce ar trebui să fac o copie de rezervă a contului meu?</translation>
+        <source>Why should I back up my account?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="41"/>
-        <source>Jami is distributed and you&apos;re account is only stored on your device. If you loose your password, or your datas you can&apos;t recover it</source>
-        <translation>Jami este distribuit, iar contul tău este stocat doar în aparatul tău. Dacă pierzi parola sau datele tale, nu le poți recupera.</translation>
+        <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="46"/>
+        <location filename="../src/app/tipsmodel.cpp" line="47"/>
         <source>Can I make a conference call?</source>
         <translation>Pot face o teleconferință?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="47"/>
+        <location filename="../src/app/tipsmodel.cpp" line="48"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call</source>
         <translation>În timpul unui apel, poți face clic pe „Adaugă participanți” pentru a adăuga un contact la apel.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="50"/>
+        <location filename="../src/app/tipsmodel.cpp" line="51"/>
         <source>Does Jami have group chats?</source>
         <translation>Are Jami discuții în grup?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="51"/>
+        <location filename="../src/app/tipsmodel.cpp" line="52"/>
         <source>In the settings, you can enabled support for groups (experimental)</source>
         <translation>În reglări, poți activa grupurile (experimental)</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="54"/>
+        <location filename="../src/app/tipsmodel.cpp" line="55"/>
         <source>What is a Jami account?</source>
         <translation>Ce este un cont Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="56"/>
+        <location filename="../src/app/tipsmodel.cpp" line="57"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Un cont Jami este o cheie de cifrare asimetrică. Contul tău este identificat de un ID Jami, care este o amprentă a cheii tale publice.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="60"/>
+        <location filename="../src/app/tipsmodel.cpp" line="61"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Ce informații trebuie să furnizez pentru a crea un cont Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="62"/>
-        <source>When you create a new Jami account, you don’t have to provide any private information like an email, address, or phone number.</source>
-        <translation>Atunci când creezi un nou cont Jami, nu trebuie să furnizezi nicio informație privată, cum ar fi e-mailul, adresa sau numărul de telefon.</translation>
+        <location filename="../src/app/tipsmodel.cpp" line="63"/>
+        <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="66"/>
+        <location filename="../src/app/tipsmodel.cpp" line="69"/>
+        <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="83"/>
+        <source>In the account settings, a button is available to create a backup your account.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="88"/>
+        <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="92"/>
+        <source>Can I use my account on multiple devices?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="94"/>
+        <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/tipsmodel.cpp" line="67"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>De ce nu trebuie să folosesc o parolă?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="68"/>
-        <source>With Jami, your account is stored in a folder on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation>Cu Jami, contul tău este stocat într-un dosar din aparatul tău. Parola este utilizată doar pentru a cifra contul tău, pentru a te proteja de cineva care are acces fizic la aparatul tău.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/tipsmodel.cpp" line="74"/>
+        <location filename="../src/app/tipsmodel.cpp" line="75"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>De ce nu trebuie să înscriu un nume de utilizator?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="76"/>
+        <location filename="../src/app/tipsmodel.cpp" line="77"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>Cel mai sigur identificator este ID-ul Jami, dar, deoarece acesta este dificil de utilizat pentru unele persoane, ai și opțiunea de a înscrie un nume de utilizator.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>How can I back up my account?</source>
         <translation>Cum pot face o copie de rezervă a contului meu?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="82"/>
-        <source>In the account settings, a button is available to backup your account.</source>
-        <translation>În reglările contului, este disponibil un buton pentru a face o copie de rezervă a contului.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/tipsmodel.cpp" line="85"/>
+        <location filename="../src/app/tipsmodel.cpp" line="86"/>
         <source>What happens when I delete my account?</source>
         <translation>Ce se întâmplă dacă îmi șterg contul?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
-        <source>Your account is only stored on your own devices. If you delete your account from each device, the account is gone and you cannot get it back.</source>
-        <translation>Contul tău este stocat doar în aparatele tale. Dacă ștergi contul din fiecare aparat, contul dispare și nu îl mai poți recupera.</translation>
-    </message>
-    <message>
-        <location filename="../src/app/tipsmodel.cpp" line="91"/>
-        <source>Can I use my account on multiple device?</source>
-        <translation>Pot să-mi folosesc contul pe mai multe aparate?</translation>
-    </message>
-    <message>
-        <location filename="../src/app/tipsmodel.cpp" line="93"/>
-        <source>Yes, you can link your account from the settings, or you can import your back-up on another device.</source>
-        <translation>Da, poți asocia contul tău din reglări sau poți importa copia de rezervă din alt aparat.</translation>
     </message>
 </context>
 <context>
