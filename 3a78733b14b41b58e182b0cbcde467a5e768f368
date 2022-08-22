@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e901aac9_01b25317",
+        "filename": "src/app/commoncomponents/ReplyToRow.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-08-22T12:46:17Z",
+      "side": 1,
+      "message": "The mousearea looks not clickable all over it. I got some difficulties trying to scroll to the reference message.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 11
+      },
+      "revId": "3a78733b14b41b58e182b0cbcde467a5e768f368",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
