@@ -408,6 +408,15 @@ Q_SIGNALS:
                         QString& interactionId,
                         const interaction::Info& interactionInfo) const;
     /**
+     * Emitted when an interaction got a new status
+     * @param convUid conversation which owns the interaction
+     * @param interactionId
+     * @param msg
+     */
+    void interactionStatusUpdated(const QString& convUid,
+                                  const QString& interactionId,
+                                  const api::interaction::Info& msg) const;
+    /**
      * Emitted when an interaction got removed from the conversation
      * @param convUid conversation which owns the interaction
      * @param interactionId
