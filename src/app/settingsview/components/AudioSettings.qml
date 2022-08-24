@@ -41,7 +41,7 @@ ColumnLayout {
     function populateAudioSettings() {
         inputComboBoxSetting.modelIndex = inputComboBoxSetting.comboModel.getCurrentIndex()
         outputComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex()
-        ringtoneComboBoxSetting.modelIndex = outputComboBoxSetting.comboModel.getCurrentIndex()
+        ringtoneComboBoxSetting.modelIndex = ringtoneComboBoxSetting.comboModel.getCurrentIndex()
         if(audioManagerComboBoxSetting.comboModel.rowCount() > 0) {
             audioManagerComboBoxSetting.modelIndex =
                     audioManagerComboBoxSetting.comboModel.getCurrentSettingIndex()
@@ -77,9 +77,7 @@ ColumnLayout {
 
         onActivated: {
             AvAdapter.stopAudioMeter()
-            AVModel.setInputDevice(comboModel.data(
-                                       comboModel.index(modelIndex, 0),
-                                       AudioDeviceModel.RawDeviceName))
+            AVModel.setInputDevice(modelIndex)
             AvAdapter.startAudioMeter()
         }
     }
@@ -116,9 +114,7 @@ ColumnLayout {
 
         onActivated: {
             AvAdapter.stopAudioMeter()
-            AVModel.setOutputDevice(comboModel.data(
-                                        comboModel.index(modelIndex, 0),
-                                        AudioDeviceModel.RawDeviceName))
+            AVModel.setOutputDevice(modelIndex)
             AvAdapter.startAudioMeter()
         }
     }
@@ -142,9 +138,7 @@ ColumnLayout {
 
         onActivated: {
             AvAdapter.stopAudioMeter()
-            AVModel.setRingtoneDevice(comboModel.data(
-                                          comboModel.index(modelIndex, 0),
-                                          AudioDeviceModel.RawDeviceName))
+            AVModel.setRingtoneDevice(modelIndex)
             AvAdapter.startAudioMeter()
         }
     }
