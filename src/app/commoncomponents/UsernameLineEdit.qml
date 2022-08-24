@@ -44,6 +44,7 @@ EditableLineEdit {
     }
 
     property int nameRegistrationState: UsernameLineEdit.NameRegistrationState.BLANK
+    property string accountId: CurrentAccount.id
 
     selectByMouse: true
     font.pointSize: JamiTheme.usernameLineEditPointSize
@@ -85,7 +86,7 @@ EditableLineEdit {
         onTriggered: {
             if (text.length !== 0 && readOnly === false) {
                 nameRegistrationState = UsernameLineEdit.NameRegistrationState.SEARCHING
-                NameDirectory.lookupName("", text)
+                NameDirectory.lookupName(root.accountId, text)
             } else {
                 nameRegistrationState = UsernameLineEdit.NameRegistrationState.BLANK
             }

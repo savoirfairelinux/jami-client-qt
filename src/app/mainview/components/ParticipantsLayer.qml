@@ -67,7 +67,7 @@ Item {
             participantIsModerator: isModerator_
             bestName: {
                 if (bestName_ === uri_)
-                    NameDirectory.lookupAddress(CurrentAccount.uri_RingNS, uri_)
+                    NameDirectory.lookupAddress(CurrentAccount.id, uri_)
                 return bestName_
             }
             videoMuted: videoMuted_

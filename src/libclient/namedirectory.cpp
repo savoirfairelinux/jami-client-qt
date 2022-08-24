@@ -105,16 +105,16 @@ NameDirectoryPrivate::slotExportOnRingEnded(const QString& accountId, int status
 
 // Lookup a name
 bool
-NameDirectory::lookupName(const QString& nameServiceURL, const QString& name) const
+NameDirectory::lookupName(const QString& accountId, const QString& name, const QString& nameServiceURL) const
 {
-    return ConfigurationManager::instance().lookupName("", nameServiceURL, name);
+    return ConfigurationManager::instance().lookupName(accountId, nameServiceURL, name);
 }
 
 // Lookup an address
 bool
-NameDirectory::lookupAddress(const QString& nameServiceURL, const QString& address) const
+NameDirectory::lookupAddress(const QString& accountId, const QString& address, const QString& nameServiceURL) const
 {
-    return ConfigurationManager::instance().lookupAddress("", nameServiceURL, address);
+    return ConfigurationManager::instance().lookupAddress(accountId, nameServiceURL, address);
 }
 
 NameDirectory::~NameDirectory()

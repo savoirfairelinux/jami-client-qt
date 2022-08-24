@@ -130,6 +130,7 @@ Rectangle {
                     id: usernameEdit
 
                     objectName: "usernameEdit"
+                    accountId: "" // During creation
 
                     Layout.topMargin: 15
                     Layout.alignment: Qt.AlignHCenter
