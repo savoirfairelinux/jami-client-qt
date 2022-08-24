@@ -3452,41 +3452,122 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
                                                     const QString& messageId,
                                                     int status)
 {
-    if (accountId != linked.owner.id || conversationId.isEmpty())
+    if (accountId != linked.owner.id) {
         return;
-    auto newStatus = interaction::Status::INVALID;
-    switch (static_cast<DRing::Account::MessageStates>(status)) {
-    case DRing::Account::MessageStates::SENDING:
-        newStatus = interaction::Status::SENDING;
-        break;
-    case DRing::Account::MessageStates::CANCELLED:
-        newStatus = interaction::Status::TRANSFER_CANCELED;
-        break;
-    case DRing::Account::MessageStates::SENT:
-        newStatus = interaction::Status::SUCCESS;
-        break;
-    case DRing::Account::MessageStates::FAILURE:
-        newStatus = interaction::Status::FAILURE;
-        break;
-    case DRing::Account::MessageStates::DISPLAYED:
-        newStatus = interaction::Status::DISPLAYED;
-        break;
-    case DRing::Account::MessageStates::UNKNOWN:
-    default:
-        newStatus = interaction::Status::UNKNOWN;
-        break;
+    }
+    // it may be not swarm conversation check in db
+    if (conversationId.isEmpty() || conversationId == linked.owner.profileInfo.uri) {
+        auto convIds = storage::getConversationsWithPeer(db, peerId);
+        if (convIds.empty()) {
+            return;
+        }
+        auto conversationIdx = indexOf(convIds[0]);
+        auto& conversation = conversations[conversationIdx];
+        auto newStatus = interaction::Status::INVALID;
+        switch (static_cast<DRing::Account::MessageStates>(status)) {
+        case DRing::Account::MessageStates::SENDING:
+            newStatus = interaction::Status::SENDING;
+            break;
+        case DRing::Account::MessageStates::CANCELLED:
+            newStatus = interaction::Status::TRANSFER_CANCELED;
+            break;
+        case DRing::Account::MessageStates::SENT:
+            newStatus = interaction::Status::SUCCESS;
+            break;
+        case DRing::Account::MessageStates::FAILURE:
+            newStatus = interaction::Status::FAILURE;
+            break;
+        case DRing::Account::MessageStates::DISPLAYED:
+            newStatus = interaction::Status::DISPLAYED;
+            break;
+        case DRing::Account::MessageStates::UNKNOWN:
+        default:
+            newStatus = interaction::Status::UNKNOWN;
+            break;
+        }
+        auto idString = messageId;
+        // for not swarm conversation messageId in hexdesimal string format. Convert to normal string
+        // TODO messageId should be received from daemon in string format
+        if (static_cast<DRing::Account::MessageStates>(status)
+            == DRing::Account::MessageStates::DISPLAYED) {
+            std::istringstream ss(messageId.toStdString());
+            ss >> std::hex;
+            uint64_t id;
+            if (!(ss >> id))
+                return;
+            idString = QString::number(id);
+        }
+        // Update database
+        auto interactionId = storage::getInteractionIdByDaemonId(db, idString);
+        if (interactionId.isEmpty()) {
+            return;
+        }
+        auto msgId = interactionId;
+        storage::updateInteractionStatus(db, msgId, newStatus);
+        // Update conversations
+        bool emitUpdated = false;
+        bool updateDisplayedUid = false;
+        QString oldDisplayedUid = 0;
+        {
+            std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
+            auto& interactions = conversation.interactions;
+            auto it = interactions->find(msgId);
+            auto messageId = conversation.interactions->getRead(peerId);
+            if (it != interactions->end()) {
+                it->second.status = newStatus;
+                interactions->emitDataChanged(it, {MessageList::Role::Status});
+                bool interactionDisplayed = newStatus == interaction::Status::DISPLAYED
+                                            && isOutgoing(it->second);
+                if (messageId != "") {
+                    auto lastDisplayedIt = interactions->find(messageId);
+                    bool interactionIsLast = lastDisplayedIt == interactions->end()
+                                             || lastDisplayedIt->second.timestamp
+                                                    < it->second.timestamp;
+                    updateDisplayedUid = interactionDisplayed && interactionIsLast;
+                    if (updateDisplayedUid) {
+                        oldDisplayedUid = messageId;
+                        if (peerId != linked.owner.profileInfo.uri)
+                            conversation.interactions->setRead(peerId, it->first);
+                    }
+                } else {
+                    oldDisplayedUid = "";
+                    if (peerId != linked.owner.profileInfo.uri)
+                        conversation.interactions->setRead(peerId, it->first);
+                    updateDisplayedUid = true;
+                }
+                emitUpdated = true;
+            }
+        }
+        if (updateDisplayedUid) {
+            Q_EMIT linked.displayedInteractionChanged(conversation.uid,
+                                                      peerId,
+                                                      oldDisplayedUid,
+                                                      msgId);
+        }
+        if (emitUpdated) {
+            invalidateModel();
+        }
+        return;
     }
     try {
-        auto& conversation = conversationId.isEmpty()
-                                 ? getConversationForPeerUri(peerId).get() // SIP
-                                 : getConversationForUid(conversationId).get();
-        std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
-        auto& interactions = conversation.interactions;
-        auto it = interactions->find(messageId);
-        if (it != interactions->end()) {
-            it->second.status = newStatus;
-            interactions->emitDataChanged(it, {MessageList::Role::Status});
-            if (newStatus == interaction::Status::DISPLAYED) {
+        auto& conversation = getConversationForUid(conversationId).get();
+        if (conversation.mode != conversation::Mode::NON_SWARM) {
+            std::lock_guard<std::mutex> lk(interactionsLocks[conversation.uid]);
+            auto& interactions = conversation.interactions;
+            auto it = interactions->find(messageId);
+            if (it != interactions->end() && it->second.type == interaction::Type::TEXT) {
+                if (static_cast<DRing::Account::MessageStates>(status)
+                    == DRing::Account::MessageStates::SENDING) {
+                    it->second.status = interaction::Status::SENDING;
+                } else if (static_cast<DRing::Account::MessageStates>(status)
+                           == DRing::Account::MessageStates::SENT) {
+                    it->second.status = interaction::Status::SUCCESS;
+                }
+                interactions->emitDataChanged(it, {MessageList::Role::Status});
+            }
+
+            if (static_cast<DRing::Account::MessageStates>(status)
+                == DRing::Account::MessageStates::DISPLAYED) {
                 auto previous = conversation.interactions->getRead(peerId);
                 if (peerId != linked.owner.profileInfo.uri)
                     conversation.interactions->setRead(peerId, messageId);
@@ -4074,8 +4155,9 @@ ConversationModelPimpl::updateTransferStatus(const QString& fileId,
             interactions->emitDataChanged(it, roles);
         }
     }
-    if (emitUpdated)
+    if (emitUpdated) {
         invalidateModel();
+    }
     updated = emitUpdated;
     return true;
 }
