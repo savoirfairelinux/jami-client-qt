@@ -170,19 +170,19 @@ public:
     Q_INVOKABLE bool setAudioManager(const QString& name);
     /**
      * Set current ringtone device
-     * @param name of the new ringtone device
+     * @param idx of the new ringtone device
      */
-    Q_INVOKABLE void setRingtoneDevice(const QString& name);
+    Q_INVOKABLE void setRingtoneDevice(int idx);
     /**
      * Set current output device
-     * @param name of the new output device
+     * @param idx of the new output device
      */
-    Q_INVOKABLE void setOutputDevice(const QString& name);
+    Q_INVOKABLE void setOutputDevice(int idx);
     /**
      * Set current input device
-     * @param name of the new input device
+     * @param idx of the new input device
      */
-    Q_INVOKABLE void setInputDevice(const QString& name);
+    Q_INVOKABLE void setInputDevice(int idx);
     /**
      * Stop local record at given path
      * @param path

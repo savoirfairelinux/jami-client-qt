@@ -427,23 +427,20 @@ AVModel::setAudioManager(const QString& name)
 }
 
 void
-AVModel::setRingtoneDevice(const QString& name)
+AVModel::setRingtoneDevice(int idx)
 {
-    int idx = ConfigurationManager::instance().getAudioOutputDeviceIndex(name);
     ConfigurationManager::instance().setAudioRingtoneDevice(idx);
 }
 
 void
-AVModel::setOutputDevice(const QString& name)
+AVModel::setOutputDevice(int idx)
 {
-    int idx = ConfigurationManager::instance().getAudioOutputDeviceIndex(name);
     ConfigurationManager::instance().setAudioOutputDevice(idx);
 }
 
 void
-AVModel::setInputDevice(const QString& name)
+AVModel::setInputDevice(int idx)
 {
-    int idx = ConfigurationManager::instance().getAudioInputDeviceIndex(name);
     ConfigurationManager::instance().setAudioInputDevice(idx);
 }
 
@@ -805,24 +802,11 @@ AVModelPimpl::getDevice(int type) const
             return "";
         }
         auto deviceIdx = currentDevicesIdx[type].toInt();
-        for (const auto& dev : devices) {
-            int idx {-1};
-            switch (type) {
-            case 1: // INPUT
-                idx = ConfigurationManager::instance().getAudioInputDeviceIndex(dev);
-                break;
-            case 0: // OUTPUT
-            case 2: // RINGTONE
-                idx = ConfigurationManager::instance().getAudioOutputDeviceIndex(dev);
-                break;
-            default:
-                break;
-            }
-            if (idx == deviceIdx) {
-                return dev;
-            }
+        if (deviceIdx > devices.size()) {
+            // Should not happen, but cannot retrieve current ringtone device
+            return "";
         }
-        return "";
+        result = devices[deviceIdx];
     } catch (std::bad_alloc& ba) {
         qWarning() << "bad_alloc caught: " << ba.what();
         return "";
