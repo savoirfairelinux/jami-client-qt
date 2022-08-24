@@ -452,7 +452,7 @@ Control {
             CallOverlayModel.addSecondaryControl(callTransferAction)
         }
         CallOverlayModel.addSecondaryControl(chatAction)
-        if (CurrentAccount.videoEnabled_Video && !isSIP)
+        if (CurrentAccount.videoEnabled_Video)
             CallOverlayModel.addSecondaryControl(shareAction)
         CallOverlayModel.addSecondaryControl(layoutAction)
         CallOverlayModel.addSecondaryControl(recordAction)
