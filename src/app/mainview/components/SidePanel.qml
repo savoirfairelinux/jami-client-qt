@@ -155,7 +155,7 @@ Rectangle {
             font.bold: true
             font.pointSize: JamiTheme.contactEventPointSize
 
-            text: JamiStrings.createASwarm
+            text: JamiStrings.createSwarm
         }
 
         PushButton {
@@ -225,7 +225,7 @@ Rectangle {
             visible: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm) && !swarmMemberSearchList.visible
 
             source: smartListLayout.visible ? JamiResources.create_swarm_svg : JamiResources.round_close_24dp_svg
-            toolTipText: smartListLayout.visible ? JamiStrings.startASwarm : JamiStrings.cancel
+            toolTipText: smartListLayout.visible ? JamiStrings.startSwarm : JamiStrings.cancel
 
             onClicked: createSwarmClicked()
 
