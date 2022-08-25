@@ -35,10 +35,10 @@ Item {
     property string endCall: qsTr("End call")
     property string incomingAudioCallFrom: qsTr("Incoming audio call from {}")
     property string incomingVideoCallFrom: qsTr("Incoming video call from {}")
-    property string contactSearchConversation: qsTr("Find a user or search for a conversation")
-    property string startASwarm: qsTr("Start a swarm")
+    property string contactSearchConversation: qsTr("Find users and conversations")
+    property string startASwarm: qsTr("Start swarm")
     property string createASwarm: qsTr("Create a swarm")
-    property string contactSearchInvitations: qsTr("Search your invitations")
+    property string contactSearchInvitations: qsTr("Search invitations")
     property string invitations: qsTr("Invitations")
     property string description: qsTr("Jami is a universal communication platform, with privacy as its foundation, that relies on a free distributed network for everyone.")
     property string updateToSwarm: qsTr("Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.")
@@ -290,13 +290,13 @@ Item {
     property string selectShareMethod: qsTr("Select sharing method")
     property string viewPlugin: qsTr("View plugin")
     property string noVideoDevice: qsTr("No video device")
-    property string notAvailable: qsTr("N/A")
+    property string notAvailable: qsTr("Unavailable")
     property string lowerHand: qsTr("Lower hand")
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
 
     // Chatview header
-    property string hideChatView: qsTr("Hide chat view")
+    property string hideChat: qsTr("Hide chat")
     property string placeAudioCall: qsTr("Place audio call")
     property string placeVideoCall: qsTr("Place video call")
     property string showPlugins: qsTr("Show available plugins")
@@ -425,19 +425,18 @@ Item {
     property string selectFolder: qsTr("Select a folder")
     property string enableNotifications: qsTr("Enable notifications")
     property string enableDarkTheme: qsTr("Enable dark theme")
-    property string enableDesktopNotifications: qsTr("Enable desktop notifications")
-    property string keepMinimized: qsTr("Keep minimized on close")
-    property string tipRunStartup: qsTr("Run application on system startup")
+    property string showNotifications: qsTr("Show notifications")
+    property string keepMinimized: qsTr("Minimize on close")
+    property string tipRunStartup: qsTr("Run at system startup")
     property string runStartup: qsTr("Launch at startup")
-    property string downloadFolder: qsTr("Downloads directory")
+    property string downloadFolder: qsTr("Download directory")
     property string tipChooseDownloadFolder: qsTr("Choose download directory")
     property string recordCall: qsTr("Record call")
     property string textZoom: qsTr("Text zoom")
 
     // ChatviewSettings
-    property string chatview: qsTr("Chatview")
-    property string enableTypingIndicator: qsTr("Enable typing indicators")
-    property string displayHyperlinkPreviews: qsTr("Display hyperlink previews in the chatview")
+    property string enableTypingIndicator: qsTr("Typing indicators")
+    property string displayHyperlinkPreviews: qsTr("Show link previews")
     property string layout: qsTr("Layout")
     property string language: qsTr("User interface language")
     property string verticalViewOpt: qsTr("Vertical view")
@@ -445,7 +444,7 @@ Item {
 
     // File transfer settings
     property string fileTransfer: qsTr("File transfer")
-    property string allowFromUntrusted: qsTr("Allow incoming files from unknown contacts")
+    property string allowFromUntrusted: qsTr("Accept files from unknown senders")
     property string autoAcceptFiles: qsTr("Automatically accept incoming files")
     property string acceptTransferBelow: qsTr("Accept transfer limit")
     property string acceptTransferTooltip: qsTr("in MB, 0 = unlimited")
@@ -531,15 +530,15 @@ Item {
     // ImportFromBackupPage
     property string archive: qsTr("Archive")
     property string openFile: qsTr("Open file")
-    property string importAccountArchive: qsTr("Create your account from a backup")
+    property string importAccountArchive: qsTr("Create account from a backup")
     property string importAccountExplanation: qsTr("You can obtain an archive by clicking on \"Back up account\" " +
-                                                   "in the account settings. " +
+                                                   "in the Account Settings. " +
                                                    "This will create a .gz file on your device.")
-    property string connectFromBackup: qsTr("Restore an account from backup")
+    property string connectFromBackup: qsTr("Restore account from backup")
     property string generatingAccount: qsTr("Generating account…")
     property string importFromBackup: qsTr("Import from backup")
     property string importFromArchiveBackup: qsTr("Import from archive backup")
-    property string importFromArchiveBackupDescription: qsTr("Import a Jami account from an archive file on this device.")
+    property string importFromArchiveBackupDescription: qsTr("Import Jami account from local archive file.")
     property string selectArchiveFile: qsTr("Select archive file")
 
     // ImportFromDevicePage
@@ -759,7 +758,7 @@ Item {
 
     //TipBox
     property string customize: qsTr("Customize")
-    property string tips: qsTr("Tips")
+    property string tip: qsTr("Tip")
     property string dismiss: qsTr("Dismiss")
     property string customizeText: qsTr("Add a profile picture and nickname to complete your profile")
     property string customizationDescription: qsTr("This profile is only shared with this account's contacts")

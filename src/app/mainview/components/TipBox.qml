@@ -85,7 +85,7 @@ Item {
                 }
 
                 Label {
-                    text: root.isTip ? JamiStrings.tips : JamiStrings.customize
+                    text: root.isTip ? JamiStrings.tip : JamiStrings.customize
                     color: JamiTheme.textColor
                     font.weight: Font.Medium
                     Layout.topMargin: 5
