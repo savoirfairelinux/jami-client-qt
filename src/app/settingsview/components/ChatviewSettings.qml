@@ -35,7 +35,7 @@ ColumnLayout {
     Label {
         Layout.fillWidth: true
 
-        text: JamiStrings.chatview
+        text: JamiStrings.chat
         font.pointSize: JamiTheme.headerFontSize
         font.kerning: true
         color: JamiTheme.textColor
