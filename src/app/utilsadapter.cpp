@@ -375,6 +375,8 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT changeFontSize();
     else if (key == Settings::Key::ShowChatviewHorizontally)
         Q_EMIT chatviewPositionChanged();
+    else if (key == Settings::Key::AppTheme)
+        Q_EMIT appThemeChanged();
 }
 
 QString
@@ -583,4 +585,73 @@ UtilsAdapter::luma(const QColor& color) const
 {
     return (0.2126 * color.red() + 0.7152 * color.green() + 0.0722 * color.blue())
            < 153 /* .6 * 256 */;
+}
+
+#if __has_include(<gio/gio.h>)
+void
+settingsCallback(GSettings* self, gchar* key, gpointer user_data)
+{
+    QString keyString = key;
+    if (keyString == "color-scheme" || keyString == "gtk-theme") {
+        Q_EMIT((UtilsAdapter*) (user_data))->appThemeChanged();
+    }
+}
+#endif
+
+bool
+UtilsAdapter::isSystemThemeDark()
+{
+#if __has_include(<gio/gio.h>)
+    if (!settings) {
+        settings = g_settings_new("org.gnome.desktop.interface");
+        if (!settings)
+            return false;
+        g_signal_connect(settings, "changed", G_CALLBACK(settingsCallback), this);
+    }
+    if (!schema) {
+        g_object_get(settings, "settings-schema", &schema, nullptr);
+        if (!schema)
+            return false;
+    }
+    std::vector<std::string> keys = {"gtk-color-scheme", "color-scheme", "gtk-theme"};
+    auto** gtk_keys = g_settings_schema_list_keys(schema);
+    for (const auto& key : keys) {
+        auto hasKey = false;
+        for (int i = 0; gtk_keys[i]; i++) {
+            if (key == gtk_keys[i]) {
+                hasKey = true;
+                break;
+            }
+        }
+        if (hasKey) {
+            if (auto* valueCstr = g_settings_get_string(settings, key.c_str())) {
+                QString value = valueCstr;
+                if (!value.isEmpty()) {
+                    return value.contains("dark", Qt::CaseInsensitive)
+                           || value.contains("black", Qt::CaseInsensitive);
+                }
+            }
+        }
+    }
+    return false;
+#else
+    qWarning("System theme detection is not implemented");
+    return false;
+#endif
+}
+
+bool
+UtilsAdapter::useApplicationTheme()
+{
+    if (hasNativeDarkTheme()) {
+        QString theme = getAppValue(Settings::Key::AppTheme).toString();
+        if (theme == "Dark")
+            return true;
+        else if (theme == "Light")
+            return false;
+        return isSystemThemeDark();
+    }
+    bool enableDark = getAppValue(Settings::Key::EnableDarkTheme).toBool();
+    setAppValue(Settings::Key::AppTheme, enableDark ? "Dark" : "Light");
+    return enableDark;
 }
