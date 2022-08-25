@@ -64,21 +64,53 @@ ColumnLayout {
         verticalAlignment: Text.AlignVCenter
     }
 
-    ToggleSwitch {
-        id: darkThemeCheckBox
+
+
+    SettingsComboBox {
+        id: themeComboBoxSettings
+
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
-        checked: UtilsAdapter.getAppValue(Settings.EnableDarkTheme)
-
-        labelText: JamiStrings.enableDarkTheme
+        labelText: JamiStrings.applicationTheme
         fontPointSize: JamiTheme.settingsFontSize
 
-        tooltipText: JamiStrings.enableDarkTheme
+        comboModel: ListModel {
+            Component.onCompleted: {
+                append({ textDisplay: JamiStrings.dark })
+                append({ textDisplay: JamiStrings.light })
+                if (UtilsAdapter.hasNativeDarkTheme())
+                    append({ textDisplay: JamiStrings.system })
+            }
+        }
+        widthOfComboBox: itemWidth
+        tipText: JamiStrings.selectAudioInputDevice
+        role: "textDisplay"
 
-        onSwitchToggled: {
-            JamiTheme.setTheme(checked)
-            UtilsAdapter.setAppValue(Settings.Key.EnableDarkTheme, checked)
+        modelIndex: {
+            if (UtilsAdapter.hasNativeDarkTheme()) {
+                var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme)
+                if (theme === "Dark") {
+                    return 0
+                } else if (theme === "Light") {
+                    return 1
+                }
+                return 2
+            }
+            return UtilsAdapter.getAppValue(Settings.Key.EnableDarkTheme) ? 0 : 1
+        }
+
+        onActivated: {
+            if (UtilsAdapter.hasNativeDarkTheme()) {
+                if (modelIndex === 0)
+                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark")
+                else if (modelIndex === 1)
+                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light")
+                else if (modelIndex === 2)
+                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System")
+            } else {
+                UtilsAdapter.setAppValue(Settings.Key.EnableDarkTheme, modelIndex === 0)
+            }
         }
     }
 
