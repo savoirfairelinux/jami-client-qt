@@ -422,9 +422,11 @@ Item {
 
     // SystemSettings
     property string system: qsTr("System")
+    property string dark: qsTr("Dark")
+    property string light: qsTr("Light")
     property string selectFolder: qsTr("Select a folder")
     property string enableNotifications: qsTr("Enable notifications")
-    property string enableDarkTheme: qsTr("Enable dark theme")
+    property string applicationTheme: qsTr("Application theme")
     property string enableDesktopNotifications: qsTr("Enable desktop notifications")
     property string keepMinimized: qsTr("Keep minimized on close")
     property string tipRunStartup: qsTr("Run application on system startup")

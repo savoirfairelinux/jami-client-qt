@@ -375,6 +375,8 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
         Q_EMIT changeFontSize();
     else if (key == Settings::Key::ShowChatviewHorizontally)
         Q_EMIT chatviewPositionChanged();
+    else if (key == Settings::Key::AppTheme)
+        Q_EMIT appThemeChanged();
 }
 
 QString
@@ -583,4 +585,63 @@ UtilsAdapter::luma(const QColor& color) const
 {
     return (0.2126 * color.red() + 0.7152 * color.green() + 0.0722 * color.blue())
            < 153 /* .6 * 256 */;
+}
+
+#if __has_include(<gio/gio.h>)
+void
+settingsCallback(GSettings* self, gchar* key, gpointer user_data)
+{
+    QString keyString = key;
+    if (keyString == "color-scheme" || keyString == "gtk-theme") {
+        Q_EMIT((UtilsAdapter*) (user_data))->appThemeChanged();
+    }
+}
+#endif
+
+bool
+UtilsAdapter::isSystemDark()
+{
+#if __has_include(<gio/gio.h>)
+    if (!settings) {
+        settings = g_settings_new("org.gnome.desktop.interface");
+        g_signal_connect(settings, "changed", G_CALLBACK(settingsCallback), this);
+    }
+    auto* colorSchemeCStr = g_settings_get_string(settings, "color-scheme");
+    auto* gtkThemeCStr = g_settings_get_string(settings, "gtk-theme");
+    if (colorSchemeCStr) {
+        QString colorScheme = colorSchemeCStr;
+        if (!colorScheme.isEmpty()) {
+            return colorScheme.contains("dark", Qt::CaseInsensitive)
+                   || colorScheme.contains("black", Qt::CaseInsensitive);
+        }
+    }
+    if (gtkThemeCStr) {
+        // Fallback on gtk-theme if no color-scheme preference
+        QString gtkTheme = gtkThemeCStr;
+        if (!gtkTheme.isEmpty()) {
+            return gtkTheme.contains("dark", Qt::CaseInsensitive)
+                   || gtkTheme.contains("black", Qt::CaseInsensitive);
+        }
+    }
+
+    return false;
+#else
+    qWarning("System theme detection is not implemented");
+#endif
+}
+
+bool
+UtilsAdapter::useDarkTheme()
+{
+    if (supportNativeDarkTheme()) {
+        QString theme = getAppValue(Settings::Key::AppTheme).toString();
+        if (theme == "Dark")
+            return true;
+        else if (theme == "Light")
+            return false;
+        return isSystemDark();
+    }
+    bool enableDark = getAppValue(Settings::Key::EnableDarkTheme).toBool();
+    setAppValue(Settings::Key::AppTheme, enableDark ? "Dark" : "Light");
+    return enableDark;
 }
