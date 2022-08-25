@@ -296,7 +296,7 @@ Item {
     property string layoutSettings: qsTr("Layout settings")
 
     // Chatview header
-    property string hideChatView: qsTr("Hide chat view")
+    property string hideChat: qsTr("Hide chat")
     property string placeAudioCall: qsTr("Place audio call")
     property string placeVideoCall: qsTr("Place video call")
     property string showPlugins: qsTr("Show available plugins")
@@ -425,19 +425,18 @@ Item {
     property string selectFolder: qsTr("Select a folder")
     property string enableNotifications: qsTr("Enable notifications")
     property string enableDarkTheme: qsTr("Enable dark theme")
-    property string enableDesktopNotifications: qsTr("Enable desktop notifications")
+    property string showNotifications: qsTr("Show notifications")
     property string keepMinimized: qsTr("Keep minimized on close")
     property string tipRunStartup: qsTr("Run application on system startup")
     property string runStartup: qsTr("Launch at startup")
-    property string downloadFolder: qsTr("Downloads directory")
+    property string downloadFolder: qsTr("Download directory")
     property string tipChooseDownloadFolder: qsTr("Choose download directory")
     property string recordCall: qsTr("Record call")
     property string textZoom: qsTr("Text zoom")
 
     // ChatviewSettings
-    property string chatview: qsTr("Chatview")
     property string enableTypingIndicator: qsTr("Enable typing indicators")
-    property string displayHyperlinkPreviews: qsTr("Display hyperlink previews in the chatview")
+    property string displayHyperlinkPreviews: qsTr("Show link previews")
     property string layout: qsTr("Layout")
     property string language: qsTr("User interface language")
     property string verticalViewOpt: qsTr("Vertical view")
@@ -533,7 +532,7 @@ Item {
     property string openFile: qsTr("Open file")
     property string importAccountArchive: qsTr("Create your account from a backup")
     property string importAccountExplanation: qsTr("You can obtain an archive by clicking on \"Back up account\" " +
-                                                   "in the account settings. " +
+                                                   "in the Account Settings. " +
                                                    "This will create a .gz file on your device.")
     property string connectFromBackup: qsTr("Restore an account from backup")
     property string generatingAccount: qsTr("Generating account…")
@@ -759,7 +758,7 @@ Item {
 
     //TipBox
     property string customize: qsTr("Customize")
-    property string tips: qsTr("Tips")
+    property string tip: qsTr("Tip")
     property string dismiss: qsTr("Dismiss")
     property string customizeText: qsTr("Add a profile picture and nickname to complete your profile")
     property string customizationDescription: qsTr("This profile is only shared with this account's contacts")

@@ -81,7 +81,7 @@ Rectangle {
             source: CurrentConversation.inCall ?
                         JamiResources.round_close_24dp_svg :
                         JamiResources.back_24dp_svg
-            toolTipText: JamiStrings.hideChatView
+            toolTipText: JamiStrings.hideChat
 
             normalColor: JamiTheme.chatviewBgColor
             imageColor: JamiTheme.chatviewButtonColor
