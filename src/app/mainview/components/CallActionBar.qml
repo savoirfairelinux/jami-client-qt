@@ -89,9 +89,7 @@ Control {
             }
             function accept(index) {
                 AvAdapter.stopAudioMeter()
-                AVModel.setInputDevice(listModel.data(
-                                       listModel.index(index, 0),
-                                       AudioDeviceModel.RawDeviceName))
+                AVModel.setInputDevice(index)
                 AvAdapter.startAudioMeter()
             }
         },
