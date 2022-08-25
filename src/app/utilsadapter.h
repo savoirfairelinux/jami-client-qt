@@ -29,6 +29,10 @@
 #include "appsettingsmanager.h"
 #include "qtutils.h"
 
+#if __has_include(<gio/gio.h>)
+#include <gio/gio.h>
+#endif
+
 class QClipboard;
 class SystemTray;
 
@@ -107,12 +111,21 @@ public:
                                                           const QString& convId,
                                                           const QString& uri);
     Q_INVOKABLE bool luma(const QColor& color) const;
+    Q_INVOKABLE bool useDarkTheme();
+    Q_INVOKABLE bool supportNativeDarkTheme() const {
+#if __has_include(<gio/gio.h>)
+    return true;
+#else
+    return false;
+#endif
+    }
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
     void showExperimentalSwarm();
     void changeFontSize();
     void chatviewPositionChanged();
+    void appThemeChanged();
 
 private:
     QClipboard* clipboard_;
@@ -121,5 +134,10 @@ private:
 
     QMetaObject::Connection debugMessageReceivedConnection_;
     QString getDefaultRecordPath() const;
+
+    bool isSystemDark();
+#if __has_include(<gio/gio.h>)
+    GSettings *settings {nullptr};
+#endif
 };
 Q_DECLARE_METATYPE(UtilsAdapter*)
