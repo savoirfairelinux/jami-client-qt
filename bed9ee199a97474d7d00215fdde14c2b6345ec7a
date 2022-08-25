@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29b61c9f_5e26616a",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-08-25T21:54:08Z",
+      "side": 1,
+      "message": "preference",
+      "range": {
+        "startLine": 616,
+        "startChar": 52,
+        "endLine": 616,
+        "endChar": 62
+      },
+      "revId": "bed9ee199a97474d7d00215fdde14c2b6345ec7a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
