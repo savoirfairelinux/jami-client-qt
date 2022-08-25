@@ -25,13 +25,17 @@ import net.jami.Adapters 1.1
 import net.jami.Enums 1.1
 
 Item {
-    property bool darkTheme: UtilsAdapter.getAppValue(Settings.EnableDarkTheme)
+    property bool darkTheme: UtilsAdapter.useApplicationTheme()
 
     Connections {
         target: UtilsAdapter
 
         function onChangeFontSize() {
             baseZoom = UtilsAdapter.getAppValue(Settings.BaseZoom)
+        }
+
+        function onAppThemeChanged() {
+            darkTheme = UtilsAdapter.useApplicationTheme()
         }
     }
 
