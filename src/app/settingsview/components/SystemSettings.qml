@@ -121,7 +121,7 @@ ColumnLayout {
 
         checked: UtilsAdapter.getAppValue(Settings.EnableNotifications)
 
-        labelText: JamiStrings.enableDesktopNotifications
+        labelText: JamiStrings.showNotifications
         fontPointSize: JamiTheme.settingsFontSize
 
         tooltipText: JamiStrings.enableNotifications
