@@ -782,7 +782,7 @@ AVModelPimpl::getDevice(int type) const
 {
     if (type < 0 || type > 2)
         return {}; // No device
-    QString result = "";
+    QString result;
     VectorString devices;
     switch (type) {
     case 1: // INPUT
@@ -797,16 +797,12 @@ AVModelPimpl::getDevice(int type) const
     }
     QStringList currentDevicesIdx = ConfigurationManager::instance().getCurrentAudioDevicesIndex();
     try {
-        if (currentDevicesIdx.size() < 3) {
-            // Should not happen, but cannot retrieve current ringtone device
+        // Should not happen, but cannot retrieve current ringtone device
+        if (currentDevicesIdx.size() < 3)
             return "";
-        }
         auto deviceIdx = currentDevicesIdx[type].toInt();
-        if (deviceIdx > devices.size()) {
-            // Should not happen, but cannot retrieve current ringtone device
-            return "";
-        }
-        result = devices[deviceIdx];
+        if (deviceIdx < devices.size())
+            result = devices.at(deviceIdx);
     } catch (std::bad_alloc& ba) {
         qWarning() << "bad_alloc caught: " << ba.what();
         return "";
