@@ -20,9 +20,9 @@
 import QtQuick
 import QtQuick.Controls
 
-import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
+import net.jami.Models 1.1
 
 import "../../commoncomponents"
 
@@ -142,7 +142,7 @@ JamiListView {
             isBanned = item.isBanned
             mode = item.mode
             contactType = LRCInstance.currentAccountType
-            readOnly = mode === Conversation.Mode.NON_SWARM && !item.isTemporary
+            readOnly = mode === Conversation.Mode.NON_SWARM && !item.isTemporary && CurrentAccount.type !== Profile.Type.SIP
 
             if (model.dataForRow(row, ConversationList.IsCoreDialog)) {
                 userProfile.aliasText = item.title

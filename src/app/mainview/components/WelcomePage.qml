@@ -96,7 +96,26 @@ Rectangle {
                     }
 
                     Label {
+                        id: descriptionLabel
+                        visible: CurrentAccount.type === Profile.Type.SIP
+
+                        anchors.top: welcome.bottom
+                        anchors.left: parent.left
+                        anchors.topMargin: JamiTheme.preferredMarginSize * 2
+                        anchors.leftMargin: JamiTheme.preferredMarginSize
+                        width: 300
+
+                        font.pixelSize: JamiTheme.headerFontSize
+
+                        wrapMode: Text.WordWrap
+
+                        text: JamiStrings.description
+                        color: JamiTheme.textColor
+                    }
+
+                    Label {
                         id: identifierDescription
+                        visible: CurrentAccount.type !== Profile.Type.SIP
 
                         anchors.top: welcome.bottom
                         anchors.left: parent.left
@@ -115,6 +134,7 @@ Rectangle {
                     JamiIdentifier {
                         id: identifier
                         editable: true
+                        visible: CurrentAccount.type !== Profile.Type.SIP
 
                         anchors.top: identifierDescription.bottom
                         anchors.left: parent.left
