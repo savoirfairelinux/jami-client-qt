@@ -45,6 +45,7 @@ extern const QString defaultDownloadPath;
     X(DisplayHyperlinkPreviews, true) \
     X(EnableExperimentalSwarm, false) \
     X(EnableDarkTheme, false) \
+    X(AppTheme, "System") \
     X(BaseZoom, 1.0) \
     X(ParticipantsSide, false) \
     X(HideSelf, false) \
