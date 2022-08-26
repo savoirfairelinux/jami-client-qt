@@ -705,6 +705,7 @@ else()
     target_sources(${PROJECT_NAME} PRIVATE ${QM_FILES})
   endif()
 
+  SET(JAMI_VERSION "2.23")
   set_target_properties(${PROJECT_NAME} PROPERTIES
           MACOSX_BUNDLE TRUE
           MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/resources/Info.plist"
