@@ -28,7 +28,7 @@
     X(TipId) \
     X(Title) \
     X(Description) \
-    X(IsTip)
+    X(Type)
 
 namespace Tips {
 Q_NAMESPACE
