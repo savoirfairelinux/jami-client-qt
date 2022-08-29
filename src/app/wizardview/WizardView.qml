@@ -114,14 +114,6 @@ Rectangle {
                 onShowThisPage: controlPanelStackView.setPage(this)
             }
 
-            BackupKeyPage {
-                id: backupKeysPage
-
-                objectName: "backupKeysPage"
-
-                onShowThisPage: controlPanelStackView.setPage(this)
-            }
-
             ImportFromDevicePage {
                 id: importFromDevicePage
 

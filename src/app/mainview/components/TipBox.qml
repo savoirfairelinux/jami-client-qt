@@ -34,11 +34,20 @@ Item {
     property var title: ""
     property var description: ""
     property int tipId: 0
-    property bool isTip : true
+    property string type : ""
     property bool hovered: false
     property bool clicked : false
-    property bool opened : false
-    property string alias: ""
+    property bool opened: false
+
+    property string customizeTip:"CustomizeTipBox {}"
+
+    property string backupTip: "BackupTipBox {
+            onIgnore: {
+                root.ignoreClicked()
+            }
+        }"
+
+    property string infoTip: "InformativeTipBox {}"
 
     width: 200
     height: tipColumnLayout.implicitHeight + 2 * JamiTheme.preferredMarginSize
@@ -54,122 +63,22 @@ Item {
         border.color: opened || hovered ? "transparent" : Qt.rgba(0, 0.34,0.6,0.16)
         radius: 20
 
-        ColumnLayout {
-
+        Column {
             id: tipColumnLayout
             anchors.top: parent.top
             width: parent.width
             anchors.topMargin: 10
 
-
-            RowLayout {
-
-                Layout.leftMargin: 15
-                Layout.alignment: Qt.AlignLeft
-
-                ResponsiveImage {
-                    id: icon
-
-                    visible: !opened
-
-                    Layout.alignment: Qt.AlignLeft
-                    Layout.topMargin: 5
-                    Layout.preferredWidth: 26
-                    Layout.preferredHeight: 26
-
-                    containerHeight: Layout.preferredHeight
-                    containerWidth: Layout.preferredWidth
-
-                    source: !isTip ?  JamiResources.noun_paint_svg : JamiResources.glasses_tips_svg
-                    color: "#005699"
-                }
-
-                Label {
-                    text: root.isTip ? JamiStrings.tip : JamiStrings.customize
-                    color: JamiTheme.textColor
-                    font.weight: Font.Medium
-                    Layout.topMargin: 5
-                    visible: !opened
-                    Layout.alignment: Qt.AlignLeft
-                    Layout.leftMargin: isTip ? 8 : 5
-                    font.pixelSize: JamiTheme.tipBoxTitleFontSize
+            Component.onCompleted: {
+                if (type === "customize") {
+                    Qt.createQmlObject(customizeTip, this, 'tip')
+                } else if (type === "backup") {
+                    Qt.createQmlObject(backupTip, this, 'tip')
+                } else {
+                    Qt.createQmlObject(infoTip, this, 'tip')
                 }
             }
-
-            Text {
-
-                Layout.preferredWidth: root.isTip ? opened ? 140 : 150 : 170
-                Layout.leftMargin: 20
-                Layout.topMargin: root.isTip && opened ? 0 : 8
-                Layout.bottomMargin: 15
-                font.pixelSize: JamiTheme.tipBoxContentFontSize
-                visible: !opened || root.isTip
-                wrapMode: Text.WordWrap
-                font.weight: root.isTip && opened ?  Font.Medium : Font.Normal
-                text: !isTip ? JamiStrings.customizeText : root.title
-                color: JamiTheme.textColor
-            }
-
-
-            PhotoboothView {
-                id: setAvatarWidget
-                Layout.preferredWidth: JamiTheme.accountListAvatarSize
-                Layout.preferredHeight: JamiTheme.accountListAvatarSize
-                Layout.topMargin: 10
-                Layout.alignment: Qt.AlignHCenter
-                darkTheme: UtilsAdapter.luma(JamiTheme.primaryBackgroundColor)
-                visible: opened &&! isTip
-                enabled: true
-                buttonSize: 35
-                imageId: CurrentAccount.id
-                avatarSize: 53
-                cancelButton: false
-
-            }
-
-            EditableLineEdit {
-
-                id: displayNameLineEdit
-
-                visible: !isTip && opened
-
-                Layout.alignment: Qt.AlignCenter
-                Layout.preferredWidth: root.width - 32
-
-                text: CurrentAccount.alias
-                placeholderText: JamiStrings.enterNickname
-                color: JamiTheme.textColor
-
-                fontSize: JamiTheme.tipBoxContentFontSize
-
-                onEditingFinished: root.alias = text
-
-            }
-
-            Text {
-
-                Layout.preferredWidth: root.width - 32
-                Layout.leftMargin: 20
-                Layout.topMargin: 6
-                font.pixelSize: JamiTheme.tipBoxContentFontSize
-                visible: opened && !isTip
-                wrapMode: Text.WordWrap
-                text: JamiStrings.customizationDescription2
-                color: JamiTheme.textColor
-            }
-
-            Text {
-                Layout.preferredWidth: root.width - 32
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-                font.pixelSize: JamiTheme.tipBoxContentFontSize
-                visible: opened && isTip
-                wrapMode: Text.WordWrap
-                text: root.description
-                color: JamiTheme.textColor
-            }
-
         }
-
     }
 
     HoverHandler {

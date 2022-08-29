@@ -1552,10 +1552,6 @@ WizardView {
             var createAccountButton = findChild(createAccountPage, "createAccountButton")
             var skipProfileSavingButton = findChild(profilePage, "skipProfileSavingButton")
 
-            var neverShowMeAgainSwitch = findChild(backupKeysPage, "neverShowMeAgainSwitch")
-            var backupKeyPageBackupBtn = findChild(backupKeysPage, "backupKeyPageBackupBtn")
-            var backupKeyPageSkipBackupBtn = findChild(backupKeysPage, "backupKeyPageSkipBackupBtn")
-
             // WelcomePage initially
             compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
                     welcomePage)
@@ -1579,48 +1575,6 @@ WizardView {
             compare(spyAccountConfigFinalized.count, 1)
 
             skipProfileSavingButton.clicked()
-
-            var showBackup = (WizardViewStepModel.accountCreationOption ===
-                              WizardViewStepModel.AccountCreationOption.CreateJamiAccount
-                              || WizardViewStepModel.accountCreationOption ===
-                              WizardViewStepModel.AccountCreationOption.CreateRendezVous)
-                              && !AppSettingsManager.getValue(Settings.NeverShowMeAgain)
-            if (showBackup) {
-                compare(controlPanelStackView.children[controlPanelStackView.currentIndex],
-                        backupKeysPage)
-
-                // Navigation test
-                compare(neverShowMeAgainSwitch.focus, true)
-
-                keyClick(Qt.Key_Tab)
-                compare(backupKeyPageBackupBtn.focus, true)
-
-                keyClick(Qt.Key_Tab)
-                compare(backupKeyPageSkipBackupBtn.focus, true)
-
-                keyClick(Qt.Key_Tab)
-                compare(neverShowMeAgainSwitch.focus, true)
-
-                keyClick(Qt.Key_Down)
-                compare(backupKeyPageBackupBtn.focus, true)
-
-                keyClick(Qt.Key_Down)
-                compare(backupKeyPageSkipBackupBtn.focus, true)
-
-                keyClick(Qt.Key_Down)
-                compare(neverShowMeAgainSwitch.focus, true)
-
-                keyClick(Qt.Key_Up)
-                compare(backupKeyPageSkipBackupBtn.focus, true)
-
-                keyClick(Qt.Key_Up)
-                compare(backupKeyPageBackupBtn.focus, true)
-
-                keyClick(Qt.Key_Up)
-                compare(neverShowMeAgainSwitch.focus, true)
-
-                WizardViewStepModel.nextStep()
-            }
 
             spyCloseWizardView.wait()
             compare(spyCloseWizardView.count, 1)
