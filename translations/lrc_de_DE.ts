@@ -159,7 +159,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="44"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation type="unfinished"/>
+        <translation>Die Migration zur Schwarm-Technologie ermöglicht die Synchronisierung dieser Konversation auf mehreren Geräten und verbessert die Zuverlässigkeit. Der gespeicherte Unterhaltungsverlauf wird dabei gelöscht.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="48"/>
@@ -759,17 +759,17 @@ Jami wird nun beendet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="206"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later.</source>
-        <translation type="unfinished"/>
+        <translation>Ihr Konto existiert nur auf diesem Gerät. Wenn Sie Ihr Gerät verlieren oder die Anwendung deinstallieren, wird Ihr Konto gelöscht und kann NICHT wiederhergestellt werden. Sie können Ihr Konto jetzt oder später sichern.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="210"/>
         <source>Back up account here</source>
-        <translation type="unfinished"/>
+        <translation>Konto hier sichern</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="211"/>
         <source>Back up your account!</source>
-        <translation type="unfinished"/>
+        <translation>Sichern Sie Ihr Konto!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
@@ -779,23 +779,24 @@ Jami wird nun beendet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <source>Hide audio-only participants</source>
-        <translation type="unfinished"/>
+        <translation>Nur-Audio-Teilnehmer ausblenden</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
         <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
-        <translation type="unfinished"/>
+        <translation>Wählen Sie ein Passwort, um Ihr Konto auf diesem Gerät zu verschlüsseln. Beachten Sie, dass das Passwort NICHT wiederhergestellt werden kann.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation type="unfinished"/>
+        <translation>Sie können einen Benutzernamen wählen, damit andere Sie auf Jami leichter finden und erreichen können.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation type="unfinished"/>
+        <translation>Sind Sie sicher, dass Sie Jami ohne Benutzernamen beitreten möchten?
+Wenn ja, wird diesem Konto nur ein zufällig generierter 40-stellige Identifikator zugewiesen.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
@@ -803,93 +804,97 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation type="unfinished"/>
+        <translation>- Maximal 32 Zeichen
+- Alphabetische Zeichen (A bis Z und a bis z)
+- Numerische Zeichen (0 bis 9)
+- erlaubte Sonderzeichen: Bindestrich (-)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
         <source>Your account will be created and stored locally.</source>
-        <translation type="unfinished"/>
+        <translation>Ihr Konto wird lokal erstellt und gespeichert.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation type="unfinished"/>
+        <translation>Einen Benutzernamen zu wählen wird empfohlen, und ein gewählter Benutzername kann später NICHT geändert werden.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation type="unfinished"/>
+        <translation>Das Verschlüsseln Ihres Kontos mit einem Passwort ist optional, und wenn das Passwort verloren geht, kann es später NICHT wiederhergestellt werden.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>Das Festlegen von Profilbild und Spitznamen ist optional und kann auch später in den Einstellungen geändert werden.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
         <source>Back up account to a .gz file</source>
-        <translation type="unfinished"/>
+        <translation>Konto in einer .gz-Datei sichern</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation type="unfinished"/>
+        <translation>Dieses Profil wird nur mit den Kontakten dieses Kontos geteilt.
+Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation type="unfinished"/>
+        <translation>Ein Jami-Konto wird nur auf diesem Gerät als Archiv mit Ihren Kontoschlüsseln erstellt und lokal gespeichert. Der Zugriff auf dieses Archiv kann optional durch ein Passwort geschützt werden.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation type="unfinished"/>
+        <translation>Bitte beachten Sie, dass ein verlorenes Passwort NICHT wiederhergestellt werden kann!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="414"/>
         <source>Would you really like to delete this account?</source>
-        <translation type="unfinished"/>
+        <translation>Möchten Sie dieses Konto wirklich löschen?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation type="unfinished"/>
+        <translation>Wenn Ihr Konto nicht gesichert oder zu einem anderen Gerät hinzugefügt wurde, gehen Ihr Konto und Ihr registrierter Benutzername UNWIDERRUFLICH VERLOREN.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
         <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the account settings. This will create a .gz file on your device.</source>
-        <translation type="unfinished"/>
+        <translation>Ein Archiv erhalten Sie, indem Sie in den Kontoeinstellungen auf „Konto sichern“ klicken. Dadurch wird eine .gz-Datei auf Ihrem Gerät erstellt.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>Select &quot;Link another device&quot;</source>
-        <translation type="unfinished"/>
+        <translation>„Anderes Gerät verknüpfen“ auswählen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="560"/>
         <source>The PIN code will be valid for 10 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Der PIN-Code ist 10 Minuten lang gültig.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
         <source>Choose a picture as your avatar</source>
-        <translation type="unfinished"/>
+        <translation>Wählen Sie ein Bild als Ihren Avatar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
         <source>Share freely and privately with Jami</source>
-        <translation type="unfinished"/>
+        <translation>Frei und privat mit Jami teilen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
         <source>Reply to</source>
-        <translation type="unfinished"/>
+        <translation>Antwort an</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>In reply to</source>
-        <translation type="unfinished"/>
+        <translation>Als Antwort auf</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>
@@ -899,17 +904,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation type="unfinished"/>
+        <translation>Fügen Sie ein Profilbild und einen Spitznamen hinzu, um Ihr Profil zu vervollständigen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
         <source>This profile is only shared with this account&apos;s contacts</source>
-        <translation type="unfinished"/>
+        <translation>Dieses Profil wird nur mit den Kontakten dieses Accounts geteilt</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Why should I save my account?</source>
-        <translation type="unfinished"/>
+        <translation>Warum sollte ich mein Konto speichern?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
@@ -1152,12 +1157,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
         <source>Would you really like to remove this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Wollen Sie diese Unterhaltung wirklich löschen?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Would you really like to block this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Möchten Sie diese Unterhaltung wirklich blockieren?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
@@ -3671,22 +3676,22 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="29"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation type="unfinished"/>
+        <translation>Die Wahl des Namens Jami wurde durch das Suaheli-Wort „jamii“ inspiriert, was als Substantiv „Gemeinschaft“ und als Adverb „zusammen“ bedeutet.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="35"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation type="unfinished"/>
+        <translation>Ein roter Punkt bedeutet, dass Ihr Konto vom Netzwerk getrennt ist; er wird grün, wenn es verbunden ist.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="39"/>
         <source>Why should I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Warum sollte ich mein Konto sichern?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="41"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation type="unfinished"/>
+        <translation>Jami wird verteilt und Ihr Konto wird nur lokal auf Ihrem Gerät gespeichert. Wenn Sie Ihr Passwort oder Ihre lokalen Kontodaten verlieren, können Sie Ihr Konto NICHT wiederherstellen, wenn Sie es nicht vorher gesichert haben.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="47"/>
@@ -3726,32 +3731,32 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="63"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation type="unfinished"/>
+        <translation>Wenn Sie ein neues Jami-Konto erstellen, müssen Sie keine privaten Informationen wie E-Mail, Adresse oder Telefonnummer angeben.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="69"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation type="unfinished"/>
+        <translation>Bei Jami wird Ihr Konto in einem Verzeichnis auf Ihrem Gerät gespeichert. Das Passwort wird nur zum Verschlüsseln Ihres Kontos verwendet, um Sie vor jemandem zu schützen, der physischen Zugriff auf Ihr Gerät hat.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="83"/>
         <source>In the account settings, a button is available to create a backup your account.</source>
-        <translation type="unfinished"/>
+        <translation>In den Kontoeinstellungen steht eine Schaltfläche zum Sichern Ihres Kontos zur Verfügung.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="88"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation type="unfinished"/>
+        <translation>Ihr Konto wird nur auf Ihren eigenen Geräten gespeichert. Wenn Sie Ihr Konto von allen Ihren Geräten löschen, ist das Konto für immer weg und Sie können es NICHT wiederherstellen.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="92"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation type="unfinished"/>
+        <translation>Kann ich mein Konto auf mehreren Geräten verwenden?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation type="unfinished"/>
+        <translation>Ja, Sie können Ihr Konto über die Einstellungen verknüpfen oder Ihr Backup auf einem anderen Gerät importieren.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="67"/>

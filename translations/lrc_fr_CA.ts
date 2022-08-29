@@ -890,12 +890,12 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
         <source>Reply to</source>
-        <translation type="unfinished"/>
+        <translation>Répondre à</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>In reply to</source>
-        <translation type="unfinished"/>
+        <translation>En réponse à</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>

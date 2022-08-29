@@ -724,12 +724,12 @@ Jami se bo zdaj zaprl.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
         <source>Frames per second</source>
-        <translation>Slik na sekundo</translation>
+        <translation>Sličic na sekundo</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
         <source>Select video frame rate (frames per second)</source>
-        <translation>Izberite hitrost videa (slik na sekundo)</translation>
+        <translation>Izberite hitrost videa (sličic na sekundo)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
@@ -889,12 +889,12 @@ Profil lahko kadar koli spremenite v nastavitvah računa.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
         <source>Reply to</source>
-        <translation type="unfinished"/>
+        <translation>Odgovori</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>In reply to</source>
-        <translation type="unfinished"/>
+        <translation>Kot odgovor</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>

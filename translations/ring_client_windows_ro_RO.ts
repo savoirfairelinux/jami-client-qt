@@ -1796,12 +1796,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
         <source>Reply to</source>
-        <translation type="unfinished"/>
+        <translation>Răspunde pentru</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>In reply to</source>
-        <translation type="unfinished"/>
+        <translation>Ca răspuns la</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>

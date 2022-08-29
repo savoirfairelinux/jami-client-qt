@@ -889,12 +889,12 @@ A profil bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="722"/>
         <source>Reply to</source>
-        <translation type="unfinished"/>
+        <translation>Válasz a következőre:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="723"/>
         <source>In reply to</source>
-        <translation type="unfinished"/>
+        <translation>Válaszul erre:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="724"/>

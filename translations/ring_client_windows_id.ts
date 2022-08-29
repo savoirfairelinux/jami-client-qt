@@ -2543,7 +2543,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="532"/>
         <source>Archive</source>
-        <translation type="unfinished"/>
+        <translation>Arsip</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="533"/>
@@ -2558,7 +2558,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="538"/>
         <source>Restore an account from backup</source>
-        <translation type="unfinished"/>
+        <translation>Pulihkan akun dari cadangan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="541"/>
@@ -2864,7 +2864,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="645"/>
         <source>Advanced features</source>
-        <translation type="unfinished"/>
+        <translation>Fitur lanjutan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
@@ -3314,7 +3314,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="202"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="966"/>
         <source>Invitation accepted</source>
-        <translation type="unfinished"/>
+        <translation>Undangan diterima</translation>
     </message>
     <message>
         <location filename="../src/libclient/avmodel.cpp" line="348"/>
