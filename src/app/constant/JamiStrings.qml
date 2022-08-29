@@ -204,12 +204,12 @@ Item {
     property string noVideo: qsTr("no video")
 
     // BackupKeyPage
+    property string whyBackupAccount: qsTr("Why should I back-up this account?")
     property string  backupAccountInfos: qsTr("Your account only exists on this device. " +
                                               "If you lose your device or uninstall the application, " +
                                               "your account will be deleted and CANNOT be recovered. " +
-                                              "You can back up your account now or later.")
+                                              "You can back up your account now or later (in the Account Settings).")
     property string backupAccountHere: qsTr("Back up account here")
-    property string backupAccount: qsTr("Back up your account!")
     property string backupAccountBtn: qsTr("Back up account")
     property string skip: qsTr("Skip")
     property string success: qsTr("Success")

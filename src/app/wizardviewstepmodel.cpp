@@ -41,16 +41,8 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
             Q_EMIT closeWizardView();
             reset();
         } else if (accountCreationOption != AccountCreationOption::None) {
-            auto showBackup = (accountCreationOption == AccountCreationOption::CreateJamiAccount
-                               || accountCreationOption == AccountCreationOption::CreateRendezVous)
-                              && !appSettingsManager_->getValue(Settings::Key::NeverShowMeAgain)
-                                      .toBool();
-            if (showBackup)
-                set_mainStep(MainSteps::BackupKeys);
-            else {
-                Q_EMIT closeWizardView();
-                reset();
-            }
+            Q_EMIT closeWizardView();
+            reset();
         }
 
         Q_EMIT accountIsReady(accountId);
@@ -99,11 +91,8 @@ WizardViewStepModel::nextStep()
         }
         break;
     }
-    case MainSteps::BackupKeys: {
-        Q_EMIT closeWizardView();
-        reset();
+    default:
         break;
-    }
     }
 }
 
