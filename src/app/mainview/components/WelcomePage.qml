@@ -186,8 +186,17 @@ Rectangle {
                                 tipId: TipId
                                 title: Title
                                 description: Description
-                                isTip: IsTip
-                                visible: index < 3
+                                type: Type
+
+                                visible: {
+                                    if (type === "backup") {
+                                        return LRCInstance.currentAccountType !== Profile.Type.SIP
+                                               && CurrentAccount.managerUri.length === 0
+                                    } else if (type === "customize") {
+                                        return CurrentAccount.alias.length === 0
+                                    }
+                                    return true
+                                }
 
                                 onIgnoreClicked: TipsModel.remove(TipId)
                             }
