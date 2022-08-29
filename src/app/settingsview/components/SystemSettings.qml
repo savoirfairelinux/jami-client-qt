@@ -79,7 +79,7 @@ ColumnLayout {
             Component.onCompleted: {
                 append({ textDisplay: JamiStrings.dark })
                 append({ textDisplay: JamiStrings.light })
-                if (UtilsAdapter.supportNativeDarkTheme())
+                if (UtilsAdapter.hasNativeDarkTheme())
                     append({ textDisplay: JamiStrings.system })
             }
         }
@@ -88,7 +88,7 @@ ColumnLayout {
         role: "textDisplay"
 
         modelIndex: {
-            if (UtilsAdapter.supportNativeDarkTheme()) {
+            if (UtilsAdapter.hasNativeDarkTheme()) {
                 var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme)
                 if (theme === "Dark") {
                     return 0
@@ -101,7 +101,7 @@ ColumnLayout {
         }
 
         onActivated: {
-            if (UtilsAdapter.supportNativeDarkTheme()) {
+            if (UtilsAdapter.hasNativeDarkTheme()) {
                 if (modelIndex === 0)
                     UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark")
                 else if (modelIndex === 1)
