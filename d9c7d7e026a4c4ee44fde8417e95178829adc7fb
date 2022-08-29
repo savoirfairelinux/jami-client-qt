@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2edbb62b_30868a85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-29T15:07:10Z",
+      "side": 1,
+      "message": "weird as the schema should be the same, but anyway fixed",
+      "parentUuid": "925b00c6_ed965cb6",
+      "revId": "d9c7d7e026a4c4ee44fde8417e95178829adc7fb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b927d980_65ef6271",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-29T12:20:18Z",
       "side": 1,
       "message": "would it make sense to use a more general function name here?\n(one that doesn\u0027t necessarily mention a \"dark\" theme)",
+      "range": {
+        "startLine": 634,
+        "startChar": 0,
+        "endLine": 634,
+        "endChar": 4
+      },
+      "revId": "d9c7d7e026a4c4ee44fde8417e95178829adc7fb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99ef408a_f31bc6c3",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-29T15:07:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b927d980_65ef6271",
       "range": {
         "startLine": 634,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6e0bb21_aae66ab1",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-29T15:07:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "842ee65f_4b111038",
+      "range": {
+        "startLine": 115,
+        "startChar": 21,
+        "endLine": 115,
+        "endChar": 43
+      },
+      "revId": "d9c7d7e026a4c4ee44fde8417e95178829adc7fb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f11f1858_972fd1d7",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-08-29T12:20:18Z",
       "side": 1,
       "message": "how about isSystemThemeDark() ?",
+      "range": {
+        "startLine": 138,
+        "startChar": 9,
+        "endLine": 138,
+        "endChar": 21
+      },
+      "revId": "d9c7d7e026a4c4ee44fde8417e95178829adc7fb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbf39bf4_01eccd3f",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-29T15:07:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f11f1858_972fd1d7",
       "range": {
         "startLine": 138,
         "startChar": 9,
