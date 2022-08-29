@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "925b00c6_ed965cb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-08-29T12:20:18Z",
+      "side": 1,
+      "message": "jami-qt crashed and quit on start when i tried this in i3:\n\n(jami-qt:839738): GLib-GIO-ERROR **: 08:13:52.764: Settings schema \u0027org.gnome.desktop.interface\u0027 does not contain a key named \u0027color-scheme\u0027\n\nit seems we shouldn\u0027t assume the existence of that key.",
+      "revId": "d9c7d7e026a4c4ee44fde8417e95178829adc7fb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b927d980_65ef6271",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-08-29T12:20:18Z",
+      "side": 1,
+      "message": "would it make sense to use a more general function name here?\n(one that doesn\u0027t necessarily mention a \"dark\" theme)",
+      "range": {
+        "startLine": 634,
+        "startChar": 0,
+        "endLine": 634,
+        "endChar": 4
+      },
+      "revId": "d9c7d7e026a4c4ee44fde8417e95178829adc7fb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842ee65f_4b111038",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-08-29T12:20:18Z",
+      "side": 1,
+      "message": "how about hasNativeDarkTheme() ?",
+      "range": {
+        "startLine": 115,
+        "startChar": 21,
+        "endLine": 115,
+        "endChar": 43
+      },
+      "revId": "d9c7d7e026a4c4ee44fde8417e95178829adc7fb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f11f1858_972fd1d7",
+        "filename": "src/app/utilsadapter.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-08-29T12:20:18Z",
+      "side": 1,
+      "message": "how about isSystemThemeDark() ?",
+      "range": {
+        "startLine": 138,
+        "startChar": 9,
+        "endLine": 138,
+        "endChar": 21
+      },
+      "revId": "d9c7d7e026a4c4ee44fde8417e95178829adc7fb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
