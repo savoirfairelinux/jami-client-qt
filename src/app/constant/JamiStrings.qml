@@ -67,6 +67,7 @@ Item {
     property string addToConference: qsTr("Add to conference")
     property string addToConversation: qsTr("Add to conversation")
     property string transferThisCall: qsTr("Transfer this call")
+    property string transferTo: qsTr("Transfer to")
 
     // AccountMigrationDialog
     property string authenticationRequired: qsTr("Authentication required")

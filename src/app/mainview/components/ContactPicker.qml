@@ -100,7 +100,7 @@ Popup {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 35
 
-                placeHolderText: JamiStrings.addParticipant
+                placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
 
                 onContactSearchBarTextChanged: {
                     ContactAdapter.setSearchFilter(text)
