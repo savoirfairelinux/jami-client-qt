@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8eff07ff_410d3954",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-30T14:30:58Z",
+      "side": 1,
+      "message": "Everything is explained there: https://docs.jami.net/developer/working-with-gerrit.html",
+      "parentUuid": "43c9b1cf_a326e522",
+      "revId": "f817c134d28984db6363632e93ad8652553335b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5f70810_c1428493",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-30T11:35:25Z",
       "side": 1,
       "message": "Should `a ` be removed?",
+      "range": {
+        "startLine": 40,
+        "startChar": 47,
+        "endLine": 40,
+        "endChar": 49
+      },
+      "revId": "f817c134d28984db6363632e93ad8652553335b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50ebe69f_eacd634f",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-30T14:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5f70810_c1428493",
       "range": {
         "startLine": 40,
         "startChar": 47,
@@ -54,6 +96,30 @@
       "writtenOn": "2022-08-30T11:35:25Z",
       "side": 1,
       "message": "Should `a ` be removed?",
+      "range": {
+        "startLine": 533,
+        "startChar": 68,
+        "endLine": 533,
+        "endChar": 70
+      },
+      "revId": "f817c134d28984db6363632e93ad8652553335b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcb33dcb_82614304",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-08-30T14:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62141e9b_bae5dff1",
       "range": {
         "startLine": 533,
         "startChar": 68,
