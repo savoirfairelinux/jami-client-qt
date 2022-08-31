@@ -190,10 +190,6 @@ struct ConfProperties_t
         QString uri;
         QString account;
     } RingNS;
-    struct Registration_t
-    {
-        int expire;
-    } Registration;
 
     MapStringString toDetails() const;
 };

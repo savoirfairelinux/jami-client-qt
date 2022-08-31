@@ -814,6 +814,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.publishedSameAsLocal = toBool(details[ConfProperties::PUBLISHED_SAMEAS_LOCAL]);
     confProperties.localPort = toInt(details[ConfProperties::LOCAL_PORT]);
     confProperties.publishedPort = toInt(details[ConfProperties::PUBLISHED_PORT]);
+    confProperties.registrationExpire = toInt(details[ConfProperties::Registration::EXPIRE]);
     confProperties.publishedAddress = details[ConfProperties::PUBLISHED_ADDRESS];
     confProperties.userAgent = details[ConfProperties::USER_AGENT];
     confProperties.upnpEnabled = toBool(details[ConfProperties::UPNP_ENABLED]);
@@ -904,8 +905,6 @@ account::Info::fromDetails(const MapStringString& details)
     // RingNS
     confProperties.RingNS.uri = details[ConfProperties::RingNS::URI];
     confProperties.RingNS.account = details[ConfProperties::RingNS::ACCOUNT];
-    // Registration
-    confProperties.Registration.expire = toInt(details[ConfProperties::Registration::EXPIRE]);
     // Jams
     confProperties.managerUri = details[ConfProperties::MANAGER_URI];
     confProperties.managerUsername = details[ConfProperties::MANAGER_USERNAME];
@@ -933,6 +932,7 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::PUBLISHED_SAMEAS_LOCAL] = toQString(this->publishedSameAsLocal);
     details[ConfProperties::LOCAL_PORT] = toQString(this->localPort);
     details[ConfProperties::PUBLISHED_PORT] = toQString(this->publishedPort);
+    details[ConfProperties::Registration::EXPIRE] = toQString(this->registrationExpire);
     details[ConfProperties::PUBLISHED_ADDRESS] = this->publishedAddress;
     details[ConfProperties::USER_AGENT] = this->userAgent;
     details[ConfProperties::UPNP_ENABLED] = toQString(this->upnpEnabled);
@@ -1027,8 +1027,6 @@ account::ConfProperties_t::toDetails() const
     // RingNS
     details[ConfProperties::RingNS::URI] = this->RingNS.uri;
     details[ConfProperties::RingNS::ACCOUNT] = this->RingNS.account;
-    // Registration
-    details[ConfProperties::Registration::EXPIRE] = toQString(this->Registration.expire);
     // Manager
     details[ConfProperties::MANAGER_URI] = this->managerUri;
     details[ConfProperties::MANAGER_USERNAME] = this->managerUsername;

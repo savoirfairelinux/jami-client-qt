@@ -68,9 +68,9 @@ ColumnLayout {
             bottomValue: 0
             topValue: 7*24*3600
 
-            valueField: CurrentAccount.expire_Registration
+            valueField: CurrentAccount.registrationExpire
 
-            onNewValue: CurrentAccount.expire_Registration = valueField
+            onNewValue: CurrentAccount.registrationExpire = valueField
         }
 
         SettingSpinBox {

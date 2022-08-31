@@ -128,6 +128,7 @@ CurrentAccount::updateData()
         set_publishedAddress(accConfig.publishedAddress, true);
         set_localPort(accConfig.localPort, true);
         set_publishedPort(accConfig.publishedPort, true);
+        set_registrationExpire(accConfig.registrationExpire, true);
 
         // DHT
         set_PublicInCallsDHT(accConfig.DHT.PublicInCalls, true);
@@ -174,9 +175,6 @@ CurrentAccount::updateData()
         // Ringtone
         set_ringtoneEnabledRingtone(accConfig.Ringtone.ringtoneEnabled, true);
         set_ringtonePathRingtone(accConfig.Ringtone.ringtonePath, true);
-
-        // Registration
-        set_expireRegistration(accConfig.Registration.expire, true);
 
         // Moderators
         set_isAllModeratorsEnabled(lrcInstance_->accountModel().isAllModerators(
