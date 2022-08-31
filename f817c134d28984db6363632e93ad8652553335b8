@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c74a59e4_fe8624d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-08-31T03:17:16Z",
+      "side": 1,
+      "message": "Indeed, the url you advised was used before.\n\nJust tried again and here is the response:\n\n```\n$ ssh -p 29420 ovari@review.jami.net\n\n  ****    Welcome to Gerrit Code Review    ****\n\n  Hi ovari, you have successfully connected over SSH.\n\n  Unfortunately, interactive shells are disabled.\n  To clone a hosted Git repository, use:\n\n  git clone ssh://ovari@review.jami.net:29420/REPOSITORY_NAME.git\n\nConnection to review.jami.net closed.\n$ git clone ssh://ovari@review.jami.net:2940/jami-client-qt.git\nCloning into \u0027jami-client-qt\u0027...\nssh: connect to host review.jami.net port 2940: Network is unreachable\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\n$\n```",
+      "parentUuid": "8eff07ff_410d3954",
+      "revId": "f817c134d28984db6363632e93ad8652553335b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5f70810_c1428493",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 4
