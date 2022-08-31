@@ -129,6 +129,7 @@ class CurrentAccount final : public QObject
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(QString, publishedAddress)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(int, localPort)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(int, publishedPort)
+    QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(int, registrationExpire)
 
     // Moderator settings
     Q_PROPERTY(bool isAllModeratorsEnabled READ get_isAllModeratorsEnabled WRITE
@@ -183,9 +184,6 @@ class CurrentAccount final : public QObject
     // Ringtone settings
     QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(bool, ringtoneEnabled, Ringtone)
     QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(QString, ringtonePath, Ringtone)
-
-    // Registration settings
-    QML_ACCOUNT_CONFIG_CATEGORY_SETTINGS_PROPERTY(int, expire, Registration)
 
     // NewAccount model settings
     QML_NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY(bool, autoTransferFromTrusted, AutoAcceptFiles)
