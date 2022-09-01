@@ -41,6 +41,48 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86fe70ee_f3554a8f",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:43:12Z",
+      "side": 1,
+      "message": "it is caused by the winmake.py when we get the cmakegenerator.",
+      "parentUuid": "bfa59526_48218a2f",
+      "revId": "6bec505ffeee071591b8cb074802c2f0c29bd663",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67587498_a5424535",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d559762_32021a05",
+      "range": {
+        "startLine": 143,
+        "startChar": 116,
+        "endLine": 143,
+        "endChar": 120
+      },
+      "revId": "6bec505ffeee071591b8cb074802c2f0c29bd663",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8310358b_dbd92e6a",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-09-01T15:30:08Z",
       "side": 1,
       "message": "python is not necessary as it\u0027s executable. (but ok for me)",
+      "range": {
+        "startLine": 179,
+        "startChar": 4,
+        "endLine": 179,
+        "endChar": 10
+      },
+      "revId": "6bec505ffeee071591b8cb074802c2f0c29bd663",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b84eded_1f612413",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:43:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8310358b_dbd92e6a",
       "range": {
         "startLine": 179,
         "startChar": 4,
