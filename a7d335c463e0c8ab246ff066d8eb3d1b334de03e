@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "422644fb_dc3e4bae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-09-01T15:44:20Z",
+      "side": 1,
+      "message": "if ok for Andreas, LGTM (as I never built on windows), else I will try the new instructions on the desktop",
+      "revId": "a7d335c463e0c8ab246ff066d8eb3d1b334de03e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
