@@ -227,8 +227,8 @@ MainApplication::handleUriAction(const QString& arg)
     } else if (!arg.isEmpty()) {
         uri = arg;
         qDebug() << "URI action invoked by secondary instance" << uri;
+        Q_EMIT searchAndSelect(uri.replace("jami:", ""));
     }
-    // TODO: implement URI protocol handling.
 }
 
 void
