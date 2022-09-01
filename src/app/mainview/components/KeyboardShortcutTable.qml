@@ -151,6 +151,14 @@ Window {
             shortcut: "Ctrl + Shift + D"
             description: qsTr("Decline the call request")
         }
+        ListElement {
+            shortcut: "M"
+            description: qsTr("Mute the microphone (during a call)")
+        }
+        ListElement {
+            shortcut: "C"
+            description: qsTr("Mute the camera (during a call)")
+        }
     }
 
     Rectangle {
