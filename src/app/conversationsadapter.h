@@ -53,6 +53,7 @@ public:
                                  const QString& avatar,
                                  const VectorString& participants);
     Q_INVOKABLE void setFilter(const QString& filterString);
+    Q_INVOKABLE void setFilterAndSelect(const QString& filterString);
     Q_INVOKABLE void ignoreFiltering(const QVariant& hightlighted);
     Q_INVOKABLE QVariantMap getConvInfoMap(const QString& convId);
     Q_INVOKABLE void restartConversation(const QString& convId);
@@ -93,6 +94,7 @@ private Q_SLOTS:
     void onConversationCleared(const QString&);
     void onSearchStatusChanged(const QString&);
     void onSearchResultUpdated();
+    void onSearchResultEnded();
     void onConversationReady(const QString&);
     void onBannedStatusChanged(const QString&, bool);
 
@@ -106,4 +108,6 @@ private:
     QScopedPointer<ConversationListProxyModel> convModel_;
     QScopedPointer<SearchResultsListModel> searchSrcModel_;
     QScopedPointer<SelectableListProxyModel> searchModel_;
+
+    std::atomic_bool selectFirst_ {false};
 };
