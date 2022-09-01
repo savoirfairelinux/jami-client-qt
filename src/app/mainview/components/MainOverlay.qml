@@ -72,6 +72,29 @@ Item {
         }
     }
 
+
+    Shortcut {
+        sequence: "M"
+        enabled: root.visible
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            CallAdapter.muteAudioToggle()
+            root.opacity = 1
+            fadeOutTimer.restart()
+        }
+    }
+
+    Shortcut {
+        sequence: "V"
+        enabled: root.visible
+        context: Qt.ApplicationShortcut
+        onActivated: {
+            CallAdapter.muteCameraToggle()
+            root.opacity = 1
+            fadeOutTimer.restart()
+        }
+    }
+
     // control overlay fade out.
     Timer {
         id: fadeOutTimer
