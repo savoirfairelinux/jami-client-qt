@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3816846e_17131093",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:27:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "543ecca7_ef141bf6",
+      "range": {
+        "startLine": 143,
+        "startChar": 76,
+        "endLine": 143,
+        "endChar": 81
+      },
+      "revId": "83f75280550cbf5ebd89cb20200cc7e4b245fec6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8844b042_6f40c08b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-28T17:13:24Z",
       "side": 1,
       "message": "will not work if qt version is not 6.2.3.\n\nif the person has another version like 6.3.1, she will need to build the client separately.",
+      "range": {
+        "startLine": 171,
+        "startChar": 4,
+        "endLine": 171,
+        "endChar": 29
+      },
+      "revId": "83f75280550cbf5ebd89cb20200cc7e4b245fec6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90f4457e_2443a571",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:27:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8844b042_6f40c08b",
       "range": {
         "startLine": 171,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8864a9c_ff5e6f2f",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:27:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18b8ecff_8e7059a4",
+      "range": {
+        "startLine": 200,
+        "startChar": 7,
+        "endLine": 200,
+        "endChar": 21
+      },
+      "revId": "83f75280550cbf5ebd89cb20200cc7e4b245fec6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68897ed6_9cdfe833",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-07-28T17:13:24Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 201,
+        "startChar": 11,
+        "endLine": 201,
+        "endChar": 25
+      },
+      "revId": "83f75280550cbf5ebd89cb20200cc7e4b245fec6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4aee5875_2d81345b",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:27:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68897ed6_9cdfe833",
       "range": {
         "startLine": 201,
         "startChar": 11,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6762f7fa_c9cd78ad",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:27:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6521592_84c0dcda",
+      "range": {
+        "startLine": 202,
+        "startChar": 11,
+        "endLine": 202,
+        "endChar": 25
+      },
+      "revId": "83f75280550cbf5ebd89cb20200cc7e4b245fec6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b12b0c3_edcd07d4",
@@ -139,6 +259,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1997d9c_cf2a1f95",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:27:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b12b0c3_edcd07d4",
+      "range": {
+        "startLine": 245,
+        "startChar": 11,
+        "endLine": 245,
+        "endChar": 22
+      },
+      "revId": "83f75280550cbf5ebd89cb20200cc7e4b245fec6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9652a273_f818e056",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-07-28T17:13:24Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 246,
+        "startChar": 11,
+        "endLine": 246,
+        "endChar": 25
+      },
+      "revId": "83f75280550cbf5ebd89cb20200cc7e4b245fec6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddbb26da_6d918feb",
+        "filename": "INSTALL.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-01T15:27:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9652a273_f818e056",
       "range": {
         "startLine": 246,
         "startChar": 11,
