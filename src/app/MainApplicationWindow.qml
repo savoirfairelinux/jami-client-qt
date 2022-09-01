@@ -191,6 +191,10 @@ ApplicationWindow {
         function onCloseRequested() {
             close(true)
         }
+
+        function onSearchAndSelect(request) {
+            ConversationsAdapter.setFilterAndSelect(request)
+        }
     }
 
     Connections {

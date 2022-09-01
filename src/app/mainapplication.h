@@ -95,6 +95,7 @@ public:
 
 Q_SIGNALS:
     void closeRequested();
+    void searchAndSelect(const QString& request);
 
 private:
     void initLrc(const QString& downloadUrl, ConnectivityMonitor* cm, bool logDaemon);

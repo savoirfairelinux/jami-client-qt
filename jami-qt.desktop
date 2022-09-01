@@ -11,3 +11,4 @@ Terminal=false
 Type=Application
 Categories=Network;Telephony;
 Keywords=Qt;chat;talk;im;message;voip;
+MimeType=x-scheme-handler/jami;
