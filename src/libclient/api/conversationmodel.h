@@ -502,6 +502,7 @@ Q_SIGNALS:
      * Emitted when search result has been updated
      */
     void searchResultUpdated() const;
+    void searchResultEnded() const;
     /**
      * Emitted when finish loading messages for conversation
      * @param loadingRequestId  loading request id
