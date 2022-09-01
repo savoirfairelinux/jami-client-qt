@@ -16,6 +16,52 @@
       "message": "if ok for Andreas, LGTM (as I never built on windows), else I will try the new instructions on the desktop",
       "revId": "a7d335c463e0c8ab246ff066d8eb3d1b334de03e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efc99675_17069b71",
+        "filename": "INSTALL.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-01T15:54:27Z",
+      "side": 1,
+      "message": "a bit confusing, but will disappear soon enough",
+      "range": {
+        "startLine": 182,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 45
+      },
+      "revId": "a7d335c463e0c8ab246ff066d8eb3d1b334de03e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2710be6f_5390995c",
+        "filename": "INSTALL.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-01T15:54:27Z",
+      "side": 1,
+      "message": "no longer valid",
+      "range": {
+        "startLine": 270,
+        "startChar": 20,
+        "endLine": 270,
+        "endChar": 26
+      },
+      "revId": "a7d335c463e0c8ab246ff066d8eb3d1b334de03e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
