@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d559762_32021a05",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-09-01T15:30:08Z",
+      "side": 1,
+      "message": "\"\u003cbr\u003e\" can be replaced by \"  \" in markdown",
+      "range": {
+        "startLine": 143,
+        "startChar": 116,
+        "endLine": 143,
+        "endChar": 120
+      },
+      "revId": "6bec505ffeee071591b8cb074802c2f0c29bd663",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfa59526_48218a2f",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-09-01T15:30:08Z",
+      "side": 1,
+      "message": "do we know why?",
+      "revId": "6bec505ffeee071591b8cb074802c2f0c29bd663",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8310358b_dbd92e6a",
+        "filename": "INSTALL.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-09-01T15:30:08Z",
+      "side": 1,
+      "message": "python is not necessary as it\u0027s executable. (but ok for me)",
+      "range": {
+        "startLine": 179,
+        "startChar": 4,
+        "endLine": 179,
+        "endChar": 10
+      },
+      "revId": "6bec505ffeee071591b8cb074802c2f0c29bd663",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
