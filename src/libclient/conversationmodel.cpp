@@ -2944,6 +2944,7 @@ ConversationModelPimpl::slotContactModelUpdated(const QString& uri)
         searchResults.emplace_front(std::move(conversationInfo));
     }
     Q_EMIT linked.searchResultUpdated();
+    Q_EMIT linked.searchResultEnded();
 }
 
 void

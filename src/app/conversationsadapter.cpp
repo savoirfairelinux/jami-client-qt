@@ -309,6 +309,15 @@ ConversationsAdapter::onSearchResultUpdated()
 }
 
 void
+ConversationsAdapter::onSearchResultEnded()
+{
+    if (selectFirst_.exchange(false)) {
+        convModel_->select(0);
+        searchModel_->select(0);
+    }
+}
+
+void
 ConversationsAdapter::onConversationReady(const QString& convId)
 {
     auto convModel = lrcInstance_->getCurrentConversationModel();
@@ -374,6 +383,13 @@ ConversationsAdapter::updateConversationFilterData()
 
     if (get_pendingRequestCount() == 0 && get_filterRequests())
         set_filterRequests(false);
+}
+
+void
+ConversationsAdapter::setFilterAndSelect(const QString& filterString)
+{
+    selectFirst_ = true;
+    setFilter(filterString);
 }
 
 void
@@ -576,6 +592,12 @@ ConversationsAdapter::connectConversationModel()
                      &ConversationModel::searchResultUpdated,
                      this,
                      &ConversationsAdapter::onSearchResultUpdated,
+                     Qt::UniqueConnection);
+
+    QObject::connect(currentConversationModel,
+                     &ConversationModel::searchResultEnded,
+                     this,
+                     &ConversationsAdapter::onSearchResultEnded,
                      Qt::UniqueConnection);
 
     QObject::connect(currentConversationModel,
