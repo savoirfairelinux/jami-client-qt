@@ -126,7 +126,7 @@ public Q_SLOTS: // METHODS
     QString openVideoInput(const QString& resource)
     {
 #ifdef ENABLE_VIDEO
-        return libjami::openVideoInput(resource.toLatin1().toStdString()).c_str();
+        return QByteArray::fromStdString(libjami::openVideoInput(resource.toLatin1().toStdString()));
 #endif
     }
 
@@ -150,7 +150,7 @@ public Q_SLOTS: // METHODS
     bool registerSinkTarget(const QString& sinkID, const libjami::SinkTarget& target)
     {
 #ifdef ENABLE_VIDEO
-        return libjami::registerSinkTarget(sinkID.toStdString(), target);
+        return libjami::registerSinkTarget(sinkID.toLatin1().toStdString(), target);
 #else
         Q_UNUSED(sinkID)
         Q_UNUSED(target)

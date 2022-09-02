@@ -53,6 +53,11 @@
 #if defined(Q_OS_UNIX) && !defined(__APPLE__)
 #include <xcb/xcb.h>
 #endif
+#ifdef WIN32
+#include "Windows.h"
+#include <tchar.h>
+#include <dwmapi.h>
+#endif
 
 namespace lrc {
 
@@ -540,6 +545,71 @@ AVModel::stopPreview(const QString& resource)
     VideoManager::instance().closeVideoInput(resource);
 }
 
+#ifdef WIN32
+BOOL
+IsAltTabWindow(HWND hwnd)
+{
+    LONG style = GetWindowLong(hwnd, GWL_STYLE);
+    if (!((style & WS_DISABLED) != WS_DISABLED)) {
+        return false;
+    }
+
+    DWORD cloaked = FALSE;
+    HRESULT hrTemp = DwmGetWindowAttribute(hwnd, DWMWA_CLOAKED, &cloaked, sizeof(cloaked));
+    if (SUCCEEDED(hrTemp) && cloaked == DWM_CLOAKED_SHELL) {
+        return false;
+    }
+
+    // Start at the root owner
+    HWND hwndWalk = GetAncestor(hwnd, GA_ROOTOWNER);
+
+    // See if we are the last active visible popup
+    HWND hwndTry;
+    while ((hwndTry = GetLastActivePopup(hwndWalk)) != hwndTry) {
+        if (IsWindowVisible(hwndTry))
+            break;
+        hwndWalk = hwndTry;
+    }
+    return hwndWalk == hwnd;
+}
+
+BOOL CALLBACK
+CbEnumAltTab(HWND hwnd, LPARAM lParam)
+{
+    // Do not show invisible windows
+    if (!IsWindowVisible(hwnd))
+        return TRUE;
+
+    // Alt-tab test as described by Raymond Chen
+    if (!IsAltTabWindow(hwnd))
+        return TRUE;
+
+    const size_t MAX_WINDOW_NAME = 256;
+    TCHAR windowName[MAX_WINDOW_NAME];
+    if (hwnd == GetShellWindow())
+        return TRUE;
+    else
+        GetWindowText(hwnd, windowName, MAX_WINDOW_NAME);
+
+    // Do not show windows that has no caption
+    if (0 == windowName[0])
+        return TRUE;
+
+    std::wstring msg = std::wstring(windowName);
+    auto name = QString::fromStdWString(msg);
+
+    QMap<QString, QVariant>* windowList = reinterpret_cast<QMap<QString, QVariant>*>(lParam);
+    auto keys = windowList->keys();
+    if (keys.indexOf(name) > 0) {
+        return FALSE;
+    } else {
+        windowList->insert(name, name);
+    }
+
+    return TRUE;
+}
+#endif
+
 #if defined(Q_OS_UNIX) && !defined(__APPLE__)
 static xcb_atom_t
 getAtom(xcb_connection_t* c, const std::string& atomName)
@@ -630,10 +700,19 @@ AVModel::getListWindows() const
             }
         }
     }
-    return ret;
-#else
-    return ret;
 #endif
+#ifdef WIN32
+    try {
+        auto newWindow = true;
+        LPARAM lParam = reinterpret_cast<LPARAM>(&ret);
+        while (newWindow) {
+            newWindow = EnumWindows(CbEnumAltTab, lParam);
+        }
+        auto finishedloop = true;
+    } catch (...) {
+    }
+ #endif
+    return ret;
 }
 
 void

@@ -32,18 +32,40 @@ Window {
     id: screenRubberBandWindow
 
     function setAllScreensGeo() {
-        var width = 0, height = 0
+        var width = 0, height = 0, x = 0, y = 0
         var screens = Qt.application.screens
         for (var i = 0; i < screens.length; ++i) {
-            width += screens[i].width
-            if (height < screens[i].height)
-                height = screens[i].height
+            var screenWidth = screens[i].width * screens[i].devicePixelRatio
+            var screenHeight = screens[i].height * screens[i].devicePixelRatio
+
+            if (screens[i].virtualX >= x + width)
+                width += screenWidth
+            else if (screens[i].virtualX + screenWidth <= x)
+                width += screenWidth
+            else if (screens[i].virtualX < x && screens[i].virtualX + screenWidth > x)
+                width += (x - screens[i].virtualX) * screens[i].devicePixelRatio
+            else if (screens[i].virtualX > x && screens[i].virtualX + screenWidth > x + width)
+                width += (screens[i].virtualX + screenWidth - x - width) * screens[i].devicePixelRatio
+
+            if (screens[i].virtualY >= y + height)
+                height += screenHeight
+            else if (screens[i].virtualY + screenHeight <= y)
+                height += screenHeight
+            else if (screens[i].virtualY < y && screens[i].virtualY + screenHeight > y)
+                height += (y - screens[i].virtualY) * screens[i].devicePixelRatio
+            else if (screens[i].virtualY > y && screens[i].virtualY + screenHeight > y + height)
+                height += (screens[i].virtualY + screenWidth - y - height) * screens[i].devicePixelRatio
+
+            if (screens[i].virtualY < y)
+                y = screens[i].virtualY
+            if (screens[i].virtualX < x)
+                x = screens[i].virtualX
         }
 
         screenRubberBandWindow.width = width
         screenRubberBandWindow.height = height
-        screenRubberBandWindow.x = 0
-        screenRubberBandWindow.y = 0
+        screenRubberBandWindow.x = x
+        screenRubberBandWindow.y = y
     }
 
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.WA_TranslucentBackground
