@@ -307,6 +307,8 @@ endif()
 
 if(MSVC)
   set(WINDOWS_SYS_LIBS
+    windowsapp.lib
+    dwmapi.lib
     Shell32.lib
     Ole32.lib
     Advapi32.lib
