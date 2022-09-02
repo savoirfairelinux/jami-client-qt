@@ -130,8 +130,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareWindow
 
-            canTrigger: Qt.platform.os === "linux"
-                        && CurrentAccount.videoEnabled_Video
+            canTrigger: CurrentAccount.videoEnabled_Video
                         && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
                         && !CurrentCall.isSIP
             itemName: JamiStrings.shareWindow
@@ -150,6 +149,7 @@ ContextMenuAutoLoader {
             canTrigger: CurrentAccount.videoEnabled_Video
                         && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
                         && !CurrentCall.isSIP
+                        && Qt.platform.os.toString() !== "windows" // temporarily disable for windows
             itemName: JamiStrings.shareScreenArea
             iconSource: JamiResources.share_area_black_24dp_svg
             onClicked: {
