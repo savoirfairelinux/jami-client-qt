@@ -65,7 +65,9 @@ Window {
         return screens.length
     }
 
-    onActiveChanged: {
+    onVisibleChanged: {
+        if (!visible)
+            return
         if (!active) {
             selectedScreenNumber = -1
             selectAllScreens = false
@@ -76,6 +78,19 @@ Window {
         screenInfo.model = screens.length
         screenInfo2.model = screens.length
         windowsText.visible = root.window
+    }
+
+    onActiveChanged: {
+        // if (!active) {
+        //     selectedScreenNumber = -1
+        //     selectAllScreens = false
+        // }
+        // screenInfo.model = {}
+        // screenInfo2.model = {}
+        // calculateRepeaterModel()
+        // screenInfo.model = screens.length
+        // screenInfo2.model = screens.length
+        // windowsText.visible = root.window
     }
 
     Rectangle {

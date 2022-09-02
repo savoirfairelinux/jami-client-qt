@@ -921,10 +921,20 @@ QString
 CallModel::getDisplay(const QString& windowId)
 {
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
-    return QString("%1%2:+0,0 window-id:%3")
+    QString ret{};
+#if (defined(Q_OS_UNIX) && !defined(__APPLE__))
+    ret = QString("%1%2:+0,0 window-id:%3")
         .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
         .arg(sep)
         .arg(windowId);
+#endif
+#ifdef WIN32
+    ret = QString("%1%2:+0,0 window-id:title=%3")
+        .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
+        .arg(sep)
+        .arg(windowId);
+#endif
+    return ret;
 }
 
 CallModelPimpl::CallModelPimpl(const CallModel& linked,
