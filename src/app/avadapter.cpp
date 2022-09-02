@@ -92,9 +92,15 @@ AvAdapter::shareEntireScreen(int screenNumber)
     if (!screen)
         return;
     QRect rect = screen->geometry();
+#ifdef WIN32
+    rect.moveRight(rect.right() - rect.left() + 1);
+    rect.moveLeft(0);
+    rect.moveBottom(rect.bottom() - rect.top() + 1);
+    rect.moveTop(0);
+#endif
 
     auto resource = lrcInstance_->getCurrentCallModel()
-                        ->getDisplay(getScreenNumber(),
+                        ->getDisplay(getScreenNumber(screenNumber),
                                      rect.x(),
                                      rect.y(),
                                      rect.width() * screen->devicePixelRatio(),
@@ -229,6 +235,7 @@ AvAdapter::shareWindow(const QString& windowId)
         ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
 
+#pragma optimize("", off)
 QString
 AvAdapter::getSharingResource(int screenId = -2, const QString& windowId = "")
 {
@@ -246,7 +253,14 @@ AvAdapter::getSharingResource(int screenId = -2, const QString& windowId = "")
             return "";
         QRect rect = screen->geometry();
 
-        return lrcInstance_->getCurrentCallModel()->getDisplay(getScreenNumber(),
+#ifdef WIN32
+        rect.moveRight(rect.right() - rect.left() + 1);
+        rect.moveLeft(0);
+        rect.moveBottom(rect.bottom() - rect.top() + 1);
+        rect.moveTop(0);
+#endif
+
+        return lrcInstance_->getCurrentCallModel()->getDisplay(screenId,
                                                                rect.x(),
                                                                rect.y(),
                                                                rect.width()
@@ -375,7 +389,7 @@ AvAdapter::hasCamera() const
 }
 
 int
-AvAdapter::getScreenNumber() const
+AvAdapter::getScreenNumber(int screenId) const
 {
     int display = 0;
 
@@ -389,6 +403,10 @@ AvAdapter::getScreenNumber() const
             display = list.at(0).toInt();
         }
     }
+#else
+#ifdef WIN32
+    display = screenId;
+#endif
 #endif
     return display;
 }

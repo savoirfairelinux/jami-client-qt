@@ -65,7 +65,9 @@ Window {
         return screens.length
     }
 
-    onActiveChanged: {
+    onVisibleChanged: {
+        if (!visible)
+            return
         if (!active) {
             selectedScreenNumber = -1
             selectAllScreens = false
@@ -161,9 +163,7 @@ Window {
                             width: screenItem.width - 50
 
                             Component.onDestruction: {
-                                if (rendererId !== "" && rendererId !== currentPreview) {
-                                    VideoDevices.stopDevice(rendererId)
-                                }
+                                VideoDevices.stopDevice(rendererId)
                             }
                             Component.onCompleted: {
                                 if (visible) {
@@ -209,7 +209,7 @@ Window {
 
                     border.color: selectAllScreens ? JamiTheme.screenSelectionBorderColor : JamiTheme.tabbarBorderColor
 
-                    visible: !root.window && Qt.application.screens.length > 1
+                    visible: !root.window && Qt.application.screens.length > 1 && Qt.platform.os.toString() !== "windows"
 
                     Text {
                         id: screenNameAll
@@ -233,9 +233,7 @@ Window {
                         width: screenSelectionRectAll.width - 50
 
                         Component.onDestruction: {
-                            if (rendererId !== "" && rendererId !== currentPreview) {
-                                VideoDevices.stopDevice(rendererId)
-                            }
+                            VideoDevices.stopDevice(rendererId)
                         }
                         Component.onCompleted: {
                             if (visible) {
@@ -313,9 +311,7 @@ Window {
                             width: screenItem2.width - 50
 
                             Component.onDestruction: {
-                                if (rendererId !== "" && rendererId !== currentPreview) {
-                                    VideoDevices.stopDevice(rendererId)
-                                }
+                                VideoDevices.stopDevice(rendererId)
                             }
                             Component.onCompleted: {
                                 if (visible) {

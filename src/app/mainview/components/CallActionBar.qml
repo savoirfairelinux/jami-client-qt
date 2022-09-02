@@ -121,12 +121,14 @@ Control {
                 Component.onCompleted: {
                     shareModel.append({"Name": JamiStrings.shareScreen,
                                        "IconSource": JamiResources.laptop_black_24dp_svg})
-                    if (Qt.platform.os == "linux") {
+                    if (Qt.platform.os.toString() !== "osx") {
                         shareModel.append({"Name": JamiStrings.shareWindow,
-                                           "IconSource" : JamiResources.window_black_24dp_svg})
+                                            "IconSource" : JamiResources.window_black_24dp_svg})
                     }
-                    shareModel.append({"Name": JamiStrings.shareScreenArea,
-                                       "IconSource" : JamiResources.share_area_black_24dp_svg})
+                    if (Qt.platform.os.toString() !== "windows") {  // temporarily disable for windows
+                        shareModel.append({"Name": JamiStrings.shareScreenArea,
+                                        "IconSource" : JamiResources.share_area_black_24dp_svg})
+                    }
                     shareModel.append({"Name": JamiStrings.shareFile,
                                        "IconSource" : JamiResources.file_black_24dp_svg})
                 }
