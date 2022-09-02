@@ -130,8 +130,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareWindow
 
-            canTrigger: Qt.platform.os === "linux"
-                        && CurrentAccount.videoEnabled_Video
+            canTrigger: CurrentAccount.videoEnabled_Video
                         && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
                         && !CurrentCall.isSIP
             itemName: JamiStrings.shareWindow

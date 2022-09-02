@@ -65,7 +65,9 @@ Window {
         return screens.length
     }
 
-    onActiveChanged: {
+    onVisibleChanged: {
+        if (!visible)
+            return
         if (!active) {
             selectedScreenNumber = -1
             selectAllScreens = false
@@ -161,9 +163,7 @@ Window {
                             width: screenItem.width - 50
 
                             Component.onDestruction: {
-                                if (rendererId !== "" && rendererId !== currentPreview) {
-                                    VideoDevices.stopDevice(rendererId)
-                                }
+                                VideoDevices.stopDevice(rendererId)
                             }
                             Component.onCompleted: {
                                 if (visible) {
@@ -233,9 +233,7 @@ Window {
                         width: screenSelectionRectAll.width - 50
 
                         Component.onDestruction: {
-                            if (rendererId !== "" && rendererId !== currentPreview) {
-                                VideoDevices.stopDevice(rendererId)
-                            }
+                            VideoDevices.stopDevice(rendererId)
                         }
                         Component.onCompleted: {
                             if (visible) {
@@ -313,9 +311,7 @@ Window {
                             width: screenItem2.width - 50
 
                             Component.onDestruction: {
-                                if (rendererId !== "" && rendererId !== currentPreview) {
-                                    VideoDevices.stopDevice(rendererId)
-                                }
+                                VideoDevices.stopDevice(rendererId)
                             }
                             Component.onCompleted: {
                                 if (visible) {
