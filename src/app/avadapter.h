@@ -117,5 +117,5 @@ private:
     const QRect getAllScreensBoundingRect();
 
     // Get the screen number
-    int getScreenNumber() const;
+    int getScreenNumber(int screenId = 0) const;
 };
