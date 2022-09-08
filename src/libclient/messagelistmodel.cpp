@@ -388,7 +388,9 @@ MessageListModel::dataForItem(item_t item, int, int role) const
     case Role::ReplyToAuthor:
         return repliedMsg == -1 ? QVariant("") : QVariant(data(repliedMsg, Role::Author));
     case Role::ReplyToBody:
-        return repliedMsg == -1 ? QVariant("") : QVariant(data(repliedMsg, Role::Body));
+        return repliedMsg == -1
+                   ? QVariant("")
+                   : QVariant(data(repliedMsg, Role::Body).toString().replace("\n", " "));
     case Role::TransferName:
         return QVariant(item.second.commit["displayName"]);
     case Role::Readers:
