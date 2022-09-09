@@ -37,7 +37,7 @@ public:
     explicit SystemTray(AppSettingsManager* settingsManager, QObject* parent = nullptr);
     ~SystemTray();
 
-    void setCount(int count);
+    void onNotificationCountChanged(int count);
 #ifdef Q_OS_LINUX
     bool hideNotification(const QString& id);
     void showNotification(const QString& id,
@@ -60,6 +60,9 @@ Q_SIGNALS:
     template<typename Func>
     void setOnClickedCallback(Func&& onClickedCb);
 #endif // Q_OS_LINUX
+
+Q_SIGNALS:
+    void countChanged();
 
 private:
     QMetaObject::Connection messageClicked_;

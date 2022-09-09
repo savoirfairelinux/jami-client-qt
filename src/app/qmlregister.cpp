@@ -112,7 +112,7 @@ registerTypes(QQmlEngine* engine,
     auto conversationsAdapter = new ConversationsAdapter(systemTray, lrcInstance, parent);
     auto avAdapter = new AvAdapter(lrcInstance, parent);
     auto contactAdapter = new ContactAdapter(lrcInstance, parent);
-    auto accountAdapter = new AccountAdapter(settingsManager, lrcInstance, parent);
+    auto accountAdapter = new AccountAdapter(settingsManager, systemTray, lrcInstance, parent);
     auto utilsAdapter = new UtilsAdapter(settingsManager, systemTray, lrcInstance, parent);
     auto pluginAdapter = new PluginAdapter(lrcInstance, parent);
     auto currentConversation = new CurrentConversation(lrcInstance, parent);
