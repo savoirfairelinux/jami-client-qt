@@ -145,6 +145,7 @@ SystemTray::setCount(int count)
     } else {
         setIcon(QIcon(":/images/jami-new.svg"));
     }
+    Q_EMIT countChanged();
 }
 
 #ifdef Q_OS_LINUX

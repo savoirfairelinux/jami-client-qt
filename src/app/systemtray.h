@@ -61,6 +61,9 @@ Q_SIGNALS:
     void setOnClickedCallback(Func&& onClickedCb);
 #endif // Q_OS_LINUX
 
+Q_SIGNALS:
+    void countChanged();
+
 private:
     QMetaObject::Connection messageClicked_;
     AppSettingsManager* settingsManager_;

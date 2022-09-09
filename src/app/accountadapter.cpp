@@ -27,10 +27,12 @@
 #include <QtConcurrent/QtConcurrent>
 
 AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
+                               SystemTray* systemTray,
                                LRCInstance* instance,
                                QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
+    , systemTray_(systemTray)
     , accSrcModel_(new AccountListModel(instance))
     , accModel_(new CurrentAccountFilterModel(instance, accSrcModel_.get()))
 {
@@ -46,6 +48,8 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             &AccountModel::profileUpdated,
             this,
             &AccountAdapter::accountStatusChanged);
+
+    connect(systemTray_, &SystemTray::countChanged, this, &AccountAdapter::updateNotifications);
 }
 
 AccountModel*
@@ -354,4 +358,10 @@ AccountAdapter::setArchivePasswordAsync(const QString& accountID, const QString&
         config.archivePassword = password;
         lrcInstance_->accountModel().setAccountConfig(accountID, config);
     });
+}
+
+void
+AccountAdapter::updateNotifications()
+{
+    accSrcModel_->updateNotifications();
 }

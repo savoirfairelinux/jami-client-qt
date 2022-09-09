@@ -21,6 +21,7 @@
 #include "qmladapterbase.h"
 
 #include "accountlistmodel.h"
+#include "systemtray.h"
 #include "lrcinstance.h"
 #include "utils.h"
 
@@ -43,6 +44,7 @@ Q_SIGNALS:
 
 public:
     explicit AccountAdapter(AppSettingsManager* settingsManager,
+                            SystemTray* systemTray,
                             LRCInstance* instance,
                             QObject* parent = nullptr);
     ~AccountAdapter() = default;
@@ -97,10 +99,13 @@ Q_SIGNALS:
 private:
     // Implement what to do when account creation fails.
     void connectFailure();
+    // Listen for system tray to update notifications
+    void updateNotifications();
 
     QMetaObject::Connection registeredNameSavedConnection_;
 
     AppSettingsManager* settingsManager_;
+    SystemTray* systemTray_;
 
     QScopedPointer<AccountListModel> accSrcModel_;
     QScopedPointer<CurrentAccountFilterModel> accModel_;

@@ -63,10 +63,21 @@ AccountListModel::data(const QModelIndex& index, int role) const
         return QVariant(static_cast<int>(accountInfo.profileInfo.type));
     case Role::Status:
         return QVariant(static_cast<int>(accountInfo.status));
+    case Role::NotificationCount:
+        return QVariant(static_cast<int>(accountInfo.conversationModel->notificationsCount()));
     case Role::ID:
         return QVariant(accountInfo.id);
     }
     return QVariant();
+}
+
+void
+AccountListModel::updateNotifications()
+{
+    for (int i = 0; i < lrcInstance_->accountModel().getAccountList().size(); ++i) {
+        QModelIndex modelIndex = QAbstractListModel::index(i, 0);
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::NotificationCount});
+    }
 }
 
 QHash<int, QByteArray>

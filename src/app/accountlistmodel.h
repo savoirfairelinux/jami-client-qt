@@ -28,6 +28,7 @@
     X(Username) \
     X(Type) \
     X(Status) \
+    X(NotificationCount) \
     X(ID)
 
 namespace AccountList {
@@ -83,6 +84,8 @@ public:
 
     // reset the model when there's new account added
     Q_INVOKABLE void reset();
+
+    void updateNotifications();
 
 protected:
     using Role = AccountList::Role;
