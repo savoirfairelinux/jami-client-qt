@@ -59,7 +59,10 @@ public:
         lrcInstance->subscribeToDebugReceived();
 
         // setup the adapters (their lifetimes are that of MainApplication)
-        accountAdapter.reset(new AccountAdapter(settingsManager.get(), lrcInstance.data(), nullptr));
+        accountAdapter.reset(new AccountAdapter(settingsManager.get(),
+                                                systemTray.get(),
+                                                lrcInstance.data(),
+                                                nullptr));
     }
 
     void TearDown()

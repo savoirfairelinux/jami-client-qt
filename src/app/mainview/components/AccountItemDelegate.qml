@@ -91,5 +91,17 @@ ItemDelegate {
                 elide: Text.ElideRight
             }
         }
+
+        // unread message count
+        Item {
+            Layout.preferredWidth: childrenRect.width
+            Layout.preferredHeight: childrenRect.height
+            Layout.alignment: Qt.AlignRight
+            BadgeNotifier {
+                size: 20
+                count: NotificationCount
+                animate: index === 0
+            }
+        }
     }
 }

@@ -138,13 +138,14 @@ SystemTray::~SystemTray()
 }
 
 void
-SystemTray::setCount(int count)
+SystemTray::onNotificationCountChanged(int count)
 {
     if (count == 0) {
         setIcon(QIcon(":/images/jami.svg"));
     } else {
         setIcon(QIcon(":/images/jami-new.svg"));
     }
+    Q_EMIT countChanged();
 }
 
 #ifdef Q_OS_LINUX

@@ -22,6 +22,7 @@
 
 #include "accountlistmodel.h"
 #include "deviceitemlistmodel.h"
+#include "systemtray.h"
 #include "lrcinstance.h"
 #include "utils.h"
 
@@ -44,6 +45,7 @@ Q_SIGNALS:
 
 public:
     explicit AccountAdapter(AppSettingsManager* settingsManager,
+                            SystemTray* systemTray,
                             LRCInstance* instance,
                             QObject* parent = nullptr);
     ~AccountAdapter() = default;
@@ -102,6 +104,7 @@ private:
     QMetaObject::Connection registeredNameSavedConnection_;
 
     AppSettingsManager* settingsManager_;
+    SystemTray* systemTray_;
 
     QScopedPointer<AccountListModel> accountListModel_;
     QScopedPointer<DeviceItemListModel> deviceItemListModel_;
