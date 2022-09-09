@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aedfb97_973350e2",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-09-09T22:38:41Z",
+      "side": 1,
+      "message": "Should the shortcut be `V` (video) even though it does not refer to audio?\n\n`V` is used for the camera in Jitsi too as shown in screenshot https://git.jami.net/savoirfairelinux/jami-client-qt/uploads/cc0f7a32b52c363fc1cc605a269c9eb0/image.png\n\nThen `C` could be used for open/close the `chat`.\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 159,
+        "startChar": 23,
+        "endLine": 159,
+        "endChar": 24
+      },
+      "revId": "c140a1edd3ec4f8791fa4b132223ef93971b60eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
