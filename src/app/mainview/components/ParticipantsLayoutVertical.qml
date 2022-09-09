@@ -137,7 +137,7 @@ SplitView {
                     property int columns: {
                         if (inLine)
                             return commonParticipants.count
-                        var ratio = Math.floor(root.width / root.height)
+                        var ratio = Math.round(root.width / root.height)
                         // If ratio is 2 we can have 2 times more elements on each columns
                         var wantedCol = Math.max(1, Math.round(Math.sqrt(commonParticipants.count) * ratio))
                         var cols =  Math.min(commonParticipants.count, wantedCol)
