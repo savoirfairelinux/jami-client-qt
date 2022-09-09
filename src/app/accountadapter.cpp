@@ -27,10 +27,12 @@
 #include <QtConcurrent/QtConcurrent>
 
 AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
+                               SystemTray* systemTray,
                                LRCInstance* instance,
                                QObject* parent)
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
+    , systemTray_(systemTray)
     , accountListModel_(new AccountListModel(instance))
     , deviceItemListModel_(new DeviceItemListModel(instance))
 {
@@ -46,6 +48,11 @@ AccountAdapter::AccountAdapter(AppSettingsManager* settingsManager,
             &AccountModel::profileUpdated,
             this,
             &AccountAdapter::accountStatusChanged);
+
+    connect(systemTray_,
+            &SystemTray::countChanged,
+            accountListModel_.get(),
+            &AccountListModel::updateNotifications);
 }
 
 AccountModel*
