@@ -106,6 +106,7 @@ protected:
     Q_INVOKABLE QVariantMap isLocalImage(const QString& mimeName);
     Q_INVOKABLE QVariantMap getMediaInfo(const QString& msg);
     Q_INVOKABLE bool isRemoteImage(const QString& msg);
+    Q_INVOKABLE QString getFormattedDay(const quint64 timestamp);
     Q_INVOKABLE QString getFormattedTime(const quint64 timestamp);
     Q_INVOKABLE void parseMessageUrls(const QString& messageId,
                                       const QString& msg,

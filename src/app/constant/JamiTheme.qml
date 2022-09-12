@@ -182,6 +182,8 @@ Item {
     property color blockOrangeTransparency: rgba256(232, 92, 36, 56)
 
     // Chatview
+    property color timestampBackgroundColor: "#ffffff"
+    property color jamiTimestamp: "#E5E5E5"
     property color jamiLightBlue: darkTheme ? "#003b4e" : Qt.rgba(59, 193, 211, 0.3)
     property color jamiDarkBlue: darkTheme ? "#28b1ed" : "#003b4e"
     property color chatviewTextColor: darkTheme ? "#f0f0f0" : "#000000"
@@ -189,6 +191,7 @@ Item {
     property color chatviewTextColorDark: "#353637"
     property real chatviewFontSize: calcSize(15)
     property color timestampColor: darkTheme ? "#bbb" : "#777"
+    property color daytimestampColor: blackColor
     property color messageOutTxtColor: "#000000"
     property color messageInBgColor: darkTheme ? "#28b1ed" : "#e5e5e5"
     property color messageOutBgColor: darkTheme? "#616161" : "#005699"

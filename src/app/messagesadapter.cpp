@@ -586,21 +586,25 @@ MessagesAdapter::getFormattedTime(const quint64 timestamp)
 {
     const auto now = QDateTime::currentDateTime();
     const auto seconds = now.toSecsSinceEpoch() - timestamp;
-    auto interval = qFloor(seconds / (3600 * 24));
-    if (interval > 5)
-        return QLocale::system().toString(QDateTime::fromSecsSinceEpoch(timestamp),
+    auto interval = qFloor(seconds / 60);
+    if (interval > 1)
+        return QLocale::system().toString(QDateTime::fromSecsSinceEpoch(timestamp).time(),
                                           QLocale::ShortFormat);
-    if (interval > 1)
-        return QObject::tr("%1 days ago").arg(interval);
-    if (interval == 1)
-        return QObject::tr("one day ago");
-    interval = qFloor(seconds / 3600);
-    if (interval > 1)
-        return QObject::tr("%1 hours ago").arg(interval);
-    if (interval == 1)
-        return QObject::tr("one hour ago");
-    interval = qFloor(seconds / 60);
-    if (interval > 1)
-        return QObject::tr("%1 minutes ago").arg(interval);
     return QObject::tr("just now");
+}
+
+QString
+MessagesAdapter::getFormattedDay(const quint64 timestamp)
+{
+    auto now = QDate::currentDate();
+    auto before = QDateTime::fromSecsSinceEpoch(timestamp).date();
+    auto date = QLocale::system().toString(QDateTime::fromSecsSinceEpoch(timestamp).date(),
+                                           QLocale::ShortFormat);
+
+    if (before == now)
+        return QObject::tr("Today");
+    if (before.daysTo(now) == 1)
+        return QObject::tr("Yesterday");
+
+    return date;
 }
