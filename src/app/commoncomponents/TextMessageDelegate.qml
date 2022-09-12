@@ -21,7 +21,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -31,25 +30,21 @@ SBSMessageBase {
     id : root
 
     property bool isRemoteImage
-
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
-
     isOutgoing: Author === ""
     author: Author
     readers: Readers
+    timestamp: Timestamp
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
 
     innerContent.children: [
         TextEdit {
-
             padding: JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
-
             text: Body
-
             horizontalAlignment: Text.AlignLeft
-
             width: {
                 if (extraContent.active)
                     Math.max(extraContent.width,
@@ -62,9 +57,7 @@ SBSMessageBase {
             height: implicitHeight
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
-
             font.pixelSize: JamiTheme.chatviewFontSize
-
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.MarkdownText

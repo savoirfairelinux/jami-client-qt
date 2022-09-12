@@ -321,6 +321,15 @@ Item {
     property real lineEditContextMenuItemsWidth: 100
     property real lineEditContextMenuSeparatorsHeight: 2
 
+    //TimestampInfo
+    property int timestampLinePadding: 40
+    property int dayTimestampTopMargin: 30
+    property int timestampBottomMargin: 42
+    property int timestampTopMargin: 20
+    property int dayTimestampHPadding: 16
+    property real dayTimestampVPadding: 32
+    property real timestampFont: calcSize(12)
+
 
     // Jami switch
     property real switchIndicatorRadius: 30
