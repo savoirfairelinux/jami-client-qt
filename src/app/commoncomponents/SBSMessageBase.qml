@@ -69,6 +69,18 @@ Control {
 
         spacing: 0
 
+        Label {
+            id: formattedTimeLabel
+
+            text: formattedTime
+            color: JamiTheme.timestampColor
+            visible: showTime || seq === MsgSeq.first
+            height: visible * implicitHeight
+            font.pointSize: 9
+            topPadding : 4
+            Layout.alignment: Qt.AlignHCenter
+        }
+
         Item {
 
             id: usernameblock
@@ -223,20 +235,7 @@ Control {
             }
 
 
-            Label {
-                id: formattedTimeLabel
 
-                text: formattedTime
-                color: JamiTheme.timestampColor
-                visible: showTime || seq === MsgSeq.last
-                height: visible * implicitHeight
-                font.pointSize: 9
-                topPadding : 4
-                anchors.rightMargin: status.width
-                anchors.right: !isOutgoing ? undefined : readsMultiple.left
-                anchors.left: isOutgoing ? undefined : parent.left
-                anchors.leftMargin: avatarBlockWidth + 6
-            }
 
             ReadStatus {
                 id: readsMultiple
