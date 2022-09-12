@@ -37,26 +37,26 @@ Control {
 
     // these MUST be set but we won't use the 'required' keyword yet
     property bool isOutgoing
-    property bool showTime
+    property bool showTime: false
+    property bool showDay: false
     property int seq
     property string author
     property string transferId
     property string registeredNameText
     property string transferName
-    property string formattedTime
+    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     property string location
     property string id: Id
     property string hoveredLink
     property var readers: []
-
+    property int timestamp: Timestamp
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
     readonly property real msgRadius: 20
     readonly property real hPadding: JamiTheme.sbsMessageBasePreferredPadding
-
     width: ListView.view ? ListView.view.width : 0
     height: mainColumnLayout.implicitHeight
-
     rightPadding: hPadding
     leftPadding: hPadding
 
@@ -64,10 +64,20 @@ Control {
         id: mainColumnLayout
 
         anchors.centerIn: parent
-
         width: parent.width - hPadding * 2
-
         spacing: 0
+
+        TimestampInfo {
+            id:timestampItem
+
+            showDay:root.showDay
+            showTime:root.showTime
+            formattedTime:root.formattedTime
+            formattedDay:root.formattedDay
+            Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
+            Layout.fillHeight:true
+        }
 
         Item {
 
@@ -78,7 +88,7 @@ Control {
                 id: username
                 text: UtilsAdapter.getBestNameForUri(CurrentAccount.id, Author)
                 font.bold: true
-                visible: (seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
+                visible:(seq === MsgSeq.first || seq === MsgSeq.single) && !isOutgoing
                 font.pixelSize: JamiTheme.usernameBlockFontSize
                 color: JamiTheme.chatviewUsernameColor
                 lineHeight: JamiTheme.usernameBlockLineHeight
@@ -107,17 +117,15 @@ Control {
                 }
             }
 
-
             MouseArea {
                 id: itemMouseArea
-            
+
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onClicked: function (mouse) {
                     if (mouse.button === Qt.RightButton
-                        && (transferId !== "" || Type === Interaction.Type.TEXT)) {
+                            && (transferId !== "" || Type === Interaction.Type.TEXT)) {
                         // Context Menu for Transfers
                         ctxMenu.x = mouse.x
                         ctxMenu.y = mouse.y
@@ -142,8 +150,8 @@ Control {
                     type: seq
                     function getBaseColor() {
                         var baseColor = isOutgoing ? JamiTheme.messageOutBgColor
-                                            : CurrentConversation.isCoreDialog ?
-                                                JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
+                                                   : CurrentConversation.isCoreDialog ?
+                                                         JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
                         if (Id === MessagesAdapter.replyToId) {
                             // If we are replying to
                             return Qt.darker(baseColor, 1.5)
@@ -194,6 +202,7 @@ Control {
                     id: readsOne
 
                     visible: root.readers.length === 1 && CurrentAccount.sendReadReceipt
+
                     width: {
                         if (root.readers.length === 0)
                             return 0
@@ -216,26 +225,10 @@ Control {
             orientation: ListView.Horizontal
             Layout.preferredHeight: {
                 if (showTime || seq === MsgSeq.last)
-                    return contentHeight + formattedTimeLabel.contentHeight
+                    return contentHeight + timestampItem.contentHeight
                 else if (readsMultiple.visible)
                     return JamiTheme.avatarReadReceiptSize
                 return 0
-            }
-
-
-            Label {
-                id: formattedTimeLabel
-
-                text: formattedTime
-                color: JamiTheme.timestampColor
-                visible: showTime || seq === MsgSeq.last
-                height: visible * implicitHeight
-                font.pointSize: 9
-                topPadding : 4
-                anchors.rightMargin: status.width
-                anchors.right: !isOutgoing ? undefined : readsMultiple.left
-                anchors.left: isOutgoing ? undefined : parent.left
-                anchors.leftMargin: avatarBlockWidth + 6
             }
 
             ReadStatus {
@@ -254,7 +247,6 @@ Control {
                 anchors.topMargin: 1
                 readers: root.readers
             }
-
         }
     }
 
