@@ -44,105 +44,95 @@ JamiListView {
             MessagesAdapter.loadMoreMessages()
     }
 
-    // sequencing/timestamps (2-sided style)
-    function computeTimestampVisibility(item, itemIndex) {
-        if (root === undefined)
-            return
-        var nItem = root.itemAtIndex(itemIndex - 1)
-        if (nItem && itemIndex !== root.count - 1) {
-            item.showTime = (nItem.timestamp - item.timestamp) > 60 &&
-                    nItem.formattedTime !== item.formattedTime
-        } else {
-            item.showTime = true
-            var pItem = root.itemAtIndex(itemIndex + 1)
-            if (pItem) {
-                pItem.showTime = (item.timestamp - pItem.timestamp) > 60 &&
-                        pItem.formattedTime !== item.formattedTime
+
+    function computeTimestampVisibility(item1, item1Index, item2, item2Index) {
+        if (item1 && item2) {
+            if (item1Index < item2Index) {
+                item1.showTime = item1.timestamp - item2.timestamp > JamiTheme.timestampIntervalTime
+                item1.showDay = item1.formattedDay !== item2.formattedDay
+            }else {
+                item2.showTime = item2.timestamp - item1.timestamp > JamiTheme.timestampIntervalTime
+                item2.showDay = item2.formattedDay !== item1.formattedDay
             }
+            return true
+        }
+        return false
+    }
+
+    function computeChatview(item,itemIndex) {
+        if (!root ) return
+        var rootItem = root.itemAtIndex(0)
+        var pItem = root.itemAtIndex(itemIndex - 1)
+        var pItemIndex = itemIndex - 1
+        var nItem = root.itemAtIndex(itemIndex + 1)
+        var nItemIndex = itemIndex + 1
+        //Middle insertion
+        if (pItem && nItem) {
+            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)
+            computeSequencing(nItemIndex, nItem, root.itemAtIndex(itemIndex + 2), item)
+        }
+        //top buffer insertion = scroll up
+        if (pItem && !nItem) {
+            computeTimestampVisibility(item, itemIndex, pItem, pItemIndex)
+            computeSequencing(pItemIndex, pItem, item, root.itemAtIndex(itemIndex - 2))
+        }
+        //bottom buffer insertion = scroll down
+        if (!pItem && nItem) {
+            computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)
+            computeSequencing(nItemIndex, nItem, root.itemAtIndex(itemIndex + 2), item)
+        }
+        //index 0 insertion = new message
+        if (itemIndex === 0) {
+            Qt.callLater(computeSequencing, itemIndex, item, root.itemAtIndex(itemIndex + 1), null)
+            if (! computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)) {
+                Qt.callLater(computeChatview, item, itemIndex)
+            }
+        }
+        //top element
+        if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
+            item.showTime = true
+            item.showDay = true
         }
     }
 
-    function computeSequencing(computeItem, computeItemIndex) {
-        if (root === undefined)
+    function computeSequencing(index, item, nItem, pItem) {
+        if (root === undefined || !item)
             return
-        var cItem = {
-            'author': computeItem.author,
-            'showTime': computeItem.showTime
-        }
-        var pItem = root.itemAtIndex(computeItemIndex + 1)
-        var nItem = root.itemAtIndex(computeItemIndex - 1)
 
-        let isSeq = (item0, item1) =>
-            item0.author === item1.author && !item0.showTime
-
-        let setSeq = function (newSeq, item) {
-            if (item === undefined)
-                computeItem.seq = newSeq
-            else
-                item.seq = newSeq
-        }
-
-        let rAdjustSeq = function (item) {
-            if (item.seq === MsgSeq.last)
-                item.seq = MsgSeq.middle
-            else if (item.seq === MsgSeq.single)
-                setSeq(MsgSeq.first, item)
-        }
-
-        let adjustSeq = function (item) {
-            if (item.seq === MsgSeq.first)
-                item.seq = MsgSeq.middle
-            else if (item.seq === MsgSeq.single)
-                setSeq(MsgSeq.last, item)
-        }
-
-        if (pItem && !nItem) {
-            if (!isSeq(pItem, cItem)) {
-                computeItem.seq = MsgSeq.single
-            } else {
-                computeItem.seq = MsgSeq.last
-                rAdjustSeq(pItem)
-            }
-        } else if (nItem && !pItem) {
-            if (!isSeq(cItem, nItem)) {
-                computeItem.seq = MsgSeq.single
-            } else {
-                setSeq(MsgSeq.first)
-                adjustSeq(nItem)
-            }
-        } else if (!nItem && !pItem) {
-            computeItem.seq = MsgSeq.single
-        } else {
-            if (isSeq(pItem, nItem)) {
-                if (isSeq(pItem, cItem)) {
-                    computeItem.seq = MsgSeq.middle
-                } else {
-                    computeItem.seq = MsgSeq.single
-
-                    if (pItem.seq === MsgSeq.first)
-                        pItem.seq = MsgSeq.single
-                    else if (item.seq === MsgSeq.middle)
-                        pItem.seq = MsgSeq.last
-
-                    if (nItem.seq === MsgSeq.last)
-                        nItem.seq = MsgSeq.single
-                    else if (nItem.seq === MsgSeq.middle)
-                        nItem.seq = MsgSeq.first
+        function isFirst() {
+            if (!nItem) return true
+            else{
+                if (item.showTime) {
+                    return true
                 }
-            } else {
-                if (!isSeq(pItem, cItem)) {
-                    computeItem.seq = MsgSeq.first
-                    adjustSeq(pItem)
-                } else {
-                    computeItem.seq = MsgSeq.last
-                    rAdjustSeq(nItem)
+                if (nItem.author !== item.author) {
+                    return true
                 }
             }
+            return false
         }
 
-        if (computeItem.seq === MsgSeq.last) {
-            computeItem.showTime = true
+        function isLast() {
+            if (!pItem) return true
+            else{
+                if (pItem.showTime) {
+                    return true
+                }
+                if (pItem.author !== item.author) {
+                    return true
+                }
+            }
+            return false
         }
+
+        if (isLast() && isFirst())
+            item.seq = MsgSeq.single
+        if (!isLast() && isFirst())
+            item.seq = MsgSeq.first
+        if (isLast() && !isFirst())
+            item.seq = MsgSeq.last
+        if (!isLast() && !isFirst())
+            item.seq = MsgSeq.middle
     }
 
     // fade-in mechanism
@@ -189,6 +179,7 @@ JamiListView {
     width: parent.width
     // this offscreen caching is pretty huge
     // displayMarginEnd may be removed
+
     displayMarginBeginning: 2048
     displayMarginEnd: 2048
     maximumFlickVelocity: 2048
@@ -216,65 +207,55 @@ JamiListView {
         id: delegateChooser
 
         role: "Type"
+
         DelegateChoice {
+            id: delegateChoice
+
             roleValue: Interaction.Type.TEXT
+
             TextMessageDelegate {
-                Component.onCompleted: {
-                    if (index) {
-                        computeTimestampVisibility(this, index)
-                        computeSequencing(this, index)
-                    } else {
-                        Qt.callLater(computeTimestampVisibility, this, index)
-                        Qt.callLater(computeSequencing, this, index)
-                    }
+                Component.onCompleted:  {
+                    computeChatview(this,index)
                 }
             }
         }
+
         DelegateChoice {
             roleValue: Interaction.Type.CALL
+
             GeneratedMessageDelegate {
-                Component.onCompleted: {
-                    if (index)
-                        computeTimestampVisibility(this, index)
-                    else
-                        Qt.callLater(computeTimestampVisibility, this, index)
+                Component.onCompleted:  {
+                    computeChatview(this,index)
                 }
             }
         }
+
         DelegateChoice {
             roleValue: Interaction.Type.CONTACT
+
             ContactMessageDelegate {
-                Component.onCompleted: {
-                    if (index)
-                        computeTimestampVisibility(this, index)
-                    else
-                        Qt.callLater(computeTimestampVisibility, this, index)
+                Component.onCompleted:  {
+                    computeChatview(this,index)
                 }
             }
         }
+
         DelegateChoice {
             roleValue: Interaction.Type.INITIAL
+
             GeneratedMessageDelegate {
                 font.bold: true
-                Component.onCompleted: {
-                    if (index)
-                        computeTimestampVisibility(this, index)
-                    else
-                        Qt.callLater(computeTimestampVisibility, this, index)
+                Component.onCompleted:  {
+                    computeChatview(this,index)
                 }
             }
         }
         DelegateChoice {
             roleValue: Interaction.Type.DATA_TRANSFER
+
             DataTransferMessageDelegate {
-                Component.onCompleted: {
-                    if (index) {
-                        computeTimestampVisibility(this, index)
-                        computeSequencing(this, index)
-                    } else {
-                        Qt.callLater(computeTimestampVisibility, this, index)
-                        Qt.callLater(computeSequencing, this, index)
-                    }
+                Component.onCompleted:  {
+                    computeChatview(this,index)
                 }
             }
         }
@@ -382,8 +363,8 @@ JamiListView {
                     else {
                         var textSize = JamiQmlUtils.getTextBoundingRect(font, text).width
                         var typingContentWidth = typingDots.width + typingDots.anchors.leftMargin
-                                               + typeIndicatorNameText.anchors.leftMargin
-                                               + typeIndicatorEndingText.contentWidth
+                                + typeIndicatorNameText.anchors.leftMargin
+                                + typeIndicatorEndingText.contentWidth
                         typeIndicatorNameText.Layout.preferredWidth =
                                 Math.min(typeIndicatorContainer.width - 5 - typingContentWidth,
                                          textSize)

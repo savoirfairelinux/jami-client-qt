@@ -36,7 +36,11 @@ using reverseIterator = MessageListModel::reverseIterator;
 
 MessageListModel::MessageListModel(QObject* parent)
     : QAbstractListModel(parent)
-{}
+    , timestampTimer_(new QTimer(this))
+{
+    connect(timestampTimer_, &QTimer::timeout, this, &MessageListModel::timestampUpdate);
+    timestampTimer_->start(1000);
+}
 
 QPair<iterator, bool>
 MessageListModel::emplace(const QString& msgId, interaction::Info message, bool beginning)

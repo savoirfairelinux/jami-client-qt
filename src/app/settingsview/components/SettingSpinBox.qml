@@ -62,7 +62,6 @@ RowLayout {
         Layout.preferredWidth: root.itemWidth
         Layout.preferredHeight: JamiTheme.preferredFieldHeight
         Layout.alignment: Qt.AlignCenter
-
         font.pointSize: JamiTheme.buttonFontSize
         font.kerning: true
 
@@ -91,7 +90,6 @@ RowLayout {
 
         MaterialToolTip {
             id: toolTip
-
             parent: textField
             visible: textField.hovered && (root.tooltipText.length > 0)
             delay: Qt.styleHints.mousePressAndHoldInterval
