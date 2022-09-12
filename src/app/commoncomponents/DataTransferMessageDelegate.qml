@@ -31,7 +31,12 @@ Loader {
     id: root
 
     property var mediaInfo
-    property bool showTime: false
+    property bool showTime
+    property bool showDay
+    property int timestamp: Timestamp
+    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
+
     property int seq: MsgSeq.single
     property string author: Author
 
@@ -70,7 +75,9 @@ Loader {
             transferName: TransferName
             transferId: Id
             readers: Readers
-            formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+            timestamp: root.timestamp
+            formattedTime: root.formattedTime
+            formattedDay: root.formattedTime
             extraHeight: progressBar.visible ? 18 : 0
             innerContent.children: [
                 RowLayout {
@@ -247,6 +254,7 @@ Loader {
             transferId: Id
             readers: Readers
             formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+            formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
             bubble.visible: false
             innerContent.children: [
                 Loader {
@@ -332,7 +340,7 @@ Loader {
                             sourceSize.width: width
                             sourceSize.height: height
                             source: "file:///" + Body
-                            property real aspectRatio: implicitWidth / implicitHeight
+                            property real aspectRatio: width / implicitHeight
                             property real adjustedWidth: Math.min(maxSize,
                                                                   Math.max(minSize,
                                                                            innerContent.width - senderMargin))
