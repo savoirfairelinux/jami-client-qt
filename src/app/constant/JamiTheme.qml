@@ -208,6 +208,7 @@ Item {
     property color previewUrlColor : darkTheme ? "#eeeeee" : "#333"
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
     property color chatviewUsernameColor : "#A7A7A7"
+    property int timestampLinePadding: 40
 
     // Files To Send Container
     property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
