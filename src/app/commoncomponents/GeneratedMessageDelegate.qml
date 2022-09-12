@@ -28,39 +28,38 @@ import net.jami.Constants 1.1
 Column {
     id: root
 
-    property bool showTime: false
+    property bool showTime
+    property bool showDay
     property int seq: MsgSeq.single
     property alias font: textLabel.font
-
+    property int timestamp: Timestamp
+    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     width: ListView.view ? ListView.view.width : 0
-
     spacing: 2
     topPadding: 12
     bottomPadding: 12
-
-    Label {
-        id: textLabel
-        width: parent.width
-        text: Body
-        horizontalAlignment: Qt.AlignHCenter
-        font.pointSize: 12
-        color: JamiTheme.chatviewTextColor
-    }
-
-    Item {
-        id: infoCell
+    ColumnLayout {
 
         width: parent.width
-        height: childrenRect.height
+
+        TimestampInfo {
+            id:timestampItem
+
+            showDay:root.showDay
+            showTime:root.showTime
+            formattedTime:root.formattedTime
+            formattedDay:root.formattedDay
+            Layout.alignment: Qt.AlignHCenter
+        }
 
         Label {
-            text: MessagesAdapter.getFormattedTime(Timestamp)
-            color: JamiTheme.timestampColor
-            visible: showTime || seq === MsgSeq.last
-            height: visible * implicitHeight
-            font.pointSize: 9
+            id: textLabel
 
-            anchors.horizontalCenter: parent.horizontalCenter
+            text: Body
+            Layout.alignment: Qt.AlignHCenter
+            font.pointSize: 12
+            color: JamiTheme.chatviewTextColor
         }
     }
 

@@ -26,75 +26,68 @@ import net.jami.Constants 1.1
 Column {
     id: root
 
-    property bool showTime: false
-    property int seq: MsgSeq.single
-    property alias font: textLabel.font
-
+    property bool showTime
+    property bool showDay
+    property int timestamp: Timestamp
+    property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
+    property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
+    property int seq: MsgSeq.single//a changer par textlabel
     width: ListView.view ? ListView.view.width : 0
-
     spacing: 2
     topPadding: 12
     bottomPadding: 12
 
-    Rectangle {
-        id: msg
-
+    ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
 
-        width: childrenRect.width
-        height: JamiTheme.contactMessageAvatarSize + 12
-        radius: JamiTheme.contactMessageAvatarSize / 2 + 6
+        TimestampInfo {
+            id:timestampItem
 
-        color: "transparent"
-        border.width: 1
-        border.color: CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : CurrentConversation.color
+            showDay:root.showDay
+            showTime:root.showTime
+            formattedTime:root.formattedTime
+            formattedDay:root.formattedDay
+            Layout.alignment: Qt.AlignHCenter
+        }
 
-        RowLayout {
-            anchors.verticalCenter: parent.verticalCenter
+        Rectangle {
+            id: msg
 
-            Avatar {
-                Layout.leftMargin: 6
+            width: childrenRect.width
+            height: JamiTheme.contactMessageAvatarSize + 12
+            radius: JamiTheme.contactMessageAvatarSize / 2 + 6
+            Layout.alignment: Qt.AlignVCenter
+            color: "transparent"
+            border.width: 1
+            border.color: CurrentConversation.isCoreDialog ? JamiTheme.messageInBgColor : CurrentConversation.color
 
-                width: JamiTheme.contactMessageAvatarSize
-                height: JamiTheme.contactMessageAvatarSize
-                visible: ActionUri !== ""
+            RowLayout {
+                anchors.verticalCenter: parent.verticalCenter
 
-                imageId: ActionUri !== CurrentAccount.uri ? ActionUri : CurrentAccount.id
-                showPresenceIndicator: false
-                mode: ActionUri !== CurrentAccount.uri ? Avatar.Mode.Contact : Avatar.Mode.Account
-            }
+                Avatar {
+                    Layout.leftMargin: 6
+                    width: JamiTheme.contactMessageAvatarSize
+                    height: JamiTheme.contactMessageAvatarSize
+                    visible: ActionUri !== ""
+                    imageId: ActionUri !== CurrentAccount.uri ? ActionUri : CurrentAccount.id
+                    showPresenceIndicator: false
+                    mode: ActionUri !== CurrentAccount.uri ? Avatar.Mode.Contact : Avatar.Mode.Account
+                }
 
-            Label {
-                Layout.rightMargin: 6
+                Label {
+                    id: textLabel
 
-                id: textLabel
-                width: parent.width
-                text: Body
-                horizontalAlignment: Qt.AlignHCenter
-                font.pointSize: JamiTheme.contactEventPointSize
-                font.bold: true
-                color: JamiTheme.chatviewTextColor
+                    Layout.rightMargin: 6                    
+                    width: parent.width
+                    text: Body
+                    horizontalAlignment: Qt.AlignHCenter
+                    font.pointSize: JamiTheme.contactEventPointSize
+                    font.bold: true
+                    color: JamiTheme.chatviewTextColor
+                }
             }
         }
     }
-
-    Item {
-        id: infoCell
-
-        width: parent.width
-        height: childrenRect.height
-
-        Label {
-            text: MessagesAdapter.getFormattedTime(Timestamp)
-            color: JamiTheme.timestampColor
-            visible: showTime || seq === MsgSeq.last
-            height: visible * implicitHeight
-            font.pointSize: 9
-
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
-    }
-
     opacity: 0
     Behavior on opacity { NumberAnimation { duration: 100 } }
     Component.onCompleted: opacity = 1
