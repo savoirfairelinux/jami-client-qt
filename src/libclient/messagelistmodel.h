@@ -22,6 +22,7 @@
 #include "api/interaction.h"
 
 #include <QAbstractListModel>
+#include <QTimer>
 
 namespace lrc {
 namespace api {
@@ -125,6 +126,8 @@ public:
     void emitDataChanged(iterator it, VectorInt roles = {});
     void emitDataChanged(const QString& msgId, VectorInt roles = {});
 
+    Q_SIGNAL void timestampUpdate();
+
 protected:
     using Role = MessageList::Role;
 
@@ -144,6 +147,8 @@ private:
     iterator insertMessage(iterator it, item_t& message);
     void removeMessage(int index, iterator it);
     void moveMessage(int from, int to);
+
+    QTimer* timestampTimer_ {nullptr};
 };
 } // namespace api
 } // namespace lrc
