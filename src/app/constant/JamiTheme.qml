@@ -189,6 +189,7 @@ Item {
     property color chatviewTextColorDark: "#353637"
     property real chatviewFontSize: calcSize(15)
     property color timestampColor: darkTheme ? "#bbb" : "#777"
+    property color daytimestampColor: darkTheme ? whiteColor : blackColor
     property color messageOutTxtColor: "#000000"
     property color messageInBgColor: darkTheme ? "#28b1ed" : "#e5e5e5"
     property color messageOutBgColor: darkTheme? "#616161" : "#005699"
