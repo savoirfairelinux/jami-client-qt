@@ -39,6 +39,13 @@ Rectangle {
 
     color: "black"
 
+    LocalVideo {
+        anchors.centerIn: parent
+        anchors.fill: parent
+        visible: !root.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0
+        opacity: 0.5
+    }
+
     ListModel {
         id: incomingControlsModel
         Component.onCompleted: {
