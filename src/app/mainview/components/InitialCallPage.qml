@@ -39,6 +39,14 @@ Rectangle {
 
     color: "black"
 
+    LocalVideo{
+
+        anchors.centerIn: parent
+        width: (parent.height >= parent.width * invAspectRatio) ? parent.width : height/invAspectRatio
+        height: (parent.height < parent.width * invAspectRatio) ? parent.height : width*invAspectRatio
+        visible: !root.isAudioOnly
+        opacity: 0.5
+    }
     ListModel {
         id: incomingControlsModel
         Component.onCompleted: {
