@@ -584,7 +584,7 @@ Item {
     property string stopTakingPhoto: qsTr("Stop taking photo")
     property string clearAvatar: qsTr("Clear avatar image")
     property string takePhoto: qsTr("Take photo")
-    property string imageFiles: qsTr("Image Files (*.png *.jpg *.jpeg)")
+    property string imageFiles: qsTr("Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)")
 
     // Plugins
     property string enable: qsTr("Enable")
