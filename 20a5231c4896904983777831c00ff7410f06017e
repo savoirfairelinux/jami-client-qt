@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a6d45be_1e352b96",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-09-14T12:56:58Z",
+      "side": 1,
+      "message": "The patch is a bit more:\n\nin the screenshot there is a \"yesterday\" showing.\n\nSo ideally, in this patch we should see:\n\n+ Grouping messages by days (show Yesterday, then the date in same style)\n+ Show timestamp per minutes\n+ Only show hh:mm (as there is the day showing for the group)",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 73,
+        "endChar": 34
+      },
+      "revId": "20a5231c4896904983777831c00ff7410f06017e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
