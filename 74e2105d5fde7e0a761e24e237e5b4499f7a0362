@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0834b167_9fca18d2",
+        "filename": "src/app/mainview/components/ParticipantsLayoutVertical.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-15T13:40:16Z",
+      "side": 1,
+      "message": "import SortFilterProxyModel 0.2 ?",
+      "revId": "74e2105d5fde7e0a761e24e237e5b4499f7a0362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
