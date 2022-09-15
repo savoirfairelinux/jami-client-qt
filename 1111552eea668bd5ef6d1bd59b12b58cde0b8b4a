@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdd63bbd_837794e3",
+        "filename": "3rdparty/SortFilterProxyModel",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-15T18:26:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbf738da_91ce495c",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "1111552eea668bd5ef6d1bd59b12b58cde0b8b4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66b15506_d357c5e8",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-15T12:36:36Z",
       "side": 1,
       "message": "SFPM_OBJECTS ? to maintain style",
+      "range": {
+        "startLine": 444,
+        "startChar": 4,
+        "endLine": 444,
+        "endChar": 31
+      },
+      "revId": "1111552eea668bd5ef6d1bd59b12b58cde0b8b4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46c48365_ae4da232",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-15T18:26:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66b15506_d357c5e8",
       "range": {
         "startLine": 444,
         "startChar": 4,
