@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e713e4b8_e6569e7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-15T20:18:40Z",
+      "side": 1,
+      "message": "Better to rebase on top of SFPM patches. LGTM otherwise",
+      "revId": "b89a33c2108fc796e8a0669805d1b8c1ff7dfe4e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
