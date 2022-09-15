@@ -22,6 +22,30 @@
       },
       "revId": "01f5df67287e859a603c38b4973ccd14f445426a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff28ae8d_3f1bfa7f",
+        "filename": "src/app/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-15T18:48:17Z",
+      "side": 1,
+      "message": "unfortunately not because !\"some string\" \u003d\u003d\u003d false, so the filter would pass IDs that equal false only",
+      "parentUuid": "54c5a1a4_d67fa8ae",
+      "range": {
+        "startLine": 63,
+        "startChar": 20,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "01f5df67287e859a603c38b4973ccd14f445426a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
