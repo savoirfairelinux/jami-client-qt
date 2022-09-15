@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4570bfba_9af11ca6",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-09-15T16:01:16Z",
+      "side": 0,
+      "message": "I got some glitches for messaging I didn\u0027t experienced before (like some messages loading in the middle of the conversation, even if it was received wayyy before)",
+      "range": {
+        "startLine": 197,
+        "startChar": 27,
+        "endLine": 197,
+        "endChar": 43
+      },
+      "revId": "01f5df67287e859a603c38b4973ccd14f445426a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
