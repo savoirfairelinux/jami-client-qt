@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c5a1a4_d67fa8ae",
+        "filename": "src/app/mainview/components/AccountComboBoxPopup.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-15T12:47:08Z",
+      "side": 1,
+      "message": "to understand, we can let like this and we also could do\n`value: !LRCInstance.currentAccountId`\n?",
+      "range": {
+        "startLine": 63,
+        "startChar": 20,
+        "endLine": 64,
+        "endChar": 34
+      },
+      "revId": "01f5df67287e859a603c38b4973ccd14f445426a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
