@@ -1,4 +1,51 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acc66b02_0a9421a3",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-09-15T22:44:12Z",
+      "side": 1,
+      "message": "Is `the ` superfluous?\n\nShould the string be `Mute microphone`?\n\nThank you",
+      "range": {
+        "startLine": 156,
+        "startChar": 31,
+        "endLine": 156,
+        "endChar": 50
+      },
+      "revId": "fc3a0e7d792196e36879f5c23391c79a7f4cfae1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c50be7af_5a5b52c1",
+        "filename": "src/app/mainview/components/KeyboardShortcutTable.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-09-15T22:44:12Z",
+      "side": 1,
+      "message": "`Mute` refers to sound, should it be `stop`?\n\nIs `the ` superfluous?\n\nShould the string be `Stop camera`?\n\nThank you",
+      "range": {
+        "startLine": 160,
+        "startChar": 31,
+        "endLine": 160,
+        "endChar": 46
+      },
+      "revId": "fc3a0e7d792196e36879f5c23391c79a7f4cfae1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ],
   "submitRequirementResults": []
 }
