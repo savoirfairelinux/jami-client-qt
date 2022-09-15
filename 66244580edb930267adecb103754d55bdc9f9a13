@@ -39,6 +39,30 @@
       },
       "revId": "66244580edb930267adecb103754d55bdc9f9a13",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d2e2c47_a373b023",
+        "filename": "src/app/mainview/components/SmartListProxyModel.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-15T20:32:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98880118_a5f70a21",
+      "range": {
+        "startLine": 46,
+        "startChar": 23,
+        "endLine": 46,
+        "endChar": 38
+      },
+      "revId": "66244580edb930267adecb103754d55bdc9f9a13",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
