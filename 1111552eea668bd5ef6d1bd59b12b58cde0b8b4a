@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf738da_91ce495c",
+        "filename": "3rdparty/SortFilterProxyModel",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-15T12:36:36Z",
+      "side": 1,
+      "message": "should be on the previous commit?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "1111552eea668bd5ef6d1bd59b12b58cde0b8b4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b15506_d357c5e8",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-15T12:36:36Z",
+      "side": 1,
+      "message": "SFPM_OBJECTS ? to maintain style",
+      "range": {
+        "startLine": 444,
+        "startChar": 4,
+        "endLine": 444,
+        "endChar": 31
+      },
+      "revId": "1111552eea668bd5ef6d1bd59b12b58cde0b8b4a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
