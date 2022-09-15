@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c887bd52_5c643ace",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-09-15T07:22:30Z",
+      "side": 1,
+      "message": "Should the list be sorted alphabetically?\n\n*.jpeg *.JPEG *.jpg *.JPG *.png *.PNG\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 587,
+        "startChar": 51,
+        "endLine": 587,
+        "endChar": 88
+      },
+      "revId": "b6553cdaad3c86a0e4a5a8070408c1e54eccf53d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
