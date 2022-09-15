@@ -22,6 +22,30 @@
       },
       "revId": "b6553cdaad3c86a0e4a5a8070408c1e54eccf53d",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "545a42b9_b926f7c6",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-15T12:25:52Z",
+      "side": 1,
+      "message": "It actually does not matter given that the shown text is \"Image Files\" only. What in inside the parenthesis is used to filter the files but is not readable by the end user.",
+      "parentUuid": "c887bd52_5c643ace",
+      "range": {
+        "startLine": 587,
+        "startChar": 51,
+        "endLine": 587,
+        "endChar": 88
+      },
+      "revId": "b6553cdaad3c86a0e4a5a8070408c1e54eccf53d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
