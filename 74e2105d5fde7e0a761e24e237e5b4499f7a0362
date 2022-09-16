@@ -16,6 +16,24 @@
       "message": "import SortFilterProxyModel 0.2 ?",
       "revId": "74e2105d5fde7e0a761e24e237e5b4499f7a0362",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fe5c2ff_c6142bff",
+        "filename": "src/app/mainview/components/ParticipantsLayoutVertical.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-16T18:04:13Z",
+      "side": 1,
+      "message": "Actually, I think now it\u0027s not needed here, nor in ParticipantsLayoutHorizontal, as both filtered models are components in ParticipantsLayer.",
+      "parentUuid": "0834b167_9fca18d2",
+      "revId": "74e2105d5fde7e0a761e24e237e5b4499f7a0362",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
