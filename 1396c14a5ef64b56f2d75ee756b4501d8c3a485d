@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19b25bb5_dc7fd67c",
+        "filename": "INSTALL.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-09-16T18:47:01Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 101,
+        "startChar": 34,
+        "endLine": 101,
+        "endChar": 42
+      },
+      "revId": "1396c14a5ef64b56f2d75ee756b4501d8c3a485d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
