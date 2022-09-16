@@ -16,6 +16,52 @@
       "message": "Better to rebase on top of SFPM patches. LGTM otherwise",
       "revId": "b89a33c2108fc796e8a0669805d1b8c1ff7dfe4e",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12abf9cd_7b015323",
+        "filename": "src/app/accountadapter.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-16T15:21:25Z",
+      "side": 1,
+      "message": "could just invoke AccountListModel::updateNotifications directly",
+      "range": {
+        "startLine": 52,
+        "startChar": 52,
+        "endLine": 52,
+        "endChar": 56
+      },
+      "revId": "b89a33c2108fc796e8a0669805d1b8c1ff7dfe4e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ed65efc_ca82d0ed",
+        "filename": "src/app/systemtray.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-16T15:21:25Z",
+      "side": 1,
+      "message": "just some regarding this older code, this method is called setCount, but it doesn\u0027t set the count, it responds to a change in the notification count, so better onNotificationCountChanged",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 1
+      },
+      "revId": "b89a33c2108fc796e8a0669805d1b8c1ff7dfe4e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
