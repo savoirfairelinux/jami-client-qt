@@ -47,6 +47,7 @@ struct Info;
     X(ReplyTo) \
     X(ReplyToBody) \
     X(ReplyToAuthor) \
+    X(TotalSize) \
     X(TransferName) \
     X(Readers)
 

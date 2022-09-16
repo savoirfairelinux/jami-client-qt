@@ -3778,7 +3778,7 @@ ConversationModel::getTransferInfo(const QString& conversationId,
         return;
     } else {
         QString path;
-        qlonglong bytesProgress, totalSize;
+        qlonglong bytesProgress = 0, totalSize = 0;
         owner.dataTransferModel
             ->fileTransferInfo(owner.id, conversationId, fileId, path, totalSize, bytesProgress);
         info.path = path;

@@ -391,6 +391,8 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return repliedMsg == -1
                    ? QVariant("")
                    : QVariant(data(repliedMsg, Role::Body).toString().replace("\n", " "));
+    case Role::TotalSize:
+        return QVariant(item.second.commit["totalSize"].toInt());
     case Role::TransferName:
         return QVariant(item.second.commit["displayName"]);
     case Role::Readers:

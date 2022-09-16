@@ -206,7 +206,8 @@ Loader {
                                             transferStats.progress !== transferStats.totalSize) {
                                         res += UtilsAdapter.humanFileSize(transferStats.progress) + " / "
                                     }
-                                    res += UtilsAdapter.humanFileSize(transferStats.totalSize)
+                                    var totalSize = transferStats.totalSize !== 0 ? transferStats.totalSize : TotalSize
+                                    res += UtilsAdapter.humanFileSize(totalSize)
                                 }
                                 return res + " - " + MessagesAdapter.getStatusString(Status)
                             }
