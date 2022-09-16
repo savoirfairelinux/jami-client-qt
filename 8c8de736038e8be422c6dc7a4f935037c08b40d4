@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a209fd48_6ca93f80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-16T13:49:06Z",
+      "side": 1,
+      "message": "Tip box titles are now missing and text can be written under the `x`  ",
+      "revId": "8c8de736038e8be422c6dc7a4f935037c08b40d4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
