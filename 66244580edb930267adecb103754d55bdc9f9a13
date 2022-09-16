@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae6cfacc_65433df4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-16T16:01:19Z",
+      "side": 1,
+      "message": "also it seems the in-conference participants are not filtered out. not sure if this was the case previously",
+      "parentUuid": "59ec0bff_4b9cd834",
+      "revId": "66244580edb930267adecb103754d55bdc9f9a13",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "98880118_a5f70a21",
         "filename": "src/app/mainview/components/SmartListProxyModel.qml",
         "patchSetId": 10
