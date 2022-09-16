@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f6bae83_bf844366",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-09-16T11:52:45Z",
+      "side": 1,
+      "message": "one long term bug. If you are sharing a camera, then go to another conversatipon, then go back to the call, the camera is shown even if the screen is sent",
+      "range": {
+        "startLine": 199,
+        "startChar": 52,
+        "endLine": 200,
+        "endChar": 51
+      },
+      "revId": "e196633bf4d059fde49f68c1322849081e20d74a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
