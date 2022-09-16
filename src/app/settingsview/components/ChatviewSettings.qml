@@ -87,6 +87,7 @@ ColumnLayout {
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.layout
+        tipText: JamiStrings.layout
         fontPointSize: JamiTheme.settingsFontSize
         comboModel: ListModel {
             Component.onCompleted: {

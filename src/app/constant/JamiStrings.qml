@@ -436,6 +436,7 @@ Item {
     property string tipChooseDownloadFolder: qsTr("Choose download directory")
     property string recordCall: qsTr("Record call")
     property string textZoom: qsTr("Text zoom")
+    property string changeTextSize: qsTr("Change text size (%)")
 
     // ChatviewSettings
     property string enableTypingIndicator: qsTr("Typing indicators")

@@ -84,7 +84,7 @@ ColumnLayout {
             }
         }
         widthOfComboBox: itemWidth
-        tipText: JamiStrings.selectAudioInputDevice
+        tipText: JamiStrings.applicationTheme
         role: "textDisplay"
 
         modelIndex: {
@@ -201,6 +201,7 @@ ColumnLayout {
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         labelText: JamiStrings.language
+        tipText: JamiStrings.language
         fontPointSize: JamiTheme.settingsFontSize
         comboModel: ListModel {
             Component.onCompleted: {
@@ -237,6 +238,7 @@ ColumnLayout {
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
         title: JamiStrings.textZoom
+        tooltipText: JamiStrings.changeTextSize
         itemWidth: root.itemWidth
 
         valueField: Math.round(UtilsAdapter.getAppValue(Settings.BaseZoom) * 100.0)

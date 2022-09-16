@@ -77,6 +77,7 @@ ColumnLayout {
             secondary: true
 
             text: JamiStrings.troubleshootButton
+            toolTipText: JamiStrings.troubleshootButton
 
             onClicked: {
                 LogViewWindowCreation.createlogViewWindowObject()

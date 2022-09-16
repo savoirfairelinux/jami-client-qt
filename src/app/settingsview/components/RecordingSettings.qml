@@ -79,6 +79,7 @@ ColumnLayout {
         checked: AVModel.getAlwaysRecord()
 
         labelText: JamiStrings.alwaysRecordCalls
+        tooltipText: JamiStrings.alwaysRecordCalls
         fontPointSize: JamiTheme.settingsFontSize
 
         onSwitchToggled: AVModel.setAlwaysRecord(checked)
@@ -151,6 +152,13 @@ ColumnLayout {
             onMoved: {
                 recordQualityValueLabel.text = UtilsAdapter.getRecordQualityString(value)
                 updateRecordQualityTimer.restart()
+            }
+
+            MaterialToolTip {
+                id: toolTip
+                text: JamiStrings.quality
+                visible: parent.hovered
+                delay: Qt.styleHints.mousePressAndHoldInterval
             }
         }
     }

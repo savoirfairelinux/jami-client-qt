@@ -153,11 +153,11 @@ Window {
         }
         ListElement {
             shortcut: "M"
-            description: qsTr("Mute the microphone (during a call)")
+            description: qsTr("Mute microphone")
         }
         ListElement {
             shortcut: "V"
-            description: qsTr("Mute the camera (during a call)")
+            description: qsTr("Stop camera")
         }
     }
 
