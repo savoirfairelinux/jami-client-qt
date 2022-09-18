@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80ba007d_fae967d4",
+        "filename": "src/libclient/CMakeLists.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-09-18T19:54:22Z",
+      "side": 1,
+      "message": "jamiclient to avoid \"liblibjamiclient\"",
+      "range": {
+        "startLine": 457,
+        "startChar": 20,
+        "endLine": 457,
+        "endChar": 33
+      },
+      "revId": "68a0da6c6d9dc344eca79ce5b5828f5846737e07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
