@@ -1,1 +1,0 @@
-Dockerfile_ubuntu_20.04
