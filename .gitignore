@@ -13,21 +13,21 @@ release/
 beta/
 *.dll
 *.qm
-build/
 nuget.exe
 *.autosave
 changelog.html
 obj/
 build/
 build-local/
+install-local/
 *.vcxproj
 *.vcxproj.filters
 *qmlcache.qrc
-qml_without_webengine.qrc
 .deploy.stamp
 
 # auto-gen files
-resources.qrc
+src/app/qml_without_webengine.qrc
+src/app/resources.qrc
 src/app/constant/JamiResources.qml
 
 # macOS

@@ -74,7 +74,7 @@ Rectangle {
 
         webChannel.registeredObjects: [jsBridgeObject]
 
-        onCompletedLoadHtml: ":/src/app/commoncomponents/emojipicker/emojiPickerLoader.html"
+        onCompletedLoadHtml: ":/commoncomponents/emojipicker/emojiPickerLoader.html"
 
         onActiveFocusChanged: {
             if (visible) {
@@ -88,10 +88,10 @@ Rectangle {
                                                      ":qwebchannel.js"))
                 emojiPickerWebView.runJavaScript(
                             UtilsAdapter.qStringFromFile(
-                                ":/src/app/commoncomponents/emojipicker/emoji.js"))
+                                ":/commoncomponents/emojipicker/emoji.js"))
                 emojiPickerWebView.runJavaScript(
                             UtilsAdapter.qStringFromFile(
-                                ":/src/app/commoncomponents/emojipicker/emojiPickerLoader.js"))
+                                ":/commoncomponents/emojipicker/emojiPickerLoader.js"))
                 emojiPickerWebView.runJavaScript(
                             "init_emoji_picker(" + JamiTheme.darkTheme + ");")
             }
