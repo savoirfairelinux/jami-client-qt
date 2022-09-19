@@ -55,8 +55,11 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
 # libjami (daemon)
+if(NOT DEFINED EXTRAS_DIR)
+  set(EXTRAS_DIR ${PROJECT_SOURCE_DIR}/../../extras)
+endif()
 set(CMAKE_MODULE_PATH
-  ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake")
+  ${CMAKE_MODULE_PATH} "${EXTRAS_DIR}/build/cmake/modules")
 find_package(LibJami REQUIRED)
 if(LIBJAMI_FOUND)
   include_directories(${LIBJAMI_INCLUDE_DIRS})

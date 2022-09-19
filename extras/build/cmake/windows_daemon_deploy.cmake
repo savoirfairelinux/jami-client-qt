@@ -4,9 +4,9 @@ else()
     message("Daemon deploying ...")
     file(COPY "${DRING_PATH}/contrib/build/openssl/libcrypto-1_1-x64.dll"
               "${DRING_PATH}/contrib/build/openssl/libssl-1_1-x64.dll"
-              "${PROJECT_ROOT_DIR}/qt.conf"
+              "${PACKAGING_DIR}/wix/qt.conf"
               "${PROJECT_ROOT_DIR}/resources/images/jami.ico"
-              "${PROJECT_ROOT_DIR}/License.rtf"
+              "${PACKAGING_DIR}/wix/License.rtf"
          DESTINATION ${COPY_TO_PATH})
     # Cannot copy symbolic link using file COPY, create insread.
     file(GLOB_RECURSE RingTones "${DRING_PATH}/ringtones/*.ul"
