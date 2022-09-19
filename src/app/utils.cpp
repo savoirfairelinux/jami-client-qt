@@ -820,7 +820,7 @@ Utils::QByteArrayFromFile(const QString& filename)
     if (file.open(QIODevice::ReadOnly)) {
         return file.readAll();
     } else {
-        qDebug() << "QByteArrayFromFile: can't open file";
+        qDebug() << "QByteArrayFromFile: can't open file" << filename;
         return QByteArray();
     }
 }
