@@ -154,7 +154,7 @@ MainApplication::init()
     auto dBusErrorHandlerQObject = dynamic_cast<QObject*>(&GlobalInstances::dBusErrorHandler());
     QML_REGISTERSINGLETONTYPE_CUSTOM(NS_MODELS, DBusErrorHandler, dBusErrorHandlerQObject);
     if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
-        engine_->load(QUrl(QStringLiteral("qrc:/src/app/DaemonReconnectWindow.qml")));
+        engine_->load(QUrl(QStringLiteral("qrc:/DaemonReconnectWindow.qml")));
         exec();
 
         if ((!lrc::api::Lrc::isConnected()) || (!lrc::api::Lrc::dbusIsValid())) {
@@ -350,7 +350,7 @@ MainApplication::initQmlLayer()
     auto videoProvider = new VideoProvider(lrcInstance_->avModel(), this);
     engine_->rootContext()->setContextProperty("videoProvider", videoProvider);
 
-    engine_->load(QUrl(QStringLiteral("qrc:/src/app/MainApplicationWindow.qml")));
+    engine_->load(QUrl(QStringLiteral("qrc:/MainApplicationWindow.qml")));
     qWarning().noquote() << "Main window loaded using" << getRenderInterfaceString();
 }
 
