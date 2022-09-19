@@ -266,7 +266,7 @@ Loader {
                         id: avComp
                         Loader {
                             Component.onCompleted: {
-                                var qml = WITH_WEBENGINE ? "qrc:/src/app/commoncomponents/MediaPreviewBase.qml" : "qrc:/src/app/nowebengine/MediaPreviewBase.qml"
+                                var qml = WITH_WEBENGINE ? "qrc:/commoncomponents/MediaPreviewBase.qml" : "qrc:/nowebengine/MediaPreviewBase.qml"
                                 setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
                             }
                         }

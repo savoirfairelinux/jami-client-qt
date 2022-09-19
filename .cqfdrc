@@ -4,4 +4,4 @@ name='jami'
 
 [build]
 ; default behaviour
-command='cd client-qt && ./compile_tests.sh'
+command='cd client-qt && ./extras/scripts/run-tests.sh'
