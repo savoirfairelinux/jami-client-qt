@@ -26,9 +26,9 @@ import net.jami.Adapters 1.1
 Item {
     property string qmlFilePrefix: "file:/"
 
-    readonly property string mainViewLoadPath: "qrc:/src/app/mainview/MainView.qml"
-    readonly property string wizardViewLoadPath: "qrc:/src/app/wizardview/WizardView.qml"
-    readonly property string accountMigrationViewLoadPath: "qrc:/src/app/AccountMigrationView.qml"
+    readonly property string mainViewLoadPath: "qrc:/mainview/MainView.qml"
+    readonly property string wizardViewLoadPath: "qrc:/wizardview/WizardView.qml"
+    readonly property string accountMigrationViewLoadPath: "qrc:/AccountMigrationView.qml"
     readonly property string base64StringTitle: "data:image/png;base64,"
 
     property var accountCreationInputParaObject: ({})
