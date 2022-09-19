@@ -3,6 +3,7 @@
 # Copyright (C) 2022 Savoir-faire Linux Inc.
 #
 # Author: Kateryna Kostiuk <kateryna.kostiuk@savoirfairelinux.com>
+# Author: Amin Bandali <amin.bandali@savoirfairelinux.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,9 +24,9 @@ with open('qml_without_webengine.qrc', 'w') as outfile:
     line = infile.readline()
     while line:
       if 'EmojiPicker.qml' in line:
-        outfile.write('\t<file>src/app/nowebengine/EmojiPicker.qml</file>\n')
+        outfile.write('\t<file>nowebengine/EmojiPicker.qml</file>\n')
       elif 'MediaPreviewBase.qml' in line:
-        outfile.write('\t<file>src/app/nowebengine/MediaPreviewBase.qml</file>\n')
+        outfile.write('\t<file>nowebengine/MediaPreviewBase.qml</file>\n')
       else:
         outfile.write(line)
       line = infile.readline()
