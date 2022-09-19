@@ -38,6 +38,20 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+# Main project directories:
+# src
+set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
+set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
+# doc
+set(DOC_DIR ${PROJECT_SOURCE_DIR}/doc)
+# extras
+set(EXTRAS_DIR ${PROJECT_SOURCE_DIR}/extras)
+set(DATA_DIR ${EXTRAS_DIR}/data)
+set(PACKAGING_DIR ${EXTRAS_DIR}/packaging)
+set(SCRIPTS_DIR ${EXTRAS_DIR}/scripts)
+# tests
+set(TESTS_DIR ${PROJECT_SOURCE_DIR}/tests)
+
 # Here we let find_package(<PackageName>...) try to find Qt 6,
 # If it is found, find_package will succeed, and the CMake variable
 # QT_VERSION_MAJOR will be defined 6.
@@ -54,7 +68,6 @@ if (${QT_VERSION_MAJOR} STRLESS 6)
 endif()
 
 # libjamiclient
-set(LIBCLIENT_SRC_DIR ${PROJECT_SOURCE_DIR}/src/libclient)
 add_subdirectory(${LIBCLIENT_SRC_DIR})
 
 set(QT_MODULES
@@ -84,14 +97,13 @@ if(WITH_WEBENGINE)
     WebEngineWidgets)
 endif()
 
-set(APP_SRC_DIR ${PROJECT_SOURCE_DIR}/src/app)
 set(CMAKE_CXX_FLAGS
   ${CMAKE_CXX_FLAGS} ${Qt6Widgets_EXECUTABLE_COMPILE_FLAGS})
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
 # jami-daemon
 set(CMAKE_MODULE_PATH
-  ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+  ${CMAKE_MODULE_PATH} "${EXTRAS_DIR}/build/cmake/modules")
 find_package(LibJami REQUIRED)
 if(LIBJAMI_FOUND)
   include_directories(${LIBJAMI_INCLUDE_DIRS})
@@ -101,16 +113,16 @@ include(FindPython3)
 find_package(Python3 COMPONENTS Interpreter)
 set(PYTHON_EXEC ${Python3_EXECUTABLE})
 
-set(QML_RESOURCES ${PROJECT_SOURCE_DIR}/resources.qrc)
+set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
 if(WITH_WEBENGINE)
-  set(QML_RESOURCES_QML ${PROJECT_SOURCE_DIR}/qml.qrc)
+  set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
 else()
   execute_process(
     COMMAND
-    ${PYTHON_EXEC} ${CMAKE_CURRENT_SOURCE_DIR}/scripts/gen-qrc-without-webengine.py
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+    ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen-qrc-without-webengine.py
+    WORKING_DIRECTORY ${APP_SRC_DIR})
   set(QML_RESOURCES_QML
-    ${PROJECT_SOURCE_DIR}/qml_without_webengine.qrc)
+    ${APP_SRC_DIR}/qml_without_webengine.qrc)
 endif()
 
 if (APPLE)
@@ -131,8 +143,8 @@ file(GLOB_RECURSE
   RES_FILES CONFIGURE_DEPENDS
   ${PROJECT_SOURCE_DIR}/resources/*)
 execute_process(
-  COMMAND ${PYTHON_EXEC} ${PROJECT_SOURCE_DIR}/gen-resources.py
-  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen-resources.py
+  WORKING_DIRECTORY ${APP_SRC_DIR})
 
 # library compatibility (boost, libnotify, etc.)
 add_definitions(-DQT_NO_KEYWORDS)
@@ -397,13 +409,13 @@ else() # APPLE
     MACOSX_PACKAGE_LOCATION Resources)
   if(ENABLE_SPARKLE)
     message("Sparkle auto-update enabled")
+    set(sparkle_dir "${PACKAGING_DIR}/update/sparkle")
     find_library(SPARKLE_FRAMEWORK
       NAMES Sparkle
-      HINTS ${CMAKE_CURRENT_SOURCE_DIR}/sparkle)
+      HINTS ${sparkle_dir})
     add_definitions(-DENABLE_SPARKLE)
     message("Sparkle is here:" ${SPARKLE_FRAMEWORK})
-    set(PUBLIC_KEY_PATH
-      "${CMAKE_CURRENT_SOURCE_DIR}/sparkle/dsa_pub.pem")
+    set(PUBLIC_KEY_PATH "${sparkle_dir}/dsa_pub.pem")
     set_source_files_properties(
       ${PUBLIC_KEY_PATH}
       PROPERTIES
@@ -479,7 +491,7 @@ if(MSVC)
     "${JAMI_OUTPUT_DIRECTORY_RELEASE}")
 
   # executable icon
-  target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/ico.rc)
+  target_sources(${PROJECT_NAME} PRIVATE ${PACKAGING_DIR}/wix/ico.rc)
 
   # translations
   if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
@@ -506,7 +518,7 @@ if(MSVC)
     POST_BUILD
     WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-    -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/time_stamp_check.cmake)
+    -P ${EXTRAS_DIR}/build/cmake/time_stamp_check.cmake)
 
   # copy runtime files and run windeployqt on target and deploy Qt libs
   add_custom_command(
@@ -517,7 +529,7 @@ if(MSVC)
     -DCOPY_TO_PATH=$<TARGET_FILE_DIR:${PROJECT_NAME}>
     -DDRING_PATH=${DRING}
     -DPROJECT_ROOT_DIR=${PROJECT_SOURCE_DIR}
-    -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_daemon_deploy.cmake)
+    -P ${EXTRAS_DIR}/build/cmake/windows_daemon_deploy.cmake)
 
   add_custom_command(
     TARGET ${PROJECT_NAME}
@@ -527,7 +539,7 @@ if(MSVC)
     -DWIN_DEPLOY_QT_PATH=${CMAKE_PREFIX_PATH}/bin
     -DQML_SRC_DIR=${APP_SRC_DIR}
     -DEXE_NAME=$<TARGET_FILE:${PROJECT_NAME}>
-    -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/windows_qt_deploy.cmake)
+    -P ${EXTRAS_DIR}/build/cmake/windows_qt_deploy.cmake)
 
   # create time stamp
   add_custom_command(
@@ -535,7 +547,7 @@ if(MSVC)
     POST_BUILD
     WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     COMMAND ${CMAKE_COMMAND} -DTIME_STAMP_FILE=${TIME_STAMP_FILE}
-    -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/time_stamp_create.cmake)
+    -P ${EXTRAS_DIR}/build/cmake/time_stamp_create.cmake)
 
   # executable name
   set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Jami")
@@ -563,13 +575,13 @@ elseif (NOT APPLE)
   # Install .desktop in XDG desktop direcory so that it is recognized
   # by the system.
   install(
-    FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
+    FILES ${DATA_DIR}/jami-qt.desktop
     DESTINATION ${JAMI_DATA_PREFIX}/applications)
 
   # Install .desktop in the jami-qt data directory, so that it can be
   # copied to the autostart directory by the client.
   install(
-    FILES ${PROJECT_SOURCE_DIR}/jami-qt.desktop
+    FILES ${DATA_DIR}/jami-qt.desktop
     DESTINATION "${JAMI_DATA_PREFIX}/${PROJECT_NAME}"
     PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ) # 644
 
@@ -605,7 +617,7 @@ elseif (NOT APPLE)
     RENAME jami.xpm)
 
   install(
-    FILES jami-qt.appdata.xml
+    FILES ${DATA_DIR}/jami-qt.appdata.xml
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/metainfo)
 
   # Install 'jami' launcher that automatically chooses between clients
@@ -624,14 +636,14 @@ elseif (NOT APPLE)
   find_program(dot "dot")
   if(Doxygen_FOUND AND dot)
     configure_file(
-      ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in
-      ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
+      ${DOC_DIR}/Doxyfile.in
+      ${DOC_DIR}/Doxyfile
       @ONLY)
     add_custom_target(
       doc
       COMMAND
-      ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile
-      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
+      ${DOXYGEN_EXECUTABLE} ${DOC_DIR}/Doxyfile
+      WORKING_DIRECTORY ${DOC_DIR}
       COMMENT "Generating API documentation with Doxygen"
       VERBATIM)
 
@@ -641,7 +653,7 @@ elseif (NOT APPLE)
       TARGET doc
       PRE_BUILD
       COMMAND
-      ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_SOURCE_DIR}/doc/README.md)
+      ln -sf ${CMAKE_CURRENT_SOURCE_DIR}/README ${DOC_DIR}/README.md)
   endif()
 
   # translations
@@ -663,7 +675,7 @@ elseif (NOT APPLE)
 
   # uninstall rule
   configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+    "${EXTRAS_DIR}/build/cmake/cmake_uninstall.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
     IMMEDIATE
     @ONLY)
@@ -731,15 +743,15 @@ else()
                              -DEXE_NAME="${CMAKE_BINARY_DIR}/${PROJECT_NAME}.app"
                              -DSPARKLE_PATH=${SPARKLE_FRAMEWORK}
                              -DENABLE_SPARKLE=${ENABLE_SPARKLE}
-                             -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/macos_qt_deploy.cmake)
+                             -P ${EXTRAS_DIR}/build/cmake/macos_qt_deploy.cmake)
       endif()
 endif()
 
 qt_import_qml_plugins(${PROJECT_NAME})
 qt_finalize_executable(${PROJECT_NAME})
 
-# test
+# tests
 if(ENABLE_TESTS)
   message("Add Jami tests")
-  add_subdirectory(tests)
+  add_subdirectory(${TESTS_DIR})
 endif()
