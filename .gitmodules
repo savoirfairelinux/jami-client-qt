@@ -3,6 +3,6 @@
 	url = https://github.com/BlueDragon747/qrencode-win32.git
 	ignore = dirty
 [submodule "sparkle/Sparkle"]
-        path = sparkle/Sparkle
-        url = https://github.com/sparkle-project/Sparkle.git
-        ignore = dirty
+	path = extras/packaging/update/sparkle/Sparkle
+	url = https://github.com/sparkle-project/Sparkle.git
+	ignore = dirty
