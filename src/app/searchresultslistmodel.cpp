@@ -39,7 +39,7 @@ SearchResultsListModel::data(const QModelIndex& index, int role) const
     const auto& data = model_->getAllSearchResults();
     if (!index.isValid() || data.empty())
         return {};
-    return dataForItem(data.at(index.row()), role);
+    return dataForItem(lrcInstance_, data.at(index.row()), role);
 }
 
 void

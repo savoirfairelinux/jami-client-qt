@@ -104,10 +104,10 @@ Popup {
 
                 placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
 
-                onContactSearchBarTextChanged: text => {
-                    if (type === ContactList.CONFERENCE)
-                        sourceModel.setConferenceableFilter(text)
-                }
+//                onContactSearchBarTextChanged: text => {
+//                    if (type === ContactList.CONFERENCE)
+//                        sourceModel.setConferenceableFilter(text)
+//                }
             }
 
             JamiListView {
@@ -124,9 +124,9 @@ Popup {
                     filters: [
                         ExpressionFilter {
                             enabled: type === ContactList.CONVERSATION
-                            property var defaulModerators: CurrentAccount.defaulModerators
-                            onDefaulModeratorsChanged: Qt.callLater(invalidated)
-                            expression: !defaulModerators.includes(model.URI)
+                            property var defaultModerators: CurrentAccount.defaultModerators
+                            onDefaultModeratorsChanged: Qt.callLater(invalidated)
+                            expression: !defaultModerators.includes(model.URI)
                         },
                         AllOf {
                             enabled: type === ContactList.CONFERENCE

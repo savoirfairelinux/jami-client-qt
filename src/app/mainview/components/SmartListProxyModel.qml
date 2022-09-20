@@ -31,13 +31,19 @@ SortFilterProxyModel {
     required property int type
     required property string filterPattern
 
+    onFilterPatternChanged: {
+        if (type !== ContactList.ADDCONVMEMBER) {
+            smartListModel.setConferenceableFilter(filterPattern)
+        }
+    }
+
     function selectItem(index) {
-        sourceModel.selectItem(root.mapToSource(index))
+        smartListModel.selectItem(root.mapToSource(index))
     }
 
     sourceModel: SmartListModel {
-        id: sourceModel
-        Component.onCompleted: init(LRCInstance)
+        id: smartListModel
+        lrcInstance: LRCInstance
         listModelType: type
     }
     filters: [

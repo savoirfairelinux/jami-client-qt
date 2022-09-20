@@ -65,6 +65,7 @@ Rectangle {
                 id: proxyModel
                 filterPattern: searchBar.textContent
                 type: root.type
+                //sourceModel: SmartListModel2
                 filters: [
                     ExpressionFilter {
                         property var currentMembers: CurrentConversation.members

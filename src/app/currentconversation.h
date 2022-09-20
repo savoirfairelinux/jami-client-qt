@@ -19,6 +19,7 @@
 #pragma once
 
 #include "lrcinstance.h"
+#include "conversationlistmodel.h"
 
 #include <QObject>
 #include <QString>
@@ -74,6 +75,9 @@ private Q_SLOTS:
 
 private:
     LRCInstance* lrcInstance_;
+
+    // Configurable list model used for per conversation lists.
+    QScopedPointer<SmartListModel2> smartListSrcModel_;
 
     void connectModel();
 };

@@ -61,30 +61,29 @@ enum Role {
 Q_ENUM_NS(Role)
 } // namespace ConversationList
 
+class ConversationDataProvider
+{
+public:
+    using item_t = const conversation::Info&;
+
+    QVariant dataForItem(LRCInstance* ctx, item_t item, int role) const;
+    QHash<int, QByteArray> roleNames() const;
+
+protected:
+    using Role = ConversationList::Role;
+};
+
 // A generic wrapper view model around ConversationModel's underlying data
-class ConversationListModelBase : public QAbstractListModel
+class ConversationListModelBase : public AbstractListModelBase, public ConversationDataProvider
 {
     Q_OBJECT
 
 public:
-    using item_t = const conversation::Info&;
-
-    ConversationListModelBase(QObject* parent = nullptr);
-    explicit ConversationListModelBase(LRCInstance* lrcInstance, QObject* parent = nullptr);
-
-    Q_INVOKABLE void init(LRCInstance* lrcInstance);
+    explicit ConversationListModelBase(LRCInstance* instance, QObject* parent = nullptr);
 
     QHash<int, QByteArray> roleNames() const override;
-    QVariant dataForItem(item_t item, int role = Qt::DisplayRole) const;
-
-Q_SIGNALS:
-    void initialized();
 
 protected:
-    using Role = ConversationList::Role;
-
     // Convenience pointer to be pulled from lrcinstance
     ConversationModel* model_;
-
-    LRCInstance* lrcInstance_ {nullptr};
 };

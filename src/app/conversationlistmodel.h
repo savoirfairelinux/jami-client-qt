@@ -27,15 +27,15 @@
 #include <QSortFilterProxyModel>
 
 // A wrapper view model around ConversationModel's underlying data
-class ConversationListModel final : public ConversationListModelBase
+class ConversationListModel : public ConversationListModelBase
 {
     Q_OBJECT
 
 public:
     explicit ConversationListModel(LRCInstance* instance, QObject* parent = nullptr);
 
-    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    virtual int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 };
 
 // The top level filtered and sorted model to be consumed by QML ListViews
@@ -49,7 +49,8 @@ public:
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
     Q_INVOKABLE void setFilterRequests(bool filterRequests);
-    Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted) {
+    Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted)
+    {
         ignored_ = highlighted;
     }
 
@@ -58,4 +59,36 @@ private:
     // conversation invites.
     bool filterRequests_ {false};
     QStringList ignored_ {};
+};
+
+namespace ContactList2 {
+Q_NAMESPACE
+enum Type { CONVERSATION, CONFERENCE, TRANSFER, ADDCONVMEMBER, COUNT__ };
+Q_ENUM_NS(Type)
+} // namespace ContactList2
+
+class SmartListModel2 final : public ConversationListModel
+{
+    Q_OBJECT
+    QML_PROPERTY(ContactList2::Type, listModelType)
+
+public:
+    using Type = ContactList2::Type;
+
+    explicit SmartListModel2(LRCInstance* instance, QObject* parent = nullptr);
+
+    void updateData();
+
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+
+    Q_INVOKABLE void setConferenceableFilter(const QString& filter = {});
+    Q_INVOKABLE void toggleSection(const QString& section);
+    // Q_INVOKABLE void fillConversationsList();
+    Q_INVOKABLE void selectItem(int index);
+
+private:
+    QMap<QString, bool> sectionState_;
+    QMap<ConferenceableItem, ConferenceableValue> conferenceables_;
+    // ConversationModel::ConversationQueueProxy conversations_;
 };
