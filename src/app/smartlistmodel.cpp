@@ -43,10 +43,41 @@ SmartListModel::SmartListModel(QObject* parent)
 void
 SmartListModel::updateData()
 {
+    connect(
+        model_,
+        &ConversationModel::beginInsertRows,
+        this,
+        [this](int position, int rows) {
+            beginInsertRows(QModelIndex(), position, position + (rows - 1));
+        },
+        Qt::DirectConnection);
+    connect(model_,
+            &ConversationModel::endInsertRows,
+            this,
+            &SmartListModel::endInsertRows,
+            Qt::DirectConnection);
+
+    connect(
+        model_,
+        &ConversationModel::beginRemoveRows,
+        this,
+        [this](int position, int rows) {
+            beginRemoveRows(QModelIndex(), position, position + (rows - 1));
+        },
+        Qt::DirectConnection);
+    connect(model_,
+            &ConversationModel::endRemoveRows,
+            this,
+            &SmartListModel::endRemoveRows,
+            Qt::DirectConnection);
+
+    connect(model_, &ConversationModel::dataChanged, this, [this](int position) {
+        const auto index = createIndex(position, 0);
+        Q_EMIT SmartListModel::dataChanged(index, index);
+    });
+
     if (listModelType_ == Type::CONFERENCE) {
         setConferenceableFilter();
-    } else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER) {
-        fillConversationsList();
     } else {
         beginResetModel();
         endResetModel();
@@ -72,7 +103,7 @@ SmartListModel::rowCount(const QModelIndex& parent) const
             }
             return rowCount;
         } else {
-            return conversations_.size();
+            return model_->getConversations().size();
         }
     }
     return 0;
@@ -142,8 +173,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
     } break;
     case Type::ADDCONVMEMBER:
     case Type::CONVERSATION: {
-        auto& item = conversations_.at(index.row());
-        return dataForItem(item, role);
+        return dataForItem(model_->getConversations().at(index.row()), role);
     } break;
     default:
         break;
@@ -160,17 +190,6 @@ SmartListModel::setConferenceableFilter(const QString& filter)
                                                                  filter);
     sectionState_[tr("Calls")] = true;
     sectionState_[tr("Contacts")] = true;
-    endResetModel();
-}
-
-void
-SmartListModel::fillConversationsList()
-{
-    beginResetModel();
-    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    using ConversationList = ConversationModel::ConversationQueueProxy;
-    conversations_ = ConversationList(convModel->getAllSearchResults())
-                     + convModel->allFilteredConversations();
     endResetModel();
 }
 
@@ -279,44 +298,4 @@ SmartListModel::toggleSection(const QString& section)
         sectionState_[tr("Contacts")] ^= true;
     }
     endResetModel();
-}
-
-int
-SmartListModel::currentUidSmartListModelIndex()
-{
-    const auto convUid = lrcInstance_->get_selectedConvUid();
-    for (int i = 0; i < rowCount(); i++) {
-        if (convUid == data(index(i, 0), Role::UID))
-            return i;
-    }
-
-    return -1;
-}
-
-QModelIndex
-SmartListModel::index(int row, int column, const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    if (column != 0) {
-        return QModelIndex();
-    }
-
-    if (row >= 0 && row < rowCount()) {
-        return createIndex(row, column);
-    }
-    return QModelIndex();
-}
-
-Qt::ItemFlags
-SmartListModel::flags(const QModelIndex& index) const
-{
-    auto flags = QAbstractItemModel::flags(index) | Qt::ItemNeverHasChildren | Qt::ItemIsSelectable;
-    auto type = static_cast<lrc::api::profile::Type>(data(index, Role::ContactType).value<int>());
-    auto uid = data(index, Role::UID).value<QString>();
-    if (!index.isValid()) {
-        return QAbstractItemModel::flags(index);
-    } else if ((type == lrc::api::profile::Type::TEMPORARY && uid.isEmpty())) {
-        flags &= ~(Qt::ItemIsSelectable);
-    }
-    return flags;
 }
