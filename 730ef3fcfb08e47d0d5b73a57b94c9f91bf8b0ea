@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "564db929_6bd76f33",
+        "filename": "src/app/mainview/components/InitialCallPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-09-20T16:07:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "994a6d5f_d6fadb41",
+      "range": {
+        "startLine": 42,
+        "startChar": 8,
+        "endLine": 42,
+        "endChar": 15
+      },
+      "revId": "730ef3fcfb08e47d0d5b73a57b94c9f91bf8b0ea",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c85d321_aafc1915",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-09-14T12:54:24Z",
       "side": 1,
       "message": "ideally, I think it should fill the view, and crop the video\n\nAlso, if video codecs are disabled, (so you can only answer in audio only), the video preview should not be shown.",
+      "range": {
+        "startLine": 44,
+        "startChar": 15,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "730ef3fcfb08e47d0d5b73a57b94c9f91bf8b0ea",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23752ae8_25bde6dc",
+        "filename": "src/app/mainview/components/InitialCallPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-09-20T16:07:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c85d321_aafc1915",
       "range": {
         "startLine": 44,
         "startChar": 15,
