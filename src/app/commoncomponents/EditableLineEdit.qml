@@ -133,7 +133,7 @@ Item {
             visible: opacity
             anchors.left: row.left
             anchors.bottom: row.bottom
-            anchors.bottomMargin: 12
+            anchors.bottomMargin: row.height /5
 
             width: visible? 18 : 0
             height: 18
@@ -158,6 +158,7 @@ Item {
         MaterialLineEdit {
             id: lineEdit
             anchors.horizontalCenter: row.horizontalCenter
+            anchors.bottom: row.bottom
             width: row.width - firstIco_.width - thirdIco_.width - secIco_.width - thirdIco_.anchors.rightMargin
             readOnly: !editable || root.readOnly
             underlined: true
