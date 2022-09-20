@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bebc5aa8_3791b796",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-09-20T21:18:06Z",
+      "side": 1,
+      "message": "isOutgoing or the author should not make a difference in the logic",
+      "range": {
+        "startLine": 37,
+        "startChar": 18,
+        "endLine": 37,
+        "endChar": 28
+      },
+      "revId": "f5a80ae42708710c67dff881412c4f4e0040ac15",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
