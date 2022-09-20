@@ -34,11 +34,13 @@ Loader {
     property bool showTime: false
     property int seq: MsgSeq.single
     property string author: Author
+    property bool isOutgoing: Author === ""
 
     width: ListView.view ? ListView.view.width : 0
 
     sourceComponent: {
-        if (Status === Interaction.Status.TRANSFER_FINISHED) {
+
+        if (Status === Interaction.Status.TRANSFER_FINISHED || isOutgoing ) {
             mediaInfo = MessagesAdapter.getMediaInfo(Body)
             if (Object.keys(mediaInfo).length !== 0 && WITH_WEBENGINE)
                 return localMediaMsgComp
@@ -62,7 +64,7 @@ Loader {
                                        2 * hPadding - avatarBlockWidth
                                        - buttonsLoader.width - 24 - 6 - 24
 
-            isOutgoing: Author === ""
+            isOutgoing: root.isOutgoing
             showTime: root.showTime
             seq: root.seq
             author: Author
@@ -97,6 +99,7 @@ Loader {
                         Layout.margins: 12
 
                         sourceComponent: {
+
                             switch (Status) {
                             case Interaction.Status.TRANSFER_CANCELED:
                             case Interaction.Status.TRANSFER_ERROR:
