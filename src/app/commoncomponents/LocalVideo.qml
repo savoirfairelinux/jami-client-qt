@@ -37,7 +37,8 @@ VideoView {
     }
 
     onVisibleChanged: {
-        const id = visible ? VideoDevices.getDefaultDevice() : ""
+        rendererId = rendererId ? rendererId : VideoDevices.getDefaultDevice()
+        const id = visible ? rendererId : ""
         startWithId(id)
     }
 }
