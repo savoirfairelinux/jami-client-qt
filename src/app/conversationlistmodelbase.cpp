@@ -19,21 +19,72 @@
 
 #include "conversationlistmodelbase.h"
 
+#include "lrcinstance.h"
+
+ConversationListModelBase::ConversationListModelBase(QObject* parent)
+    : AbstractListModelBase(parent)
+{}
+
 ConversationListModelBase::ConversationListModelBase(LRCInstance* instance, QObject* parent)
     : AbstractListModelBase(parent)
 {
-    lrcInstance_ = instance;
+    setProperty("lrcInstance", QVariant::fromValue(instance));
+}
+
+void
+ConversationListModelBase::onInitialized()
+{
     model_ = lrcInstance_->getCurrentConversationModel();
+    connect(lrcInstance_,
+            &LRCInstance::currentAccountIdChanged,
+            this,
+            &ConversationListModelBase::updateModel);
+    updateModel();
+}
+
+void
+ConversationListModelBase::updateModel()
+{
+    Q_FOREACH (const auto& binding, modelBindings_) {
+        disconnect(binding);
+    }
+
+    model_ = lrcInstance_->getCurrentConversationModel();
+
+    modelBindings_ += connect(
+        model_,
+        &ConversationModel::beginInsertRows,
+        this,
+        [this](int position, int rows) {
+            beginInsertRows(QModelIndex(), position, position + (rows - 1));
+        },
+        Qt::DirectConnection);
+    modelBindings_ += connect(model_,
+                              &ConversationModel::endInsertRows,
+                              this,
+                              &ConversationListModelBase::endInsertRows,
+                              Qt::DirectConnection);
+    modelBindings_ += connect(
+        model_,
+        &ConversationModel::beginRemoveRows,
+        this,
+        [this](int position, int rows) {
+            beginRemoveRows(QModelIndex(), position, position + (rows - 1));
+        },
+        Qt::DirectConnection);
+    modelBindings_ += connect(model_,
+                              &ConversationModel::endRemoveRows,
+                              this,
+                              &ConversationListModelBase::endRemoveRows,
+                              Qt::DirectConnection);
+    modelBindings_ += connect(model_, &ConversationModel::dataChanged, this, [this](int position) {
+        const auto index = createIndex(position, 0);
+        Q_EMIT ConversationListModelBase::dataChanged(index, index);
+    });
 }
 
 QHash<int, QByteArray>
 ConversationListModelBase::roleNames() const
-{
-    return ConversationDataProvider::roleNames();
-}
-
-QHash<int, QByteArray>
-ConversationDataProvider::roleNames() const
 {
     using namespace ConversationList;
     QHash<int, QByteArray> roles;
@@ -44,21 +95,21 @@ ConversationDataProvider::roleNames() const
 }
 
 QVariant
-ConversationDataProvider::dataForItem(LRCInstance* ctx, item_t item, int role) const
+ConversationListModelBase::dataForItem(item_t item, int role) const
 {
     switch (role) {
     case Role::InCall: {
-        const auto& convInfo = ctx->getConversationFromConvUid(item.uid);
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
-            auto* callModel = ctx->getCurrentCallModel();
+            auto* callModel = lrcInstance_->getCurrentCallModel();
             return QVariant(callModel->hasCall(convInfo.callId));
         }
         return QVariant(false);
     }
     case Role::IsAudioOnly: {
-        const auto& convInfo = ctx->getConversationFromConvUid(item.uid);
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
-            auto* call = ctx->getCallInfoForConversation(convInfo);
+            auto* call = lrcInstance_->getCallInfoForConversation(convInfo);
             if (call) {
                 return QVariant(call->isAudioOnly);
             }
@@ -66,9 +117,9 @@ ConversationDataProvider::dataForItem(LRCInstance* ctx, item_t item, int role) c
         return QVariant(false);
     }
     case Role::CallStackViewShouldShow: {
-        const auto& convInfo = ctx->getConversationFromConvUid(item.uid);
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty() && !convInfo.callId.isEmpty()) {
-            auto* callModel = ctx->getCurrentCallModel();
+            auto* callModel = lrcInstance_->getCurrentCallModel();
             const auto& call = callModel->getCall(convInfo.callId);
             return QVariant(callModel->hasCall(convInfo.callId)
                             && ((!call.isOutgoing
@@ -80,9 +131,9 @@ ConversationDataProvider::dataForItem(LRCInstance* ctx, item_t item, int role) c
         return QVariant(false);
     }
     case Role::CallState: {
-        const auto& convInfo = ctx->getConversationFromConvUid(item.uid);
+        const auto& convInfo = lrcInstance_->getConversationFromConvUid(item.uid);
         if (!convInfo.uid.isEmpty()) {
-            if (auto* call = ctx->getCallInfoForConversation(convInfo)) {
+            if (auto* call = lrcInstance_->getCallInfoForConversation(convInfo)) {
                 return QVariant(static_cast<int>(call->status));
             }
         }
@@ -90,13 +141,13 @@ ConversationDataProvider::dataForItem(LRCInstance* ctx, item_t item, int role) c
     }
     case Role::Draft: {
         if (!item.uid.isEmpty())
-            return ctx->getContentDraft(item.uid, item.accountId);
+            return lrcInstance_->getContentDraft(item.uid, item.accountId);
         return {};
     }
     case Role::IsRequest:
         return QVariant(item.isRequest);
     case Role::Title:
-        return QVariant(ctx->getCurrentConversationModel()->title(item.uid));
+        return QVariant(lrcInstance_->getCurrentConversationModel()->title(item.uid));
     case Role::UnreadMessagesCount:
         return QVariant(item.unreadMessages);
     case Role::LastInteractionTimeStamp: {
@@ -133,14 +184,15 @@ ConversationDataProvider::dataForItem(LRCInstance* ctx, item_t item, int role) c
         }
         break;
     case Role::Uris:
-        return QVariant(ctx->getCurrentConversationModel()->peersForConversation(item.uid).toList());
+        return QVariant(
+            lrcInstance_->getCurrentConversationModel()->peersForConversation(item.uid).toList());
     case Role::Monikers: {
         // we shouldn't ever need these individually, they are used for filtering only
         QStringList ret;
         Q_FOREACH (const auto& peerUri,
-                   ctx->getCurrentConversationModel()->peersForConversation(item.uid))
+                   lrcInstance_->getCurrentConversationModel()->peersForConversation(item.uid))
             try {
-                auto& accInfo = ctx->getCurrentAccountInfo();
+                auto& accInfo = lrcInstance_->getCurrentAccountInfo();
                 auto contact = accInfo.contactModel->getContact(peerUri);
                 ret << contact.profileInfo.alias << contact.registeredName;
             } catch (const std::exception&) {
@@ -150,9 +202,9 @@ ConversationDataProvider::dataForItem(LRCInstance* ctx, item_t item, int role) c
     case Role::Presence: {
         // The conversation can show a green dot if at least one peer is present
         Q_FOREACH (const auto& peerUri,
-                   ctx->getCurrentConversationModel()->peersForConversation(item.uid))
+                   lrcInstance_->getCurrentConversationModel()->peersForConversation(item.uid))
             try {
-                auto& accInfo = ctx->getCurrentAccountInfo();
+                auto& accInfo = lrcInstance_->getCurrentAccountInfo();
                 auto contact = accInfo.contactModel->getContact(peerUri);
                 if (contact.isPresent)
                     return true;
@@ -165,14 +217,15 @@ ConversationDataProvider::dataForItem(LRCInstance* ctx, item_t item, int role) c
     }
 
     if (item.isCoreDialog()) {
-        auto peerUriList = ctx->getCurrentConversationModel()->peersForConversation(item.uid);
+        auto peerUriList = lrcInstance_->getCurrentConversationModel()->peersForConversation(
+            item.uid);
         if (peerUriList.isEmpty()) {
             return {};
         }
         auto peerUri = peerUriList.at(0);
         ContactModel* contactModel;
         contact::Info contact {};
-        contactModel = ctx->getCurrentAccountInfo().contactModel.get();
+        contactModel = lrcInstance_->getCurrentAccountInfo().contactModel.get();
         try {
             contact = contactModel->getContact(peerUri);
         } catch (const std::exception&) {

@@ -61,29 +61,36 @@ enum Role {
 Q_ENUM_NS(Role)
 } // namespace ConversationList
 
-class ConversationDataProvider
-{
-public:
-    using item_t = const conversation::Info&;
-
-    QVariant dataForItem(LRCInstance* ctx, item_t item, int role) const;
-    QHash<int, QByteArray> roleNames() const;
-
-protected:
-    using Role = ConversationList::Role;
-};
-
 // A generic wrapper view model around ConversationModel's underlying data
-class ConversationListModelBase : public AbstractListModelBase, public ConversationDataProvider
+class ConversationListModelBase : public AbstractListModelBase
 {
     Q_OBJECT
 
 public:
+    using item_t = const conversation::Info&;
+
+    ConversationListModelBase(QObject* parent = nullptr);
     explicit ConversationListModelBase(LRCInstance* instance, QObject* parent = nullptr);
 
+protected:
+    Q_SLOT void onInitialized() override;
+
+    // Classes that implement ConversationListModelBase may
+    // override this to update the ConversationModel pointer
+    // IF the expected lifetime spans changes to the current
+    // account(e.g. a QML exposed class). In this case, the
+    // base class method should be called immediately to update
+    // the model and reconnect to the model's signals.
+    virtual Q_SLOT void updateModel();
+
+public:
     QHash<int, QByteArray> roleNames() const override;
+    QVariant dataForItem(item_t item, int role) const;
 
 protected:
+    using Role = ConversationList::Role;
+
     // Convenience pointer to be pulled from lrcinstance
     ConversationModel* model_;
+    QVector<QMetaObject::Connection> modelBindings_;
 };

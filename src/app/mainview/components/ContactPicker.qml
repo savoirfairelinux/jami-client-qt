@@ -102,12 +102,9 @@ Popup {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 35
 
-                placeHolderText: type === ContactList.TRANSFER ? JamiStrings.transferTo : JamiStrings.addParticipant
-
-//                onContactSearchBarTextChanged: text => {
-//                    if (type === ContactList.CONFERENCE)
-//                        sourceModel.setConferenceableFilter(text)
-//                }
+                placeHolderText: type === ContactList.TRANSFER
+                                 ? JamiStrings.transferTo
+                                 : JamiStrings.addParticipant
             }
 
             JamiListView {
@@ -120,6 +117,7 @@ Popup {
                 model: SmartListProxyModel {
                     id: proxyModel
                     filterPattern: searchBar.textContent
+                    Component.onCompleted: print(type)
                     type: root.type
                     filters: [
                         ExpressionFilter {
