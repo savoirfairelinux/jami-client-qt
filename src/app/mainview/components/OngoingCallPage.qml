@@ -199,14 +199,6 @@ Rectangle {
                 visible: false
                 rendererId: ""
 
-                Connections {
-                    target: AvAdapter
-
-                    function onCurrentRenderingDeviceIdChanged() {
-                        previewRenderer.rendererId = AvAdapter.currentRenderingDeviceId
-                    }
-                }
-
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                 x: callPageMainRect.width - previewRenderer.width - previewMargin
@@ -312,6 +304,7 @@ Rectangle {
                                              isGrid)
                         callOverlay.isVideoMuted = !AvAdapter.isCapturing()
                         callOverlay.sharingActive = AvAdapter.isSharing()
+                        previewRenderer.rendererId = previewId
                         previewRenderer.visible = (AvAdapter.isSharing() || AvAdapter.isCapturing()) && participantsLayer.count == 0
                     }
 
