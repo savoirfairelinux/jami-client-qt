@@ -96,8 +96,7 @@ AvAdapter::shareEntireScreen(int screenNumber)
                                      rect.width() * screen->devicePixelRatio(),
                                      rect.height() * screen->devicePixelRatio());
     auto callId = lrcInstance_->getCurrentCallId();
-    if (hasCamera())
-        muteCamera_ = !isCapturing();
+    muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
         ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
@@ -113,8 +112,7 @@ AvAdapter::shareAllScreens()
                                                                     arrangementRect.width(),
                                                                     arrangementRect.height());
     auto callId = lrcInstance_->getCurrentCallId();
-    if (hasCamera())
-        muteCamera_ = !isCapturing();
+    muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
         ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
@@ -178,8 +176,7 @@ AvAdapter::shareFile(const QString& filePath)
 {
     auto callId = lrcInstance_->getCurrentCallId();
     if (!callId.isEmpty()) {
-        if (hasCamera())
-            muteCamera_ = !isCapturing();
+        muteCamera_ = !isCapturing();
         lrcInstance_->getCurrentCallModel()
             ->addMedia(callId, filePath, lrc::api::CallModel::MediaRequestType::FILESHARING);
     }
@@ -188,8 +185,7 @@ AvAdapter::shareFile(const QString& filePath)
 void
 AvAdapter::shareScreenArea(unsigned x, unsigned y, unsigned width, unsigned height)
 {
-    if (hasCamera())
-        muteCamera_ = !isCapturing();
+    muteCamera_ = !isCapturing();
 #ifdef Q_OS_LINUX
     // xrectsel will freeze all displays too fast so that the call
     // context menu will not be closed even closed signal is emitted
@@ -224,8 +220,7 @@ AvAdapter::shareWindow(const QString& windowId)
     auto resource = lrcInstance_->getCurrentCallModel()->getDisplay(windowId);
     auto callId = lrcInstance_->getCurrentCallId();
 
-    if (hasCamera())
-        muteCamera_ = !isCapturing();
+    muteCamera_ = !isCapturing();
     lrcInstance_->getCurrentCallModel()
         ->addMedia(callId, resource, lrc::api::CallModel::MediaRequestType::SCREENSHARING);
 }
