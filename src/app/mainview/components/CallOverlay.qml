@@ -148,6 +148,7 @@ Item {
     }
 
     function openContactPicker(type) {
+        print("openContactPicker", type)
         ContactPickerCreation.openContactPicker(type, root)
     }
 

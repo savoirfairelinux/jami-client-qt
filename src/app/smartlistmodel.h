@@ -31,7 +31,7 @@ Q_ENUM_NS(Type)
 using namespace lrc::api;
 class LRCInstance;
 
-class SmartListModel : public AbstractListModelBase, public ConversationDataProvider
+class SmartListModel : public ConversationListModelBase
 {
     Q_OBJECT
     QML_PROPERTY(ContactList::Type, listModelType)
@@ -41,22 +41,18 @@ public:
 
     explicit SmartListModel(QObject* parent = nullptr);
 
-    void updateData();
+protected:
+    Q_SLOT void updateModel() override;
 
+public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
-    QHash<int, QByteArray> roleNames() const override;
-    QModelIndex index(int row,
-                      int column = 0,
-                      const QModelIndex& parent = QModelIndex()) const override;
 
     Q_INVOKABLE void setConferenceableFilter(const QString& filter = {});
     Q_INVOKABLE void toggleSection(const QString& section);
-    Q_INVOKABLE void fillConversationsList();
     Q_INVOKABLE void selectItem(int index);
 
 private:
     QMap<QString, bool> sectionState_;
     QMap<ConferenceableItem, ConferenceableValue> conferenceables_;
-    // ConversationModel::ConversationQueueProxy conversations_;
 };

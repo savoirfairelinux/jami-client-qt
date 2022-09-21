@@ -25,17 +25,25 @@
 class AbstractListModelBase : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(LRCInstance* lrcInstance MEMBER lrcInstance_ NOTIFY lrcInstanceChanged)
+    Q_PROPERTY(LRCInstance* lrcInstance MEMBER lrcInstance_ NOTIFY initialized)
+    Q_SIGNAL void initialized();
 
 public:
     explicit AbstractListModelBase(QObject* parent = nullptr)
-        : QAbstractListModel(parent) {};
+        : QAbstractListModel(parent)
+    {
+        connect(this,
+                &AbstractListModelBase::initialized,
+                this,
+                &AbstractListModelBase::onInitialized);
+    };
     ~AbstractListModelBase() = default;
-
-Q_SIGNALS:
-    void lrcInstanceChanged();
 
 protected:
     // LRCInstance pointer (set in qml)
     LRCInstance* lrcInstance_ {nullptr};
+
+    // Overide this instead of placing code in the derived
+    // class constructor.
+    virtual Q_SLOT void onInitialized() {};
 };
