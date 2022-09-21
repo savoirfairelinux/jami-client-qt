@@ -29,63 +29,16 @@
 #include <QDateTime>
 
 SmartListModel::SmartListModel(QObject* parent)
-    : AbstractListModelBase(parent)
-    , ConversationDataProvider()
-{
-    connect(this, &AbstractListModelBase::lrcInstanceChanged, this, [this] {
-        connect(lrcInstance_,
-                &LRCInstance::currentAccountIdChanged,
-                this,
-                &SmartListModel::updateData);
-        updateData();
-    });
-}
+    : ConversationListModelBase(parent)
+{}
 
 void
-SmartListModel::updateData()
+SmartListModel::updateModel()
 {
-    const auto& model_ = lrcInstance_->getCurrentConversationModel();
-
-    connect(
-        model_,
-        &ConversationModel::beginInsertRows,
-        this,
-        [this](int position, int rows) {
-            beginInsertRows(QModelIndex(), position, position + (rows - 1));
-        },
-        Qt::DirectConnection);
-    connect(model_,
-            &ConversationModel::endInsertRows,
-            this,
-            &SmartListModel::endInsertRows,
-            Qt::DirectConnection);
-
-    connect(
-        model_,
-        &ConversationModel::beginRemoveRows,
-        this,
-        [this](int position, int rows) {
-            beginRemoveRows(QModelIndex(), position, position + (rows - 1));
-        },
-        Qt::DirectConnection);
-    connect(model_,
-            &ConversationModel::endRemoveRows,
-            this,
-            &SmartListModel::endRemoveRows,
-            Qt::DirectConnection);
-
-    connect(model_, &ConversationModel::dataChanged, this, [this](int position) {
-        const auto index = createIndex(position, 0);
-        Q_EMIT SmartListModel::dataChanged(index, index);
-    });
-
     if (listModelType_ == Type::CONFERENCE) {
         setConferenceableFilter();
-    }
-    //    else if (listModelType_ == Type::CONVERSATION || listModelType_ == Type::ADDCONVMEMBER) {
-    //        fillConversationsList();
-    //    }
-    else {
+    } else {
+        ConversationListModelBase::updateModel();
         beginResetModel();
         endResetModel();
     }
@@ -132,7 +85,7 @@ SmartListModel::data(const QModelIndex& index, int role) const
 
             auto& item = convModel->getFilteredConversations(currentAccountInfo.profileInfo.type)
                              .at(index.row());
-            return dataForItem(lrcInstance_, item, role);
+            return dataForItem(item, role);
         } catch (const std::exception& e) {
             qWarning() << e.what();
         }
@@ -177,24 +130,18 @@ SmartListModel::data(const QModelIndex& index, int role) const
         }
 
         auto& item = lrcInstance_->getConversationFromConvUid(itemConvUid, itemAccountId);
-        return dataForItem(lrcInstance_, item, role);
+        return dataForItem(item, role);
     } break;
     case Type::ADDCONVMEMBER:
     case Type::CONVERSATION: {
         const auto& data = lrcInstance_->getCurrentConversationModel()->getConversations();
         auto& item = data.at(index.row());
-        return dataForItem(lrcInstance_, item, role);
+        return dataForItem(item, role);
     } break;
     default:
         break;
     }
     return {};
-}
-
-QHash<int, QByteArray>
-SmartListModel::roleNames() const
-{
-    return ConversationDataProvider::roleNames();
 }
 
 void
@@ -207,17 +154,6 @@ SmartListModel::setConferenceableFilter(const QString& filter)
     sectionState_[tr("Calls")] = true;
     sectionState_[tr("Contacts")] = true;
     endResetModel();
-}
-
-void
-SmartListModel::fillConversationsList()
-{
-    //    beginResetModel();
-    //    auto* convModel = lrcInstance_->getCurrentConversationModel();
-    //    using ConversationList = ConversationModel::ConversationQueueProxy;
-    //    conversations_ = ConversationList(convModel->getAllSearchResults())
-    //                     + convModel->allFilteredConversations();
-    //    endResetModel();
 }
 
 void
@@ -325,15 +261,4 @@ SmartListModel::toggleSection(const QString& section)
         sectionState_[tr("Contacts")] ^= true;
     }
     endResetModel();
-}
-
-QModelIndex
-SmartListModel::index(int row, int column, const QModelIndex& parent) const
-{
-    Q_UNUSED(parent);
-    Q_UNUSED(column);
-    if (row >= 0 && row < rowCount()) {
-        return createIndex(row, 0);
-    }
-    return QModelIndex();
 }

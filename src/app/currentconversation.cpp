@@ -18,15 +18,10 @@
 
 #include "currentconversation.h"
 
-#include "qmlregister.h"
-
 CurrentConversation::CurrentConversation(LRCInstance* lrcInstance, QObject* parent)
     : QObject(parent)
     , lrcInstance_(lrcInstance)
-    , smartListSrcModel_(new SmartListModel2(lrcInstance_))
 {
-    QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, smartListSrcModel_.get(), "SmartListModel2");
-
     // whenever the account changes, reconnect the new conversation model
     // for updates to the conversation and call state/id
     connect(lrcInstance_,
@@ -139,17 +134,17 @@ CurrentConversation::connectModel()
     if (!convModel)
         return;
 
-    connect(lrcInstance_->getCurrentConversationModel(),
+    connect(convModel,
             &ConversationModel::conversationUpdated,
             this,
             &CurrentConversation::onConversationUpdated,
             Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentConversationModel(),
+    connect(convModel,
             &ConversationModel::profileUpdated,
             this,
             &CurrentConversation::onProfileUpdated,
             Qt::UniqueConnection);
-    connect(lrcInstance_->getCurrentConversationModel(),
+    connect(convModel,
             &ConversationModel::onConversationErrorsUpdated,
             this,
             &CurrentConversation::updateErrors,
