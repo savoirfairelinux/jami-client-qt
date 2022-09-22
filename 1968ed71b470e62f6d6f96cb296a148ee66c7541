@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80edb3f7_7a06a9b2",
+        "filename": "src/app/mainview/components/InitialCallPage.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-22T16:05:48Z",
+      "side": 1,
+      "message": "CurrentAccount.videoEnabled_Video \u0026\u0026 VideoDevices.listSize !\u003d\u003d 0",
+      "range": {
+        "startLine": 45,
+        "startChar": 38,
+        "endLine": 45,
+        "endChar": 61
+      },
+      "revId": "1968ed71b470e62f6d6f96cb296a148ee66c7541",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
