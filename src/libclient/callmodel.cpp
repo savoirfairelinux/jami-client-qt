@@ -459,7 +459,12 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
         return;
 
     QString resource {};
-    QString srctype {};
+    auto id = 0;
+    for (const auto& media : callInfo->mediaList) {
+        if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO)
+            id++;
+    }
+    QString label = QString("video_%1").arg(id);
     QString sep = DRing::Media::VideoProtocolPrefix::SEPARATOR;
     switch (type) {
     case MediaRequestType::FILESHARING: {
@@ -469,14 +474,11 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
                                            .arg(sep)
                                            .arg(QUrl(source).toLocalFile())
                                      : DRing::Media::VideoProtocolPrefix::NONE;
-        if (not resource.isEmpty())
-            srctype = MediaAttributeValue::SRC_TYPE_FILE;
         break;
     }
     case MediaRequestType::SCREENSHARING: {
         // Screen/window sharing
         resource = source;
-        srctype = MediaAttributeValue::SRC_TYPE_DISPLAY;
         break;
     }
     case MediaRequestType::CAMERA: {
@@ -486,7 +488,6 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
                                               .arg(sep)
                                               .arg(source)
                                         : DRing::Media::VideoProtocolPrefix::NONE;
-        srctype = MediaAttributeValue::SRC_TYPE_CAPTURE_DEVICE;
         break;
     }
     default:
@@ -498,7 +499,7 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
                                       {MediaAttributeKey::ENABLED, TRUE_STR},
                                       {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
                                       {MediaAttributeKey::SOURCE, resource},
-                                      {MediaAttributeKey::LABEL, "video_1"}};
+                                      {MediaAttributeKey::LABEL, label}};
     // if we're in a 1:1, we only show one preview, so, limit to 1 video (the new one)
     auto participantsModel = pimpl_->participantsModel.find(callId);
     auto isConf = participantsModel != pimpl_->participantsModel.end()
@@ -520,9 +521,6 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
     }
     if (!replaced)
         proposedList.push_back(mediaAttribute);
-
-    if (isConf && !resource.isEmpty())
-        pimpl_->lrc.getAVModel().startPreview(resource);
 
     CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
 }
@@ -581,8 +579,8 @@ CallModel::removeMedia(const QString& callId,
             MapStringString {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
                              {MediaAttributeKey::ENABLED, TRUE_STR},
                              {MediaAttributeKey::MUTED, TRUE_STR},
-                             {MediaAttributeKey::SOURCE, label},
-                             {MediaAttributeKey::LABEL, "video_0"}});
+                             {MediaAttributeKey::SOURCE, pimpl_->lrc.getAVModel().getCurrentVideoCaptureDevice()}, // not needed to set the source. Daemon should be able to check it
+                             {MediaAttributeKey::LABEL, label.isEmpty() ? "video_0" : label}});
     }
 
     if (isVideo && !label.isEmpty())
