@@ -523,6 +523,9 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
         proposedList.push_back(mediaAttribute);
 
     CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
+    callInfo->mediaList = proposedList;
+    if (callInfo->status == call::Status::IN_PROGRESS)
+            Q_EMIT callInfosChanged(owner.id, callId);
 }
 
 void
@@ -587,6 +590,9 @@ CallModel::removeMedia(const QString& callId,
         pimpl_->lrc.getAVModel().stopPreview(label);
 
     CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
+    callInfo->mediaList = proposedList;
+    if (callInfo->status == call::Status::IN_PROGRESS)
+            Q_EMIT callInfosChanged(owner.id, callId);
 }
 
 void
