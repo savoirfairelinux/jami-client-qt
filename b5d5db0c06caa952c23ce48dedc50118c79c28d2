@@ -22,6 +22,30 @@
       },
       "revId": "b5d5db0c06caa952c23ce48dedc50118c79c28d2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f5b7b13_7f25a34a",
+        "filename": "src/app/settingsview/components/LinkedDevices.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-23T14:22:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdee5eec_7157dc31",
+      "range": {
+        "startLine": 91,
+        "startChar": 12,
+        "endLine": 91,
+        "endChar": 83
+      },
+      "revId": "b5d5db0c06caa952c23ce48dedc50118c79c28d2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
