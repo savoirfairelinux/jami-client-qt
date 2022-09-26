@@ -196,13 +196,33 @@ Rectangle {
             LocalVideo {
                 id: previewRenderer
 
-                visible: false
-                rendererId: ""
-
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                 x: callPageMainRect.width - previewRenderer.width - previewMargin
                 y: previewMarginYTop
+
+                Timer {
+                    id: controlPreview
+                    property bool startVideo
+                    interval: 1000
+                    running: false
+                    repeat: false
+                    onTriggered: {
+                        var rendId = visible && start ? root.callPreviewId : ""
+                        previewRenderer.startWithId(rendId)
+                    }
+                }
+
+                onVisibleChanged: {
+                    if (visible) {
+                        controlPreview.startVideo = true
+                        controlPreview.interval = 1000
+                    } else {
+                        controlPreview.startVideo = false
+                        controlPreview.interval = 0
+                    }
+                    controlPreview.start()
+                }
 
                 states: [
                     State {
@@ -286,13 +306,6 @@ Rectangle {
 
                     function onUpdateOverlay(isPaused, isAudioOnly, isAudioMuted,
                                              isSIP, isGrid, previewId) {
-                        if (previewId != "") {
-                            if (root.callPreviewId != previewId)
-                                VideoDevices.stopDevice(root.callPreviewId, true)
-                            VideoDevices.startDevice(previewId)
-                        } else {
-                            VideoDevices.stopDevice(root.callPreviewId, true)
-                        }
                         root.callPreviewId = previewId
                         callOverlay.showOnHoldImage(isPaused)
                         root.isAudioOnly = isAudioOnly
