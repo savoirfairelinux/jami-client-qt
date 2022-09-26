@@ -19,12 +19,14 @@
 // Global select screen window component, object variable for creation.
 var keyboardShortcutTableWindowComponent
 var keyboardShortcutTableWindowObject
+var mainWindow
 
-function createKeyboardShortcutTableWindowObject() {
+function createKeyboardShortcutTableWindowObject(appWindow) {
     if (keyboardShortcutTableWindowObject)
         return
     keyboardShortcutTableWindowComponent = Qt.createComponent(
                 "../components/KeyboardShortcutTable.qml")
+    mainWindow = appWindow
     if (keyboardShortcutTableWindowComponent.status === Component.Ready)
         finishCreation()
     else if (keyboardShortcutTableWindowComponent.status === Component.Error)
@@ -45,12 +47,13 @@ function finishCreation() {
 
 function showKeyboardShortcutTableWindow() {
     keyboardShortcutTableWindowObject.show()
+    var centerX = mainWindow.x + mainWindow.width / 2
+    var centerY = mainWindow.y + mainWindow.height / 2
 
-    var screen = keyboardShortcutTableWindowObject.screen
-    keyboardShortcutTableWindowObject.x = screen.virtualX +
-            (screen.width - keyboardShortcutTableWindowObject.width) / 2
-    keyboardShortcutTableWindowObject.y = screen.virtualY +
-            (screen.height - keyboardShortcutTableWindowObject.height) / 2
+    keyboardShortcutTableWindowObject.width = 0.75 * appWindow.width
+    keyboardShortcutTableWindowObject.height = 0.75 * appWindow.height
+    keyboardShortcutTableWindowObject.x = centerX - keyboardShortcutTableWindowObject.width / 2
+    keyboardShortcutTableWindowObject.y = centerY - keyboardShortcutTableWindowObject.height / 2
 }
 
 // Destroy and reset selectScreenWindowObject when window is closed.

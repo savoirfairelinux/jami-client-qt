@@ -606,7 +606,7 @@ Rectangle {
         sequence: "F10"
         context: Qt.ApplicationShortcut
         onActivated: {
-            KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject()
+            KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject(appWindow)
             KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow()
         }
     }
