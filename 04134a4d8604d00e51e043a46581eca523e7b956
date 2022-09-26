@@ -33,6 +33,24 @@
       "message": "in-call icons got messed up",
       "revId": "04134a4d8604d00e51e043a46581eca523e7b956",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3057c3fb_79b3352f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-09-26T16:11:02Z",
+      "side": 1,
+      "message": "This issue is not related to my patch. Should I fix it in this patch or in an other one ?",
+      "parentUuid": "a3235dfc_4f718270",
+      "revId": "04134a4d8604d00e51e043a46581eca523e7b956",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
