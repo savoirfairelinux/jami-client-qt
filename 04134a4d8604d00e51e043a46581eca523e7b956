@@ -69,6 +69,42 @@
       "parentUuid": "33b4c925_c05f9857",
       "revId": "04134a4d8604d00e51e043a46581eca523e7b956",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ffb2592_06daf38b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-26T16:24:42Z",
+      "side": 1,
+      "message": "make a call, all icons are missing from the buttons in the overlay",
+      "parentUuid": "8a04372e_af556c74",
+      "revId": "04134a4d8604d00e51e043a46581eca523e7b956",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c79258ee_a49db3d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-26T16:24:42Z",
+      "side": 1,
+      "message": "it is not related to the objective but the issue was introduced here. i don\u0027t have it without this patch",
+      "parentUuid": "3057c3fb_79b3352f",
+      "revId": "04134a4d8604d00e51e043a46581eca523e7b956",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
