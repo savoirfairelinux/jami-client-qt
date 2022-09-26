@@ -241,7 +241,7 @@ Rectangle {
                     toolTipText: JamiStrings.keyboardShortcuts
 
                     onClicked:  {
-                        KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject()
+                        KeyboardShortcutTableCreation.createKeyboardShortcutTableWindowObject(appWindow)
                         KeyboardShortcutTableCreation.showKeyboardShortcutTableWindow()
                     }
                 }
