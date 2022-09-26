@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b6a36d1_b5d98e47",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-09-26T19:19:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e13bf91_1a9d1f59",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 5
+      },
+      "revId": "25240b2b33d71762b479ce511afd83f920f10bd5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1be3161_f1a01f4a",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Ok, I\u0027m going to mathch them with the adobe graphic model",
       "parentUuid": "c1be3161_f1a01f4a",
+      "range": {
+        "startLine": 185,
+        "startChar": 45,
+        "endLine": 186,
+        "endChar": 43
+      },
+      "revId": "25240b2b33d71762b479ce511afd83f920f10bd5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b49850e0_dc19121a",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-09-26T19:19:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ff7b05e_adefa69c",
       "range": {
         "startLine": 185,
         "startChar": 45,
