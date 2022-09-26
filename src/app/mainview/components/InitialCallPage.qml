@@ -40,10 +40,40 @@ Rectangle {
     color: "black"
 
     LocalVideo {
+        id: previewRenderer
         anchors.centerIn: parent
         anchors.fill: parent
-        visible: !root.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0
+        visible: !root.isAudioOnly &&
+                 CurrentAccount.videoEnabled_Video &&
+                 VideoDevices.listSize !== 0 &&
+                 ((callStatus >= Call.Status.INCOMING_RINGING
+                   && callStatus <= Call.Status.SEARCHING)
+                  || callStatus === Call.Status.CONNECTED)
         opacity: 0.5
+
+        // HACK: this is a workaround to the preview video starting
+        // and stopping a few times. The root cause should be investigated ASAP.
+        Timer {
+            id: controlPreview
+            property bool startVideo
+            interval: 1000;
+            running: false;
+            repeat: false
+            onTriggered: {
+                var rendId = visible && start ? VideoDevices.getDefaultDevice() : ""
+                previewRenderer.startWithId(rendId)
+            }
+        }
+        onVisibleChanged: {
+            if (visible) {
+                controlPreview.startVideo = true
+                controlPreview.interval = 1000
+            } else {
+                controlPreview.startVideo = false
+                controlPreview.interval = 0
+            }
+            controlPreview.start()
+        }
     }
 
     ListModel {
