@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c416a055_04c30c7f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-26T16:27:14Z",
+      "side": 1,
+      "message": "commit title should follow project pattern, use something like:\n`fix: open shortcuts window on correct screen` or other text you consider more suited.\nLGTM otherwise",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 119
+      },
+      "revId": "891777c1fcf0c79d586cba70c6a9ac411b6dd99e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
