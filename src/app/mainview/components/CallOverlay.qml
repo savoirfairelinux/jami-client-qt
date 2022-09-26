@@ -224,7 +224,7 @@ Item {
         onPluginItemClicked: openPluginsMenu()
         onRecordCallClicked: root.recordClicked()
         onOpenSelectionWindow: {
-            SelectScreenWindowCreation.createSelectScreenWindowObject()
+            SelectScreenWindowCreation.createSelectScreenWindowObject(appWindow)
             SelectScreenWindowCreation.showSelectScreenWindow(callPreviewId, windowSelection)
         }
     }
