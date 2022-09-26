@@ -40,8 +40,7 @@ ColumnLayout {
         if (!visible) {
             return
         }
-        const deviceId = VideoDevices.getDefaultDevice()
-        previewWidget.startWithId(deviceId, force)
+        previewWidget.startWithId(VideoDevices.getDefaultDevice(), force)
     }
 
     onVisibleChanged: {
@@ -50,7 +49,7 @@ ColumnLayout {
             if (previewWidget.visible)
                 startPreviewing(true)
         } else {
-            VideoDevices.stopDevice(previewWidget.deviceId)
+            previewWidget.startWithId("")
         }
     }
 
@@ -138,7 +137,7 @@ ColumnLayout {
 
         onActivated: {
             // TODO: start and stop preview logic in here should be in LRC
-            VideoDevices.stopDevice(previewWidget.deviceId)
+            previewWidget.startWithId("")
             VideoDevices.setDefaultDevice(
                         filteredDevicesModel.mapToSource(modelIndex))
             startPreviewing()
