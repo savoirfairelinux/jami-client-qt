@@ -36,11 +36,12 @@ VideoView {
         }
     }
 
-    onVisibleChanged: {
-        rendererId = rendererId ? rendererId : VideoDevices.getDefaultDevice()
-        const id = visible ? rendererId : ""
-        startWithId(id)
-    }
+    // onVisibleChanged: {
+    //     console.log("signal original")
+    //     rendererId = rendererId ? rendererId : VideoDevices.getDefaultDevice()
+    //     const id = visible ? rendererId : ""
+    //     startWithId(id)
+    // }
 }
 
 

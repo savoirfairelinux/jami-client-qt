@@ -44,6 +44,13 @@ Rectangle {
         anchors.fill: parent
         visible: !root.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0
         opacity: 0.5
+
+        onVisibleChanged: {
+            if (visible)
+                startWithId(VideoDevices.getDefaultDevice())
+            else
+                startWithId("")
+        }
     }
 
     ListModel {

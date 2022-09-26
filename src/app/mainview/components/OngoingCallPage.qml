@@ -197,12 +197,16 @@ Rectangle {
                 id: previewRenderer
 
                 visible: false
-                rendererId: ""
 
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                 x: callPageMainRect.width - previewRenderer.width - previewMargin
                 y: previewMarginYTop
+
+                onVisibleChanged: {
+                    var rendId = visible ? root.callPreviewId : ""
+                    previewRenderer.startWithId(rendId)
+                }
 
                 states: [
                     State {
