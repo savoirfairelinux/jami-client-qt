@@ -196,13 +196,36 @@ Rectangle {
             LocalVideo {
                 id: previewRenderer
 
-                visible: false
-                rendererId: ""
-
                 height: width * invAspectRatio
                 width: Math.max(callPageMainRect.width / 5, JamiTheme.minimumPreviewWidth)
                 x: callPageMainRect.width - previewRenderer.width - previewMargin
                 y: previewMarginYTop
+
+                Timer {
+                    id: startPreview
+                    interval: 1000; running: false; repeat: false
+                    onTriggered: {
+                        var rendId = visible ? root.callPreviewId : ""
+                        previewRenderer.startWithId(rendId)
+                    }
+                }
+
+                Timer {
+                    id: stopPreview
+                    interval: 0; running: false; repeat: false
+                    onTriggered: {
+                        previewRenderer.startWithId("")
+                    }
+                }
+
+                onVisibleChanged: {
+                    if (visible) {
+                        startPreview.start()
+                    } else {
+                        startPreview.stop()
+                        stopPreview.start()
+                    }
+                }
 
                 states: [
                     State {
@@ -304,7 +327,6 @@ Rectangle {
                                              isGrid)
                         callOverlay.isVideoMuted = !AvAdapter.isCapturing()
                         callOverlay.sharingActive = AvAdapter.isSharing()
-                        previewRenderer.rendererId = previewId
                         previewRenderer.visible = (AvAdapter.isSharing() || AvAdapter.isCapturing()) && participantsLayer.count == 0
                     }
 

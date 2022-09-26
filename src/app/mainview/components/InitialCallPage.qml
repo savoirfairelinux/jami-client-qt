@@ -42,8 +42,34 @@ Rectangle {
     LocalVideo {
         anchors.centerIn: parent
         anchors.fill: parent
-        visible: !root.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0
+        visible: !root.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0 && (callStatus == 1 || callStatus == 2)
         opacity: 0.5
+
+        Timer {
+            id: startPreview
+            interval: 1000; running: false; repeat: false
+            onTriggered: {
+                var rendId = visible ? VideoDevices.getDefaultDevice() : ""
+                previewRenderer.startWithId(rendId)
+            }
+        }
+
+        Timer {
+            id: stopPreview
+            interval: 0; running: false; repeat: false
+            onTriggered: {
+                previewRenderer.startWithId("")
+            }
+        }
+
+        onVisibleChanged: {
+            if (visible) {
+                startPreview.start()
+            } else {
+                startPreview.stop()
+                stopPreview.start()
+            }
+        }
     }
 
     ListModel {
