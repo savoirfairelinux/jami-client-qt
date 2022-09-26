@@ -30,7 +30,6 @@ VideoView {
     function startWithId(id, force = false) {
         if (id.length === 0) {
             VideoDevices.stopDevice(rendererId)
-            rendererId = id
         } else {
             rendererId = VideoDevices.startDevice(id, force)
         }
