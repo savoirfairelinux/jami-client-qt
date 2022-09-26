@@ -66,7 +66,7 @@ Popup {
 
     function closeRecorder() {
         if (isVideo) {
-            VideoDevices.stopDevice(previewWidget.deviceId)
+            localVideo.startWithId("")
         }
         if (!root.isPhoto)
             stopRecording()

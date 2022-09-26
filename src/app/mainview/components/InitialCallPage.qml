@@ -44,8 +44,34 @@ Rectangle {
         objectName: "InitialCallPage:previewRenderer"
         anchors.centerIn: parent
         anchors.fill: parent
-        visible: !root.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0
+        visible: !root.isAudioOnly &&
+                 CurrentAccount.videoEnabled_Video &&
+                 VideoDevices.listSize !== 0 &&
+                 ((callStatus >= 1 && callStatus <= 4) || callStatus == 12)
         opacity: 0.5
+
+        Timer {
+            id: controlPreview
+            property bool startVideo
+            interval: 1000;
+            running: false;
+            repeat: false
+            onTriggered: {
+                var rendId = visible && start ? VideoDevices.getDefaultDevice() : ""
+                previewRenderer.startWithId(rendId)
+            }
+        }
+
+        onVisibleChanged: {
+            if (visible) {
+                controlPreview.startVideo = true
+                controlPreview.interval = 1000
+            } else {
+                controlPreview.startVideo = false
+                controlPreview.interval = 0
+            }
+            controlPreview.start()
+        }
     }
 
     ListModel {
