@@ -64,9 +64,17 @@ VideoProvider::registerSink(const QString& id, QVideoSink* obj)
     if (it == framesObjects_.end()) {
         auto fo = std::make_unique<FrameObject>();
         fo->subscribers.insert(obj);
-        framesObjects_.emplace(id, std::move(fo));
-        return;
+        qDebug() << "Creating new FrameObject for id:" << id;
+        auto emplaced = framesObjects_.emplace(id, std::move(fo));
+        if (!emplaced.second) {
+            qWarning() << "Couldn't create FrameObject for id:" << id;
+            return;
+        }
+        it = emplaced.first;
     }
+    qDebug() << QString("Adding sink: 0x%1 to subscribers for id: %2")
+                    .arg((quintptr) obj, QT_POINTER_SIZE * 2, 16, QChar('0'))
+                    .arg(id);
     it->second->subscribers.insert(obj);
 }
 
@@ -121,15 +129,11 @@ VideoProvider::captureVideoFrame(const QString& id)
 }
 
 void
-VideoProvider::onRendererStarted(const QString& id)
+VideoProvider::onRendererStarted(const QString& id, const QSize& size)
 {
-    auto size = avModel_.getRendererSize(id);
-    // This slot is queued, the renderer may have been destroyed.
-    if (size.width() == 0 || size.height() == 0 || activeRenderers_[id] == size) {
-        return;
-    }
-    auto pixelFormat = avModel_.useDirectRenderer() ? QVideoFrameFormat::Format_RGBA8888
-                                                    : QVideoFrameFormat::Format_BGRA8888;
+    static const auto pixelFormat = avModel_.useDirectRenderer()
+                                        ? QVideoFrameFormat::Format_RGBA8888
+                                        : QVideoFrameFormat::Format_BGRA8888;
     auto frameFormat = QVideoFrameFormat(size, pixelFormat);
     {
         QMutexLocker lk(&framesObjsMutex_);
@@ -137,11 +141,11 @@ VideoProvider::onRendererStarted(const QString& id)
         if (it == framesObjects_.end()) {
             auto fo = std::make_unique<FrameObject>();
             fo->videoFrame = std::make_unique<QVideoFrame>(frameFormat);
-            qDebug() << "Create new QVideoFrame " << frameFormat.frameSize();
+            qDebug() << "Create new QVideoFrame" << frameFormat.frameSize();
             framesObjects_.emplace(id, std::move(fo));
         } else {
             it->second->videoFrame.reset(new QVideoFrame(frameFormat));
-            qDebug() << "QVideoFrame reset to " << frameFormat.frameSize();
+            qDebug() << "QVideoFrame reset to" << frameFormat.frameSize();
         }
     }
 

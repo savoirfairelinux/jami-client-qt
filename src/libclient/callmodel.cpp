@@ -253,14 +253,6 @@ public Q_SLOTS:
      * @param state the new state
      */
     void remoteRecordingChanged(const QString& callId, const QString& peerNumber, bool state);
-    /**
-     * Listen from CallbacksHandler when a renderer starts
-     * @param id
-     * @param shmPath
-     * @param width
-     * @param height
-     */
-    void onDecodingStarted(const QString& id, const QString& shmPath, int width, int height);
 };
 
 CallModel::CallModel(const account::Info& owner,
@@ -525,7 +517,7 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
     CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
     callInfo->mediaList = proposedList;
     if (callInfo->status == call::Status::IN_PROGRESS)
-            Q_EMIT callInfosChanged(owner.id, callId);
+        Q_EMIT callInfosChanged(owner.id, callId);
 }
 
 void
@@ -578,12 +570,15 @@ CallModel::removeMedia(const QString& callId,
         return;
     } else if (!hasVideo) {
         // To receive the remote video, we need a muted camera
-        proposedList.push_back(
-            MapStringString {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
-                             {MediaAttributeKey::ENABLED, TRUE_STR},
-                             {MediaAttributeKey::MUTED, TRUE_STR},
-                             {MediaAttributeKey::SOURCE, pimpl_->lrc.getAVModel().getCurrentVideoCaptureDevice()}, // not needed to set the source. Daemon should be able to check it
-                             {MediaAttributeKey::LABEL, label.isEmpty() ? "video_0" : label}});
+        proposedList.push_back(MapStringString {
+            {MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
+            {MediaAttributeKey::ENABLED, TRUE_STR},
+            {MediaAttributeKey::MUTED, TRUE_STR},
+            {MediaAttributeKey::SOURCE,
+             pimpl_->lrc.getAVModel()
+                 .getCurrentVideoCaptureDevice()}, // not needed to set the source. Daemon should be
+                                                   // able to check it
+            {MediaAttributeKey::LABEL, label.isEmpty() ? "video_0" : label}});
     }
 
     if (isVideo && !label.isEmpty())
@@ -592,7 +587,7 @@ CallModel::removeMedia(const QString& callId,
     CallManager::instance().requestMediaChange(owner.id, callId, proposedList);
     callInfo->mediaList = proposedList;
     if (callInfo->status == call::Status::IN_PROGRESS)
-            Q_EMIT callInfosChanged(owner.id, callId);
+        Q_EMIT callInfosChanged(owner.id, callId);
 }
 
 void
@@ -945,10 +940,6 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
             &CallbacksHandler::remoteRecordingChanged,
             this,
             &CallModelPimpl::remoteRecordingChanged);
-    connect(&callbacksHandler,
-            &CallbacksHandler::decodingStarted,
-            this,
-            &CallModelPimpl::onDecodingStarted);
 
 #ifndef ENABLE_LIBWRAP
     // Only necessary with dbus since the daemon runs separately
@@ -1642,12 +1633,6 @@ CallModelPimpl::remoteRecordingChanged(const QString& callId, const QString& pee
         it->second->peerRec.remove(uri);
 
     Q_EMIT linked.remoteRecordingChanged(callId, it->second->peerRec, state);
-}
-
-void
-CallModelPimpl::onDecodingStarted(const QString& id, const QString& shmPath, int width, int height)
-{
-    lrc.getAVModel().addRenderer(id, QSize(width, height), shmPath);
 }
 
 } // namespace lrc

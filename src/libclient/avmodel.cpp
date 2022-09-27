@@ -694,11 +694,13 @@ AVModelPimpl::AVModelPimpl(AVModel& linked, const CallbacksHandler& callbacksHan
     connect(&callbacksHandler,
             &CallbacksHandler::decodingStarted,
             this,
-            &AVModelPimpl::onDecodingStarted);
+            &AVModelPimpl::onDecodingStarted,
+            Qt::DirectConnection);
     connect(&callbacksHandler,
             &CallbacksHandler::decodingStopped,
             this,
-            &AVModelPimpl::onDecodingStopped);
+            &AVModelPimpl::onDecodingStopped,
+            Qt::DirectConnection);
 
     auto startedPreview = false;
     auto restartRenderers = [&](const QStringList& callList) {
@@ -750,8 +752,6 @@ AVModelPimpl::getRecordingPath() const
 void
 AVModelPimpl::onDecodingStarted(const QString& id, const QString& shmPath, int width, int height)
 {
-    if (id != "" && id != "local" && !id.contains("://")) // Else managed by callmodel
-        return;
     addRenderer(id, QSize(width, height), shmPath);
 }
 
@@ -824,41 +824,39 @@ createRenderer(const QString& id, const QSize& res, const QString& shmPath = {})
 void
 AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& shmPath)
 {
-    {
-        auto connectRenderer = [this](Renderer* renderer, const QString& id) {
-            connect(
-                renderer,
-                &Renderer::started,
-                this,
-                [this, id] { Q_EMIT linked_.rendererStarted(id); },
-                Qt::QueuedConnection);
-            connect(
-                renderer,
-                &Renderer::frameBufferRequested,
-                this,
-                [this, id](AVFrame* frame) { Q_EMIT linked_.frameBufferRequested(id, frame); },
-                Qt::DirectConnection);
-            connect(
-                renderer,
-                &Renderer::frameUpdated,
-                this,
-                [this, id] { Q_EMIT linked_.frameUpdated(id); },
-                Qt::DirectConnection);
-            connect(
-                renderer,
-                &Renderer::stopped,
-                this,
-                [this, id] { Q_EMIT linked_.rendererStopped(id); },
-                Qt::DirectConnection);
-        };
-        std::lock_guard<std::mutex> lk(renderers_mtx_);
-        renderers_.erase(id); // Because it should be done before creating the renderer
-        auto renderer = createRenderer(id, res, shmPath);
-        auto& r = renderers_[id];
-        r = std::move(renderer);
-        connectRenderer(r.get(), id);
-        r->startRendering();
-    }
+    auto connectRenderer = [this](Renderer* renderer, const QString& id) {
+        connect(
+            renderer,
+            &Renderer::started,
+            this,
+            [this, id](const QSize& size) { Q_EMIT linked_.rendererStarted(id, size); },
+            Qt::DirectConnection);
+        connect(
+            renderer,
+            &Renderer::frameBufferRequested,
+            this,
+            [this, id](AVFrame* frame) { Q_EMIT linked_.frameBufferRequested(id, frame); },
+            Qt::DirectConnection);
+        connect(
+            renderer,
+            &Renderer::frameUpdated,
+            this,
+            [this, id] { Q_EMIT linked_.frameUpdated(id); },
+            Qt::DirectConnection);
+        connect(
+            renderer,
+            &Renderer::stopped,
+            this,
+            [this, id] { Q_EMIT linked_.rendererStopped(id); },
+            Qt::DirectConnection);
+    };
+    std::lock_guard<std::mutex> lk(renderers_mtx_);
+    renderers_.erase(id); // Because it should be done before creating the renderer
+    auto renderer = createRenderer(id, res, shmPath);
+    auto& r = renderers_[id];
+    r = std::move(renderer);
+    connectRenderer(r.get(), id);
+    r->startRendering();
 }
 
 void
