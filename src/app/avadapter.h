@@ -108,7 +108,7 @@ protected:
 
 private Q_SLOTS:
     void onAudioDeviceEvent();
-    void onRendererStarted(const QString& id);
+    void onRendererStarted(const QString& id, const QSize& size);
 
 private:
     // Get screens arrangement rect relative to primary screen.

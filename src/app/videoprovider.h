@@ -48,7 +48,7 @@ public:
     Q_INVOKABLE QString captureVideoFrame(const QString& id);
 
 private Q_SLOTS:
-    void onRendererStarted(const QString& id);
+    void onRendererStarted(const QString& id, const QSize& size);
     void onFrameBufferRequested(const QString& id, AVFrame* avframe);
     void onFrameUpdated(const QString& id);
     void onRendererStopped(const QString& id);
