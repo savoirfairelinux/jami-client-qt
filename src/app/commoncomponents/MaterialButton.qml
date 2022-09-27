@@ -46,6 +46,7 @@ AbstractButton {
                            iconSource.length !== 0
 
     property var preferredWidth
+    property var fontPixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
 
     Binding on width {
         when: root.preferredWidth !== undefined ||
@@ -179,7 +180,7 @@ AbstractButton {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: contentColorProvider
-                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                font.pixelSize: fontPixelSize
             }
         }
     }

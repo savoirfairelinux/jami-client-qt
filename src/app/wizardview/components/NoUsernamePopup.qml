@@ -88,6 +88,7 @@ BaseModalDialog {
                     color: JamiTheme.secAndTertiTextColor
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
                     text: JamiStrings.joinJami
+                    fontPixelSize: 12
                     onClicked: {
                         root.joinClicked()
                         WizardViewStepModel.nextStep()
@@ -101,6 +102,7 @@ BaseModalDialog {
                     Layout.leftMargin: 20
                     primary:true
                     text:  JamiStrings.chooseAUsername
+                    fontPixelSize: 12
                     onClicked: root.close()
                 }
             }
