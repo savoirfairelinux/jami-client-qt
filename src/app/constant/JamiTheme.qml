@@ -402,6 +402,7 @@ Item {
     property real wizardViewPageBackButtonSize: 35
     property real wizardViewTitleFontPixelSize: calcSize(26)
     property real wizardViewDescriptionFontPixelSize: calcSize(15)
+    property real wizardViewNoUsernamePopupFontPixelSize: calcSize(12)
     property real wizardViewLayoutTopMargin: 38
 
     // WizardView Welcome Page
