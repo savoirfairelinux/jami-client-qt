@@ -61,7 +61,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void frameUpdated();
     void stopped();
-    void started();
+    void started(const QSize& size);
     void frameBufferRequested(AVFrame* avFrame);
 
 private:
