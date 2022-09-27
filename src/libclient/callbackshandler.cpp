@@ -275,13 +275,13 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &VideoManagerInterface::decodingStarted,
             this,
             &CallbacksHandler::decodingStarted,
-            Qt::QueuedConnection);
+            Qt::DirectConnection);
 
     connect(&VideoManager::instance(),
             &VideoManagerInterface::decodingStopped,
             this,
             &CallbacksHandler::decodingStopped,
-            Qt::QueuedConnection);
+            Qt::DirectConnection);
 
     connect(&VideoManager::instance(),
             &VideoManagerInterface::deviceEvent,
