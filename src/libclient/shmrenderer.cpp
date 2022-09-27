@@ -328,7 +328,7 @@ ShmRenderer::startRendering()
 
     pimpl_->timer->start();
 
-    Q_EMIT started();
+    Q_EMIT started(size());
 }
 
 // Done on destroy instead

@@ -281,8 +281,9 @@ Q_SIGNALS:
     /**
      * Emitted when a renderer is started
      * @param id of the renderer
+     * @param size of the renderer
      */
-    void rendererStarted(const QString& id);
+    void rendererStarted(const QString& id, const QSize& size);
     /**
      * Emitted when a renderer is stopped
      * @param id of the renderer
