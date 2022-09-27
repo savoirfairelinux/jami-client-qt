@@ -16,6 +16,24 @@
       "message": "Andreas, Aline, Kat, would you please make the required changes for this patch for Windows and macOS? (cf client-qt-msvc-tests and client-qt-macos failures)\n\nTIA.",
       "revId": "79b3116f2e50e7205d5f880af0d63b8a8dcd604a",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e84f99d3_41216c4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-27T15:19:47Z",
+      "side": 1,
+      "message": "I recommend excluding Windows from these changes.",
+      "parentUuid": "13fe1293_83abbf05",
+      "revId": "79b3116f2e50e7205d5f880af0d63b8a8dcd604a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
