@@ -104,7 +104,7 @@ DirectRenderer::~DirectRenderer() {}
 void
 DirectRenderer::startRendering()
 {
-    Q_EMIT started();
+    Q_EMIT started(size());
 }
 
 void

@@ -830,8 +830,8 @@ AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& sh
                 renderer,
                 &Renderer::started,
                 this,
-                [this, id] { Q_EMIT linked_.rendererStarted(id); },
-                Qt::QueuedConnection);
+                [this, id](const QSize& size) { Q_EMIT linked_.rendererStarted(id, size); },
+                Qt::DirectConnection);
             connect(
                 renderer,
                 &Renderer::frameBufferRequested,

@@ -298,8 +298,9 @@ AvAdapter::onAudioDeviceEvent()
 }
 
 void
-AvAdapter::onRendererStarted(const QString& id)
+AvAdapter::onRendererStarted(const QString& id, const QSize& size)
 {
+    Q_UNUSED(size)
     auto callId = lrcInstance_->getCurrentCallId();
     auto callModel = lrcInstance_->getCurrentCallModel();
     auto renderDevice = callModel->getCurrentRenderedDevice(callId);

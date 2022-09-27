@@ -121,10 +121,8 @@ VideoProvider::captureVideoFrame(const QString& id)
 }
 
 void
-VideoProvider::onRendererStarted(const QString& id)
+VideoProvider::onRendererStarted(const QString& id, const QSize& size)
 {
-    auto size = avModel_.getRendererSize(id);
-    // This slot is queued, the renderer may have been destroyed.
     if (size.width() == 0 || size.height() == 0 || activeRenderers_[id] == size) {
         return;
     }
@@ -137,11 +135,11 @@ VideoProvider::onRendererStarted(const QString& id)
         if (it == framesObjects_.end()) {
             auto fo = std::make_unique<FrameObject>();
             fo->videoFrame = std::make_unique<QVideoFrame>(frameFormat);
-            qDebug() << "Create new QVideoFrame " << frameFormat.frameSize();
+            qDebug() << "Create new QVideoFrame" << frameFormat.frameSize();
             framesObjects_.emplace(id, std::move(fo));
         } else {
             it->second->videoFrame.reset(new QVideoFrame(frameFormat));
-            qDebug() << "QVideoFrame reset to " << frameFormat.frameSize();
+            qDebug() << "QVideoFrame reset to" << frameFormat.frameSize();
         }
     }
 
