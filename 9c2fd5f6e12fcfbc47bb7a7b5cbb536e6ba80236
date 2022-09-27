@@ -16,6 +16,24 @@
       "message": "Per https://code.qt.io/cgit/qt/qtdeclarative.git/commit/?id\u003dc71c48f5125c116f01f615f51f10e4f2877b2b1d doing this requires cmake \u003e\u003d 3.18 but as of now we only require 3.16.",
       "revId": "9c2fd5f6e12fcfbc47bb7a7b5cbb536e6ba80236",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9854da4d_35b17dd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-09-27T02:07:41Z",
+      "side": 1,
+      "message": "3.18 is more than 2 years ago; is 3.16 still needed on some distributions?  Otherwise, we could up our minimal CMake requirement to 3.18.  Let me know, if 3.16 is a hard requirement I can abandon this change. Thanks for tipping in!",
+      "parentUuid": "0c07e923_a966f09b",
+      "revId": "9c2fd5f6e12fcfbc47bb7a7b5cbb536e6ba80236",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
