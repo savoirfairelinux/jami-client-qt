@@ -34,6 +34,24 @@
       "parentUuid": "0c07e923_a966f09b",
       "revId": "9c2fd5f6e12fcfbc47bb7a7b5cbb536e6ba80236",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1190aa04_6701a54c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-09-27T12:58:39Z",
+      "side": 1,
+      "message": "Yeah, several of the distro versions we currently support have cmake \u003c 3.18.\nIf we were to bump the min cmake to 3.18, for those distros we *could* use external cmake for our packaging like we currently do for a small number of distros with ancient cmake, but I personally don\u0027t think this change is not big enough to justify doing the same for several other distros we support, and that it would be an additional complication on those distros to the already complex process of building Jami.\n\nThat\u0027s my 2¢. :)\n\nCheers,\n-a",
+      "parentUuid": "9854da4d_35b17dd0",
+      "revId": "9c2fd5f6e12fcfbc47bb7a7b5cbb536e6ba80236",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
