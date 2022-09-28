@@ -46,6 +46,30 @@
       },
       "revId": "de3a7d8bbd327b95c770d9500831ec04868218c7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5c88dde_c08d47b1",
+        "filename": "src/app/wizardview/components/NoUsernamePopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-28T14:40:00Z",
+      "side": 1,
+      "message": "i don\u0027t see how this will address the issue",
+      "parentUuid": "c5465cdf_7c6ad211",
+      "range": {
+        "startLine": 105,
+        "startChar": 29,
+        "endLine": 105,
+        "endChar": 37
+      },
+      "revId": "de3a7d8bbd327b95c770d9500831ec04868218c7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
