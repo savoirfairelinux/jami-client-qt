@@ -34,8 +34,6 @@ BaseModalDialog {
 
     backgroundColor: JamiTheme.whiteColor
 
-    popupContentPreferredHeight: JamiTheme.qrCodeImageSize
-    popupContentPreferredWidth: JamiTheme.qrCodeImageSize
     popupContent: Image {
         id: userQrImage
 

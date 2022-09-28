@@ -173,6 +173,8 @@ AbstractButton {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
 
+                leftPadding: JamiTheme.popupButtontextPadding
+                rightPadding: JamiTheme.popupButtontextPadding
                 text: root.text
                 font.weight: Font.Medium
                 elide: Text.ElideRight

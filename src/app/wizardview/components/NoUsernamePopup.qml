@@ -30,80 +30,72 @@ import "../../commoncomponents"
 
 BaseModalDialog {
     id: root
-    width: 350
-    height: 240
 
     signal joinClicked
 
-    popupContent: Item {
+    popupContent: ColumnLayout {
 
-        ColumnLayout {
+        PushButton {
+            id: btnClose
 
-            anchors.fill: parent
-            anchors.bottomMargin: 30
+            Layout.alignment: Qt.AlignRight
+            Layout.margins:8
 
-            PushButton {
-                id: btnClose
-                Layout.alignment: Qt.AlignRight
+            width: 30
+            height: 30
+            imageContainerWidth: 30
+            imageContainerHeight : 30
 
-                width: 30
-                height: 30
-                imageContainerWidth: 30
-                imageContainerHeight : 30
-                Layout.rightMargin: 8
+            radius : 5
 
-                radius : 5
+            imageColor: "grey"
+            normalColor: JamiTheme.transparentColor
 
-                imageColor: "grey"
-                normalColor: JamiTheme.transparentColor
+            source: JamiResources.round_close_24dp_svg
 
-                source: JamiResources.round_close_24dp_svg
+            onClicked: { root.visible = false }
+        }
 
-                onClicked: { root.visible = false }
+        Text {
+            Layout.preferredWidth: 280
+            Layout.leftMargin: 20
+            Layout.rightMargin: 20
+            Layout.alignment: Qt.AlignCenter
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: JamiTheme.popuptextSize
+            font.weight: Font.Medium
+            wrapMode: Text.WordWrap
+            color: JamiTheme.textColor
+            text: JamiStrings.joinJamiNoPassword
+        }
+
+        RowLayout{
+            Layout.margins: JamiTheme.popupButtonsMargin
+            Layout.alignment: Qt.AlignCenter
+
+            MaterialButton {
+                preferredWidth: text.contentWidth
+                secondary: true
+                color: JamiTheme.secAndTertiTextColor
+                secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
+                text: JamiStrings.joinJami
+
+                onClicked: {
+                    root.joinClicked()
+                    WizardViewStepModel.nextStep()
+                    root.close()
+                }
             }
 
-            Text {
-
-                Layout.preferredWidth: 280
+            MaterialButton {
+                preferredWidth: text.contentWidth
                 Layout.leftMargin: 20
-                Layout.rightMargin: 20
-                Layout.alignment: Qt.AlignCenter
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                font.pixelSize: 15
-                font.weight: Font.Medium
-                wrapMode: Text.WordWrap
-                color: JamiTheme.textColor
-                text: JamiStrings.joinJamiNoPassword
-            }
-
-            RowLayout{
-
-                Layout.alignment: Qt.AlignCenter
-
-                MaterialButton {
-                    preferredWidth: 96
-                    Layout.alignment: Qt.AlignCenter
-                    secondary: true
-                    color: JamiTheme.secAndTertiTextColor
-                    secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
-                    text: JamiStrings.joinJami
-                    onClicked: {
-                        root.joinClicked()
-                        WizardViewStepModel.nextStep()
-                        root.close()
-                    }
-                }
-
-                MaterialButton {
-                    preferredWidth: 170
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.leftMargin: 20
-                    primary:true
-                    text:  JamiStrings.chooseAUsername
-                    onClicked: root.close()
-                }
+                primary:true
+                text:  JamiStrings.chooseAUsername
+                onClicked: root.close()
             }
         }
     }
+
 }

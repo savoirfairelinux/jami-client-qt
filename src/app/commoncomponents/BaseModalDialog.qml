@@ -33,8 +33,6 @@ Popup {
     property var popupContentLoader: containerSubContentLoader
     property alias popupContentLoadStatus: containerSubContentLoader.status
     property alias popupContent: containerSubContentLoader.sourceComponent
-    property int popupContentPreferredHeight: 0
-    property int popupContentPreferredWidth: 0
     property int popupContentMargins: 0
 
     parent: Overlay.overlay
@@ -45,14 +43,16 @@ Popup {
 
     modal: true
 
-    padding: 0
+    padding:0
+    width: containerSubContentLoader.width
+    height: containerSubContentLoader.height
+
 
     // A popup is invisible until opened.
     visible: false
     closePolicy:  autoClose ?
                       (Popup.CloseOnEscape | Popup.CloseOnPressOutside) :
                       Popup.NoAutoClose
-
     Rectangle {
         id: container
 
@@ -81,10 +81,6 @@ Popup {
                 Layout.topMargin: popupContentMargins
                 Layout.bottomMargin: popupContentMargins
                 Layout.alignment: Qt.AlignCenter
-                Layout.fillWidth: popupContentPreferredWidth === 0
-                Layout.fillHeight: popupContentPreferredHeight === 0
-                Layout.preferredHeight: popupContentPreferredHeight
-                Layout.preferredWidth: popupContentPreferredWidth
             }
         }
 
