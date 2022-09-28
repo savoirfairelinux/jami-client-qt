@@ -228,6 +228,8 @@ Popup {
 
                 LocalVideo {
                     id: localVideo
+                    objectName: "RecordBox:previewWidget"
+
                     anchors.fill: parent
 
                     layer.enabled: true

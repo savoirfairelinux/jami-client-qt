@@ -247,6 +247,7 @@ ColumnLayout {
 
         LocalVideo {
             id: previewWidget
+            objectName: "VideoSettings:previewWidget"
 
             anchors.fill: parent
 

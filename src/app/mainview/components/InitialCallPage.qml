@@ -40,6 +40,8 @@ Rectangle {
     color: "black"
 
     LocalVideo {
+        id: previewRenderer
+        objectName: "InitialCallPage:previewRenderer"
         anchors.centerIn: parent
         anchors.fill: parent
         visible: !root.isAudioOnly && CurrentAccount.videoEnabled_Video && VideoDevices.listSize !== 0

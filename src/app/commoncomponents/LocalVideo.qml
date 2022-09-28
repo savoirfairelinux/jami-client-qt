@@ -24,6 +24,7 @@ import net.jami.Adapters 1.1
 
 VideoView {
     id: root
+    objectName: "LocalVideo"
 
     crop: true
 
