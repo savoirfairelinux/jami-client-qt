@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c02008dc_1fd48bb5",
+        "filename": "src/app/commoncomponents/LocalVideo.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-28T11:37:56Z",
+      "side": 0,
+      "message": "This should invoke\n```\nonRendererIdChanged: {\n    videoProvider.unregisterSink(videoSink)\n    if (rendererId.length !\u003d\u003d 0) {\n        videoProvider.registerSink(rendererId, videoSink)\n    }\n}\n```\nto unregister the sink for frame updates.\nWhy does that work? Does it introduce any other issues?",
+      "range": {
+        "startLine": 33,
+        "startChar": 12,
+        "endLine": 33,
+        "endChar": 27
+      },
+      "revId": "ffa38fb8ef5dcbb011b692d0ccc43215f01a1f6c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
