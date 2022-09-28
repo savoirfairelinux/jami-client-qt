@@ -24,6 +24,7 @@ Item {
     id: root
 
     property string rendererId
+    property string cachedRendererId
     property alias videoSink: videoOutput.videoSink
     property alias underlayItems: rootUnderlayItem.children
     property alias overlayItems: rootOverlayItem.children
@@ -40,6 +41,7 @@ Item {
     property real yScale: contentRect.height / videoOutput.sourceRect.height
 
     onRendererIdChanged: {
+        print("********** RID changed", this, rendererId)
         videoProvider.unregisterSink(videoSink)
         if (rendererId.length !== 0) {
             videoProvider.registerSink(rendererId, videoSink)

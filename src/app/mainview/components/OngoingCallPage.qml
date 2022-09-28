@@ -195,6 +195,7 @@ Rectangle {
 
             LocalVideo {
                 id: previewRenderer
+                objectName: "OngoingCallPage:previewRenderer"
 
                 visible: false
                 rendererId: ""
