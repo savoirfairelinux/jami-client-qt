@@ -29,16 +29,20 @@ VideoView {
     crop: true
 
     function startWithId(id, force = false) {
+        print("startWithId", id)
         if (id.length === 0) {
             VideoDevices.stopDevice(rendererId)
-            rendererId = id
+            rendererId = ''
         } else {
             rendererId = VideoDevices.startDevice(id, force)
+            cachedRendererId = rendererId
         }
     }
 
     onVisibleChanged: {
-        rendererId = rendererId ? rendererId : VideoDevices.getDefaultDevice()
+        rendererId = cachedRendererId
+                ? rendererId
+                : VideoDevices.getDefaultDevice()
         const id = visible ? rendererId : ""
         startWithId(id)
     }
