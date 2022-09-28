@@ -22,6 +22,30 @@
       },
       "revId": "de3a7d8bbd327b95c770d9500831ec04868218c7",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5465cdf_7c6ad211",
+        "filename": "src/app/wizardview/components/NoUsernamePopup.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-09-28T13:50:19Z",
+      "side": 1,
+      "message": "the purpose of this was to have a quick modification for one specific unreadable button, waiting for a complete change on every popup buttons. I added the fontSize to Jamitheme, to make it easier to change, is it ok ?",
+      "parentUuid": "7561e773_03e6af24",
+      "range": {
+        "startLine": 105,
+        "startChar": 29,
+        "endLine": 105,
+        "endChar": 37
+      },
+      "revId": "de3a7d8bbd327b95c770d9500831ec04868218c7",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
