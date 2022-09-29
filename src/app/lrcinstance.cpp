@@ -111,9 +111,9 @@ LRCInstance::isConnected()
 }
 
 VectorString
-LRCInstance::getActiveCalls()
+LRCInstance::getActiveCalls(const QString& accountId)
 {
-    return lrc_->activeCalls();
+    return lrc_->activeCalls(accountId);
 }
 
 int
