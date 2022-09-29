@@ -46,6 +46,8 @@ AbstractButton {
                            iconSource.length !== 0
 
     property var preferredWidth
+    property real textLeftPadding
+    property real textRightPadding
 
     Binding on width {
         when: root.preferredWidth !== undefined ||
@@ -173,6 +175,8 @@ AbstractButton {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignHCenter
 
+                leftPadding: textLeftPadding
+                rightPadding: textRightPadding
                 text: root.text
                 font.weight: Font.Medium
                 elide: Text.ElideRight
