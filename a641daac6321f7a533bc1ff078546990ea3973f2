@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cfc8ecf_cbad2392",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-29T19:48:44Z",
+      "side": 1,
+      "message": "start sharing screen -\u003e doesn\u0027t show the share screen preview\nswitch conversations back and forth -\u003e share screen preview shows",
+      "revId": "a641daac6321f7a533bc1ff078546990ea3973f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7091f6cd_d822c8de",
+        "filename": "src/app/commoncomponents/LocalVideo.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-29T19:48:44Z",
+      "side": 1,
+      "message": "remove when ready",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 8
+      },
+      "revId": "a641daac6321f7a533bc1ff078546990ea3973f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
