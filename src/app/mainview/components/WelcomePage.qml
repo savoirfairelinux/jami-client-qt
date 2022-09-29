@@ -187,8 +187,10 @@ Rectangle {
                                 title: Title
                                 description: Description
                                 type: Type
+                                property bool hideTipBox: false
 
                                 visible: {
+                                    if(hideTipBox) return false
                                     if (type === "backup") {
                                         return LRCInstance.currentAccountType !== Profile.Type.SIP
                                                && CurrentAccount.managerUri.length === 0
@@ -198,7 +200,7 @@ Rectangle {
                                     return true
                                 }
 
-                                onIgnoreClicked: TipsModel.remove(TipId)
+                                onIgnoreClicked: { hideTipBox = true }
                             }
                         }
                     }
