@@ -52,8 +52,6 @@ public:
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    Q_INVOKABLE void remove(QVariant id);
-
 private:
     VectorMapStringString tips_;
     AppSettingsManager* settingsManager_;
