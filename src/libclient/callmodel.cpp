@@ -1060,36 +1060,44 @@ CallModel::setCurrentCall(const QString& callId) const
         }
     }
 
-    VectorString filterCalls;
-    QStringList conferences = CallManager::instance().getConferenceList(owner.id);
-    for (const auto& confId : conferences) {
-        QStringList callList = CallManager::instance().getParticipantList(owner.id, confId);
-        Q_FOREACH (const auto& cid, callList) {
-            filterCalls.push_back(cid);
+    QStringList accountList = pimpl_->lrc.getAccountModel().getAccountList();
+    // If we are setting a current call in the UI, we want to hold all other calls,
+    // across accounts, to avoid sending our local media streams while another call
+    // is in focus.
+    for (const auto& acc : accountList) {
+        VectorString filterCalls;
+        // For each account, we should not hold calls linked to a conference
+        QStringList conferences = CallManager::instance().getConferenceList(acc);
+        for (const auto& confId : conferences) {
+            QStringList callList = CallManager::instance().getParticipantList(acc, confId);
+            Q_FOREACH (const auto& cid, callList) {
+                filterCalls.push_back(cid);
+            }
         }
-    }
-    for (const auto& cid : Lrc::activeCalls()) {
-        auto filtered = std::find(filterCalls.begin(), filterCalls.end(), cid) != filterCalls.end();
-        if (cid != callId && !filtered) {
-            // Only hold calls for a non rendez-vous point
-            MapStringString callDetails = CallManager::instance().getCallDetails(owner.id, callId);
-            auto accountId = callDetails["ACCOUNTID"];
-            CallManager::instance().hold(owner.id, cid);
+
+        for (const auto& cid : Lrc::activeCalls(acc)) {
+            auto filtered = std::find(filterCalls.begin(), filterCalls.end(), cid) != filterCalls.end();
+            if (cid != callId && !filtered) {
+                // Only hold calls for a non rendez-vous point
+                CallManager::instance().hold(acc, cid);
+            }
         }
-    }
-    if (!lrc::api::Lrc::holdConferences) {
-        return;
-    }
-    for (const auto& confId : conferences) {
-        if (callId != confId) {
-            MapStringString confDetails = CallManager::instance().getConferenceDetails(owner.id,
-                                                                                       confId);
-            // Only hold conference if attached
-            if (confDetails["CALL_STATE"] == "ACTIVE_DETACHED")
-                continue;
-            QStringList callList = CallManager::instance().getParticipantList(owner.id, confId);
-            if (callList.indexOf(callId) == -1)
-                CallManager::instance().holdConference(owner.id, confId);
+
+        if (!lrc::api::Lrc::holdConferences) {
+            return;
+        }
+        // If the account is the host and it is attached to the conference,
+        // then we should hold it.
+        for (const auto& confId : conferences) {
+            if (callId != confId) {
+                MapStringString confDetails = CallManager::instance().getConferenceDetails(acc, confId);
+                // Only hold conference if attached
+                if (confDetails["CALL_STATE"] == "ACTIVE_DETACHED")
+                    continue;
+                QStringList callList = CallManager::instance().getParticipantList(acc, confId);
+                if (callList.indexOf(callId) == -1)
+                    CallManager::instance().holdConference(acc, confId);
+            }
         }
     }
 }
@@ -1372,6 +1380,7 @@ CallModelPimpl::slotCallStateChanged(const QString& accountId,
             || previousStatus == call::Status::OUTGOING_RINGING) {
             if (previousStatus == call::Status::INCOMING_RINGING
                 && linked.owner.profileInfo.type != profile::Type::SIP
+                && !linked.owner.confProperties.autoAnswer
                 && !linked.owner.confProperties.isRendezVous) { // TODO remove this when we want to
                                                                 // not show calls in rendez-vous
                 linked.setCurrentCall(callId);
