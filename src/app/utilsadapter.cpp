@@ -194,7 +194,7 @@ UtilsAdapter::getAccountListSize()
 bool
 UtilsAdapter::hasCall(const QString& accountId)
 {
-    auto activeCalls = lrcInstance_->getActiveCalls();
+    auto activeCalls = lrcInstance_->getActiveCalls(accountId);
     for (const auto& callId : activeCalls) {
         auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
         if (accountInfo.callModel->hasCall(callId)) {
@@ -208,7 +208,7 @@ const QString
 UtilsAdapter::getCallConvForAccount(const QString& accountId)
 {
     // TODO: Currently returning first call, establish priority according to state?
-    for (const auto& callId : lrcInstance_->getActiveCalls()) {
+    for (const auto& callId : lrcInstance_->getActiveCalls(accountId)) {
         auto& accountInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
         if (accountInfo.callModel->hasCall(callId)) {
             return lrcInstance_->getConversationFromCallId(callId, accountId).uid;
