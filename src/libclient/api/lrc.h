@@ -92,7 +92,7 @@ public:
     /**
      * Helper: get active call list from daemon
      */
-    static VectorString activeCalls();
+    static VectorString activeCalls(const QString& accountId = "");
 
     /**
      * Close all active calls and conferences

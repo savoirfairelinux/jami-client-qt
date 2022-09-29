@@ -1060,36 +1060,39 @@ CallModel::setCurrentCall(const QString& callId) const
         }
     }
 
-    VectorString filterCalls;
-    QStringList conferences = CallManager::instance().getConferenceList(owner.id);
-    for (const auto& confId : conferences) {
-        QStringList callList = CallManager::instance().getParticipantList(owner.id, confId);
-        Q_FOREACH (const auto& cid, callList) {
-            filterCalls.push_back(cid);
+    QStringList accountList = pimpl_->lrc.getAccountModel().getAccountList();
+    for (const auto& acc : accountList) {
+        VectorString filterCalls;
+        QStringList conferences = CallManager::instance().getConferenceList(acc);
+        for (const auto& confId : conferences) {
+            QStringList callList = CallManager::instance().getParticipantList(acc, confId);
+            Q_FOREACH (const auto& cid, callList) {
+                filterCalls.push_back(cid);
+            }
         }
-    }
-    for (const auto& cid : Lrc::activeCalls()) {
-        auto filtered = std::find(filterCalls.begin(), filterCalls.end(), cid) != filterCalls.end();
-        if (cid != callId && !filtered) {
-            // Only hold calls for a non rendez-vous point
-            MapStringString callDetails = CallManager::instance().getCallDetails(owner.id, callId);
-            auto accountId = callDetails["ACCOUNTID"];
-            CallManager::instance().hold(owner.id, cid);
+
+        for (const auto& cid : Lrc::activeCalls(acc)) {
+            auto filtered = std::find(filterCalls.begin(), filterCalls.end(), cid) != filterCalls.end();
+            if (cid != callId && !filtered) {
+                // Only hold calls for a non rendez-vous point
+                MapStringString callDetails = CallManager::instance().getCallDetails(acc, cid);
+                CallManager::instance().hold(owner.id, cid);
+            }
         }
-    }
-    if (!lrc::api::Lrc::holdConferences) {
-        return;
-    }
-    for (const auto& confId : conferences) {
-        if (callId != confId) {
-            MapStringString confDetails = CallManager::instance().getConferenceDetails(owner.id,
-                                                                                       confId);
-            // Only hold conference if attached
-            if (confDetails["CALL_STATE"] == "ACTIVE_DETACHED")
-                continue;
-            QStringList callList = CallManager::instance().getParticipantList(owner.id, confId);
-            if (callList.indexOf(callId) == -1)
-                CallManager::instance().holdConference(owner.id, confId);
+
+        if (!lrc::api::Lrc::holdConferences) {
+            return;
+        }
+        for (const auto& confId : conferences) {
+            if (callId != confId) {
+                MapStringString confDetails = CallManager::instance().getConferenceDetails(acc, confId);
+                // Only hold conference if attached
+                if (confDetails["CALL_STATE"] == "ACTIVE_DETACHED")
+                    continue;
+                QStringList callList = CallManager::instance().getParticipantList(acc, confId);
+                if (callList.indexOf(callId) == -1)
+                    CallManager::instance().holdConference(acc, confId);
+            }
         }
     }
 }
