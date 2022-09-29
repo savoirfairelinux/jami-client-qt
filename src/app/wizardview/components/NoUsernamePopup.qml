@@ -28,49 +28,62 @@ import Qt5Compat.GraphicalEffects
 
 import "../../commoncomponents"
 
-BaseModalDialog {
+Popup {
     id: root
-    width: 350
-    height: 240
+
+    width: popupContent.width
+    height: popupContent.height
+
+    parent: Overlay.overlay
+
+    // center in parent
+    x: Math.round((parent.width - width) / 2)
+    y: Math.round((parent.height - height) / 2)
 
     signal joinClicked
 
-    popupContent: Item {
+    modal:true
+    padding: 0
+
+    visible: false
+    closePolicy:  Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+    Rectangle {
+        id: container
+
+        anchors.fill: parent
+        radius: JamiTheme.modalPopupRadius
+        color: JamiTheme.secondaryBackgroundColor
 
         ColumnLayout {
+            id:  popupContent
 
-            anchors.fill: parent
-            anchors.bottomMargin: 30
+            Layout.alignment: Qt.AlignCenter
 
             PushButton {
                 id: btnClose
-                Layout.alignment: Qt.AlignRight
 
+                Layout.alignment: Qt.AlignRight
                 width: 30
                 height: 30
                 imageContainerWidth: 30
                 imageContainerHeight : 30
-                Layout.rightMargin: 8
-
+                Layout.margins: 8
                 radius : 5
-
                 imageColor: "grey"
                 normalColor: JamiTheme.transparentColor
-
                 source: JamiResources.round_close_24dp_svg
-
                 onClicked: { root.visible = false }
             }
 
             Text {
-
                 Layout.preferredWidth: 280
                 Layout.leftMargin: 20
                 Layout.rightMargin: 20
                 Layout.alignment: Qt.AlignCenter
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                font.pixelSize: 15
+                font.pixelSize: JamiTheme.popuptextSize
                 font.weight: Font.Medium
                 wrapMode: Text.WordWrap
                 color: JamiTheme.textColor
@@ -78,12 +91,13 @@ BaseModalDialog {
             }
 
             RowLayout{
-
+                Layout.margins: JamiTheme.popupButtonsMargin
                 Layout.alignment: Qt.AlignCenter
 
                 MaterialButton {
-                    preferredWidth: 96
-                    Layout.alignment: Qt.AlignCenter
+                    preferredWidth: text.contentWidth
+                    textLeftPadding: JamiTheme.buttontextPadding
+                    textRightPadding: JamiTheme.buttontextPadding
                     secondary: true
                     color: JamiTheme.secAndTertiTextColor
                     secHoveredColor: JamiTheme.secAndTertiHoveredBackgroundColor
@@ -96,14 +110,55 @@ BaseModalDialog {
                 }
 
                 MaterialButton {
-                    preferredWidth: 170
-                    Layout.alignment: Qt.AlignCenter
+                    preferredWidth: text.contentWidth
+                    textLeftPadding: JamiTheme.buttontextPadding
+                    textRightPadding: JamiTheme.buttontextPadding
                     Layout.leftMargin: 20
                     primary:true
                     text:  JamiStrings.chooseAUsername
                     onClicked: root.close()
                 }
             }
+
+        }
+    }
+
+    background: Rectangle {
+        color: JamiTheme.transparentColor
+    }
+
+    Overlay.modal: Rectangle {
+        color: JamiTheme.transparentColor
+        // Color animation for overlay when pop up is shown.
+        ColorAnimation on color {
+            to: JamiTheme.popupOverlayColor
+            duration: 500
+        }
+    }
+
+    DropShadow {
+        z: -1
+        width: root.width
+        height: root.height
+        horizontalOffset: 3.0
+        verticalOffset: 3.0
+        radius: container.radius * 4
+        color: JamiTheme.shadowColor
+        source: container
+        transparentBorder: true
+    }
+
+    enter: Transition {
+        NumberAnimation {
+            properties: "opacity"; from: 0.0; to: 1.0
+            duration: JamiTheme.shortFadeDuration
+        }
+    }
+
+    exit: Transition {
+        NumberAnimation {
+            properties: "opacity"; from: 1.0; to: 0.0
+            duration: JamiTheme.shortFadeDuration
         }
     }
 }
