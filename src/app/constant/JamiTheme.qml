@@ -434,10 +434,16 @@ Item {
     property real tipBoxTitleFontSize: calcSize(13)
     property real tipBoxContentFontSize: calcSize(12)
 
+    //Popups
+    property real popuptextSize: calcSize(15)
+    property real popupButtonsMargin: 20
 
     // MaterialLineEdit
     property real materialLineEditPointSize: calcSize(10 + fontSizeOffset)
     property real materialLineEditPadding: 16
+
+    //MaterialButton
+    property real buttontextPadding: 10
 
     // UsernameLineEdit
     property real usernameLineEditPointSize:calcSize(9 + fontSizeOffset)
