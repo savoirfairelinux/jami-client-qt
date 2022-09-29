@@ -148,11 +148,13 @@ Lrc::subscribeToDebugReceived()
 }
 
 VectorString
-Lrc::activeCalls()
+Lrc::activeCalls(const QString& accountId)
 {
     VectorString result;
     const QStringList accountIds = ConfigurationManager::instance().getAccountList();
     for (const auto& accId : accountIds) {
+        if (!accountId.isEmpty() && accountId != accId)
+            continue;
         QStringList callLists = CallManager::instance().getCallList(accId);
         for (const auto& call : callLists) {
             MapStringString callDetails = CallManager::instance().getCallDetails(accId, call);
