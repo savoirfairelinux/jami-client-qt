@@ -100,15 +100,9 @@ TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
                       "backup on another device.")},
                   {"type", "tip"}});
 
-    QStringList hiddenIds = settingsManager_->getValue(Settings::Key::HiddenTips).toStringList();
+    QStringList hiddenIds = {};
+    std::random_shuffle(tips_.begin()+2,tips_.end());
 
-    auto it = tips_.begin();
-    while (it != tips_.end()) {
-        if (hiddenIds.contains((*it)["id"]))
-            it = tips_.erase(it);
-        else
-            it++;
-    }
 }
 
 int
