@@ -18,6 +18,9 @@
 
 #include "tipsmodel.h"
 
+#include <algorithm>
+#include <random>
+
 TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
     : QAbstractListModel(parent)
     , settingsManager_(settingsManager)
@@ -100,15 +103,9 @@ TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
                       "backup on another device.")},
                   {"type", "tip"}});
 
-    QStringList hiddenIds = settingsManager_->getValue(Settings::Key::HiddenTips).toStringList();
-
-    auto it = tips_.begin();
-    while (it != tips_.end()) {
-        if (hiddenIds.contains((*it)["id"]))
-            it = tips_.erase(it);
-        else
-            it++;
-    }
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(tips_.begin() + 2, tips_.end(), g);
 }
 
 int
@@ -149,25 +146,4 @@ TipsModel::roleNames() const
     TIPS_ROLES
 #undef X
     return roles;
-}
-
-void
-TipsModel::remove(QVariant id)
-{
-    auto index = 0;
-    auto it = tips_.begin();
-    while (it != tips_.end()) {
-        if ((*it)["id"] == id.toString()) {
-            beginRemoveRows(QModelIndex(), index, index);
-            QStringList hiddenIds = settingsManager_->getValue(Settings::Key::HiddenTips)
-                                        .toStringList();
-            hiddenIds.append(id.toString());
-            settingsManager_->setValue(Settings::Key::HiddenTips, hiddenIds);
-            tips_.erase(it);
-            endRemoveRows();
-            return;
-        }
-        index++;
-        it++;
-    }
 }
