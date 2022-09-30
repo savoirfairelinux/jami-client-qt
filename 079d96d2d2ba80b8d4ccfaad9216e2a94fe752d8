@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "799c68fd_7322ecf8",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-30T22:43:11Z",
+      "side": 1,
+      "message": "fix formatting, add copyright header",
+      "revId": "079d96d2d2ba80b8d4ccfaad9216e2a94fe752d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4e1ba9e_f7b8910f",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-30T22:43:11Z",
+      "side": 1,
+      "message": "this property is undefined, not marked required, and referenced below. this may result in trying to set the visible property below to undefined. maybe an alias would be best here with false set below? or perhaps mark it as required",
+      "range": {
+        "startLine": 13,
+        "startChar": 18,
+        "endLine": 13,
+        "endChar": 26
+      },
+      "revId": "079d96d2d2ba80b8d4ccfaad9216e2a94fe752d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "088664e4_0442fd43",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-30T22:43:11Z",
+      "side": 1,
+      "message": "same as showTime",
+      "range": {
+        "startLine": 14,
+        "startChar": 18,
+        "endLine": 14,
+        "endChar": 25
+      },
+      "revId": "079d96d2d2ba80b8d4ccfaad9216e2a94fe752d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5192e277_4fe28066",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-30T22:43:11Z",
+      "side": 1,
+      "message": "this should not be called rectOpacity if it applies to a border element, and a line element; maybe something like detailsOpacity to be more succinct",
+      "range": {
+        "startLine": 17,
+        "startChar": 18,
+        "endLine": 17,
+        "endChar": 29
+      },
+      "revId": "079d96d2d2ba80b8d4ccfaad9216e2a94fe752d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "138ae412_ef575992",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-30T22:43:11Z",
+      "side": 1,
+      "message": "why multiply the width? why not subract a constant?",
+      "range": {
+        "startLine": 48,
+        "startChar": 34,
+        "endLine": 48,
+        "endChar": 40
+      },
+      "revId": "079d96d2d2ba80b8d4ccfaad9216e2a94fe752d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de7a0670_1c924b66",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-09-30T22:43:11Z",
+      "side": 1,
+      "message": "can this component be the first child of its parent instead of specifying the z value?",
+      "range": {
+        "startLine": 50,
+        "startChar": 12,
+        "endLine": 50,
+        "endChar": 16
+      },
+      "revId": "079d96d2d2ba80b8d4ccfaad9216e2a94fe752d8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
