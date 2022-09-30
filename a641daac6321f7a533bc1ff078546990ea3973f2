@@ -18,6 +18,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6df2fe3f_a8d6afe5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-30T12:36:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cfc8ecf_cbad2392",
+      "revId": "a641daac6321f7a533bc1ff078546990ea3973f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7091f6cd_d822c8de",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-09-29T19:48:44Z",
       "side": 1,
       "message": "remove when ready",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 8
+      },
+      "revId": "a641daac6321f7a533bc1ff078546990ea3973f2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6a2adb4_7dd532f8",
+        "filename": "src/app/commoncomponents/LocalVideo.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-09-30T12:36:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7091f6cd_d822c8de",
       "range": {
         "startLine": 39,
         "startChar": 0,
