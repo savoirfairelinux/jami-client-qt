@@ -49,7 +49,8 @@ struct Info;
     X(ReplyToAuthor) \
     X(TotalSize) \
     X(TransferName) \
-    X(Readers)
+    X(Readers) \
+    X(IsEmojiOnly)
 
 namespace MessageList {
 Q_NAMESPACE
@@ -124,6 +125,8 @@ public:
     // these emission wrappers
     void emitDataChanged(iterator it, VectorInt roles = {});
     void emitDataChanged(const QString& msgId, VectorInt roles = {});
+
+    bool isOnlyEmoji(const QString& text) const;
 
 protected:
     using Role = MessageList::Role;

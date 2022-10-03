@@ -27,11 +27,12 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
+
 SBSMessageBase {
     id : root
 
     property bool isRemoteImage
-
+    property bool isEmojiOnly: IsEmojiOnly
     property real maxMsgWidth: root.width - senderMargin - 2 * hPadding - avatarBlockWidth
 
     isOutgoing: Author === ""
@@ -42,13 +43,12 @@ SBSMessageBase {
 
     innerContent.children: [
         TextEdit {
-
-            padding: JamiTheme.preferredMarginSize
+            padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
 
             text: Body
 
-            horizontalAlignment: Text.AlignLeft
+            horizontalAlignment: isOutgoing ? Text.AlignLeft : Text.AlignRight
 
             width: {
                 if (extraContent.active)
@@ -62,8 +62,7 @@ SBSMessageBase {
             height: implicitHeight
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
-
-            font.pixelSize: JamiTheme.chatviewFontSize
+            font.pixelSize: isEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
 
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
@@ -71,9 +70,15 @@ SBSMessageBase {
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(hoveredLink)
             readOnly: true
-            color: UtilsAdapter.luma(bubble.color) ?
-                       JamiTheme.chatviewTextColorLight :
-                       JamiTheme.chatviewTextColorDark
+            color: {
+                if(isEmojiOnly){
+                    if(JamiTheme.darkTheme) return JamiTheme.chatviewTextColorLight
+                    return JamiTheme.chatviewTextColorDark
+                }else{
+                    if(UtilsAdapter.luma(bubble.color)) return JamiTheme.chatviewTextColorLight
+                    JamiTheme.chatviewTextColorDark
+                }
+            }
 
             TapHandler {
                 enabled: parent.selectedText.length > 0
@@ -109,8 +114,9 @@ SBSMessageBase {
                     }
                     cursorShape: Qt.PointingHandCursor
                 }
-                AnimatedImage {
+                AnimatedImage {                 
                     id: img
+
                     cache: false
                     source: isRemoteImage ?
                                 LinkPreviewInfo.url :
