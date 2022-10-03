@@ -619,7 +619,7 @@ Rectangle {
 
     Shortcut {
         sequence: "Escape"
-        context: Qt.ApplicationShortcut
+        context: Qt.WindowShortcut
         onActivated: layoutManager.popFullScreenItem()
     }
 

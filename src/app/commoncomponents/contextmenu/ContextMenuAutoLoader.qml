@@ -30,6 +30,8 @@ Loader {
     property int contextMenuItemPreferredHeight: 0
     property int contextMenuSeparatorPreferredHeight: 0
 
+    active: false
+
     function openMenu() {
         root.active = true
         root.sourceComponent = menuComponent
