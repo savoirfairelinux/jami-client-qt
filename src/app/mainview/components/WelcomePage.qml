@@ -39,11 +39,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             enabled: visible
-            onClicked: {
-                for (var c in flow.children) {
-                    flow.children[c].opened = false
-                }
-            }
+            onClicked: welcomeView.forceActiveFocus()
         }
 
         anchors.fill: root
@@ -133,9 +129,8 @@ Rectangle {
 
                     JamiIdentifier {
                         id: identifier
-                        editable: true
-                        visible: CurrentAccount.type !== Profile.Type.SIP
 
+                        visible: CurrentAccount.type !== Profile.Type.SIP
                         anchors.top: identifierDescription.bottom
                         anchors.left: parent.left
                         anchors.margins: JamiTheme.preferredMarginSize
@@ -179,6 +174,7 @@ Rectangle {
                         spacing: 13
 
                         Repeater {
+                            id: tipsRepeater
                             model: TipsModel
                             Layout.alignment: Qt.AlignCenter
 
