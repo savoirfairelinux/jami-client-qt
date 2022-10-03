@@ -102,13 +102,13 @@ TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
 
     QStringList hiddenIds = settingsManager_->getValue(Settings::Key::HiddenTips).toStringList();
 
-    auto it = tips_.begin();
-    while (it != tips_.end()) {
-        if (hiddenIds.contains((*it)["id"]))
-            it = tips_.erase(it);
-        else
-            it++;
-    }
+    //    auto it = tips_.begin();
+    //    while (it != tips_.end()) {
+    //        if (hiddenIds.contains((*it)["id"]))
+    //            it = tips_.erase(it);
+    //        else
+    //            it++;
+    //    }
 }
 
 int

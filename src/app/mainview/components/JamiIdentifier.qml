@@ -19,6 +19,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -27,63 +28,57 @@ import net.jami.Constants 1.1
 import "../../commoncomponents"
 import "../../settingsview/components"
 
-Rectangle {
-
+Item {
     id: root
 
     NameRegistrationDialog {
         id : nameRegistrationDialog
-
-        onAccepted: jamiRegisteredNameText.nameRegistrationState =
+        onAccepted: usernameTextEdit.nameRegistrationState =
                     UsernameLineEdit.NameRegistrationState.BLANK
     }
 
-    property bool editable: false
-    property bool editing: false
+    readonly property real minWidth: mainRectangle.width + secondLine.implicitWidth
+    width: Math.max(minWidth, usernameTextEdit.width + 2 * JamiTheme.preferredMarginSize)
+    height: firstLine.implicitHeight + usernameTextEdit.height + 12
 
-    radius: 20
-    Layout.bottomMargin: JamiTheme.jamiIdMargins
-    Layout.leftMargin: JamiTheme.jamiIdMargins
-    property var minWidth: mainRectangle.width + secondLine.implicitWidth
-    width: Math.max(minWidth, jamiRegisteredNameText.width + 2 * JamiTheme.preferredMarginSize)
-    height: firstLine.implicitHeight + jamiRegisteredNameText.height + 12
-    color: JamiTheme.secondaryBackgroundColor
+    Rectangle {
+        id: outerRect
+        anchors.fill: parent; radius: 20
+        color: JamiTheme.secondaryBackgroundColor
+    }
+
+    Item {
+        anchors.fill: outerRect
+        layer.enabled: true; layer.effect: OpacityMask { maskSource: outerRect }
+
+        Rectangle {
+            id: logoRect
+            width: 97 + radius
+            height: 40
+            color: JamiTheme.mainColor
+            radius: 20
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.leftMargin: -radius
+
+            ResponsiveImage {
+                id: jamiIdLogo
+                anchors.horizontalCenter: parent.horizontalCenter
+                // Adjust offset for parent masking margin.
+                anchors.horizontalCenterOffset: parent.radius / 2
+                anchors.verticalCenter: parent.verticalCenter
+                width: JamiTheme.jamiIdLogoWidth
+                height: JamiTheme.jamiIdLogoHeight
+                source: JamiResources.jamiid_svg
+            }
+        }
+    }
 
     ColumnLayout {
         RowLayout {
             id: firstLine
             Layout.alignment: Qt.AlignTop
             Layout.preferredWidth: root.width
-
-            Rectangle {
-                id: mainRectangle
-
-                width: 97
-                height: 40
-                color: JamiTheme.mainColor
-                radius: 20
-
-
-                Rectangle {
-                    id: rectForRadius
-                    anchors.bottom: parent.bottom
-                    width: 20
-                    height: 20
-                    color: JamiTheme.mainColor
-                }
-
-                ResponsiveImage {
-                    id: jamiIdLogo
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                    width: JamiTheme.jamiIdLogoWidth
-                    height: JamiTheme.jamiIdLogoHeight
-                    opacity: 1
-
-                    source: JamiResources.jamiid_svg
-
-                }
-            }
 
             RowLayout {
                 id: secondLine
@@ -101,11 +96,11 @@ Rectangle {
                     imageColor: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
                     normalColor: JamiTheme.transparentColor
                     hoveredColor: JamiTheme.transparentColor
-                    visible: editable && CurrentAccount.registeredName === ""
+                    visible: CurrentAccount.registeredName === ""
                     border.color: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
 
                     enabled: {
-                        switch(jamiRegisteredNameText.nameRegistrationState) {
+                        switch(usernameTextEdit.nameRegistrationState) {
                         case UsernameLineEdit.NameRegistrationState.BLANK:
                         case UsernameLineEdit.NameRegistrationState.FREE:
                             return true
@@ -116,20 +111,17 @@ Rectangle {
                         }
                     }
 
-                    source: JamiResources.round_edit_24dp_svg
+                    source: usernameTextEdit.editMode
+                            ? JamiResources.check_black_24dp_svg
+                            : JamiResources.round_edit_24dp_svg
+
                     toolTipText: JamiStrings.chooseUsername
 
                     onClicked: {
-                        if (!root.editing) {
-                            root.editing = !root.editing
-                            source = JamiResources.check_black_24dp_svg
-                            jamiRegisteredNameText.text = ""
-                            jamiRegisteredNameText.forceActiveFocus()
+                        if (!usernameTextEdit.editMode) {
+                            usernameTextEdit.startEditing()
                         } else {
-                            root.editing = !root.editing
-                            source = JamiResources.round_edit_24dp_svg
-                            jamiRegisteredNameText.accepted()
-                            jamiRegisteredNameText.focus = false
+                            usernameTextEdit.accepted()
                         }
                     }
                 }
@@ -177,32 +169,42 @@ Rectangle {
             }
         }
 
-        UsernameLineEdit {
-            id: jamiRegisteredNameText
-            readOnly: !root.editing
-            Layout.preferredWidth: 330
+        UsernameTextEdit {
+            id: usernameTextEdit
 
-            horizontalAlignment: Qt.AlignHCenter
+            Layout.preferredWidth: 330
+            Layout.alignment: Qt.AlignHCenter
+            Layout.topMargin: JamiTheme.preferredMarginSize * 0.5
             Layout.leftMargin: JamiTheme.preferredMarginSize
             Layout.rightMargin: JamiTheme.preferredMarginSize
-            backgroundColor: JamiTheme.secondaryBackgroundColor
-
-            font.pointSize: JamiTheme.textFontSize + 1
-
-            text: CurrentAccount.bestId
-            color: JamiTheme.textColor
-
-            onAccepted: {
-                if (!btnEdit.enabled)
-                    return
-                if (text.length === 0) {
-                    text = CurrentAccount.bestId
-                } else {
-                    nameRegistrationDialog.openNameRegistrationDialog(text)
-                }
-            }
+            fontPointSize: JamiTheme.textFontSize + 1
         }
-    }
 
+//        UsernameLineEdit {
+//            id: jamiRegisteredNameText
+//            readOnly: !root.editing
+//            Layout.preferredWidth: 330
+
+//            horizontalAlignment: Qt.AlignHCenter
+//            Layout.leftMargin: JamiTheme.preferredMarginSize
+//            Layout.rightMargin: JamiTheme.preferredMarginSize
+//            backgroundColor: JamiTheme.secondaryBackgroundColor
+
+//            font.pointSize: JamiTheme.textFontSize + 1
+
+//            text: CurrentAccount.bestId
+//            color: JamiTheme.textColor
+
+//            onAccepted: {
+//                if (!btnEdit.enabled)
+//                    return
+//                if (text.length === 0) {
+//                    text = CurrentAccount.bestId
+//                } else {
+//                    nameRegistrationDialog.openNameRegistrationDialog(text)
+//                }
+//            }
+//        }
+    }
 }
 
