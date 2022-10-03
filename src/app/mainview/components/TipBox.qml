@@ -31,13 +31,13 @@ import "../../commoncomponents"
 Item {
 
     id: root
-    property var title: ""
-    property var description: ""
+    property string title: ""
+    property string description: ""
     property int tipId: 0
     property string type : ""
     property bool hovered: false
     property bool clicked : false
-    property bool opened: false
+    property bool opened: activeFocus
 
     property string customizeTip:"CustomizeTipBox {}"
 
@@ -89,7 +89,7 @@ Item {
 
     TapHandler {
         target: rect
-        onTapped: opened = !opened
+        onTapped: root.forceActiveFocus()
     }
 
     DropShadow {
