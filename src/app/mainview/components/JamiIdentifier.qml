@@ -34,7 +34,7 @@ Rectangle {
     NameRegistrationDialog {
         id : nameRegistrationDialog
 
-        onAccepted: jamiRegisteredNameText.nameRegistrationState =
+        onAccepted: usernameTextEdit.nameRegistrationState =
                     UsernameLineEdit.NameRegistrationState.BLANK
     }
 
@@ -44,9 +44,9 @@ Rectangle {
     radius: 20
     Layout.bottomMargin: JamiTheme.jamiIdMargins
     Layout.leftMargin: JamiTheme.jamiIdMargins
-    property var minWidth: mainRectangle.width + secondLine.implicitWidth
-    width: Math.max(minWidth, jamiRegisteredNameText.width + 2 * JamiTheme.preferredMarginSize)
-    height: firstLine.implicitHeight + jamiRegisteredNameText.height + 12
+    property real minWidth: mainRectangle.width + secondLine.implicitWidth
+    width: Math.max(minWidth, usernameTextEdit.width + 2 * JamiTheme.preferredMarginSize)
+    height: firstLine.implicitHeight + usernameTextEdit.height + 12
     color: JamiTheme.secondaryBackgroundColor
 
     ColumnLayout {
@@ -105,7 +105,7 @@ Rectangle {
                     border.color: enabled ? JamiTheme.buttonTintedBlue :  JamiTheme.buttonTintedBlack
 
                     enabled: {
-                        switch(jamiRegisteredNameText.nameRegistrationState) {
+                        switch(usernameTextEdit.nameRegistrationState) {
                         case UsernameLineEdit.NameRegistrationState.BLANK:
                         case UsernameLineEdit.NameRegistrationState.FREE:
                             return true
@@ -116,20 +116,17 @@ Rectangle {
                         }
                     }
 
-                    source: JamiResources.round_edit_24dp_svg
+                    source: usernameTextEdit.editMode
+                            ? JamiResources.check_black_24dp_svg
+                            : JamiResources.round_edit_24dp_svg
+
                     toolTipText: JamiStrings.chooseUsername
 
                     onClicked: {
-                        if (!root.editing) {
-                            root.editing = !root.editing
-                            source = JamiResources.check_black_24dp_svg
-                            jamiRegisteredNameText.text = ""
-                            jamiRegisteredNameText.forceActiveFocus()
+                        if (!usernameTextEdit.editMode) {
+                            usernameTextEdit.startEditing()
                         } else {
-                            root.editing = !root.editing
-                            source = JamiResources.round_edit_24dp_svg
-                            jamiRegisteredNameText.accepted()
-                            jamiRegisteredNameText.focus = false
+                            usernameTextEdit.accepted()
                         }
                     }
                 }
@@ -177,32 +174,57 @@ Rectangle {
             }
         }
 
-        UsernameLineEdit {
-            id: jamiRegisteredNameText
-            readOnly: !root.editing
-            Layout.preferredWidth: 330
+        UsernameTextEdit {
+            id: usernameTextEdit
 
-            horizontalAlignment: Qt.AlignHCenter
-            Layout.leftMargin: JamiTheme.preferredMarginSize
-            Layout.rightMargin: JamiTheme.preferredMarginSize
-            backgroundColor: JamiTheme.secondaryBackgroundColor
+            infohash: CurrentAccount.uri
+            registeredName: CurrentAccount.registeredName
 
-            font.pointSize: JamiTheme.textFontSize + 1
-
-            text: CurrentAccount.bestId
-            color: JamiTheme.textColor
-
-            onAccepted: {
-                if (!btnEdit.enabled)
-                    return
-                if (text.length === 0) {
-                    text = CurrentAccount.bestId
-                } else {
-                    nameRegistrationDialog.openNameRegistrationDialog(text)
+            function startEditing() {
+                if (!hasRegisteredName) {
+                    usernameTextEdit.editMode = true
+                    forceActiveFocus()
                 }
             }
-        }
-    }
 
+            onActiveFocusChanged: {
+                if (!activeFocus) {
+                    usernameTextEdit.editMode = false
+                }
+            }
+
+            Layout.preferredWidth: 330
+            Layout.alignment: Qt.AlignHCenter
+            Layout.leftMargin: JamiTheme.preferredMarginSize
+            Layout.rightMargin: JamiTheme.preferredMarginSize
+            fontPointSize: JamiTheme.textFontSize + 1
+        }
+
+//        UsernameLineEdit {
+//            id: jamiRegisteredNameText
+//            readOnly: !root.editing
+//            Layout.preferredWidth: 330
+
+//            horizontalAlignment: Qt.AlignHCenter
+//            Layout.leftMargin: JamiTheme.preferredMarginSize
+//            Layout.rightMargin: JamiTheme.preferredMarginSize
+//            backgroundColor: JamiTheme.secondaryBackgroundColor
+
+//            font.pointSize: JamiTheme.textFontSize + 1
+
+//            text: CurrentAccount.bestId
+//            color: JamiTheme.textColor
+
+//            onAccepted: {
+//                if (!btnEdit.enabled)
+//                    return
+//                if (text.length === 0) {
+//                    text = CurrentAccount.bestId
+//                } else {
+//                    nameRegistrationDialog.openNameRegistrationDialog(text)
+//                }
+//            }
+//        }
+    }
 }
 

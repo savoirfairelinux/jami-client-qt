@@ -203,5 +203,7 @@
         <file>src/app/mainview/components/CustomizeTipBox.qml</file>
         <file>src/app/mainview/components/BackupTipBox.qml</file>
         <file>src/app/mainview/components/InformativeTipBox.qml</file>
+        <file>src/app/commoncomponents/MaterialTextField.qml</file>
+        <file>src/app/commoncomponents/UsernameTextEdit.qml</file>
     </qresource>
 </RCC>
