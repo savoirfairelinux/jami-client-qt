@@ -166,9 +166,6 @@ JamiListView {
                 }
             }
             positionViewAtIndex(idx, ListView.Center)
-            var delegate = root.itemAtIndex(idx)
-            if (delegate.selectAnimation)
-                delegate.selectAnimation.start()
         }
     }
 

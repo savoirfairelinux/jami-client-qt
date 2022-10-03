@@ -32,7 +32,6 @@ Control {
     property alias avatarBlockWidth: avatarBlock.width
     property alias innerContent: innerContent
     property alias bubble: bubble
-    property alias selectAnimation: selectAnimation
     property real extraHeight: 0
 
     // these MUST be set but we won't use the 'required' keyword yet
@@ -145,6 +144,8 @@ Control {
 
                 MessageBubble {
                     id: bubble
+
+                    visible: !isEmojiOnly
                     z:-1
                     out: isOutgoing
                     type: seq
@@ -166,15 +167,48 @@ Control {
                     height: innerContent.childrenRect.height + (visible ? root.extraHeight : 0)
                 }
 
+                Rectangle {
+                    id: bg
+
+                    color: bubble.getBaseColor()
+                    anchors.fill: parent
+                    visible: false
+                }
+
                 SequentialAnimation {
                     id: selectAnimation
-                    ColorAnimation {
-                        target: bubble; property: "color"
-                        to: Qt.darker(bubble.getBaseColor(), 1.5); duration: 240
+
+                    PropertyAnimation {
+                        properties: "opacity"
+                        target: opacityMask
+                        from: 0
+                        to: 1
+                        duration: JamiTheme.longFadeDuration
                     }
-                    ColorAnimation {
-                        target: bubble; property: "color"
-                        to: bubble.getBaseColor(); duration: 240
+                    PropertyAnimation {
+                        properties: "opacity"
+                        target: opacityMask
+                        from: 1
+                        to: 0
+                        duration: JamiTheme.longFadeDuration
+                    }
+                }
+
+                OpacityMask {
+                    id: opacityMask
+
+                    opacity: 0
+                    anchors.fill: bubble
+                    source: bubble
+                    maskSource: bg
+                }
+
+                Connections {
+                    target: CurrentConversation
+                    function onScrollTo(id) {
+                        if (id !== root.id)
+                            return
+                        selectAnimation.start()
                     }
                 }
             }

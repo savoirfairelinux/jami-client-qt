@@ -357,6 +357,29 @@ MessageListModel::roleNames() const
     return roles;
 }
 
+bool
+MessageListModel::isOnlyEmoji(const QString& text) const
+{
+    auto codepointList = text.toUcs4();
+    for (QList<uint>::iterator it = codepointList.begin(); it != codepointList.end(); it++) {
+        auto cur = false;
+        if (*it == 20 or *it == 0x200D) {
+            cur = true;
+        } else if (0x1f000 <= *it && 0x1ffff >= *it) {
+            cur = true;
+        } else if (0x2600 <= *it && 0x27BF >= *it) {
+            cur = true;
+        } else if (0xFE00 <= *it && 0xFE0f >= *it) {
+            cur = true;
+        } else if (0xE0000 <= *it && 0xE007F >= *it) {
+            cur = true;
+        }
+        if (!cur)
+            return false;
+    }
+    return true;
+}
+
 QVariant
 MessageListModel::dataForItem(item_t item, int, int role) const
 {
@@ -401,6 +424,8 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.second.commit["displayName"]);
     case Role::Readers:
         return QVariant(messageToReaders_[item.first]);
+    case Role::IsEmojiOnly:
+        return QVariant(isOnlyEmoji(item.second.body));
     default:
         return {};
     }
