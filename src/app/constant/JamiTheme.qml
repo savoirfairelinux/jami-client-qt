@@ -188,6 +188,7 @@ Item {
     property color chatviewTextColorLight: "#f0f0f0"
     property color chatviewTextColorDark: "#353637"
     property real chatviewFontSize: calcSize(15)
+    property real chatviewEmojiSize: calcSize(60)
     property color timestampColor: darkTheme ? "#bbb" : "#777"
     property color messageOutTxtColor: "#000000"
     property color messageInBgColor: darkTheme ? "#28b1ed" : "#e5e5e5"
