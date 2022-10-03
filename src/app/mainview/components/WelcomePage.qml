@@ -1,20 +1,5 @@
-/*
- * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+// SPDX-FileCopyrightText: © 2022 Savoir-faire Linux Inc.
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 import QtQuick
 import QtQuick.Controls
@@ -39,11 +24,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             enabled: visible
-            onClicked: {
-                for (var c in flow.children) {
-                    flow.children[c].opened = false
-                }
-            }
+            onClicked: welcomeView.forceActiveFocus()
         }
 
         anchors.fill: root
@@ -67,7 +48,8 @@ Rectangle {
                     color: JamiTheme.rectColor
                     anchors.topMargin: 25
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: identifier.width + 2 * JamiTheme.preferredMarginSize + (welcomeLogo.visible ?  welcomeLogo.width : 0)
+                    width: identifier.width + 2 * JamiTheme.preferredMarginSize
+                           + (welcomeLogo.visible ?  welcomeLogo.width : 0)
                     height: childrenRect.height
                     opacity:1
 
@@ -133,9 +115,8 @@ Rectangle {
 
                     JamiIdentifier {
                         id: identifier
-                        editable: true
-                        visible: CurrentAccount.type !== Profile.Type.SIP
 
+                        visible: CurrentAccount.type !== Profile.Type.SIP
                         anchors.top: identifierDescription.bottom
                         anchors.left: parent.left
                         anchors.margins: JamiTheme.preferredMarginSize
@@ -179,6 +160,7 @@ Rectangle {
                         spacing: 13
 
                         Repeater {
+                            id: tipsRepeater
                             model: TipsModel
                             Layout.alignment: Qt.AlignCenter
 
@@ -259,6 +241,4 @@ Rectangle {
         bBorderwidth: 0
         borderColor: JamiTheme.tabbarBorderColor
     }
-
-
 }
