@@ -48,6 +48,7 @@ Control {
     property string id: Id
     property string hoveredLink
     property var readers: []
+    property bool isEmojiOnly: IsEmojiOnly
 
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
@@ -137,6 +138,8 @@ Control {
 
                 MessageBubble {
                     id: bubble
+
+                    visible: !isEmojiOnly
                     z:-1
                     out: isOutgoing
                     type: seq

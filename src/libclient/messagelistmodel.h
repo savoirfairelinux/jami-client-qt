@@ -49,7 +49,8 @@ struct Info;
     X(ReplyToAuthor) \
     X(TotalSize) \
     X(TransferName) \
-    X(Readers)
+    X(Readers) \
+    X(IsEmojiOnly)
 
 namespace MessageList {
 Q_NAMESPACE
