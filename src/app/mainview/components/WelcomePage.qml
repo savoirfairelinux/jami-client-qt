@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
- * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Copyright (C) 2022 Savoir-faire Linux Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,11 +38,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             enabled: visible
-            onClicked: {
-                for (var c in flow.children) {
-                    flow.children[c].opened = false
-                }
-            }
+            onClicked: welcomeView.forceActiveFocus()
         }
 
         anchors.fill: root
@@ -67,7 +62,8 @@ Rectangle {
                     color: JamiTheme.rectColor
                     anchors.topMargin: 25
                     anchors.horizontalCenter: parent.horizontalCenter
-                    width: identifier.width + 2 * JamiTheme.preferredMarginSize + (welcomeLogo.visible ?  welcomeLogo.width : 0)
+                    width: identifier.width + 2 * JamiTheme.preferredMarginSize
+                           + (welcomeLogo.visible ?  welcomeLogo.width : 0)
                     height: childrenRect.height
                     opacity:1
 
@@ -133,9 +129,8 @@ Rectangle {
 
                     JamiIdentifier {
                         id: identifier
-                        editable: true
-                        visible: CurrentAccount.type !== Profile.Type.SIP
 
+                        visible: CurrentAccount.type !== Profile.Type.SIP
                         anchors.top: identifierDescription.bottom
                         anchors.left: parent.left
                         anchors.margins: JamiTheme.preferredMarginSize
@@ -179,6 +174,7 @@ Rectangle {
                         spacing: 13
 
                         Repeater {
+                            id: tipsRepeater
                             model: TipsModel
                             Layout.alignment: Qt.AlignCenter
 
@@ -259,6 +255,4 @@ Rectangle {
         bBorderwidth: 0
         borderColor: JamiTheme.tabbarBorderColor
     }
-
-
 }

@@ -35,8 +35,9 @@ BaseModalDialog {
     signal accepted
 
     function openNameRegistrationDialog(registerNameIn) {
+        if (registerNameIn === '')
+            return
         registerdName = registerNameIn
-
         open()
     }
 
