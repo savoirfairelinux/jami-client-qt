@@ -48,6 +48,7 @@ Control {
     property string id: Id
     property string hoveredLink
     property var readers: []
+    property bool isEmojiOnly: IsEmojiOnly
 
     readonly property real senderMargin: 64
     readonly property real avatarSize: 20
@@ -137,6 +138,8 @@ Control {
 
                 MessageBubble {
                     id: bubble
+
+                    visible: !isEmojiOnly
                     z:-1
                     out: isOutgoing
                     type: seq
@@ -160,13 +163,25 @@ Control {
 
                 SequentialAnimation {
                     id: selectAnimation
-                    ColorAnimation {
-                        target: bubble; property: "color"
-                        to: Qt.darker(bubble.getBaseColor(), 1.5); duration: 240
+                    ParallelAnimation {
+                        ColorAnimation {
+                            target: textEdit; property: "color"
+                            to: "transparent"; duration: 240
+                        }
+                        ColorAnimation {
+                            target: bubble; property: "color"
+                            to: Qt.darker(bubble.getBaseColor(), 1.5); duration: 240
+                        }
                     }
-                    ColorAnimation {
-                        target: bubble; property: "color"
-                        to: bubble.getBaseColor(); duration: 240
+                    ParallelAnimation {
+                        ColorAnimation {
+                            target: textEdit; property: "color"
+                            to: textEdit.getBaseColor(); duration: 240
+                        }
+                        ColorAnimation {
+                            target: bubble; property: "color"
+                            to: bubble.getBaseColor(); duration: 240
+                        }
                     }
                 }
             }
