@@ -326,8 +326,10 @@ Loader {
 
                     Component {
                         id: imageComp
+
                         Image {
                             id: img
+
                             anchors.right: isOutgoing ? parent.right : undefined
                             property real minSize: 192
                             property real maxSize: 256
@@ -346,6 +348,7 @@ Loader {
                                                                            innerContent.width - senderMargin))
                             width: adjustedWidth
                             height: Math.ceil(adjustedWidth / aspectRatio)
+
                             Rectangle {
                                 color: JamiTheme.previewImageBackgroundColor
                                 z: -1
