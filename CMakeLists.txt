@@ -361,7 +361,12 @@ elseif (NOT APPLE)
   endif()
 
   pkg_check_modules(XCB xcb)
+
+  list(PREPEND CMAKE_PREFIX_PATH
+    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
   pkg_check_modules(LIBAVUTIL libavutil>=55.75.100)
+  list(REMOVE_ITEM CMAKE_PREFIX_PATH
+    ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg/libavutil)
 
   include_directories(
     ${LIBCLIENT_SRC_DIR}
@@ -557,8 +562,7 @@ elseif (NOT APPLE)
     ${LIBGDKPIXBUF_LIBRARIES}
     ${GLIB_LIBRARIES}
     ${GIO_LIBRARIES}
-    ${XCB_LIBRARIES}
-    ${LIBAVUTIL_LIBRARIES})
+    ${XCB_LIBRARIES})
 
   # Installation rules
   install(
