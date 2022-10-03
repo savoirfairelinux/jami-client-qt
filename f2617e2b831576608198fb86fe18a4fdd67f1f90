@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5788ddb4_e5b12db2",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-03T21:57:11Z",
+      "side": 1,
+      "message": "The author should list you, not yang and ming",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 61
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
