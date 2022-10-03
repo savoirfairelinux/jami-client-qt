@@ -329,9 +329,15 @@ find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpmachine
+    OUTPUT_VARIABLE CC_MACHINE)
+else()
+  set(CC_MACHINE "")
+endif()
 find_library(AVUTIL_LIBRARY avutil
   HINTS
-  ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/${CC_MACHINE}/lib
   ${LIBJAMI_CONTRIB_DIR}/x86_64-apple-darwin${CMAKE_HOST_SYSTEM_VERSION}/lib)
 
 if(ENABLE_LIBWRAP)
