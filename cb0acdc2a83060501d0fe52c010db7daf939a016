@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e5d0ab_28d4bd5e",
+        "filename": "src/app/mainview/components/WelcomePage.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T13:57:04Z",
+      "side": 0,
+      "message": "Q_INVOKABLE void remove(QVariant id); is now unused",
+      "range": {
+        "startLine": 201,
+        "startChar": 54,
+        "endLine": 201,
+        "endChar": 66
+      },
+      "revId": "cb0acdc2a83060501d0fe52c010db7daf939a016",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3e8338c_dfa9306a",
+        "filename": "src/app/tipsmodel.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T13:57:04Z",
+      "side": 0,
+      "message": "Remove other occurences for HiddenTips as the preference is unused now",
+      "range": {
+        "startLine": 103,
+        "startChar": 70,
+        "endLine": 103,
+        "endChar": 80
+      },
+      "revId": "cb0acdc2a83060501d0fe52c010db7daf939a016",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
