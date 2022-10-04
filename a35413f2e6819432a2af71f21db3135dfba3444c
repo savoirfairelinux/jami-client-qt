@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9d88db1_78d4b3fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T16:28:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e157ad1_ef493b35",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "a35413f2e6819432a2af71f21db3135dfba3444c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35004342_bb2d60d9",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-04T13:44:29Z",
       "side": 1,
       "message": "trailing spaces",
+      "range": {
+        "startLine": 40,
+        "startChar": 20,
+        "endLine": 40,
+        "endChar": 22
+      },
+      "revId": "a35413f2e6819432a2af71f21db3135dfba3444c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdb01eac_9c0f8286",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T16:28:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35004342_bb2d60d9",
       "range": {
         "startLine": 40,
         "startChar": 20,
@@ -93,6 +141,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57043c09_1b263277",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T16:28:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b580c6f5_999a9ec1",
+      "range": {
+        "startLine": 73,
+        "startChar": 19,
+        "endLine": 77,
+        "endChar": 52
+      },
+      "revId": "a35413f2e6819432a2af71f21db3135dfba3444c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfd086bd_d9214f54",
@@ -106,6 +178,30 @@
       "writtenOn": "2022-10-04T13:49:06Z",
       "side": 1,
       "message": "e/amarok/Projects/jami/client-qt/src/libclient/messagelistmodel.cpp:356:1: warning: no previous declaration for ‘bool lrc::isOnlyEmoji(const QString\u0026)’\n\n\u0026 add new line between the method",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 32
+      },
+      "revId": "a35413f2e6819432a2af71f21db3135dfba3444c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d3fbacd_5cf3641f",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T16:28:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfd086bd_d9214f54",
       "range": {
         "startLine": 355,
         "startChar": 0,
