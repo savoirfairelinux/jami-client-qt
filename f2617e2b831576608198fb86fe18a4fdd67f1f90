@@ -22,6 +22,30 @@
       },
       "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d41c3a81_32c36712",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T13:36:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5788ddb4_e5b12db2",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 61
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
