@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f69968b5_25abe3da",
+        "filename": "src/app/commoncomponents/ContactMessageDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "we generally add space like (id: foo ; showDay: root.showDay...)",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec79b09_3663d352",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5788ddb4_e5b12db2",
         "filename": "src/app/commoncomponents/TimestampInfo.qml",
         "patchSetId": 8
@@ -43,6 +89,168 @@
         "startChar": 0,
         "endLine": 4,
         "endChar": 61
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac54832_90922d04",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5788ddb4_e5b12db2",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 61
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8638bfaa_fee08beb",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "same\n\nAlso, the design seems different than the one from Charlotte",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b23a2a2d_246fee5e",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "no fontSize?",
+      "range": {
+        "startLine": 78,
+        "startChar": 31,
+        "endLine": 78,
+        "endChar": 43
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef683730_acc7cad4",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "Also do we want to implement the button at the right of the timestamp day? to reduce one day in another patch?",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdfe9741_23898fb6",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "why not using numbers from JamiTheme?",
+      "range": {
+        "startLine": 89,
+        "startChar": 29,
+        "endLine": 89,
+        "endChar": 31
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b311605_8de01f8d",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "not zoomable",
+      "range": {
+        "startLine": 95,
+        "startChar": 22,
+        "endLine": 95,
+        "endChar": 25
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34861884_732d4e84",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T14:17:57Z",
+      "side": 1,
+      "message": "Seems to be in the middle of the colors.",
+      "range": {
+        "startLine": 211,
+        "startChar": 9,
+        "endLine": 211,
+        "endChar": 41
       },
       "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
