@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a08b180_a140793d",
+        "filename": "src/app/commoncomponents/ContactMessageDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f69968b5_25abe3da",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 18
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ec79b09_3663d352",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-04T14:17:57Z",
       "side": 1,
       "message": "2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 26
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3343370_f8b8ae18",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ec79b09_3663d352",
       "range": {
         "startLine": 2,
         "startChar": 17,
@@ -141,6 +189,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2bede48_b02edc66",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T21:06:57Z",
+      "side": 1,
+      "message": "Yes, because there will be other patchs with the button at the right etc. So the design has to be different for now",
+      "parentUuid": "8638bfaa_fee08beb",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b23a2a2d_246fee5e",
@@ -154,6 +226,30 @@
       "writtenOn": "2022-10-04T14:17:57Z",
       "side": 1,
       "message": "no fontSize?",
+      "range": {
+        "startLine": 78,
+        "startChar": 31,
+        "endLine": 78,
+        "endChar": 43
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a7fbad9_30a4b9d2",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b23a2a2d_246fee5e",
       "range": {
         "startLine": 78,
         "startChar": 31,
@@ -187,6 +283,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07c4f94a_cf3512a8",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T21:06:57Z",
+      "side": 1,
+      "message": "the design is unclear, so I decided not to implement it right now. But yes, this could be done in another patch.",
+      "parentUuid": "ef683730_acc7cad4",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdfe9741_23898fb6",
@@ -200,6 +320,30 @@
       "writtenOn": "2022-10-04T14:17:57Z",
       "side": 1,
       "message": "why not using numbers from JamiTheme?",
+      "range": {
+        "startLine": 89,
+        "startChar": 29,
+        "endLine": 89,
+        "endChar": 31
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e608ea5_43513168",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdfe9741_23898fb6",
       "range": {
         "startLine": 89,
         "startChar": 29,
@@ -233,6 +377,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "112da9dc_2f43ec72",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b311605_8de01f8d",
+      "range": {
+        "startLine": 95,
+        "startChar": 22,
+        "endLine": 95,
+        "endChar": 25
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34861884_732d4e84",
@@ -246,6 +414,30 @@
       "writtenOn": "2022-10-04T14:17:57Z",
       "side": 1,
       "message": "Seems to be in the middle of the colors.",
+      "range": {
+        "startLine": 211,
+        "startChar": 9,
+        "endLine": 211,
+        "endChar": 41
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "783b809f_9ad69753",
+        "filename": "src/app/constant/JamiTheme.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-04T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34861884_732d4e84",
       "range": {
         "startLine": 211,
         "startChar": 9,
