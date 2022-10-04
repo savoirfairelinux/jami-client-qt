@@ -68,6 +68,29 @@
       },
       "revId": "a35413f2e6819432a2af71f21db3135dfba3444c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfd086bd_d9214f54",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T13:49:06Z",
+      "side": 1,
+      "message": "e/amarok/Projects/jami/client-qt/src/libclient/messagelistmodel.cpp:356:1: warning: no previous declaration for ‘bool lrc::isOnlyEmoji(const QString\u0026)’\n\n\u0026 add new line between the method",
+      "range": {
+        "startLine": 355,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 32
+      },
+      "revId": "a35413f2e6819432a2af71f21db3135dfba3444c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
