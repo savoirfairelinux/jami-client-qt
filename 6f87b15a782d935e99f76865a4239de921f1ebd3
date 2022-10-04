@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7998a396_c3d4db8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T18:24:48Z",
+      "side": 1,
+      "message": "what motivated this change?",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "6f87b15a782d935e99f76865a4239de921f1ebd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "284fca56_fbadf8a1",
+        "filename": "src/app/mainview/components/InitialCallPage.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T18:24:48Z",
+      "side": 1,
+      "message": "we should have an enum for this, else seems magic numbers",
+      "range": {
+        "startLine": 50,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "6f87b15a782d935e99f76865a4239de921f1ebd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "690863ec_922a3e7c",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-04T18:24:48Z",
+      "side": 1,
+      "message": "remove ;",
+      "range": {
+        "startLine": 207,
+        "startChar": 39,
+        "endLine": 209,
+        "endChar": 35
+      },
+      "revId": "6f87b15a782d935e99f76865a4239de921f1ebd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
