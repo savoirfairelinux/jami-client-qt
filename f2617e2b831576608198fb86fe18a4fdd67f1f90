@@ -215,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80c75135_3c5788f3",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-05T13:26:53Z",
+      "side": 1,
+      "message": "I was talking about the \"Yesterday\" in https://git.jami.net/savoirfairelinux/jami-client-qt/uploads/178d61786259473acee77c8c50ab5bbb/Screenshot_2022-09-08_at_15-42-59_Adobe_XD.png",
+      "parentUuid": "e2bede48_b02edc66",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b23a2a2d_246fee5e",
         "filename": "src/app/commoncomponents/TimestampInfo.qml",
         "patchSetId": 8
@@ -297,6 +321,30 @@
       "side": 1,
       "message": "the design is unclear, so I decided not to implement it right now. But yes, this could be done in another patch.",
       "parentUuid": "ef683730_acc7cad4",
+      "range": {
+        "startLine": 82,
+        "startChar": 9,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1de7214_82818269",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-05T13:26:53Z",
+      "side": 1,
+      "message": "for the button, I agree, it\u0027s not related to this patch",
+      "parentUuid": "07c4f94a_cf3512a8",
       "range": {
         "startLine": 82,
         "startChar": 9,
