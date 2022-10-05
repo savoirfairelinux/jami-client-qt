@@ -56,9 +56,7 @@ public:
     Q_INVOKABLE void changeAccount(int row);
 
     // Create normal Jami account, SIP account and JAMS accounts.
-    Q_INVOKABLE void createJamiAccount(QString registeredName,
-                                       const QVariantMap& settings,
-                                       bool isCreating);
+    Q_INVOKABLE void createJamiAccount(const QVariantMap& settings);
     Q_INVOKABLE void createSIPAccount(const QVariantMap& settings);
     Q_INVOKABLE void createJAMSAccount(const QVariantMap& settings);
 

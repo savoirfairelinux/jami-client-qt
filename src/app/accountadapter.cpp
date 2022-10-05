@@ -97,16 +97,14 @@ AccountAdapter::connectFailure()
 }
 
 void
-AccountAdapter::createJamiAccount(QString registeredName,
-                                  const QVariantMap& settings,
-                                  bool isCreating)
+AccountAdapter::createJamiAccount(const QVariantMap& settings)
 {
+    auto registeredName = settings["registeredName"].toString();
     Utils::oneShotConnect(
         &lrcInstance_->accountModel(),
         &lrc::api::AccountModel::accountAdded,
-        [this, registeredName, settings, isCreating](const QString& accountId) {
+        [this, registeredName, settings](const QString& accountId) {
             lrcInstance_->accountModel().setAvatar(accountId, settings["avatar"].toString());
-
             Utils::oneShotConnect(&lrcInstance_->accountModel(),
                                   &lrc::api::AccountModel::accountDetailsChanged,
                                   [this](const QString& accountId) {
@@ -127,6 +125,7 @@ AccountAdapter::createJamiAccount(QString registeredName,
                 registeredNameSavedConnection_
                     = connect(&lrcInstance_->accountModel(),
                               &lrc::api::AccountModel::profileUpdated,
+                              this,
                               [this, addedAccountId = accountId](const QString& accountId) {
                                   if (addedAccountId == accountId) {
                                       Q_EMIT lrcInstance_->accountListChanged();
