@@ -237,6 +237,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2baa7669_88e7cf19",
+        "filename": "src/app/commoncomponents/TimestampInfo.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T20:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80c75135_3c5788f3",
+      "range": {
+        "startLine": 55,
+        "startChar": 15,
+        "endLine": 55,
+        "endChar": 27
+      },
+      "revId": "f2617e2b831576608198fb86fe18a4fdd67f1f90",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b23a2a2d_246fee5e",

@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac1cdd61_d728ba96",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T20:50:32Z",
+      "side": 1,
+      "message": "This issue was already there but I fixed an other one (aspect ratio binding)",
+      "parentUuid": "4b9ae7f1_75b2da88",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "95af58fef6ff9bda5c1ae6f6f3f57987521f85ee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1815e0df_13451f53",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25bd1587_3a5c1fc4",
+        "filename": "src/app/commoncomponents/GeneratedMessageDelegate.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T20:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1815e0df_13451f53",
+      "range": {
+        "startLine": 49,
+        "startChar": 24,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "95af58fef6ff9bda5c1ae6f6f3f57987521f85ee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e5e541d_dbf0882c",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-05T13:26:53Z",
       "side": 1,
       "message": "There is a small weird bug with this.\n\nIf I send a message, wait 1 min and send a new message. In the chatview, I will see 2 groups, with the same \"Just now\".\n\nI think we need to update timers showing \"Just now\" (as if we stay in the chatview several hours, we will only see \"Just now\")",
+      "range": {
+        "startLine": 52,
+        "startChar": 24,
+        "endLine": 52,
+        "endChar": 73
+      },
+      "revId": "95af58fef6ff9bda5c1ae6f6f3f57987521f85ee",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06c612a7_d2e807a1",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 10
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T20:50:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e5e541d_dbf0882c",
       "range": {
         "startLine": 52,
         "startChar": 24,
