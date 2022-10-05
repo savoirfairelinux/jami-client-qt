@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c88b58a_b628b440",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T21:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eed97e95_7c050203",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "69c0db2d369cb52ea73396c32070550f36c0f539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "067b9a74_15579f8b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-05T17:35:38Z",
       "side": 1,
       "message": "why not just use IsEmojiOnly where it\u0027s necessary?",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 42
+      },
+      "revId": "69c0db2d369cb52ea73396c32070550f36c0f539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca21bdba_675d79be",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T21:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "067b9a74_15579f8b",
       "range": {
         "startLine": 50,
         "startChar": 17,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ee2cf5f_2f65a78e",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T21:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6811b23_5838d3cc",
+      "range": {
+        "startLine": 176,
+        "startChar": 29,
+        "endLine": 176,
+        "endChar": 35
+      },
+      "revId": "69c0db2d369cb52ea73396c32070550f36c0f539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec1315d4_6879ce2f",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-05T17:35:38Z",
       "side": 1,
       "message": "space missing",
+      "range": {
+        "startLine": 178,
+        "startChar": 26,
+        "endLine": 178,
+        "endChar": 28
+      },
+      "revId": "69c0db2d369cb52ea73396c32070550f36c0f539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "538befcf_cd53820a",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T21:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec1315d4_6879ce2f",
       "range": {
         "startLine": 178,
         "startChar": 26,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c97ac435_c206df17",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T21:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "43ee0501_4c54dae5",
+      "range": {
+        "startLine": 183,
+        "startChar": 28,
+        "endLine": 183,
+        "endChar": 36
+      },
+      "revId": "69c0db2d369cb52ea73396c32070550f36c0f539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d2c4debe_163caa19",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-10-05T17:35:38Z",
       "side": 1,
       "message": "space missing",
+      "range": {
+        "startLine": 185,
+        "startChar": 26,
+        "endLine": 185,
+        "endChar": 27
+      },
+      "revId": "69c0db2d369cb52ea73396c32070550f36c0f539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b94512b_a91bb1cd",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T21:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2c4debe_163caa19",
       "range": {
         "startLine": 185,
         "startChar": 26,
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa09ac5b_6c19ca5a",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T21:17:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cb88505_f1c1e47e",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 25
+      },
+      "revId": "69c0db2d369cb52ea73396c32070550f36c0f539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "108e7797_a4fcd21e",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-10-05T17:35:38Z",
       "side": 1,
       "message": "code style different from other places",
+      "range": {
+        "startLine": 78,
+        "startChar": 17,
+        "endLine": 84,
+        "endChar": 17
+      },
+      "revId": "69c0db2d369cb52ea73396c32070550f36c0f539",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3eb111c_0766b3e1",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T21:17:53Z",
+      "side": 1,
+      "message": "Sorry, not sure to understand this review !",
+      "parentUuid": "108e7797_a4fcd21e",
       "range": {
         "startLine": 78,
         "startChar": 17,
