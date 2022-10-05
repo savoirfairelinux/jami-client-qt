@@ -410,7 +410,6 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
     // this will update various UI elements that portray the call state
     Q_EMIT callStatusChanged(static_cast<int>(call.status), accountId, convInfo.uid);
 
-    auto callBelongsToSelectedAccount = accountId == lrcInstance_->get_currentAccountId();
     auto accountProperties = lrcInstance_->accountModel().getAccountConfig(accountId);
 
     // do nothing but update the status UI for incoming calls on RendezVous accounts
@@ -423,21 +422,17 @@ CallAdapter::onShowIncomingCallView(const QString& accountId, const QString& con
     auto isCallSelected = currentConvId == convInfo.uid;
 
     // pop a notification when:
-    // - the window is not focused OR the call is for another account
+    // - the window is not focused
     // - the call is incoming AND the call's target account is
     //   not a RendezVous point
     // - the call has just transitioned to the INCOMING_RINGING state
-    if ((QApplication::focusObject() == nullptr || !callBelongsToSelectedAccount)
-        && !call.isOutgoing && !accountProperties.isRendezVous
-        && call.status == call::Status::INCOMING_RINGING) {
-        // if the window is not focused but the call belongs to the selected account
-        // then select the conversation immediately to show the call view
-        if (callBelongsToSelectedAccount) {
-            if (isCallSelected) {
-                Q_EMIT lrcInstance_->conversationUpdated(convInfo.uid, accountId);
-            } else {
-                lrcInstance_->selectConversation(convInfo.uid);
-            }
+    if (QApplication::focusObject() == nullptr && !call.isOutgoing
+        && !accountProperties.isRendezVous && call.status == call::Status::INCOMING_RINGING) {
+        // if the window is not focused then select the conversation immediately to show the call view
+        if (isCallSelected) {
+            Q_EMIT lrcInstance_->conversationUpdated(convInfo.uid, accountId);
+        } else {
+            lrcInstance_->selectConversation(convInfo.uid, accountId);
         }
         showNotification(accountId, convInfo.uid);
         return;
