@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b89e984f_b75be756",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-05T10:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7998a396_c3d4db8e",
+      "range": {
+        "startLine": 7,
+        "startChar": 18,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "6f87b15a782d935e99f76865a4239de921f1ebd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "284fca56_fbadf8a1",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e5f2120_27f7b122",
+        "filename": "src/app/mainview/components/InitialCallPage.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-05T10:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "284fca56_fbadf8a1",
+      "range": {
+        "startLine": 50,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "6f87b15a782d935e99f76865a4239de921f1ebd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "690863ec_922a3e7c",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-04T18:24:48Z",
       "side": 1,
       "message": "remove ;",
+      "range": {
+        "startLine": 207,
+        "startChar": 39,
+        "endLine": 209,
+        "endChar": 35
+      },
+      "revId": "6f87b15a782d935e99f76865a4239de921f1ebd3",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27b24c9f_91fee4f3",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-05T10:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "690863ec_922a3e7c",
       "range": {
         "startLine": 207,
         "startChar": 39,
