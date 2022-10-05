@@ -32,21 +32,24 @@ WizardViewStepModel::WizardViewStepModel(LRCInstance* lrcInstance,
 {
     reset();
 
-    connect(accountAdapter_, &AccountAdapter::accountAdded, [this](QString accountId, int index) {
-        accountAdapter_->changeAccount(index);
+    connect(accountAdapter_,
+            &AccountAdapter::accountAdded,
+            this,
+            [this](QString accountId, int index) {
+                accountAdapter_->changeAccount(index);
 
-        auto accountCreationOption = get_accountCreationOption();
-        if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
-            || accountCreationOption == AccountCreationOption::CreateSipAccount) {
-            Q_EMIT closeWizardView();
-            reset();
-        } else if (accountCreationOption != AccountCreationOption::None) {
-            Q_EMIT closeWizardView();
-            reset();
-        }
+                auto accountCreationOption = get_accountCreationOption();
+                if (accountCreationOption == AccountCreationOption::ConnectToAccountManager
+                    || accountCreationOption == AccountCreationOption::CreateSipAccount) {
+                    Q_EMIT closeWizardView();
+                    reset();
+                } else if (accountCreationOption != AccountCreationOption::None) {
+                    Q_EMIT closeWizardView();
+                    reset();
+                }
 
-        Q_EMIT accountIsReady(accountId);
-    });
+                Q_EMIT accountIsReady(accountId);
+            });
 }
 
 void
@@ -64,35 +67,29 @@ void
 WizardViewStepModel::nextStep()
 {
     auto accountCreationOption = get_accountCreationOption();
-    if (accountCreationOption == AccountCreationOption::None)
+    if (get_mainStep() == MainSteps::Initial
+        || accountCreationOption == AccountCreationOption::None) {
         return;
+    }
 
-    switch (get_mainStep()) {
-    case MainSteps::NameRegistration:
-    case MainSteps::AccountCreation: {
-        switch (get_accountCreationOption()) {
-        case AccountCreationOption::CreateJamiAccount:
-        case AccountCreationOption::CreateRendezVous:
-        case AccountCreationOption::ImportFromBackup:
-        case AccountCreationOption::ImportFromDevice: {
-            accountAdapter_->createJamiAccount(get_accountCreationInfo()["registeredName"].toString(),
-                                               get_accountCreationInfo(),
-                                               false);
-            break;
-        }
-        case AccountCreationOption::ConnectToAccountManager: {
-            accountAdapter_->createJAMSAccount(get_accountCreationInfo());
-            break;
-        }
-        case AccountCreationOption::CreateSipAccount: {
-            accountAdapter_->createSIPAccount(get_accountCreationInfo());
-            break;
-        }
-        }
+    switch (accountCreationOption) {
+    case AccountCreationOption::CreateJamiAccount:
+    case AccountCreationOption::CreateRendezVous:
+    case AccountCreationOption::ImportFromBackup:
+    case AccountCreationOption::ImportFromDevice: {
+        accountAdapter_->createJamiAccount(get_accountCreationInfo());
+        break;
+    }
+    case AccountCreationOption::ConnectToAccountManager: {
+        accountAdapter_->createJAMSAccount(get_accountCreationInfo());
+        break;
+    }
+    case AccountCreationOption::CreateSipAccount: {
+        accountAdapter_->createSIPAccount(get_accountCreationInfo());
         break;
     }
     default:
-        break;
+        return;
     }
 }
 
