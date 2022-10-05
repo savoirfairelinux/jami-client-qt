@@ -22,6 +22,30 @@
       },
       "revId": "6b2efdb67a6319fb5f033e6f7fc8a7e912110265",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67c8f8be_03b5671e",
+        "filename": "src/app/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-05T18:58:34Z",
+      "side": 1,
+      "message": "it was not an issue, but yeah it should be homogeneous",
+      "parentUuid": "3d7d20ad_613884bc",
+      "range": {
+        "startLine": 170,
+        "startChar": 35,
+        "endLine": 170,
+        "endChar": 47
+      },
+      "revId": "6b2efdb67a6319fb5f033e6f7fc8a7e912110265",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
