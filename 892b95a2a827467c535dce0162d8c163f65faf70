@@ -22,6 +22,30 @@
       },
       "revId": "892b95a2a827467c535dce0162d8c163f65faf70",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa31d4e9_40341401",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T17:25:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bed065b_7f1004e8",
+      "range": {
+        "startLine": 168,
+        "startChar": 36,
+        "endLine": 168,
+        "endChar": 44
+      },
+      "revId": "892b95a2a827467c535dce0162d8c163f65faf70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

@@ -118,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34c89e22_e560a1d7",
+        "filename": "src/app/commoncomponents/TextMessageDelegate.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-05T17:25:48Z",
+      "side": 1,
+      "message": "The animation was not available for files either, now it is",
+      "parentUuid": "7ae0b45c_38f73255",
+      "range": {
+        "startLine": 73,
+        "startChar": 18,
+        "endLine": 73,
+        "endChar": 29
+      },
+      "revId": "a35413f2e6819432a2af71f21db3135dfba3444c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b580c6f5_999a9ec1",
