@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcc6a91e_530181d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-05T14:12:43Z",
+      "side": 1,
+      "message": "good to fix this right away, complements your other recent changes, the timer is indicative of some problematic code somewhere. tbd. check the comment otherwise LGTM",
+      "revId": "c447b9564952c1b1508144a3841abcb9616d7f52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db1b94ef_0456cea9",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-05T14:12:43Z",
+      "side": 1,
+      "message": "considering this is a workaround, best to comment the code as such, and make a new component type that derives from LocalVideo, e.g. AutoStartLocalVideo er sometin",
+      "range": {
+        "startLine": 204,
+        "startChar": 16,
+        "endLine": 225,
+        "endChar": 17
+      },
+      "revId": "c447b9564952c1b1508144a3841abcb9616d7f52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
