@@ -40,7 +40,7 @@ Rectangle {
     signal showThisPage
 
     function initializeOnShowUp(isRdv) {
-        isRendezVous = isRdv
+        root.isRendezVous = isRdv
         createAccountStack.currentIndex = 0
         clearAllTextFields()
     }
@@ -113,7 +113,7 @@ Rectangle {
 
                 Text {
 
-                    text: isRendezVous ? JamiStrings.chooseUsernameForRV :
+                    text: root.isRendezVous ? JamiStrings.chooseUsernameForRV :
                                          JamiStrings.chooseUsernameForAccount
                     Layout.alignment: Qt.AlignCenter
                     Layout.topMargin: 15
@@ -135,7 +135,7 @@ Rectangle {
                     Layout.topMargin: 15
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: Math.min(440, root.width - JamiTheme.preferredMarginSize * 2)
-                    placeholderText: isRendezVous ? JamiStrings.chooseAName :
+                    placeholderText: root.isRendezVous ? JamiStrings.chooseAName :
                                     JamiStrings.chooseYourUserName
 
                     focus: visible
@@ -167,10 +167,10 @@ Rectangle {
                         case UsernameLineEdit.NameRegistrationState.FREE:
                             return " "
                         case UsernameLineEdit.NameRegistrationState.INVALID:
-                            return isRendezVous ? JamiStrings.invalidName :
+                            return root.isRendezVous ? JamiStrings.invalidName :
                                                   JamiStrings.invalidUsername
                         case UsernameLineEdit.NameRegistrationState.TAKEN:
-                            return isRendezVous ? JamiStrings.nameAlreadyTaken :
+                            return root.isRendezVous ? JamiStrings.nameAlreadyTaken :
                                                   JamiStrings.usernameAlreadyTaken
                         }
                     }
@@ -191,7 +191,7 @@ Rectangle {
                     font.capitalization: Font.AllUppercase
                     color: enabled? JamiTheme.buttonTintedBlue : JamiTheme.buttonTintedGrey
                     text: !enabled ? JamiStrings.creatingAccount :
-                                isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
+                                root.isRendezVous ? JamiStrings.chooseName : JamiStrings.joinJami
                     enabled: usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE
                             || usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.BLANK
 
@@ -203,10 +203,13 @@ Rectangle {
                     onClicked: {
                         WizardViewStepModel.accountCreationInfo =
                                 JamiQmlUtils.setUpAccountCreationInputPara(
-                                    {registeredName : usernameEdit.text,
+                                    {
+                                        registeredName : usernameEdit.text,
                                         alias: advancedAccountSettingsPage.alias,
                                         password: advancedAccountSettingsPage.validatedPassword,
-                                        avatar: UtilsAdapter.tempCreationImage()})
+                                        avatar: UtilsAdapter.tempCreationImage(),
+                                        isRendezVous: root.isRendezVous
+                                    })
                         if (usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE) {
                             enabled = false
                             WizardViewStepModel.nextStep()
