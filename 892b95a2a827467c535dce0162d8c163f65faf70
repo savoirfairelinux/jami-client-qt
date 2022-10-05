@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bed065b_7f1004e8",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-05T13:13:25Z",
+      "side": 1,
+      "message": "introduces a warning on scroll (as SBSMessageBase is shared across multiple MessageDelegate, not only TextMessages):\n\nqrc:/src/app/commoncomponents/SBSMessageBase.qml:0: ReferenceError: textEdit is not defined",
+      "range": {
+        "startLine": 168,
+        "startChar": 36,
+        "endLine": 168,
+        "endChar": 44
+      },
+      "revId": "892b95a2a827467c535dce0162d8c163f65faf70",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
