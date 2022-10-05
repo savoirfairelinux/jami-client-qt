@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d7d20ad_613884bc",
+        "filename": "src/app/wizardview/components/CreateAccountPage.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2022-10-05T18:56:09Z",
+      "side": 1,
+      "message": "same issue here ?",
+      "range": {
+        "startLine": 170,
+        "startChar": 35,
+        "endLine": 170,
+        "endChar": 47
+      },
+      "revId": "6b2efdb67a6319fb5f033e6f7fc8a7e912110265",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
