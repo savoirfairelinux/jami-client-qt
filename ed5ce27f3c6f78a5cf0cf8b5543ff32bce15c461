@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d9e0acb_c452f846",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-06T17:49:28Z",
+      "side": 1,
+      "message": "Except the animation for reply I don\u0027t really like, the patch is ok. Will see with charlotte for the anim I guess",
+      "revId": "ed5ce27f3c6f78a5cf0cf8b5543ff32bce15c461",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
