@@ -58,6 +58,7 @@ Item {
     property bool videoMuted: true
     property bool voiceActive: false
     property bool isLocalMuted: true
+    property bool isRecording: false
 
     property bool meHost: CallAdapter.isCurrentHost()
     property bool meModerator: CallAdapter.isModerator()
@@ -83,7 +84,7 @@ Item {
         id: fadeOutTimer
         interval: JamiTheme.overlayFadeDelay
         onTriggered: {
-            if (overlayMenu.hovered) {
+            if (overlayMenu.hovered || root.isRecording) {
                 fadeOutTimer.restart()
                 return
             }
@@ -146,19 +147,19 @@ Item {
                 }
 
                 onHoveredChanged: {
-                    if (overlayMenu.hovered) {
+                    if (overlayMenu.hovered || root.isRecording) {
                         participantRect.opacity = 1
                         fadeOutTimer.restart()
                         return
                     }
-                    participantRect.opacity = hovered ? 1 : 0
+                    participantRect.opacity = hovered || root.isRecording ? 1 : 0
                 }
             }
 
             Item {
                 id: participantRect
                 anchors.fill: parent
-                opacity: 0
+                opacity: root.isRecording ? 1 : 0
 
                 // Participant buttons for moderation
                 ParticipantOverlayMenu {
@@ -167,6 +168,10 @@ Item {
                     anchors.fill: parent
 
                     onHoveredChanged: {
+                        if (root.isRecording) {
+                            participantRect.opacity = 1
+                            return
+                        }
                         if (hovered) {
                             participantRect.opacity = 1
                             fadeOutTimer.restart()
@@ -303,6 +308,35 @@ Item {
                                         if (!root.isMe && !root.meModerator && root.participantIsModeratorMuted)
                                             return JamiStrings.moderatorMuted
                                         return JamiStrings.notMuted
+                                    }
+                                }
+                            }
+
+
+                            Rectangle {
+                                id: recordingRect
+                                visible: root.isRecording
+
+                                Layout.alignment: Qt.AlignVCenter
+
+                                height: 12
+                                width: 12
+
+                                radius: height / 2
+                                color: JamiTheme.recordIconColor
+
+                                SequentialAnimation on color {
+                                    loops: Animation.Infinite
+                                    running: recordingRect.visible
+                                    ColorAnimation {
+                                        from: JamiTheme.recordIconColor
+                                        to: "transparent"
+                                        duration: JamiTheme.recordBlinkDuration
+                                    }
+                                    ColorAnimation {
+                                        from: "transparent"
+                                        to: JamiTheme.recordIconColor
+                                        duration: JamiTheme.recordBlinkDuration
                                     }
                                 }
                             }

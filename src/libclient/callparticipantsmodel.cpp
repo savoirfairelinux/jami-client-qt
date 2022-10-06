@@ -201,6 +201,7 @@ CallParticipants::toQJsonObject(uint index) const
     ret[ParticipantsInfosStrings::ISCONTACT] = participant->isContact;
     ret[ParticipantsInfosStrings::HANDRAISED] = participant->handRaised;
     ret[ParticipantsInfosStrings::VOICEACTIVITY] = participant->voiceActivity;
+    ret[ParticipantsInfosStrings::ISRECORDING] = participant->isRecording;
     ret[ParticipantsInfosStrings::CALLID] = callId_;
 
     return ret;

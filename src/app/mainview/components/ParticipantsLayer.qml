@@ -65,6 +65,7 @@ Item {
             participantIsActive: active_
             isLocalMuted: audioLocalMuted_
             voiceActive: voiceActive_
+            isRecording: isRecording_
             participantIsModeratorMuted: audioModeratorMuted_
             participantHandIsRaised: isHandRaised_
 
