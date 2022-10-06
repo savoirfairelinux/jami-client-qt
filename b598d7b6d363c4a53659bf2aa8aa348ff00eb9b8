@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78d41a63_837a58cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-10-06T14:26:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bdcb9a4_00b5dafb",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 17
+      },
+      "revId": "b598d7b6d363c4a53659bf2aa8aa348ff00eb9b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d708ab9c_5e7be8f4",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61289d64_9ba17082",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-10-06T14:26:26Z",
+      "side": 1,
+      "message": "Nope, this one\u0027s ready for testing across platforms and review (e.g. I\u0027ll be continuing my own tests today).  The remaining files/folders to be moved are primarily Windows-related, and Andreas prefers to do them in separate patches.",
+      "parentUuid": "d708ab9c_5e7be8f4",
+      "range": {
+        "startLine": 10,
+        "startChar": 11,
+        "endLine": 10,
+        "endChar": 52
+      },
+      "revId": "b598d7b6d363c4a53659bf2aa8aa348ff00eb9b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "decde8ad_64c95f56",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-06T13:16:38Z",
       "side": 1,
       "message": "will need to update pipeline.\n\nDo we want a jenkinsfile instead?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "b598d7b6d363c4a53659bf2aa8aa348ff00eb9b8",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2b62ff2_8906db43",
+        "filename": "extras/build/docker/Dockerfile",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-10-06T14:26:26Z",
+      "side": 1,
+      "message": "Yeah, I\u0027ll update the pipeline script right when we are about to merge this, so that in the mean time we\u0027d avoid breaking other builds for the pipeline.\n\nAnd yeah one of the next steps I envision is to move most/all Jenkins pipeline scripts into their repos as Jenkinsfiles, including this one.  But I think they should be separate patches.  I\u0027ll update GitLab: #749 and its parent epic today to better reflect the individual steps for these changes, since we\u0027d prefer to not do all of them at once.",
+      "parentUuid": "decde8ad_64c95f56",
       "range": {
         "startLine": 1,
         "startChar": 0,
