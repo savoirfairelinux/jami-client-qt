@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "398795cc_46e4a472",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-06T13:34:15Z",
+      "side": 1,
+      "message": "a background shaped like the emoji ( a bigger circle ?)",
+      "parentUuid": "a2712ab8_12046f14",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 46
+      },
+      "revId": "8df0861a3700dc4d4e15ee082fa86f93d2eb23eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55e95f21_8d324bde",
         "filename": "src/app/commoncomponents/SBSMessageBase.qml",
         "patchSetId": 5
