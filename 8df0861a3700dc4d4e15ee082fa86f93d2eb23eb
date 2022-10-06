@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3750a844_1e7fc4b3",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-06T13:29:18Z",
+      "side": 1,
+      "message": "Yes, it was to have one aninmation that works for everything: files, emoji and messages. Do you want me to add an exception for emojis ? Plus, Andreas told me he couldn\u0027t see well the emoji blinking",
+      "parentUuid": "1358252b_f738fcd2",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 46
+      },
+      "revId": "8df0861a3700dc4d4e15ee082fa86f93d2eb23eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55e95f21_8d324bde",
         "filename": "src/app/commoncomponents/SBSMessageBase.qml",
         "patchSetId": 5
