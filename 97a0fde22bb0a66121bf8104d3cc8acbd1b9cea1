@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67ac41d9_a7551938",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-06T17:31:53Z",
+      "side": 1,
+      "message": "LGTM check the formatting related nitpicks",
+      "revId": "97a0fde22bb0a66121bf8104d3cc8acbd1b9cea1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16aacc6_32d5da61",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-06T17:31:53Z",
+      "side": 1,
+      "message": "avoid random extra spaces",
+      "range": {
+        "startLine": 52,
+        "startChar": 66,
+        "endLine": 52,
+        "endChar": 68
+      },
+      "revId": "97a0fde22bb0a66121bf8104d3cc8acbd1b9cea1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aead7f6_e514922d",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-06T17:31:53Z",
+      "side": 1,
+      "message": "avoid random extra lines",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 0
+      },
+      "revId": "97a0fde22bb0a66121bf8104d3cc8acbd1b9cea1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acfb08cf_8e798a91",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-06T17:31:53Z",
+      "side": 1,
+      "message": "Common opinions include something to the likes of: \u0027if\u0027 is not a function, there should be a space between the keyword and the opening parentheses.\nThere should also be a space between the closing parentheses and the next opening bracket. Regardless of what common opinions are, the best logic imo is, if there is no linter, just replicate the coding conventions present elsewhere in the code.\n\n`if(pItem \u0026\u0026 nItem){` -\u003e `if (pItem \u0026\u0026 nItem) {`\n\nAlso, use spaces before and after operators, and spaces after commas like when writing human languages.\n\n`computeSequencing(nItemIndex,nItem,root.itemAtIndex(itemIndex+2),item)`\nshould be\n`computeSequencing(nItemIndex, nItem, root.itemAtIndex(itemIndex + 2), item)`",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 27
+      },
+      "revId": "97a0fde22bb0a66121bf8104d3cc8acbd1b9cea1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd409e7b_abcb2703",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-06T17:31:53Z",
+      "side": 1,
+      "message": "beha",
+      "range": {
+        "startLine": 73,
+        "startChar": 27,
+        "endLine": 73,
+        "endChar": 31
+      },
+      "revId": "97a0fde22bb0a66121bf8104d3cc8acbd1b9cea1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

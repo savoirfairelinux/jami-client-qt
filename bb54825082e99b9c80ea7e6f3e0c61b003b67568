@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aadb9ada_ac2dfa18",
+        "filename": "src/app/mainview/components/MessageListView.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-06T17:31:53Z",
+      "side": 0,
+      "message": "Use the guidelines below that apply to most c-like language throughout your future modifications. It\u0027s a good habit and helps with code readability until we get working linter into the CI.",
+      "revId": "bb54825082e99b9c80ea7e6f3e0c61b003b67568",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
