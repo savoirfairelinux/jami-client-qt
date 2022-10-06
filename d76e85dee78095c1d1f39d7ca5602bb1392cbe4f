@@ -50,6 +50,42 @@
       "message": "`QResource \u0027/src/app/commoncomponents/emojipicker/emojiPickerLoader.html\u0027 not found or is empty`\n\nwhen clicking on emoji icon in conversation:\n`js: Uncaught ReferenceError: prepare_to_show is not defined`",
       "revId": "d76e85dee78095c1d1f39d7ca5602bb1392cbe4f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab4bc707_6fc1498c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-10-06T18:17:53Z",
+      "side": 1,
+      "message": "Yeah but it seems Kate won\u0027t be able to test this for at least a few more days.  The client-qt-macos verification pipeline seems to still pass already, which is good.  However, there will need to be some changes to the macOS deployment pipeline(s) and probably the scripts themselves too, since I renamed/moved a few things around.  I\u0027m told if Kate wanted to do a new macOS release soon she would pick a commit before merging of this, and fix things for macOS later on.\n\nI think Andreas and I prefer to merge this sooner rather than later if it already works on GNU/Linux and Windows, but up to you I guess. :)",
+      "parentUuid": "c420a1c6_dc9d2f6e",
+      "revId": "d76e85dee78095c1d1f39d7ca5602bb1392cbe4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aff09e5c_80777ab8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-10-06T18:17:53Z",
+      "side": 1,
+      "message": "Nice catch, thanks; should be fixed now.  I\u0027ll retest a little later, to be sure.",
+      "parentUuid": "652810c3_b7bdf350",
+      "revId": "d76e85dee78095c1d1f39d7ca5602bb1392cbe4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
