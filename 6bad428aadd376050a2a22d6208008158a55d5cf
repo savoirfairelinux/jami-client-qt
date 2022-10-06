@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc40b0ac_1cc0ca9c",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-06T13:08:22Z",
+      "side": 1,
+      "message": "Pretty good patch for me.\n\nThere is only one bug missing. We should not use QLocale::system() but the current locale of the app (in the general settings, you can change the language of the application, changing the language may change this format)\n\nThen Let\u0027s go to merge",
+      "range": {
+        "startLine": 586,
+        "startChar": 15,
+        "endLine": 586,
+        "endChar": 32
+      },
+      "revId": "6bad428aadd376050a2a22d6208008158a55d5cf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
