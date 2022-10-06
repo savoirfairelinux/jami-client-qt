@@ -216,6 +216,7 @@ SplitView {
                             property bool audioModeratorMuted_: AudioModeratorMuted
                             property bool isHandRaised_: HandRaised
                             property bool voiceActive_: VoiceActivity
+                            property bool isRecording_: IsRecording
                         }
                     }
                 }
@@ -290,6 +291,7 @@ SplitView {
                 property bool audioModeratorMuted_: AudioModeratorMuted
                 property bool isHandRaised_: HandRaised
                 property bool voiceActive_: VoiceActivity
+                property bool isRecording_: IsRecording
             }
         }
     }

@@ -87,6 +87,8 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
         return QVariant(item.value(HANDRAISED).toBool());
     case Role::VoiceActivity:
         return QVariant(item.value(VOICEACTIVITY).toBool());
+    case Role::IsRecording:
+        return QVariant(item.value(ISRECORDING).toBool());
     }
     return QVariant();
 }

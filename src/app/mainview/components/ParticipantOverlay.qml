@@ -58,6 +58,7 @@ Item {
     property bool videoMuted: true
     property bool voiceActive: false
     property bool isLocalMuted: true
+    property bool isRecording: false
 
     property bool meHost: CallAdapter.isCurrentHost()
     property bool meModerator: CallAdapter.isModerator()
@@ -330,6 +331,45 @@ Item {
                 onClicked: CallAdapter.raiseHand(uri, deviceId, false)
                 radius: 5
             }
+
+            Item {
+                id: recordingIndicator
+
+                visible: root.isRecording
+                z: participantRect.z + 1
+
+                width: JamiTheme.recordingIndicatorSize
+                height: shapeHeight
+
+                anchors.right: isRaiseHandIndicator.visible ? isRaiseHandIndicator.left : participantRect.right
+                anchors.top: participantRect.top
+
+                Rectangle {
+                    anchors.centerIn: parent
+
+                    height: JamiTheme.recordingBtnSize
+                    width: JamiTheme.recordingBtnSize
+
+                    radius: height / 2
+                    color: JamiTheme.recordIconColor
+
+                    SequentialAnimation on color {
+                        loops: Animation.Infinite
+                        running: recordingIndicator.visible
+                        ColorAnimation {
+                            from: JamiTheme.recordIconColor
+                            to: "transparent"
+                            duration: JamiTheme.recordBlinkDuration
+                        }
+                        ColorAnimation {
+                            from: "transparent"
+                            to: JamiTheme.recordIconColor
+                            duration: JamiTheme.recordBlinkDuration
+                        }
+                    }
+                }
+            }
+
 
             Rectangle {
                 id: alertMessage

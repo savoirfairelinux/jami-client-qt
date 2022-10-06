@@ -322,6 +322,10 @@ Item {
     property real lineEditContextMenuItemsWidth: 100
     property real lineEditContextMenuSeparatorsHeight: 2
 
+    // Recording
+    property real recordingBtnSize: 12
+    property real recordingIndicatorSize: 24
+
     //TimestampInfo
     property int timestampLinePadding: 40
     property int dayTimestampTopMargin: 30
