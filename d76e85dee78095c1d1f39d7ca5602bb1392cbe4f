@@ -33,6 +33,23 @@
       "message": "Needs macOS",
       "revId": "d76e85dee78095c1d1f39d7ca5602bb1392cbe4f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "652810c3_b7bdf350",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-06T17:50:47Z",
+      "side": 1,
+      "message": "`QResource \u0027/src/app/commoncomponents/emojipicker/emojiPickerLoader.html\u0027 not found or is empty`\n\nwhen clicking on emoji icon in conversation:\n`js: Uncaught ReferenceError: prepare_to_show is not defined`",
+      "revId": "d76e85dee78095c1d1f39d7ca5602bb1392cbe4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
