@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2712ab8_12046f14",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-06T13:31:35Z",
+      "side": 1,
+      "message": "for emojis we can just make the background blink but not the emoji itself to make everything work the same way.",
+      "parentUuid": "3750a844_1e7fc4b3",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 46
+      },
+      "revId": "8df0861a3700dc4d4e15ee082fa86f93d2eb23eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55e95f21_8d324bde",
         "filename": "src/app/commoncomponents/SBSMessageBase.qml",
         "patchSetId": 5
