@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1358252b_f738fcd2",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-06T13:02:20Z",
+      "side": 1,
+      "message": "small regression. the background of the bubble appears in emoji only (before only the emoji was blinking).\n\nThen let\u0027s go to merge",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 46
+      },
+      "revId": "8df0861a3700dc4d4e15ee082fa86f93d2eb23eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55e95f21_8d324bde",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-06T13:02:20Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 189,
+        "startChar": 26,
+        "endLine": 189,
+        "endChar": 28
+      },
+      "revId": "8df0861a3700dc4d4e15ee082fa86f93d2eb23eb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
