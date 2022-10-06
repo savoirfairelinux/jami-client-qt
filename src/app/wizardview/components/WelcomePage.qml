@@ -26,6 +26,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
+import "../../mainview/components"
 
 
 Rectangle {
@@ -71,6 +72,12 @@ Rectangle {
         anchors.topMargin: JamiTheme.wizardViewLayoutTopMargin
         width: Math.max(508, root.width - 100)
 
+        AboutPopUp {
+            id: aboutPopUpDialog
+
+            width: Math.min(parent.width - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
+            height: Math.min(parent.height - 2 * JamiTheme.preferredMarginSize, JamiTheme.secondaryDialogDimension)
+        }
 
         ResponsiveImage {
             id: welcomeLogo
