@@ -16,6 +16,24 @@
       "message": "I\u0027ll do another test in a bit",
       "revId": "09791cdc355dcdc2f56dde4bdc3ca6e15a942e21",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "259f3347_03c2f47f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-10-07T12:44:12Z",
+      "side": 1,
+      "message": "I tested this morning and the emoji picker seems to be fixed. Pending your retest.",
+      "parentUuid": "099eeec5_2ee1c84e",
+      "revId": "09791cdc355dcdc2f56dde4bdc3ca6e15a942e21",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
