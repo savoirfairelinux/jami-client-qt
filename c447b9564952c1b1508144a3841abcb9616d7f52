@@ -39,6 +39,30 @@
       },
       "revId": "c447b9564952c1b1508144a3841abcb9616d7f52",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35f65988_f9de908f",
+        "filename": "src/app/mainview/components/OngoingCallPage.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T19:47:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db1b94ef_0456cea9",
+      "range": {
+        "startLine": 204,
+        "startChar": 16,
+        "endLine": 225,
+        "endChar": 17
+      },
+      "revId": "c447b9564952c1b1508144a3841abcb9616d7f52",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
