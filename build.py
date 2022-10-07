@@ -267,7 +267,7 @@ def run_tests(mute_jamid, output_to_files):
     sys.exit(test_result_code)
 
 
-def generate_msi_installer():
+def generate_msi_installer(config_str):
     print('Generating application installer...')
 
     vs_env_vars = {}
@@ -275,7 +275,8 @@ def generate_msi_installer():
     msbuild = findMSBuild()
     if not os.path.isfile(msbuild):
         raise IOError('msbuild.exe not found. path=' + msbuild)
-    msbuild_args = getMSBuildArgs('x64', 'Release')
+
+    msbuild_args = getMSBuildArgs('x64', config_str)
 
     build_project(msbuild, msbuild_args, installer_project, vs_env_vars)
 
@@ -325,7 +326,8 @@ def main():
         init_submodules()
         build_deps()
     elif parsed_args.subparser_name == 'pack':
-        generate_msi_installer()
+        config = ('Release', 'Beta')[parsed_args.beta]
+        generate_msi_installer(config)
         sys.exit(1)
     else:
         config = ('Release', 'Beta')[parsed_args.beta]
