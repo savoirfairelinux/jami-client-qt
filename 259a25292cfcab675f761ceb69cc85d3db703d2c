@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2cc0ff2_b6784aa8",
+        "filename": "src/app/commoncomponents/UsernameTextEdit.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T17:52:07Z",
+      "side": 1,
+      "message": "behaviour change, clicking on validate with an empty string doesn\u0027t stop edition",
+      "range": {
+        "startLine": 122,
+        "startChar": 12,
+        "endLine": 122,
+        "endChar": 28
+      },
+      "revId": "259a25292cfcab675f761ceb69cc85d3db703d2c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77321354_873da359",
+        "filename": "src/app/mainview/MainView.qml",
+        "patchSetId": 9
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T17:52:07Z",
+      "side": 1,
+      "message": "solve https://git.jami.net/savoirfairelinux/jami-client-qt/-/issues/646 (the commit msg can be updated)",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 622,
+        "endChar": 23
+      },
+      "revId": "259a25292cfcab675f761ceb69cc85d3db703d2c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
