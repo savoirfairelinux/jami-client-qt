@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b618d525_43355a7c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T16:04:04Z",
+      "side": 1,
+      "message": "should be the case, with almost every view in the client that currently has its visibility toggled",
+      "parentUuid": "f68c4735_21514a21",
+      "range": {
+        "startLine": 10,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c704b092_9d5f7213",
         "filename": "src/app/conversationlistmodel.h",
         "patchSetId": 23
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-07T14:48:39Z",
       "side": 1,
       "message": "to validate",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a8cd4e0_2341fac0",
+        "filename": "src/app/conversationlistmodel.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T16:04:04Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "c704b092_9d5f7213",
       "range": {
         "startLine": 3,
         "startChar": 3,
@@ -93,6 +141,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99b99a16_753e7f41",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T16:04:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c061dd9_3f9dddcc",
+      "range": {
+        "startLine": 47,
+        "startChar": 29,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9b74dc5_8add513c",
@@ -116,6 +188,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe3fea8b_f10b0da6",
+        "filename": "src/app/mainview/components/ConversationListView.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T16:04:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9b74dc5_8add513c",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 7
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa8312ac_9ab1e6d7",
@@ -129,6 +225,30 @@
       "writtenOn": "2022-10-07T14:48:39Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 2,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dee1d855_69dc1777",
+        "filename": "src/app/mainview/components/SmartListProxyModel.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T16:04:04Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "fa8312ac_9ab1e6d7",
       "range": {
         "startLine": 2,
         "startChar": 9,
