@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f68c4735_21514a21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T14:48:39Z",
+      "side": 1,
+      "message": "that\u0027s big",
+      "range": {
+        "startLine": 10,
+        "startChar": 28,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c704b092_9d5f7213",
+        "filename": "src/app/conversationlistmodel.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T14:48:39Z",
+      "side": 1,
+      "message": "to validate",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 40
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54820daf_1c871ad8",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T14:48:39Z",
+      "side": 1,
+      "message": "introduces crash at the startup for me:\n\n#0  lrc::api::ConversationModel::getConversations() const (this\u003d0x72507473694c656c) at /usr/include/c++/12/bits/unique_ptr.h:191\n#1  0x00000000004d541c in ConversationListModel::rowCount(QModelIndex const\u0026) const (this\u003d\u003coptimized out\u003e, parent\u003d\u003coptimized out\u003e) at /home/amarok/Projects/jami/client-qt/src/app/conversationlistmodel.cpp:40\n#2  0x00007fffeabbfbd0 in QSortFilterProxyModelPrivate::create_mapping(QModelIndex const\u0026) const () at /usr/lib64/qt-jami/lib/libQt6Core.so.6\n#3  0x00007fffeabc1cad in QSortFilterProxyModelPrivate::update_source_sort_column() () at /usr/lib64/qt-jami/lib/libQt6Core.so.6\n#4  0x00007fffeabcb10c in QSortFilterProxyModel::setSourceModel(QAbstractItemModel*) () at /usr/lib64/qt-jami/lib/libQt6Core.so.6\n#5  0x00000000004d0021 in SelectableListProxyModel::bindSourceModel(QAbstractListModel*) (this\u003d0x1f2e200, model\u003d0x1d94850) at /home/amarok/Projects/jami/client-qt/src/app/selectablelistproxymodel.cpp:33\n#6  0x00000000004a5539 in ConversationsAdapter::connectConversationModel() (this\u003dthis@entry\u003d0x1ad1f10) at /home/amarok/Projects/jami/client-qt/src/app/conversationsadapter.cpp:613\n#7  0x00000000004a59ef in ConversationsAdapter::ConversationsAdapter(SystemTray*, LRCInstance*, QObject*)\n    (this\u003dthis@entry\u003d0x1ad1f10, systemTray\u003dsystemTray@entry\u003d0x123f980, instance\u003dinstance@entry\u003d0x147fba0, parent\u003dparent@entry\u003d0x7fffffffd600) at /home/amarok/Projects/jami/client-qt/src/app/conversationsadapter.cpp:140\n#8  0x00000000004b968b in Utils::registerTypes(QQmlEngine*, SystemTray*, LRCInstance*, AppSettingsManager*, PreviewEngine*, ScreenInfo*, MainApplication*)\n    (engine\u003d0x121bf20, systemTray\u003d0x123f980, lrcInstance\u003d0x147fba0, settingsManager\u003d0x114b3a0, previewEngine\u003d0x120b4f0, screenInfo\u003dscreenInfo@entry\u003d0x7fffffffd678, parent\u003d0x7fffffffd600)\n    at /home/amarok/Projects/jami/client-qt/src/app/qmlregister.cpp:112\n#9  0x000000000048c9de in MainApplication::initQmlLayer() (this\u003dthis@entry\u003d0x7fffffffd600) at /home/amarok/Projects/jami/client-qt/src/app/mainapplication.cpp:342\n#10 0x000000000048efbd in MainApplication::init() (this\u003dthis@entry\u003d0x7fffffffd600) at /home/amarok/Projects/jami/client-qt/src/app/mainapplication.cpp:204\n#11 0x000000000047f505 in main(int, char**) (argc\u003d\u003coptimized out\u003e, argv\u003d\u003coptimized out\u003e) at /home/amarok/Projects/jami/client-qt/src/app/main.cpp:180",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 37
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c061dd9_3f9dddcc",
+        "filename": "src/app/conversationsadapter.cpp",
+        "patchSetId": 23
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T14:48:39Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 47,
+        "startChar": 29,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9b74dc5_8add513c",
+        "filename": "src/app/mainview/components/ConversationListView.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T14:48:39Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 78,
+        "startChar": 10,
+        "endLine": 81,
+        "endChar": 7
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa8312ac_9ab1e6d7",
+        "filename": "src/app/mainview/components/SmartListProxyModel.qml",
+        "patchSetId": 23
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T14:48:39Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 2,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "3c1f94ea95e950cd19848874321fe5baaded54c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
