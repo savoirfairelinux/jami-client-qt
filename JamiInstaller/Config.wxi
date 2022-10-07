@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
-    <?if $(var.Configuration) = Release ?>
     <?define Name="Jami" ?>
-    <?else?>
-    <?define Name="Jami (BETA)" ?>
-    <?endif ?>
-
-    <?define ExeName="Jami"?>
+    <?define ExeName="Jami" ?>
+    <?define AppName="Jami" ?>
 
     <?if $(var.Configuration) = Release ?>
     <?define ReleaseDir="..\x64\Release"?>
     <?else?>
     <?define ReleaseDir="..\x64\Beta"?>
     <?endif ?>
-
-    <?define AppName="Jami" ?>
 
     <?define Manufacturer="Savoir-Faire Linux"?>
     <?define UcrtDir="C:\Program Files (x86)\Windows Kits\10\Redist\ucrt\DLLs\x64"?>

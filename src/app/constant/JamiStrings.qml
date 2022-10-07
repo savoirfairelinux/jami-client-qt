@@ -49,7 +49,7 @@ Item {
     property string reconnectTry: qsTr("Trying to reconnect to the Jami daemon (jamid)…")
 
     // AboutPopUp
-    property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (BETA)" : "")
+    property string version: qsTr("Version") + (UpdateManager.isCurrentVersionBeta() ? " (Beta)" : "")
     property string companyDeclarationYear: declarationYear + " " + companyName
     property string declarationYear: "© 2015-2022"
     property string companyName: "Savoir-faire Linux Inc."
