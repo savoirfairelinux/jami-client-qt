@@ -43,7 +43,7 @@ SBSMessageBase {
         TextEdit {
             padding: JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
-            text: Body
+            text:  '<style>a:link { color: ' + getBaseColor() + '; }</style>' + Body
             horizontalAlignment: Text.AlignLeft
             width: {
                 if (extraContent.active)
@@ -64,9 +64,14 @@ SBSMessageBase {
             onLinkHovered: root.hoveredLink = hoveredLink
             onLinkActivated: Qt.openUrlExternally(hoveredLink)
             readOnly: true
-            color: UtilsAdapter.luma(bubble.color) ?
-                       JamiTheme.chatviewTextColorLight :
-                       JamiTheme.chatviewTextColorDark
+            color: getBaseColor()
+
+            function getBaseColor() {
+                if (UtilsAdapter.luma(bubble.color))
+                    return JamiTheme.chatviewTextColorLight
+                else
+                    return JamiTheme.chatviewTextColorDark
+            }
 
             TapHandler {
                 enabled: parent.selectedText.length > 0

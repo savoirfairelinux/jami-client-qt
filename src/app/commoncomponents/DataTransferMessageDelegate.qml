@@ -79,6 +79,14 @@ Loader {
             formattedTime: root.formattedTime
             formattedDay: root.formattedTime
             extraHeight: progressBar.visible ? 18 : 0
+
+            function getBaseColor() {
+                if (UtilsAdapter.luma(bubble.color))
+                    return JamiTheme.chatviewTextColorLight
+                else
+                    return JamiTheme.chatviewTextColorDark
+            }
+
             innerContent.children: [
                 RowLayout {
                     id: transferItem
@@ -134,6 +142,7 @@ Loader {
                                 Layout.leftMargin: 12
                                 Layout.preferredWidth: 24
                                 Layout.preferredHeight: 24
+                                color: dataTransferItem.getBaseColor()
                             }
                         }
                         Component {
@@ -186,9 +195,8 @@ Loader {
                             font.pointSize: 11
                             renderType: Text.NativeRendering
                             readOnly: true
-                            color: isOutgoing ?
-                                       JamiTheme.messageOutTxtColor :
-                                       JamiTheme.messageInTxtColor
+                            color: dataTransferItem.getBaseColor()
+
                             MouseArea {
                                 anchors.fill: parent
                                 cursorShape: canOpen ?
@@ -221,9 +229,7 @@ Loader {
                             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
                             font.pointSize: 10
                             renderType: Text.NativeRendering
-                            color: Qt.lighter((isOutgoing ?
-                                       JamiTheme.messageOutTxtColor :
-                                       JamiTheme.messageInTxtColor), 1.5)
+                            color: dataTransferItem.getBaseColor()
                         }
                     }
                 }
@@ -281,8 +287,10 @@ Loader {
                     }
                     Component {
                         id: animatedImageComp
+
                         AnimatedImage {
                             id: animatedImg
+
                             anchors.right: isOutgoing ? parent.right : undefined
                             property real minSize: 192
                             property real maxSize: 256
@@ -328,6 +336,7 @@ Loader {
                         id: imageComp
                         Image {
                             id: img
+
                             anchors.right: isOutgoing ? parent.right : undefined
                             property real minSize: 192
                             property real maxSize: 256
