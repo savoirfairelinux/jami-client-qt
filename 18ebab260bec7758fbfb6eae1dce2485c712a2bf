@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59c15dbe_5522a594",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-07T14:19:25Z",
+      "side": 1,
+      "message": "qrc:/src/app/mainview/MainView.qml:386:5: Type WelcomePage unavailable\nqrc:/src/app/mainview/components/WelcomePage.qml:130:21: Type JamiIdentifier unavailable\nqrc:/src/app/mainview/components/JamiIdentifier.qml:147:9: Type UsernameTextEdit unavailable\nqrc:/src/app/commoncomponents/UsernameTextEdit.qml:24:1: Type ModalTextEdit unavailable\nqrc:/src/app/commoncomponents/ModalTextEdit.qml:50:9: Type MaterialTextField unavailable\nqrc:/src/app/commoncomponents/MaterialTextField.qml:121:13: Component elements may not contain properties other than id\n",
+      "revId": "18ebab260bec7758fbfb6eae1dce2485c712a2bf",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
