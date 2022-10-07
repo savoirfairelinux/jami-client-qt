@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40a8dadb_06406622",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T21:06:43Z",
+      "side": 1,
+      "message": "LGTM otherwise. will test",
+      "revId": "335f6e46920386fb9355287fea5aef8b70dcfbe5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f265b7ab_b6678c2c",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T21:06:43Z",
+      "side": 1,
+      "message": "maybe some line endings between the \"header groups\"",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 34
+      },
+      "revId": "335f6e46920386fb9355287fea5aef8b70dcfbe5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e5b7509_7729554e",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 22
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T21:06:43Z",
+      "side": 1,
+      "message": "this slot should be called updateConversationPreferences imo\nthis function name seems out of place and I wonder what it\u0027s doing here",
+      "range": {
+        "startLine": 63,
+        "startChar": 12,
+        "endLine": 63,
+        "endChar": 44
+      },
+      "revId": "335f6e46920386fb9355287fea5aef8b70dcfbe5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22c9f380_6ef5f4ec",
+        "filename": "src/libclient/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 1127,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-07T21:06:43Z",
+      "side": 1,
+      "message": "no biggie but info is always singular in english",
+      "range": {
+        "startLine": 1127,
+        "startChar": 50,
+        "endLine": 1127,
+        "endChar": 55
+      },
+      "revId": "335f6e46920386fb9355287fea5aef8b70dcfbe5",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
