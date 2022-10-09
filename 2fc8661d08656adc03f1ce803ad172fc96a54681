@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dca2aae3_994e1ef1",
+        "filename": "doc/jami.1",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-09T19:44:36Z",
+      "side": 0,
+      "message": "Breaks all the .rpm files (\nerror: File not found: /root/rpmbuild/BUILDROOT/jami-qt-20221009.1434.ee4f5e5-1.fc35.x86_64/usr/bin/jami-qt\nerror: File not found: /root/rpmbuild/BUILDROOT/jami-qt-20221009.1434.ee4f5e5-1.fc35.x86_64/usr/share/applications/jami-qt.desktop\nerror: File not found: /root/rpmbuild/BUILDROOT/jami-qt-20221009.1434.ee4f5e5-1.fc35.x86_64/usr/share/jami-qt/jami-qt.desktop\nerror: File not found: /root/rpmbuild/BUILDROOT/jami-qt-20221009.1434.ee4f5e5-1.fc35.x86_64/usr/share/metainfo/jami-qt.appdata.xml)",
+      "range": {
+        "startLine": 8,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 15
+      },
+      "revId": "2fc8661d08656adc03f1ce803ad172fc96a54681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
