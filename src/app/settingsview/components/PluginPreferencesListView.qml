@@ -61,12 +61,7 @@ Rectangle {
 
     function setPreference(pluginId, preferenceKey, preferenceNewValue)
     {
-        if (isLoaded) {
-            PluginModel.unloadPlugin(pluginId)
-            PluginModel.setPluginPreference(pluginId, accountId, preferenceKey, preferenceNewValue)
-            PluginModel.loadPlugin(pluginId)
-        } else
-            PluginModel.setPluginPreference(pluginId, accountId, preferenceKey, preferenceNewValue)
+        PluginModel.setPluginPreference(pluginId, accountId, preferenceKey, preferenceNewValue)
     }
 
     ColumnLayout {
