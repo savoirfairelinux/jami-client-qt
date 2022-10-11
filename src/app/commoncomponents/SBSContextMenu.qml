@@ -59,6 +59,22 @@ ContextMenuAutoLoader {
             onClicked: {
                 MessagesAdapter.replyToId = root.msgId
             }
+        },
+        GeneralMenuItem {
+            id: edit
+
+            itemName: JamiStrings.edit
+            onClicked: {
+                console.warn("TODO")
+            }
+        },
+        GeneralMenuItem {
+            id: deleteMsg
+
+            itemName: JamiStrings.optionDelete
+            onClicked: {
+                console.warn("TODO")
+            }
         }
     ]
 
