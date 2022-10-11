@@ -220,7 +220,7 @@ public:
     const VectorString peersForConversation(const conversation::Info& conversation) const;
     // insert swarm interactions. Return false if interaction already exists.
     bool insertSwarmInteraction(const QString& interactionId,
-                                const interaction::Info& interaction,
+                                interaction::Info& interaction,
                                 conversation::Info& conversation,
                                 bool insertAtBegin);
     void invalidateModel();
@@ -1154,7 +1154,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
     try {
         auto& conversation = pimpl_->getConversationForUid(uid, true).get();
         if (!conversation.isLegacy()) {
-            ConfigurationManager::instance().sendMessage(owner.id, uid, body, parentId);
+            ConfigurationManager::instance().sendMessage(owner.id, uid, body, parentId, 0);
             return;
         }
 
@@ -1181,7 +1181,8 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
                 ConfigurationManager::instance().sendMessage(owner.id,
                                                              conversationId,
                                                              body,
-                                                             parentId);
+                                                             parentId,
+                                                             0);
                 return;
             }
             auto& peers = pimpl_->peersForConversation(newConv);
@@ -1269,6 +1270,18 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
     } catch (const std::out_of_range& e) {
         qDebug() << "could not send message to not existing conversation";
     }
+}
+
+void
+ConversationModel::editMessage(const QString& convId,
+                               const QString& newBody,
+                               const QString& messageId)
+{
+    auto conversationOpt = getConversationForUid(convId);
+    if (!conversationOpt.has_value()) {
+        return;
+    }
+    ConfigurationManager::instance().sendMessage(owner.id, convId, newBody, messageId, 1);
 }
 
 void
@@ -2312,15 +2325,18 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
 
     try {
         auto& conversation = getConversationForUid(conversationId).get();
-        QString oldLast; // Used to detect loading loops just in case.
-        if (conversation.interactions->size() != 0)
+        QString oldLast, oldBegin; // Used to detect loading loops just in case.
+        if (conversation.interactions->size() != 0) {
+            oldBegin = conversation.interactions->begin()->first;
             oldLast = conversation.interactions->rbegin()->first;
+        }
         for (const auto& message : messages) {
             if (message["type"].isEmpty()) {
                 continue;
             }
             auto msgId = message["id"];
             auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+            conversation.interactions->editMessage(msgId, msg);
             auto downloadFile = false;
             if (msg.type == interaction::Type::INITIAL) {
                 allLoaded = true;
@@ -2354,6 +2370,8 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                 msg.body = interaction::getContactInteractionString(bestName,
                                                                     interaction::to_action(
                                                                         message["action"]));
+            } else if (msg.type == interaction::Type::EDITED) {
+                conversation.interactions->addEdition(msgId, msg, false);
             }
             insertSwarmInteraction(msgId, msg, conversation, true);
             if (downloadFile) {
@@ -2362,25 +2380,22 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             }
         }
 
-        for (int j = conversation.interactions->size() - 1; j >= 0; j--) {
-            if (conversation.interactions->atIndex(j).second.type != interaction::Type::MERGE) {
-                conversation.lastMessageUid = conversation.interactions->atIndex(j).first;
-                break;
-            }
-        }
+        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
             if (conversation.interactions->size() > 0) {
-                QString newLast;
-                if (conversation.interactions->size() > 0)
+                QString newLast, newBegin;
+                if (conversation.interactions->size() > 0) {
+                    newBegin = conversation.interactions->begin()->first;
                     newLast = conversation.interactions->rbegin()->first;
-                if (newLast == oldLast && !newLast.isEmpty()) { // [[unlikely]] in c++20
-                    qCritical() << "Loading loop detected for " << conversationId << "(" << newLast
-                                << ")";
+                }
+                if (newLast == oldLast && !newLast.isEmpty() && newBegin == oldBegin
+                    && !newBegin.isEmpty()) { // [[unlikely]] in c++20
+                    qCritical() << "Loading loop detected for " << conversationId << "(" << newBegin
+                                << " ; " << newLast << ")";
                     return;
                 }
             }
-
             // In this case, we only have loaded merge commits. Load more messages
             ConfigurationManager::instance().loadConversationMessages(linked.owner.id,
                                                                       conversationId,
@@ -2427,6 +2442,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         }
         auto msgId = message["id"];
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+        conversation.interactions->editMessage(msgId, msg);
         api::datatransfer::Info info;
         QString fileId;
 
@@ -2464,6 +2480,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         } else if (msg.type == interaction::Type::TEXT
                    && msg.authorUri != linked.owner.profileInfo.uri) {
             conversation.unreadMessages++;
+        } else if (msg.type == interaction::Type::EDITED) {
+            conversation.interactions->addEdition(msgId, msg, true);
         }
         if (!insertSwarmInteraction(msgId, msg, conversation, false)) {
             // message already exists
@@ -2473,7 +2491,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             invalidateModel();
             return;
         }
-        conversation.lastMessageUid = msgId;
+        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         invalidateModel();
         if (!interaction::isOutgoing(msg)) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
@@ -2510,7 +2528,7 @@ ConversationModelPimpl::slotConversationProfileUpdated(const QString& accountId,
 
 bool
 ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
-                                               const interaction::Info& interaction,
+                                               interaction::Info& interaction,
                                                conversation::Info& conversation,
                                                bool insertAtBegin)
 {
@@ -2518,6 +2536,11 @@ ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
     auto itExists = conversation.interactions->find(interactionId);
     if (itExists != conversation.interactions->end()) {
         // Erase interaction if exists, as it will be updated via a re-insertion
+        if (itExists->second.previousbodies.size() != 0) {
+            // If the message was edited, we should keep this state
+            interaction.body = itExists->second.body;
+            interaction.previousbodies = itExists->second.previousbodies;
+        }
         itExists = conversation.interactions->erase(itExists);
         if (itExists != conversation.interactions->end()) {
             // next interaction doesn't have parent anymore.
