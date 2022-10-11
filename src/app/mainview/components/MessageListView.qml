@@ -193,7 +193,8 @@ JamiListView {
         onMessageListModelChanged: sourceModel = messageListModel
         filters: ExpressionFilter {
             readonly property int mergeType: Interaction.Type.MERGE
-            expression: Body !== "" && Type !== mergeType
+            readonly property int editedType: Interaction.Type.EDITED
+            expression: Body !== "" && Type !== mergeType && Type !== editedType
         }
         sorters: ExpressionSorter {
             expression: modelLeft.index > modelRight.index

@@ -134,6 +134,10 @@ public:
 
     Q_SIGNAL void timestampUpdate();
 
+    void addEdition(const QString& msgId, const interaction::Info& info, bool end);
+    void editMessage(const QString& msgId, interaction::Info& info);
+    QString lastMessageUid() const;
+
 protected:
     using Role = MessageList::Role;
 
@@ -147,6 +151,7 @@ private:
     QMap<QString, QString> lastDisplayedMessageUid_;
     QMap<QString, QStringList> messageToReaders_;
     QMap<QString, QStringList> replyTo_;
+    QMap<QString, QVector<interaction::Body>> editedBodies_;
 
     void moveMessage(const QString& msgId, const QString& parentId);
     void insertMessage(int index, item_t& message);

@@ -166,6 +166,7 @@
         <file>mainview/components/MessageBar.qml</file>
         <file>mainview/components/FilesToSendContainer.qml</file>
         <file>mainview/components/ReplyingContainer.qml</file>
+        <file>mainview/components/EditContainer.qml</file>
         <file>commoncomponents/Avatar.qml</file>
         <file>mainview/components/ConversationAvatar.qml</file>
         <file>mainview/components/InvitationView.qml</file>
