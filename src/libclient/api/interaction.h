@@ -32,7 +32,7 @@ namespace interaction {
 Q_NAMESPACE
 Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
-enum class Type { INVALID, INITIAL, TEXT, CALL, CONTACT, DATA_TRANSFER, MERGE, COUNT__ };
+enum class Type { INVALID, INITIAL, TEXT, CALL, CONTACT, DATA_TRANSFER, MERGE, EDITED, COUNT__ };
 Q_ENUM_NS(Type)
 
 static inline const QString
@@ -51,6 +51,8 @@ to_string(const Type& type)
         return "DATA_TRANSFER";
     case Type::MERGE:
         return "MERGE";
+    case Type::EDITED:
+        return "EDITED";
     case Type::INVALID:
     case Type::COUNT__:
     default:
@@ -73,6 +75,8 @@ to_type(const QString& type)
         return interaction::Type::DATA_TRANSFER;
     else if (type == "merge")
         return interaction::Type::MERGE;
+    else if (type == "application/edited-message")
+        return interaction::Type::EDITED;
     else
         return interaction::Type::INVALID;
 }
@@ -264,6 +268,7 @@ struct Info
     MapStringString commit;
     QVariantMap linkPreviewInfo = {};
     bool linkified = false;
+    QVector<QStringList> oldbodies;
 
     Info() {}
 
@@ -287,7 +292,7 @@ struct Info
     Info(const MapStringString& message, const QString& accountURI)
     {
         type = to_type(message["type"]);
-        if (type == Type::TEXT) {
+        if (type == Type::TEXT || type == Type::EDITED) {
             body = message["body"];
         }
         authorUri = accountURI == message["author"] ? "" : message["author"];

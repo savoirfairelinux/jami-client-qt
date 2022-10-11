@@ -154,7 +154,7 @@ Control {
                         var baseColor = isOutgoing ? JamiTheme.messageOutBgColor
                                                    : CurrentConversation.isCoreDialog ?
                                                          JamiTheme.messageInBgColor : Qt.lighter(CurrentConversation.color, 1.5)
-                        if (Id === MessagesAdapter.replyToId) {
+                        if (Id === MessagesAdapter.replyToId || Id === MessagesAdapter.editId) {
                             // If we are replying to
                             return Qt.darker(baseColor, 1.5)
                         }
@@ -290,6 +290,7 @@ Control {
 
         msgId: Id
         location: root.location
+        isOutgoing: root.isOutgoing
         transferId: root.transferId
         transferName: root.transferName
     }
