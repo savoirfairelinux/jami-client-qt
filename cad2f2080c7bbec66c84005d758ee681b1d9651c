@@ -52,6 +52,24 @@
       "parentUuid": "dc8a1863_d65a4075",
       "revId": "cad2f2080c7bbec66c84005d758ee681b1d9651c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be99d132_299492a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-11T17:55:46Z",
+      "side": 1,
+      "message": "i only refer to showing it at the top right as resetting the overlay timer looks hacky. Also when the overlay takes all the frame (too small) it will never disappear and will not allow to see that person video, which may be annoying. having a flag looks cleaner. It could be clickable only if self to stop the own recording, but that choice i leave to you.",
+      "parentUuid": "c82abfd2_d07e3984",
+      "revId": "cad2f2080c7bbec66c84005d758ee681b1d9651c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
