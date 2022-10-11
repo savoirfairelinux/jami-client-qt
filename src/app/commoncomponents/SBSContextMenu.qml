@@ -29,6 +29,7 @@ ContextMenuAutoLoader {
     id: root
 
     property string location
+    property bool isOutgoing
     property string msgId
     property string transferName
     property string transferId
@@ -57,7 +58,28 @@ ContextMenuAutoLoader {
 
             itemName: JamiStrings.reply
             onClicked: {
+                MessagesAdapter.editId = ""
                 MessagesAdapter.replyToId = root.msgId
+            }
+        },
+        GeneralMenuItem {
+            id: edit
+
+            canTrigger: transferId === "" && isOutgoing
+            itemName: JamiStrings.edit
+            onClicked: {
+                MessagesAdapter.replyToId = ""
+                MessagesAdapter.editId = root.msgId
+            }
+        },
+        GeneralMenuItem {
+            id: deleteMsg
+            dangerous: true
+
+            canTrigger: transferId === "" && isOutgoing
+            itemName: JamiStrings.optionDelete
+            onClicked: {
+                MessagesAdapter.editMessage(CurrentConversation.id, "", root.msgId)
             }
         }
     ]
