@@ -267,6 +267,7 @@ Item {
     property real smartlistItemInfoFontSize: calcSize(9 + fontSizeOffsetSmall)
     property real filterItemFontSize: calcSize(smartlistItemFontSize)
     property real filterBadgeFontSize: calcSize(8.25)
+    property real editedFontSize: calcSize(8)
     property real accountListItemHeight: 64
     property real accountListAvatarSize: 40
     property real smartListItemHeight: 64
