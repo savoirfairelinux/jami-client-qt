@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a20fd98c_f0d817a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-11T17:37:30Z",
+      "side": 1,
+      "message": "IMHO the recording should not force the overlay to show all the time, I think using the same idea as the raise hand would be a better option",
+      "revId": "cad2f2080c7bbec66c84005d758ee681b1d9651c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
