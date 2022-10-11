@@ -220,7 +220,7 @@ public:
     const VectorString peersForConversation(const conversation::Info& conversation) const;
     // insert swarm interactions. Return false if interaction already exists.
     bool insertSwarmInteraction(const QString& interactionId,
-                                const interaction::Info& interaction,
+                                interaction::Info& interaction,
                                 conversation::Info& conversation,
                                 bool insertAtBegin);
     void invalidateModel();
@@ -1154,7 +1154,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
     try {
         auto& conversation = pimpl_->getConversationForUid(uid, true).get();
         if (!conversation.isLegacy()) {
-            ConfigurationManager::instance().sendMessage(owner.id, uid, body, parentId);
+            ConfigurationManager::instance().sendMessage(owner.id, uid, body, parentId, 0);
             return;
         }
 
@@ -1181,7 +1181,8 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
                 ConfigurationManager::instance().sendMessage(owner.id,
                                                              conversationId,
                                                              body,
-                                                             parentId);
+                                                             parentId,
+                                                             0);
                 return;
             }
             auto& peers = pimpl_->peersForConversation(newConv);
@@ -1269,6 +1270,18 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
     } catch (const std::out_of_range& e) {
         qDebug() << "could not send message to not existing conversation";
     }
+}
+
+void
+ConversationModel::editMessage(const QString& convId,
+                               const QString& newBody,
+                               const QString& messageId)
+{
+    auto conversationOpt = getConversationForUid(convId);
+    if (!conversationOpt.has_value()) {
+        return;
+    }
+    ConfigurationManager::instance().sendMessage(owner.id, convId, newBody, messageId, 1);
 }
 
 void
@@ -2323,6 +2336,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             }
             auto msgId = message["id"];
             auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+            conversation.interactions->editMessage(msgId, msg);
             auto downloadFile = false;
             if (msg.type == interaction::Type::INITIAL) {
                 allLoaded = true;
@@ -2356,6 +2370,8 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                 msg.body = interaction::getContactInteractionString(bestName,
                                                                     interaction::to_action(
                                                                         message["action"]));
+            } else if (msg.type == interaction::Type::EDITED) {
+                conversation.interactions->addEdition(msgId, msg, false);
             }
             insertSwarmInteraction(msgId, msg, conversation, true);
             if (downloadFile) {
@@ -2380,7 +2396,6 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                     return;
                 }
             }
-
             // In this case, we only have loaded merge commits. Load more messages
             ConfigurationManager::instance().loadConversationMessages(linked.owner.id,
                                                                       conversationId,
@@ -2427,6 +2442,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         }
         auto msgId = message["id"];
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+        conversation.interactions->editMessage(msgId, msg);
         api::datatransfer::Info info;
         QString fileId;
 
@@ -2464,6 +2480,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         } else if (msg.type == interaction::Type::TEXT
                    && msg.authorUri != linked.owner.profileInfo.uri) {
             conversation.unreadMessages++;
+        } else if (msg.type == interaction::Type::EDITED) {
+            conversation.interactions->addEdition(msgId, msg, true);
         }
         if (!insertSwarmInteraction(msgId, msg, conversation, false)) {
             // message already exists
@@ -2510,7 +2528,7 @@ ConversationModelPimpl::slotConversationProfileUpdated(const QString& accountId,
 
 bool
 ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
-                                               const interaction::Info& interaction,
+                                               interaction::Info& interaction,
                                                conversation::Info& conversation,
                                                bool insertAtBegin)
 {
@@ -2518,6 +2536,11 @@ ConversationModelPimpl::insertSwarmInteraction(const QString& interactionId,
     auto itExists = conversation.interactions->find(interactionId);
     if (itExists != conversation.interactions->end()) {
         // Erase interaction if exists, as it will be updated via a re-insertion
+        if (itExists->second.previousbodies.size() != 0) {
+            // If the message was edited, we should keep this state
+            interaction.body = itExists->second.body;
+            interaction.previousbodies = itExists->second.previousbodies;
+        }
         itExists = conversation.interactions->erase(itExists);
         if (itExists != conversation.interactions->end()) {
             // next interaction doesn't have parent anymore.

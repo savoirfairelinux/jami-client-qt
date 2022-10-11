@@ -142,6 +142,7 @@
         <file>mainview/components/CallButtonDelegate.qml</file>
         <file>mainview/components/CallActionBar.qml</file>
         <file>commoncomponents/HalfPill.qml</file>
+        <file>commoncomponents/EditedPopup.qml</file>
         <file>commoncomponents/MaterialToolTip.qml</file>
         <file>mainview/components/ParticipantCallInStatusDelegate.qml</file>
         <file>mainview/components/ParticipantCallInStatusView.qml</file>
@@ -163,6 +164,7 @@
         <file>mainview/components/MessageBar.qml</file>
         <file>mainview/components/FilesToSendContainer.qml</file>
         <file>mainview/components/ReplyingContainer.qml</file>
+        <file>mainview/components/EditContainer.qml</file>
         <file>commoncomponents/Avatar.qml</file>
         <file>mainview/components/ConversationAvatar.qml</file>
         <file>mainview/components/InvitationView.qml</file>
