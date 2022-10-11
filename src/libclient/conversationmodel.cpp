@@ -2344,7 +2344,9 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
             if (conversation.interactions->size() > 0) {
-                QString newLast = conversation.interactions->rbegin()->first;
+                QString newLast;
+                if (conversation.interactions->size() > 0)
+                    newLast = conversation.interactions->rbegin()->first;
                 if (newLast == oldLast && !newLast.isEmpty()) { // [[unlikely]] in c++20
                     qCritical() << "Loading loop detected for " << conversationId << "(" << newLast
                                 << ")";
