@@ -37,6 +37,7 @@ MenuItem {
     property bool canTrigger: true
     property bool addMenuSeparatorAfter: false
     property bool autoTextSizeAdjustment: true
+    property bool dangerous: false
     property BaseContextMenu parentMenu
 
     property int itemPreferredWidth: JamiTheme.menuItemsPreferredWidth
@@ -94,7 +95,7 @@ MenuItem {
                 Layout.fillWidth: true
 
                 text: itemName
-                color: JamiTheme.textColor
+                color: dangerous ? JamiTheme.redColor : JamiTheme.textColor
                 font.pointSize: JamiTheme.textFontSize
                 horizontalAlignment: Text.AlignLeft
                 verticalAlignment: Text.AlignVCenter
