@@ -81,6 +81,16 @@ Rectangle {
         function onNewTextPasted() {
             messageBar.textAreaObj.pasteText()
         }
+
+        function onEditIdChanged() {
+            if (MessagesAdapter.editId.length > 0)
+                messageBar.textAreaObj.forceActiveFocus()
+        }
+
+        function onReplyToIdChanged() {
+            if (MessagesAdapter.replyToId.length > 0)
+                messageBar.forceActiveFocus()
+        }
     }
 
     RecordBox {
@@ -131,6 +141,16 @@ Rectangle {
             visible: MessagesAdapter.replyToId !== ""
         }
 
+        EditContainer {
+            id: editContainer
+
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: footerColumnLayout.width
+            Layout.maximumWidth: JamiTheme.chatViewMaximumWidth
+            Layout.preferredHeight: 36
+            visible: MessagesAdapter.editId !== ""
+        }
+
         MessageBar {
             id: messageBar
 
@@ -162,8 +182,13 @@ Rectangle {
             onSendFileButtonClicked: jamiFileDialog.open()
             onSendMessageButtonClicked: {
                 // Send text message
-                if (messageBar.text)
-                    MessagesAdapter.sendMessage(messageBar.text)
+                if (messageBar.text) {
+                    if (MessagesAdapter.editId !== "") {
+                        MessagesAdapter.editMessage(CurrentConversation.id, messageBar.text)
+                    } else {
+                        MessagesAdapter.sendMessage(messageBar.text)
+                    }
+                }
                 messageBar.textAreaObj.clearText()
 
                 // Send file messages

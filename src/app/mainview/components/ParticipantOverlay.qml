@@ -291,7 +291,7 @@ Item {
                                 visible: (!root.isMe && !root.meModerator) ? root.participantIsMuted : root.isLocalMuted
 
                                 source: JamiResources.micro_off_black_24dp_svg
-                                color: "red"
+                                color: JamiTheme.redColor
 
                                 HoverHandler { id: hoverMicrophone }
                                 MaterialToolTip {

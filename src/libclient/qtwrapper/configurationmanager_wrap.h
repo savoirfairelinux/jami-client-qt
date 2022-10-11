@@ -1047,13 +1047,16 @@ public Q_SLOTS: // METHODS
     void sendMessage(const QString& accountId,
                      const QString& conversationId,
                      const QString& message,
-                     const QString& parent)
+                     const QString& parent,
+                     int flags = 0)
     {
         DRing::sendMessage(accountId.toStdString(),
                            conversationId.toStdString(),
                            message.toStdString(),
-                           parent.toStdString());
+                           parent.toStdString(),
+                           flags);
     }
+
     uint32_t loadConversationMessages(const QString& accountId,
                                       const QString& conversationId,
                                       const QString& fromId,

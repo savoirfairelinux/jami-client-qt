@@ -176,6 +176,7 @@ MessageListModel::clear()
     Q_EMIT beginResetModel();
     interactions_.clear();
     replyTo_.clear();
+    editedBodies_.clear();
     Q_EMIT endResetModel();
 }
 
@@ -410,6 +411,13 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.second.commit["uri"]);
     case Role::ContactAction:
         return QVariant(item.second.commit["action"]);
+    case Role::PreviousBodies: {
+        QVariantList variantList;
+        for (int i = 0; i < item.second.previousBodies.size(); i++) {
+            variantList.append(QVariant::fromValue(item.second.previousBodies[i]));
+        }
+        return variantList;
+    }
     case Role::ReplyTo:
         return QVariant(replyId);
     case Role::ReplyToAuthor:
@@ -541,12 +549,58 @@ MessageListModel::emitDataChanged(const QString& msgId, VectorInt roles)
     Q_EMIT dataChanged(modelIndex, modelIndex, roles);
 }
 
+void
+MessageListModel::addEdition(const QString& msgId, const interaction::Info& info, bool end)
+{
+    auto editedId = info.commit["edit"];
+    if (editedId.isEmpty())
+        return;
+    auto& edited = editedBodies_[editedId];
+    auto value = interaction::Body {msgId, info.body, info.timestamp};
+    if (end)
+        edited.push_back(value);
+    else
+        edited.push_front(value);
+    auto editedIt = find(editedId);
+    if (editedIt != interactions_.end()) {
+        // If already there, we can update the content
+        editMessage(editedId, editedIt->second);
+    }
+}
+
+void
+MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
+{
+    auto it = editedBodies_.find(msgId);
+    if (it != editedBodies_.end()) {
+        if (info.previousBodies.isEmpty()) {
+            info.previousBodies.push_back(interaction::Body {msgId, info.body, info.timestamp});
+        }
+        // Find if already added (because MessageReceived can be triggered
+        // multiple times for same message)
+        for (const auto& editedBody : *it) {
+            auto itCommit = std::find_if(info.previousBodies.begin(),
+                                         info.previousBodies.end(),
+                                         [&](const auto& element) {
+                                             return element.commitId == editedBody.commitId;
+                                         });
+            if (itCommit == info.previousBodies.end()) {
+                info.previousBodies.push_back(editedBody);
+            }
+        }
+        info.body = it->rbegin()->body;
+        editedBodies_.erase(it);
+        emitDataChanged(msgId, {MessageList::Role::Body, MessageList::Role::PreviousBodies});
+    }
+}
+
 QString
 MessageListModel::lastMessageUid() const
 {
     for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
         auto lastType = it->second.type;
-        if (lastType != interaction::Type::MERGE and !it->second.body.isEmpty()) {
+        if (lastType != interaction::Type::MERGE and lastType != interaction::Type::EDITED
+            and !it->second.body.isEmpty()) {
             return it->first;
         }
     }
