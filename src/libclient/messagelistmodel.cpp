@@ -190,6 +190,7 @@ MessageListModel::clear()
     Q_EMIT beginResetModel();
     interactions_.clear();
     replyTo_.clear();
+    editedBodies_.clear();
     Q_EMIT endResetModel();
 }
 
@@ -435,6 +436,15 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(item.second.commit["device"]);
     case Role::ContactAction:
         return QVariant(item.second.commit["action"]);
+    case Role::OldBodies: {
+        QVariantList variantList;
+        for (int i = 0; i < item.second.oldbodies.size(); i++) {
+            QVariant var;
+            var.setValue(item.second.oldbodies[i]);
+            variantList.append(var);
+        }
+        return variantList;
+    }
     case Role::ReplyTo:
         return QVariant(replyId);
     case Role::ReplyToAuthor:
@@ -564,6 +574,54 @@ MessageListModel::emitDataChanged(const QString& msgId, VectorInt roles)
     }
     QModelIndex modelIndex = QAbstractListModel::index(index, 0);
     Q_EMIT dataChanged(modelIndex, modelIndex, roles);
+}
+
+void
+MessageListModel::addEdition(const QString& msgId, const interaction::Info& info, bool end)
+{
+    auto editedId = info.commit["edit"];
+    if (editedId.isEmpty())
+        return;
+    auto& edited = editedBodies_[editedId];
+    QStringList value = {msgId, info.body, QString::number(info.timestamp)};
+    if (end) {
+        edited.push_back(value);
+    } else {
+        edited.push_front(value);
+    }
+    auto editedIt = find(editedId);
+    if (editedIt != interactions_.end()) {
+        // If already there, we can update the content
+        editMessage(editedId, editedIt->second);
+    }
+}
+
+void
+MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
+{
+    auto it = editedBodies_.find(msgId);
+    if (it != editedBodies_.end()) {
+        if (info.oldbodies.isEmpty()) {
+            info.oldbodies.push_back({msgId, info.body, QString::number(info.timestamp)});
+        }
+        info.oldbodies.append(*it);
+        info.body = (*it->rbegin())[1];
+        editedBodies_.erase(it);
+        emitDataChanged(msgId, {MessageList::Role::Body, MessageList::Role::OldBodies});
+    }
+}
+
+QString
+MessageListModel::lastMessageUid() const
+{
+    for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
+        auto lastType = it->second.type;
+        if (lastType != interaction::Type::MERGE and lastType != interaction::Type::EDITED
+            and !it->second.body.isEmpty()) {
+            return it->first;
+        }
+    }
+    return {};
 }
 
 } // namespace lrc

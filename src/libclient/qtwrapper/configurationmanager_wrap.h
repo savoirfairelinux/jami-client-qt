@@ -1067,6 +1067,18 @@ public Q_SLOTS: // METHODS
                            message.toStdString(),
                            parent.toStdString());
     }
+
+    void editMessage(const QString& accountId,
+                     const QString& conversationId,
+                     const QString& newBody,
+                     const QString& editedId)
+    {
+        DRing::editMessage(accountId.toStdString(),
+                           conversationId.toStdString(),
+                           newBody.toStdString(),
+                           editedId.toStdString());
+    }
+
     uint32_t loadConversationMessages(const QString& accountId,
                                       const QString& conversationId,
                                       const QString& fromId,
