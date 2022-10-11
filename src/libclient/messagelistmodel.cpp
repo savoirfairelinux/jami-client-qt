@@ -566,4 +566,51 @@ MessageListModel::emitDataChanged(const QString& msgId, VectorInt roles)
     Q_EMIT dataChanged(modelIndex, modelIndex, roles);
 }
 
+void
+MessageListModel::addEdition(const QString& msgId, const interaction::Info& info, bool end)
+{
+    auto editedId = info.commit["edit"];
+    if (editedId.isEmpty())
+        return;
+    auto& edited = editedBodies_[editedId];
+    if (end) {
+        edited.push_back({msgId, info.body, info.timestamp});
+    } else {
+        edited.push_front({msgId, info.body, info.timestamp});
+    }
+    auto editedIt = find(editedId);
+    if (editedIt != interactions_.end()) {
+        // If already there, we can update the content
+        editMessage(editedId, editedIt->second);
+    }
+}
+
+void
+MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
+{
+    auto it = editedBodies_.find(msgId);
+    if (it != editedBodies_.end()) {
+        if (info.oldbodies.isEmpty()) {
+            info.oldbodies.push_back({msgId, info.body, info.timestamp});
+        }
+        info.oldbodies.append(*it);
+        info.body = it->rbegin()->body;
+        editedBodies_.erase(it);
+        emitDataChanged(msgId, {MessageList::Role::Body});
+    }
+}
+
+QString
+MessageListModel::lastMessageUid() const
+{
+    for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
+        auto lastType = it->second.type;
+        if (lastType != interaction::Type::MERGE and lastType != interaction::Type::EDITED
+            and !it->second.body.isEmpty()) {
+            return it->first;
+        }
+    }
+    return {};
+}
+
 } // namespace lrc

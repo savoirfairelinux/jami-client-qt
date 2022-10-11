@@ -1307,6 +1307,18 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
 }
 
 void
+ConversationModel::editMessage(const QString& convId,
+                               const QString& newBody,
+                               const QString& messageId)
+{
+    auto conversationOpt = getConversationForUid(convId);
+    if (!conversationOpt.has_value()) {
+        return;
+    }
+    ConfigurationManager::instance().editMessage(owner.id, convId, newBody, messageId);
+}
+
+void
 ConversationModel::refreshFilter()
 {
     pimpl_->invalidateModel();
@@ -2350,15 +2362,18 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
 
     try {
         auto& conversation = getConversationForUid(conversationId).get();
-        QString oldLast; // Used to detect loading loops just in case.
-        if (conversation.interactions->size() != 0)
+        QString oldLast, oldBegin; // Used to detect loading loops just in case.
+        if (conversation.interactions->size() != 0) {
+            oldBegin = conversation.interactions->begin()->first;
             oldLast = conversation.interactions->rbegin()->first;
+        }
         for (const auto& message : messages) {
             if (message["type"].isEmpty()) {
                 continue;
             }
             auto msgId = message["id"];
             auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+            conversation.interactions->editMessage(msgId, msg);
             auto downloadFile = false;
             if (msg.type == interaction::Type::INITIAL) {
                 allLoaded = true;
@@ -2392,6 +2407,8 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                 msg.body = interaction::getContactInteractionString(bestName,
                                                                     interaction::to_action(
                                                                         message["action"]));
+            } else if (msg.type == interaction::Type::EDITED) {
+                conversation.interactions->addEdition(msgId, msg, false);
             }
             insertSwarmInteraction(msgId, msg, conversation, true);
             if (downloadFile) {
@@ -2400,25 +2417,22 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             }
         }
 
-        for (int j = conversation.interactions->size() - 1; j >= 0; j--) {
-            if (conversation.interactions->atIndex(j).second.type != interaction::Type::MERGE) {
-                conversation.lastMessageUid = conversation.interactions->atIndex(j).first;
-                break;
-            }
-        }
+        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
             if (conversation.interactions->size() > 0) {
-                QString newLast;
-                if (conversation.interactions->size() > 0)
+                QString newLast, newBegin;
+                if (conversation.interactions->size() > 0) {
+                    newBegin = conversation.interactions->begin()->first;
                     newLast = conversation.interactions->rbegin()->first;
-                if (newLast == oldLast && !newLast.isEmpty()) { // [[unlikely]] in c++20
-                    qCritical() << "Loading loop detected for " << conversationId << "(" << newLast
-                                << ")";
+                }
+                if (newLast == oldLast && !newLast.isEmpty() && newBegin == oldBegin
+                    && !newBegin.isEmpty()) { // [[unlikely]] in c++20
+                    qCritical() << "Loading loop detected for " << conversationId << "(" << newBegin
+                                << " ; " << newLast << ")";
                     return;
                 }
             }
-
             // In this case, we only have loaded merge commits. Load more messages
             ConfigurationManager::instance().loadConversationMessages(linked.owner.id,
                                                                       conversationId,
@@ -2465,6 +2479,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         }
         auto msgId = message["id"];
         auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
+        conversation.interactions->editMessage(msgId, msg);
         api::datatransfer::Info info;
         QString fileId;
 
@@ -2525,6 +2540,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         } else if (msg.type == interaction::Type::TEXT
                    && msg.authorUri != linked.owner.profileInfo.uri) {
             conversation.unreadMessages++;
+        } else if (msg.type == interaction::Type::EDITED) {
+            conversation.interactions->addEdition(msgId, msg, true);
         }
         if (!insertSwarmInteraction(msgId, msg, conversation, false)) {
             // message already exists
@@ -2534,7 +2551,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             invalidateModel();
             return;
         }
-        conversation.lastMessageUid = msgId;
+        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         invalidateModel();
         if (!interaction::isOutgoing(msg)) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,
