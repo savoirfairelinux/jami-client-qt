@@ -42,6 +42,12 @@ SBSMessageBase {
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
 
+    EditedPopup {
+        id: editedPopup
+
+        previousbodies: PreviousBodies
+    }
+
     innerContent.children: [
         TextEdit {
             id: textEditId
@@ -104,6 +110,48 @@ SBSMessageBase {
 
                 lineEditObj: parent
                 selectOnly: parent.readOnly
+            }
+        },
+        RowLayout {
+            id: editedRow
+            anchors.right: isOutgoing ? parent.right : undefined
+            visible: PreviousBodies.length !== 0
+
+            ResponsiveImage  {
+                id: editedImage
+
+                Layout.leftMargin: JamiTheme.preferredMarginSize
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
+
+                source: JamiResources.round_edit_24dp_svg
+                width: JamiTheme.editedFontSize
+                height: JamiTheme.editedFontSize
+                layer {
+                    enabled: true
+                    effect: ColorOverlay {
+                        color: editedLabel.color
+                    }
+                }
+            }
+
+            Text {
+                id: editedLabel
+
+                Layout.rightMargin: JamiTheme.preferredMarginSize
+                Layout.bottomMargin: JamiTheme.preferredMarginSize
+
+                text: JamiStrings.edited
+                color: UtilsAdapter.luma(bubble.color) ?
+                        JamiTheme.chatviewTextColorLight :
+                        JamiTheme.chatviewTextColorDark
+                font.pointSize: JamiTheme.editedFontSize
+
+                TapHandler {
+                    acceptedButtons: Qt.LeftButton
+                    onTapped: {
+                        editedPopup.open()
+                    }
+                }
             }
         },
         Loader {

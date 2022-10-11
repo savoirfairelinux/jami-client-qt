@@ -52,6 +52,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
 {
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
         set_replyToId("");
+        set_editId("");
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
         set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
@@ -152,6 +153,23 @@ MessagesAdapter::sendMessage(const QString& message)
         set_replyToId("");
     } catch (...) {
         qDebug() << "Exception during sendMessage:" << message;
+    }
+}
+
+void
+MessagesAdapter::editMessage(const QString& convId, const QString& newBody, const QString& messageId)
+{
+    try {
+        const auto convUid = lrcInstance_->get_selectedConvUid();
+        auto editId = !messageId.isEmpty() ? messageId : editId_;
+        if (editId.isEmpty()) {
+            qWarning("No message to edit");
+            return;
+        }
+        lrcInstance_->getCurrentConversationModel()->editMessage(convId, newBody, editId);
+        set_editId("");
+    } catch (...) {
+        qDebug() << "Exception during message edition:" << messageId;
     }
 }
 

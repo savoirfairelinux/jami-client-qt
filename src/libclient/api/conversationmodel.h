@@ -218,6 +218,13 @@ public:
      */
     void sendMessage(const QString& uid, const QString& body, const QString& parentId = "");
     /**
+     * Edit a message (empty body = delete message)
+     * @param convId        The conversation with the message to edit
+     * @param newBody       The new body
+     * @param messageId     The id of the message (MUST be by the same author & plain/text)
+     */
+    void editMessage(const QString& convId, const QString& newBody, const QString& messageId);
+    /**
      * Modify the current filter (will change the result of getFilteredConversations)
      * @param filter the new filter
      */
