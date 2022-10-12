@@ -159,14 +159,18 @@ execute_process(
 set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
 
 if (APPLE)
-  include(FetchContent)
-  FetchContent_Declare(
-    libqrencode
-    GIT_REPOSITORY https://github.com/fukuchi/libqrencode.git
-    GIT_TAG v4.1.1)
-  FetchContent_Populate(libqrencode)
-  add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
-  include_directories(${libqrencode_SOURCE_DIR})
+INCLUDE(ExternalProject)
+ExternalProject_Add(libqrencode
+    GIT_SUBMODULES libqrencode
+    SOURCE_DIR  ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    BINARY_DIR  ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    INSTALL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    CONFIGURE_COMMAND
+    ${CMAKE_COMMAND} -E env CFLAGS="-arch arm64" ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/autogen.sh && ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/configure --host=arm64-apple-darwin21.5.0 --without-png --prefix=${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    BUILD_COMMAND make
+    INSTALL_COMMAND make install)
+    INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/include)
+    LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/lib)
 endif()
 
 # library compatibility (boost, libnotify, etc.)
@@ -297,6 +301,7 @@ set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/arm64-apple-darwin21.5.0/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
@@ -718,6 +723,7 @@ elseif (NOT APPLE)
     COMMAND
     ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 else()
+  find_library(qrencode qrencode REQUIRED)
   set(resources
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
   set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} qrencode ${LIBCLIENT_NAME})
@@ -727,6 +733,18 @@ else()
   endif(ENABLE_SPARKLE)
   target_sources(${PROJECT_NAME} PRIVATE ${resources})
   target_link_libraries(${PROJECT_NAME} PRIVATE ${libs})
+  FILE(GLOB CONTRIB ${LIBJAMI_CONTRIB_DIR}/arm64-apple-darwin21.5.0/lib/*.a)
+  target_link_libraries(${PROJECT_NAME} PRIVATE ${CONTRIB})
+  find_package(Iconv REQUIRED)
+   target_link_libraries(${PROJECT_NAME} PRIVATE Iconv::Iconv)
+  target_link_libraries(${PROJECT_NAME} PRIVATE
+    "-framework AVFoundation"
+    "-framework CoreGraphics"
+    "-framework Foundation -framework VideoToolbox -framework Security"
+    "-framework CoreAudio -framework AudioToolbox -framework AudioUnit -framework Carbon -framework CoreMedia -framework CoreVideo"
+    )
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE compression)
 
   # translations
   if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
