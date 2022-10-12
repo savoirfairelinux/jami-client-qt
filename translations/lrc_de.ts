@@ -944,12 +944,12 @@ Das Profil kann jederzeit in den Kontoeinstellungen geändert werden.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation type="unfinished"/>
+        <translation>Warum sollte ich dieses Konto sichern?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Ihr Konto existiert nur auf diesem Gerät. Wenn Sie Ihr Gerät verlieren oder die Anwendung deinstallieren, wird Ihr Konto gelöscht und kann NICHT wiederhergestellt werden. Sie können Ihr Konto jetzt oder später sichern (in den Kontoeinstellungen).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
@@ -1746,7 +1746,7 @@ Bitte versuchen Sie es später erneut.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Change text size (%)</source>
-        <translation type="unfinished"/>
+        <translation>Textgröße ändern (%)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
@@ -2638,7 +2638,7 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="689"/>
         <source>Block</source>
-        <translation>Sperren</translation>
+        <translation>Blockieren</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="692"/>
@@ -2749,7 +2749,7 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="45"/>
         <source>Migrate conversation</source>
-        <translation>Konversation migrieren</translation>
+        <translation>Unterhaltung migrieren</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="431"/>
@@ -2809,7 +2809,7 @@ Kopieren und teilen Sie diesen mit Ihren Freunden!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Bilddateien (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
@@ -2930,7 +2930,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
         <source>Kick member</source>
-        <translation>Mitglied entfernen</translation>
+        <translation>Mitglied hinauswerfen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
@@ -3103,7 +3103,7 @@ eine Verbindung herstellt, um die Unterhaltung zu synchronisieren.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>Kamera stoppen</translation>
     </message>
 </context>
 <context>

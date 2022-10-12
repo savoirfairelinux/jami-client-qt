@@ -60,12 +60,12 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="99"/>
         <source>Private group</source>
-        <translation type="unfinished"/>
+        <translation>私密组</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="101"/>
         <source>Public group</source>
-        <translation type="unfinished"/>
+        <translation>公开组&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="172"/>
@@ -75,7 +75,7 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="174"/>
         <source>The conversation&apos;s mode is un-recognized</source>
-        <translation type="unfinished"/>
+        <translation>会话模式未识别</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="176"/>
@@ -3711,12 +3711,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="41"/>
         <source>Why should I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>为什么应该备份账户？</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="43"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation type="unfinished"/>
+        <translation>Jami是分布式，你的账号仅保存在本地设备里。如果你忘记密码或丢失本地账号数据，也没有提前备份的话，你将无法恢复你的账号。</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="49"/>
@@ -3796,17 +3796,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>
         <source>How can I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>怎样备份账户?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation type="unfinished"/>
+        <translation>在账户设置里，创建备份账户的按钮可用</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="91"/>
         <source>What happens when I delete my account?</source>
-        <translation type="unfinished"/>
+        <translation>删除自己的账号会发生什么?</translation>
     </message>
 </context>
 <context>
