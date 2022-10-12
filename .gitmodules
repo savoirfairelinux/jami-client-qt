@@ -2,6 +2,10 @@
 	path = 3rdparty/qrencode-win32
 	url = https://github.com/BlueDragon747/qrencode-win32.git
 	ignore = dirty
+[submodule "3rdparty/libqrencode"]
+	url = https://github.com/fukuchi/libqrencode.git
+	ignore = dirty
+	path = 3rdparty/libqrencode
 [submodule "3rdparty/SortFilterProxyModel"]
 	path = 3rdparty/SortFilterProxyModel
 	url = https://github.com/atraczyk/SortFilterProxyModel.git
@@ -10,7 +14,6 @@
 [submodule "daemon"]
 	path = daemon
 	url = https://review.jami.net/jami-daemon
-# Sparkle is updater for macOS
 [submodule "extras/packaging/update/sparkle/Sparkle"]
 	path = extras/packaging/update/sparkle/Sparkle
 	url = https://github.com/sparkle-project/Sparkle.git
