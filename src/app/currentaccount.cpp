@@ -189,9 +189,6 @@ CurrentAccount::updateData()
         set_autoTransferFromTrusted(settingsManager_->getValue(Settings::Key::AutoAcceptFiles)
                                         .toBool(),
                                     true);
-        set_autoTransferFromUntrusted(settingsManager_->getValue(Settings::Key::AllowFromUntrusted)
-                                          .toBool(),
-                                      true);
         set_autoTransferSizeThreshold(settingsManager_->getValue(Settings::Key::AcceptTransferBelow)
                                           .toInt(),
                                       true);

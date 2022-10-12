@@ -264,10 +264,10 @@ Rectangle {
 
                         checked: CurrentConversation.ignoreNotifications
 
-                        labelText: JamiStrings.ignoreTheSwarm
+                        labelText: JamiStrings.muteConversation
                         fontPointSize: JamiTheme.settingsFontSize
 
-                        tooltipText: JamiStrings.ignoreTheSwarmTooltip
+                        tooltipText: JamiStrings.ignoreNotificationsTooltip
 
                         onSwitchToggled: {
                             CurrentConversation.setPreference("ignoreNotifications", checked ? "true" : "false")

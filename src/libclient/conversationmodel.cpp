@@ -4039,17 +4039,6 @@ ConversationModelPimpl::awaitingHost(const QString& fileId, datatransfer::Info i
     }
     auto conversationIdx = indexOf(conversationId);
     auto& peers = peersForConversation(conversations[conversationIdx]);
-    // Only accept if contact is added or it is a group conversation
-    if (linked.owner.accountModel->autoTransferFromUntrusted && peers.size() == 1) {
-        try {
-            auto contactUri = peers.front();
-            auto contactInfo = linked.owner.contactModel->getContact(contactUri);
-            if (contactInfo.profileInfo.type == profile::Type::PENDING)
-                return;
-        } catch (...) {
-            return;
-        }
-    }
     handleIncomingFile(conversationId, interactionId, info.totalSize);
 }
 

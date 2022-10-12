@@ -74,10 +74,6 @@ public:
      */
     QString downloadDirectory;
     /**
-     * Accept transfer from untrusted contacts
-     */
-    bool autoTransferFromUntrusted {false};
-    /**
      * Accept transfer from trusted contacts
      */
     bool autoTransferFromTrusted {true};
