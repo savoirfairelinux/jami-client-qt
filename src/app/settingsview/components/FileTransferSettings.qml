@@ -42,21 +42,6 @@ ColumnLayout {
     }
 
     ToggleSwitch {
-        id: allowFromUntrustedCheckbox
-        Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
-
-        checked: CurrentAccount.autoTransferFromUntrusted
-
-        labelText: JamiStrings.allowFromUntrusted
-        fontPointSize: JamiTheme.settingsFontSize
-
-        tooltipText: JamiStrings.allowFromUntrusted
-
-        onSwitchToggled: CurrentAccount.autoTransferFromUntrusted = checked
-    }
-
-    ToggleSwitch {
         id: autoAcceptFilesCheckbox
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize

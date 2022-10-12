@@ -187,7 +187,6 @@ class CurrentAccount final : public QObject
 
     // NewAccount model settings
     QML_NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY(bool, autoTransferFromTrusted, AutoAcceptFiles)
-    QML_NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY(bool, autoTransferFromUntrusted, AllowFromUntrusted)
     QML_NEW_ACCOUNT_MODEL_SETTINGS_PROPERTY(int, autoTransferSizeThreshold, AcceptTransferBelow)
 
 public:

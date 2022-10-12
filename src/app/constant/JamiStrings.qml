@@ -448,7 +448,6 @@ Item {
 
     // File transfer settings
     property string fileTransfer: qsTr("File transfer")
-    property string allowFromUntrusted: qsTr("Accept files from unknown senders")
     property string autoAcceptFiles: qsTr("Automatically accept incoming files")
     property string acceptTransferBelow: qsTr("Accept transfer limit")
     property string acceptTransferTooltip: qsTr("in MB, 0 = unlimited")
@@ -741,8 +740,8 @@ Item {
     property string swarmName: qsTr("Swarm's name")
     property string addADescription: qsTr("Add a description")
 
-    property string ignoreTheSwarm: qsTr("Ignore the swarm")
-    property string ignoreTheSwarmTooltip: qsTr("Ignore all notifications from this conversation")
+    property string muteConversation: qsTr("Mute conversation")
+    property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose a color")
     property string leaveTheSwarm: qsTr("Leave the swarm")
     property string leave: qsTr("Leave")

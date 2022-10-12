@@ -39,7 +39,6 @@ extern const QString defaultDownloadPath;
     X(EnableNotifications, true) \
     X(EnableTypingIndicator, true) \
     X(EnableReadReceipt, true) \
-    X(AllowFromUntrusted, false) \
     X(AcceptTransferBelow, 20) \
     X(AutoAcceptFiles, true) \
     X(DisplayHyperlinkPreviews, true) \
