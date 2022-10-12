@@ -126,15 +126,25 @@ else()
 endif()
 
 if (APPLE)
-  include(FetchContent)
-  FetchContent_Declare(
-    libqrencode
-    GIT_REPOSITORY https://github.com/fukuchi/libqrencode.git
-    GIT_TAG v4.1.1)
-  FetchContent_Populate(libqrencode)
-  add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
-  include_directories(${libqrencode_SOURCE_DIR})
+INCLUDE(ExternalProject)
+ExternalProject_Add(libqrencode
+    GIT_SUBMODULES libqrencode
+    SOURCE_DIR  ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    BINARY_DIR  ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    INSTALL_DIR ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    CONFIGURE_COMMAND
+    #hack to fix incomplete config.h on first run
+    COMMAND ./autogen.sh
+    COMMAND ./autogen.sh && ./configure --host=arm64-apple-darwin21.5.0 --without-png --prefix=${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    BUILD_COMMAND make
+    INSTALL_COMMAND make install)
+    INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/include)
+    LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/lib)
 endif()
+
+# ./configure --host=arm64-apple-darwin21.5.0 --without-png --prefix=/Users/kate/Desktop/try/jami-project/client-qt/3rdparty/libqrencode/
+
+#./configure --host=arm64-apple-darwin21.5.0 --without-png CFLAGS=" -arch arm64 $CFLAGS"--prefix=/Users/kate/Desktop/try/jami-project/client-qt/3rdparty/libqrencode/
 
 # Resource auto-gen
 # check files in the resources directory and force a reconfigure if it
@@ -266,6 +276,7 @@ set(LIBJAMI_CONTRIB_DIR "${PROJECT_SOURCE_DIR}/../daemon/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/arm64-apple-darwin21.5.0/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
@@ -687,7 +698,7 @@ elseif (NOT APPLE)
 else()
   set(resources
     ${CMAKE_CURRENT_SOURCE_DIR}/resources/images/jami.icns)
-  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} qrencode ${LIBCLIENT_NAME})
+  set(libs ${QT_LIBS} ${SYSTEM_CONFIGURATUION} ${LIBCLIENT_NAME})
   if(ENABLE_SPARKLE)
     set(resources ${resources} ${PUBLIC_KEY} ${SPARKLE_FRAMEWORK})
     set(libs ${libs} ${SPARKLE_FRAMEWORK})

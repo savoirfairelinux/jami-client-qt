@@ -90,6 +90,7 @@ if(NOT LIBJAMI_LIB)
   # Search only in these given PATHS.
   find_library(LIBJAMI_LIB NAMES jami
     PATHS ${LIBJAMI_BUILD_DIR}/.libs
+    PATHS ${LIBJAMI_BUILD_DIR}/lib
     PATHS ${RING_BUILD_DIR}/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/libexec
