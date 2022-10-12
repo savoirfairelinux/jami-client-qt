@@ -329,6 +329,7 @@ set(LIBJAMI_CONTRIB_DIR
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/arm64-apple-darwin21.5.0/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
@@ -481,6 +482,13 @@ if(NOT(APPLE OR MSVC))
   pkg_check_modules(XCB xcb IMPORTED_TARGET)
   target_link_libraries(${LIBCLIENT_NAME} PkgConfig::XCB)
 endif()
+
+#link contrib
+find_library(AVUTIL_LIBRARY avutil
+  HINTS
+  ${LIBJAMI_CONTRIB_DIR}/${CC_MACHINE}/lib
+  ${LIBJAMI_CONTRIB_DIR}/x86_64-apple-darwin${CMAKE_HOST_SYSTEM_VERSION}/lib)
+
 
 if(ENABLE_LIBWRAP)
   target_link_libraries(${LIBCLIENT_NAME} qtwrapper ${LIBJAMI_LIB})
