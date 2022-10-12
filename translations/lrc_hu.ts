@@ -944,12 +944,12 @@ A profil bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation type="unfinished"/>
+        <translation>Miért készítsek biztonsági másolatot erről a fiókról?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Ez a fiók csak ezen az eszközön létezik. Ha elveszíti eszközét, vagy eltávolította az alkalmazást, akkor fiókját töröljük és nem állítható vissza. Biztonsági másolatot készíthet fiókjáról most vagy később (a Fiókbeállításokban).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
@@ -1746,7 +1746,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Change text size (%)</source>
-        <translation type="unfinished"/>
+        <translation>Szövegméret módosítása (%)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
@@ -2808,7 +2808,7 @@ Másolja ki, és ossza meg barátaival!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Képfájlok (*.jpeg *.JPEG *.jpg *.JPG *.png *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
@@ -3102,7 +3102,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>Kamera leállítása</translation>
     </message>
 </context>
 <context>

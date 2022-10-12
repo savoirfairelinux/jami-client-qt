@@ -944,12 +944,12 @@ Profilul poate fi modificat în orice moment în reglările contului.</translati
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation type="unfinished"/>
+        <translation>De ce ar trebui să fac o copie de rezervă a contului?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Contul tău există doar în acest aparat. Dacă ai pierdut aparatul sau ai dezinstalat aplicația, contul tău va fi șters și NU va putea fi recuperat. Poți face o copie de rezervă acum sau mai tîrziu (în „Reglările contului”).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
@@ -1746,7 +1746,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Change text size (%)</source>
-        <translation type="unfinished"/>
+        <translation>Schimbă mărimea textului (%)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
@@ -2809,7 +2809,7 @@ Copiază-l și distribuie-l prietenilor!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Fișiere imagine (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
@@ -3102,7 +3102,7 @@ să se conecteze pentru a sincroniza conversația.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>Stop camera</translation>
     </message>
 </context>
 <context>

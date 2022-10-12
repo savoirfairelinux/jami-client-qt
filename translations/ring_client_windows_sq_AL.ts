@@ -78,22 +78,22 @@
     <message>
         <location filename="../src/app/currentconversation.cpp" line="172"/>
         <source>An error occurred while fetching this repository</source>
-        <translation type="unfinished"/>
+        <translation>Ndodhi një gabim, kur sillej kjo depo</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="174"/>
         <source>The conversation&apos;s mode is un-recognized</source>
-        <translation type="unfinished"/>
+        <translation>Mënyra e bisedës është e panjohur</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="176"/>
         <source>An invalid message was detected</source>
-        <translation type="unfinished"/>
+        <translation>U pikas një mesazh i pavlefshëm</translation>
     </message>
     <message>
         <location filename="../src/app/currentconversation.cpp" line="179"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
-        <translation type="unfinished"/>
+        <translation>Pa autorizim të mjaftueshëm për përditësim hollësish bisede</translation>
     </message>
 </context>
 <context>
@@ -450,7 +450,8 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
-        <translation type="unfinished"/>
+        <translation>Jeni i sigurt se doni të bëheni pjesë e Jami-t pa një emër përdoruesi?
+Nëse po, kësaj llogarie do t’i përshoqërihet vetëm një identifikues prej 40 shenjash i prodhuar kuturu.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="343"/>
@@ -458,32 +459,35 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
 - Special characters allowed: dash (-)</source>
-        <translation type="unfinished"/>
+        <translation>- E shumta 32 shenja
+- Shkronja (A deri Z dhe a deri z)
+- Numra (0 deri 9)
+- Shenja speciale të lejuara: dash (-)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>Your account will be created and stored locally.</source>
-        <translation type="unfinished"/>
+        <translation>Llogaria juaj do të krijohet dhe depozitohet lokalisht.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
-        <translation type="unfinished"/>
+        <translation>Zgjedhja e një emri përdoruesi është e këshilluar dhe një emër përdoruesi NUK mund të ndryshohet më vonë, pasi të zgjidhet.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
-        <translation type="unfinished"/>
+        <translation>Fshehtëzimi i llogarisë tuaj me një fjalëkalim është në dëshirën tuaj dhe nëse humb fjalëkalimi, NUK mund të rimerret më vonë.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation type="unfinished"/>
+        <translation>Ujdisja e një fotoje profili dhe e një nofke janë në dëshirën tuaj dhe mund të ndryshohen më vonë te rregullimet.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="376"/>
         <source>Back up account to a .gz file</source>
-        <translation type="unfinished"/>
+        <translation>Kopjeruani llogarinë si një kartelë .gz</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="601"/>
@@ -579,7 +583,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="44"/>
         <source>Migrating to the Swarm technology will enable synchronizing this conversation across multiple devices and improve reliability. The legacy conversation history will be cleared in the process.</source>
-        <translation type="unfinished"/>
+        <translation>Migrimi në teknologjinë Zgjoje do të lejojë njëkohësimin e kësaj bisede në shumë pajisje dhe do të përmirësojë qëndrueshmërinë e funksionimit. Gjatë procesit, historiku i dikurshëm i bisedës do të spastrohet.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="57"/>
@@ -920,42 +924,42 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="537"/>
         <source>Create account from backup</source>
-        <translation type="unfinished"/>
+        <translation>Krijoni llogari prej kopjeruajtjeje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="538"/>
         <source>You can obtain an archive by clicking on &quot;Back up account&quot; in the Account Settings. This will create a .gz file on your device.</source>
-        <translation type="unfinished"/>
+        <translation>Një arkiv mund ta përftoni duke klikuar mbi “Kopjeruani llogari” që nga Rregullime Llogarie. Kjo do të krijojë në pajisjen tuaj një kartelë .gz.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="541"/>
         <source>Restore account from backup</source>
-        <translation type="unfinished"/>
+        <translation>Riktheni llogari prej kopjeruajtjeje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="545"/>
         <source>Import Jami account from local archive file.</source>
-        <translation type="unfinished"/>
+        <translation>Importo llogari Jami prej një kartele vendore arkiv</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
         <source>Tip</source>
-        <translation type="unfinished"/>
+        <translation>Ndihmëz</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation type="unfinished"/>
+        <translation>Që të plotësoni profilin tuaj, shtoni një foto profili dhe nofkë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
         <source>This profile is only shared with this account&apos;s contacts</source>
-        <translation type="unfinished"/>
+        <translation>Ky profil u tregohet vetëm kontakteve të kësaj llogarie</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
         <source>Why should I save my account?</source>
-        <translation type="unfinished"/>
+        <translation>Pse duhet ta ruaj llogarinë time?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
@@ -965,12 +969,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation type="unfinished"/>
+        <translation>Pse duhet ta kopjeruaj këtë llogari?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Llogaria juaj ekziston vetëm në këtë pajisje. Nëse humbni pajisjen tuaj, ose çinstaloni aplikacionin, llogaria juaj do të fshihet dhe NUK mund të rimerret. Llogarinë tuaj mund ta kopjeruani tani, ose më vonë (që nga Rregullime Llogarie).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
@@ -1102,17 +1106,17 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="254"/>
         <source>On the side</source>
-        <translation type="unfinished"/>
+        <translation>Anash</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
         <source>On the top</source>
-        <translation type="unfinished"/>
+        <translation>Në krye</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <source>Hide self</source>
-        <translation type="unfinished"/>
+        <translation>Fshihe veten</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
@@ -1232,7 +1236,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
         <source>Layout settings</source>
-        <translation type="unfinished"/>
+        <translation>Rregullime skeme</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
@@ -1257,7 +1261,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>This is the error from the backend: %0</source>
-        <translation type="unfinished"/>
+        <translation>Ky është një gabim prej pjesës së pasme: %0</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
@@ -1328,7 +1332,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
         <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
-        <translation type="unfinished"/>
+        <translation>Zgjidhni një fjalëkalim që të fshehtëzoni llogarinë tuaj në këtë pajisje. Kini parasysh se fjalëkalimi NUK mund të rimerret.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
@@ -1338,7 +1342,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
-        <translation type="unfinished"/>
+        <translation>Mund të zgjidhni një emër përdoruesi, për t’i ndihmuar të tjerët t’ju gjejnë dhe të komunikojmë më lehtë me ju në Jami.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
@@ -1620,7 +1624,7 @@ Ju lutemi, riprovoni më vonë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Change text size (%)</source>
-        <translation type="unfinished"/>
+        <translation>Ndryshoni madhësi teksti (%)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
@@ -1732,37 +1736,37 @@ Ju lutemi, riprovoni më vonë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
         <source>Select &quot;Link another device&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni “Lidhni pajisje tjetër”</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="563"/>
         <source>The PIN code will be valid for 10 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>Kodi PIN do të jetë i vlefshëm për 10 minuta.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>Choose a picture as your avatar</source>
-        <translation type="unfinished"/>
+        <translation>Zgjidhni një foto si avatarin tuaj</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Kartela Figurë (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
         <source>Share freely and privately with Jami</source>
-        <translation type="unfinished"/>
+        <translation>Ndani lirisht dhe privatisht me të tjerët përmes Jami-t</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="725"/>
         <source>Reply to</source>
-        <translation type="unfinished"/>
+        <translation>Përgjigjuni te</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="726"/>
         <source>In reply to</source>
-        <translation type="unfinished"/>
+        <translation>Në përgjigje të</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
@@ -1792,7 +1796,7 @@ Ju lutemi, riprovoni më vonë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="741"/>
         <source>Swarm&apos;s name</source>
-        <translation type="unfinished"/>
+        <translation>Emër zgjoi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
@@ -1802,7 +1806,7 @@ Ju lutemi, riprovoni më vonë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
         <source>Ignore the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Shpërfille zgjuan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="745"/>
@@ -1817,7 +1821,7 @@ Ju lutemi, riprovoni më vonë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
         <source>Leave the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Braktiseni zgjuan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="748"/>
@@ -1827,22 +1831,22 @@ Ju lutemi, riprovoni më vonë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
         <source>Type of swarm</source>
-        <translation type="unfinished"/>
+        <translation>Lloj zgjoi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
         <source>You can add 8 people in the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Te zgjoi mund të shtoni 8 vetë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
         <source>You can add %1 more people in the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Te zgjoi mund të shtoni %1 persona të tjerë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
         <source>Create the swarm</source>
-        <translation type="unfinished"/>
+        <translation>Krijoje zgjoin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
@@ -1958,7 +1962,7 @@ Ju lutemi, riprovoni më vonë.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="569"/>
         <source>Enter account&apos;s password</source>
-        <translation type="unfinished"/>
+        <translation>Jepni fjalëkalimin e llogarisë</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
@@ -2037,22 +2041,22 @@ Jami tani do të mbyllet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
         <source>Configure a SIP account</source>
-        <translation type="unfinished"/>
+        <translation>Formësoni një llogari SIP</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="657"/>
         <source>Join Jami</source>
-        <translation type="unfinished"/>
+        <translation>Bëhuni pjesë e Jami-t</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="663"/>
         <source>I already have an account</source>
-        <translation type="unfinished"/>
+        <translation>Kam tashmë një llogari</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="664"/>
         <source>Use existing Jami account</source>
-        <translation type="unfinished"/>
+        <translation>Përdorni llogari Jami ekzistuese</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
@@ -2062,12 +2066,12 @@ Jami tani do të mbyllet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
         <source>Share this Jami identifier to be contacted on this account!</source>
-        <translation type="unfinished"/>
+        <translation>Që të kontaktoheni në këtë llogari, jepuni këtë identifikues Jami!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="667"/>
         <source>Here is your Jami identifier, don&apos;t hesitate to share it in order to be contacted more easily!</source>
-        <translation type="unfinished"/>
+        <translation>Ja identifikuesi juaj Jami, mos ngurroni t’ua jepni të tjerë, që të mund të lidheni më kollaj!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
@@ -2082,7 +2086,7 @@ Jami tani do të mbyllet.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="714"/>
         <source>Is swarm:</source>
-        <translation type="unfinished"/>
+        <translation>Është zgjua:</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="715"/>
@@ -2165,22 +2169,22 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
         <source>Find users and conversations</source>
-        <translation type="unfinished"/>
+        <translation>Gjeni përdorues dhe biseda</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="39"/>
         <source>Start swarm</source>
-        <translation type="unfinished"/>
+        <translation>Filloni zgjua</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="40"/>
         <source>Create swarm</source>
-        <translation type="unfinished"/>
+        <translation>Krijoni zgjua</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="41"/>
         <source>Show invitations</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq ftesa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="70"/>
@@ -2190,7 +2194,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
         <source>Back up account here</source>
-        <translation type="unfinished"/>
+        <translation>Kopjeruani llogari këtu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
@@ -2200,22 +2204,22 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>Jami archive files (*.gz)</source>
-        <translation type="unfinished"/>
+        <translation>Kartela arkivash Jami (*.gz)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
         <source>All files (*)</source>
-        <translation type="unfinished"/>
+        <translation>Krejt kartelat (*)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
         <source>Mute camera</source>
-        <translation type="unfinished"/>
+        <translation>Heshtoje kamerën</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
         <source>Unmute camera</source>
-        <translation type="unfinished"/>
+        <translation>Çheshtoje kamerën</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
@@ -2235,7 +2239,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
         <source>Hide audio-only participants</source>
-        <translation type="unfinished"/>
+        <translation>Fshih pjesëmarrës vetëm me audio</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
@@ -2245,27 +2249,27 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
         <source>Confirm action</source>
-        <translation type="unfinished"/>
+        <translation>Ripohoni veprimin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Would you really like to remove this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Doni vërtet të hiqet kjo bisedë?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
         <source>Would you really like to block this conversation?</source>
-        <translation type="unfinished"/>
+        <translation>Doni vërtet të bllokohet kjo bisedë?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
         <source>Block swarm</source>
-        <translation type="unfinished"/>
+        <translation>Bllokoje zgjoin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Conversation details</source>
-        <translation type="unfinished"/>
+        <translation>Hollësi bisede</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
@@ -2285,7 +2289,7 @@ të lidhet, për njëkohësim të bisedës.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
         <source>Hide chat</source>
-        <translation type="unfinished"/>
+        <translation>Fshihe fjalosjen</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
@@ -2326,17 +2330,18 @@ të lidhet, për njëkohësim të bisedës.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation type="unfinished"/>
+        <translation>Ky profil u tregohet vetëm kontakteve të kësaj llogarie.
+Profili mund të ndryshohet kurdo, që nga rregullimet e llogarisë.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation type="unfinished"/>
+        <translation>Një llogari Jami krijohet dhe depozitohet lokalisht vetëm në këtë pajisje, si një arkiv që përmban kyçet e llogarisë tuaj. Përdorimi i këtij arkivi mundet, në daçi, të mbrohet me fjalëkalim.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation type="unfinished"/>
+        <translation>Ju lutemi, kini parasysh se, nëse humbni fjalëkalimin tuaj, NUK mund të rikthehet!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
@@ -2351,57 +2356,57 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
         <source>Would you really like to delete this account?</source>
-        <translation type="unfinished"/>
+        <translation>Doni vërtet të fshihet kjo llogari?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation type="unfinished"/>
+        <translation>Nëse llogaria juaj s’është kopjeruajtur, apo shtuar te një pajisje tjetër, ajo dhe emri i përdoruesit regjistruar për të do të HUMBIN NË MËNYRË TË PAKTHYESHME.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>E errët</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>E çelët</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
         <source>Application theme</source>
-        <translation type="unfinished"/>
+        <translation>Temë aplikacioni</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="431"/>
         <source>Show notifications</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq njoftime</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
         <source>Minimize on close</source>
-        <translation type="unfinished"/>
+        <translation>Minimizoje, kur mbyllet</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
         <source>Run at system startup</source>
-        <translation type="unfinished"/>
+        <translation>Vëre në punë gjatë nisjes</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
         <source>Download directory</source>
-        <translation type="unfinished"/>
+        <translation>Drejtori shkarkimesh</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
         <source>Typing indicators</source>
-        <translation type="unfinished"/>
+        <translation>Tregues shtypjeje</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
         <source>Show link previews</source>
-        <translation type="unfinished"/>
+        <translation>Shfaq paraparje lidhjesh</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
@@ -2421,12 +2426,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
         <source>Accept files from unknown senders</source>
-        <translation type="unfinished"/>
+        <translation>Prano kartela prej dërguesish të panjohur</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="488"/>
         <source>(Experimental) Enable small groups support for Swarm</source>
-        <translation type="unfinished"/>
+        <translation>(Eksperimentale) Aktivizoni mbulim grupesh të vegjël për Zgjua</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="489"/>
@@ -2596,7 +2601,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Select archive file</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni kartelë arkiv</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="549"/>
@@ -2611,7 +2616,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="555"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
-        <translation type="unfinished"/>
+        <translation>Për të përdorur në këtë pajisje një llogari ekzistuese Jami lypset një PIN.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="556"/>
@@ -2636,12 +2641,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="560"/>
         <source>Go to the Account Settings of a previous device</source>
-        <translation type="unfinished"/>
+        <translation>Kaloni te Rregullime Llogarie të pajisjes së mëparshme</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="561"/>
         <source>Choose the account to link</source>
-        <translation type="unfinished"/>
+        <translation>Zgjidhni llogari për ta lidhur</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="567"/>
@@ -2746,22 +2751,22 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
-        <translation type="unfinished"/>
+        <translation>Jeni i sigurt se doni të rikthehen te parazgjedhjet parapëlqimet për %1?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
         <source>Are you sure you wish to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Jeni i sigurt se doni të çinstalohet %1?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
         <source>Display or hide General plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Shfaqni ose fshihni rregullet e Përgjithshme të shtojcave</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
         <source>Display or hide Account plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Shfaqni ose fshihni rregullimet e shtojcës Llogari</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
@@ -2771,7 +2776,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
         <source>Plugin Files (*.jpl)</source>
-        <translation type="unfinished"/>
+        <translation>Kartela Shtojcash (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
@@ -2781,7 +2786,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Select An Image to %1</source>
-        <translation type="unfinished"/>
+        <translation>Përzgjidhni një Figurë për %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
@@ -2878,7 +2883,7 @@ Kopjojeni dhe jepuani shokëve!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
         <source>Import from an archive backup</source>
-        <translation type="unfinished"/>
+        <translation>Importoni prej kopjeruajtjeje arkivi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="648"/>
@@ -3106,7 +3111,7 @@ Kopjojeni dhe jepuani shokëve!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>Ndale kamerën</translation>
     </message>
 </context>
 <context>
@@ -3307,7 +3312,7 @@ Kopjojeni dhe jepuani shokëve!</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="300"/>
         <source>Swarm created</source>
-        <translation type="unfinished"/>
+        <translation>Zgjoi u krijua</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
@@ -3702,17 +3707,17 @@ Kopjojeni dhe jepuani shokëve!</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="28"/>
         <source>What does Jami mean?</source>
-        <translation type="unfinished"/>
+        <translation>Ç’do të thotë Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="34"/>
         <source>What is the green dot next to my account?</source>
-        <translation type="unfinished"/>
+        <translation>Ç’nënkupton pika e gjelbër në krah të llogarisë time?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="30"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation type="unfinished"/>
+        <translation>Zgjedhja e emrit Jami u frymëzua nga fjala “jamii” e suahilishtes, që, si emër, do të thotë “bashkësi” dhe si ndajfolje do të thotë “tok”.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="26"/>
@@ -3722,107 +3727,107 @@ Kopjojeni dhe jepuani shokëve!</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="36"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation type="unfinished"/>
+        <translation>Një topth i kuq do të thotë se llogaria juaj është shkëputur nga rrjeti; bëhet i gjelbër, kur ajo lidhet.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="41"/>
         <source>Why should I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Pse duhet ta kopjeruaj llogarinë time?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="43"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation type="unfinished"/>
+        <translation>Jami është platformë e shpërndarë dhe llogaria juaj depozitohet lokalisht vetëm në pajisjen tuaj. Nëse humbni fjalëkalimin tuaj, ose të dhënat vendore të llogarisë tuaj, NUK do të jeni në gjendje të ringjallni llogarinë tuaj, nëse nuk e keni kopjeruajtur më herët.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="49"/>
         <source>Can I make a conference call?</source>
-        <translation type="unfinished"/>
+        <translation>A mund të bëj thirrje konferencë?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="54"/>
         <source>Does Jami have group chats?</source>
-        <translation type="unfinished"/>
+        <translation>A ka fjalosje në grup Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="55"/>
         <source>In the settings, you can enabled support for groups (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Te rregullimet, mund të aktivizoni mbulim për grupe (eksperimentale)</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="58"/>
         <source>What is a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>Ç’është një llogari Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="60"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation type="unfinished"/>
+        <translation>Një llogari Jami është një kyç asimetrik fshehtëzimi. Llogaria juaj identifikohet nga një ID Jami që është shenjë gishti e kyçit tuaj publik.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="64"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>Ç’hollësi duhet të jap për të krijuar një llogari Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="66"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation type="unfinished"/>
+        <translation>Kur krijoni një llogari të re Jami, nuk ju duhet të jepni ndonjë hollësi private, bie fjala, një email, adresë, apo numër telefoni.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="73"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation type="unfinished"/>
+        <translation>Me Jami-n, llogaria juaj depozitohet në një drejtori në pajisjen tuaj. Fjalëkalimi përdoret vetëm për të fshehtëzuar llogarinë tuaj, me qëllim mbrojtjen tuaj nga dikush që ka shtënë në dorë pajisjen tuaj.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation type="unfinished"/>
+        <translation>Llogaria juaj depozitohet lokalisht vetëm në pajisjen tuaj. Nëse fshini llogarinë tuaj nga krejt pajisjet tuaja, llogaria ikën përgjithmonë dhe NUK mund ta ringjallni.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="97"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation type="unfinished"/>
+        <translation>A mund ta përdor llogarinë time në pajisje të shumta?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="99"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation type="unfinished"/>
+        <translation>Po, mund ta lidhni llogarinë tuaj që nga rregullimet, ose mund të importoni kopjeruajtjen tuaj në një pajisje tjetër.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="71"/>
         <source>Why don&apos;t I have to use a password?</source>
-        <translation type="unfinished"/>
+        <translation>Pse s’më duhet të përdor një fjalëkalim?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="51"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
-        <translation type="unfinished"/>
+        <translation>Gjatë një thirrjeje, mund të klikoni mbi “Shtoni pjesëmarrës”, që të shtoni një kontakt te thirrja.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Why don&apos;t I have to register a username?</source>
-        <translation type="unfinished"/>
+        <translation>Pse më duhet të regjistroj një emër përdoruesi?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation type="unfinished"/>
+        <translation>Identifikuesi më i qëndrueshëm, më i sigurt është ID-ja juaj Jami, por ngaqë këto janë të vështira për t’u përdorur nga disa persona, keni gjithashtu mundësinë e regjistrimit të një emri përdoruesi.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>
         <source>How can I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Si mund ta kopjeruaj llogarinë time?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation type="unfinished"/>
+        <translation>Te Rregullime Llogarie ka një buton për të krijuar një kopjeruajtje të llogarisë tuaj.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="91"/>
         <source>What happens when I delete my account?</source>
-        <translation type="unfinished"/>
+        <translation>Ç’ndodh nëse fshij llogariën time?</translation>
     </message>
 </context>
 <context>

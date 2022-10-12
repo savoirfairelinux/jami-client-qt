@@ -968,12 +968,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation type="unfinished"/>
+        <translation>Mengapa saya harus mencadangkan akun ini?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Akun Anda hanya ada di perangkat ini. Jika Anda kehilangan perangkat atau menghapus instalasi aplikasi, akun Anda akan dihapus dan TIDAK DAPAT dipulihkan. Anda dapat mencadangkan akun Anda sekarang atau nanti (dalam Pengaturan Akun).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
@@ -1622,7 +1622,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Change text size (%)</source>
-        <translation type="unfinished"/>
+        <translation>Ubah ukuran teks (%)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
@@ -1749,7 +1749,7 @@ Apakah Anda ingin memperbarui sekarang?</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>File Gambar (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
@@ -2326,22 +2326,23 @@ tersambung untuk menyinkronkan percakapan.</translation>
         <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation type="unfinished"/>
+        <translation>Profil ini hanya dibagikan dengan kontak akun ini. 
+Profil dapat diubah setiap saat dari pengaturan akun.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
-        <translation type="unfinished"/>
+        <translation>Akun Jami dibuat dan disimpan secara lokal hanya pada perangkat ini, sebagai arsip yang berisi kunci akun Anda. Akses ke arsip ini secara opsional dapat dilindungi oleh kata sandi.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
-        <translation type="unfinished"/>
+        <translation>Harap diperhatikan bahwa jika Anda kehilangan kata sandi, kata sandi tersebut TIDAK DAPAT dipulihkan!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
         <source>Display banned contacts</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan kontak yang dibanned</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
@@ -2351,57 +2352,57 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
         <source>Would you really like to delete this account?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah Anda benar-benar ingin menghapus akun ini?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
-        <translation type="unfinished"/>
+        <translation>Jika akun Anda belum dicadangkan atau ditambahkan ke perangkat lain, akun dan nama pengguna terdaftar Anda akan HILANG DAN TIDAK DAPAT DIPULIHKAN.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Gelap</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Terang</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
         <source>Application theme</source>
-        <translation type="unfinished"/>
+        <translation>Tema aplikasi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="431"/>
         <source>Show notifications</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan notIfikasi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
         <source>Minimize on close</source>
-        <translation type="unfinished"/>
+        <translation>Minimalkan saat ditutup</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
         <source>Run at system startup</source>
-        <translation type="unfinished"/>
+        <translation>Berjalan pada saat startup sistem</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
         <source>Download directory</source>
-        <translation type="unfinished"/>
+        <translation>Direktori unduhan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
         <source>Typing indicators</source>
-        <translation type="unfinished"/>
+        <translation>Indikator pengetikan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
         <source>Show link previews</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan pratinjau tautan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
@@ -2421,27 +2422,27 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
         <source>Accept files from unknown senders</source>
-        <translation type="unfinished"/>
+        <translation>Terima file dari pengirim yang tidak dikenal</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="488"/>
         <source>(Experimental) Enable small groups support for Swarm</source>
-        <translation type="unfinished"/>
+        <translation>(Eksperimental) Aktifkan dukungan grup kecil untuk Swarm</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="489"/>
         <source>This feature is in development.</source>
-        <translation type="unfinished"/>
+        <translation>Fitur ini sedang dalam pengembangan.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="493"/>
         <source>Quality</source>
-        <translation type="unfinished"/>
+        <translation>Kualitas</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="494"/>
         <source>Save in</source>
-        <translation type="unfinished"/>
+        <translation>Simpan di</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
@@ -2456,17 +2457,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
         <source>Keyboard Shortcut Table</source>
-        <translation type="unfinished"/>
+        <translation>Tabel Pintasan Papan Ketik</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="500"/>
         <source>Keyboard Shortcuts</source>
-        <translation type="unfinished"/>
+        <translation>Pintasan Papan Ketik</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
         <source>Conversation</source>
-        <translation type="unfinished"/>
+        <translation>Obrolan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="503"/>
@@ -2486,27 +2487,27 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="506"/>
         <source>Focus conversations list</source>
-        <translation type="unfinished"/>
+        <translation>Daftar percakapan fokus</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="507"/>
         <source>Requests list</source>
-        <translation type="unfinished"/>
+        <translation>Daftar permintaan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="508"/>
         <source>Previous conversation</source>
-        <translation type="unfinished"/>
+        <translation>Percakapan sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="509"/>
         <source>Next conversation</source>
-        <translation type="unfinished"/>
+        <translation>Percakapan berikutnya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="510"/>
         <source>Search bar</source>
-        <translation type="unfinished"/>
+        <translation>Bilah pencarian</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
@@ -2521,7 +2522,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="513"/>
         <source>Media settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan media</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="514"/>
@@ -2536,32 +2537,32 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
         <source>Plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan plugin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="517"/>
         <source>Answer an incoming call</source>
-        <translation type="unfinished"/>
+        <translation>Jawab panggilan masuk</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="518"/>
         <source>Decline the call request</source>
-        <translation type="unfinished"/>
+        <translation>Tolak permintaan panggilan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="519"/>
         <source>Open account creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>Buka wizard pembuatan akun</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="520"/>
         <source>Open keyboard shortcut table</source>
-        <translation type="unfinished"/>
+        <translation>Buka tabel pintasan keyboard</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="528"/>
         <source>Report Bug</source>
-        <translation type="unfinished"/>
+        <translation>Laporkan Bug</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="529"/>
@@ -2571,12 +2572,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
         <source>Copied to clipboard!</source>
-        <translation type="unfinished"/>
+        <translation>Disalin ke clipboard!</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="532"/>
         <source>Receive Logs</source>
-        <translation type="unfinished"/>
+        <translation>Terima Log</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="535"/>
@@ -2596,7 +2597,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="546"/>
         <source>Select archive file</source>
-        <translation type="unfinished"/>
+        <translation>Pilih file arsip</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="549"/>
@@ -2606,12 +2607,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="553"/>
         <source>Import</source>
-        <translation type="unfinished"/>
+        <translation>Impor</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="555"/>
         <source>A PIN is required to use an existing Jami account on this device.</source>
-        <translation type="unfinished"/>
+        <translation>PIN diperlukan untuk menggunakan akun Jami yang sudah ada pada perangkat ini.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="556"/>
@@ -2626,27 +2627,27 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
         <source>Step 3</source>
-        <translation type="unfinished"/>
+        <translation>Langkah 3</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="559"/>
         <source>Step 4</source>
-        <translation type="unfinished"/>
+        <translation>Langkah 4</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="560"/>
         <source>Go to the Account Settings of a previous device</source>
-        <translation type="unfinished"/>
+        <translation>Buka Pengaturan Akun perangkat sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="561"/>
         <source>Choose the account to link</source>
-        <translation type="unfinished"/>
+        <translation>Pilih akun yang akan ditautkan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="567"/>
         <source>The PIN and the account password should be entered in your device within 10 minutes.</source>
-        <translation type="unfinished"/>
+        <translation>PIN dan kata sandi akun harus dimasukkan ke dalam perangkat Anda dalam waktu 10 menit.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="568"/>
@@ -2661,17 +2662,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="573"/>
         <source>Enter the password</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan kata sandi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="574"/>
         <source>Enter current password</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan kata sandi saat ini</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="575"/>
         <source>Enter this account&apos;s password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan kata sandi akun ini untuk mengonfirmasi penghapusan perangkat ini</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="576"/>
@@ -2691,17 +2692,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
         <source>Confirm</source>
-        <translation type="unfinished"/>
+        <translation>Konfirmasi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="580"/>
         <source>Export</source>
-        <translation type="unfinished"/>
+        <translation>Ekspor</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>Import avatar from image file</source>
-        <translation type="unfinished"/>
+        <translation>Impor avatar dari file gambar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
@@ -2711,102 +2712,102 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="592"/>
         <source>Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Preferensi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Setel ulang</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Copot pemasangan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
         <source>Reset Preferences</source>
-        <translation type="unfinished"/>
+        <translation>Atur Ulang Preferensi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="596"/>
         <source>Select a plugin to install</source>
-        <translation type="unfinished"/>
+        <translation>Pilih plugin untuk dipasang</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="597"/>
         <source>Install plugin</source>
-        <translation type="unfinished"/>
+        <translation>Pasang plugin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="598"/>
         <source>Uninstall plugin</source>
-        <translation type="unfinished"/>
+        <translation>Copot pemasangan plugin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="599"/>
         <source>Are you sure you wish to reset %1 preferences?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah Anda yakin ingin mengatur ulang preferensi %1?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="600"/>
         <source>Are you sure you wish to uninstall %1?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah Anda yakin ingin menghapus instalasi %1?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="607"/>
         <source>Display or hide General plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan atau sembunyikan pengaturan plugin Umum</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="608"/>
         <source>Display or hide Account plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan atau sembunyikan pengaturan plugin Akun</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="609"/>
         <source>Installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Plugin yang terpasang</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="610"/>
         <source>Plugin Files (*.jpl)</source>
-        <translation type="unfinished"/>
+        <translation>File Plugin (*.jpl)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="611"/>
         <source>Load/Unload</source>
-        <translation type="unfinished"/>
+        <translation>Muat/Bongkar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="612"/>
         <source>Select An Image to %1</source>
-        <translation type="unfinished"/>
+        <translation>Pilih Gambar ke %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="613"/>
         <source>Edit preference</source>
-        <translation type="unfinished"/>
+        <translation>Ubah preferensi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="614"/>
         <source>On/Off</source>
-        <translation type="unfinished"/>
+        <translation>Nyala/Mati</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="615"/>
         <source>Choose Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Pilih Plugin</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
         <source>Save profile</source>
-        <translation type="unfinished"/>
+        <translation>Simpan profil</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="623"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informasi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
@@ -2816,7 +2817,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
         <source>Enter the account password to confirm the removal of this device</source>
-        <translation type="unfinished"/>
+        <translation>Masukkan kata sandi akun untuk mengonfirmasi penghapusan perangkat.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
@@ -2826,37 +2827,37 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
         <source>Select a window to share</source>
-        <translation type="unfinished"/>
+        <translation>Pilih jendela untuk dibagikan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="632"/>
         <source>All Screens</source>
-        <translation type="unfinished"/>
+        <translation>Semua layar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="633"/>
         <source>Screens</source>
-        <translation type="unfinished"/>
+        <translation>Layar</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="634"/>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Jendela</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="635"/>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Layar %1</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="638"/>
         <source>QR code</source>
-        <translation type="unfinished"/>
+        <translation>Kode QR</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="641"/>
         <source>Account QR</source>
-        <translation type="unfinished"/>
+        <translation>Akun QR</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="644"/>
@@ -2873,12 +2874,12 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="646"/>
         <source>Import from another device</source>
-        <translation type="unfinished"/>
+        <translation>Impor dari perangkat lain</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="647"/>
         <source>Import from an archive backup</source>
-        <translation type="unfinished"/>
+        <translation>Impor dari arsip cadangan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="648"/>
@@ -2888,7 +2889,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="649"/>
         <source>Show advanced features</source>
-        <translation type="unfinished"/>
+        <translation>Tampilkan fitur-fitur lanjutan</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="651"/>
@@ -2898,12 +2899,12 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="654"/>
         <source>Error while creating your account. Check your credentials.</source>
-        <translation type="unfinished"/>
+        <translation>Error saat membuat akun Anda. Periksa kredensial Anda.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="670"/>
         <source>Clear Text</source>
-        <translation type="unfinished"/>
+        <translation>Bersihkan Teks</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
@@ -2943,12 +2944,12 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="702"/>
         <source>Conference moderation</source>
-        <translation type="unfinished"/>
+        <translation>Moderasi konferensi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="703"/>
         <source>Default moderators</source>
-        <translation type="unfinished"/>
+        <translation>Moderator default</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="704"/>
@@ -2958,7 +2959,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="705"/>
         <source>Make all participants moderators</source>
-        <translation type="unfinished"/>
+        <translation>Jadikan semua peserta sebagai moderator</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="706"/>
@@ -2968,7 +2969,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="707"/>
         <source>Remove default moderator</source>
-        <translation type="unfinished"/>
+        <translation>Hapus moderator default</translation>
     </message>
 </context>
 <context>
@@ -2981,27 +2982,27 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="45"/>
         <source>Focus conversations list</source>
-        <translation type="unfinished"/>
+        <translation>Daftar percakapan fokus</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="49"/>
         <source>Requests list</source>
-        <translation type="unfinished"/>
+        <translation>Daftar permintaan</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="53"/>
         <source>Previous conversation</source>
-        <translation type="unfinished"/>
+        <translation>Percakapan sebelumnya</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="57"/>
         <source>Next conversation</source>
-        <translation type="unfinished"/>
+        <translation>Percakapan berikutnya</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="61"/>
         <source>Search bar</source>
-        <translation type="unfinished"/>
+        <translation>Bilah pencarian</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="65"/>
@@ -3011,17 +3012,17 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="69"/>
         <source>Increase font size</source>
-        <translation type="unfinished"/>
+        <translation>Tambah ukuran font</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="73"/>
         <source>Decrease font size</source>
-        <translation type="unfinished"/>
+        <translation>Kurangi ukuran font</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="77"/>
         <source>Reset font size</source>
-        <translation type="unfinished"/>
+        <translation>Atur ulang ukuran font</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="86"/>
@@ -3056,7 +3057,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="115"/>
         <source>Media settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan media</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="119"/>
@@ -3071,22 +3072,22 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="127"/>
         <source>Plugin settings</source>
-        <translation type="unfinished"/>
+        <translation>Pengaturan plugin</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="131"/>
         <source>Open account creation wizard</source>
-        <translation type="unfinished"/>
+        <translation>Buka wizard pembuatan akun</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="135"/>
         <source>Open keyboard shortcut table</source>
-        <translation type="unfinished"/>
+        <translation>Buka tabel pintasan keyboard</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="144"/>
         <source>Answer an incoming call</source>
-        <translation type="unfinished"/>
+        <translation>Jawab panggilan masuk</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="148"/>
@@ -3096,7 +3097,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
         <source>Decline the call request</source>
-        <translation type="unfinished"/>
+        <translation>Tolak permintaan panggilan</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
@@ -3106,7 +3107,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>Hentikan kamera</translation>
     </message>
 </context>
 <context>
@@ -3114,17 +3115,17 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="366"/>
         <source>E&amp;xit</source>
-        <translation type="unfinished"/>
+        <translation>K&amp;eluar</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="368"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Keluar</translation>
     </message>
     <message>
         <location filename="../src/app/mainapplication.cpp" line="374"/>
         <source>&amp;Show Jami</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tampilkan Jami</translation>
     </message>
 </context>
 <context>
@@ -3142,7 +3143,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="284"/>
         <source>Sent</source>
-        <translation type="unfinished"/>
+        <translation>Kirim</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="286"/>
@@ -3163,27 +3164,27 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="293"/>
         <source>Unable to make contact</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat melakukan kontak</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="295"/>
         <source>Ongoing</source>
-        <translation type="unfinished"/>
+        <translation>Berlangsung</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="297"/>
         <source>Waiting for contact</source>
-        <translation type="unfinished"/>
+        <translation>Menunggu kontak</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="299"/>
         <source>Incoming transfer</source>
-        <translation type="unfinished"/>
+        <translation>Transfer masuk</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="301"/>
         <source>Timed out waiting for contact</source>
-        <translation type="unfinished"/>
+        <translation>Waktu habis menunggu kontak</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="303"/>
@@ -3195,7 +3196,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="589"/>
         <source>%1 days ago</source>
-        <translation type="unfinished"/>
+        <translation>%1 hari yang lalu</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="591"/>
@@ -3205,7 +3206,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="594"/>
         <source>%1 hours ago</source>
-        <translation type="unfinished"/>
+        <translation>%1 jam yang lalu</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="596"/>
@@ -3215,7 +3216,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="599"/>
         <source>%1 minutes ago</source>
-        <translation type="unfinished"/>
+        <translation>%1 menit yang lalu</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="600"/>
@@ -3260,12 +3261,12 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/api/call.h" line="80"/>
         <source>Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Waktu habis</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="82"/>
         <source>Peer busy</source>
-        <translation type="unfinished"/>
+        <translation>Teman sedang sibuk</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/call.h" line="86"/>
@@ -3282,7 +3283,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="226"/>
         <source>%1 was invited to join</source>
-        <translation type="unfinished"/>
+        <translation>%1 diundang untuk bergabung</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="228"/>
@@ -3292,17 +3293,17 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="230"/>
         <source>%1 left</source>
-        <translation type="unfinished"/>
+        <translation>%1 keluar</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="232"/>
         <source>%1 was kicked</source>
-        <translation type="unfinished"/>
+        <translation>%1 ditendang</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="234"/>
         <source>%1 was re-added</source>
-        <translation type="unfinished"/>
+        <translation>%1 telah ditambahkan kembali</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="300"/>
@@ -3354,12 +3355,12 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="60"/>
         <source>Null</source>
-        <translation type="unfinished"/>
+        <translation>Kosong</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="61"/>
         <source>Trying</source>
-        <translation type="unfinished"/>
+        <translation>Mencoba</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="62"/>
@@ -3374,12 +3375,12 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="64"/>
         <source>Queued</source>
-        <translation type="unfinished"/>
+        <translation>Antri</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="65"/>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Progress</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="66"/>
@@ -3389,93 +3390,93 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="67"/>
         <source>Accepted</source>
-        <translation type="unfinished"/>
+        <translation>Diterima</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="68"/>
         <source>Multiple Choices</source>
-        <translation type="unfinished"/>
+        <translation>Pilihan Ganda</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="69"/>
         <source>Moved Permanently</source>
-        <translation type="unfinished"/>
+        <translation>Dipindahkan secara permanen</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="70"/>
         <source>Moved Temporarily</source>
-        <translation type="unfinished"/>
+        <translation>Dipindahkan Sementara</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="71"/>
         <source>Use Proxy</source>
-        <translation type="unfinished"/>
+        <translation>Gunakan Proksi</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="72"/>
         <source>Alternative Service</source>
-        <translation type="unfinished"/>
+        <translation>Alternatif Layanan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="73"/>
         <source>Bad Request</source>
-        <translation type="unfinished"/>
+        <translation>Bad Request</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="74"/>
         <source>Unauthorized</source>
-        <translation type="unfinished"/>
+        <translation>Tidak sah</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="75"/>
         <source>Payment Required</source>
-        <translation type="unfinished"/>
+        <translation>Pembayaran Diperlukan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="76"/>
         <source>Forbidden</source>
-        <translation type="unfinished"/>
+        <translation>Terlarang</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="77"/>
         <source>Not Found</source>
-        <translation type="unfinished"/>
+        <translation>Tidak ditemukan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="78"/>
         <source>Method Not Allowed</source>
-        <translation type="unfinished"/>
+        <translation>Metode Tidak Diizinkan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="79"/>
         <location filename="../src/libclient/callmodel.cpp" line="99"/>
         <source>Not Acceptable</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat diterima</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="80"/>
         <source>Proxy Authentication Required</source>
-        <translation type="unfinished"/>
+        <translation>Diperlukan Autentikasi Proksi</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="81"/>
         <source>Request Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Batas Waktu Permintaan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="82"/>
         <source>Gone</source>
-        <translation type="unfinished"/>
+        <translation>Hilang</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="83"/>
         <source>Request Entity Too Large</source>
-        <translation type="unfinished"/>
+        <translation>Permintaan Entitas Terlalu Besar</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="84"/>
         <source>Request URI Too Long</source>
-        <translation type="unfinished"/>
+        <translation>Permintaan URI Terlalu Panjang</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
@@ -3490,12 +3491,12 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
         <source>Bad Extension</source>
-        <translation type="unfinished"/>
+        <translation>Ekstensi Buruk</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="88"/>
         <source>Extension Required</source>
-        <translation type="unfinished"/>
+        <translation>Ekstensi Diperlukan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>

@@ -945,12 +945,12 @@ Le profil peut être modifié à tout moment à partir des paramètres du compte
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
         <source>Why should I back-up this account?</source>
-        <translation type="unfinished"/>
+        <translation>Pourquoi devrais-je sauvegarder ce compte ?</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
-        <translation type="unfinished"/>
+        <translation>Votre compte n&apos;existe que sur cet appareil. Si vous perdez votre appareil ou désinstallez l&apos;application, votre compte sera supprimé et NE POURRA PAS être récupéré. Vous pouvez sauvegarder votre compte maintenant ou plus tard (dans les paramètres du compte).</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
@@ -1747,7 +1747,7 @@ Veuillez réessayer plus tard</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Change text size (%)</source>
-        <translation type="unfinished"/>
+        <translation>Modifier la taille du texte (%)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
@@ -2809,7 +2809,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="588"/>
         <source>Image Files (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</source>
-        <translation type="unfinished"/>
+        <translation>Fichiers image (*.png *.jpg *.jpeg *.JPG *.JPEG *.PNG)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="728"/>
@@ -3102,7 +3102,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Stop camera</source>
-        <translation type="unfinished"/>
+        <translation>Arrêt de la caméra</translation>
     </message>
 </context>
 <context>

@@ -398,7 +398,7 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
         <source>Encrypt account with password</source>
-        <translation type="unfinished"/>
+        <translation>Xifra el compte amb una constrasenya</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
@@ -548,7 +548,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>Automatically check for updates</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
@@ -624,7 +624,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="98"/>
         <source>Enable read receipts</source>
-        <translation type="unfinished"/>
+        <translation>Habilita la confirmació de lectura</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="99"/>
@@ -990,7 +990,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
         <source>Recommended</source>
-        <translation type="unfinished"/>
+        <translation>Recomanat</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="223"/>
@@ -1031,13 +1031,13 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
         <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="694"/>
         <source>Mute</source>
-        <translation type="unfinished"/>
+        <translation>Silencia</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
         <source>Unmute</source>
-        <translation type="unfinished"/>
+        <translation>No silenciis</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
@@ -1077,7 +1077,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
         <source>Moderator</source>
-        <translation type="unfinished"/>
+        <translation>Moderador</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
@@ -1117,12 +1117,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
         <source>Cut</source>
-        <translation type="unfinished"/>
+        <translation>Talla</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
         <source>Paste</source>
-        <translation type="unfinished"/>
+        <translation>Enganxa</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
@@ -1227,7 +1227,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
         <source>Raise hand</source>
-        <translation type="unfinished"/>
+        <translation>Aixeca la mà</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
@@ -1287,7 +1287,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>Requerit</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
@@ -1333,7 +1333,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>Opcional</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
@@ -1694,7 +1694,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="472"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Actualitza</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="473"/>
@@ -1976,12 +1976,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Profile is only shared with contacts</source>
-        <translation type="unfinished"/>
+        <translation>El perfil només és compartit entre contactes</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
         <source>Enter your name</source>
-        <translation type="unfinished"/>
+        <translation>Escriu el teu nom</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="650"/>
@@ -2525,7 +2525,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="515"/>
         <source>Account settings</source>
-        <translation type="unfinished"/>
+        <translation>Opcions de compte</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="516"/>
@@ -2560,7 +2560,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="529"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>Neteja</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
@@ -2610,12 +2610,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="556"/>
         <source>Step 1</source>
-        <translation type="unfinished"/>
+        <translation>Primer pas</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="557"/>
         <source>Step 2</source>
-        <translation type="unfinished"/>
+        <translation>Pas 2</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="558"/>
@@ -2680,7 +2680,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
         <source>Change</source>
-        <translation type="unfinished"/>
+        <translation>Canvia</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
@@ -2710,12 +2710,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>Reconfigura</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>Desinstala</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
@@ -2922,12 +2922,12 @@ Copiï&apos;l i comparteixi&apos;l amb els seus amics!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="696"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>Maximitza</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="697"/>
         <source>Minimize</source>
-        <translation type="unfinished"/>
+        <translation>Minimitza</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="698"/>
@@ -3060,7 +3060,7 @@ Copiï&apos;l i comparteixi&apos;l amb els seus amics!</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="123"/>
         <source>Account settings</source>
-        <translation type="unfinished"/>
+        <translation>Opcions de compte</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="127"/>

@@ -2023,14 +2023,15 @@ Please try again later.</source>
         <location filename="../src/app/constant/JamiStrings.qml" line="49"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="710"/>
         <source>Trying to reconnect to the Jami daemon (jamid)…</source>
-        <translation type="unfinished"/>
+        <translation>در حال تلاش برای اتصال مجدد به Jami Daemon (jamid)…</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="48"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="711"/>
         <source>Could not re-connect to the Jami daemon (jamid).
 Jami will now quit.</source>
-        <translation type="unfinished"/>
+        <translation>اتصال مجدد به Jami Daemon (jamid) امکان‌پذیر نیست.
+جمی اکنون خارج خواهدشد.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="653"/>
@@ -2712,12 +2713,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>بازنشانی </translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>حذف نصب</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
