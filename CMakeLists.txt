@@ -159,14 +159,14 @@ execute_process(
 set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
 
 if (APPLE)
-  include(FetchContent)
-  FetchContent_Declare(
-    libqrencode
-    GIT_REPOSITORY https://github.com/fukuchi/libqrencode.git
-    GIT_TAG v4.1.1)
-  FetchContent_Populate(libqrencode)
-  add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
-  include_directories(${libqrencode_SOURCE_DIR})
+INCLUDE(ExternalProject)
+ExternalProject_Add(libqrencode
+    PREFIX ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    SOURCE_DIR  ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    BINARY_DIR  ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode
+    CONFIGURE_COMMAND ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/autogen.sh && env CFLAGS=-arch\ ${CMAKE_OSX_ARCHITECTURES} ${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/configure --host=${CMAKE_OSX_ARCHITECTURES} --without-png --prefix=${PROJECT_SOURCE_DIR}/3rdparty/libqrencode)
+    INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/include)
+    LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/3rdparty/libqrencode/lib)
 endif()
 
 # library compatibility (boost, libnotify, etc.)
@@ -299,6 +299,7 @@ set(LIBJAMI_CONTRIB_DIR "${DAEMON_DIR}/contrib")
 find_path(AVUTIL_INCLUDE_DIR libavutil/avutil.h
   PATHS
   ${LIBJAMI_CONTRIB_DIR}/native/ffmpeg
+  ${LIBJAMI_CONTRIB_DIR}/apple-darwin/include/
   ${LIBJAMI_CONTRIB_DIR}/build/ffmpeg/Build/win32/x64/include)
 include_directories(${AVUTIL_INCLUDE_DIR})
 
@@ -723,6 +724,17 @@ else()
   endif(ENABLE_SPARKLE)
   target_sources(${PROJECT_NAME} PRIVATE ${resources})
   target_link_libraries(${PROJECT_NAME} PRIVATE ${libs})
+  FILE(GLOB CONTRIB ${LIBJAMI_CONTRIB_DIR}/apple-darwin/lib/*.a)
+  target_link_libraries(${PROJECT_NAME} PRIVATE ${CONTRIB})
+  find_package(Iconv REQUIRED)
+   target_link_libraries(${PROJECT_NAME} PRIVATE Iconv::Iconv)
+  target_link_libraries(${PROJECT_NAME} PRIVATE
+    "-framework AVFoundation"
+    "-framework CoreAudio -framework CoreMedia -framework CoreVideo"
+    "-framework VideoToolbox -framework AudioUnit"
+    "-framework Security"
+      compression
+    )
 
   # translations
   if(Qt${QT_VERSION_MAJOR}LinguistTools_FOUND)
