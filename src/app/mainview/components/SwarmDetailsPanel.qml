@@ -260,10 +260,10 @@ Rectangle {
 
                         checked: false // TODO
 
-                        labelText: JamiStrings.ignoreTheSwarm
+                        labelText: JamiStrings.muteConversation
                         fontPointSize: JamiTheme.settingsFontSize
 
-                        tooltipText: JamiStrings.ignoreTheSwarmTooltip
+                        tooltipText: JamiStrings.ignoreNotificationsTooltip
 
                         onSwitchToggled: {
                             // TODO
