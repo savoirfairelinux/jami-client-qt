@@ -5,7 +5,10 @@
 [submodule "extras/packaging/update/sparkle/Sparkle"]
 	path = extras/packaging/update/sparkle/Sparkle
 	url = https://github.com/sparkle-project/Sparkle.git
+[submodule "3rdparty/libqrencode"]
+	url = https://github.com/fukuchi/libqrencode.git
 	ignore = dirty
+	path = 3rdparty/libqrencode
 [submodule "3rdparty/SortFilterProxyModel"]
 	path = 3rdparty/SortFilterProxyModel
 	url = https://github.com/atraczyk/SortFilterProxyModel.git
