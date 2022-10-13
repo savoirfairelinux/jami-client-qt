@@ -294,7 +294,6 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             this,
             &CallbacksHandler::slotAudioDeviceEvent,
             Qt::QueuedConnection);
-
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::audioMeter,
             this,
@@ -304,6 +303,11 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             &ConfigurationManagerInterface::conversationLoaded,
             this,
             &CallbacksHandler::slotConversationLoaded,
+            Qt::QueuedConnection);
+    connect(&ConfigurationManager::instance(),
+            &ConfigurationManagerInterface::messagesFound,
+            this,
+            &CallbacksHandler::slotMessagesFound,
             Qt::QueuedConnection);
     connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::messageReceived,
@@ -748,6 +752,14 @@ CallbacksHandler::slotConversationLoaded(uint32_t requestId,
                                          const VectorMapStringString& messages)
 {
     Q_EMIT conversationLoaded(requestId, accountId, conversationId, messages);
+}
+void
+CallbacksHandler::slotMessagesFound(uint32_t requestId,
+                                    const QString& accountId,
+                                    const QString& conversationId,
+                                    const VectorMapStringString& messages)
+{
+    Q_EMIT messagesFound(requestId, accountId, conversationId, messages);
 }
 
 void
