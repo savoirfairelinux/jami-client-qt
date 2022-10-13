@@ -328,6 +328,7 @@ Loader {
                         id: imageComp
                         Image {
                             id: img
+
                             anchors.right: isOutgoing ? parent.right : undefined
                             property real minSize: 192
                             property real maxSize: 256

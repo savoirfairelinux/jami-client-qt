@@ -309,7 +309,6 @@ Item {
     property real preferredFieldHeight: 32
     property real preferredMarginSize: 16
     property real settingsMarginSize: 8
-    property real swarmDetailsPageTopMargin: 32
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
     property real minimumPreviewWidth: 120
@@ -331,6 +330,12 @@ Item {
     property real timestampFont: calcSize(12)
     property int timestampIntervalTime: 120
 
+    //swarmDetailsPage
+    property real swarmDetailsPageTopMargin: 32
+    property real swarmDetailsPageDocumentsMargins: 5
+    property real swarmDetailsPageDocumentsMediaRadius: 15
+    property real swarmDetailsPageDocumentsPaperClipSize: 24
+    property real swarmDetailsPageDocumentsMediaSize: 175
 
     // Jami switch
     property real switchIndicatorRadius: 30
