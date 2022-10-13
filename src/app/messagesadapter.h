@@ -34,6 +34,7 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_PROPERTY(QString, replyToId)
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
+    QML_PROPERTY(QVariant, mediaMessageListModel)
 
 public:
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
@@ -94,6 +95,7 @@ protected:
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
+    Q_INVOKABLE void getConvMedias();
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
@@ -110,6 +112,9 @@ private Q_SLOTS:
     void onComposingStatusChanged(const QString& convId,
                                   const QString& contactUri,
                                   bool isComposing);
+    void onMessagesFoundProcessed(const QString& accountId,
+                                  const VectorMapStringString& messageIds,
+                                  const QVector<interaction::Info>& messageInformations);
 
 private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
@@ -118,4 +123,6 @@ private:
     PreviewEngine* previewEngine_;
 
     static constexpr const int loadChunkSize_ {20};
+
+    std::unique_ptr<MessageListModel> mediaInteractions_;
 };

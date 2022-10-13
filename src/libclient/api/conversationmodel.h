@@ -302,6 +302,11 @@ public:
     void getTransferInfo(const QString& conversationId,
                          const QString& interactionId,
                          api::datatransfer::Info& info) const;
+
+    /**
+     * Starts a search of all medias and files in a conversation
+     */
+    void getConvMediasInfos(const QString& accountId, const QString& conversationId);
     /**
      * @param convUid, uid of the conversation
      * @return the number of unread messages for the conversation
@@ -583,6 +588,16 @@ Q_SIGNALS:
      * @param position
      */
     void dataChanged(int position) const;
+
+    /**
+     * Emitted once a message search has been done and processed
+     * @param accountId
+     * @param messageIds ids of all the messages found by the search
+     * @param messageInformations message datas
+     */
+    void messagesFoundProcessed(const QString& accountId,
+                                const VectorMapStringString& messageIds,
+                                const QVector<interaction::Info>& messageInformations) const;
 
 private:
     std::unique_ptr<ConversationModelPimpl> pimpl_;
