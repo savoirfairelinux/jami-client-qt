@@ -20,6 +20,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
+import Qt5Compat.GraphicalEffects
+import QtWebEngine
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -33,6 +35,13 @@ Rectangle {
 
     color: CurrentConversation.color
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
+    property int spacingFlow: JamiTheme.swarmDetailsPageDocumentsMargins
+    property int spacingLength: spacingFlow * (numberElementsPerRow - 1)
+    property int numberElementsPerRow: {
+        var sizeW = flow.width
+        var breakSize = JamiTheme.swarmDetailsPageDocumentsMediaSize
+        return Math.floor(sizeW / breakSize)
+    }
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -205,7 +214,7 @@ Rectangle {
                     }
                 }
 
-                /*FilterTabButton {
+                FilterTabButton {
                     id: documentsTabButton
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
@@ -216,12 +225,12 @@ Rectangle {
 
                     textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                     textColor: UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                                   JamiTheme.chatviewTextColorLight :
+                                   JamiTheme.chatviewTextColorDark
 
                     down: tabBar.currentIndex === 2
                     labelText: JamiStrings.documents
-                }*/
+                }
             }
         }
 
@@ -519,6 +528,307 @@ Rectangle {
 
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+            }
+            Flickable {
+                id: documents
+
+                visible: tabBar.currentIndex === 2
+                clip: true
+                anchors.fill: parent
+                contentWidth: width
+                contentHeight: flow.implicitHeight
+                onVisibleChanged: {
+                    if (visible) {
+                        MessagesAdapter.getConvMedias()
+                    } else {
+                        MessagesAdapter.mediaMessageListModel = null
+                    }
+                }
+                Flow {
+                    id: flow
+
+                    width: parent.width
+                    spacing: spacingFlow
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    Repeater {
+                        model: MessagesAdapter.mediaMessageListModel
+
+                        delegate: Loader {
+                            id: loaderRoot
+
+                            sourceComponent: {
+                                if(Status === Interaction.Status.TRANSFER_FINISHED || Status === Interaction.Status.SUCCESS ){
+                                    if (Object.keys(MessagesAdapter.getMediaInfo(Body)).length !== 0 && WITH_WEBENGINE)
+                                        return localMediaMsgComp
+
+                                    return dataTransferMsgComp
+                                }
+                            }
+
+                            Component {
+                                id: dataTransferMsgComp
+
+                                Rectangle {
+                                    id: dataTransferRect
+
+                                    clip: true
+                                    width: (documents.width - spacingLength ) / numberElementsPerRow
+                                    height: width
+                                    color: "transparent"
+
+                                    ColumnLayout{
+                                        anchors.fill: parent
+                                        anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
+
+                                        Text {
+                                            id: myText
+
+                                            text: TransferName
+                                            color: JamiTheme.textColor
+                                            elide: Text.ElideRight
+                                            Layout.fillWidth: true
+                                            horizontalAlignment: Text.AlignHCenter
+                                        }
+                                        Rectangle {
+                                            Layout.preferredHeight: parent.height - myText.height - JamiTheme.swarmDetailsPageDocumentsMargins
+                                            Layout.preferredWidth: parent.width
+                                            Layout.rightMargin: JamiTheme.swarmDetailsPageDocumentsMargins
+                                            Layout.bottomMargin: JamiTheme.swarmDetailsPageDocumentsMargins
+                                            color: "transparent"
+
+                                            Rectangle {
+                                                id: rectContent
+
+                                                anchors.fill: parent
+                                                anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
+                                                color: "transparent"
+                                                border.color: CurrentConversation.color
+                                                border.width: 2
+                                                radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
+                                                layer.enabled: true
+
+                                                ResponsiveImage {
+                                                    id: paperClipImage
+
+                                                    source: JamiResources.link_black_24dp_svg
+                                                    width: parent.width / 2
+                                                    height: parent.height / 2
+                                                    anchors.centerIn: parent
+                                                    color: JamiTheme.textColor
+
+                                                    MouseArea {
+                                                        anchors.fill: parent
+                                                        hoverEnabled: true
+                                                        acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                                        onEntered: {
+                                                            cursorShape = Qt.PointingHandCursor
+                                                        }
+
+                                                        onClicked: function (mouse) {
+                                                            if (mouse.button === Qt.RightButton) {
+                                                                ctxMenu.x = mouse.x
+                                                                ctxMenu.y = mouse.y
+                                                                ctxMenu.openMenu()
+                                                            } else {
+                                                                Qt.openUrlExternally("file://" + Body)
+                                                            }
+                                                        }
+                                                    }
+                                                    SBSContextMenu {
+                                                        id: ctxMenu
+
+                                                        msgId: Id
+                                                        location: Body
+                                                        transferId: Id
+                                                        transferName: TransferName
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Component {
+                                id: localMediaMsgComp
+
+                                Rectangle {
+                                    id: localMediaRect
+
+                                    width: (documents.width - spacingLength) /  numberElementsPerRow
+                                    height: width
+                                    color: "transparent"
+
+                                    ColumnLayout {
+                                        anchors.fill: parent
+                                        anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
+
+                                        Text {
+                                            id: myText
+
+                                            text: TransferName
+                                            color: JamiTheme.textColor
+                                            elide: Text.ElideRight
+                                            Layout.fillWidth: true
+                                            horizontalAlignment: Text.AlignHCenter
+                                        }
+                                        Rectangle {
+                                            Layout.preferredHeight: parent.height - myText.height - JamiTheme.swarmDetailsPageDocumentsMargins
+                                            Layout.preferredWidth: parent.width
+                                            Layout.rightMargin: JamiTheme.swarmDetailsPageDocumentsMargins
+                                            Layout.bottomMargin: JamiTheme.swarmDetailsPageDocumentsMargins
+                                            color: "transparent"
+
+                                            Rectangle {
+                                                id: rectContent
+
+                                                anchors.fill: parent
+                                                anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
+                                                color: CurrentConversation.color
+                                                layer.enabled: true
+                                                layer.effect: OpacityMask {
+                                                    maskSource: Item {
+                                                        width: localMediaCompLoader.width
+                                                        height: localMediaCompLoader.height
+                                                        Rectangle {
+                                                            anchors.centerIn: parent
+                                                            width:  localMediaCompLoader.width
+                                                            height: localMediaCompLoader.height
+                                                            radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
+                                                        }
+                                                    }
+                                                }
+
+                                                Loader {
+                                                    id: localMediaCompLoader
+
+                                                    property var mediaInfo: MessagesAdapter.getMediaInfo(Body)
+                                                    anchors.fill: parent
+                                                    anchors.margins: 2
+                                                    sourceComponent: {
+                                                        if (mediaInfo.isImage || mediaInfo.isAnimatedImage )
+                                                            return simpleImage
+                                                        else if (WITH_WEBENGINE)
+                                                            return avComp
+                                                    }
+                                                    Component {
+                                                        id: avComp
+
+                                                        Loader {
+                                                            id:loadVideo
+
+                                                            property real msgRadius: 20
+
+                                                            Rectangle {
+                                                                id: videoAudioRect
+                                                                color: JamiTheme.secondaryBackgroundColor
+                                                                anchors.fill: parent
+
+                                                                WebEngineView {
+                                                                    id: wev
+
+                                                                    property bool isVideo: mediaInfo.isVideo
+                                                                    property string html: mediaInfo.html
+
+                                                                    anchors.fill: parent
+                                                                    anchors.verticalCenter: videoAudioRect.verticalCenter
+                                                                    backgroundColor: JamiTheme.secondaryBackgroundColor
+                                                                    anchors.topMargin: isVideo? 0 :  wev.implicitHeight / 2
+                                                                    settings.fullScreenSupportEnabled: isVideo
+                                                                    settings.javascriptCanOpenWindows: false
+                                                                    Component.onCompleted: loadHtml(html, 'file://')
+                                                                    onFullScreenRequested: function(request) {
+                                                                        if (request.toggleOn) {
+                                                                            layoutManager.pushFullScreenItem(
+                                                                                        this,
+                                                                                        videoAudioRect,
+                                                                                        null,
+                                                                                        function() { wev.fullScreenCancelled() })
+                                                                        } else if (!request.toggleOn) {
+                                                                            layoutManager.removeFullScreenItem(this)
+                                                                        }
+                                                                        request.accept()
+                                                                    }
+                                                                }
+
+                                                                layer.enabled: true
+                                                                layer.effect: OpacityMask {
+                                                                    maskSource: Item {
+                                                                        width: videoAudioRect.width
+                                                                        height: videoAudioRect.height
+                                                                        Rectangle {
+                                                                            anchors.centerIn: parent
+                                                                            width:  videoAudioRect.width
+                                                                            height: videoAudioRect.height
+                                                                            radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    Component {
+                                                        id: simpleImage
+
+                                                        Image {
+                                                            id: fileImage
+
+                                                            anchors.fill: parent
+                                                            fillMode: Image.PreserveAspectCrop
+                                                            source: "file:///" + Body
+                                                            layer.enabled: true
+                                                            layer.effect: OpacityMask {
+                                                                maskSource: Item {
+                                                                    width: fileImage.width
+                                                                    height: fileImage.height
+                                                                    Rectangle {
+                                                                        anchors.centerIn: parent
+                                                                        width:  fileImage.width
+                                                                        height: fileImage.height
+                                                                        radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
+                                                                    }
+                                                                }
+                                                            }
+                                                            MouseArea {
+                                                                anchors.fill: parent
+                                                                hoverEnabled: true
+                                                                acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                                                                onEntered: {
+                                                                    cursorShape = Qt.PointingHandCursor
+                                                                }
+
+                                                                onClicked: function(mouse)  {
+                                                                    if (mouse.button === Qt.RightButton) {
+                                                                        ctxMenu.x = mouse.x
+                                                                        ctxMenu.y = mouse.y
+                                                                        ctxMenu.openMenu()
+                                                                    } else {
+                                                                        MessagesAdapter.openUrl(fileImage.source)
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            SBSContextMenu {
+                                                                id: ctxMenu
+
+                                                                msgId: Id
+                                                                location: Body
+                                                                transferId: Id
+                                                                transferName: TransferName
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
