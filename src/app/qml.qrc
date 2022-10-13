@@ -207,5 +207,8 @@
         <file>commoncomponents/MaterialTextField.qml</file>
         <file>commoncomponents/ModalTextEdit.qml</file>
         <file>commoncomponents/UsernameTextEdit.qml</file>
+        <file>mainview/components/DocumentsScrollview.qml</file>
+        <file>mainview/components/FilePreview.qml</file>
+        <file>mainview/components/MediaPreview.qml</file>
     </qresource>
 </RCC>

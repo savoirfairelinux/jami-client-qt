@@ -246,6 +246,7 @@ public:
 
     std::map<QString, std::mutex> interactionsLocks; ///< {convId, mutex}
     MapStringString transfIdToDbIntId;
+    uint32_t currentMsgRequestId;
 
 public Q_SLOTS:
     /**
@@ -355,6 +356,18 @@ public Q_SLOTS:
                                 const QString& accountId,
                                 const QString& conversationId,
                                 const VectorMapStringString& messages);
+    /**
+     * Listen messageFound signal.
+     * Is the search response from MessagesAdapter::getConvMedias()
+     * @param requestId token of the request
+     * @param accountId
+     * @param conversationId
+     * @param messages Id of all the messages
+     */
+    void slotMessagesFound(uint32_t requestId,
+                           const QString& accountId,
+                           const QString& conversationId,
+                           const VectorMapStringString& messages);
     void slotMessageReceived(const QString& accountId,
                              const QString& conversationId,
                              const MapStringString& message);
@@ -1853,6 +1866,10 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             this,
             &ConversationModelPimpl::slotConversationLoaded);
     connect(&callbacksHandler,
+            &CallbacksHandler::messagesFound,
+            this,
+            &ConversationModelPimpl::slotMessagesFound);
+    connect(&callbacksHandler,
             &CallbacksHandler::messageReceived,
             this,
             &ConversationModelPimpl::slotMessageReceived);
@@ -2000,6 +2017,10 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &CallbacksHandler::conversationLoaded,
                this,
                &ConversationModelPimpl::slotConversationLoaded);
+    disconnect(&callbacksHandler,
+               &CallbacksHandler::messagesFound,
+               this,
+               &ConversationModelPimpl::slotMessagesFound);
     disconnect(&callbacksHandler,
                &CallbacksHandler::messageReceived,
                this,
@@ -2403,6 +2424,37 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
     } catch (const std::exception& e) {
         qDebug() << "messages loaded for not existing conversation";
     }
+}
+
+void
+ConversationModelPimpl::slotMessagesFound(uint32_t requestId,
+                                          const QString& accountId,
+                                          const QString& conversationId,
+                                          const VectorMapStringString& messageIds)
+{
+    if (requestId != currentMsgRequestId) {
+        return;
+    }
+    QVector<interaction::Info> messageDetailedinformations;
+    Q_FOREACH (const MapStringString& msg, messageIds) {
+        auto intInfo = interaction::Info(msg, "");
+        if (intInfo.type == interaction::Type::DATA_TRANSFER) {
+            auto fileId = msg["fileId"];
+
+            QString path;
+            qlonglong bytesProgress, totalSize;
+            linked.owner.dataTransferModel->fileTransferInfo(accountId,
+                                                             conversationId,
+                                                             fileId,
+                                                             path,
+                                                             totalSize,
+                                                             bytesProgress);
+            intInfo.body = path;
+        }
+        messageDetailedinformations.append(intInfo);
+    }
+
+    Q_EMIT linked.messagesFoundProcessed(accountId, messageIds, messageDetailedinformations);
 }
 
 void
@@ -3762,6 +3814,13 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
         qDebug() << "could not send file to not existing conversation";
     }
 }
+
+void
+ConversationModel::getConvMediasInfos(const QString& accountId, const QString& conversationId)
+{
+    pimpl_->currentMsgRequestId = ConfigurationManager::instance().searchConversation(
+        accountId, conversationId, "", "", "", "application/data-transfer+json", 0, 0, 0);
+};
 
 void
 ConversationModel::acceptTransfer(const QString& convUid, const QString& interactionId)

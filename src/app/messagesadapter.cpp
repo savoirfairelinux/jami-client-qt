@@ -49,6 +49,7 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     : QmlAdapterBase(instance, parent)
     , settingsManager_(settingsManager)
     , previewEngine_(previewEngine)
+    , mediaInteractions_(std::make_unique<MessageListModel>())
 {
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
         set_replyToId("");
@@ -134,6 +135,12 @@ MessagesAdapter::connectConversationModel()
                      &ConversationModel::composingStatusChanged,
                      this,
                      &MessagesAdapter::onComposingStatusChanged,
+                     Qt::UniqueConnection);
+
+    QObject::connect(currentConversationModel,
+                     &ConversationModel::messagesFoundProcessed,
+                     this,
+                     &MessagesAdapter::onMessagesFoundProcessed,
                      Qt::UniqueConnection);
 }
 
@@ -499,6 +506,33 @@ MessagesAdapter::onComposingStatusChanged(const QString& convId,
     }
 }
 
+void
+MessagesAdapter::onMessagesFoundProcessed(const QString& accountId,
+                                          const VectorMapStringString& messageIds,
+                                          const QVector<interaction::Info>& messageInformations)
+{
+    if (lrcInstance_->get_currentAccountId() != accountId) {
+        return;
+    }
+    bool isSearchInProgress = messageIds.length();
+    if (isSearchInProgress) {
+        int index = -1;
+        Q_FOREACH (const MapStringString& msg, messageIds) {
+            index++;
+            try {
+                std::pair<QString, interaction::Info> message(msg["id"],
+                                                              messageInformations.at(index));
+                mediaInteractions_->insert(message);
+            } catch (...) {
+                qWarning() << "error in onMessagesFoundProcessed, message insertion on index: "
+                           << index;
+            }
+        }
+    } else {
+        set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+    }
+}
+
 QList<QString>
 MessagesAdapter::conversationTypersUrlToName(const QSet<QString>& typersSet)
 {
@@ -618,4 +652,19 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
         dateLocale = curLocal.toString(curDate, curLocal.ShortFormat);
 
     return dateLocale;
+}
+
+void
+MessagesAdapter::getConvMedias()
+{
+    auto accountId = lrcInstance_->get_currentAccountId();
+    auto convId = lrcInstance_->get_selectedConvUid();
+
+    mediaInteractions_.reset(new MessageListModel(this));
+
+    try {
+        lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId, convId);
+    } catch (...) {
+        qDebug() << "Exception during getConvMedia:";
+    }
 }
