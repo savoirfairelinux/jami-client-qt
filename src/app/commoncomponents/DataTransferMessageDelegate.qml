@@ -39,6 +39,7 @@ Loader {
 
     property int seq: MsgSeq.single
     property string author: Author
+    property string id: Id
 
     width: ListView.view ? ListView.view.width : 0
 
