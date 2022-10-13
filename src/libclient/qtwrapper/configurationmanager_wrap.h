@@ -280,6 +280,16 @@ public:
                                                  QString(conversationId.c_str()),
                                                  convertVecMap(messages));
                    }),
+               exportable_callback<ConversationSignal::MessagesFound>(
+                   [this](uint32_t id,
+                          const std::string& accountId,
+                          const std::string& conversationId,
+                          const std::vector<std::map<std::string, std::string>>& messages) {
+                       Q_EMIT messagesFound(id,
+                                            QString(accountId.c_str()),
+                                            QString(conversationId.c_str()),
+                                            convertVecMap(messages));
+                   }),
                exportable_callback<ConversationSignal::MessageReceived>(
                    [this](const std::string& accountId,
                           const std::string& conversationId,
@@ -1124,6 +1134,26 @@ public Q_SLOTS: // METHODS
                                         fromId.toStdString(),
                                         authorUri.toStdString());
     }
+    uint32_t searchConversation(const QString& accountId,
+                                const QString& conversationId,
+                                const QString& author,
+                                const QString& lastId,
+                                const QString& regexSearch,
+                                const QString& type,
+                                const int64_t& after,
+                                const int64_t& before,
+                                const uint32_t& maxResult)
+    {
+        return DRing::searchConversation(accountId.toStdString(),
+                                         conversationId.toStdString(),
+                                         author.toStdString(),
+                                         lastId.toStdString(),
+                                         regexSearch.toStdString(),
+                                         type.toStdString(),
+                                         after,
+                                         before,
+                                         maxResult);
+    }
 Q_SIGNALS: // SIGNALS
     void volumeChanged(const QString& device, double value);
     void accountsChanged();
@@ -1197,6 +1227,10 @@ Q_SIGNALS: // SIGNALS
     void messageReceived(const QString& accountId,
                          const QString& conversationId,
                          const MapStringString& message);
+    void messagesFound(uint32_t requestId,
+                       const QString& accountId,
+                       const QString& conversationId,
+                       const VectorMapStringString& messages);
     void conversationProfileUpdated(const QString& accountId,
                                     const QString& conversationId,
                                     const MapStringString& profile);
