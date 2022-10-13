@@ -3231,7 +3231,7 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="300"/>
         <source>Swarm created</source>
-        <translation type="unfinished"/>
+        <translation>Kawanan yang dibuat</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="174"/>
@@ -3287,7 +3287,7 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="63"/>
         <source>Being Forwarded</source>
-        <translation type="unfinished"/>
+        <translation>Diteruskan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="64"/>
@@ -3398,12 +3398,12 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="85"/>
         <source>Unsupported Media Type</source>
-        <translation type="unfinished"/>
+        <translation>Jenis Media Tidak Didukung</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="86"/>
         <source>Unsupported URI Scheme</source>
-        <translation type="unfinished"/>
+        <translation>Skema URI Tidak Didukung</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="87"/>
@@ -3418,17 +3418,17 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="89"/>
         <source>Session Timer Too Small</source>
-        <translation type="unfinished"/>
+        <translation>Pengatur Waktu Sesi Terlalu Kecil</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="90"/>
         <source>Interval Too Brief</source>
-        <translation type="unfinished"/>
+        <translation>Interval Terlalu Singkat</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="91"/>
         <source>Temporarily Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Tidak tersedia untuk sementara</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
@@ -3448,7 +3448,7 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
         <source>Address Incomplete</source>
-        <translation type="unfinished"/>
+        <translation>Alamat tidak lengkap</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
@@ -3478,7 +3478,7 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
         <source>Request Pending</source>
-        <translation type="unfinished"/>
+        <translation>Permintaan Tertunda</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
@@ -3488,12 +3488,12 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
         <source>Internal Server Error</source>
-        <translation type="unfinished"/>
+        <translation>Error Server Internal</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="105"/>
         <source>Not Implemented</source>
-        <translation type="unfinished"/>
+        <translation>Tidak Dilaksanakan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
@@ -3503,7 +3503,7 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
         <source>Service Unavailable</source>
-        <translation type="unfinished"/>
+        <translation>Layanan Tidak Tersedia</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
@@ -3513,7 +3513,7 @@ tersambung untuk menyinkronkan percakapan.</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
         <source>Version Not Supported</source>
-        <translation type="unfinished"/>
+        <translation>Versi Tidak Didukung</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
