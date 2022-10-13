@@ -48,39 +48,17 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES_orig ${CMAKE_FIND_LIBRARY_SUFFIXES})
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".dylib;.so;.dll")
 
 # Search only in these given PATHS.
-find_library(LIBJAMI_LIB NAMES jami
+find_library(LIBJAMI_LIB NAMES jami ring
   PATHS ${LIBJAMI_BUILD_DIR}/.libs
   PATHS ${RING_BUILD_DIR}/.libs
   PATHS ${CMAKE_INSTALL_PREFIX}/lib
   PATHS ${CMAKE_INSTALL_PREFIX}/libexec
   PATHS ${CMAKE_INSTALL_PREFIX}/bin
   NO_DEFAULT_PATH)
-if(NOT LIBJAMI_LIB)
-  find_library(LIBJAMI_LIB NAMES ring
-    PATHS ${LIBJAMI_BUILD_DIR}/.libs
-    PATHS ${RING_BUILD_DIR}/.libs
-    PATHS ${CMAKE_INSTALL_PREFIX}/lib
-    PATHS ${CMAKE_INSTALL_PREFIX}/libexec
-    PATHS ${CMAKE_INSTALL_PREFIX}/bin
-    NO_DEFAULT_PATH)
-endif()
 
 # Search elsewhere as well (e.g. system-wide).
 if(NOT LIBJAMI_LIB)
-  find_library(LIBJAMI_LIB NAMES jami
-    PATHS ${LIBJAMI_BUILD_DIR}/.libs
-    PATHS ${RING_BUILD_DIR}/.libs
-    PATHS ${CMAKE_INSTALL_PREFIX}/lib
-    PATHS ${CMAKE_INSTALL_PREFIX}/libexec
-    PATHS ${CMAKE_INSTALL_PREFIX}/bin)
-  if(NOT LIBJAMI_LIB)
-    find_library(LIBJAMI_LIB NAMES ring
-      PATHS ${LIBJAMI_BUILD_DIR}/.libs
-      PATHS ${RING_BUILD_DIR}/.libs
-      PATHS ${CMAKE_INSTALL_PREFIX}/lib
-      PATHS ${CMAKE_INSTALL_PREFIX}/libexec
-      PATHS ${CMAKE_INSTALL_PREFIX}/bin)
-  endif()
+  find_library(LIBJAMI_LIB NAMES jami ring)
 endif()
 
 # Try for a static version also.
@@ -88,35 +66,16 @@ if(NOT LIBJAMI_LIB)
   set(CMAKE_FIND_LIBRARY_SUFFIXES ".a;.lib")
 
   # Search only in these given PATHS.
-  find_library(LIBJAMI_LIB NAMES jami
+  find_library(LIBJAMI_LIB NAMES jami ring
     PATHS ${LIBJAMI_BUILD_DIR}/.libs
     PATHS ${RING_BUILD_DIR}/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/libexec
     NO_DEFAULT_PATH)
-  if(NOT LIBJAMI_LIB)
-    find_library(LIBJAMI_LIB NAMES ring
-      PATHS ${LIBJAMI_BUILD_DIR}/.libs
-      PATHS ${RING_BUILD_DIR}/.libs
-      PATHS ${CMAKE_INSTALL_PREFIX}/lib
-      PATHS ${CMAKE_INSTALL_PREFIX}/libexec
-      NO_DEFAULT_PATH)
-  endif()
 
   # Search elsewhere as well (e.g. system-wide).
   if(NOT LIBJAMI_LIB)
-    find_library(LIBJAMI_LIB NAMES jami
-      PATHS ${LIBJAMI_BUILD_DIR}/.libs
-      PATHS ${RING_BUILD_DIR}/.libs
-      PATHS ${CMAKE_INSTALL_PREFIX}/lib
-      PATHS ${CMAKE_INSTALL_PREFIX}/libexec)
-    if(NOT LIBJAMI_LIB)
-      find_library(LIBJAMI_LIB NAMES ring
-        PATHS ${LIBJAMI_BUILD_DIR}/.libs
-        PATHS ${RING_BUILD_DIR}/.libs
-        PATHS ${CMAKE_INSTALL_PREFIX}/lib
-        PATHS ${CMAKE_INSTALL_PREFIX}/libexec)
-    endif()
+    find_library(LIBJAMI_LIB NAMES jami ring)
   endif()
 
   if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
