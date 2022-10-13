@@ -20,6 +20,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
+import Qt5Compat.GraphicalEffects
+import QtWebEngine
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -205,7 +207,7 @@ Rectangle {
                     }
                 }
 
-                /*FilterTabButton {
+                FilterTabButton {
                     id: documentsTabButton
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
@@ -216,12 +218,12 @@ Rectangle {
 
                     textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                     textColor: UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                                   JamiTheme.chatviewTextColorLight :
+                                   JamiTheme.chatviewTextColorDark
 
                     down: tabBar.currentIndex === 2
                     labelText: JamiStrings.documents
-                }*/
+                }
             }
         }
 
@@ -522,6 +524,14 @@ Rectangle {
                         }
                     }
                 }
+            }
+
+            DocumentsScrollview {
+                id: documents
+
+                clip: true
+                visible: tabBar.currentIndex === 2
+                anchors.fill: parent
             }
         }
     }
