@@ -20,6 +20,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -33,6 +34,13 @@ Rectangle {
 
     color: CurrentConversation.color
     property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
+    property int spacingFlow: JamiTheme.swarmDetailsPageDocumentsMargins
+    property int spacingLength: spacingFlow * (numberElementsPerRow - 1)
+    property int numberElementsPerRow: {
+        var sizeW = flow.width
+        var breakSize = JamiTheme.swarmDetailsPageDocumentsMediaSize
+        return Math.floor(sizeW / breakSize)
+    }
 
     ColumnLayout {
         id: swarmProfileDetails
@@ -205,7 +213,7 @@ Rectangle {
                     }
                 }
 
-                /*FilterTabButton {
+                FilterTabButton {
                     id: documentsTabButton
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
@@ -216,12 +224,12 @@ Rectangle {
 
                     textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                     textColor: UtilsAdapter.luma(root.color) ?
-                            JamiTheme.chatviewTextColorLight :
-                            JamiTheme.chatviewTextColorDark
+                                   JamiTheme.chatviewTextColorLight :
+                                   JamiTheme.chatviewTextColorDark
 
                     down: tabBar.currentIndex === 2
                     labelText: JamiStrings.documents
-                }*/
+                }
             }
         }
 
@@ -520,6 +528,212 @@ Rectangle {
 
                             horizontalAlignment: Text.AlignRight
                             verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
+            }
+            Flickable {
+                id: documents
+
+                visible: tabBar.currentIndex === 2
+                clip: true
+                anchors.fill: parent
+                contentWidth: width
+                contentHeight: flow.implicitHeight
+                onVisibleChanged: {
+                    if (visible) {
+                        MessagesAdapter.getConvMedias()
+                    } else {
+                        MessagesAdapter.mediaMessageListModel = null
+                    }
+                }
+                Flow {
+                    id: flow
+
+                    width: parent.width
+                    spacing: spacingFlow
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    Repeater {
+                        model: MessagesAdapter.mediaMessageListModel
+
+                        delegate: Loader {
+                            id: loaderRoot
+
+                            sourceComponent: {
+                                if (Object.keys(MessagesAdapter.getMediaInfo(Body)).length !== 0 && WITH_WEBENGINE)
+                                    return localMediaMsgComp
+
+                                return dataTransferMsgComp
+                            }
+
+                            Component {
+                                id: dataTransferMsgComp
+
+                                Rectangle {
+                                    id: dataTransferRect
+
+                                    clip: true
+                                    width: (documents.width - spacingLength ) / numberElementsPerRow
+                                    height: width
+                                    color: "transparent"
+
+                                    RowLayout{
+                                        anchors.fill: parent
+
+                                        ResponsiveImage {
+                                            id: paperClipImage
+
+                                            source: JamiResources.link_black_24dp_svg
+                                            Layout.leftMargin: JamiTheme.swarmDetailsPageDocumentsMargins
+                                            Layout.preferredWidth: JamiTheme.swarmDetailsPageDocumentsPaperClipSize
+                                            Layout.preferredHeight: JamiTheme.swarmDetailsPageDocumentsPaperClipSize
+                                            color: JamiTheme.textColor
+                                        }
+
+                                        Text {
+                                            id: myText
+
+                                            text: TransferName
+                                            color: JamiTheme.textColor
+                                            elide: Text.ElideRight
+                                            Layout.fillWidth: true
+                                            Layout.alignment: Qt.AlignLeft
+                                            Layout.rightMargin: paperClipImage.width
+
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                hoverEnabled: true
+                                                acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                                                onEntered: {
+                                                    cursorShape = Qt.PointingHandCursor
+                                                }
+
+                                                onClicked: function (mouse) {
+                                                    if (mouse.button === Qt.RightButton) {
+                                                        ctxMenu.x = mouse.x
+                                                        ctxMenu.y = mouse.y
+                                                        ctxMenu.openMenu()
+                                                    } else {
+                                                        Qt.openUrlExternally("file://" + Body)
+                                                    }
+                                                }
+                                            }
+                                            SBSContextMenu {
+                                                id: ctxMenu
+
+                                                msgId: Id
+                                                location: Body
+                                                transferId: Id
+                                                transferName: TransferName
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Component {
+                                id: localMediaMsgComp
+
+                                Rectangle {
+                                    id: localMediaRect
+
+                                    width: (documents.width - spacingLength) /  numberElementsPerRow
+                                    height: width
+                                    color: "transparent"
+
+                                    ColumnLayout {
+                                        anchors.fill: parent
+                                        anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
+
+                                        Text {
+                                            id: myText
+
+                                            text: TransferName
+                                            color: JamiTheme.textColor
+                                            elide: Text.ElideRight
+                                            Layout.fillWidth: true
+                                            horizontalAlignment: Text.AlignHCenter
+                                        }
+                                        Rectangle {
+                                            Layout.preferredHeight: parent.height - myText.height - JamiTheme.swarmDetailsPageDocumentsMargins
+                                            Layout.preferredWidth: parent.width
+                                            Layout.rightMargin: JamiTheme.swarmDetailsPageDocumentsMargins
+                                            Layout.bottomMargin: JamiTheme.swarmDetailsPageDocumentsMargins
+                                            color: "transparent"
+
+                                            Rectangle {
+                                                anchors.fill: parent
+                                                anchors.margins: JamiTheme.swarmDetailsPageDocumentsMargins
+                                                color: CurrentConversation.color
+                                                layer.enabled: true
+                                                layer.effect: OpacityMask {
+                                                    maskSource: Item {
+                                                        width: fileImage.width
+                                                        height: fileImage.height
+                                                        Rectangle {
+                                                            anchors.centerIn: parent
+                                                            width:  fileImage.width
+                                                            height: fileImage.height
+                                                            radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
+                                                        }
+                                                    }
+                                                }
+                                                Image {
+                                                    id: fileImage
+
+                                                    anchors.fill: parent
+                                                    anchors.margins: 2
+                                                    fillMode: Image.PreserveAspectCrop
+                                                    source: "file:///" + Body
+                                                    layer.enabled: true
+                                                    layer.effect: OpacityMask {
+                                                        maskSource: Item {
+                                                            width: fileImage.width
+                                                            height: fileImage.height
+                                                            Rectangle {
+                                                                anchors.centerIn: parent
+                                                                width:  fileImage.width
+                                                                height: fileImage.height
+                                                                radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                hoverEnabled: true
+                                                acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                                                onEntered: {
+                                                    cursorShape = Qt.PointingHandCursor
+                                                }
+
+                                                onClicked: function(mouse)  {
+                                                    if (mouse.button === Qt.RightButton) {
+                                                        ctxMenu.x = mouse.x
+                                                        ctxMenu.y = mouse.y
+                                                        ctxMenu.openMenu()
+                                                    } else {
+                                                        MessagesAdapter.openUrl(fileImage.source)
+                                                    }
+                                                }
+                                            }
+
+                                            SBSContextMenu {
+                                                id: ctxMenu
+
+                                                msgId: Id
+                                                location: Body
+                                                transferId: Id
+                                                transferName: TransferName
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

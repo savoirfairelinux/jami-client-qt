@@ -135,6 +135,12 @@ MessagesAdapter::connectConversationModel()
                      this,
                      &MessagesAdapter::onComposingStatusChanged,
                      Qt::UniqueConnection);
+
+    QObject::connect(currentConversationModel,
+                     &ConversationModel::messagesFoundProcessed,
+                     this,
+                     &MessagesAdapter::onMessagesFoundProcessed,
+                     Qt::UniqueConnection);
 }
 
 void
@@ -499,6 +505,25 @@ MessagesAdapter::onComposingStatusChanged(const QString& convId,
     }
 }
 
+void
+MessagesAdapter::onMessagesFoundProcessed(uint32_t requestId,
+                                          const QString& accountId,
+                                          const QString& conversationId,
+                                          const VectorMapStringString& messages,
+                                          const QVector<interaction::Info> VectorInfo)
+{
+    if (messages.length()) {
+        mediaInteractions_.reset(new MessageListModel(this));
+        int index = -1;
+        Q_FOREACH (const MapStringString& msg, messages) {
+            index++;
+            std::pair<QString, interaction::Info> message(msg["id"], VectorInfo.at(index));
+            mediaInteractions_->insert(message);
+        }
+        set_mediaMessageListModel(QVariant::fromValue(mediaInteractions_.get()));
+    }
+}
+
 QList<QString>
 MessagesAdapter::conversationTypersUrlToName(const QSet<QString>& typersSet)
 {
@@ -618,4 +643,18 @@ MessagesAdapter::getFormattedDay(const quint64 timestamp)
         dateLocale = curLocal.toString(curDate, curLocal.ShortFormat);
 
     return dateLocale;
+}
+
+void
+MessagesAdapter::getConvMedias()
+{
+    auto accountId = lrcInstance_->get_currentAccountId();
+    auto convId = lrcInstance_->get_selectedConvUid();
+
+    try {
+        lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId, convId);
+
+    } catch (...) {
+        qDebug() << "Exception during getConvMedia:";
+    }
 }
