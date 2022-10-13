@@ -295,6 +295,8 @@ public:
     void getTransferInfo(const QString& conversationId,
                          const QString& interactionId,
                          api::datatransfer::Info& info) const;
+
+    void getConvMediasInfos(const QString& accountId, const QString& conversationId);
     /**
      * @param convUid, uid of the conversation
      * @return the number of unread messages for the conversation
@@ -559,6 +561,12 @@ Q_SIGNALS:
      * @param position
      */
     void dataChanged(int position) const;
+
+    void messagesFoundProcessed(uint32_t requestId,
+                                const QString& accountId,
+                                const QString& conversationId,
+                                const VectorMapStringString& messages,
+                                const QVector<interaction::Info> VectorInfo) const;
 
 private:
     std::unique_ptr<ConversationModelPimpl> pimpl_;
