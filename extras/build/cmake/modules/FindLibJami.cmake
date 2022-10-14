@@ -26,20 +26,24 @@
 
 set(LIBJAMI_FOUND true)
 
-if(EXISTS ${LIBJAMI_INCLUDE_DIR}/jami.h)
-  set(LIBJAMI_INCLUDE_DIRS ${LIBJAMI_INCLUDE_DIR})
-elseif(EXISTS ${LIBJAMI_BUILD_DIR}/jami/jami.h)
-  set(LIBJAMI_INCLUDE_DIRS ${LIBJAMI_BUILD_DIR}/jami)
-elseif(EXISTS ${RING_INCLUDE_DIR}/jami.h)
-  set(LIBJAMI_INCLUDE_DIRS ${RING_INCLUDE_DIR})
-elseif(EXISTS ${RING_BUILD_DIR}/jami/jami.h)
-  set(LIBJAMI_INCLUDE_DIRS ${RING_BUILD_DIR}/jami)
-elseif(EXISTS ${CMAKE_INSTALL_PREFIX}/include/jami/jami.h)
-  set(LIBJAMI_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/jami)
+if(WITH_DAEMON_SUBMODULE)
+  set(LIBJAMI_INCLUDE_DIRS ${DAEMON_DIR}/src/jami)
 else()
-  message(STATUS "Jami daemon headers not found!
+  if(EXISTS ${LIBJAMI_INCLUDE_DIR}/jami.h)
+    set(LIBJAMI_INCLUDE_DIRS ${LIBJAMI_INCLUDE_DIR})
+  elseif(EXISTS ${LIBJAMI_BUILD_DIR}/jami/jami.h)
+    set(LIBJAMI_INCLUDE_DIRS ${LIBJAMI_BUILD_DIR}/jami)
+  elseif(EXISTS ${RING_INCLUDE_DIR}/jami.h)
+    set(LIBJAMI_INCLUDE_DIRS ${RING_INCLUDE_DIR})
+  elseif(EXISTS ${RING_BUILD_DIR}/jami/jami.h)
+    set(LIBJAMI_INCLUDE_DIRS ${RING_BUILD_DIR}/jami)
+  elseif(EXISTS ${CMAKE_INSTALL_PREFIX}/include/jami/jami.h)
+    set(LIBJAMI_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/jami)
+  else()
+    message(STATUS "Jami daemon headers not found!
 Set -DLIBJAMI_BUILD_DIR or -DCMAKE_INSTALL_PREFIX")
-  set(LIBJAMI_FOUND false)
+    set(LIBJAMI_FOUND false)
+  endif()
 endif()
 
 # Save the current value of CMAKE_FIND_LIBRARY_SUFFIXES.
@@ -47,39 +51,51 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES_orig ${CMAKE_FIND_LIBRARY_SUFFIXES})
 
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".dylib;.so;.dll")
 
-# Search only in these given PATHS.
-find_library(LIBJAMI_LIB NAMES jami ring
-  PATHS ${LIBJAMI_BUILD_DIR}/.libs
-  PATHS ${RING_BUILD_DIR}/.libs
-  PATHS ${CMAKE_INSTALL_PREFIX}/lib
-  PATHS ${CMAKE_INSTALL_PREFIX}/libexec
-  PATHS ${CMAKE_INSTALL_PREFIX}/bin
-  NO_DEFAULT_PATH)
-
-# Search elsewhere as well (e.g. system-wide).
-if(NOT LIBJAMI_LIB)
-  find_library(LIBJAMI_LIB NAMES jami ring)
-endif()
-
-# Try for a static version also.
-if(NOT LIBJAMI_LIB)
-  set(CMAKE_FIND_LIBRARY_SUFFIXES ".a;.lib")
-
+if(WITH_DAEMON_SUBMODULE)
+  find_library(LIBJAMI_LIB NAMES jami ring
+    PATHS ${DAEMON_DIR}/src/.libs
+    NO_DEFAULT_PATH)
+else()
   # Search only in these given PATHS.
   find_library(LIBJAMI_LIB NAMES jami ring
     PATHS ${LIBJAMI_BUILD_DIR}/.libs
     PATHS ${RING_BUILD_DIR}/.libs
     PATHS ${CMAKE_INSTALL_PREFIX}/lib
     PATHS ${CMAKE_INSTALL_PREFIX}/libexec
+    PATHS ${CMAKE_INSTALL_PREFIX}/bin
     NO_DEFAULT_PATH)
 
   # Search elsewhere as well (e.g. system-wide).
   if(NOT LIBJAMI_LIB)
     find_library(LIBJAMI_LIB NAMES jami ring)
   endif()
+endif()
 
-  if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    add_definitions(-fPIC)
+# Try for a static version also.
+if(NOT LIBJAMI_LIB)
+  set(CMAKE_FIND_LIBRARY_SUFFIXES ".a;.lib")
+
+  if(WITH_DAEMON_SUBMODULE)
+    find_library(LIBJAMI_LIB NAMES jami ring
+      PATHS ${DAEMON_DIR}/src/.libs
+      NO_DEFAULT_PATH)
+  else()
+    # Search only in these given PATHS.
+    find_library(LIBJAMI_LIB NAMES jami ring
+      PATHS ${LIBJAMI_BUILD_DIR}/.libs
+      PATHS ${RING_BUILD_DIR}/.libs
+      PATHS ${CMAKE_INSTALL_PREFIX}/lib
+      PATHS ${CMAKE_INSTALL_PREFIX}/libexec
+      NO_DEFAULT_PATH)
+
+    # Search elsewhere as well (e.g. system-wide).
+    if(NOT LIBJAMI_LIB)
+      find_library(LIBJAMI_LIB NAMES jami ring)
+    endif()
+
+    if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+      add_definitions(-fPIC)
+    endif()
   endif()
 endif()
 
