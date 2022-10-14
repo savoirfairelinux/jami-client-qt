@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d96705af_fdbc0149",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-14T14:31:27Z",
+      "side": 1,
+      "message": "Nice!!",
+      "revId": "ea29babc30a0016f315eda9c2b59b7877451247b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55d707b6_129c1a42",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-14T14:31:27Z",
+      "side": 1,
+      "message": "Missing:\n\n+ Video preview (webm) / audio preview (.ogg)\n+ Show a download button on non accepted files\n+ txt files should have a better design",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "ea29babc30a0016f315eda9c2b59b7877451247b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
