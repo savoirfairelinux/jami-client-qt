@@ -11,3 +11,6 @@
 	url = https://github.com/atraczyk/SortFilterProxyModel.git
 	branch = qt-6
 	ignore = dirty
+[submodule "daemon"]
+	path = daemon
+	url = https://review.jami.net/jami-daemon
