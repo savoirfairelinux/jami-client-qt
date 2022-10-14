@@ -46,6 +46,10 @@ Rectangle {
     property var linkedWebview: null
     property string callPreviewId: ""
 
+    onCallPreviewIdChanged: {
+        controlPreview.start()
+    }
+
     color: "black"
 
     onAccountPeerPairChanged: {
@@ -318,7 +322,6 @@ Rectangle {
                                              isGrid)
                         callOverlay.isVideoMuted = !AvAdapter.isCapturing()
                         callOverlay.sharingActive = AvAdapter.isSharing()
-                        previewRenderer.rendererId = previewId
                         previewRenderer.visible = (AvAdapter.isSharing() || AvAdapter.isCapturing()) && participantsLayer.count == 0
                     }
 
