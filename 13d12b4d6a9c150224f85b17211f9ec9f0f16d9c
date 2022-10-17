@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f70d599b_f09df907",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-17T14:18:26Z",
+      "side": 1,
+      "message": "Yeah, not sure how to handle this. cause \"message deleted\" is a dirty body. Actually, there is always the trace in the repo.\n\nFor now, we do not show if a message got an empty body.",
+      "parentUuid": "9904acc7_007bdded",
+      "revId": "13d12b4d6a9c150224f85b17211f9ec9f0f16d9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0080d260_13ce222b",
         "filename": "src/app/commoncomponents/EditedPopup.qml",
         "patchSetId": 8
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6b0bee9e_97fc7f9d",
+        "filename": "src/app/commoncomponents/EditedPopup.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-17T14:18:26Z",
+      "side": 1,
+      "message": "I use the same close as other popup.\n\nI know Andreas want to redo those popup in the future, so I guess I will let this for now. Also, Charlotte didn\u0027t specify any design, so the popup may change in the future",
+      "parentUuid": "0080d260_13ce222b",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 9
+      },
+      "revId": "13d12b4d6a9c150224f85b17211f9ec9f0f16d9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7a6e3367_9932fb3b",
         "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
         "patchSetId": 8
@@ -54,6 +96,30 @@
       "writtenOn": "2022-10-17T13:43:46Z",
       "side": 1,
       "message": "JamiTheme has a defined red",
+      "range": {
+        "startLine": 98,
+        "startChar": 35,
+        "endLine": 98,
+        "endChar": 40
+      },
+      "revId": "13d12b4d6a9c150224f85b17211f9ec9f0f16d9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0daf239d_8f67fc52",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-17T14:18:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a6e3367_9932fb3b",
       "range": {
         "startLine": 98,
         "startChar": 35,
