@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5e7ce2d_f02c2c9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-17T17:53:12Z",
+      "side": 1,
+      "message": "will check",
+      "revId": "d182dbba4ea787be0983d853ee303d2514bd9c07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "227e39dd_7479ae40",
+        "filename": "INSTALL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-17T17:53:12Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 161,
+        "startChar": 131,
+        "endLine": 161,
+        "endChar": 137
+      },
+      "revId": "d182dbba4ea787be0983d853ee303d2514bd9c07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a6979b4_6b879e8a",
+        "filename": "INSTALL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-17T17:53:12Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 195,
+        "startChar": 245,
+        "endLine": 195,
+        "endChar": 251
+      },
+      "revId": "d182dbba4ea787be0983d853ee303d2514bd9c07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
