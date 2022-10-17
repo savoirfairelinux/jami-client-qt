@@ -3516,17 +3516,17 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="92"/>
         <source>Call TSX Does Not Exist</source>
-        <translation type="unfinished"/>
+        <translation>Panggilan TSX Tidak Ada</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="93"/>
         <source>Loop Detected</source>
-        <translation type="unfinished"/>
+        <translation>Loop Terdeteksi</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="94"/>
         <source>Too Many Hops</source>
-        <translation type="unfinished"/>
+        <translation>Terlalu banyak Hops</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="95"/>
@@ -3536,7 +3536,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="96"/>
         <source>Ambiguous</source>
-        <translation type="unfinished"/>
+        <translation>Ambigu</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="97"/>
@@ -3546,17 +3546,17 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="98"/>
         <source>Request Terminated</source>
-        <translation type="unfinished"/>
+        <translation>Permintaan Dihentikan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="100"/>
         <source>Bad Event</source>
-        <translation type="unfinished"/>
+        <translation>Event Buruk</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="101"/>
         <source>Request Updated</source>
-        <translation type="unfinished"/>
+        <translation>Permintaan Diperbarui</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="102"/>
@@ -3566,7 +3566,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="103"/>
         <source>Undecipherable</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat diuraikan</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="104"/>
@@ -3581,7 +3581,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="106"/>
         <source>Bad Gateway</source>
-        <translation type="unfinished"/>
+        <translation>Gateway Buruk</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="107"/>
@@ -3591,7 +3591,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="108"/>
         <source>Server Timeout</source>
-        <translation type="unfinished"/>
+        <translation>Batas Waktu Server</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="109"/>
@@ -3601,32 +3601,32 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="110"/>
         <source>Message Too Large</source>
-        <translation type="unfinished"/>
+        <translation>Pesan terlalu besar</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="111"/>
         <source>Precondition Failure</source>
-        <translation type="unfinished"/>
+        <translation>Kegagalan prasyarat</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="112"/>
         <source>Busy Everywhere</source>
-        <translation type="unfinished"/>
+        <translation>Semua sibuk</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="113"/>
         <source>Call Refused</source>
-        <translation type="unfinished"/>
+        <translation>Panggilan ditolak</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="114"/>
         <source>Does Not Exist Anywhere</source>
-        <translation type="unfinished"/>
+        <translation>Tidak Ada di Mana pun</translation>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="115"/>
         <source>Not Acceptable Anywhere</source>
-        <translation type="unfinished"/>
+        <translation>Tidak Dapat Diterima di Mana pun</translation>
     </message>
     <message>
         <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="468"/>
@@ -3703,127 +3703,127 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="28"/>
         <source>What does Jami mean?</source>
-        <translation type="unfinished"/>
+        <translation>Apa yang dimaksud dengan Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="34"/>
         <source>What is the green dot next to my account?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah titik hijau di samping akun saya?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="30"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
-        <translation type="unfinished"/>
+        <translation>Pemilihan nama Jami terinspirasi oleh kata Swahili &apos;jamii&apos;, yang berarti &apos;komunitas&apos; sebagai kata benda dan &apos;bersama&apos; sebagai kata keterangan.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="26"/>
         <source>Backup account</source>
-        <translation type="unfinished"/>
+        <translation>Cadangkan akun</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="36"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
-        <translation type="unfinished"/>
+        <translation>Titik merah berarti bahwa akun Anda terputus dari jaringan; titik ini berubah menjadi hijau ketika sudah terhubung.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="41"/>
         <source>Why should I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Mengapa saya harus mencadangkan akun saya?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="43"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
-        <translation type="unfinished"/>
+        <translation>Jami didistribusikan dan akun Anda hanya disimpan secara lokal di perangkat Anda. Jika Anda kehilangan kata sandi atau data akun lokal Anda, Anda TIDAK AKAN dapat memulihkan akun Anda jika Anda tidak mencadangkannya sebelumnya.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="49"/>
         <source>Can I make a conference call?</source>
-        <translation type="unfinished"/>
+        <translation>Dapatkah saya melakukan panggilan konferensi?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="54"/>
         <source>Does Jami have group chats?</source>
-        <translation type="unfinished"/>
+        <translation>Apakah jami memiliki obrolan grup?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="55"/>
         <source>In the settings, you can enabled support for groups (experimental)</source>
-        <translation type="unfinished"/>
+        <translation>Dalam pengaturan, Anda dapat mengaktifkan dukungan untuk grup (eksperimental)</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="58"/>
         <source>What is a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>Apa yang dimaksud dengan akun Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="60"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
-        <translation type="unfinished"/>
+        <translation>Akun Jami adalah kunci enkripsi asimetris. Akun Anda diidentifikasi oleh Jami ID, yang merupakan sidik jari dari kunci publik Anda.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="64"/>
         <source>What information do I need to provide to create a Jami account?</source>
-        <translation type="unfinished"/>
+        <translation>Informasi apa yang perlu saya berikan untuk membuat akun Jami?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="66"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
-        <translation type="unfinished"/>
+        <translation>Saat Anda membuat akun Jami baru, Anda tidak perlu memberikan informasi pribadi apa pun seperti email, alamat, atau nomor telepon.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="73"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
-        <translation type="unfinished"/>
+        <translation>Dengan Jami, akun Anda disimpan dalam direktori pada perangkat Anda. Kata sandi hanya digunakan untuk mengenkripsi akun Anda untuk melindungi Anda dari seseorang yang memiliki akses fisik ke perangkat Anda.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="93"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
-        <translation type="unfinished"/>
+        <translation>Akun Anda hanya tersimpan di perangkat Anda sendiri. Jika Anda menghapus akun Anda dari semua perangkat Anda, akun tersebut akan hilang selamanya dan Anda TIDAK BISA memulihkannya.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="97"/>
         <source>Can I use my account on multiple devices?</source>
-        <translation type="unfinished"/>
+        <translation>Dapatkah saya menggunakan akun saya pada beberapa perangkat?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="99"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
-        <translation type="unfinished"/>
+        <translation>Ya, Anda bisa menautkan akun Anda dari pengaturan, atau Anda bisa mengimpor cadangan Anda pada perangkat lain.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="71"/>
         <source>Why don&apos;t I have to use a password?</source>
-        <translation type="unfinished"/>
+        <translation>Mengapa saya tidak harus menggunakan kata sandi?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="51"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
-        <translation type="unfinished"/>
+        <translation>Dalam panggilan, Anda bisa mengklik &quot;Tambah partisipan&quot; untuk menambahkan kontak ke panggilan.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="79"/>
         <source>Why don&apos;t I have to register a username?</source>
-        <translation type="unfinished"/>
+        <translation>Mengapa saya tidak harus mendaftarkan nama pengguna?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="81"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
-        <translation type="unfinished"/>
+        <translation>Pengidentifikasi yang paling permanen dan aman adalah Jami ID Anda, tetapi karena ini sulit digunakan bagi sebagian orang, Anda juga memiliki opsi untuk mendaftarkan nama pengguna.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="86"/>
         <source>How can I back up my account?</source>
-        <translation type="unfinished"/>
+        <translation>Bagaimana saya mencadangkan akun saya?</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="87"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
-        <translation type="unfinished"/>
+        <translation>Dalam Pengaturan akun, tersedia tombol untuk membuat cadangan akun Anda.</translation>
     </message>
     <message>
         <location filename="../src/app/tipsmodel.cpp" line="91"/>
         <source>What happens when I delete my account?</source>
-        <translation type="unfinished"/>
+        <translation>Apa yang terjadi bila saya menghapus akun saya?</translation>
     </message>
 </context>
 <context>
@@ -3854,17 +3854,17 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1020"/>
         <source>Invalid ID</source>
-        <translation type="unfinished"/>
+        <translation>ID tidak valid</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1023"/>
         <source>Username not found</source>
-        <translation type="unfinished"/>
+        <translation>Nama pengguna tidak ditemukan</translation>
     </message>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="1026"/>
         <source>Couldn&apos;t lookup…</source>
-        <translation type="unfinished"/>
+        <translation>Tidak bisa mencari...</translation>
     </message>
 </context>
 <context>
@@ -3872,7 +3872,7 @@ Salin dan bagikan dengan teman-teman Anda!</translation>
     <message>
         <location filename="../src/libclient/contactmodel.cpp" line="444"/>
         <source>Bad URI scheme</source>
-        <translation type="unfinished"/>
+        <translation>Skema URI yang buruk</translation>
     </message>
 </context>
 </TS>
