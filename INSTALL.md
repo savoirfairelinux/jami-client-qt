@@ -138,6 +138,10 @@ Only 64-bit MSVC build can be compiled.
 
 **Setup Before Building:**
 
+- Enable Virtualization in the BIOS
+
+- Install WSL 2 and any package it might require during the Jami build process.
+
 - Download [Qt (Open Source)](https://www.qt.io/download-open-source?hsCtaTracking=9f6a2170-a938-42df-a8e2-a9f0b1d6cdce%7C6cb0de4f-9bb5-4778-ab02-bfb62735f3e5)
 
 - Using the online installer, install the following Qt 6.2.3 components:
@@ -152,13 +156,17 @@ Only 64-bit MSVC build can be compiled.
     - Qt WebSockets
     - Qt WebView
 
-- Download [Visual Studio](https://visualstudio.microsoft.com/) (version >= 2019). Note: version 2022 does not work.
+- Download [Visual Studio](https://visualstudio.microsoft.com/) (version == 2019). Note: version 2022 does not work.  *See the SDK and Toolset notes below.*
 
-- Install Qt Vs Tools under extensions, and configure msvc2017_64 path under Qt Options
+  |                      | SDK          | Toolset | MFC |
+  | -------------------- | ------------ | ------- | --- |
+  | Requirement: | 10.0.16299.0 | V142    | latest |
 
-  |                      | Qt Version | SDK          | Toolset |
-  | -------------------- | ---------- | ------------ | ------- |
-  | Minimum requirement: | 6.2.3      | 10.0.16299.0 | V142    |
+- Install Qt Vs Tools under extensions, and configure msvc2017_64 path under Qt Options. *See the Qt notes below.*
+
+  |                      | Qt Version |
+  | -------------------- | ---------- |
+  | Minimum requirement: | 6.2.3      |
 
 - Install [Python3](https://www.python.org/downloads/) for Windows
 
@@ -187,7 +195,14 @@ Only 64-bit MSVC build can be compiled.
     python build.py --install
 ```
 
-Note: If you have another version than qt 6.2.3 installed this step will build daemon correctly but will fail for the client.
+> **SDK and Toolset** Note:
+Jami can be build with more rencents Windows SDK and Toolset than the ones specified in the table above. However, if your have another version than SDK 10.0.16299.0 and/or Toolset v142 installed, you need to identify it according to the example below.
+
+```bash
+    python build.py --install --sdk <your-sdk-version> --toolset <your-toolset-version>
+```
+
+> **Qt** Note: If you have another version than qt 6.2.3 installed this step will build daemon correctly but will fail for the client.
 When that happens you need to compile the client separately:
 
 ```bash
