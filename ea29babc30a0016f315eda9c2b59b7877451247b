@@ -63,6 +63,30 @@
       },
       "revId": "ea29babc30a0016f315eda9c2b59b7877451247b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "487025d6_f121183d",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-17T20:31:45Z",
+      "side": 1,
+      "message": "for a first version it\u0027s ok to not show non finished medias (Btw, something to check, is if I see the Document panel while a file is received, is the view correctly updated?)",
+      "parentUuid": "eeb06d79_2ba11410",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "ea29babc30a0016f315eda9c2b59b7877451247b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
