@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9904acc7_007bdded",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-17T13:43:46Z",
+      "side": 1,
+      "message": "LGTM overall but the deleted messages should leave a deletion trace imo. Not the hole message versions but something like \"this message was deleted\".",
+      "revId": "13d12b4d6a9c150224f85b17211f9ec9f0f16d9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0080d260_13ce222b",
+        "filename": "src/app/commoncomponents/EditedPopup.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-17T13:43:46Z",
+      "side": 1,
+      "message": "Can the button use a background? When not hovered it looks like part of the first message version..",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 9
+      },
+      "revId": "13d12b4d6a9c150224f85b17211f9ec9f0f16d9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a6e3367_9932fb3b",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-17T13:43:46Z",
+      "side": 1,
+      "message": "JamiTheme has a defined red",
+      "range": {
+        "startLine": 98,
+        "startChar": 35,
+        "endLine": 98,
+        "endChar": 40
+      },
+      "revId": "13d12b4d6a9c150224f85b17211f9ec9f0f16d9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac998363_0efd1aef",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-17T13:43:46Z",
+      "side": 1,
+      "message": "thankyou",
+      "range": {
+        "startLine": 414,
+        "startChar": 15,
+        "endLine": 414,
+        "endChar": 29
+      },
+      "revId": "13d12b4d6a9c150224f85b17211f9ec9f0f16d9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5c6aca6_15bf467e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-17T13:43:46Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 18,
+        "startChar": 8,
+        "endLine": 18,
+        "endChar": 32
+      },
+      "revId": "64d643681ff10f937a108158f07686479320e31e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff71fa59_e930c5e9",
+        "filename": "src/app/commoncomponents/SBSMessageBase.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-17T13:43:46Z",
+      "side": 1,
+      "message": "update comment",
+      "range": {
+        "startLine": 158,
+        "startChar": 31,
+        "endLine": 158,
+        "endChar": 52
+      },
+      "revId": "64d643681ff10f937a108158f07686479320e31e",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
