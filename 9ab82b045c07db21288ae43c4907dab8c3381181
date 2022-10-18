@@ -152,6 +152,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38a2be9d_3033abfd",
+        "filename": "src/libclient/api/conversationmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-18T19:30:04Z",
+      "side": 1,
+      "message": "yeah, and VectorInfo is not right; sounds like it provides info, about a vector",
+      "parentUuid": "5bc8e6ad_c628f94b",
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f66dc25_668c1338",
         "filename": "src/libclient/conversationmodel.cpp",
         "patchSetId": 5
