@@ -1,7 +1,7 @@
 [cmdletbinding()]
 param ([string]$qtver);
 
-$clientDir = split-path -parent $MyInvocation.MyCommand.Definition
+$clientDir = Get-Location
 $qtver = If ($qtver) { $qtver } Else { "5.15.0" }
 $QtDir = "C:\Qt\$qtver\msvc2019_64"
 if (-not(Test-Path -Path $QtDir)) {
