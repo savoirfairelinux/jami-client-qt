@@ -12,7 +12,7 @@
         <translation>Llamada perdida con %1</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="536"/>
+        <location filename="../src/app/calladapter.cpp" line="531"/>
         <source>me</source>
         <translation>yo</translation>
     </message>
@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="178"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>New message</source>
         <translation>Mensaje nuevo</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="232"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
         <source>Trust request</source>
         <translation>Solicitud de confianza</translation>
     </message>
@@ -48,42 +48,42 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="95"/>
+        <location filename="../src/app/currentconversation.cpp" line="98"/>
         <source>Private</source>
         <translation>Privado</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="97"/>
+        <location filename="../src/app/currentconversation.cpp" line="100"/>
         <source>Private group (restricted invites)</source>
         <translation>Grupo privado (invitaciones limitadas)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="99"/>
+        <location filename="../src/app/currentconversation.cpp" line="102"/>
         <source>Private group</source>
         <translation>Grupo privado</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="101"/>
+        <location filename="../src/app/currentconversation.cpp" line="104"/>
         <source>Public group</source>
         <translation>Grupo público</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="172"/>
+        <location filename="../src/app/currentconversation.cpp" line="228"/>
         <source>An error occurred while fetching this repository</source>
         <translation>Ha ocurrido un error al buscar en este repositorio</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="174"/>
+        <location filename="../src/app/currentconversation.cpp" line="230"/>
         <source>The conversation&apos;s mode is un-recognized</source>
         <translation>Modo de conversación desconocido</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="176"/>
+        <location filename="../src/app/currentconversation.cpp" line="232"/>
         <source>An invalid message was detected</source>
         <translation>Se ha detectado un mensaje inválido</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="179"/>
+        <location filename="../src/app/currentconversation.cpp" line="235"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
         <translation>Sin autorización para actualizar la info de la conversación</translation>
     </message>
@@ -3584,9 +3584,14 @@ se conecte para sincronizar la conversación.</translation>
         <translation>Expiró el tiempo de espera al contacto</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="589"/>
-        <source>%1 days ago</source>
-        <translation>Hace %1 días</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="607"/>
+        <source>Today</source>
+        <translation>Hoy</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="609"/>
+        <source>Yesterday</source>
+        <translation>Ayer</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="290"/>
@@ -3599,27 +3604,7 @@ se conecte para sincronizar la conversación.</translation>
         <translation>En curso</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="591"/>
-        <source>one day ago</source>
-        <translation>hace un día</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="594"/>
-        <source>%1 hours ago</source>
-        <translation>Hace %1 horas</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="596"/>
-        <source>one hour ago</source>
-        <translation>hace una hora</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="599"/>
-        <source>%1 minutes ago</source>
-        <translation>Hace %1 minutos</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="600"/>
+        <location filename="../src/app/messagesadapter.cpp" line="598"/>
         <source>just now</source>
         <translation>hace un momento</translation>
     </message>
@@ -3683,132 +3668,132 @@ se conecte para sincronizar la conversación.</translation>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="25"/>
+        <location filename="../src/app/tipsmodel.cpp" line="28"/>
         <source>Customize</source>
         <translation>Personalizar</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="28"/>
+        <location filename="../src/app/tipsmodel.cpp" line="31"/>
         <source>What does Jami mean?</source>
         <translation>¿Qué significa Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="34"/>
+        <location filename="../src/app/tipsmodel.cpp" line="37"/>
         <source>What is the green dot next to my account?</source>
         <translation>¿Qué representa el punto verde al lado de mi cuenta?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="30"/>
+        <location filename="../src/app/tipsmodel.cpp" line="33"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>La elección del nombre Jami está inspirada en la palabra swahili &quot;jamii&quot;, que significa &quot;comunidad&quot; como sustantivo y &quot;juntos&quot; como adjetivo.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="26"/>
+        <location filename="../src/app/tipsmodel.cpp" line="29"/>
         <source>Backup account</source>
         <translation>Crear respaldo de la cuenta</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="36"/>
+        <location filename="../src/app/tipsmodel.cpp" line="39"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>Un punto rojo significa que tu cuenta está desconectada de la red; se pone verde cuando está conectada.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="41"/>
+        <location filename="../src/app/tipsmodel.cpp" line="44"/>
         <source>Why should I back up my account?</source>
         <translation>¿Por qué debería respaldar mi cuenta?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="43"/>
+        <location filename="../src/app/tipsmodel.cpp" line="46"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>Jami es distribuido y tu cuenta sólo se guarda localmente en tu dispositivo. Si perdés tu contraseña o tus datos locales, NO podrás recuperar tu cuenta si previamente no la habías respaldado.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="49"/>
+        <location filename="../src/app/tipsmodel.cpp" line="52"/>
         <source>Can I make a conference call?</source>
         <translation>¿Puedo hacer una videoconferencia?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="54"/>
+        <location filename="../src/app/tipsmodel.cpp" line="57"/>
         <source>Does Jami have group chats?</source>
         <translation>¿Hay conversaciones grupales en Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="55"/>
+        <location filename="../src/app/tipsmodel.cpp" line="58"/>
         <source>In the settings, you can enabled support for groups (experimental)</source>
         <translation>En las configuraciones podés habilitar el soporte para grupos (experimental)</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="58"/>
+        <location filename="../src/app/tipsmodel.cpp" line="61"/>
         <source>What is a Jami account?</source>
         <translation>¿Qué es una cuenta de Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="60"/>
+        <location filename="../src/app/tipsmodel.cpp" line="63"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Una cuenta de Jami es una clave de cifrado asimétrico. Tu cuenta se identifica mediante un ID de Jami, el cual es la huella digital de tu clave pública.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="64"/>
+        <location filename="../src/app/tipsmodel.cpp" line="67"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>¿Qué información necesito dar para crear una cuenta de Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="66"/>
+        <location filename="../src/app/tipsmodel.cpp" line="69"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Cuando creás una nueva cuenta de Jami, no tenés que brindar ningún tipo de información privada como email, dirección o número de teléfono.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="73"/>
+        <location filename="../src/app/tipsmodel.cpp" line="76"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>En Jami tu cuenta se guarda en una carpeta en tu dispositivo. La contraseña sólo se usa para cifrar tu cuenta para protegerte de alguien que tenga acceso físico a tu dispositivo.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="93"/>
+        <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Tu cuenta sólo se guarda en tus dispositivos. Si la borrás de todos los dispositivos, se perderá para siempre y NO podrás recuperarla.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="97"/>
+        <location filename="../src/app/tipsmodel.cpp" line="100"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>¿Puedo usar mi cuenta desde múltiples dispositivos?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="99"/>
+        <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Sí, podés vincular tu cuenta desde las configuraciones o podés importar tu respaldo en otro dispositivo.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="71"/>
+        <location filename="../src/app/tipsmodel.cpp" line="74"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>¿Por qué no necesito usar una contraseña?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="51"/>
+        <location filename="../src/app/tipsmodel.cpp" line="54"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>En una llamada, puede hacer clic en &quot;Agregar participantes&quot; para agregar un contacto.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>¿Por qué no necesito registrar un nombre de usuario?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>El identificador más seguro y permanente es tu ID de Jami, pero como es difícil de usar para algunas personas, también tenés la opción de registrar un nombre de usuario.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="86"/>
+        <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>How can I back up my account?</source>
         <translation>¿Cómo puedo respaldar mi cuenta?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>En Configuración de la cuenta, hay un botón disponible para crear una copia de seguridad de su cuenta.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="91"/>
+        <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>What happens when I delete my account?</source>
         <translation>¿Qué pasa cuando borro mi cuenta?</translation>
     </message>
