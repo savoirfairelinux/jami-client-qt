@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ca326bf_c416cb5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "Nice, last comments about functionnality/clean code, but good work",
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68101bf7_bb845533",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "always same comment ;)\n\nid: loadVideo",
+      "range": {
+        "startLine": 721,
+        "startChar": 60,
+        "endLine": 721,
+        "endChar": 72
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12138046_19d381f0",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "Lot of levels. Ideally I would split this in DocumentFlow/DocumentFlowItemDelegate at least to avoid un-readable content",
+      "range": {
+        "startLine": 823,
+        "startChar": 56,
+        "endLine": 833,
+        "endChar": 21
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e1420e9_3816f01a",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "Ideally, we should use requestId to know if it\u0027s the current research, if so, append to mediaInteractions_ and if empty, set_mediaMessageListModel because the searchConversation will return at the end with messages.length() \u003d\u003d 0 \u0026 requestId from previous request.\n\nBecause on the future, as it\u0027s async, it may return multiple times.",
+      "range": {
+        "startLine": 522,
+        "startChar": 9,
+        "endLine": 523,
+        "endChar": 81
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d140dddd_7a82bbf6",
+        "filename": "src/libclient/api/conversationmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "missing comment",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 18
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2008570_89fa1aee",
+        "filename": "src/libclient/api/conversationmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "add comment for doxygen",
+      "range": {
+        "startLine": 582,
+        "startChar": 9,
+        "endLine": 582,
+        "endChar": 31
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bc8e6ad_c628f94b",
+        "filename": "src/libclient/api/conversationmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "const ref\n\nVectorInfo is not a correct variable name (generally the first letter should not be capitalized)",
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f66dc25_668c1338",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 2421,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "requestId should be matched if it\u0027s a search in progress",
+      "range": {
+        "startLine": 2421,
+        "startChar": 51,
+        "endLine": 2421,
+        "endChar": 60
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1282502_66743202",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3802,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "we should only pass convId, accountId is available in the convModel (as we search in this account)",
+      "range": {
+        "startLine": 3802,
+        "startChar": 19,
+        "endLine": 3802,
+        "endChar": 37
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db492859_87910aa6",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3804,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-18T13:23:02Z",
+      "side": 1,
+      "message": "return, searchConversation is returning a requestId, that should be matched with the signal (because there can be multiple research in parallel)",
+      "range": {
+        "startLine": 3804,
+        "startChar": 1,
+        "endLine": 3804,
+        "endChar": 8
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
