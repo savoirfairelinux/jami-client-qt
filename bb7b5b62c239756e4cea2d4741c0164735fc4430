@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfb8df20_41072833",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-10-18T02:25:12Z",
+      "side": 1,
+      "message": "Previously, $clientDir would contain the directory containing the script, which became problematic since we moved the script into extras/packaging (this broke tx push).  Whereas we want $clientDir to contain the working directory from where the script is run, which is the root of the repo in this case for the client-qt-i18n pipeline.",
+      "revId": "bb7b5b62c239756e4cea2d4741c0164735fc4430",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
