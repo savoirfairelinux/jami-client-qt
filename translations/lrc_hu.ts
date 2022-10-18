@@ -12,7 +12,7 @@
         <translation>Nem fogadott hívás a következővel: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="536"/>
+        <location filename="../src/app/calladapter.cpp" line="531"/>
         <source>me</source>
         <translation>én</translation>
     </message>
@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="178"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>New message</source>
         <translation>Új üzenet</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="232"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
         <source>Trust request</source>
         <translation>Megbízható kérelem</translation>
     </message>
@@ -48,42 +48,42 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="95"/>
+        <location filename="../src/app/currentconversation.cpp" line="98"/>
         <source>Private</source>
         <translation>Magánjellegű</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="97"/>
+        <location filename="../src/app/currentconversation.cpp" line="100"/>
         <source>Private group (restricted invites)</source>
         <translation>Személyes csoport (korlátozott meghívók)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="99"/>
+        <location filename="../src/app/currentconversation.cpp" line="102"/>
         <source>Private group</source>
         <translation>Személyes csoport</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="101"/>
+        <location filename="../src/app/currentconversation.cpp" line="104"/>
         <source>Public group</source>
         <translation>Nyilvános csoport</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="172"/>
+        <location filename="../src/app/currentconversation.cpp" line="228"/>
         <source>An error occurred while fetching this repository</source>
         <translation>Hiba történt az adattár lekérése közben</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="174"/>
+        <location filename="../src/app/currentconversation.cpp" line="230"/>
         <source>The conversation&apos;s mode is un-recognized</source>
         <translation>Felismeretlen beszélgetési mód</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="176"/>
+        <location filename="../src/app/currentconversation.cpp" line="232"/>
         <source>An invalid message was detected</source>
         <translation>Érvénytelen üzenet észlelve</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="179"/>
+        <location filename="../src/app/currentconversation.cpp" line="235"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
         <translation>Nincs jogosultság a beszélgetési adatok frissítésére</translation>
     </message>
@@ -3584,9 +3584,14 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Időtúllépés várt a kapcsolattartásra</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="589"/>
-        <source>%1 days ago</source>
-        <translation>%1 napja</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="607"/>
+        <source>Today</source>
+        <translation>Ma</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="609"/>
+        <source>Yesterday</source>
+        <translation>Tegnap</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="290"/>
@@ -3599,27 +3604,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Folyamatban lévő</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="591"/>
-        <source>one day ago</source>
-        <translation>egy napja</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="594"/>
-        <source>%1 hours ago</source>
-        <translation>%1 órája</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="596"/>
-        <source>one hour ago</source>
-        <translation>egy órája</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="599"/>
-        <source>%1 minutes ago</source>
-        <translation>%1 perce</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="600"/>
+        <location filename="../src/app/messagesadapter.cpp" line="598"/>
         <source>just now</source>
         <translation>most</translation>
     </message>
@@ -3683,132 +3668,132 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="25"/>
+        <location filename="../src/app/tipsmodel.cpp" line="28"/>
         <source>Customize</source>
         <translation>Testreszabás</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="28"/>
+        <location filename="../src/app/tipsmodel.cpp" line="31"/>
         <source>What does Jami mean?</source>
         <translation>Mit jelent a Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="34"/>
+        <location filename="../src/app/tipsmodel.cpp" line="37"/>
         <source>What is the green dot next to my account?</source>
         <translation>Mi a zöld pont a fiókom mellett?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="30"/>
+        <location filename="../src/app/tipsmodel.cpp" line="33"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>A Jami névválasztást a szuahéli jamii szó ihlette, amely főnévként közösséget jelent, határozószóként pedig együtt.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="26"/>
+        <location filename="../src/app/tipsmodel.cpp" line="29"/>
         <source>Backup account</source>
         <translation>Fiók biztonsági mentése</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="36"/>
+        <location filename="../src/app/tipsmodel.cpp" line="39"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>A piros pont azt jelenti, hogy fiókja le van választva a hálózatról, és zöldre vált, amikor csatlakozik</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="41"/>
+        <location filename="../src/app/tipsmodel.cpp" line="44"/>
         <source>Why should I back up my account?</source>
         <translation>Miért szükséges biztonsági másolatot készíteni egy fiókról?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="43"/>
+        <location filename="../src/app/tipsmodel.cpp" line="46"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>A Jami el van osztva, és fiókja csak helyileg tárolódik az eszközén. Ha elveszíti jelszavát vagy helyi fiókadatait, nem tudja visszaállítani fiókját, ha korábban nem készített biztonsági másolatot.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="49"/>
+        <location filename="../src/app/tipsmodel.cpp" line="52"/>
         <source>Can I make a conference call?</source>
         <translation>Indíthatok konferenciahívást?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="54"/>
+        <location filename="../src/app/tipsmodel.cpp" line="57"/>
         <source>Does Jami have group chats?</source>
         <translation>Van Jaminak csoportos csevegése?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="55"/>
+        <location filename="../src/app/tipsmodel.cpp" line="58"/>
         <source>In the settings, you can enabled support for groups (experimental)</source>
         <translation>A rajcsoportok támogatása az Általános beállításokban engedélyezhető (kísérleti)</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="58"/>
+        <location filename="../src/app/tipsmodel.cpp" line="61"/>
         <source>What is a Jami account?</source>
         <translation>Mi az a Jami-fiók?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="60"/>
+        <location filename="../src/app/tipsmodel.cpp" line="63"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>A Jami-fiók egy nyilvános kulcsú titkosítás. A fiókot Jami-azonosító azonosítja, amely a nyilvános kulcs ujjlenyomata.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="64"/>
+        <location filename="../src/app/tipsmodel.cpp" line="67"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Milyen adatokat kell megadni a Jami-fiók létrehozásához?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="66"/>
+        <location filename="../src/app/tipsmodel.cpp" line="69"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Új Jami-fiók létrehozásakor, nem kell olyan személyes adatokat szolgáltatnia, mint cím, telefonszám vagy e-mail-cím.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="73"/>
+        <location filename="../src/app/tipsmodel.cpp" line="76"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>A Jami használatával fiókja az eszközén lévő mappában tárolódik. A jelszót csak fiókja titkosítására használjuk, hogy megvédjük Önt azoktól, akik fizikailag hozzáférnek az eszközéhez.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="93"/>
+        <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Fiókját csak a saját eszközei tárolják. Ha törli fiókját az összes eszközéről, a fiók végleg eltűnik, és nem lehet helyreállítani.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="97"/>
+        <location filename="../src/app/tipsmodel.cpp" line="100"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>Használható egy fiók több eszközön?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="99"/>
+        <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Igen, összekapcsolhatja fiókját a beállításokból, vagy importálhatja a biztonsági mentést egy másik eszközre.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="71"/>
+        <location filename="../src/app/tipsmodel.cpp" line="74"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>Miért nem szükséges jelszót használni?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="51"/>
+        <location filename="../src/app/tipsmodel.cpp" line="54"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>Hívás közben a „Résztvevők hozzáadása” lehetőségre kattintva vehet fel egy kapcsolat a hívásba.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>Miért nem szükséges felhasználónevet regisztrálni?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>A legállandóbb és legbiztonságosabb azonosító a Jami-azonosító, de mivel egyesek számára nehézkes a használata, lehetőség van felhasználónév regisztrálására is.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="86"/>
+        <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>How can I back up my account?</source>
         <translation>Hogyan készíthető biztonsági másolat egy fiókról?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>A fiókbeállításokban elérhető egy gomb a fiók biztonsági másolatának létrehozásához.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="91"/>
+        <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>What happens when I delete my account?</source>
         <translation>Mi történik a fiók törlésekor?</translation>
     </message>

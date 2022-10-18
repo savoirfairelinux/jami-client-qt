@@ -12,7 +12,7 @@
         <translation>Apel pierdut de la %1</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="536"/>
+        <location filename="../src/app/calladapter.cpp" line="531"/>
         <source>me</source>
         <translation>eu</translation>
     </message>
@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="178"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>New message</source>
         <translation>Mesaj nou</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="232"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
         <source>Trust request</source>
         <translation>Cerere de încredere</translation>
     </message>
@@ -56,42 +56,42 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="95"/>
+        <location filename="../src/app/currentconversation.cpp" line="98"/>
         <source>Private</source>
         <translation>Privat</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="97"/>
+        <location filename="../src/app/currentconversation.cpp" line="100"/>
         <source>Private group (restricted invites)</source>
         <translation>Grup privat (invitații limitate)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="99"/>
+        <location filename="../src/app/currentconversation.cpp" line="102"/>
         <source>Private group</source>
         <translation>Grup privat</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="101"/>
+        <location filename="../src/app/currentconversation.cpp" line="104"/>
         <source>Public group</source>
         <translation>Grup public</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="172"/>
+        <location filename="../src/app/currentconversation.cpp" line="228"/>
         <source>An error occurred while fetching this repository</source>
         <translation>A apărut o eroare la obținerea acestui depozit</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="174"/>
+        <location filename="../src/app/currentconversation.cpp" line="230"/>
         <source>The conversation&apos;s mode is un-recognized</source>
         <translation>Tipul conversației nu e recunoscut.</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="176"/>
+        <location filename="../src/app/currentconversation.cpp" line="232"/>
         <source>An invalid message was detected</source>
         <translation>A fost detectat un mesaj greșit</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="179"/>
+        <location filename="../src/app/currentconversation.cpp" line="235"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
         <translation>Autorizații insuficiente pentru actualizarea informațiilor despre conversație</translation>
     </message>
@@ -3197,32 +3197,17 @@ Copiază-l și distribuie-l prietenilor!</translation>
         <translation>Terminat</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="589"/>
-        <source>%1 days ago</source>
-        <translation>acum %1 zile</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="607"/>
+        <source>Today</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="591"/>
-        <source>one day ago</source>
-        <translation>acum o zi</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="609"/>
+        <source>Yesterday</source>
+        <translation>Ieri</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="594"/>
-        <source>%1 hours ago</source>
-        <translation>acum %1 ore</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="596"/>
-        <source>one hour ago</source>
-        <translation>acum o oră</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="599"/>
-        <source>%1 minutes ago</source>
-        <translation>acum %1 minute</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="600"/>
+        <location filename="../src/app/messagesadapter.cpp" line="598"/>
         <source>just now</source>
         <translation>chiar acum</translation>
     </message>
@@ -3699,132 +3684,132 @@ Copiază-l și distribuie-l prietenilor!</translation>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="25"/>
+        <location filename="../src/app/tipsmodel.cpp" line="28"/>
         <source>Customize</source>
         <translation>Personalizează</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="28"/>
+        <location filename="../src/app/tipsmodel.cpp" line="31"/>
         <source>What does Jami mean?</source>
         <translation>Ce înseamnă Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="34"/>
+        <location filename="../src/app/tipsmodel.cpp" line="37"/>
         <source>What is the green dot next to my account?</source>
         <translation>Ce este punctul verde de lângă contul meu?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="30"/>
+        <location filename="../src/app/tipsmodel.cpp" line="33"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>Alegerea numelui Jami a fost inspirată de cuvântul Swahili „jamii”, care înseamnă „comunitate” ca substantiv și „împreună” ca adverb.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="26"/>
+        <location filename="../src/app/tipsmodel.cpp" line="29"/>
         <source>Backup account</source>
         <translation>Fă o copie de rezervă</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="36"/>
+        <location filename="../src/app/tipsmodel.cpp" line="39"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>Un punct roșu înseamnă că acest cont este deconectat de la rețea, iar când este conectat devine verde.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="41"/>
+        <location filename="../src/app/tipsmodel.cpp" line="44"/>
         <source>Why should I back up my account?</source>
         <translation>De ce ar trebui să fac o copie de rezervă a contului meu?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="43"/>
+        <location filename="../src/app/tipsmodel.cpp" line="46"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>Jami este distribuit, iar contul tău este stocat doar la nivel local în aparatul tău. Dacă pierzi parola sau datele locale ale contului, NU vei putea să îți recuperezi contul dacă nu ai făcut înainte o copie de rezervă.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="49"/>
+        <location filename="../src/app/tipsmodel.cpp" line="52"/>
         <source>Can I make a conference call?</source>
         <translation>Pot face o teleconferință?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="54"/>
+        <location filename="../src/app/tipsmodel.cpp" line="57"/>
         <source>Does Jami have group chats?</source>
         <translation>Are Jami discuții în grup?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="55"/>
+        <location filename="../src/app/tipsmodel.cpp" line="58"/>
         <source>In the settings, you can enabled support for groups (experimental)</source>
         <translation>În reglări, poți activa grupurile (experimental)</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="58"/>
+        <location filename="../src/app/tipsmodel.cpp" line="61"/>
         <source>What is a Jami account?</source>
         <translation>Ce este un cont Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="60"/>
+        <location filename="../src/app/tipsmodel.cpp" line="63"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Un cont Jami este o cheie de cifrare asimetrică. Contul tău este identificat de un ID Jami, care este o amprentă a cheii tale publice.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="64"/>
+        <location filename="../src/app/tipsmodel.cpp" line="67"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Ce informații trebuie să furnizez pentru a crea un cont Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="66"/>
+        <location filename="../src/app/tipsmodel.cpp" line="69"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Atunci când creezi un nou cont Jami, nu trebuie să furnizezi nicio informație privată, cum ar fi e-mailul, adresa sau numărul de telefon.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="73"/>
+        <location filename="../src/app/tipsmodel.cpp" line="76"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>Cu Jami, contul tău este stocat într-un dosar din aparatul tău. Parola este utilizată doar pentru a cifra contul tău, pentru a te proteja de cineva care are acces fizic la aparatul tău.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="93"/>
+        <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Contul tău este stocat doar în aparatele tale. Dacă-ți ștergi contul din toate aparatele, contul dispare și NU îl mai poți recupera.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="97"/>
+        <location filename="../src/app/tipsmodel.cpp" line="100"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>Pot să-mi folosesc contul pe mai multe aparate?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="99"/>
+        <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Da, poți asocia contul tău din reglări sau poți importa copia de rezervă din alt aparat.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="71"/>
+        <location filename="../src/app/tipsmodel.cpp" line="74"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>De ce nu trebuie să folosesc o parolă?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="51"/>
+        <location filename="../src/app/tipsmodel.cpp" line="54"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>În timpul unui apel, poți face clic pe „Adaugă participanți” pentru a adăuga un contact la apel.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>De ce nu trebuie să înscriu un nume de utilizator?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>Cel mai sigur identificator este ID-ul Jami, dar, deoarece acesta este dificil de utilizat pentru unele persoane, ai și opțiunea de a înscrie un nume de utilizator.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="86"/>
+        <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>How can I back up my account?</source>
         <translation>Cum pot face o copie de rezervă a contului meu?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>În reglările contului, este disponibil un buton pentru a face o copie de rezervă a contului.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="91"/>
+        <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>What happens when I delete my account?</source>
         <translation>Ce se întâmplă dacă îmi șterg contul?</translation>
     </message>

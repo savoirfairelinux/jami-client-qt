@@ -12,7 +12,7 @@
         <translation>Zgrešen klic: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="536"/>
+        <location filename="../src/app/calladapter.cpp" line="531"/>
         <source>me</source>
         <translation>jaz</translation>
     </message>
@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="178"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>New message</source>
         <translation>Novo sporočilo</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="232"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
         <source>Trust request</source>
         <translation>Zaupaj zahtevku</translation>
     </message>
@@ -48,42 +48,42 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="95"/>
+        <location filename="../src/app/currentconversation.cpp" line="98"/>
         <source>Private</source>
         <translation>Zasebno</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="97"/>
+        <location filename="../src/app/currentconversation.cpp" line="100"/>
         <source>Private group (restricted invites)</source>
         <translation>Zasebna skupina (omejena povabila)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="99"/>
+        <location filename="../src/app/currentconversation.cpp" line="102"/>
         <source>Private group</source>
         <translation>Zasebna skupina</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="101"/>
+        <location filename="../src/app/currentconversation.cpp" line="104"/>
         <source>Public group</source>
         <translation>Javna skupina</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="172"/>
+        <location filename="../src/app/currentconversation.cpp" line="228"/>
         <source>An error occurred while fetching this repository</source>
         <translation>Pri pridobivanju tega skladišča je prišlo do napake</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="174"/>
+        <location filename="../src/app/currentconversation.cpp" line="230"/>
         <source>The conversation&apos;s mode is un-recognized</source>
         <translation>Način pogovora ni prepoznan</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="176"/>
+        <location filename="../src/app/currentconversation.cpp" line="232"/>
         <source>An invalid message was detected</source>
         <translation>Zaznano je neveljavno sporočilo</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="179"/>
+        <location filename="../src/app/currentconversation.cpp" line="235"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
         <translation>Nezadostna overitev za posodobitev podatkov pogovora</translation>
     </message>
@@ -3585,9 +3585,14 @@ poveže, da sinhroniziramo pogovor.</translation>
         <translation>Čas čakanja na stik je pretekel</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="589"/>
-        <source>%1 days ago</source>
-        <translation>Pred %1 dnevi</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="607"/>
+        <source>Today</source>
+        <translation>Danes</translation>
+    </message>
+    <message>
+        <location filename="../src/app/messagesadapter.cpp" line="609"/>
+        <source>Yesterday</source>
+        <translation>Včeraj</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="290"/>
@@ -3600,27 +3605,7 @@ poveže, da sinhroniziramo pogovor.</translation>
         <translation>V teku</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="591"/>
-        <source>one day ago</source>
-        <translation>pred enim dnevom</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="594"/>
-        <source>%1 hours ago</source>
-        <translation>Pred %1 urami</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="596"/>
-        <source>one hour ago</source>
-        <translation>pred eno uro</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="599"/>
-        <source>%1 minutes ago</source>
-        <translation>Pred %1 minutami</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="600"/>
+        <location filename="../src/app/messagesadapter.cpp" line="598"/>
         <source>just now</source>
         <translation>ravnokar</translation>
     </message>
@@ -3684,132 +3669,132 @@ poveže, da sinhroniziramo pogovor.</translation>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="25"/>
+        <location filename="../src/app/tipsmodel.cpp" line="28"/>
         <source>Customize</source>
         <translation>Prilagodi</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="28"/>
+        <location filename="../src/app/tipsmodel.cpp" line="31"/>
         <source>What does Jami mean?</source>
         <translation>Kaj pomeni Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="34"/>
+        <location filename="../src/app/tipsmodel.cpp" line="37"/>
         <source>What is the green dot next to my account?</source>
         <translation>Kaj pomeni zelena pika ob mojem računu?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="30"/>
+        <location filename="../src/app/tipsmodel.cpp" line="33"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>Ime Jami je navdihnila beseda v svahiliju &quot;jamii&quot;, ki pomeni &quot;skupnost&quot; (kot samostalnik) in &quot;skupaj&quot; (kot prislov).</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="26"/>
+        <location filename="../src/app/tipsmodel.cpp" line="29"/>
         <source>Backup account</source>
         <translation>Varnostno kopiranje računa</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="36"/>
+        <location filename="../src/app/tipsmodel.cpp" line="39"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>Rdeča pika pomeni, da vaš račun ni povezan v omrežje; spremeni se v zeleno, ko je povezan.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="41"/>
+        <location filename="../src/app/tipsmodel.cpp" line="44"/>
         <source>Why should I back up my account?</source>
         <translation>Zakaj bi bilo dobro, da varnostno kopiram svoj račun?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="43"/>
+        <location filename="../src/app/tipsmodel.cpp" line="46"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>Jami je porazdeljen in vaš račun je shranjen samo krajevno na vaši napravi. Če izgubite geslo ali podatke vašega krajevnega računa, NE BOSTE mogli obnoviti svojega računa, če ga poprej niste varnostno kopirali.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="49"/>
+        <location filename="../src/app/tipsmodel.cpp" line="52"/>
         <source>Can I make a conference call?</source>
         <translation>Ali lahko opravim konferenčne klice?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="54"/>
+        <location filename="../src/app/tipsmodel.cpp" line="57"/>
         <source>Does Jami have group chats?</source>
         <translation>Ali ima Jami skupinske klepete?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="55"/>
+        <location filename="../src/app/tipsmodel.cpp" line="58"/>
         <source>In the settings, you can enabled support for groups (experimental)</source>
         <translation>V nastavitvah lahko omogočite podporo za skupine (poskusno).</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="58"/>
+        <location filename="../src/app/tipsmodel.cpp" line="61"/>
         <source>What is a Jami account?</source>
         <translation>Kaj je račun Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="60"/>
+        <location filename="../src/app/tipsmodel.cpp" line="63"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Račun Jami je ključ za asimetrično šifriranje. Vaš račun se identificira z ID Jami, ki je prstni odtis vašega javnega ključa.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="64"/>
+        <location filename="../src/app/tipsmodel.cpp" line="67"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Katere podatke moram podati, da ustvarjanje računa Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="66"/>
+        <location filename="../src/app/tipsmodel.cpp" line="69"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Ko ustvarite nov račun Jami, ne rabite podati nobenih zasebnih podatkov, kot so e-naslov, naslov ali telefonska številka.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="73"/>
+        <location filename="../src/app/tipsmodel.cpp" line="76"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>Z Jamijem je vaš račun shranjen v mapi na vaši napravi. Geslo se uporabi samo za šifriranje vašega računa, da vas zaščiti pred nekom, ki ima fizični dostop do vaše naprave.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="93"/>
+        <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Vaš račun se hrani le na vaših lastnih napravah. Če izbrišete račun iz vseh svojih naprav, je račun za vekomaj izginil in ga NE morete obnoviti.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="97"/>
+        <location filename="../src/app/tipsmodel.cpp" line="100"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>Ali lahko uporabljam svoj račun na več napravah?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="99"/>
+        <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Da, svoj račun lahko povežete prek nastavitev ali uvozite svojo varnostno kopijo na drugo napravo.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="71"/>
+        <location filename="../src/app/tipsmodel.cpp" line="74"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>Zakaj ne rabim uporabiti gesla?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="51"/>
+        <location filename="../src/app/tipsmodel.cpp" line="54"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>Sredi klica lahko kliknete &quot;Dodaj udeležence&quot; in tako dodate stik h klicu.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>Zakaj ne rabim registrirati uporabniškega imena?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>Najbolj trajen, varen identifikator je vaš ID za Jami, a ker ta ni preveč prijazen do uporabnikov, imate tudi možnost registrirati uporabniško ime.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="86"/>
+        <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>How can I back up my account?</source>
         <translation>Kako lahko varnostno kopiram svoj račun?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>V Nastavitvah računa je na voljo gumb, s pritiskom katerega varnostno kopirate svoj račun.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="91"/>
+        <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>What happens when I delete my account?</source>
         <translation>Kaj se zgodi, če izbrišem svoj račun?</translation>
     </message>

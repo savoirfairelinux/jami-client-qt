@@ -12,7 +12,7 @@
         <translation>Thirrje e humbur me %1</translation>
     </message>
     <message>
-        <location filename="../src/app/calladapter.cpp" line="536"/>
+        <location filename="../src/app/calladapter.cpp" line="531"/>
         <source>me</source>
         <translation>unë</translation>
     </message>
@@ -35,12 +35,12 @@
 <context>
     <name>ConversationsAdapter</name>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="178"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="183"/>
         <source>New message</source>
         <translation>Mesazh i ri</translation>
     </message>
     <message>
-        <location filename="../src/app/conversationsadapter.cpp" line="232"/>
+        <location filename="../src/app/conversationsadapter.cpp" line="242"/>
         <source>Trust request</source>
         <translation>Kërkesë besueshmërie</translation>
     </message>
@@ -56,42 +56,42 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="95"/>
+        <location filename="../src/app/currentconversation.cpp" line="98"/>
         <source>Private</source>
         <translation>Privat</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="97"/>
+        <location filename="../src/app/currentconversation.cpp" line="100"/>
         <source>Private group (restricted invites)</source>
         <translation>Grup privat (kufizim ftesash)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="99"/>
+        <location filename="../src/app/currentconversation.cpp" line="102"/>
         <source>Private group</source>
         <translation>Grup privat</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="101"/>
+        <location filename="../src/app/currentconversation.cpp" line="104"/>
         <source>Public group</source>
         <translation>Grup publik</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="172"/>
+        <location filename="../src/app/currentconversation.cpp" line="228"/>
         <source>An error occurred while fetching this repository</source>
         <translation>Ndodhi një gabim, kur sillej kjo depo</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="174"/>
+        <location filename="../src/app/currentconversation.cpp" line="230"/>
         <source>The conversation&apos;s mode is un-recognized</source>
         <translation>Mënyra e bisedës është e panjohur</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="176"/>
+        <location filename="../src/app/currentconversation.cpp" line="232"/>
         <source>An invalid message was detected</source>
         <translation>U pikas një mesazh i pavlefshëm</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="179"/>
+        <location filename="../src/app/currentconversation.cpp" line="235"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
         <translation>Pa autorizim të mjaftueshëm për përditësim hollësish bisede</translation>
     </message>
@@ -3198,32 +3198,17 @@ Kopjojeni dhe jepuani shokëve!</translation>
         <translation>Përfundoi</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="589"/>
-        <source>%1 days ago</source>
-        <translation>%1 ditë më parë</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="607"/>
+        <source>Today</source>
+        <translation>Sot</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="591"/>
-        <source>one day ago</source>
-        <translation>një ditë më parë</translation>
+        <location filename="../src/app/messagesadapter.cpp" line="609"/>
+        <source>Yesterday</source>
+        <translation>Dje</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="594"/>
-        <source>%1 hours ago</source>
-        <translation>%1 orë më parë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="596"/>
-        <source>one hour ago</source>
-        <translation>një orë më parë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="599"/>
-        <source>%1 minutes ago</source>
-        <translation>%1 minuta më parë</translation>
-    </message>
-    <message>
-        <location filename="../src/app/messagesadapter.cpp" line="600"/>
+        <location filename="../src/app/messagesadapter.cpp" line="598"/>
         <source>just now</source>
         <translation>mu tani</translation>
     </message>
@@ -3700,132 +3685,132 @@ Kopjojeni dhe jepuani shokëve!</translation>
 <context>
     <name>TipsModel</name>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="25"/>
+        <location filename="../src/app/tipsmodel.cpp" line="28"/>
         <source>Customize</source>
         <translation>Përshtateni</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="28"/>
+        <location filename="../src/app/tipsmodel.cpp" line="31"/>
         <source>What does Jami mean?</source>
         <translation>Ç’do të thotë Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="34"/>
+        <location filename="../src/app/tipsmodel.cpp" line="37"/>
         <source>What is the green dot next to my account?</source>
         <translation>Ç’nënkupton pika e gjelbër në krah të llogarisë time?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="30"/>
+        <location filename="../src/app/tipsmodel.cpp" line="33"/>
         <source>The choice of the name Jami was inspired by the Swahili word &apos;jamii&apos;, which means &apos;community&apos; as a noun and &apos;together&apos; as an adverb.</source>
         <translation>Zgjedhja e emrit Jami u frymëzua nga fjala “jamii” e suahilishtes, që, si emër, do të thotë “bashkësi” dhe si ndajfolje do të thotë “tok”.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="26"/>
+        <location filename="../src/app/tipsmodel.cpp" line="29"/>
         <source>Backup account</source>
         <translation>Kopjeruaje llogarinë</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="36"/>
+        <location filename="../src/app/tipsmodel.cpp" line="39"/>
         <source>A red dot means that your account is disconnected from the network; it turns green when it&apos;s connected.</source>
         <translation>Një topth i kuq do të thotë se llogaria juaj është shkëputur nga rrjeti; bëhet i gjelbër, kur ajo lidhet.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="41"/>
+        <location filename="../src/app/tipsmodel.cpp" line="44"/>
         <source>Why should I back up my account?</source>
         <translation>Pse duhet ta kopjeruaj llogarinë time?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="43"/>
+        <location filename="../src/app/tipsmodel.cpp" line="46"/>
         <source>Jami is distributed and your account is only stored locally on your device. If you lose your password or your local account data, you WILL NOT be able to recover your account if you did not back it up earlier.</source>
         <translation>Jami është platformë e shpërndarë dhe llogaria juaj depozitohet lokalisht vetëm në pajisjen tuaj. Nëse humbni fjalëkalimin tuaj, ose të dhënat vendore të llogarisë tuaj, NUK do të jeni në gjendje të ringjallni llogarinë tuaj, nëse nuk e keni kopjeruajtur më herët.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="49"/>
+        <location filename="../src/app/tipsmodel.cpp" line="52"/>
         <source>Can I make a conference call?</source>
         <translation>A mund të bëj thirrje konferencë?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="54"/>
+        <location filename="../src/app/tipsmodel.cpp" line="57"/>
         <source>Does Jami have group chats?</source>
         <translation>A ka fjalosje në grup Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="55"/>
+        <location filename="../src/app/tipsmodel.cpp" line="58"/>
         <source>In the settings, you can enabled support for groups (experimental)</source>
         <translation>Te rregullimet, mund të aktivizoni mbulim për grupe (eksperimentale)</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="58"/>
+        <location filename="../src/app/tipsmodel.cpp" line="61"/>
         <source>What is a Jami account?</source>
         <translation>Ç’është një llogari Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="60"/>
+        <location filename="../src/app/tipsmodel.cpp" line="63"/>
         <source>A Jami account is an asymmetric encryption key. Your account is identified by a Jami ID, which is a fingerprint of your public key.</source>
         <translation>Një llogari Jami është një kyç asimetrik fshehtëzimi. Llogaria juaj identifikohet nga një ID Jami që është shenjë gishti e kyçit tuaj publik.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="64"/>
+        <location filename="../src/app/tipsmodel.cpp" line="67"/>
         <source>What information do I need to provide to create a Jami account?</source>
         <translation>Ç’hollësi duhet të jap për të krijuar një llogari Jami?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="66"/>
+        <location filename="../src/app/tipsmodel.cpp" line="69"/>
         <source>When you create a new Jami account, you do not have to provide any private information like an email, address, or phone number.</source>
         <translation>Kur krijoni një llogari të re Jami, nuk ju duhet të jepni ndonjë hollësi private, bie fjala, një email, adresë, apo numër telefoni.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="73"/>
+        <location filename="../src/app/tipsmodel.cpp" line="76"/>
         <source>With Jami, your account is stored in a directory on your device. The password is only used to encrypt your account in order to protect you from someone who has physical access to your device.</source>
         <translation>Me Jami-n, llogaria juaj depozitohet në një drejtori në pajisjen tuaj. Fjalëkalimi përdoret vetëm për të fshehtëzuar llogarinë tuaj, me qëllim mbrojtjen tuaj nga dikush që ka shtënë në dorë pajisjen tuaj.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="93"/>
+        <location filename="../src/app/tipsmodel.cpp" line="96"/>
         <source>Your account is only stored on your own devices. If you delete your account from all of your devices, the account is gone forever and you CANNOT recover it.</source>
         <translation>Llogaria juaj depozitohet lokalisht vetëm në pajisjen tuaj. Nëse fshini llogarinë tuaj nga krejt pajisjet tuaja, llogaria ikën përgjithmonë dhe NUK mund ta ringjallni.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="97"/>
+        <location filename="../src/app/tipsmodel.cpp" line="100"/>
         <source>Can I use my account on multiple devices?</source>
         <translation>A mund ta përdor llogarinë time në pajisje të shumta?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="99"/>
+        <location filename="../src/app/tipsmodel.cpp" line="102"/>
         <source>Yes, you can link your account from the settings, or you can import your backup on another device.</source>
         <translation>Po, mund ta lidhni llogarinë tuaj që nga rregullimet, ose mund të importoni kopjeruajtjen tuaj në një pajisje tjetër.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="71"/>
+        <location filename="../src/app/tipsmodel.cpp" line="74"/>
         <source>Why don&apos;t I have to use a password?</source>
         <translation>Pse s’më duhet të përdor një fjalëkalim?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="51"/>
+        <location filename="../src/app/tipsmodel.cpp" line="54"/>
         <source>In a call, you can click on &quot;Add participants&quot; to add a contact to a call.</source>
         <translation>Gjatë një thirrjeje, mund të klikoni mbi “Shtoni pjesëmarrës”, që të shtoni një kontakt te thirrja.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="79"/>
+        <location filename="../src/app/tipsmodel.cpp" line="82"/>
         <source>Why don&apos;t I have to register a username?</source>
         <translation>Pse më duhet të regjistroj një emër përdoruesi?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="81"/>
+        <location filename="../src/app/tipsmodel.cpp" line="84"/>
         <source>The most permanent, secure identifier is your Jami ID, but since these are difficult to use for some people, you also have the option of registering a username.</source>
         <translation>Identifikuesi më i qëndrueshëm, më i sigurt është ID-ja juaj Jami, por ngaqë këto janë të vështira për t’u përdorur nga disa persona, keni gjithashtu mundësinë e regjistrimit të një emri përdoruesi.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="86"/>
+        <location filename="../src/app/tipsmodel.cpp" line="89"/>
         <source>How can I back up my account?</source>
         <translation>Si mund ta kopjeruaj llogarinë time?</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="87"/>
+        <location filename="../src/app/tipsmodel.cpp" line="90"/>
         <source>In Account Settings, a button is available to create a backup your account.</source>
         <translation>Te Rregullime Llogarie ka një buton për të krijuar një kopjeruajtje të llogarisë tuaj.</translation>
     </message>
     <message>
-        <location filename="../src/app/tipsmodel.cpp" line="91"/>
+        <location filename="../src/app/tipsmodel.cpp" line="94"/>
         <source>What happens when I delete my account?</source>
         <translation>Ç’ndodh nëse fshij llogariën time?</translation>
     </message>
