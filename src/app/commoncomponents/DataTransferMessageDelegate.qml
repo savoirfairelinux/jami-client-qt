@@ -342,7 +342,7 @@ Loader {
                             sourceSize.width: width
                             sourceSize.height: height
                             source: "file:///" + Body
-                            property real aspectRatio: width / implicitHeight
+                            property real aspectRatio: implicitWidth / implicitHeight
                             property real adjustedWidth: Math.min(maxSize,
                                                                   Math.max(minSize,
                                                                            innerContent.width - senderMargin))
