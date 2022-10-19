@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64f8483f_e36eaa78",
+        "filename": "INSTALL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 610
+      },
+      "writtenOn": "2022-10-19T18:09:35Z",
+      "side": 1,
+      "message": "And on Debian on WSL2 I had to manually install the `patch` utility.",
+      "parentUuid": "c2efde27_4853613e",
+      "range": {
+        "startLine": 143,
+        "startChar": 10,
+        "endLine": 143,
+        "endChar": 13
+      },
+      "revId": "d182dbba4ea787be0983d853ee303d2514bd9c07",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "068a4998_3137a823",
         "filename": "INSTALL.md",
         "patchSetId": 1
