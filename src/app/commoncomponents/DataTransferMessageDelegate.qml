@@ -268,14 +268,17 @@ Loader {
                             return imageComp
                         if (mediaInfo.isAnimatedImage)
                             return animatedImageComp
-                        return avComp
+                        else
+                            return avComp
                     }
                     Component {
                         id: avComp
                         Loader {
                             Component.onCompleted: {
-                                var qml = WITH_WEBENGINE ? "qrc:/src/app/commoncomponents/MediaPreviewBase.qml" : "qrc:/src/app/nowebengine/MediaPreviewBase.qml"
-                                setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
+                                var qml = WITH_WEBENGINE ?
+                                            "qrc:/src/app/commoncomponents/MediaPreviewBase.qml" :
+                                            "qrc:/src/app/nowebengine/MediaPreviewBase.qml"
+                                setSource(qml, { isVideo: mediaInfo.isVideo, html: mediaInfo.html } )
                             }
                         }
                     }
@@ -329,23 +332,31 @@ Loader {
                         Image {
                             id: img
                             anchors.right: isOutgoing ? parent.right : undefined
-                            property real minSize: 192
-                            property real maxSize: 256
                             cache: true
-                            fillMode: Image.PreserveAspectCrop
+                            fillMode: Image.PreserveAspectFit
                             mipmap: true
                             antialiasing: true
                             autoTransform: true
                             asynchronous: true
-                            sourceSize.width: width
-                            sourceSize.height: height
-                            source: "file:///" + Body
-                            property real aspectRatio: implicitWidth / implicitHeight
-                            property real adjustedWidth: Math.min(maxSize,
-                                                                  Math.max(minSize,
-                                                                           innerContent.width - senderMargin))
-                            width: adjustedWidth
-                            height: Math.ceil(adjustedWidth / aspectRatio)
+                            source: Body !== undefined ? "file:///" + Body : ''
+
+                            // The sourceSize represents the maximum source dimensions.
+                            // This should not be a dynamic binding, as property changes
+                            // (resizing the chat view) here will trigger a reload of the image.
+                            sourceSize: Qt.size(256, 256)
+
+                            // Now we setup bindings for the destination image component size.
+                            // This based on the width available (width of the chat view), and
+                            // a restriction on the height.
+                            readonly property real aspectRatio: paintedWidth / paintedHeight
+                            readonly property real idealWidth: innerContent.width - senderMargin
+                            onStatusChanged: {
+                                if (status == Image.Ready && aspectRatio) {
+                                    height = Qt.binding(() => JamiQmlUtils.clamp(idealWidth / aspectRatio, 64, 256))
+                                    width = Qt.binding(() => height * aspectRatio)
+                                }
+                            }
+
                             Rectangle {
                                 color: JamiTheme.previewImageBackgroundColor
                                 z: -1
