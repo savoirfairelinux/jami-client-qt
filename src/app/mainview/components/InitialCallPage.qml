@@ -56,15 +56,14 @@ Rectangle {
         Timer {
             id: controlPreview
             property bool startVideo
-            interval: 1000;
-            running: false;
-            repeat: false
+            interval: 1000
             onTriggered: {
-                var rendId = visible && start ? VideoDevices.getDefaultDevice() : ""
+                var rendId = visible && startVideo ? VideoDevices.getDefaultDevice() : ""
                 previewRenderer.startWithId(rendId)
             }
         }
         onVisibleChanged: {
+            controlPreview.stop()
             if (visible) {
                 controlPreview.startVideo = true
                 controlPreview.interval = 1000

@@ -211,14 +211,13 @@ Rectangle {
                     id: controlPreview
                     property bool startVideo
                     interval: 1000
-                    running: false
-                    repeat: false
                     onTriggered: {
-                        var rendId = visible && start ? root.callPreviewId : ""
+                        var rendId = visible && startVideo ? root.callPreviewId : ""
                         previewRenderer.startWithId(rendId)
                     }
                 }
                 onVisibleChanged: {
+                    controlPreview.stop()
                     if (visible) {
                         controlPreview.startVideo = true
                         controlPreview.interval = 1000

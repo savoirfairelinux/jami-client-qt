@@ -162,14 +162,14 @@ Window {
 
                             Component.onDestruction: {
                                 if (rendererId !== "" && rendererId !== currentPreview) {
-                                    VideoDevices.stopDevice(rendererId, true)
+                                    VideoDevices.stopDevice(rendererId)
                                 }
                             }
                             Component.onCompleted: {
                                 if (visible) {
                                     const rId = AvAdapter.getSharingResource(index, "")
                                     if (rId !== "") {
-                                        rendererId = VideoDevices.startDevice(rId, true)
+                                        rendererId = VideoDevices.startDevice(rId)
                                     }
                                 }
                             }
@@ -234,14 +234,14 @@ Window {
 
                         Component.onDestruction: {
                             if (rendererId !== "" && rendererId !== currentPreview) {
-                                VideoDevices.stopDevice(rendererId, true)
+                                VideoDevices.stopDevice(rendererId)
                             }
                         }
                         Component.onCompleted: {
                             if (visible) {
                                 const rId = AvAdapter.getSharingResource(-1, "")
                                 if (rId !== "") {
-                                    rendererId = VideoDevices.startDevice(rId, true)
+                                    rendererId = VideoDevices.startDevice(rId)
                                 }
                             }
                         }
@@ -314,14 +314,14 @@ Window {
 
                             Component.onDestruction: {
                                 if (rendererId !== "" && rendererId !== currentPreview) {
-                                    VideoDevices.stopDevice(rendererId, true)
+                                    VideoDevices.stopDevice(rendererId)
                                 }
                             }
                             Component.onCompleted: {
                                 if (visible) {
                                     const rId = AvAdapter.getSharingResource(-2, AvAdapter.windowsIds[index - Qt.application.screens.length])
                                     if (rId !== "") {
-                                        rendererId = VideoDevices.startDevice(rId, true)
+                                        rendererId = VideoDevices.startDevice(rId)
                                     }
                                 }
                             }
