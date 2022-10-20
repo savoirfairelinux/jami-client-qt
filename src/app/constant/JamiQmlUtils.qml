@@ -76,4 +76,8 @@ Item {
 
         return Qt.size(globalTextMetrics.contentWidth, globalTextMetrics.contentHeight)
     }
+
+    function clamp(val, min, max) {
+        return Math.min(Math.max(val, min), max)
+    }
 }
