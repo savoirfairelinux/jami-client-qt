@@ -885,7 +885,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
         auto convId = uid;
 
         auto participant = peers.front();
-        bool isTemporary = participant == convId;
+        bool isTemporary = convId == participant || convId == "SEARCHSIP";
         auto contactInfo = linked.owner.contactModel->getContact(participant);
         auto uri = contactInfo.profileInfo.uri;
 
@@ -928,7 +928,7 @@ ConversationModelPimpl::placeCall(const QString& uid, bool isAudioOnly)
                                   &ConversationModel::conversationReady,
                                   [cb, connection, convId](QString conversationId,
                                                            QString participantId) {
-                                      if (participantId != convId) {
+                                      if (participantId != convId && convId != "SEARCHSIP") {
                                           return;
                                       }
                                       cb(conversationId);
@@ -1167,7 +1167,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
         }
         auto convId = uid;
         auto& peerId = peers.front();
-        bool isTemporary = peerId == convId;
+        bool isTemporary = peerId == convId || convId == "SEARCHSIP";
 
         auto cb = ([this, isTemporary, body, &conversation, parentId, convId](
                        QString conversationId) {
@@ -1252,7 +1252,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
                                   &ConversationModel::conversationReady,
                                   [cb, connection, convId](QString conversationId,
                                                            QString participantId) {
-                                      if (participantId != convId) {
+                                      if (participantId != convId && convId != "SEARCHSIP") {
                                           return;
                                       }
                                       cb(conversationId);
@@ -2969,7 +2969,12 @@ ConversationModelPimpl::slotContactModelUpdated(const QString& uri)
     auto users = linked.owner.contactModel->getSearchResults();
     for (auto& user : users) {
         conversation::Info conversationInfo;
-        conversationInfo.uid = user.profileInfo.uri;
+        // For SIP, we always got one search result, so "" is ok as there is no empty uri
+        // For Jami accounts, the nameserver can return several results, so we use the uniqueness of
+        // the id as id for a temporary conversation.
+        conversationInfo.uid = linked.owner.profileInfo.type == profile::Type::SIP
+                                   ? "SEARCHSIP"
+                                   : user.profileInfo.uri;
         conversationInfo.participants.append(
             member::Member {user.profileInfo.uri, member::Role::MEMBER});
         conversationInfo.accountId = linked.owner.id;
@@ -3708,7 +3713,7 @@ ConversationModel::sendFile(const QString& convUid, const QString& path, const Q
          conversationReady callback could be updated to ONE_TO_ONE. We still use conversationReady
          callback for one_to_one conversation to check if contact is blocked*/
         const auto peerId = peers.front();
-        bool isTemporary = peerId == convUid;
+        bool isTemporary = peerId == convUid || convUid == "SEARCHSIP";
 
         /* It is necessary to make a copy of convUid since it may very well point to
          a field in the temporary conversation, which is going to be destroyed by

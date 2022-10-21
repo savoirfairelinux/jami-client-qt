@@ -80,7 +80,8 @@ CurrentConversation::updateData()
             // is consistently determined by the peer's uri being equal to
             // the conversation id.
             auto members = accInfo.conversationModel->peersForConversation(convId);
-            set_isTemporary(isCoreDialog_ ? convId == members.at(0) : false);
+            set_isTemporary(isCoreDialog_ ? (convId == members.at(0) || convId == "SEARCHSIP")
+                                          : false);
 
             auto isContact {false};
             if (isCoreDialog_)
