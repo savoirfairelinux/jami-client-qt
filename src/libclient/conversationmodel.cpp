@@ -2312,9 +2312,11 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
 
     try {
         auto& conversation = getConversationForUid(conversationId).get();
-        QString oldLast; // Used to detect loading loops just in case.
-        if (conversation.interactions->size() != 0)
+        QString oldLast, oldBegin; // Used to detect loading loops just in case.
+        if (conversation.interactions->size() != 0) {
+            oldBegin = conversation.interactions->begin()->first;
             oldLast = conversation.interactions->rbegin()->first;
+        }
         for (const auto& message : messages) {
             if (message["type"].isEmpty()) {
                 continue;
@@ -2362,21 +2364,19 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             }
         }
 
-        for (int j = conversation.interactions->size() - 1; j >= 0; j--) {
-            if (conversation.interactions->atIndex(j).second.type != interaction::Type::MERGE) {
-                conversation.lastMessageUid = conversation.interactions->atIndex(j).first;
-                break;
-            }
-        }
+        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         if (conversation.lastMessageUid.isEmpty() && !conversation.allMessagesLoaded
             && messages.size() != 0) {
             if (conversation.interactions->size() > 0) {
-                QString newLast;
-                if (conversation.interactions->size() > 0)
+                QString newLast, newBegin;
+                if (conversation.interactions->size() > 0) {
+                    newBegin = conversation.interactions->begin()->first;
                     newLast = conversation.interactions->rbegin()->first;
-                if (newLast == oldLast && !newLast.isEmpty()) { // [[unlikely]] in c++20
-                    qCritical() << "Loading loop detected for " << conversationId << "(" << newLast
-                                << ")";
+                }
+                if (newLast == oldLast && !newLast.isEmpty() && newBegin == oldBegin
+                    && !newBegin.isEmpty()) { // [[unlikely]] in c++20
+                    qCritical() << "Loading loop detected for " << conversationId << "(" << newBegin
+                                << " ; " << newLast << ")";
                     return;
                 }
             }
@@ -2473,7 +2473,7 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             invalidateModel();
             return;
         }
-        conversation.lastMessageUid = msgId;
+        conversation.lastMessageUid = conversation.interactions->lastMessageUid();
         invalidateModel();
         if (!interaction::isOutgoing(msg)) {
             Q_EMIT behaviorController.newUnreadInteraction(linked.owner.id,

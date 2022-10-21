@@ -541,4 +541,16 @@ MessageListModel::emitDataChanged(const QString& msgId, VectorInt roles)
     Q_EMIT dataChanged(modelIndex, modelIndex, roles);
 }
 
+QString
+MessageListModel::lastMessageUid() const
+{
+    for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
+        auto lastType = it->second.type;
+        if (lastType != interaction::Type::MERGE and !it->second.body.isEmpty()) {
+            return it->first;
+        }
+    }
+    return {};
+}
+
 } // namespace lrc

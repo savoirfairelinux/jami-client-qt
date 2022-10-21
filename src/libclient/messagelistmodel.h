@@ -130,6 +130,8 @@ public:
 
     Q_SIGNAL void timestampUpdate();
 
+    QString lastMessageUid() const;
+
 protected:
     using Role = MessageList::Role;
 
