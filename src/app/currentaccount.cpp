@@ -141,6 +141,7 @@ CurrentAccount::updateData()
         set_verifyServerTLS(accConfig.TLS.verifyServer, true);
         set_verifyClientTLS(accConfig.TLS.verifyClient, true);
         set_requireClientCertificateTLS(accConfig.TLS.requireClientCertificate, true);
+        set_disableSecureDlgCheckTLS(accConfig.TLS.disableSecureDlgCheck, true);
         set_certificateListFileTLS(accConfig.TLS.certificateListFile, true);
         set_certificateFileTLS(accConfig.TLS.certificateFile, true);
         set_privateKeyFileTLS(accConfig.TLS.privateKeyFile, true);

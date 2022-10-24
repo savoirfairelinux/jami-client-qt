@@ -115,6 +115,7 @@ Item {
     property string verifyCertificatesServer: qsTr("Verify certificates for incoming TLS connections")
     property string verifyCertificatesClient: qsTr("Verify server TLS certificates")
     property string tlsRequireConnections: qsTr("Require certificate for incoming TLS connections")
+    property string disableSecureDlgCheck: qsTr("Disable secure dialog check for incoming TLS data")
     property string tlsProtocol: qsTr("TLS protocol method")
     property string audioDeviceSelector: qsTr("Audio input device selector")
     property string tlsServerName: qsTr("TLS server name")
