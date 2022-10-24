@@ -83,6 +83,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1be46ea_f930a3c7",
+        "filename": "src/app/commoncomponents/EditedPopup.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-24T19:26:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6b0bee9e_97fc7f9d",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 9
+      },
+      "revId": "13d12b4d6a9c150224f85b17211f9ec9f0f16d9c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a6e3367_9932fb3b",
