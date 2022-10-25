@@ -168,6 +168,26 @@ AVModel::~AVModel()
     }
 }
 
+void
+AVModel::updateRenderersInfo()
+{
+    QVariantList renderersInfoList;
+
+    for (auto r = pimpl_->renderers_.begin(); r != pimpl_->renderers_.end(); r++) {
+        try {
+            QVariantMap qmap;
+            auto& rend = r->second;
+            MapStringString mapInfo = rend->getInfos();
+            qmap.insert(rend->RES, mapInfo["RES"]);
+            qmap.insert(rend->ID, mapInfo["ID"]);
+            qmap.insert(rend->FPS, mapInfo["FPS"]);
+            renderersInfoList.append(qmap);
+        } catch (...) {
+        }
+    }
+    Q_EMIT sendRendererInformation(renderersInfoList);
+}
+
 bool
 AVModel::getDecodingAccelerated() const
 {
@@ -197,7 +217,7 @@ AVModel::setEncodingAccelerated(bool accelerate)
 bool
 AVModel::getHardwareAcceleration() const
 {
-    bool result = getDecodingAccelerated() & getEncodingAccelerated();
+    bool result = getDecodingAccelerated() && getEncodingAccelerated();
     return result;
 }
 void
@@ -825,6 +845,12 @@ void
 AVModelPimpl::addRenderer(const QString& id, const QSize& res, const QString& shmPath)
 {
     auto connectRenderer = [this](Renderer* renderer, const QString& id) {
+        connect(
+            renderer,
+            &Renderer::fpsChanged,
+            this,
+            [this, id](void) { Q_EMIT linked_.updateRenderersInfo(); },
+            Qt::DirectConnection);
         connect(
             renderer,
             &Renderer::started,

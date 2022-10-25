@@ -516,16 +516,6 @@ public Q_SLOTS: // METHODS
                                      mute);
     }
 
-    void startSmartInfo(int refresh)
-    {
-        DRing::startSmartInfo(refresh);
-    }
-
-    void stopSmartInfo()
-    {
-        DRing::stopSmartInfo();
-    }
-
     void setConferenceLayout(const QString& accountId, const QString& confId, int layout)
     {
         DRing::setConferenceLayout(accountId.toStdString(), confId.toStdString(), layout);
