@@ -122,6 +122,8 @@ class CallModelPimpl : public QObject
 {
     Q_OBJECT
 public:
+    QVariantList CallAdvancedInformation();
+
     CallModelPimpl(const CallModel& linked,
                    Lrc& lrc,
                    const CallbacksHandler& callbacksHandler,
@@ -253,6 +255,10 @@ public Q_SLOTS:
      * @param state the new state
      */
     void remoteRecordingChanged(const QString& callId, const QString& peerNumber, bool state);
+
+private:
+    constexpr static const char HARDWARE_ACCELERATION[] = "HARDWARE_ACCELERATION";
+    constexpr static const char CALL_ID[] = "CALL_ID";
 };
 
 CallModel::CallModel(const account::Info& owner,
@@ -395,6 +401,12 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
     pimpl_->calls.emplace(callId, std::move(callInfo));
 
     return callId;
+}
+
+QList<QVariant>
+CallModel::getAdvancedInformation()
+{
+    return pimpl_->CallAdvancedInformation();
 }
 
 void
@@ -949,6 +961,29 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
 }
 
 CallModelPimpl::~CallModelPimpl() {}
+
+QVariantList
+CallModelPimpl::CallAdvancedInformation()
+{
+    QVariantList advancedInformationList;
+
+    auto callList = CallManager::instance().getCallList(linked.owner.id);
+    for (const auto& callId : callList) {
+        QVariantMap detailsList;
+        auto detaillisttoconvert = CallManager::instance().getCallDetails(linked.owner.id, callId);
+        for (auto i = detaillisttoconvert.begin(); i != detaillisttoconvert.end(); i++) {
+            detailsList.insert(i.key(), i.value());
+        }
+        detailsList.insert(CALL_ID, callId);
+
+        bool hardwareAcceleration = lrc.getAVModel().getHardwareAcceleration();
+        detailsList.insert(HARDWARE_ACCELERATION, hardwareAcceleration);
+
+        advancedInformationList.append(detailsList);
+    }
+
+    return advancedInformationList;
+}
 
 void
 CallModelPimpl::initCallFromDaemon()
