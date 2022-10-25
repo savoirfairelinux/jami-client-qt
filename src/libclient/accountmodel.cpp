@@ -896,8 +896,6 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.TLS.verifyClient = toBool(details[ConfProperties::TLS::VERIFY_CLIENT]);
     confProperties.TLS.requireClientCertificate = toBool(
         details[ConfProperties::TLS::REQUIRE_CLIENT_CERTIFICATE]);
-    confProperties.TLS.disableSecureDlgCheck = toBool(
-        details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK]);
     confProperties.TLS.negotiationTimeoutSec = toInt(
         details[ConfProperties::TLS::NEGOTIATION_TIMEOUT_SEC]);
     // DHT
@@ -1020,8 +1018,6 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::TLS::VERIFY_CLIENT] = toQString(this->TLS.verifyClient);
     details[ConfProperties::TLS::REQUIRE_CLIENT_CERTIFICATE] = toQString(
         this->TLS.requireClientCertificate);
-    details[ConfProperties::TLS::DISABLE_SECURE_DLG_CHECK] = toQString(
-        this->TLS.disableSecureDlgCheck);
     details[ConfProperties::TLS::NEGOTIATION_TIMEOUT_SEC] = toQString(
         this->TLS.negotiationTimeoutSec);
     // DHT
