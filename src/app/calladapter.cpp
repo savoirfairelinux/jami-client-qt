@@ -41,6 +41,9 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
 {
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &CallAdapter::updateAdvancedInformation);
+
     participantsModel_.reset(new CallParticipantsModel(lrcInstance_, this));
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_MODELS, participantsModel_.get(), "CallParticipantsModel");
 
@@ -93,6 +96,22 @@ CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject*
             &LRCInstance::selectedConvUidChanged,
             this,
             &CallAdapter::saveConferenceSubcalls);
+}
+
+void
+CallAdapter::startTimerInformation()
+{
+    updateAdvancedInformation();
+    timer->start(1000);
+}
+
+void
+CallAdapter::stopTimerInformation()
+{
+    try {
+        timer->stop();
+    } catch (...) {
+    }
 }
 
 void
@@ -1145,6 +1164,18 @@ CallAdapter::getCallDurationTime(const QString& accountId, const QString& convUi
     }
 
     return QString();
+}
+
+void
+CallAdapter::updateAdvancedInformation()
+{
+    try {
+        auto& callModel = lrcInstance_->accountModel().getAccountInfo(accountId_).callModel;
+        if (callModel)
+            set_callInformation(QVariantList::fromList(callModel->getAdvancedInformation()));
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
+    }
 }
 
 void

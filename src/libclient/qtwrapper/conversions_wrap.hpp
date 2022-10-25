@@ -43,6 +43,16 @@
 #define LOG_LIBJAMI_SIGNAL4(name, arg, arg2, arg3, arg4)
 #endif
 
+inline QVariantMap
+mapStringStringToQVariantMap(const MapStringString& map)
+{
+    QVariantMap convertedMap;
+    for (auto i = map.begin(); i != map.end(); i++) {
+        convertedMap.insert(i.key(), i.value());
+    }
+    return convertedMap;
+}
+
 inline MapStringString
 convertMap(const std::map<std::string, std::string>& m)
 {

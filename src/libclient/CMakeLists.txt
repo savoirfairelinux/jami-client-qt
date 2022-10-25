@@ -278,7 +278,6 @@ set(LIBCLIENT_SOURCES
   avmodel.cpp
   pluginmodel.cpp
   namedirectory.cpp
-  smartinfohub.cpp
   renderer.cpp)
 
 set(LIBCLIENT_HEADERS
@@ -286,7 +285,6 @@ set(LIBCLIENT_HEADERS
   globalinstances.h
   pixmapmanipulatordefault.h
   dbuserrorhandlerdefault.h
-  smartinfohub.h
   vcard.h
   namedirectory.h
   messagelistmodel.h

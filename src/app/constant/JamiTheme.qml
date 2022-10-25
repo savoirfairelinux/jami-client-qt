@@ -311,6 +311,7 @@ Item {
     property real preferredFieldHeight: 32
     property real preferredMarginSize: 16
     property real settingsMarginSize: 8
+    property real swarmDetailsPageTopMargin: 32
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
     property real minimumPreviewWidth: 120
@@ -342,6 +343,13 @@ Item {
     property real swarmDetailsPageDocumentsMediaRadius: 15
     property real swarmDetailsPageDocumentsPaperClipSize: 24
     property real swarmDetailsPageDocumentsMediaSize: 175
+
+    //Call information
+    property real textFontPointSize: calcSize(10)
+    property real titleFontPointSize: calcSize(13)
+    property color callInfoColor: chatviewTextColor
+    property int callInformationElementsSpacing: 5
+    property int callInformationBlockSpacing: 25
 
     // Jami switch
     property real switchIndicatorRadius: 30
