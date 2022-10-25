@@ -40,6 +40,7 @@ public:
 public Q_SLOTS:
     void startRendering() override;
     void stopRendering() override;
+    void setFPS(int newFps)
 
 private:
     struct Impl;

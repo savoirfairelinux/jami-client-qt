@@ -36,6 +36,7 @@ class Renderer : public QObject
 {
     Q_OBJECT
 public:
+    int fps;
     Renderer(const QString& id, const QSize& res);
     virtual ~Renderer();
 
@@ -54,6 +55,8 @@ public:
      */
     virtual lrc::api::video::Frame currentFrame() const = 0;
 
+    MapStringString getFPS() const;
+
 public Q_SLOTS:
     virtual void startRendering() = 0;
     virtual void stopRendering() = 0;
@@ -63,6 +66,7 @@ Q_SIGNALS:
     void stopped();
     void started(const QSize& size);
     void frameBufferRequested(AVFrame* avFrame);
+    void fpsChanged();
 
 private:
     QString id_;

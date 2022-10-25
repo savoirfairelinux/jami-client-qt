@@ -336,6 +336,12 @@ Item {
     property real timestampFont: calcSize(12)
     property int timestampIntervalTime: 120
 
+    //Call information
+    property real textFontPointSize: calcSize(10)
+    property real titleFontPointSize: calcSize(13)
+    property color callInfoColor: chatviewTextColor
+    property int callInformationElementsSpacing: 5
+    property int callInformationBlockSpacing: 15
 
     // Jami switch
     property real switchIndicatorRadius: 30

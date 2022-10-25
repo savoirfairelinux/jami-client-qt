@@ -36,6 +36,7 @@ class AvAdapter final : public QmlAdapterBase
     QML_PROPERTY(bool, muteCamera)
     QML_RO_PROPERTY(QStringList, windowsNames)
     QML_RO_PROPERTY(QList<QVariant>, windowsIds)
+    QML_RO_PROPERTY(QVariantList, fps)
 
 public:
     explicit AvAdapter(LRCInstance* instance, QObject* parent = nullptr);
@@ -107,6 +108,7 @@ protected:
     Q_INVOKABLE void setHardwareAcceleration(bool accelerate);
 
 private Q_SLOTS:
+    void updateFPS(QVariantList fps);
     void onAudioDeviceEvent();
     void onRendererStarted(const QString& id, const QSize& size);
 

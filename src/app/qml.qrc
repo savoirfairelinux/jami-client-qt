@@ -207,5 +207,6 @@
         <file>commoncomponents/MaterialTextField.qml</file>
         <file>commoncomponents/ModalTextEdit.qml</file>
         <file>commoncomponents/UsernameTextEdit.qml</file>
+        <file>mainview/components/CallInformationWindow.qml</file>
     </qresource>
 </RCC>
