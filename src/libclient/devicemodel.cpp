@@ -124,7 +124,7 @@ DeviceModelPimpl::DeviceModelPimpl(const DeviceModel& linked,
 {
     const MapStringString aDetails = ConfigurationManager::instance().getAccountDetails(
         linked.owner.id);
-    currentDeviceId_ = aDetails.value(DRing::Account::ConfProperties::DEVICE_ID);
+    currentDeviceId_ = aDetails.value(libjami::Account::ConfProperties::DEVICE_ID);
     const MapStringString accountDevices = ConfigurationManager::instance().getKnownRingDevices(
         linked.owner.id);
     auto it = accountDevices.begin();

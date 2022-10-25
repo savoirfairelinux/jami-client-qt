@@ -56,7 +56,7 @@ public:
         target.push = std::bind(&Impl::pushCallback, this, _1);
     };
 
-    DRing::FrameBuffer pullCallback()
+    libjami::FrameBuffer pullCallback()
     {
         QMutexLocker lk(&mutex);
         if (!frameBufferPtr) {
@@ -75,7 +75,7 @@ public:
         return std::move(frameBufferPtr);
     };
 
-    void pushCallback(DRing::FrameBuffer buf)
+    void pushCallback(libjami::FrameBuffer buf)
     {
         {
             QMutexLocker lk(&mutex);
@@ -89,9 +89,9 @@ private:
     DirectRenderer* parent_;
 
 public:
-    DRing::SinkTarget target;
+    libjami::SinkTarget target;
     QMutex mutex;
-    DRing::FrameBuffer frameBufferPtr;
+    libjami::FrameBuffer frameBufferPtr;
 };
 
 DirectRenderer::DirectRenderer(const QString& id, const QSize& res)

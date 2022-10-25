@@ -726,9 +726,9 @@ ContactModelPimpl::fillWithJamiContacts()
         ConfigurationManager::instance().getTrustRequests(linked.owner.id)};
     for (const auto& tr_info : pending_tr) {
         // Get pending requests.
-        auto payload = tr_info[DRing::Account::TrustRequest::PAYLOAD].toUtf8();
-        auto contactUri = tr_info[DRing::Account::TrustRequest::FROM];
-        auto convId = tr_info[DRing::Account::TrustRequest::CONVERSATIONID];
+        auto payload = tr_info[libjami::Account::TrustRequest::PAYLOAD].toUtf8();
+        auto contactUri = tr_info[libjami::Account::TrustRequest::FROM];
+        auto convId = tr_info[libjami::Account::TrustRequest::CONVERSATIONID];
         if (!convId.isEmpty())
             continue; // This will be added via getConversationsRequests
 

@@ -3585,23 +3585,23 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
         auto conversationIdx = indexOf(convIds[0]);
         auto& conversation = conversations[conversationIdx];
         auto newStatus = interaction::Status::INVALID;
-        switch (static_cast<DRing::Account::MessageStates>(status)) {
-        case DRing::Account::MessageStates::SENDING:
+        switch (static_cast<libjami::Account::MessageStates>(status)) {
+        case libjami::Account::MessageStates::SENDING:
             newStatus = interaction::Status::SENDING;
             break;
-        case DRing::Account::MessageStates::CANCELLED:
+        case libjami::Account::MessageStates::CANCELLED:
             newStatus = interaction::Status::TRANSFER_CANCELED;
             break;
-        case DRing::Account::MessageStates::SENT:
+        case libjami::Account::MessageStates::SENT:
             newStatus = interaction::Status::SUCCESS;
             break;
-        case DRing::Account::MessageStates::FAILURE:
+        case libjami::Account::MessageStates::FAILURE:
             newStatus = interaction::Status::FAILURE;
             break;
-        case DRing::Account::MessageStates::DISPLAYED:
+        case libjami::Account::MessageStates::DISPLAYED:
             newStatus = interaction::Status::DISPLAYED;
             break;
-        case DRing::Account::MessageStates::UNKNOWN:
+        case libjami::Account::MessageStates::UNKNOWN:
         default:
             newStatus = interaction::Status::UNKNOWN;
             break;
@@ -3609,8 +3609,8 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
         auto idString = messageId;
         // for not swarm conversation messageId in hexdesimal string format. Convert to normal string
         // TODO messageId should be received from daemon in string format
-        if (static_cast<DRing::Account::MessageStates>(status)
-            == DRing::Account::MessageStates::DISPLAYED) {
+        if (static_cast<libjami::Account::MessageStates>(status)
+            == libjami::Account::MessageStates::DISPLAYED) {
             std::istringstream ss(messageId.toStdString());
             ss >> std::hex;
             uint64_t id;
@@ -3677,18 +3677,18 @@ ConversationModelPimpl::slotUpdateInteractionStatus(const QString& accountId,
             auto& interactions = conversation.interactions;
             auto it = interactions->find(messageId);
             if (it != interactions->end() && it->second.type == interaction::Type::TEXT) {
-                if (static_cast<DRing::Account::MessageStates>(status)
-                    == DRing::Account::MessageStates::SENDING) {
+                if (static_cast<libjami::Account::MessageStates>(status)
+                    == libjami::Account::MessageStates::SENDING) {
                     it->second.status = interaction::Status::SENDING;
-                } else if (static_cast<DRing::Account::MessageStates>(status)
-                           == DRing::Account::MessageStates::SENT) {
+                } else if (static_cast<libjami::Account::MessageStates>(status)
+                           == libjami::Account::MessageStates::SENT) {
                     it->second.status = interaction::Status::SUCCESS;
                 }
                 interactions->emitDataChanged(it, {MessageList::Role::Status});
             }
 
-            if (static_cast<DRing::Account::MessageStates>(status)
-                == DRing::Account::MessageStates::DISPLAYED) {
+            if (static_cast<libjami::Account::MessageStates>(status)
+                == libjami::Account::MessageStates::DISPLAYED) {
                 auto previous = conversation.interactions->getRead(peerId);
                 if (peerId != linked.owner.profileInfo.uri)
                     conversation.interactions->setRead(peerId, messageId);

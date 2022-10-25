@@ -38,12 +38,12 @@ class PresenceManagerInterface : public QObject
 {
     Q_OBJECT
 public:
-    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> presHandlers;
+    std::map<std::string, std::shared_ptr<libjami::CallbackWrapperBase>> presHandlers;
 
     PresenceManagerInterface()
     {
-        using DRing::exportable_callback;
-        using DRing::PresenceSignal;
+        using libjami::exportable_callback;
+        using libjami::PresenceSignal;
 
         presHandlers
             = {exportable_callback<PresenceSignal::NewServerSubscriptionRequest>(
@@ -90,13 +90,13 @@ public:
 public Q_SLOTS: // METHODS
     void answerServerRequest(const QString& uri, bool flag)
     {
-        DRing::answerServerRequest(uri.toStdString(), flag);
+        libjami::answerServerRequest(uri.toStdString(), flag);
     }
 
     VectorMapStringString getSubscriptions(const QString& accountID)
     {
         VectorMapStringString temp;
-        for (auto x : DRing::getSubscriptions(accountID.toStdString())) {
+        for (auto x : libjami::getSubscriptions(accountID.toStdString())) {
             temp.push_back(convertMap(x));
         }
         return temp;
@@ -104,17 +104,17 @@ public Q_SLOTS: // METHODS
 
     void publish(const QString& accountID, bool status, const QString& note)
     {
-        DRing::publish(accountID.toStdString(), status, note.toStdString());
+        libjami::publish(accountID.toStdString(), status, note.toStdString());
     }
 
     void setSubscriptions(const QString& accountID, const QStringList& uriList)
     {
-        DRing::setSubscriptions(accountID.toStdString(), convertStringList(uriList));
+        libjami::setSubscriptions(accountID.toStdString(), convertStringList(uriList));
     }
 
     void subscribeBuddy(const QString& accountID, const QString& uri, bool flag)
     {
-        DRing::subscribeBuddy(accountID.toStdString(), uri.toStdString(), flag);
+        libjami::subscribeBuddy(accountID.toStdString(), uri.toStdString(), flag);
     }
 
 Q_SIGNALS: // SIGNALS

@@ -1020,7 +1020,7 @@ migrateAccountDb(const QString& accountId,
 
     auto accountLocalPath = getPath() + accountId + "/";
 
-    using namespace DRing::Account;
+    using namespace libjami::Account;
     MapStringString accountDetails = ConfigurationManager::instance().getAccountDetails(
         accountId.toStdString().c_str());
     bool isRingAccount = accountDetails[ConfProperties::TYPE] == "RING";
@@ -1032,12 +1032,12 @@ migrateAccountDb(const QString& accountId,
     // migrate account's avatar/alias from profiles table to {data_dir}/profile.vcf
     QString accountUri;
     if (isRingAccount) {
-        accountUri = accountDetails[DRing::Account::ConfProperties::USERNAME].contains("ring:")
-                         ? QString(accountDetails[DRing::Account::ConfProperties::USERNAME])
+        accountUri = accountDetails[libjami::Account::ConfProperties::USERNAME].contains("ring:")
+                         ? QString(accountDetails[libjami::Account::ConfProperties::USERNAME])
                                .remove(QString("ring:"))
-                         : accountDetails[DRing::Account::ConfProperties::USERNAME];
+                         : accountDetails[libjami::Account::ConfProperties::USERNAME];
     } else {
-        accountUri = accountDetails[DRing::Account::ConfProperties::USERNAME];
+        accountUri = accountDetails[libjami::Account::ConfProperties::USERNAME];
     }
 
     auto accountProfileIds = legacyDb

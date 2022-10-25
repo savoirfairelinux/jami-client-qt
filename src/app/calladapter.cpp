@@ -703,16 +703,16 @@ CallAdapter::updateCallOverlay(const lrc::api::conversation::Info& convInfo)
     QString previewId {};
     if (callInfo->status != lrc::api::call::Status::ENDED) {
         for (const auto& media : callInfo->mediaList) {
-            if (media[DRing::Media::MediaAttributeKey::MEDIA_TYPE]
-                == DRing::Media::Details::MEDIA_TYPE_VIDEO) {
-                if (media[DRing::Media::MediaAttributeKey::ENABLED] == TRUE_STR
-                    && media[DRing::Media::MediaAttributeKey::MUTED] == FALSE_STR) {
+            if (media[libjami::Media::MediaAttributeKey::MEDIA_TYPE]
+                == libjami::Media::Details::MEDIA_TYPE_VIDEO) {
+                if (media[libjami::Media::MediaAttributeKey::ENABLED] == TRUE_STR
+                    && media[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR) {
                     if (previewId.isEmpty()) {
-                        previewId = media[DRing::Media::MediaAttributeKey::SOURCE];
+                        previewId = media[libjami::Media::MediaAttributeKey::SOURCE];
                     }
                 }
-            } else if (media[DRing::Media::MediaAttributeKey::LABEL] == "audio_0") {
-                isAudioMuted |= media[DRing::Media::MediaAttributeKey::MUTED] == TRUE_STR;
+            } else if (media[libjami::Media::MediaAttributeKey::LABEL] == "audio_0") {
+                isAudioMuted |= media[libjami::Media::MediaAttributeKey::MUTED] == TRUE_STR;
             }
         }
     }
@@ -1075,8 +1075,8 @@ CallAdapter::muteAudioToggle()
         const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
         auto mute = false;
         for (const auto& m : callInfo.mediaList)
-            if (m[DRing::Media::MediaAttributeKey::LABEL] == "audio_0")
-                mute = m[DRing::Media::MediaAttributeKey::MUTED] == FALSE_STR;
+            if (m[libjami::Media::MediaAttributeKey::LABEL] == "audio_0")
+                mute = m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
         callModel->muteMedia(callId, "audio_0", mute);
     }
 }
@@ -1108,11 +1108,11 @@ CallAdapter::muteCameraToggle()
         const auto callInfo = lrcInstance_->getCurrentCallModel()->getCall(callId);
         auto mute = false;
         for (const auto& m : callInfo.mediaList) {
-            if (m[DRing::Media::MediaAttributeKey::SOURCE].startsWith(
-                    DRing::Media::VideoProtocolPrefix::CAMERA)
-                && m[DRing::Media::MediaAttributeKey::MEDIA_TYPE]
-                       == DRing::Media::Details::MEDIA_TYPE_VIDEO) {
-                mute = m[DRing::Media::MediaAttributeKey::MUTED] == FALSE_STR;
+            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(
+                    libjami::Media::VideoProtocolPrefix::CAMERA)
+                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE]
+                       == libjami::Media::Details::MEDIA_TYPE_VIDEO) {
+                mute = m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
             }
         }
 
@@ -1121,8 +1121,8 @@ CallAdapter::muteCameraToggle()
         // TODO Enum
         if (mute)
             callModel->removeMedia(callId,
-                                   DRing::Media::Details::MEDIA_TYPE_VIDEO,
-                                   DRing::Media::VideoProtocolPrefix::CAMERA,
+                                   libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                                   libjami::Media::VideoProtocolPrefix::CAMERA,
                                    mute);
         else
             callModel->addMedia(callId,
