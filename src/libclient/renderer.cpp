@@ -34,6 +34,12 @@ Renderer::Renderer(const QString& id, const QSize& res)
 
 Renderer::~Renderer() {}
 
+int
+Renderer::fps() const
+{
+    return fps_;
+}
+
 QString
 Renderer::id() const
 {
@@ -44,6 +50,22 @@ QSize
 Renderer::size() const
 {
     return size_;
+}
+void
+Renderer::setFPS(int fps)
+{
+    fps_ = fps;
+    Q_EMIT fpsChanged();
+}
+
+MapStringString
+Renderer::getInfos() const
+{
+    MapStringString map;
+    map[ID] = id();
+    map[FPS] = QString::number(fps());
+    map[RES] = QString::number(size().width()) + " * " + QString::number(size().height());
+    return map;
 }
 
 } // namespace video
