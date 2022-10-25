@@ -557,9 +557,9 @@ public Q_SLOTS: // METHODS
         return DRing::getIsAlwaysRecording();
     }
 
-    bool getNoiseSuppressState()
+    QString getNoiseSuppressState()
     {
-        return DRing::getNoiseSuppressState();
+        return DRing::getNoiseSuppressState().c_str();
     }
 
     QString getRecordPath()
@@ -769,9 +769,9 @@ public Q_SLOTS: // METHODS
         DRing::setIsAlwaysRecording(enabled);
     }
 
-    void setNoiseSuppressState(bool state)
+    void setNoiseSuppressState(const QString& state)
     {
-        DRing::setNoiseSuppressState(state);
+        DRing::setNoiseSuppressState(state.toStdString());
     }
 
     bool isAudioMeterActive(const QString& id)
