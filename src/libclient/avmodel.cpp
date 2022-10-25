@@ -706,9 +706,9 @@ AVModelPimpl::AVModelPimpl(AVModel& linked, const CallbacksHandler& callbacksHan
     auto restartRenderers = [&](const QStringList& callList) {
         for (const auto& callId : callList) {
             MapStringString rendererInfos = VideoManager::instance().getRenderer(callId);
-            auto shmPath = rendererInfos[DRing::Media::Details::SHM_PATH];
-            auto width = rendererInfos[DRing::Media::Details::WIDTH].toInt();
-            auto height = rendererInfos[DRing::Media::Details::HEIGHT].toInt();
+            auto shmPath = rendererInfos[libjami::Media::Details::SHM_PATH];
+            auto width = rendererInfos[libjami::Media::Details::WIDTH].toInt();
+            auto height = rendererInfos[libjami::Media::Details::HEIGHT].toInt();
             if (width > 0 && height > 0) {
                 startedPreview = true;
                 onDecodingStarted(callId, shmPath, width, height);

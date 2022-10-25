@@ -21,8 +21,8 @@
 VideoManagerInterface::VideoManagerInterface()
 {
 #ifdef ENABLE_VIDEO
-    using DRing::exportable_callback;
-    using DRing::VideoSignal;
+    using libjami::exportable_callback;
+    using libjami::VideoSignal;
     videoHandlers
         = {exportable_callback<VideoSignal::DeviceEvent>([this]() { Q_EMIT deviceEvent(); }),
            exportable_callback<VideoSignal::DecodingStarted>([this](const std::string& id,
@@ -36,11 +36,10 @@ VideoManagerInterface::VideoManagerInterface()
                                       height,
                                       isMixer);
            }),
-           exportable_callback<VideoSignal::DecodingStopped>([this](const std::string& id,
-                                                                    const std::string& shmPath,
-                                                                    bool isMixer) {
-               Q_EMIT decodingStopped(QString(id.c_str()), QString(shmPath.c_str()), isMixer);
-           })};
+           exportable_callback<VideoSignal::DecodingStopped>(
+               [this](const std::string& id, const std::string& shmPath, bool isMixer) {
+                   Q_EMIT decodingStopped(QString(id.c_str()), QString(shmPath.c_str()), isMixer);
+               })};
 #endif
 }
 

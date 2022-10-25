@@ -22,7 +22,7 @@
 // Dbus
 #include "dbus/configurationmanager.h"
 
-// DRing
+// libjami
 #include <datatransfer_interface.h>
 
 // Std
@@ -39,34 +39,34 @@
 namespace lrc {
 namespace api {
 
-// DRING to LRC event code conversion
+// LIBJAMI to LRC event code conversion
 static inline datatransfer::Status
-convertDataTransferEvent(DRing::DataTransferEventCode event)
+convertDataTransferEvent(libjami::DataTransferEventCode event)
 {
     switch (event) {
-    case DRing::DataTransferEventCode::invalid:
+    case libjami::DataTransferEventCode::invalid:
         return datatransfer::Status::INVALID;
-    case DRing::DataTransferEventCode::created:
+    case libjami::DataTransferEventCode::created:
         return datatransfer::Status::on_connection;
-    case DRing::DataTransferEventCode::unsupported:
+    case libjami::DataTransferEventCode::unsupported:
         return datatransfer::Status::unsupported;
-    case DRing::DataTransferEventCode::wait_peer_acceptance:
+    case libjami::DataTransferEventCode::wait_peer_acceptance:
         return datatransfer::Status::on_connection;
-    case DRing::DataTransferEventCode::wait_host_acceptance:
+    case libjami::DataTransferEventCode::wait_host_acceptance:
         return datatransfer::Status::on_connection;
-    case DRing::DataTransferEventCode::ongoing:
+    case libjami::DataTransferEventCode::ongoing:
         return datatransfer::Status::on_progress;
-    case DRing::DataTransferEventCode::finished:
+    case libjami::DataTransferEventCode::finished:
         return datatransfer::Status::success;
-    case DRing::DataTransferEventCode::closed_by_host:
+    case libjami::DataTransferEventCode::closed_by_host:
         return datatransfer::Status::stop_by_host;
-    case DRing::DataTransferEventCode::closed_by_peer:
+    case libjami::DataTransferEventCode::closed_by_peer:
         return datatransfer::Status::stop_by_peer;
-    case DRing::DataTransferEventCode::invalid_pathname:
+    case libjami::DataTransferEventCode::invalid_pathname:
         return datatransfer::Status::invalid_pathname;
-    case DRing::DataTransferEventCode::unjoinable_peer:
+    case libjami::DataTransferEventCode::unjoinable_peer:
         return datatransfer::Status::unjoinable_peer;
-    case DRing::DataTransferEventCode::timeout_expired:
+    case libjami::DataTransferEventCode::timeout_expired:
         return datatransfer::Status::timeout_expired;
     }
     throw std::runtime_error("BUG: broken convertDataTransferEvent() switch");

@@ -335,17 +335,17 @@ CodecModelPimpl::addCodec(const unsigned int& id, const QVector<unsigned int>& a
     Codec codec;
     codec.id = id;
     codec.enabled = activeCodecs.indexOf(id) != -1;
-    codec.name = details[DRing::Account::ConfProperties::CodecInfo::NAME];
-    codec.samplerate = details[DRing::Account::ConfProperties::CodecInfo::SAMPLE_RATE];
-    codec.bitrate = details[DRing::Account::ConfProperties::CodecInfo::BITRATE];
-    codec.min_bitrate = details[DRing::Account::ConfProperties::CodecInfo::MIN_BITRATE];
-    codec.max_bitrate = details[DRing::Account::ConfProperties::CodecInfo::MAX_BITRATE];
-    codec.type = details[DRing::Account::ConfProperties::CodecInfo::TYPE];
-    codec.quality = details[DRing::Account::ConfProperties::CodecInfo::QUALITY];
-    codec.min_quality = details[DRing::Account::ConfProperties::CodecInfo::MIN_QUALITY];
-    codec.max_quality = details[DRing::Account::ConfProperties::CodecInfo::MAX_QUALITY];
+    codec.name = details[libjami::Account::ConfProperties::CodecInfo::NAME];
+    codec.samplerate = details[libjami::Account::ConfProperties::CodecInfo::SAMPLE_RATE];
+    codec.bitrate = details[libjami::Account::ConfProperties::CodecInfo::BITRATE];
+    codec.min_bitrate = details[libjami::Account::ConfProperties::CodecInfo::MIN_BITRATE];
+    codec.max_bitrate = details[libjami::Account::ConfProperties::CodecInfo::MAX_BITRATE];
+    codec.type = details[libjami::Account::ConfProperties::CodecInfo::TYPE];
+    codec.quality = details[libjami::Account::ConfProperties::CodecInfo::QUALITY];
+    codec.min_quality = details[libjami::Account::ConfProperties::CodecInfo::MIN_QUALITY];
+    codec.max_quality = details[libjami::Account::ConfProperties::CodecInfo::MAX_QUALITY];
     codec.auto_quality_enabled
-        = details[DRing::Account::ConfProperties::CodecInfo::AUTO_QUALITY_ENABLED] == "true";
+        = details[libjami::Account::ConfProperties::CodecInfo::AUTO_QUALITY_ENABLED] == "true";
     if (codec.type == "AUDIO") {
         std::unique_lock<std::mutex> lock(audioCodecsMtx);
         audioCodecs.push_back(codec);
@@ -359,16 +359,16 @@ void
 CodecModelPimpl::setCodecDetails(const Codec& codec, bool isAudio)
 {
     MapStringString details;
-    details[DRing::Account::ConfProperties::CodecInfo::NAME] = codec.name;
-    details[DRing::Account::ConfProperties::CodecInfo::SAMPLE_RATE] = codec.samplerate;
-    details[DRing::Account::ConfProperties::CodecInfo::BITRATE] = codec.bitrate;
-    details[DRing::Account::ConfProperties::CodecInfo::MIN_BITRATE] = codec.min_bitrate;
-    details[DRing::Account::ConfProperties::CodecInfo::MAX_BITRATE] = codec.max_bitrate;
-    details[DRing::Account::ConfProperties::CodecInfo::TYPE] = isAudio ? "AUDIO" : "VIDEO";
-    details[DRing::Account::ConfProperties::CodecInfo::QUALITY] = codec.quality;
-    details[DRing::Account::ConfProperties::CodecInfo::MIN_QUALITY] = codec.min_quality;
-    details[DRing::Account::ConfProperties::CodecInfo::MAX_QUALITY] = codec.max_quality;
-    details[DRing::Account::ConfProperties::CodecInfo::AUTO_QUALITY_ENABLED]
+    details[libjami::Account::ConfProperties::CodecInfo::NAME] = codec.name;
+    details[libjami::Account::ConfProperties::CodecInfo::SAMPLE_RATE] = codec.samplerate;
+    details[libjami::Account::ConfProperties::CodecInfo::BITRATE] = codec.bitrate;
+    details[libjami::Account::ConfProperties::CodecInfo::MIN_BITRATE] = codec.min_bitrate;
+    details[libjami::Account::ConfProperties::CodecInfo::MAX_BITRATE] = codec.max_bitrate;
+    details[libjami::Account::ConfProperties::CodecInfo::TYPE] = isAudio ? "AUDIO" : "VIDEO";
+    details[libjami::Account::ConfProperties::CodecInfo::QUALITY] = codec.quality;
+    details[libjami::Account::ConfProperties::CodecInfo::MIN_QUALITY] = codec.min_quality;
+    details[libjami::Account::ConfProperties::CodecInfo::MAX_QUALITY] = codec.max_quality;
+    details[libjami::Account::ConfProperties::CodecInfo::AUTO_QUALITY_ENABLED]
         = codec.auto_quality_enabled ? "true" : "false";
     ConfigurationManager::instance().setCodecDetails(linked.owner.id, codec.id, details);
 }

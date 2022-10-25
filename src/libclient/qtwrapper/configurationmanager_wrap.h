@@ -45,18 +45,18 @@ class ConfigurationManagerInterface : public QObject
     Q_OBJECT
 
 public:
-    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> confHandlers;
-    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> dataXferHandlers;
-    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> conversationsHandlers;
+    std::map<std::string, std::shared_ptr<libjami::CallbackWrapperBase>> confHandlers;
+    std::map<std::string, std::shared_ptr<libjami::CallbackWrapperBase>> dataXferHandlers;
+    std::map<std::string, std::shared_ptr<libjami::CallbackWrapperBase>> conversationsHandlers;
 
     ConfigurationManagerInterface()
     {
         setObjectName("ConfigurationManagerInterface");
-        using DRing::exportable_callback;
-        using DRing::ConfigurationSignal;
-        using DRing::AudioSignal;
-        using DRing::DataTransferSignal;
-        using DRing::ConversationSignal;
+        using libjami::exportable_callback;
+        using libjami::ConfigurationSignal;
+        using libjami::AudioSignal;
+        using libjami::DataTransferSignal;
+        using libjami::ConversationSignal;
 
         setObjectName("ConfigurationManagerInterface");
         confHandlers = {
@@ -117,7 +117,7 @@ public:
                                                              QString(state.c_str()));
                     });
                 }),
-            exportable_callback<DRing::ConfigurationSignal::AccountMessageStatusChanged>(
+            exportable_callback<libjami::ConfigurationSignal::AccountMessageStatusChanged>(
                 [this](const std::string& account_id,
                        const std::string& conversation_id,
                        const std::string& peer,
@@ -354,7 +354,7 @@ public:
 public Q_SLOTS: // METHODS
     QString addAccount(MapStringString details)
     {
-        QString temp(DRing::addAccount(convertMap(details)).c_str());
+        QString temp(libjami::addAccount(convertMap(details)).c_str());
         return temp;
     }
 
@@ -364,116 +364,116 @@ public Q_SLOTS: // METHODS
                       const QString& fileId,
                       const QString& path)
     {
-        DRing::downloadFile(accountId.toStdString(),
-                            convId.toStdString(),
-                            interactionId.toStdString(),
-                            fileId.toStdString(),
-                            path.toStdString());
+        libjami::downloadFile(accountId.toStdString(),
+                              convId.toStdString(),
+                              interactionId.toStdString(),
+                              fileId.toStdString(),
+                              path.toStdString());
     }
 
     bool exportOnRing(const QString& accountID, const QString& password)
     {
-        return DRing::exportOnRing(accountID.toStdString(), password.toStdString());
+        return libjami::exportOnRing(accountID.toStdString(), password.toStdString());
     }
 
     bool exportToFile(const QString& accountID,
                       const QString& destinationPath,
                       const QString& password = {})
     {
-        return DRing::exportToFile(accountID.toStdString(),
-                                   destinationPath.toStdString(),
-                                   password.toStdString());
+        return libjami::exportToFile(accountID.toStdString(),
+                                     destinationPath.toStdString(),
+                                     password.toStdString());
     }
 
     MapStringString getKnownRingDevices(const QString& accountID)
     {
-        MapStringString temp = convertMap(DRing::getKnownRingDevices(accountID.toStdString()));
+        MapStringString temp = convertMap(libjami::getKnownRingDevices(accountID.toStdString()));
         return temp;
     }
 
     bool lookupName(const QString& accountID, const QString& nameServiceURL, const QString& name)
     {
-        return DRing::lookupName(accountID.toStdString(),
-                                 nameServiceURL.toStdString(),
-                                 name.toStdString());
+        return libjami::lookupName(accountID.toStdString(),
+                                   nameServiceURL.toStdString(),
+                                   name.toStdString());
     }
 
     bool lookupAddress(const QString& accountID,
                        const QString& nameServiceURL,
                        const QString& address)
     {
-        return DRing::lookupAddress(accountID.toStdString(),
-                                    nameServiceURL.toStdString(),
-                                    address.toStdString());
+        return libjami::lookupAddress(accountID.toStdString(),
+                                      nameServiceURL.toStdString(),
+                                      address.toStdString());
     }
 
     bool registerName(const QString& accountID, const QString& password, const QString& name)
     {
-        return DRing::registerName(accountID.toStdString(),
-                                   password.toStdString(),
-                                   name.toStdString());
+        return libjami::registerName(accountID.toStdString(),
+                                     password.toStdString(),
+                                     name.toStdString());
     }
 
     MapStringString getAccountDetails(const QString& accountID)
     {
-        MapStringString temp = convertMap(DRing::getAccountDetails(accountID.toStdString()));
+        MapStringString temp = convertMap(libjami::getAccountDetails(accountID.toStdString()));
         return temp;
     }
 
     QStringList getAccountList()
     {
-        QStringList temp = convertStringList(DRing::getAccountList());
+        QStringList temp = convertStringList(libjami::getAccountList());
         return temp;
     }
 
     MapStringString getAccountTemplate(const QString& accountType)
     {
-        MapStringString temp = convertMap(DRing::getAccountTemplate(accountType.toStdString()));
+        MapStringString temp = convertMap(libjami::getAccountTemplate(accountType.toStdString()));
         return temp;
     }
 
     // TODO: works?
     VectorUInt getActiveCodecList(const QString& accountId)
     {
-        std::vector<unsigned int> v = DRing::getActiveCodecList(accountId.toStdString());
+        std::vector<unsigned int> v = libjami::getActiveCodecList(accountId.toStdString());
         return QVector<unsigned int>(v.begin(), v.end());
     }
 
     QString getAddrFromInterfaceName(const QString& interface)
     {
-        QString temp(DRing::getAddrFromInterfaceName(interface.toStdString()).c_str());
+        QString temp(libjami::getAddrFromInterfaceName(interface.toStdString()).c_str());
         return temp;
     }
 
     QStringList getAllIpInterface()
     {
-        QStringList temp = convertStringList(DRing::getAllIpInterface());
+        QStringList temp = convertStringList(libjami::getAllIpInterface());
         return temp;
     }
 
     QStringList getAllIpInterfaceByName()
     {
-        QStringList temp = convertStringList(DRing::getAllIpInterfaceByName());
+        QStringList temp = convertStringList(libjami::getAllIpInterfaceByName());
         return temp;
     }
 
     MapStringString getCodecDetails(const QString& accountID, int payload)
     {
         MapStringString temp = convertMap(
-            DRing::getCodecDetails(accountID.toStdString().c_str(), payload));
+            libjami::getCodecDetails(accountID.toStdString().c_str(), payload));
         return temp;
     }
 
     VectorUInt getCodecList()
     {
-        std::vector<unsigned int> v = DRing::getCodecList();
+        std::vector<unsigned int> v = libjami::getCodecList();
         return QVector<unsigned int>(v.begin(), v.end());
     }
 
     VectorMapStringString getContacts(const QString& accountID)
     {
         VectorMapStringString temp;
-        for (const auto& x : DRing::getContacts(accountID.toStdString())) {
+        for (const auto& x : libjami::getContacts(accountID.toStdString())) {
             temp.push_back(convertMap(x));
         }
         return temp;
@@ -481,42 +481,42 @@ public Q_SLOTS: // METHODS
 
     int getAudioInputDeviceIndex(const QString& devname)
     {
-        return DRing::getAudioInputDeviceIndex(devname.toStdString());
+        return libjami::getAudioInputDeviceIndex(devname.toStdString());
     }
 
     QStringList getAudioInputDeviceList()
     {
-        QStringList temp = convertStringList(DRing::getAudioInputDeviceList());
+        QStringList temp = convertStringList(libjami::getAudioInputDeviceList());
         return temp;
     }
 
     QString getAudioManager()
     {
-        QString temp(DRing::getAudioManager().c_str());
+        QString temp(libjami::getAudioManager().c_str());
         return temp;
     }
 
     int getAudioOutputDeviceIndex(const QString& devname)
     {
-        return DRing::getAudioOutputDeviceIndex(devname.toStdString());
+        return libjami::getAudioOutputDeviceIndex(devname.toStdString());
     }
 
     QStringList getAudioOutputDeviceList()
     {
-        QStringList temp = convertStringList(DRing::getAudioOutputDeviceList());
+        QStringList temp = convertStringList(libjami::getAudioOutputDeviceList());
         return temp;
     }
 
     QStringList getAudioPluginList()
     {
-        QStringList temp = convertStringList(DRing::getAudioPluginList());
+        QStringList temp = convertStringList(libjami::getAudioPluginList());
         return temp;
     }
 
     VectorMapStringString getCredentials(const QString& accountID)
     {
         VectorMapStringString temp;
-        for (auto x : DRing::getCredentials(accountID.toStdString())) {
+        for (auto x : libjami::getCredentials(accountID.toStdString())) {
             temp.push_back(convertMap(x));
         }
         return temp;
@@ -524,62 +524,62 @@ public Q_SLOTS: // METHODS
 
     QStringList getCurrentAudioDevicesIndex()
     {
-        QStringList temp = convertStringList(DRing::getCurrentAudioDevicesIndex());
+        QStringList temp = convertStringList(libjami::getCurrentAudioDevicesIndex());
         return temp;
     }
 
     QString getCurrentAudioOutputPlugin()
     {
-        QString temp(DRing::getCurrentAudioOutputPlugin().c_str());
+        QString temp(libjami::getCurrentAudioOutputPlugin().c_str());
         return temp;
     }
 
     int getHistoryLimit()
     {
-        return DRing::getHistoryLimit();
+        return libjami::getHistoryLimit();
     }
 
     bool getIsAlwaysRecording()
     {
-        return DRing::getIsAlwaysRecording();
+        return libjami::getIsAlwaysRecording();
     }
 
     bool getNoiseSuppressState()
     {
-        return DRing::getNoiseSuppressState();
+        return libjami::getNoiseSuppressState();
     }
 
     QString getRecordPath()
     {
-        QString temp(DRing::getRecordPath().c_str());
+        QString temp(libjami::getRecordPath().c_str());
         return temp;
     }
 
     bool getRecordPreview()
     {
-        return DRing::getRecordPreview();
+        return libjami::getRecordPreview();
     }
 
     int getRecordQuality()
     {
-        return DRing::getRecordQuality();
+        return libjami::getRecordQuality();
     }
 
     QStringList getSupportedAudioManagers()
     {
-        return convertStringList(DRing::getSupportedAudioManagers());
+        return convertStringList(libjami::getSupportedAudioManagers());
     }
 
     QStringList getSupportedTlsMethod()
     {
-        QStringList temp = convertStringList(DRing::getSupportedTlsMethod());
+        QStringList temp = convertStringList(libjami::getSupportedTlsMethod());
         return temp;
     }
 
     MapStringString validateCertificate(const QString& unused, const QString& certificate)
     {
         MapStringString temp = convertMap(
-            DRing::validateCertificate(unused.toStdString(), certificate.toStdString()));
+            libjami::validateCertificate(unused.toStdString(), certificate.toStdString()));
         return temp;
     }
 
@@ -590,17 +590,17 @@ public Q_SLOTS: // METHODS
                                             const QString& caListPath)
     {
         MapStringString temp = convertMap(
-            DRing::validateCertificatePath(unused.toStdString(),
-                                           certificate.toStdString(),
-                                           privateKey.toStdString(),
-                                           privateKeyPass.toStdString(),
-                                           caListPath.toStdString()));
+            libjami::validateCertificatePath(unused.toStdString(),
+                                             certificate.toStdString(),
+                                             privateKey.toStdString(),
+                                             privateKeyPass.toStdString(),
+                                             caListPath.toStdString()));
         return temp;
     }
 
     MapStringString getCertificateDetails(const QString& certificate)
     {
-        MapStringString temp = convertMap(DRing::getCertificateDetails(certificate.toStdString()));
+        MapStringString temp = convertMap(libjami::getCertificateDetails(certificate.toStdString()));
         return temp;
     }
 
@@ -609,132 +609,132 @@ public Q_SLOTS: // METHODS
                                               const QString& privateKeyPass)
     {
         MapStringString temp = convertMap(
-            DRing::getCertificateDetailsPath(certificate.toStdString(),
-                                             privateKey.toStdString(),
-                                             privateKeyPass.toStdString()));
+            libjami::getCertificateDetailsPath(certificate.toStdString(),
+                                               privateKey.toStdString(),
+                                               privateKeyPass.toStdString()));
         return temp;
     }
 
     QStringList getSupportedCiphers(const QString& accountID)
     {
-        QStringList temp = convertStringList(DRing::getSupportedCiphers(accountID.toStdString()));
+        QStringList temp = convertStringList(libjami::getSupportedCiphers(accountID.toStdString()));
         return temp;
     }
 
     double getVolume(const QString& device)
     {
-        return DRing::getVolume(device.toStdString());
+        return libjami::getVolume(device.toStdString());
     }
 
     bool isAgcEnabled()
     {
-        return DRing::isAgcEnabled();
+        return libjami::isAgcEnabled();
     }
 
     bool isCaptureMuted()
     {
-        return DRing::isCaptureMuted();
+        return libjami::isCaptureMuted();
     }
 
     bool isDtmfMuted()
     {
-        return DRing::isDtmfMuted();
+        return libjami::isDtmfMuted();
     }
 
     bool isPlaybackMuted()
     {
-        return DRing::isPlaybackMuted();
+        return libjami::isPlaybackMuted();
     }
 
     void muteCapture(bool mute)
     {
-        DRing::muteCapture(mute);
+        libjami::muteCapture(mute);
     }
 
     void muteDtmf(bool mute)
     {
-        DRing::muteDtmf(mute);
+        libjami::muteDtmf(mute);
     }
 
     void mutePlayback(bool mute)
     {
-        DRing::mutePlayback(mute);
+        libjami::mutePlayback(mute);
     }
 
     void registerAllAccounts()
     {
-        DRing::registerAllAccounts();
+        libjami::registerAllAccounts();
     }
 
     void monitor(bool continuous)
     {
-        DRing::monitor(continuous);
+        libjami::monitor(continuous);
     }
 
     void removeAccount(const QString& accountID)
     {
-        DRing::removeAccount(accountID.toStdString());
+        libjami::removeAccount(accountID.toStdString());
     }
 
     bool changeAccountPassword(const QString& id,
                                const QString& currentPassword,
                                const QString& newPassword)
     {
-        return DRing::changeAccountPassword(id.toStdString(),
-                                            currentPassword.toStdString(),
-                                            newPassword.toStdString());
+        return libjami::changeAccountPassword(id.toStdString(),
+                                              currentPassword.toStdString(),
+                                              newPassword.toStdString());
     }
 
     void sendRegister(const QString& accountID, bool enable)
     {
-        DRing::sendRegister(accountID.toStdString(), enable);
+        libjami::sendRegister(accountID.toStdString(), enable);
     }
 
     void setAccountDetails(const QString& accountID, MapStringString details)
     {
-        DRing::setAccountDetails(accountID.toStdString(), convertMap(details));
+        libjami::setAccountDetails(accountID.toStdString(), convertMap(details));
     }
 
     void setAccountsOrder(const QString& order)
     {
-        DRing::setAccountsOrder(order.toStdString());
+        libjami::setAccountsOrder(order.toStdString());
     }
 
     void setActiveCodecList(const QString& accountID, VectorUInt& list)
     {
         // const std::vector<unsigned int> converted = convertStringList(list);
-        DRing::setActiveCodecList(accountID.toStdString(),
-                                  std::vector<unsigned>(list.begin(), list.end()));
+        libjami::setActiveCodecList(accountID.toStdString(),
+                                    std::vector<unsigned>(list.begin(), list.end()));
     }
 
     void setAgcState(bool enabled)
     {
-        DRing::setAgcState(enabled);
+        libjami::setAgcState(enabled);
     }
 
     void setAudioInputDevice(int index)
     {
-        DRing::setAudioInputDevice(index);
+        libjami::setAudioInputDevice(index);
     }
 
     bool setAudioManager(const QString& api)
     {
-        return DRing::setAudioManager(api.toStdString());
+        return libjami::setAudioManager(api.toStdString());
     }
 
     void setAudioOutputDevice(int index)
     {
-        DRing::setAudioOutputDevice(index);
+        libjami::setAudioOutputDevice(index);
     }
 
     void setAudioPlugin(const QString& audioPlugin)
     {
-        DRing::setAudioPlugin(audioPlugin.toStdString());
+        libjami::setAudioPlugin(audioPlugin.toStdString());
     }
 
     void setAudioRingtoneDevice(int index)
     {
-        DRing::setAudioRingtoneDevice(index);
+        libjami::setAudioRingtoneDevice(index);
     }
 
     void setCredentials(const QString& accountID, VectorMapStringString credentialInformation)
@@ -743,156 +743,159 @@ public Q_SLOTS: // METHODS
         for (auto x : credentialInformation) {
             temp.push_back(convertMap(x));
         }
-        DRing::setCredentials(accountID.toStdString(), temp);
+        libjami::setCredentials(accountID.toStdString(), temp);
     }
 
     void setHistoryLimit(int days)
     {
-        DRing::setHistoryLimit(days);
+        libjami::setHistoryLimit(days);
     }
 
     void setIsAlwaysRecording(bool enabled)
     {
-        DRing::setIsAlwaysRecording(enabled);
+        libjami::setIsAlwaysRecording(enabled);
     }
 
     void setNoiseSuppressState(bool state)
     {
-        DRing::setNoiseSuppressState(state);
+        libjami::setNoiseSuppressState(state);
     }
 
     bool isAudioMeterActive(const QString& id)
     {
-        return DRing::isAudioMeterActive(id.toStdString());
+        return libjami::isAudioMeterActive(id.toStdString());
     }
 
     void setAudioMeterState(const QString& id, bool state)
     {
-        DRing::setAudioMeterState(id.toStdString(), state);
+        libjami::setAudioMeterState(id.toStdString(), state);
     }
 
     void setRecordPath(const QString& rec)
     {
-        DRing::setRecordPath(rec.toStdString());
+        libjami::setRecordPath(rec.toStdString());
     }
 
     void setRecordPreview(const bool& rec)
     {
-        DRing::setRecordPreview(rec);
+        libjami::setRecordPreview(rec);
     }
 
     void setRecordQuality(const int& quality)
     {
-        DRing::setRecordQuality(quality);
+        libjami::setRecordQuality(quality);
     }
 
     void setVolume(const QString& device, double value)
     {
-        DRing::setVolume(device.toStdString(), value);
+        libjami::setVolume(device.toStdString(), value);
     }
 
     MapStringString getVolatileAccountDetails(const QString& accountID)
     {
-        MapStringString temp = convertMap(DRing::getVolatileAccountDetails(accountID.toStdString()));
+        MapStringString temp = convertMap(
+            libjami::getVolatileAccountDetails(accountID.toStdString()));
         return temp;
     }
 
     QStringList getPinnedCertificates()
     {
-        QStringList temp = convertStringList(DRing::getPinnedCertificates());
+        QStringList temp = convertStringList(libjami::getPinnedCertificates());
         return temp;
     }
 
     QStringList pinCertificate(const QByteArray& content, bool local)
     {
         std::vector<unsigned char> raw(content.begin(), content.end());
-        return convertStringList(DRing::pinCertificate(raw, local));
+        return convertStringList(libjami::pinCertificate(raw, local));
     }
 
     bool unpinCertificate(const QString& certId)
     {
-        return DRing::unpinCertificate(certId.toStdString());
+        return libjami::unpinCertificate(certId.toStdString());
     }
 
     void pinCertificatePath(const QString& certPath)
     {
-        DRing::pinCertificatePath(certPath.toStdString());
+        libjami::pinCertificatePath(certPath.toStdString());
     }
 
     uint unpinCertificatePath(const QString& certPath)
     {
-        return DRing::unpinCertificatePath(certPath.toStdString());
+        return libjami::unpinCertificatePath(certPath.toStdString());
     }
 
     bool pinRemoteCertificate(const QString& accountId, const QString& certPath)
     {
-        return DRing::pinRemoteCertificate(accountId.toStdString(), certPath.toStdString());
+        return libjami::pinRemoteCertificate(accountId.toStdString(), certPath.toStdString());
     }
 
     bool setCertificateStatus(const QString& accountId,
                               const QString& certPath,
                               const QString& status)
     {
-        return DRing::setCertificateStatus(accountId.toStdString(),
-                                           certPath.toStdString(),
-                                           status.toStdString());
+        return libjami::setCertificateStatus(accountId.toStdString(),
+                                             certPath.toStdString(),
+                                             status.toStdString());
     }
 
     QStringList getCertificatesByStatus(const QString& accountId, const QString& status)
     {
         return convertStringList(
-            DRing::getCertificatesByStatus(accountId.toStdString(), status.toStdString()));
+            libjami::getCertificatesByStatus(accountId.toStdString(), status.toStdString()));
     }
 
     VectorMapStringString getTrustRequests(const QString& accountId)
     {
-        return convertVecMap(DRing::getTrustRequests(accountId.toStdString()));
+        return convertVecMap(libjami::getTrustRequests(accountId.toStdString()));
     }
 
     bool acceptTrustRequest(const QString& accountId, const QString& from)
     {
-        return DRing::acceptTrustRequest(accountId.toStdString(), from.toStdString());
+        return libjami::acceptTrustRequest(accountId.toStdString(), from.toStdString());
     }
 
     bool discardTrustRequest(const QString& accountId, const QString& from)
     {
-        return DRing::discardTrustRequest(accountId.toStdString(), from.toStdString());
+        return libjami::discardTrustRequest(accountId.toStdString(), from.toStdString());
     }
 
     void sendTrustRequest(const QString& accountId, const QString& from, const QByteArray& payload)
     {
         std::vector<unsigned char> raw(payload.begin(), payload.end());
-        DRing::sendTrustRequest(accountId.toStdString(), from.toStdString(), raw);
+        libjami::sendTrustRequest(accountId.toStdString(), from.toStdString(), raw);
     }
 
     void removeContact(const QString& accountId, const QString& uri, bool ban)
     {
-        DRing::removeContact(accountId.toStdString(), uri.toStdString(), ban);
+        libjami::removeContact(accountId.toStdString(), uri.toStdString(), ban);
     }
 
     void revokeDevice(const QString& accountId, const QString& password, const QString& deviceId)
     {
-        DRing::revokeDevice(accountId.toStdString(), password.toStdString(), deviceId.toStdString());
+        libjami::revokeDevice(accountId.toStdString(),
+                              password.toStdString(),
+                              deviceId.toStdString());
     }
 
     void addContact(const QString& accountId, const QString& uri)
     {
-        DRing::addContact(accountId.toStdString(), uri.toStdString());
+        libjami::addContact(accountId.toStdString(), uri.toStdString());
     }
 
     uint64_t sendTextMessage(const QString& accountId,
                              const QString& to,
                              const QMap<QString, QString>& payloads)
     {
-        return DRing::sendAccountTextMessage(accountId.toStdString(),
-                                             to.toStdString(),
-                                             convertMap(payloads));
+        return libjami::sendAccountTextMessage(accountId.toStdString(),
+                                               to.toStdString(),
+                                               convertMap(payloads));
     }
 
     QVector<Message> getLastMessages(const QString& accountID, const uint64_t& base_timestamp)
     {
         QVector<Message> result;
-        for (auto& message : DRing::getLastMessages(accountID.toStdString(), base_timestamp)) {
+        for (auto& message : libjami::getLastMessages(accountID.toStdString(), base_timestamp)) {
             result.append({message.from.c_str(), convertMap(message.payloads), message.received});
         }
         return result;
@@ -902,27 +905,27 @@ public Q_SLOTS: // METHODS
                          unsigned int codecId,
                          const MapStringString& details)
     {
-        return DRing::setCodecDetails(accountId.toStdString(), codecId, convertMap(details));
+        return libjami::setCodecDetails(accountId.toStdString(), codecId, convertMap(details));
     }
 
     int getMessageStatus(uint64_t id)
     {
-        return DRing::getMessageStatus(id);
+        return libjami::getMessageStatus(id);
     }
 
     MapStringString getNearbyPeers(const QString& accountID)
     {
-        return convertMap(DRing::getNearbyPeers(accountID.toStdString()));
+        return convertMap(libjami::getNearbyPeers(accountID.toStdString()));
     }
 
     void connectivityChanged()
     {
-        DRing::connectivityChanged();
+        libjami::connectivityChanged();
     }
 
     MapStringString getContactDetails(const QString& accountID, const QString& uri)
     {
-        return convertMap(DRing::getContactDetails(accountID.toStdString(), uri.toStdString()));
+        return convertMap(libjami::getContactDetails(accountID.toStdString(), uri.toStdString()));
     }
 
     void sendFile(const QString& accountId,
@@ -931,11 +934,11 @@ public Q_SLOTS: // METHODS
                   const QString& fileDisplayName,
                   const QString& parent)
     {
-        DRing::sendFile(accountId.toStdString(),
-                        conversationId.toStdString(),
-                        filePath.toStdString(),
-                        fileDisplayName.toStdString(),
-                        parent.toStdString());
+        libjami::sendFile(accountId.toStdString(),
+                          conversationId.toStdString(),
+                          filePath.toStdString(),
+                          fileDisplayName.toStdString(),
+                          parent.toStdString());
     }
 
     uint64_t fileTransferInfo(QString accountId,
@@ -946,36 +949,36 @@ public Q_SLOTS: // METHODS
                               qlonglong& progress)
     {
         std::string pathstr;
-        auto result = uint32_t(DRing::fileTransferInfo(accountId.toStdString(),
-                                                       conversationId.toStdString(),
-                                                       fileId.toStdString(),
-                                                       pathstr,
-                                                       reinterpret_cast<int64_t&>(total),
-                                                       reinterpret_cast<int64_t&>(progress)));
+        auto result = uint32_t(libjami::fileTransferInfo(accountId.toStdString(),
+                                                         conversationId.toStdString(),
+                                                         fileId.toStdString(),
+                                                         pathstr,
+                                                         reinterpret_cast<int64_t&>(total),
+                                                         reinterpret_cast<int64_t&>(progress)));
         path = pathstr.c_str();
         return result;
     }
 
     uint32_t cancelDataTransfer(QString accountId, QString conversationId, QString transfer_id)
     {
-        return uint32_t(DRing::cancelDataTransfer(accountId.toStdString(),
-                                                  conversationId.toStdString(),
-                                                  transfer_id.toStdString()));
+        return uint32_t(libjami::cancelDataTransfer(accountId.toStdString(),
+                                                    conversationId.toStdString(),
+                                                    transfer_id.toStdString()));
     }
 
     void setPushNotificationToken(const QString& token)
     {
-        DRing::setPushNotificationToken(token.toStdString());
+        libjami::setPushNotificationToken(token.toStdString());
     }
 
     void pushNotificationReceived(const QString& from, const MapStringString& data)
     {
-        DRing::pushNotificationReceived(from.toStdString(), convertMap(data));
+        libjami::pushNotificationReceived(from.toStdString(), convertMap(data));
     }
 
     void setIsComposing(const QString& accountId, const QString& contactId, bool isComposing)
     {
-        DRing::setIsComposing(accountId.toStdString(), contactId.toStdString(), isComposing);
+        libjami::setIsComposing(accountId.toStdString(), contactId.toStdString(), isComposing);
     }
 
     bool setMessageDisplayed(const QString& accountId,
@@ -983,65 +986,65 @@ public Q_SLOTS: // METHODS
                              const QString& messageId,
                              int status)
     {
-        return DRing::setMessageDisplayed(accountId.toStdString(),
-                                          contactId.toStdString(),
-                                          messageId.toStdString(),
-                                          status);
+        return libjami::setMessageDisplayed(accountId.toStdString(),
+                                            contactId.toStdString(),
+                                            messageId.toStdString(),
+                                            status);
     }
 
     bool searchUser(const QString& accountId, const QString& query)
     {
-        return DRing::searchUser(accountId.toStdString(), query.toStdString());
+        return libjami::searchUser(accountId.toStdString(), query.toStdString());
     }
     // swarm
     QString startConversation(const QString& accountId)
     {
-        auto convId = DRing::startConversation(accountId.toStdString());
+        auto convId = libjami::startConversation(accountId.toStdString());
         return QString(convId.c_str());
     }
     void acceptConversationRequest(const QString& accountId, const QString& conversationId)
     {
-        DRing::acceptConversationRequest(accountId.toStdString(), conversationId.toStdString());
+        libjami::acceptConversationRequest(accountId.toStdString(), conversationId.toStdString());
     }
     void declineConversationRequest(const QString& accountId, const QString& conversationId)
     {
-        DRing::declineConversationRequest(accountId.toStdString(), conversationId.toStdString());
+        libjami::declineConversationRequest(accountId.toStdString(), conversationId.toStdString());
     }
     bool removeConversation(const QString& accountId, const QString& conversationId)
     {
-        return DRing::removeConversation(accountId.toStdString(), conversationId.toStdString());
+        return libjami::removeConversation(accountId.toStdString(), conversationId.toStdString());
     }
     QStringList getConversations(const QString& accountId)
     {
-        auto conversations = DRing::getConversations(accountId.toStdString());
+        auto conversations = libjami::getConversations(accountId.toStdString());
         return convertStringList(conversations);
     }
     VectorMapStringString getConversationRequests(const QString& accountId)
     {
-        auto requests = DRing::getConversationRequests(accountId.toStdString());
+        auto requests = libjami::getConversationRequests(accountId.toStdString());
         return convertVecMap(requests);
     }
     void addConversationMember(const QString& accountId,
                                const QString& conversationId,
                                const QString& memberId)
     {
-        DRing::addConversationMember(accountId.toStdString(),
-                                     conversationId.toStdString(),
-                                     memberId.toStdString());
+        libjami::addConversationMember(accountId.toStdString(),
+                                       conversationId.toStdString(),
+                                       memberId.toStdString());
     }
     void removeConversationMember(const QString& accountId,
                                   const QString& conversationId,
                                   const QString& memberId)
     {
-        DRing::removeConversationMember(accountId.toStdString(),
-                                        conversationId.toStdString(),
-                                        memberId.toStdString());
+        libjami::removeConversationMember(accountId.toStdString(),
+                                          conversationId.toStdString(),
+                                          memberId.toStdString());
     }
     VectorMapStringString getConversationMembers(const QString& accountId,
                                                  const QString& conversationId)
     {
-        auto members = DRing::getConversationMembers(accountId.toStdString(),
-                                                     conversationId.toStdString());
+        auto members = libjami::getConversationMembers(accountId.toStdString(),
+                                                       conversationId.toStdString());
         return convertVecMap(members);
     }
     void sendMessage(const QString& accountId,
@@ -1049,91 +1052,91 @@ public Q_SLOTS: // METHODS
                      const QString& message,
                      const QString& parent)
     {
-        DRing::sendMessage(accountId.toStdString(),
-                           conversationId.toStdString(),
-                           message.toStdString(),
-                           parent.toStdString());
+        libjami::sendMessage(accountId.toStdString(),
+                             conversationId.toStdString(),
+                             message.toStdString(),
+                             parent.toStdString());
     }
     uint32_t loadConversationMessages(const QString& accountId,
                                       const QString& conversationId,
                                       const QString& fromId,
                                       const int size)
     {
-        return DRing::loadConversationMessages(accountId.toStdString(),
-                                               conversationId.toStdString(),
-                                               fromId.toStdString(),
-                                               size);
+        return libjami::loadConversationMessages(accountId.toStdString(),
+                                                 conversationId.toStdString(),
+                                                 fromId.toStdString(),
+                                                 size);
     }
     uint32_t loadConversationUntil(const QString& accountId,
                                    const QString& conversationId,
                                    const QString& fromId,
                                    const QString& toId)
     {
-        return DRing::loadConversationUntil(accountId.toStdString(),
-                                            conversationId.toStdString(),
-                                            fromId.toStdString(),
-                                            toId.toStdString());
+        return libjami::loadConversationUntil(accountId.toStdString(),
+                                              conversationId.toStdString(),
+                                              fromId.toStdString(),
+                                              toId.toStdString());
     }
 
     void setDefaultModerator(const QString& accountID, const QString& peerURI, const bool& state)
     {
-        DRing::setDefaultModerator(accountID.toStdString(), peerURI.toStdString(), state);
+        libjami::setDefaultModerator(accountID.toStdString(), peerURI.toStdString(), state);
     }
 
     QStringList getDefaultModerators(const QString& accountID)
     {
-        return convertStringList(DRing::getDefaultModerators(accountID.toStdString()));
+        return convertStringList(libjami::getDefaultModerators(accountID.toStdString()));
     }
 
     void enableLocalModerators(const QString& accountID, const bool& isModEnabled)
     {
-        DRing::enableLocalModerators(accountID.toStdString(), isModEnabled);
+        libjami::enableLocalModerators(accountID.toStdString(), isModEnabled);
     }
 
     bool isLocalModeratorsEnabled(const QString& accountID)
     {
-        return DRing::isLocalModeratorsEnabled(accountID.toStdString());
+        return libjami::isLocalModeratorsEnabled(accountID.toStdString());
     }
 
     void setAllModerators(const QString& accountID, const bool& allModerators)
     {
-        DRing::setAllModerators(accountID.toStdString(), allModerators);
+        libjami::setAllModerators(accountID.toStdString(), allModerators);
     }
 
     bool isAllModerators(const QString& accountID)
     {
-        return DRing::isAllModerators(accountID.toStdString());
+        return libjami::isAllModerators(accountID.toStdString());
     }
 
     MapStringString conversationInfos(const QString& accountId, const QString& conversationId)
     {
         return convertMap(
-            DRing::conversationInfos(accountId.toStdString(), conversationId.toStdString()));
+            libjami::conversationInfos(accountId.toStdString(), conversationId.toStdString()));
     }
 
     MapStringString getConversationPreferences(const QString& accountId,
                                                const QString& conversationId)
     {
-        return convertMap(DRing::getConversationPreferences(accountId.toStdString(),
-                                                            conversationId.toStdString()));
+        return convertMap(libjami::getConversationPreferences(accountId.toStdString(),
+                                                              conversationId.toStdString()));
     }
 
     void updateConversationInfos(const QString& accountId,
                                  const QString& conversationId,
                                  const MapStringString& info)
     {
-        DRing::updateConversationInfos(accountId.toStdString(),
-                                       conversationId.toStdString(),
-                                       convertMap(info));
+        libjami::updateConversationInfos(accountId.toStdString(),
+                                         conversationId.toStdString(),
+                                         convertMap(info));
     }
 
     void setConversationPreferences(const QString& accountId,
                                     const QString& conversationId,
                                     const MapStringString& prefs)
     {
-        DRing::setConversationPreferences(accountId.toStdString(),
-                                          conversationId.toStdString(),
-                                          convertMap(prefs));
+        libjami::setConversationPreferences(accountId.toStdString(),
+                                            conversationId.toStdString(),
+                                            convertMap(prefs));
     }
 
     uint32_t countInteractions(const QString& accountId,
@@ -1142,11 +1145,11 @@ public Q_SLOTS: // METHODS
                                const QString& fromId,
                                const QString& authorUri)
     {
-        return DRing::countInteractions(accountId.toStdString(),
-                                        conversationId.toStdString(),
-                                        toId.toStdString(),
-                                        fromId.toStdString(),
-                                        authorUri.toStdString());
+        return libjami::countInteractions(accountId.toStdString(),
+                                          conversationId.toStdString(),
+                                          toId.toStdString(),
+                                          fromId.toStdString(),
+                                          authorUri.toStdString());
     }
 Q_SIGNALS: // SIGNALS
     void volumeChanged(const QString& device, double value);

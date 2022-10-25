@@ -50,14 +50,14 @@ public:
     ~VideoManagerInterface();
 
 #ifdef ENABLE_VIDEO
-    std::map<std::string, std::shared_ptr<DRing::CallbackWrapperBase>> videoHandlers;
+    std::map<std::string, std::shared_ptr<libjami::CallbackWrapperBase>> videoHandlers;
 #endif
 
 public Q_SLOTS: // METHODS
     void applySettings(const QString& name, MapStringString settings)
     {
 #ifdef ENABLE_VIDEO
-        DRing::applySettings(name.toStdString(), convertMap(settings));
+        libjami::applySettings(name.toStdString(), convertMap(settings));
 #else
         Q_UNUSED(name)
         Q_UNUSED(settings)
@@ -69,7 +69,7 @@ public Q_SLOTS: // METHODS
         MapStringMapStringVectorString ret;
 #ifdef ENABLE_VIDEO
         std::map<std::string, std::map<std::string, std::vector<std::string>>> temp;
-        temp = DRing::getCapabilities(name.toStdString());
+        temp = libjami::getCapabilities(name.toStdString());
 
         for (auto& x : temp) {
             QMap<QString, VectorString> ytemp;
@@ -87,7 +87,7 @@ public Q_SLOTS: // METHODS
     QString getDefaultDevice()
     {
 #ifdef ENABLE_VIDEO
-        return QString::fromStdString(DRing::getDefaultDevice().c_str());
+        return QString::fromStdString(libjami::getDefaultDevice().c_str());
 #else
         return QString();
 #endif
@@ -96,7 +96,7 @@ public Q_SLOTS: // METHODS
     QStringList getDeviceList()
     {
 #ifdef ENABLE_VIDEO
-        QStringList temp = convertStringList(DRing::getDeviceList());
+        QStringList temp = convertStringList(libjami::getDeviceList());
 #else
         QStringList temp;
 #endif
@@ -106,7 +106,7 @@ public Q_SLOTS: // METHODS
     MapStringString getSettings(const QString& device)
     {
 #ifdef ENABLE_VIDEO
-        MapStringString temp = convertMap(DRing::getSettings(device.toStdString()));
+        MapStringString temp = convertMap(libjami::getSettings(device.toStdString()));
 #else
         Q_UNUSED(device)
         MapStringString temp;
@@ -117,7 +117,7 @@ public Q_SLOTS: // METHODS
     void setDefaultDevice(const QString& name)
     {
 #ifdef ENABLE_VIDEO
-        DRing::setDefaultDevice(name.toStdString());
+        libjami::setDefaultDevice(name.toStdString());
 #else
         Q_UNUSED(name)
 #endif
@@ -126,25 +126,31 @@ public Q_SLOTS: // METHODS
     QString openVideoInput(const QString& resource)
     {
 #ifdef ENABLE_VIDEO
-        return DRing::openVideoInput(resource.toStdString()).c_str();
+        return libjami::openVideoInput(resource.toStdString()).c_str();
 #endif
     }
 
     void closeVideoInput(const QString& resource)
     {
 #ifdef ENABLE_VIDEO
-        DRing::closeVideoInput(resource.toStdString());
+        libjami::closeVideoInput(resource.toStdString());
 #endif
     }
 
-    void startAudioDevice() { DRing::startAudioDevice(); }
+    void startAudioDevice()
+    {
+        libjami::startAudioDevice();
+    }
 
-    void stopAudioDevice() { DRing::stopAudioDevice(); }
+    void stopAudioDevice()
+    {
+        libjami::stopAudioDevice();
+    }
 
-    bool registerSinkTarget(const QString& sinkID, const DRing::SinkTarget& target)
+    bool registerSinkTarget(const QString& sinkID, const libjami::SinkTarget& target)
     {
 #ifdef ENABLE_VIDEO
-        return DRing::registerSinkTarget(sinkID.toStdString(), target);
+        return libjami::registerSinkTarget(sinkID.toStdString(), target);
 #else
         Q_UNUSED(sinkID)
         Q_UNUSED(target)
@@ -152,25 +158,40 @@ public Q_SLOTS: // METHODS
 #endif
     }
 
-    bool getDecodingAccelerated() { return DRing::getDecodingAccelerated(); }
+    bool getDecodingAccelerated()
+    {
+        return libjami::getDecodingAccelerated();
+    }
 
-    void setDecodingAccelerated(bool state) { DRing::setDecodingAccelerated(state); }
+    void setDecodingAccelerated(bool state)
+    {
+        libjami::setDecodingAccelerated(state);
+    }
 
-    bool getEncodingAccelerated() { return DRing::getEncodingAccelerated(); }
+    bool getEncodingAccelerated()
+    {
+        return libjami::getEncodingAccelerated();
+    }
 
-    void setEncodingAccelerated(bool state) { DRing::setEncodingAccelerated(state); }
+    void setEncodingAccelerated(bool state)
+    {
+        libjami::setEncodingAccelerated(state);
+    }
 
-    void stopLocalRecorder(const QString& path) { DRing::stopLocalRecorder(path.toStdString()); }
+    void stopLocalRecorder(const QString& path)
+    {
+        libjami::stopLocalRecorder(path.toStdString());
+    }
 
     QString startLocalMediaRecorder(const QString& videoInputId, const QString& path)
     {
         return QString::fromStdString(
-            DRing::startLocalMediaRecorder(videoInputId.toStdString(), path.toStdString()));
+            libjami::startLocalMediaRecorder(videoInputId.toStdString(), path.toStdString()));
     }
 
     MapStringString getRenderer(const QString& id)
     {
-        return convertMap(DRing::getRenderer(id.toStdString()));
+        return convertMap(libjami::getRenderer(id.toStdString()));
     }
 
 Q_SIGNALS: // SIGNALS

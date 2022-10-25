@@ -21,49 +21,49 @@
 bool
 PluginManagerInterface::loadPlugin(const QString& path)
 {
-    return DRing::loadPlugin(path.toStdString());
+    return libjami::loadPlugin(path.toStdString());
 }
 
 bool
 PluginManagerInterface::unloadPlugin(const QString& path)
 {
-    return DRing::unloadPlugin(path.toStdString());
+    return libjami::unloadPlugin(path.toStdString());
 }
 
 MapStringString
 PluginManagerInterface::getPluginDetails(const QString& path)
 {
-    return convertMap(DRing::getPluginDetails(path.toStdString()));
+    return convertMap(libjami::getPluginDetails(path.toStdString()));
 }
 
 QStringList
 PluginManagerInterface::getInstalledPlugins()
 {
-    return convertStringList(DRing::getInstalledPlugins());
+    return convertStringList(libjami::getInstalledPlugins());
 }
 
 QStringList
 PluginManagerInterface::getLoadedPlugins()
 {
-    return convertStringList(DRing::getLoadedPlugins());
+    return convertStringList(libjami::getLoadedPlugins());
 }
 
 int
 PluginManagerInterface::installPlugin(const QString& jplPath, bool force)
 {
-    return DRing::installPlugin(jplPath.toStdString(), force);
+    return libjami::installPlugin(jplPath.toStdString(), force);
 }
 
 int
 PluginManagerInterface::uninstallPlugin(const QString& pluginRootPath)
 {
-    return DRing::uninstallPlugin(pluginRootPath.toStdString());
+    return libjami::uninstallPlugin(pluginRootPath.toStdString());
 }
 
 QStringList
 PluginManagerInterface::getCallMediaHandlers()
 {
-    return convertStringList(DRing::getCallMediaHandlers());
+    return convertStringList(libjami::getCallMediaHandlers());
 }
 
 void
@@ -71,13 +71,13 @@ PluginManagerInterface::toggleCallMediaHandler(const QString& mediaHandlerId,
                                                const QString& callId,
                                                bool toggle)
 {
-    DRing::toggleCallMediaHandler(mediaHandlerId.toStdString(), callId.toStdString(), toggle);
+    libjami::toggleCallMediaHandler(mediaHandlerId.toStdString(), callId.toStdString(), toggle);
 }
 
 QStringList
 PluginManagerInterface::getChatHandlers()
 {
-    return convertStringList(DRing::getChatHandlers());
+    return convertStringList(libjami::getChatHandlers());
 }
 
 void
@@ -86,54 +86,54 @@ PluginManagerInterface::toggleChatHandler(const QString& chatHandlerId,
                                           const QString& peerId,
                                           bool toggle)
 {
-    DRing::toggleChatHandler(chatHandlerId.toStdString(),
-                             accountId.toStdString(),
-                             peerId.toStdString(),
-                             toggle);
+    libjami::toggleChatHandler(chatHandlerId.toStdString(),
+                               accountId.toStdString(),
+                               peerId.toStdString(),
+                               toggle);
 }
 
 QStringList
 PluginManagerInterface::getCallMediaHandlerStatus(const QString& callId)
 {
-    return convertStringList(DRing::getCallMediaHandlerStatus(callId.toStdString()));
+    return convertStringList(libjami::getCallMediaHandlerStatus(callId.toStdString()));
 }
 
 MapStringString
 PluginManagerInterface::getCallMediaHandlerDetails(const QString& mediaHandlerId)
 {
-    return convertMap(DRing::getCallMediaHandlerDetails(mediaHandlerId.toStdString()));
+    return convertMap(libjami::getCallMediaHandlerDetails(mediaHandlerId.toStdString()));
 }
 
 QStringList
 PluginManagerInterface::getChatHandlerStatus(const QString& accountId, const QString& peerId)
 {
     return convertStringList(
-        DRing::getChatHandlerStatus(accountId.toStdString(), peerId.toStdString()));
+        libjami::getChatHandlerStatus(accountId.toStdString(), peerId.toStdString()));
 }
 
 MapStringString
 PluginManagerInterface::getChatHandlerDetails(const QString& chatHandlerId)
 {
-    return convertMap(DRing::getChatHandlerDetails(chatHandlerId.toStdString()));
+    return convertMap(libjami::getChatHandlerDetails(chatHandlerId.toStdString()));
 }
 
 void
 PluginManagerInterface::setPluginsEnabled(bool enable)
 {
-    DRing::setPluginsEnabled(enable);
+    libjami::setPluginsEnabled(enable);
 }
 
 bool
 PluginManagerInterface::getPluginsEnabled()
 {
-    return DRing::getPluginsEnabled();
+    return libjami::getPluginsEnabled();
 }
 
 VectorMapStringString
 PluginManagerInterface::getPluginPreferences(const QString& path, const QString& accountId)
 {
     VectorMapStringString temp;
-    for (auto x : DRing::getPluginPreferences(path.toStdString(), accountId.toStdString())) {
+    for (auto x : libjami::getPluginPreferences(path.toStdString(), accountId.toStdString())) {
         temp.push_back(convertMap(x));
     }
     return temp;
@@ -145,21 +145,21 @@ PluginManagerInterface::setPluginPreference(const QString& path,
                                             const QString& key,
                                             const QString& value)
 {
-    return DRing::setPluginPreference(path.toStdString(),
-                                      accountId.toStdString(),
-                                      key.toStdString(),
-                                      value.toStdString());
+    return libjami::setPluginPreference(path.toStdString(),
+                                        accountId.toStdString(),
+                                        key.toStdString(),
+                                        value.toStdString());
 }
 
 MapStringString
 PluginManagerInterface::getPluginPreferencesValues(const QString& path, const QString& accountId)
 {
     return convertMap(
-        DRing::getPluginPreferencesValues(path.toStdString(), accountId.toStdString()));
+        libjami::getPluginPreferencesValues(path.toStdString(), accountId.toStdString()));
 }
 
 bool
 PluginManagerInterface::resetPluginPreferencesValues(const QString& path, const QString& accountId)
 {
-    return DRing::resetPluginPreferencesValues(path.toStdString(), accountId.toStdString());
+    return libjami::resetPluginPreferencesValues(path.toStdString(), accountId.toStdString());
 }

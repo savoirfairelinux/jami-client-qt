@@ -228,7 +228,7 @@ AccountModel::setAccountConfig(const QString& accountId,
     MapStringString details = confProperties.toDetails();
     // Set values from Info. No need to include ID and TYPE. SIP accounts may modify the USERNAME
     // TODO: move these into the ConfProperties_t struct ?
-    using namespace DRing::Account;
+    using namespace libjami::Account;
     details[ConfProperties::ENABLED] = accountInfo.enabled ? QString("true") : QString("false");
     details[ConfProperties::ALIAS] = accountInfo.profileInfo.alias;
     details[ConfProperties::DISPLAYNAME] = accountInfo.profileInfo.alias;
@@ -485,7 +485,7 @@ AccountModelPimpl::updateAccountDetails(account::Info& accountInfo)
 
     MapStringString volatileDetails = ConfigurationManager::instance().getVolatileAccountDetails(
         accountInfo.id);
-    QString daemonStatus = volatileDetails[DRing::Account::ConfProperties::Registration::STATUS];
+    QString daemonStatus = volatileDetails[libjami::Account::ConfProperties::Registration::STATUS];
     accountInfo.status = lrc::api::account::to_status(daemonStatus);
 }
 
@@ -571,7 +571,7 @@ AccountModelPimpl::slotVolatileAccountDetailsChanged(const QString& accountId,
     }
     auto& accountInfo = account->second.first;
 
-    auto new_usernameIt = details.find(DRing::Account::VolatileProperties::REGISTERED_NAME);
+    auto new_usernameIt = details.find(libjami::Account::VolatileProperties::REGISTERED_NAME);
     if (new_usernameIt == details.end())
         return;
     accountInfo.registeredName = new_usernameIt.value();
@@ -674,7 +674,8 @@ AccountModelPimpl::slotMigrationEnded(const QString& accountId, bool ok)
         accountInfo.fromDetails(details);
         MapStringString volatileDetails = ConfigurationManager::instance().getVolatileAccountDetails(
             accountId);
-        QString daemonStatus = volatileDetails[DRing::Account::ConfProperties::Registration::STATUS];
+        QString daemonStatus
+            = volatileDetails[libjami::Account::ConfProperties::Registration::STATUS];
         accountInfo.status = lrc::api::account::to_status(daemonStatus);
     }
     Q_EMIT linked.migrationEnded(accountId, ok);
@@ -779,7 +780,7 @@ AccountModelPimpl::removeFromAccounts(const QString& accountId)
 void
 account::Info::fromDetails(const MapStringString& details)
 {
-    using namespace DRing::Account;
+    using namespace libjami::Account;
     const MapStringString volatileDetails = ConfigurationManager::instance()
                                                 .getVolatileAccountDetails(id);
 
@@ -913,7 +914,7 @@ account::Info::fromDetails(const MapStringString& details)
 MapStringString
 account::ConfProperties_t::toDetails() const
 {
-    using namespace DRing::Account;
+    using namespace libjami::Account;
     MapStringString details;
     // General
     details[ConfProperties::MAILBOX] = this->mailbox;
@@ -1046,7 +1047,7 @@ AccountModel::createNewAccount(profile::Type type,
     MapStringString details = type == profile::Type::SIP
                                   ? ConfigurationManager::instance().getAccountTemplate("SIP")
                                   : ConfigurationManager::instance().getAccountTemplate("RING");
-    using namespace DRing::Account;
+    using namespace libjami::Account;
     details[ConfProperties::TYPE] = type == profile::Type::SIP ? "SIP" : "RING";
     details[ConfProperties::DISPLAYNAME] = displayName;
     details[ConfProperties::ALIAS] = displayName;
@@ -1073,7 +1074,7 @@ AccountModel::connectToAccountManager(const QString& username,
                                       const MapStringString& config)
 {
     MapStringString details = ConfigurationManager::instance().getAccountTemplate("RING");
-    using namespace DRing::Account;
+    using namespace libjami::Account;
     details[ConfProperties::TYPE] = "RING";
     details[ConfProperties::MANAGER_URI] = serverUri;
     details[ConfProperties::MANAGER_USERNAME] = username;

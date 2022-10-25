@@ -270,8 +270,8 @@ AvAdapter::stopSharing()
     auto callId = lrcInstance_->getCurrentCallId();
     if (!callId.isEmpty()) {
         lrcInstance_->getCurrentCallModel()->removeMedia(callId,
-                                                         DRing::Media::Details::MEDIA_TYPE_VIDEO,
-                                                         DRing::Media::VideoProtocolPrefix::DISPLAY,
+                                                         libjami::Media::Details::MEDIA_TYPE_VIDEO,
+                                                         libjami::Media::VideoProtocolPrefix::DISPLAY,
                                                          muteCamera_);
     }
 }
@@ -318,9 +318,9 @@ AvAdapter::isSharing() const
         auto callModel = lrcInstance_->getCurrentCallModel();
         auto call = callModel->getCall(callId);
         // TODO enum
-        return call.hasMediaWithType(DRing::Media::VideoProtocolPrefix::DISPLAY,
-                                     DRing::Media::Details::MEDIA_TYPE_VIDEO)
-               || call.hasMediaWithType("file:", DRing::Media::Details::MEDIA_TYPE_VIDEO);
+        return call.hasMediaWithType(libjami::Media::VideoProtocolPrefix::DISPLAY,
+                                     libjami::Media::Details::MEDIA_TYPE_VIDEO)
+               || call.hasMediaWithType("file:", libjami::Media::Details::MEDIA_TYPE_VIDEO);
     } catch (...) {
     }
     return false;
@@ -334,11 +334,11 @@ AvAdapter::isCapturing() const
         auto callModel = lrcInstance_->getCurrentCallModel();
         auto call = callModel->getCall(callId);
         for (const auto& m : call.mediaList) {
-            if (m[DRing::Media::MediaAttributeKey::SOURCE].startsWith(
-                    DRing::Media::VideoProtocolPrefix::CAMERA)
-                && m[DRing::Media::MediaAttributeKey::MEDIA_TYPE]
-                       == DRing::Media::Details::MEDIA_TYPE_VIDEO)
-                return m[DRing::Media::MediaAttributeKey::MUTED] == FALSE_STR;
+            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(
+                    libjami::Media::VideoProtocolPrefix::CAMERA)
+                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE]
+                       == libjami::Media::Details::MEDIA_TYPE_VIDEO)
+                return m[libjami::Media::MediaAttributeKey::MUTED] == FALSE_STR;
         }
         return false;
     } catch (...) {
@@ -355,10 +355,10 @@ AvAdapter::hasCamera() const
         auto call = callModel->getCall(callId);
         // TODO enum
         for (const auto& m : call.mediaList) {
-            if (m[DRing::Media::MediaAttributeKey::SOURCE].startsWith(
-                    DRing::Media::VideoProtocolPrefix::CAMERA)
-                && m[DRing::Media::MediaAttributeKey::MEDIA_TYPE]
-                       == DRing::Media::Details::MEDIA_TYPE_VIDEO)
+            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(
+                    libjami::Media::VideoProtocolPrefix::CAMERA)
+                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE]
+                       == libjami::Media::Details::MEDIA_TYPE_VIDEO)
                 return true;
         }
         return false;

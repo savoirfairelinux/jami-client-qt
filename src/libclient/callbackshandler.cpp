@@ -32,7 +32,7 @@
 #include "dbus/presencemanager.h"
 #include "dbus/videomanager.h"
 
-// DRing
+// libjami
 #include <datatransfer_interface.h>
 
 #include <QFileInfo>
@@ -50,32 +50,32 @@ namespace lrc {
 using namespace api;
 
 static inline datatransfer::Status
-convertDataTransferEvent(DRing::DataTransferEventCode event)
+convertDataTransferEvent(libjami::DataTransferEventCode event)
 {
     switch (event) {
-    case DRing::DataTransferEventCode::invalid:
+    case libjami::DataTransferEventCode::invalid:
         return datatransfer::Status::INVALID;
-    case DRing::DataTransferEventCode::created:
+    case libjami::DataTransferEventCode::created:
         return datatransfer::Status::on_connection;
-    case DRing::DataTransferEventCode::unsupported:
+    case libjami::DataTransferEventCode::unsupported:
         return datatransfer::Status::unsupported;
-    case DRing::DataTransferEventCode::wait_peer_acceptance:
+    case libjami::DataTransferEventCode::wait_peer_acceptance:
         return datatransfer::Status::on_connection;
-    case DRing::DataTransferEventCode::wait_host_acceptance:
+    case libjami::DataTransferEventCode::wait_host_acceptance:
         return datatransfer::Status::on_connection;
-    case DRing::DataTransferEventCode::ongoing:
+    case libjami::DataTransferEventCode::ongoing:
         return datatransfer::Status::on_progress;
-    case DRing::DataTransferEventCode::finished:
+    case libjami::DataTransferEventCode::finished:
         return datatransfer::Status::success;
-    case DRing::DataTransferEventCode::closed_by_host:
+    case libjami::DataTransferEventCode::closed_by_host:
         return datatransfer::Status::stop_by_host;
-    case DRing::DataTransferEventCode::closed_by_peer:
+    case libjami::DataTransferEventCode::closed_by_peer:
         return datatransfer::Status::stop_by_peer;
-    case DRing::DataTransferEventCode::invalid_pathname:
+    case libjami::DataTransferEventCode::invalid_pathname:
         return datatransfer::Status::invalid_pathname;
-    case DRing::DataTransferEventCode::unjoinable_peer:
+    case libjami::DataTransferEventCode::unjoinable_peer:
         return datatransfer::Status::unjoinable_peer;
-    case DRing::DataTransferEventCode::timeout_expired:
+    case libjami::DataTransferEventCode::timeout_expired:
         return datatransfer::Status::timeout_expired;
     }
     throw std::runtime_error("BUG: broken convertDataTransferEvent() switch");
@@ -598,7 +598,7 @@ CallbacksHandler::slotDataTransferEvent(const QString& accountId,
                                         const QString& fileId,
                                         uint codeStatus)
 {
-    auto event = DRing::DataTransferEventCode(codeStatus);
+    auto event = libjami::DataTransferEventCode(codeStatus);
 
     api::datatransfer::Info info;
     if (conversationId.isEmpty()) {
@@ -630,36 +630,36 @@ CallbacksHandler::slotDataTransferEvent(const QString& accountId,
     // Is useful for "termination" status like unjoinable_peer.
 
     switch (event) {
-    case DRing::DataTransferEventCode::created:
+    case libjami::DataTransferEventCode::created:
         Q_EMIT transferStatusCreated(fileId, info);
         break;
-    case DRing::DataTransferEventCode::closed_by_host:
-    case DRing::DataTransferEventCode::closed_by_peer:
+    case libjami::DataTransferEventCode::closed_by_host:
+    case libjami::DataTransferEventCode::closed_by_peer:
         Q_EMIT transferStatusCanceled(fileId, info);
         break;
-    case DRing::DataTransferEventCode::wait_peer_acceptance:
+    case libjami::DataTransferEventCode::wait_peer_acceptance:
         Q_EMIT transferStatusAwaitingPeer(fileId, info);
         break;
-    case DRing::DataTransferEventCode::wait_host_acceptance:
+    case libjami::DataTransferEventCode::wait_host_acceptance:
         Q_EMIT transferStatusAwaitingHost(fileId, info);
         break;
-    case DRing::DataTransferEventCode::ongoing:
+    case libjami::DataTransferEventCode::ongoing:
         Q_EMIT transferStatusOngoing(fileId, info);
         break;
-    case DRing::DataTransferEventCode::finished:
+    case libjami::DataTransferEventCode::finished:
         Q_EMIT transferStatusFinished(fileId, info);
         break;
-    case DRing::DataTransferEventCode::invalid_pathname:
-    case DRing::DataTransferEventCode::unsupported:
+    case libjami::DataTransferEventCode::invalid_pathname:
+    case libjami::DataTransferEventCode::unsupported:
         Q_EMIT transferStatusError(fileId, info);
         break;
-    case DRing::DataTransferEventCode::timeout_expired:
+    case libjami::DataTransferEventCode::timeout_expired:
         Q_EMIT transferStatusTimeoutExpired(fileId, info);
         break;
-    case DRing::DataTransferEventCode::unjoinable_peer:
+    case libjami::DataTransferEventCode::unjoinable_peer:
         Q_EMIT transferStatusUnjoinable(fileId, info);
         break;
-    case DRing::DataTransferEventCode::invalid:
+    case libjami::DataTransferEventCode::invalid:
         break;
     }
 }

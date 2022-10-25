@@ -619,21 +619,22 @@ LegacyDatabase::migrateLocalProfiles()
                 }
             MapStringString account = ConfigurationManager::instance().getAccountDetails(
                 accountId.toStdString().c_str());
-            auto accountURI = account[DRing::Account::ConfProperties::USERNAME].contains("ring:")
-                                  ? account[DRing::Account::ConfProperties::USERNAME]
-                                        .toStdString()
-                                        .substr(std::string("ring:").size())
-                                  : account[DRing::Account::ConfProperties::USERNAME].toStdString();
+            auto accountURI
+                = account[libjami::Account::ConfProperties::USERNAME].contains("ring:")
+                      ? account[libjami::Account::ConfProperties::USERNAME].toStdString().substr(
+                          std::string("ring:").size())
+                      : account[libjami::Account::ConfProperties::USERNAME].toStdString();
 
             for (const auto& accountId : accountIds) {
                 MapStringString account = ConfigurationManager::instance().getAccountDetails(
                     accountId.toStdString().c_str());
-                auto type = account[DRing::Account::ConfProperties::TYPE] == "SIP" ? "SIP" : "RING";
+                auto type = account[libjami::Account::ConfProperties::TYPE] == "SIP" ? "SIP"
+                                                                                     : "RING";
 
-                auto uri = account[DRing::Account::ConfProperties::USERNAME].contains("ring:")
-                               ? QString(account[DRing::Account::ConfProperties::USERNAME])
+                auto uri = account[libjami::Account::ConfProperties::USERNAME].contains("ring:")
+                               ? QString(account[libjami::Account::ConfProperties::USERNAME])
                                      .remove(0, QString("ring:").size())
-                               : account[DRing::Account::ConfProperties::USERNAME];
+                               : account[libjami::Account::ConfProperties::USERNAME];
                 if (select("id", "profiles", "uri=:uri", {{":uri", uri}}).payloads.empty()) {
                     insertInto("profiles",
                                {{":uri", "uri"},
@@ -748,10 +749,10 @@ LegacyDatabase::migrateTextHistory()
 
                 MapStringString details = ConfigurationManager::instance().getAccountDetails(
                     peersObject["accountId"].toString());
-                if (!details.contains(DRing::Account::ConfProperties::USERNAME))
+                if (!details.contains(libjami::Account::ConfProperties::USERNAME))
                     continue;
 
-                auto accountUri = details[DRing::Account::ConfProperties::USERNAME];
+                auto accountUri = details[libjami::Account::ConfProperties::USERNAME];
                 auto isARingContact = accountUri.startsWith("ring:");
                 if (isARingContact) {
                     accountUri = accountUri.mid(QString("ring:").length());
@@ -909,10 +910,10 @@ LegacyDatabase::linkRingProfilesWithAccounts(bool contactsOnly)
             }
         MapStringString account = ConfigurationManager::instance().getAccountDetails(
             accountId.toStdString().c_str());
-        auto accountURI = account[DRing::Account::ConfProperties::USERNAME].contains("ring:")
-                              ? QString(account[DRing::Account::ConfProperties::USERNAME])
+        auto accountURI = account[libjami::Account::ConfProperties::USERNAME].contains("ring:")
+                              ? QString(account[libjami::Account::ConfProperties::USERNAME])
                                     .remove(0, QString("ring:").size())
-                              : account[DRing::Account::ConfProperties::USERNAME];
+                              : account[libjami::Account::ConfProperties::USERNAME];
         auto profileIds = select("id", "profiles", "uri=:uri", {{":uri", accountURI}}).payloads;
         if (profileIds.empty()) {
             continue;
@@ -934,7 +935,8 @@ LegacyDatabase::linkRingProfilesWithAccounts(bool contactsOnly)
             }
         }
 
-        if (account[DRing::Account::ConfProperties::TYPE] == DRing::Account::ProtocolNames::RING) {
+        if (account[libjami::Account::ConfProperties::TYPE]
+            == libjami::Account::ProtocolNames::RING) {
             // update RING contacts
             const VectorMapStringString& contacts_vector
                 = ConfigurationManager::instance().getContacts(accountId.toStdString().c_str());
@@ -947,11 +949,11 @@ LegacyDatabase::linkRingProfilesWithAccounts(bool contactsOnly)
             const VectorMapStringString& pending_tr
                 = ConfigurationManager::instance().getTrustRequests(accountId.toStdString().c_str());
             for (auto tr_info : pending_tr) {
-                auto contactURI = tr_info[DRing::Account::TrustRequest::FROM];
+                auto contactURI = tr_info[libjami::Account::TrustRequest::FROM];
                 updateProfileAccountForContact(contactURI, accountId);
             }
-        } else if (account[DRing::Account::ConfProperties::TYPE]
-                   == DRing::Account::ProtocolNames::SIP) {
+        } else if (account[libjami::Account::ConfProperties::TYPE]
+                   == libjami::Account::ProtocolNames::SIP) {
             // update SIP contacts
             auto conversations = select("id",
                                         "conversations",

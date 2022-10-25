@@ -158,7 +158,7 @@ Lrc::activeCalls(const QString& accountId)
         QStringList callLists = CallManager::instance().getCallList(accId);
         for (const auto& call : callLists) {
             MapStringString callDetails = CallManager::instance().getCallDetails(accId, call);
-            if (!isFinished(callDetails[QString(DRing::Call::Details::CALL_STATE)]))
+            if (!isFinished(callDetails[QString(libjami::Call::Details::CALL_STATE)]))
                 result.push_back(call);
         }
     }
@@ -215,12 +215,12 @@ Lrc::getConferences(const QString& accountId)
 bool
 isFinished(const QString& callState)
 {
-    if (callState == QLatin1String(DRing::Call::StateEvent::HUNGUP)
-        || callState == QLatin1String(DRing::Call::StateEvent::BUSY)
-        || callState == QLatin1String(DRing::Call::StateEvent::PEER_BUSY)
-        || callState == QLatin1String(DRing::Call::StateEvent::FAILURE)
-        || callState == QLatin1String(DRing::Call::StateEvent::INACTIVE)
-        || callState == QLatin1String(DRing::Call::StateEvent::OVER)) {
+    if (callState == QLatin1String(libjami::Call::StateEvent::HUNGUP)
+        || callState == QLatin1String(libjami::Call::StateEvent::BUSY)
+        || callState == QLatin1String(libjami::Call::StateEvent::PEER_BUSY)
+        || callState == QLatin1String(libjami::Call::StateEvent::FAILURE)
+        || callState == QLatin1String(libjami::Call::StateEvent::INACTIVE)
+        || callState == QLatin1String(libjami::Call::StateEvent::OVER)) {
         return true;
     }
     return false;

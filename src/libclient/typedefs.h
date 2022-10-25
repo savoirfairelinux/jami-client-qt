@@ -44,7 +44,7 @@ typedef uint64_t DataTransferId;
 constexpr static const char* TRUE_STR = "true";
 constexpr static const char* FALSE_STR = "false";
 
-// Adapted from libring DRing::DataTransferInfo
+// Adapted from libring libjami::DataTransferInfo
 struct DataTransferInfo
 {
     QString accountId;

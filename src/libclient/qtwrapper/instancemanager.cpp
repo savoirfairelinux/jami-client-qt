@@ -32,25 +32,25 @@ InstanceManagerInterface::InstanceManagerInterface(bool muteDring)
     using namespace std::placeholders;
 
     using std::bind;
-    using DRing::exportable_callback;
-    using DRing::CallSignal;
-    using DRing::ConfigurationSignal;
-    using DRing::PresenceSignal;
-    using DRing::DataTransferSignal;
-    using DRing::ConversationSignal;
+    using libjami::exportable_callback;
+    using libjami::CallSignal;
+    using libjami::ConfigurationSignal;
+    using libjami::PresenceSignal;
+    using libjami::DataTransferSignal;
+    using libjami::ConversationSignal;
 
 #ifdef ENABLE_VIDEO
-    using DRing::VideoSignal;
+    using libjami::VideoSignal;
 #endif
 
-#ifndef MUTE_DRING
+#ifndef MUTE_LIBJAMI
     if (!muteDring) {
-        ringFlags |= DRing::DRING_FLAG_DEBUG;
-        ringFlags |= DRing::DRING_FLAG_CONSOLE_LOG;
+        ringFlags |= libjami::LIBJAMI_FLAG_DEBUG;
+        ringFlags |= libjami::LIBJAMI_FLAG_CONSOLE_LOG;
     }
 #endif
 
-    DRing::init(static_cast<DRing::InitFlag>(ringFlags));
+    libjami::init(static_cast<libjami::InitFlag>(ringFlags));
 
     registerSignalHandlers(CallManager::instance().callHandlers);
     registerSignalHandlers(ConfigurationManager::instance().confHandlers);
@@ -61,7 +61,7 @@ InstanceManagerInterface::InstanceManagerInterface(bool muteDring)
 #endif
     registerSignalHandlers(ConfigurationManager::instance().conversationsHandlers);
 
-    if (!DRing::start())
+    if (!libjami::start())
         printf("Error initializing daemon\n");
     else
         printf("Daemon is running\n");
