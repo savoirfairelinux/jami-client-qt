@@ -90,10 +90,8 @@ public:
         , fpsC(0)
         , fps(0)
         , timer(new QTimer(this))
-#ifdef DEBUG_FPS
         , frameCount(0)
         , lastFrameDebug(std::chrono::system_clock::now())
-#endif
     {
         timer->setInterval(33);
         connect(timer, &QTimer::timeout, [this]() { Q_EMIT parent_->frameUpdated(); });
@@ -110,7 +108,6 @@ public:
     }
 
     // Constants
-    constexpr static const int FPS_RATE_SEC = 1;
     constexpr static const int FRAME_CHECK_RATE_HZ = 120;
 
     // Lock the memory while the copy is being made
@@ -124,6 +121,12 @@ public:
     {
         ::sem_post(&shmArea->mutex);
     };
+
+    void shmRenderer::setFPS(int newFps)
+    {
+        fps = newFps;
+        Q_EMIT fpsChanged();
+    }
 
     // Wait for new frame data from shared memory and save pointer.
     bool getNewFrame(bool wait)
@@ -172,9 +175,10 @@ public:
         auto currentTime = std::chrono::system_clock::now();
         const std::chrono::duration<double> seconds = currentTime - lastFrameDebug;
         if (seconds.count() >= FPS_RATE_SEC) {
-            fps = (int) (fpsC / seconds.count());
+            fps = static_cast<int>(fpsC / seconds.count());
             fpsC = 0;
             lastFrameDebug = currentTime;
+            parent_->setFPS(fps);
 #ifdef DEBUG_FPS
             qDebug() << this << ": FPS " << fps;
 #endif

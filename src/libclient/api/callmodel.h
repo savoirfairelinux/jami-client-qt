@@ -391,6 +391,12 @@ public:
     QString getDisplay(const QString& windowId);
 
     void emplaceConversationConference(const QString& callId);
+
+    /**
+     * Get advanced information from every current call
+     */
+    QList<QVariant> getAdvancedInformation() const;
+
 Q_SIGNALS:
 
     /**

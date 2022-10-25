@@ -46,6 +46,10 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
             &lrc::api::AVModel::rendererStarted,
             this,
             &AvAdapter::onRendererStarted);
+    connect(&lrcInstance_->avModel(),
+            &lrc::api::AVModel::onRendererInfosUpdated,
+            this,
+            &AvAdapter::setRenderersInfoList);
 }
 
 // The top left corner of primary screen is (0, 0).
@@ -415,8 +419,15 @@ AvAdapter::getHardwareAcceleration()
 {
     return lrcInstance_->avModel().getHardwareAcceleration();
 }
+
 void
 AvAdapter::setHardwareAcceleration(bool accelerate)
 {
     lrcInstance_->avModel().setHardwareAcceleration(accelerate);
+}
+
+void
+AvAdapter::setRenderersInfoList(QVariantList renderersInfo)
+{
+    set_renderersInfoList(renderersInfo);
 }
