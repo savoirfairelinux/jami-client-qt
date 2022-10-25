@@ -212,5 +212,6 @@
         <file>mainview/components/DocumentsScrollview.qml</file>
         <file>mainview/components/FilePreview.qml</file>
         <file>mainview/components/MediaPreview.qml</file>
+	<file>mainview/components/CallInformationWindow.qml</file>
     </qresource>
 </RCC>

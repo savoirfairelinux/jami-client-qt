@@ -33,10 +33,19 @@ using namespace lrc::api::video;
 struct DirectRenderer::Impl : public QObject
 {
     Q_OBJECT
+private:
+    int fpsC;
+    int fps;
+
 public:
+    std::chrono::time_point<std::chrono::system_clock> lastFrameDebug;
+
     Impl(DirectRenderer* parent)
         : QObject(nullptr)
         , parent_(parent)
+        , fpsC(0)
+        , fps(0)
+        , lastFrameDebug(std::chrono::system_clock::now())
     {
         configureTarget();
         if (!VideoManager::instance().registerSinkTarget(parent_->id(), target))
@@ -80,6 +89,16 @@ public:
         {
             QMutexLocker lk(&mutex);
             frameBufferPtr = std::move(buf);
+        }
+        // compute FPS
+        ++fpsC;
+        auto currentTime = std::chrono::system_clock::now();
+        const std::chrono::duration<double> seconds = currentTime - lastFrameDebug;
+        if (seconds.count() >= FPS_RATE_SEC) {
+            fps = static_cast<int>(fpsC / seconds.count());
+            fpsC = 0;
+            lastFrameDebug = currentTime;
+            parent_->setFPS(fps);
         }
 
         Q_EMIT parent_->frameUpdated();

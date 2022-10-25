@@ -276,8 +276,17 @@ public:
     QSize getRendererSize(const QString& id);
     video::Frame getRendererFrame(const QString& id);
     bool useDirectRenderer() const;
+    /**
+     * Update renderers information list
+     */
+    Q_SLOT void updateRenderersInfo();
 
 Q_SIGNALS:
+    /**
+     * Emitted after an update of renderers information
+     * @param renderersInfoList Information on all renderers (RES, ID, FPS)
+     */
+    void onRendererInfosUpdated(QVariantList renderersInfoList);
     /**
      * Emitted when a renderer is started
      * @param id of the renderer

@@ -151,6 +151,7 @@ Rectangle {
 
         Rectangle {
             id: callPageMainRect
+
             SplitView.preferredHeight: mainColumnLayout.isHorizontal ? root.height : (root.height / 3) * 2
             SplitView.preferredWidth: mainColumnLayout.isHorizontal ? (root.width / 3) * 2 : root.width
             SplitView.minimumHeight: root.height / 2 + 20
