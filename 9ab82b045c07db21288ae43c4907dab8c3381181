@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30e063bb_8bfcd334",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68101bf7_bb845533",
+      "range": {
+        "startLine": 721,
+        "startChar": 60,
+        "endLine": 721,
+        "endChar": 72
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12138046_19d381f0",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-10-18T13:23:02Z",
       "side": 1,
       "message": "Lot of levels. Ideally I would split this in DocumentFlow/DocumentFlowItemDelegate at least to avoid un-readable content",
+      "range": {
+        "startLine": 823,
+        "startChar": 56,
+        "endLine": 833,
+        "endChar": 21
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c7bcca2_1fbaa3d8",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12138046_19d381f0",
       "range": {
         "startLine": 823,
         "startChar": 56,
@@ -87,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2d85cf2_35b36c1f",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2e1420e9_3816f01a",
+      "range": {
+        "startLine": 522,
+        "startChar": 9,
+        "endLine": 523,
+        "endChar": 81
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d140dddd_7a82bbf6",
@@ -110,6 +182,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "474b33d4_e76ade8f",
+        "filename": "src/libclient/api/conversationmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d140dddd_7a82bbf6",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 18
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2008570_89fa1aee",
@@ -123,6 +219,30 @@
       "writtenOn": "2022-10-18T13:23:02Z",
       "side": 1,
       "message": "add comment for doxygen",
+      "range": {
+        "startLine": 582,
+        "startChar": 9,
+        "endLine": 582,
+        "endChar": 31
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01056133_fe1945a9",
+        "filename": "src/libclient/api/conversationmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2008570_89fa1aee",
       "range": {
         "startLine": 582,
         "startChar": 9,
@@ -168,6 +288,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97ba415a_426bd350",
+        "filename": "src/libclient/api/conversationmodel.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38a2be9d_3033abfd",
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f66dc25_668c1338",
@@ -181,6 +319,30 @@
       "writtenOn": "2022-10-18T13:23:02Z",
       "side": 1,
       "message": "requestId should be matched if it\u0027s a search in progress",
+      "range": {
+        "startLine": 2421,
+        "startChar": 51,
+        "endLine": 2421,
+        "endChar": 60
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "654590ab_84ddd82d",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 2421,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f66dc25_668c1338",
       "range": {
         "startLine": 2421,
         "startChar": 51,
@@ -214,6 +376,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b654336_55fc04e6",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3802,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "I passed accountId to check if we\u0027re still in the right account ( may be useless but this check costs nothing I guess )",
+      "parentUuid": "b1282502_66743202",
+      "range": {
+        "startLine": 3802,
+        "startChar": 19,
+        "endLine": 3802,
+        "endChar": 37
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db492859_87910aa6",
@@ -227,6 +413,30 @@
       "writtenOn": "2022-10-18T13:23:02Z",
       "side": 1,
       "message": "return, searchConversation is returning a requestId, that should be matched with the signal (because there can be multiple research in parallel)",
+      "range": {
+        "startLine": 3804,
+        "startChar": 1,
+        "endLine": 3804,
+        "endChar": 8
+      },
+      "revId": "9ab82b045c07db21288ae43c4907dab8c3381181",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfecf5bd_2fc9ac4f",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 3804,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-25T21:09:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db492859_87910aa6",
       "range": {
         "startLine": 3804,
         "startChar": 1,
