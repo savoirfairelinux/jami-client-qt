@@ -209,9 +209,12 @@
         <file>commoncomponents/MaterialTextField.qml</file>
         <file>commoncomponents/ModalTextEdit.qml</file>
         <file>commoncomponents/UsernameTextEdit.qml</file>
+<<<<<<< HEAD
         <file>mainview/components/DocumentsScrollview.qml</file>
         <file>mainview/components/FilePreview.qml</file>
         <file>mainview/components/MediaPreview.qml</file>
+=======
         <file>mainview/components/CallInformationWindow.qml</file>
+>>>>>>> 5f8b2e739a (feature: Add 'advanced information' call overlay)
     </qresource>
 </RCC>

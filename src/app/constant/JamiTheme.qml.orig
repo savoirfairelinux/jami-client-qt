@@ -311,7 +311,6 @@ Item {
     property real preferredFieldHeight: 32
     property real preferredMarginSize: 16
     property real settingsMarginSize: 8
-    property real swarmDetailsPageTopMargin: 32
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
     property real minimumPreviewWidth: 120
@@ -337,19 +336,21 @@ Item {
     property real timestampFont: calcSize(12)
     property int timestampIntervalTime: 120
 
+<<<<<<< HEAD
     //swarmDetailsPage
     property real swarmDetailsPageTopMargin: 32
     property real swarmDetailsPageDocumentsMargins: 5
     property real swarmDetailsPageDocumentsMediaRadius: 15
     property real swarmDetailsPageDocumentsPaperClipSize: 24
     property real swarmDetailsPageDocumentsMediaSize: 175
-
+=======
     //Call information
     property real textFontPointSize: calcSize(10)
     property real titleFontPointSize: calcSize(13)
     property color callInfoColor: chatviewTextColor
     property int callInformationElementsSpacing: 5
     property int callInformationBlockSpacing: 15
+>>>>>>> 5f8b2e739a (feature: Add 'advanced information' call overlay)
 
     // Jami switch
     property real switchIndicatorRadius: 30

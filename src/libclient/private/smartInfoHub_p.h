@@ -18,7 +18,6 @@
 
 /* widget_p.h (_p means private) */
 #include <QObject>
-#include "../smartinfohub.h"
 #include "typedefs.h"
 
 #pragma once
