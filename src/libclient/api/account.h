@@ -177,7 +177,6 @@ struct ConfProperties_t
         bool verifyServer;
         bool verifyClient;
         bool requireClientCertificate;
-        bool disableSecureDlgCheck;
         int negotiationTimeoutSec;
     } TLS;
     struct DHT_t

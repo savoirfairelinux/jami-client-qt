@@ -247,17 +247,6 @@ ColumnLayout {
             onSwitchToggled: CurrentAccount.requireClientCertificate_TLS = checked
         }
 
-        ToggleSwitch {
-            id: disableSecureDlgCheckToggle
-
-            labelText: JamiStrings.disableSecureDlgCheck
-            fontPointSize: JamiTheme.settingsFontSize
-
-            checked: CurrentAccount.disableSecureDlgCheck_TLS
-
-            onSwitchToggled: CurrentAccount.disableSecureDlgCheck_TLS = checked
-        }
-
         SettingsComboBox {
             id: tlsProtocolComboBox
 
