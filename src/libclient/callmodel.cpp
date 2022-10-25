@@ -55,8 +55,12 @@
 
 using namespace libjami::Media;
 
+constexpr static const char HARDWARE_ACCELERATION[] = "HARDWARE_ACCELERATION";
+constexpr static const char CALL_ID[] = "CALL_ID";
+
 static std::uniform_int_distribution<int> dis {0, std::numeric_limits<int>::max()};
 static const std::map<short, QString>
+
     sip_call_status_code_map {{0, QObject::tr("Null")},
                               {100, QObject::tr("Trying")},
                               {180, QObject::tr("Ringing")},
@@ -127,6 +131,8 @@ public:
                    const CallbacksHandler& callbacksHandler,
                    const BehaviorController& behaviorController);
     ~CallModelPimpl();
+
+    QVariantList callAdvancedInformation();
 
     /**
      * Send the profile VCard into a call
@@ -395,6 +401,12 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
     pimpl_->calls.emplace(callId, std::move(callInfo));
 
     return callId;
+}
+
+QList<QVariant>
+CallModel::getAdvancedInformation() const
+{
+    return pimpl_->callAdvancedInformation();
 }
 
 void
@@ -949,6 +961,25 @@ CallModelPimpl::CallModelPimpl(const CallModel& linked,
 }
 
 CallModelPimpl::~CallModelPimpl() {}
+
+QVariantList
+CallModelPimpl::callAdvancedInformation()
+{
+    QVariantList advancedInformationList;
+
+    QStringList callList = CallManager::instance().getCallList(linked.owner.id);
+    for (const auto& callId : callList) {
+        MapStringString mapStringDetailsList = CallManager::instance()
+                                                   .getCallDetails(linked.owner.id, callId);
+        QVariantMap detailsList = mapStringStringToQVariantMap(mapStringDetailsList);
+
+        detailsList.insert(CALL_ID, callId);
+        detailsList.insert(HARDWARE_ACCELERATION, lrc.getAVModel().getHardwareAcceleration());
+        advancedInformationList.append(detailsList);
+    }
+
+    return advancedInformationList;
+}
 
 void
 CallModelPimpl::initCallFromDaemon()

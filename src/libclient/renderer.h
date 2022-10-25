@@ -36,8 +36,18 @@ class Renderer : public QObject
 {
     Q_OBJECT
 public:
+    constexpr static const char ID[] = "ID";
+    constexpr static const char FPS[] = "FPS";
+    constexpr static const char RES[] = "RES";
+    constexpr static const int FPS_RATE_SEC = 1;
+
     Renderer(const QString& id, const QSize& res);
     virtual ~Renderer();
+
+    /**
+     * @return renderer's fps
+     */
+    int fps() const;
 
     /**
      * @return renderer's id
@@ -54,6 +64,13 @@ public:
      */
     virtual lrc::api::video::Frame currentFrame() const = 0;
 
+    /**
+     * set fps
+     */
+    void setFPS(int fps);
+
+    MapStringString getInfos() const;
+
 public Q_SLOTS:
     virtual void startRendering() = 0;
     virtual void stopRendering() = 0;
@@ -63,10 +80,12 @@ Q_SIGNALS:
     void stopped();
     void started(const QSize& size);
     void frameBufferRequested(AVFrame* avFrame);
+    void fpsChanged();
 
 private:
     QString id_;
     QSize size_;
+    int fps_;
 };
 
 } // namespace video

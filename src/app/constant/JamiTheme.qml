@@ -344,6 +344,13 @@ Item {
     property real swarmDetailsPageDocumentsPaperClipSize: 24
     property real swarmDetailsPageDocumentsMediaSize: 175
 
+    //Call information
+    property real textFontPointSize: calcSize(10)
+    property real titleFontPointSize: calcSize(13)
+    property color callInfoColor: chatviewTextColor
+    property int callInformationElementsSpacing: 5
+    property int callInformationBlockSpacing: 25
+
     // Jami switch
     property real switchIndicatorRadius: 30
     property real switchPreferredHeight: 25

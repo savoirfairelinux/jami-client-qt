@@ -176,6 +176,18 @@ ContextMenuAutoLoader {
             onClicked: {
                 root.pluginItemClicked()
             }
+        },
+        GeneralMenuItem {
+            id: advancedInformation
+
+            canTrigger: true
+            itemName: JamiStrings.advancedInformation
+            iconSource: JamiResources.settings_24dp_svg
+
+            onClicked: {
+                CallAdapter.startTimerInformation();
+                callInformationWindow.show()
+            }
         }
     ]
 
