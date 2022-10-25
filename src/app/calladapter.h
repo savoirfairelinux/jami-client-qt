@@ -37,8 +37,10 @@ class CallAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_PROPERTY(bool, hasCall)
+    QML_RO_PROPERTY(QVariantList, callInformation)
 
 public:
+    QTimer* timer;
     enum MuteStates { UNMUTED, LOCAL_MUTED, MODERATOR_MUTED, BOTH_MUTED };
     Q_ENUM(MuteStates)
 
@@ -49,6 +51,8 @@ protected:
     void safeInit() override {};
 
 public:
+    Q_INVOKABLE void startTimerInformation();
+    Q_INVOKABLE void stopTimerInformation();
     Q_INVOKABLE void placeAudioOnlyCall();
     Q_INVOKABLE void placeCall();
     Q_INVOKABLE void hangUpACall(const QString& accountId, const QString& convUid);
@@ -88,6 +92,7 @@ public:
                                 const QString& accountId = {},
                                 bool forceCallOnly = false);
     Q_INVOKABLE QString getCallDurationTime(const QString& accountId, const QString& convUid);
+    Q_INVOKABLE void updateAdvancedInformation();
 
 Q_SIGNALS:
     void callStatusChanged(int index, const QString& accountId, const QString& convUid);
