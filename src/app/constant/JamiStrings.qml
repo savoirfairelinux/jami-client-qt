@@ -290,6 +290,7 @@ Item {
     property string shareFile: qsTr("Share file")
     property string selectShareMethod: qsTr("Select sharing method")
     property string viewPlugin: qsTr("View plugin")
+    property string advancedInformation: qsTr("Advanced information")
     property string noVideoDevice: qsTr("No video device")
     property string notAvailable: qsTr("Unavailable")
     property string lowerHand: qsTr("Lower hand")

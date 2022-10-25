@@ -46,5 +46,15 @@ Renderer::size() const
     return size_;
 }
 
+MapStringString
+Renderer::getInfos() const
+{
+    MapStringString map;
+    map["ID"] = id();
+    map["FPS"] = QString::number(fps);
+    map["RES"] = QString::number(size().width()) + " * " + QString::number(size().height());
+    return map;
+}
+
 } // namespace video
 } // namespace lrc
