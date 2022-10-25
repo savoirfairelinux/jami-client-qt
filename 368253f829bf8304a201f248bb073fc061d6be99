@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0809f4fb_52725de5",
+        "filename": "src/app/commoncomponents/EditedPopup.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-25T19:25:21Z",
+      "side": 1,
+      "message": "camelCase?",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "368253f829bf8304a201f248bb073fc061d6be99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52dc2277_6bf14b18",
+        "filename": "src/app/commoncomponents/contextmenu/GeneralMenuItem.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-25T19:25:21Z",
+      "side": 1,
+      "message": "😈",
+      "revId": "368253f829bf8304a201f248bb073fc061d6be99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6e5ae87_aff23f4d",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-25T19:25:21Z",
+      "side": 1,
+      "message": "nice!",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 256,
+        "endChar": 2
+      },
+      "revId": "368253f829bf8304a201f248bb073fc061d6be99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dc23f88_0c8e7986",
+        "filename": "src/libclient/api/interaction.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-25T19:25:21Z",
+      "side": 1,
+      "message": "camelCase?",
+      "range": {
+        "startLine": 283,
+        "startChar": 18,
+        "endLine": 283,
+        "endChar": 32
+      },
+      "revId": "368253f829bf8304a201f248bb073fc061d6be99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a82325_3344b78d",
+        "filename": "src/libclient/messagelistmodel.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-25T19:25:21Z",
+      "side": 1,
+      "message": "variantList.append(QVariant::fromValue(item.second.previousbodies[i])); ?",
+      "range": {
+        "startLine": 419,
+        "startChar": 31,
+        "endLine": 419,
+        "endChar": 34
+      },
+      "revId": "368253f829bf8304a201f248bb073fc061d6be99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22ce7936_0482a72b",
+        "filename": "src/libclient/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-25T19:25:21Z",
+      "side": 1,
+      "message": "flags?",
+      "range": {
+        "startLine": 1051,
+        "startChar": 25,
+        "endLine": 1051,
+        "endChar": 30
+      },
+      "revId": "368253f829bf8304a201f248bb073fc061d6be99",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
