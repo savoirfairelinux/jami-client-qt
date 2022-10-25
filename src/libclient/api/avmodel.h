@@ -277,7 +277,10 @@ public:
     video::Frame getRendererFrame(const QString& id);
     bool useDirectRenderer() const;
 
+    Q_SLOT void updateFPS();
+
 Q_SIGNALS:
+    void sendFPS(QVariantList fps);
     /**
      * Emitted when a renderer is started
      * @param id of the renderer

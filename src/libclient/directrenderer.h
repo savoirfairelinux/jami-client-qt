@@ -36,6 +36,7 @@ public:
     lrc::api::video::Frame currentFrame() const override;
 
 public Q_SLOTS:
+    void setFPS(int fps);
     void startRendering() override;
     void stopRendering() override;
 
