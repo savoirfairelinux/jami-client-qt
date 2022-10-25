@@ -144,8 +144,8 @@ struct Info
     bool hasMediaWithType(const QString& type, const QString& mediaType) const
     {
         for (const auto& m : mediaList)
-            if (m[DRing::Media::MediaAttributeKey::SOURCE].startsWith(type)
-                && m[DRing::Media::MediaAttributeKey::MEDIA_TYPE] == mediaType)
+            if (m[libjami::Media::MediaAttributeKey::SOURCE].startsWith(type)
+                && m[libjami::Media::MediaAttributeKey::MEDIA_TYPE] == mediaType)
                 return true;
         return false;
     }

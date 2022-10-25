@@ -53,7 +53,7 @@ public Q_SLOTS: // METHODS
     void Unregister(int pid)
     {
         Q_UNUSED(pid) // When directly linked, the PID is always the current process PID
-        DRing::fini();
+        libjami::fini();
     }
 
     bool isConnected();

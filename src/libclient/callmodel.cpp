@@ -53,7 +53,7 @@
 #include <random>
 #include <map>
 
-using namespace DRing::Media;
+using namespace libjami::Media;
 
 static std::uniform_int_distribution<int> dis {0, std::numeric_limits<int>::max()};
 static const std::map<short, QString>
@@ -423,11 +423,11 @@ CallModel::replaceDefaultCamera(const QString& callId, const QString& deviceId)
     for (auto& media : proposedList) {
         if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO
             && media[MediaAttributeKey::SOURCE].startsWith(
-                DRing::Media::VideoProtocolPrefix::CAMERA)) {
+                libjami::Media::VideoProtocolPrefix::CAMERA)) {
             oldPreview = media[MediaAttributeKey::SOURCE];
             QString resource = QString("%1%2%3")
-                                   .arg(DRing::Media::VideoProtocolPrefix::CAMERA)
-                                   .arg(DRing::Media::VideoProtocolPrefix::SEPARATOR)
+                                   .arg(libjami::Media::VideoProtocolPrefix::CAMERA)
+                                   .arg(libjami::Media::VideoProtocolPrefix::SEPARATOR)
                                    .arg(deviceId);
             media[MediaAttributeKey::SOURCE] = resource;
             newPreview = resource;
@@ -457,15 +457,15 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
             id++;
     }
     QString label = QString("video_%1").arg(id);
-    QString sep = DRing::Media::VideoProtocolPrefix::SEPARATOR;
+    QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
     switch (type) {
     case MediaRequestType::FILESHARING: {
         // File sharing
         resource = !source.isEmpty() ? QString("%1%2%3")
-                                           .arg(DRing::Media::VideoProtocolPrefix::FILE)
+                                           .arg(libjami::Media::VideoProtocolPrefix::FILE)
                                            .arg(sep)
                                            .arg(QUrl(source).toLocalFile())
-                                     : DRing::Media::VideoProtocolPrefix::NONE;
+                                     : libjami::Media::VideoProtocolPrefix::NONE;
         break;
     }
     case MediaRequestType::SCREENSHARING: {
@@ -476,10 +476,10 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
     case MediaRequestType::CAMERA: {
         // Camera device
         resource = not source.isEmpty() ? QString("%1%2%3")
-                                              .arg(DRing::Media::VideoProtocolPrefix::CAMERA)
+                                              .arg(libjami::Media::VideoProtocolPrefix::CAMERA)
                                               .arg(sep)
                                               .arg(source)
-                                        : DRing::Media::VideoProtocolPrefix::NONE;
+                                        : libjami::Media::VideoProtocolPrefix::NONE;
         break;
     }
     default:
@@ -874,9 +874,9 @@ CallModel::getCurrentRenderedDevice(const QString& call_id) const
 QString
 CallModel::getDisplay(int idx, int x, int y, int w, int h)
 {
-    QString sep = DRing::Media::VideoProtocolPrefix::SEPARATOR;
+    QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
     return QString("%1%2:%3+%4,%5 %6x%7")
-        .arg(DRing::Media::VideoProtocolPrefix::DISPLAY)
+        .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
         .arg(sep)
         .arg(idx)
         .arg(x)
@@ -888,9 +888,9 @@ CallModel::getDisplay(int idx, int x, int y, int w, int h)
 QString
 CallModel::getDisplay(const QString& windowId)
 {
-    QString sep = DRing::Media::VideoProtocolPrefix::SEPARATOR;
+    QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
     return QString("%1%2:+0,0 window-id:%3")
-        .arg(DRing::Media::VideoProtocolPrefix::DISPLAY)
+        .arg(libjami::Media::VideoProtocolPrefix::DISPLAY)
         .arg(sep)
         .arg(windowId);
 }
@@ -1076,7 +1076,8 @@ CallModel::setCurrentCall(const QString& callId) const
         }
 
         for (const auto& cid : Lrc::activeCalls(acc)) {
-            auto filtered = std::find(filterCalls.begin(), filterCalls.end(), cid) != filterCalls.end();
+            auto filtered = std::find(filterCalls.begin(), filterCalls.end(), cid)
+                            != filterCalls.end();
             if (cid != callId && !filtered) {
                 // Only hold calls for a non rendez-vous point
                 CallManager::instance().hold(acc, cid);
@@ -1090,7 +1091,8 @@ CallModel::setCurrentCall(const QString& callId) const
         // then we should hold it.
         for (const auto& confId : conferences) {
             if (callId != confId) {
-                MapStringString confDetails = CallManager::instance().getConferenceDetails(acc, confId);
+                MapStringString confDetails = CallManager::instance().getConferenceDetails(acc,
+                                                                                           confId);
                 // Only hold conference if attached
                 if (confDetails["CALL_STATE"] == "ACTIVE_DETACHED")
                     continue;

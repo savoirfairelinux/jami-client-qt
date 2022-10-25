@@ -19,8 +19,8 @@ mkdir -p build
 cd build
 echo "Building lrc in "$PWD
 cmake .. -DCMAKE_INSTALL_PREFIX=$installDir/lrc \
-      -DRING_INCLUDE_DIR=$daemonDir/src/jami \
-      -DRING_XML_INTERFACES_DIR=$daemonDir/bin/dbus
+      -LIBJAMI_INCLUDE_DIR=$daemonDir/src/jami \
+      -LIBJAMI_XML_INTERFACES_DIR=$daemonDir/bin/dbus
 make -j${cpuCount}
 make install
 
