@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d678c4ff_760f093e",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T13:40:10Z",
+      "side": 1,
+      "message": "This property was already there, do you want me to change it everywhere ?",
+      "parentUuid": "a86475c8_26ed5dfd",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "197e1cb7_4e51e397",
         "filename": "src/app/mainview/components/DocumentsScrollview.qml",
         "patchSetId": 8
