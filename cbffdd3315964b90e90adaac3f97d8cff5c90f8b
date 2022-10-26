@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90168cf5_85639a74",
+        "filename": "src/app/mainview/components/DocumentsScrollview.qml",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-26T20:47:40Z",
+      "side": 1,
+      "message": "that is not the format we mostly use. check swarmdetailspanel.qml for example",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 77
+      },
+      "revId": "cbffdd3315964b90e90adaac3f97d8cff5c90f8b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
