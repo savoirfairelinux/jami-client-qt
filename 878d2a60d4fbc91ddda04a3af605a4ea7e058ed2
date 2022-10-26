@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f7b5a10_d679515f",
+        "filename": "src/app/mainview/components/DocumentsScrollview.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T20:40:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f770c22_4855a5d1",
+      "range": {
+        "startLine": 1,
+        "startChar": 77,
+        "endLine": 3,
+        "endChar": 81
+      },
+      "revId": "878d2a60d4fbc91ddda04a3af605a4ea7e058ed2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87936c96_26136b5d",
@@ -47,6 +71,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c21ab93_9c917ad2",
+        "filename": "src/app/mainview/components/FilePreview.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T20:40:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87936c96_26136b5d",
+      "range": {
+        "startLine": 1,
+        "startChar": 77,
+        "endLine": 3,
+        "endChar": 81
+      },
+      "revId": "878d2a60d4fbc91ddda04a3af605a4ea7e058ed2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51c33a76_64163a57",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-10-26T15:18:22Z",
       "side": 1,
       "message": "spaces",
+      "range": {
+        "startLine": 2,
+        "startChar": 71,
+        "endLine": 3,
+        "endChar": 81
+      },
+      "revId": "878d2a60d4fbc91ddda04a3af605a4ea7e058ed2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66ed4054_ab89a451",
+        "filename": "src/app/mainview/components/MediaPreview.qml",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T20:40:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51c33a76_64163a57",
       "range": {
         "startLine": 2,
         "startChar": 71,
