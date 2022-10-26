@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d481613_967d8bfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": "Just a few nitpicks, then LGTM, nice work",
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a86475c8_26ed5dfd",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": "used? A property should not be name id: as used by the object",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "197e1cb7_4e51e397",
+        "filename": "src/app/mainview/components/DocumentsScrollview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 14,
+        "endLine": 2,
+        "endChar": 23
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84ee592b_1df021cd",
+        "filename": "src/app/mainview/components/DocumentsScrollview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": "first id should be root",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 17
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fab5d2a_f7791b0f",
+        "filename": "src/app/mainview/components/FilePreview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": "same (id/copyright)",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 27
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf28890_b37239b6",
+        "filename": "src/app/mainview/components/MediaPreview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": "name should be better than myText",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d93062b_a043ea3c",
+        "filename": "src/app/mainview/components/MediaPreview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": ":// should be enough",
+      "range": {
+        "startLine": 140,
+        "startChar": 45,
+        "endLine": 140,
+        "endChar": 50
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e99a2a65_89b0f6df",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 2450,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": "I\u0027m not sure we should check this there (should be in src/app, here we should support multiple search in parallel). But for a first version it\u0027s fine for me.",
+      "range": {
+        "startLine": 2450,
+        "startChar": 21,
+        "endLine": 2450,
+        "endChar": 40
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cc9e422_404738a1",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-26T13:19:07Z",
+      "side": 1,
+      "message": "Note for the future, we plan to add a flag in searchConversation (for case sensitiveness)",
+      "range": {
+        "startLine": 3844,
+        "startChar": 67,
+        "endLine": 3844,
+        "endChar": 85
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
