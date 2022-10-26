@@ -369,8 +369,6 @@ UtilsAdapter::setAppValue(const Settings::Key key, const QVariant& value)
     // If we change the lang preference, reload the translations
     if (key == Settings::Key::LANG)
         settingsManager_->loadTranslations();
-    else if (key == Settings::Key::EnableExperimentalSwarm)
-        Q_EMIT showExperimentalSwarm();
     else if (key == Settings::Key::BaseZoom)
         Q_EMIT changeFontSize();
     else if (key == Settings::Key::ShowChatviewHorizontally)

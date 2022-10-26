@@ -53,10 +53,6 @@ TipsModel::TipsModel(AppSettingsManager* settingsManager, QObject* parent)
          {"desc",
           tr("In a call, you can click on \"Add participants\" to add a contact to a call.")},
          {"type", "tip"}});
-    tips_.append({{"id", "5"},
-                  {"title", tr("Does Jami have group chats?")},
-                  {"desc", tr("In the settings, you can enabled support for groups (experimental)")},
-                  {"type", "tip"}});
     tips_.append({{"id", "6"},
                   {"title", tr("What is a Jami account?")},
                   {"desc",
