@@ -485,8 +485,6 @@ Item {
     property string troubleshootTitle: qsTr("Troubleshoot")
     property string troubleshootButton: qsTr("Open logs")
     property string troubleshootText: qsTr("Get logs")
-    property string experimentalSwarm: qsTr("(Experimental) Enable small groups support for Swarm")
-    property string experimentalSwarmTooltip: qsTr("This feature is in development.")
 
     // Recording Settings
     property string tipRecordFolder: qsTr("Select a record directory")

@@ -167,8 +167,6 @@ Rectangle {
 
             preferredSize: titleBar.height
 
-            visible: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
-
             source: JamiResources.round_close_24dp_svg
             toolTipText: JamiStrings.cancel
 
@@ -222,20 +220,12 @@ Rectangle {
 
             preferredSize: startBar.height
 
-            visible: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm) && !swarmMemberSearchList.visible && CurrentAccount.type !== Profile.Type.SIP
+            visible: !swarmMemberSearchList.visible && CurrentAccount.type !== Profile.Type.SIP
 
             source: smartListLayout.visible ? JamiResources.create_swarm_svg : JamiResources.round_close_24dp_svg
             toolTipText: smartListLayout.visible ? JamiStrings.startSwarm : JamiStrings.cancel
 
             onClicked: createSwarmClicked()
-
-            Connections {
-                target: UtilsAdapter
-
-                function onShowExperimentalSwarm() {
-                    startConversation.visible = UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
-                }
-            }
         }
     }
 
