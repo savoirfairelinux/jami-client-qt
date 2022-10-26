@@ -85,22 +85,4 @@ ColumnLayout {
             }
         }
     }
-
-    ToggleSwitch {
-        id: checkboxSwarm
-
-        Layout.fillWidth: true
-        Layout.leftMargin: JamiTheme.preferredMarginSize
-
-        checked: UtilsAdapter.getAppValue(Settings.EnableExperimentalSwarm)
-
-        labelText: JamiStrings.experimentalSwarm
-        fontPointSize: JamiTheme.settingsFontSize
-
-        tooltipText: JamiStrings.experimentalSwarmTooltip
-
-        onSwitchToggled: {
-            UtilsAdapter.setAppValue(Settings.Key.EnableExperimentalSwarm, checked)
-        }
-    }
 }
