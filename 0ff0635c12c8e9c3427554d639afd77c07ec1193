@@ -89,6 +89,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "018d53c8_11aac592",
+        "filename": "src/app/commoncomponents/DataTransferMessageDelegate.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T14:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eed43d1_ecfd0a27",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 26
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "197e1cb7_4e51e397",
@@ -102,6 +126,30 @@
       "writtenOn": "2022-10-26T13:19:07Z",
       "side": 1,
       "message": "missing copyright",
+      "range": {
+        "startLine": 1,
+        "startChar": 14,
+        "endLine": 2,
+        "endChar": 23
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bb25e5c_7648153e",
+        "filename": "src/app/mainview/components/DocumentsScrollview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T14:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "197e1cb7_4e51e397",
       "range": {
         "startLine": 1,
         "startChar": 14,
@@ -135,6 +183,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1649d48e_29feaa31",
+        "filename": "src/app/mainview/components/DocumentsScrollview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T14:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84ee592b_1df021cd",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 17
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fab5d2a_f7791b0f",
@@ -148,6 +220,30 @@
       "writtenOn": "2022-10-26T13:19:07Z",
       "side": 1,
       "message": "same (id/copyright)",
+      "range": {
+        "startLine": 16,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 27
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac04494a_13e3c07a",
+        "filename": "src/app/mainview/components/FilePreview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T14:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6fab5d2a_f7791b0f",
       "range": {
         "startLine": 16,
         "startChar": 8,
@@ -181,6 +277,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6852b5de_c004782d",
+        "filename": "src/app/mainview/components/MediaPreview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T14:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaf28890_b37239b6",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d93062b_a043ea3c",
@@ -194,6 +314,30 @@
       "writtenOn": "2022-10-26T13:19:07Z",
       "side": 1,
       "message": ":// should be enough",
+      "range": {
+        "startLine": 140,
+        "startChar": 45,
+        "endLine": 140,
+        "endChar": 50
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d047508b_a77533b7",
+        "filename": "src/app/mainview/components/MediaPreview.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T14:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d93062b_a043ea3c",
       "range": {
         "startLine": 140,
         "startChar": 45,
@@ -227,6 +371,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88c33060_b05d248a",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 2450,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T14:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e99a2a65_89b0f6df",
+      "range": {
+        "startLine": 2450,
+        "startChar": 21,
+        "endLine": 2450,
+        "endChar": 40
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cc9e422_404738a1",
@@ -240,6 +408,30 @@
       "writtenOn": "2022-10-26T13:19:07Z",
       "side": 1,
       "message": "Note for the future, we plan to add a flag in searchConversation (for case sensitiveness)",
+      "range": {
+        "startLine": 3844,
+        "startChar": 67,
+        "endLine": 3844,
+        "endChar": 85
+      },
+      "revId": "0ff0635c12c8e9c3427554d639afd77c07ec1193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce8a327a_788c537f",
+        "filename": "src/libclient/conversationmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 3844,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-26T14:28:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cc9e422_404738a1",
       "range": {
         "startLine": 3844,
         "startChar": 67,
