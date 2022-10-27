@@ -59,53 +59,52 @@ JamiListView {
         return false
     }
 
-    function computeChatview(item,itemIndex) {
-        if (!root ) return
+    function computeChatview(item, itemIndex) {
+        if (!root) return
         var rootItem = root.itemAtIndex(0)
         var pItem = root.itemAtIndex(itemIndex - 1)
         var pItemIndex = itemIndex - 1
         var nItem = root.itemAtIndex(itemIndex + 1)
         var nItemIndex = itemIndex + 1
-        //Middle insertion
+        // middle insertion
         if (pItem && nItem) {
             computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)
-            computeSequencing(nItemIndex, nItem, root.itemAtIndex(itemIndex + 2), item)
+            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2))
         }
-        //top buffer insertion = scroll up
+        // top buffer insertion = scroll up
         if (pItem && !nItem) {
             computeTimestampVisibility(item, itemIndex, pItem, pItemIndex)
-            computeSequencing(pItemIndex, pItem, item, root.itemAtIndex(itemIndex - 2))
+            computeSequencing(root.itemAtIndex(itemIndex - 2), pItem, item)
         }
-        //bottom buffer insertion = scroll down
+        // bottom buffer insertion = scroll down
         if (!pItem && nItem) {
             computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)
-            computeSequencing(nItemIndex, nItem, root.itemAtIndex(itemIndex + 2), item)
+            computeSequencing(item, nItem, root.itemAtIndex(itemIndex + 2))
         }
-        //index 0 insertion = new message
+        // index 0 insertion = new message
         if (itemIndex === 0) {
-            Qt.callLater(computeSequencing, itemIndex, item, root.itemAtIndex(itemIndex + 1), null)
-            if (! computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)) {
+            Qt.callLater(computeSequencing, null, item, root.itemAtIndex(itemIndex + 1))
+            if (!computeTimestampVisibility(item, itemIndex, nItem, nItemIndex)) {
                 Qt.callLater(computeChatview, item, itemIndex)
             }
         }
-        //top element
+        // top element
         if(itemIndex === root.count - 1 && CurrentConversation.allMessagesLoaded) {
             item.showTime = true
             item.showDay = true
         }
     }
 
-    function computeSequencing(index, item, nItem, pItem) {
+    function computeSequencing(pItem, item, nItem) {
         if (root === undefined || !item)
             return
 
         function isFirst() {
             if (!nItem) return true
-            else{
+            else {
                 if (item.showTime) {
                     return true
-                }
-                if (nItem.author !== item.author) {
+                } else if (nItem.author !== item.author) {
                     return true
                 }
             }
@@ -114,11 +113,10 @@ JamiListView {
 
         function isLast() {
             if (!pItem) return true
-            else{
+            else {
                 if (pItem.showTime) {
                     return true
-                }
-                if (pItem.author !== item.author) {
+                } else if (pItem.author !== item.author) {
                     return true
                 }
             }
@@ -184,7 +182,29 @@ JamiListView {
     boundsBehavior: Flickable.StopAtBounds
     currentIndex: -1
 
+    // This connection to dataChanged resolves the styling for
+    // messages before and after an erased message.
+    Connections {
+        target: MessagesAdapter.messageListModel
+        function onDataChanged(tl, br, roles) {
+            if (!(roles.includes(MessageList.Body) &&
+                  roles.includes(MessageList.PreviousBodies))) {
+                return
+            }
+            const staleIndex = proxyModel.mapFromSource(tl).row
+            var pItem = root.itemAtIndex(staleIndex - 1)
+            var nItem = root.itemAtIndex(staleIndex + 1)
+            var ppItem = root.itemAtIndex(staleIndex + 2)
+            var nnItem = root.itemAtIndex(staleIndex + 2)
+            computeTimestampVisibility(ppItem, staleIndex - 2, pItem, staleIndex - 1)
+            computeSequencing(ppItem, pItem, nItem)
+            computeTimestampVisibility(nItem, staleIndex + 1, nnItem, staleIndex + 2)
+            computeSequencing(pItem, nItem, nnItem)
+        }
+    }
+
     model: SortFilterProxyModel {
+        id: proxyModel
         // There doesn't seem to a subscription to property change
         // events in the expression for sourceModel. This was originally
         // masked behind an unchanging QSortFilterProxyModel object that
@@ -213,7 +233,7 @@ JamiListView {
 
             TextMessageDelegate {
                 Component.onCompleted:  {
-                    computeChatview(this,index)
+                    computeChatview(this, index)
                 }
             }
         }
@@ -223,7 +243,7 @@ JamiListView {
 
             GeneratedMessageDelegate {
                 Component.onCompleted:  {
-                    computeChatview(this,index)
+                    computeChatview(this, index)
                 }
             }
         }
@@ -233,7 +253,7 @@ JamiListView {
 
             ContactMessageDelegate {
                 Component.onCompleted:  {
-                    computeChatview(this,index)
+                    computeChatview(this, index)
                 }
             }
         }
@@ -244,7 +264,7 @@ JamiListView {
             GeneratedMessageDelegate {
                 font.bold: true
                 Component.onCompleted:  {
-                    computeChatview(this,index)
+                    computeChatview(this, index)
                 }
             }
         }
@@ -253,7 +273,7 @@ JamiListView {
 
             DataTransferMessageDelegate {
                 Component.onCompleted:  {
-                    computeChatview(this,index)
+                    computeChatview(this, index)
                 }
             }
         }
