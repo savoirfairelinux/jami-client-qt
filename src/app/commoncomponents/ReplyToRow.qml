@@ -28,7 +28,13 @@ Item {
 
     visible: ReplyTo !== ""
     width: visible ? replyToRow.width : 0
-    height: replyToRow.height + replyToRow.anchors.topMargin 
+    height: replyToRow.height + replyToRow.anchors.topMargin
+
+    Component.onCompleted: {
+        if (Id === "6d31dda5c8fb53bbd758bb1e6bfe8e9a58ce786e") {
+            MessagesAdapter.loadConversationUntil(ReplyTo)
+        }
+    }
 
     MouseArea {
 

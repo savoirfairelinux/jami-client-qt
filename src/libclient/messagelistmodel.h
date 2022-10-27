@@ -147,7 +147,8 @@ private:
     // to allow quick access.
     QMap<QString, QString> lastDisplayedMessageUid_;
     QMap<QString, QStringList> messageToReaders_;
-    QMap<QString, QStringList> replyTo_;
+    QMap<QString, QSet<QString>> replyTo_;
+    void updateReplies(item_t& message);
     QMap<QString, QVector<interaction::Body>> editedBodies_;
 
     void moveMessage(const QString& msgId, const QString& parentId);
