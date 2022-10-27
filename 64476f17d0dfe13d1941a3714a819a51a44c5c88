@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee079d94_2ad6a0d0",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-27T13:45:29Z",
+      "side": 1,
+      "message": "I don\u0027t understand, I used the cast to get an int ?",
+      "parentUuid": "2f2a7ee0_08def6d7",
+      "range": {
+        "startLine": 97,
+        "startChar": 17,
+        "endLine": 97,
+        "endChar": 39
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e753bc0_59b4c032",
         "filename": "src/libclient/directrenderer.cpp",
         "patchSetId": 5
