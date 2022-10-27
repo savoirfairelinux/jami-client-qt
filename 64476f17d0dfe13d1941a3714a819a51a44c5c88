@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec13dc81_c478795a",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-27T12:00:37Z",
+      "side": 1,
+      "message": "move keys to constexpr values that can be reused in other places",
+      "range": {
+        "startLine": 973,
+        "startChar": 28,
+        "endLine": 973,
+        "endChar": 37
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f2a7ee0_08def6d7",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-27T12:00:37Z",
+      "side": 1,
+      "message": "the cast should not be there, the duration can be a int",
+      "range": {
+        "startLine": 97,
+        "startChar": 17,
+        "endLine": 97,
+        "endChar": 39
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e753bc0_59b4c032",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-27T12:00:37Z",
+      "side": 1,
+      "message": "setFPS( is a signal? should not be this",
+      "range": {
+        "startLine": 100,
+        "startChar": 22,
+        "endLine": 100,
+        "endChar": 37
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23e91676_5b9d4118",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-27T12:00:37Z",
+      "side": 1,
+      "message": "the signal can send the fps, to avoid users to do a getFPS() later",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 140,
+        "endChar": 24
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
