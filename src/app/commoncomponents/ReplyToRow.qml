@@ -28,7 +28,15 @@ Item {
 
     visible: ReplyTo !== ""
     width: visible ? replyToRow.width : 0
-    height: replyToRow.height + replyToRow.anchors.topMargin 
+    height: replyToRow.height + replyToRow.anchors.topMargin
+
+    Component.onCompleted: {
+        // Make sure we show the original post
+        // In the future, we may just want to load the previous interaction of the thread
+        // and not show it, but for now we can simplify.
+        if (ReplyTo !== "")
+            MessagesAdapter.loadConversationUntil(ReplyTo)
+    }
 
     MouseArea {
 
@@ -40,15 +48,6 @@ Item {
             anchors.topMargin: JamiTheme.preferredMarginSize / 2
 
             property bool isSelf: ReplyToAuthor === CurrentAccount.uri || ReplyToAuthor === ""
-
-            onVisibleChanged: {
-                if (visible) {
-                    // Make sure we show the original post
-                    // In the future, we may just want to load the previous interaction of the thread
-                    // and not show it, but for now we can simplify.
-                    MessagesAdapter.loadConversationUntil(ReplyTo)
-                }
-            }
 
             Label {
                 id: replyTo
