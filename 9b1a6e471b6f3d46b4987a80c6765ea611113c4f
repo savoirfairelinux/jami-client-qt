@@ -22,6 +22,30 @@
       },
       "revId": "9b1a6e471b6f3d46b4987a80c6765ea611113c4f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7e4e9bf_4dacd428",
+        "filename": "src/libclient/smartinfohub.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-27T15:21:15Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "d3e38036_1e618dd4",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 42
+      },
+      "revId": "9b1a6e471b6f3d46b4987a80c6765ea611113c4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

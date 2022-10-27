@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5a882b_6010fef4",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-27T15:21:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec13dc81_c478795a",
+      "range": {
+        "startLine": 973,
+        "startChar": 28,
+        "endLine": 973,
+        "endChar": 37
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f2a7ee0_08def6d7",
@@ -71,6 +95,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26b8c7ff_e5f95c6d",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-27T15:21:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee079d94_2ad6a0d0",
+      "range": {
+        "startLine": 97,
+        "startChar": 17,
+        "endLine": 97,
+        "endChar": 39
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e753bc0_59b4c032",
@@ -94,6 +142,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8270ebc1_017a6a3e",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-27T15:21:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e753bc0_59b4c032",
+      "range": {
+        "startLine": 100,
+        "startChar": 22,
+        "endLine": 100,
+        "endChar": 37
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23e91676_5b9d4118",
@@ -107,6 +179,30 @@
       "writtenOn": "2022-10-27T12:00:37Z",
       "side": 1,
       "message": "the signal can send the fps, to avoid users to do a getFPS() later",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 140,
+        "endChar": 24
+      },
+      "revId": "64476f17d0dfe13d1941a3714a819a51a44c5c88",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db084dd1_3697322c",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-27T15:21:15Z",
+      "side": 1,
+      "message": "Not possible because there are multiples renderes, the signal is send by one renderer to get information from all the others.",
+      "parentUuid": "23e91676_5b9d4118",
       "range": {
         "startLine": 139,
         "startChar": 17,
