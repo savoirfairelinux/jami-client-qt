@@ -290,23 +290,29 @@ MessageListModel::moveMessage(const QString& msgId, const QString& parentId)
 }
 
 void
-MessageListModel::insertMessage(int index, item_t& message)
+MessageListModel::updateReplies(item_t& message)
 {
-    Q_EMIT beginInsertRows(QModelIndex(), index, index);
-    interactions_.insert(index, message);
-    Q_EMIT endInsertRows();
     auto replyId = message.second.commit["reply-to"];
     auto commitId = message.second.commit["id"];
-    if (!replyId.isEmpty())
-        replyTo_[replyId].append(commitId);
+    if (!replyId.isEmpty()) {
+        replyTo_[replyId].insert(commitId);
+    }
     for (const auto& msgId : replyTo_[commitId]) {
         int index = getIndexOfMessage(msgId);
         if (index == -1)
             continue;
         QModelIndex modelIndex = QAbstractListModel::index(index, 0);
-        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToAuthor});
-        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToBody});
+        Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToAuthor, Role::ReplyToBody});
     }
+}
+
+void
+MessageListModel::insertMessage(int index, item_t& message)
+{
+    Q_EMIT beginInsertRows(QModelIndex(), index, index);
+    interactions_.insert(index, message);
+    Q_EMIT endInsertRows();
+    updateReplies(message);
 }
 
 iterator
@@ -316,6 +322,7 @@ MessageListModel::insertMessage(iterator it, item_t& message)
     Q_EMIT beginInsertRows(QModelIndex(), index, index);
     auto insertion = interactions_.insert(it, message);
     Q_EMIT endInsertRows();
+    updateReplies(message);
     return insertion;
 }
 
@@ -591,6 +598,15 @@ MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
         info.body = it->rbegin()->body;
         editedBodies_.erase(it);
         emitDataChanged(msgId, {MessageList::Role::Body, MessageList::Role::PreviousBodies});
+
+        // Body changed, replies should update
+        for (const auto& replyId : replyTo_[msgId]) {
+            int index = getIndexOfMessage(replyId);
+            if (index == -1)
+                continue;
+            QModelIndex modelIndex = QAbstractListModel::index(index, 0);
+            Q_EMIT dataChanged(modelIndex, modelIndex, {Role::ReplyToBody});
+        }
     }
 }
 
