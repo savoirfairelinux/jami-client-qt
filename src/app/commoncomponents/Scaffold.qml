@@ -18,12 +18,13 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 
 // UI dev tool to visualize components/layouts
 Rectangle {
     property alias name: label.text
     property bool stretchParent: false
-    property string tag: this.toString()
+    property string tag: parent.toString()
     signal moveX(real dx)
     signal moveY(real dy)
     property real ox: 0
@@ -37,7 +38,9 @@ Rectangle {
         var b = Math.random() * 0.5 + 0.5;
         Qt.rgba(r, g, b, 0.5);
     }
-    anchors.fill: parent
+
+    anchors.fill: parent instanceof Layout ? undefined : parent
+
     focus: false
     Keys.onPressed: {
         if (event.key === Qt.Key_Left)
@@ -53,9 +56,14 @@ Rectangle {
     }
 
     Component.onCompleted: {
+        if (parent instanceof Layout) {
+            width = Qt.binding(() => { return parent.width })
+            height = Qt.binding(() => { return parent.height })
+        }
+
         // fallback to some description of the object
         if (label.text === "")
-            label.text = this.toString();
+            label.text = tag;
 
         // force the parent to be at least the dimensions of children
         if (stretchParent) {
