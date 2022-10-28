@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b98902c7_18446bc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 57
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-10-28T15:43:35Z",
+      "side": 1,
+      "message": "Works fine but:\n - the bar the notifies that there is an active call for the swarm group appears for one computer(libwrap) not not on another(dbus)\n - also in the bar, the icons to call in audio/audio+video looks misplaced",
+      "revId": "a1ab28002ccc34712efeace16b20a64408e4defb",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
