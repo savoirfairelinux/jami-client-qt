@@ -64,6 +64,8 @@ SBSMessageBase {
                     Math.max(extraContent.width,
                              Math.min(implicitWidth - avatarBlockWidth,
                                       extraContent.minSize) - senderMargin )
+                else if (isEmojiOnly)
+                    Math.min(implicitWidth, innerContent.width - senderMargin - (innerContent.width - senderMargin) % (JamiTheme.chatviewEmojiSize + 2))
                 else
                     Math.min(implicitWidth, innerContent.width - senderMargin)
             }
