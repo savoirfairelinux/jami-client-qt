@@ -16,6 +16,24 @@
       "message": "Seems to break if message after a daily timestamp is deleted",
       "revId": "cf52cb47f4af5f20eade41ef18ff4f084999f7c4",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f978ec6_bb207dfd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-10-28T20:14:26Z",
+      "side": 1,
+      "message": "nice catch. exposes missing height for timestampinfo components.\nshould be fixed in https://review.jami.net/c/jami-client-qt/+/22899",
+      "parentUuid": "fddb07d5_8c5ab3d5",
+      "revId": "cf52cb47f4af5f20eade41ef18ff4f084999f7c4",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
