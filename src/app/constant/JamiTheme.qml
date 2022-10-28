@@ -328,9 +328,10 @@ Item {
 
     //TimestampInfo
     property int timestampLinePadding: 40
-    property int dayTimestampTopMargin: 30
-    property int timestampBottomMargin: 42
-    property int timestampTopMargin: 20
+    property int dayTimestampTopMargin: 8
+    property int dayTimestampBottomMargin: 8
+    property int timestampBottomMargin: 16
+    property int timestampTopMargin: 16
     property int dayTimestampHPadding: 16
     property real dayTimestampVPadding: 32
     property real timestampFont: calcSize(12)
