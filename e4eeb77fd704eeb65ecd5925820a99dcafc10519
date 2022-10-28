@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76045f19_91cd0777",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-28T20:44:37Z",
+      "side": 1,
+      "message": "just that the timestamp is removed even if there is other messages with this timestamp",
+      "revId": "e4eeb77fd704eeb65ecd5925820a99dcafc10519",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
