@@ -24,7 +24,7 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
-ColumnLayout{
+ColumnLayout {
     id: root
 
     property bool showTime
@@ -32,6 +32,8 @@ ColumnLayout{
     property string formattedTime
     property string formattedDay
     property real detailsOpacity: 0.6
+
+    spacing: 0
 
     Connections {
         target: MessagesAdapter.messageListModel
@@ -45,9 +47,13 @@ ColumnLayout{
     Item {
         visible: showDay
         Layout.alignment: Qt.AlignHCenter
-        Layout.fillHeight: true
+
+        Layout.preferredHeight: childrenRect.height
         Layout.fillWidth: true
         Layout.topMargin: JamiTheme.dayTimestampTopMargin
+        Layout.bottomMargin: formattedTimeLabel.visible ?
+                                 0 :
+                                 JamiTheme.dayTimestampBottomMargin
 
         Rectangle {
             id: line
@@ -55,30 +61,21 @@ ColumnLayout{
             height: 1
             opacity: detailsOpacity
             color:JamiTheme.timestampColor
-            width: chatView.width - JamiTheme.timestampLinePadding
+            width: parent.width - JamiTheme.timestampLinePadding
             anchors.centerIn: parent
         }
 
         Rectangle {
             id: dayRectangle
 
-            width: borderRectangle.width
-            height: borderRectangle.height
+            width: formattedDayLabel.width + JamiTheme.dayTimestampVPadding
+            height: formattedDayLabel.height + JamiTheme.dayTimestampHPadding
             radius: 5
             color: JamiTheme.chatviewBgColor
             Layout.fillHeight: true
             anchors.centerIn: parent
 
-            Rectangle {
-                id: borderRectangle
-
-                border { color:  JamiTheme.timestampColor; width: 1}
-                opacity: detailsOpacity
-                width: formattedDayLabel.width + JamiTheme.dayTimestampVPadding
-                height: formattedDayLabel.height + JamiTheme.dayTimestampHPadding
-                radius: dayRectangle.radius
-                color: JamiTheme.transparentColor
-            }
+            border { color:  JamiTheme.timestampColor; width: 1 }
 
             Text {
                 id: formattedDayLabel
@@ -97,10 +94,10 @@ ColumnLayout{
         text: formattedTime
         Layout.bottomMargin: JamiTheme.timestampBottomMargin
         Layout.topMargin: JamiTheme.timestampTopMargin
-        Layout.alignment: Qt.AlignHCenter
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
         color: JamiTheme.timestampColor
-        visible: showTime
-        height: visible * implicitHeight
+        visible: showTime || showDay
+        Layout.preferredHeight: visible * implicitHeight
         font.pointSize: JamiTheme.timestampFont
     }
 }
