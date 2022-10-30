@@ -83,8 +83,12 @@ Rectangle {
         }
 
         function onEditIdChanged() {
-            if (MessagesAdapter.editId.length > 0)
+            if (MessagesAdapter.editId.length > 0) {
+                var editedMessageBody = MessagesAdapter.dataForInteraction(MessagesAdapter.editId, MessageList.Body)
+                messageBar.textAreaObj.insertText(editedMessageBody)
                 messageBar.textAreaObj.forceActiveFocus()
+
+            }
         }
 
         function onReplyToIdChanged() {
