@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee56fd7_af62150e",
+        "filename": "src/app/avadapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52eb051c_23e63506",
+      "range": {
+        "startLine": 50,
+        "startChar": 32,
+        "endLine": 50,
+        "endChar": 55
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24e1bd4c_b23c86ec",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "bad name (should be renderersInfo)",
+      "range": {
+        "startLine": 111,
+        "startChar": 43,
+        "endLine": 111,
+        "endChar": 46
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02fcf46e_9cfe5091",
+        "filename": "src/app/avadapter.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24e1bd4c_b23c86ec",
       "range": {
         "startLine": 111,
         "startChar": 43,
@@ -70,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7803591_634fe003",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a18a02a6_025a8966",
+      "range": {
+        "startLine": 54,
+        "startChar": 10,
+        "endLine": 54,
+        "endChar": 19
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "938798a3_f8915263",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "you should print the exception if one occurs.",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 19
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "873b3720_e67b5447",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "938798a3_f8915263",
       "range": {
         "startLine": 108,
         "startChar": 12,
@@ -116,6 +212,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "975c3300_a2c592c3",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 1177,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd4e6965_5b305afb",
+      "range": {
+        "startLine": 1176,
+        "startChar": 6,
+        "endLine": 1177,
+        "endChar": 18
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51e7f515_50bc8537",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "missing space before *",
+      "range": {
+        "startLine": 33,
+        "startChar": 25,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6613c78c_096f9c55",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51e7f515_50bc8537",
       "range": {
         "startLine": 33,
         "startChar": 25,
@@ -162,6 +306,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af57403a_7f706716",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe9bcddf_12d35423",
+      "range": {
+        "startLine": 133,
+        "startChar": 21,
+        "endLine": 135,
+        "endChar": 13
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "341a1be8_ef2711eb",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "Ok so:\n\n+ remove renderer with id: confId as not shown\n+ remove current call state as not used, same for peer holding\n+ remove @ring.dht from peer number as useless\n\n+ add audio codec (if you don\u0027t find it, ping us)\n+ add encoder informations (max_bitrate used)",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 171,
+        "endChar": 34
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fd58d62_287e629b",
+        "filename": "src/app/mainview/components/CallInformationWindow.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "341a1be8_ef2711eb",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -208,6 +400,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebb7a3dd_b8bfdd3c",
+        "filename": "src/app/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 8
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e304de1_14009d94",
+      "range": {
+        "startLine": 185,
+        "startChar": 19,
+        "endLine": 185,
+        "endChar": 51
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a20dd09b_079bc73f",
@@ -221,6 +437,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "list (singular)",
+      "range": {
+        "startLine": 280,
+        "startChar": 38,
+        "endLine": 280,
+        "endChar": 41
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14967d1f_b87c853f",
+        "filename": "src/libclient/api/avmodel.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a20dd09b_079bc73f",
       "range": {
         "startLine": 280,
         "startChar": 38,
@@ -254,6 +494,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dcbc957_581acb58",
+        "filename": "src/libclient/api/callmodel.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02e021a0_1db14a5f",
+      "range": {
+        "startLine": 395,
+        "startChar": 34,
+        "endLine": 395,
+        "endChar": 41
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87fb583b_90f8f2e4",
@@ -267,6 +531,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "can be moved at the top of the file (there is several examples if you search \"static const char*\" in the daemon)",
+      "range": {
+        "startLine": 260,
+        "startChar": 31,
+        "endLine": 261,
+        "endChar": 30
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5e894b7_859427c7",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87fb583b_90f8f2e4",
       "range": {
         "startLine": 260,
         "startChar": 31,
@@ -300,6 +588,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7f88c79_ec0caf4a",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6690b7e_7c7d5650",
+      "range": {
+        "startLine": 409,
+        "startChar": 19,
+        "endLine": 409,
+        "endChar": 42
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be69322d_2e1acca9",
@@ -313,6 +625,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "auto can\u0027t be used there, due to dbus converting this in a QDBusReply (build with --no-libwrap)\n\nMapStringString",
+      "range": {
+        "startLine": 973,
+        "startChar": 8,
+        "endLine": 973,
+        "endChar": 12
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe5c34f5_62ee2ec2",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be69322d_2e1acca9",
       "range": {
         "startLine": 973,
         "startChar": 8,
@@ -346,6 +682,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2eb430f_517cf159",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69bbf3ed_bd9e34e9",
+      "range": {
+        "startLine": 974,
+        "startChar": 12,
+        "endLine": 976,
+        "endChar": 9
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75d27303_5b08040a",
@@ -359,6 +719,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "can be done in one line",
+      "range": {
+        "startLine": 979,
+        "startChar": 25,
+        "endLine": 980,
+        "endChar": 24
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03900271_d85cbd8e",
+        "filename": "src/libclient/callmodel.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75d27303_5b08040a",
       "range": {
         "startLine": 979,
         "startChar": 25,
@@ -392,6 +776,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bb187d9_48d93d32",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11726a0c_218a9a24",
+      "range": {
+        "startLine": 37,
+        "startChar": 15,
+        "endLine": 39,
+        "endChar": 12
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbffc1f9_40a86f03",
@@ -405,6 +813,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "can be in renderer as shmrenderer use it too.",
+      "range": {
+        "startLine": 93,
+        "startChar": 18,
+        "endLine": 93,
+        "endChar": 52
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9cbee7b_937e2fea",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbffc1f9_40a86f03",
       "range": {
         "startLine": 93,
         "startChar": 18,
@@ -438,6 +870,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7451da64_a09ce1a5",
+        "filename": "src/libclient/directrenderer.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32b336bd_2c0c93e6",
+      "range": {
+        "startLine": 101,
+        "startChar": 7,
+        "endLine": 103,
+        "endChar": 6
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d1baa74_a750d85d",
@@ -461,6 +917,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dadb530d_136bb827",
+        "filename": "src/libclient/directrenderer.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d1baa74_a750d85d",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 25
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6cfefcd_455ef147",
@@ -474,6 +954,30 @@
       "writtenOn": "2022-10-28T15:40:42Z",
       "side": 1,
       "message": "missing ;",
+      "range": {
+        "startLine": 43,
+        "startChar": 8,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "f0833e2a636d3d7db8fe6511133037cdfaa07715",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b507660_0df92c19",
+        "filename": "src/libclient/shmrenderer.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-10-31T15:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6cfefcd_455ef147",
       "range": {
         "startLine": 43,
         "startChar": 8,
