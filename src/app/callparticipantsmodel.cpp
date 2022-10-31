@@ -63,6 +63,11 @@ CallParticipantsModel::data(const QModelIndex& index, int role) const
         return QVariant(item.value(DEVICE).toString());
     case Role::Active:
         return QVariant(item.value(ACTIVE).toBool());
+    case Role::HideSpectators:
+        return QVariant((item.value(AUDIOLOCALMUTED).toBool()
+                        || item.value(AUDIOMODERATORMUTED).toBool())
+                        && item.value(VIDEOMUTED).toBool()
+                        && !item.value(HANDRAISED).toBool());
     case Role::AudioLocalMuted:
         return QVariant(item.value(AUDIOLOCALMUTED).toBool());
     case Role::AudioModeratorMuted:
