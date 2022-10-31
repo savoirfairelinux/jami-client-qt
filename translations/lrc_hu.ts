@@ -48,42 +48,42 @@
 <context>
     <name>CurrentConversation</name>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="98"/>
+        <location filename="../src/app/currentconversation.cpp" line="99"/>
         <source>Private</source>
         <translation>Magánjellegű</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="100"/>
+        <location filename="../src/app/currentconversation.cpp" line="101"/>
         <source>Private group (restricted invites)</source>
         <translation>Személyes csoport (korlátozott meghívók)</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="102"/>
+        <location filename="../src/app/currentconversation.cpp" line="103"/>
         <source>Private group</source>
         <translation>Személyes csoport</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="104"/>
+        <location filename="../src/app/currentconversation.cpp" line="105"/>
         <source>Public group</source>
         <translation>Nyilvános csoport</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="228"/>
+        <location filename="../src/app/currentconversation.cpp" line="229"/>
         <source>An error occurred while fetching this repository</source>
         <translation>Hiba történt az adattár lekérése közben</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="230"/>
+        <location filename="../src/app/currentconversation.cpp" line="231"/>
         <source>The conversation&apos;s mode is un-recognized</source>
         <translation>Felismeretlen beszélgetési mód</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="232"/>
+        <location filename="../src/app/currentconversation.cpp" line="233"/>
         <source>An invalid message was detected</source>
         <translation>Érvénytelen üzenet észlelve</translation>
     </message>
     <message>
-        <location filename="../src/app/currentconversation.cpp" line="235"/>
+        <location filename="../src/app/currentconversation.cpp" line="236"/>
         <source>Not enough authorization for updating conversation&apos;s infos</source>
         <translation>Nincs jogosultság a beszélgetési adatok frissítésére</translation>
     </message>
@@ -112,7 +112,7 @@
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
         <source>End call</source>
         <translation>Hívás befejezése</translation>
     </message>
@@ -396,395 +396,395 @@ A Jami most kilép.</translation>
         <translation>Tanúsítvány megkövetelése a bejövő TLS kapcsolatokhoz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="119"/>
         <source>TLS protocol method</source>
         <translation>TLS szabályhalmaz eljárás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="119"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="120"/>
         <source>Audio input device selector</source>
         <translation>Audió bemeneti eszköz választó</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="120"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
         <source>TLS server name</source>
         <translation>TLS kiszolgálónév</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="121"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
         <source>Negotiation timeout (seconds)</source>
         <translation>Időtúllépés az egyeztetésnél (másodperc)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
         <source>Select a private key</source>
         <translation>Titkos kulcs kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
         <source>Select a user certificate</source>
         <translation>Felhasználói tanúsítvány kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="124"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
         <source>Select a CA certificate</source>
         <translation>Hitelesítésszolgáltatói tanúsítvány kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="125"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="126"/>
         <source>Key File (*.key)</source>
         <translation>Kulcsfájl (*.key)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="128"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
         <source>Connectivity</source>
         <translation>Kapcsolódás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
         <source>Auto Registration After Expired</source>
         <translation>Önműködő bejegyzése a lejárat után</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
         <source>Registration expiration time (seconds)</source>
         <translation>Bejegyeztetés lejárati ideje (másodperc)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="131"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
         <source>Network interface</source>
         <translation>Hálózati illesztőfelület</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="133"/>
         <source>Use UPnP</source>
         <translation>UPnP használata</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="133"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="134"/>
         <source>Use TURN</source>
         <translation>TURN használata</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="134"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
         <source>TURN address</source>
         <translation>TURN cím</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="135"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
         <source>TURN username</source>
         <translation>TURN felhasználónév</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
         <source>TURN password</source>
         <translation>TURN jelszó</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
         <source>TURN Realm</source>
         <translation>TURN tartomány</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="138"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="139"/>
         <source>Use STUN</source>
         <translation>STUN használata</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="139"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="140"/>
         <source>STUN address</source>
         <translation>STUN cím</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="142"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
         <source>Allow IP Auto Rewrite</source>
         <translation>Önműködő IP-átírás engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="143"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
         <source>Public address</source>
         <translation>Nyilvános cím</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="144"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
         <source>Use custom address and port</source>
         <translation>Használjon egyéni címet és kikötőt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="146"/>
         <source>Address</source>
         <translation>Cím</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="146"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="147"/>
         <source>Port</source>
         <translation>Kikötő</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="149"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="150"/>
         <source>Media</source>
         <translation>Média</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="150"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="151"/>
         <source>Enable video</source>
         <translation>Videó engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="151"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
         <source>Video Codecs</source>
         <translation>Videókodekek</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="152"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="153"/>
         <source>Audio Codecs</source>
         <translation>Hangkodekek</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="155"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="156"/>
         <source>Name Server</source>
         <translation>Kiszolgálói néve</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="158"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
         <translation>SDP munkamenet egyeztetés (az ICE tartaléka)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
         <source>Only used during negotiation in case ICE is not supported</source>
         <translation>Csak egyeztetés során használatos ha az ICE nem támogatott</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
         <source>Audio RTP minimum Port</source>
         <translation>Hang RTP legkisebb kikötő</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="161"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
         <source>Audio RTP maximum Port</source>
         <translation>Hang RTP legfeljebb kikötő</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="162"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
         <source>Video RTP minimum Port</source>
         <translation>Videó RTP legkisebb kikötő</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="163"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="164"/>
         <source>Video RTP maximum port</source>
         <translation>Videó RTP legfeljebb kikötő</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="166"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
         <source>Enable local peer discovery</source>
         <translation>Helyi partner felderítése engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="167"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
         <source>Connect to other DHT nodes advertising on your local network.</source>
         <translation>Csatlakozás más DHT-csomópontokhoz, amelyek a helyi hálózaton hirdetnek.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="168"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
         <source>OpenDHT Configuration</source>
         <translation>OpenDHT-beállítások</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="169"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>Enable proxy</source>
         <translation>Meghatalmazott engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
         <source>Proxy address</source>
         <translation>Meghatalmazott cím</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="172"/>
         <source>Bootstrap</source>
         <translation>Rendszerindítás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="174"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
         <source>Back</source>
         <translation>Vissza</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
         <source>Account Settings</source>
         <translation>Fiókbeállítások</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
         <source>Account</source>
         <translation>Fiók</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="177"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="501"/>
         <source>General</source>
         <translation>Általános</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="178"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="179"/>
         <source>Plugin</source>
         <translation>Beépülő modul</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="179"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="180"/>
         <source>Audio and Video Settings</source>
         <translation>Hang- és videóbeállítások</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="180"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="181"/>
         <source>Audio/Video</source>
         <translation>Hang/videó</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="183"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
         <source>Audio</source>
         <translation>Hang</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
         <source>Microphone</source>
         <translation>Mikrofon</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
         <source>Select audio input device</source>
         <translation>Hangbemeneti eszköz kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
         <source>Output device</source>
         <translation>Kimeneti eszköz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="187"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="188"/>
         <source>Select audio output device</source>
         <translation>Hangkimeneti eszköz kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="188"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
         <source>Ringtone device</source>
         <translation>Csengőhang-eszköz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="189"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="190"/>
         <source>Select ringtone output device</source>
         <translation>Csengőhang kimeneti eszköz kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="190"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="191"/>
         <source>Audio manager</source>
         <translation>Hangkezelő</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="193"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
         <source>Video</source>
         <translation>Videó</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
         <source>Select video device</source>
         <translation>Videoeszköz kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
         <source>Device</source>
         <translation>Eszköz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
         <source>Resolution</source>
         <translation>Felbontás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
         <source>Select video resolution</source>
         <translation>Videofelbontás kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="198"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
         <source>Frames per second</source>
         <translation>Képkocka/másodperc</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="199"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
         <source>Select video frame rate (frames per second)</source>
         <translation>Képkockasebesség kijelölése (képkocka/másodperc)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="200"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
         <source>Enable hardware acceleration</source>
         <translation>Hardveres gyorsítás engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
         <source>Preview unavailable</source>
         <translation>Előnézet nem érhető el</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
         <source>Screen Sharing</source>
         <translation>Képernyőmegosztás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
         <source>Select screen sharing frame rate (frames per second)</source>
         <translation>Képernyőmegosztási képsebesség (képkocka másodpercenként)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="205"/>
         <source>no video</source>
         <translation>nincs videó</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="212"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
         <source>Back up account here</source>
         <translation>Fiók biztonsági mentése itt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
         <source>Back up account</source>
         <translation>Fiók biztonsági mentése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="258"/>
         <source>Hide audio-only participants</source>
         <translation>Nézők elrejtése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
         <source>Unavailable</source>
         <translation>Nem érhető el</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="300"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
         <source>Hide chat</source>
         <translation>Csevegés elrejtése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
         <source>Choose a password to encrypt your account on this device. Note that the password CANNOT be recovered.</source>
         <translation>Válasszon egy jelszót az eszköz fiókkulcsának titkosításához. Vegye figyelembe, hogy a jelszó nem lehet helyreállított.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
         <source>You can choose a username to help others more easily find and reach you on Jami.</source>
         <translation>Kiválaszthat egy felhasználónevet, hogy mások könnyebben megtalálják és elérjék Önt a Jamin.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="343"/>
         <source>Are you sure you would like to join Jami without a username?
 If yes, only a randomly generated 40-character identifier will be assigned to this account.</source>
         <translation>Biztos benne, hogy felhasználónév nélkül szeretne csatlakozni Jami-hez?
 Ha igen, akkor csak egy véletlenszerűen generált 40 karakterű azonosító kerül hozzárendelve ehhez a fiókhoz.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="343"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="344"/>
         <source>- 32 characters maximum
 - Alphabetical characters (A to Z and a to z)
 - Numeric characters (0 to 9)
@@ -795,69 +795,69 @@ Ha igen, akkor csak egy véletlenszerűen generált 40 karakterű azonosító ke
 - Különleges karakter: kötőjel (-)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
         <source>Your account will be created and stored locally.</source>
         <translation>A fiókjának létrehozása és tárolása helyileg történik.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="351"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
         <source>Choosing a username is recommended, and a chosen username CANNOT be changed later.</source>
         <translation>A felhasználónév kiválasztása javasolt, és a kiválasztott felhasználónév nem módosítható később.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="352"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
         <source>Encrypting your account with a password is optional, and if the password is lost it CANNOT be recovered later.</source>
         <translation>Fiókjának jelszóval történő titkosítása nem kötelező, és ha a jelszó elveszett, azt később nem lehet visszaállítani.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="353"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="354"/>
         <source>Setting a profile picture and nickname is optional, and can also be changed later in the settings.</source>
-        <translation>A profilkép és a becenév beállítása nem kötelező, és később a beállításokban is módosítható.</translation>
+        <translation>Névjegykép és becenév beállítása nem kötelező, és később a beállításokban is módosítható.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="376"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="377"/>
         <source>Back up account to a .gz file</source>
         <translation>Biztonsági másolat készítése .gz fájlba</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
         <source>This profile is only shared with this account's contacts.
 The profile can be changed at all times from the account&apos;s settings.</source>
-        <translation>Ez a profil csak a fiók kapcsolattartóival van megosztva.
-A profil bármikor módosítható a Fiókbeállításaiból.</translation>
+        <translation>Ez a névjegy csak a fiók kapcsolattartóival van megosztva.
+A névjegy bármikor módosítható a Fiókbeállításaiból.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
         <source>A Jami account is created and stored locally only on this device, as an archive containing your account keys. Access to this archive can optionally be protected by a password.</source>
         <translation>A Jami-fiók csak ezen az eszközön jön létre és tárolódik helyileg, a fiókkulcsokat tartalmazó archívumként. Az archívumhoz való hozzáférés opcionálisan jelszóval védhető.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="386"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
         <source>Please note that if you lose your password, it CANNOT be recovered!</source>
         <translation>Megjegyzés: Ha a jelszó elveszett, a fiókot nem lehet visszaállítani!</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="415"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
         <source>Would you really like to delete this account?</source>
         <translation>Valóban törölni szeretné ezt a fiókot?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="416"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="417"/>
         <source>If your account has not been backed up or added to another device, your account and registered username will be IRREVOCABLY LOST.</source>
         <translation>Ha fiókjáról nem készített biztonsági másolatot, vagy nem adta hozzá egy másik eszközhöz, akkor fiókját és regisztrált felhasználónevét visszavonhatatlanul elveszíti.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
         <source>Dark</source>
         <translation>Sötét</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="427"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
         <source>Light</source>
         <translation>Világos</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="431"/>
         <source>Application theme</source>
         <translation>Alkalmazástéma</translation>
     </message>
@@ -874,7 +874,7 @@ A profil bármikor módosítható a Fiókbeállításaiból.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="583"/>
         <source>Choose a picture as your avatar</source>
-        <translation>Válasszon egy képet a megtestesülésképének</translation>
+        <translation>Névjegykép kijelölése</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="662"/>
@@ -897,27 +897,42 @@ A profil bármikor módosítható a Fiókbeállításaiból.</translation>
         <translation>Válasz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="765"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
+        <source>Edit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="730"/>
+        <source>Edited</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
+        <source>Mute conversation</source>
+        <translation>Beszélgetés elnémítása</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
         <source>Tip</source>
         <translation>Tipp</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="767"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="769"/>
         <source>Add a profile picture and nickname to complete your profile</source>
-        <translation>Adjon hozzá egy profil képet és egy becenevet a profil befejezéséhez</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
-        <source>This profile is only shared with this account&apos;s contacts</source>
-        <translation>Ez a profil csak a fiók kapcsolattartóival van megosztva.</translation>
+        <translation>Adjon hozzá egy névjegyképet és egy becenevet a névjegy befejezéséhez</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="770"/>
+        <source>This profile is only shared with this account&apos;s contacts</source>
+        <translation>Ez a névjegy csak a fiók kapcsolattartóival van megosztva.</translation>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="772"/>
         <source>Why should I save my account?</source>
         <translation>Miért kellene elmenteni a fiókomat?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="214"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
         <source>Skip</source>
         <translation>Átugrani</translation>
     </message>
@@ -942,834 +957,839 @@ A profil bármikor módosítható a Fiókbeállításaiból.</translation>
         <translation>Meghívók megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="207"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="118"/>
+        <source>Disable secure dialog check for incoming TLS data</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
         <source>Why should I back-up this account?</source>
         <translation>Miért készítsek biztonsági másolatot erről a fiókról?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="208"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="209"/>
         <source>Your account only exists on this device. If you lose your device or uninstall the application, your account will be deleted and CANNOT be recovered. You can back up your account now or later (in the Account Settings).</source>
         <translation>Ez a fiók csak ezen az eszközön létezik. Ha elveszíti eszközét, vagy eltávolította az alkalmazást, akkor fiókját töröljük és nem állítható vissza. Biztonsági másolatot készíthet fiókjáról most vagy később (a Fiókbeállításokban).</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
         <source>Success</source>
         <translation>Sikeres</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
         <source>Never show me this again</source>
         <translation>Ne jelenjen meg többé</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>Recommended</source>
         <translation>Ajánlott</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
         <source>Jami archive files (*.gz)</source>
         <translation>Jami archívfájlok (*.gz)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="221"/>
         <source>All files (*)</source>
         <translation>Minden fájl (*)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="223"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="224"/>
         <source>Reinstate as contact</source>
         <translation>Kapcsolattartó visszaállítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="224"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
         <source>name</source>
         <translation>név</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="225"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="226"/>
         <source>Identifier</source>
         <translation>Azonosító</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="228"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
         <source>is recording</source>
         <translation>felvételt készít</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="229"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
         <source>are recording</source>
         <translation>felvételt készít</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="230"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
         <source>Peer stopped recording</source>
         <translation>Egyenrangú leállította a felvételt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="231"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
         <source>is calling you</source>
         <translation>hívja Önt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="232"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="694"/>
         <source>Mute</source>
         <translation>Elnémítás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
         <source>Unmute</source>
         <translation>Némítás feloldása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
         <source>Pause call</source>
         <translation>Hívás tartása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
         <source>Resume call</source>
         <translation>Hívás folytatása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="237"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
         <source>Mute camera</source>
-        <translation>Kamera leállítása</translation>
+        <translation>Fényképezőgép leállása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="238"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
         <source>Unmute camera</source>
         <translation>Kamera elindítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="239"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
         <source>Add participant</source>
         <translation>Résztvevő hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="240"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
         <source>Add participants</source>
         <translation>Résztvevők hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="241"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
         <source>Details</source>
         <translation>Részletek</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="242"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
         <source>Chat</source>
         <translation>Csevegés</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="243"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
         <source>More options</source>
         <translation>További lehetőségek</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="244"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
         <source>Mosaic</source>
         <translation>Mozaik</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="245"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
         <source>Participant is still muted on their device</source>
         <translation>A résztvevő továbbra is elnémítva van az eszközén</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="246"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
         <source>You are still muted on your device</source>
         <translation>Még mindig el van némítva az eszközén</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="247"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
         <source>You are still muted by moderator</source>
         <translation>Moderátor továbbra elnémította Önt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="248"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
         <source>You are muted by a moderator</source>
         <translation>Moderátor elnémította Önt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="249"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
         <source>Moderator</source>
         <translation>Moderátor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="250"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
         <source>Host</source>
         <translation>Gazda</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="251"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
         <source>Local and Moderator muted</source>
         <translation>Helyi és moderátor elnémítva</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="252"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
         <source>Moderator muted</source>
         <translation>Moderátor elnémítva</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="253"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="254"/>
         <source>Not muted</source>
         <translation>Nincs elnémítva</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="254"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
         <source>On the side</source>
         <translation>Oldalán</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="255"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
         <source>On the top</source>
         <translation>Felül</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="256"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="257"/>
         <source>Hide self</source>
         <translation>Önrejtés</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="260"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
         <source>Copy</source>
         <translation>Másolás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
         <source>Share</source>
         <translation>Megosztás </translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
         <source>Cut</source>
         <translation>Kivágás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="264"/>
         <source>Paste</source>
         <translation>Beillesztés</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="266"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
         <source>Start video call</source>
         <translation>Videohívás indítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Start audio call</source>
         <translation>Hanghívás indítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
         <source>Clear conversation</source>
         <translation>Beszélgetés törlése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
         <source>Confirm action</source>
         <translation>Művelet megerősítése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="270"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
         <source>Remove conversation</source>
         <translation>Beszélgetés törlése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="271"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
         <source>Would you really like to remove this conversation?</source>
         <translation>Valóban szeretné eltávolítani ezt a beszélgetést?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="272"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
         <source>Would you really like to block this conversation?</source>
         <translation>Valóban szeretné letiltani ezt a beszélgetést?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="273"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="274"/>
         <source>Remove contact</source>
         <translation>Kapcsolat eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="274"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
         <source>Block contact</source>
         <translation>Kapcsolat letiltása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
         <source>Block swarm</source>
         <translation>Rajcsoport letiltása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="277"/>
         <source>Conversation details</source>
         <translation>Beszélgetés részletei</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="279"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
         <source>Hold</source>
         <translation>Tartás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="280"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
         <source>Sip input panel</source>
         <translation>SIP beviteli panel</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
         <source>Transfer call</source>
         <translation>Hívás átadása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="282"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
         <source>Stop recording</source>
         <translation>Felvétel leállítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="283"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
         <source>Start recording</source>
         <translation>Felvétel indítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="284"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
         <source>Exit full screen</source>
         <translation>Teljes képernyős nézet bezárása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>View full screen</source>
         <translation>Teljes képernyő nézet megtekintése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>Share screen</source>
         <translation>Képernyőmegosztás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Share window</source>
         <translation>Ablak megosztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>Stop sharing screen or file</source>
         <translation>Képernyőmegosztás vagy fájlmegosztás leállítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>Share screen area</source>
         <translation>Képernyő részének megosztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
         <source>Share file</source>
         <translation>Fájlmegosztás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
         <source>Select sharing method</source>
         <translation>Megosztási módszer kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
         <source>View plugin</source>
         <translation>Beépülő modul megtekintése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="293"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="294"/>
         <source>No video device</source>
         <translation>Nincs videoeszköz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="295"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
         <source>Lower hand</source>
         <translation>Kéz leengedése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="296"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
         <source>Raise hand</source>
         <translation>Kéz felemelése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="298"/>
         <source>Layout settings</source>
         <translation>Elrendezési beállítások</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="301"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
         <source>Place audio call</source>
         <translation>Hanghívás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="302"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
         <source>Place video call</source>
         <translation>Videohívás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Show available plugins</source>
         <translation>Elérhető beépülő modulok megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
         <source>Add to conversations</source>
         <translation>Beszélgetések hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="306"/>
         <source>This is the error from the backend: %0</source>
         <translation>Háttérszolgáltatás-hiba: %0</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="308"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Jump to latest</source>
         <translation>Görgetés a beszélgetés végére</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
         <source>{} is typing…</source>
         <translation>{} éppen gépel…</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
         <source>{} are typing…</source>
         <translation>{} éppen gépel…</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="311"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
         <source>Several people are typing…</source>
         <translation>Többen éppen gépelnek…</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="312"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="313"/>
         <source> and </source>
         <translation> és </translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="315"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
         <source>Enter the Jami Account Management Server (JAMS) URL</source>
         <translation>Jami-fiókkezelő kiszolgáló (JAMS) URL-cím megadása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="316"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>Required</source>
         <translation>Szükséges</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
         <source>Jami Account Management Server URL</source>
         <translation>Jami-fiókkezelő kiszolgáló URL-je</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
         <source>Enter JAMS credentials</source>
         <translation>Adja meg a JAMS hitelesítő adatait</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="319"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
         <source>Connect</source>
         <translation>Kapcsolódás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="320"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
         <source>Creating account…</source>
         <translation>Fiók létrehozása…</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="321"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="322"/>
         <source>Back to welcome page</source>
         <translation>Vissza kezdőlapra</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="324"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
         <source>Choose name</source>
         <translation>Név kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="325"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
         <source>Choose username</source>
         <translation>Felhasználónév kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="326"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
         <source>Choose a username</source>
         <translation>Felhasználónév kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="327"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
         <source>Choose an identifier</source>
         <translation>Azonosító kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="328"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
         <source>The identifier is not available</source>
         <translation>Az azonosító nem érhető el</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="329"/>
-        <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
         <source>Encrypt account with password</source>
         <translation>Fiók titkosítása jelszóval</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
         <source>Create account</source>
         <translation>Fiók létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="332"/>
         <source>Confirm password</source>
         <translation>Jelszó megerősítése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <source>Optional</source>
         <translation>Választható</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="335"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
         <source>Choose a name for your rendezvous point</source>
         <translation>Találkozási pont neve kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="337"/>
         <source>Choose a name</source>
         <translation>Név kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="338"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
         <source>Invalid name</source>
         <translation>Érvénytelen név</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="339"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
         <source>Invalid username</source>
         <translation>Érvénytelen felhasználónév</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="340"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
         <source>Name already taken</source>
         <translation>Név már foglalt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="341"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="342"/>
         <source>Username already taken</source>
         <translation>A felhasználónév már foglalt</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="347"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
         <source>Good to know</source>
         <translation>Jó tudni</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="348"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
         <source>Local</source>
         <translation>Helyi</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="349"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="350"/>
         <source>Encrypt</source>
         <translation>Titkosítás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="357"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
         <source>SIP account</source>
         <translation>SIP-fiók</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="358"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
         <source>Proxy</source>
         <translation>Meghatalmazás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="359"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="360"/>
         <source>Server</source>
         <translation>Kiszolgáló</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="360"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
         <source>Create SIP account</source>
         <translation>SIP-fiók létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="361"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
         <source>Configure an existing SIP account</source>
         <translation>Meglévő SIP-fiók beállítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="362"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
         <source>Personalize account</source>
         <translation>Fiók testreszabása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="363"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="364"/>
         <source>Add SIP account</source>
         <translation>SIP-fiók hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="366"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="367"/>
         <source>Backup successful</source>
         <translation>Biztonsági mentés sikeres</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="367"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="368"/>
         <source>Backup failed</source>
         <translation>Biztonsági mentés sikertelen</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="368"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
         <source>Password changed successfully</source>
         <translation>Sikeres jelszóváltoztatás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="369"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
         <source>Password change failed</source>
         <translation>Jelszó megváltoztatása nem sikerült</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="370"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
         <source>Password set successfully</source>
         <translation>Jelszó beállítása sikerült</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="371"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
         <source>Password set failed</source>
         <translation>Jelszó beállítása nem sikerült</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="372"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
         <source>Change password</source>
         <translation>Jelszó megváltoztatása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="373"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
         <source>Set password</source>
         <translation>Jelszó beállítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="374"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
         <source>Set a password</source>
         <translation>Jelszó beállítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="375"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="376"/>
         <source>Change current password</source>
         <translation>Jelszó megváltoztatása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="377"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
         <source>Display advanced settings</source>
         <translation>Haladó beállítások megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="378"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
         <source>Hide advanced settings</source>
         <translation>Haladó beállítások elrejtése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="379"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
         <source>Enable account</source>
         <translation>Fiók engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="380"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="381"/>
         <source>Advanced account settings</source>
         <translation>Haladó fiókbeállítások</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="383"/>
         <source>Customize profile</source>
-        <translation>Profil testreszabása</translation>
+        <translation>Névjegy testreszabása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="384"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="385"/>
         <source>Encrypt your account with a password</source>
         <translation>Fiók titkosítása jelszóval</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="387"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="388"/>
         <source>Enter a nickname, surname...</source>
         <translation>Adja meg a becenevet, vezetéknevet…</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="390"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="391"/>
         <source>Set username</source>
         <translation>Felhasználónév beállítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="391"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="392"/>
         <source>Registering name</source>
         <translation>Név bejegyzése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="394"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
         <source>Register a username</source>
         <translation>Felhasználónév bejegyeztetése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="395"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
         <source>Register username</source>
         <translation>Felhasználónév bejegyeztetése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="396"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="397"/>
         <source>Identity</source>
         <translation>Személyazonosság</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="399"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
         <source>Link a new device to this account</source>
         <translation>Eszköz összekapcsolása fiókhoz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
         <source>Link another device</source>
         <translation>Eszköz összekapcsolása fiókhoz</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="401"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
         <source>Exporting account…</source>
         <translation>Fiók exportálása…</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="402"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
         <source>Remove Device</source>
         <translation>Eszköz eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="403"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
         <source>Are you sure you wish to remove this device?</source>
         <translation>Biztosan eltávolítja ezt az eszközt?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="404"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
         <source>Linked Devices</source>
         <translation>Összekapcsolt eszközök</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="406"/>
         <source>Your PIN is:</source>
         <translation>PIN-kódja:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="406"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="407"/>
         <source>Error connecting to the network.
 Please try again later.</source>
         <translation>Hiba történt a hálózathoz való csatlakozáskor
 Kérjük, hogy próbálja újra később.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="409"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
         <source>Display banned contacts</source>
         <translation>Letiltott kapcsolatok megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="410"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
         <source>Banned</source>
         <translation>Letiltva</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="411"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="412"/>
         <source>Hide banned contacts</source>
         <translation>Letiltott kapcsolatok elrejtése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="412"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="413"/>
         <source>Banned contacts</source>
         <translation>Letiltott kapcsolatok</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="419"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
         <source>Save new device name</source>
         <translation>Új eszköz nevének mentése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="420"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
         <source>Edit device name</source>
         <translation>Eszköznév szerkesztése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="421"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
         <source>Unlink device from account</source>
         <translation>Eszköz összekapcsolás megszüntetése fiókból</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="422"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="423"/>
         <source>Device Id</source>
         <translation>Eszközazonosító</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="425"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>System</source>
         <translation>Rendszer</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="428"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
         <source>Select a folder</source>
         <translation>Mappa kijelölése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="430"/>
         <source>Enable notifications</source>
         <translation>Értesítések engedélyezése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="434"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
         <source>Launch at startup</source>
         <translation>Megnyitás indításkor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="437"/>
         <source>Choose download directory</source>
         <translation>Letöltési könyvtár kiválasztása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="437"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="438"/>
         <source>Record call</source>
         <translation>Hívás felvétele</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="438"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
         <source>Text zoom</source>
         <translation>Szövegnagyítás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="439"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="440"/>
         <source>Change text size (%)</source>
         <translation>Szövegméret módosítása (%)</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
         <source>Layout</source>
         <translation>Elrendezés</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
         <source>User interface language</source>
         <translation>Felhasználói felület nyelve</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Vertical view</source>
         <translation>Függőleges nézet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
         <source>Horizontal view</source>
         <translation>Vízszintes nézet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
         <source>File transfer</source>
         <translation>Fájlküldés</translation>
     </message>
@@ -1929,7 +1949,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="495"/>
         <source>Call Recording</source>
-        <translation>Hívás felvétel</translation>
+        <translation>Hívás felvétele</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
@@ -2120,12 +2140,12 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="549"/>
         <source>Enter Jami account password</source>
-        <translation>Adja meg a Jami fiók jelszavát</translation>
+        <translation>Adja meg a Jami-fiók jelszavát</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="550"/>
         <source>Enter the PIN from another configured Jami account. Use the &quot;Link Another Device&quot; feature to obtain a PIN.</source>
-        <translation>Adja meg egy másik beállított Jami fiók PIN-kódját. Használja az „Eszköz összekapcsolása fiókhoz” működést a PIN-kód eléréséhez.</translation>
+        <translation>Adja meg egy másik beállított Jami-fiók PIN-kódját. Használja az „Eszköz összekapcsolása fiókhoz” működést a PIN-kód eléréséhez.</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="552"/>
@@ -2240,7 +2260,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="584"/>
         <source>Import avatar from image file</source>
-        <translation>Megtestesüléskép importálása képfájlból</translation>
+        <translation>Névjegykép importálása képfájlból</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="585"/>
@@ -2250,7 +2270,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="586"/>
         <source>Clear avatar image</source>
-        <translation>Megtestesüléskép törlése</translation>
+        <translation>Névjegykép törlése</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
@@ -2385,12 +2405,12 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Profile is only shared with contacts</source>
-        <translation>Profil megosztva csak a névjegyekkel</translation>
+        <translation>Névjegy megosztva csak a névjegyekkel</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
         <source>Save profile</source>
-        <translation>Profil mentése</translation>
+        <translation>Névjegy mentése</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
@@ -2415,7 +2435,7 @@ Kérjük, hogy próbálja újra később.</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="624"/>
         <source>Profile</source>
-        <translation>Profil</translation>
+        <translation>Névjegy</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="627"/>
@@ -2537,7 +2557,7 @@ Másolja ki, és ossza meg barátaival!</translation>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="658"/>
         <source>Create new Jami account</source>
-        <translation>Új Jami fiók létrehozása</translation>
+        <translation>Új Jami-fiók létrehozása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="659"/>
@@ -2751,39 +2771,34 @@ Másolja ki, és ossza meg barátaival!</translation>
         <translation>Beszélgetés áttelepítése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="431"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
         <source>Show notifications</source>
         <translation>Értesítések megjelenítése</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="432"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
         <source>Minimize on close</source>
         <translation>Kis méret beállítása bezáráskor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="433"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="434"/>
         <source>Run at system startup</source>
         <translation>Futtatás a rendszer indításakor</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="435"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="436"/>
         <source>Download directory</source>
         <translation>Letöltési könyvtár</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="442"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
         <source>Typing indicators</source>
         <translation>Gépelésjelző</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="443"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="444"/>
         <source>Show link previews</source>
         <translation>Hivatkozások előnézetének megjelenítése</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
-        <source>Accept files from unknown senders</source>
-        <translation>Ismeretlen feladóktól érkező fájlok elfogadása</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="537"/>
@@ -2816,155 +2831,150 @@ Másolja ki, és ossza meg barátaival!</translation>
         <translation>Írj a következő(k)nek: %1</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="731"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
         <source>%1 has sent you a request for a conversation.</source>
         <translation>%1 kérelmet küldött Önnek egy beszélgetésre.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="732"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="734"/>
         <source>Hello,
 Would you like to join the conversation?</source>
         <translation>Üdv!
 Szeretne csatlakozni a beszélgetéshez?</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="733"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="735"/>
         <source>You have accepted
 the conversation request</source>
         <translation>Elfogadta
 a beszélgetési kérelmet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="734"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="736"/>
         <source>Waiting until %1
 connects to synchronize the conversation.</source>
         <translation>Várjuk, hogy a(z) %1
 csatlakozzon a beszélgetés összehangolásához.</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="737"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
         <source>About</source>
         <translation>Névjegy</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="738"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="740"/>
         <source>%1 Members</source>
         <translation>%1 tag</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="741"/>
         <source>Member</source>
         <translation>Tag</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="740"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
         <source>Documents</source>
         <translation>Dokumentumok</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="741"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="743"/>
         <source>Swarm&apos;s name</source>
         <translation>Rajcsoport neve</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="742"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
         <source>Add a description</source>
         <translation>Leírás hozzáadása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="744"/>
-        <source>Ignore the swarm</source>
-        <translation>Rajcsoport figyelmen kívül hagyása</translation>
-    </message>
-    <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="745"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
         <source>Ignore all notifications from this conversation</source>
         <translation>Figyelmen kívül hagyja a beszélgetés összes értesítését</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="748"/>
         <source>Choose a color</source>
         <translation>Színválasztás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="747"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
         <source>Leave the swarm</source>
         <translation>Rajcsoport elhagyása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="748"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="750"/>
         <source>Leave</source>
         <translation>Elhagyás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="749"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="751"/>
         <source>Type of swarm</source>
         <translation>Rajcsoporttípus</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
         <source>You can add 8 people in the swarm</source>
         <translation>A jelenlegi rajcsoportoknak legfeljebb 8 résztvevője lehet</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="753"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
         <source>You can add %1 more people in the swarm</source>
         <translation>Ehhez a rajcsoporthoz további %1 résztvevő vehető fel</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
         <source>Create the swarm</source>
         <translation>Rajcsoport létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
         <source>Go to conversation</source>
         <translation>Ugrás a beszélgetéshez</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
         <source>Promote to administrator</source>
         <translation>Előléptetés rendszergazdává</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="759"/>
         <source>Kick member</source>
         <translation>Tag eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="758"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
         <source>Administrator</source>
         <translation>Rendszergazda</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="759"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
         <source>Invited</source>
         <translation>Meghívott</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="760"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="762"/>
         <source>Remove member</source>
         <translation>Tag eltávolítása</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="761"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="763"/>
         <source>To:</source>
         <translation>Címzett:</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="764"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
         <source>Customize</source>
         <translation>Testreszabás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="766"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
         <source>Dismiss</source>
         <translation>Elutasítás</translation>
     </message>
     <message>
-        <location filename="../src/app/constant/JamiStrings.qml" line="769"/>
+        <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation>A profilja csak a kapcsolataival kerül megosztásra</translation>
+        <translation>A névjegyed csak a kapcsolataival kerül megosztásra</translation>
     </message>
 </context>
 <context>
@@ -3102,23 +3112,23 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
         <source>Stop camera</source>
-        <translation>Kamera leállítása</translation>
+        <translation>Fényképezőgép leállása</translation>
     </message>
 </context>
 <context>
     <name>MainApplication</name>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="366"/>
+        <location filename="../src/app/mainapplication.cpp" line="363"/>
         <source>E&amp;xit</source>
         <translation>&amp;Kilépés</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="368"/>
+        <location filename="../src/app/mainapplication.cpp" line="365"/>
         <source>&amp;Quit</source>
         <translation>&amp;Kilépés</translation>
     </message>
     <message>
-        <location filename="../src/app/mainapplication.cpp" line="374"/>
+        <location filename="../src/app/mainapplication.cpp" line="371"/>
         <source>&amp;Show Jami</source>
         <translation>Jami &amp;megjelenítése</translation>
     </message>
@@ -3126,7 +3136,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="468"/>
+        <location filename="../src/libclient/qtwrapper/callmanager_wrap.h" line="473"/>
         <source>Me</source>
         <translation>Én</translation>
     </message>
@@ -3156,7 +3166,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Hívás</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="286"/>
+        <location filename="../src/app/messagesadapter.cpp" line="311"/>
         <location filename="../src/libclient/api/call.h" line="72"/>
         <source>Connecting</source>
         <translation>Kapcsolódás</translation>
@@ -3172,7 +3182,7 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Tétlen</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="303"/>
+        <location filename="../src/app/messagesadapter.cpp" line="328"/>
         <location filename="../src/libclient/api/call.h" line="78"/>
         <location filename="../src/libclient/api/call.h" line="84"/>
         <source>Finished</source>
@@ -3200,39 +3210,39 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Meghívás megérkezett</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="224"/>
+        <location filename="../src/libclient/api/interaction.h" line="228"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="197"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="962"/>
         <source>Contact added</source>
         <translation>Kapcsolat hozzáadva</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="226"/>
+        <location filename="../src/libclient/api/interaction.h" line="230"/>
         <source>%1 was invited to join</source>
         <translation>%1 meghívást kapott a csatlakozásra</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="228"/>
+        <location filename="../src/libclient/api/interaction.h" line="232"/>
         <source>%1 joined</source>
         <translation>%1 csatlakozott</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="230"/>
+        <location filename="../src/libclient/api/interaction.h" line="234"/>
         <source>%1 left</source>
         <translation>%1 kilépett</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="232"/>
+        <location filename="../src/libclient/api/interaction.h" line="236"/>
         <source>%1 was kicked</source>
         <translation>%1 eltávolítva lett</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="234"/>
+        <location filename="../src/libclient/api/interaction.h" line="238"/>
         <source>%1 was re-added</source>
         <translation>%1 újra hozzáadva</translation>
     </message>
     <message>
-        <location filename="../src/libclient/api/interaction.h" line="300"/>
+        <location filename="../src/libclient/api/interaction.h" line="318"/>
         <source>Swarm created</source>
         <translation>Rajcsoport létrehozva</translation>
     </message>
@@ -3549,67 +3559,67 @@ csatlakozzon a beszélgetés összehangolásához.</translation>
         <translation>Bárhol nem elfogadható</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="288"/>
+        <location filename="../src/app/messagesadapter.cpp" line="313"/>
         <source>Accept</source>
         <translation>Elfogadás</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="280"/>
+        <location filename="../src/app/messagesadapter.cpp" line="305"/>
         <source>Sending</source>
         <translation>Küldés folyamatban</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="284"/>
+        <location filename="../src/app/messagesadapter.cpp" line="309"/>
         <source>Sent</source>
         <translation>Elküldve</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="293"/>
+        <location filename="../src/app/messagesadapter.cpp" line="318"/>
         <source>Unable to make contact</source>
         <translation>Nem sikerült kapcsolatba lépni</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="297"/>
+        <location filename="../src/app/messagesadapter.cpp" line="322"/>
         <source>Waiting for contact</source>
         <translation>Várakozás a kapcsolatfelvételre</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="299"/>
+        <location filename="../src/app/messagesadapter.cpp" line="324"/>
         <source>Incoming transfer</source>
         <translation>Bejövő fájlküldés</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="301"/>
+        <location filename="../src/app/messagesadapter.cpp" line="326"/>
         <source>Timed out waiting for contact</source>
         <translation>Időtúllépés várt a kapcsolattartásra</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="607"/>
+        <location filename="../src/app/messagesadapter.cpp" line="659"/>
         <source>Today</source>
         <translation>Ma</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="609"/>
+        <location filename="../src/app/messagesadapter.cpp" line="661"/>
         <source>Yesterday</source>
         <translation>Tegnap</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="290"/>
+        <location filename="../src/app/messagesadapter.cpp" line="315"/>
         <source>Canceled</source>
         <translation>Megszakítva</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="295"/>
+        <location filename="../src/app/messagesadapter.cpp" line="320"/>
         <source>Ongoing</source>
         <translation>Folyamatban lévő</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="598"/>
+        <location filename="../src/app/messagesadapter.cpp" line="650"/>
         <source>just now</source>
         <translation>most</translation>
     </message>
     <message>
-        <location filename="../src/app/messagesadapter.cpp" line="282"/>
+        <location filename="../src/app/messagesadapter.cpp" line="307"/>
         <source>Failure</source>
         <translation>Hiba</translation>
     </message>

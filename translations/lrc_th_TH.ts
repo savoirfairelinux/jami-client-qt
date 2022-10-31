@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="vi" sourcelanguage="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="th_TH" sourcelanguage="en">
 <context>
     <name>CallAdapter</name>
     <message>
@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/app/calladapter.cpp" line="584"/>
         <source>Incoming call</source>
-        <translation type="unfinished"/>
+        <translation>สายเรียกเข้า</translation>
     </message>
     <message>
         <location filename="../src/app/calladapter.cpp" line="585"/>
@@ -114,7 +114,7 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
         <source>End call</source>
-        <translation>Kết thúc cuộc gọi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="36"/>
@@ -129,7 +129,7 @@
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="42"/>
         <source>Invitations</source>
-        <translation type="unfinished"/>
+        <translation>คำเชิญ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="43"/>
@@ -177,7 +177,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="62"/>
         <source>Open settings</source>
-        <translation>Mở cài đặt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="63"/>
@@ -187,7 +187,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="64"/>
         <source>Add Account</source>
-        <translation>Thêm tài khoản</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="67"/>
@@ -252,7 +252,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="81"/>
         <source>Username</source>
-        <translation>Username</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="82"/>
@@ -337,7 +337,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="106"/>
         <source>Security</source>
-        <translation type="unfinished"/>
+        <translation>ความปลอดภัย</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="107"/>
@@ -367,7 +367,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="112"/>
         <source>User certificate</source>
-        <translation type="unfinished"/>
+        <translation>ใบรับรองผู้ใช้</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="113"/>
@@ -412,7 +412,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="122"/>
         <source>Negotiation timeout (seconds)</source>
-        <translation type="unfinished"/>
+        <translation>หมดเวลาการเจรจา (วินาที)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="123"/>
@@ -437,7 +437,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="129"/>
         <source>Connectivity</source>
-        <translation type="unfinished"/>
+        <translation>การเชื่อมต่อ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="130"/>
@@ -452,7 +452,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="132"/>
         <source>Network interface</source>
-        <translation type="unfinished"/>
+        <translation>เชื่อมต่อเครือข่าย</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="133"/>
@@ -472,7 +472,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="136"/>
         <source>TURN username</source>
-        <translation type="unfinished"/>
+        <translation>TURN ชื่อผู้ใช้</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="137"/>
@@ -507,7 +507,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="145"/>
         <source>Use custom address and port</source>
-        <translation type="unfinished"/>
+        <translation>ใช้ที่อยู่และพอร์ตที่กำหนดเอง</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="146"/>
@@ -517,7 +517,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="147"/>
         <source>Port</source>
-        <translation type="unfinished"/>
+        <translation>พอร์ต</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="150"/>
@@ -547,7 +547,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="159"/>
         <source>SDP Session Negotiation (ICE Fallback)</source>
-        <translation type="unfinished"/>
+        <translation>การเจรจาเซสชัน SDP (ICE Fallback)</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="160"/>
@@ -592,7 +592,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="170"/>
         <source>Enable proxy</source>
-        <translation type="unfinished"/>
+        <translation>เปิดใช้งาน proxy</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="171"/>
@@ -607,7 +607,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="175"/>
         <source>Back</source>
-        <translation type="unfinished"/>
+        <translation>กลับ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="176"/>
@@ -643,12 +643,12 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="184"/>
         <source>Audio</source>
-        <translation>Âm thanh</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="185"/>
         <source>Microphone</source>
-        <translation>Micrô</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="186"/>
@@ -683,7 +683,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="194"/>
         <source>Video</source>
-        <translation>Video</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="195"/>
@@ -693,7 +693,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="196"/>
         <source>Device</source>
-        <translation type="unfinished"/>
+        <translation>อุปกรณ์</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="197"/>
@@ -718,7 +718,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="201"/>
         <source>Enable hardware acceleration</source>
-        <translation type="unfinished"/>
+        <translation>เปิดใช้งานการเร่งด้วยฮาร์ดแวร์</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="202"/>
@@ -728,17 +728,17 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="203"/>
         <source>Screen Sharing</source>
-        <translation>Chia sẻ màn hình</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="204"/>
         <source>Select screen sharing frame rate (frames per second)</source>
-        <translation>Chọn tốc độ khung hình chia sẻ màn hình (khung hình trên giây)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="205"/>
         <source>no video</source>
-        <translation>không có video</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="213"/>
@@ -888,7 +888,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="727"/>
         <source>Reply</source>
-        <translation type="unfinished"/>
+        <translation>ตอบกลับ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="729"/>
@@ -928,7 +928,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="215"/>
         <source>Skip</source>
-        <translation type="unfinished"/>
+        <translation>ข้าม</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="38"/>
@@ -968,12 +968,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="216"/>
         <source>Success</source>
-        <translation type="unfinished"/>
+        <translation>ความสำเร็จ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="217"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>ข้อผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="218"/>
@@ -983,7 +983,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="219"/>
         <source>Recommended</source>
-        <translation type="unfinished"/>
+        <translation>ข้อเสนอแนะ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="220"/>
@@ -1034,13 +1034,13 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <location filename="../src/app/constant/JamiStrings.qml" line="233"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="694"/>
         <source>Mute</source>
-        <translation type="unfinished"/>
+        <translation>ปิดเสียง</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="234"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="695"/>
         <source>Unmute</source>
-        <translation type="unfinished"/>
+        <translation>เปิดเสียง</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
@@ -1156,12 +1156,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <location filename="../src/app/constant/JamiStrings.qml" line="261"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="527"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>สำเนา</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="262"/>
         <source>Share</source>
-        <translation type="unfinished"/>
+        <translation>แบ่งปัน</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="263"/>
@@ -1176,12 +1176,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="267"/>
         <source>Start video call</source>
-        <translation>Bắt đầu cuộc gọi hình ảnh</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="268"/>
         <source>Start audio call</source>
-        <translation>Bắt đầu cuộc gọi âm thanh</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="269"/>
@@ -1216,7 +1216,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="275"/>
         <source>Block contact</source>
-        <translation type="unfinished"/>
+        <translation>บล็อคการติดต่อ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="276"/>
@@ -1256,22 +1256,22 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="285"/>
         <source>Exit full screen</source>
-        <translation>Thoát dạng xem toàn màn hình</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>View full screen</source>
-        <translation>Xem toàn màn hình</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>Share screen</source>
-        <translation>Chia sẻ màn hình</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Share window</source>
-        <translation>Chia sẻ cửa sổ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
@@ -1281,12 +1281,12 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
         <source>Share screen area</source>
-        <translation>Chia sẻ khu vực màn hình</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
         <source>Share file</source>
-        <translation type="unfinished"/>
+        <translation>แชร์ไฟล์</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
@@ -1311,7 +1311,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="297"/>
         <source>Raise hand</source>
-        <translation>Giơ tay</translation>
+        <translation>ยกมือ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="298"/>
@@ -1346,7 +1346,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="309"/>
         <source>Jump to latest</source>
-        <translation>Cuộn đến cuối cuộc hội thoại</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="310"/>
@@ -1376,7 +1376,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="317"/>
         <source>Required</source>
-        <translation type="unfinished"/>
+        <translation>ที่จำเป็น</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="318"/>
@@ -1433,7 +1433,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="382"/>
         <source>Encrypt account with password</source>
-        <translation type="unfinished"/>
+        <translation>เข้ารหัสบัญชีด้วยรหัสผ่าน</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="331"/>
@@ -1448,7 +1448,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="334"/>
         <source>Optional</source>
-        <translation type="unfinished"/>
+        <translation>ทางเลือก</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="336"/>
@@ -1638,7 +1638,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="397"/>
         <source>Identity</source>
-        <translation type="unfinished"/>
+        <translation>ตัวตน</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="400"/>
@@ -1668,7 +1668,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="405"/>
         <source>Linked Devices</source>
-        <translation type="unfinished"/>
+        <translation>อุปกรณ์ที่เชื่อมโยง</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="406"/>
@@ -1724,7 +1724,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="426"/>
         <source>System</source>
-        <translation>Hệ thống</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="429"/>
@@ -1764,27 +1764,27 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="445"/>
         <source>Layout</source>
-        <translation>Bố cục</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="446"/>
         <source>User interface language</source>
-        <translation>Ngôn ngữ giao diện người dùng</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="447"/>
         <source>Vertical view</source>
-        <translation>Dạng xem dọc</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="448"/>
         <source>Horizontal view</source>
-        <translation>Dạng xem ngang</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="451"/>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>การถ่ายโอนไฟล์</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="452"/>
@@ -1804,7 +1804,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="457"/>
         <source>Register</source>
-        <translation>Register</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="458"/>
@@ -1826,7 +1826,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="463"/>
         <source>Save file</source>
-        <translation type="unfinished"/>
+        <translation>บันทึกไฟล์</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="464"/>
@@ -1861,7 +1861,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="472"/>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>อัปเดต</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="473"/>
@@ -1947,7 +1947,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="496"/>
         <source>Always record calls</source>
-        <translation type="unfinished"/>
+        <translation>บันทึกการโทรเสมอ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="499"/>
@@ -2007,7 +2007,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="511"/>
         <source>Full screen</source>
-        <translation>Toàn màn hình</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="512"/>
@@ -2082,13 +2082,13 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="529"/>
         <source>Clear</source>
-        <translation type="unfinished"/>
+        <translation>ชัดเจน</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="530"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="684"/>
         <source>Cancel</source>
-        <translation>Hủy bỏ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="531"/>
@@ -2108,7 +2108,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="536"/>
         <source>Open file</source>
-        <translation type="unfinished"/>
+        <translation>เปิดไฟล์</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="542"/>
@@ -2143,7 +2143,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="552"/>
         <source>Link device</source>
-        <translation type="unfinished"/>
+        <translation>เชื่อมโยงอุปกรณ์</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="553"/>
@@ -2153,7 +2153,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="554"/>
         <source>PIN</source>
-        <translation>GHIM</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="555"/>
@@ -2238,7 +2238,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="578"/>
         <source>Change</source>
-        <translation type="unfinished"/>
+        <translation>เปลี่ยน</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="579"/>
@@ -2268,7 +2268,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="587"/>
         <source>Take photo</source>
-        <translation type="unfinished"/>
+        <translation>ถ่ายภาพ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="591"/>
@@ -2283,12 +2283,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="593"/>
         <source>Reset</source>
-        <translation type="unfinished"/>
+        <translation>รีเซ็ต</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="594"/>
         <source>Uninstall</source>
-        <translation type="unfinished"/>
+        <translation>ถอนการติดตั้ง</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="595"/>
@@ -2398,7 +2398,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="618"/>
         <source>Profile is only shared with contacts</source>
-        <translation type="unfinished"/>
+        <translation>โปรไฟล์ถูกแชร์กับผู้ติดต่อเท่านั้น</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="619"/>
@@ -2408,7 +2408,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="620"/>
         <source>Enter your name</source>
-        <translation type="unfinished"/>
+        <translation>ใส่ชื่อของคุณ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="621"/>
@@ -2438,7 +2438,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="630"/>
         <source>Select a screen to share</source>
-        <translation>Chọn màn hình để chia sẻ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="631"/>
@@ -2559,7 +2559,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="660"/>
         <source>About Jami</source>
-        <translation type="unfinished"/>
+        <translation>เกี่ยวกับ Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="661"/>
@@ -2579,7 +2579,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="665"/>
         <source>Welcome to Jami</source>
-        <translation type="unfinished"/>
+        <translation>ยินดีต้อนรับสู่ Jami</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="666"/>
@@ -2599,12 +2599,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="671"/>
         <source>Conversations</source>
-        <translation type="unfinished"/>
+        <translation>บทสนทนา</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="672"/>
         <source>Search Results</source>
-        <translation type="unfinished"/>
+        <translation>ผลการค้นหา</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="675"/>
@@ -2619,12 +2619,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="679"/>
         <source>Automatically check for updates</source>
-        <translation type="unfinished"/>
+        <translation>ตรวจสอบการอัปเดตโดยอัตโนมัติ</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="682"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="683"/>
@@ -2664,7 +2664,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="696"/>
         <source>Maximize</source>
-        <translation type="unfinished"/>
+        <translation>ทำให้สูงสุด</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="697"/>
@@ -2704,7 +2704,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="706"/>
         <source>Add default moderator</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มผู้ดูแลเริ่มต้น</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="707"/>
@@ -2734,7 +2734,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="720"/>
         <source>Send file</source>
-        <translation>Gửi tập tin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="721"/>
@@ -2848,7 +2848,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="739"/>
         <source>About</source>
-        <translation>Thông tin phần mềm</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="740"/>
@@ -2958,12 +2958,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="768"/>
         <source>Dismiss</source>
-        <translation type="unfinished"/>
+        <translation>อนุญาตให้ออกไป</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="771"/>
         <source>Your profile is only shared with your contacts</source>
-        <translation type="unfinished"/>
+        <translation>โปรไฟล์ของคุณจะถูกแชร์กับผู้ติดต่อของคุณเท่านั้น</translation>
     </message>
 </context>
 <context>
@@ -3001,7 +3001,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="65"/>
         <source>Full screen</source>
-        <translation>Toàn màn hình</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="69"/>
@@ -3036,7 +3036,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="98"/>
         <source>Block contact</source>
-        <translation type="unfinished"/>
+        <translation>บล็อคการติดต่อ</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="102"/>
@@ -3086,7 +3086,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="148"/>
         <source>End call</source>
-        <translation>Kết thúc cuộc gọi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
@@ -3096,7 +3096,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
         <source>Mute microphone</source>
-        <translation>Tắt tiếng micrô</translation>
+        <translation>ปิดเสียงไมโครโฟน</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
@@ -3196,14 +3196,14 @@ connects to synchronize the conversation.</source>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="200"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="964"/>
         <source>Invitation received</source>
-        <translation type="unfinished"/>
+        <translation>ได้รับคำเชิญ</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="228"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="197"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="962"/>
         <source>Contact added</source>
-        <translation type="unfinished"/>
+        <translation>เพิ่มผู้ติดต่อ</translation>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="230"/>
@@ -3213,12 +3213,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="232"/>
         <source>%1 joined</source>
-        <translation>%1 đã tham gia</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="234"/>
         <source>%1 left</source>
-        <translation>%1 đã rời khỏi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="236"/>
@@ -3240,24 +3240,24 @@ connects to synchronize the conversation.</source>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="180"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="960"/>
         <source>Outgoing call</source>
-        <translation type="unfinished"/>
+        <translation>โทรออก</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="176"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="186"/>
         <source>Incoming call</source>
-        <translation type="unfinished"/>
+        <translation>สายเรียกเข้า</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="182"/>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="958"/>
         <source>Missed outgoing call</source>
-        <translation type="unfinished"/>
+        <translation>สายที่ไม่ได้รับ</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="188"/>
         <source>Missed incoming call</source>
-        <translation type="unfinished"/>
+        <translation>สายเรียกเข้าที่ไม่ได้รับ</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="202"/>
@@ -3269,7 +3269,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/libclient/avmodel.cpp" line="348"/>
         <location filename="../src/libclient/avmodel.cpp" line="367"/>
         <source>default</source>
-        <translation>mặc định</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="60"/>
@@ -3304,7 +3304,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="66"/>
         <source>OK</source>
-        <translation>Được rồi</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="67"/>
@@ -3590,12 +3590,12 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="661"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>เมื่อวาน</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="315"/>
         <source>Canceled</source>
-        <translation>Đã hủy bỏ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="320"/>
@@ -3623,7 +3623,7 @@ connects to synchronize the conversation.</source>
         <location filename="../src/app/smartlistmodel.cpp" line="174"/>
         <location filename="../src/app/smartlistmodel.cpp" line="175"/>
         <source>Calls</source>
-        <translation type="unfinished"/>
+        <translation>โทร</translation>
     </message>
     <message>
         <location filename="../src/app/smartlistmodel.cpp" line="63"/>
@@ -3646,7 +3646,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/systemtray.cpp" line="220"/>
         <source>Decline</source>
-        <translation type="unfinished"/>
+        <translation>ปฏิเสธ</translation>
     </message>
     <message>
         <location filename="../src/app/systemtray.cpp" line="222"/>
@@ -3802,17 +3802,17 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="273"/>
         <source>%1 Mbps</source>
-        <translation>%1 Mb/giây</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="273"/>
         <source>Default</source>
-        <translation>Mặc định</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="473"/>
         <source>System</source>
-        <translation>Hệ thống</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
