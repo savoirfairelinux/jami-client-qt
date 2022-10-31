@@ -36,10 +36,11 @@ Item {
     property int count: 0
     property bool inLine: CallParticipantsModel.conferenceLayout === CallParticipantsModel.ONE_WITH_SMALL
     property bool participantsSide
+    property bool enableAudioFilter: CallParticipantsModel.count > 1 && CurrentConversation.hideSpectators
 
     onVisibleChanged: {
         CurrentConversation.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
-        CurrentConversation.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
+        CurrentConversation.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
     }
 
     Component {
@@ -96,9 +97,18 @@ Item {
                 value: false
             }
             ValueFilter {
-                enabled: CallParticipantsModel.count > 1 &&
-                         CurrentConversation.hideAudioOnly
+                enabled: root.enableAudioFilter
                 roleName: "VideoMuted"
+                value: false
+            }
+            ValueFilter {
+                enabled: root.enableAudioFilter
+                roleName: "HandRaised"
+                value: false
+            }
+            ValueFilter {
+                enabled: root.enableAudioFilter
+                roleName: "AudioMuted"
                 value: false
             }
         }

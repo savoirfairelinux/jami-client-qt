@@ -180,9 +180,9 @@ Control {
                         UtilsAdapter.setAppValue(Settings.HideSelf, !layoutModel.get(index).ActiveSetting)
                         CurrentConversation.hideSelf = UtilsAdapter.getAppValue(Settings.HideSelf)
                         break
-                  case JamiStrings.hideAudioOnly:
-                        UtilsAdapter.setAppValue(Settings.HideAudioOnly, !layoutModel.get(index).ActiveSetting)
-                        CurrentConversation.hideAudioOnly = UtilsAdapter.getAppValue(Settings.HideAudioOnly)
+                  case JamiStrings.hideSpectators:
+                        UtilsAdapter.setAppValue(Settings.HideSpectators, !layoutModel.get(index).ActiveSetting)
+                        CurrentConversation.hideSpectators = UtilsAdapter.getAppValue(Settings.HideSpectators)
                         break
                 }
             }
@@ -224,9 +224,9 @@ Control {
                                     "BottomMargin": true,
                                     "SectionEnd": isConference})
                 if (isConference) {
-                    layoutModel.append({"Name": JamiStrings.hideAudioOnly,
+                    layoutModel.append({"Name": JamiStrings.hideSpectators,
                                         "IconSource": JamiResources.videocam_off_24dp_svg,
-                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideAudioOnly),
+                                        "ActiveSetting": UtilsAdapter.getAppValue(Settings.HideSpectators),
                                         "TopMargin": true,
                                         "BottomMargin": true})
                 }
