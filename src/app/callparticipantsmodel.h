@@ -39,6 +39,7 @@
     X(YPosition) \
     X(Width) \
     X(Height) \
+    X(AudioMuted) \
     X(AudioLocalMuted) \
     X(AudioModeratorMuted) \
     X(VideoMuted) \
