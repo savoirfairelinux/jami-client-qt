@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cf8f021_09657e43",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-31T18:30:55Z",
+      "side": 1,
+      "message": "Nice work, nothing to said on my side.",
+      "revId": "965072a47ca59fb001daa55422ae426beea18516",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08933d27_6328cdb8",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-31T18:30:55Z",
+      "side": 1,
+      "message": "exception should be loggued",
+      "range": {
+        "startLine": 113,
+        "startChar": 7,
+        "endLine": 114,
+        "endChar": 5
+      },
+      "revId": "965072a47ca59fb001daa55422ae426beea18516",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
