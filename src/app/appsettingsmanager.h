@@ -47,7 +47,7 @@ extern const QString defaultDownloadPath;
     X(BaseZoom, 1.0) \
     X(ParticipantsSide, false) \
     X(HideSelf, false) \
-    X(HideAudioOnly, false) \
+    X(HideSpectators, false) \
     X(AutoUpdate, true) \
     X(StartMinimized, false) \
     X(ShowChatviewHorizontally, true) \
