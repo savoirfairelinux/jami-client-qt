@@ -56,6 +56,30 @@
       },
       "revId": "965072a47ca59fb001daa55422ae426beea18516",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e697beb1_b79ab339",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-31T21:07:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08933d27_6328cdb8",
+      "range": {
+        "startLine": 113,
+        "startChar": 7,
+        "endLine": 114,
+        "endChar": 5
+      },
+      "revId": "965072a47ca59fb001daa55422ae426beea18516",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
