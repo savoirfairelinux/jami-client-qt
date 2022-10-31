@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a4a2ae6_a33127c4",
+        "filename": "src/app/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-10-31T16:02:52Z",
+      "side": 1,
+      "message": "not working, I don\u0027t understand why :(",
+      "range": {
+        "startLine": 104,
+        "startChar": 20,
+        "endLine": 113,
+        "endChar": 13
+      },
+      "revId": "5964c21bb3ec4bffe465c709ffc8e901e8d92d6f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
