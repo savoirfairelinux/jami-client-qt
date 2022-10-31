@@ -22,6 +22,30 @@
       },
       "revId": "2fc8661d08656adc03f1ce803ad172fc96a54681",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2cbecd1_cf47b253",
+        "filename": "doc/jami.1",
+        "patchSetId": 12
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-10-31T01:16:22Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "dca2aae3_994e1ef1",
+      "range": {
+        "startLine": 8,
+        "startChar": 6,
+        "endLine": 8,
+        "endChar": 15
+      },
+      "revId": "2fc8661d08656adc03f1ce803ad172fc96a54681",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
