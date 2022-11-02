@@ -1,8 +1,8 @@
 # Build instructions
 
-There is basically two ways to build `client-qt`:
+There are essentially two ways to build `client-qt`:
 
-- Use `build.py` script which will build all Jami (daemon/client lib/client-qt)
+- Use `build.py` script which will build all of Jami (daemon and client)
 - Build only this client.
 
 ## Disclaimer
@@ -55,14 +55,14 @@ Then, you can build the project
 
 ### With build.py
 
-```bash
-git clone https://review.jami.net/jami-project
-```
+The build.py Jami installer uses **python3 (minimum v3.6)**.  If it's not installed,
+please install it.  Then run the following to initialize and update
+the submodules to set them at the top of their latest commit (ideal
+for getting the latest development versions; otherwise, you can use
+`git submodule update --init` then checkout specific commits for each
+submodule).
 
-Jami installer uses **python3 (minimum v3.6)**. If it's not installed, please install it:
-
 ```bash
-cd jami-project/
 ./build.py --init
 ```
 
@@ -71,21 +71,24 @@ Then you will need to install dependencies:
 - For GNU/Linux
 
 ```bash
-./build.py --dependencies --qt # needs sudo
+./build.py --dependencies # needs sudo
 ```
 
-Then, you can build daemon and the client with:
+Then, you can build daemon and the client using:
 
 ```bash
-./build.py --install --qt
+./build.py --install
 ```
 
-And you will have the daemon in `daemon/bin/jamid` and the client in `client-qt/build-local/jami`. You also can run it with
+If you use a Qt version that is not system-wide installed, you need to
+specify its path using the `--qt` flag, e.g.
+`./build.py --install --qt=/home/<username>/Qt/6.2.1/gcc_64`.
 
-If you use a Qt version that is not wide-system installed you need to specify its path after the `--qt` flag, i. e., `./build.py --install --qt /home/<username>/Qt/6.2.1/gcc_64
+Now you will have the daemon in `daemon/bin/jamid` and the client in
+`build/bin/jami`.  You can now run Jami using
 
 ```bash
-./build.py --run --qt
+./build.py --run
 ```
 
 Notes:
@@ -122,7 +125,7 @@ cmake can take some options:
 e.g. (with Qt version from https://jami.net)
 
 ```
-cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=jami-project/install/client-qt -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../install -DCMAKE_PREFIX_PATH=/usr/lib/libqt-jami
 ```
 
 After the build has finished, you are finally ready to launch jami in your build directory.
@@ -208,9 +211,8 @@ Only 64-bit MSVC build can be compiled.
 
 ```bash
     python build.py --install
-    cd client-qt
-    python build.py init
-    python build.py --qtver <your qt version>
+    python extras\scripts\build-windows.py init
+    python extras\scripts\build-windows.py --qtver <your qt version>
 ```
 
 - Then you should be able to use the Visual Studio Solution file in client-qt folder **(Configuration = Release, Platform = x64)**
@@ -221,15 +223,15 @@ Only 64-bit MSVC build can be compiled.
 
 **Daemon**
 
-- Make sure that dependencies is built by make-ring.py
-- On MSVC folder (jami-project\daemon\MSVC):
+- Make sure that dependencies is built by build.py
+- On MSVC folder (daemon\MSVC):
 
 ```sh
     cmake -DCMAKE_CONFIGURATION_TYPES="ReleaseLib_win32" -DCMAKE_VS_PLATFORM_NAME="x64" -G "Visual Studio 16 2019" -A x64 -T '$(DefaultPlatformToolset)' ..
     python winmake.py -b daemon
 ```
 
-- This will generate a `.lib` file in the path of ring-project\daemon\MSVC\x64\ReleaseLib_win32\bin
+- This will generate a `.lib` file in the path of daemon\MSVC\x64\ReleaseLib_win32\bin
 
 > Note: each dependencies contrib for daemon can also be updated individually <br>
 > For example:
@@ -240,15 +242,14 @@ Only 64-bit MSVC build can be compiled.
 
 **Jami**
 
-- Make sure that daemon, is built first
+- Make sure that daemon is built first.  Then,
 
 ```bash
-    cd client-qt
-    python build.py init
-    python build.py
+    python extras\scripts\build-windows.py init
+    python extras\scripts\build-windows.py
 ```
 
-Note: if your qt version is different than 6.2.3, you need to use `python build.py --qtver <your qt version>`.
+Note: if your qt version is different than 6.2.3, you need to use `python extras\scripts\build-windows.py --qtver <your qt version>`.
 
 ## Building On MacOS
 
@@ -272,33 +273,31 @@ Then, you can build the project
 **Build with build.py**
 
 ```bash
-git clone https://review.jami.net/jami-project
- cd jami-project
 ./build.py --init
-./build.py --dependencies --qt
-./build.py --install --qt
+./build.py --dependencies
+./build.py --install
 ```
 
 If you use a Qt version that is installed in a different than standard location you need to specify its path
 
 ```bash
-./build.py --install --qt QT_ROOT_DIRECTORY=your_qt_directory
+QT_ROOT_DIRECTORY=your_qt_directory ./build.py --install
 ```
 
-Built client could be find in `client-qt/build-local/Jami`
+Built client could be find in `build/Jami`
 
 ## Packaging On Native Windows
 
 - To be able to generate a msi package, first download and install [Wixtoolset](https://wixtoolset.org/releases/).
 - In Visual Studio, download WiX Toolset Visual Studio Extension.
-- Build client-qt project first, then the JamiInstaller project, msi package should be stored in jami-project\client-qt\JamiInstaller\bin\Release
+- Build client-qt project first, then the JamiInstaller project, msi package should be stored in JamiInstaller\bin\Release
 
 ## Testing for Client-qt on Windows
 
 - We currently use [GoogleTest](https://github.com/google/googletest) and [Qt Quick Test](https://doc.qt.io/qt-5/qtquicktest-index.html#introduction) in our product. To build and run tests, you could use the following command.
 
 ```
-    python build.py [runtests, pack]
+    python extras\scripts\build-windows.py [runtests, pack]
 ```
 
 - Note that, for tests, the path of local storage files for jami will be changed based on following environment variables.
@@ -309,11 +308,11 @@ Built client could be find in `client-qt/build-local/Jami`
     %JAMI_CACHE_HOME% = %TEMP% + '\\jami_test\\.cache'
 ```
 
-- These environment variables will be temporarily set when using make-client.py to run tests.
+- These environment variables will be temporarily set when using build-windows.py to run tests.
 
 ## Debugging
 
-Compile the client with `BUILD=Debug` and compile LibRingClient with
-`-DCMAKE_BUILD_TYPE=Debug`
+Compile the client with with `-DCMAKE_BUILD_TYPE=Debug`.
 
-Then, if you want to enable logging when running `jami` launch it with `-d` or `--debug`
+Then, if you want to enable logging when running `jami`, launch it
+with `-d` or `--debug`.
