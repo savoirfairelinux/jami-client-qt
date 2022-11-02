@@ -18,12 +18,16 @@ nuget.exe
 changelog.html
 obj/
 build/
+install/
 build-local/
-install-local/
+build-global/
 *.vcxproj
 *.vcxproj.filters
 *qmlcache.qrc
 .deploy.stamp
+
+*.log
+*.pid
 
 # auto-gen files
 src/app/qml_without_webengine.qrc
