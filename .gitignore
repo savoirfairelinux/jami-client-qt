@@ -19,11 +19,15 @@ changelog.html
 obj/
 build/
 build-local/
-install-local/
+build-global/
+install/
 *.vcxproj
 *.vcxproj.filters
 *qmlcache.qrc
 .deploy.stamp
+
+*.log
+*.pid
 
 # auto-gen files
 src/app/qml_without_webengine.qrc
