@@ -554,9 +554,9 @@ public Q_SLOTS: // METHODS
         return libjami::getIsAlwaysRecording();
     }
 
-    bool getNoiseSuppressState()
+    QString getNoiseSuppressState()
     {
-        return libjami::getNoiseSuppressState();
+        return libjami::getNoiseSuppressState().c_str();
     }
 
     QString getRecordPath()
@@ -766,9 +766,9 @@ public Q_SLOTS: // METHODS
         libjami::setIsAlwaysRecording(enabled);
     }
 
-    void setNoiseSuppressState(bool state)
+    void setNoiseSuppressState(QString state)
     {
-        libjami::setNoiseSuppressState(state);
+        libjami::setNoiseSuppressState(state.toStdString());
     }
 
     bool isAudioMeterActive(const QString& id)
