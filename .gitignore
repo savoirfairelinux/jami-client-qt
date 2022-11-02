@@ -18,8 +18,9 @@ nuget.exe
 changelog.html
 obj/
 build/
+install/
 build-local/
-install-local/
+build-global/
 *.vcxproj
 *.vcxproj.filters
 *qmlcache.qrc
