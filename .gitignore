@@ -20,6 +20,7 @@ obj/
 build/
 build-local/
 install-local/
+build-global/
 *.vcxproj
 *.vcxproj.filters
 *qmlcache.qrc
