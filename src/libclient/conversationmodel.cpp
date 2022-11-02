@@ -994,11 +994,11 @@ void
 ConversationModel::createConversation(const VectorString& participants, const MapStringString& infos)
 {
     auto convUid = ConfigurationManager::instance().startConversation(owner.id);
+    if (!infos.isEmpty())
+        updateConversationInfos(convUid, infos);
     for (const auto& participant : participants) {
         ConfigurationManager::instance().addConversationMember(owner.id, convUid, participant);
     }
-    if (!infos.isEmpty())
-        updateConversationInfos(convUid, infos);
     pimpl_->addSwarmConversation(convUid);
     Q_EMIT newConversation(convUid);
     pimpl_->invalidateModel();
