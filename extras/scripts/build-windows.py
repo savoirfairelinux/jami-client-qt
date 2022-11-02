@@ -19,7 +19,8 @@ vs_where_path = os.path.join(
 
 host_is_64bit = (False, True)[platform.machine().endswith('64')]
 this_dir = os.path.dirname(os.path.realpath(__file__))
-build_dir = os.path.join(this_dir, 'build')
+repo_root_dir = os.path.dirname(os.path.dirname(this_dir))
+build_dir = os.path.join(repo_root_dir, 'build')
 
 temp_path = os.environ['TEMP']
 openssl_include_dir = 'C:\\Qt\\Tools\\OpenSSL\\Win_x64\\include\\openssl'
@@ -30,17 +31,17 @@ qt_root_path = os.getenv('QT_ROOT_DIRECTORY', qt_path)
 
 # project path
 installer_project = os.path.join(
-    this_dir, 'JamiInstaller', 'JamiInstaller.wixproj')
+    repo_root_dir, 'JamiInstaller', 'JamiInstaller.wixproj')
 unit_test_project = os.path.join(build_dir, 'tests', 'unittests.vcxproj')
 qml_test_project = os.path.join(build_dir, 'tests', 'qml_tests.vcxproj')
 
 # test executable command
-qml_test_exe = os.path.join(this_dir, 'x64', 'test', 'qml_tests.exe -input ') + \
-    os.path.join(this_dir, 'tests', 'qml')
-unit_test_exe = os.path.join(this_dir, 'x64', 'test', 'unittests.exe')
+qml_test_exe = os.path.join(repo_root_dir, 'x64', 'test', 'qml_tests.exe -input ') + \
+    os.path.join(repo_root_dir, 'tests', 'qml')
+unit_test_exe = os.path.join(repo_root_dir, 'x64', 'test', 'unittests.exe')
 
 
-def execute_cmd(cmd, with_shell=False, env_vars=None, cmd_dir=os.getcwd()):
+def execute_cmd(cmd, with_shell=False, env_vars=None, cmd_dir=repo_root_dir):
     p = subprocess.Popen(cmd,
                          shell=with_shell,
                          stdout=sys.stdout,
@@ -179,8 +180,8 @@ def build_deps():
         '--ignore-whitespace',
         '--whitespace=fix'
     ]
-    qrencode_dir = os.path.join(this_dir, '3rdparty', 'qrencode-win32')
-    patch_file = os.path.join(this_dir, 'qrencode-win32.patch')
+    qrencode_dir = os.path.join(repo_root_dir, '3rdparty', 'qrencode-win32')
+    patch_file = os.path.join(repo_root_dir, 'qrencode-win32.patch')
     apply_cmd.append(patch_file)
     print(apply_cmd)
     if(execute_cmd(apply_cmd, False, None, qrencode_dir)):
@@ -206,7 +207,7 @@ def build(config_str, qtver, tests=False):
     vs_env_vars.update(getVSEnv())
 
     qt_dir = os.path.join(qt_root_path, qtver, qt_kit_path)
-    daemon_dir = os.path.dirname(this_dir) + '\\daemon'
+    daemon_dir = os.path.dirname(repo_root_dir) + '\\daemon'
     daemon_bin_dir = daemon_dir + '\\build\\x64\\ReleaseLib_win32\\bin'
 
     cmake_options = [
@@ -251,9 +252,9 @@ def run_tests(mute_jamid, output_to_files):
         test_exe_command_list[1] += ' -mutejamid'
     if output_to_files:
         test_exe_command_list[0] += ' -o ' + \
-            os.path.join(this_dir, 'x64', 'test', 'qml_tests.txt')
+            os.path.join(repo_root_dir, 'x64', 'test', 'qml_tests.txt')
         test_exe_command_list[1] += ' > ' + \
-            os.path.join(this_dir, 'x64', 'test', 'unittests.txt')
+            os.path.join(repo_root_dir, 'x64', 'test', 'unittests.txt')
 
     test_result_code = 0
 
