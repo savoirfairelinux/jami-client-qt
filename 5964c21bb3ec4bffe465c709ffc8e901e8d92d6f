@@ -46,6 +46,30 @@
       },
       "revId": "5964c21bb3ec4bffe465c709ffc8e901e8d92d6f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79cc8090_7500dad7",
+        "filename": "src/app/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-02T15:55:49Z",
+      "side": 1,
+      "message": "thx make sense",
+      "parentUuid": "70bb71a6_f53cd3ee",
+      "range": {
+        "startLine": 104,
+        "startChar": 20,
+        "endLine": 113,
+        "endChar": 13
+      },
+      "revId": "5964c21bb3ec4bffe465c709ffc8e901e8d92d6f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
