@@ -22,6 +22,30 @@
       },
       "revId": "5964c21bb3ec4bffe465c709ffc8e901e8d92d6f",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70bb71a6_f53cd3ee",
+        "filename": "src/app/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-11-02T13:19:06Z",
+      "side": 1,
+      "message": "In my understanding, each filter is applied individually, one after the other. That way defining multiple filters to a single desired logic would not work. Instead of filtering `if (x and !y) -\u003e filter` it does `if x -\u003e filter; if !y -\u003e filter`",
+      "parentUuid": "5a4a2ae6_a33127c4",
+      "range": {
+        "startLine": 104,
+        "startChar": 20,
+        "endLine": 113,
+        "endChar": 13
+      },
+      "revId": "5964c21bb3ec4bffe465c709ffc8e901e8d92d6f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
