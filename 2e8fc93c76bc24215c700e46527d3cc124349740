@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb469875_8eb5f4b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-02T22:49:55Z",
+      "side": 1,
+      "message": "Are spectator’s hidden be device, not username?\n\nExamples:\n1. If 2 devices with the same username are in a conference, one is talking and the other is a spectator, does only one tile show?\n2. If 2 devices with the same username are in a conference, both are sharing video, does two tiles show?\n\nThank you",
+      "revId": "2e8fc93c76bc24215c700e46527d3cc124349740",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
