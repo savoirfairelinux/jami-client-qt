@@ -26,10 +26,11 @@ It should be (For now qt5 only is packaged by distributions, so names can change
 
 ```
 sudo apt-get install cmake make doxygen g++ gettext libnotify-dev pandoc nasm libqrencode-dev \
-                     libnotify-dev libnm-dev \
-                     qtbase6-dev \
-                     qtmultimedia5-dev libqt6svg6-dev qtwebengine6-dev qtdeclarative6-dev \
-                     qtquickcontrols2-6-dev qml-module-qtquick2 qml-module-qtquick-controls \
+                     libnotify-dev libnm-dev \
+                     qt6-base-dev \
+                     qtmultimedia5-dev libqt6svg6-dev qt6-webengine-dev \
+                     qtdeclarative5-dev \
+                     qtquickcontrols2-5-dev qml-module-qtquick2 qml-module-qtquick-controls \
                      qml-module-qtquick-controls2 qml-module-qtquick-dialogs \
                      qml-module-qtquick-layouts qml-module-qtquick-privatewidgets \
                      qml-module-qtquick-shapes qml-module-qtquick-window2 \
