@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85bf5641_63edd131",
+        "filename": "build.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-11-03T18:22:42Z",
+      "side": 1,
+      "message": "per discussions elsewhere, no we\u0027d like the build.py script to be in the repository root as the only exception (all other scripts must go in an appropriate sub-directory), for convenience.",
+      "parentUuid": "30b28237_cad23c48",
+      "range": {
+        "startLine": 1,
+        "startChar": 4,
+        "endLine": 2,
+        "endChar": 11
+      },
+      "revId": "01c1b702f94dd41084e3342bf17b2cc46e8d88c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67e0f3db_621acc35",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-02T15:00:14Z",
       "side": 1,
       "message": "This will need an update in the INSTALL.md",
+      "range": {
+        "startLine": 4,
+        "startChar": 15,
+        "endLine": 5,
+        "endChar": 1
+      },
+      "revId": "01c1b702f94dd41084e3342bf17b2cc46e8d88c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c36f2c16_7fabb1e6",
+        "filename": "build.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-11-03T18:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67e0f3db_621acc35",
       "range": {
         "startLine": 4,
         "startChar": 15,
@@ -84,6 +132,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "0db7b8df_b23b9b59",
+      "range": {
+        "startLine": 167,
+        "startChar": 5,
+        "endLine": 167,
+        "endChar": 21
+      },
+      "revId": "01c1b702f94dd41084e3342bf17b2cc46e8d88c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a957bd7a_e5bbbe82",
+        "filename": "extras/scripts/install.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-11-03T18:22:42Z",
+      "side": 1,
+      "message": "thanks, fixed",
+      "parentUuid": "b8ac143d_c5b6aa45",
       "range": {
         "startLine": 167,
         "startChar": 5,
