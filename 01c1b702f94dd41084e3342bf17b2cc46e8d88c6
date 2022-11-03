@@ -22,6 +22,29 @@
       },
       "revId": "01c1b702f94dd41084e3342bf17b2cc46e8d88c6",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db7b8df_b23b9b59",
+        "filename": "extras/scripts/install.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-03T12:52:44Z",
+      "side": 1,
+      "message": "top is already client-qt now",
+      "range": {
+        "startLine": 167,
+        "startChar": 5,
+        "endLine": 167,
+        "endChar": 21
+      },
+      "revId": "01c1b702f94dd41084e3342bf17b2cc46e8d88c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
