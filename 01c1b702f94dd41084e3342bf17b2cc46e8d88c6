@@ -48,6 +48,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6d5512a_1a7ec622",
+        "filename": "build.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-03T21:41:38Z",
+      "side": 1,
+      "message": "I agree that\u0027s more discoverable and useful to have it at the root.",
+      "parentUuid": "85bf5641_63edd131",
+      "range": {
+        "startLine": 1,
+        "startChar": 4,
+        "endLine": 2,
+        "endChar": 11
+      },
+      "revId": "01c1b702f94dd41084e3342bf17b2cc46e8d88c6",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67e0f3db_621acc35",

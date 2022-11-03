@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c4f98a6_3170f7b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-03T21:41:38Z",
+      "side": 1,
+      "message": "small comments, otherwise LGTM.",
+      "revId": "1a15d209231f1406c70c808ef2b975dd420ef019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19251e48_15ec93d5",
+        "filename": "build.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-03T21:41:38Z",
+      "side": 1,
+      "message": "we should use this opportunity to sort these imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "revId": "1a15d209231f1406c70c808ef2b975dd420ef019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16af88c5_77e4efb5",
+        "filename": "build.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-03T21:41:38Z",
+      "side": 1,
+      "message": "this could also be sorted; I also don\u0027t think raspbian has been supported in a long while, right? perhaps get rid of it.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "1a15d209231f1406c70c808ef2b975dd420ef019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
