@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64257372_b529cffe",
+        "filename": "src/app/activecallsmodel.cpp",
+        "patchSetId": 50
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "this comment seems out of place",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 74
+      },
+      "revId": "0af18d6353d1f540d725b888d6402c7b2617765c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

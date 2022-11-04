@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b33d42b1_6ff9c27d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 59
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "an incoming call logs an outgoing and an incoming call message",
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75773029_56b9dea4",
+        "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "looks like these button share most properties; could use an inline component here:\n```\n            component JoinCallButton: PushButton {\n                visible: root.isActive\n                toolTipText: JamiStrings.joinCall\n                preferredSize: 40\n                imageColor: callLabel.color\n                normalColor: \"transparent\"\n                hoveredColor: Qt.rgba(255, 255, 255, 0.2)\n                border.width: 1\n                border.color: callLabel.color\n            }\n```",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "585d745e_a3472684",
+        "filename": "src/app/commoncomponents/emojipicker/EmojiPicker.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "this looks out of place. also, how does this work correctly?",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 75
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ce2dd3_51c24db3",
+        "filename": "src/app/currentaccount.h",
+        "patchSetId": 59
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "🎉",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "949b6b9e_dfe19b36",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 59
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "what throws here?",
+      "range": {
+        "startLine": 340,
+        "startChar": 6,
+        "endLine": 341,
+        "endChar": 5
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b39df02d_3ed87ae5",
+        "filename": "src/app/lrcinstance.h",
+        "patchSetId": 59
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be a callId? I thought this term was to be deprecated in 3 shakes of a lamb\u0027s tail",
+      "range": {
+        "startLine": 111,
+        "startChar": 53,
+        "endLine": 111,
+        "endChar": 59
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9230b7a1_5089ea47",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 127,
+        "startChar": 86,
+        "endLine": 127,
+        "endChar": 102
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "369e29a8_2bda5abe",
+        "filename": "src/app/mainview/components/SwarmDetailsPanel.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "159 col :/. will wait for auto-formatting though",
+      "range": {
+        "startLine": 391,
+        "startChar": 0,
+        "endLine": 391,
+        "endChar": 159
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07127d7_ead15a89",
+        "filename": "src/libclient/authority/storagehelper.cpp",
+        "patchSetId": 59
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "what is meant by old here? pre-swarm?",
+      "range": {
+        "startLine": 201,
+        "startChar": 35,
+        "endLine": 201,
+        "endChar": 38
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8814edb_3bdb1634",
+        "filename": "src/libclient/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 59
+      },
+      "lineNbr": 1302,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:37:43Z",
+      "side": 1,
+      "message": "format",
+      "range": {
+        "startLine": 1300,
+        "startChar": 28,
+        "endLine": 1302,
+        "endChar": 69
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
