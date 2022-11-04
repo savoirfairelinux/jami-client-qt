@@ -158,6 +158,16 @@ execute_process(
   COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py
   WORKING_DIRECTORY ${APP_SRC_DIR})
 
+# Generate a qml.qrc file with the qml and js files
+# check files in the app's src directory and force a reconfigure if it
+# changes
+file(GLOB_RECURSE
+  QML_FILES CONFIGURE_DEPENDS
+  ${APP_SRC_DIR}/*)
+execute_process(
+  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py
+  WORKING_DIRECTORY ${APP_SRC_DIR})
+
 # library compatibility (boost, libnotify, etc.)
 add_definitions(-DQT_NO_KEYWORDS)
 
