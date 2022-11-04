@@ -111,7 +111,19 @@ endif()
 
 set(CMAKE_CXX_FLAGS
   ${CMAKE_CXX_FLAGS} ${Qt6Widgets_EXECUTABLE_COMPILE_FLAGS})
+
+# Add the auto-determined directories (those that are in the linker
+# search path or contain linked libraries) outside the build tree to
+# the RPATH.
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
+
+# # Augment the install RPATH for local (non-global) installs.
+list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES
+  "${CMAKE_INSTALL_PREFIX}/lib"
+  isSystemDir)
+if("${isSystemDir}" STREQUAL "-1")
+    set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+endif()
 
 if (WITH_DAEMON_SUBMODULE AND NOT EXISTS ${DAEMON_DIR}/src)
   message(FATAL_ERROR
