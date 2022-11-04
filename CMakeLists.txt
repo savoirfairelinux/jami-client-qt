@@ -155,7 +155,7 @@ file(GLOB_RECURSE
   RES_FILES CONFIGURE_DEPENDS
   ${PROJECT_SOURCE_DIR}/resources/*)
 execute_process(
-  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen-resources.py
+  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py
   WORKING_DIRECTORY ${APP_SRC_DIR})
 
 # library compatibility (boost, libnotify, etc.)
