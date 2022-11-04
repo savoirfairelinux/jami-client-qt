@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffc75d40_b6385cf7",
+        "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-04T18:44:34Z",
+      "side": 1,
+      "message": "warning",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75773029_56b9dea4",
         "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
         "patchSetId": 59
