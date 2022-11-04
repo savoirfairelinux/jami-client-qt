@@ -122,7 +122,7 @@ if(LIBJAMI_FOUND)
 endif()
 
 include(FindPython3)
-find_package(Python3 COMPONENTS Interpreter)
+find_package(Python3 3.6 REQUIRED COMPONENTS Interpreter)
 set(PYTHON_EXEC ${Python3_EXECUTABLE})
 
 set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
@@ -155,7 +155,7 @@ file(GLOB_RECURSE
   RES_FILES CONFIGURE_DEPENDS
   ${PROJECT_SOURCE_DIR}/resources/*)
 execute_process(
-  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen-resources.py
+  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py
   WORKING_DIRECTORY ${APP_SRC_DIR})
 
 # library compatibility (boost, libnotify, etc.)
