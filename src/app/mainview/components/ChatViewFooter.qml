@@ -104,14 +104,16 @@ Rectangle {
     }
 
     Loader {
-        id: empjiLoader
-        source: WITH_WEBENGINE ? "qrc:/commoncomponents/emojipicker/EmojiPicker.qml" : "qrc:/nowebengine/EmojiPicker.qml"
+        id: emojiPickerLoader
+        source: WITH_WEBENGINE ?
+                    "qrc:/webengine/emojipicker/EmojiPicker.qml" :
+                    "qrc:/nowebengine/EmojiPicker.qml"
 
         function openEmojiPicker() {
             item.openEmojiPicker()
         }
         Connections {
-            target: empjiLoader.item
+            target: emojiPickerLoader.item
             function onEmojiIsPicked(content) {
                 messageBar.textAreaObj.insertText(content)
             }
@@ -168,20 +170,20 @@ Rectangle {
             onEmojiButtonClicked: {
                 JamiQmlUtils.updateMessageBarButtonsPoints()
 
-                empjiLoader.parent = JamiQmlUtils.mainViewRectObj
+                emojiPickerLoader.parent = JamiQmlUtils.mainViewRectObj
 
-                empjiLoader.x = Qt.binding(function() {
+                emojiPickerLoader.x = Qt.binding(function() {
                     var buttonX = JamiQmlUtils.emojiPickerButtonInMainViewPoint.x +
                             JamiQmlUtils.emojiPickerButtonObj.width
-                    return buttonX - empjiLoader.width
+                    return buttonX - emojiPickerLoader.width
                 })
-                empjiLoader.y = Qt.binding(function() {
+                emojiPickerLoader.y = Qt.binding(function() {
                     var buttonY = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.y
-                    return buttonY - empjiLoader.height - messageBar.marginSize
+                    return buttonY - emojiPickerLoader.height - messageBar.marginSize
                             - JamiTheme.chatViewHairLineSize
                 })
 
-                empjiLoader.openEmojiPicker()
+                emojiPickerLoader.openEmojiPicker()
             }
             onSendFileButtonClicked: jamiFileDialog.open()
             onSendMessageButtonClicked: {
