@@ -125,17 +125,32 @@ include(FindPython3)
 find_package(Python3 3.6 REQUIRED COMPONENTS Interpreter)
 set(PYTHON_EXEC ${Python3_EXECUTABLE})
 
-set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
+# Resource auto-gen
+# QML and related code files
+# Check files in the app's src directory and force a reconfigure if it
+# changes.
+# Only include webengine resources if specified.
 if(WITH_WEBENGINE)
-  set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
-else()
-  execute_process(
-    COMMAND
-    ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen-qrc-without-webengine.py
-    WORKING_DIRECTORY ${APP_SRC_DIR})
-  set(QML_RESOURCES_QML
-    ${APP_SRC_DIR}/qml_without_webengine.qrc)
+  set(GEN_QML_QRC_ARGS "--with-webengine")
 endif()
+file(GLOB_RECURSE
+  QML_FILES CONFIGURE_DEPENDS
+  ${APP_SRC_DIR}/*)
+execute_process(
+  COMMAND
+  ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_qml_qrc.py ${GEN_QML_QRC_ARGS}
+  WORKING_DIRECTORY ${APP_SRC_DIR})
+set(QML_RESOURCES_QML ${APP_SRC_DIR}/qml.qrc)
+# Image and misc. resources
+# check files in the resources directory and force a reconfigure if it
+# changes
+file(GLOB_RECURSE
+  RES_FILES CONFIGURE_DEPENDS
+  ${PROJECT_SOURCE_DIR}/resources/*)
+execute_process(
+  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py
+  WORKING_DIRECTORY ${APP_SRC_DIR})
+set(QML_RESOURCES ${APP_SRC_DIR}/resources.qrc)
 
 if (APPLE)
   include(FetchContent)
@@ -147,16 +162,6 @@ if (APPLE)
   add_subdirectory(${libqrencode_SOURCE_DIR} ${libqrencode_BINARY_DIR})
   include_directories(${libqrencode_SOURCE_DIR})
 endif()
-
-# Resource auto-gen
-# check files in the resources directory and force a reconfigure if it
-# changes
-file(GLOB_RECURSE
-  RES_FILES CONFIGURE_DEPENDS
-  ${PROJECT_SOURCE_DIR}/resources/*)
-execute_process(
-  COMMAND ${PYTHON_EXEC} ${SCRIPTS_DIR}/gen_resources_qrc.py
-  WORKING_DIRECTORY ${APP_SRC_DIR})
 
 # library compatibility (boost, libnotify, etc.)
 add_definitions(-DQT_NO_KEYWORDS)
