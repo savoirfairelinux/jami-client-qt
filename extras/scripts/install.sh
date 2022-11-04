@@ -178,7 +178,7 @@ if [ "${global}" = "true" ]; then
                          $static)
 else
     client_cmake_flags+=(-DCMAKE_INSTALL_PREFIX="${INSTALL_DIR}"
-                         -DLIBJAMI_BUILD_DIR="${DAEMON}/src")
+                         -DWITH_DAEMON_SUBMODULE=true)
 fi
 
 echo "info: Configuring $client client with flags: ${client_cmake_flags[*]}"
