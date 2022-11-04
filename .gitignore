@@ -26,8 +26,8 @@ install-local/
 .deploy.stamp
 
 # auto-gen files
-src/app/qml_without_webengine.qrc
 src/app/resources.qrc
+src/app/qml.qrc
 src/app/constant/JamiResources.qml
 
 # macOS
