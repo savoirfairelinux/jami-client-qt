@@ -101,7 +101,22 @@ endif()
 
 set(CMAKE_CXX_FLAGS
   ${CMAKE_CXX_FLAGS} ${Qt6Widgets_EXECUTABLE_COMPILE_FLAGS})
+
+# Use (don't skip) the full RPATH for the build tree.
+set(CMAKE_SKIP_BUILD_RPATH false)
+# Don't use the install RPATH during build, only later for install.
+set(CMAKE_BUILD_WITH_INSTALL_RPATH false)
+# Add the auto-determined directories (those that are in the linker
+# search path or contain linked libraries) outside the build tree to
+# the RPATH.
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
+# Augment the install RPATH for local (non-global) installs.
+list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES
+  "${CMAKE_INSTALL_PREFIX}/lib"
+  isSystemDir)
+if("${isSystemDir}" STREQUAL "-1")
+    set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+endif()
 
 # jami-daemon
 if(NOT DEFINED WITH_DAEMON_SUBMODULE)
