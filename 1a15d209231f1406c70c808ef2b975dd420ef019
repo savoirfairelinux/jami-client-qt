@@ -41,6 +41,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae5597cb_84d2fedd",
+        "filename": "build.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-11-04T13:27:18Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "19251e48_15ec93d5",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "revId": "1a15d209231f1406c70c808ef2b975dd420ef019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16af88c5_77e4efb5",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-11-03T21:41:38Z",
       "side": 1,
       "message": "this could also be sorted; I also don\u0027t think raspbian has been supported in a long while, right? perhaps get rid of it.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 15
+      },
+      "revId": "1a15d209231f1406c70c808ef2b975dd420ef019",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96c13978_ec590ff9",
+        "filename": "build.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-11-04T13:27:18Z",
+      "side": 1,
+      "message": "Now sorted.  As for raspbian, I haven\u0027t tried building it in a while, so I\u0027m not entirely sure, but it could/should work, especially now that using qt webengine for client-qt is optional: the reason why we stopped distributing packages for it on dl.jami.net is that those are built with qt webengine, and afaik qt webengine can\u0027t be cross-built (which is how we built for raspbian).\n\nSo, I don\u0027t see any issue with keeping raspbian here in the build.py convenience script (which is separate from packaging anyway), unless of course someone actually tests and reports that it no longer builds there.",
+      "parentUuid": "16af88c5_77e4efb5",
       "range": {
         "startLine": 39,
         "startChar": 0,
