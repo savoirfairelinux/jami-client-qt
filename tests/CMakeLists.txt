@@ -1,4 +1,4 @@
-find_package(Qt${QT_VERSION_MAJOR} CONFIG REQUIRED QuickTest Test)
+find_package(Qt${QT_VERSION_MAJOR} CONFIG REQUIRED QuickTest Widgets Test)
 
 if(MSVC)
     # Download and unpack googletest for windows
@@ -15,7 +15,7 @@ else()
 endif()
 
 enable_testing(true)
-set(QML_TEST_LIBS ${QML_LIBS} Qt::QuickTest Qt::Test)
+set(QML_TEST_LIBS ${QML_LIBS} Qt::QuickTest Qt::Widgets Qt::Test)
 set(TESTS_INCLUDES
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/tests/qml
