@@ -62,7 +62,7 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_MODULE_PATH} "${EXTRAS_DIR}/build/cmake/modules")
 find_package(LibJami REQUIRED)
 if(LIBJAMI_FOUND)
-  include_directories(${LIBJAMI_INCLUDE_DIRS})
+  include_directories(${LIBJAMI_INCLUDE_DIR})
 endif()
 
 string(SUBSTRING ${CMAKE_GENERATOR} 0 14 CMAKE_GENERATOR_SHORT)
