@@ -67,5 +67,5 @@ void registerTypes(QQmlEngine* engine,
                    AppSettingsManager* appSettingsManager,
                    PreviewEngine* previewEngine,
                    ScreenInfo* screenInfo,
-                   MainApplication* parent);
+                   QObject* parent);
 }
