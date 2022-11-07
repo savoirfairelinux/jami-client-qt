@@ -468,7 +468,7 @@ endforeach()
 
 set(LIBCLIENT_NAME "libjamiclient")
 set(LIBCLIENT_VERSION "1.0.0")
-add_library(${LIBCLIENT_NAME} STATIC
+add_library(${LIBCLIENT_NAME}
   ${LIBCLIENT_SOURCES}
   ${LIBCLIENT_HEADERS_API}
   ${LIBCLIENT_HEADERS_MOC})
