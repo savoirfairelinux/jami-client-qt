@@ -1,4 +1,5 @@
-find_package(Qt${QT_VERSION_MAJOR} CONFIG REQUIRED QuickTest Widgets Test)
+find_package(Qt${QT_VERSION_MAJOR} CONFIG
+    REQUIRED Core5Compat DBus Multimedia QuickTest Svg Test Widgets)
 
 if(MSVC)
     # Download and unpack googletest for windows
@@ -15,7 +16,14 @@ else()
 endif()
 
 enable_testing(true)
-set(QML_TEST_LIBS ${QML_LIBS} Qt::QuickTest Qt::Widgets Qt::Test)
+set(QML_TEST_LIBS ${QML_LIBS}
+    Qt::Core5Compat
+    Qt::DBus
+    Qt::QuickTest
+    Qt::Multimedia
+    Qt::Svg
+    Qt::Test
+    Qt::Widgets)
 set(TESTS_INCLUDES
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/tests/qml
