@@ -19,8 +19,6 @@
 
 #include "globaltestenvironment.h"
 
-TestEnvironment globalEnv;
-
 /*!
  * Test fixture for AccountAdapter testing
  */
