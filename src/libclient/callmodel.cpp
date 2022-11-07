@@ -1649,7 +1649,7 @@ CallModelPimpl::slotConferenceCreated(const QString& accountId, const QString& c
 void
 CallModelPimpl::slotConferenceChanged(const QString& accountId,
                                       const QString& confId,
-                                      const QString& state)
+                                      const QString&)
 {
     if (accountId != linked.owner.id)
         return;

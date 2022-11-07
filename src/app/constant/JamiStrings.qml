@@ -305,6 +305,8 @@ Item {
     property string showPlugins: qsTr("Show available plugins")
     property string addToConversations: qsTr("Add to conversations")
     property string backendError: qsTr("This is the error from the backend: %0")
+    property string disabledAccount: qsTr("The account is disabled")
+    property string noNetworkConnectivity: qsTr("No network connectivity")
 
     // Chatview footer
     property string jumpToLatest: qsTr("Jump to latest")

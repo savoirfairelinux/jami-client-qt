@@ -136,6 +136,25 @@ Rectangle {
             }
         }
 
+        Connections {
+            target: CurrentConversation
+            enabled: LRCInstance.debugMode()
+
+            function onErrorsChanged() {
+                if (CurrentConversation.errors.length > 0) {
+                    errorRect.errorLabel.text = CurrentConversation.errors[0]
+                    errorRect.backendErrorToolTip.text = JamiStrings.backendError.arg(CurrentConversation.backendErrors[0])
+                }
+                errorRect.visible = CurrentConversation.errors.length > 0
+            }
+        }
+
+        GenericErrorsRow {
+            id: genericError
+            Layout.fillWidth: true
+            Layout.preferredHeight: JamiTheme.chatViewHeaderPreferredHeight
+        }
+
         ConversationErrorsRow {
             id: errorRect
             Layout.fillWidth: true
