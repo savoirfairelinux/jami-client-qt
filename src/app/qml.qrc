@@ -101,6 +101,7 @@
         <file>mainview/components/WelcomePage.qml</file>
         <file>mainview/components/ChatView.qml</file>
         <file>mainview/components/ConversationErrorsRow.qml</file>
+        <file>mainview/components/GenericErrorsRow.qml</file>
         <file>mainview/components/NewSwarmPage.qml</file>
         <file>mainview/components/ChatViewHeader.qml</file>
         <file>mainview/components/AccountComboBox.qml</file>
