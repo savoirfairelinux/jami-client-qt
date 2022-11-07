@@ -22,7 +22,7 @@ import QtTest
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
 
-import "qrc:/src/app/commoncomponents"
+import "../../../src/app/commoncomponents"
 
 PresenceIndicator {
     id: uut
