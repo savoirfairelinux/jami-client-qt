@@ -15,7 +15,7 @@ else()
 endif()
 
 enable_testing(true)
-set(QML_TEST_LIBS ${QT_LIBS} Qt::QuickTest Qt::Test Qt::Widgets)
+set(QML_TEST_LIBS ${QT_LIBS} ${LIBCLIENT_NAME} Qt::QuickTest Qt::Test Qt::Widgets)
 set(TESTS_INCLUDES
     ${CMAKE_SOURCE_DIR}/src
     ${CMAKE_SOURCE_DIR}/tests/qml
