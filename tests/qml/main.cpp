@@ -31,9 +31,10 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 #include <QFontDatabase>
+#ifdef WITH_WEBENGINE
 #include <QtWebEngineCore>
 #include <QtWebEngineQuick>
-
+#endif
 #ifdef Q_OS_WIN
 #include <windows.h>
 #endif
@@ -155,9 +156,9 @@ main(int argc, char** argv)
         // Adjust the argument count.
         argc = std::distance(argv, end);
     }
-
+#ifdef WITH_WEBENGINE
     QtWebEngineQuick::initialize();
-
+#endif
     QTEST_SET_MAIN_SOURCE_PATH
     Setup setup(muteDring);
     return quick_test_main_with_setup(argc, argv, "qml_test", nullptr, &setup);
