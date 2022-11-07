@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8491d3d5_e8a47913",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-11-07T16:29:52Z",
+      "side": 1,
+      "message": "Thanks :) just some minor things below.  I\u0027ll try to test this out today or tomorrow and give an actual code review as well.\n\nBTW, can we please keep using dashes in filename(s)?  I personally prefer them over underscores, and IIRC we standardized on them recently as well:\nhttps://git.jami.net/savoirfairelinux/jami-client-qt/-/tree/master/extras/scripts\nSo, how about gen-resources-qrc.py?",
+      "revId": "31a8e43adb14ed98eb983a9fa7b60951de164077",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48ac0f63_27feed86",
+        "filename": "extras/scripts/gen_resources_qrc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 892
+      },
+      "writtenOn": "2022-11-07T16:29:52Z",
+      "side": 1,
+      "message": "I think it would be better to put the module documentation after the copyright and license notice.",
+      "revId": "31a8e43adb14ed98eb983a9fa7b60951de164077",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
