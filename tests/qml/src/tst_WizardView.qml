@@ -24,8 +24,8 @@ import net.jami.Models 1.1
 import net.jami.Constants 1.1
 import net.jami.Enums 1.1
 
-import "qrc:/src/app/wizardview"
-import "qrc:/src/app/commoncomponents"
+import "../../../src/app/wizardview"
+import "../../../src/app/commoncomponents"
 
 WizardView {
     id: uut
