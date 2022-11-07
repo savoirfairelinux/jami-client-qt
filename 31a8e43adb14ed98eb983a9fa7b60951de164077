@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "643ca12e_a4d00a47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-07T17:09:20Z",
+      "side": 1,
+      "message": "Right so, consistency-is-king should generally be applied, and yeah we did just recently discuss and agree on dashes, and yeah I would normally vote we adhere to PEP 8 style guide here and migrate JUST the other python scripts to have the same style(or remove separators completely) for a couple of reasons:\n1. no questioning, just use a linter, effectively removing this current dispute\n2. doesn\u0027t import without some special syntax\n3. double click select the file name not just a part\n\nHowever, these are scripts and not used as modules. If and when the day comes that a module is introduced, I would suggest using underscores.",
+      "parentUuid": "8491d3d5_e8a47913",
+      "revId": "31a8e43adb14ed98eb983a9fa7b60951de164077",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "48ac0f63_27feed86",
         "filename": "extras/scripts/gen_resources_qrc.py",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2022-11-07T16:29:52Z",
       "side": 1,
       "message": "I think it would be better to put the module documentation after the copyright and license notice.",
+      "revId": "31a8e43adb14ed98eb983a9fa7b60951de164077",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3334df60_a63c6290",
+        "filename": "extras/scripts/gen_resources_qrc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-07T17:09:20Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "48ac0f63_27feed86",
       "revId": "31a8e43adb14ed98eb983a9fa7b60951de164077",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
