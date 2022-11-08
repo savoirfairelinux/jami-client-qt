@@ -28,6 +28,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
+import "../../commoncomponents/mapWebengine"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
 Rectangle {
@@ -47,6 +48,50 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
+    property string currentConvId: CurrentConversation.id
+    onCurrentConvIdChanged: MessagesAdapter.setMapActive(false);
+
+
+    NoLocationServicePopup {
+        id: popupLocationError
+
+        Connections {
+            target: MessagesAdapter
+            function onPositioningError (err) {
+                popupLocationError.error = err;
+                popupLocationError.open();
+            }
+        }
+    }
+
+    Loader {
+        id: mapLoader
+
+        active: MessagesAdapter.isMapActive && WITH_WEBENGINE
+        z: 10
+        sourceComponent: MapPosition {}
+    }
+
+    RecordBox {
+        id: recordBox
+
+        visible: false
+    }
+
+    Loader {
+        id: empjiLoader
+        source: WITH_WEBENGINE ? "qrc:/commoncomponents/emojipicker/EmojiPicker.qml" : "qrc:/nowebengine/EmojiPicker.qml"
+
+        function openEmojiPicker() {
+            item.openEmojiPicker()
+        }
+        Connections {
+            target: empjiLoader.item
+            function onEmojiIsPicked(content) {
+                messageBar.textAreaObj.insertText(content)
+            }
+        }
+    }
     ColumnLayout {
         anchors.fill: root
 
@@ -147,7 +192,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                                  CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
