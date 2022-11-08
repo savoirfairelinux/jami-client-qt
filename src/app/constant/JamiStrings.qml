@@ -299,6 +299,17 @@ Item {
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
 
+    //share position
+    property string shareLocation: qsTr("Share location")
+    property string stopSharingLocation: qsTr("Stop sharing location")
+    property string shortSharing: qsTr("10 minutes")
+    property string longSharing: qsTr("One hour")
+    property string minutesLeft: qsTr("%1 minutes left")
+    property string minuteLeft: qsTr("%1 minute left")
+    property string locationServiceError: qsTr("Location error: Jami needs to access to your location. \nPlease turn on Location Services in your device settings. \nOther participants' position can still be received.")
+    property string locationClosedError: qsTr("Location error: The connection was closed. \nAs soon as the Location Services is re-enabled, regular updates will resume. \nOther participants' position can still be received.")
+    property string locationUnknownError: qsTr("Location error: Unknown error occurred. \nOther participants' location can still be received.")
+
     // Chatview header
     property string hideChat: qsTr("Hide chat")
     property string placeAudioCall: qsTr("Place audio call")
