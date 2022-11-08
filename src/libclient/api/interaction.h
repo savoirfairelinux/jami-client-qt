@@ -65,7 +65,7 @@ to_type(const QString& type)
 {
     if (type == "INITIAL" || type == "initial")
         return interaction::Type::INITIAL;
-    else if (type == "TEXT" || type == "text/plain")
+    else if (type == "TEXT" || type == TEXT_PLAIN)
         return interaction::Type::TEXT;
     else if (type == "CALL" || type == "application/call-history+json")
         return interaction::Type::CALL;
