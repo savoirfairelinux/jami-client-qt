@@ -22,6 +22,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
+import QtWebEngine
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -47,6 +48,294 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
+    Loader {
+        id: mapLoader
+
+        active: MessagesAdapter.isMapActive
+        z: 10
+        //anchors.centerIn: root
+        sourceComponent: mapComp
+    }
+
+    Component {
+        id: mapComp
+        Rectangle {
+            id: mapPopup
+            x: 10
+            y: 10
+            width: normalWidth
+            height: width
+            color: "black"
+
+            property bool isFullScreen: false
+            property real normalWidth: root.width > root.height ? root.height / 3 : root.width / 3
+
+            Component.onCompleted: {
+                console.warn(width, height)
+            }
+            //            Timer {
+            //                    interval: 2000; running: true; repeat: true
+            //                    onTriggered: webView.runJavaScript("test()" );
+            //                }
+
+            WebEngineView {
+                id: webView
+
+                property string mapHtml: ":/commoncomponents/mapWebengine/map.html"
+                property string olCss: ":/commoncomponents/mapWebengine/ol.css"
+                // TODO: fix urls
+                property string mapJs: "../../commoncomponents/mapWebengine/map.js"
+                property string olJs: "../../commoncomponents/mapWebengine/ol.js"
+                property bool isLoaded: false
+
+                property int zoom: 2
+                property var positionList: MessagesAdapter.positionList;
+                property var avatarPositionList: MessagesAdapter.avatarPositionList;
+                property bool couldSendAvatar: false
+                property bool setZoom: false
+
+                width: parent.width
+                height: parent.height
+
+                function dynamicZoom() {
+                    //zoom and center the map according to shared positions
+                    var avgLat = 0;
+                    var avgLong = 0;
+                    var gapPosLat = 0;
+                    var gapPosLong = 0;
+
+                    //maximum values according to convention
+                    var rangeLat = 360
+                    var rangeLong = 180
+
+                    var minPosLat = 181;
+                    var maxPosLat = -181;
+                    var minPosLong = 91;
+                    var maxPosLong = -91;
+
+                    var maxZoom = 17
+                    var minZoom = 1
+
+                    if(webView.isLoaded) {
+
+                        for(var i = 0; i < positionList.length; i++) {
+                            avgLat += positionList[i].lat;
+                            avgLong += positionList[i].long;
+                            if(positionList[i].lat > maxPosLat )
+                                maxPosLat = positionList[i].lat;
+                            if(positionList[i].lat < minPosLat )
+                                minPosLat = positionList[i].lat
+                            if(positionList[i].long > maxPosLong )
+                                maxPosLong = positionList[i].long;
+                            if(positionList[i].long < minPosLong )
+                                minPosLong = positionList[i].long
+
+                        }
+                        avgLat = avgLat / positionList.length;
+                        avgLong = avgLong / positionList.length;
+                        console.warn("minPosLong: ", minPosLong );
+                        console.warn("maxPosLong: ", maxPosLong );
+                        console.warn("minPosLat: ", minPosLat );
+                        console.warn("maxPosLat: ", maxPosLat );
+                        gapPosLat = Math.abs(maxPosLat - minPosLat);
+                        gapPosLong = Math.abs(maxPosLong - minPosLong);
+                        console.warn("gapPosLat: ", gapPosLat )
+                        console.warn("gapPosLong: ", gapPosLong )
+                        var dynamicZoom_lat =  gapPosLat * (- (maxZoom - minZoom ) / rangeLat) + maxZoom
+                        var dynamicZoom_long =  gapPosLong  * (- (maxZoom - minZoom ) / rangeLong) + maxZoom
+                        var dynamicZoom = 2
+                        if ( dynamicZoom_lat > dynamicZoom_long )
+                            dynamicZoom = dynamicZoom_long
+                        else
+                            dynamicZoom = dynamicZoom_lat
+                        console.warn("dynamic zoomLat: ", dynamicZoom_lat )
+                        console.warn("dynamic zoomLong: ", dynamicZoom_long )
+                        console.warn("dynamic zoom: ", dynamicZoom )
+                        runJavaScript("setMapView([" + avgLong + ","+ avgLat  + "], " + dynamicZoom + " );" );
+                    }
+
+                }
+                function sendAvatarListToJs () {
+                    console.warn("setAvatarList -------------------------------------------------------------");
+                    //console.warn("setAvatarList ( '" + avatarPositionList[0].author + "','" +avatarPositionList[0].avatar + "' );");
+                    for(var i = 0; i < avatarPositionList.length; i++) {
+                        runJavaScript("setAvatarList ( '" + avatarPositionList[i].author + "','" +avatarPositionList[i].avatar + "' );");
+                    }
+                    setZoom = true
+
+                }
+
+                Component.onCompleted: {
+
+                    loadHtml(UtilsAdapter.qStringFromFile(mapHtml), mapHtml);
+                    var scriptMapJs = {
+                        sourceUrl: Qt.resolvedUrl(mapJs),
+                        injectionPoint: WebEngineScript.DocumentReady,
+                        worldId: WebEngineScript.MainWorld
+                    }
+                    var scriptOlJs = { name: "olJs",
+                        sourceUrl: Qt.resolvedUrl(olJs),
+                        injectionPoint: WebEngineScript.DocumentReady,worldId: WebEngineScript.MainWorld }
+
+
+                    userScripts.collection = [ scriptOlJs, scriptMapJs ];
+                    couldSendAvatar = false;
+
+                }
+                onVisibleChanged: {
+                    couldSendAvatar = false;
+                }
+
+                onLoadingChanged: function (loadingInfo) {
+
+                    if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
+                        webView.isLoaded = true
+                        runJavaScript(UtilsAdapter.getStyleSheet("olcss",UtilsAdapter.qStringFromFile(olCss)))
+                        runJavaScript("setMapView([" + 0 + ","+ 0  + "], " + zoom + " );" );
+                        //runJavaScript("printIcon();" );
+                        //runJavaScript("printIcon([" + 0 + ","+0  + "] );" );
+                        MessagesAdapter.startPositioning()
+                    }
+                }
+                onAvatarPositionListChanged : {
+                    if(webView.isLoaded) {
+                        couldSendAvatar = true;
+                        sendAvatarListToJs();
+                    }
+                }
+
+                onPositionListChanged: {
+
+                    if(webView.isLoaded) {
+                        if (! couldSendAvatar) {
+                            couldSendAvatar = true;
+                            //console.warn("send avatar last option");
+                            sendAvatarListToJs();
+
+                        }
+                        runJavaScript("resetPoints();" );
+                        for(var i = 0; i < positionList.length; i++) {
+                            //console.warn("layer: " + positionList[i].long + " " + positionList[i].lat );
+                            runJavaScript("printIcon([" + positionList[i].long + ","+ positionList[i].lat  + "], '" + positionList[i].author+ "' );" );
+                        }
+                        if(setZoom) {
+                            dynamicZoom()
+                            setZoom = false
+                        }
+
+                    }
+                }
+            }
+
+            MaterialButton {
+                property bool isSharing: false;
+                anchors.horizontalCenter: mapPopup.horizontalCenter;
+                anchors.bottom: mapPopup.bottom;
+                preferredWidth: text.contentWidth
+                textLeftPadding: JamiTheme.buttontextPadding
+                textRightPadding: JamiTheme.buttontextPadding
+                primary:true
+                text: isSharing ? JamiStrings.stopSharingPosition : JamiStrings.sharePosition
+
+                onClicked: {
+                    if(isSharing) {
+                        MessagesAdapter.stopSharingPosition();
+                    } else {
+                        MessagesAdapter.sharePosition();
+                    }
+                    isSharing = !isSharing
+                }
+
+
+            }
+
+            PushButton {
+                id: btnClose
+
+                anchors.right: mapPopup.right
+                anchors.top: mapPopup.top
+                anchors.topMargin: JamiTheme.preferredMarginSize
+                anchors.rightMargin: JamiTheme.preferredMarginSize
+                imageColor: "grey"
+                normalColor: JamiTheme.transparentColor
+
+                source: JamiResources.round_close_24dp_svg
+
+                onClicked: {MessagesAdapter.isMapActive = false}
+            }
+
+            PushButton {
+                id: btnmaximise
+
+                anchors.right: btnClose.left
+                anchors.top: mapPopup.top
+                anchors.topMargin: JamiTheme.preferredMarginSize
+                anchors.rightMargin: JamiTheme.preferredMarginSize
+                imageColor: "grey"
+                normalColor: JamiTheme.transparentColor
+                source: isFullScreen? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
+
+                onClicked: {
+                    if (isFullScreen) {
+                        mapPopup.width = normalWidth
+                        mapPopup.height = normalWidth
+
+                    } else {
+                        mapPopup.width = root.width
+                        mapPopup.height = root.height
+                        mapPopup.x = 0
+                        mapPopup.y = 0
+
+                    }
+                    isFullScreen = !isFullScreen
+                }
+            }
+
+            PushButton {
+                id: btnMove
+
+                anchors.right: btnmaximise.left
+                anchors.top: mapPopup.top
+                anchors.topMargin: JamiTheme.preferredMarginSize
+                anchors.rightMargin: JamiTheme.preferredMarginSize
+                imageColor: "grey"
+                normalColor: JamiTheme.transparentColor
+
+                source: JamiResources.hand_black_24dp_svg
+
+                MouseArea {
+                    anchors.fill: parent
+                    drag.target: mapPopup
+                    drag.minimumX: 0
+                    drag.maximumX: root.width - mapPopup.width
+                    drag.minimumY: 0
+                    drag.maximumY: root.height - mapPopup.height
+                }
+
+            }
+        }
+    }
+
+    RecordBox {
+        id: recordBox
+
+        visible: false
+    }
+
+    Loader {
+        id: empjiLoader
+        source: WITH_WEBENGINE ? "qrc:/commoncomponents/emojipicker/EmojiPicker.qml" : "qrc:/nowebengine/EmojiPicker.qml"
+
+        function openEmojiPicker() {
+            item.openEmojiPicker()
+        }
+        Connections {
+            target: empjiLoader.item
+            function onEmojiIsPicked(content) {
+                messageBar.textAreaObj.insertText(content)
+            }
+        }
+    }
     ColumnLayout {
         anchors.fill: root
 
