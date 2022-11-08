@@ -28,6 +28,7 @@ import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
 import "../../commoncomponents"
+import "../../webengine/map"
 import "../js/pluginhandlerpickercreation.js" as PluginHandlerPickerCreation
 
 Rectangle {
@@ -46,6 +47,23 @@ Rectangle {
     }
 
     color: JamiTheme.chatviewBgColor
+
+    property string currentConvId: CurrentConversation.id
+    onCurrentConvIdChanged: MessagesAdapter.setMapActive(false);
+
+    Loader {
+        id: mapLoader
+
+        active: MessagesAdapter.isMapActive && WITH_WEBENGINE
+        z: 10
+        sourceComponent: MapPosition {}
+    }
+
+    RecordBox {
+        id: recordBox
+
+        visible: false
+    }
 
     ColumnLayout {
         anchors.fill: root
@@ -147,7 +165,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                                  CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
