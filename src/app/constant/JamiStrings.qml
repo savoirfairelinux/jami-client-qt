@@ -299,15 +299,25 @@ Item {
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
 
-    // Share location
+    // Share location/position
     property string shareLocation: qsTr("Share location")
-    property string stopSharingLocation: qsTr("Stop sharing location")
+    property string stopSharingLocation: qsTr("Stop sharing")
     property string shortSharing: qsTr("10 minutes")
     property string longSharing: qsTr("One hour")
     property string minutesLeft: qsTr("%1 minutes left")
     property string minuteLeft: qsTr("%1 minute left")
-    property string locationServicesError: qsTr("Jami needs to access to your location.\nIn Device Settings, please turn on Location Services.\nOther participants' location can still be received.")
-    property string locationServicesClosedError: qsTr("Please check your Internet connection.")
+    property string locationServicesError: qsTr("Your precise location could not be determined.\nIn Device Settings, please turn on \"Location Services\".\nOther participants' location can still be received.")
+    property string locationServicesClosedError: qsTr("Your precise location could not be determined. Please check your Internet connection.")
+    property string stopAllSharings: qsTr("Turn off location sharing");
+    property string stopConvSharing: qsTr("Stop location sharing in this conversation");
+    property string stopSharingPopupBody: qsTr("Location is shared in several conversations");
+    property string minimizeMapTooltip: qsTr("Minimize");
+    property string maximizeMapTooltip: qsTr("Maximize");
+    property string reduceMapTooltip: qsTr("Reduce");
+    property string extendMapTooltip: qsTr("Extend");
+    property string dragMapTooltip: qsTr("Drag");
+    property string centerMapTooltip: qsTr("Center");
+    property string closeMapTooltip: qsTr("Close");
 
     // Chatview header
     property string hideChat: qsTr("Hide chat")
