@@ -299,6 +299,16 @@ Item {
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
 
+    // Share location
+    property string shareLocation: qsTr("Share location")
+    property string stopSharingLocation: qsTr("Stop sharing location")
+    property string shortSharing: qsTr("10 minutes")
+    property string longSharing: qsTr("One hour")
+    property string minutesLeft: qsTr("%1 minutes left")
+    property string minuteLeft: qsTr("%1 minute left")
+    property string locationServicesError: qsTr("Jami needs to access to your location.\nIn Device Settings, please turn on Location Services.\nOther participants' location can still be received.")
+    property string locationServicesClosedError: qsTr("Please check your Internet connection.")
+
     // Chatview header
     property string hideChat: qsTr("Hide chat")
     property string placeAudioCall: qsTr("Place audio call")
