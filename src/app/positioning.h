@@ -28,8 +28,6 @@ class Positioning : public QObject
 
 public:
     Positioning(QString uri, QObject* parent = 0);
-    ~Positioning();
-
     /**
      * start to retreive the current position
      */
@@ -42,7 +40,6 @@ public:
      * send a stop signal to other peers to tell them
      * you stoped sharing yout position
      */
-    void sendStopSharingMsg();
     QString convertToJson(const QGeoPositionInfo& info);
 
     void setUri(QString uri);
