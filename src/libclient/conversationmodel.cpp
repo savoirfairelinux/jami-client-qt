@@ -2213,7 +2213,7 @@ ConversationModelPimpl::initConversations()
             timestamp = static_cast<uint64_t>(message.received);
         } catch (...) {
         }
-        addIncomingMessage(message.from, message.payloads["text/plain"], timestamp);
+        addIncomingMessage(message.from, message.payloads[TEXT_PLAIN], timestamp);
     }
 }
 
@@ -3563,8 +3563,12 @@ ConversationModelPimpl::slotNewAccountMessage(const QString& accountId,
         return;
 
     for (const auto& payload : payloads.keys()) {
-        if (payload.contains("text/plain")) {
+        if (payload.contains(TEXT_PLAIN)) {
             addIncomingMessage(peerId, payloads.value(payload), 0, msgId);
+        } else if (payload.contains(APPLICATION_GEO)) {
+            Q_EMIT linked.newPosition(peerId, payloads.value(payload), 0, msgId);
+        } else {
+            qWarning() << payload;
         }
     }
 }
