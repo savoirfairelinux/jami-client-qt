@@ -16,6 +16,24 @@
       "message": "Did not test yet, but i see potential problems within calls\n-2 for blocking",
       "revId": "7a4a1152cd03924c9d724c1245a9195be4de37d0",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c41a9e5_a7c35d08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-11-08T20:37:51Z",
+      "side": 1,
+      "message": "one regression (tested with dbus):\ncall to another account on same device +  share screen + end call -\u003e camera stays open",
+      "parentUuid": "33b4a401_c1378840",
+      "revId": "7a4a1152cd03924c9d724c1245a9195be4de37d0",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
