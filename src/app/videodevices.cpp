@@ -236,13 +236,19 @@ VideoDevices::getDefaultDevice()
 }
 
 QString
-VideoDevices::startDevice(const QString& id)
+VideoDevices::startDevice(const QString& id, bool force)
 {
     if (id.isEmpty())
         return {};
     auto& avModel = lrcInstance_->avModel();
     if (avModel.hasRenderer(id)) {
-        return id;
+        // If the device is already started AND we're NOT trying to
+        // force a format change, we can do nothing and return the
+        // renderer id.
+        if (!force) {
+            return id;
+        }
+        avModel.stopPreview(id);
     }
     deviceOpen_ = true;
     return avModel.startPreview(id);

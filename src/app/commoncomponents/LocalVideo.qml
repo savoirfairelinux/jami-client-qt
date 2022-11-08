@@ -27,13 +27,13 @@ VideoView {
 
     crop: true
 
-    function startWithId(id) {
+    function startWithId(id, force = false) {
         if (id.length === 0) {
             VideoDevices.stopDevice(rendererId)
             rendererId = id
         } else {
-            if (rendererId !== id)
-                rendererId = VideoDevices.startDevice(id)
+            const forceRestart = rendererId === id
+            rendererId = VideoDevices.startDevice(id, forceRestart)
         }
     }
 }
