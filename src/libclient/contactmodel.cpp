@@ -517,11 +517,16 @@ ContactModelPimpl::searchSipContact(const URI& query)
 }
 
 uint64_t
-ContactModel::sendDhtMessage(const QString& contactUri, const QString& body) const
+ContactModel::sendDhtMessage(const QString& contactUri,
+                             const QString& body,
+                             const QString& mimeType) const
 {
     // Send interaction
     QMap<QString, QString> payloads;
-    payloads["text/plain"] = body;
+    if (mimeType.isEmpty())
+        payloads["text/plain"] = body;
+    else
+        payloads[mimeType] = body;
     auto msgId = ConfigurationManager::instance().sendTextMessage(QString(owner.id),
                                                                   QString(contactUri),
                                                                   payloads);

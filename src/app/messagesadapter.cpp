@@ -25,7 +25,6 @@
 
 #include "appsettingsmanager.h"
 #include "qtutils.h"
-
 #include <api/datatransfermodel.h>
 
 #include <QApplication>
@@ -36,11 +35,13 @@
 #include <QFileInfo>
 #include <QImageReader>
 #include <QList>
+#include <QTime>
 #include <QMimeData>
 #include <QMimeDatabase>
 #include <QUrl>
 #include <QtMath>
 #include <QRegExp>
+#include <QJsonDocument>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -51,6 +52,12 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , previewEngine_(previewEngine)
     , mediaInteractions_(std::make_unique<MessageListModel>())
 {
+    timerTimeLeftSharing_ = new QTimer(this);
+    timerStopSharing_ = new QTimer(this);
+    connect(timerTimeLeftSharing_, &QTimer::timeout, [=] {
+        set_timeSharingRemaining(timerStopSharing_->remainingTime());
+    });
+    connect(timerStopSharing_, &QTimer::timeout, [=] { stopSharingPosition(); });
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
         set_replyToId("");
         set_editId("");
@@ -58,19 +65,98 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
         set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
+        stopSharingPosition();
     });
-
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
     connect(previewEngine_, &PreviewEngine::linkified, this, &MessagesAdapter::onMessageLinkified);
+    set_isMapActive(false);
+}
+
+void
+MessagesAdapter::startPositioning()
+{
+    sharingUris_.clear();
+
+    positionManager_->startPositioning();
+    connect(positionManager_.get(),
+            &Positioning::newPos,
+            this,
+            &MessagesAdapter::onPositionReceived,
+            Qt::UniqueConnection);
+    connect(positionManager_.get(),
+            &Positioning::positioningError,
+            this,
+            &MessagesAdapter::onPositionErrorReceived,
+            Qt::UniqueConnection);
+}
+void
+MessagesAdapter::stopPositioning()
+{
+    positionManager_->stopPositioning();
+}
+void
+MessagesAdapter::onOwnPositionReceived(const QString& peerId, const QString& body)
+{
+    try {
+        Q_FOREACH (const auto& id, positionShareConvIds_) {
+            const auto& convInfo = lrcInstance_->getConversationFromConvUid(id);
+            Q_FOREACH (const QString& uri, convInfo.participantsUris()) {
+                if (peerId != uri) {
+                    lrcInstance_->getCurrentAccountInfo()
+                        .contactModel->sendDhtMessage(uri, body, "application/geo");
+                }
+            }
+        }
+
+    } catch (const std::exception& e) {
+        qDebug() << Q_FUNC_INFO << e.what();
+    }
+}
+
+void
+MessagesAdapter::sharePosition(int maximumTime)
+{
+    connect(positionManager_.get(),
+            &Positioning::newPos,
+            this,
+            &MessagesAdapter::onOwnPositionReceived,
+            Qt::UniqueConnection);
+
+    try {
+        startPositionTimers(maximumTime);
+        const auto convUid = lrcInstance_->get_selectedConvUid();
+        positionShareConvIds_.append(convUid);
+        Q_EMIT positionShareConvIdsChanged();
+    } catch (...) {
+        qDebug() << "Exception during sharePosition:";
+    }
+}
+
+void
+MessagesAdapter::stopSharingPosition()
+{
+    positionManager_->sendStopSharingMsg();
+    stopPositionTimers();
+    set_positionShareConvIds({});
 }
 
 void
 MessagesAdapter::safeInit()
 {
     connect(lrcInstance_, &LRCInstance::currentAccountIdChanged, [this]() {
+        positionManager_.reset(
+            new Positioning(lrcInstance_->getCurrentAccountInfo().profileInfo.uri));
         connectConversationModel();
     });
+    positionManager_.reset(new Positioning(lrcInstance_->getCurrentAccountInfo().profileInfo.uri));
     connectConversationModel();
+}
+
+void
+MessagesAdapter::setMapActive(bool state)
+{
+    set_isMapActive(state);
+    Q_EMIT isMapActiveChanged();
 }
 
 void
@@ -142,6 +228,12 @@ MessagesAdapter::connectConversationModel()
                      &ConversationModel::messagesFoundProcessed,
                      this,
                      &MessagesAdapter::onMessagesFoundProcessed,
+                     Qt::UniqueConnection);
+
+    QObject::connect(currentConversationModel,
+                     &ConversationModel::newPosition,
+                     this,
+                     &MessagesAdapter::onPositionReceived,
                      Qt::UniqueConnection);
 }
 
@@ -684,5 +776,107 @@ MessagesAdapter::getConvMedias()
         lrcInstance_->getCurrentConversationModel()->getConvMediasInfos(accountId, convId);
     } catch (...) {
         qDebug() << "Exception during getConvMedia:";
+    }
+}
+
+QString
+MessagesAdapter::getAvatar(const QString& uri)
+{
+    QString avatarBase64;
+    QByteArray ba;
+    QBuffer bu(&ba);
+
+    auto accountId = lrcInstance_->get_currentAccountId();
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    auto currentAccountUri = accInfo.profileInfo.uri;
+    if (currentAccountUri == uri) {
+        // use accountPhoto
+        Utils::accountPhoto(lrcInstance_, accountId).save(&bu, "PNG");
+    } else {
+        // use contactPhoto
+        Utils::contactPhoto(lrcInstance_, uri).save(&bu, "PNG");
+    }
+    return ba.toBase64();
+}
+QVariantMap
+MessagesAdapter::parseJsonPosition(const QString& body, const QString& peerId)
+{
+    QJsonDocument temp = QJsonDocument::fromJson(body.toUtf8());
+    QJsonObject jsonObject = temp.object();
+    QVariantMap pos;
+
+    for (auto i = jsonObject.begin(); i != jsonObject.end(); i++) {
+        if (i.key() == "long")
+            pos["long"] = i.value().toVariant();
+        if (i.key() == "lat")
+            pos["lat"] = i.value().toVariant();
+        if (i.key() == "type")
+            pos["type"] = i.value().toVariant();
+        if (i.key() == "time")
+            pos["time"] = i.value().toVariant();
+
+        pos["author"] = peerId;
+    }
+    return pos;
+}
+
+void
+MessagesAdapter::startPositionTimers(int timeSharing)
+{
+    set_timeSharingRemaining(timeSharing);
+    timerTimeLeftSharing_->start(1000);
+    timerStopSharing_->start(timeSharing);
+}
+void
+MessagesAdapter::stopPositionTimers()
+{
+    set_timeSharingRemaining(0);
+    timerTimeLeftSharing_->stop();
+    timerStopSharing_->stop();
+}
+
+void
+MessagesAdapter::onPositionErrorReceived(const int error)
+{
+    Q_EMIT positioningError(error);
+}
+
+void
+MessagesAdapter::onPositionReceived(const QString& peerId,
+                                    const QString& body,
+                                    const uint64_t& timestamp,
+                                    const QString& daemonId)
+{
+    QVariantMap newPosition = parseJsonPosition(body, peerId);
+    auto getShareInfo = [this, &newPosition, &peerId](bool update) -> QVariantMap {
+        QVariantMap shareInfo;
+        shareInfo["author"] = peerId;
+        if (!update) {
+            shareInfo["avatar"] = getAvatar(peerId);
+        }
+        shareInfo["long"] = newPosition["long"];
+        shareInfo["lat"] = newPosition["lat"];
+        return shareInfo;
+    };
+
+    auto iter = std::find(sharingUris_.begin(), sharingUris_.end(), peerId);
+    if (iter == sharingUris_.end()) {
+        // New share
+        sharingUris_.insert(peerId);
+        Q_EMIT positionShareAdded(getShareInfo(false));
+
+    } else {
+        // Update/remove existing
+        auto endSharing = newPosition["type"] == "Stop";
+        if (endSharing) {
+            // Remove (avoid self)
+            if (peerId != lrcInstance_->getCurrentAccountInfo().profileInfo.uri) {
+                sharingUris_.remove(peerId);
+                Q_EMIT positionShareRemoved(peerId);
+            }
+        } else {
+            // Update
+            Q_EMIT positionShareUpdated(getShareInfo(true));
+        }
     }
 }

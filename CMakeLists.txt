@@ -85,7 +85,8 @@ set(QT_MODULES
   Core
   Core5Compat
   Multimedia
-  Widgets)
+  Widgets
+  Positioning)
 
 if(NOT DEFINED WITH_WEBENGINE)
   set(WITH_WEBENGINE true)
@@ -96,7 +97,8 @@ if(WITH_WEBENGINE)
     WebEngineCore
     WebEngineQuick
     WebChannel
-    WebEngineWidgets)
+    WebEngineWidgets
+    )
 endif()
 
 set(CMAKE_CXX_FLAGS
@@ -206,7 +208,9 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/videodevices.cpp
   ${APP_SRC_DIR}/videoprovider.cpp
   ${APP_SRC_DIR}/callparticipantsmodel.cpp
-  ${APP_SRC_DIR}/tipsmodel.cpp)
+  ${APP_SRC_DIR}/tipsmodel.cpp
+  ${APP_SRC_DIR}/positioning.cpp
+)
 
 set(COMMON_HEADERS
   ${APP_SRC_DIR}/avatarimageprovider.h
@@ -262,7 +266,8 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/videodevices.h
   ${APP_SRC_DIR}/videoprovider.h
   ${APP_SRC_DIR}/callparticipantsmodel.h
-  ${APP_SRC_DIR}/tipsmodel.h)
+  ${APP_SRC_DIR}/tipsmodel.h
+  ${APP_SRC_DIR}/positioning.h)
 
 if(WITH_WEBENGINE)
   list(APPEND COMMON_SOURCES
