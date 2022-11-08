@@ -314,6 +314,7 @@ Item {
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
     property real minimumPreviewWidth: 120
+    property real minimumMapWidth: 170
     property real pluginHandlersPopupViewHeight: 200
     property real pluginHandlersPopupViewDelegateHeight: 50
     property real secondaryDialogDimension: 500
