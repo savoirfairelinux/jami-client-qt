@@ -210,6 +210,10 @@ Item {
     property color messageWebViewFooterButtonImageColor: darkTheme ? "#838383" : "#656565"
     property color chatviewUsernameColor : "#A7A7A7"
 
+    //mapPosition
+    property color mapButtonsOverlayColor: darkTheme ? "#000000" : "#f0f0f0"
+    property color mapButtonColor: darkTheme ?  "#f0f0f0" : "#000000"
+
     // Files To Send Container
     property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
 
@@ -314,6 +318,7 @@ Item {
     property real preferredDialogWidth: 400
     property real preferredDialogHeight: 300
     property real minimumPreviewWidth: 120
+    property real minimumMapWidth: 230
     property real pluginHandlersPopupViewHeight: 200
     property real pluginHandlersPopupViewDelegateHeight: 50
     property real secondaryDialogDimension: 500
@@ -462,6 +467,9 @@ Item {
 
     property real tipBoxTitleFontSize: calcSize(13)
     property real tipBoxContentFontSize: calcSize(12)
+
+    //sharePosition
+    property real timerButtonsFontSize: calcSize(11)
 
     //Popups
     property real popuptextSize: calcSize(15)
