@@ -26,6 +26,7 @@
 
 #include <QApplication>
 #include <QJsonObject>
+#include <QRegularExpression>
 
 using namespace lrc::api;
 
@@ -405,8 +406,14 @@ ConversationsAdapter::setFilterAndSelect(const QString& filterString)
 void
 ConversationsAdapter::setFilter(const QString& filterString)
 {
-    convModel_->setFilter(filterString);
-    searchSrcModel_->setFilter(filterString);
+    auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
+    QString cleanFilterString = filterString;
+    if (accountInfo.profileInfo.type == profile::Type::SIP) {
+        // If SIP, clean all non-alphanum. Keep some such as #, +, *, etc.
+        cleanFilterString.remove(QRegularExpression("[^a-zA-Z0-9#\\+\\*;,]"));
+    }
+    convModel_->setFilter(cleanFilterString);
+    searchSrcModel_->setFilter(cleanFilterString);
     Q_EMIT textFilterChanged(filterString);
 }
 
