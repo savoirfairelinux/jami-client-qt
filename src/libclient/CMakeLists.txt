@@ -185,6 +185,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 # Here we let find_package(<PackageName>...) try to find Qt 6.
 # If it is found, find_package will succeed, and the CMake variable
 # QT_VERSION_MAJOR will be set to 6.
+
 if(QT6_VER AND QT6_PATH)
   find_package(QT NAMES Qt6 REQUIRED
     PATHS ${QT6_PATH} NO_DEFAULT_PATH)
