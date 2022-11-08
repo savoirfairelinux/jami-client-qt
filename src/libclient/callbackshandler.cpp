@@ -558,8 +558,7 @@ CallbacksHandler::slotIncomingMessage(const QString& accountId,
                                       match.captured(2).toInt(),
                                       match.captured(3).toInt(),
                                       e.second);
-        } else if (e.first.contains(
-                       "text/plain")) { // we consider it as an usual message interaction
+        } else if (e.first.contains(TEXT_PLAIN)) { // we consider it as an usual message interaction
             Q_EMIT incomingCallMessage(accountId, callId, from2, e.second);
         }
     }
