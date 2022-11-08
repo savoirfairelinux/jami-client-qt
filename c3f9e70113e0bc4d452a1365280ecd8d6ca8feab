@@ -16,6 +16,23 @@
       "message": "Thanks :)",
       "revId": "c3f9e70113e0bc4d452a1365280ecd8d6ca8feab",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6275d5ea_11a62337",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-08T19:34:47Z",
+      "side": 1,
+      "message": "I just noticed, that this imports the build.py but not supporting files such as guix/manifest.scm, so it won\u0027t work, at least for Guix.",
+      "revId": "c3f9e70113e0bc4d452a1365280ecd8d6ca8feab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
