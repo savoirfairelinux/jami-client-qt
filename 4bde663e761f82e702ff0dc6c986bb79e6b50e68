@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "084db9ad_516f1e61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-08T16:11:00Z",
+      "side": 1,
+      "message": "This gets to test suite to build fine, but the final application fails to run, because the shared library is not installed.",
+      "revId": "4bde663e761f82e702ff0dc6c986bb79e6b50e68",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
