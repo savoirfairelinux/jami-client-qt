@@ -26,6 +26,7 @@
 
 #include <QApplication>
 #include <QJsonObject>
+#include <QRegularExpression>
 
 using namespace lrc::api;
 
@@ -405,7 +406,13 @@ ConversationsAdapter::setFilterAndSelect(const QString& filterString)
 void
 ConversationsAdapter::setFilter(const QString& filterString)
 {
-    convModel_->setFilter(filterString);
+    auto& accountInfo = lrcInstance_->getCurrentAccountInfo();
+    QString cleanFilterString = filterString;
+    if (accountInfo.profileInfo.type == profile::Type::SIP) {
+        // If SIP, clean out parentheses, dashes and spaces.
+        cleanFilterString.remove(QRegularExpression("[-()\\s]"));
+    }
+    convModel_->setFilter(cleanFilterString);
     searchSrcModel_->setFilter(filterString);
     Q_EMIT textFilterChanged(filterString);
 }
