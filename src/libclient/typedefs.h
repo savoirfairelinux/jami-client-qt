@@ -29,6 +29,7 @@
 // Typedefs (required to avoid '<' and '>' in the DBus XML)
 typedef QMap<QString, QString> MapStringString;
 typedef QMap<QString, int> MapStringInt;
+typedef QMap<QString, double> MapStringDouble;
 typedef QVector<int> VectorInt;
 typedef QVector<uint> VectorUInt;
 typedef QVector<qulonglong> VectorULongLong;
