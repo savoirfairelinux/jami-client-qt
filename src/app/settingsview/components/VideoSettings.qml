@@ -40,7 +40,7 @@ ColumnLayout {
         if (!visible) {
             return
         }
-        previewWidget.startWithId(VideoDevices.getDefaultDevice())
+        previewWidget.startWithId(VideoDevices.getDefaultDevice(), force)
     }
 
     onVisibleChanged: {
