@@ -236,22 +236,25 @@ VideoDevices::getDefaultDevice()
 }
 
 QString
-VideoDevices::startDevice(const QString& id)
+VideoDevices::startDevice(const QString& id, bool force)
 {
     if (id.isEmpty())
         return {};
     auto& avModel = lrcInstance_->avModel();
     if (avModel.hasRenderer(id)) {
-        return id;
+        if (!force) {
+            return id;
+        }
+        avModel.stopPreview(id);
     }
     deviceOpen_ = true;
     return avModel.startPreview(id);
 }
 
 void
-VideoDevices::stopDevice(const QString& id)
+VideoDevices::stopDevice(const QString& id, bool force)
 {
-    if (!id.isEmpty()) {
+    if (!id.isEmpty() && (!lrcInstance_->hasActiveCall(true) || force)) {
         lrcInstance_->avModel().stopPreview(id);
         deviceOpen_ = false;
     }
