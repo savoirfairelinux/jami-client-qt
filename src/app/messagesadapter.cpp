@@ -25,7 +25,6 @@
 
 #include "appsettingsmanager.h"
 #include "qtutils.h"
-
 #include <api/datatransfermodel.h>
 
 #include <QApplication>
@@ -36,11 +35,13 @@
 #include <QFileInfo>
 #include <QImageReader>
 #include <QList>
+#include <QTime>
 #include <QMimeData>
 #include <QMimeDatabase>
 #include <QUrl>
 #include <QtMath>
 #include <QRegExp>
+#include <QJsonDocument>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -59,7 +60,6 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
         set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
     });
-
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
     connect(previewEngine_, &PreviewEngine::linkified, this, &MessagesAdapter::onMessageLinkified);
 }

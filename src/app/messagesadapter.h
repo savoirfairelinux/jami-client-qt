@@ -103,6 +103,7 @@ protected:
     void setSendMessageContent(const QString& content);
 
 private Q_SLOTS:
+
     void onNewInteraction(const QString& convUid,
                           const QString& interactionId,
                           const interaction::Info& interaction);
@@ -121,8 +122,6 @@ private:
 
     AppSettingsManager* settingsManager_;
     PreviewEngine* previewEngine_;
-
     static constexpr const int loadChunkSize_ {20};
-
     std::unique_ptr<MessageListModel> mediaInteractions_;
 };
