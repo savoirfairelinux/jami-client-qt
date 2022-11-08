@@ -29,6 +29,7 @@
 // Typedefs (required to avoid '<' and '>' in the DBus XML)
 typedef QMap<QString, QString> MapStringString;
 typedef QMap<QString, int> MapStringInt;
+typedef QMap<QString, double> MapStringDouble;
 typedef QVector<int> VectorInt;
 typedef QVector<uint> VectorUInt;
 typedef QVector<qulonglong> VectorULongLong;
@@ -42,6 +43,8 @@ typedef QVector<QByteArray> VectorVectorByte;
 typedef uint64_t DataTransferId;
 
 constexpr static const char* TRUE_STR = "true";
+constexpr static const char* TEXT_PLAIN = "text/plain";
+constexpr static const char* APPLICATION_GEO = "application/geo";
 constexpr static const char* FALSE_STR = "false";
 
 // Adapted from libring libjami::DataTransferInfo
