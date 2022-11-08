@@ -155,6 +155,11 @@
         <file>mainview/components/ParticipantOverlayButton.qml</file>
         <file>mainview/components/ParticipantControlLayout.qml</file>
         <file>mainview/components/ChatViewFooter.qml</file>
+        <file>commoncomponents/mapWebengine/map.html</file>
+        <file>commoncomponents/mapWebengine/map.js</file>
+        <file>commoncomponents/mapWebengine/ol.js</file>
+        <file>commoncomponents/mapWebengine/map.css</file>
+        <file>commoncomponents/mapWebengine/ol.css</file>
         <file>commoncomponents/emojipicker/EmojiPicker.qml</file>
         <file>commoncomponents/emojipicker/emojiPickerLoader.js</file>
         <file>commoncomponents/emojipicker/emojiPickerLoader.html</file>

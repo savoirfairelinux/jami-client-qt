@@ -25,7 +25,6 @@
 
 #include "appsettingsmanager.h"
 #include "qtutils.h"
-
 #include <api/datatransfermodel.h>
 
 #include <QApplication>
@@ -41,6 +40,7 @@
 #include <QUrl>
 #include <QtMath>
 #include <QRegExp>
+#include <QJsonDocument>
 
 MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
                                  PreviewEngine* previewEngine,
@@ -51,17 +51,78 @@ MessagesAdapter::MessagesAdapter(AppSettingsManager* settingsManager,
     , previewEngine_(previewEngine)
     , mediaInteractions_(std::make_unique<MessageListModel>())
 {
+    QList<QVariantMap> testPosList;
+    QVariantMap testPos;
+    testPos["long"] = 151.209900;
+    testPos["lat"] = -33.865143;
+    testPosList.append(testPos);
     connect(lrcInstance_, &LRCInstance::selectedConvUidChanged, [this]() {
         set_replyToId("");
         set_editId("");
         const QString& convId = lrcInstance_->get_selectedConvUid();
         const auto& conversation = lrcInstance_->getConversationFromConvUid(convId);
+        ownPosition = new Positioning(lrcInstance_->getCurrentAccountInfo().profileInfo.uri);
+        //            lrcInstance_->getCurrentAccountInfo().conversationModel->peersForConversation(convId).at(0));
         set_messageListModel(QVariant::fromValue(conversation.interactions.get()));
         set_currentConvComposingList(conversationTypersUrlToName(conversation.typers));
     });
-
+    connect(lrcInstance_->getCurrentConversationModel(),
+            &ConversationModel::newPosition,
+            this,
+            &MessagesAdapter::onPositionReceived);
     connect(previewEngine_, &PreviewEngine::infoReady, this, &MessagesAdapter::onPreviewInfoReady);
     connect(previewEngine_, &PreviewEngine::linkified, this, &MessagesAdapter::onMessageLinkified);
+    set_isMapActive(false);
+}
+
+void
+MessagesAdapter::startPositioning()
+{
+    ownPosition->startPositioning();
+    connect(ownPosition, &Positioning::newPos, this, &MessagesAdapter::onPositionReceived);
+}
+void
+MessagesAdapter::stopPositioning()
+{
+    ownPosition->stopPositioning();
+}
+void
+MessagesAdapter::onOwnPositionReceived(const QString& peerId, const QString& body)
+{
+    try {
+        Q_FOREACH (const auto& id, positionShareConvIds_) {
+            const auto& convInfo = lrcInstance_->getConversationFromConvUid(id);
+            Q_FOREACH (const QString& uri, convInfo.participantsUris()) {
+                if (peerId != uri) {
+                    lrcInstance_->getCurrentAccountInfo()
+                        .contactModel->sendDhtMessage(uri, body, "application/geo");
+                    qWarning() << "share to: " << uri;
+                }
+            }
+        }
+
+    } catch (const std::exception& e) {
+        qDebug() << Q_FUNC_INFO << e.what();
+    }
+}
+
+void
+MessagesAdapter::sharePosition()
+{
+    qWarning() << "sharing position";
+    connect(ownPosition, &Positioning::newPos, this, &MessagesAdapter::onOwnPositionReceived);
+    try {
+        const auto convUid = lrcInstance_->get_selectedConvUid();
+        positionShareConvIds_.append(convUid);
+    } catch (...) {
+        qDebug() << "Exception during sharePosition:";
+    }
+    qWarning() << positionShareConvIds_;
+}
+void
+MessagesAdapter::stopSharingPosition()
+{
+    positionShareConvIds_.clear();
 }
 
 void
@@ -685,4 +746,91 @@ MessagesAdapter::getConvMedias()
     } catch (...) {
         qDebug() << "Exception during getConvMedia:";
     }
+}
+
+int
+MessagesAdapter::findPositionToUpdate(QVariantMap newPosition, QList<QVariantMap>& list)
+{
+    for (int i = 0; i < list.length(); i++) {
+        if (list.at(i)["author"] == newPosition["author"]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+QString
+MessagesAdapter::getAvatar(const QString& uri)
+{
+    QString avatarBase64;
+    QByteArray ba;
+    QBuffer bu(&ba);
+
+    auto accountId = lrcInstance_->get_currentAccountId();
+    auto& accInfo = lrcInstance_->getCurrentAccountInfo();
+    auto currentAccountUri = accInfo.profileInfo.uri;
+    if (currentAccountUri == uri) {
+        // use accountPhoto
+        Utils::accountPhoto(lrcInstance_, accountId).save(&bu, "PNG");
+    } else {
+        // use contactPhoto
+        Utils::contactPhoto(lrcInstance_, uri).save(&bu, "PNG");
+    }
+    return ba.toBase64();
+}
+QVariantMap
+MessagesAdapter::parseJsonPosition(const QString& body, const QString& peerId)
+{
+    QJsonDocument temp = QJsonDocument::fromJson(body.toUtf8());
+    QJsonObject jsonObject = temp.object();
+    QVariantMap pos;
+
+    for (auto i = jsonObject.begin(); i != jsonObject.end(); i++) {
+        if (i.key() == "long")
+            pos["long"] = i.value().toVariant();
+        if (i.key() == "lat")
+            pos["lat"] = i.value().toVariant();
+        if (i.key() == "type")
+            pos["type"] = i.value().toVariant();
+
+        pos["author"] = peerId;
+    }
+    return pos;
+}
+
+void
+MessagesAdapter::onPositionReceived(const QString& peerId,
+                                    const QString& body,
+                                    const uint64_t& timestamp,
+                                    const QString& daemonId)
+{
+    QVariantMap newPosition = parseJsonPosition(body, peerId);
+
+    int indexPosition = findPositionToUpdate(newPosition, positionList_);
+
+    int indexAvatar = findPositionToUpdate(newPosition, avatarPositionList_);
+
+    // existing position to update
+    if (indexPosition >= 0) {
+        if (newPosition["type"] == "Stop") {
+            positionList_.remove(indexPosition);
+            if (indexAvatar >= 0) {
+                avatarPositionList_.remove(indexAvatar);
+                qWarning() << "remove avatar: length = " << avatarPositionList_.length();
+            }
+        } else {
+            positionList_.at(indexPosition)["long"] = newPosition["long"];
+            positionList_.at(indexPosition)["lat"] = newPosition["lat"];
+            positionList_.at(indexPosition)["author"] = peerId;
+        }
+        // new shared position
+    } else {
+        positionList_.append(newPosition);
+        QVariantMap avatarMap;
+        avatarMap["author"] = peerId;
+        avatarMap["avatar"] = getAvatar(peerId);
+        avatarPositionList_.append(avatarMap);
+        Q_EMIT avatarPositionListChanged();
+    }
+    Q_EMIT positionListChanged();
 }

@@ -21,6 +21,7 @@
 #include "lrcinstance.h"
 #include "qmladapterbase.h"
 #include "previewengine.h"
+#include "positioning.h"
 
 #include <QObject>
 #include <QString>
@@ -31,10 +32,13 @@ class MessagesAdapter final : public QmlAdapterBase
 {
     Q_OBJECT
     QML_RO_PROPERTY(QVariant, messageListModel)
+    QML_RO_PROPERTY(QList<QVariantMap>, positionList)
+    QML_RO_PROPERTY(QList<QVariantMap>, avatarPositionList)
     QML_PROPERTY(QString, replyToId)
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
     QML_PROPERTY(QVariant, mediaMessageListModel)
+    QML_PROPERTY(bool, isMapActive)
 
 public:
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
@@ -54,6 +58,10 @@ Q_SIGNALS:
 protected:
     void safeInit() override;
 
+    Q_INVOKABLE void sharePosition();
+    Q_INVOKABLE void startPositioning();
+    Q_INVOKABLE void stopPositioning();
+    Q_INVOKABLE void stopSharingPosition();
     Q_INVOKABLE void setupChatView(const QVariantMap& convInfo);
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void loadConversationUntil(const QString& to);
@@ -102,7 +110,18 @@ protected:
     void setMessagesFileContent(const QString& path);
     void setSendMessageContent(const QString& content);
 
+    // To help updating position list and avatar list
+    // void updatePositionList(QVariantMap newPosition, QString& avatar);
+    int findPositionToUpdate(QVariantMap newPosition, QList<QVariantMap>& list);
+    QString getAvatar(const QString& peerId);
+    QVariantMap parseJsonPosition(const QString& body, const QString& peerId);
+
 private Q_SLOTS:
+    void onPositionReceived(const QString& peerId,
+                            const QString& body,
+                            const uint64_t& timestamp,
+                            const QString& daemonId);
+
     void onNewInteraction(const QString& convUid,
                           const QString& interactionId,
                           const interaction::Info& interaction);
@@ -115,14 +134,15 @@ private Q_SLOTS:
     void onMessagesFoundProcessed(const QString& accountId,
                                   const VectorMapStringString& messageIds,
                                   const QVector<interaction::Info>& messageInformations);
+    void onOwnPositionReceived(const QString& peerId, const QString& body);
 
 private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
 
     AppSettingsManager* settingsManager_;
     PreviewEngine* previewEngine_;
-
+    Positioning* ownPosition;
+    QList<QString> positionShareConvIds_;
     static constexpr const int loadChunkSize_ {20};
-
     std::unique_ptr<MessageListModel> mediaInteractions_;
 };
