@@ -1255,7 +1255,7 @@ void
 CallModel::sendSipMessage(const QString& callId, const QString& body) const
 {
     MapStringString payloads;
-    payloads["text/plain"] = body;
+    payloads[TEXT_PLAIN] = body;
 
     CallManager::instance().sendTextMessage(owner.id, callId, payloads, true /* not used */);
 }
