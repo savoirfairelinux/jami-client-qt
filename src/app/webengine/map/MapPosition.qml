@@ -106,10 +106,6 @@ Rectangle {
                 }
             }
         }
-        Component.onDestruction:  {
-            PositionManager.stopSharingPosition();
-            PositionManager.stopPositioning();
-        }
 
         Component.onCompleted: {
             loadHtml(UtilsAdapter.qStringFromFile(mapHtml), mapHtml)
@@ -122,6 +118,8 @@ Rectangle {
                 webView.isLoaded = true
                 runJavaScript("setMapView([" + 0 + ","+ 0  + "], " + 1 + " );" );
                 PositionManager.startPositioning()
+                //load locations that were received before this conversation was opened
+                PositionManager.loadPreviousLocations();
             }
         }
     }
@@ -152,7 +150,6 @@ Rectangle {
                 onClicked: {
                     buttonsChoseSharing.shortSharing = true
                 }
-
             }
 
             MaterialButton {
@@ -195,67 +192,103 @@ Rectangle {
             }
         }
 
-        MaterialButton {
-            id: sharePositionButton
-
-            preferredWidth: text.contentWidth
-            textLeftPadding: JamiTheme.buttontextPadding
-            textRightPadding: JamiTheme.buttontextPadding
-            primary: true
-            text: webView.isSharing ?  JamiStrings.stopSharingLocation : JamiStrings.shareLocation
-            color: isError
-                   ? JamiTheme.buttonTintedGreyInactive
-                   : webView.isSharing ? JamiTheme.buttonTintedRed : JamiTheme.buttonTintedBlue
-            hoveredColor: isError
-                          ? JamiTheme.buttonTintedGreyInactive
-                          : webView.isSharing ? JamiTheme.buttonTintedRedHovered : JamiTheme.buttonTintedBlueHovered
-            pressedColor: isError
-                          ? JamiTheme.buttonTintedGreyInactive
-                          : webView.isSharing ? JamiTheme.buttonTintedRedPressed: JamiTheme.buttonTintedBluePressed
+        RowLayout {
+            id: sharePositionLayout
             Layout.alignment: Qt.AlignHCenter
 
-            property bool isHovered: false
-            property string positioningError: "default"
-            property bool isError: positioningError.length
+            MaterialButton {
+                id: sharePositionButton
 
-            function errorString(posError) {
-                if (posError === "locationServicesError")
-                    return JamiStrings.locationServicesError
-                return JamiStrings.locationServicesClosedError
-            }
-
-            onClicked: {
-                if (!isError) {
-                    if (webView.isSharing) {
-                        PositionManager.stopSharingPosition();
-                    } else {
-                        if (buttonsChoseSharing.shortSharing)
+                preferredWidth: text.contentWidth
+                textLeftPadding: JamiTheme.buttontextPadding
+                textRightPadding: JamiTheme.buttontextPadding
+                primary: true
+                visible: ! PositionManager.isPositionSharedToConv(PositionManager.getSelectedConvId())
+                text: JamiStrings.shareLocation
+                color: isError
+                       ? JamiTheme.buttonTintedGreyInactive
+                       : JamiTheme.buttonTintedBlue
+                hoveredColor: isError
+                              ? JamiTheme.buttonTintedGreyInactive
+                              : JamiTheme.buttonTintedBlueHovered
+                pressedColor: isError
+                              ? JamiTheme.buttonTintedGreyInactive
+                              : JamiTheme.buttonTintedBluePressed
+                Layout.alignment: Qt.AlignHCenter
+                property bool isHovered: false
+                property string positioningError: "default"
+                property bool isError: positioningError.length
+                function errorString(posError) {
+                    if (posError === "locationServicesError")
+                        return JamiStrings.locationServicesError
+                    return JamiStrings.locationServicesClosedError
+                }
+                onClicked: {
+                    if (!isError) {
+                        if( buttonsChoseSharing.shortSharing)
                             PositionManager.sharePosition(10 * 60 * 1000);
                         else
                             PositionManager.sharePosition(60 * 60 * 1000);
+                        visible = false
+                    }
+                }
+                onHoveredChanged: {
+                    isHovered = !isHovered
+                }
+                MaterialToolTip {
+                    visible: sharePositionButton.isHovered
+                             && sharePositionButton.isError && (sharePositionButton.positioningError !== "default")
+                    x: 0
+                    y: 0
+                    text: sharePositionButton.errorString(sharePositionButton.positioningError)
+                }
+                Connections {
+                    target: PositionManager
+                    function onPositioningError (err) {
+                        sharePositionButton.positioningError = err;
                     }
                 }
             }
+            MaterialButton {
+                id: stopSharingPositionButton
 
-            onHoveredChanged: {
-                isHovered = !isHovered
-            }
-
-            MaterialToolTip {
-                visible: sharePositionButton.isHovered
-                         && sharePositionButton.isError && (sharePositionButton.positioningError !== "default")
-                x: 0
-                y: 0
-                text: sharePositionButton.errorString(sharePositionButton.positioningError)
-            }
-
-            Connections {
-                target: PositionManager
-                function onPositioningError (err) {
-                    sharePositionButton.positioningError = err;
+                preferredWidth: text.contentWidth
+                textLeftPadding: JamiTheme.buttontextPadding
+                textRightPadding: JamiTheme.buttontextPadding
+                primary: true
+                visible: webView.isSharing
+                text:   JamiStrings.stopSharingLocation
+                color: isError
+                       ? JamiTheme.buttonTintedGreyInactive
+                       : JamiTheme.buttonTintedRed
+                hoveredColor: isError
+                              ? JamiTheme.buttonTintedGreyInactive
+                              : JamiTheme.buttonTintedRedHovered
+                pressedColor: isError
+                              ? JamiTheme.buttonTintedGreyInactive
+                              :  JamiTheme.buttonTintedRedPressed
+                Layout.alignment: Qt.AlignHCenter
+                property bool isHovered: false
+                property string positioningError
+                property bool isError: positioningError.length
+                onClicked: {
+                    if (!isError) {
+                        if (PositionManager.positionShareConvIds.length >= 2) {
+                            stopSharingPositionPopup.open()
+                        } else {
+                            PositionManager.stopSharingPosition();
+                            sharePositionButton.visible = true
+                        }
+                    }
                 }
             }
         }
+    }
+
+    StopSharingPositionPopup {
+        id: stopSharingPositionPopup
+
+        property alias shareButtonVisibility: sharePositionButton.visible
     }
 
     Rectangle {
@@ -277,6 +310,7 @@ Rectangle {
             PushButton {
                 id: btnCenter
 
+                toolTipText: JamiStrings.centerMapTooltip
                 imageColor: JamiTheme.mapButtonColor
                 normalColor: JamiTheme.transparentColor
                 source: JamiResources.share_location_svg
@@ -288,6 +322,7 @@ Rectangle {
             PushButton {
                 id: btnMove
 
+                toolTipText: JamiStrings.dragMapTooltip
                 imageColor: JamiTheme.mapButtonColor
                 normalColor: JamiTheme.transparentColor
                 source: JamiResources.move_svg
@@ -303,8 +338,11 @@ Rectangle {
             }
 
             PushButton {
-                id: btnminimise
+                id: btnminimize
 
+                toolTipText: isMinimised
+                            ? JamiStrings.extendMapTooltip
+                            : JamiStrings.minimizeMapTooltip
                 imageColor: JamiTheme.mapButtonColor
                 normalColor: JamiTheme.transparentColor
                 source: isMinimised
@@ -319,6 +357,9 @@ Rectangle {
             PushButton {
                 id: btnmaximise
 
+                toolTipText: isFullScreen
+                            ? JamiStrings.reduceMapTooltip
+                            : JamiStrings.maximizeMapTooltip
                 imageColor: JamiTheme.mapButtonColor
                 normalColor: JamiTheme.transparentColor
                 source: isFullScreen? JamiResources.close_fullscreen_24dp_svg : JamiResources.open_in_full_24dp_svg
@@ -335,11 +376,13 @@ Rectangle {
             PushButton {
                 id: btnClose
 
+                toolTipText: JamiStrings.closeMapTooltip
                 imageColor: JamiTheme.mapButtonColor
                 normalColor: JamiTheme.transparentColor
                 source: JamiResources.round_close_24dp_svg
 
                 onClicked: {
+                    PositionManager.stopPositioning();
                     PositionManager.setMapActive(false);
                     PositionManager.mapAutoOpening = false;
 
