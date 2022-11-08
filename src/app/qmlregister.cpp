@@ -24,6 +24,7 @@
 #include "contactadapter.h"
 #include "pluginadapter.h"
 #include "messagesadapter.h"
+#include "positionmanager.h"
 #include "tipsmodel.h"
 #include "previewengine.h"
 #include "utilsadapter.h"
@@ -110,6 +111,7 @@ registerTypes(QQmlEngine* engine,
     // setup the adapters (their lifetimes are that of MainApplication)
     auto callAdapter = new CallAdapter(systemTray, lrcInstance, parent);
     auto messagesAdapter = new MessagesAdapter(settingsManager, previewEngine, lrcInstance, parent);
+    auto positionManager = new PositionManager(lrcInstance, parent);
     auto conversationsAdapter = new ConversationsAdapter(systemTray, lrcInstance, parent);
     auto avAdapter = new AvAdapter(lrcInstance, parent);
     auto contactAdapter = new ContactAdapter(lrcInstance, parent);
@@ -126,6 +128,7 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, callAdapter, "CallAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, tipsModel, "TipsModel");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, messagesAdapter, "MessagesAdapter");
+    QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, positionManager, "PositionManager");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, conversationsAdapter, "ConversationsAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, avAdapter, "AvAdapter");
     QML_REGISTERSINGLETONTYPE_POBJECT(NS_ADAPTERS, contactAdapter, "ContactAdapter");
