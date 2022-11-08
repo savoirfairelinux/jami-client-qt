@@ -30,6 +30,7 @@
 class ConversationListModel final : public ConversationListModelBase
 {
     Q_OBJECT
+    QML_PROPERTY(MapStringString, position)
 
 public:
     explicit ConversationListModel(LRCInstance* instance, QObject* parent = nullptr);
@@ -49,7 +50,8 @@ public:
     bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
     Q_INVOKABLE void setFilterRequests(bool filterRequests);
-    Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted) {
+    Q_INVOKABLE void ignoreFiltering(const QStringList& highlighted)
+    {
         ignored_ = highlighted;
     }
 
