@@ -410,7 +410,10 @@ Rectangle {
 
         objectName: "chatView"
         visible: false
-        Component.onCompleted: MessagesAdapter.setQmlObject(this)
+        Component.onCompleted: {
+            MessagesAdapter.setQmlObject(this)
+            PositionManager.setQmlObject(this)
+        }
     }
 
     NewSwarmPage {
