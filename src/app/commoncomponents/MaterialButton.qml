@@ -48,6 +48,7 @@ AbstractButton {
     property var preferredWidth
     property real textLeftPadding
     property real textRightPadding
+    property real fontSize: JamiTheme.wizardViewDescriptionFontPixelSize
 
     Binding on width {
         when: root.preferredWidth !== undefined ||
@@ -183,7 +184,7 @@ AbstractButton {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 color: contentColorProvider
-                font.pixelSize: JamiTheme.wizardViewDescriptionFontPixelSize
+                font.pixelSize: fontSize
             }
         }
     }
