@@ -47,10 +47,19 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
-    HostPopup {
+    property string currentConvId: CurrentConversation.id
+    onCurrentConvIdChanged: PositionManager.setMapActive(false);
+
+    Loader {
+        id: mapLoader
+
+        active: PositionManager.isMapActive
+        z: 10
+        source: WITH_WEBENGINE ? "qrc:/webengine/map/MapPosition.qml" : ""
+    }
+HostPopup {
         id: hostPopup
     }
-
     ColumnLayout {
         anchors.fill: root
 

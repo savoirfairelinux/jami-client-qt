@@ -817,6 +817,9 @@ QByteArray
 Utils::QByteArrayFromFile(const QString& filename)
 {
     QFile file(filename);
+    if (!file.exists()) {
+        qDebug() << "QByteArrayFromFile: file does not exist" << filename;
+    }
     if (file.open(QIODevice::ReadOnly)) {
         return file.readAll();
     } else {
