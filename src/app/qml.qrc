@@ -155,6 +155,11 @@
         <file>mainview/components/ParticipantOverlayButton.qml</file>
         <file>mainview/components/ParticipantControlLayout.qml</file>
         <file>mainview/components/ChatViewFooter.qml</file>
+        <file>commoncomponents/mapWebengine/map.html</file>
+        <file>commoncomponents/mapWebengine/map.js</file>
+        <file>commoncomponents/mapWebengine/ol.js</file>
+        <file>commoncomponents/mapWebengine/map.css</file>
+        <file>commoncomponents/mapWebengine/ol.css</file>
         <file>commoncomponents/emojipicker/EmojiPicker.qml</file>
         <file>commoncomponents/emojipicker/emojiPickerLoader.js</file>
         <file>commoncomponents/emojipicker/emojiPickerLoader.html</file>
@@ -199,6 +204,7 @@
         <file>LayoutManager.qml</file>
         <file>mainview/components/JamiIdentifier.qml</file>
         <file>wizardview/components/NoUsernamePopup.qml</file>
+        <file>mainview/components/NoLocationServicePopup.qml</file>
         <file>wizardview/components/AdvancedAccountSettings.qml</file>
         <file>commoncomponents/InfoBox.qml</file>
         <file>mainview/components/TipBox.qml</file>
@@ -212,6 +218,7 @@
         <file>mainview/components/DocumentsScrollview.qml</file>
         <file>mainview/components/FilePreview.qml</file>
         <file>mainview/components/MediaPreview.qml</file>
-	<file>mainview/components/CallInformationWindow.qml</file>
+        <file>mainview/components/CallInformationWindow.qml</file>
+        <file>commoncomponents/mapWebengine/MapPosition.qml</file>
     </qresource>
 </RCC>
