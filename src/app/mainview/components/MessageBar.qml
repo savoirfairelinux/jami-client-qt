@@ -38,6 +38,7 @@ ColumnLayout {
     signal sendFileButtonClicked
     signal audioRecordMessageButtonClicked
     signal videoRecordMessageButtonClicked
+    signal showMapClicked
     signal emojiButtonClicked
 
     implicitHeight: messageBarRowLayout.height
@@ -127,6 +128,26 @@ ColumnLayout {
             onClicked: root.videoRecordMessageButtonClicked()
 
             Component.onCompleted: JamiQmlUtils.videoRecordMessageButtonObj = videoRecordMessageButton
+        }
+        PushButton {
+            id: showMapButton
+
+            Layout.alignment: Qt.AlignVCenter
+            Layout.preferredWidth: JamiTheme.chatViewFooterButtonSize
+            Layout.preferredHeight: JamiTheme.chatViewFooterButtonSize
+            visible: VideoDevices.listSize !== 0 && WITH_WEBENGINE
+
+            radius: JamiTheme.chatViewFooterButtonRadius
+            preferredSize: JamiTheme.chatViewFooterButtonIconSize
+
+            toolTipText: JamiStrings.sharePosition
+
+            source: JamiResources.share_location_svg
+
+            normalColor: JamiTheme.primaryBackgroundColor
+            imageColor: JamiTheme.messageWebViewFooterButtonImageColor
+
+            onClicked: root.showMapClicked()
         }
 
         MessageBarTextArea {

@@ -298,6 +298,18 @@ Item {
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
 
+    //share position
+    property string sharePosition: qsTr("Share position")
+    property string stopSharingPosition: qsTr("Stop sharing position")
+    property string shortSharing: qsTr("10 minutes")
+    property string longSharing: qsTr("One hour")
+    property string minutesLeft: qsTr("%1 minutes left")
+    property string minuteLeft: qsTr("%1 minute left")
+    property string locationServiceError: qsTr("Location error: The application lacks the required privileges. Location not available please turn on location services. Other participants' position can still be received.")
+    property string locationClosedError: qsTr("Location error: The connection was closed. As soon as the Location Services is re-enabled, regular updates will resume. Other participants' position can still be received.")
+    property string failedPositioning: qsTr("Location error: Unknown error occurred. Other participants' position can still be received.")
+
+
     // Chatview header
     property string hideChat: qsTr("Hide chat")
     property string placeAudioCall: qsTr("Place audio call")
