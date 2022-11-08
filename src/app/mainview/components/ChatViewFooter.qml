@@ -18,6 +18,7 @@
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 
 import net.jami.Models 1.1
 import net.jami.Constants 1.1
@@ -183,6 +184,11 @@ Rectangle {
 
                 empjiLoader.openEmojiPicker()
             }
+
+            onShowMapClicked: {
+                MessagesAdapter.setMapActive(true);
+            }
+
             onSendFileButtonClicked: jamiFileDialog.open()
             onSendMessageButtonClicked: {
                 // Send text message
