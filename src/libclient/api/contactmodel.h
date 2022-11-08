@@ -108,7 +108,9 @@ public:
      * @param body
      * @return id from daemon
      */
-    uint64_t sendDhtMessage(const QString& uri, const QString& body) const;
+    uint64_t sendDhtMessage(const QString& uri,
+                            const QString& body,
+                            const QString& mimeType = {}) const;
     /**
      * Get best id for contact
      * @param contactUri

@@ -47,6 +47,23 @@ Rectangle {
 
     color: JamiTheme.chatviewBgColor
 
+    property string currentConvId: CurrentConversation.id
+    onCurrentConvIdChanged: MessagesAdapter.setMapActive(false);
+
+    Loader {
+        id: mapLoader
+
+        active: MessagesAdapter.isMapActive
+        z: 10
+        source: WITH_WEBENGINE ? "qrc:/webengine/map/MapPosition.qml" : ""
+    }
+
+    RecordBox {
+        id: recordBox
+
+        visible: false
+    }
+
     ColumnLayout {
         anchors.fill: root
 
@@ -147,7 +164,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                                  CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
