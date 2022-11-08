@@ -472,7 +472,7 @@ foreach(MODULE ${QT_MODULES})
   list(APPEND QT_LIBS "Qt::${MODULE}")
 endforeach()
 
-set(LIBCLIENT_NAME "libjamiclient")
+set(LIBCLIENT_NAME "jamiclient")
 set(LIBCLIENT_VERSION "1.0.0")
 add_library(${LIBCLIENT_NAME} STATIC
   ${LIBCLIENT_SOURCES}
