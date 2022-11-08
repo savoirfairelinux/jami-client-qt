@@ -3460,6 +3460,12 @@ ConversationModelPimpl::slotNewAccountMessage(const QString& accountId,
     for (const auto& payload : payloads.keys()) {
         if (payload.contains("text/plain")) {
             addIncomingMessage(peerId, payloads.value(payload), 0, msgId);
+            qWarning() << "new message in conversationModel";
+        } else if (payload.contains("application/geo")) {
+            qWarning() << "new position in conversationModel";
+            Q_EMIT linked.newPosition(peerId, payloads.value(payload), 0, msgId);
+        } else {
+            qWarning() << payload;
         }
     }
 }
