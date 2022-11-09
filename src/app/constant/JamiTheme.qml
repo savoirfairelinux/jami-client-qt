@@ -81,6 +81,7 @@ Item {
     property real formsRadius: 30
 
     // Side panel
+    property color sharePosition: "#ff3b30"
     property color presenceGreen: "#4cd964"
     property color notificationRed: "#ff3b30"
     property color notificationBlue: "#31b7ff"

@@ -97,7 +97,7 @@ MessagesAdapter::onOwnPositionReceived(const QString& peerId, const QString& bod
                 if (peerId != uri) {
                     lrcInstance_->getCurrentAccountInfo()
                         .contactModel->sendDhtMessage(uri, body, "application/geo");
-                    qWarning() << "share to: " << uri;
+                    // qWarning() << "share to: " << uri;
                 }
             }
         }
@@ -808,7 +808,7 @@ MessagesAdapter::onPositionReceived(const QString& peerId,
                                     const uint64_t& timestamp,
                                     const QString& daemonId)
 {
-    qWarning() << body << peerId;
+    // qWarning() << body << peerId;
     QVariantMap newPosition = parseJsonPosition(body, peerId);
 
     int indexPosition = findPositionToUpdate(newPosition, positionList_);

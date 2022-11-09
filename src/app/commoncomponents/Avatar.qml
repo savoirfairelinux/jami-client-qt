@@ -116,4 +116,44 @@ Item {
 
         visible: showPresenceIndicator
     }
+
+    Rectangle {
+        id: sharePositionIndicator
+
+        anchors.left: root.left
+        anchors.leftMargin: -1
+        anchors.bottom: root.bottom
+        anchors.bottomMargin: -1
+
+        // moi 1dd53e1599eb592b963975f643e215cf3fe3ffd7
+        //autre 2d2dcd0fc6784727df56a058af286e1251985d2c
+        //testAppel 7063077993508196a12105fd6a5135f7570ad6c8
+        //positionTestingSecond: 619632b79a7313c5f3aa2c3841fe3420bfd3f798
+        visible: {
+            var temp = true;
+
+//                console.warn("--------- imageId: ", imageId );
+//                for (var i = 0; i < MessagesAdapter.positionShareConvIds.length; i ++) {
+//                    console.warn(i," - cur uri: ", MessagesAdapter.positionShareConvIds[i].author );
+//                    if (MessagesAdapter.positionShareConvIds[i].author === imageId)
+//                        temp = true;
+//                }
+
+
+            return temp;
+            //MessagesAdapter.isMapActive && showPresenceIndicator
+        }
+
+        property int size: root.width * JamiTheme.avatarPresenceRatio
+
+        //visible: true //showPresenceIndicator
+        width: size
+        height: size
+        radius: size* 0.5
+        border {
+            color: JamiTheme.backgroundColor
+            width: 2
+        }
+        color: JamiTheme.sharePosition
+    }
 }

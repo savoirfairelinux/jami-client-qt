@@ -314,7 +314,9 @@ Rectangle {
                 }
 
             }
+
         }
+
     }
 
     RecordBox {
@@ -437,7 +439,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                                  CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
