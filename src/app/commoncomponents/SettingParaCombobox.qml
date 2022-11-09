@@ -37,10 +37,15 @@ ComboBox {
         delay: Qt.styleHints.mousePressAndHoldInterval
     }
 
-    displayText: currentIndex !== -1 ?
-                     currentSelectionText : (placeholderText !== "" ?
-                                                 placeholderText :
-                                                 JamiStrings.notAvailable)
+    displayText: {
+        // If the index is -1 and the model is empty, display the placeholder text.
+        // The placeholder text is either the placeholderText property or a default text.
+        // Otherwise, display the currentSelectionText property.
+        if (currentIndex < 0 && !count) {
+            return placeholderText !== "" ? placeholderText : JamiStrings.notAvailable
+        }
+        return currentSelectionText
+    }
 
     delegate: ItemDelegate {
         width: root.width
