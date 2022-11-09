@@ -89,6 +89,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4437e46_b648e62a",
+        "filename": "extras/scripts/gen_resources_qrc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-09T22:44:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3334df60_a63c6290",
+      "revId": "31a8e43adb14ed98eb983a9fa7b60951de164077",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9823de7b_08273754",
@@ -102,6 +120,24 @@
       "writtenOn": "2022-11-08T15:29:12Z",
       "side": 1,
       "message": "This new syntax does not work with Python 3.8 e.g. from Trisquel 10 (Ubuntu 20.04):\n\n  File \"/home/bandali/src/jami/dev/jami-client-qt/extras/scripts/gen_resources_qrc.py\", line 54\n    with (open(resfile, \u0027w\u0027, encoding\u003d\u0027utf-8\u0027) as qrc,\n                                               ^\nSyntaxError: invalid syntax\n\nCan we please use the older syntax and break the long line with a \u0027\\\u0027 for now?",
+      "revId": "31a8e43adb14ed98eb983a9fa7b60951de164077",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81a30ab1_9095ee4a",
+        "filename": "extras/scripts/gen_resources_qrc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-09T22:44:17Z",
+      "side": 1,
+      "message": "Certainly; I encountered the same issue",
+      "parentUuid": "9823de7b_08273754",
       "revId": "31a8e43adb14ed98eb983a9fa7b60951de164077",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
