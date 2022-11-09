@@ -51,6 +51,24 @@
       "parentUuid": "725164d6_eb5828c2",
       "revId": "17b4d251cc281539c48523ad3ec43d5b62410480",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbc8f34f_b0a3aa45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-09T19:42:33Z",
+      "side": 1,
+      "message": "Will your patch convert and dial phone letters?\nhttps://patersontech.com/phone-letters-to-numbers-how-to-convert-dial/\n\nWould case-insensitive implementation be preferred as people may use their keyboard?\n\n* `A`, `a`, `B`, `b`, `C`, `c` → 2\n* `D`, `d`, `E`, `e`, `F`, `f` → 3\n* `G`, `g`, `H`, `h`, `I`, `i` → 4\n* `J`, `j`, `K`, `k`, `L`, `l` → 5\n* `M`, `m`, `N`, `n`, `O`, `o` → 6\n* `P`, `p`, `Q`, `q`, `R`, `r`, `S`, `s` → 7\n* `T`, `t`, `U`, `u`, `V`, `v` → 8\n* `W`, `w`, `X`, `x`, `Y`, `y`, `Z`, `z` → 9\n\nIf phone letters to number conversion is implemented then should DTMF `A`, `B`, `C` and `D` not be used when when dialing (en-CA: dialling) a number?\n\nThank you",
+      "parentUuid": "947ade96_3b951738",
+      "revId": "17b4d251cc281539c48523ad3ec43d5b62410480",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
