@@ -26,6 +26,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf7c0e14_756738b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-10T08:13:32Z",
+      "side": 1,
+      "message": "120 chars for a commit message",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 199
+      },
+      "revId": "17b4d251cc281539c48523ad3ec43d5b62410480",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4cf8431_68338a7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-10T08:13:32Z",
+      "side": 1,
+      "message": "small typo, no Narrow No-Break Space before \":\", it\u0027s a french thing :)",
+      "range": {
+        "startLine": 13,
+        "startChar": 27,
+        "endLine": 13,
+        "endChar": 30
+      },
+      "revId": "17b4d251cc281539c48523ad3ec43d5b62410480",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80606ac5_f3824de1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-10T08:13:32Z",
+      "side": 1,
+      "message": "No need for the idea here, this can be added in a ticket and discussed.",
+      "range": {
+        "startLine": 13,
+        "startChar": 26,
+        "endLine": 13,
+        "endChar": 174
+      },
+      "revId": "17b4d251cc281539c48523ad3ec43d5b62410480",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "725164d6_eb5828c2",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
