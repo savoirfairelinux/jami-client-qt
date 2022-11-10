@@ -33,6 +33,7 @@
 #include "authority/storagehelper.h"
 #include "dbus/callmanager.h"
 #include "dbus/videomanager.h"
+#include "qtwrapper/conversions_wrap.hpp"
 #include "vcard.h"
 #include "renderer.h"
 #include "typedefs.h"
@@ -463,30 +464,64 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
         return;
 
     QString resource {};
-    auto id = 0;
+    int numVideoStreams = 0;
+    int numAudioStreams = 0;
     for (const auto& media : callInfo->mediaList) {
         if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO)
-            id++;
+            numVideoStreams++;
+        if (media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::AUDIO)
+            numAudioStreams++;
     }
-    QString label = QString("video_%1").arg(id);
+    QString label {};
     QString sep = libjami::Media::VideoProtocolPrefix::SEPARATOR;
+
+    auto proposedList = callInfo->mediaList;
+    MapStringString mediaAttribute = {{MediaAttributeKey::MEDIA_TYPE,
+                                       /* set this in switch statement*/ MediaAttributeValue::VIDEO},
+                                      {MediaAttributeKey::ENABLED, TRUE_STR},
+                                      {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                                      {MediaAttributeKey::SOURCE, resource},
+                                      {MediaAttributeKey::LABEL, label}};
+
     switch (type) {
     case MediaRequestType::FILESHARING: {
         // File sharing
+        // create media player here
+        // or maybe just set MEDIA_TYPE to SRC_TYPE_FILE
+        QString videoLabel = QString("video_%1").arg(numAudioStreams);
+        QString audioLabel = QString("audio_%1").arg(numAudioStreams);
+        label = videoLabel;
+        auto audioStreamId = callId.toStdString() + "_" + audioLabel.toStdString();
+        auto videoStreamId = callId.toStdString() + "_" + videoLabel.toStdString();
+        std::string mediaPlayerId
+            = libjami::createMediaPlayer(QUrl(source).toLocalFile().toStdString(),
+                                         audioStreamId,
+                                         videoStreamId);
         resource = !source.isEmpty() ? QString("%1%2%3")
                                            .arg(libjami::Media::VideoProtocolPrefix::FILE)
                                            .arg(sep)
                                            .arg(QUrl(source).toLocalFile())
                                      : libjami::Media::VideoProtocolPrefix::NONE;
+
+        MapStringString audioAttribute = {{MediaAttributeKey::MEDIA_TYPE,
+                                           MediaAttributeValue::AUDIO},
+                                          {MediaAttributeKey::ENABLED, TRUE_STR},
+                                          {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
+                                          {MediaAttributeKey::SOURCE, resource},
+                                          {MediaAttributeKey::LABEL, audioLabel}};
+
+        proposedList.push_back(audioAttribute);
         break;
     }
     case MediaRequestType::SCREENSHARING: {
         // Screen/window sharing
+        label = QString("video_%1").arg(numVideoStreams);
         resource = source;
         break;
     }
     case MediaRequestType::CAMERA: {
         // Camera device
+        label = QString("video_%1").arg(numVideoStreams);
         resource = not source.isEmpty() ? QString("%1%2%3")
                                               .arg(libjami::Media::VideoProtocolPrefix::CAMERA)
                                               .arg(sep)
@@ -498,12 +533,6 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
         return;
     }
 
-    auto proposedList = callInfo->mediaList;
-    MapStringString mediaAttribute = {{MediaAttributeKey::MEDIA_TYPE, MediaAttributeValue::VIDEO},
-                                      {MediaAttributeKey::ENABLED, TRUE_STR},
-                                      {MediaAttributeKey::MUTED, mute ? TRUE_STR : FALSE_STR},
-                                      {MediaAttributeKey::SOURCE, resource},
-                                      {MediaAttributeKey::LABEL, label}};
     // if we're in a 1:1, we only show one preview, so, limit to 1 video (the new one)
     auto participantsModel = pimpl_->participantsModel.find(callId);
     auto isConf = participantsModel != pimpl_->participantsModel.end()
@@ -511,6 +540,7 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
 
     auto replaced = false;
     for (auto& media : proposedList) {
+        /* Just for video replacement */
         auto replace = media[MediaAttributeKey::MEDIA_TYPE] == MediaAttributeValue::VIDEO;
         // In a 1:1 we replace the first video, in a conference we replace only if it's a muted
         // video as we show multiple previews
@@ -523,6 +553,7 @@ CallModel::addMedia(const QString& callId, const QString& source, MediaRequestTy
             break;
         }
     }
+
     if (!replaced)
         proposedList.push_back(mediaAttribute);
 
