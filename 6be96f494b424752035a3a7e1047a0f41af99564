@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "460c6905_10d29867",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-10T22:07:36Z",
+      "side": 1,
+      "message": "Big patch to review and license to check/update",
+      "revId": "6be96f494b424752035a3a7e1047a0f41af99564",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7bc314_cd23bcef",
+        "filename": "src/app/commoncomponents/mapWebengine/ol.css",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-10T22:07:36Z",
+      "side": 1,
+      "message": "is it you the author of ol.css, ol.js, etc?",
+      "range": {
+        "startLine": 4,
+        "startChar": 40,
+        "endLine": 5,
+        "endChar": 46
+      },
+      "revId": "6be96f494b424752035a3a7e1047a0f41af99564",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
