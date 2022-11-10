@@ -215,6 +215,24 @@
       "parentUuid": "b2d71134_eb875638",
       "revId": "17b4d251cc281539c48523ad3ec43d5b62410480",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38cd5e4c_d08ae99d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 981
+      },
+      "writtenOn": "2022-11-10T16:52:33Z",
+      "side": 1,
+      "message": "Good point, I was hesitating between filtering out \u0027some\u0027 chars or keeping only desired chars (I chose the latter). Would you suggest filtering out *only* parenthesis and spaces (and maybe a few others if needed?). \n\nAlso, this doesn\u0027t change the search input, it only filters the search results. If the user inputs parentheses, they will appear in the input, just not in the results!",
+      "parentUuid": "e373c5cf_84c596ba",
+      "revId": "17b4d251cc281539c48523ad3ec43d5b62410480",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
