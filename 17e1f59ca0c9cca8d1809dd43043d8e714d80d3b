@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33441f58_da4cfe60",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T21:22:40Z",
+      "side": 1,
+      "message": "There is two things in this patch:\n1. Moving components in webengine/nowebengine\n\n2. Changing the qml.qrc generation.\n\nFor me, 1. can be merged as it\u0027s working great\n\nFor 2., I guess we should also remove completely qml.qrc as it\u0027s generated and we don\u0027t want any commit on it anymore (as it changes depending of the build options)",
+      "range": {
+        "startLine": 109,
+        "startChar": 26,
+        "endLine": 109,
+        "endChar": 35
+      },
+      "revId": "17e1f59ca0c9cca8d1809dd43043d8e714d80d3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
