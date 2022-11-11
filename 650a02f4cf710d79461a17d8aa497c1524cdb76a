@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d491d5d_32f25286",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 11
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T19:08:30Z",
+      "side": 1,
+      "message": "Bugs:\n\n1. The box doesn\u0027t have a good location, hiding the username of the peer. Should be more like android by default (you made it movable which is nice)\n2. Open location sharing, share location, close location sharing, re-open it \u003d\u003e it\u0027s not zoomed correctly\n3. Receiving location sharing from a peer should ideally open the map on reception\n4. the map should be attached to the conversation and never show non contacts\n5. If permission is not given, and we receive location from a contact, it triggers an error that we can avoid:\nqt.positioning.geoclue2: Unable to obtain the client patch: \"org.freedesktop.DBus.Error.NoReplyDid not receive a reply. Possible causes include: the remote application did not send a reply, the message bus security policy blocked the reply, the reply timeout expired, or the network connection was broken.\"\npositioning failed: QGeoPositionInfoSource::AccessError\nqt.positioning.geoclue2: Already stopped",
+      "range": {
+        "startLine": 83,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "650a02f4cf710d79461a17d8aa497c1524cdb76a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "013b73a3_1bbd0c57",
+        "filename": "src/app/commoncomponents/mapWebengine/map.js",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T19:08:30Z",
+      "side": 1,
+      "message": "I don\u0027t check the code and wait for your cleanup",
+      "range": {
+        "startLine": 2,
+        "startChar": 9,
+        "endLine": 2,
+        "endChar": 13
+      },
+      "revId": "650a02f4cf710d79461a17d8aa497c1524cdb76a",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
