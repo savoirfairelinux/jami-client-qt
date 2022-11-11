@@ -83,7 +83,7 @@ Rectangle {
         }
 
         onLoadingChanged: function (loadingInfo) {
-            if (loadingInfo.status !== WebEngineView.LoadSucceededStatus) {
+            if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
                 emojiPickerWebView.runJavaScript(UtilsAdapter.qStringFromFile(
                                                      ":qwebchannel.js"))
                 emojiPickerWebView.runJavaScript(

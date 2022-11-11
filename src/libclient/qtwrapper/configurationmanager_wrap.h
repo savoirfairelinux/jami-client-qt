@@ -365,8 +365,8 @@ public:
                           const std::string& conversationId,
                           const std::vector<std::map<std::string, std::string>>& activeCalls) {
                        Q_EMIT activeCallsChanged(QString(accountId.c_str()),
-                                                  QString(conversationId.c_str()),
-                                                  convertVecMap(activeCalls));
+                                                 QString(conversationId.c_str()),
+                                                 convertVecMap(activeCalls));
                    })};
     }
 
@@ -449,7 +449,8 @@ public Q_SLOTS: // METHODS
     VectorMapStringString getActiveCalls(const QString& accountId, const QString& convId)
     {
         VectorMapStringString temp;
-        for (const auto& x : libjami::getActiveCalls(accountId.toStdString(), convId.toStdString())) {
+        for (const auto& x :
+             libjami::getActiveCalls(accountId.toStdString(), convId.toStdString())) {
             temp.push_back(convertMap(x));
         }
         return temp;
@@ -1298,8 +1299,8 @@ Q_SIGNALS: // SIGNALS
                              int code,
                              const QString& what);
     void activeCallsChanged(const QString& accountId,
-                             const QString& conversationId,
-                             const VectorMapStringString& activeCalls);
+                            const QString& conversationId,
+                            const VectorMapStringString& activeCalls);
     void conversationPreferencesUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& message);

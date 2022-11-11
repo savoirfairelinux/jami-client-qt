@@ -26,6 +26,17 @@ import net.jami.Constants 1.1
 SBSMessageBase {
     id: root
 
+    component JoinCallButton: PushButton {
+        visible: root.isActive
+        toolTipText: JamiStrings.joinCall
+        preferredSize: 40
+        imageColor: callLabel.color
+        normalColor: "transparent"
+        hoveredColor: Qt.rgba(255, 255, 255, 0.2)
+        border.width: 1
+        border.color: callLabel.color
+    }
+
     property bool isRemoteImage
 
     isOutgoing: Author === ""
@@ -47,7 +58,7 @@ SBSMessageBase {
     visible: isActive || ConfId === "" || Duration > 0
 
     bubble.color: {
-        if (ConfId === "" && Duration == 0) {
+        if (ConfId === "" && Duration === 0) {
             // If missed, we can add a darker pattern
             return isOutgoing ?
                         Qt.darker(JamiTheme.messageOutBgColor, 1.5) :
@@ -84,39 +95,18 @@ SBSMessageBase {
                        JamiTheme.chatviewTextColorDark
             }
 
-            PushButton {
+            JoinCallButton {
                 id: joinCallInAudio
-                visible: root.isActive
 
                 source: JamiResources.place_audiocall_24dp_svg
-                toolTipText: JamiStrings.joinCall
-
-                preferredSize: 40
-                imageColor: callLabel.color
-                normalColor: "transparent"
-                hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-                border.width: 1
-                border.color: callLabel.color
-
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId, true)
             }
 
-            PushButton {
+            JoinCallButton {
                 id: joinCallInVideo
-                visible: root.isActive
 
                 source: JamiResources.videocam_24dp_svg
-                toolTipText: JamiStrings.joinCall
-
-                preferredSize: 40
-                imageColor: callLabel.color
-                normalColor: "transparent"
-                hoveredColor: Qt.rgba(255, 255, 255, 0.2)
-                border.width: 1
-                border.color: callLabel.color
-
                 onClicked: MessagesAdapter.joinCall(ActionUri, DeviceId, ConfId)
-
                 Layout.rightMargin: parent.spacing
             }
         }

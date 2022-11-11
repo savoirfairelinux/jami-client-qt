@@ -167,7 +167,7 @@ getFormattedCallDuration(const std::time_t duration)
 }
 
 QString
-getCallInteractionStringOld(const QString& authorUri, const std::time_t& duration)
+getCallInteractionStringNonSwarm(const QString& authorUri, const std::time_t& duration)
 {
     if (duration < 0) {
         if (authorUri.isEmpty()) {
@@ -198,7 +198,7 @@ getCallInteractionString(const api::interaction::Info& info)
             return QObject::tr("Join call");
         }
     }
-    return getCallInteractionStringOld(info.authorUri, info.duration);
+    return getCallInteractionStringNonSwarm(info.authorUri, info.duration);
 }
 
 QString
@@ -521,7 +521,7 @@ getHistory(Database& db, api::conversation::Info& conversation)
                                        : std::stoi(durationString.toStdString());
             auto status = api::interaction::to_status(payloads[i + 5]);
             if (type == api::interaction::Type::CALL) {
-                body = getCallInteractionStringOld(payloads[i + 1], duration);
+                body = getCallInteractionStringNonSwarm(payloads[i + 1], duration);
             } else if (type == api::interaction::Type::CONTACT) {
                 body = getContactInteractionString(payloads[i + 1], status);
             }

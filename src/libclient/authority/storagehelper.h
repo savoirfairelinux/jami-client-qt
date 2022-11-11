@@ -60,7 +60,7 @@ QString prepareUri(const QString& uri, api::profile::Type type);
  * @return the formatted and translated call message string
  */
 QString getCallInteractionString(const api::interaction::Info& info);
-QString getCallInteractionStringOld(const QString& authorUri, const std::time_t& duration);
+QString getCallInteractionStringNonSwarm(const QString& authorUri, const std::time_t& duration);
 
 /**
  * Get a formatted string for a contact interaction's body

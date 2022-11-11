@@ -382,8 +382,8 @@ Q_SIGNALS:
                            int code,
                            const QString& what);
     void activeCallsChanged(const QString& accountId,
-                           const QString& conversationId,
-                           const VectorMapStringString& activeCalls);
+                            const QString& conversationId,
+                            const VectorMapStringString& activeCalls);
     void conversationPreferencesUpdated(const QString& accountId,
                                         const QString& conversationId,
                                         const MapStringString& preferences);
@@ -716,8 +716,8 @@ private Q_SLOTS:
                                  int code,
                                  const QString& what);
     void slotActiveCallsChanged(const QString& accountId,
-                                 const QString& conversationId,
-                                 const VectorMapStringString& activeCalls);
+                                const QString& conversationId,
+                                const VectorMapStringString& activeCalls);
 
 private:
     const api::Lrc& parent;

@@ -866,8 +866,8 @@ ConversationModel::joinCall(const QString& uid,
             qWarning() << "Already in a call for swarm:" + uid;
             return;
         }
-        conversation.callId = owner.callModel->createCall("swarm:" + uid + "/" + uri + "/"
-                                                              + deviceId + "/" + confId,
+        conversation.callId = owner.callModel->createCall("rdv:" + uid + "/" + uri + "/" + deviceId
+                                                              + "/" + confId,
                                                           isAudioOnly);
         // Update interaction status
         pimpl_->invalidateModel();

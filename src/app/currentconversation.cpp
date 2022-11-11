@@ -306,38 +306,34 @@ CurrentConversation::updateActiveCalls(const QString&, const QString& convId)
 {
     if (convId != id_)
         return;
-    try {
-        const auto& convModel = lrcInstance_->getCurrentConversationModel();
-        if (auto optConv = convModel->getConversationForUid(convId)) {
-            auto& convInfo = optConv->get();
-            QVariantList callList;
-            for (int i = 0; i < convInfo.activeCalls.size(); i++) {
-                // Check if ignored.
-                auto ignored = false;
-                for (int ignoredIdx = 0; ignoredIdx < convInfo.ignoredActiveCalls.size();
-                     ignoredIdx++) {
-                    auto& ignoreCall = convInfo.ignoredActiveCalls[ignoredIdx];
-                    if (ignoreCall["id"] == convInfo.activeCalls[i]["id"]
-                        && ignoreCall["uri"] == convInfo.activeCalls[i]["uri"]
-                        && ignoreCall["device"] == convInfo.activeCalls[i]["device"]) {
-                        ignored = true;
-                        break;
-                    }
+    const auto& convModel = lrcInstance_->getCurrentConversationModel();
+    if (auto optConv = convModel->getConversationForUid(convId)) {
+        auto& convInfo = optConv->get();
+        QVariantList callList;
+        for (int i = 0; i < convInfo.activeCalls.size(); i++) {
+            // Check if ignored.
+            auto ignored = false;
+            for (int ignoredIdx = 0; ignoredIdx < convInfo.ignoredActiveCalls.size(); ignoredIdx++) {
+                auto& ignoreCall = convInfo.ignoredActiveCalls[ignoredIdx];
+                if (ignoreCall["id"] == convInfo.activeCalls[i]["id"]
+                    && ignoreCall["uri"] == convInfo.activeCalls[i]["uri"]
+                    && ignoreCall["device"] == convInfo.activeCalls[i]["device"]) {
+                    ignored = true;
+                    break;
                 }
-                if (ignored) {
-                    continue;
-                }
-
-                // Else, add to model
-                QVariantMap mapCall;
-                Q_FOREACH (QString key, convInfo.activeCalls[i].keys()) {
-                    mapCall[key] = convInfo.activeCalls[i][key];
-                }
-                callList.append(mapCall);
             }
-            set_activeCalls(callList);
+            if (ignored) {
+                continue;
+            }
+
+            // Else, add to model
+            QVariantMap mapCall;
+            Q_FOREACH (QString key, convInfo.activeCalls[i].keys()) {
+                mapCall[key] = convInfo.activeCalls[i][key];
+            }
+            callList.append(mapCall);
         }
-    } catch (...) {
+        set_activeCalls(callList);
     }
 }
 

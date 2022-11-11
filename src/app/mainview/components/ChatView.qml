@@ -124,7 +124,7 @@ Rectangle {
                     notificationArea.uri = CurrentConversation.activeCalls[0]["uri"]
                     notificationArea.device = CurrentConversation.activeCalls[0]["device"]
                 }
-                notificationArea.visible = CurrentConversation.activeCalls.length > 0 // TODO ignored?
+                notificationArea.visible = CurrentConversation.activeCalls.length > 0
             }
 
             function onErrorsChanged() {
