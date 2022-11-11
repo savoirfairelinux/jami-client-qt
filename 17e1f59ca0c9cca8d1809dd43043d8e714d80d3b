@@ -22,6 +22,30 @@
       },
       "revId": "17e1f59ca0c9cca8d1809dd43043d8e714d80d3b",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "926fb19b_560e5bba",
+        "filename": "src/app/mainview/components/ChatViewFooter.qml",
+        "patchSetId": 7
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-11T21:56:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33441f58_da4cfe60",
+      "range": {
+        "startLine": 109,
+        "startChar": 26,
+        "endLine": 109,
+        "endChar": 35
+      },
+      "revId": "17e1f59ca0c9cca8d1809dd43043d8e714d80d3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
