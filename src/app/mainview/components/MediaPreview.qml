@@ -19,7 +19,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-import QtWebEngine
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
@@ -92,59 +91,17 @@ Component {
                         }
                         Component {
                             id: avMediaComp
-
                             Loader {
-                                property real msgRadius: 20
-
-                                Rectangle {
-                                    id: videoAudioRect
-                                    color: JamiTheme.secondaryBackgroundColor
-                                    anchors.fill: parent
-
-                                    WebEngineView {
-                                        id: wev
-
-                                        property bool isVideo: mediaInfo.isVideo
-                                        property string html: mediaInfo.html
-
-                                        anchors.fill: parent
-                                        anchors.verticalCenter: videoAudioRect.verticalCenter
-                                        backgroundColor: JamiTheme.secondaryBackgroundColor
-                                        anchors.topMargin: isVideo? 0 :  wev.implicitHeight / 2
-                                        settings.fullScreenSupportEnabled: isVideo
-                                        settings.javascriptCanOpenWindows: false
-                                        Component.onCompleted: loadHtml(html, 'file://')
-                                        onFullScreenRequested: function(request) {
-                                            if (request.toggleOn) {
-                                                layoutManager.pushFullScreenItem(
-                                                            this,
-                                                            videoAudioRect,
-                                                            null,
-                                                            function() { wev.fullScreenCancelled() })
-                                            } else if (!request.toggleOn) {
-                                                layoutManager.removeFullScreenItem(this)
-                                            }
-                                            request.accept()
-                                        }
-                                    }
-
-                                    layer.enabled: true
-                                    layer.effect: OpacityMask {
-                                        maskSource: Item {
-                                            width: videoAudioRect.width
-                                            height: videoAudioRect.height
-                                            Rectangle {
-                                                anchors.centerIn: parent
-                                                width:  videoAudioRect.width
-                                                height: videoAudioRect.height
-                                                radius: JamiTheme.swarmDetailsPageDocumentsMediaRadius
-                                            }
-                                        }
-                                    }
+                                Component.onCompleted: {
+                                    var qml = WITH_WEBENGINE ?
+                                                "qrc:/webengine/VideoPreview.qml" :
+                                                "qrc:/nowebengine/VideoPreview.qml"
+                                    setSource( qml, { isVideo: mediaInfo.isVideo, html:mediaInfo.html } )
                                 }
+
+                                property real msgRadius: 20
                             }
                         }
-
                         Component {
                             id: imageMediaComp
 
