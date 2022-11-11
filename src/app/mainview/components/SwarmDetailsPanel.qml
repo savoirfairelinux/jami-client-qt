@@ -21,7 +21,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import Qt5Compat.GraphicalEffects
-import QtWebEngine
 
 import net.jami.Models 1.1
 import net.jami.Adapters 1.1
