@@ -117,6 +117,13 @@ Item {
         root.remoteRecording = false
     }
 
+    DropArea {
+        anchors.fill: parent
+        onDropped: function(drop) {
+            AvAdapter.shareFile(drop.urls)
+        }
+    }
+
     SipInputPanel {
         id: sipInputPanel
 
