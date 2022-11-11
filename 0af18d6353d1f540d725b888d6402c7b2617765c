@@ -22,6 +22,30 @@
       },
       "revId": "0af18d6353d1f540d725b888d6402c7b2617765c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b911d496_e22c1d08",
+        "filename": "src/app/activecallsmodel.cpp",
+        "patchSetId": 50
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "this file doesn\u0027t exists in latest patchset",
+      "parentUuid": "64257372_b529cffe",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 74
+      },
+      "revId": "0af18d6353d1f540d725b888d6402c7b2617765c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

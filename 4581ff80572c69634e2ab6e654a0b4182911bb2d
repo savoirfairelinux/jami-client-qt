@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30769152_57cfd7ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 59
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "?\n\n\n[1668176661.369|53633|manager.cpp             :1014] try outgoing call to \u0027swarm:0cba09951435e1420d542cadc6afd584d4e3c3a3\u0027 with account \u00271449942a8c3d373e\u0027\n[1668176661.369|53633|sipcall.cpp             :142 ] [call:3653512167931833] Create a new [OUTGOING] SIP call with 2 media\n\nFor outgoing",
+      "parentUuid": "b33d42b1_6ff9c27d",
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ffc75d40_b6385cf7",
         "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
         "patchSetId": 59
@@ -31,6 +49,30 @@
       "writtenOn": "2022-11-04T18:44:34Z",
       "side": 1,
       "message": "warning",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 40
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd89e24_2da10e01",
+        "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffc75d40_b6385cf7",
       "range": {
         "startLine": 50,
         "startChar": 37,
@@ -64,6 +106,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23e67e3_4720bc26",
+        "filename": "src/app/commoncomponents/CallMessageDelegate.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "75773029_56b9dea4",
+      "range": {
+        "startLine": 87,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 13
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "585d745e_a3472684",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-11-04T18:37:43Z",
       "side": 1,
       "message": "this looks out of place. also, how does this work correctly?",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 75
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f125c5f_cd09b399",
+        "filename": "src/app/commoncomponents/emojipicker/EmojiPicker.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "seems indeed a test unrelated",
+      "parentUuid": "585d745e_a3472684",
       "range": {
         "startLine": 86,
         "startChar": 12,
@@ -110,6 +200,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26ada4f9_145fa0ae",
+        "filename": "src/app/currentaccount.h",
+        "patchSetId": 59
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b9ce2dd3_51c24db3",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "949b6b9e_dfe19b36",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-11-04T18:37:43Z",
       "side": 1,
       "message": "what throws here?",
+      "range": {
+        "startLine": 340,
+        "startChar": 6,
+        "endLine": 341,
+        "endChar": 5
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faaef1f8_3d82fd27",
+        "filename": "src/app/currentconversation.cpp",
+        "patchSetId": 59
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "if something is thrown, it\u0027s catched up after, so can be ignored",
+      "parentUuid": "949b6b9e_dfe19b36",
       "range": {
         "startLine": 340,
         "startChar": 6,
@@ -156,6 +294,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d34cac01_21a00a44",
+        "filename": "src/app/lrcinstance.h",
+        "patchSetId": 59
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "Not here. it\u0027s about the call in the swarm, so accountUri/deviceId/conversationId/confId",
+      "parentUuid": "b39df02d_3ed87ae5",
+      "range": {
+        "startLine": 111,
+        "startChar": 53,
+        "endLine": 111,
+        "endChar": 59
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9230b7a1_5089ea47",
@@ -169,6 +331,30 @@
       "writtenOn": "2022-11-04T18:37:43Z",
       "side": 1,
       "message": "?",
+      "range": {
+        "startLine": 127,
+        "startChar": 86,
+        "endLine": 127,
+        "endChar": 102
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f006910_192ea13b",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 59
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "I forgot to remove this",
+      "parentUuid": "9230b7a1_5089ea47",
       "range": {
         "startLine": 127,
         "startChar": 86,
@@ -225,6 +411,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca41b42e_ab500856",
+        "filename": "src/libclient/authority/storagehelper.cpp",
+        "patchSetId": 59
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "updated to getCallInteractionStringNonSwarm (like before call-swarm)",
+      "parentUuid": "d07127d7_ead15a89",
+      "range": {
+        "startLine": 201,
+        "startChar": 35,
+        "endLine": 201,
+        "endChar": 38
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8814edb_3bdb1634",
@@ -238,6 +448,30 @@
       "writtenOn": "2022-11-04T18:37:43Z",
       "side": 1,
       "message": "format",
+      "range": {
+        "startLine": 1300,
+        "startChar": 28,
+        "endLine": 1302,
+        "endChar": 69
+      },
+      "revId": "4581ff80572c69634e2ab6e654a0b4182911bb2d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92b3626d_ae10403f",
+        "filename": "src/libclient/qtwrapper/configurationmanager_wrap.h",
+        "patchSetId": 59
+      },
+      "lineNbr": 1302,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 1,
+      "message": "weird clang didn\u0027t do that",
+      "parentUuid": "f8814edb_3bdb1634",
       "range": {
         "startLine": 1300,
         "startChar": 28,

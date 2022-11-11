@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3e83b9_a39c07de",
+        "filename": "src/app/calladapter.cpp",
+        "patchSetId": 59
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 0,
+      "message": "just brackets removed as un-necessary",
+      "parentUuid": "ffc75033_dc3fe4bc",
+      "range": {
+        "startLine": 498,
+        "startChar": 4,
+        "endLine": 505,
+        "endChar": 5
+      },
+      "revId": "c04b12329101ec93da25fad06fdac3738a94288b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55f7754e_b0923087",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-04T18:37:43Z",
       "side": 0,
       "message": "?",
+      "range": {
+        "startLine": 193,
+        "startChar": 8,
+        "endLine": 195,
+        "endChar": 9
+      },
+      "revId": "c04b12329101ec93da25fad06fdac3738a94288b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eb53436_5311e9ba",
+        "filename": "src/app/lrcinstance.cpp",
+        "patchSetId": 59
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-11T15:36:38Z",
+      "side": 0,
+      "message": "cleanup brackets",
+      "parentUuid": "55f7754e_b0923087",
       "range": {
         "startLine": 193,
         "startChar": 8,
