@@ -347,13 +347,6 @@ AvAdapter::onRendererStarted(const QString& id, const QSize& size)
         return;
     auto rendererInfo = rendererInfoList.first();
     rendererInformationListModel_->addElement(qMakePair(id, rendererInfo));
-
-    auto callModel = lrcInstance_->getCurrentCallModel();
-    auto renderDevice = callModel->getCurrentRenderedDevice(callId);
-    if (!id.contains("://"))
-        return;
-    set_currentRenderingDeviceId(id);
-    set_currentRenderingDeviceType(renderDevice.type);
 }
 
 void
