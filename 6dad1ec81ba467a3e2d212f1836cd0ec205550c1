@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2da75ef_37837042",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-12T04:29:01Z",
+      "side": 1,
+      "message": "Please ignore if it doesn\u0027t matter\n\n`behaviour` is en_CA, en_UK, en_AU, en_NZ.\n\nIf consistency with docs.jami.net is required, then en_US: `behavior`",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "6dad1ec81ba467a3e2d212f1836cd0ec205550c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f058da4f_ff49a4c5",
+        "filename": "src/app/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-12T04:29:01Z",
+      "side": 1,
+      "message": "Can `CallParticipantsModel.count \u003e 1 \u0026\u0026 ` be removed?\n\ntd;dr\n\nCan this setting be available if you are the 1 and only participant?\n\nPerhaps you are setting up a swarm and call that swarm, and you would like to enable \"Hide spectators\" before inviting everyone?\n\nWhat happens there are 2 people in a conversation and \"Hide spectators\" is enabled, then the other participant drops the line and then re-connects. Does \"Hide spectators\" need to be enable again?\n\nThank you",
+      "range": {
+        "startLine": 39,
+        "startChar": 40,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "6dad1ec81ba467a3e2d212f1836cd0ec205550c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
