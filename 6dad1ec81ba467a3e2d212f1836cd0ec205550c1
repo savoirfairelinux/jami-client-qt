@@ -45,6 +45,30 @@
       },
       "revId": "6dad1ec81ba467a3e2d212f1836cd0ec205550c1",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd54a20_d86917bd",
+        "filename": "src/app/mainview/components/ParticipantsLayer.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-12T14:31:28Z",
+      "side": 1,
+      "message": "The feature will not work as it\u0027s still not homogeneized daemon side but still in the todo.",
+      "parentUuid": "f058da4f_ff49a4c5",
+      "range": {
+        "startLine": 39,
+        "startChar": 40,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "6dad1ec81ba467a3e2d212f1836cd0ec205550c1",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
