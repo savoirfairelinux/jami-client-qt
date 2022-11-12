@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa6918e7_a9df8421",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-12T04:16:07Z",
+      "side": 1,
+      "message": "This is the proper fix for the abandoned https://review.jami.net/c/jami-client-qt/+/22982.",
+      "revId": "58b408b74fffbc0466f690d29a0182e65374e193",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
