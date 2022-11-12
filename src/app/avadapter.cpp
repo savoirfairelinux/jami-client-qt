@@ -43,10 +43,6 @@ AvAdapter::AvAdapter(LRCInstance* instance, QObject* parent)
             this,
             &AvAdapter::onAudioDeviceEvent);
     connect(&lrcInstance_->avModel(),
-            &lrc::api::AVModel::rendererStarted,
-            this,
-            &AvAdapter::onRendererStarted);
-    connect(&lrcInstance_->avModel(),
             &lrc::api::AVModel::onRendererInfosUpdated,
             this,
             &AvAdapter::setRenderersInfoList);
@@ -299,19 +295,6 @@ AvAdapter::onAudioDeviceEvent()
     auto inputs = avModel.getAudioInputDevices().size();
     auto outputs = avModel.getAudioOutputDevices().size();
     Q_EMIT audioDeviceListChanged(inputs, outputs);
-}
-
-void
-AvAdapter::onRendererStarted(const QString& id, const QSize& size)
-{
-    Q_UNUSED(size)
-    auto callId = lrcInstance_->getCurrentCallId();
-    auto callModel = lrcInstance_->getCurrentCallModel();
-    auto renderDevice = callModel->getCurrentRenderedDevice(callId);
-    if (!id.contains("://"))
-        return;
-    set_currentRenderingDeviceId(id);
-    set_currentRenderingDeviceType(renderDevice.type);
 }
 
 bool

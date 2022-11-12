@@ -104,7 +104,6 @@ ContextMenuAutoLoader {
             id: stopSharing
 
             canTrigger: AvAdapter.isSharing()
-                        && !isSIP && !isVideoMuted
             itemName: JamiStrings.stopSharing
             iconSource: JamiResources.share_stop_black_24dp_svg
             iconColor: JamiTheme.redColor
@@ -113,8 +112,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareScreen
 
-            canTrigger: CurrentAccount.videoEnabled_Video && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !isSIP
+            canTrigger: CurrentAccount.videoEnabled_Video
             itemName: JamiStrings.shareScreen
             iconSource: JamiResources.laptop_black_24dp_svg
             onClicked: {
@@ -129,8 +127,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareWindow
 
-            canTrigger: Qt.platform.os === "linux" && CurrentAccount.videoEnabled_Video && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !isSIP
+            canTrigger: Qt.platform.os === "linux" && CurrentAccount.videoEnabled_Video
             itemName: JamiStrings.shareWindow
             iconSource: JamiResources.window_black_24dp_svg
             onClicked: {
@@ -144,8 +141,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareScreenArea
 
-            canTrigger: CurrentAccount.videoEnabled_Video && AvAdapter.currentRenderingDeviceType !== Video.DeviceType.DISPLAY
-                        && !isSIP
+            canTrigger: CurrentAccount.videoEnabled_Video
             itemName: JamiStrings.shareScreenArea
             iconSource: JamiResources.share_area_black_24dp_svg
             onClicked: {
@@ -160,7 +156,7 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: shareFile
 
-            canTrigger: CurrentAccount.videoEnabled_Video && !isSIP
+            canTrigger: CurrentAccount.videoEnabled_Video
             itemName: JamiStrings.shareFile
             iconSource: JamiResources.file_black_24dp_svg
             onClicked: {
