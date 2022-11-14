@@ -52,6 +52,24 @@
       "parentUuid": "154bb73d_d2e85a17",
       "revId": "6737c1ec5cef17869445dadbe037e37588b14bfd",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba23ef68_d4453464",
+        "filename": "src/app/commoncomponents/mapWebengine/map.css",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-14T22:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f3259b8_fff5da9d",
+      "revId": "6737c1ec5cef17869445dadbe037e37588b14bfd",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

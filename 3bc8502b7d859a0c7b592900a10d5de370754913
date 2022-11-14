@@ -118,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3db8078_e6ea30da",
+        "filename": "src/app/mainview/components/ChatView.qml",
+        "patchSetId": 15
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-14T22:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a807fe59_0b92f396",
+      "range": {
+        "startLine": 81,
+        "startChar": 11,
+        "endLine": 94,
+        "endChar": 5
+      },
+      "revId": "3bc8502b7d859a0c7b592900a10d5de370754913",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc145317_4dc02c83",
@@ -283,6 +307,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "019df9d6_297ad174",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-14T22:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80d2d004_baf1989b",
+      "range": {
+        "startLine": 851,
+        "startChar": 24,
+        "endLine": 851,
+        "endChar": 52
+      },
+      "revId": "3bc8502b7d859a0c7b592900a10d5de370754913",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c6cafd4_f8441805",
@@ -437,6 +485,30 @@
       "writtenOn": "2022-11-14T14:57:19Z",
       "side": 1,
       "message": "can you rebase on https://review.jami.net/c/jami-client-qt/+/22967 to avoid to change qml.qrc",
+      "range": {
+        "startLine": 160,
+        "startChar": 31,
+        "endLine": 160,
+        "endChar": 43
+      },
+      "revId": "3bc8502b7d859a0c7b592900a10d5de370754913",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d857b457_395016da",
+        "filename": "src/app/qml.qrc",
+        "patchSetId": 15
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-14T22:15:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d9aae11_48a10d5c",
       "range": {
         "startLine": 160,
         "startChar": 31,
