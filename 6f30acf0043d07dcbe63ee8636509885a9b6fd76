@@ -22,6 +22,30 @@
       },
       "revId": "6f30acf0043d07dcbe63ee8636509885a9b6fd76",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67d36cf4_7c10a1b1",
+        "filename": "src/app/mainview/components/CallViewContextMenu.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-14T12:54:18Z",
+      "side": 0,
+      "message": "video is possible on SIP accounts (if video can be negotiated) that\u0027s why I removed it...\n\nBut I think we added this because most SIP provider doesn\u0027t support video. But if it\u0027s the case, I guess we should not do this and correctly detect if video can be negotiated...",
+      "parentUuid": "397ce50f_0c8b4147",
+      "range": {
+        "startLine": 107,
+        "startChar": 24,
+        "endLine": 107,
+        "endChar": 33
+      },
+      "revId": "6f30acf0043d07dcbe63ee8636509885a9b6fd76",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
