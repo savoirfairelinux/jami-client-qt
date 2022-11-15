@@ -16,6 +16,23 @@
       "message": "Works fine on GNU/Linux",
       "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5845cbc_2fdf8bbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-11-15T16:17:43Z",
+      "side": 1,
+      "message": "Also,\n\nwe cannot set a map point ourselves, so if the computer location is wrong, we cannot adjust it.",
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
