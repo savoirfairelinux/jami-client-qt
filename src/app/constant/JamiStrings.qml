@@ -288,7 +288,7 @@ Item {
     property string shareWindow: qsTr("Share window")
     property string stopSharing: qsTr("Stop sharing screen or file")
     property string shareScreenArea: qsTr("Share screen area")
-    property string shareFile: qsTr("Share file")
+    property string streamFile: qsTr("Stream file")
     property string selectShareMethod: qsTr("Select sharing method")
     property string viewPlugin: qsTr("View plugin")
     property string advancedInformation: qsTr("Advanced information")

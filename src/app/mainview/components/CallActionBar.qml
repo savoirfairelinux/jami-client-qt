@@ -126,7 +126,7 @@ Control {
                     }
                     shareModel.append({"Name": JamiStrings.shareScreenArea,
                                        "IconSource" : JamiResources.share_area_black_24dp_svg})
-                    shareModel.append({"Name": JamiStrings.shareFile,
+                    shareModel.append({"Name": JamiStrings.streamFile,
                                        "IconSource" : JamiResources.file_black_24dp_svg})
                 }
             }
@@ -141,7 +141,7 @@ Control {
                   case JamiStrings.shareScreenArea:
                       shareScreenAreaClicked()
                       break
-                  case JamiStrings.shareFile:
+                  case JamiStrings.streamFile:
                       shareFileClicked()
                       break
                 }

@@ -158,10 +158,10 @@ ContextMenuAutoLoader {
             }
         },
         GeneralMenuItem {
-            id: shareFile
+            id: streamFile
 
             canTrigger: CurrentAccount.videoEnabled_Video && !isSIP
-            itemName: JamiStrings.shareFile
+            itemName: JamiStrings.streamFile
             iconSource: JamiResources.file_black_24dp_svg
             onClicked: {
                 jamiFileDialog.open()
