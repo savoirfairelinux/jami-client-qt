@@ -104,6 +104,7 @@ struct ConfProperties_t
     bool hasCustomUserAgent;
     bool allowIncoming;
     bool allowIPAutoRewrite;
+    bool removeICEFromSDPAttributes;
     QString archivePassword;
     bool archiveHasPassword;
     QString archivePath;

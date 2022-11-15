@@ -43,6 +43,17 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
+        ToggleSwitch {
+            id: removeICEFromSDP
+
+            labelText: JamiStrings.removeICEFromSDPAttributes
+            fontPointSize: JamiTheme.settingsFontSize
+
+            checked: CurrentAccount.removeICEFromSDPAttributes
+
+            onSwitchToggled: CurrentAccount.removeICEFromSDPAttributes = checked
+        }
+
         ElidedTextLabel {
             Layout.preferredWidth: textWidth
             Layout.preferredHeight: JamiTheme.preferredFieldHeight

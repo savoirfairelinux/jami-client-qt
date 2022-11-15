@@ -118,6 +118,7 @@ CurrentAccount::updateData()
         set_proxyEnabled(accConfig.proxyEnabled, true);
         set_upnpEnabled(accConfig.upnpEnabled, true);
         set_publishedSameAsLocal(accConfig.publishedSameAsLocal, true);
+        set_removeICEFromSDPAttributes(accConfig.removeICEFromSDPAttributes, true);
         set_allowIPAutoRewrite(accConfig.allowIPAutoRewrite, true);
         set_proxyServer(accConfig.proxyServer, true);
         set_routeset(accConfig.routeset, true);
