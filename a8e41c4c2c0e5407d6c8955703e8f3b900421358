@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "26acbf22_a74e4e66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-11-15T16:13:48Z",
+      "side": 1,
+      "message": "1 -\nalice starts sharing\nbob wants to close/hide the sharing window, he can not. is it desired?\n\n2-\nalice starts sharing\nbob receives it\nalice stops sharing\nbob map stays open",
+      "revId": "a8e41c4c2c0e5407d6c8955703e8f3b900421358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "905f6837_5999724a",
         "filename": "CMakeLists.txt",
         "patchSetId": 20
