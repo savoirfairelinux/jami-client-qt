@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "905f6837_5999724a",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-15T14:58:54Z",
+      "side": 1,
+      "message": "Breaks without webengine\n\nqrc:/mainview/MainView.qml:408:5: Type ChatView unavailable\nqrc:/mainview/components/ChatView.qml:31:1: \"../../webengine/map\": no such directory\n\n\nWith -DWITH_WEBENGINE\u003dOFF",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 89,
+        "endChar": 14
+      },
+      "revId": "a8e41c4c2c0e5407d6c8955703e8f3b900421358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

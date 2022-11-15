@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "446d9d43_2db31752",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-15T14:58:54Z",
+      "side": 0,
+      "message": "The code is ok for me, need someone to test on windows and macOS (you can ping Kateryna and Andreas/Aline (or I will do it tomorrow for windows)",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 88,
+        "endChar": 10
+      },
+      "revId": "9b2dbb64eaa9256f800dfa69d897545f4b0affd2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
