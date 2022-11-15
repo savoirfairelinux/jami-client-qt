@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b03ee88_f92aa44e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-15T16:25:21Z",
+      "side": 1,
+      "message": "2. is \"normal\" it\u0027s the same on android for now... I think it\u0027s a bug from daemon\n\n1.  right, once the user close the map it should not be shown back indeed",
+      "parentUuid": "26acbf22_a74e4e66",
+      "revId": "a8e41c4c2c0e5407d6c8955703e8f3b900421358",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "905f6837_5999724a",
         "filename": "CMakeLists.txt",
         "patchSetId": 20
