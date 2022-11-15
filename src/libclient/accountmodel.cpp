@@ -840,6 +840,7 @@ account::Info::fromDetails(const MapStringString& details)
     confProperties.defaultModerators = QString(details[ConfProperties::DEFAULT_MODERATORS]);
     confProperties.localModeratorsEnabled = toBool(
         details[ConfProperties::LOCAL_MODERATORS_ENABLED]);
+    confProperties.removeICEFromSDPAttributes = toBool(details[ConfProperties::REMOVE_ICE_SDP_ATTRIBUTES]);
     // Audio
     confProperties.Audio.audioPortMax = toInt(details[ConfProperties::Audio::PORT_MAX]);
     confProperties.Audio.audioPortMin = toInt(details[ConfProperties::Audio::PORT_MIN]);
@@ -960,6 +961,7 @@ account::ConfProperties_t::toDetails() const
     details[ConfProperties::DHT_PROXY_LIST_URL] = this->dhtProxyListUrl;
     details[ConfProperties::DEFAULT_MODERATORS] = this->defaultModerators;
     details[ConfProperties::LOCAL_MODERATORS_ENABLED] = toQString(this->localModeratorsEnabled);
+    details[ConfProperties::REMOVE_ICE_SDP_ATTRIBUTES] = toQString(this->removeICEFromSDPAttributes);
     // Audio
     details[ConfProperties::Audio::PORT_MAX] = toQString(this->Audio.audioPortMax);
     details[ConfProperties::Audio::PORT_MIN] = toQString(this->Audio.audioPortMin);

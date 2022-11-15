@@ -157,6 +157,7 @@ Item {
 
     // AdvancedSDPSettings
     property string sdpSettingsTitle: qsTr("SDP Session Negotiation (ICE Fallback)")
+    property string removeICEFromSDPAttributes: qsTr("Remove ICE from SDP Attributes")
     property string sdpSettingsSubtitle: qsTr("Only used during negotiation in case ICE is not supported")
     property string audioRTPMinPort: qsTr("Audio RTP minimum Port")
     property string audioRTPMaxPort: qsTr("Audio RTP maximum Port")

@@ -120,6 +120,7 @@ class CurrentAccount final : public QObject
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, upnpEnabled)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, publishedSameAsLocal)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, allowIPAutoRewrite)
+    QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(bool, removeICEFromSDPAttributes)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(QString, proxyServer)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(QString, routeset)
     QML_ACCOUNT_CONFIG_SETTINGS_PROPERTY(QString, username)
