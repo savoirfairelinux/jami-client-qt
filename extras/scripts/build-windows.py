@@ -210,10 +210,13 @@ def build(config_str, qtver, tests=False):
     daemon_dir = os.path.dirname(repo_root_dir) + '\\daemon'
     daemon_bin_dir = daemon_dir + '\\build\\x64\\ReleaseLib_win32\\bin'
 
+    # We need to update the minimum SDK version to be able to
+    # build with system theme support
     cmake_options = [
         '-DCMAKE_PREFIX_PATH=' + qt_dir,
         '-DCMAKE_INSTALL_PREFIX=' + daemon_bin_dir,
-        '-DLIBJAMI_INCLUDE_DIR=' + daemon_dir + '\\src\\jami'
+        '-DLIBJAMI_INCLUDE_DIR=' + daemon_dir + '\\src\\jami',
+        '-DCMAKE_SYSTEM_VERSION=10.0.18362.0'
     ]
     if tests:
         cmake_options.append('-DENABLE_TESTS=true')
