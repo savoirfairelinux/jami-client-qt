@@ -16,6 +16,24 @@
       "message": "Is the `System` option the first item in the drop-down list?\n\nThis would provide consistency with `User interface language` drop-down and default value being in first position.\n\nThank you",
       "revId": "5156fd70b5196f8507a7d0e9e615c77ba22c0a7c",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b8ab143_67231c83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-16T21:05:33Z",
+      "side": 1,
+      "message": "it\u0027s the same combobox on GNU/Linux",
+      "parentUuid": "86dfeab3_6bd6795c",
+      "revId": "5156fd70b5196f8507a7d0e9e615c77ba22c0a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
