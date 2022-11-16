@@ -48,6 +48,12 @@ UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
     if (lrcInstance_->avModel().getRecordPath().isEmpty()) {
         lrcInstance_->avModel().setRecordPath(getDefaultRecordPath());
     }
+#if WATCHSYSTEMTHEME
+    settings = winrt::Windows::UI::ViewManagement::UISettings();
+    revoker_ = settings.ColorValuesChanged([this](auto&&...) {
+        Q_EMIT appThemeChanged();
+    });
+#endif
 }
 
 const QString
@@ -596,6 +602,43 @@ settingsCallback(GSettings* self, gchar* key, gpointer user_data)
 }
 #endif
 
+#ifdef WIN32
+bool
+readSystemThemeRegistry(bool getValue)
+{
+    auto returnValue = true;
+    HKEY hKey;
+    auto lResult
+        = RegOpenKeyEx(HKEY_CURRENT_USER,
+                       TEXT("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"),
+                       0,
+                       KEY_READ,
+                       &hKey);
+
+    if (lResult != ERROR_SUCCESS) {
+        RegCloseKey(hKey);
+        return false;
+    }
+
+    DWORD dwBufferSize(sizeof(DWORD));
+    DWORD nResult(0);
+    LONG nError = ::RegQueryValueExW(hKey,
+                                     TEXT("AppsUseLightTheme"),
+                                     0,
+                                     NULL,
+                                     reinterpret_cast<LPBYTE>(&nResult),
+                                     &dwBufferSize);
+    if (nError != ERROR_SUCCESS) {
+        returnValue = false;
+    } else if (getValue) {
+        returnValue = !nResult;
+    }
+
+    RegCloseKey(hKey);
+    return returnValue;
+}
+#endif
+
 bool
 UtilsAdapter::isSystemThemeDark()
 {
@@ -633,23 +676,37 @@ UtilsAdapter::isSystemThemeDark()
     }
     return false;
 #else
+#ifdef WIN32
+    return readSystemThemeRegistry(true);
+#else
     qWarning("System theme detection is not implemented");
     return false;
-#endif
+#endif // WIN32
+#endif // __has_include(<gio/gio.h>)
 }
 
 bool
 UtilsAdapter::useApplicationTheme()
 {
-    if (hasNativeDarkTheme()) {
-        QString theme = getAppValue(Settings::Key::AppTheme).toString();
-        if (theme == "Dark")
-            return true;
-        else if (theme == "Light")
-            return false;
-        return isSystemThemeDark();
-    }
-    bool enableDark = getAppValue(Settings::Key::EnableDarkTheme).toBool();
-    setAppValue(Settings::Key::AppTheme, enableDark ? "Dark" : "Light");
-    return enableDark;
+    QString theme = getAppValue(Settings::Key::AppTheme).toString();
+    if (theme == "Dark")
+        return true;
+    else if (theme == "Light")
+        return false;
+    return isSystemThemeDark();
+}
+
+
+bool
+UtilsAdapter::hasNativeDarkTheme() const
+{
+#if __has_include(<gio/gio.h>)
+    return true;
+#else
+#ifdef WIN32
+    return readSystemThemeRegistry(false);
+#else
+    return false;
+#endif
+#endif
 }
