@@ -32,7 +32,7 @@ OSX_DISTRIBUTION_NAME = "osx"
 WIN32_DISTRIBUTION_NAME = "win32"
 
 # vs vars
-win_sdk_default = '10.0.16299.0'
+win_sdk_default = '10.0.18362.0'
 win_toolset_default = '142'
 
 APT_BASED_DISTROS = [
