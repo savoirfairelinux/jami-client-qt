@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5761a224_b1552a03",
+        "filename": "src/app/utilsadapter.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T20:01:20Z",
+      "side": 1,
+      "message": "perhaps name the function more specifically, as it\u0027s reading the \u0027AppsUseLightTheme\u0027 key only\n\nand maybe a comment about the purpose of getValue \u003d\u003d false",
+      "range": {
+        "startLine": 607,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 23
+      },
+      "revId": "a201eada27c24980e89383cce363eed707783423",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
