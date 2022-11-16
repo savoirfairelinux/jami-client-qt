@@ -308,6 +308,7 @@ endif()
 
 if(MSVC)
   set(WINDOWS_SYS_LIBS
+    WindowsApp.lib
     Shell32.lib
     Ole32.lib
     Advapi32.lib
