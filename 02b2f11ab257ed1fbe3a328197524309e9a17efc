@@ -69,6 +69,201 @@
       "parentUuid": "47d32e64_8aba8bfc",
       "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ec9576b_7b28ee28",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "this file is already bloated, and is now receiving new responsibilities; perhaps some code can be better factored\n\ncurrently, the Positioning class is used for local device positioning, and the peer positioning logic is top-level in MessagesAdapter\n\nhow about a PositionManager (injected with LRCInstance) class that does all the dirty work for both peers and a LocalPostioning object, and then relays the pertinent data to MessagesAdapter, or is a QML singleton-type object itself",
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3da47243_9d4b2f59",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "unused in the contactPhoto path (also may be replaced with accInfo.id I think)",
+      "range": {
+        "startLine": 789,
+        "startChar": 4,
+        "endLine": 789,
+        "endChar": 58
+      },
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f00d00c4_435389bd",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "endline",
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a1e7c49_c2b0ed3d",
+        "filename": "src/app/positioning.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "it\u0027s not clear what this flag does. is there an issue with calling QGeoPositionInfoSource::startUpdates if it has already been called?\n\nsame for stopUpdates",
+      "range": {
+        "startLine": 50,
+        "startChar": 9,
+        "endLine": 50,
+        "endChar": 20
+      },
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e593e7f_424bf3bb",
+        "filename": "src/app/positioning.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "QJsonObject? or static?",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 33
+      },
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1957d443_ae6b7649",
+        "filename": "src/app/positioning.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "Positioning::startPositioning -\u003e Positioning::start",
+      "range": {
+        "startLine": 36,
+        "startChar": 9,
+        "endLine": 36,
+        "endChar": 25
+      },
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd6c3fd_f9c2097b",
+        "filename": "src/app/positioning.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "same as for startPositioning",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 24
+      },
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "465fb2b0_50be821c",
+        "filename": "src/app/positioning.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "use the whole word unless the total token length is absurdly long\nalso, using the word position is fine here (as with requestPosition) b/c other data can be updated/requested",
+      "range": {
+        "startLine": 50,
+        "startChar": 9,
+        "endLine": 50,
+        "endChar": 12
+      },
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fc26d1e_373a803b",
+        "filename": "src/app/positioning.h",
+        "patchSetId": 21
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "raw pointers should be initialized to null to avoid compiler dependancy on doing so.\nnot needed here, but might be, if the implentation changes at some point",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 36
+      },
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

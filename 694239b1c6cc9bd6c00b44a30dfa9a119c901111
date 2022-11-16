@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8944615_92891711",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:22:12Z",
+      "side": 1,
+      "message": "just some nitpicks + factoring suggestions\notherwise nice job! LGTM",
+      "revId": "694239b1c6cc9bd6c00b44a30dfa9a119c901111",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
