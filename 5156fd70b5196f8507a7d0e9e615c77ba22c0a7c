@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86dfeab3_6bd6795c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-16T20:28:47Z",
+      "side": 1,
+      "message": "Is the `System` option the first item in the drop-down list?\n\nThis would provide consistency with `User interface language` drop-down and default value being in first position.\n\nThank you",
+      "revId": "5156fd70b5196f8507a7d0e9e615c77ba22c0a7c",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
