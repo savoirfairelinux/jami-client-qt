@@ -48,6 +48,12 @@ UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
     if (lrcInstance_->avModel().getRecordPath().isEmpty()) {
         lrcInstance_->avModel().setRecordPath(getDefaultRecordPath());
     }
+#if WATCHSYSTEMTHEME
+    OSVERSIONINFOEX os;
+
+    settings = UISettings();
+    settings.ColorValuesChanged([this](auto&&...) { Q_EMIT appThemeChanged(); });
+#endif
 }
 
 const QString
