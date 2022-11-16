@@ -35,6 +35,15 @@
 
 #if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
 #include <winrt/Windows.Foundation.h>
+
+#define WATCHSYSTEMTHEME \
+    __has_include(<winrt/Windows.UI.ViewManagement.h>)
+
+#if WATCHSYSTEMTHEME
+#include <winrt/Windows.UI.ViewManagement.h>
+#endif
+
+using winrt::Windows::UI::ViewManagement::UISettings;
 #endif
 
 class QClipboard;
@@ -150,6 +159,10 @@ private:
 #if __has_include(<gio/gio.h>)
     GSettings* settings {nullptr};
     GSettingsSchema* schema {nullptr};
+#endif
+
+#if WATCHSYSTEMTHEME
+    UISettings settings = NULL;
 #endif
 };
 Q_DECLARE_METATYPE(UtilsAdapter*)
