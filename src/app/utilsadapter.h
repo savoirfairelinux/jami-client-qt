@@ -33,10 +33,27 @@
 #include <gio/gio.h>
 #endif
 
+#if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
+#include <winrt/Windows.Foundation.h>
+#endif
+
 class QClipboard;
 class SystemTray;
 
 #define LOGSLIMIT 10000
+
+
+#if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
+/**
+ * @brief Read if "AppsUseLightTheme" registry exists and its value
+ *
+ * @param getValue false to check if registry exists;
+ *
+ * @param getValue true if want the registry value.
+ * @return if getValue is true, returns if the native theme is Dark (defaults to false).
+ */
+bool readAppsUseLightThemeRegistry(bool getValue);
+#endif
 
 class UtilsAdapter final : public QmlAdapterBase
 {
@@ -112,14 +129,7 @@ public:
                                                           const QString& uri);
     Q_INVOKABLE bool luma(const QColor& color) const;
     Q_INVOKABLE bool useApplicationTheme();
-    Q_INVOKABLE bool hasNativeDarkTheme() const
-    {
-#if __has_include(<gio/gio.h>)
-        return true;
-#else
-        return false;
-#endif
-    }
+    Q_INVOKABLE bool hasNativeDarkTheme() const;
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
