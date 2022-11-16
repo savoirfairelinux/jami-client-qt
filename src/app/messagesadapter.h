@@ -39,6 +39,7 @@ class MessagesAdapter final : public QmlAdapterBase
     QML_RO_PROPERTY(bool, isMapActive)
     QML_RO_PROPERTY(int, timeSharingRemaining)
     QML_PROPERTY(QList<QString>, positionShareConvIds)
+    QML_PROPERTY(QSet<QString>, sharingUris)
 
 public:
     explicit MessagesAdapter(AppSettingsManager* settingsManager,
@@ -67,7 +68,7 @@ protected:
     Q_INVOKABLE void sharePosition(int maximumTime);
     Q_INVOKABLE void startPositioning();
     Q_INVOKABLE void stopPositioning();
-    Q_INVOKABLE void stopSharingPosition();
+    Q_INVOKABLE void stopSharingPosition(const QString convId = "");
     Q_INVOKABLE void setupChatView(const QVariantMap& convInfo);
     Q_INVOKABLE void loadMoreMessages();
     Q_INVOKABLE void loadConversationUntil(const QString& to);
@@ -106,10 +107,13 @@ protected:
     Q_INVOKABLE void onPaste();
     Q_INVOKABLE int getIndexOfMessage(const QString& messageId) const;
     Q_INVOKABLE QString getStatusString(int status);
+    Q_INVOKABLE QString getSelectedConvId();
     Q_INVOKABLE QVariantMap getTransferStats(const QString& messageId, int);
     Q_INVOKABLE QVariant dataForInteraction(const QString& interactionId,
                                             int role = Qt::DisplayRole) const;
     Q_INVOKABLE void getConvMedias();
+    Q_INVOKABLE bool isPositionSharedToConv(const QString& convUri);
+    Q_INVOKABLE bool isConvSharingPosition(const QString& convUri);
 
     // Run corrsponding js functions, c++ to qml.
     void setMessagesImageContent(const QString& path, bool isBased64 = false);
@@ -146,7 +150,7 @@ private Q_SLOTS:
     void onMessagesFoundProcessed(const QString& accountId,
                                   const VectorMapStringString& messageIds,
                                   const QVector<interaction::Info>& messageInformations);
-    void onOwnPositionReceived(const QString& peerId, const QString& body);
+    void sendPosition(const QString& peerId, const QString& body);
 
 private:
     QList<QString> conversationTypersUrlToName(const QSet<QString>& typersSet);
@@ -159,5 +163,4 @@ private:
     std::unique_ptr<Positioning> positionManager_;
     QTimer* timerTimeLeftSharing_;
     QTimer* timerStopSharing_;
-    QSet<QString> sharingUris_;
 };

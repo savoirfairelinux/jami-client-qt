@@ -38,36 +38,16 @@ Positioning::Positioning(QString uri, QObject* parent)
             &Positioning::locationServicesActivated);
 }
 
-Positioning::~Positioning()
-{
-    sendStopSharingMsg();
-    stopPositioning();
-}
-
 void
 Positioning::startPositioning()
 {
-    if (!isUpdating_) {
-        source_->startUpdates();
-        isUpdating_ = true;
-    }
+    source_->startUpdates();
 }
 
 void
 Positioning::stopPositioning()
 {
-    if (isUpdating_) {
-        source_->stopUpdates();
-        isUpdating_ = false;
-    }
-}
-
-void
-Positioning::sendStopSharingMsg()
-{
-    QString temp;
-    temp = "{\"type\":\"Stop\"}";
-    Q_EMIT newPos(uri_, temp, -1, "");
+    source_->stopUpdates();
 }
 
 QString

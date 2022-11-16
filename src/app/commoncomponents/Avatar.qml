@@ -19,6 +19,8 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
@@ -45,6 +47,8 @@ Item {
 
     property alias presenceStatus: presenceIndicator.status
     property bool showPresenceIndicator: true
+    property bool showSharePositionIndicator: false
+    property bool showSharedPositionIndicator: false
     property alias fillMode: image.fillMode
 
     onImageIdChanged: image.updateSource()
@@ -111,9 +115,64 @@ Item {
         anchors.rightMargin: -1
         anchors.bottom: root.bottom
         anchors.bottomMargin: -1
-
         size: root.width * JamiTheme.avatarPresenceRatio
-
         visible: showPresenceIndicator
     }
+
+    RowLayout {
+        id: positionIndicatorLayout
+
+        anchors.left: root.left
+        anchors.leftMargin: -1
+        anchors.bottom: root.bottom
+        anchors.bottomMargin: -1
+        spacing: 0
+
+        property real sizeI: root.width * JamiTheme.avatarPresenceRatio
+
+        Rectangle {
+            id: sharePositionIndicator
+
+            visible: showSharePositionIndicator
+            Layout.preferredWidth: parent.sizeI
+            Layout.preferredHeight: parent.sizeI
+            color: JamiTheme.backgroundColor
+            radius: parent.sizeI * 0.5
+
+            Image {
+                anchors.fill: parent
+
+                ColorOverlay {
+                    anchors.fill: parent
+                    source: parent
+                    color: JamiTheme.sharePositionIndicatorColor
+                }
+
+                source: JamiResources.my_location_svg
+            }
+        }
+
+        Rectangle {
+            id: sharedPositionIndicator
+
+            visible: showSharedPositionIndicator
+            Layout.preferredWidth: parent.sizeI
+            Layout.preferredHeight: parent.sizeI
+            color: JamiTheme.backgroundColor
+            radius: parent.sizeI * 0.5
+
+            Image {
+                anchors.fill: parent
+
+                ColorOverlay {
+                    anchors.fill: parent
+                    source: parent
+                    color: JamiTheme.sharedPositionIndicatorColor
+                }
+
+                source: JamiResources.my_location_svg
+            }
+        }
+    }
+
 }

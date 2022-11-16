@@ -190,62 +190,110 @@ Rectangle {
                 }
             }
         }
+        RowLayout {
+            id: sharePositionLayout
 
-        MaterialButton {
-            id: sharePositionButton
-
-            preferredWidth: text.contentWidth
-            textLeftPadding: JamiTheme.buttontextPadding
-            textRightPadding: JamiTheme.buttontextPadding
-            primary: true
-            text: webView.isSharing ?  JamiStrings.stopSharingPosition : JamiStrings.sharePosition
-            color: isError
-                   ? JamiTheme.buttonTintedGreyInactive
-                   : webView.isSharing ? JamiTheme.buttonTintedRed : JamiTheme.buttonTintedBlue
-            hoveredColor: isError
-                          ? JamiTheme.buttonTintedGreyInactive
-                          : webView.isSharing ? JamiTheme.buttonTintedRedHovered : JamiTheme.buttonTintedBlueHovered
-            pressedColor: isError
-                          ? JamiTheme.buttonTintedGreyInactive
-                          : webView.isSharing ? JamiTheme.buttonTintedRedPressed: JamiTheme.buttonTintedBluePressed
             Layout.alignment: Qt.AlignHCenter
 
-            property bool isHovered: false
-            property string positioningError
-            property bool isError: positioningError.length
+            MaterialButton {
+                id: sharePositionButton
 
-            onClicked: {
-                if (!isError) {
-                    if(webView.isSharing) {
-                        MessagesAdapter.stopSharingPosition();
-                    } else {
+                preferredWidth: text.contentWidth
+                textLeftPadding: JamiTheme.buttontextPadding
+                textRightPadding: JamiTheme.buttontextPadding
+                primary: true
+                visible: ! MessagesAdapter.isPositionSharedToConv(MessagesAdapter.getSelectedConvId())
+                text: JamiStrings.sharePosition
+                color: isError
+                       ? JamiTheme.buttonTintedGreyInactive
+                       : JamiTheme.buttonTintedBlue
+                hoveredColor: isError
+                              ? JamiTheme.buttonTintedGreyInactive
+                              : JamiTheme.buttonTintedBlueHovered
+                pressedColor: isError
+                              ? JamiTheme.buttonTintedGreyInactive
+                              : JamiTheme.buttonTintedBluePressed
+                Layout.alignment: Qt.AlignHCenter
+
+                property bool isHovered: false
+                property string positioningError
+                property bool isError: positioningError.length
+
+                onClicked: {
+                    if (!isError) {
                         if( buttonsChoseSharing.shortSharing)
                             MessagesAdapter.sharePosition(10 * 60 * 1000);
                         else
                             MessagesAdapter.sharePosition(60 * 60 * 1000);
+                        visible = false
+                    }
+                }
+
+                onHoveredChanged: {
+                    isHovered = !isHovered
+                }
+
+                MaterialToolTip {
+                    visible: sharePositionButton.isHovered
+                             && sharePositionButton.isError
+                    x: 0
+                    y: 0
+                    text: sharePositionButton.positioningError
+                }
+
+                Connections {
+                    target: MessagesAdapter
+                    function onPositioningError (err) {
+                        sharePositionButton.positioningError = err;
                     }
                 }
             }
 
-            onHoveredChanged: {
-                isHovered = !isHovered
-            }
+            MaterialButton {
+                id: stopSharingPositionButton
 
-            MaterialToolTip {
-                visible: sharePositionButton.isHovered
-                         && sharePositionButton.isError
-                x: 0
-                y: 0
-                text: sharePositionButton.positioningError
-            }
+                preferredWidth: text.contentWidth
+                textLeftPadding: JamiTheme.buttontextPadding
+                textRightPadding: JamiTheme.buttontextPadding
+                primary: true
+                visible: webView.isSharing
+                text:   JamiStrings.stopSharingPosition
+                color: isError
+                       ? JamiTheme.buttonTintedGreyInactive
+                       : JamiTheme.buttonTintedRed
+                hoveredColor: isError
+                              ? JamiTheme.buttonTintedGreyInactive
+                              : JamiTheme.buttonTintedRedHovered
+                pressedColor: isError
+                              ? JamiTheme.buttonTintedGreyInactive
+                              :  JamiTheme.buttonTintedRedPressed
+                Layout.alignment: Qt.AlignHCenter
 
-            Connections {
-                target: MessagesAdapter
-                function onPositioningError (err) {
-                    sharePositionButton.positioningError = err;
+                property bool isHovered: false
+                property string positioningError
+                property bool isError: positioningError.length
+
+                onClicked: {
+                    if (!isError) {
+                        if (MessagesAdapter.positionShareConvIds.length >= 2) {
+                            stopSharingPositionPopup.open()
+
+                        } else {
+                            MessagesAdapter.stopSharingPosition();
+                            sharePositionButton.visible = true
+
+                        }
+                    }
                 }
             }
         }
+    }
+
+    StopSharingPositionPopup {
+        id: stopSharingPositionPopup
+
+        property alias shareButtonVisibility: sharePositionButton.visible
+
     }
 
     Rectangle {
@@ -330,7 +378,6 @@ Rectangle {
                 source: JamiResources.round_close_24dp_svg
 
                 onClicked: {
-                    MessagesAdapter.stopSharingPosition();
                     MessagesAdapter.stopPositioning();
                     MessagesAdapter.setMapActive(false);
 
