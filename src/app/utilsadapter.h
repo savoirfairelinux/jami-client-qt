@@ -33,6 +33,18 @@
 #include <gio/gio.h>
 #endif
 
+#ifdef WIN32
+#define WATCHSYSTEMTHEME \
+    __has_include(<winrt/Windows.Foundation.h>) && __has_include(<winrt/Windows.Foundation.h>)
+#endif
+#if WATCHSYSTEMTHEME
+#include <VersionHelpers.h>
+#include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.UI.ViewManagement.h>
+
+using winrt::Windows::UI::ViewManagement::UISettings;
+#endif
+
 class QClipboard;
 class SystemTray;
 
@@ -112,14 +124,7 @@ public:
                                                           const QString& uri);
     Q_INVOKABLE bool luma(const QColor& color) const;
     Q_INVOKABLE bool useApplicationTheme();
-    Q_INVOKABLE bool hasNativeDarkTheme() const
-    {
-#if __has_include(<gio/gio.h>)
-        return true;
-#else
-        return false;
-#endif
-    }
+    Q_INVOKABLE bool hasNativeDarkTheme() const;
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);
@@ -139,6 +144,10 @@ private:
 #if __has_include(<gio/gio.h>)
     GSettings* settings {nullptr};
     GSettingsSchema* schema {nullptr};
+#endif
+
+#if WATCHSYSTEMTHEME
+    void* settings;
 #endif
 };
 Q_DECLARE_METATYPE(UtilsAdapter*)

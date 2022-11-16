@@ -88,29 +88,24 @@ ColumnLayout {
         role: "textDisplay"
 
         modelIndex: {
-            if (UtilsAdapter.hasNativeDarkTheme()) {
-                var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme)
-                if (theme === "Dark") {
-                    return 0
-                } else if (theme === "Light") {
-                    return 1
-                }
-                return 2
+            var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme)
+            if (theme === "Dark") {
+                return 0
+            } else if (theme === "Light") {
+                return 1
             }
-            return UtilsAdapter.getAppValue(Settings.Key.EnableDarkTheme) ? 0 : 1
+            if (UtilsAdapter.hasNativeDarkTheme())
+                return 2
+            return 1
         }
 
         onActivated: {
-            if (UtilsAdapter.hasNativeDarkTheme()) {
-                if (modelIndex === 0)
-                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark")
-                else if (modelIndex === 1)
-                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light")
-                else if (modelIndex === 2)
-                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System")
-            } else {
-                UtilsAdapter.setAppValue(Settings.Key.EnableDarkTheme, modelIndex === 0)
-            }
+            if (modelIndex === 0)
+                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark")
+            else if (modelIndex === 1)
+                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light")
+            else if (modelIndex === 2)
+                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System")
         }
     }
 

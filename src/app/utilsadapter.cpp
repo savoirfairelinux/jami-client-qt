@@ -36,6 +36,34 @@
 #include <QFileInfo>
 #include <QRegExp>
 
+#ifdef WIN32
+// Just to check if win 10 or greater as UISettings is not supported on windows 8
+typedef void(WINAPI * RtlGetVersion_FUNC)(OSVERSIONINFOEXW*);
+BOOL
+GetVersion(OSVERSIONINFOEX* os)
+{
+    HMODULE hMod;
+    RtlGetVersion_FUNC func;
+    OSVERSIONINFOEXW* osw = os;
+
+    hMod = LoadLibrary(TEXT("ntdll.dll"));
+    if (hMod) {
+        func = (RtlGetVersion_FUNC) GetProcAddress(hMod, "RtlGetVersion");
+        if (func == 0) {
+            FreeLibrary(hMod);
+            return FALSE;
+        }
+        ZeroMemory(osw, sizeof(*osw));
+        osw->dwOSVersionInfoSize = sizeof(*osw);
+        func(osw);
+
+    } else
+        return FALSE;
+    FreeLibrary(hMod);
+    return TRUE;
+}
+#endif
+
 UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
                            SystemTray* systemTray,
                            LRCInstance* instance,
@@ -48,6 +76,15 @@ UtilsAdapter::UtilsAdapter(AppSettingsManager* settingsManager,
     if (lrcInstance_->avModel().getRecordPath().isEmpty()) {
         lrcInstance_->avModel().setRecordPath(getDefaultRecordPath());
     }
+#if WATCHSYSTEMTHEME
+    OSVERSIONINFOEX os;
+
+    if (GetVersion(&os) == TRUE && os.dwMajorVersion >= 10) {
+        auto set = UISettings();
+        set.ColorValuesChanged([this](auto&&...) { Q_EMIT appThemeChanged(); });
+        settings = static_cast<void*>(&set);
+    }
+#endif
 }
 
 const QString
@@ -596,6 +633,51 @@ settingsCallback(GSettings* self, gchar* key, gpointer user_data)
 }
 #endif
 
+#ifdef WIN32
+/**
+ * @brief Read if "AppsUseLightTheme" registry exists and its value
+ *
+ * @param getValue false to check if registry exists;
+ *
+ * @param getValue true if want the registry value.
+ * @return if getValue is true, returns if the native theme is Dark (defaults to false).
+ */
+bool
+readAppsUseLightThemeRegistry(bool getValue)
+{
+    auto returnValue = true;
+    HKEY hKey;
+    auto lResult
+        = RegOpenKeyEx(HKEY_CURRENT_USER,
+                       TEXT("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"),
+                       0,
+                       KEY_READ,
+                       &hKey);
+
+    if (lResult != ERROR_SUCCESS) {
+        RegCloseKey(hKey);
+        return false;
+    }
+
+    DWORD dwBufferSize(sizeof(DWORD));
+    DWORD nResult(0);
+    LONG nError = ::RegQueryValueExW(hKey,
+                                     TEXT("AppsUseLightTheme"),
+                                     0,
+                                     NULL,
+                                     reinterpret_cast<LPBYTE>(&nResult),
+                                     &dwBufferSize);
+    if (nError != ERROR_SUCCESS) {
+        returnValue = false;
+    } else if (getValue) {
+        returnValue = !nResult;
+    }
+
+    RegCloseKey(hKey);
+    return returnValue;
+}
+#endif
+
 bool
 UtilsAdapter::isSystemThemeDark()
 {
@@ -633,23 +715,37 @@ UtilsAdapter::isSystemThemeDark()
     }
     return false;
 #else
+#ifdef WIN32
+    return readAppsUseLightThemeRegistry(true);
+#else
     qWarning("System theme detection is not implemented");
     return false;
-#endif
+#endif // WIN32
+#endif // __has_include(<gio/gio.h>)
 }
 
 bool
 UtilsAdapter::useApplicationTheme()
 {
-    if (hasNativeDarkTheme()) {
-        QString theme = getAppValue(Settings::Key::AppTheme).toString();
-        if (theme == "Dark")
-            return true;
-        else if (theme == "Light")
-            return false;
-        return isSystemThemeDark();
-    }
-    bool enableDark = getAppValue(Settings::Key::EnableDarkTheme).toBool();
-    setAppValue(Settings::Key::AppTheme, enableDark ? "Dark" : "Light");
-    return enableDark;
+    QString theme = getAppValue(Settings::Key::AppTheme).toString();
+    if (theme == "Dark")
+        return true;
+    else if (theme == "Light")
+        return false;
+    return isSystemThemeDark();
+}
+
+
+bool
+UtilsAdapter::hasNativeDarkTheme() const
+{
+#if __has_include(<gio/gio.h>)
+    return true;
+#else
+#ifdef WIN32
+    return readAppsUseLightThemeRegistry(false);
+#else
+    return false;
+#endif
+#endif
 }
