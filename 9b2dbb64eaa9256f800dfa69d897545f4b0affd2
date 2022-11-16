@@ -22,6 +22,30 @@
       },
       "revId": "9b2dbb64eaa9256f800dfa69d897545f4b0affd2",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e34a25a_10642a86",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 20
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-16T22:18:29Z",
+      "side": 0,
+      "message": "was this patch tested on MacOS ?",
+      "parentUuid": "446d9d43_2db31752",
+      "range": {
+        "startLine": 88,
+        "startChar": 9,
+        "endLine": 88,
+        "endChar": 10
+      },
+      "revId": "9b2dbb64eaa9256f800dfa69d897545f4b0affd2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
