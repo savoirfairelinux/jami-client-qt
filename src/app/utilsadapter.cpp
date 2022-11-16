@@ -697,6 +697,12 @@ UtilsAdapter::isSystemThemeDark()
     return false;
 #else
 #if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
+#if WATCHSYSTEMTHEME
+    if (!settings) {
+        settings = UISettings();
+        settings.ColorValuesChanged([this](auto&&...) { Q_EMIT appThemeChanged(); });
+    }
+#endif
     return readAppsUseLightThemeRegistry(true);
 #else
     qWarning("System theme detection is not implemented or is not supported");
