@@ -106,6 +106,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cb5db62_687365a6",
+        "filename": "src/app/messagesadapter.cpp",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-16T22:17:13Z",
+      "side": 1,
+      "message": "Done, no modifications on MessagesAdapter in this patch ( positionManager was created and exposed to QML instead)",
+      "parentUuid": "ea91effd_9a0279da",
+      "revId": "02b2f11ab257ed1fbe3a328197524309e9a17efc",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3da47243_9d4b2f59",
