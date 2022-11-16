@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbde9ab6_12a2ee88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-16T19:50:32Z",
+      "side": 1,
+      "message": "Share is the correct term imo. I would use stream to describe it if it was only being sent or received.",
+      "revId": "c2a6170ee1ebfeb594271c51deec9ce92b63f9ef",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
