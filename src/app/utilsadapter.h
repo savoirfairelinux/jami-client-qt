@@ -33,6 +33,10 @@
 #include <gio/gio.h>
 #endif
 
+#if defined(WIN32) && __has_include(<winrt/Windows.Foundation.h>)
+#include <winrt/Windows.Foundation.h>
+#endif
+
 class QClipboard;
 class SystemTray;
 
@@ -112,14 +116,7 @@ public:
                                                           const QString& uri);
     Q_INVOKABLE bool luma(const QColor& color) const;
     Q_INVOKABLE bool useApplicationTheme();
-    Q_INVOKABLE bool hasNativeDarkTheme() const
-    {
-#if __has_include(<gio/gio.h>)
-        return true;
-#else
-        return false;
-#endif
-    }
+    Q_INVOKABLE bool hasNativeDarkTheme() const;
 
 Q_SIGNALS:
     void debugMessageReceived(const QString& message);

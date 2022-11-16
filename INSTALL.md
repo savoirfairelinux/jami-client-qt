@@ -164,7 +164,7 @@ Only 64-bit MSVC build can be compiled.
 
   |              | SDK          | Toolset | MFC    |
   | ------------ | ------------ | ------- | ------ |
-  | Requirement: | 10.0.16299.0 | V142    | latest |
+  | Requirement: | 10.0.18362.0 | V142    | latest |
 
 - Install Qt Vs Tools under extensions, and configure msvc2017_64 path under Qt Options. _See the Qt notes below._
 
@@ -200,7 +200,7 @@ Only 64-bit MSVC build can be compiled.
 ```
 
 > **SDK and Toolset** Note:
-> Jami can be build with more rencents Windows SDK and Toolset than the ones specified in the table above. However, if your have another version than SDK 10.0.16299.0 and/or Toolset v142 installed, you need to identify it according to the example below.
+> Jami can be build with more recent Windows SDK and Toolset than the ones specified in the table above. However, if your have another version than SDK 10.0.18362.0 and/or Toolset v142 installed, you need to identify it according to the example below. For the SDK, you still need to have the required version in addition to the one you chose.
 
 ```bash
     python build.py --install --sdk <your-sdk-version> --toolset <your-toolset-version>
