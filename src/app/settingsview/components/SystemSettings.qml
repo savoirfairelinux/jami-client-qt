@@ -72,16 +72,19 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.leftMargin: JamiTheme.preferredMarginSize
 
+        property var nativeDarkThemeShift: 0
+
         labelText: JamiStrings.applicationTheme
         fontPointSize: JamiTheme.settingsFontSize
 
         comboModel: ListModel {
             id: themeModel
             Component.onCompleted: {
-                append({ textDisplay: JamiStrings.dark })
-                append({ textDisplay: JamiStrings.light })
-                if (UtilsAdapter.hasNativeDarkTheme())
+                themeComboBoxSettings.nativeDarkThemeShift = UtilsAdapter.hasNativeDarkTheme() ? 1 : 0
+                if (themeComboBoxSettings.nativeDarkThemeShift)
                     append({ textDisplay: JamiStrings.system })
+                append({ textDisplay: JamiStrings.light })
+                append({ textDisplay: JamiStrings.dark })
             }
         }
         widthOfComboBox: itemWidth
@@ -89,29 +92,24 @@ ColumnLayout {
         role: "textDisplay"
 
         modelIndex: {
-            if (UtilsAdapter.hasNativeDarkTheme()) {
-                var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme)
-                if (theme === "Dark") {
-                    return 0
-                } else if (theme === "Light") {
-                    return 1
-                }
-                return 2
+            var theme = UtilsAdapter.getAppValue(Settings.Key.AppTheme)
+            if (UtilsAdapter.hasNativeDarkTheme() && theme === "System")
+                return 0
+            if (theme === "Light") {
+                return 0 + nativeDarkThemeShift
+            } else if (theme === "Dark") {
+                return 1 + nativeDarkThemeShift
             }
-            return UtilsAdapter.getAppValue(Settings.Key.EnableDarkTheme) ? 0 : 1
+            return nativeDarkThemeShift
         }
 
         onActivated: {
-            if (UtilsAdapter.hasNativeDarkTheme()) {
-                if (modelIndex === 0)
-                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark")
-                else if (modelIndex === 1)
-                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light")
-                else if (modelIndex === 2)
-                    UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System")
-            } else {
-                UtilsAdapter.setAppValue(Settings.Key.EnableDarkTheme, modelIndex === 0)
-            }
+            if (modelIndex === 0 + nativeDarkThemeShift)
+                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Light")
+            else if (modelIndex === 1 + nativeDarkThemeShift)
+                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "Dark")
+            else if (modelIndex === 0)
+                UtilsAdapter.setAppValue(Settings.Key.AppTheme, "System")
         }
     }
 
@@ -234,10 +232,11 @@ ColumnLayout {
         function onChangeLanguage() {
             var idx = themeComboBoxSettings.modelIndex
             themeModel.clear()
-            themeModel.append({ textDisplay: JamiStrings.dark })
-            themeModel.append({ textDisplay: JamiStrings.light })
-            if (UtilsAdapter.hasNativeDarkTheme())
+            themeComboBoxSettings.nativeDarkThemeShift = UtilsAdapter.hasNativeDarkTheme() ? 1 : 0
+            if (themeComboBoxSettings.nativeDarkThemeShift)
                 themeModel.append({ textDisplay: JamiStrings.system })
+            themeModel.append({ textDisplay: JamiStrings.light })
+            themeModel.append({ textDisplay: JamiStrings.dark })
             themeComboBoxSettings.modelIndex = idx
         }
     }
