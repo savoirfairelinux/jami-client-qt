@@ -298,9 +298,9 @@ Item {
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
 
-    //share position
-    property string sharePosition: qsTr("Share position")
-    property string stopSharingPosition: qsTr("Stop sharing position")
+    //share location
+    property string sharePosition: qsTr("Share location")
+    property string stopSharingPosition: qsTr("Stop sharing")
     property string shortSharing: qsTr("10 minutes")
     property string longSharing: qsTr("One hour")
     property string minutesLeft: qsTr("%1 minutes left")
@@ -308,6 +308,18 @@ Item {
     property string locationServiceError: qsTr("Location error: The application lacks the required privileges. Location not available please turn on location services. Other participants' position can still be received.")
     property string locationClosedError: qsTr("Location error: The connection was closed. As soon as the Location Services is re-enabled, regular updates will resume. Other participants' position can still be received.")
     property string failedPositioning: qsTr("Location error: Unknown error occurred. Other participants' position can still be received.")
+    property string stopAllSharings: qsTr("Turn off location sharing");
+    property string stopConvSharing: qsTr("Stop location sharing in this conversation");
+    property string stopSharingPopupBody: qsTr("Location is shared in several conversations");
+    property string minimizeMapTooltip: qsTr("Minimize");
+    property string maximizeMapTooltip: qsTr("Maximize");
+    property string reduceMapTooltip: qsTr("Reduce");
+    property string extendMapTooltip: qsTr("Extend");
+    property string dragMapTooltip: qsTr("Drag");
+    property string centerMapTooltip: qsTr("Center");
+    property string closeMapTooltip: qsTr("Close");
+
+
 
 
     // Chatview header

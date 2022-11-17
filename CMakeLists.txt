@@ -178,6 +178,7 @@ set(COMMON_SOURCES
   ${APP_SRC_DIR}/utils.cpp
   ${APP_SRC_DIR}/mainapplication.cpp
   ${APP_SRC_DIR}/messagesadapter.cpp
+  ${APP_SRC_DIR}/positionobject.cpp
   ${APP_SRC_DIR}/positionmanager.cpp
   ${APP_SRC_DIR}/accountadapter.cpp
   ${APP_SRC_DIR}/calladapter.cpp
@@ -233,6 +234,7 @@ set(COMMON_HEADERS
   ${APP_SRC_DIR}/mainapplication.h
   ${APP_SRC_DIR}/qrimageprovider.h
   ${APP_SRC_DIR}/messagesadapter.h
+  ${APP_SRC_DIR}/positionobject.h
   ${APP_SRC_DIR}/positionmanager.h
   ${APP_SRC_DIR}/accountadapter.h
   ${APP_SRC_DIR}/calladapter.h
