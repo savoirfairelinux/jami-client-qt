@@ -31,6 +31,7 @@ class PositionManager : public QmlAdapterBase
     QML_RO_PROPERTY(bool, isMapActive)
     QML_RO_PROPERTY(int, timeSharingRemaining)
     QML_PROPERTY(QList<QString>, positionShareConvIds)
+    QML_PROPERTY(QSet<QString>, sharingUris)
     QML_PROPERTY(bool, mapAutoOpening)
 public:
     explicit PositionManager(LRCInstance* instance, QObject* parent = nullptr);
@@ -56,7 +57,10 @@ protected:
     Q_INVOKABLE void sharePosition(int maximumTime);
     Q_INVOKABLE void startPositioning();
     Q_INVOKABLE void stopPositioning();
-    Q_INVOKABLE void stopSharingPosition();
+    Q_INVOKABLE void stopSharingPosition(const QString convId = "");
+    Q_INVOKABLE QString getSelectedConvId();
+    Q_INVOKABLE bool isPositionSharedToConv(const QString& convUri);
+    Q_INVOKABLE bool isConvSharingPosition(const QString& convUri);
 
 private Q_SLOTS:
     void onPositionErrorReceived(const QString error);
@@ -64,11 +68,11 @@ private Q_SLOTS:
                             const QString& body,
                             const uint64_t& timestamp,
                             const QString& daemonId);
-    void onOwnPositionReceived(const QString& peerId, const QString& body);
+    void sendPosition(const QString& peerId, const QString& body);
 
 private:
     std::unique_ptr<Positioning> localPositioning_;
     QTimer* timerTimeLeftSharing_ = nullptr;
     QTimer* timerStopSharing_ = nullptr;
-    QSet<QString> sharingUris_;
+    QSet<QString> currentConvSharingUris_;
 };
