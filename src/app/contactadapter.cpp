@@ -154,12 +154,9 @@ ContactAdapter::contactSelected(int index)
         switch (listModeltype_) {
         case SmartListModel::Type::ADDCONVMEMBER: {
             auto members = convModel->peersForConversation(lrcInstance_->get_selectedConvUid());
-            auto cntMembers = members.size();
             const auto uris = contactIndex.data(Role::Uris).toStringList();
             for (const auto& uri : uris) {
-                // TODO remove < 9
-                if (!members.contains(uri) && cntMembers < 9) {
-                    cntMembers++;
+                if (!members.contains(uri)) {
                     convModel->addConversationMember(lrcInstance_->get_selectedConvUid(), uri);
                 }
             }
