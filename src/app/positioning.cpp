@@ -38,12 +38,6 @@ Positioning::Positioning(QString uri, QObject* parent)
             &Positioning::locationServicesActivated);
 }
 
-Positioning::~Positioning()
-{
-    sendStopSharingMsg();
-    stop();
-}
-
 void
 Positioning::start()
 {
@@ -56,16 +50,6 @@ Positioning::stop()
 {
     if (source_)
         source_->stopUpdates();
-}
-
-void
-Positioning::sendStopSharingMsg()
-{
-    QJsonObject jsonObj;
-    jsonObj.insert("type", QJsonValue("Stop"));
-    QJsonDocument doc(jsonObj);
-    QString strJson(doc.toJson(QJsonDocument::Compact));
-    Q_EMIT newPosition(uri_, strJson, -1, "");
 }
 
 QString
