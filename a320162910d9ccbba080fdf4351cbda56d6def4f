@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84a6a978_9b4471e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-17T20:40:34Z",
+      "side": 1,
+      "message": "It depends of you system/WM ; For GNOME it\u0027s just \"Location Services\", but it\u0027s a generic parameter and can change from one computer to another",
+      "parentUuid": "5e5b7df3_0338b1fb",
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bca7c7c_01d0e1e2",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 28
