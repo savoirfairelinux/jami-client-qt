@@ -131,11 +131,6 @@ SidePanelBase {
             newHm = Array.from(newHm).filter(r => r.convId !== convId)
         }
 
-        // We can't have more than 8 participants yet. (7 + self)
-        if (newHm.length > 7) {
-            return false
-        }
-
         newH.push(convId)
         root.highlighted = newH
         root.highlightedMembers = newHm
@@ -396,25 +391,6 @@ SidePanelBase {
                 anchors.bottom: parent.bottom
 
                 spacing: 4
-
-                Text {
-                    font.bold: true
-                    font.pointSize: JamiTheme.contactEventPointSize
-
-                    Layout.margins: 16
-                    Layout.maximumHeight: 24
-                    Layout.alignment: Qt.AlignTop
-                    Layout.fillWidth: true
-
-                    wrapMode: Text.Wrap
-
-                    text: {
-                        if (highlightedMembers.length === 0)
-                            return JamiStrings.youCanAdd7
-                        return JamiStrings.youCanAddMore.arg(7 - Math.min(highlightedMembers.length, 7))
-                    }
-                    color: JamiTheme.textColor
-                }
 
                 JamiListView {
                     id: swarmCurrentConversationList
