@@ -298,6 +298,29 @@
       },
       "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69be6aa2_b763989b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:17:50Z",
+      "side": 1,
+      "message": "Is a `Positioning Service` or `Location Service` used?\n\nIf a `Location Service` is used, should the string begin with:\n`Location error`\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dlocation%20error\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 310,
+        "startChar": 45,
+        "endLine": 310,
+        "endChar": 56
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
