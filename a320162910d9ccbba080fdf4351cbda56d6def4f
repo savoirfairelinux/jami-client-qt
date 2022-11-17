@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5b7df3_0338b1fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "Sorry for commenting again. Ideas here seem to happen over a period of time, not all at once. Thank you for your understanding.\n\nIf you could advise were these Privacy/Location Services are found, that could help with providing better strings for your Jami program.",
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bca7c7c_01d0e1e2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "Should `position` and `location` be standardized to `location`?\n`location`\n\nWhat do you think?",
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f47d9cee_21f53336",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "`location`",
+      "range": {
+        "startLine": 303,
+        "startChar": 60,
+        "endLine": 303,
+        "endChar": 68
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9505695_705f5be2",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "Will there be `Privacy` setting inside Jami `Settings` or is this inside the operating system?\n\n1. `Please enable Location Services in your Privacy settings to determine your location.`\n2. `If you would like to use this feature, please turn on Location Services inside Settings.`\n3. `Location not available please turn on location services`\n4. `To re-enable, please go to Settings and turn on Location Services for this app.\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dlocation%20services\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003d0",
+      "range": {
+        "startLine": 308,
+        "startChar": 111,
+        "endLine": 308,
+        "endChar": 166
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f005f38b_d430439c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "`location`",
+      "range": {
+        "startLine": 308,
+        "startChar": 188,
+        "endLine": 308,
+        "endChar": 196
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d684e00_1292f738",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "Should these 2 sentences be replaced with:\n`Jami needs to access to your location. Please turn on Location Services in your device settings.`\n\nSuggested string modified from `Power BI needs to access to your location. Please turn on Location Services in your device settings.` at https://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dlocation%20services\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003d0",
+      "range": {
+        "startLine": 308,
+        "startChar": 64,
+        "endLine": 308,
+        "endChar": 167
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "605f663c_c02ca1fc",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "`unavailable`",
+      "range": {
+        "startLine": 308,
+        "startChar": 120,
+        "endLine": 308,
+        "endChar": 133
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571b48e6_4dd9a6c7",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "proper noun? `Location Services`",
+      "range": {
+        "startLine": 308,
+        "startChar": 149,
+        "endLine": 308,
+        "endChar": 166
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "588bb028_87fdf280",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "`location`",
+      "range": {
+        "startLine": 309,
+        "startChar": 187,
+        "endLine": 309,
+        "endChar": 195
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "237d9de4_6a40e4d7",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T20:25:45Z",
+      "side": 1,
+      "message": "`location`",
+      "range": {
+        "startLine": 310,
+        "startChar": 105,
+        "endLine": 310,
+        "endChar": 113
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
