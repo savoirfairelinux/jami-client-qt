@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6131d907_2926f70c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 26
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "Should the OpenLayers version be added to the commit message?\nhttps://openlayers.org/download/",
+      "range": {
+        "startLine": 10,
+        "startChar": 10,
+        "endLine": 10,
+        "endChar": 20
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ee22716_3d15069c",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "Can the string please include the variable?\n%s minutes left\n\nIt can help enable translators provide better translations as the translations could be:\n* minutes %s left\n* %s. minutes left\n* left minutes %s",
+      "range": {
+        "startLine": 306,
+        "startChar": 39,
+        "endLine": 306,
+        "endChar": 51
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c184043b_051f183d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "Can the string please include the variable?",
+      "range": {
+        "startLine": 307,
+        "startChar": 38,
+        "endLine": 307,
+        "endChar": 49
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5100dfe2_5e5019a0",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "`device`? If someone is running the client-qt on their PinePhone or Librem 5 smartphones.",
+      "range": {
+        "startLine": 308,
+        "startChar": 161,
+        "endLine": 308,
+        "endChar": 169
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4be88e54_f2b315b9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "If you wanted to remove first-person `You`, the string could be:\n`Other participants\u0027 position can still be received.`\nIf you do not want the apostrophe, the string could be:\n`Position of other participants can still be received.`\n`Positions of other participants can still be received.`",
+      "range": {
+        "startLine": 308,
+        "startChar": 171,
+        "endLine": 308,
+        "endChar": 226
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7388d92_2b145bf0",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "Does `localisation service` means changing the locale, eg from en-US to fr?\n\nIs `Location Services` what is meant in this string?\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dlocation%20services\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nShould the en source string be:\n`Location not available please turn on location services`\n\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dLocation%20not%20available%20please%20turn%20on%20location%20services\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined",
+      "range": {
+        "startLine": 308,
+        "startChar": 116,
+        "endLine": 308,
+        "endChar": 169
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f56376_9cd0d18e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "`lacks`?\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dlacks%20the%20required\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003d0",
+      "range": {
+        "startLine": 308,
+        "startChar": 84,
+        "endLine": 308,
+        "endChar": 90
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf4217dc_f6222fb5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "Should this be en-US?\n`localization`",
+      "range": {
+        "startLine": 308,
+        "startChar": 131,
+        "endLine": 308,
+        "endChar": 143
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f88177b_83c5c948",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "Past-tense, i.e.`closed`?",
+      "range": {
+        "startLine": 309,
+        "startChar": 85,
+        "endLine": 309,
+        "endChar": 90
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "effda865_be5e515e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "If you wanted to remove first-person You , the string could be:\n`Other participants\u0027 position can still be received.`",
+      "range": {
+        "startLine": 309,
+        "startChar": 168,
+        "endLine": 309,
+        "endChar": 223
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00d549a_80ea8bf1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "Other strings have a capital after the colon `:`. Should this also be a capital letter, i.e. `U`?",
+      "range": {
+        "startLine": 310,
+        "startChar": 64,
+        "endLine": 310,
+        "endChar": 65
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "791d7e43_d22c822d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "Another option is `Unknown error occurred`\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dunknown%20error\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003d0",
+      "range": {
+        "startLine": 310,
+        "startChar": 64,
+        "endLine": 310,
+        "endChar": 77
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5778f0b_12a7a8f3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 26
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-17T00:09:40Z",
+      "side": 1,
+      "message": "1. Remove trailing space ` `?\n2. Should first-person `You` be remove?\n\nCould the string be:\n`Other participants\u0027 position can still be received.`",
+      "range": {
+        "startLine": 310,
+        "startChar": 79,
+        "endLine": 310,
+        "endChar": 135
+      },
+      "revId": "fd4529c2b45e52231fbad1e7210ce537a0fc8171",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
