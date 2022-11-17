@@ -51,6 +51,24 @@
       "parentUuid": "6275d5ea_11a62337",
       "revId": "c3f9e70113e0bc4d452a1365280ecd8d6ca8feab",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e8ca2bb_0c8dbd30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-17T20:02:03Z",
+      "side": 1,
+      "message": "and packaging-gnu-linux is still in jami-project for now",
+      "parentUuid": "55aae4f2_6c6bc92c",
+      "revId": "c3f9e70113e0bc4d452a1365280ecd8d6ca8feab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
