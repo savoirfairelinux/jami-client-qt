@@ -84,11 +84,6 @@ Rectangle {
             newHm = Array.from(newHm).filter(r => r.convId !== convId)
         }
 
-        // We can't have more than 8 participants yet. (7 + self)
-        if (newHm.length > 7) {
-            return false
-        }
-
         newH.push(convId)
         root.highlighted = newH
         root.highlightedMembers = newHm
@@ -344,21 +339,6 @@ Rectangle {
         anchors.bottom: parent.bottom
 
         spacing: 4
-
-        Label {
-            font.bold: true
-            font.pointSize: JamiTheme.contactEventPointSize
-
-            Layout.margins: 16
-            Layout.maximumHeight: 24
-
-            text: {
-                if (highlightedMembers.length === 0)
-                    return JamiStrings.youCanAdd8
-                return JamiStrings.youCanAddMore.arg(7 - Math.min(highlightedMembers.length, 7))
-            }
-            color: JamiTheme.textColor
-        }
 
         JamiListView {
             id: swarmCurrentConversationList

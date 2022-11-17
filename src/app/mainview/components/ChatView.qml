@@ -86,13 +86,6 @@ Rectangle {
             Connections {
                 target: CurrentConversation
 
-                function onUrisChanged(uris) {
-                    if (CurrentConversation.uris.length >= 8 && addMemberPanel.visible) {
-                        swarmDetailsPanel.visible = false
-                        addMemberPanel.visible = !addMemberPanel.visible
-                    }
-                }
-
                 function onNeedsHost() {
                     hostPopup.open()
                 }

@@ -764,8 +764,6 @@ Item {
     property string none: qsTr("None")
 
     // NewSwarmPage
-    property string youCanAdd8: qsTr("You can add 8 people in the swarm")
-    property string youCanAddMore: qsTr("You can add %1 more people in the swarm")
     property string createTheSwarm: qsTr("Create the swarm")
     property string goToConversation: qsTr("Go to conversation")
     property string promoteAdministrator: qsTr("Promote to administrator")
