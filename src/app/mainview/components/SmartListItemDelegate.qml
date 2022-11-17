@@ -67,9 +67,21 @@ ItemDelegate {
 
             imageId: UID
             showPresenceIndicator: Presence !== undefined ? Presence : false
+            showSharePositionIndicator: PositionManager.isPositionSharedToConv(UID)
+            showSharedPositionIndicator: PositionManager.isConvSharingPosition(UID)
 
             Layout.preferredWidth: JamiTheme.smartListAvatarSize
             Layout.preferredHeight: JamiTheme.smartListAvatarSize
+
+            Connections {
+                target: PositionManager
+                function onPositionShareConvIdsChanged () {
+                    avatar.showSharePositionIndicator = PositionManager.isPositionSharedToConv(UID)
+                }
+                function onSharingUrisChanged () {
+                    avatar.showSharedPositionIndicator = PositionManager.isConvSharingPosition(UID)
+                }
+            }
 
             Rectangle {
                 id: overlayHighlighted

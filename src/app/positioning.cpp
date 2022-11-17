@@ -28,7 +28,7 @@ Positioning::Positioning(QString uri, QObject* parent)
     source_ = QGeoPositionInfoSource::createDefaultSource(this);
     QTimer* timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Positioning::requestPosition);
-    timer->start(2000);
+    timer->start(5000);
     connect(source_, &QGeoPositionInfoSource::errorOccurred, this, &Positioning::slotError);
     connect(source_, &QGeoPositionInfoSource::positionUpdated, this, &Positioning::positionUpdated);
     // if location services are activated, positioning will be activated automatically
@@ -36,12 +36,6 @@ Positioning::Positioning(QString uri, QObject* parent)
             &QGeoPositionInfoSource::supportedPositioningMethodsChanged,
             this,
             &Positioning::locationServicesActivated);
-}
-
-Positioning::~Positioning()
-{
-    sendStopSharingMsg();
-    stop();
 }
 
 void
@@ -56,16 +50,6 @@ Positioning::stop()
 {
     if (source_)
         source_->stopUpdates();
-}
-
-void
-Positioning::sendStopSharingMsg()
-{
-    QJsonObject jsonObj;
-    jsonObj.insert("type", QJsonValue("Stop"));
-    QJsonDocument doc(jsonObj);
-    QString strJson(doc.toJson(QJsonDocument::Compact));
-    Q_EMIT newPosition(uri_, strJson, -1, "");
 }
 
 QString
