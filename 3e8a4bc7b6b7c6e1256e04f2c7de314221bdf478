@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dc324ea2_c476016f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-17T20:28:44Z",
+      "side": 1,
+      "message": "it should happen all the time once a selection has changed",
+      "parentUuid": "b5f9e2e8_ecc7dca3",
+      "range": {
+        "startLine": 10,
+        "startChar": 14,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "3e8a4bc7b6b7c6e1256e04f2c7de314221bdf478",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f01f08d_da7327d3",
         "filename": "src/app/commoncomponents/SettingParaCombobox.qml",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-10T12:53:42Z",
       "side": 1,
       "message": "While you are here...\n```\nqrc:/settingsview/components/SettingsComboBox.qml:56:5: QML SettingParaCombobox (parent or ancestor of DelegateModelGroup): get: index out of range\nqrc:/commoncomponents/SettingParaCombobox.qml:57: TypeError: Value is undefined and could not be converted to an object\n```",
+      "range": {
+        "startLine": 56,
+        "startChar": 16,
+        "endLine": 57,
+        "endChar": 62
+      },
+      "revId": "3e8a4bc7b6b7c6e1256e04f2c7de314221bdf478",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3560725_f1092eb6",
+        "filename": "src/app/commoncomponents/SettingParaCombobox.qml",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 90
+      },
+      "writtenOn": "2022-11-17T20:28:44Z",
+      "side": 1,
+      "message": "I\u0027ll have to check into that. There are several things wrong with the SettingParaComboBox component (when I use a built-in component, everything seems to work well).",
+      "parentUuid": "3f01f08d_da7327d3",
       "range": {
         "startLine": 56,
         "startChar": 16,
