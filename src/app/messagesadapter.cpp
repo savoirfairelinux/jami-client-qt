@@ -589,6 +589,9 @@ MessagesAdapter::isLocalImage(const QString& mimename)
                                      [fileFormat](QByteArray format) {
                                          return format == fileFormat;
                                      });
+        if (*iterator == "gif") {
+            return {{"isAnimatedImage", true}};
+        }
         return {{"isImage", iterator != supportedFormats.end()}};
     }
     return {{"isImage", false}};
@@ -610,7 +613,6 @@ MessagesAdapter::getMediaInfo(const QString& msg)
         return fileInfo;
     }
     static const QRegExp vPattern("(video/)(avi|mov|webm|webp|rmvb)$", Qt::CaseInsensitive);
-    auto match = vPattern.indexIn(mime.name());
     QString type = vPattern.capturedTexts().size() == 3 ? vPattern.capturedTexts()[1] : "";
     if (!type.isEmpty()) {
         return {
@@ -619,7 +621,6 @@ MessagesAdapter::getMediaInfo(const QString& msg)
         };
     } else {
         static const QRegExp aPattern("(audio/)(ogg|flac|wav|mpeg|mp3)$", Qt::CaseInsensitive);
-        match = aPattern.indexIn(mime.name());
         type = aPattern.capturedTexts().size() == 3 ? aPattern.capturedTexts()[1] : "";
         if (!type.isEmpty()) {
             return {
