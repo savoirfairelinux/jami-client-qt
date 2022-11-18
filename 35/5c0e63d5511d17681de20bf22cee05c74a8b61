@@ -1,0 +1,8 @@
+Code-Review+2: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+Code-Review+2: Maxim Cournoyer <maxim.cournoyer@savoirfairelinux.com>
+Verified+1: Jenkins CI <jenkins@ring-packaging.cx>
+Submitted-by: Sébastien Blin <sebastien.blin@savoirfairelinux.com>
+Submitted-at: Fri, 18 Nov 2022 14:01:57 -0500
+Reviewed-on: https://review.jami.net/c/jami-client-qt/+/22932
+Project: jami-client-qt
+Branch: refs/heads/master
