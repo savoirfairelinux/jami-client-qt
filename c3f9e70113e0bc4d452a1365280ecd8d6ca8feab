@@ -69,6 +69,24 @@
       "parentUuid": "55aae4f2_6c6bc92c",
       "revId": "c3f9e70113e0bc4d452a1365280ecd8d6ca8feab",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a1ebe58_d532ac86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 915
+      },
+      "writtenOn": "2022-11-18T16:54:01Z",
+      "side": 1,
+      "message": "Agreed to punt on fixing packaging issues in this ticket.",
+      "parentUuid": "6e8ca2bb_0c8dbd30",
+      "revId": "c3f9e70113e0bc4d452a1365280ecd8d6ca8feab",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
