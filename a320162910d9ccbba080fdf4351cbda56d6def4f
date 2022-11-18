@@ -56,6 +56,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d3d81d8_9e871a73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-11-18T13:09:10Z",
+      "side": 1,
+      "message": "1- \nAlice starts sharing\nBob closes the map\nAlice stops and restart sharing with Bob\nBob has no idea a location is being shared. The map does not open neither there is an indication that the other peer is sharing. It should at least be an indicator.\nIf bob leaves the conversation and re-enters, then the map opens.\n\n2-\nOn mac the app requests to access location every time we switch accounts.\nIt should ask only once and save it for future jami runs as an app config, not per account and not every time we run jami.\n",
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bca7c7c_01d0e1e2",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 28
