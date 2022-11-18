@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d85c24c_92f5cf11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-18T14:44:36Z",
+      "side": 1,
+      "message": "1: indicators will be in the next patch: https://review.jami.net/c/jami-client-qt/+/23061.\n\n2. I am going to see what can be done to fix it",
+      "parentUuid": "7d3d81d8_9e871a73",
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bca7c7c_01d0e1e2",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 28
