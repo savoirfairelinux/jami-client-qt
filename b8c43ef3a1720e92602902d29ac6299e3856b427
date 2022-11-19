@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d5167bc_bd05d2bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-19T07:06:28Z",
+      "side": 1,
+      "message": "Sorry for the noise.\n\nComputer grammar checkers are not the best; however, the strings don\u0027t sound right.",
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dc4f9f2_0b47eb48",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-19T07:06:28Z",
+      "side": 1,
+      "message": "Does this stop file/window/screen/location sharing?\n\nShould it be a bit more descriptive for vision impaired used who have screen readers?\n\nPerhaps you change is understood as it is consistent with\nhttps://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dStop%20sharing\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003dundefined\n\nUnfortunately, not sure what Android/iOS string are.",
+      "range": {
+        "startLine": 303,
+        "startChar": 52,
+        "endLine": 303,
+        "endChar": 59
+      },
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f0c1fae_7c233c8a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-19T07:06:28Z",
+      "side": 1,
+      "message": "Is this to disable location sharing?\n`Turn off location sharing`",
+      "range": {
+        "startLine": 311,
+        "startChar": 43,
+        "endLine": 311,
+        "endChar": 60
+      },
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fceb8e3_510cdbb9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-19T07:06:28Z",
+      "side": 1,
+      "message": "https://quillbot.com/grammar-check\n\n1. Should the string start with a capital `O`?\n2. Should `to` be changed to `for`?\n\nAnother en source strings options are:\n`Stop sharing only in this conversation`\n\n`only` and `this` seem to mean the same thing.\n`Stop sharing in this conversation`\n\nIt is understood that file/window/screen sharing are all possible, perhaps `location needs to be added?\n`Stop location sharing in this conversation`\n\nWhat do you think?\n\nThank you",
+      "range": {
+        "startLine": 312,
+        "startChar": 43,
+        "endLine": 312,
+        "endChar": 81
+      },
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d905ad36_e5345147",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-19T07:06:28Z",
+      "side": 1,
+      "message": "https://quillbot.com/grammar-check\n\nShould `to` be changed to `in`?\n\n`Your location is being shared in several conversations`",
+      "range": {
+        "startLine": 313,
+        "startChar": 48,
+        "endLine": 313,
+        "endChar": 91
+      },
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
