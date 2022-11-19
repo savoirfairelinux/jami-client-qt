@@ -165,11 +165,12 @@ ContextMenuAutoLoader {
         GeneralMenuItem {
             id: contactDetails
 
+            property bool oneToOne: !(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM)
             canTrigger: contactType !== Profile.Type.SIP
-            itemName: JamiStrings.convDetails
+            itemName: oneToOne ? JamiStrings.contactDetails : JamiStrings.convDetails
             iconSource: JamiResources.person_24dp_svg
             onClicked: {
-                if (!(mode && mode !== Conversation.Mode.ONE_TO_ONE && mode !== Conversation.Mode.NON_SWARM))
+                if (oneToOne)
                     userProfile.open()
                 else
                     root.showSwarmDetails()

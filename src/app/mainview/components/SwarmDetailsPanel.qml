@@ -33,7 +33,8 @@ Rectangle {
     id: root
 
     color: CurrentConversation.color
-    property var isAdmin: UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
+    property var isAdmin: !CurrentConversation.isCoreDialog &&
+        UtilsAdapter.getParticipantRole(CurrentAccount.id, CurrentConversation.id, CurrentAccount.uri) === Member.Role.ADMIN
 
 
     DevicesListPopup {
@@ -165,10 +166,14 @@ Rectangle {
             TabBar {
                 id: tabBar
 
-                currentIndex: 1
+                currentIndex: 0
+
+                onVisibleChanged: {
+                    tabBar.currentIndex = 0
+                }
 
                 Layout.preferredWidth: root.width
-                Layout.preferredHeight: membersTabButton.height
+                Layout.preferredHeight: aboutTabButton.height
 
                 FilterTabButton {
                     id: aboutTabButton
@@ -186,10 +191,14 @@ Rectangle {
 
                     down: tabBar.currentIndex === 0
                     labelText: JamiStrings.about
+                    Layout.fillWidth: true
                 }
 
                 FilterTabButton {
                     id: membersTabButton
+                    visible: !CurrentConversation.isCoreDialog
+                    Layout.fillWidth: true
+                    width: visible ? tabBar.width/3 : 0
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
                     borderWidth: 4
@@ -220,6 +229,7 @@ Rectangle {
                     fontSize: JamiTheme.menuFontSize
                     underlineContentOnly: true
 
+                    Layout.fillWidth: true
                     textColorHovered: UtilsAdapter.luma(root.color) ? JamiTheme.placeholderTextColorWhite : JamiTheme.placeholderTextColor
                     textColor: UtilsAdapter.luma(root.color) ?
                                    JamiTheme.chatviewTextColorLight :
@@ -236,6 +246,17 @@ Rectangle {
             title: JamiStrings.chooseAColor
             onAccepted: {
                 CurrentConversation.setPreference("color", colorDialog.color)
+            }
+        }
+
+        ConfirmDialog {
+            id: rmDialog
+
+            title: JamiStrings.confirmAction
+            textLabel: JamiStrings.confirmRmConversation
+            confirmLabel: JamiStrings.optionRemove
+            onAccepted: {
+                MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
             }
         }
 
@@ -284,7 +305,7 @@ Rectangle {
                         anchors.left: parent.left
                         anchors.top: parent.top
                         anchors.margins: JamiTheme.preferredMarginSize
-                        text: JamiStrings.leaveTheSwarm
+                        text: JamiStrings.quitConversation
                         font.pointSize: JamiTheme.settingsFontSize
                         font.kerning: true
                         elide: Text.ElideRight
@@ -298,7 +319,7 @@ Rectangle {
                         target: parent
                         enabled: parent.visible
                         onTapped: function onTapped(eventPoint) {
-                            MessagesAdapter.removeConversation(LRCInstance.selectedConvUid)
+                            rmDialog.open()
                         }
                     }
                 }
@@ -490,6 +511,7 @@ Rectangle {
                     Layout.leftMargin: JamiTheme.preferredMarginSize
                     Layout.preferredHeight: JamiTheme.settingsFontSize + 2 * JamiTheme.preferredMarginSize + 4
                     Layout.maximumWidth: parent.width
+                    visible: LRCInstance.debugMode()
 
                     Text {
                         id: idLabel

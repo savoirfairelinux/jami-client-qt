@@ -130,7 +130,6 @@ JamiListView {
                 "displayId": model.dataForRow(row, ConversationList.BestId),
                 "title": model.dataForRow(row, ConversationList.Title),
                 "uri": model.dataForRow(row, ConversationList.URI),
-                "isSwarm": model.dataForRow(row, ConversationList.IsSwarm),
                 "isBanned": model.dataForRow(row, ConversationList.IsBanned),
                 "mode": model.dataForRow(row, ConversationList.Mode),
                 "isTemporary": model.dataForRow(row, ConversationList.ContactType) === Profile.Type.TEMPORARY,
@@ -138,7 +137,6 @@ JamiListView {
 
             responsibleAccountId = LRCInstance.currentAccountId
             responsibleConvUid = item.convId
-            isSwarm = item.isSwarm
             isBanned = item.isBanned
             mode = item.mode
             contactType = LRCInstance.currentAccountType
@@ -149,7 +147,6 @@ JamiListView {
                 userProfile.registeredNameText = item.displayId
                 userProfile.idText = item.uri
                 userProfile.convId = item.convId
-                userProfile.isSwarm = item.isSwarm
             }
 
             openMenu()

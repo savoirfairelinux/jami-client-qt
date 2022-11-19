@@ -275,6 +275,7 @@ Item {
     property string blockContact: qsTr("Block contact")
     property string blockSwarm: qsTr("Block swarm")
     property string convDetails: qsTr("Conversation details")
+    property string contactDetails: qsTr("Contact details")
 
     // CallViewContextMenu
     property string hold: qsTr("Hold")
@@ -760,7 +761,7 @@ Item {
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose a color")
     property string defaultCallHost: qsTr("Default host (calls)")
-    property string leaveTheSwarm: qsTr("Leave the swarm")
+    property string quitConversation: qsTr("Quit conversation")
     property string leave: qsTr("Leave")
     property string typeOfSwarm: qsTr("Type of swarm")
     property string none: qsTr("None")

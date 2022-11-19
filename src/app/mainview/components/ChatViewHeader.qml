@@ -61,7 +61,7 @@ Rectangle {
     }
 
     property bool swarmDetailsVisibility: {
-        return !CurrentConversation.isCoreDialog && CurrentConversation.isSwarm
+        return CurrentConversation.isSwarm && !CurrentConversation.isRequest
     }
 
     color: JamiTheme.chatviewBgColor
