@@ -31,7 +31,6 @@ BaseModalDialog {
     property string aliasText
     property string registeredNameText
     property string idText
-    property bool isSwarm
 
     property int preferredImgSize: 80
 
@@ -192,20 +191,6 @@ BaseModalDialog {
                 source: convId !== "" ?
                             "image://qrImage/contact_" + convId :
                             ""
-            }
-
-            Text {
-                Layout.alignment: Qt.AlignRight
-                font.pointSize: JamiTheme.textFontSize
-                text: JamiStrings.isSwarm
-                color: JamiTheme.faddedFontColor
-            }
-
-            Text {
-                Layout.alignment: Qt.AlignLeft
-                font.pointSize: JamiTheme.textFontSize
-                text: isSwarm? JamiStrings.trueStr : JamiStrings.falseStr
-                color: JamiTheme.faddedFontColor
             }
 
             MaterialButton {
