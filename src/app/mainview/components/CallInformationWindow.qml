@@ -26,23 +26,49 @@ import Qt5Compat.GraphicalEffects
 
 import "../../commoncomponents"
 
-Window {
+Popup {
     id: root
 
-    width: parent.width * 2 / 3
-    height: parent.height * 2 / 3
+    width: parent.width * 1 / 2
+    height: parent.height * 1 / 3
+    closePolicy: Popup.NoAutoClosed
+
     property var advancedList
     property var fps
 
-    onClosing: {
+    Component.onDestruction: {
         CallAdapter.stopTimerInformation()
+    }
+
+    background: Rectangle {
+        color: JamiTheme.transparentColor
     }
 
     Rectangle {
         id: container
 
         anchors.fill: parent
-        color: JamiTheme.secondaryBackgroundColor
+        color: JamiTheme.blackColor
+        opacity: 0.85
+        radius: 10
+
+        PushButton {
+            id: closeButton
+
+            anchors.top: container.top
+            anchors.topMargin: 5
+            anchors.right: container.right
+            anchors.rightMargin: 5
+            normalColor: JamiTheme.transparentColor
+            imageColor: JamiTheme.callInfoColor
+            source: JamiResources.close_svg
+            circled: false
+            toolTipText: JamiStrings.close
+
+            onClicked: {
+                root.close()
+            }
+        }
 
         RowLayout {
             id:  windowContent
@@ -83,6 +109,25 @@ Window {
                             }
 
                             Text {
+                                function stringWithoutRing(peerNumber){
+                                    return peerNumber.replace("@ring.dht","") ;
+                                }
+                                color: JamiTheme.callInfoColor
+                                text: "PEER_NUMBER: " + stringWithoutRing(modelData.PEER_NUMBER)
+                                font.pointSize: JamiTheme.textFontPointSize
+                                wrapMode: Text.WrapAnywhere
+                                width: itemCallInformation.width
+                            }
+
+                            Text {
+                                color: JamiTheme.callInfoColor
+                                text: "Sockets: " + modelData.SOCKETS
+                                font.pointSize: JamiTheme.textFontPointSize
+                                wrapMode: Text.WrapAnywhere
+                                width: itemCallInformation.width
+                            }
+
+                            Text {
                                 color: JamiTheme.callInfoColor
                                 text: "Video codec: " + modelData.VIDEO_CODEC
                                 font.pointSize: JamiTheme.textFontPointSize
@@ -99,35 +144,8 @@ Window {
                             }
 
                             Text {
-                                function stringWithoutRing(peerNumber){
-                                    return peerNumber.replace("@ring.dht","") ;
-                                }
-                                color: JamiTheme.callInfoColor
-                                text: "PEER_NUMBER: " + stringWithoutRing(modelData.PEER_NUMBER)
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
-
-                            Text {
                                 color: JamiTheme.callInfoColor
                                 text: "Hardware acceleration: " + modelData.HARDWARE_ACCELERATION
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
-
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Video min bitrate: " + modelData.VIDEO_MIN_BITRATE
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
-
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Video max bitrate: " + modelData.VIDEO_MAX_BITRATE
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
                                 width: itemCallInformation.width
@@ -140,15 +158,6 @@ Window {
                                 wrapMode: Text.WrapAnywhere
                                 width: itemCallInformation.width
                             }
-
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Sockets: " + modelData.SOCKETS
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
-
                         }
                     }
                 }
@@ -203,7 +212,6 @@ Window {
                                 wrapMode: Text.WrapAnywhere
                                 width: itemParticipantInformation.width
                             }
-
                         }
                     }
                 }
