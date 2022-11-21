@@ -107,6 +107,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e62efd9e_b1d3b348",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:58:08Z",
+      "side": 1,
+      "message": "2. Fixed: Jami won\u0027t request access every time the account is changed. However, every time we run Jami and we try to use the module QtPositioning, the permission will be asked as it has nothing to do with Jami. MacOs seems to ask permission every time the class QGeoPositionInfoSource is created.",
+      "parentUuid": "8d85c24c_92f5cf11",
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4bca7c7c_01d0e1e2",
