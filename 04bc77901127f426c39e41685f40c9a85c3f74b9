@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f7d37d5_9f6bf19d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 33
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-21T20:17:14Z",
+      "side": 1,
+      "message": "1. Should there be a space ` ` before the `s` for consistency with other places?\n2. Should `s` be a capital letter `S`?",
+      "range": {
+        "startLine": 302,
+        "startChar": 6,
+        "endLine": 302,
+        "endChar": 7
+      },
+      "revId": "04bc77901127f426c39e41685f40c9a85c3f74b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
