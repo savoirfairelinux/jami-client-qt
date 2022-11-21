@@ -135,6 +135,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38bd26e3_034c50b9",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-21T20:27:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2f6cbc9a_e21bd8ee",
+      "range": {
+        "startLine": 312,
+        "startChar": 43,
+        "endLine": 312,
+        "endChar": 81
+      },
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d905ad36_e5345147",

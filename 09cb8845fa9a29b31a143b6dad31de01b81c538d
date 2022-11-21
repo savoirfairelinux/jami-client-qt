@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50cc6f56_71ad3576",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 6
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-21T20:27:03Z",
+      "side": 1,
+      "message": "1. Add a space ` ` after `//`?\n2. Start with a capital `S` for consistency with other locations in this file?\n\n`// Share location`",
+      "range": {
+        "startLine": 301,
+        "startChar": 4,
+        "endLine": 301,
+        "endChar": 20
+      },
+      "revId": "09cb8845fa9a29b31a143b6dad31de01b81c538d",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
