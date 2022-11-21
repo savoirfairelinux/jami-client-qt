@@ -118,6 +118,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bed4ec0e_5b74806e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T20:44:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8ff8335_eb3fc114",
+      "range": {
+        "startLine": 309,
+        "startChar": 103,
+        "endLine": 309,
+        "endChar": 160
+      },
+      "revId": "c358488f8325479ce19bf8282200a23592557d3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "468f9fe2_418e0795",
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "Location Service is…\nLocation Services are…\n\nShould\n`As soon as the Location Services is re-enabled, regular updates will resume.`\nbe changed to\n`Regular updates will resume when Location Services are enabled.`",
       "parentUuid": "1e8939c9_c3845c47",
+      "range": {
+        "startLine": 310,
+        "startChar": 123,
+        "endLine": 310,
+        "endChar": 125
+      },
+      "revId": "c358488f8325479ce19bf8282200a23592557d3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4f780c_559ff7f3",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T20:44:17Z",
+      "side": 1,
+      "message": "OK, because I checked online and it looks like everyone uses Location Services is.\nhttps://support.apple.com/en-ca/HT207092",
+      "parentUuid": "32dc9a11_99f56cf1",
       "range": {
         "startLine": 310,
         "startChar": 123,
