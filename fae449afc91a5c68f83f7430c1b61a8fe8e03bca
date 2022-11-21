@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65b3bd19_5c5eb825",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 34
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-21T20:58:09Z",
+      "side": 1,
+      "message": "Should leading spaces ` ` be removed before newlines `\\n`?\n\nIf so, please replace other instances.",
+      "range": {
+        "startLine": 309,
+        "startChar": 103,
+        "endLine": 309,
+        "endChar": 106
+      },
+      "revId": "fae449afc91a5c68f83f7430c1b61a8fe8e03bca",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa4847af_791b7e6d",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 34
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-21T20:58:09Z",
+      "side": 1,
+      "message": "In Device Settings, please turn on Location Services",
+      "range": {
+        "startLine": 310,
+        "startChar": 100,
+        "endLine": 310,
+        "endChar": 171
+      },
+      "revId": "fae449afc91a5c68f83f7430c1b61a8fe8e03bca",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
