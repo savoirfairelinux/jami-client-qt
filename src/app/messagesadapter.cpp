@@ -589,7 +589,7 @@ MessagesAdapter::isLocalImage(const QString& mimename)
                                      [fileFormat](QByteArray format) {
                                          return format == fileFormat;
                                      });
-        if (*iterator == "gif") {
+        if (iterator != supportedFormats.end() && *iterator == "gif") {
             return {{"isAnimatedImage", true}};
         }
         return {{"isImage", iterator != supportedFormats.end()}};
