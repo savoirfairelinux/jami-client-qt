@@ -40,7 +40,10 @@
 CallAdapter::CallAdapter(SystemTray* systemTray, LRCInstance* instance, QObject* parent)
     : QmlAdapterBase(instance, parent)
     , systemTray_(systemTray)
+    , callInformationListModel_(std::make_unique<CallInformationListModel>())
 {
+    set_callInformationList(QVariant::fromValue(callInformationListModel_.get()));
+
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &CallAdapter::updateAdvancedInformation);
 
@@ -127,7 +130,6 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
     auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId);
     auto& callModel = accInfo.callModel;
     const auto call = callModel->getCall(callId);
-    auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
 
     const auto& convInfo = lrcInstance_->getConversationFromCallId(callId, accountId);
     if (convInfo.uid.isEmpty() || call.isOutgoing)
@@ -150,7 +152,7 @@ CallAdapter::onCallStatusChanged(const QString& accountId, const QString& callId
             auto from = accInfo.conversationModel->title(convInfo.uid);
             auto notifId = QString("%1;%2").arg(accountId).arg(convInfo.uid);
             systemTray_->showNotification(notifId,
-                                          tr("%1 missed call").arg(to),
+                                          tr("Missed call"),
                                           tr("Missed call with %1").arg(from),
                                           NotificationType::CHAT,
                                           Utils::QImageToByteArray(convAvatar));
@@ -170,6 +172,7 @@ CallAdapter::onParticipantAdded(const QString& callId, int index)
     try {
         if (lrcInstance_->get_selectedConvUid().isEmpty())
             return;
+
         const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(
             lrcInstance_->get_selectedConvUid());
         if (callId != currentConvInfo->get().callId && callId != currentConvInfo->get().confId) {
@@ -191,6 +194,7 @@ CallAdapter::onParticipantRemoved(const QString& callId, int index)
     try {
         if (lrcInstance_->get_selectedConvUid().isEmpty())
             return;
+
         const auto& currentConvInfo = accInfo.conversationModel.get()->getConversationForUid(
             lrcInstance_->get_selectedConvUid());
         if (callId != currentConvInfo->get().callId && callId != currentConvInfo->get().confId) {
@@ -221,6 +225,27 @@ CallAdapter::onParticipantUpdated(const QString& callId, int index)
             participantsModel_->updateParticipant(index, infos[index]);
     } catch (...) {
     }
+}
+
+void
+CallAdapter::onCallStarted(const QString& callId)
+{
+    if (lrcInstance_->get_selectedConvUid().isEmpty())
+        return;
+    auto& accInfo = lrcInstance_->accountModel().getAccountInfo(accountId_);
+    auto& callModel = accInfo.callModel;
+    // update call Information list by adding the new information related to the callId
+    callInformationListModel_->addElement(
+        qMakePair(callId, callModel->advancedInformationForCallId(callId)));
+}
+
+void
+CallAdapter::onCallEnded(const QString& callId)
+{
+    if (lrcInstance_->get_selectedConvUid().isEmpty())
+        return;
+    // update call Information list by removing information related to the callId
+    callInformationListModel_->removeElement(callId);
 }
 
 void
@@ -570,7 +595,6 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
 {
     auto& accInfo = lrcInstance_->getAccountInfo(accountId);
     auto title = accInfo.conversationModel->title(convUid);
-    auto to = lrcInstance_->accountModel().bestNameForAccount(accountId);
 
     auto preferences = accInfo.conversationModel->getConversationPreferences(convUid);
     // Ignore notifications for this conversation
@@ -581,7 +605,7 @@ CallAdapter::showNotification(const QString& accountId, const QString& convUid)
     auto convAvatar = Utils::conversationAvatar(lrcInstance_, convUid, QSize(50, 50), accountId);
     auto notifId = QString("%1;%2").arg(accountId).arg(convUid);
     systemTray_->showNotification(notifId,
-                                  tr("%1 incoming call").arg(to),
+                                  tr("Incoming call"),
                                   tr("%1 is calling you").arg(title),
                                   NotificationType::CALL,
                                   Utils::QImageToByteArray(convAvatar));
@@ -618,6 +642,18 @@ CallAdapter::connectCallModel(const QString& accountId)
             &CallModel::participantUpdated,
             this,
             &CallAdapter::onParticipantUpdated,
+            Qt::UniqueConnection);
+
+    connect(accInfo.callModel.get(),
+            &CallModel::callStarted,
+            this,
+            &CallAdapter::onCallStarted,
+            Qt::UniqueConnection);
+
+    connect(accInfo.callModel.get(),
+            &CallModel::callEnded,
+            this,
+            &CallAdapter::onCallEnded,
             Qt::UniqueConnection);
 
     connect(accInfo.callModel.get(),
@@ -1072,12 +1108,38 @@ CallAdapter::getCallDurationTime(const QString& accountId, const QString& convUi
 }
 
 void
+CallAdapter::resetCallInfo()
+{
+    callInformationListModel_->reset();
+}
+
+void
+CallAdapter::setCallInfo()
+{
+    try {
+        auto& callModel = lrcInstance_->accountModel().getAccountInfo(accountId_).callModel;
+        for (auto callId : callModel->getCallIds()) {
+            callInformationListModel_->addElement(
+                qMakePair(callId, callModel->advancedInformationForCallId(callId)));
+        }
+
+    } catch (const std::exception& e) {
+        qWarning() << e.what();
+    }
+}
+
+void
 CallAdapter::updateAdvancedInformation()
 {
     try {
         auto& callModel = lrcInstance_->accountModel().getAccountInfo(accountId_).callModel;
-        if (callModel)
-            set_callInformation(QVariantList::fromList(callModel->getAdvancedInformation()));
+        for (auto callId : callModel->getCallIds()) {
+            if (!callInformationListModel_->addElement(
+                    qMakePair(callId, callModel->advancedInformationForCallId(callId)))) {
+                callInformationListModel_->editElement(
+                    qMakePair(callId, callModel->advancedInformationForCallId(callId)));
+            }
+        }
     } catch (const std::exception& e) {
         qWarning() << e.what();
     }
