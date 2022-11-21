@@ -212,6 +212,7 @@ Rectangle {
                                     })
                         if (usernameEdit.nameRegistrationState === UsernameLineEdit.NameRegistrationState.FREE) {
                             enabled = false
+                            showAdvancedButton.enabled = false
                             WizardViewStepModel.nextStep()
                         }
 
@@ -246,8 +247,10 @@ Rectangle {
 
                     visible: false
 
-                    onJoinClicked:
+                    onJoinClicked: {
                         chooseUsernameButton.enabled = false
+                        showAdvancedButton.enabled = false
+                    }
                 }
             }
         }
