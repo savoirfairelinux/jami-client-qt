@@ -45,6 +45,8 @@
 #include "smartlistmodel.h"
 #include "conversationlistmodelbase.h"
 #include "filestosendlistmodel.h"
+#include "callInformationListModel.h"
+#include "rendererinformationlistmodel.h"
 
 #include "qrimageprovider.h"
 #include "avatarimageprovider.h"
@@ -170,6 +172,9 @@ registerTypes(QQmlEngine* engine,
     QML_REGISTERTYPE(NS_MODELS, FilesToSendListModel);
     QML_REGISTERTYPE(NS_MODELS, SmartListModel);
     QML_REGISTERTYPE(NS_MODELS, MessageListModel);
+    QML_REGISTERTYPE(NS_MODELS, CallInformationListModel);
+    QML_REGISTERTYPE(NS_MODELS, RendererInformationListModel);
+
 
     // Roles & type enums for models
     QML_REGISTERNAMESPACE(NS_MODELS, AccountList::staticMetaObject, "AccountList");
