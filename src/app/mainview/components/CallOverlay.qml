@@ -46,7 +46,7 @@ Item {
         SelectScreenWindowCreation.destroySelectScreenWindow()
         ScreenRubberBandCreation.destroyScreenRubberBandWindow()
         PluginHandlerPickerCreation.closePluginHandlerPicker()
-        callInformationWindow.close()
+        callInformationOverlay.close()
     }
 
     // x, y position does not need to be translated
@@ -71,12 +71,16 @@ Item {
         y: root.height / 2 - sipInputPanel.height / 2
     }
 
-    CallInformationWindow {
-        id: callInformationWindow
+    CallInformationOverlay {
+        id: callInformationOverlay
 
         visible: false
-        advancedList: CallAdapter.callInformation
+        advancedList: CallAdapter.callInformationList
         fps: AvAdapter.renderersInfoList
+
+        Component.onDestruction: {
+            CallAdapter.stopTimerInformation();
+        }
     }
 
     JamiFileDialog {
