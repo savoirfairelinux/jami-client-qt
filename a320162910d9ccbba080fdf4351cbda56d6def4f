@@ -106,6 +106,24 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8357b37_e025b276",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bca7c7c_01d0e1e2",
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f47d9cee_21f53336",
@@ -119,6 +137,30 @@
       "writtenOn": "2022-11-17T20:25:45Z",
       "side": 1,
       "message": "`location`",
+      "range": {
+        "startLine": 303,
+        "startChar": 60,
+        "endLine": 303,
+        "endChar": 68
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "322613d2_b7548394",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f47d9cee_21f53336",
       "range": {
         "startLine": 303,
         "startChar": 60,
@@ -244,6 +286,102 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21841e47_9d1d7c32",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d684e00_1292f738",
+      "range": {
+        "startLine": 308,
+        "startChar": 64,
+        "endLine": 308,
+        "endChar": 167
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "462666d2_607e457b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f005f38b_d430439c",
+      "range": {
+        "startLine": 308,
+        "startChar": 188,
+        "endLine": 308,
+        "endChar": 196
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04108a76_a8e1e8a8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "605f663c_c02ca1fc",
+      "range": {
+        "startLine": 308,
+        "startChar": 120,
+        "endLine": 308,
+        "endChar": 133
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cd4f8bb_fff13349",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "571b48e6_4dd9a6c7",
+      "range": {
+        "startLine": 308,
+        "startChar": 149,
+        "endLine": 308,
+        "endChar": 166
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "588bb028_87fdf280",
@@ -267,6 +405,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34a1676d_f94d5791",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "588bb028_87fdf280",
+      "range": {
+        "startLine": 309,
+        "startChar": 187,
+        "endLine": 309,
+        "endChar": 195
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "237d9de4_6a40e4d7",
@@ -280,6 +442,30 @@
       "writtenOn": "2022-11-17T20:25:45Z",
       "side": 1,
       "message": "`location`",
+      "range": {
+        "startLine": 310,
+        "startChar": 105,
+        "endLine": 310,
+        "endChar": 113
+      },
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3e3e37a_01ec1528",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 28
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T15:44:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "237d9de4_6a40e4d7",
       "range": {
         "startLine": 310,
         "startChar": 105,
