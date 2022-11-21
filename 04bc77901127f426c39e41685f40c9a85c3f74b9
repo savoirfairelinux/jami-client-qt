@@ -22,6 +22,29 @@
       },
       "revId": "04bc77901127f426c39e41685f40c9a85c3f74b9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d63490_4d909b52",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 33
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-21T20:20:34Z",
+      "side": 1,
+      "message": "In this context, does this variable refer to `locationServices`?\n\nIs it a `Service` or `Services`? What is SFL convention on naming variables?",
+      "range": {
+        "startLine": 309,
+        "startChar": 28,
+        "endLine": 309,
+        "endChar": 35
+      },
+      "revId": "04bc77901127f426c39e41685f40c9a85c3f74b9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
