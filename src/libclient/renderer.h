@@ -36,7 +36,7 @@ class Renderer : public QObject
 {
     Q_OBJECT
 public:
-    constexpr static const char ID[] = "ID";
+    constexpr static const char RENDERER_ID[] = "RENDERER_ID";
     constexpr static const char FPS[] = "FPS";
     constexpr static const char RES[] = "RES";
     constexpr static const int FPS_RATE_SEC = 1;

@@ -26,129 +26,174 @@ import Qt5Compat.GraphicalEffects
 
 import "../../commoncomponents"
 
-Window {
+Popup {
     id: root
 
-    width: parent.width * 2 / 3
-    height: parent.height * 2 / 3
+    property real maxHeight: parent.height * 40 / 100
+    property real maxTextWidth: parent.width * 30 / 100
+
     property var advancedList
     property var fps
 
-    onClosing: {
+    width: container.width
+    height: container.height
+    closePolicy: Popup.NoAutoClosed
+
+    onClosed: {
         CallAdapter.stopTimerInformation()
+    }
+
+    onOpened: {
+        AvAdapter.resetRendererInfos()
+        CallAdapter.resetCallInfos()
+        CallAdapter.setCallInfos()
+        AvAdapter.setRendererInfos()
+    }
+
+    background: Rectangle {
+        color: JamiTheme.transparentColor
     }
 
     Rectangle {
         id: container
 
-        anchors.fill: parent
-        color: JamiTheme.secondaryBackgroundColor
+        color: JamiTheme.blackColor
+        opacity: 0.85
+        radius: 10
+        width: windowContent.width
+        height: windowContent.height
+
+        PushButton {
+            id: closeButton
+
+            anchors.top: container.top
+            anchors.topMargin: 5
+            anchors.right: container.right
+            anchors.rightMargin: 5
+            normalColor: JamiTheme.transparentColor
+            imageColor: JamiTheme.callInfoColor
+            source: JamiResources.round_close_24dp_svg
+            circled: false
+            toolTipText: JamiStrings.close
+
+            onClicked: {
+                root.close()
+            }
+        }
 
         RowLayout {
             id:  windowContent
 
-            anchors.fill: parent
-
             ColumnLayout {
                 spacing: JamiTheme.callInformationBlockSpacing
+                Layout.margins: JamiTheme.callInformationlayoutMargins
+                Layout.preferredWidth: callInfoListview.width
+                Layout.alignment: Qt.AlignTop
 
                 Text{
+                    id: textTest
                     color: JamiTheme.callInfoColor
-                    text: "Call information"
+                    text: JamiStrings.callInformation
                     font.pointSize: JamiTheme.titleFontPointSize
                 }
 
-                Item {
-                    id: itemCallInformation
+                ListView {
+                    id: callInfoListview
 
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
+                    model: advancedList
+                    Layout.preferredWidth: root.maxTextWidth
+                    Layout.preferredHeight: contentItem.childrenRect.height < root.maxHeight ? contentItem.childrenRect.height : root.maxHeight
+                    spacing: JamiTheme.callInformationBlockSpacing
                     clip: true
 
-                    ListView {
-                        model: advancedList
-                        width: parent.width
-                        height: root.height
-                        spacing: JamiTheme.callInformationBlockSpacing
+                    delegate: Column {
+                        spacing: JamiTheme.callInformationElementsSpacing
 
-                        delegate: Column {
-                            spacing: JamiTheme.callInformationElementsSpacing
+                        Text {
+                            color: JamiTheme.callInfoColor
+                            text: "Call id: " + CALL_ID
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: callInfoListview.width
+                        }
 
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Call id: " + modelData.CALL_ID
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
+                        Text {
+                            function stringWithoutRing(peerNumber){
+                                return peerNumber.replace("@ring.dht","") ;
                             }
+                            color: JamiTheme.callInfoColor
+                            text: "Peer number: " + stringWithoutRing(PEER_NUMBER)
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: callInfoListview.width
+                        }
+                        Column {
+                            id: socketLayout
 
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Video codec: " + modelData.VIDEO_CODEC
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
+                            property bool showAll: false
+                            width: callInfoListview.width
 
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Audio codec: " + modelData.AUDIO_CODEC
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
-
-                            Text {
-                                function stringWithoutRing(peerNumber){
-                                    return peerNumber.replace("@ring.dht","") ;
+                            RowLayout {
+                                Text {
+                                    color: JamiTheme.callInfoColor
+                                    text: "Sockets"
+                                    font.pointSize: JamiTheme.textFontPointSize
+                                    wrapMode: Text.WrapAnywhere
+                                    width: socketLayout.width
                                 }
-                                color: JamiTheme.callInfoColor
-                                text: "PEER_NUMBER: " + stringWithoutRing(modelData.PEER_NUMBER)
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
+
+                                PushButton {
+                                    source: socketLayout.showAll ? JamiResources.expand_more_24dp_svg : JamiResources.expand_less_24dp_svg
+                                    normalColor: JamiTheme.transparentColor
+                                    Layout.preferredWidth: 20
+                                    Layout.preferredHeight: 20
+                                    imageColor: JamiTheme.callInfoColor
+                                    onClicked: {
+                                        socketLayout.showAll = !socketLayout.showAll
+                                    }
+                                }
                             }
 
                             Text {
                                 color: JamiTheme.callInfoColor
-                                text: "Hardware acceleration: " + modelData.HARDWARE_ACCELERATION
+                                text: SOCKETS
                                 font.pointSize: JamiTheme.textFontPointSize
                                 wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
+                                visible: socketLayout.showAll
+                                width: socketLayout.width
                             }
+                        }
 
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Video min bitrate: " + modelData.VIDEO_MIN_BITRATE
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
+                        Text {
+                            color: JamiTheme.callInfoColor
+                            text: "Video codec: " + VIDEO_CODEC
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: callInfoListview.width
+                        }
 
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Video max bitrate: " + modelData.VIDEO_MAX_BITRATE
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
+                        Text {
+                            color: JamiTheme.callInfoColor
+                            text: "Audio codec: " + AUDIO_CODEC
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: callInfoListview.width
+                        }
 
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Video bitrate: " + modelData.VIDEO_BITRATE
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
+                        Text {
+                            color: JamiTheme.callInfoColor
+                            text: "Hardware acceleration: " + HARDWARE_ACCELERATION
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: callInfoListview.width
+                        }
 
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Sockets: " + modelData.SOCKETS
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemCallInformation.width
-                            }
-
+                        Text {
+                            color: JamiTheme.callInfoColor
+                            text: "Video bitrate: " + VIDEO_BITRATE + " bps"
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: callInfoListview.width
                         }
                     }
                 }
@@ -156,54 +201,51 @@ Window {
 
             ColumnLayout {
                 spacing: JamiTheme.callInformationBlockSpacing
+                Layout.margins: JamiTheme.callInformationlayoutMargins
+                Layout.preferredWidth: renderersInfoListview.width
+                Layout.alignment: Qt.AlignTop
 
                 Text {
                     color: JamiTheme.callInfoColor
-                    text: "Renderers information"
+                    text: JamiStrings.renderersInformation
                     font.pointSize: JamiTheme.titleFontPointSize
                 }
 
-                Item {
-                    id: itemParticipantInformation
+                ListView {
+                    id: renderersInfoListview
 
-                    Layout.fillHeight: true
-                    Layout.fillWidth: true
+                    Layout.preferredWidth: root.maxTextWidth
+                    Layout.preferredHeight: contentItem.childrenRect.height < root.maxHeight ? contentItem.childrenRect.height : root.maxHeight
+                    spacing: JamiTheme.callInformationBlockSpacing
+                    model: fps
                     clip: true
 
+                    delegate: Column {
+                        spacing: JamiTheme.callInformationElementsSpacing
 
-                    ListView {
-                        width: parent.width
-                        height: root.height
-                        spacing: JamiTheme.callInformationBlockSpacing
-                        model: fps
+                        Text{
+                            color: JamiTheme.callInfoColor
+                            text: "Renderer id: " + RENDERER_ID
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: renderersInfoListview.width
+                        }
 
-                        delegate: Column {
-                            spacing: JamiTheme.callInformationElementsSpacing
+                        Text {
+                            id: testText
+                            color: JamiTheme.callInfoColor
+                            text: "Fps: " + FPS
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: renderersInfoListview.width
+                        }
 
-                            Text{
-                                color: JamiTheme.callInfoColor
-                                text: "Renderer id: " + modelData.ID
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemParticipantInformation.width
-                            }
-
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Fps: " + modelData.FPS
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemParticipantInformation.width
-                            }
-
-                            Text {
-                                color: JamiTheme.callInfoColor
-                                text: "Resolution: " + modelData.RES
-                                font.pointSize: JamiTheme.textFontPointSize
-                                wrapMode: Text.WrapAnywhere
-                                width: itemParticipantInformation.width
-                            }
-
+                        Text {
+                            color: JamiTheme.callInfoColor
+                            text: "Resolution: " + RES
+                            font.pointSize: JamiTheme.textFontPointSize
+                            wrapMode: Text.WrapAnywhere
+                            width: renderersInfoListview.width
                         }
                     }
                 }
