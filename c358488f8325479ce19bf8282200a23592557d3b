@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d006cd2_4b8ce497",
+        "filename": "src/app/positioning.cpp",
+        "patchSetId": 31
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-21T17:20:41Z",
+      "side": 1,
+      "message": "last bug. if location services is disabled, showing the map will show \"Share Location\" in blue until dbus timeout.\n\nI think it should be shown as disabled by default and when the permission is granted, the button is enabled (so after positionUpdated is received)",
+      "range": {
+        "startLine": 32,
+        "startChar": 52,
+        "endLine": 33,
+        "endChar": 52
+      },
+      "revId": "c358488f8325479ce19bf8282200a23592557d3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
