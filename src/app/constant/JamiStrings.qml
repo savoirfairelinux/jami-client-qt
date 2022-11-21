@@ -299,6 +299,19 @@ Item {
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
 
+    //advanced information
+    property string renderersInformation: qsTr("Renderers information")
+    property string callInformation: qsTr("Call information")
+    property string peerNumber: qsTr("Peer number")
+    property string callId: qsTr("Call id")
+    property string sockets: qsTr("Sockets")
+    property string videoCodec: qsTr("Video codec")
+    property string hardwareAcceleration: qsTr("Hardware acceleration")
+    property string videoBitrate: qsTr("Video bitrate")
+    property string audioCodec: qsTr("Audio codec")
+    property string rendererId: qsTr("Renderer id")
+    property string fps_short: qsTr("Fps")
+
     // Share location/position
     property string shareLocation: qsTr("Share location")
     property string stopSharingLocation: qsTr("Stop sharing")
