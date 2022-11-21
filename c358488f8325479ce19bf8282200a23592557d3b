@@ -261,6 +261,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32dc9a11_99f56cf1",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-21T20:15:10Z",
+      "side": 1,
+      "message": "Location Service is…\nLocation Services are…\n\nShould\n`As soon as the Location Services is re-enabled, regular updates will resume.`\nbe changed to\n`Regular updates will resume when Location Services are enabled.`",
+      "parentUuid": "1e8939c9_c3845c47",
+      "range": {
+        "startLine": 310,
+        "startChar": 123,
+        "endLine": 310,
+        "endChar": 125
+      },
+      "revId": "c358488f8325479ce19bf8282200a23592557d3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d006cd2_4b8ce497",
         "filename": "src/app/positioning.cpp",
         "patchSetId": 31
