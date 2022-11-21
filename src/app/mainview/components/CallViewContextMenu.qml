@@ -192,7 +192,7 @@ ContextMenuAutoLoader {
 
             onClicked: {
                 CallAdapter.startTimerInformation();
-                callInformationWindow.show()
+                callInformationOverlay.open()
             }
         }
     ]

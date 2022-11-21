@@ -397,6 +397,10 @@ public:
      */
     QList<QVariant> getAdvancedInformation() const;
 
+    MapStringString advancedInformationForCallId(QString callId) const;
+
+    QStringList getCallIds() const;
+
 Q_SIGNALS:
 
     /**

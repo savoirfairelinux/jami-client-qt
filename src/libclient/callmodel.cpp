@@ -24,6 +24,8 @@
 #include "api/avmodel.h"
 #include "api/behaviorcontroller.h"
 #include "api/conversationmodel.h"
+#include "api/codecmodel.h"
+
 #include "api/contact.h"
 #include "api/contactmodel.h"
 #include "api/pluginmodel.h"
@@ -56,6 +58,7 @@
 using namespace libjami::Media;
 
 constexpr static const char HARDWARE_ACCELERATION[] = "HARDWARE_ACCELERATION";
+constexpr static const char AUDIO_CODEC[] = "AUDIO_CODEC";
 constexpr static const char CALL_ID[] = "CALL_ID";
 
 static std::uniform_int_distribution<int> dis {0, std::numeric_limits<int>::max()};
@@ -133,6 +136,9 @@ public:
     ~CallModelPimpl();
 
     QVariantList callAdvancedInformation();
+    MapStringString advancedInformationForCallId(QString callId);
+
+    QStringList getCallIds();
 
     /**
      * Send the profile VCard into a call
@@ -389,7 +395,7 @@ CallModel::createCall(const QString& uri, bool isAudioOnly, VectorMapStringStrin
     }
 #ifdef ENABLE_LIBWRAP
     auto callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
-#else // dbus
+#else  // dbus
     // do not use auto here (QDBusPendingReply<QString>)
     QString callId = CallManager::instance().placeCallWithMedia(owner.id, uri, mediaList);
 #endif // ENABLE_LIBWRAP
@@ -417,6 +423,18 @@ QList<QVariant>
 CallModel::getAdvancedInformation() const
 {
     return pimpl_->callAdvancedInformation();
+}
+
+MapStringString
+CallModel::advancedInformationForCallId(QString callId) const
+{
+    return pimpl_->advancedInformationForCallId(callId);
+}
+
+QStringList
+CallModel::getCallIds() const
+{
+    return pimpl_->getCallIds();
 }
 
 void
@@ -1014,6 +1032,23 @@ CallModelPimpl::callAdvancedInformation()
     }
 
     return advancedInformationList;
+}
+
+MapStringString
+CallModelPimpl::advancedInformationForCallId(QString callId)
+{
+    MapStringString infoMap = CallManager::instance().getCallDetails(linked.owner.id, callId);
+    if (lrc.getAVModel().getHardwareAcceleration())
+        infoMap[HARDWARE_ACCELERATION] = "True";
+    else
+        infoMap[HARDWARE_ACCELERATION] = "False";
+    return infoMap;
+}
+
+QStringList
+CallModelPimpl::getCallIds()
+{
+    return CallManager::instance().getCallList(linked.owner.id);
 }
 
 void
