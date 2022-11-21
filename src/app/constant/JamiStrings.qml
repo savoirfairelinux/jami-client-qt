@@ -299,6 +299,11 @@ Item {
     property string raiseHand: qsTr("Raise hand")
     property string layoutSettings: qsTr("Layout settings")
 
+    //advanced information
+    property string renderersInformation: qsTr("Renderers information")
+    property string callInformation: qsTr("Call information")
+
+
     // Share location/position
     property string shareLocation: qsTr("Share location")
     property string stopSharingLocation: qsTr("Stop sharing")
