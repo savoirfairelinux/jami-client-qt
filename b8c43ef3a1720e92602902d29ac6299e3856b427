@@ -64,6 +64,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab432b4a_4f9621a5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T16:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f0c1fae_7c233c8a",
+      "range": {
+        "startLine": 311,
+        "startChar": 43,
+        "endLine": 311,
+        "endChar": 60
+      },
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3fceb8e3_510cdbb9",
@@ -89,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f6cbc9a_e21bd8ee",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T16:25:12Z",
+      "side": 1,
+      "message": "Hi. When the user press the \"stop sharing location\" button while sharing location to several conversations, a popup opens: the text body of the popup is: \"stopSharingPopupBody\" and the two buttons options are \"stopAllSharings\" and \"stopConvSharing\". This, in order be able to turn off location sharing for every conversations or to stop sharing with the current conversation only. I thought I didn\u0027t need to specify \"location\" because it\u0027s explicit as the two strings are used inside the popup ! But I agree, the strings are not well written.\nSo, according to you, it would be better to have :\n- stopAllSharings: qsTr(\"Turn off location sharing\");\n- stopConvSharing: qsTr(\"Stop location sharing in this conversation\");\n- stopSharingPopupBody: qsTr(\"Location is shared in several conversations\");\nThank you for your advice, it\u0027s really helpful!",
+      "parentUuid": "3fceb8e3_510cdbb9",
+      "range": {
+        "startLine": 312,
+        "startChar": 43,
+        "endLine": 312,
+        "endChar": 81
+      },
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d905ad36_e5345147",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 5
@@ -100,6 +148,30 @@
       "writtenOn": "2022-11-19T07:06:28Z",
       "side": 1,
       "message": "https://quillbot.com/grammar-check\n\nShould `to` be changed to `in`?\n\n`Your location is being shared in several conversations`",
+      "range": {
+        "startLine": 313,
+        "startChar": 48,
+        "endLine": 313,
+        "endChar": 91
+      },
+      "revId": "b8c43ef3a1720e92602902d29ac6299e3856b427",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c0c497e_871075a8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 5
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-21T16:25:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d905ad36_e5345147",
       "range": {
         "startLine": 313,
         "startChar": 48,
