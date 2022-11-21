@@ -1192,7 +1192,8 @@ public Q_SLOTS: // METHODS
                                 const QString& type,
                                 const int64_t& after,
                                 const int64_t& before,
-                                const uint32_t& maxResult)
+                                const uint32_t& maxResult,
+                                const int32_t& flag)
     {
         return libjami::searchConversation(accountId.toStdString(),
                                            conversationId.toStdString(),
@@ -1202,7 +1203,8 @@ public Q_SLOTS: // METHODS
                                            type.toStdString(),
                                            after,
                                            before,
-                                           maxResult);
+                                           maxResult,
+                                           flag);
     }
 Q_SIGNALS: // SIGNALS
     void volumeChanged(const QString& device, double value);
