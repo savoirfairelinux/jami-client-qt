@@ -261,6 +261,8 @@ set(LIBCLIENT_SOURCES
   behaviorcontroller.cpp
   datatransfermodel.cpp
   messagelistmodel.cpp
+  callInformationListModel.cpp
+  rendererinformationlistmodel.cpp
 
   # communication
   dbus/configurationmanager.cpp
@@ -289,6 +291,8 @@ set(LIBCLIENT_HEADERS
   vcard.h
   namedirectory.h
   messagelistmodel.h
+  callInformationListModel.h
+  rendererinformationlistmodel.h
 
   # interfaces
   interfaces/pixmapmanipulatori.h
