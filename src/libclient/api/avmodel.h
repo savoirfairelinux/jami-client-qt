@@ -277,16 +277,21 @@ public:
     video::Frame getRendererFrame(const QString& id);
     bool useDirectRenderer() const;
     /**
+     * Get Renderers information
+     * @param id (optional) : for a specific renderer or for all renderers
+     */
+    QList<MapStringString> getRenderersInfo(QString id = {});
+    /**
      * Update renderers information list
      */
-    Q_SLOT void updateRenderersInfo();
+    Q_SLOT void updateRenderersFPSInfo(QString rendererId);
 
 Q_SIGNALS:
     /**
-     * Emitted after an update of renderers information
-     * @param renderersInfoList Information on all renderers (RES, ID, FPS)
+     * Emitted after an update of renderer's fps
+     * @param pair of renderer id and its fps value
      */
-    void onRendererInfosUpdated(QVariantList renderersInfoList);
+    void onRendererFpsChange(QPair<QString, QString> fpsInfo);
     /**
      * Emitted when a renderer is started
      * @param id of the renderer

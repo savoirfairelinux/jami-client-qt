@@ -62,7 +62,7 @@ MapStringString
 Renderer::getInfos() const
 {
     MapStringString map;
-    map[ID] = id();
+    map[RENDERER_ID] = id();
     map[FPS] = QString::number(fps());
     map[RES] = QString::number(size().width()) + " * " + QString::number(size().height());
     return map;
