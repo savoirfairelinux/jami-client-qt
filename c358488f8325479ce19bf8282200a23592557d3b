@@ -97,6 +97,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8ff8335_eb3fc114",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 31
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-21T20:02:50Z",
+      "side": 1,
+      "message": "1. `in` sounds strange. Should `in your device` be `on your device`.\n2. Can first-person, i.e. `your`, be removed, eg. `In Device Settings, please turn on Location Services.`",
+      "range": {
+        "startLine": 309,
+        "startChar": 103,
+        "endLine": 309,
+        "endChar": 160
+      },
+      "revId": "c358488f8325479ce19bf8282200a23592557d3b",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "468f9fe2_418e0795",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 31
