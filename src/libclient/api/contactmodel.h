@@ -137,11 +137,6 @@ Q_SIGNALS:
      */
     void contactAdded(const QString& contactUri) const;
     /**
-     * Connect this signal to know when a contact request received
-     * @param contactUri
-     */
-    void incomingContactRequest(const QString& contactUri) const;
-    /**
      * Connect this signal to know when a pending contact was accepted.
      * @param contactUri
      */

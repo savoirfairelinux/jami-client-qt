@@ -132,20 +132,6 @@ public:
                     Q_EMIT this->needsHost(QString(account_id.c_str()),
                                            QString(conversation_id.c_str()));
                 }),
-            exportable_callback<ConfigurationSignal::IncomingTrustRequest>(
-                [this](const std::string& accountId,
-                       const std::string& conversationId,
-                       const std::string& certId,
-                       const std::vector<uint8_t>& payload,
-                       time_t timestamp) {
-                    Q_EMIT this->incomingTrustRequest(QString(accountId.c_str()),
-                                                      QString(conversationId.c_str()),
-                                                      QString(certId.c_str()),
-                                                      QByteArray(reinterpret_cast<const char*>(
-                                                                     payload.data()),
-                                                                 payload.size()),
-                                                      timestamp);
-                }),
             exportable_callback<ConfigurationSignal::KnownDevicesChanged>(
                 [this](const std::string& accountId,
                        const std::map<std::string, std::string>& devices) {
@@ -880,16 +866,6 @@ public Q_SLOTS: // METHODS
         return convertVecMap(libjami::getTrustRequests(accountId.toStdString()));
     }
 
-    bool acceptTrustRequest(const QString& accountId, const QString& from)
-    {
-        return libjami::acceptTrustRequest(accountId.toStdString(), from.toStdString());
-    }
-
-    bool discardTrustRequest(const QString& accountId, const QString& from)
-    {
-        return libjami::discardTrustRequest(accountId.toStdString(), from.toStdString());
-    }
-
     void sendTrustRequest(const QString& accountId, const QString& from, const QByteArray& payload)
     {
         std::vector<unsigned char> raw(payload.begin(), payload.end());
@@ -1224,11 +1200,6 @@ Q_SIGNALS: // SIGNALS
     void certificateStateChanged(const QString& accountId,
                                  const QString& certId,
                                  const QString& status);
-    void incomingTrustRequest(const QString& accountId,
-                              const QString& conversdationId,
-                              const QString& from,
-                              const QByteArray& payload,
-                              qulonglong timeStamp);
     void knownDevicesChanged(const QString& accountId, const MapStringString& devices);
     void exportOnRingEnded(const QString& accountId, int status, const QString& pin);
     void incomingAccountMessage(const QString& accountId,
