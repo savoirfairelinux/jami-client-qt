@@ -305,7 +305,7 @@ Rectangle {
                         anchors.left: parent.left
                         anchors.top: parent.top
                         anchors.margins: JamiTheme.preferredMarginSize
-                        text: JamiStrings.quitConversation
+                        text: JamiStrings.leaveConversation
                         font.pointSize: JamiTheme.settingsFontSize
                         font.kerning: true
                         elide: Text.ElideRight
