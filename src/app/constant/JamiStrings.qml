@@ -761,7 +761,7 @@ Item {
     property string ignoreNotificationsTooltip: qsTr("Ignore all notifications from this conversation")
     property string chooseAColor: qsTr("Choose a color")
     property string defaultCallHost: qsTr("Default host (calls)")
-    property string quitConversation: qsTr("Quit conversation")
+    property string leaveConversation: qsTr("Leave conversation")
     property string leave: qsTr("Leave")
     property string typeOfSwarm: qsTr("Type of swarm")
     property string none: qsTr("None")
