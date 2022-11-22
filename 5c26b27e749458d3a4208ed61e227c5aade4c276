@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e596f065_b0583b5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-11-22T15:36:38Z",
+      "side": 1,
+      "message": "1-\nOnly disables on the second account creation\n\n2-\nWhy disable it? the button is still there and users, not being able to use it, might think it is a bug.",
+      "revId": "5c26b27e749458d3a4208ed61e227c5aade4c276",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
