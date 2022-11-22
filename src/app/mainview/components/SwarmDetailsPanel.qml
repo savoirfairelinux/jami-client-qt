@@ -133,6 +133,7 @@ Rectangle {
 
                 text: CurrentConversation.description
                 readOnly: !root.isAdmin
+                visible: root.isAdmin || text.length > 0
                 placeholderText: JamiStrings.addADescription
                 placeholderTextColor: {
                     if (editable) {
@@ -173,10 +174,10 @@ Rectangle {
                 }
 
                 Layout.preferredWidth: root.width
-                Layout.preferredHeight: aboutTabButton.height
+                Layout.preferredHeight: settingsTabButton.height
 
                 FilterTabButton {
-                    id: aboutTabButton
+                    id: settingsTabButton
                     backgroundColor: CurrentConversation.color
                     hoverColor: CurrentConversation.color
                     borderWidth: 4
@@ -190,7 +191,7 @@ Rectangle {
                                    JamiTheme.chatviewTextColorDark
 
                     down: tabBar.currentIndex === 0
-                    labelText: JamiStrings.about
+                    labelText: JamiStrings.settings
                     Layout.fillWidth: true
                 }
 

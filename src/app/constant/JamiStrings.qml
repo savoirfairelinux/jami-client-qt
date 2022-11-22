@@ -526,7 +526,7 @@ Item {
     property string generalKeyboardShortcuts: qsTr("General")
     property string conversationKeyboardShortcuts: qsTr("Conversation")
     property string callKeyboardShortcuts: qsTr("Call")
-    property string settingsKeyboardShortcuts: qsTr("Settings")
+    property string settings: qsTr("Settings")
     property string openAccountList: qsTr("Open account list")
     property string focusConversationsList: qsTr("Focus conversations list")
     property string requestsList: qsTr("Requests list")
