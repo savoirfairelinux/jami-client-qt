@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d4209d0_f3a8d17e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-22T20:51:15Z",
+      "side": 1,
+      "message": "Remove leading space ` ` before newline `\\n`?",
+      "range": {
+        "startLine": 309,
+        "startChar": 158,
+        "endLine": 309,
+        "endChar": 159
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce31893_63fda3ec",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-22T20:51:15Z",
+      "side": 1,
+      "message": "Remove leading space ` ` before newline `\\n`?",
+      "range": {
+        "startLine": 310,
+        "startChar": 170,
+        "endLine": 310,
+        "endChar": 171
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}

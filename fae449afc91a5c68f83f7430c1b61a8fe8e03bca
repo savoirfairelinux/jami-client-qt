@@ -93,6 +93,30 @@
       },
       "revId": "fae449afc91a5c68f83f7430c1b61a8fe8e03bca",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab9b24a2_9f8b926a",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 34
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-22T20:51:15Z",
+      "side": 1,
+      "message": "1. https://www.microsoft.com/en-us/language/Search?\u0026searchTerm\u003dinternet%20connection\u0026langID\u003d303\u0026Source\u003dtrue\u0026productid\u003d0\n(a) `No internet connection`\n\n2. https://transvision.mozfr.org/?recherche\u003dCheck+your+internet+connection\u0026repo\u003dall_projects\u0026sourcelocale\u003den-US\u0026locale\u003dfr\u0026search_type\u003dstrings\n(a) `Check your internet connection`\n(b) `Please check your Internet connection. If you are able to connect to the Internet, there may be a temporary problem with the { -screenshots-brand-name } service.` → `Please check your Internet connection. If you are able to connect to the Internet, there may be a temporary problem with Location Services.`\n(c) `Proxy server not found (check your internet connection)` → `Location Services unavailable (check your internet connection)`\n\n3. https://l10n.kde.org/dictionary/search-translations.php?package\u003d\u0026filename\u003d\u0026teamcode\u003d\u0026search\u003dconnection\u0026submitted\u003dSearch\n(a) `Internet connection not available` → `Internet connection unavailable`\n\nSorry, unable to see the original context as these comments do not relate to the code anymore.\n\nHopefully this helps?",
+      "parentUuid": "c6b648a7_bf2045d6",
+      "range": {
+        "startLine": 310,
+        "startChar": 100,
+        "endLine": 310,
+        "endChar": 171
+      },
+      "revId": "fae449afc91a5c68f83f7430c1b61a8fe8e03bca",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
