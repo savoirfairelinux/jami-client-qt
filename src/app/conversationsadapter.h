@@ -94,6 +94,7 @@ private Q_SLOTS:
     void onModelChanged();
     void onProfileUpdated(const QString&);
     void onConversationUpdated(const QString&);
+    void onConversationRemoved(const QString&);
     void onFilterChanged();
     void onConversationCleared(const QString&);
     void onSearchStatusChanged(const QString&);

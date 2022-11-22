@@ -159,16 +159,6 @@ public Q_SLOTS:
                                  const QString& registeredName);
 
     /**
-     * Listen CallbacksHandler when an incoming request arrives
-     * @param accountId account linked
-     * @param contactUri
-     * @param payload VCard of the contact
-     */
-    void slotIncomingContactRequest(const QString& accountId,
-                                    const QString& conversationId,
-                                    const QString& contactUri,
-                                    const QString& payload);
-    /**
      * Listen from callModel when an incoming call arrives.
      * @param fromId
      * @param callId
@@ -290,12 +280,7 @@ ContactModel::addContact(contact::Info contactInfo)
         return;
     }
     case profile::Type::PENDING:
-        if (daemon::addContactFromPending(owner, profile.uri)) {
-            Q_EMIT pendingContactAccepted(profile.uri);
-        } else {
-            return;
-        }
-        break;
+        return;
     case profile::Type::JAMI:
     case profile::Type::SIP:
         break;
@@ -356,20 +341,7 @@ ContactModel::removeContact(const QString& contactUri, bool banned)
     bool emitContactRemoved = false;
     {
         std::lock_guard<std::mutex> lk(pimpl_->contactsMtx_);
-        auto contact = pimpl_->contacts.find(contactUri);
-        if (!banned && contact != pimpl_->contacts.end()
-            && contact->profileInfo.type == profile::Type::PENDING) {
-            // Discard the pending request and remove profile from db if necessary
-            if (!daemon::discardFromPending(owner, contactUri)) {
-                qDebug() << "Discard request for account " << owner.id << " failed (" << contactUri
-                         << ")";
-                return;
-            }
-            pimpl_->contacts.remove(contactUri);
-            storage::removeContactConversations(pimpl_->db, contactUri);
-            storage::removeProfile(owner.id, contactUri);
-            emitContactRemoved = true;
-        } else if (owner.profileInfo.type == profile::Type::SIP) {
+        if (owner.profileInfo.type == profile::Type::SIP) {
             // Remove contact from db
             pimpl_->contacts.remove(contactUri);
             storage::removeContactConversations(pimpl_->db, contactUri);
@@ -616,10 +588,6 @@ ContactModelPimpl::ContactModelPimpl(const ContactModel& linked,
             this,
             &ContactModelPimpl::slotContactRemoved);
     connect(&callbacksHandler,
-            &CallbacksHandler::incomingContactRequest,
-            this,
-            &ContactModelPimpl::slotIncomingContactRequest);
-    connect(&callbacksHandler,
             &CallbacksHandler::registeredNameFound,
             this,
             &ContactModelPimpl::slotRegisteredNameFound);
@@ -659,10 +627,6 @@ ContactModelPimpl::~ContactModelPimpl()
                &CallbacksHandler::contactRemoved,
                this,
                &ContactModelPimpl::slotContactRemoved);
-    disconnect(&callbacksHandler,
-               &CallbacksHandler::incomingContactRequest,
-               this,
-               &ContactModelPimpl::slotIncomingContactRequest);
     disconnect(&callbacksHandler,
                &CallbacksHandler::registeredNameFound,
                this,
@@ -1035,40 +999,6 @@ ContactModelPimpl::slotRegisteredNameFound(const QString& accountId,
     }
     updateTemporaryMessage("");
     Q_EMIT linked.modelUpdated(uri);
-}
-
-void
-ContactModelPimpl::slotIncomingContactRequest(const QString& accountId,
-                                              const QString& conversationId,
-                                              const QString& contactUri,
-                                              const QString& payload)
-{
-    if (linked.owner.id != accountId)
-        return;
-
-    auto emitTrust = false;
-    {
-        std::lock_guard<std::mutex> lk(contactsMtx_);
-        if (contacts.find(contactUri) == contacts.end()) {
-            const auto vCard = lrc::vCard::utils::toHashMap(payload.toUtf8());
-            const auto alias = vCard["FN"];
-            QByteArray photo;
-            for (const auto& key : vCard.keys()) {
-                if (key.contains("PHOTO"))
-                    photo = vCard[key];
-            }
-            auto profileInfo = profile::Info {contactUri, photo, alias, profile::Type::PENDING};
-            auto contactInfo = contact::Info {profileInfo, "", false, false, false};
-            contacts.insert(contactUri, contactInfo);
-            emitTrust = true;
-            storage::createOrUpdateProfile(accountId, profileInfo, true);
-            ConfigurationManager::instance().lookupAddress(linked.owner.id, "", contactUri);
-        }
-    }
-    Q_EMIT linked.incomingContactRequest(contactUri);
-    if (emitTrust) {
-        Q_EMIT behaviorController.newTrustRequest(linked.owner.id, conversationId, contactUri);
-    }
 }
 
 void

@@ -43,18 +43,6 @@ removeContact(const api::account::Info& owner, const QString& contactUri, bool b
     ConfigurationManager::instance().removeContact(owner.id, contactUri, banned);
 }
 
-bool
-addContactFromPending(const api::account::Info& owner, const QString& contactUri)
-{
-    return ConfigurationManager::instance().acceptTrustRequest(owner.id, contactUri);
-}
-
-bool
-discardFromPending(const api::account::Info& owner, const QString& contactUri)
-{
-    return ConfigurationManager::instance().discardTrustRequest(owner.id, contactUri);
-}
-
 } // namespace daemon
 
 } // namespace authority
