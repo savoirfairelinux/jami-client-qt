@@ -376,7 +376,7 @@ Item {
     property real chatViewHairLineSize: 1
     property real chatViewMaximumWidth: 900
     property real chatViewHeaderPreferredHeight: 64
-    property real chatViewHeaderMinimumWidth: 200
+    property real chatViewHeaderMinimumWidth: 400
     property real chatViewFooterPreferredHeight: 50
     property real chatViewFooterMaximumHeight: 280
     property real chatViewFooterRowSpacing: 1
