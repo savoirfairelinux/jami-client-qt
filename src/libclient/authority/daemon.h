@@ -47,20 +47,6 @@ void addContact(const api::account::Info& owner, const api::contact::Info& conta
  * @param banned
  */
 void removeContact(const api::account::Info& owner, const QString& contactUri, bool banned);
-/**
- * Ask the daemon to add a contact from the pending list.
- * @param owner
- * @param contactUri
- * @return if operation succeed
- */
-bool addContactFromPending(const api::account::Info& owner, const QString& contactUri);
-/**
- * Ask the daemon to discard a pending.
- * @param owner
- * @param contactUri
- * @return if operation succeed
- */
-bool discardFromPending(const api::account::Info& owner, const QString& contactUri);
 
 } // namespace daemon
 

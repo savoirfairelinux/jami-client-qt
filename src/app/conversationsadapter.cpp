@@ -290,6 +290,12 @@ ConversationsAdapter::onConversationUpdated(const QString& convId)
 }
 
 void
+ConversationsAdapter::onConversationRemoved(const QString& convId)
+{
+    updateConversationFilterData();
+}
+
+void
 ConversationsAdapter::onFilterChanged()
 {
     updateConversationFilterData();
@@ -588,6 +594,11 @@ ConversationsAdapter::connectConversationModel()
                      &ConversationModel::conversationUpdated,
                      this,
                      &ConversationsAdapter::onConversationUpdated,
+                     Qt::UniqueConnection);
+    QObject::connect(currentConversationModel,
+                     &ConversationModel::conversationRemoved,
+                     this,
+                     &ConversationsAdapter::onConversationRemoved,
                      Qt::UniqueConnection);
 
     QObject::connect(currentConversationModel,
