@@ -196,7 +196,7 @@ Window {
                     case 2:
                         return JamiStrings.callKeyboardShortcuts
                     case 3:
-                        return JamiStrings.settingsKeyboardShortcuts
+                        return JamiStrings.settings
 
                     }
                 }
