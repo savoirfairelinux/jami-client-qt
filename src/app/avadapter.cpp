@@ -306,6 +306,9 @@ AvAdapter::onRendererStarted(const QString& id, const QSize& size)
 {
     Q_UNUSED(size)
     auto callId = lrcInstance_->getCurrentCallId();
+    if (callId.isEmpty()) {
+        return;
+    }
     auto callModel = lrcInstance_->getCurrentCallModel();
     auto renderDevice = callModel->getCurrentRenderedDevice(callId);
     if (!id.contains("://"))
