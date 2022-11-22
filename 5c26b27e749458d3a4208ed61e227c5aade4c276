@@ -16,6 +16,24 @@
       "message": "1-\nOnly disables on the second account creation\n\n2-\nWhy disable it? the button is still there and users, not being able to use it, might think it is a bug.",
       "revId": "5c26b27e749458d3a4208ed61e227c5aade4c276",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b901ab4_602b747b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-22T15:54:51Z",
+      "side": 1,
+      "message": "I don\u0027t understand 1.\n\n\n\u003e Why disable it? the button is still there and users, not being able to use it, might think it is a bug.\n\nAfter the button \"Join Jami\" is clicked it\u0027s generating the keys. The user must not be able to change the profile while creating the keys as it will be closed after ~1/2 secs",
+      "parentUuid": "e596f065_b0583b5d",
+      "revId": "5c26b27e749458d3a4208ed61e227c5aade4c276",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
