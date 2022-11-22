@@ -24,6 +24,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79eb8970_c30425ca",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 34
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-22T14:45:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65b3bd19_5c5eb825",
+      "range": {
+        "startLine": 309,
+        "startChar": 103,
+        "endLine": 309,
+        "endChar": 106
+      },
+      "revId": "fae449afc91a5c68f83f7430c1b61a8fe8e03bca",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa4847af_791b7e6d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-21T20:58:09Z",
       "side": 1,
       "message": "In Device Settings, please turn on Location Services",
+      "range": {
+        "startLine": 310,
+        "startChar": 100,
+        "endLine": 310,
+        "endChar": 171
+      },
+      "revId": "fae449afc91a5c68f83f7430c1b61a8fe8e03bca",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6b648a7_bf2045d6",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 34
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-22T14:45:10Z",
+      "side": 1,
+      "message": "This error is not because of disabled Locations Services. Could be internet issues for instance. But you\u0027re right, it\u0027s unclear for the user. Could this be written instead: \"As soon as Location Services is available\"?",
+      "parentUuid": "aa4847af_791b7e6d",
       "range": {
         "startLine": 310,
         "startChar": 100,
