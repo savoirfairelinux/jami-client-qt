@@ -376,7 +376,7 @@ Item {
     property real chatViewHairLineSize: 1
     property real chatViewMaximumWidth: 900
     property real chatViewHeaderPreferredHeight: 64
-    property real chatViewHeaderMinimumWidth: 200
+    property real chatViewHeaderMinimumWidth: 430
     property real chatViewFooterPreferredHeight: 50
     property real chatViewFooterMaximumHeight: 280
     property real chatViewFooterRowSpacing: 1
@@ -497,7 +497,7 @@ Item {
     property int keyboardShortcutDelegateSize: 50
 
     // Main application spec
-    property real mainViewMinWidth: 332
+    property real mainViewMinWidth: 430
     property real mainViewMinHeight: 500
 
     property real wizardViewMinWidth: 500
