@@ -40,9 +40,10 @@ Rectangle {
     objectName: "mainView"
 
     property int sidePanelViewStackCurrentWidth: 300
-    property int mainViewStackPreferredWidth: 425
+    property int mainViewStackPreferredWidth: sidePanelViewStackCurrentWidth + JamiTheme.chatViewHeaderMinimumWidth
     property int settingsViewPreferredWidth: 460
     property int onWidthChangedTriggerDistance: 5
+    property int lastSideBarSplitSize: sidePanelViewStackCurrentWidth
 
     property bool sidePanelOnly: (!mainViewStack.visible) && sidePanelViewStack.visible
     property int previousWidth: width
@@ -269,6 +270,7 @@ Rectangle {
                 id: mainViewSidePanelRect
 
                 SplitView.maximumWidth: splitView.width
+                SplitView.minimumWidth: sidePanelViewStackCurrentWidth
                 SplitView.preferredWidth: sidePanelViewStackCurrentWidth
                 SplitView.fillHeight: true
                 color: JamiTheme.backgroundColor
@@ -313,6 +315,7 @@ Rectangle {
                 initialItem: welcomePage
 
                 SplitView.maximumWidth: splitView.width
+                SplitView.minimumWidth: JamiTheme.chatViewHeaderMinimumWidth
                 SplitView.preferredWidth: mainViewStackPreferredWidth
                 SplitView.fillHeight: true
 
@@ -445,12 +448,11 @@ Rectangle {
 
     onWidthChanged: {
         // Hide unnecessary stackview when width is changed.
-        var widthToCompare = previousWidth < mainView.width ?
-                    0 :
-                    (inSettingsView ? settingsViewPreferredWidth : mainViewStackPreferredWidth)
+        var isExpanding = previousWidth < mainView.width
 
-        if (mainView.width < widthToCompare - onWidthChangedTriggerDistance
-                && mainViewStack.visible) {
+        if (mainView.width < JamiTheme.chatViewHeaderMinimumWidth + mainViewSidePanelRect.width
+                && mainViewStack.visible && !isExpanding) {
+            lastSideBarSplitSize = mainViewSidePanelRect.width
             mainViewStack.visible = false
 
             // The find callback function is called for each item in the stack.
@@ -465,8 +467,8 @@ Rectangle {
             }
             else if (inWelcomeViewStack)
                 recursionStackViewItemMove(mainViewStack, sidePanelViewStack)
-        } else if (mainView.width >= widthToCompare + onWidthChangedTriggerDistance
-                   && !mainViewStack.visible) {
+        } else if (mainView.width >= lastSideBarSplitSize + JamiTheme.chatViewHeaderMinimumWidth
+                   && !mainViewStack.visible && isExpanding && !layoutManager.isFullScreen) {
             mainViewStack.visible = true
 
             var inSidePanelViewStack = sidePanelViewStack.find(
