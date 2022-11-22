@@ -91,16 +91,6 @@ Q_SIGNALS:
      */
     void contactAdded(const QString& accountId, const QString& contactUri, bool confirmed);
     /**
-     * Connect this signal to know when an incoming request is added by the daemon
-     * @param accountId the one who got the request
-     * @param contactUri the peer contact
-     * @param payload the VCard
-     */
-    void incomingContactRequest(const QString& accountId,
-                                const QString& conversationId,
-                                const QString& contactUri,
-                                const QString& payload);
-    /**
      * Connect this signal to know when a call arrives
      * @param accountId the one who receives the call
      * @param callId the call id
@@ -425,18 +415,6 @@ private Q_SLOTS:
      * @param banned
      */
     void slotContactRemoved(const QString& accountId, const QString& contactUri, bool banned);
-    /**
-     * Emit incomingContactRequest
-     * @param accountId the linked id
-     * @param ringId the peer contact
-     * @param payload the VCard
-     * @param time when the request was received
-     */
-    void slotIncomingContactRequest(const QString& accountId,
-                                    const QString& conversationId,
-                                    const QString& ringId,
-                                    const QByteArray& payload,
-                                    time_t time);
     /**
      * Emit accountDetailsChanged
      * @param accountId

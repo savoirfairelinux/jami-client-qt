@@ -210,7 +210,7 @@ public:
      */
     void acceptTransfer(const QString& convUid, const QString& interactionId);
     void handleIncomingFile(const QString& convId, const QString& interactionId, int totalSize);
-    void addConversationRequest(const MapStringString& convRequest);
+    void addConversationRequest(const MapStringString& convRequest, bool emitToClient = false);
     void addContactRequest(const QString& contactUri);
 
     // filter out ourself from conversation participants.
@@ -255,11 +255,6 @@ public Q_SLOTS:
      * @param uri
      */
     void slotContactAdded(const QString& contactUri);
-    /**
-     * Listen from contactModel when receive a new contact request
-     * @param uri
-     */
-    void slotIncomingContactRequest(const QString& contactUri);
     /**
      * Listen from contactModel when a pending contact is accepted
      * @param uri
@@ -831,7 +826,7 @@ ConversationModel::removeConversation(const QString& uid, bool banned)
                     "participant";
         return;
     }
-    if (!conversation.isCoreDialog()) {
+    if (conversation.isSwarm() && !banned) {
         if (conversation.isRequest)
             ConfigurationManager::instance().declineConversationRequest(owner.id, uid);
         else
@@ -1836,10 +1831,6 @@ ConversationModelPimpl::ConversationModelPimpl(const ConversationModel& linked,
             this,
             &ConversationModelPimpl::slotContactAdded);
     connect(&*linked.owner.contactModel,
-            &ContactModel::incomingContactRequest,
-            this,
-            &ConversationModelPimpl::slotIncomingContactRequest);
-    connect(&*linked.owner.contactModel,
             &ContactModel::pendingContactAccepted,
             this,
             &ConversationModelPimpl::slotPendingContactAccepted);
@@ -1994,10 +1985,6 @@ ConversationModelPimpl::~ConversationModelPimpl()
                &ContactModel::contactAdded,
                this,
                &ConversationModelPimpl::slotContactAdded);
-    disconnect(&*linked.owner.contactModel,
-               &ContactModel::incomingContactRequest,
-               this,
-               &ConversationModelPimpl::slotIncomingContactRequest);
     disconnect(&*linked.owner.contactModel,
                &ContactModel::pendingContactAccepted,
                this,
@@ -2714,7 +2701,7 @@ ConversationModelPimpl::slotConversationRequestReceived(const QString& accountId
     if (accountId != linked.owner.id) {
         return;
     }
-    addConversationRequest(metadatas);
+    addConversationRequest(metadatas, true);
 }
 
 void
@@ -2913,14 +2900,6 @@ ConversationModelPimpl::slotActiveCallsChanged(const QString& accountId,
 }
 
 void
-ConversationModelPimpl::slotIncomingContactRequest(const QString& contactUri)
-{
-    // It is contact request. But for compatibility with swarm conversations we add it like non
-    // swarm conversation request.
-    addContactRequest(contactUri);
-}
-
-void
 ConversationModelPimpl::slotContactAdded(const QString& contactUri)
 {
     auto conv = storage::getConversationsWithPeer(db, contactUri);
@@ -3008,7 +2987,7 @@ ConversationModelPimpl::addContactRequest(const QString& contactUri)
 }
 
 void
-ConversationModelPimpl::addConversationRequest(const MapStringString& convRequest)
+ConversationModelPimpl::addConversationRequest(const MapStringString& convRequest, bool emitToClient)
 {
     auto convId = convRequest["id"];
     auto convIdx = indexOf(convId);
@@ -3018,29 +2997,6 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
     auto peerUri = convRequest["from"];
     auto mode = conversation::to_mode(convRequest["mode"].toInt());
     QString callId, confId;
-    if (mode == conversation::Mode::ONE_TO_ONE) {
-        try {
-            // check if we have contact request for peer
-            auto& conv = getConversationForPeerUri(peerUri).get();
-            if (conv.mode == conversation::Mode::NON_SWARM) {
-                eraseConversation(conv.uid);
-                storage::removeContactConversations(db, peerUri);
-                invalidateModel();
-                Q_EMIT linked.conversationRemoved(conv.uid);
-                Q_EMIT linked.modelChanged();
-            }
-        } catch (std::out_of_range&) {
-            qWarning() << "Couldn't find contact request conversation for" << peerUri;
-        }
-    }
-
-    // add the author to the contact model's contact list as a PENDING
-    // if they aren't already a contact
-    auto isSelf = linked.owner.profileInfo.uri == peerUri;
-    if (isSelf)
-        return;
-    linked.owner.contactModel->addToContacts(peerUri);
-
     const MapStringString& details = ConfigurationManager::instance()
                                          .conversationInfos(linked.owner.id, convId);
     conversation::Info conversation;
@@ -3053,6 +3009,28 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
                                  {peerUri, member::Role::MEMBER}};
     conversation.mode = mode;
     conversation.isRequest = true;
+
+    // add the author to the contact model's contact list as a PENDING
+    // if they aren't already a contact
+    auto isSelf = linked.owner.profileInfo.uri == peerUri;
+    if (isSelf)
+        return;
+
+    if (mode == conversation::Mode::ONE_TO_ONE) {
+        try {
+            profile::Info profileInfo;
+            profileInfo.uri = peerUri;
+            profileInfo.type = profile::Type::JAMI;
+            profileInfo.alias = details["title"];
+            profileInfo.avatar = details["avatar"];
+            contact::Info contactInfo;
+            contactInfo.profileInfo = profileInfo;
+            linked.owner.contactModel->addContact(contactInfo);
+        } catch (std::out_of_range&) {
+            qWarning() << "Couldn't find contact request conversation for" << peerUri;
+        }
+    }
+
     emplaceBackConversation(std::move(conversation));
     invalidateModel();
     Q_EMIT linked.newConversation(convId);
@@ -3061,6 +3039,8 @@ ConversationModelPimpl::addConversationRequest(const MapStringString& convReques
         // If we replace a non swarm request by a swarm request while having a call.
         Q_EMIT linked.selectConversation(convId);
     }
+    if (emitToClient)
+        Q_EMIT behaviorController.newTrustRequest(linked.owner.id, convId, peerUri);
 }
 
 void

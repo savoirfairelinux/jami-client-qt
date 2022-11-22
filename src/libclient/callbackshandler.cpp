@@ -117,12 +117,6 @@ CallbacksHandler::CallbacksHandler(const Lrc& parent)
             Qt::QueuedConnection);
 
     connect(&ConfigurationManager::instance(),
-            &ConfigurationManagerInterface::incomingTrustRequest,
-            this,
-            &CallbacksHandler::slotIncomingContactRequest,
-            Qt::QueuedConnection);
-
-    connect(&ConfigurationManager::instance(),
             &ConfigurationManagerInterface::accountMessageStatusChanged,
             this,
             &CallbacksHandler::slotAccountMessageStatusChanged,
@@ -438,17 +432,6 @@ CallbacksHandler::slotContactRemoved(const QString& accountId,
                                      bool banned)
 {
     Q_EMIT contactRemoved(accountId, contactUri, banned);
-}
-
-void
-CallbacksHandler::slotIncomingContactRequest(const QString& accountId,
-                                             const QString& conversationId,
-                                             const QString& contactUri,
-                                             const QByteArray& payload,
-                                             time_t time)
-{
-    Q_UNUSED(time)
-    Q_EMIT incomingContactRequest(accountId, conversationId, contactUri, payload);
 }
 
 void
