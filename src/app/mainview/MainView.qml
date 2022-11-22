@@ -40,7 +40,7 @@ Rectangle {
     objectName: "mainView"
 
     property int sidePanelViewStackCurrentWidth: 300
-    property int mainViewStackPreferredWidth: 425
+    property int mainViewStackPreferredWidth: sidePanelViewStackCurrentWidth + JamiTheme.chatViewHeaderMinimumWidth
     property int settingsViewPreferredWidth: 460
     property int onWidthChangedTriggerDistance: 5
 
