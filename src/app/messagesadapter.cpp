@@ -174,9 +174,21 @@ MessagesAdapter::editMessage(const QString& convId, const QString& newBody, cons
             return;
         }
         lrcInstance_->getCurrentConversationModel()->editMessage(convId, newBody, editId);
-        set_editId("");
     } catch (...) {
         qDebug() << "Exception during message edition:" << messageId;
+    }
+}
+
+void
+MessagesAdapter::reactMessage(const QString& convId, const QString& emoji, const QString& messageId)
+{
+    try {
+        const auto convUid = lrcInstance_->get_selectedConvUid();
+
+        lrcInstance_->getCurrentConversationModel()->reactMessage(convId, emoji, messageId);
+        set_editId("");
+    } catch (...) {
+        qDebug() << "Exception during message reaction:" << messageId;
     }
 }
 

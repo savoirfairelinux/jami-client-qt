@@ -23,6 +23,7 @@
 
 #include "api/conversationmodel.h"
 #include "api/interaction.h"
+#include "qtwrapper/conversions_wrap.hpp"
 
 #include <QAbstractListModel>
 
@@ -466,6 +467,10 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(messageToReaders_[item.first]);
     case Role::IsEmojiOnly:
         return QVariant(isOnlyEmoji(item.second.body));
+    case Role::Reactions:
+        return QVariant(item.second.reactions);
+    case Role::ReactionsByEmojis:
+        return QVariant(item.second.reactionsByEmojis);
     default:
         return {};
     }
@@ -585,10 +590,12 @@ void
 MessageListModel::addEdition(const QString& msgId, const interaction::Info& info, bool end)
 {
     auto editedId = info.commit["edit"];
+    qWarning() << "editedId: " << info.commit;
     if (editedId.isEmpty())
         return;
     auto& edited = editedBodies_[editedId];
     auto value = interaction::Body {msgId, info.body, info.timestamp};
+
     if (end)
         edited.push_back(value);
     else
@@ -601,8 +608,57 @@ MessageListModel::addEdition(const QString& msgId, const interaction::Info& info
 }
 
 void
+MessageListModel::addReaction(const QString& authorURI, const QString& replyToId, QString reaction)
+{
+    // if a reaction was already added for this id
+    if (ReactedMessages_.contains(replyToId)) {
+        auto& msgMap = ReactedMessages_[replyToId];
+        if (msgMap.contains(authorURI)) {
+            msgMap[authorURI].append(reaction);
+        } else {
+            msgMap.insert(authorURI, QStringList(reaction));
+        }
+
+        // Emoji list to know emojis and their quantities
+        auto& emojiMap = EmojiNumbers_[replyToId];
+        if (emojiMap.contains(reaction)) {
+            emojiMap[reaction] += 1;
+        } else {
+            emojiMap.insert(reaction, 1);
+        }
+    } else {
+        QMap<QString, QStringList> mapQ;
+        mapQ.insert(authorURI, QStringList(reaction));
+        ReactedMessages_.insert(replyToId, mapQ);
+
+        // quantities list
+        MapStringInt numberMap;
+        numberMap.insert(reaction, 1);
+        EmojiNumbers_.insert(replyToId, numberMap);
+    }
+    auto interaction = find(replyToId);
+    qWarning() << "replyToId: " << replyToId << "reaction: " << reaction;
+    if (interaction != interactions_.end()) {
+        qWarning() << "already exists";
+        // If already there, we can update the content
+        editMessage(replyToId, interaction->second);
+    }
+}
+
+void
 MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
 {
+    auto itReact = ReactedMessages_.find(msgId);
+    // qWarning() << ReactedMessages_ << " editMessage reactList ";
+    if (itReact != ReactedMessages_.end()) {
+        // QMap<QString,QStringList> tempMap = ReactedMessages_[msgId];
+        info.reactions = mapStringQStringListToQVariantMap(ReactedMessages_[msgId]);
+        info.reactionsByEmojis = mapStringIntToQVariantMap(EmojiNumbers_[msgId]);
+        emitDataChanged(find(msgId), {Role::Reactions});
+        emitDataChanged(find(msgId), {Role::ReactionsByEmojis});
+        qWarning() << ReactedMessages_[msgId] << " editMessage ";
+    }
+
     auto it = editedBodies_.find(msgId);
     if (it != editedBodies_.end()) {
         if (info.previousBodies.isEmpty()) {

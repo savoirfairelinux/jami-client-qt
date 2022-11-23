@@ -1346,11 +1346,27 @@ ConversationModel::editMessage(const QString& convId,
                                const QString& newBody,
                                const QString& messageId)
 {
+    //    qWarning() << "send message conversationModel.cpp: " << convId << " " << newBody << " "
+    //               << messageId;
     auto conversationOpt = getConversationForUid(convId);
     if (!conversationOpt.has_value()) {
         return;
     }
     ConfigurationManager::instance().sendMessage(owner.id, convId, newBody, messageId, 1);
+}
+
+void
+ConversationModel::reactMessage(const QString& convId,
+                                const QString& emoji,
+                                const QString& messageId)
+{
+    //    qWarning() << "send message conversationModel.cpp: " << convId << " " << emoji << " "
+    //               << messageId;
+    auto conversationOpt = getConversationForUid(convId);
+    if (!conversationOpt.has_value()) {
+        return;
+    }
+    ConfigurationManager::instance().sendMessage(owner.id, convId, emoji, messageId, 2);
 }
 
 void
@@ -2460,6 +2476,9 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                                                                         message["action"]));
             } else if (msg.type == interaction::Type::EDITED) {
                 conversation.interactions->addEdition(msgId, msg, false);
+            } else if (msg.type == interaction::Type::REACTION) {
+                // if (message.contains("react-to"))
+                conversation.interactions->addReaction(msg.authorUri, msg.react_to, msg.body);
             }
             insertSwarmInteraction(msgId, msg, conversation, true);
             if (downloadFile) {
@@ -2611,6 +2630,12 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             if (msg.authorUri != linked.owner.profileInfo.uri) {
                 updateUnread = true;
             }
+            //            if (message.contains("react-to"))
+            //                conversation.interactions->addReaction(msg.react_to, msg.body);
+        } else if (msg.type == interaction::Type::REACTION) {
+            conversation.interactions->addReaction(msgId, msg.react_to, msg.body);
+            // conversation.interactions->editMessage(message["react-to"], msg);
+            qWarning() << "reaction addReaction received";
         } else if (msg.type == interaction::Type::EDITED) {
             conversation.interactions->addEdition(msgId, msg, true);
         }
