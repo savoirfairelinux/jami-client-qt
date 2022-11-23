@@ -44,7 +44,7 @@ SBSMessageBase {
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
-
+    textHovered: textHoverhandler.hovered
 
     EditedPopup {
         id: editedPopup
@@ -58,10 +58,12 @@ SBSMessageBase {
 
             padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
-
             text: Body
-
             horizontalAlignment: Text.AlignLeft
+
+            HoverHandler {
+                id: textHoverhandler
+            }
 
             width: {
                 if (extraContent.active)
@@ -77,7 +79,6 @@ SBSMessageBase {
             wrapMode: Label.WrapAtWordBoundaryOrAnywhere
             selectByMouse: true
             font.pixelSize: isEmojiOnly? JamiTheme.chatviewEmojiSize : JamiTheme.chatviewFontSize
-
             font.hintingPreference: Font.PreferNoHinting
             renderType: Text.NativeRendering
             textFormat: Text.MarkdownText
@@ -119,6 +120,7 @@ SBSMessageBase {
         },
         RowLayout {
             id: editedRow
+
             anchors.right: isOutgoing ? parent.right : undefined
             visible: PreviousBodies.length !== 0
 
@@ -127,7 +129,6 @@ SBSMessageBase {
 
                 Layout.leftMargin: JamiTheme.preferredMarginSize
                 Layout.bottomMargin: JamiTheme.preferredMarginSize
-
                 source: JamiResources.round_edit_24dp_svg
                 width: JamiTheme.editedFontSize
                 height: JamiTheme.editedFontSize
@@ -161,12 +162,14 @@ SBSMessageBase {
         },
         Loader {
             id: extraContent
+
             anchors.right: isOutgoing ? parent.right : undefined
             property real minSize: 192
             property real maxSize: 320
             active: LinkPreviewInfo.url !== undefined
             sourceComponent: ColumnLayout {
                 id: previewContent
+
                 spacing: 12
                 Component.onCompleted: {
                     isRemoteImage = MessagesAdapter.isRemoteImage(LinkPreviewInfo.url)

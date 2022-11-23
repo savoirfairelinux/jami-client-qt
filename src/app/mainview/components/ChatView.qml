@@ -39,6 +39,12 @@ Rectangle {
     signal messagesCleared
     signal messagesLoaded
 
+     onVisibleChanged: {
+        if (visible)
+            return
+        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
+    }
+
     function focusChatView() {
         chatViewFooter.textInput.forceActiveFocus()
         swarmDetailsPanel.visible = false
@@ -213,7 +219,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                                  CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
