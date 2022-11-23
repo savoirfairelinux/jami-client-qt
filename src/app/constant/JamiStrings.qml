@@ -742,6 +742,7 @@ Item {
 
     // Message view
     property string addEmoji: qsTr("Add emoji")
+    property string moreEmojis: qsTr("more emojis")
     property string sendFile: qsTr("Send file")
     property string leaveAudioMessage: qsTr("Leave audio message")
     property string leaveVideoMessage: qsTr("Leave video message")
@@ -806,4 +807,9 @@ Item {
     property string customizationDescription: qsTr("This profile is only shared with this account's contacts")
     property string customizationDescription2: qsTr("Your profile is only shared with your contacts")
     property string whySaveAccount: qsTr("Why should I save my account?")
+
+    //message options
+    property string deleteMessage: qsTr("Delete message")
+    property string editMessage: qsTr("Edit message")
+
 }

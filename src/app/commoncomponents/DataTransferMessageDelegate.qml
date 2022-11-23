@@ -36,7 +36,6 @@ Loader {
     property int timestamp: Timestamp
     property string formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     property string formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
-
     property int seq: MsgSeq.single
     property string author: Author
 
@@ -66,7 +65,6 @@ Loader {
             property real maxMsgWidth: root.width - senderMargin -
                                        2 * hPadding - avatarBlockWidth
                                        - buttonsLoader.width - 24 - 6 - 24
-
             isOutgoing: Author === ""
             showTime: root.showTime
             seq: root.seq

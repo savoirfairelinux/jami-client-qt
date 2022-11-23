@@ -32,6 +32,7 @@ class MessagesAdapter final : public QmlAdapterBase
     Q_OBJECT
     QML_RO_PROPERTY(QVariant, messageListModel)
     QML_PROPERTY(QString, replyToId)
+    QML_PROPERTY(bool, isScrolling)
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
     QML_PROPERTY(QVariant, mediaMessageListModel)
@@ -72,6 +73,12 @@ protected:
     Q_INVOKABLE void editMessage(const QString& convId,
                                  const QString& newBody,
                                  const QString& messageId = "");
+    Q_INVOKABLE void addEmojiReaction(const QString& convId,
+                                      const QString& emoji,
+                                      const QString& messageId = "");
+    Q_INVOKABLE void removeEmojiReaction(const QString& convId,
+                                         const QString& emoji,
+                                         const QString& messageId);
     Q_INVOKABLE void sendFile(const QString& message);
     Q_INVOKABLE void acceptFile(const QString& arg);
     Q_INVOKABLE void cancelFile(const QString& arg);

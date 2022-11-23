@@ -222,6 +222,22 @@ Item {
     property color sharePositionIndicatorColor: red_
     property color sharedPositionIndicatorColor: urgentOrange_
 
+    //EmojiReact
+    property real emojiBubbleSize: calcSize(17)
+    property real emojiBubbleSizeBig: calcSize(21)
+    property real emojiReactSize: calcSize(12)
+    property real emojiPopupFontsize: calcSize(25)
+    property real emojiPopupFontsizeBig: calcSize(28)
+    property real namePopupFontsize: calcSize(15)
+    property real avatarSize: 30
+    property int emojiPushButtonSize: 30
+    property int emojiMargins: 20
+    property color emojiReactBubbleBgColor: darkTheme ? darkGreyColor : whiteColor
+    property color emojiReactPushButtonColor: darkTheme ? "#bbb" : "#003b4e"
+    property real messageOptionTextFontSize: calcSize(15)
+    property int emojiPickerWidth: 400
+    property int emojiPickerHeight: 425
+
     // Files To Send Container
     property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
 
@@ -233,7 +249,6 @@ Item {
     property color typingDotsEnlargeColor: darkTheme ? "white" : Qt.darker("lightgrey", 3.0)
 
     // Font.
-
     property color faddedFontColor: darkTheme? "#c0c0c0" : "#a0a0a0"
     property color faddedLastInteractionFontColor: darkTheme ? "#c0c0c0" : "#505050"
 
