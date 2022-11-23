@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3694db29_4dbf907e",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 40
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T19:54:32Z",
+      "side": 1,
+      "message": "As Qt calls it position and strings are location, perhaps it could be:\n`// Share location/position`",
+      "range": {
+        "startLine": 302,
+        "startChar": 4,
+        "endLine": 302,
+        "endChar": 21
+      },
+      "revId": "e5b54ad787b029c9ba7ff703c9747f7e7834eef9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
