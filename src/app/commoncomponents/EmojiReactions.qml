@@ -29,7 +29,7 @@ Item {
     property var emojiReaction
     property real contentHeight: bubble.height
     property real contentWidth: bubble.width
-    property string emojiTexts: ownEmojiList
+    property var emojiTexts: ownEmojiList
 
     visible: emojis ? emojis.length : false
 
@@ -62,19 +62,21 @@ Item {
         return cur
     }
 
-    property string ownEmojiList: {
-        var list = ""
+    property var ownEmojiList: {
+        var list = []
+        var index = 0
         for (const reactions of Object.entries(emojiReaction)) {
             var authorUri = reactions[0]
             var authorEmojiList = reactions[1]
             if (CurrentAccount.uri === authorUri) {
                 for (var emojiIndex in authorEmojiList) {
-                    list = list + authorEmojiList[emojiIndex]
+                    list[index] = authorEmojiList[emojiIndex]
+                    index ++
                 }
                 return list
             }
         }
-        return ""
+        return []
     }
 
     Rectangle {

@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2020-2022 Savoir-faire Linux Inc.
  * Author: Mingrui Zhang <mingrui.zhang@savoirfairelinux.com>
+ * Author: Nicolas Vengeon <nicolas.vengeon@savoirfairelinux.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 import QtWebEngine
 import QtWebChannel
 
@@ -26,28 +28,24 @@ import net.jami.Adapters 1.1
 
 import "../"
 
-Rectangle {
+Popup {
     id: root
 
     signal emojiIsPicked(string content)
 
     function openEmojiPicker() {
-        emojiPickerWebView.focus = true
-        visible = true
+        root.open()
         emojiPickerWebView.runJavaScript(
                     "prepare_to_show(" + JamiTheme.darkTheme + ");")
     }
 
     function closeEmojiPicker() {
         emojiPickerWebView.runJavaScript("prepare_to_hide();")
+        close()
     }
-
-    implicitWidth: 400
-    implicitHeight: 425
-
+    padding: 0
     visible: false
-
-    color: JamiTheme.transparentColor
+    background.visible: false
 
     QtObject {
         id: jsBridgeObject
@@ -70,17 +68,12 @@ Rectangle {
     GeneralWebEngineView {
         id: emojiPickerWebView
 
-        anchors.fill: root
+        width: JamiTheme.emojiPickerWidth
+        height: JamiTheme.emojiPickerHeight
 
         webChannel.registeredObjects: [jsBridgeObject]
 
         onCompletedLoadHtml: ":/webengine/emojipicker/emojiPickerLoader.html"
-
-        onActiveFocusChanged: {
-            if (visible) {
-                closeEmojiPicker()
-            }
-        }
 
         onLoadingChanged: function (loadingInfo) {
             if (loadingInfo.status === WebEngineView.LoadSucceededStatus) {
@@ -94,7 +87,31 @@ Rectangle {
                                 ":/webengine/emojipicker/emojiPickerLoader.js"))
                 emojiPickerWebView.runJavaScript(
                             "init_emoji_picker(" + JamiTheme.darkTheme + ");")
+                root.openEmojiPicker()
             }
+        }
+    }
+
+    Overlay.modal: Rectangle {
+        color: JamiTheme.transparentColor
+        // Color animation for overlay when pop up is shown.
+        ColorAnimation on color {
+            to: JamiTheme.popupOverlayColor
+            duration: 500
+        }
+    }
+
+    enter: Transition {
+        NumberAnimation {
+            properties: "opacity"; from: 0.0; to: 1.0
+            duration: JamiTheme.shortFadeDuration
+        }
+    }
+
+    exit: Transition {
+        NumberAnimation {
+            properties: "opacity"; from: 1.0; to: 0.0
+            duration: JamiTheme.shortFadeDuration
         }
     }
 }
