@@ -53,6 +53,26 @@ mapStringStringToQVariantMap(const MapStringString& map)
     return convertedMap;
 }
 
+inline QVariantMap
+mapStringQStringListToQVariantMap(const MapStringStringList& map)
+{
+    QVariantMap convertedMap;
+    for (auto i = map.begin(); i != map.end(); i++) {
+        convertedMap.insert(i.key(), i.value());
+    }
+    return convertedMap;
+}
+
+inline QVariantMap
+mapStringIntToQVariantMap(const MapStringInt& map)
+{
+    QVariantMap convertedMap;
+    for (auto i = map.begin(); i != map.end(); i++) {
+        convertedMap.insert(i.key(), i.value());
+    }
+    return convertedMap;
+}
+
 inline MapStringString
 convertMap(const std::map<std::string, std::string>& m)
 {
