@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d2f39ef_dbe0aee5",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 13
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T20:52:57Z",
+      "side": 1,
+      "message": "Should a full stop `.` be added here so `\"\\n` becomes `\".\\n`?",
+      "range": {
+        "startLine": 309,
+        "startChar": 152,
+        "endLine": 309,
+        "endChar": 155
+      },
+      "revId": "87d3a00741f5e929054971a05dbb33e9a49b3ea2",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
