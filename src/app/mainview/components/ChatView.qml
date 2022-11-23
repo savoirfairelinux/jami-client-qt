@@ -39,7 +39,7 @@ Rectangle {
     signal messagesCleared
     signal messagesLoaded
 
-     onVisibleChanged: {
+    onVisibleChanged: {
         if (visible)
             return
         UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
@@ -219,7 +219,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                                  CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
