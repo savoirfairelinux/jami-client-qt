@@ -23,6 +23,7 @@
 
 #include "api/conversationmodel.h"
 #include "api/interaction.h"
+#include "qtwrapper/conversions_wrap.hpp"
 
 #include <QAbstractListModel>
 
@@ -191,6 +192,7 @@ MessageListModel::clear()
     interactions_.clear();
     replyTo_.clear();
     editedBodies_.clear();
+    reactedMessages_.clear();
     Q_EMIT endResetModel();
 }
 
@@ -466,6 +468,8 @@ MessageListModel::dataForItem(item_t item, int, int role) const
         return QVariant(messageToReaders_[item.first]);
     case Role::IsEmojiOnly:
         return QVariant(isOnlyEmoji(item.second.body));
+    case Role::Reactions:
+        return QVariant(item.second.reactions);
     default:
         return {};
     }
@@ -588,6 +592,11 @@ MessageListModel::addEdition(const QString& msgId, const interaction::Info& info
     if (editedId.isEmpty())
         return;
     auto& edited = editedBodies_[editedId];
+    auto editedMsgIt = std::find_if(edited.begin(), edited.end(), [&](const auto& v) {
+        return msgId == v.commitId;
+    });
+    if (editedMsgIt != edited.end())
+        return; // Already added
     auto value = interaction::Body {msgId, info.body, info.timestamp};
     if (end)
         edited.push_back(value);
@@ -597,7 +606,60 @@ MessageListModel::addEdition(const QString& msgId, const interaction::Info& info
     if (editedIt != interactions_.end()) {
         // If already there, we can update the content
         editMessage(editedId, editedIt->second);
+        if (!editedIt->second.react_to.isEmpty()) {
+            auto reactToIt = find(editedIt->second.react_to);
+            if (reactToIt != interactions_.end())
+                reactToMessage(editedIt->second.react_to, reactToIt->second);
+        }
     }
+}
+
+void
+MessageListModel::addReaction(const QString& messageId, const QString& reactionId)
+{
+    auto itReacted = reactedMessages_.find(messageId);
+    // TODO can be simplified
+    // TODO reactedMessages_ can be QMap<QString /*editedId*/, QStringList /*reactionIds*/>
+    if (itReacted != reactedMessages_.end()) {
+        itReacted->insert(reactionId);
+    } else {
+        QSet<QString> emojiList;
+        emojiList.insert(reactionId);
+        reactedMessages_.insert(messageId, emojiList);
+    }
+    auto interaction = find(reactionId);
+    if (interaction != interactions_.end()) {
+        // Edit reaction if needed
+        editMessage(reactionId, interaction->second);
+    }
+}
+
+QVariantMap
+MessageListModel::convertReactMessagetoQVariant(const QSet<QString>& emojiIdList)
+{
+    QVariantMap convertedMap;
+    QMap<QString, QStringList> mapStringEmoji;
+    for (auto emojiId = emojiIdList.begin(); emojiId != emojiIdList.end(); emojiId++) {
+        auto interaction = find(*emojiId);
+        if (interaction != interactions_.end()) {
+            auto author = interaction->second.authorUri;
+            auto body = interaction->second.body;
+            if (!body.isEmpty()) {
+                auto itAuthor = mapStringEmoji.find(author);
+                if (itAuthor != mapStringEmoji.end()) {
+                    mapStringEmoji[author].append(body);
+                } else {
+                    QStringList emojiList;
+                    emojiList.append(body);
+                    mapStringEmoji.insert(author, emojiList);
+                }
+            }
+        }
+    }
+    for (auto i = mapStringEmoji.begin(); i != mapStringEmoji.end(); i++) {
+        convertedMap.insert(i.key(), i.value());
+    }
+    return convertedMap;
 }
 
 void
@@ -635,6 +697,21 @@ MessageListModel::editMessage(const QString& msgId, interaction::Info& info)
     }
 }
 
+void
+MessageListModel::reactToMessage(const QString& msgId, interaction::Info& info)
+{
+    // If already there, we can update the content
+    auto itReact = reactedMessages_.find(msgId);
+
+    if (itReact != reactedMessages_.end()) {
+        auto convertedMap = convertReactMessagetoQVariant(reactedMessages_[msgId]);
+        if (!convertedMap.isEmpty()) {
+            info.reactions = convertedMap;
+            emitDataChanged(find(msgId), {Role::Reactions});
+        }
+    }
+}
+
 QString
 MessageListModel::lastMessageUid() const
 {
@@ -653,12 +730,27 @@ MessageListModel::lastSelfMessageId() const
 {
     for (auto it = interactions_.rbegin(); it != interactions_.rend(); ++it) {
         auto lastType = it->second.type;
-        if (lastType == interaction::Type::TEXT
-            and !it->second.body.isEmpty() and it->second.authorUri.isEmpty()) {
+        if (lastType == interaction::Type::TEXT and !it->second.body.isEmpty()
+            and it->second.authorUri.isEmpty()) {
             return it->first;
         }
     }
     return {};
 }
 
+QString
+MessageListModel::findEmojiReaction(const QString& emoji,
+                                    const QString& authorURI,
+                                    const QString& messageId)
+{
+    auto& messageReactions = reactedMessages_[messageId];
+    for (auto it = messageReactions.begin(); it != messageReactions.end(); it++) {
+        auto interaction = find(*it);
+        if (interaction != interactions_.end()) {
+            if (interaction->second.body == emoji && interaction->second.authorUri == authorURI)
+                return *it;
+        }
+    }
+    return {};
+}
 } // namespace lrc

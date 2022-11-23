@@ -39,6 +39,12 @@ Rectangle {
     signal messagesCleared
     signal messagesLoaded
 
+     onVisibleChanged: {
+        if (visible)
+            return
+        UtilsAdapter.clearInteractionsCache(CurrentAccount.id, CurrentConversation.id)
+    }
+
     function focusChatView() {
         chatViewFooter.textInput.forceActiveFocus()
         swarmDetailsPanel.visible = false
@@ -213,7 +219,7 @@ Rectangle {
                     Layout.rightMargin: JamiTheme.chatviewMargin
 
                     currentIndex: CurrentConversation.isRequest ||
-                                CurrentConversation.needsSyncing
+                                  CurrentConversation.needsSyncing
 
                     Loader {
                         active: CurrentConversation.id !== ""
@@ -290,6 +296,16 @@ Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
             }
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+Escape"
+        context: Qt.WindowShortcut
+        enabled: root.visible
+        onActivated: {
+            MessagesAdapter.replyToId = ""
+            MessagesAdapter.editId = ""
         }
     }
 }
