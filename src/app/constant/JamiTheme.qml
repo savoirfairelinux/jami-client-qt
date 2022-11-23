@@ -216,6 +216,17 @@ Item {
     property color sharePositionIndicatorColor: red_
     property color sharedPositionIndicatorColor: urgentOrange_
 
+    //EmojiReact
+    property real emojiBubbleSize: calcSize(15)
+    property real emojiBubbleSizeBig: calcSize(18)
+    property real emojiReactSize: calcSize(12)
+    property real emojiPopupFontsize: calcSize(25)
+    property real namePopupFontsize: calcSize(15)
+    property real avatarSize: 30
+    property int emojiPushButtonSize: 30
+    property color emojiReactButtonBgColor: darkTheme ? "#686b72" : lightGrey_
+    property color emojiReactPushButtonColor: darkTheme ? "#bbb" : "#003b4e"
+
     // Files To Send Container
     property color removeFileButtonColor: Qt.rgba(96, 95, 97, 0.5)
 

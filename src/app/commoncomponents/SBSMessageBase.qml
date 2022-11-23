@@ -80,7 +80,6 @@ Control {
         }
 
         Item {
-
             id: usernameblock
             Layout.preferredHeight: (seq === MsgSeq.first || seq === MsgSeq.single) ? 10 : 0
 
@@ -98,6 +97,8 @@ Control {
 
 
         RowLayout {
+            id: msgRowlayout
+
             Layout.preferredHeight: innerContent.height + root.extraHeight
             Layout.topMargin: (seq === MsgSeq.first || seq === MsgSeq.single) ? 6 : 0
 
@@ -117,31 +118,124 @@ Control {
                 }
             }
 
-            MouseArea {
-                id: itemMouseArea
+            Item {
+                id: itemRowMessage
 
-                Layout.fillWidth: true
                 Layout.fillHeight: true
-                acceptedButtons: Qt.LeftButton | Qt.RightButton
-                onClicked: function (mouse) {
-                    if (mouse.button === Qt.RightButton
-                            && (transferId !== "" || Type === Interaction.Type.TEXT)) {
-                        // Context Menu for Transfers
-                        ctxMenu.x = mouse.x
-                        ctxMenu.y = mouse.y
-                        ctxMenu.openMenu()
-                    } else if (root.hoveredLink) {
-                        MessagesAdapter.openUrl(root.hoveredLink)
-                    }
-                }
+                Layout.fillWidth: true
 
                 Column {
                     id: innerContent
                     width: parent.width
 
+                    visible: true
+
                     // place actual content here
                     ReplyToRow {}
                 }
+
+                MouseArea {
+                    id: bubbleArea
+
+                    anchors.fill: bubble
+                    hoverEnabled: true
+                    visible: (transferId !== "" || Type === Interaction.Type.TEXT)
+                }
+                MouseArea {
+                    id: bgArea
+
+                    anchors.fill: optionButtonItem
+                    hoverEnabled: true
+                    visible: (transferId !== "" || Type === Interaction.Type.TEXT)
+                }
+
+                Item {
+                    id: optionButtonItem
+
+                    anchors.right: isOutgoing ? bubble.left : undefined
+                    anchors.left: !isOutgoing ? bubble.right : undefined
+                    width: JamiTheme.emojiPushButtonSize * 2
+                    height: JamiTheme.emojiPushButtonSize
+                    anchors.verticalCenter: bubble.verticalCenter
+
+                    HoverHandler {
+                        id: bgHandler
+                    }
+
+                    PushButton {
+                        id: more
+
+                        imageColor: JamiTheme.emojiReactPushButtonColor
+                        normalColor: JamiTheme.transparentColor
+                        toolTipText: JamiStrings.moreOptions
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: isOutgoing ? optionButtonItem.right : undefined
+                        anchors.left: !isOutgoing ? optionButtonItem.left : undefined
+                        visible: bubbleArea.containsMouse || hovered || reply.hovered || bgHandler.hovered
+                        source: JamiResources.more_vert_24dp_svg
+                        width: optionButtonItem.width / 2
+                        height: optionButtonItem.height
+
+                        onClicked: {
+                            messageOptionPopup.setPosition()
+                            messageOptionPopup.open()
+                        }
+                    }
+
+                    PushButton {
+                        id: reply
+
+                        imageColor: JamiTheme.emojiReactPushButtonColor
+                        normalColor: JamiTheme.transparentColor
+                        toolTipText: JamiStrings.reply
+                        source: JamiResources.reply_svg
+                        width: optionButtonItem.width / 2
+                        height: optionButtonItem.height
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: isOutgoing ? more.left : undefined
+                        anchors.left: !isOutgoing ? more.right : undefined
+                        visible: bubbleArea.containsMouse || hovered || more.hovered || bgHandler.hovered
+
+                        onClicked: {
+                            MessagesAdapter.editId = ""
+                            MessagesAdapter.replyToId = Id
+                        }
+                    }
+                }
+
+
+                EmojiReaction {
+                    id: messageOptionPopup
+
+                    emojiReplied: emojiReaction.emojiTexts
+                    out: isOutgoing
+                    msgId: Id
+                    msg: Body
+
+                    function setPosition() {
+                        var mappedCoord = bubble.mapToItem(appWindow.contentItem,0, 0)
+                        var distBottomScreen = appWindow.height - mappedCoord.y - height
+                        if (distBottomScreen < 0) {
+                            y = distBottomScreen
+                        } else {
+                            y = 0
+                        }
+
+                        var distBorders = root.width - bubble.width - width
+                        if (isOutgoing) {
+                            if ( distBorders > 0)
+                                x = bubble.x - width
+                            else
+                                x = bubble.x
+                        }else {
+                            if ( distBorders > 0)
+                                x = bubble.x + bubble.width
+                            else
+                                x = bubble.x + bubble.width - width
+                        }
+                    }
+                }
+
 
                 MessageBubble {
                     id: bubble
@@ -253,6 +347,33 @@ Control {
             }
         }
 
+        EmojiReactions {
+            id: emojiReaction
+
+            visible: Reactions && Object.entries(Reactions).length
+            property bool isOutgoing: Author === ""
+
+
+            Layout.alignment: isOutgoing ? Qt.AlignRight : Qt.AlignLeft
+            Layout.rightMargin: isOutgoing ? status.width : undefined
+            Layout.leftMargin: !isOutgoing ? avatarBlock.width : undefined
+            Layout.topMargin: - contentHeight/4
+            Layout.preferredHeight: contentHeight + 5
+            Layout.preferredWidth: contentWidth
+
+            emojiReaction: Reactions
+            //            Layout.fillWidth: true
+            //            Layout.fillHeight: true
+
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    reactionPopup.open()
+                }
+            }
+        }
+
         ListView {
             id: infoCell
 
@@ -285,13 +406,10 @@ Control {
         }
     }
 
-    SBSContextMenu {
-        id: ctxMenu
+    EmojiReactionPopup {
+        id: reactionPopup
 
-        msgId: Id
-        location: root.location
-        isOutgoing: root.isOutgoing
-        transferId: root.transferId
-        transferName: root.transferName
+        emojiReaction: Reactions
+
     }
 }
