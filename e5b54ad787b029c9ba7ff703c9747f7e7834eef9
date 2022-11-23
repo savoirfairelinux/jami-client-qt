@@ -22,6 +22,30 @@
       },
       "revId": "e5b54ad787b029c9ba7ff703c9747f7e7834eef9",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54bbccac_dcd0c53b",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 40
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-23T20:38:46Z",
+      "side": 1,
+      "message": "yes,the correction will be in the next patch, 23061: feature: improve location sharing | https://review.jami.net/c/jami-client-qt/+/23061",
+      "parentUuid": "3694db29_4dbf907e",
+      "range": {
+        "startLine": 302,
+        "startChar": 4,
+        "endLine": 302,
+        "endChar": 21
+      },
+      "revId": "e5b54ad787b029c9ba7ff703c9747f7e7834eef9",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }
