@@ -322,14 +322,18 @@ MainApplication::parseArguments()
     runOptions_[Option::TerminationRequested] = parser.isSet(terminateOption);
     runOptions_[Option::MuteJamid] = parser.isSet(muteDaemonOption);
 }
-
 void
 MainApplication::setApplicationFont()
 {
     QFont font;
-    font.setFamily("Ubuntu");
+    //    font.setFamily("Ubuntu");
+    //    setFont(font);
+    //  QFontDatabase::addApplicationFont(":/fonts/FontAwesome.otf");
+    QFontDatabase::addApplicationFont(":/fonts/NotoColorEmoji-Regular.ttf");
+    // font.setFamily("NotoColorEmoji");
+    // font.setFamilies({"NotoColorEmoji", "Ubuntu"});
+    // font.setStyleStrategy(QFont::PreferMatch);
     setFont(font);
-    QFontDatabase::addApplicationFont(":/fonts/FontAwesome.otf");
 }
 
 void
