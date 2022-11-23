@@ -1223,7 +1223,11 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
     try {
         auto& conversation = pimpl_->getConversationForUid(uid, true).get();
         if (!conversation.isLegacy()) {
-            ConfigurationManager::instance().sendMessage(owner.id, uid, body, parentId, 0);
+            ConfigurationManager::instance().sendMessage(owner.id,
+                                                         uid,
+                                                         body,
+                                                         parentId,
+                                                         static_cast<int>(MessageFlag::Text));
             return;
         }
 
@@ -1251,7 +1255,7 @@ ConversationModel::sendMessage(const QString& uid, const QString& body, const QS
                                                              conversationId,
                                                              body,
                                                              parentId,
-                                                             0);
+                                                             static_cast<int>(MessageFlag::Text));
                 return;
             }
             auto& peers = pimpl_->peersForConversation(newConv);
@@ -1351,7 +1355,27 @@ ConversationModel::editMessage(const QString& convId,
     if (!conversationOpt.has_value()) {
         return;
     }
-    ConfigurationManager::instance().sendMessage(owner.id, convId, newBody, messageId, 1);
+    ConfigurationManager::instance().sendMessage(owner.id,
+                                                 convId,
+                                                 newBody,
+                                                 messageId,
+                                                 static_cast<int>(MessageFlag::Reply));
+}
+
+void
+ConversationModel::reactMessage(const QString& convId,
+                                const QString& emoji,
+                                const QString& messageId)
+{
+    auto conversationOpt = getConversationForUid(convId);
+    if (!conversationOpt.has_value()) {
+        return;
+    }
+    ConfigurationManager::instance().sendMessage(owner.id,
+                                                 convId,
+                                                 emoji,
+                                                 messageId,
+                                                 static_cast<int>(MessageFlag::Reaction));
 }
 
 void
@@ -2430,6 +2454,7 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
             auto msgId = message["id"];
             auto msg = interaction::Info(message, linked.owner.profileInfo.uri);
             conversation.interactions->editMessage(msgId, msg);
+            conversation.interactions->reactToMessage(msgId, msg);
             auto downloadFile = false;
             if (msg.type == interaction::Type::INITIAL) {
                 allLoaded = true;
@@ -2465,6 +2490,8 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                                                                         message["action"]));
             } else if (msg.type == interaction::Type::EDITED) {
                 conversation.interactions->addEdition(msgId, msg, false);
+            } else if (msg.type == interaction::Type::REACTION) {
+                conversation.interactions->addReaction(msg.react_to, msgId);
             }
             insertSwarmInteraction(msgId, msg, conversation, true);
             if (downloadFile) {
@@ -2617,6 +2644,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             if (msg.authorUri != linked.owner.profileInfo.uri) {
                 updateUnread = true;
             }
+        } else if (msg.type == interaction::Type::REACTION) {
+            conversation.interactions->addReaction(msg.react_to, msgId);
         } else if (msg.type == interaction::Type::EDITED) {
             conversation.interactions->addEdition(msgId, msg, true);
         }
@@ -2624,6 +2653,14 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
         if (!insertSwarmInteraction(msgId, msg, conversation, false)) {
             // message already exists
             return;
+        }
+        // once the reaction is added to interactions, we can update the reacted
+        // message
+        if (msg.type == interaction::Type::REACTION) {
+            auto reactInteraction = conversation.interactions->find(msg.react_to);
+            if (reactInteraction != conversation.interactions->end()) {
+                conversation.interactions->reactToMessage(msg.react_to, reactInteraction->second);
+            }
         }
         if (updateUnread) {
             conversation.unreadMessages++;
