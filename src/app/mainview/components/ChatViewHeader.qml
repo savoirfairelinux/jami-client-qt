@@ -241,6 +241,7 @@ Rectangle {
                 onClicked: showDetailsClicked()
             }
         }
+        Component.onCompleted: JamiQmlUtils.messagingHeaderRectRowLayout = messagingHeaderRectRowLayout
     }
 
     CustomBorder {

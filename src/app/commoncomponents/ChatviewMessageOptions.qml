@@ -34,12 +34,43 @@ Popup {
 
     property string msgId
     property string msg
-    property string emojiReplied
+    property var emojiReplied
     property bool out
     property int type
     property string transferId: msgId
     property string location: Body
     property string transferName
+    property bool closeWithoutAnimation: false
+
+    signal addMoreEmoji
+
+    onOpened: {
+        root.closeWithoutAnimation = false
+    }
+
+    function getModel() {
+        var model = ["👍", "👎", "😂"]
+        var cur = []
+        //Add emoji reacted
+        var index = 0
+        for (let emoji of emojiReplied) {
+            if (index < model.length) {
+                cur[index] = emoji
+                index ++
+            }
+        }
+        //complete with default model
+        var modelIndex = cur.length
+        for (let j = 0; j < model.length; j++) {
+            if (cur.length < model.length) {
+                if (!cur.includes(model[j]) ) {
+                    cur[modelIndex] = model[j]
+                    modelIndex ++
+                }
+            }
+        }
+        return cur
+    }
 
     Rectangle {
         id: bubble
@@ -58,7 +89,7 @@ Popup {
                 Layout.alignment: Qt.AlignCenter
 
                 Repeater {
-                    model: ["👍", "😂", "😠" ]
+                    model: root.getModel()
 
                     delegate: Button {
                         id: emojiButton
@@ -90,6 +121,18 @@ Popup {
                                 MessagesAdapter.addEmojiReaction(CurrentConversation.id,text,msgId)
                             close()
                         }
+                    }
+                }
+                PushButton {
+                    toolTipText: JamiStrings.moreEmojis
+                    source: JamiResources.add_reaction_svg
+                    normalColor: JamiTheme.emojiReactBubbleBgColor
+                    imageColor: JamiTheme.emojiReactPushButtonColor
+                    visible: WITH_WEBENGINE
+                    onClicked: {
+                        root.closeWithoutAnimation = true
+                        root.addMoreEmoji()
+                        close()
                     }
                 }
             }
@@ -146,6 +189,7 @@ Popup {
                 iconSource: JamiResources.edit_svg
                 Layout.fillWidth: true
                 Layout.margins: 5
+
                 onClicked: {
                     MessagesAdapter.replyToId = ""
                     MessagesAdapter.editId = root.msgId
@@ -199,7 +243,7 @@ Popup {
     exit: Transition {
         NumberAnimation {
             properties: "opacity"; from: 1.0; to: 0.0
-            duration: JamiTheme.shortFadeDuration
+            duration: root.closeWithoutAnimation ? 0 : JamiTheme.shortFadeDuration
         }
     }
 }

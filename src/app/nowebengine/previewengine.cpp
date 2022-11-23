@@ -33,7 +33,7 @@ PreviewEngine::PreviewEngine(QObject* parent)
 PreviewEngine::~PreviewEngine() {}
 
 void
-PreviewEngine::parseMessage(const QString&, const QString&, bool)
+PreviewEngine::parseMessage(const QString&, const QString&, bool, QColor)
 {}
 
 void

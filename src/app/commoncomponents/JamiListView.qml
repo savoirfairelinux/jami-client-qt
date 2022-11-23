@@ -21,6 +21,7 @@ import QtQuick
 import QtQuick.Controls
 
 import net.jami.Constants 1.1
+import net.jami.Models 1.1
 
 ListView {
     id: root
@@ -33,6 +34,11 @@ ListView {
         id: verticalScrollBar
 
         attachedFlickableMoving: root.moving
+    }
+
+    property bool isScrolling: verticalScrollBar.active
+    onIsScrollingChanged: {
+        JamiQmlUtils.isChatviewScrolling = isScrolling
     }
 
     Keys.onUpPressed: verticalScrollBar.decrease()

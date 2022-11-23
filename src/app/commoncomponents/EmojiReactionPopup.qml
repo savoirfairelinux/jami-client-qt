@@ -35,6 +35,7 @@ Popup {
     parent: Overlay.overlay
 
     property var emojiReaction
+    property string msgId
 
     // center in parent
     x: Math.round((parent.width - width) / 2)
@@ -52,6 +53,12 @@ Popup {
         anchors.fill: parent
         radius: JamiTheme.modalPopupRadius
         color: JamiTheme.secondaryBackgroundColor
+
+        TextMetrics {
+            id: textmetric
+            text: "😀"
+            font.pointSize: JamiTheme.emojiPopupFontsize
+        }
 
         ColumnLayout {
             id:  popupContent
@@ -74,62 +81,97 @@ Popup {
                 onClicked: { root.close() }
             }
 
-            RowLayout {
+
+            ListView {
+                id: listViewReaction
+
                 Layout.leftMargin: JamiTheme.popupButtonsMargin
                 Layout.rightMargin: JamiTheme.popupButtonsMargin
-                Layout.alignment: Qt.AlignCenter
+                spacing: 15
+                Layout.preferredWidth: 400
+                Layout.preferredHeight: childrenRect.height + 30 < 700 ? childrenRect.height + 30 :  700
+                model: Object.entries(emojiReaction)
+                clip: true
+                property int modelCount: Object.entries(emojiReaction).length
 
-                ListView {
-                    id: listViewReaction
+                delegate: RowLayout {
+                    width: parent.width
+                    property string authorUri: modelData[0]
+                    property var emojiArray: modelData[1]
+                    property bool isMe: authorUri === CurrentAccount.uri
 
-                    Layout.preferredWidth: 400
-                    Layout.preferredHeight: modelCount < 5
-                                            ? 50 + (JamiTheme.avatarSize * modelCount)
-                                            : 300
-                    model: Object.entries(emojiReaction)
-                    clip: true
-                    property int modelCount: Object.entries(emojiReaction).length
-                    delegate: RowLayout {
+                    Avatar {
+                        id: avatar
 
-                        width: parent.width
-                        property string authorUri: modelData[0]
-                        property var emojiArray: modelData[1]
-                        property bool isMe: authorUri === CurrentAccount.uri
+                        imageId: isMe ? CurrentAccount.id : authorUri
+                        showPresenceIndicator: false
+                        mode: isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
+                        Layout.preferredWidth: JamiTheme.avatarSize
+                        Layout.preferredHeight: JamiTheme.avatarSize
+                        Layout.alignment: Qt.AlignLeft && Qt.AlignTop
+                        Layout.topMargin: (textmetric.height - height) + (height - authorName.height) / 2
+                    }
 
-                        Avatar {
-                            imageId: isMe ? CurrentAccount.id : authorUri
-                            showPresenceIndicator: false
-                            mode: isMe ? Avatar.Mode.Account : Avatar.Mode.Contact
-                            width: JamiTheme.avatarSize
-                            height: JamiTheme.avatarSize
-                        }
 
-                        Text {
-                            id: authorName
+                    Text {
+                        id: authorName
 
-                            Layout.maximumWidth: 180
-                            elide: Text.ElideRight
-                            font.pointSize: JamiTheme.namePopupFontsize
-                            color: JamiTheme.chatviewTextColor
-                            text: isMe
-                                  ? " " + CurrentAccount.bestName
-                                        + "   "
-                                  : " " + UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri)
-                                        + "   "
-                        }
+                        Layout.fillWidth: true
+                        Layout.rightMargin: 10
+                        Layout.topMargin: (textmetric.height - height)
+                        Layout.alignment: Qt.AlignLeft && Qt.AlignTop
+                        elide: Text.ElideRight
+                        font.pointSize: JamiTheme.namePopupFontsize
+                        color: JamiTheme.chatviewTextColor
+                        text: isMe
+                              ? " " + CurrentAccount.bestName
+                                + "   "
+                              : " " + UtilsAdapter.getBestNameForUri(CurrentAccount.id, authorUri)
+                                + "   "
+                    }
 
-                        Text {
-                            Layout.fillWidth: true
-                            text: {
-                                var cur = "";
-                                for (const emojiIndex in emojiArray) {
-                                    cur = cur + emojiArray[emojiIndex]
-                                }
-                                return cur
+                    GridLayout {
+                        columns: 5
+                        visible: !isMe
+                        layoutDirection: Qt.RightToLeft
+                        Repeater {
+                            model: emojiArray.length < 15 ?  emojiArray.length : 15
+                            delegate: Text {
+                                text: emojiArray[index]
+                                horizontalAlignment: Text.AlignRight
+                                font.pointSize: JamiTheme.emojiPopupFontsize
                             }
-                            horizontalAlignment: Text.AlignRight
-                            font.pointSize: JamiTheme.emojiPopupFontsize
-                            elide: Text.ElideRight
+                        }
+                    }
+
+                    GridLayout {
+                        visible: isMe
+                        columns: 5
+                        layoutDirection: Qt.RightToLeft
+                        Repeater {
+                            model: emojiArray.length < 15 ?  emojiArray.length : 15
+                            delegate: Button {
+                                id: emojiButton
+
+                                text: emojiArray[index]
+                                font.pointSize: JamiTheme.emojiPopupFontsize
+                                background.visible: false
+                                padding: 0
+
+                                Text {
+                                    visible: emojiButton.hovered
+                                    anchors.centerIn: parent
+                                    text: emojiArray[index]
+                                    font.pointSize: JamiTheme.emojiPopupFontsizeBig
+                                    z: 1
+                                }
+
+                                onClicked: {
+                                    MessagesAdapter.removeEmojiReaction(CurrentConversation.id,emojiButton.text,msgId)
+                                    if (emojiArray.length === 1)
+                                        close()
+                                }
+                            }
                         }
                     }
                 }
