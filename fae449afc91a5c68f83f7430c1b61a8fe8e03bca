@@ -117,6 +117,30 @@
       },
       "revId": "fae449afc91a5c68f83f7430c1b61a8fe8e03bca",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46550428_cb02b5c8",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 34
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-23T16:29:05Z",
+      "side": 1,
+      "message": "Yes, thank you!",
+      "parentUuid": "ab9b24a2_9f8b926a",
+      "range": {
+        "startLine": 310,
+        "startChar": 100,
+        "endLine": 310,
+        "endChar": 171
+      },
+      "revId": "fae449afc91a5c68f83f7430c1b61a8fe8e03bca",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     }
   ]
 }

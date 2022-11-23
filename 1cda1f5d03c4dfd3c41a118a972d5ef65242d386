@@ -59,6 +59,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10975247_48a1d624",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-23T16:29:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d23005c2_ff27e6cc",
+      "range": {
+        "startLine": 304,
+        "startChar": 20,
+        "endLine": 304,
+        "endChar": 39
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d4209d0_f3a8d17e",
@@ -72,6 +96,30 @@
       "writtenOn": "2022-11-22T20:51:15Z",
       "side": 1,
       "message": "Remove leading space ` ` before newline `\\n`?",
+      "range": {
+        "startLine": 309,
+        "startChar": 158,
+        "endLine": 309,
+        "endChar": 159
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7bc43d4_69c0d948",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-23T16:29:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d4209d0_f3a8d17e",
       "range": {
         "startLine": 309,
         "startChar": 158,
@@ -105,6 +153,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc3f281_4f55f1f4",
+        "filename": "src/app/constant/JamiStrings.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-23T16:29:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ce31893_63fda3ec",
+      "range": {
+        "startLine": 310,
+        "startChar": 170,
+        "endLine": 310,
+        "endChar": 171
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19e3c19e_4479036a",
@@ -118,6 +190,30 @@
       "writtenOn": "2022-11-22T21:50:06Z",
       "side": 1,
       "message": "why not like the stop() isPositioning outside the if?",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "779d8633_c79b59c8",
+        "filename": "src/app/positioning.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 967
+      },
+      "writtenOn": "2022-11-23T16:29:05Z",
+      "side": 1,
+      "message": "Because if the if conditions are not met, isPositioning can\u0027t be set to true",
+      "parentUuid": "19e3c19e_4479036a",
       "range": {
         "startLine": 48,
         "startChar": 1,
