@@ -44,6 +44,7 @@ SBSMessageBase {
     formattedTime: MessagesAdapter.getFormattedTime(Timestamp)
     formattedDay: MessagesAdapter.getFormattedDay(Timestamp)
     extraHeight: extraContent.active && !isRemoteImage ? msgRadius : -isRemoteImage
+    textHovered: textHoverhandler.hovered
 
 
     EditedPopup {
@@ -58,10 +59,11 @@ SBSMessageBase {
 
             padding: isEmojiOnly ? 0 : JamiTheme.preferredMarginSize
             anchors.right: isOutgoing ? parent.right : undefined
-
             text: Body
-
             horizontalAlignment: Text.AlignLeft
+            HoverHandler {
+                id: textHoverhandler
+            }
 
             width: {
                 if (extraContent.active)
