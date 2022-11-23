@@ -47,6 +47,12 @@ constexpr static const char* TEXT_PLAIN = "text/plain";
 constexpr static const char* APPLICATION_GEO = "application/geo";
 constexpr static const char* FALSE_STR = "false";
 
+enum class MessageFlag : int {
+    Text = 0,
+    Reply = 1,
+    Reaction = 2,
+};
+
 // Adapted from libring libjami::DataTransferInfo
 struct DataTransferInfo
 {

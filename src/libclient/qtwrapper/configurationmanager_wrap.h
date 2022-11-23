@@ -983,13 +983,13 @@ public Q_SLOTS: // METHODS
                      const QString& conversationId,
                      const QString& message,
                      const QString& parent,
-                     int flags = 0)
+                     MessageFlag flags = MessageFlag::Text)
     {
         libjami::sendMessage(accountId.toStdString(),
                              conversationId.toStdString(),
                              message.toStdString(),
                              parent.toStdString(),
-                             flags);
+                             static_cast<int>(flags));
     }
 
     uint32_t loadConversationMessages(const QString& accountId,
