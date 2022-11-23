@@ -224,6 +224,30 @@
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edc7566d_336299a3",
+        "filename": "src/app/positioning.cpp",
+        "patchSetId": 35
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-23T16:34:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "779d8633_c79b59c8",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 52,
+        "endChar": 5
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc897e5e_85c66e94",
