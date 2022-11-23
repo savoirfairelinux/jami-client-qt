@@ -163,6 +163,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ffb1b56_26bf2300",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 220
+      },
+      "writtenOn": "2022-11-23T13:01:20Z",
+      "side": 1,
+      "message": "That\u0027s not my point, if the backend is not connected, firefox show nothing to enabled it. (I don\u0027t have any location if I don\u0027t enable location services), same for gnome-maps.",
+      "parentUuid": "c5445018_c2c4c6e7",
+      "revId": "a320162910d9ccbba080fdf4351cbda56d6def4f",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4bca7c7c_01d0e1e2",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 28
