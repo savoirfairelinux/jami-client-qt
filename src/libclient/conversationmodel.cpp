@@ -1355,6 +1355,18 @@ ConversationModel::editMessage(const QString& convId,
 }
 
 void
+ConversationModel::reactMessage(const QString& convId,
+                                const QString& emoji,
+                                const QString& messageId)
+{
+    auto conversationOpt = getConversationForUid(convId);
+    if (!conversationOpt.has_value()) {
+        return;
+    }
+    ConfigurationManager::instance().sendMessage(owner.id, convId, emoji, messageId, 2);
+}
+
+void
 ConversationModel::refreshFilter()
 {
     pimpl_->invalidateModel();
@@ -2465,6 +2477,8 @@ ConversationModelPimpl::slotConversationLoaded(uint32_t requestId,
                                                                         message["action"]));
             } else if (msg.type == interaction::Type::EDITED) {
                 conversation.interactions->addEdition(msgId, msg, false);
+            } else if (msg.type == interaction::Type::REACTION) {
+                conversation.interactions->addReaction(msg.authorUri, msg.react_to, msg.body, msgId);
             }
             insertSwarmInteraction(msgId, msg, conversation, true);
             if (downloadFile) {
@@ -2617,6 +2631,8 @@ ConversationModelPimpl::slotMessageReceived(const QString& accountId,
             if (msg.authorUri != linked.owner.profileInfo.uri) {
                 updateUnread = true;
             }
+        } else if (msg.type == interaction::Type::REACTION) {
+            conversation.interactions->addReaction(msg.authorUri, msg.react_to, msg.body, msgId);
         } else if (msg.type == interaction::Type::EDITED) {
             conversation.interactions->addEdition(msgId, msg, true);
         }
