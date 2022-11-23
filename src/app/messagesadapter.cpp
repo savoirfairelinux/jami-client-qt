@@ -174,9 +174,30 @@ MessagesAdapter::editMessage(const QString& convId, const QString& newBody, cons
             return;
         }
         lrcInstance_->getCurrentConversationModel()->editMessage(convId, newBody, editId);
-        set_editId("");
     } catch (...) {
         qDebug() << "Exception during message edition:" << messageId;
+    }
+}
+
+void
+MessagesAdapter::reactMessage(const QString& convId, const QString& emoji, const QString& messageId)
+{
+    try {
+        const auto convUid = lrcInstance_->get_selectedConvUid();
+        const auto authorUri = lrcInstance_->getCurrentAccountInfo().profileInfo.uri;
+        // check if this emoji has already been added by this author
+        QString emojiId = lrcInstance_->getConversationFromConvUid(convId)
+                              .interactions->findEmojiReaction(emoji, authorUri, messageId);
+        if (emojiId == "") {
+            // add reaction
+            lrcInstance_->getCurrentConversationModel()->reactMessage(convId, emoji, messageId);
+        } else {
+            // remove reaction
+            qWarning() << "remove emoji";
+            editMessage(convId, "", emojiId);
+        }
+    } catch (...) {
+        qDebug() << "Exception during message reaction:" << messageId;
     }
 }
 
