@@ -48,6 +48,7 @@ struct Info;
     X(LinkPreviewInfo) \
     X(Linkified) \
     X(PreviousBodies) \
+    X(Reactions) \
     X(ReplyTo) \
     X(ReplyToBody) \
     X(ReplyToAuthor) \
@@ -136,9 +137,20 @@ public:
     Q_SIGNAL void timestampUpdate();
 
     void addEdition(const QString& msgId, const interaction::Info& info, bool end);
+    void addReaction(const QString& authorURI,
+                     const QString& messageId,
+                     QString reaction,
+                     const QString& reactionId);
     void editMessage(const QString& msgId, interaction::Info& info);
+    void reactToMessage(const QString& msgId, interaction::Info& info);
+    QVariantMap convertReactMessagetoQVariant(const QMap<QString, MapStringString>& map);
     QString lastMessageUid() const;
     QString lastSelfMessageId() const;
+
+    QString findEmojiReaction(const QString& emoji,
+                              const QString& authorURI,
+                              const QString& messageId);
+    QString messageBody(const QString& msgId);
 
 protected:
     using Role = MessageList::Role;
@@ -155,6 +167,9 @@ private:
     QMap<QString, QSet<QString>> replyTo_;
     void updateReplies(item_t& message);
     QMap<QString, QVector<interaction::Body>> editedBodies_;
+
+    // QMap<msgId, QMap<AuthorUri, QMap<emojiId, emojiBody>>>
+    QMap<QString, QMap<QString, MapStringString>> reactedMessages_;
 
     void moveMessage(const QString& msgId, const QString& parentId);
     void insertMessage(int index, item_t& message);

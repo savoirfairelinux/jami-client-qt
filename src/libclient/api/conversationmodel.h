@@ -230,6 +230,13 @@ public:
      */
     void editMessage(const QString& convId, const QString& newBody, const QString& messageId);
     /**
+     * React to a message with an emoji
+     * @param convId        The conversation id
+     * @param emoji         The emoji
+     * @param messageId     The id of the message
+     */
+    void reactMessage(const QString& convId, const QString& emoji, const QString& messageId);
+    /**
      * Modify the current filter (will change the result of getFilteredConversations)
      * @param filter the new filter
      */

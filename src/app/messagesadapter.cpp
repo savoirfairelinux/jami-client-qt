@@ -170,13 +170,40 @@ MessagesAdapter::editMessage(const QString& convId, const QString& newBody, cons
         const auto convUid = lrcInstance_->get_selectedConvUid();
         auto editId = !messageId.isEmpty() ? messageId : editId_;
         if (editId.isEmpty()) {
-            qWarning("No message to edit");
             return;
         }
         lrcInstance_->getCurrentConversationModel()->editMessage(convId, newBody, editId);
-        set_editId("");
     } catch (...) {
         qDebug() << "Exception during message edition:" << messageId;
+    }
+}
+
+void
+MessagesAdapter::reactMessage(const QString& convId, const QString& emoji, const QString& messageId)
+{
+    try {
+        const auto convUid = lrcInstance_->get_selectedConvUid();
+        const auto authorUri = lrcInstance_->getCurrentAccountInfo().profileInfo.uri;
+        // check if this emoji has already been added by this author
+        auto emojiId = lrcInstance_->getConversationFromConvUid(convId)
+                           .interactions->findEmojiReaction(emoji, authorUri, messageId);
+        auto emojiText = lrcInstance_->getConversationFromConvUid(convId).interactions->messageBody(
+            emojiId);
+        if (emojiId.isEmpty()) {
+            // add reaction
+            lrcInstance_->getCurrentConversationModel()->reactMessage(convId, emoji, messageId);
+
+        } else {
+            if (emojiText.isEmpty()) {
+                // re add reaction
+                editMessage(convId, emoji, emojiId);
+            } else {
+                // remove reaction
+                editMessage(convId, "", emojiId);
+            }
+        }
+    } catch (...) {
+        qDebug() << "Exception during message reaction:" << messageId;
     }
 }
 
