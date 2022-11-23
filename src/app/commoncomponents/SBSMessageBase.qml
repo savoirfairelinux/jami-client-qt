@@ -120,8 +120,8 @@ Control {
             MouseArea {
                 id: itemMouseArea
 
-                Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.fillWidth: true
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
                 onClicked: function (mouse) {
                     if (mouse.button === Qt.RightButton
@@ -139,9 +139,40 @@ Control {
                     id: innerContent
                     width: parent.width
 
+                    visible: true
+
                     // place actual content here
                     ReplyToRow {}
                 }
+
+                Loader {
+                    id: emojiReactLoader
+
+                    anchors.top: bubble.top
+                    anchors.right: isOutgoing ? bubble.left : undefined
+                    anchors.left: !isOutgoing ? bubble.right : undefined
+                    active: emojiReactMouseArea.containsMouse
+                    sourceComponent: EmojiReaction {
+                        id: emojiBubble
+
+                        //if there is no space next to the bubble,
+                        //the emojiReaction component is set to the borders
+                        Component.onCompleted: {
+                            if ( bubble.width + childrenRect.width > root.width ) {
+                                if (isOutgoing) {
+                                    emojiReactLoader.anchors.right = undefined
+                                    emojiReactLoader.anchors.left = itemMouseArea.left
+                                } else {
+                                    emojiReactLoader.anchors.left = undefined
+                                    emojiReactLoader.anchors.right = itemMouseArea.right
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+
 
                 MessageBubble {
                     id: bubble
@@ -283,6 +314,13 @@ Control {
                 readers: root.readers
             }
         }
+    }
+    MouseArea {
+        id: emojiReactMouseArea
+
+        anchors.fill: root
+        hoverEnabled: true
+        acceptedButtons: Qt.NoButton
     }
 
     SBSContextMenu {
