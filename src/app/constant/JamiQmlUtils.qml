@@ -38,6 +38,8 @@ Item {
         Object.assign(JamiQmlUtils.accountCreationInputParaObject, inputPara)
         return accountCreationInputParaObject
     }
+    //chatviewHeader
+    property var messagingHeaderRectRowLayout
 
     // MessageBar buttons in mainview points
     property var mainViewRectObj

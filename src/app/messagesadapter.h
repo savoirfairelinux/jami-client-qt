@@ -32,6 +32,7 @@ class MessagesAdapter final : public QmlAdapterBase
     Q_OBJECT
     QML_RO_PROPERTY(QVariant, messageListModel)
     QML_PROPERTY(QString, replyToId)
+    QML_PROPERTY(bool, isScrolling)
     QML_PROPERTY(QString, editId)
     QML_RO_PROPERTY(QList<QString>, currentConvComposingList)
     QML_PROPERTY(QVariant, mediaMessageListModel)

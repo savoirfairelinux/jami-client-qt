@@ -742,6 +742,7 @@ Item {
 
     // Message view
     property string addEmoji: qsTr("Add emoji")
+    property string moreEmojis: qsTr("more emojis")
     property string sendFile: qsTr("Send file")
     property string leaveAudioMessage: qsTr("Leave audio message")
     property string leaveVideoMessage: qsTr("Leave video message")

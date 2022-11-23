@@ -331,6 +331,7 @@ struct Info
         if (type == Type::TEXT || type == Type::EDITED || type == Type::REACTION) {
             body = message["body"];
         }
+
         timestamp = message["timestamp"].toInt();
         status = Status::SUCCESS;
         parentId = message["linearizedParent"];
