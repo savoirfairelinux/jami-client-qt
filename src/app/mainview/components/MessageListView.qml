@@ -214,7 +214,8 @@ JamiListView {
         filters: ExpressionFilter {
             readonly property int mergeType: Interaction.Type.MERGE
             readonly property int editedType: Interaction.Type.EDITED
-            expression: Body !== "" && Type !== mergeType && Type !== editedType
+            readonly property int reactionType: Interaction.Type.REACTION
+            expression: Body !== "" && Type !== mergeType && Type !== editedType && Type !== reactionType
         }
         sorters: ExpressionSorter {
             expression: modelLeft.index > modelRight.index
