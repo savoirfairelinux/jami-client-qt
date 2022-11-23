@@ -72,6 +72,9 @@ protected:
     Q_INVOKABLE void editMessage(const QString& convId,
                                  const QString& newBody,
                                  const QString& messageId = "");
+    Q_INVOKABLE void reactMessage(const QString& convId,
+                                  const QString& emoji,
+                                  const QString& messageId = "");
     Q_INVOKABLE void sendFile(const QString& message);
     Q_INVOKABLE void acceptFile(const QString& arg);
     Q_INVOKABLE void cancelFile(const QString& arg);

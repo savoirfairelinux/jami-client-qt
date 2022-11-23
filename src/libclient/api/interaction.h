@@ -32,7 +32,18 @@ namespace interaction {
 Q_NAMESPACE
 Q_CLASSINFO("RegisterEnumClassesUnscoped", "false")
 
-enum class Type { INVALID, INITIAL, TEXT, CALL, CONTACT, DATA_TRANSFER, MERGE, EDITED, COUNT__ };
+enum class Type {
+    INVALID,
+    INITIAL,
+    TEXT,
+    CALL,
+    CONTACT,
+    DATA_TRANSFER,
+    MERGE,
+    EDITED,
+    COUNT__,
+    REACTION
+};
 Q_ENUM_NS(Type)
 
 static inline const QString
@@ -53,6 +64,8 @@ to_string(const Type& type)
         return "MERGE";
     case Type::EDITED:
         return "EDITED";
+    case Type::REACTION:
+        return "REACTION";
     case Type::INVALID:
     case Type::COUNT__:
     default:
@@ -67,6 +80,8 @@ to_type(const QString& type)
         return interaction::Type::INITIAL;
     else if (type == "TEXT" || type == TEXT_PLAIN)
         return interaction::Type::TEXT;
+    else if (type == "REACTION")
+        return interaction::Type::REACTION;
     else if (type == "CALL" || type == "application/call-history+json")
         return interaction::Type::CALL;
     else if (type == "CONTACT" || type == "member")
@@ -281,6 +296,9 @@ struct Info
     MapStringString commit;
     QVariantMap linkPreviewInfo = {};
     bool linkified = false;
+    QVariantMap reactions;
+    QVariantMap reactionsByEmojis;
+    QString react_to;
     QVector<Body> previousBodies;
 
     Info() {}
@@ -305,7 +323,11 @@ struct Info
     Info(const MapStringString& message, const QString& accountURI)
     {
         type = to_type(message["type"]);
-        if (type == Type::TEXT || type == Type::EDITED) {
+        if (message.contains("react-to") && type == Type::TEXT) {
+            type = to_type("REACTION");
+            react_to = message["react-to"];
+        }
+        if (type == Type::TEXT || type == Type::EDITED | type == Type::REACTION) {
             body = message["body"];
         }
         authorUri = accountURI == message["author"] ? "" : message["author"];
