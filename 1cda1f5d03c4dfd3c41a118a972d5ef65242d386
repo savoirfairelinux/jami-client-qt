@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b91bc13c_7f3af1f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 35
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "To reduce technical debt and hopefully make the code easier to read in the future:\n\n1. Should variable names be changed from `position`to `location` to be consistent with strings? If so, are you able to do a Find and Replace as there are many other instances that have not been commented.\n\n2. Should filenames with `position` be changed to `location`?\n\n3. Is `ing` required in variable names, say `positioning`? If not, should it be `location`? If SFL coding convention requires `ing`, should `Positioning`/`positioning` be changed to `Locating`/`locating`?\n\nThank you",
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d23005c2_ff27e6cc",
         "filename": "src/app/constant/JamiStrings.qml",
         "patchSetId": 35
@@ -88,6 +105,627 @@
         "startChar": 1,
         "endLine": 52,
         "endChar": 5
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc897e5e_85c66e94",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "Should `Position` be changed to `Location` in variables?\n\nHopefully this can reduce technical debt and help with consistency with string and variables.",
+      "range": {
+        "startLine": 82,
+        "startChar": 20,
+        "endLine": 82,
+        "endChar": 28
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5a07bbd_ab802d4e",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 84,
+        "startChar": 23,
+        "endLine": 84,
+        "endChar": 31
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef12cc7c_f4db4f9c",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 88,
+        "startChar": 46,
+        "endLine": 88,
+        "endChar": 54
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eda78b9e_f404ef4e",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 94,
+        "startChar": 23,
+        "endLine": 94,
+        "endChar": 31
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2007c00_6361f563",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 98,
+        "startChar": 49,
+        "endLine": 98,
+        "endChar": 57
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6f32721_f74c89cc",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 102,
+        "startChar": 23,
+        "endLine": 102,
+        "endChar": 31
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af059fd8_a10b1113",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 104,
+        "startChar": 49,
+        "endLine": 104,
+        "endChar": 57
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30119bbe_60cc37a5",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 110,
+        "startChar": 39,
+        "endLine": 110,
+        "endChar": 47
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9171b03_ea9c5c87",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 110,
+        "startChar": 12,
+        "endLine": 110,
+        "endChar": 20
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38afcd60_758ab5d7",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 111,
+        "startChar": 12,
+        "endLine": 111,
+        "endChar": 20
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ec9374_524a9d03",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "Is the `ing` required? Can it just be `Location`? i.e. short for `stopLocationServices`",
+      "range": {
+        "startLine": 111,
+        "startChar": 32,
+        "endLine": 111,
+        "endChar": 43
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "079ee6fe_72c43326",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 124,
+        "startChar": 16,
+        "endLine": 124,
+        "endChar": 24
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ed839b_21697e18",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "Can the `ing` be removed? Can `Location` be used? i.e. short for `startLocationService`.\n\nIf SFL coding convention is to have the `ing`, should `Locating` be preferred?",
+      "range": {
+        "startLine": 124,
+        "startChar": 37,
+        "endLine": 124,
+        "endChar": 48
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9888f6a1_f44118b0",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 199,
+        "startChar": 21,
+        "endLine": 199,
+        "endChar": 29
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6eea6e7_d4f78746",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 233,
+        "startChar": 51,
+        "endLine": 233,
+        "endChar": 59
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe9601a3_d226ba23",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 233,
+        "startChar": 24,
+        "endLine": 233,
+        "endChar": 32
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2c16170_5d1a5cbf",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 236,
+        "startChar": 49,
+        "endLine": 236,
+        "endChar": 57
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e86ec684_037a0885",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 236,
+        "startChar": 28,
+        "endLine": 236,
+        "endChar": 36
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af007e43_91c84b74",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 238,
+        "startChar": 49,
+        "endLine": 238,
+        "endChar": 57
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c584cd85_7e9f224f",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 238,
+        "startChar": 28,
+        "endLine": 238,
+        "endChar": 36
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e83c2eeb_9a0ef359",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 248,
+        "startChar": 30,
+        "endLine": 248,
+        "endChar": 38
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee55b7ff_363dedad",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 249,
+        "startChar": 65,
+        "endLine": 249,
+        "endChar": 73
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd36526_8e8b98e8",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 249,
+        "startChar": 33,
+        "endLine": 249,
+        "endChar": 41
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "834f2631_f15f31dc",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 252,
+        "startChar": 59,
+        "endLine": 252,
+        "endChar": 67
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ef0cd5b_53aeece3",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "Can the `ing` be removed? `location`?\n\nIf SFL coding convention is to have the `ing`, should `locating` be preferred?",
+      "range": {
+        "startLine": 252,
+        "startChar": 74,
+        "endLine": 252,
+        "endChar": 85
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbff4db9_92831ee3",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 252,
+        "startChar": 27,
+        "endLine": 252,
+        "endChar": 35
+      },
+      "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f43c3181_c49bfa9e",
+        "filename": "src/app/webengine/map/MapPosition.qml",
+        "patchSetId": 35
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 938
+      },
+      "writtenOn": "2022-11-23T07:38:49Z",
+      "side": 1,
+      "message": "`Location`",
+      "range": {
+        "startLine": 256,
+        "startChar": 24,
+        "endLine": 256,
+        "endChar": 32
       },
       "revId": "1cda1f5d03c4dfd3c41a118a972d5ef65242d386",
       "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
