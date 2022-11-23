@@ -25,6 +25,7 @@ import net.jami.Constants 1.1
 import net.jami.Adapters 1.1
 
 import "../../commoncomponents"
+import "../../webengine/emojipicker"
 
 Rectangle {
     id: root
@@ -104,23 +105,6 @@ Rectangle {
         visible: false
     }
 
-    Loader {
-        id: emojiPickerLoader
-        source: WITH_WEBENGINE ?
-                    "qrc:/webengine/emojipicker/EmojiPicker.qml" :
-                    "qrc:/nowebengine/EmojiPicker.qml"
-
-        function openEmojiPicker() {
-            item.openEmojiPicker()
-        }
-        Connections {
-            target: emojiPickerLoader.item
-            function onEmojiIsPicked(content) {
-                messageBar.textAreaObj.insertText(content)
-            }
-        }
-    }
-
     JamiFileDialog {
         id: jamiFileDialog
 
@@ -164,27 +148,44 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: footerColumnLayout.width
             Layout.preferredHeight: implicitHeight
+            property var emojiPicker
+
+            Connections {
+                target: messageBar.emojiPicker ? messageBar.emojiPicker : null
+                function onEmojiIsPicked(content) {
+                    messageBar.textAreaObj.insertText(content)
+                }
+            }
+
+            function openEmojiPicker() {
+                var component =  WITH_WEBENGINE
+                          ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml")
+                          : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
+                messageBar.emojiPicker =
+                        component.createObject(messageBar, {x: setXposition(), y: setYposition()});
+                if (messageBar.emojiPicker === null) {
+                    console.log("Error creating emojiPicker in chatViewFooter");
+                }
+            }
+            onWidthChanged: {
+                if (emojiPicker)
+                    emojiPicker.x = setXposition()
+            }
+
+            function setXposition(){
+                return messageBar.width - JamiTheme.emojiPickerWidth //- JamiTheme.emojiMargins
+            }
+
+            function setYposition() {
+                return - JamiTheme.emojiPickerHeight //- JamiTheme.emojiMargins
+            }
 
             sendButtonVisibility: text ||
                                   dataTransferSendContainer.filesToSendCount
 
             onEmojiButtonClicked: {
                 JamiQmlUtils.updateMessageBarButtonsPoints()
-
-                emojiPickerLoader.parent = JamiQmlUtils.mainViewRectObj
-
-                emojiPickerLoader.x = Qt.binding(function() {
-                    var buttonX = JamiQmlUtils.emojiPickerButtonInMainViewPoint.x +
-                            JamiQmlUtils.emojiPickerButtonObj.width
-                    return buttonX - emojiPickerLoader.width
-                })
-                emojiPickerLoader.y = Qt.binding(function() {
-                    var buttonY = JamiQmlUtils.audioRecordMessageButtonInMainViewPoint.y
-                    return buttonY - emojiPickerLoader.height - messageBar.marginSize
-                            - JamiTheme.chatViewHairLineSize
-                })
-
-                emojiPickerLoader.openEmojiPicker()
+                openEmojiPicker()
             }
 
             onShowMapClicked: {

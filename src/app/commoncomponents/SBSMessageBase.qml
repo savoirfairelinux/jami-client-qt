@@ -25,7 +25,6 @@ import net.jami.Models 1.1
 import net.jami.Adapters 1.1
 import net.jami.Constants 1.1
 
-
 Control {
     id: root
 
@@ -183,8 +182,10 @@ Control {
                         height: optionButtonItem.height
 
                         onClicked: {
-                            messageOptionPopup.setPosition()
                             messageOptionPopup.open()
+                            messageOptionPopup.x = messageOptionPopup.setXposition(messageOptionPopup.width)
+                            messageOptionPopup.y = messageOptionPopup.setYposition(messageOptionPopup.height)
+
                         }
                     }
 
@@ -212,7 +213,6 @@ Control {
                     }
                 }
 
-
                 ChatviewMessageOptions {
                     id: messageOptionPopup
 
@@ -222,15 +222,57 @@ Control {
                     msg: Body
                     type: Type
                     transferName: TransferName
+                    visible: false
 
-                    function setPosition() {
-                        var mappedCoord = bubble.mapToItem(appWindow.contentItem,0, 0)
-                        var distBottomScreen = appWindow.height - mappedCoord.y - height
-                        if (distBottomScreen < 0) {
-                            y = distBottomScreen
-                        } else {
-                            y = 0
+                    property bool isScrolling: JamiQmlUtils.isChatviewScrolling
+                    property real rootWidth: root.width
+                    property var emojiPicker
+
+                    onIsScrollingChanged: {
+                        messageOptionPopup.close()
+                        if (messageOptionPopup.emojiPicker)
+                            messageOptionPopup.emojiPicker.closeEmojiPicker()
+                    }
+
+                    onAddMoreEmoji: {
+                        JamiQmlUtils.updateMessageBarButtonsPoints()
+                        openEmojiPicker()
+                    }
+
+                    onRootWidthChanged: {
+                        if (emojiPicker)
+                            emojiPicker.x = setXposition(JamiTheme.emojiPickerWidth)
+                        messageOptionPopup.x = setXposition(width)
+                        messageOptionPopup.y = setYposition(height)
+
+                    }
+
+                    Connections {
+                        target: messageOptionPopup.emojiPicker ? messageOptionPopup.emojiPicker : null
+                        function onEmojiIsPicked(content) {
+                            if (messageOptionPopup.emojiReplied.includes(content))
+                                MessagesAdapter.removeEmojiReaction(CurrentConversation.id,content,messageOptionPopup.msgId)
+                            else
+                                MessagesAdapter.addEmojiReaction(CurrentConversation.id,content,messageOptionPopup.msgId)
                         }
+                    }
+
+                    function openEmojiPicker() {
+                        var component =  WITH_WEBENGINE
+                                  ? Qt.createComponent("qrc:/webengine/emojipicker/EmojiPicker.qml")
+                                  : Qt.createComponent("qrc:/nowebengine/EmojiPicker.qml")
+                        messageOptionPopup.emojiPicker = component.createObject(msgRowlayout,
+                                                                                {
+                                                                                 x: setXposition(JamiTheme.emojiPickerWidth),
+                                                                                 y: setYposition(JamiTheme.emojiPickerHeight)
+                                                                                });
+                        messageOptionPopup.emojiPicker.open()
+                        if (messageOptionPopup.emojiPicker === null) {
+                            console.log("Error creating emojiPicker in SBSMessageBase");
+                        }
+                    }
+
+                    function setXposition(width) {
 
                         var distBorders = root.width - bubble.width - width
                         if (isOutgoing) {
@@ -244,9 +286,21 @@ Control {
                             else
                                 x = bubble.x + bubble.width - width
                         }
+                        return x
+                    }
+
+                    function setYposition(height) {
+                        var mappedCoord = bubble.mapToItem(appWindow.contentItem,0, 0)
+                        var distBottomScreen = appWindow.height - mappedCoord.y - height - JamiQmlUtils.messageBarButtonsRowObj.height
+                        if (distBottomScreen < 0) {
+                            return distBottomScreen
+                        }
+                        var distTopScreen = mappedCoord.y - JamiQmlUtils.messagingHeaderRectRowLayout.height
+                        if (distTopScreen < 0)
+                            return - distTopScreen
+                        return 0
                     }
                 }
-
 
                 MessageBubble {
                     id: bubble
@@ -413,6 +467,6 @@ Control {
         id: reactionPopup
 
         emojiReaction: Reactions
-
+        msgId: Id
     }
 }
