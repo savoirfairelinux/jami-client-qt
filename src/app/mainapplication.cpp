@@ -326,10 +326,14 @@ MainApplication::parseArguments()
 void
 MainApplication::setApplicationFont()
 {
+    QStringList fontFamilies {"Ubuntu"};
+#ifdef Q_OS_LINUX
+    QFontDatabase::addApplicationFont(":/fonts/NotoColorEmoji.ttf");
+    fontFamilies += "NotoColorEmoji";
+#endif
     QFont font;
-    font.setFamily("Ubuntu");
+    font.setFamilies(fontFamilies);
     setFont(font);
-    QFontDatabase::addApplicationFont(":/fonts/FontAwesome.otf");
 }
 
 void
