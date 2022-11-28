@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="bn">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hr_HR">
 <context>
     <name>CallAdapter</name>
     <message>
@@ -385,7 +385,7 @@
         <location filename="../src/app/constant/JamiStrings.qml" line="35"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="235"/>
         <source>End call</source>
-        <translation>কল শেষ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="236"/>
@@ -561,13 +561,13 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="707"/>
         <source>Ok</source>
-        <translation>ঠিক আছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="555"/>
         <location filename="../src/app/constant/JamiStrings.qml" line="709"/>
         <source>Cancel</source>
-        <translation>বাতিল করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="32"/>
@@ -923,7 +923,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="205"/>
         <source>no video</source>
-        <translation>কোন ভিডিও</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="562"/>
@@ -958,7 +958,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="787"/>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Nema</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="803"/>
@@ -1190,7 +1190,7 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="278"/>
         <source>Contact details</source>
-        <translation type="unfinished"/>
+        <translation>Pojedinosti kontakta</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="281"/>
@@ -1220,22 +1220,22 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="286"/>
         <source>Exit full screen</source>
-        <translation>পূর্ণ স্ক্রীন থেকে প্রস্থান করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="288"/>
         <source>Share screen</source>
-        <translation>ভাগ পর্দা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="289"/>
         <source>Share window</source>
-        <translation>শেয়ার উইন্ডো</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="291"/>
         <source>Share screen area</source>
-        <translation>স্ক্রীন এরিয়া শেয়ার করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="292"/>
@@ -1280,12 +1280,12 @@ If yes, only a randomly generated 40-character identifier will be assigned to th
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="303"/>
         <source>Share location</source>
-        <translation type="unfinished"/>
+        <translation>Podijeli lokaciju</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="304"/>
         <source>Stop sharing</source>
-        <translation type="unfinished"/>
+        <translation>Prestani dijeliti</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="305"/>
@@ -1387,7 +1387,7 @@ Other participants&apos; location can still be received.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="330"/>
         <source>No network connectivity</source>
-        <translation type="unfinished"/>
+        <translation>Veza nedostupna</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="333"/>
@@ -1719,7 +1719,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="450"/>
         <source>System</source>
-        <translation>পদ্ধতি</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="453"/>
@@ -1754,7 +1754,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="470"/>
         <source>User interface language</source>
-        <translation>ইউজার ইন্টারফেস ভাষা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="475"/>
@@ -1845,7 +1845,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="502"/>
         <source>Installer download canceled</source>
-        <translation>ইনস্টলার ডাউনলোড বাতিল হয়েছে৷</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="504"/>
@@ -1905,12 +1905,12 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="752"/>
         <source>Reply</source>
-        <translation type="unfinished"/>
+        <translation>Odgovori</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="754"/>
         <source>Edit</source>
-        <translation type="unfinished"/>
+        <translation>Uredi</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="755"/>
@@ -1920,7 +1920,7 @@ Please try again later.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="756"/>
         <source>Join call</source>
-        <translation type="unfinished"/>
+        <translation>Pridruži se pozivu</translation>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="757"/>
@@ -2289,7 +2289,7 @@ Jami will now quit.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="745"/>
         <source>Send file</source>
-        <translation>ফাইল পাঠান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="746"/>
@@ -2449,7 +2449,7 @@ connects to synchronize the conversation.</source>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="287"/>
         <source>View full screen</source>
-        <translation>পূর্ণ পর্দায় দেখান</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="290"/>
@@ -2585,17 +2585,17 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="469"/>
         <source>Layout</source>
-        <translation>লেআউট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="471"/>
         <source>Vertical view</source>
-        <translation>উল্লম্ব দৃশ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="472"/>
         <source>Horizontal view</source>
-        <translation>অনুভূমিক দৃশ্য</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="518"/>
@@ -2675,7 +2675,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="536"/>
         <source>Full screen</source>
-        <translation>পূর্ণ পর্দা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="537"/>
@@ -2986,7 +2986,7 @@ The profile can be changed at all times from the account&apos;s settings.</sourc
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="655"/>
         <source>Select a screen to share</source>
-        <translation>শেয়ার করার জন্য একটি স্ক্রিন নির্বাচন করুন</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/constant/JamiStrings.qml" line="656"/>
@@ -3172,7 +3172,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="65"/>
         <source>Full screen</source>
-        <translation>পূর্ণ পর্দা</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="69"/>
@@ -3257,7 +3257,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="148"/>
         <source>End call</source>
-        <translation>কল শেষ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="152"/>
@@ -3267,7 +3267,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="156"/>
         <source>Mute microphone</source>
-        <translation type="unfinished"/>
+        <translation>Utišaj mikrofon</translation>
     </message>
     <message>
         <location filename="../src/app/mainview/components/KeyboardShortcutTable.qml" line="160"/>
@@ -3324,7 +3324,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="328"/>
         <source>Canceled</source>
-        <translation>বাতিল হয়েছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="331"/>
@@ -3361,12 +3361,12 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="673"/>
         <source>Today</source>
-        <translation type="unfinished"/>
+        <translation>Danas</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="675"/>
         <source>Yesterday</source>
-        <translation type="unfinished"/>
+        <translation>Jučer</translation>
     </message>
     <message>
         <location filename="../src/app/messagesadapter.cpp" line="664"/>
@@ -3438,7 +3438,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="232"/>
         <source>%1 joined</source>
-        <translation>%1 যুক্ত হয়েছিল</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/api/interaction.h" line="234"/>
@@ -3487,7 +3487,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="198"/>
         <source>Join call</source>
-        <translation type="unfinished"/>
+        <translation>Pridruži se pozivu</translation>
     </message>
     <message>
         <location filename="../src/libclient/authority/storagehelper.cpp" line="211"/>
@@ -3505,7 +3505,7 @@ Copy and share it with your friends!</source>
         <location filename="../src/libclient/avmodel.cpp" line="365"/>
         <location filename="../src/libclient/avmodel.cpp" line="384"/>
         <source>default</source>
-        <translation>ডিফল্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="64"/>
@@ -3540,7 +3540,7 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="70"/>
         <source>OK</source>
-        <translation>ঠিক আছে</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/libclient/callmodel.cpp" line="71"/>
@@ -3991,17 +3991,17 @@ Copy and share it with your friends!</source>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="273"/>
         <source>%1 Mbps</source>
-        <translation>প্রতি সেকেন্ডে %1 মেগাবিট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="273"/>
         <source>Default</source>
-        <translation>ডিফল্ট</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/app/utilsadapter.cpp" line="473"/>
         <source>System</source>
-        <translation>পদ্ধতি</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
