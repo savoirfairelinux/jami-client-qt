@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d18afec_4e78a9bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 859
+      },
+      "writtenOn": "2022-11-28T18:52:34Z",
+      "side": 1,
+      "message": "imho it only solves a secondary effect of the problems with the chatview resising",
+      "revId": "1bedbef0f4a845d242f77624192dde7c78a11c97",
+      "serverId": "1e26b4c1-6b8c-47ff-9df7-501b633d3b5a"
+    }
+  ]
+}
